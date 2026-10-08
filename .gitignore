@@ -1,0 +1,11 @@
+# Never commit local credentials or secrets
+.env
+.env.*
+!.env.example
+*api.txt
+*token*
+*credential*
+*.pem
+*.key
+.DS_Store
+node_modules/
