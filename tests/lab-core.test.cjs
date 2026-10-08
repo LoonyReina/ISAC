@@ -1,0 +1,14 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),K=require('../lab-core.js');
+const near=(a,b,t=1e-10)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+test('CA threshold factor analytically reproduces Pfa',()=>{for(const n of [8,16,32])for(const p of [.01,.001,.0001])near((1+K.caFactor(n,p)/n)**(-n),p);assert.throws(()=>K.caFactor(0,.01));});
+test('CA uses both training sides, excludes CUT/guards, skips edges',()=>{const x=Array(96).fill(1);x[48]=1e6;x[47]=1e6;x[49]=1e6;const t=K.caThresholds(x,8,2,.001);near(t[48],K.caFactor(16,.001));assert.ok(Number.isNaN(t[0]));});
+test('CA is invariant to common positive scale',()=>{const x=K.cfarData(1,'noise'),a=K.caThresholds(x,8,2,.001),b=K.caThresholds(x.map(v=>7*v),8,2,.001);for(let i=10;i<86;i++)near(b[i],7*a[i]);});
+test('CA empirical Pfa within 5 sigma at three noise scales',()=>{for(const [i,mu]of [.25,1,4].entries()){const r=K.falseAlarmTrials(16,.01,100000,mu,41+i*991);assert.ok(Math.abs(r.rate-.01)<5*Math.sqrt(.01*.99/r.trials));console.log(JSON.stringify({mu,...r}));}});
+test('matched filter finds both known single waveforms without noise',()=>{for(const kind of ['barker','rect']){const a=K.matched(kind);assert.equal(a.peak,25);near(a.z[25],1);}});
+test('wrong template reduces Barker correlation at true delay',()=>{const a=K.matched('barker',true);near(a.z[25],5/13);});
+test('Barker sidelobes and equal sequence energy',()=>{const a=K.matched('barker');for(let i=13;i<38;i++)if(i!==25)assert.ok(Math.abs(a.z[i])<=1/13+1e-12);assert.equal(K.barker.reduce((s,v)=>s+v*v,0),13);});
+test('array unity on steering direction and bounded normalized gain',()=>{for(const n of [2,8,16])for(const s of [-60,0,25,70]){near(K.arrayGain(n,s,s),1);for(let a=-90;a<=90;a++)assert.ok(K.arrayGain(n,s,a)<=1+1e-12);}});
+test('OFDM: signs and normalization for range and positive/negative Doppler',()=>{for(const [r,d]of [[10,3],[1,-12],[28,12],[16,0]]){const a=K.ofdm(r,d,true,0);assert.equal(a.peak.r,r);assert.equal(a.peak.d,d);near(a.peak.p,1);near(a.rangeResolution,4.6875);near(a.velocityResolution,.9375);}});
+test('unremoved symbols break coherent OFDM concentration',()=>{const a=K.ofdm(10,3,false,0);assert.ok(a.peak.p<.1);});
+test('fractional-bin target leaks, with no fabricated precision gain',()=>{const a=K.ofdm(10.5,3.5,true,0);assert.ok(a.peak.p<.3);assert.ok([10,11].includes(a.peak.r));assert.ok([3,4].includes(a.peak.d));});
