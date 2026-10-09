@@ -7,7 +7,7 @@ const val=id=>Number($(id).value),on=id=>$(id).checked;
 const f=(x,n=2)=>Math.abs(x)<1e-10?(0).toFixed(n):x.toFixed(n);
 const degree=x=>x*180/Math.PI,complex=z=>`${f(z.re,3)} ${z.im<0?'−':'+'} j${f(Math.abs(z.im),3)}`;
 let stage=0,active=null,frame=0,printDetails=[];
-function inputs(){document.querySelectorAll('input[type=range]').forEach(e=>{let o=$(e.id+'-value');if(o)o.textContent=`${Number(e.value)} ${e.dataset.unit||''}`;});}
+function inputs(){document.querySelectorAll('input[type=range]').forEach(e=>{let o=$(e.id+'-value');if(!o)return;const digits=e.dataset.digits;const value=digits===undefined?Number(e.value):Number(e.value).toFixed(Number(digits));o.textContent=`${value} ${e.dataset.unit||''}`.trim();});}
 function prep(id){const el=$(id);if(!el||!el.getClientRects().length||el.closest('[hidden]'))return null;const w=el.getBoundingClientRect().width,h=Number(el.dataset.h),dpr=Math.min(window.devicePixelRatio||1,2);
  el.width=Math.round(w*dpr);el.height=Math.round(h*dpr);el.style.height=h+'px';const g=el.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,w,h);g.font='14px system-ui, sans-serif';g.textBaseline='middle';g.lineWidth=1.5;return{g,w,h,el};}
 function text(g,s,x,y,color=ink,size=14,align='left'){g.fillStyle=color;g.font=`${size}px system-ui, sans-serif`;g.textAlign=align;g.fillText(s,x,y);g.textAlign='left';}
@@ -36,7 +36,7 @@ function drawMatch(){const lag=val('match-lag'),s=C.matched($('match-kind').valu
  o=prep('match-score');if(o){const a=axes(o,{title:'每个候选延迟的归一化相关幅度 |z[q]|',xmin:0,xmax:64,ymin:0,ymax:1.5,xlabel:'候选延迟 q / 格',yticks:[0,.5,1,1.5]});path(o.g,s.z.map((v,q)=>[a.x(q),a.y(Math.abs(v))]),teal,2);dot(o.g,a.x(lag),a.y(Math.abs(s.z[lag])),5,orange);}
  $('match-read').textContent=`当前位置 q = ${lag}，13项乘积平均 z[q] = ${f(s.z[lag],3)}，幅度为 ${f(Math.abs(s.z[lag]),3)}。真值 q = 25 的幅度是 ${f(Math.abs(s.z[25]),3)}。${lag===25?'你正在对齐真实回波。':'先预测移到 q=25 后能否全部同号，再按“移到真实延迟”。'}`;
 }
-function drawDop(){const v=val('dop-v'),m=val('dop-m'),fd=2*v/.06,step=TAU*fd*.0005;vectors('dop-c',Array.from({length:16},(_,i)=>C.cis(i*step)),'相同距离格，不同观察拍 m（相对第一拍）',m,Array.from({length:16},(_,i)=>'m='+i));$('dop-read').textContent=`v = ${f(v)} m/s → f_D = ${f(fd,1)} Hz。每拍相位增加 ${f(degree(step),1)}°；第 ${m} 拍相对第一拍累积 ${f(degree(step*m),1)}°（显示角 ${f(degree(C.wrap(step*m)),1)}°）。每个样本功率仍为 1。`;}
+function drawDop(){window.Intuition?.drawSlow();}
 function drawArray(){const N=val('arr-n'),a=val('arr-a'),s=val('arr-s'),ar=C.array(N,a,s);vectors('arr-phasors',ar.z,'相邻路径差经补偿后，还剩多少相位？',-1,ar.z.map((_,i)=>'ℓ='+i));let o=prep('arr-beam');if(o){const b=axes(o,{title:'给定入射角，扫描不同接收指向',xmin:-80,xmax:80,ymin:0,ymax:1.05,xticks:[-80,-40,0,40,80],yticks:[0,.5,1],xlabel:'候选接收指向 θ₀ / °',ylabel:'归一化功率'});path(o.g,Array.from({length:321},(_,i)=>{let t=-80+i*.5;return[b.x(t),b.y(C.array(N,a,t).gain)];}),teal,2);dot(o.g,b.x(s),b.y(ar.gain),5,orange);}
  $('arr-read').textContent=`真实方向 ${a}°，接收指向 ${s}°，相邻残余相位 ${f(degree(ar.step),1)}°。归一化相干功率 ${f(ar.gain,3)}（${f(10*Math.log10(Math.max(ar.gain,1e-8)),1)} dB）。所有箭头一致时得分为 1；此归一化不展示增加阵元的绝对链路增益。`;
 }
@@ -82,7 +82,7 @@ function drawResolution(){const B=val('res-b')*1e6,dr=C.C/(2*B),pad=on('res-pad'
 function drawGeometry(){const theta=val('geo-angle')*Math.PI/180,p=C.ellipse(40,theta),g0=C.geometry(p.x,p.y,p.vx,p.vy),o=prep('geo-c');if(o){const a=axes(o,{title:'一条路径长度约束，是椭圆而不是一个位置',xmin:-25,xmax:65,ymin:-8,ymax:43,xticks:[-20,0,20,40,60],yticks:[0,20,40],xlabel:'平面位置 x / m',ylabel:'y / m'}),pts=Array.from({length:181},(_,i)=>{let e=C.ellipse(40,Math.PI*i/180);return[a.x(e.x),a.y(e.y)];});path(o.g,pts,line,2);path(o.g,[[a.x(0),a.y(0)],[a.x(p.x),a.y(p.y)],[a.x(40),a.y(0)]],teal,2);dot(o.g,a.x(0),a.y(0),6,blue);dot(o.g,a.x(40),a.y(0),6,blue);dot(o.g,a.x(p.x),a.y(p.y),6,orange);text(o.g,'Tx',a.x(0),a.y(0)+20,blue,12,'center');text(o.g,'Rx',a.x(40),a.y(0)+20,blue,12,'center');const speed=Math.hypot(p.vx,p.vy);arrow(o.g,a.x(p.x),a.y(p.y),p.vx/speed*29,-p.vy/speed*29,orange,2);}
  $('geo-read').textContent=`当前位置 (${f(p.x,2)}, ${f(p.y,2)}) m。去程 ${f(g0.rt,2)} m + 回程 ${f(g0.rr,2)} m = ${f(g0.L,2)} m；绝对路径延迟 ${f(g0.tau*1e9,2)} ns。沿椭圆切向运动的路径变化率为 0，因此这条链路 f_D≈${f(g0.fd,2)} Hz。单凭它无法恢复全部二维速度。`;
 }
-const redraws={echo:drawEcho,iq:drawIQ,match:drawMatch,dop:drawDop,arr:drawArray,synth:drawSynthesis,o:drawOfdm,cf:drawCF,res:drawResolution,geo:drawGeometry};
+const redraws={quad:()=>window.Intuition?.drawIQ(),motion:()=>window.Intuition?.drawMotion(),echo:drawEcho,iq:drawIQ,match:drawMatch,dop:drawDop,arr:drawArray,synth:drawSynthesis,o:drawOfdm,cf:drawCF,res:drawResolution,geo:drawGeometry};
 function renderAll(){inputs();Object.values(redraws).forEach(fn=>fn());}
 function changed(e){inputs();const key=e.target.id.split('-')[0];if(redraws[key])redraws[key]();if(key==='cf'&&e.target.id!=='cf-cut')$('cf-stats').textContent='参数已更改；请重新运行统计检验。';}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',changed));
@@ -101,5 +101,5 @@ let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);
 function readingProgress(){const top=window.scrollY,total=document.documentElement.scrollHeight-window.innerHeight;$('progress').style.width=(100*top/Math.max(total,1))+'%';let current='start';document.querySelectorAll('.chapter').forEach(s=>{if(s.getBoundingClientRect().top<window.innerHeight*.28)current=s.id;});document.querySelectorAll('.toc nav a').forEach(a=>{if(a.hash==='#'+current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}
 window.addEventListener('scroll',readingProgress,{passive:true});document.querySelectorAll('.mobile-toc a').forEach(a=>a.onclick=()=>a.closest('details').open=false);
 renderAll();setStep(0);readingProgress();
-window.ISACCourseUI={setStep,getStage:()=>stage,renderAll};
+window.ISACCourseUI={setStep,getStage:()=>stage,renderAll,stop};
 })();
