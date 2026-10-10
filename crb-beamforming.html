@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="从一位通信用户、一个点目标出发，交互理解通信 SNR 约束下的精确 CRB 最优波束：平台、取舍与不可行，以及未知反射系数为何影响角度信息。">
+  <title>通信要求更高，雷达一定估得更差吗？ | ISAC</title>
+  <link rel="stylesheet" href="course.css">
+  <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
+  <link rel="stylesheet" href="crb-beamforming.css">
+  <script defer src="crb-beamforming-core.js"></script>
+  <script defer src="crb-beamforming.js"></script>
+</head>
+<body class="crb-page">
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="site-main crb-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">提高通信门槛，角度估计下界一定立刻变差吗？</span></nav><p class="site-role">研究主题 · 单用户点目标精确最优波束、未知反射系数与原文对照</p><p class="site-prereq">需要时回看：<a href="foundations.html#array">阵列与方向</a> · <a href="foundations.html#matched">匹配滤波</a> · <a href="foundations.html#limits">性能指标与边界</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="crb-beamforming.html#experiment">① 预测与实验</a><a href="crb-beamforming.html#paper">② 原文与证据</a><a href="crb-beamforming.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+
+<section class="cover crb-cover" aria-labelledby="crb-title">
+  <p class="eyebrow">从“照得亮”走向“估得准” / 2022 论文案例</p>
+  <h1 id="crb-title">通信要求更高，<br>雷达一定估得<span class="crb-title-em">更差</span>吗？</h1>
+  <p class="crb-deck">同一副发射阵列，既给一位用户传数据，也照亮一个目标。只提高通信的最低要求，看看最好的角度估计下界，究竟何时才开始付出代价。</p>
+  <div class="cover-tags"><span>1 位用户 · 1 个点目标</span><span>固定功率与阵列</span><span>单用户闭式最优解</span></div>
+  <div class="crb-cover-bottom"><a class="crb-primary-link" href="#experiment">先调一次通信门槛 <span aria-hidden="true">↘</span></a><p>不用先学优化。先读懂对象，再看两条曲线。</p></div>
+</section>
+
+<section class="chapter" id="intuition" aria-labelledby="crb-intuition-title">
+  <header class="chapter-head"><p class="eyebrow">01 / 把物理对象放在前面</p><h2 id="crb-intuition-title">一次发射，两处接收</h2></header>
+  <p>“波束”是发射天线各自使用的一组复数权重：决定每根天线发多大、相位是多少。本页只有<strong>一路通信符号</strong>，8 根天线把同一份符号按不同权重发出。雷达也用这份已知信号照射目标。</p>
+  <ol class="crb-object-strip" aria-label="实验中的三个物理对象">
+    <li><span class="crb-object-number">01</span><h3>8 根发射天线</h3><p>调节空间权重。总平均功率固定为 1，不能靠多发能量改善结果。</p><span class="crb-object-tag">我们能设计什么</span></li>
+    <li><span class="crb-object-number">02</span><h3>1 位通信用户</h3><p>接收数据与噪声。要求有用信号功率与噪声功率之比，至少达到指定门槛。</p><span class="crb-object-tag">通信要守住什么</span></li>
+    <li><span class="crb-object-number">03</span><h3>1 个目标，12 根接收天线</h3><p>目标反射信号；接收阵列从天线间的相位变化估角度。反射的幅度与相位未知。</p><span class="crb-object-tag">雷达想知道什么</span></li>
+  </ol>
+  <p>没有其他信号流来干扰用户，所以主实验使用 <strong>SNR（信噪比）</strong>。目标位于阵列正前方 0°，这是用于局部设计和评估的观察方向；我们不假装已经从数据发现了目标。</p>
+  <div class="crb-key-idea"><span class="crb-key-label">先分清指标</span><p>CRB 是给定观测模型下、满足正则条件的局部无偏估计的<strong>方差下界</strong>。为了让角度单位更直观，本页显示它的平方根：<strong>角度标准差下界</strong>，越小越好。它不是实测 RMSE，也不保证某个估计器能达到。</p></div>
+  <p>现在先猜一猜：通信要求慢慢变高时，这个下界会立刻上升，还是先保持不动？</p>
+</section>
+
+<section class="chapter crb-experiment-section" id="experiment" aria-labelledby="crb-experiment-title">
+  <header class="chapter-head"><p class="eyebrow">02 / 动手找到转折点</p><h2 id="crb-experiment-title">只调两个数，观察最优解如何变化</h2><p>每次调整都会重新计算当前模型的精确最优波束。先保持重合度 0.5，把通信门槛从低向高拖动。</p></header>
+  <div class="crb-workbench">
+    <div class="crb-controls">
+      <div class="crb-control">
+        <div class="crb-control-heading"><label for="crb-threshold">通信最低 SNR</label><output id="crb-threshold-value" for="crb-threshold">18.0 dB</output></div>
+        <input id="crb-threshold" type="range" min="0" max="22" step="0.1" value="18" aria-describedby="crb-threshold-help">
+        <div class="crb-range-scale" aria-hidden="true"><span>0 dB</span><span>20 dB：能力上限</span><span>22 dB</span></div>
+        <label class="crb-checkbox" for="crb-none"><input id="crb-none" type="checkbox">无最低要求</label>
+        <p class="crb-control-help" id="crb-threshold-help">门槛规定“至少要多少”，不等于实际获得多少。0 dB 仍有要求；勾选上项才是取消最低要求。</p>
+      </div>
+      <div class="crb-control">
+        <div class="crb-control-heading"><label for="crb-rho">信道与目标的空间重合度 ρ</label><output id="crb-rho-value" for="crb-rho">0.50</output></div>
+        <input id="crb-rho" type="range" min="0" max="1" step="0.01" value="0.5" aria-describedby="crb-rho-help">
+        <div class="crb-range-scale" aria-hidden="true"><span>0：正交</span><span>1：完全重合</span></div>
+        <div class="crb-presets" role="group" aria-label="设置空间重合度"><button type="button" id="crb-rho-zero">ρ = 0</button><button type="button" id="crb-rho-half">ρ = 0.5</button><button type="button" id="crb-rho-one">ρ = 1</button></div>
+        <p class="crb-control-help" id="crb-rho-help">越接近 1，同一组权重越能兼顾用户与目标。ρ 是幅度重合度，不是用户角度或距离；调整它会改变信道场景。</p>
+      </div>
+    </div>
+    <div class="crb-toolbar"><p>归一化信道强度不变 · 固定总功率 · 精确闭式解</p><button type="button" id="crb-reset">恢复默认</button></div>
+    <div class="crb-result-panel">
+      <div class="crb-result-heading"><span>当前最优结果</span><output id="crb-regime" class="crb-regime">开始取舍</output></div>
+      <div class="crb-metrics">
+        <div class="crb-metric crb-metric-primary"><span>角度标准差下界</span><output id="crb-bound">0.5162°</output><small>√CRB · 越小越好</small></div>
+        <div class="crb-metric"><span>要求的 SNR</span><output id="crb-required">18.00 dB</output><small>这是约束</small></div>
+        <div class="crb-metric"><span>实际 SNR</span><output id="crb-actual">18.00 dB</output><small>来自当前最优波束</small></div>
+        <div class="crb-metric"><span>保留的角度信息 g</span><output id="crb-g">0.8524</output><small>相对仅雷达最优值</small></div>
+      </div>
+      <p id="crb-explanation" class="crb-result-explanation">通信门槛已超过仅雷达波束能提供的 13.98 dB。最优权重开始向通信需求倾斜，角度信息保留约 85.24%。</p>
+    </div>
+    <p id="crb-status" role="status" aria-live="polite" aria-atomic="true">默认：ρ=0.5，最低 SNR 为 18 dB；处于取舍区，通信要求可行。</p>
+    <noscript><div class="crb-noscript"><strong>当前浏览器未运行 JavaScript。</strong>本页默认结果仍可阅读：ρ=0.5，要求与实际 SNR 均为 18 dB，g=0.8524180021，角度标准差下界为 0.5162124281°。平台结束于 13.97940009 dB，通信能力上限为 20 dB。下方交互图需 JavaScript；推导、范围与原文链接不受影响。</div></noscript>
+  </div>
+
+  <div class="crb-figure-grid">
+    <figure class="crb-figure">
+      <figcaption><span class="crb-figure-number">A / 约束怎样影响最优值</span><h3>先有余量，然后才取舍</h3><p>横轴是要求的通信 SNR（dB）；纵轴是保留的角度信息 g，固定为 0–1。青色实线是当前重合度下的精确最优值，圆点标当前选择。淡青区是平台，淡橙区超过 20 dB、通信不可行。</p><p class="crb-figure-note">g 越低，下界越高：标准差下界 = 0.4766007952° / √g。用有限的信息坐标，保留零信息端点，不截断发散的下界。</p></figcaption>
+      <svg id="crb-frontier" viewBox="0 0 680 360" role="img" aria-label="所需通信 SNR 与最优归一化角度信息的关系；纵轴从零到一"><title>当前信道的精确最优取舍曲线</title></svg>
+      <p id="crb-transition" class="crb-chart-note">当前重合度下，平台在 13.9794 dB 结束；20 dB 是通信可行性的精确上限。</p>
+    </figure>
+    <figure class="crb-figure">
+      <figcaption><span class="crb-figure-number">B / 同一个最优波束照向哪里</span><h3>看权重怎样改变空间照射</h3><p>横轴是物理观察方向（−90° 到 90°）；纵轴是原始归一化发射功率，三条线共用 0–8 的尺度，不分别把峰值归一化。0° 是目标方向，图中没有虚构的用户角度。</p><div class="crb-legend" aria-label="方向图图例"><span><i class="crb-swatch crb-swatch-current" aria-hidden="true"></i>青色实线：当前最优</span><span><i class="crb-swatch crb-swatch-radar" aria-hidden="true"></i>蓝灰长虚线：仅雷达</span><span><i class="crb-swatch crb-swatch-comm" aria-hidden="true"></i>橙色短虚线：仅通信</span></div></figcaption>
+      <svg id="crb-pattern" viewBox="0 0 680 360" role="img" aria-label="仅雷达、仅通信和当前最优波束的共同原始功率尺度方向图"><title>三个波束的发射方向图</title></svg>
+      <p class="crb-chart-note">“仅雷达”把目标照得最亮；“仅通信”使用户 SNR 最大。若要求不可行，当前最优曲线不再显示，参考线仍保留。</p>
+    </figure>
+  </div>
+  <p id="crb-resources" class="crb-resource-note">资源始终固定：8 发射 / 12 接收天线，64 个复数快照，总平均发射功率 1，总块能量 64。主实验只有一路数据，反射系数未知。</p>
+  <details class="crb-disclosure"><summary>不用读图：查看取舍曲线与方向图的数值表</summary><div class="crb-disclosure-body"><p>各表由同一模型更新。窄屏可横向滚动；键盘用户可聚焦表格区域，再使用方向键。方向图表为部分角度采样，全部角度可用下方纯数值核心重算。</p><div class="crb-table-wrap" tabindex="0" role="region" aria-label="不同 SNR 门槛下的最优结果，可横向滚动"><table><caption>当前重合度下的取舍曲线采样；下界为角度标准差下界</caption><thead><tr><th scope="col">要求 SNR</th><th scope="col">状态</th><th scope="col">g</th><th scope="col">标准差下界</th><th scope="col">实际 SNR</th></tr></thead><tbody id="crb-frontier-table"></tbody></table></div><div class="crb-table-wrap" tabindex="0" role="region" aria-label="三个波束的方向图采样，可横向滚动"><table><caption>同一物理观察方向的原始归一化功率；公共尺度 0–8</caption><thead><tr><th scope="col">角度 / °</th><th scope="col">仅雷达</th><th scope="col">仅通信</th><th scope="col">当前最优</th></tr></thead><tbody id="crb-pattern-table"></tbody></table></div></div></details>
+  <details class="crb-disclosure"><summary>核对当前数值：波束、协方差与 Fisher 信息</summary><div class="crb-disclosure-body"><p>下面显示当前计算结果。复数数组为 [实部, 虚部]；角度下界分别以 rad² 和度标记。不可行或奇异状态使用空值与原因说明，不把无穷大编码成普通数字。主结果用秩一模态恒等式稳定计算；三参数实 Fisher 矩阵由复数观测导数构造。模态系数是规范表示；展开的天线权重和协方差是浮点近似，denseFactorInformation 只作直接计算诊断。若一个模态系数极小，直接相加天线权重可能丢失浮点精度，不能因此人为设置信息量下限。</p><pre id="crb-data" tabindex="0" aria-label="当前主实验完整数值">交互加载后显示；默认检查值见上方无脚本说明和下方推导。</pre></div></details>
+
+  <div class="crb-try"><h3>用三次操作检验你的直觉</h3><ol><li><strong>保持 ρ=0.5，先把门槛降到 10 dB。</strong>实际 SNR 为什么仍高于要求？缓慢升高，找到大约 13.98 dB 的转折。</li><li><strong>分别选择 ρ=1 和 ρ=0。</strong>前者在可行范围内无需取舍；后者只要提出正的最低要求，就必须让出一些目标照射。</li><li><strong>在 ρ=0.5 下比较 20 与 21 dB。</strong>20 dB 是可以达到、但雷达下界变差；21 dB 是固定资源下根本达不到。</li></ol></div>
+</section>
+
+<section class="chapter" id="understand" aria-labelledby="crb-understand-title">
+  <header class="chapter-head"><p class="eyebrow">03 / 看懂变化，而不只看曲线</p><h2 id="crb-understand-title">没用完的余量，不需要提前牺牲</h2></header>
+  <div class="crb-three-regimes"><div><span class="crb-regime-index">Ⅰ</span><h3>还有余量</h3><p>朝目标最有利的波束，已经满足用户需求。门槛提高一点，最优波束仍不用变。</p></div><div><span class="crb-regime-index">Ⅱ</span><h3>开始取舍</h3><p>原波束不够用了。必须重新分配天线权重；通信刚好达标，雷达保留的信息逐渐减少。</p></div><div><span class="crb-regime-index">Ⅲ</span><h3>超出能力</h3><p>即使全力满足用户，也只能达到 20 dB。更高的要求有严格不可行证明，不是算法没找到解。</p></div></div>
+  <p>这里的“一开始不变”很重要：两种任务共享资源，并不意味着任何通信要求都会立刻伤害感知。只有约束真正开始限制最优解，才出现取舍。另一方面，改变 ρ 是在换一个信道场景，不能把不同 ρ 的结果当成同一场景下的算法增益。</p>
+  <div class="crb-edge-note"><strong>一个必须单独处理的端点</strong><p>把 ρ 设为 0，门槛设为 20 dB：通信仍然可行，但目标正好落在零陷中。此时完整 Fisher 信息矩阵奇异，<strong>常规角度 CRB 不可用</strong>；从可辨识的内部趋近这个点时，下界发散。这与“通信不可行”是两件事。</p></div>
+
+  <div id="nuisance"></div>
+  <details class="crb-disclosure" id="crb-unknown-alpha"><summary>再问一步：反射系数未知，为什么要扣掉一部分角度信息？<span>先理解物理原因，再展开 Fisher 信息</span></summary><div class="crb-disclosure-body">
+    <p>角度变化会让回波发生变化，但回波变了，不一定能完全归因于角度。一个未知的反射系数，也能改变整段回波的幅度和相位。估角度时，必须去掉这部分可以被“换一个反射系数”解释的变化。</p>
+    <p>本页的一路信号经过固定波束后，在目标处只留下一个复数系数。它随角度发生的局部变化，与未知反射系数混在一起；<strong>接收阵列各天线之间的相对相位变化仍然提供角度信息</strong>。因此不是“所有信息都被扣掉”。</p>
+    <figure class="crb-figure crb-information-figure"><figcaption><h3>对同一个当前波束，拆开三份信息</h3><p>横向三项依次是假设反射系数已知、因反射系数未知而损失、实际剩余的有效信息；纵轴为信息量（rad⁻²）。蓝灰、橙、青色分别对应这三项。信息纵轴固定为 0–16000。已知反射系数只是同一波束的假想参照，没有重新求另一种最优解。</p></figcaption><svg id="crb-information-chart" viewBox="0 0 680 320" role="img" aria-label="已知反射系数时的信息、未知反射系数导致的损失与有效角度信息"><title>未知反射系数的信息损失</title></svg></figure>
+    <p id="crb-information" class="crb-resource-note">默认当前波束：已知系数的信息 13259.0321 rad⁻²，混淆损失 939.6663 rad⁻²，有效信息 12319.3658 rad⁻²。</p>
+    <h3>观测中的每个符号是什么</h3>
+    <p>X 是 8×64 的已知复数发射样本块；Y 是 12×64 的复数回波；α 是整块共享、未知的复反射系数；Z 是独立圆对称复高斯噪声。a 与 b 分别描述发射、接收阵列在角度 θ 的相位。</p>
+    <div class="crb-equation">Y = α A(θ)X + Z，A(θ) = b(θ)a(θ)ᴴ，R = XXᴴ/L</div>
+    <p>估计的三个实参数是 θ、Re α、Im α。导数对<strong>弧度</strong>求取，并把已经选好的 X 和波束 w 固定；不能把“每个角度重新设计波束”的变化混进接收观测导数。ᴴ 表示共轭转置。</p>
+    <div class="crb-equation">S₀ = tr(AᴴAR)，S₁ = tr(ȦᴴAR)，S₂ = tr(ȦᴴȦR)<br>c = 2|α|²L/σR²<br>J<sub>已知</sub> = cS₂，J<sub>损失</sub> = c|S₁|²/S₀<br>J<sub>有效</sub> = J<sub>已知</sub> − J<sub>损失</sub>，CRB<sub>θ</sub> = 1/J<sub>有效</sub></div>
+    <p>这来自三参数实 Fisher 矩阵消去两个反射系数参数后的 Schur 补，对应期刊式 (7)。要求 S₀&gt;0 且有效信息为正；零照射时不能把 0/0 或伪逆值冒充常规 CRB。每个复噪声样本的功率是 σR²，其实部、虚部方差各为 σR²/2，因此公式有因子 2。</p>
+    <h3>为什么本页的照射强度与 CRB 恰好一致</h3>
+    <p>一路信号给出秩一协方差 R=wwᴴ。对于居中接收阵列，只要目标照射非零，发射端的导数项恰好全部被未知 α 吸收：</p>
+    <div class="crb-equation">J<sub>有效</sub> = c‖ḃ‖² |aᴴw|²<br>CRB<sub>θ</sub> = σR² / (2|α|²L‖ḃ‖²|aᴴw|²)</div>
+    <p>所以在这个<strong>特定单流模型</strong>中，把目标照得更亮，确实等价于把角度 CRB 变小。这不是对所有波形、接收模型或未知参数都成立的结论。下方可选实验会改变波形族，展示它的边界。</p>
+  </div></details>
+
+  <details class="crb-disclosure" id="solution"><summary>想手算：为什么这条曲线是精确最优解？<span>两维空间、两段公式与一个可行性上界</span></summary><div class="crb-disclosure-body">
+    <p>先构造两个正交、单位长度的空间模态。u 给各天线相同权重，指向正前方；v 的权重沿居中天线序号线性变化，左右反号。它们是权重向量，不是两个人所在的位置。</p>
+    <div class="crb-equation">m = −3.5, −2.5, …, 3.5<br>u = (1, …, 1)ᵀ / √8，v = m / √42<br>h = ρu + √(1−ρ²)v，‖h‖ = 1</div>
+    <p>用户接收 yₗ=hᴴwsₗ+zₗ，单位符号功率下 SNR=|hᴴw|²/σC²。本页 Γ 是线性门槛，Γ=10<sup>ΓdB/10</sup>；“无最低要求”时 Γ=0。对固定总功率 P，Cauchy–Schwarz 不等式给出严格上界：</p>
+    <div class="crb-equation">γ<sub>max</sub> = P‖h‖²/σC² = 100 = 20 dB<br>q = Γ/γ<sub>max</sub>；q ≤ 1 才可行</div>
+    <p>只对 a 与 h 张成的空间内分配功率即可；垂直于这片空间的分量既不帮通信，也不帮目标照射。于是最大化目标照射可以精确化为两个系数的选择，不必扫描几条候选波束。</p>
+    <div class="crb-equation">g = |aᴴw*|²/(NₜP)<br>q ≤ ρ²：g* = 1<br>ρ² &lt; q ≤ 1：g* = [ρ√q + √(1−ρ²)√(1−q)]²</div>
+    <p>第一段的 w*=√P u；第二段的最优权重可直接写成：</p>
+    <div class="crb-equation">w* = √P(cᵤu + cᵥv)<br>cᵤ = ρ√q + √(1−ρ²)√(1−q)<br>cᵥ = √(1−ρ²)√q − ρ√(1−q)</div>
+    <p><strong>别混淆两种“方向”：</strong>方向图横轴 ψ 是物理观察角度；cᵤ、cᵥ 是两种天线权重的混合系数。改变系数会改变方向图，却不能把系数的混合角当作某个真实用户或波束的指向角。</p>
+    <p>平台结束于 γ<sub>max</sub>ρ²；平台内实际 SNR 可以高于要求，取舍区恰好等于要求。ρ=1 时，全部可行门槛都在平台；ρ=0 时 g=1−q，q=1 是前文单独处理的奇异端点。</p>
+    <div class="crb-equation">CRB* = CRB₀/g*<br>√CRB₀ × 180/π = 0.4766007952°<br>ρ=0.5，Γ=18 dB：g*=0.8524180021<br>√CRB* × 180/π = 0.5162124281°</div>
+    <p>CRB₀ 是只有雷达目标时的最优方差下界，单位 rad²。开方后乘 180/π 才转成度；方差本身则乘 (180/π)²。上述全局最优性针对已声明的单用户、单流、点目标模型，对应期刊定理 1 的特例。</p>
+  </div></details>
+
+  <details class="crb-disclosure" id="model"><summary>检查公平性：本页固定了哪些资源和假设？</summary><div class="crb-disclosure-body">
+    <p>以下均为本站<strong>合成、归一化教学参数</strong>，不是照搬原论文的仿真设置，也不是校准过的真实链路预算。</p>
+    <ul class="crb-plain-list"><li>发射 Nₜ=8、接收 Nᵣ=12，均为居中半波长均匀线阵；孔径分别为 3.5λ、5.5λ；窄带、远场、单站点目标</li><li>设计与评估角 θ₀=0 rad（正前方）；单个目标的角度未知，延迟、多普勒及其他目标参数不在本实验中共同估计</li><li>L=64 个复数快照，总平均功率 P=1，总块能量 LP=64；不是每根天线等功率约束，也不是每根天线瞬时常模约束</li><li>通信信道精确已知、范数固定为 1；通信噪声 σC²=0.01；雷达每个复样本的噪声功率 σR²=100</li><li>真实 α=1+0i 只用来评估局部下界，估计器并不知道 α；所有比较保持它和噪声不变</li><li>主实验一路已知波形，示例样本块满足符号能量恰为 L，因而 R=XXᴴ/L=wwᴴ 精确成立；没有把有限随机块自动当成集合平均</li></ul>
+    <p>对于任意 n 根天线，居中序号 m 从 −(n−1)/2 到 (n−1)/2。导向向量每项模为 1，并没有除以 √n：</p>
+    <div class="crb-equation">aₘ(θ)=exp(iπm sinθ)，ȧₘ(θ)=iπm cosθ·aₘ(θ)<br>‖a‖²=Nₜ，‖b‖²=Nᵣ<br>θ₀=0 时：Dₜ=‖ȧ‖²=42π²，Dᵦ=‖ḃ‖²=143π²</div>
+    <p>导数单位是每弧度。增加快照数 L 而保持 P，会增加总能量 LP；本页不把这种收益说成固定总能量下的免费提升。与上一页的每天线等功率模型比较前，也必须先对齐约束。</p>
+  </div></details>
+</section>
+
+<section class="chapter crb-companion-wrapper" id="companion" aria-labelledby="crb-companion-title">
+  <header class="chapter-head"><p class="eyebrow">可选进阶 / 一个刻意构造的反例</p><h2 id="crb-companion-title">整条方向图一样，角度下界也一定一样？</h2><p>主实验里，“照得亮”与“下界小”恰好一致。现在增加独立探测流，看看只看功率图会漏掉什么。第一次阅读可以跳过。</p></header>
+  <details class="crb-disclosure crb-companion" id="crb-companion-section"><summary>打开独立双流实验<span>同一方向图、同一通信 SINR，仍可有不同 CRB</span></summary><div class="crb-disclosure-body">
+    <div class="crb-scope-note"><strong>这是本站独立构造的另一个信道场景。</strong><p>信道改为 h=u，偶、奇模态功率比例固定 p=0.5，总功率仍为 1。它允许一路数据和一路独立探测信号，不是主实验单流最优解的另一种画法，也不是原论文的多用户或扩展目标优化结果。</p></div>
+    <p>把两种空间权重拆给两个已知、正交的时间波形，就能改变回波中“哪些变化可以被反射系数解释”。下面 κ 控制<strong>两个空间模态输出</strong>的相关程度；两路源波形本身始终正交，不是把它们变成相关源。</p>
+    <div class="crb-companion-control"><div class="crb-control-heading"><label for="crb-kappa">空间模态相关系数 κ</label><output id="crb-kappa-value" for="crb-kappa">1.00</output></div><input id="crb-kappa" type="range" min="0" max="1" step="0.01" value="1" aria-describedby="crb-kappa-help"><div class="crb-range-scale" aria-hidden="true"><span>0：两模态独立</span><span>1：同一路数据占据两模态</span></div><p id="crb-kappa-help" class="crb-control-help">拖动时，先看完全重合的功率图，再看有效信息为什么仍然改变。κ=1 时探测流功率为零。</p></div>
+    <p id="crb-companion-summary" class="crb-resource-note">κ=1 时角度标准差下界为 0.6740153085°；κ=0 时为 0.5615703492°。两者的整个方向图一致，通信 SINR 都为 16.9897 dB。</p>
+    <div class="crb-figure-grid"><figure class="crb-figure"><figcaption><h3>三条线，整条重合</h3><p>横轴是观察角度 −90° 到 90°，纵轴原始功率固定 0–8。蓝灰长虚线为 κ=0，橙色短虚线为 κ=1，青色实线为当前 κ。三条线在所有角度都相同，重合是结果，不是漏画。</p></figcaption><svg id="crb-companion-pattern" viewBox="0 0 680 360" role="img" aria-label="两个端点与当前 κ 的完全相同的原始功率方向图"><title>方向图不随 κ 改变</title></svg></figure><figure class="crb-figure"><figcaption><h3>同样亮，能区分的变化却不同</h3><p>横轴是空间模态相关系数 κ（0–1），纵轴是有效角度信息（rad⁻²），固定为 0–16000。青色实线给出当前独立构造的关系，圆点标当前 κ。信息越多，角度下界越小。</p></figcaption><svg id="crb-companion-info" viewBox="0 0 680 360" role="img" aria-label="双流构造的有效角度信息随空间模态相关系数 κ 变化的曲线"><title>有效信息随 κ 改变</title></svg></figure></div>
+    <div class="crb-table-wrap" tabindex="0" role="region" aria-label="独立双流实验的功率与角度下界，可横向滚动"><table><caption>固定 h=u、p=0.5；总发射功率始终为 1</caption><thead><tr><th scope="col">κ</th><th scope="col">数据功率</th><th scope="col">探测功率</th><th scope="col">SINR</th><th scope="col">有效信息 / rad⁻²</th><th scope="col">标准差下界</th></tr></thead><tbody id="crb-companion-table"></tbody></table></div>
+    <p>用户只对偶模态 u 敏感，探测流位于正交的奇模态 v，因此这里的探测干扰严格为零。它依赖这个特意选定的信道，对一般用户不能照搬。每根天线的平均功率也会随 κ 变化，本实验只守住总功率预算。</p>
+    <p>κ 从 1 变成 0 时，<strong>方差下界降低约 30.6%</strong>，而页面显示的<strong>标准差下界只降低约 16.7%</strong>。不要把二者混为同一个百分比，也不要拿这个新场景的数字宣称胜过主实验最优解。</p>
+    <details class="crb-disclosure"><summary>核验独立构造：协方差、信息表达式与当前完整数据</summary><div class="crb-disclosure-body"><p>两路波形满足 SSᴴ/L=I₂，雷达知道它们各自的样本。采用下列因子，所有发射功率都被计入：</p><div class="crb-equation">w<sub>c</sub>=√P[√p u+κ√(1−p)v]<br>wᵣ=√[P(1−p)(1−κ²)]v<br>Rκ=w<sub>c</sub>w<sub>c</sub>ᴴ+wᵣwᵣᴴ<br>P<sub>数据</sub>=P[p+κ²(1−p)]，P<sub>探测</sub>=P(1−p)(1−κ²)</div><p>对每个物理角度 ψ，a(ψ)ᴴu 是实数，a(ψ)ᴴv 是纯虚数。因此实数 κ 对应的交叉功率项实部为零，整个 aᴴRκa 与 κ 无关；这并不意味着复数协方差本身相同。</p><div class="crb-equation">J<sub>有效</sub>(κ)=(2|α|²LP/σR²)[NₜDᵦp+NᵣDₜ(1−p)(1−κ²)]<br>p=0.5：CRB<sub>κ=0</sub>/CRB<sub>κ=1</sub>=143/206≈0.69417</div><p>已知 α 的信息相同，混淆损失不同。κ=0 时，独立时间模态留下了无法被一个共同复数 α 吸收的角度变化。这里 p 固定为 0.5；若另行把 p 设为 0，目标名义照射为零、普通 Fisher 矩阵奇异，不能把 p→0 的有限极限直接当作端点 CRB。</p><pre id="crb-companion-data" tabindex="0" aria-label="当前独立双流构造完整数值">交互加载后显示当前双流构造数据。</pre></div></details>
+  </div></details>
+</section>
+
+<section class="chapter" id="paper" aria-labelledby="crb-paper-title">
+  <header class="chapter-head"><p class="eyebrow">04 / 回到原文</p><h2 id="crb-paper-title">论文优化的是估计下界，本站只落实一个明确特例</h2></header>
+  <div class="crb-paper-citation"><span class="crb-paper-year">2022</span><div><h3><a href="https://doi.org/10.1109/TSP.2021.3135692">Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming</a></h3><p>Fan Liu · Ya-Feng Liu · Ang Li · Christos Masouros · Yonina C. Eldar<br>IEEE Transactions on Signal Processing, 70, 240–253</p><a href="https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf">阅读作者托管的已发表期刊 PDF ↗</a></div></div>
+  <p>这篇论文把雷达目标从方向图等间接指标推进到 CRB，并同时保留通信质量约束。主实验实现其中<strong>单用户点目标的闭式最优结果</strong>，让平台、取舍和不可行性都能直接计算；没有运行多用户 SDR，也没有复现整篇论文的算法与图表。</p>
+  <details class="crb-disclosure"><summary>原文对照：固定版本、章节、式号与本站保留范围</summary><div class="crb-disclosure-body"><p>以下页码是期刊印刷页码，统一对应上方已发表版本：首次发表 2021-12-15，当前版本日期 2022-01-11。2021 年 arXiv 稿标题末尾为 “Design”，不混用其式号。已核对 PDF 的 SHA-256 为 <code>3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d</code>；在线地址本身不是不可变存档。</p><ul class="crb-source-map"><li><strong>§II-A/B，pp. 241–242，式 (1)–(9)</strong><br>观测、信号块、未知复反射系数与点目标 CRB。本站保留已知发射样本、复高斯噪声和单角度局部模型。</li><li><strong>§III-B，pp. 243–244，式 (20)–(29)，引理 1 / 定理 1</strong><br>秩一 CRB、两维最优子空间与单用户最优波束。本站主实验在明确合成信道上落实这一特例。</li><li><strong>附录 A/B，pp. 248–249</strong><br>最优子空间与活跃约束的证明。上方两段公式给出同一机制，不以有限网格搜索冒充精确最优解。</li><li><strong>主实验没有覆盖</strong><br>多用户 SDR、扩展目标矩阵估计、原论文图表、Monte Carlo 估计器性能或硬件实测。双流对照是本站独立点目标构造，不归为论文定理或原图复现。</li></ul></div></details>
+</section>
+
+<section class="chapter" id="limits" aria-labelledby="crb-limits-title">
+  <header class="chapter-head"><p class="eyebrow">05 / 带走结论，也带走边界</p><h2 id="crb-limits-title">好下界的前提，是说清楚已知什么、未知什么</h2></header>
+  <p>这页最值得带走的，不是某个角度小数，而是三个判断：<strong>约束何时开始起作用；“要求不可行”与“估计模型奇异”怎样区分；方向图之外还需要哪些接收信息。</strong></p>
+  <p>这里只有一个点目标、一个用户、精确已知信道和固定局部观察方向。没有距离或多普勒估计、检出率、虚警率、分辨率、BER、射频非理想或实际 RMSE。若加入额外未知参数、改变波形是否已知、给反射系数先验，Fisher 信息必须重新推导。</p>
+  <div class="crb-next-question"><span>下一问</span><h3>两位用户都提出要求，平台和取舍还会这样简单吗？</h3><p>此时用户之间产生干扰，SNR 要改为 SINR，单用户两维闭式解也不再直接适用。可以先把新观测与约束写清，再进入多用户优化；本页没有把这一步做成假按钮。</p></div>
+</section>
+
+<section class="chapter crb-reproduce" id="reproduce" aria-labelledby="crb-reproduce-title">
+  <header class="chapter-head"><p class="eyebrow">06 / 让每个数字有出处</p><h2 id="crb-reproduce-title">从复数观测重算，再检查页面</h2></header>
+  <p><a href="docs/CRB-BEAMFORMING-VALIDATION.md">验证范围与实际记录</a>区分数学核验、代码测试、界面检查和部署状态；不把其中一种检查替代另一种。</p>
+  <ul class="crb-artifact-links"><li><a href="scripts/validate-crb-beamforming.py">独立 Python 核验脚本</a><span>从观测导数和三参数 Fisher 矩阵出发</span></li><li><a href="crb-beamforming-core.js">页面纯数值核心</a><span>最优波束、协方差、边界状态与图形数据</span></li><li><a href="tests/crb-beamforming.test.cjs">数值回归测试</a><span>默认值、可行性、奇异端点与双流构造</span></li><li><a href="tests/crb-beamforming-ui.test.cjs">界面与结构回归测试</a><span>控件、数值显示、无效状态与可访问入口</span></li></ul>
+  <p class="crb-small">本页是纯静态计算，不上传实验参数。记录一次实验时，请写下：固定资源、ρ、所需与实际 SNR、g、下界单位、当前状态，以及“这是理论下界”的解释。可以接着使用<a href="practice.html#notebook">研究记录模板</a>。</p>
+</section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次固定信道与总功率下的 CRB 检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+</main>
+</body>
+</html>
