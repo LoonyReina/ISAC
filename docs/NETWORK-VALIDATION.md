@@ -81,3 +81,7 @@ DOM/静态检查覆盖：默认结果、全部控制器、缓存模式切换、�
 补丁范围：只修改 `network.js` 的 SVG 展示，图例增加不透明白色底板，候选编号增加 4 px 白色描边且使用先描边后填充的文字绘制顺序、加粗字重；不改变科学模型、观测、网格搜索或数值。`tests/network-ui.test.cjs` 新增 240/323/388/720 px DOM 属性回归，验证底板不透明、边界有限、图例绘制顺序以及两图候选编号描边。
 
 补丁本地自动检查：`node --test tests/*.test.cjs` 119 项通过；`node --check network.js` 与 `git diff --check` 通过。补丁的真实浏览器对比度复查尚未由本节声明完成；也未执行完整屏幕阅读器或浏览器矩阵审核。
+
+### SBFD integration follow-up (2026-10-10)
+
+At parent request, moved the opaque heatmap legend into the existing top margin (backing y=0, height=22; text baseline=17), above the plot top y=24. It no longer overlays candidate markers near the top-left of the plot. Candidate white halos and bold labels are retained; no numerical core change. The DOM regression asserts the backing ends at or before plot top, remains within narrow SVG widths, and text remains inside the backing. Full aggregate suite passes 143/143 after SBFD additions. Real-browser visual verification of this follow-up remains assigned to parent.
