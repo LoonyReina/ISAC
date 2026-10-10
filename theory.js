@@ -70,6 +70,28 @@
   for(const [id,key]of [['crb-length','T'],['crb-blocks','blocks']])$(id).addEventListener('change',e=>{crbState[key]=+e.target.value;renderCrb();});
   $('crb-resample').addEventListener('click',()=>{crbState.seed=(crbState.seed+1)>>>0;renderCrb();});
   $('crb-reset').addEventListener('click',()=>{Object.assign(crbState,{T:8,blocks:2000,seed:2026});$('crb-length').value=8;$('crb-blocks').value=2000;renderCrb();});
-  let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{render();renderCrb();},100);});
-  render();renderCrb();
+  const rateState={gamma:1,T:8};
+  function renderRate(){
+    const s=C.rateCrbComparison(rateState),svg=$('rate-plane');svg.replaceChildren();
+    const W=Math.max(240,Math.min(720,svg.clientWidth||720)),H=285,L=58,R=22,top=35,bottom=68;
+    const x=v=>L+v/3.5*(W-L-R),y=v=>H-bottom-v/1.05*(H-top-bottom);
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.append(node('title',{},'BPSK 圆点和高斯方点；横轴互信息，纵轴平均条件 CRB'));
+    for(const v of [0,.25,.5,.75,1])svg.append(node('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'#e4ecef'}),node('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},v.toString()));
+    svg.append(node('line',{x1:L,x2:W-R,y1:y(0),y2:y(0),class:'axis'}));
+    for(const v of [0,1,2,3])svg.append(node('text',{x:x(v),y:H-bottom+20,'text-anchor':'middle'},String(v)));
+    svg.append(node('text',{x:12,y:18},'D：平均条件 CRB / 增益²'),node('text',{x:W/2,y:H-25,'text-anchor':'middle'},'I：互信息（向右更高）'),node('text',{x:W/2,y:H-7,'text-anchor':'middle'},'bit / 实信道使用'));
+    for(const [i,p]of s.points.entries()){
+      const marker=i===0?node('circle',{cx:x(p.information),cy:y(p.averageCrb),r:5,fill:'#aa4d1b'}):node('rect',{x:x(p.information)-5,y:y(p.averageCrb)-5,width:10,height:10,fill:'#087e82'});
+      marker.append(node('title',{},`${p.name}: I=${p.information.toFixed(6)}, D=${p.averageCrb.toFixed(6)}`));svg.append(marker);
+    }
+    $('rate-snr-out').textContent=`${Math.round(10*Math.log10(s.gamma))} dB；γ=${format(s.gamma)}；σ꜀²=${format(s.communicationNoiseVariance)}`;
+    $('rate-result').textContent=`T=${s.T}，σₛ²=1。BPSK：I=${s.points[0].information.toFixed(6)}，D=${s.points[0].averageCrb.toFixed(6)}；高斯：I=${s.points[1].information.toFixed(6)}，D=${s.points[1].averageCrb.toFixed(6)}。仅两个设计点，无连线。`;
+    fillTable('rate-table-body',s.points.map(p=>[p.name==='Gaussian'?'高斯 N(0,1)':'等概率 BPSK ±1',p.information.toFixed(6),p.averageCrb.toFixed(6),s.T]));
+  }
+  $('rate-snr').addEventListener('input',e=>{rateState.gamma=10**(+e.target.value/10);renderRate();});
+  $('rate-length').addEventListener('change',e=>{rateState.T=+e.target.value;renderRate();});
+  $('rate-reset').addEventListener('click',()=>{Object.assign(rateState,{gamma:1,T:8});$('rate-snr').value=0;$('rate-length').value=8;renderRate();});
+  let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{render();renderCrb();renderRate();},100);});
+  render();renderCrb();renderRate();
 })();
