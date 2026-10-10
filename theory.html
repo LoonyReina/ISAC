@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="把通信基础、雷达基础、共同观测模型、技术演进和论文研究连成一条路线；用真实数值对照符号判决与延迟估计。"><title>理论主线 · 从通信与雷达到研究问题 | ISAC 交互讲义</title><link rel="stylesheet" href="course.css?v=theory-v2"><link rel="stylesheet" href="theory.css?v=theory-v2"><script defer src="theory-core.js?v=theory-v2"></script><script defer src="theory.js?v=theory-v2"></script><link rel="stylesheet" href="research.css?v=1"></head><body>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="把通信基础、雷达基础、共同观测模型、技术演进和论文研究连成一条路线；用真实数值对照符号判决与延迟估计。"><title>理论主线 · 从通信与雷达到研究问题 | ISAC 交互讲义</title><link rel="stylesheet" href="course.css?v=theory-v2"><link rel="stylesheet" href="theory.css?v=rate-v3"><script defer src="theory-core.js?v=rate-v3"></script><script defer src="theory.js?v=rate-v3"></script><link rel="stylesheet" href="research.css?v=1"></head><body>
 <a class="skip" href="#pathway">跳到理论主线</a><header class="top"><a class="brand" href="index.html">ISAC <span>交互讲义</span></a><div><a href="index.html#start">完整讲义</a><a href="#shared-model">共享模型实验</a></div></header>
-<main class="theory-main"><div class="cover"><p class="eyebrow">理论主线 / 基础 → 汇合 → 演进 → 研究</p><h1>先看清两个问题，<br>再理解为什么合在一起。</h1><p>同一个观测方程，换掉“已知”与“未知”，接收机就在回答不同的问题。</p><div class="cover-tags"><span>两条基础线</span><span>两个可复算实验</span><span>七问读论文</span></div><nav class="study-links" aria-label="理论主线目录"><a href="#pathway">学习路线</a><a href="#shared-model">共享数学</a><a href="#evolution">技术演进</a><a href="#research-method">论文拆解</a><a href="#evidence-map">研究与展望</a></nav></div>
+<main class="theory-main"><div class="cover"><p class="eyebrow">理论主线 / 基础 → 汇合 → 演进 → 研究</p><h1>先看清两个问题，<br>再理解为什么合在一起。</h1><p>同一个观测方程，换掉“已知”与“未知”，接收机就在回答不同的问题。</p><div class="cover-tags"><span>两条基础线</span><span>三个可复算实验</span><span>七问读论文</span></div><nav class="study-links" aria-label="理论主线目录"><a href="#pathway">学习路线</a><a href="#shared-model">共享数学</a><a href="#evolution">技术演进</a><a href="#research-method">论文拆解</a><a href="#rate-crb-bridge">互信息与 CRB</a><a href="#evidence-map">研究与展望</a></nav></div>
 <section class="chapter" id="pathway"><header class="chapter-head"><div class="eyebrow">01 / 两条基础线</div><h2>通信和雷达各自先解决什么？</h2><p class="goal">这是一条贯穿原有 18 章的理论路线，不替换已有实验。每一站都有问题、出口和继续阅读的位置。</p></header>
 <ol class="path-map">
 <li><h3>共同工具：从电压到样本</h3><p><b>先问：</b>接收机为什么能把一个真实电压变成 I/Q 两个数？复数、采样、卷积和频谱各描述哪个操作？</p><p><b>出口：</b>能区分瞬时幅度、归一化功率与一段信号的能量；知道 FFT 是计算某种投影的方法。</p><a href="index.html#iq">从 I/Q 与复包络开始 →</a></li>
@@ -51,7 +51,7 @@
 </nav>
 <h3>一个能在纸上核验的机制：平均信息相同，平均下界未必相同</h3><p>设 yᵢ=θxᵢ+nᵢ，θ 为待估的无量纲实增益，nᵢ 独立 ~ N(0,σ²)，每块 T 个已知发射样本。对给定 x，Fisher 信息 J(x)=Σxᵢ²/σ²，因此条件无偏估计的 CRB(x)=1/J(x)。</p>
 <div class="contrast"><div><h3>固定幅度、随机正负号</h3><p>xᵢ=±√P，每块能量恒为 TP，仍可通过符号承载信息。</p><div class="equation">E[CRB] = σ²/(TP)<br>T=8，P=σ²=1 → 0.125</div></div><div><h3>独立高斯幅度</h3><p>xᵢ~N(0,P)，块能量波动。对 T&gt;2，利用卡方分布的倒数期望：</p><div class="equation">E[CRB] = σ²/[P(T−2)]<br>T=8，P=σ²=1 → 1/6 ≈ 0.1667</div></div></div>
-<p>两者平均 J 都为 8，但 E[1/J] 不等于 1/E[J]。这里的 CRB 单位为增益平方；这个标量教学推导不证明 BPSK 在完整 ISAC 系统中普遍优于高斯输入，也没有同时算出通信容量。若论文结论依赖“平均”二字，就追问平均发生在求逆之前还是之后。</p>
+<p>两者平均 J 都为 8，但 E[1/J] 不等于 1/E[J]。这里的 CRB 单位为增益平方；这个标量教学推导不证明 BPSK 在完整 ISAC 系统中普遍优于高斯输入，通信侧的定量指标将在下方的<a href="#rate-crb-bridge">互信息桥梁</a>中补上。若论文结论依赖“平均”二字，就追问平均发生在求逆之前还是之后。</p>
 <div class="lab crb-lab" id="crb-mechanism"><div class="lab-title">研究机制实验 · 先逐块求逆，再跨块平均</div>
 <p><b>先预测：</b>两类输入具有相同的平均样本功率 P，为什么增加块数后，高斯输入的平均 CRB 不一定靠近 BPSK 的水平线？只改 T，再观察差距。</p>
 <p>本实验固定 P=1、σ²=1，均为归一化幅度平方；θ 是每块内固定、无先验的实增益。T 是每块的实样本数；B 是独立发射块数，增加 B 只改善 Monte Carlo 统计，不增加单块观测时长。<b>只抽取已知发射 x 的实现并计算条件 CRB，不生成估计器误差，也不绘制通信容量。</b></p>
@@ -70,6 +70,37 @@
 <details><summary>读取图中数值：前64块能量与累计均值检查点</summary><div class="table-scroll"><table><caption>能量图全部64个点；BPSK 每块能量均为 TP</caption><thead><tr><th scope="col">块编号</th><th scope="col">高斯能量（归一化）</th><th scope="col">高斯条件 CRB（增益²）</th></tr></thead><tbody id="crb-energy-body"></tbody></table></div><div class="table-scroll"><table><caption>均值图全部绘制检查点；理论水平线的数值见汇总表</caption><thead><tr><th scope="col">累计块数 b</th><th scope="col">高斯累计平均 CRB（增益²）</th></tr></thead><tbody id="crb-running-body"></tbody></table></div></details>
 <details><summary>推导与边界：为什么是 T−2？</summary><div><p>条件对数似然对 θ 的导数为 Σxᵢ(yᵢ−θxᵢ)/σ²。利用独立噪声的方差 σ²，得到 J(x)=Σxᵢ²/σ²。BPSK 的能量恒定，因而 1/J=σ²/(TP)。高斯输入的 Q=Σxᵢ²/P 服从自由度 T 的卡方分布。</p><div class="equation">E[Q⁻¹] = Γ(T/2−1) / [2Γ(T/2)] = 1/(T−2)，仅 T&gt;2<br>E[1/J] ≥ 1/E[J] = σ²/(TP)</div><p>积分在 Q=0 附近只有 T&gt;2 才收敛。<b>T≤2 时，高斯 E[CRB] 发散</b>；任意有限模拟出现有限平均值也不能证明它收敛。控件因此限制 T≥3。T=3、4 的均值存在，但 CRB 方差仍发散，不能给普通有限方差标准误或据此声称正态置信区间。即使 T&gt;4，稀有的低能量块仍可能让短模拟波动。</p><p>这是本站独立实标量、无先验教学推导。原论文的向量/复数模型、先验信息、通信目标与最优区域均不在这里复现；本实验也不证明 BPSK 对完整 ISAC 系统普遍更好。</p></div></details>
 <p class="sources">机制出处：<a href="https://arxiv.org/html/2204.06938v8">原始研究 v8（2023-06-07），§II 随机但已知的发射信号与条件界平均</a>；<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">教程 v2（2023-10-17），§IV-B 式(19)–(22)</a>。这里只抽出“先对已知实现求界，再对输入平均”的思想，解析数值来自上述独立推导。</p>
+</div>
+
+<div class="lab crb-lab rate-lab" id="rate-crb-bridge"><div class="lab-title">基础桥梁 · 从判对一个符号，到同一输入设计的两个指标</div>
+<h3>① 同一个 x，在两个接收端扮演不同角色</h3>
+<p>上面的符号实验问“这次发的是 +1 还是 −1”，CRB 实验问“已知发射样本时，增益能估多准”。现在把两端接起来：发射端选择输入分布 p(x)，同一组样本用于通信和感知；不是把感知端的已知 x 偷交给通信解码器。</p>
+<div class="contrast"><div><h3>通信端：未知消息</h3><div class="equation">y꜀,ᵢ = xᵢ + n꜀,ᵢ<br>n꜀,ᵢ ~ N(0, σ꜀²)，γ = 1/σ꜀²</div><p>已知单位信道增益、噪声方差和输入分布，未知 x 的实现。保留实数接收值 y꜀ 的软信息来解码。</p></div><div><h3>感知端：未知增益</h3><div class="equation">yₛ,ᵢ = θxᵢ + nₛ,ᵢ<br>nₛ,ᵢ ~ N(0, 1)，J(x) = Σxᵢ²</div><p>已知发射 x 的整块实现，未知块内固定实增益 θ，无先验。对每个实现求条件 CRB，再按发射分布平均。</p></div></div>
+<p>所有量都是归一化实标量，两端噪声相互独立、跨样本独立，且与输入独立。两类输入均零均值、平均功率 E[X²]=1：等概率 BPSK（±1）或独立 N(0,1)。没有峰值功率约束，高斯块也不强行归一化。此处 x 是一次实信道使用，不是前面 Barker13 的整段扩频符号。</p>
+<h3>② 一个符号贴了 1 bit 标签，为什么不等于可靠送达 1 bit？</h3>
+<p>BPSK 有两个标签，所以 H(X)=1 bit。一次判对不代表误码率 BER；BER 需要在指定接收机和条件下统计大量判决。再往前一步，互信息 I(X;Y꜀) 问的是：看到完整接收值后，平均减少了多少关于 X 的不确定性？接收值离判决门限远近不同，可信程度也不同；只保留正负号会丢掉这种软信息。</p>
+<div class="equation">I(X;Y꜀) = E[log₂(p(Y꜀|X)/p(Y꜀))]<br>I = H(X) − H(X|Y꜀)（离散输入）</div>
+<p>单位为 <b>bit / 实信道使用</b>。在本无记忆模型、给定输入分布及渐近编码条件下，它对应可接近的可靠编码速率边界；不是有限码长的实测速率，也不是标签数、单次判决或实际吞吐量。对 BPSK，0≤I≤1；若先做符号硬判决，得到的 1−H₂(BER) 是另一个接收输出的互信息，本图没有用它替代软互信息。</p>
+<details><summary>独立推导：从两种似然到 BPSK 积分；为什么高斯公式有 1/2？</summary><div>
+<p>BPSK 的 p(y)=[p(y|+1)+p(y|−1)]/2。由实高斯密度，p(y|−1)/p(y|+1)=exp(−2y/σ꜀²)。利用正负对称性，只需条件于 X=+1，再令 Y=1+Z/√γ、Z~N(0,1)：</p>
+<div class="equation">Iᴮ = 1 − E_Z[log₂(1 + exp(−2γ − 2√γ Z))]</div>
+<p>高斯输入时，Y꜀~N(0,1+σ꜀²)，噪声熵从输出熵中扣除。实高斯微分熵为 h(N(0,v))=½log₂(2πev)，因而：</p>
+<div class="equation">Iᴳ = h(Y꜀) − h(n꜀) = ½log₂(1+γ)</div>
+<p>1/2 来自每次只使用一个实维度。不能直接搬用每次复信道使用的 log₂(1+γ)。微分熵与离散标签熵也不能混用。γ→0 时两者趋于 0；γ→∞ 时 BPSK 趋于 1，高斯互信息没有这个二元标签上限。</p>
+</div></details>
+<h3>③ 把同一设计放到两个坐标轴上</h3>
+<p>横轴是每次实信道使用的互信息 I（向右更高）；纵轴是 D=Eₓ[CRB(x)]（增益²，向下更小）。棕色圆点为 BPSK，青色方点为高斯；只画两个计算点，不连线、不填充区域。固定 T 时，改通信 SNR 只让点横向移动，感知噪声仍为 1。</p>
+<div class="experiment-grid crb-controls"><div><label for="rate-snr">通信 SNR（dB）<input id="rate-snr" type="range" min="-20" max="20" step="1" value="0"></label><output id="rate-snr-out" for="rate-snr">0 dB；γ=1</output></div><div><label for="rate-length">感知每块实样本数 T<select id="rate-length"><option value="3">3</option><option value="4">4</option><option value="8" selected>8</option><option value="16">16</option><option value="32">32</option><option value="64">64</option></select></label></div></div>
+<div class="actions"><button id="rate-reset" type="button">恢复 0 dB / T=8</button></div>
+<p class="small">这里的 T 控件独立于上方 Monte Carlo 实验。增加 T 消耗更多感知样本，使两个 D 降低，但不改变每次实信道使用的 I；不是免费收益。坐标轴范围固定，方便跨设置比较。低 SNR 或大 T 时，两点在此显示尺度下可能重叠；数值表可区分差异，图中不偏移真实坐标。</p>
+<svg class="theory-chart" id="rate-plane" viewBox="0 0 720 285" role="img" aria-label="两个输入设计的互信息与平均条件CRB；全部数值见下表"></svg>
+<p id="rate-result" class="readout" role="status" aria-live="polite" aria-atomic="true"></p>
+<div class="table-scroll"><table><caption>仅这两个输入设计；P=σₛ²=1，感知增益无先验</caption><thead><tr><th scope="col">输入分布</th><th scope="col">I / bit 每实信道使用</th><th scope="col">D / 增益²</th><th scope="col">平均块能量</th></tr></thead><tbody id="rate-table-body"></tbody></table></div>
+<noscript><p>默认 γ=1、T=8：BPSK (I,D)≈(0.485944,0.125)，高斯 (0.5,0.166667)。γ=10 时 I 分别约 0.996756、1.729716。</p></noscript>
+<div class="equation">Dᴮ = 1/T；Dᴳ = 1/(T−2)，T&gt;2</div>
+<p>同样平均功率下，高斯在本实 AWGN 模型中有更高的 I，但其随机块能量带来更大的平均条件 CRB。BPSK 在这两个候选中有更小的 D。这只展示同一输入设计如何同时影响两个指标；<b>两个点不是完整 Pareto 边界，不是所有最优输入分布，也没有证明完整 ISAC 系统的普遍优劣。</b>此处 D 是估计下界，不冒充某个算法的实际 MSE。</p>
+<details><summary>数值方法、遗漏项和下一步研究问题</summary><div><p>BPSK 用确定性复合 Simpson 积分：Z∈[−12,12]，步长 0.01；log(1+exp(a)) 用稳定 softplus 计算。分别扩大截断区间和减半步长检查收敛；这里不是 Monte Carlo，也不随“换一组发射块”变化。对 0≤γ≤100，利用 softplus(a)≤ln2+2√γ|Z|，截断尾误差上界小于 1.3×10⁻³⁰ bit；这不包含离散积分和浮点误差。</p><p>未计入导频、保护间隔、编码/重传开销、信道估计误差、带宽换算、峰值限制或硬件失真，因此不能称为实际吞吐量。T≤2 的高斯 D 发散，本控件不进入该区间。要走向论文里的 CRB–rate 区域，下一步应明确允许的输入分布、块约束和可达性定义，再求优化边界；不能把这两个点之间的直线直接当作答案。</p></div></details>
+<p class="sources">研究桥梁：<a href="https://arxiv.org/html/2310.09749v2#S4">Xiong 等教程 v2（2023-10-17），§IV-A–C：两个接收角色、已知随机输入与 CRB–rate 指标</a>。本节实标量 AWGN 互信息与两个点由本站独立推导，并非原文复向量区域、衰落算例或论文图的复现。</p>
 </div>
 
 <p class="sources">进一步区分检测、估计与信息论指标：<a href="https://arxiv.org/html/2104.09954v2">A Survey on Fundamental Limits of Integrated Sensing and Communication，v2，§III</a>。原有 <a href="index.html#reading">七篇综述阅读入口</a> 与 <a href="index.html#practice">仿真起步流程</a> 保留，可按七问逐篇展开。</p></section>

@@ -66,6 +66,28 @@
       // Exact standard deviation of the sample mean, only when the variance exists.
       meanStandardError:T>4?Math.sqrt(2/((T-2)**2*(T-4)))*sigma2/P/Math.sqrt(blocks):null};
   }
-  const api={BARKER,cfg,template,noise,experiment,crbComparison,crbExperiment};
+  // Real AWGN, E[X²]=1. Deterministic composite Simpson integration, not BER.
+  // Bounds also keep evaluation finite and work bounded for interactive use.
+  const softplus=x=>Math.max(0,x)+Math.log1p(Math.exp(-Math.abs(x)));
+  function bpskInformation(gamma,{limit=12,step=.01}={}){
+    if(!Number.isFinite(gamma)||gamma<0||gamma>100)throw new RangeError('gamma in [0,100]');
+    if(!Number.isFinite(limit)||limit<6||limit>14||!Number.isFinite(step)||step<.002||step>.1)throw new RangeError('quadrature bounds');
+    if(gamma===0)return 0;
+    const intervals=2*Math.ceil(limit/step),h=2*limit/intervals,sqrt=Math.sqrt(gamma);
+    let sum=0;
+    for(let i=0;i<=intervals;i++){
+      const z=-limit+i*h,f=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI)*softplus(-2*gamma-2*sqrt*z)/Math.LN2;
+      sum+=(i===0||i===intervals?1:i%2?4:2)*f;
+    }
+    return 1-h*sum/3;
+  }
+  function rateCrbComparison({gamma=1,T=8}={}){
+    integer(T,3,64,'T');
+    const bpsk=bpskInformation(gamma),crb=crbComparison(T);
+    return {gamma,T,communicationNoiseVariance:gamma===0?Infinity:1/gamma,sensingNoiseVariance:1,power:1,
+      points:[{name:'BPSK',information:bpsk,averageCrb:crb.fixed},
+        {name:'Gaussian',information:Math.log1p(gamma)/(2*Math.LN2),averageCrb:crb.gaussian}]};
+  }
+  const api={BARKER,cfg,template,noise,experiment,crbComparison,crbExperiment,bpskInformation,rateCrbComparison};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.Theory=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
