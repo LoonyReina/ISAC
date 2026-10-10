@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "language": "zh-CN",
+  "title": "研究阅读证据目录",
+  "subtitle": "先看机制，再检查论文身份、引用快照与证据边界。",
+  "verifiedOn": "2026-10-10",
+  "selectionSummary": "这些是本轮交叉核验的候选论文，不是全领域排名。若优先考虑已核实的学术影响，可先读联合发射波束成形（2020）与最优波形设计（2018）；若强调机制覆盖，可再接802.11ad雷达或全双工OFDM实验。",
+  "methodNotes": [
+    "引用为2026-10-10查询的两套独立服务快照；覆盖与版本合并规则不同，不相加。",
+    "2025项指OpenAlex中发表于2025年的施引文献数；不是2025年的索引增长量。",
+    "旧论文积累时间更长；同时阅读发表时间与近期施引年计数，不据总数评价新旧论文优劣。",
+    "学会阅读推荐、奖项和官方资源属于不同证据；社交讨论量未验证。",
+    "ComSoc阅读目录的部分编辑也参与候选论文，推荐不是完全独立于作者的投票。",
+    "Perceptive Mobile Network存在OpenAlex记录拆分，排除该服务的数量排名。",
+    "当前已有CRB–rate案例与2022年CRB波束优化论文身份不同；相关主题不等于同一论文。"
+  ],
+  "cards": [
+    {
+      "id": "optimal_waveform",
+      "heading": "联合波形：通信误差与雷达方向图如何取舍？",
+      "title": "Toward Dual-functional Radar-Communication Systems: Optimal Waveform Design",
+      "authors": "Fan Liu、Longfei Zhou、Christos Masouros、Ang Li、Wu Luo、Athina Petropulu",
+      "publicationLabel": "2018期刊；2017预印本",
+      "doi": "https://doi.org/10.1109/tsp.2018.2847648",
+      "identitySource": "https://arxiv.org/abs/1711.05220",
+      "mechanism": "同一发射波形兼顾多用户通信与雷达方向图，研究多用户干扰、加权权衡和恒模约束下的设计。",
+      "evidenceBoundary": "理论与数值仿真；独立教学简化不等于原论文完整优化器复现。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 980,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TSP.2018.2847648",
+          "retrievedAt": "2026-10-10T13:59:59.223032+00:00",
+          "recordUpdatedAt": "2026-10-09T09:14:12.587421",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 972,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/tsp.2018.2847648?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/abaf9a91f636542a230d32dec71206bfeba703e1",
+          "retrievedAt": "2026-10-10T14:00:47.020912+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 206,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        },
+        {
+          "kind": "学术奖项",
+          "text": "2021 IEEE SPS青年作者最佳论文奖（2022年颁发）",
+          "url": "https://signalprocessingsociety.org/community-involvement/award-recipients"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "阅读时先明确通信误差与雷达协方差各自的作用，再对照原文的目标函数与约束；教学案例的具体保留范围以案例原文对照为准。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/1711.05220"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/tsp.2018.2847648"
+        }
+      ],
+      "groupId": "joint-design",
+      "shortTitle": "最优联合波形设计",
+      "caseId": "case-waveform"
+    },
+    {
+      "id": "joint_beamforming",
+      "heading": "增加独立雷达波形，能多出多少设计自由度？",
+      "title": "Joint Transmit Beamforming for Multiuser MIMO Communications and MIMO Radar",
+      "authors": "Xiang Liu、Tianyao Huang、Nir Shlezinger、Yimin Liu、Jie Zhou、Yonina C. Eldar",
+      "publicationLabel": "2020期刊；2019预印本",
+      "doi": "https://doi.org/10.1109/tsp.2020.3004739",
+      "identitySource": "https://arxiv.org/abs/1912.03420",
+      "mechanism": "把独立雷达波形与通信符号加权叠加，在用户SINR约束下设计雷达发射方向图；原文研究紧半定松弛与低复杂度零迫方案。",
+      "evidenceBoundary": "理论与仿真；更大自由度不代表任意约束下都能同时提升两种性能。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 994,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TSP.2020.3004739",
+          "retrievedAt": "2026-10-10T13:59:59.127077+00:00",
+          "recordUpdatedAt": "2026-10-09T09:14:12.587421",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 1008,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/tsp.2020.3004739?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/821e4c255f237f8b881dfdb5f1bf7cc4ee26dae2",
+          "retrievedAt": "2026-10-10T14:00:51.667520+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 270,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        },
+        {
+          "kind": "学术奖项",
+          "text": "2024 IEEE SPS青年作者最佳论文奖（2025年颁发）",
+          "url": "https://signalprocessingsociety.org/community-involvement/award-recipients"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：通信波束与额外雷达波束的自由度；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/1912.03420"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/tsp.2020.3004739"
+        }
+      ],
+      "groupId": "joint-design",
+      "shortTitle": "联合发射波束成形",
+      "caseId": null
+    },
+    {
+      "id": "mu_mimo",
+      "heading": "分开天线与共用天线，有什么不同？",
+      "title": "MU-MIMO Communications With MIMO Radar: From Co-Existence to Joint Transmission",
+      "authors": "Fan Liu、Christos Masouros、Ang Li、Huafei Sun、Lajos Hanzo",
+      "publicationLabel": "2018期刊；2017预印本",
+      "doi": "https://doi.org/10.1109/twc.2018.2803045",
+      "identitySource": "https://arxiv.org/abs/1707.00519",
+      "mechanism": "比较雷达与通信分离天线部署、共享阵列部署，并在通信性能要求下设计发射方向图。",
+      "evidenceBoundary": "理论与数值结果；比较结论依赖模型、约束和资源预算。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 963,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TWC.2018.2803045",
+          "retrievedAt": "2026-10-10T13:59:59.283870+00:00",
+          "recordUpdatedAt": "2026-10-09T09:14:12.587421",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 936,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/twc.2018.2803045?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/520fe5dfff2add7370ddf78f2584947c6c69d241",
+          "retrievedAt": "2026-10-10T14:00:40.861823+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 200,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：同一阵列预算下的分离与共享；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/1707.00519"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/twc.2018.2803045"
+        }
+      ],
+      "groupId": "joint-design",
+      "shortTitle": "从共存到联合发射",
+      "caseId": null
+    },
+    {
+      "id": "crb",
+      "heading": "方向图好看，就一定估得准吗？",
+      "title": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
+      "authors": "Fan Liu、Ya-Feng Liu、Ang Li、Christos Masouros、Yonina C. Eldar",
+      "publicationLabel": "2022期刊；2021在线发表",
+      "doi": "https://doi.org/10.1109/tsp.2021.3135692",
+      "identitySource": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming_0.pdf",
+      "mechanism": "以点目标和扩展目标估计的CRB为设计指标，在逐用户SINR要求下优化通感波束。",
+      "evidenceBoundary": "CRB是估计性能下界；不能直接当作实际估计器MSE。与本站已有高斯信道CRB–rate案例不是同一篇论文。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 773,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TSP.2021.3135692",
+          "retrievedAt": "2026-10-10T14:00:05.530805+00:00",
+          "recordUpdatedAt": "2026-10-09T09:14:12.587421",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 855,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/tsp.2021.3135692?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/8037d10541d538d97c4b1e6503f3d233593e2fdb",
+          "retrievedAt": "2026-10-10T14:01:19.294151+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 245,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        },
+        {
+          "kind": "学术奖项",
+          "text": "2024 IEEE SPS最佳论文奖（2025年颁发）",
+          "url": "https://signalprocessingsociety.org/community-involvement/award-recipients"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：CRB目标与方向图目标的区别；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming_0.pdf"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/tsp.2021.3135692"
+        }
+      ],
+      "groupId": "joint-design",
+      "shortTitle": "CRB 波束优化",
+      "caseId": null
+    },
+    {
+      "id": "80211ad",
+      "heading": "通信前导能不能同时测距、测速？",
+      "title": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+      "authors": "Preeti Kumari、Junil Choi、Nuria González-Prelcic、Robert W. Heath Jr.",
+      "publicationLabel": "2018卷期；2017在线发表",
+      "doi": "https://doi.org/10.1109/tvt.2017.2774762",
+      "identitySource": "https://arxiv.org/abs/1702.05833",
+      "mechanism": "利用IEEE 802.11ad单载波帧前导中的Golay互补序列，研究单帧与多帧目标检测、距离和速度估计。",
+      "evidenceBoundary": "原文这里核实的是分析与仿真；不能把指标直接表述为道路实测结果。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 711,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TVT.2017.2774762",
+          "retrievedAt": "2026-10-10T13:59:59.287726+00:00",
+          "recordUpdatedAt": "2026-10-09T09:14:12.587421",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 659,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/tvt.2017.2774762?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/27d4794f03ff8d0652c0fda3b60b04a59903f372",
+          "retrievedAt": "2026-10-10T14:00:59.104440+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 92,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：前导复用与单帧/多帧估计；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/1702.05833"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/tvt.2017.2774762"
+        }
+      ],
+      "groupId": "signals-networks",
+      "shortTitle": "802.11ad 车载雷达",
+      "caseId": null
+    },
+    {
+      "id": "ofdm_full_duplex",
+      "heading": "真实LTE/NR的空子载波和自干扰怎么办？",
+      "title": "Full-Duplex OFDM Radar With LTE and 5G NR Waveforms: Challenges, Solutions, and Measurements",
+      "authors": "Carlos Baquero Barneto、Taneli Riihonen、Matias Turunen等",
+      "publicationLabel": "2019期刊",
+      "doi": "https://doi.org/10.1109/tmtt.2019.2930510",
+      "identitySource": "https://research.aalto.fi/en/publications/full-duplex-ofdm-radar-with-lte-and-5g-nr-waveforms-challenges-so/",
+      "mechanism": "研究LTE/5G NR空子载波对OFDM雷达处理的影响、插值处理和收发自干扰抵消，并提供射频测量。",
+      "evidenceBoundary": "包含硬件实验；具体结论受波形配置、隔离度和目标运动条件限制。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 368,
+          "source": "https://api.openalex.org/works?search=Full-Duplex%20OFDM%20Radar%20With%20LTE%20and%205G%20NR%20Waveforms%3A%20Challenges%2C%20Solutions%2C%20and%20Measurements&per-page=2",
+          "retrievedAt": "2026-10-10T14:00:05.929236+00:00",
+          "recordUpdatedAt": "2026-10-08T09:06:37.294493",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 368,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/tmtt.2019.2930510?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/1c1fd06ab8bd2b137b76155e5453cfde62d251ec",
+          "retrievedAt": "2026-10-10T14:01:23.879122+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 76,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：理想OFDM模型到硬件链路的差距；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://research.aalto.fi/en/publications/full-duplex-ofdm-radar-with-lte-and-5g-nr-waveforms-challenges-so/"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/tmtt.2019.2930510"
+        }
+      ],
+      "groupId": "signals-networks",
+      "shortTitle": "全双工 OFDM 雷达",
+      "caseId": null
+    },
+    {
+      "id": "perceptive",
+      "heading": "一张移动网络如何组织上下行感知？",
+      "title": "Framework for a Perceptive Mobile Network Using Joint Communication and Radar Sensing",
+      "authors": "Md. Lushanur Rahman、J. Andrew Zhang、Xiaojing Huang、Y. Jay Guo、Robert W. Heath Jr.",
+      "publicationLabel": "2020卷期；2019在线发表/预印本",
+      "doi": "https://doi.org/10.1109/taes.2019.2939611",
+      "identitySource": "https://arxiv.org/abs/1901.05558",
+      "mechanism": "提出复用通信信号的感知移动网络框架，讨论上下行感知、参数提取与递归杂波抑制。",
+      "evidenceBoundary": "系统框架与算法研究；不等于商用网络已完成端到端部署。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 1,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/TAES.2019.2939611",
+          "retrievedAt": "2026-10-10T14:00:05.590093+00:00",
+          "recordUpdatedAt": "2026-09-29T14:09:16.559479",
+          "comparable": false,
+          "warning": "记录拆分：DOI记录1次，匹配题名的UTS仓储记录295次。未逐条去重，不能相加；排除OpenAlex引用排名。",
+          "alternateRecord": {
+            "count": 295,
+            "url": "https://api.openalex.org/works/W2972579901"
+          }
+        },
+        "semanticScholar": {
+          "count": 295,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/taes.2019.2939611?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/fe5f9399d5d08c9631b111f113144ae7f6ea9fb5",
+          "retrievedAt": "2026-10-10T14:01:09.591869+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": null,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": false
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "学会编辑阅读推荐",
+          "text": "入选IEEE ComSoc ISAC Best Readings（2022年2月）",
+          "url": "https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：网络感知链路与可观测参数；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/1901.05558"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/taes.2019.2939611"
+        }
+      ],
+      "groupId": "signals-networks",
+      "shortTitle": "感知移动网络框架",
+      "caseId": null
+    },
+    {
+      "id": "deepsense",
+      "heading": "真实多模态数据怎样支撑可复现通感研究？",
+      "title": "DeepSense 6G: A Large-Scale Real-World Multi-Modal Sensing and Communication Dataset",
+      "authors": "Ahmed Alkhateeb、Gouranga Charan、Tawfik Osman、Andrew Hredzak、João Morais、Umut Demirhan、Nikhil Srinivas",
+      "publicationLabel": "2023期刊；2022预印本",
+      "doi": "https://doi.org/10.1109/mcom.006.2200730",
+      "identitySource": "https://arxiv.org/abs/2211.09769",
+      "mechanism": "发布真实场景的多模态感知与通信数据集，介绍采集、处理、场景与任务，支持可复现研究。",
+      "evidenceBoundary": "数据集贡献不同于某一种联合波形算法；数据下载量不是论文引用数，也不是独立使用者人数。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 289,
+          "source": "https://api.openalex.org/works/https://doi.org/10.1109/MCOM.006.2200730",
+          "retrievedAt": "2026-10-10T13:59:59.192158+00:00",
+          "recordUpdatedAt": "2026-10-10T09:11:00.788812",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 377,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/mcom.006.2200730?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/7446a7a37cca491169f1956d1cbf0e599388786e",
+          "retrievedAt": "2026-10-10T14:01:04.130996+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 104,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "官方研究资源",
+          "text": "官方站提供数据、复现任务、工作坊录像与教学材料；这是资源和传播证据，不是讨论量统计。",
+          "url": "https://deepsense6g.net/"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：数据划分、任务定义与跨场景泛化；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://arxiv.org/abs/2211.09769"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/mcom.006.2200730"
+        }
+      ],
+      "groupId": "data-learning",
+      "shortTitle": "DeepSense 6G 数据集",
+      "caseId": null
+    },
+    {
+      "id": "radar_prediction",
+      "heading": "雷达观测能帮助选择通信波束吗？",
+      "title": "Radar Aided 6G Beam Prediction: Deep Learning Algorithms and Real-World Demonstration",
+      "authors": "Umut Demirhan、Ahmed Alkhateeb",
+      "publicationLabel": "2022 WCNC；2021预印本",
+      "doi": "https://doi.org/10.1109/wcnc51071.2022.9771564",
+      "identitySource": "https://www.wi-lab.net/research/radar-aided-beam-prediction-paper/",
+      "mechanism": "研究利用雷达观测与深度学习预测通信波束，并提供真实场景演示与研究材料。",
+      "evidenceBoundary": "感知辅助通信任务；不应自动等同于同一射频波形同时完成通信与雷达。",
+      "metrics": {
+        "snapshotDate": "2026-10-10",
+        "openAlex": {
+          "count": 141,
+          "source": "https://api.openalex.org/works?search=Radar%20Aided%206G%20Beam%20Prediction%3A%20Deep%20Learning%20Algorithms%20and%20Real-World%20Demonstration&per-page=2",
+          "retrievedAt": "2026-10-10T14:00:05.695247+00:00",
+          "recordUpdatedAt": "2026-10-08T09:06:37.294493",
+          "comparable": true
+        },
+        "semanticScholar": {
+          "count": 161,
+          "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/wcnc51071.2022.9771564?fields=title,year,citationCount,influentialCitationCount,url,externalIds",
+          "recordUrl": "https://www.semanticscholar.org/paper/a898ac64f5a7af2133185f62417b18ce156e06be",
+          "retrievedAt": "2026-10-10T14:01:14.424166+00:00"
+        },
+        "completedYear": {
+          "year": 2025,
+          "count": 37,
+          "sourceService": "OpenAlex",
+          "definition": "发表年份为2025年的施引文献数；不是2025年新增入库引用量，也不是实时增长率。",
+          "comparable": true
+        }
+      },
+      "endorsements": [
+        {
+          "kind": "作者实验与材料",
+          "text": "作者实验室提供论文身份、演示及研究资源；不作为独立第三方认可。",
+          "url": "https://www.wi-lab.net/research/radar-aided-beam-prediction-paper/"
+        }
+      ],
+      "socialDiscussion": {
+        "status": "unavailable",
+        "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
+      },
+      "readingPlan": "计划深读：雷达辅助波束选择与泛化验证；本站交互尚未实现。",
+      "links": [
+        {
+          "label": "原文与身份来源",
+          "url": "https://www.wi-lab.net/research/radar-aided-beam-prediction-paper/"
+        },
+        {
+          "label": "期刊/会议DOI",
+          "url": "https://doi.org/10.1109/wcnc51071.2022.9771564"
+        }
+      ],
+      "groupId": "data-learning",
+      "shortTitle": "雷达辅助波束预测",
+      "caseId": null
+    }
+  ],
+  "groups": [
+    {
+      "id": "joint-design",
+      "title": "联合发射与估计目标",
+      "description": "从阵列和波形自由度，读到估计性能下界。"
+    },
+    {
+      "id": "signals-networks",
+      "title": "通信信号与网络感知",
+      "description": "从帧前导、真实射频链路，读到网络级观测。"
+    },
+    {
+      "id": "data-learning",
+      "title": "真实数据与感知辅助通信",
+      "description": "分清数据资源、波束预测与联合波形各自的任务。"
+    }
+  ]
+}
