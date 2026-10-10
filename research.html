@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ISAC 研究阅读入口：从先修知识与问题出发，选择 CRB、导频、网络时钟或 SBFD 案例，分清交互机制、论文证据与结论边界。">
+<title>研究阅读地图 · 从问题到证据 | ISAC 交互讲义</title>
+<link rel="stylesheet" href="course.css?v=iq-path-v4">
+<link rel="stylesheet" href="research.css?v=1">
+</head>
+<body>
+<a class="skip" href="#foundations">跳到阅读路线</a>
+<header class="top"><a class="brand" href="index.html">ISAC <span>交互讲义</span></a><div><a href="index.html#start">18 章讲义</a><a href="theory.html">理论主线</a></div></header>
+<main class="research-main">
+<div class="cover">
+<p class="eyebrow">研究阅读地图 / 四个问题，四个入口</p>
+<h1>带着一个问题，<br>走进一篇研究。</h1>
+<p>先补需要的基础，再用小实验看清机制。读论文时，把作者的证据与本站的教学模型分开。</p>
+<p class="small">四个案例是可独立选择的主题，不是难度排名或技术演进顺序。这里整理已有内容，不新增论文复现或最新文献检索。</p>
+<nav class="research-jumps" aria-label="研究主题"><a href="#case-crb">估计界与随机性</a><a href="#case-pilot">导频与歧义</a><a href="#case-clock">时钟与几何</a><a href="#case-sbfd">资源与双孔径</a></nav>
+</div>
+<section class="chapter" id="foundations" aria-labelledby="foundations-title">
+<header class="chapter-head"><p class="eyebrow">先修 / 选一个适合的起点</p><h2 id="foundations-title">还没准备好读论文？从这里接上</h2><p class="goal">不要求先学完全部内容。每个案例下方都有可回看的先修章节；基础仍不清楚时，再回到完整讲义。</p></header>
+<ul class="research-foundations">
+<li><h3><a href="index.html#start">完整 18 章讲义</a></h3><p>从回波、I/Q 和相位出发，沿七步 OFDM 走到检测、性能指标与系统约束。</p><a href="index.html#reading">查看讲义原文与符号表 →</a></li>
+<li><h3><a href="theory.html#pathway">通信与雷达的理论骨架</a></h3><p>先分清任务中的已知与未知，再用共享样本对照符号判决和延迟估计。</p><a href="theory.html#shared-model">进入共同观测模型 →</a></li>
+<li><h3><a href="theory.html#research-method">用七个问题读论文</a></h3><p>问题、基线、局限、创新、证据、边界、复现。把主张写成能核验的记录。</p><a href="index.html#practice">查看复现起步路线 →</a></li>
+</ul>
+</section>
+<section class="chapter" id="cases" aria-labelledby="cases-title">
+<header class="chapter-head"><p class="eyebrow">案例 / 按你想弄清的问题选择</p><h2 id="cases-title">先问什么，再决定读什么</h2><p>每张卡按同一顺序阅读：先修 → 问题 → 交互机制 → 证据 → 边界 → 下一问。下一问是待检验的问题，不是本站已经得到的结论。</p></header>
+<div class="research-cases">
+<article class="research-case" id="case-crb" aria-labelledby="crb-title">
+<p class="eyebrow">估计理论 / 随机输入</p><h3 id="crb-title"><a href="theory.html#crb-mechanism">平均功率相同，估计界也相同吗？</a></h3>
+<dl>
+<dt>先修</dt><dd><a href="index.html#limits">第 10 章：分辨率、精度与界</a>；<a href="theory.html#shared-model">已知输入的观测模型</a></dd>
+<dt>问题</dt><dd>发射信号可以随机，但感知端知道这次实现。先求每块的界再平均，为什么不同于先平均能量再求界？</dd>
+<dt>交互机制</dt><dd>改变块长与抽样块数，对照固定幅度、Gaussian 输入和解析参考。看低能量块怎样影响倒数的平均。</dd>
+<dt>证据类型</dt><dd>论文：<a href="https://arxiv.org/html/2204.06938v8">CRB–rate 原始研究 v8</a>的理论及数值分析；本站：独立实标量推导与发射块 Monte Carlo。另见<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">教程 v2 §IV-B</a>。</dd>
+<dt>结论边界</dt><dd>不是估计器误差实验，也未复现完整 CRB–rate 区域。小块长时倒数矩可能发散；有限抽样均值不能证明收敛。</dd>
+<dt>下一研究问题</dt><dd>进入多参数信息矩阵后，如何保留输入已知条件，并在相同资源约束下比较完整权衡区域？</dd>
+</dl><a class="next-chapter" href="theory.html#crb-mechanism">打开标量 CRB 机制实验 →</a>
+</article>
+<article class="research-case" id="case-pilot" aria-labelledby="pilot-title">
+<p class="eyebrow">OFDM / 参考信号设计</p><h3 id="pilot-title"><a href="pilot-design.html">导频省下来，距离为什么重复？</a></h3>
+<dl>
+<dt>先修</dt><dd><a href="index.html#matched">第 4 章：匹配滤波</a>；<a href="index.html#ofdm">第 8 章：沿频率读距离</a></dd>
+<dt>问题</dt><dd>梳状导频能留下尖锐主峰，为什么仍有多个同高距离候选？更密的搜索格点能解决吗？</dd>
+<dt>交互机制</dt><dd>改变梳状间隔、偏移和搜索格距，对照导频位置、复数观测与归一化距离匹配曲线。</dd>
+<dt>证据类型</dt><dd>论文：<a href="https://arxiv.org/pdf/2401.09643v3">参考信号图样设计 v3（2024-11-13）</a>的分析与数值结果；本站：无噪声静止单径的独立复数求和。背景：<a href="https://www.cel.kit.edu/download/VTC2012_BraunFuhrJondral.pdf">Braun 等，2012 作者 PDF</a>。</dd>
+<dt>结论边界</dt><dd>归一化只对齐真峰，不代表等总能量或等 SNR。单符号未知复增益可吸收偏移造成的公共相位；这里没有二维多普勒处理。</dd>
+<dt>下一研究问题</dt><dd>跨符号交错时，怎样联合处理多普勒与增益相位，并在固定总能量下验证去模糊？</dd>
+</dl><a class="next-chapter" href="pilot-design.html#experiment">打开导频与距离匹配实验 →</a>
+</article>
+<article class="research-case" id="case-clock" aria-labelledby="clock-title">
+<p class="eyebrow">网络 ISAC / 同步与定位</p><h3 id="clock-title"><a href="network-clock.html">时钟差 10 ns，位置差多少？</a></h3>
+<dl>
+<dt>先修</dt><dd><a href="index.html#echo">第 2 章：传播延迟</a>；<a href="index.html#geometry">第 13 章：双基地与多站几何</a></dd>
+<dt>问题</dt><dd>同一个时延读数里，哪部分来自传播，哪部分来自时钟？总路径误差为什么不能直接当作位置误差？</dd>
+<dt>交互机制</dt><dd>改变站位、时钟偏差和噪声，对照忽略偏差、已知偏差校正与互易估计；检查椭圆、候选位置和镜像歧义。</dd>
+<dt>证据类型</dt><dd>论文：<a href="https://arxiv.org/html/2607.18680v1">联合同步与感知 v1（2026-07-21）</a>的理论与仿真；本站：已关联标量时延的有限网格实验。不是实网验证。</dd>
+<dt>结论边界</dt><dd>不是 SCPD、原始 OFDM 或多目标关联复现。双向平均使用两次观测；局部可辨识不保证全局唯一。论文条件 RMSE 还需结合对应成功率阅读。</dd>
+<dt>下一研究问题</dt><dd>当互易假设失效、时频偏差与目标关联同时未知时，该如何报告失败试验和整体定位表现？</dd>
+</dl><a class="next-chapter" href="network-clock.html#experiment">打开时钟与几何实验 →</a>
+</article>
+<article class="research-case" id="case-sbfd" aria-labelledby="sbfd-title">
+<p class="eyebrow">系统原型 / 频率与时间资源</p><h3 id="sbfd-title"><a href="sbfd-resource.html">分的是带宽，测速看的是时间</a></h3>
+<dl>
+<dt>先修</dt><dd><a href="index.html#ofdm">第 8 章：频率与慢时间</a>；<a href="pilot-design.html">导频与距离歧义案例</a></dd>
+<dt>问题</dt><dd>把频带分给多个节点之后，为什么不能从测速表现相近，直接推出距离分辨率或通信性能相同？</dd>
+<dt>交互机制</dt><dd>只改变感知频格数与相干观察符号数，检查三子带资源账本、距离切片和速度切片。</dd>
+<dt>证据类型</dt><dd>论文：<a href="https://arxiv.org/html/2602.00054v1">SBFD ISAC 原型研究 v1</a>的硬件测量；本站：无噪声理想匹配模型。两类结果分别阅读，不用理想曲线替代实测。</dd>
+<dt>结论边界</dt><dd>论文测速为单站，多基地仍是未来工作。只有 SBFD 承载通信，对照的带宽与感知节点数也不同；不能称作公平通信性能排名。</dd>
+<dt>下一研究问题</dt><dd>固定总带宽、能量、时长与有效载荷后，如何逐项加入频偏、多径和非线性，建立匹配的实验对照？</dd>
+</dl><a class="next-chapter" href="sbfd-resource.html#experiment">打开资源与双孔径实验 →</a>
+</article>
+</div>
+</section>
+<section class="chapter" id="evidence" aria-labelledby="evidence-title">
+<header class="chapter-head"><p class="eyebrow">读完之后 / 留下可复核的记录</p><h2 id="evidence-title">把机制、论文与下一步分开</h2></header>
+<ol class="research-evidence"><li><b>记录本站实验：</b>输入是什么、图的坐标是什么、改了哪个变量、哪些假设没有变化？</li><li><b>回到原文：</b>保留版本、章节、资源预算、证据类型和失败条件。上面的原文链接沿用各案例已核对来源，不表示整篇论文均已独立复核。</li><li><b>提出下一问：</b>一次只放松一项假设，先给出公平基线，再决定需要理论、仿真还是硬件数据。</li></ol>
+<p><a href="theory.html#evidence-map">继续看理论页的研究证据地图</a>，或回到<a href="index.html#reading">完整讲义的综述与原文接力</a>。逐项核对范围见<a href="docs/READING-MAP.md">来源与教学映射记录</a>。</p>
+</section>
+<footer>ISAC 交互讲义 · 研究阅读地图 · <a href="#foundations">回到阅读起点</a> · <a href="index.html">返回完整讲义</a></footer>
+</main>
+</body>
+</html>
