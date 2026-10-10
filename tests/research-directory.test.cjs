@@ -38,14 +38,17 @@ test('bibliometrics, editorial overlap, social limits and paper identity are exp
  a.match(h,/不是全领域排名/);a.match(h,/社交讨论量未验证/);a.match(h,/不是2025年的索引增长量/);a.match(h,/推荐不是完全独立于作者的投票/);
  a.match(getCard('crb'),/不是同一篇论文/);a.match(getCard('deepsense'),/数据下载量不是论文引用数/);
 });
-test('unimplemented papers render no local action, and waveform requires an integrated canonical case',()=>{
- const absent={...registry,cases:registry.cases.filter(c=>c.id!=='case-waveform')};const pending=render(absent);
+test('unimplemented papers render no local action, and each mechanism requires an integrated canonical case',()=>{
+ const absent={...registry,cases:registry.cases.filter(c=>!['case-waveform','case-joint-beamforming'].includes(c.id))};const pending=render(absent);
  a.match(getCard('optimal_waveform',pending),/教学案例准备中/);
  for(const c of data.cards){const card=getCard(c.id,pending);a.ok(!/href="(?!https:)/.test(card),c.id);}
- const integrated={...absent,cases:[...absent.cases,{id:'case-waveform',unit:'waveform-test-unit'}],units:[...registry.units,{id:'waveform-test-unit',href:'waveform-design.html#experiment'}],pages:[...registry.pages,{path:'waveform-design.html'}]};
- a.match(getCard('optimal_waveform',render(integrated,()=>true)),/href="waveform-design.html#experiment"/);
- a.ok(!render(integrated,()=>false).includes('href="waveform-design.html'));
- a.ok(!render({...integrated,pages:[]},()=>true).includes('href="waveform-design.html'));
+ for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html']]){
+  a.match(getCard(paperId,pending),/教学案例准备中/);
+  const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#experiment`}],pages:[...registry.pages,{path:file}]};
+  a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#experiment"`));
+  a.ok(!getCard(paperId,render(integrated,()=>false)).includes(`href="${file}`));
+  a.ok(!getCard(paperId,render({...integrated,pages:[]},()=>true)).includes(`href="${file}`));
+ }
  for(const c of data.cards.filter(c=>!c.caseId))a.match(getCard(c.id),/深度交互尚未实现/);
 });
 test('reading directory uses native closed disclosures, labelled groups, working anchor navigation and narrow layouts',()=>{
@@ -62,4 +65,10 @@ test('adding or removing bibliography cards updates both generated heading and r
   vm.runInNewContext(read('scripts/generate-site.cjs'),{__dirname:path.join(root,'scripts'),process:{argv:[]},console:{log(){}},require:id=>id==='node:fs'?{...fs,readFileSync:(file,...args)=>String(file)===path.join(root,registry.researchDirectoryFile)?JSON.stringify(changed):fs.readFileSync(file,...args),writeFileSync:(file,text)=>outputs[path.basename(file)]=text}:require(id)});
   const h=outputs['reading.html'];a.ok(h.includes(`>${cards.length} 篇研究论文：先选机制，再核对影响证据</h2>`));a.ok(h.includes(`href="#influential-papers">${cards.length} 篇论文与影响证据</a>`));a.equal([...h.matchAll(/class="influence-card"/g)].length,cards.length);a.ok(!h.includes('九篇'));
  }
+});
+
+test('exactly two bibliography cases are active and seven remain honestly unavailable',()=>{
+ const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,2);a.equal(pending.length,7);
+ for(const c of active){const card=getCard(c.id);a.ok(/href="(?!https:)/.test(card));a.ok(!/教学案例准备中|深度交互尚未实现/.test(card));a.ok(!/尚未实现|准备中/.test(c.readingPlan));}
+ for(const c of pending){const card=getCard(c.id);a.match(card,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(card));}
 });
