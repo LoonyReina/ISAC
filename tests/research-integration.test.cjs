@@ -19,3 +19,12 @@ test('actual bibliography case is active and resolves only to the registered wav
  for(const page of ['index.html','reading.html','experiments.html','waveform-design.html'])assert.ok(read(page).includes('site.css?v=knowledge-map-v1'));
  assert.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v2'));
 });
+
+test('joint beamforming canonical case is integrated as its own mechanism and precise source comparison',()=>{
+ const data=JSON.parse(read(registry.researchDirectoryFile)),card=data.cards.find(c=>c.id==='joint_beamforming'),c=registry.cases.find(c=>c.id===card.caseId),unit=registry.units.find(u=>u.id===c.unit);
+ assert.equal(c.id,'case-joint-beamforming');assert.equal(unit.id,'joint-beamforming');assert.equal(unit.href,'joint-beamforming.html#experiment');
+ const article=read('reading.html').match(/<article class="influence-card" id="paper-joint_beamforming"[\s\S]*?<\/article>/)[0];
+ assert.ok(article.includes(`href="${unit.href}"`));assert.ok(!article.includes('教学案例准备中'));assert.equal(c.paperComparison.sourceUrl,'https://arxiv.org/abs/1912.03420v2');assert.equal(c.paperComparison.comparisonStatus,'partial');
+ assert.ok(registry.pages.some(p=>p.path==='joint-beamforming.html'));assert.ok(registry.directions.some(d=>d.primaryCaseIds.includes(c.id)));
+ for(const page of ['index.html','experiments.html','reading.html'])assert.ok(read(page).includes('joint-beamforming.html#experiment'),page);
+});

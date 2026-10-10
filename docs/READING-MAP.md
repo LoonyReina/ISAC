@@ -336,3 +336,15 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - 影响力检索快照 2026-10-10：OpenAlex 980、Semantic Scholar 972，两个索引分开；OpenAlex 2025 引用出版年桶206。不是社交讨论量或全局排名
 - 来源：https://api.openalex.org/works/https://doi.org/10.1109/TSP.2018.2847648 ；https://www.semanticscholar.org/paper/abaf9a91f636542a230d32dec71206bfeba703e1 ；https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac ；https://signalprocessingsociety.org/community-involvement/award-recipients
 - 限制：同协方差不保证相同延迟–多普勒模糊函数；确定性匹配误差不是 BER、容量或 CRB；未实现噪声、信道不确定性、加权信赖域、常模、硬件或测量
+
+## 2020 · 独立雷达流与联合发射预编码（2026-10-10 增补）
+
+- 期刊：Xiang Liu 等，Joint Transmit Beamforming for Multiuser MIMO Communications and MIMO Radar，IEEE TSP 68，3929–3944，DOI https://doi.org/10.1109/TSP.2020.3004739
+- 固定版本：https://arxiv.org/abs/1912.03420v2 ，2020-02-02；PDF https://arxiv.org/pdf/1912.03420v2 。预印本题名为 Joint Transmit Beamforming for Multiuser MIMO Communications and Radar；本页式号采用 v2，未混用期刊式号。
+- 本站：joint-beamforming.html，case-joint-beamforming，主方向 spatial；与 waveforms、tradeoffs 互链。保留八方向与六深度框架。
+- 原文：§II 式(1)–(7) 集合平均协方差/等每天线功率；§III 式(8)–(25) 空间功率、方向对相关性、用户 SINR；§IV 式(26) 联合优化，§IV-B 式(27)–(34) 与定理1/附录A 的 SDR 和恢复；§IV-C 式(35)–(44) 与定理2/附录B 的 ZF；§V 图3–12 的仿真比较。本站不运行 SDR、优化型 ZF、SSP 或接收机。
+- 独立构造：M=8、K=2、Pt=1、每天线平均功率1/8、半波长 ULA、孔径3.5λ、确定正交模态 −30°/0°/30°。信道混合 η∈[0,1]，默认.8；噪声功率默认.01，Γ默认12dB。同一状态内三构造共享 H/噪声/功率；A/B预编码固定，C随当前已知H解析旋转。不是原文M=10/随机复高斯H/1000信道试验。
+- 机制：A秩2但照亮三个目标方向，两侧完全相关；B秩3，独立雷达流消除方向间相关但可能干扰用户；C与B整个R相同，空间功率/相关性相同，雷达用户干扰归零。只针对这一特别构造，不能推广成一般ZF无代价。
+- 证据：复数因子产生实际 R、1801角度功率、数值特征值与逐用户 D/Iu/Ir/噪声/SINR；独立 NumPy 检验含η端点与极小正值。全站结构和 DOM 回归另测，不代表真实浏览器或部署验证。
+- 限制：集合 R≠任意有限块 XXᴴ/N；秩不限制功率峰数量；三构造失败不代表一般问题不可行。固定R★的SINR上界只在本例模型下成立。不复现原文优化曲线、检测/角度估计或硬件。
+- 基线识别：原文 SSP 引用 TWC 2018 DOI10.1109/TWC.2018.2803045；与本站 TSP 2018 严格协方差 waveform-design 案例不同。本站A不是SSP。引用/奖项快照沿用原研究目录，没有重新估计或宣称新的影响排名。

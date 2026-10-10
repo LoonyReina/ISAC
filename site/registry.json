@@ -413,6 +413,76 @@
         },
         "verificationNote": "2026-10-10 核对固定 v1 严格设计机制；独立复数推导、双实现数值检查与小规模约束求解交叉验证，不代表完整论文复现"
       }
+    },
+    {
+      "id": "case-joint-beamforming",
+      "title": "同一阵列，为什么还要加独立雷达流？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#array\">阵列与方向</a>；<a href=\"waveform-design.html#model\">有限块波形与协方差</a>",
+        "问题": "只靠 K 路通信流，哪些发射协方差做不到？拆出独立雷达流后，为什么还必须联合调整两类预编码？",
+        "交互机制": "在相同八阵元、孔径、总功率、每天线平均功率与用户信道下，比较通信流、独立雷达流与解析零干扰构造。改变信道混合比例 η；门槛 Γ 仅检查当前构造是否满足。",
+        "证据类型": "<a href=\"https://arxiv.org/abs/1912.03420v2\">2020 联合发射波束论文，固定预印本 v2</a>：理论与仿真；本站：确定性复数矩阵与解析合成机制，不运行 SDR 或原文优化型 ZF。",
+        "结论边界": "协方差秩不等于波束峰数；同一发射协方差不决定用户的期望信号与雷达干扰分配。构造未通过门槛不证明一般优化问题无解；本站没有复现原文曲线或雷达接收机。",
+        "下一研究问题": "换成一般信道后，保持同一雷达协方差的零干扰分解还存在吗？如何在硬 SINR 约束下优化雷达损失？"
+      },
+      "unit": "joint-beamforming",
+      "paper": "joint-beamforming.html#paper",
+      "next": "joint-beamforming.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Joint Transmit Beamforming for Multiuser MIMO Communications and MIMO Radar",
+        "sourceUrl": "https://arxiv.org/abs/1912.03420v2",
+        "version": "arXiv v2，2020-02-02（预印本题名省略第二个 MIMO）；IEEE TSP 68，3929–3944，2020，DOI 10.1109/TSP.2020.3004739",
+        "sourceId": "joint_beamforming",
+        "comparisonLink": "joint-beamforming.html#paper",
+        "researchQuestion": "论文优化通信与独立雷达流的预编码，在每天线平均功率与各用户硬 SINR 约束下最小化雷达损失；本站用三个解析构造解释协方差自由度、方向互相关与用户干扰之间的关系。",
+        "observationsAndUnknowns": "x[n]=Wc c[n]+Wr s[n]；已知即时频率平坦信道 H、阵列响应与流二阶矩。设计 Wc、Wr，R=E[xxᴴ]；用户观测 Hx 加噪声，未知雷达符号不可消除。同址雷达接收机知道两类发射符号；本页不模拟目标回波或估计未知目标参数。",
+        "locator": {
+          "summary": "固定 v2 §II 式(1)–(7)；§III-A 式(8)–(15)、§III-B 式(16)–(25)；§IV-A 式(26)、§IV-B 式(27)–(34)、§IV-C 式(35)–(44)；§V-A 图3–4、§V-B 式(46)与图5–8；§V-C 图9–12仅作为未实现边界。",
+          "section": "§II–V；附录 A–B",
+          "figure": "图3–8为原文优化结果；图9–12的雷达接收机指标未实现",
+          "equation": "式(1)–(44)、(46)；附录(48)–(68)为证明入口"
+        },
+        "paperEvidenceType": "理论（紧 SDR、秩一恢复与优化型 ZF）和数值仿真",
+        "siteArtifactType": "确定性解析合成机制；三个预编码构造与固定资源比较，非 SDR/ZF 优化器、非原图复现",
+        "retainedAssumptions": [
+          "窄带远场半波长 ULA；用户单天线且 K<M，发射端精确已知即时 H",
+          "零均值单位功率流，通信与雷达流互不相关；R=WcWcᴴ+WrWrᴴ 为集合二阶矩",
+          "每天线平均功率 Pt/M、总平均功率 Pt；独立用户噪声功率 σ²",
+          "各用户 SINR 分开计入期望信号、其他用户流、未知雷达流和噪声；雷达利用两类已知发射信号"
+        ],
+        "omittedMechanisms": [
+          "没有求解原文式(26)/(40)，未运行 SDR、秩一恢复、CVX 或优化型 ZF",
+          "没有复现 SSP 基线、随机 Rayleigh 信道 Monte Carlo、速率或可行率曲线",
+          "没有实现有限 QPSK 样本块、目标回波、Capon 估计、检测、CRB 或硬件",
+          "本站 Rstar 是解析参考协方差，不是原文雷达独立优化得到的 R0；方向图误差不是原文式(46)数值"
+        ],
+        "metrics": [
+          "原始角功率 aᴴRa 与相对解析 Rstar 的网格 MSE",
+          "协方差特征值、数值秩与到 Rstar 的 Frobenius 残差",
+          "三个目标方向间归一化互相关幅度；不把秩等同于波束峰数",
+          "每用户 D / Iu / Ir / σ²、SINR 与最差用户 SINR",
+          "总平均功率、逐天线平均功率与零干扰残差"
+        ],
+        "unknowns": [
+          "未复现原文优化数值结果、1000 信道试验或 SDR–ZF 性能差距",
+          "一般信道与目标协方差下能否保持雷达性能并满足 ZF/SINR，需另行求解",
+          "没有实际雷达接收机的估计精度、检出率或实测证据"
+        ],
+        "resourceBudget": {
+          "summary": "本站 M=8、K=2、Pt=1、σ²=.01，半波长 ULA，孔径 7λ/2，每天线平均功率1/8；−30°/0°/30°解析空间模式，角网格−90°:0.1°:90°。η 默认 .8，改变时三构造共享当前 H；A/B 固定预编码，C 按精确 CSI 解析调整。原文 M=10、Pt=1、σ²=.01、K=2/4/6、Γ=4–24 dB、1000 随机信道、QPSK N=1024、CVX；两者不作原图等价比较。",
+          "bandwidth": null,
+          "energy": "归一化总平均功率 Pt=1，每天线1/8；未定义有限样本块能量",
+          "duration": "集合二阶矩模型，无指定采样周期或观测时长",
+          "aperture": "本站八阵元 λ/2 ULA，7λ/2；原文十阵元，9λ/2",
+          "priorKnowledge": "精确已知即时 H、阵列响应与源流二阶矩；用户不能消除未知雷达符号",
+          "other": [
+            "默认 Γ=12 dB；改变 Γ 只检查构造，不重新优化",
+            "未指定物理 RF 载频或带宽；以波长和归一化功率为单位"
+          ]
+        },
+        "verificationNote": "2026-10-10 原文研究交接核对固定 v2 §II–VI 与附录；解析机制经独立复数线性代数核查。本文原理对照与合成数值不是论文优化器或完整仿真复现。"
+      }
     }
   ],
   "legacy": {
@@ -952,6 +1022,20 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "固定资源改变 H、β 或方向，比较实际复数波形、HX 与全局下界。"
+    },
+    {
+      "id": "joint-beamforming",
+      "title": "独立雷达流与联合波束",
+      "href": "joint-beamforming.html#experiment",
+      "question": "方向图相同，为什么用户 SINR 仍会不同？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "waveform-design.html#model"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "比较三个同资源解析构造；改变信道混合比例，核对协方差、方向互相关和每用户信号/干扰功率。"
     }
   ],
   "pages": [
@@ -1094,6 +1178,20 @@
       "case": "case-waveform",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次固定资源的波形实验"
+    },
+    {
+      "path": "joint-beamforming.html",
+      "title": "同一阵列，为什么还要加独立雷达流？",
+      "stage": "experiments",
+      "role": "研究主题 · 联合预编码解析机制与原文对照",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "waveform-design.html#model"
+      ],
+      "case": "case-joint-beamforming",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次固定资源的联合预编码检验"
     }
   ],
   "schemaVersion": 1,
@@ -1176,7 +1274,8 @@
       ],
       "relatedDirectionIds": [
         "tradeoffs",
-        "receiver"
+        "receiver",
+        "spatial"
       ],
       "levels": [
         {
@@ -1222,6 +1321,13 @@
             {
               "label": "X、H、S 与发射协方差",
               "href": "waveform-design.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "从有限波形块到独立随机流预编码",
+              "href": "joint-beamforming.html#model",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -1279,6 +1385,13 @@
             {
               "label": "2018 波形设计：原文与创新",
               "href": "waveform-design.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "联合波束与严格协方差波形的区别",
+              "href": "joint-beamforming.html#paper",
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
@@ -1503,7 +1616,8 @@
       "relatedDirectionIds": [
         "waveforms",
         "receiver",
-        "prototype"
+        "prototype",
+        "spatial"
       ],
       "levels": [
         {
@@ -1567,6 +1681,13 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "相同协方差下拆开用户信号与雷达干扰",
+              "href": "joint-beamforming.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "coverage": "direction-specific"
@@ -1627,6 +1748,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "构造未过 SINR 门槛不等于问题无解",
+              "href": "joint-beamforming.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1655,19 +1783,22 @@
     {
       "id": "spatial",
       "title": "空间感知：天线怎样分清方向与远近？",
-      "question": "相同方向的两个点，为什么有时还能借波前曲率区分距离？",
-      "scope": "阵列几何、波束、近远场、可重构传播；RIS/可重构阵列作为逐步扩展专题。",
+      "question": "阵列怎样区分方向与远近，又怎样同时承载通信和雷达流？",
+      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。",
       "prerequisites": [
         "iq",
         "array",
         "limits"
       ],
       "primaryCaseIds": [
-        "case-near-field"
+        "case-near-field",
+        "case-joint-beamforming"
       ],
       "relatedDirectionIds": [
         "channels",
-        "networks"
+        "networks",
+        "waveforms",
+        "tradeoffs"
       ],
       "levels": [
         {
@@ -1678,6 +1809,13 @@
             {
               "label": "方向藏在阵元间的相位里",
               "href": "foundations.html#array",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "同一阵列，为什么还要独立雷达流？",
+              "href": "joint-beamforming.html#intuition",
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
@@ -1692,6 +1830,13 @@
             {
               "label": "从平面波走到球面波几何",
               "href": "near-field.html#geometry",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "流分解、空间协方差与每用户 SINR",
+              "href": "joint-beamforming.html#model",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -1716,6 +1861,13 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同资源比较通信、雷达与联合预编码",
+              "href": "joint-beamforming.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "coverage": "direction-specific"
@@ -1728,6 +1880,13 @@
             {
               "label": "近场案例的原文对照",
               "href": "near-field.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "2020 联合波束：固定 v2 原文对照",
+              "href": "joint-beamforming.html#paper",
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
@@ -1755,6 +1914,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "秩不是波束数，解析零干扰不是优化器",
+              "href": "joint-beamforming.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1770,6 +1936,14 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "复核协方差恒等式与信号/干扰分解",
+              "href": "joint-beamforming.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "确定性合成机制的复核步骤，不表示整篇论文已复现"
             }
           ]
         }
@@ -1777,6 +1951,7 @@
       "nextExtension": "增加多目标与校准误差实验，先明确孔径和阵元数各自是否保持固定。",
       "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
       "scenePositions": [
+        "transmit",
         "propagate"
       ]
     },
@@ -2707,12 +2882,13 @@
         "kind": "concept",
         "groupId": "codesign",
         "label": "波束与空间设计",
-        "question": "阵列响应如何随方向和孔径变化？",
-        "knownUnknown": "设计阵列/波束条件；读取空间匹配响应",
-        "boundary": "现有基础阵列实验不等于完整联合波束优化",
+        "question": "相同阵列和资源下，独立雷达流怎样改变协方差与用户干扰？",
+        "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率",
+        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR",
         "unitRefs": [
           "array",
-          "near-field"
+          "near-field",
+          "joint-beamforming"
         ],
         "entryUnitRef": "array"
       },
@@ -2736,10 +2912,11 @@
         "label": "联合目标与权衡",
         "question": "同一预算下通信和感知各自衡量什么？",
         "knownUnknown": "同时定义通信指标、感知指标和约束",
-        "boundary": "两个候选输入工作点不是最优权衡边界",
+        "boundary": "两个候选输入工作点不是最优权衡边界；三个解析预编码构造也不是一般信道的最优边界",
         "unitRefs": [
           "rate",
-          "crb"
+          "crb",
+          "joint-beamforming"
         ],
         "entryUnitRef": "rate"
       },
