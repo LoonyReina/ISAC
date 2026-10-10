@@ -85,6 +85,15 @@ body[data-route="index.html"] .site-role{margin:0;font-size:12px;letter-spacing:
 .map-actions{display:flex;flex-direction:column;gap:9px;margin:18px 0}
 .map-actions a,.map-actions button{display:block;width:100%;text-align:left;min-height:44px;padding:11px 13px;border:1px solid #b9d4ce;border-radius:7px;background:#edf7f3;color:#086e67;font-size:13px;font-weight:650;line-height:1.65;text-decoration:none}
 .map-actions a:hover{background:#e0f0eb;border-color:#087f78}
+.knowledge-map .map-beginner h4{margin:0;font-size:13px;color:#365465}
+.knowledge-map .map-case-paths{margin:20px 0;padding:14px 15px;border:1px solid #d2dfe4;border-radius:8px;background:#f5f8fa;overflow-wrap:anywhere}
+.knowledge-map .map-case-paths h4{margin:0 0 7px;font-size:13px;color:#365465}
+.knowledge-map .map-case-paths ul{list-style:none;margin:0;padding:0}
+.knowledge-map .map-case-paths li+li{border-top:1px solid #dce5e9}
+.knowledge-map .map-case-paths a{display:block;padding:10px 0;min-height:44px;font-size:14px;font-weight:600;line-height:1.65}
+.knowledge-map .map-direction-depth{margin:20px 0;border:1px solid #d2dfe4;border-radius:8px;background:#fff;overflow-wrap:anywhere}
+.knowledge-map .map-direction-depth>summary{padding:14px 15px;min-height:44px;font-size:14px;line-height:1.65;color:#365465;cursor:pointer}
+.knowledge-map .map-direction-depth>div{padding:0 15px 12px}
 .map-filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
 .knowledge-map .map-filters button{min-height:36px;padding:7px 9px;font-size:11px;border-color:#d5e0e5}
 .knowledge-map .map-filters button[aria-pressed="true"]{background:#087f78;color:#fff;border-color:#087f78}

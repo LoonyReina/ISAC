@@ -1,12 +1,31 @@
 'use strict';
 // The map is an editorial overlay. All existing science/evidence resolves from the registry.
+const fs=require('node:fs'),path=require('node:path');
 module.exports=function renderMap(r){
  const k=r.knowledgeMap, esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
  const link=(h,t)=>`<a href="${esc(h)}">${esc(t)}</a>`, unit=id=>r.units.find(u=>u.id===id), direction=id=>r.directions.find(d=>d.id===id), caseFor=id=>r.cases.find(c=>c.id===id);
+ // Learning entries are explanatory anchors on the case's canonical local page.
+ // Restrict root-page paths before reading files; never normalize an unsafe path.
+ const caseEntries=new Map(),pageIds=new Map();
+ for(const c of r.cases){
+  const u=unit(c.unit);if(!u)throw new Error('Invalid case unit reference: '+c.id);
+  if(Object.hasOwn(c,'learningEntry')){
+   const entry=typeof c.learningEntry==='string'&&c.learningEntry.match(/^([A-Za-z0-9_-]+\.html)#([A-Za-z0-9_.:%-]+)$/);
+   if(!entry||entry[1]!==u.href.split('#')[0])throw new Error('Invalid case learningEntry: '+c.id+' (expected same canonical local page and fragment)');
+   let fragment;try{fragment=decodeURIComponent(entry[2]);}catch{throw new Error('Invalid case learningEntry fragment: '+c.id);}
+   if(!pageIds.has(entry[1])){
+    const file=path.join(__dirname,'..',entry[1]);
+    if(!fs.existsSync(file))throw new Error('Missing case learningEntry page: '+c.id);
+    pageIds.set(entry[1],new Set([...fs.readFileSync(file,'utf8').matchAll(/\bid="([^"]+)"/g)].map(m=>m[1])));
+   }
+   if(!pageIds.get(entry[1]).has(fragment))throw new Error('Missing case learningEntry fragment: '+c.id);
+  }
+  caseEntries.set(c.id,c.learningEntry||u.href);
+ }
  const ids=new Set([...k.nodes,...k.directionNodes].map(n=>n.id)),groups=new Set(k.groups.map(g=>g.id));
  if(ids.size!==k.nodes.length+k.directionNodes.length)throw new Error('Duplicate knowledge-map node ID');
  for(const n of k.nodes){if(!groups.has(n.groupId)||n.unitRefs.some(id=>!unit(id))||n.entryUnitRef&&!unit(n.entryUnitRef)||!n.entryUnitRef&&!n.href)throw new Error('Invalid knowledge-map concept reference: '+n.id);}
- for(const n of k.directionNodes){if(n.registryRef.collection!=='directions'||!direction(n.registryRef.id)||!groups.has(n.groupId))throw new Error('Invalid knowledge-map direction reference: '+n.id);}
+ for(const n of k.directionNodes){const d=direction(n.registryRef.id);if(n.registryRef.collection!=='directions'||!d||!groups.has(n.groupId)||d.primaryCaseIds.some(id=>!caseFor(id)))throw new Error('Invalid knowledge-map direction reference: '+n.id);}
  for(const e of k.edges){if(!ids.has(e.source)||!ids.has(e.target)||!k.edgeTypes.some(t=>t.id===e.type)||e.provenance!=='editorial-pedagogic'||e.scientificClaim!==false)throw new Error('Invalid knowledge-map editorial relation');}
  for(const b of k.bands)if(b.groupIds.some(id=>!groups.has(id)))throw new Error('Invalid knowledge-map band reference');
  const nodes=k.nodes.map(n=>({...n,href:n.entryUnitRef?unit(n.entryUnitRef).href:n.href})).concat(k.directionNodes.map(n=>{const d=direction(n.registryRef.id);return {...n,label:d.title,question:d.question,href:'reading.html#direction-'+d.id,direction:d};}));
@@ -17,8 +36,12 @@ module.exports=function renderMap(r){
  function relations(n){const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);const units=(n.unitRefs||[]).map(unit);const types=k.edgeTypes.filter(t=>edges.some(e=>e.type===t.id)||t.id==='evidence'&&units.length);
  const rows=edges.map(e=>{const t=k.edgeTypes.find(t=>t.id===e.type),other=node(e.source===n.id?e.target:e.source);return `<li data-map-relation="${e.type}"><span class="map-relation-type">${esc(t.label)}</span><p>${t.directed?esc(node(e.source).label)+' → '+esc(node(e.target).label):esc(other.label)}</p><p>${esc(e.label)}<small>${esc(t.meaning)}</small></p>${button(other.id,'探索 '+other.label)}</li>`;}).concat(units.map(u=>`<li data-map-relation="evidence"><span class="map-relation-type">证据 / 机制</span><p>${link(u.href,u.title)}</p><p>${esc(u.action)}<small>本站机制演示，不等于整篇论文复现</small></p></li>`));
  return `<div class="map-local-map"><h4>局部关系 · ${rows.length} 条</h4><p class="map-center-node">${esc(n.label)}</p><p class="small">箭头只表示建议先修或研究入口；其余关系不设方向。所有关系均为教学导航。</p><div class="map-filters" aria-label="筛选局部关系"><button type="button" data-map-filter="all" aria-pressed="true" hidden>全部关系</button>${types.map(t=>`<button type="button" data-map-filter="${t.id}" aria-pressed="false" hidden>${esc(t.label)}</button>`).join('')}</div><p data-map-relation-status role="status" aria-live="polite"></p><ul class="map-relations">${rows.join('')}</ul></div>`;}
- function content(n){if(n.direction){const d=n.direction;return `<p>${esc(d.question)}</p><p class="map-boundary">${esc(d.scope)}</p><p>当前覆盖：${esc(d.coverage)}</p><ol class="map-direction-list">${d.levels.map(l=>`<li><strong>${esc(l.label)}</strong>${l.note?'<p>'+esc(l.note)+'</p>':''}${l.notice?'<p>'+esc(l.notice)+'</p>':''}<ul>${l.items.map(i=>`<li>${i.status==='available'?link(i.href,i.label):esc(i.label)+'（尚未实现）'}${i.scope==='foundation-only'?' · 仅前置实验':''}${i.scope==='shared-template'?' · 通用计划':''}${i.note?'<p>'+esc(i.note)+'</p>':''}</li>`).join('')}</ul></li>`).join('')}</ol><p class="map-boundary">后续可扩展（未实现）：${esc(d.nextExtension)}</p>${d.primaryCaseIds.map(id=>evidence(caseFor(id))).join('')}${relations(n)}`;}
- const units=n.unitRefs.map(unit),cases=r.cases.filter(c=>n.unitRefs.includes(c.unit));return `<p>${esc(n.question)}</p><dl class="map-facts"><dt>已知、观测与未知</dt><dd>${esc(n.knownUnknown)}</dd></dl><p class="map-boundary"><strong>适用边界</strong> ${esc(n.boundary)}</p><div class="map-actions">${link(n.href,'读这一节 →')}${units[0]?'<p><strong>下一步动手：</strong>'+esc(units[0].action)+'</p>'+link(units[0].href,'进入机制实验 →'):'<p>此概念尚无独立专项实验；先沿已有讲解核对观测与假设。</p>'}</div>${relations(n)}${cases.length?'<h4>原文与本站证据</h4>'+cases.map(evidence).join(''):''}<p>${link('practice.html#notebook','把假设与观察记入研究记录 →')}</p>`;}
+ function deepCases(cases){return cases.length?`<section class="map-case-paths" aria-label="已有基础？深入案例"><h4>已有基础？深入案例</h4><ul>${cases.map(c=>`<li>${link(caseEntries.get(c.id),c.title+' →')}</li>`).join('')}</ul></section>`:'';}
+ function content(n){if(n.direction){
+  const d=n.direction,cases=d.primaryCaseIds.map(caseFor),first=d.levels.find(l=>l.id==='intuition')?.items.find(i=>i.status==='available');
+  return `<p>${esc(d.question)}</p><p class="map-boundary">${esc(d.scope)}</p><p>当前覆盖：${esc(d.coverage)}</p>${first?'<div class="map-actions map-beginner"><h4>从直觉问题开始</h4>'+link(first.href,first.label+' →')+'</div>':''}${deepCases(cases)}<details class="map-direction-depth"><summary>沿六层深入：问题、模型、实验、原文、边界与复核</summary><div><ol class="map-direction-list">${d.levels.map(l=>`<li><strong>${esc(l.label)}</strong>${l.note?'<p>'+esc(l.note)+'</p>':''}${l.notice?'<p>'+esc(l.notice)+'</p>':''}<ul>${l.items.map(i=>`<li>${i.status==='available'?link(i.href,i.label):esc(i.label)+'（尚未实现）'}${i.scope==='foundation-only'?' · 仅前置实验':''}${i.scope==='shared-template'?' · 通用计划':''}${i.note?'<p>'+esc(i.note)+'</p>':''}</li>`).join('')}</ul></li>`).join('')}</ol><p class="map-boundary">后续可扩展（未实现）：${esc(d.nextExtension)}</p></div></details>${cases.map(evidence).join('')}${relations(n)}`;
+ }
+ const beginner=n.entryUnitRef?unit(n.entryUnitRef):unit(n.unitRefs[0]),cases=r.cases.filter(c=>n.unitRefs.includes(c.unit));return `<p>${esc(n.question)}</p><dl class="map-facts"><dt>已知、观测与未知</dt><dd>${esc(n.knownUnknown)}</dd></dl><p class="map-boundary"><strong>适用边界</strong> ${esc(n.boundary)}</p><div class="map-actions map-beginner"><h4>先建立直觉</h4>${link(n.href,'读这一节 →')}${beginner?'<p><strong>下一步动手：</strong>'+esc(beginner.action)+'</p>'+link(beginner.href,'进入机制实验 →'):'<p>此概念尚无独立专项实验；先沿已有讲解核对观测与假设。</p>'}</div>${deepCases(cases)}${relations(n)}${cases.length?'<h4>原文与本站证据</h4>'+cases.map(evidence).join(''):''}<p>${link('practice.html#notebook','把假设与观察记入研究记录 →')}</p>`;}
  function entry(n){return `<li id="${anchor(n.id)}" data-map-entry="${esc(n.id)}" data-map-group="${n.groupId}" data-map-search="${esc([n.label,n.question,...(n.unitRefs||[]).map(id=>unit(id).title)].join(' '))}">${link(n.href,n.label)}${button(n.id,'查看关系')}</li>`;}
  function group(g){const ns=nodes.filter(n=>n.groupId===g.id),index=k.groups.indexOf(g)+1;return `<details id="map-group-${g.id}" class="map-group" data-map-group="${g.id}"><summary><span class="map-number">${String(index).padStart(2,'0')}</span><span class="map-group-name">${esc(g.label)}</span><span class="map-group-question">${esc(g.question)}</span><span class="map-count">${ns.length?ns.length+' 个'+(g.kind==='concepts'?'概念':'方向'):r.units.length+' 个实验 · '+r.cases.length+' 个专题'}<span class="map-disclosure-closed"> · 展开</span><span class="map-disclosure-open"> · 已展开</span></span></summary>${ns.length?'<ul class="map-node-list">'+ns.map(entry).join('')+'</ul>':`<ul class="map-node-list"><li>${link('experiments.html','机制实验目录')}</li><li>${link('reading.html#cases','专题原文对照')}</li><li>${link('reading.html#reading','原文与证据目录')}</li><li>${link('practice.html#notebook','研究记录与复核')}</li></ul>`}</details>`;}
  const overview=`<p class="map-kicker">从一个问题开始</p><h3 id="map-detail-title">先看关系，再选路径</h3><p>展开地图主题，选择“查看关系”，理解概念的先修、边界与下一步。直接点概念名称，进入讲解。</p><div class="map-actions">${link('foundations.html#echo','我想理解回波 →')}${link('reading.html#directions','我想找一个研究问题 →')}</div><p class="map-boundary">机制演示、理论界、论文证据各有适用范围。这里的连接帮助阅读，不替代证明。</p>`;
