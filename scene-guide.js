@@ -28,7 +28,7 @@ if (guide) {
     });
     const chosen = positions.find(button => button.dataset.scenePosition === position);
     status.textContent = !position ? '' : matches.length
-      ? `${chosen ? chosen.textContent : '所选环节'}：已标出 ${matches.length} 个主要入口，全部方向仍可阅读。`
+      ? `${chosen?.dataset.sceneLabel || '所选环节'}：已标出 ${matches.length} 个主要入口，全部方向仍可阅读。`
       : '此环节暂未标注对应方向；全部方向仍可阅读。';
     jump.hidden = matches.length === 0;
     if (matches.length) jump.setAttribute('href', '#' + matches[0].id);
