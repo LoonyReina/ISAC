@@ -116,6 +116,125 @@ test('detail reveal adds a small gap to root header scroll-padding at desktop an
  a.match(shell,/html\{scroll-padding-top:110px/);
  a.match(shell,/@media\(max-width:700px\)\{html\{scroll-padding-top:150px/);
  a.match(css,/@media\(max-width:600px\)[\s\S]*?\.map-detail\{padding:22px 20px;scroll-margin-top:16px\}/);
- const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=knowledge-map-v2'));
+ const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=learning-path-v1'));
  a.ok(html.includes('knowledge-map.js?v=knowledge-map-v2'));
+});
+
+test('optional case learning entries resolve real same-page anchors and fall back to canonical units',()=>{
+ const r=structuredClone(registry),html=render(r);
+ for(const c of r.cases){
+  const u=r.units.find(u=>u.id===c.unit),href=c.learningEntry||u.href;
+  resolve(href);
+  for(const n of r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(c.unit))){
+   const links=parse(template(html,n.id)).querySelector('.map-case-paths').querySelectorAll('a');
+   a.ok(links.some(l=>l.attrs.href===href&&l.textContent===c.title+' →'),c.id);
+  }
+ }
+ for(const c of r.cases)delete c.learningEntry;
+ const fallback=render(r);
+ for(const d of r.directions)for(const id of d.primaryCaseIds){
+  const c=r.cases.find(c=>c.id===id),u=r.units.find(u=>u.id===c.unit);
+  a.ok(parse(template(fallback,'direction:'+d.id)).querySelector('.map-case-paths').querySelectorAll('a').some(l=>l.attrs.href===u.href&&l.textContent===c.title+' →'));
+ }
+ const c=r.cases.find(c=>c.id==='case-waveform');c.learningEntry='waveform-design.html#%69ntuition';
+ a.doesNotThrow(()=>render(r));
+});
+
+test('learning-entry validation rejects external, traversal, missing and unrelated references',()=>{
+ for(const bad of [null,42,'','https://example.test/waveform-design.html#intuition','//example.test/waveform-design.html#intuition','javascript:alert(1)','../waveform-design.html#intuition','./waveform-design.html#intuition','sub/../waveform-design.html#intuition','%2e%2e/waveform-design.html#intuition','waveform-design.html?view=1#intuition','waveform-design.html','waveform-design.html#','waveform-design.html#missing-anchor','waveform-design.html#%ZZ','waveform-design.html#intuition#model','waveform-design.html#intuition\n','waveform-design.html\\#intuition','joint-beamforming.html#intuition']){
+  const r=structuredClone(registry);r.cases.find(c=>c.id==='case-waveform').learningEntry=bad;
+  a.throws(()=>render(r),/case learningEntry/,JSON.stringify(bad));
+ }
+ const r=structuredClone(registry),c=r.cases.find(c=>c.id==='case-waveform');
+ r.units.find(u=>u.id===c.unit).href='missing-case-page.html#experiment';c.learningEntry='missing-case-page.html#intuition';
+ a.throws(()=>render(r),/Missing case learningEntry page/);
+});
+
+test('case choices derive from canonical titles and entries in concept and direction panels',()=>{
+ const r=structuredClone(registry),c=r.cases.find(c=>c.id==='case-waveform');
+ c.title='CANONICAL DEEP CASE <renamed>';c.learningEntry='waveform-design.html#model';
+ const html=render(r);
+ for(const id of ['waveform-design','direction:waveforms']){
+  const h=template(html,id),tree=parse(h),block=tree.querySelector('.map-case-paths');
+  a.ok(block.querySelectorAll('a').some(l=>l.attrs.href===c.learningEntry&&l.textContent===c.title+' →'));
+  a.ok(h.indexOf('class="map-case-paths"')<h.indexOf('class="map-local-map"'));
+  a.ok(!block.closest('details'));a.match(h,/CANONICAL DEEP CASE &lt;renamed>/);
+ }
+ for(const [id,expected]of [['beam-design',['case-near-field','case-joint-beamforming']],['waveform-design',['case-pilot','case-waveform']]]){
+  const links=parse(template(html,id)).querySelector('.map-case-paths').querySelectorAll('a');
+  a.deepEqual(links.map(l=>l.textContent),expected.map(id=>r.cases.find(c=>c.id===id).title+' →'));
+ }
+});
+
+test('explicit beginner routes and actions survive reversed unitRefs',()=>{
+ const r=structuredClone(registry),before=render(r);
+ for(const n of r.knowledgeMap.nodes)n.unitRefs.reverse();
+ const after=render(r);
+ for(const n of r.knowledgeMap.nodes.filter(n=>n.entryUnitRef)){
+  const u=r.units.find(u=>u.id===n.entryUnitRef),b=parse(template(before,n.id)).querySelector('.map-beginner'),c=parse(template(after,n.id)).querySelector('.map-beginner');
+  a.equal(c.textContent,b.textContent,n.id);a.deepEqual(c.querySelectorAll('a').map(l=>l.attrs.href),[u.href,u.href],n.id);a.ok(c.textContent.includes(u.action));
+ }
+ const linkOnly=r.knowledgeMap.nodes.find(n=>!n.entryUnitRef&&n.unitRefs.length),u=r.units.find(u=>u.id===linkOnly.unitRefs[0]);
+ a.deepEqual(parse(template(after,linkOnly.id)).querySelector('.map-beginner').querySelectorAll('a').map(l=>l.attrs.href),[linkOnly.href,u.href]);
+});
+
+test('case-free concepts and directions have no empty or proposed case choices',()=>{
+ const html=render(registry);
+ for(const n of registry.knowledgeMap.nodes.filter(n=>!registry.cases.some(c=>n.unitRefs.includes(c.unit))))a.equal(parse(template(html,n.id)).querySelector('.map-case-paths'),null,n.id);
+ for(const d of registry.directions.filter(d=>!d.primaryCaseIds.length))a.equal(parse(template(html,'direction:'+d.id)).querySelector('.map-case-paths'),null,d.id);
+ const r=structuredClone(registry),d=r.directions.find(d=>d.id==='learning');
+ d.levels.find(l=>l.id==='intuition').items.unshift({label:'PROPOSED NEW CASE',status:'proposed',href:'unimplemented.html#case'});
+ a.equal(parse(template(render(r),'direction:learning')).querySelector('.map-case-paths'),null);
+});
+
+test('direction panels keep one available intuition CTA and all six levels in a closed native disclosure',()=>{
+ const html=render(registry);
+ for(const d of registry.directions){
+  const tree=parse(template(html,'direction:'+d.id)),depth=tree.querySelector('.map-direction-depth'),cta=tree.querySelector('.map-beginner'),first=d.levels.find(l=>l.id==='intuition').items.find(i=>i.status==='available');
+  a.equal(depth.tagName,'details');a.equal(depth.open,false);a.equal(depth.hasAttribute('open'),false);a.equal(depth.children.find(c=>c.tagName!=='#text').tagName,'summary');
+  a.equal(cta.querySelectorAll('a').length,1);a.equal(cta.querySelector('a').attrs.href,first.href);a.equal(cta.closest('details'),null);
+  a.equal(depth.querySelector('.map-direction-list').children.filter(c=>c.tagName==='li').length,6);
+  for(const l of d.levels){a.ok(depth.textContent.includes(l.label));for(const field of ['note','notice'])if(l[field])a.ok(depth.textContent.includes(l[field]));for(const i of l.items){a.ok(depth.textContent.includes(i.label));if(i.note)a.ok(depth.textContent.includes(i.note));}}
+  a.ok(depth.textContent.includes(d.nextExtension));
+  for(const evidence of tree.querySelectorAll('.map-deep')){a.equal(evidence.open,false);a.equal(evidence.parent,tree);}
+ }
+ const r=structuredClone(registry),d=r.directions[0],l=d.levels.find(l=>l.id==='intuition');
+ l.items.unshift({label:'UNAVAILABLE FIRST',status:'proposed'},{label:'NEW AVAILABLE INTUITION',href:'foundations.html#iq',status:'available'});d.levels.reverse();
+ const cta=parse(template(render(r),'direction:'+d.id)).querySelector('.map-beginner');
+ a.equal(cta.querySelectorAll('a').length,1);a.equal(cta.querySelector('a').attrs.href,'foundations.html#iq');a.match(cta.textContent,/NEW AVAILABLE INTUITION/);a.ok(!cta.textContent.includes('UNAVAILABLE'));
+});
+
+test('DOM disclosure toggles and native links add no history; restored templates start closed',()=>{
+ for(const resetWithEscape of [false,true]){
+  const h=setup(),direction=h.byId('map-node-direction-waveforms'),concept=h.byId('map-node-beam-design');h.click(direction.querySelector('button'));
+  const depth=h.panel.querySelector('.map-direction-depth'),start=h.pushes.length,hash=h.location.hash;
+  h.click(depth.querySelector('summary'));depth.open=true;depth.fire('toggle');h.click(depth.querySelector('a'));
+  a.equal(h.pushes.length,start);a.equal(h.location.hash,hash);a.equal(h.panel.querySelector('h3').id,'map-detail-title');
+  h.click(concept.querySelector('button'));const count=h.pushes.length;
+  for(const event of ['popstate','hashchange']){
+   h.navigate(hash,event);a.equal(h.panel.querySelector('.map-direction-depth').open,false);a.equal(h.panel.querySelector('h3').textContent,registry.directions[0].title);a.ok(h.groups.find(g=>g.dataset.mapGroup==='research').open);
+   h.panel.querySelector('.map-direction-depth').open=true;
+   h.navigate('#map-node-beam-design',event);a.equal(h.panel.querySelector('h3').textContent,registry.knowledgeMap.nodes.find(n=>n.id==='beam-design').label);a.ok(h.groups.find(g=>g.dataset.mapGroup==='codesign').open);
+  }
+  a.equal(h.pushes.length,count);h.navigate(hash);h.panel.querySelector('.map-direction-depth').open=true;
+  if(resetWithEscape)h.map.fire('keydown',{key:'Escape'});else h.click(h.map.querySelector('[data-map-reset]'));
+  a.equal(h.location.hash,'#knowledge-map');a.equal(h.panel.querySelector('.map-direction-depth'),null);a.equal(h.panel.querySelector('h3').id,'map-detail-title');a.ok(h.groups.every(g=>!g.open));a.ok(concept.closest('.map-group').querySelector('summary').focused);
+ }
+});
+
+test('estimation starts with common observations and retains the scoped advanced LS route',()=>{
+ const n=registry.knowledgeMap.nodes.find(n=>n.id==='estimation'),advanced=registry.units.find(u=>u.id==='estimator-crb');
+ a.equal(n.entryUnitRef,'shared');a.deepEqual(n.unitRefs,['shared','estimator-crb']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
+ const h=template(render(registry),n.id),beginner=parse(h).querySelector('.map-beginner');a.equal(beginner.querySelector('a').attrs.href,'theory.html#shared-model');a.ok(h.includes('href="'+advanced.href+'"'));
+ const d=registry.directions.find(d=>d.id==='receiver'),item=d.levels.find(l=>l.id==='experiment').items.find(i=>i.href===advanced.href);
+ a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(d.coverage,/非线性测距与多目标跟踪尚未实现/);
+ resolve(item.href);a.ok(read('reading.html').includes(escape(item.note)));
+});
+
+test('mutual assistance is a bounded native theory route without a fabricated experiment',()=>{
+ const k=registry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,[]);a.equal(n.entryUnitRef,undefined);resolve(n.href);
+ const h=template(render(registry),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/协同收益/);a.match(h,/尚无感知辅助波束选择或在线闭环互助实现/);a.match(h,/尚无独立专项实验/);a.ok(!h.includes('进入机制实验'));a.equal(tree.querySelector('.map-case-paths'),null);
+ const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
+ const runtime=setup();runtime.search('互助');a.equal(runtime.results.children.length,1);runtime.click(runtime.results.querySelector('button'));a.equal(runtime.location.hash,'#map-node-mutual-assistance');
+ a.ok(read('index.html').includes(`<strong>${k.nodes.length}</strong> 个核心概念`));
 });
