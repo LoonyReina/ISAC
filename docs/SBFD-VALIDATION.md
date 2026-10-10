@@ -38,3 +38,14 @@ No energy/impairment model, self-interference suppression, hardware RMSE curve, 
 ## Final automated result
 
 2026-10-10: `node --test tests/*.test.cjs` passed **143/143**, with zero failed/skipped tests and no package installation or NODE_PATH required. `node --check sbfd-core.js`, `node --check sbfd.js`, and `git diff --check` passed. Baseline 119 tests remain passing, plus 24 SBFD tests. No browser claim is implied.
+
+## 2026-10-10 · 合并后部署与真实浏览器复核（父任务执行）
+
+本节为父任务提供的已执行结果，与上面的本地测试分开记录。
+
+- PR #12 合并到 `main` 的提交为 `85a49587aae76594dbe9b065398a072abc10622c`；GitHub Pages 运行 `38043506764` 成功。线上七个资源（`sbfd-resource.html`、`sbfd-core.js`、`sbfd.js`、`sbfd.css`、`network.js`、`index.html`、`theory.html`）与该提交逐字节一致。
+- 实际云端 Chrome 在 323 / 388 / 1166 CSS px 下检查（窗口缩放，不是设备模拟器）：整页无水平溢出，三张图均可读。原生 K/M 控件的 Home、End、ArrowRight、可见焦点、重复恢复默认、数字披露区均已检查。
+- K=128 时 Kc=1538、距离首零点 119.9169832 m，速度值保持 0.141624454 m/s；K=880 时 Kc=34。M=2432 时速度值 0.070812227 m/s；M=128 时首零点 1.345432317 m/s，位于 ±1 m/s 图域之外，说明文字正确。
+- 网络案例回归：388 CSS px，目标 (−90,90) m；图例底板 y=0、h=22，位于绘图区 T=24 上方。角落标签可见且无重叠。
+- 通过 Enter 激活 SBFD → 时钟案例链接并返回，导航正常。捕获日志只有扩展元数据错误，未见站点来源错误。
+- 未执行完整屏幕阅读器审计或跨浏览器矩阵；以上结果不代表这些范围通过。
