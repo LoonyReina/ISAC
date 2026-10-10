@@ -1,0 +1,38 @@
+(function(){
+'use strict';
+const C=window.NetworkISAC,$=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg',names={ignore:'忽略偏差',oracle:'已知偏差（oracle）',reciprocal:'互易标量估计'};
+let seed=1,cached=null,cachedKey='';
+function node(tag,attrs={},text){const e=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e;}
+function table(id,rows){const body=$(id);body.replaceChildren();for(const values of rows){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=String(v);tr.append(td);}body.append(tr);}}
+const fixed=(v,d=3)=>Number.isFinite(v)?v.toFixed(d):'不适用';
+function frame(id,title){const svg=$(id),W=Math.max(220,svg.clientWidth||720),size=W-66,H=W+8,L=44,T=24,x=v=>L+(v+100)/200*size,y=v=>T+(100-v)/200*size;svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.append(node('title',{},title));const defs=node('defs'),clip=node('clipPath',{id:id+'-clip'});clip.append(node('rect',{x:L,y:T,width:size,height:size}));defs.append(clip);svg.append(defs);const plot=node('g',{'clip-path':`url(#${id}-clip)`});svg.append(plot);return {svg,plot,W,H,L,T,size,x,y};}
+function axes(b){const {svg,x,y,W,H,L,T,size}=b;svg.append(node('rect',{x:L,y:T,width:size,height:size,fill:'none',stroke:'#8b9ca5'}));for(const v of [-100,0,100])svg.append(node('text',{x:x(v),y:T+size+20,'text-anchor':'middle'},v),node('text',{x:L-6,y:y(v)+5,'text-anchor':'end'},v));svg.append(node('text',{x:L+size/2,y:H-6,'text-anchor':'middle'},'x（m）'),node('text',{x:4,y:15},'y（m）'));}
+function points(b,s,m){const {plot,x,y,size}=b;plot.append(node('circle',{cx:x(s.p.x),cy:y(s.p.y),r:5,fill:'#06714f',stroke:'white','stroke-width':1}));m.minima.forEach((p,i)=>{plot.append(node('circle',{cx:x(p.x),cy:y(p.y),r:7,fill:'none',stroke:'#a5441e','stroke-width':2}),node('text',{x:x(p.x)+(p.x>85?-10:10),y:y(p.y)+(p.y>85?18:-9),'text-anchor':p.x>85?'end':'start',fill:'#702b0a'},i+1));});}
+function geometry(s,m){const b=frame('net-geometry','站位、目标与实测路径椭圆'),{plot,x,y}=b;
+for(const [i,r]of s.receivers.entries()){plot.append(node('polyline',{points:[[s.t.x,s.t.y],[s.p.x,s.p.y],[r.x,r.y]].map(([xx,yy])=>`${x(xx)},${y(yy)}`).join(' '),fill:'none',stroke:'#8a999e','stroke-width':1}));const e=C.ellipse(s.t,r,m.values[i]);if(e){const pts=Array.from({length:181},(_,j)=>{const theta=j/180*2*Math.PI,xx=e.a*Math.cos(theta),yy=e.b*Math.sin(theta);return `${x(e.cx+xx*Math.cos(e.angle)-yy*Math.sin(e.angle))},${y(e.cy+xx*Math.sin(e.angle)+yy*Math.cos(e.angle))}`;});plot.append(node('polyline',{points:pts.join(' '),fill:'none',stroke:'#286796','stroke-width':1.5,'stroke-dasharray':'5 4'}));}}
+plot.append(node('rect',{x:x(s.t.x)-5,y:y(s.t.y)-5,width:10,height:10,fill:'#172f40'}),node('text',{x:x(s.t.x)+8,y:y(s.t.y)-10},'T'));
+s.receivers.forEach((r,i)=>{const xx=x(r.x),yy=y(r.y);plot.append(node('polygon',{points:`${xx},${yy-6} ${xx-6},${yy+5} ${xx+6},${yy+5}`,fill:'#286796'}),node('text',{x:xx+(r.x>80?-10:8),y:yy-10,'text-anchor':r.x>80?'end':'start'},`R${i+1}`));});points(b,s,m);axes(b);}
+function heatmap(s,m){const b=frame('net-heatmap','总路径残差 RMS（m），浅色低、深色高'),{plot,x,y,size,svg}=b,paths=Array.from({length:16},()=>[]),stride=Math.round(2/m.step),cell=size/100;
+// 2 m point sampling is display-only. The optimizer uses every selected grid point.
+for(let iy=0;iy<m.n-1;iy+=stride)for(let ix=0;ix<m.n-1;ix+=stride){const v=m.costs[iy*m.n+ix],color=Math.min(15,Math.floor(v/30*16)),xx=x(-100+ix*m.step),yy=y(-100+iy*m.step)-cell;paths[color].push(`M${xx.toFixed(2)} ${yy.toFixed(2)}h${(cell+.1).toFixed(2)}v${(cell+.1).toFixed(2)}h-${(cell+.1).toFixed(2)}Z`);}
+paths.forEach((d,i)=>{if(d.length)plot.append(node('path',{d:d.join(''),fill:`hsl(197 48% ${96-i*3.6}%)`}));});points(b,s,m);axes(b);svg.append(node('text',{x:b.L+3,y:b.T+17,fill:'#172f40'},'浅 0 → 深 ≥30 m'));}
+function render(){const options={x:+$('net-x').value,y:+$('net-y').value,kind:$('net-layout').value,count:+$('net-count').value,bias:[1,2,3].map(i=>+$('net-b'+i).value),sigma:+$('net-sigma').value,reverseExtra:+$('net-extra').value,step:+$('net-step').value,seed},key=JSON.stringify(options);if(key!==cachedKey){cached=C.experiment(options);cachedKey=key;}const s=cached,mode=$('net-mode').value,m=s.modes[mode];
+for(const id of ['x','y','sigma','extra','b1','b2','b3'])$('net-'+id+'-out').textContent=$('net-'+id).value;
+$('net-seed').textContent=`噪声种子 ${seed}；同一组标准正态样本随 σ 缩放。切模式、改几何与重绘不重抽样。当前搜索 ${m.n}×${m.n} 格，间隔 ${s.step} m；无局部精修。`;
+const first=m.minima[0];$('net-result').textContent=`${names[mode]}：代表候选 (${first.x}, ${first.y}) m，路径 RMS ${fixed(first.cost)} m，位置误差 ${fixed(C.distance(first,s.p))} m。网格中同最小值点 ${m.equalCount} 个（容差 10⁻⁸ m）；显示 ${m.minima.length} 个分离局部极小值，不能据此保证唯一。`;
+const warnings=[];if(s.count===1)warnings.push('只有一条路径：连续空间一般是一条椭圆，网格最低点不代表唯一位置。');if(s.count===2)warnings.push('两条路径也可能有多交点，仍需检查其他解释。');if(s.kind==='line')warnings.push('共线站位保留上下镜像，局部满秩也不排除全局多解。');if(m.inconsistent.some(Boolean))warnings.push(`R${m.inconsistent.map((v,i)=>v?i+1:null).filter(Boolean).join('、R')} 总路径小于两站直线距离：观测不一致，不画实椭圆。`);if(s.reverseExtra>0)warnings.push('R1 反向额外路径破坏了互易标量模型；互易估计会混入路径变化。');if(m.boundary)warnings.push('显示的候选包含区域边界：区域外未搜索，不应当作收敛成功。');warnings.push('任何网格返回值都只是有限区域内的残差候选，不是检测/定位成功判定。');$('net-warning').textContent=warnings.join(' ');
+$('net-diagnostic').textContent=s.singular?`真值处局部几何诊断（不是估计器先验）：G 的奇异值 ${s.singular.map(v=>fixed(v,5)).join('、')}（无量纲）；较小值接近 0 时局部某方向信息弱。此诊断不证明全局唯一。`:'目标与站点重合：距离导数在该点未定义，不提供 Jacobian 诊断；距离与网格残差仍可计算。';
+geometry(s,m);heatmap(s,m);
+table('net-comparison',Object.entries(s.modes).map(([k,v])=>{const p=v.minima[0];return [names[k],`(${p.x}, ${p.y})`,fixed(p.cost),fixed(C.distance(p,s.p)),v.equalCount];}));
+table('net-minima',m.minima.map((p,i)=>[i+1,p.x,p.y,fixed(p.cost,6),fixed(C.distance(p,s.p))]));
+$('net-stations').textContent=`T=(${s.t.x},${s.t.y}) m；${s.receivers.map((r,i)=>`R${i+1}=(${r.x},${r.y}) m`).join('；')}。真值=(${s.p.x},${s.p.y}) m。`;
+table('net-links',s.links.map((l,i)=>[`T↔R${i+1}`,fixed(l.plus),fixed(l.minus),fixed(l.bias),fixed(C.toPath(l.bias),8),fixed(C.reciprocal(l.plus,l.minus).bias),fixed(m.values[i])]));
+table('net-undetermined',[{x:-30,y:25},{x:45,y:-20}].map(p=>{const biases=C.fitOneWayBias(p,s.t,s.receivers,s.links.map(l=>l.plus)),fitted=s.links.map((l,i)=>C.toPath(l.plus-biases[i]));return [`(${p.x}, ${p.y})`,biases.map(v=>fixed(v)).join('、'),fixed(C.residual(p,s.t,s.receivers,fitted),9)];}));
+const probes=[];for(const yy of [50,0,-50])for(const xx of [-50,0,50])probes.push([xx,yy,fixed(C.residual({x:xx,y:yy},s.t,s.receivers,m.values))]);table('net-probes',probes);
+}
+for(const id of ['layout','count','mode','step'])$('net-'+id).addEventListener('change',render);
+for(const id of ['x','y','sigma','extra','b1','b2','b3'])$('net-'+id).addEventListener('input',render);
+$('net-resample').addEventListener('click',()=>{seed=(seed+1)>>>0;render();});
+$('net-reset').addEventListener('click',()=>{for(const [id,v]of Object.entries({x:20,y:35,layout:'spread',count:3,mode:'reciprocal',step:1,sigma:0,extra:0,b1:10,b2:-15,b3:20}))$('net-'+id).value=String(v);seed=1;render();});
+let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,100);});render();
+})();

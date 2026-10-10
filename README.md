@@ -54,3 +54,9 @@ node --test tests/*.test.cjs
 ```
 
 本轮结果：50 项通过（新增 21 + 原讲义 18 + 旧实验 11）。动画默认暂停，浏览器本地运行，不发送实验参数。
+
+## 网络时钟与双基地几何案例
+
+`network-clock.html` 把论文七问与一个独立标量时延实验连接起来：忽略偏差、已知偏差校正（oracle）、互易标量估计；展示总路径与位置误差的区别、单向不可辨识、共线镜像和互易失效。纯核心 `network-core.js`，原生控件/SVG `network.js` 与 `network.css`。不是 SCPD 或原始 OFDM 复现。
+
+全部测试仍使用 `node --test tests/*.test.cjs`。本次 118 项通过；真实浏览器待复核项目及数值边界见 `docs/NETWORK-VALIDATION.md`。
