@@ -44,14 +44,14 @@
       "fields": {
         "先修": "<a href=\"foundations.html#limits\">第 10 章：分辨率、精度与界</a>；<a href=\"theory.html#shared-model\">已知输入的观测模型</a>",
         "问题": "发射信号可以随机，但感知端知道这次实现。先求每块的界再平均，为什么不同于先平均能量再求界？",
-        "交互机制": "改变块长与抽样块数，对照固定幅度、Gaussian 输入和解析参考。看低能量块怎样影响倒数的平均。",
-        "证据类型": "论文：<a href=\"https://arxiv.org/html/2204.06938v8\">CRB–rate 原始研究 v8</a>的理论及数值分析；本站：独立实标量推导与发射块 Monte Carlo。另见<a href=\"https://arxiv.org/html/2310.09749v2#S4.SS2\">教程 v2 §IV-B</a>。",
-        "结论边界": "不是估计器误差实验，也未复现完整 CRB–rate 区域。小块长时倒数矩可能发散；有限抽样均值不能证明收敛。",
-        "下一研究问题": "进入多参数信息矩阵后，如何保留输入已知条件，并在相同资源约束下比较完整权衡区域？"
+        "交互机制": "先改变块长与抽样块数，观察低能量块如何影响 CRB 倒数平均；再进入<a href=\"theory.html#estimator-crb\">实际 LS 估计器实验</a>，分别固定发射块只换噪声、同时重抽发射块和噪声。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/2204.06938v8\">CRB–rate 原始研究 v8</a>的理论及数值分析；本站：独立实标量推导、发射块 Monte Carlo 与实际 LS 误差模拟。另见<a href=\"https://arxiv.org/html/2310.09749v2#S4.SS2\">教程 v2 §IV-B 式(19)–(22)</a>。",
+        "结论边界": "原随机能量实验只抽发射块；新增 LS 实验从 x、n、y 计算估计值。仅对实标量 yᵢ=θxᵢ+nᵢ、固定未知 θ、已知 x、独立 N(0,1) 噪声且 E=Σxᵢ²>0，LS=ML 条件无偏并精确达到条件 CRB：Eₙ[(θ̂−θ)²|x]=1/E。有限次经验 MSE 可低于该期望。没有复现完整复向量/Bayesian CRB–rate 区域，也不能直接外推到非线性距离或角度。",
+        "下一研究问题": "论文画的是估计器 MSE、平均条件 CRB，还是 Bayesian CRB？可达性需要什么条件；换成非线性距离/角度后，为什么不能直接搬用标量 LS 的等号？"
       },
       "unit": "crb",
       "paper": "theory.html#research-method",
-      "next": "theory.html#rate-crb-bridge",
+      "next": "theory.html#estimator-crb",
       "paperComparison": {
         "comparisonStatus": "partial",
         "sourceTitle": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
@@ -65,11 +65,13 @@
           }
         ],
         "paperEvidenceType": "理论与数值分析",
-        "siteArtifactType": "独立实标量机制演示；两个互信息–平均条件 CRB 工作点",
+        "siteArtifactType": "独立实标量经典推导与 LS=ML 误差模拟；两个互信息–平均条件 CRB 解析工作点，不是整篇论文复现",
         "metrics": [
           "Fisher 信息 J",
           "平均条件 CRB，增益平方",
-          "互信息，bit/每实信道使用"
+          "互信息，bit/每实信道使用",
+          "条件与联合平均 MSE、经验偏差，增益平方/增益",
+          "实际条件 CRB 的均值与有限试验经验 MSE 分开"
         ],
         "unknowns": [
           "未逐项录入原文完整维度、约束、求解器与图参数",
@@ -79,7 +81,7 @@
         "comparisonLink": "theory.html#crb-mechanism",
         "sourceId": "case-crb-paper",
         "locator": {
-          "summary": "主论文 §II；配套教程 v2（2023-10-17）§IV-B 式(19)–(22)，速率桥接见 §IV-A–C",
+          "summary": "主论文 v8 §II-A–B；配套教程 v2（2023-10-17）§IV-B 式(19)–(22)，速率桥接见 §IV-A–C。仅借用已知输入与先条件再平均的组织方式；本站有限样本 LS 等号为独立经典推导",
           "section": null,
           "figure": null,
           "equation": null
@@ -92,10 +94,10 @@
         "omittedMechanisms": [
           "原文复向量模型、先验信息、最优 CRB–rate 区域",
           "衰落算例及论文图的数值复现",
-          "实际估计器误差、导频和编码开销、硬件失真"
+          "论文一般模型的估计器性能、非线性距离/角度、导频和编码开销、硬件失真"
         ],
         "resourceBudget": {
-          "summary": "本站固定 P=1、感知噪声方差=1；T 为单块实样本数，B 为独立发射块数。改 B 不增加单块观测时长；两种输入具有相同平均块能量 TP，高斯单块能量未强制归一化。连续带宽和物理孔径未建模。",
+          "summary": "本站固定 P=1、感知噪声方差=1、实标量维度和 LS 估计器；θ=1 仅作评估真值，估计器只接收 x、y。T 为每次估计的实观测数，B 为独立评估试验数，不合并成 TB 样本估计。BPSK 每块能量 T；Gaussian 期望块能量 T、不逐块归一化；固定块模式的实现能量可以不同，不用于宣称赢家。无峰值约束、先验、连续带宽或物理孔径模型。",
           "bandwidth": null,
           "energy": null,
           "duration": null,
@@ -103,7 +105,7 @@
           "priorKnowledge": null,
           "other": []
         },
-        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+        "verificationNote": "原文对照沿用已记录的固定版本与核对范围；新增 LS 部分依据明确实标量模型独立推导，不作为原文的新结论或完整复现"
       }
     },
     {
@@ -806,6 +808,18 @@
       "action": "改变块长与抽样块数，对照块能量和倒数平均。"
     },
     {
+      "id": "estimator-crb",
+      "title": "下界什么时候真的能达到？",
+      "href": "theory.html#estimator-crb",
+      "question": "实际估计器的平均平方误差，何时等于条件 CRB？",
+      "prerequisites": [
+        "theory.html#crb-mechanism"
+      ],
+      "group": "research",
+      "primaryDirectionId": "tradeoffs",
+      "action": "固定发射块只换噪声，再同时重抽发射块和噪声；比较 LS 误差、条件 CRB 与解析期望。"
+    },
+    {
       "id": "rate",
       "title": "速率与估计界桥梁",
       "href": "theory.html#rate-crb-bridge",
@@ -1403,6 +1417,14 @@
               "status": "available"
             },
             {
+              "label": "实际 LS 估计器何时达到 CRB",
+              "href": "theory.html#estimator-crb",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立实标量、无先验、已知输入模型；有限试验误差不是完整论文复现"
+            },
+            {
               "label": "通信速率与 CRB 的桥接",
               "href": "theory.html#rate-crb-bridge",
               "kind": "interactive",
@@ -1424,6 +1446,13 @@
           "id": "papers",
           "label": "与原文对照",
           "items": [
+            {
+              "label": "CRB、实际 MSE 与可达性的原文对照",
+              "href": "reading.html#case-crb",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
             {
               "label": "资源案例的论文问题",
               "href": "sbfd-resource.html#case",
@@ -1487,7 +1516,7 @@
           ]
         }
       ],
-      "nextExtension": "在固定总能量、时长和带宽下加入可执行估计器，以 RMSE 对照理论界。",
+      "nextExtension": "从已知输入的实标量 LS 等号出发，在固定资源下加入非线性距离/角度或未知干扰参数，重新推导界并检验误差与失败率。",
       "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
       "scenePositions": [
         "resources"

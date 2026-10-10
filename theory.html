@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="把通信基础、雷达基础、共同观测模型、技术演进和论文研究连成一条路线；用真实数值对照符号判决与延迟估计。"><title>理论主线 · 从通信与雷达到研究问题 | ISAC 交互讲义</title><link rel="stylesheet" href="course.css?v=theory-v2"><link rel="stylesheet" href="theory.css?v=rate-v3"><script defer src="theory-core.js?v=rate-v3"></script><script defer src="theory.js?v=rate-v4"></script><link rel="stylesheet" href="research.css?v=1"><link rel="stylesheet" href="site.css?v=framework-polish-v1"></head><body>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="把通信基础、雷达基础、共同观测模型、技术演进和论文研究连成一条路线；用真实数值对照符号判决与延迟估计。"><title>理论主线 · 从通信与雷达到研究问题 | ISAC 交互讲义</title><link rel="stylesheet" href="course.css?v=theory-v2"><link rel="stylesheet" href="theory.css?v=rate-v3"><link rel="stylesheet" href="estimator.css?v=1"><script defer src="estimator-core.js?v=1"></script><script defer src="estimator.js?v=1"></script><script defer src="theory-core.js?v=rate-v3"></script><script defer src="theory.js?v=rate-v4"></script><link rel="stylesheet" href="research.css?v=1"><link rel="stylesheet" href="site.css?v=framework-polish-v1"></head><body>
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html" aria-current="location"><span>01</span> 基础讲义</a><a href="experiments.html"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
 <!-- SITE:HEADER:END -->
 <main class="theory-main">
 <!-- SITE:CONTEXT:START -->
-<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="foundations.html">基础讲义</a> <span aria-hidden="true">/</span> <span aria-current="page">共同观测与性能边界</span></nav><p class="site-role">基础桥梁 + 估计界专题</p><p class="site-prereq">需要时回看：<a href="foundations.html#matched">匹配滤波</a> · <a href="foundations.html#limits">性能指标与边界</a></p><nav class="site-topic-nav" aria-label="理论桥梁目录"><a href="#pathway">任务与先修</a><a href="#shared-model">共同观测</a><a href="#crb-mechanism">标量 CRB</a><a href="#rate-crb-bridge">速率桥梁</a><a href="reading.html#case-crb">原文与证据</a></nav></div>
-<!-- SITE:CONTEXT:END --><div class="cover"><p class="eyebrow">理论主线 / 基础 → 汇合 → 演进 → 研究</p><h1>先看清两个问题，<br>再理解为什么合在一起。</h1><p>同一个观测方程，换掉“已知”与“未知”，接收机就在回答不同的问题。</p><div class="cover-tags"><span>两条基础线</span><span>三个可复算实验</span><span>七问读论文</span></div><nav class="study-links" aria-label="理论主线目录"><a href="#pathway">学习路线</a><a href="#shared-model">共享数学</a><a href="#evolution">技术演进</a><a href="#research-method">论文拆解</a><a href="#rate-crb-bridge">互信息与 CRB</a><a href="#evidence-map">研究与展望</a></nav></div>
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="foundations.html">基础讲义</a> <span aria-hidden="true">/</span> <span aria-current="page">共同观测与性能边界</span></nav><p class="site-role">基础桥梁 + 估计界专题</p><p class="site-prereq">需要时回看：<a href="foundations.html#matched">匹配滤波</a> · <a href="foundations.html#limits">性能指标与边界</a></p><nav class="site-topic-nav" aria-label="理论桥梁目录"><a href="#pathway">任务与先修</a><a href="#shared-model">共同观测</a><a href="#crb-mechanism">标量 CRB</a><a href="#estimator-crb">实际估计器</a><a href="#rate-crb-bridge">速率桥梁</a><a href="reading.html#case-crb">原文与证据</a></nav></div>
+<!-- SITE:CONTEXT:END --><div class="cover"><p class="eyebrow">理论主线 / 基础 → 汇合 → 演进 → 研究</p><h1>先看清两个问题，<br>再理解为什么合在一起。</h1><p>同一个观测方程，换掉“已知”与“未知”，接收机就在回答不同的问题。</p><div class="cover-tags"><span>两条基础线</span><span>四个可复算实验</span><span>七问读论文</span></div><nav class="study-links" aria-label="理论主线目录"><a href="#pathway">学习路线</a><a href="#shared-model">共享数学</a><a href="#evolution">技术演进</a><a href="#research-method">论文拆解</a><a href="#rate-crb-bridge">互信息与 CRB</a><a href="#evidence-map">研究与展望</a></nav></div>
 <section class="chapter" id="pathway"><header class="chapter-head"><div class="eyebrow">01 / 两条基础线</div><h2>通信和雷达各自先解决什么？</h2><p class="goal">这是一条贯穿基础的理论路线，不替换已有实验。每一站都有问题、出口和继续阅读的位置。</p></header>
 <ol class="path-map">
 <li><h3>共同工具：从电压到样本</h3><p><b>先问：</b>接收机为什么能把一个真实电压变成 I/Q 两个数？复数、采样、卷积和频谱各描述哪个操作？</p><p><b>出口：</b>能区分瞬时幅度、归一化功率与一段信号的能量；知道 FFT 是计算某种投影的方法。</p><a href="foundations.html#iq">从 I/Q 与复包络开始 →</a></li>
@@ -67,6 +67,47 @@
 <details><summary>读取图中数值：前64块能量与累计均值检查点</summary><div class="table-scroll"><table><caption>能量图全部64个点；BPSK 每块能量均为 TP</caption><thead><tr><th scope="col">块编号</th><th scope="col">高斯能量（归一化）</th><th scope="col">高斯条件 CRB（增益²）</th></tr></thead><tbody id="crb-energy-body"></tbody></table></div><div class="table-scroll"><table><caption>均值图全部绘制检查点；理论水平线的数值见汇总表</caption><thead><tr><th scope="col">累计块数 b</th><th scope="col">高斯累计平均 CRB（增益²）</th></tr></thead><tbody id="crb-running-body"></tbody></table></div></details>
 <details><summary>推导与边界：为什么是 T−2？</summary><div><p>条件对数似然对 θ 的导数为 Σxᵢ(yᵢ−θxᵢ)/σ²。利用独立噪声的方差 σ²，得到 J(x)=Σxᵢ²/σ²。BPSK 的能量恒定，因而 1/J=σ²/(TP)。高斯输入的 Q=Σxᵢ²/P 服从自由度 T 的卡方分布。</p><div class="equation">E[Q⁻¹] = Γ(T/2−1) / [2Γ(T/2)] = 1/(T−2)，仅 T&gt;2<br>E[1/J] ≥ 1/E[J] = σ²/(TP)</div><p>积分在 Q=0 附近只有 T&gt;2 才收敛。<b>T≤2 时，高斯 E[CRB] 发散</b>；任意有限模拟出现有限平均值也不能证明它收敛。控件因此限制 T≥3。T=3、4 的均值存在，但 CRB 方差仍发散，不能给普通有限方差标准误或据此声称正态置信区间。即使 T&gt;4，稀有的低能量块仍可能让短模拟波动。</p><p>这是本站独立实标量、无先验教学推导。原论文的向量/复数模型、先验信息、通信目标与最优区域均不在这里复现；本实验也不证明 BPSK 对完整 ISAC 系统普遍更好。</p></div></details>
 <p class="sources">机制出处：<a href="https://arxiv.org/html/2204.06938v8">原始研究 v8（2023-06-07），§II 随机但已知的发射信号与条件界平均</a>；<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">教程 v2（2023-10-17），§IV-B 式(19)–(22)</a>。这里只抽出“先对已知实现求界，再对输入平均”的思想，解析数值来自上述独立推导。</p>
+</div>
+
+<div class="lab estimator-lab" id="estimator-crb">
+<div class="lab-title">纵向深入 · 下界什么时候真的能达到？</div>
+<p>前面只计算下界。这次真的生成带噪声的观测，再用最小二乘估计增益。先固定一块发射信号、多次换噪声；再连发射块也一起换，看清到底在对什么取平均。</p>
+<p><b>先预测：</b>一次平方误差低于 CRB，是不是违反下界？先看两条线，再展开答案。</p>
+<div class="equation">yᵢ = θxᵢ + nᵢ，nᵢ 独立 ~ N(0,1) 且与 x 独立，E = Σxᵢ²<br>θ̂ = Σxᵢyᵢ / E，条件 CRB(x) = 1/E</div>
+<p>θ 是无量纲实增益，不是距离；未知、固定、无先验。生成器真值 θ=1 只用于生成观测和评价误差。估计器只接收精确已知的发射 x 和带噪观测 y，不接收 θ 或噪声 n。每个估计只用 T 个观测；B 只是独立评价试验数，增加 B 不增加单次估计的资源。</p>
+<fieldset class="estimator-controls"><legend>本实验参数（独立于上方 CRB 和下方速率控件）</legend>
+<label for="estimator-mode">平均方式<select id="estimator-mode"><option value="fixed" selected>固定发射块，只换噪声</option><option value="fresh">每次重抽发射块和噪声</option></select></label>
+<label for="estimator-length">每次估计的样本数 T<select id="estimator-length"><option>3</option><option>4</option><option selected>8</option><option>16</option><option>32</option><option>64</option></select></label>
+<label for="estimator-count">独立试验数 B<select id="estimator-count"><option>100</option><option selected>1000</option><option>10000</option></select></label>
+<label for="estimator-seed">无符号整数种子<input id="estimator-seed" type="number" min="0" max="4294967295" step="1" value="2026" inputmode="numeric"></label>
+</fieldset>
+<div class="actions"><button id="estimator-rerun" type="button">按当前种子重算</button><button id="estimator-resample" type="button">换种子</button><button id="estimator-reset" type="button">恢复默认</button></div>
+<p id="estimator-result" class="readout" role="status" aria-live="polite" aria-atomic="true">默认：固定块，T=8，B=1000，种子=2026。交互启用后显示实际结果。</p>
+<p id="estimator-warning" class="estimator-warning">固定非零 x 时，平方误差的条件方差为 2/E²，有限；这也适用于 T=3、4。</p>
+<p id="estimator-mode-note">固定块模式比较条件期望，不是用一块偶然较强的高斯信号宣布一般优胜者。</p>
+<h3>从下界到实际估计：误差平均会靠近哪条线？</h3>
+<p>两图横轴都是累计独立试验数 b，纵轴都是增益平方（无量纲）。实线：实际累计 MSE，即平均 (θ̂−1)²；长虚线：累计平均条件 CRB；点线：解析期望。固定块模式后两者重合，只画一条双重标注的参考线。每图按自己的全部累计值定轴，比较时请看轴刻度。</p>
+<div class="estimator-legend"><span class="estimator-mse">实线：实际累计 MSE</span><span class="estimator-crb">长虚线：平均条件 CRB</span><span class="estimator-analytic">点线：解析期望（仅重抽模式）</span></div>
+<div class="estimator-panels"><div><h4>高斯输入 xᵢ 独立 ~ N(0,1)</h4><svg id="estimator-gaussian" class="estimator-chart" viewBox="0 0 500 270" role="img" aria-label="高斯累计MSE与条件CRB；所有绘制点见展开数值表"></svg></div><div><h4>BPSK 输入 xᵢ 独立等概率 = ±1</h4><svg id="estimator-bpsk" class="estimator-chart" viewBox="0 0 500 270" role="img" aria-label="BPSK累计MSE与条件CRB；所有绘制点见展开数值表"></svg></div></div>
+<p class="small">两类均 E[xᵢ²]=1，噪声方差、T、B、实维度和估计器相同；没有峰值功率约束。高斯块不逐块归一化，平均能量为 T 而非每块都是 T。所有 B 次均参与统计，不丢弃极端样本；绘图约 160 个检查点，含首尾及两条累计曲线的全局极值。轴最大值来自全部累计值，稀疏连线仍可能漏掉局部跳动。</p>
+<div class="table-scroll"><table><caption>全部试验汇总：有限模拟结果不保证贴近解析值，也不是性能排名</caption><thead><tr><th scope="col">量 / 单位</th><th scope="col">高斯</th><th scope="col">BPSK</th></tr></thead><tbody id="estimator-summary"></tbody></table></div>
+<details><summary>预测答案：低于 CRB 并不违反下界</summary><p>CRB 约束满足假设的估计器的期望平方误差，不约束一次误差，也不保证有限次经验 MSE 总在界上方。本模型 LS 条件无偏，且 Eₙ[(θ̂−θ)² | x]=1/E：等号由代数证明，模拟只作展示和实现核验。</p></details>
+<details><summary>读取实际数值：前 16 次试验与所有绘图检查点</summary><div class="table-scroll"><table><caption>前 16 次，非筛选的“好样本”；E、估计值、误差平方和 CRB 均无量纲</caption><thead><tr><th>输入</th><th>试验</th><th>E</th><th>θ̂</th><th>(θ̂−1)²</th><th>1/E</th></tr></thead><tbody id="estimator-rows"></tbody></table></div><div class="table-scroll"><table><caption>全部绘制检查点；解析参考值见汇总表</caption><thead><tr><th>输入</th><th>累计 b</th><th>实际累计 MSE</th><th>累计平均 CRB</th></tr></thead><tbody id="estimator-checkpoints"></tbody></table></div></details>
+<details><summary>独立经典推导：条件等号、重尾与可复算边界</summary>
+<p>这里固定 θ，条件于精确已知 x，无先验、无截断或偏置处理。高斯似然最大化等价于最小化 Σ(yᵢ−θxᵢ)²。E&gt;0 时，求导得 LS=ML。令 e=θ̂−θ=Σxᵢnᵢ/E，则 e|x ~ N(0,1/E)，条件偏差为零，条件 MSE 为 1/E。得分 s(θ)=Σxᵢ(yᵢ−θxᵢ)=Ee，Fisher 信息 J(x)=E；这证明每个非零 x 的有限样本条件 CRB 恰好可达，无需高 SNR 或大 T 极限。</p>
+<div class="equation">BPSK：E=T，Eₓ,ₙ[e²]=1/T<br>高斯：E ~ χ²(T)，Eₓ,ₙ[e²]=Eₓ[1/E]=1/(T−2)，仅 T&gt;2</div>
+<p>卡方密度积分给出 E[E⁻ᵏ]=2⁻ᵏ Γ(T/2−k)/Γ(T/2)，要求 T&gt;2k。对高斯输入，√T e ~ t(T)，T e² ~ F(1,T)。T&gt;4 时，Var(e²)=2(T−1)/[(T−2)²(T−4)]，而 Var(1/E)=2/[(T−2)²(T−4)]；不能拿 CRB 的波动当作 MSE 的误差条。BPSK 的 Var(e²)=2/T²。T=8 时：两类期望 MSE 分别为 1/6 与 1/8；高斯 Var(e²)=7/72，而 Var(1/E)=1/72。</p>
+<p>重抽高斯块且 T=3、4 时，e 的方差有限，但 e² 的方差无穷大。大数定律仍适用；通常有限方差的 √B 标准误不适用。固定非零块时 Varₙ(e²|x)=2/E²，B·E·经验 MSE ~ χ²(B)。这里不画置信带、不报告未经验证的分位区间。</p>
+<p>标准化统计 E·e² ~ χ²(1)，理论均值 1；它用于诊断生成过程，不是未加权 MSE，也不是 MSE 置信区间。<span id="estimator-diagnostic">运行后显示本次标准化均值。</span></p>
+<p>数值契约：xoshiro128**，SplitMix32 域种子，Box–Muller 正态生成器，版本 xoshiro128ss-splitmix32-boxmuller-v1；均匀数严格在 (0,1)。按模式、输入族及输入/噪声分开四个随机域；相同 T/模式/种子增加 B 时，旧试验前缀完全保留。绘图不消耗随机数。复现限于该实现；不承诺不同运行时的超越函数逐位一致。遇到零能量或非有限值明确失败，不加 epsilon、不重抽、不删试验。</p>
+<p>如果接收机只有带误差的 x̂，直接代入 LS 未必无偏，1/Σx̂² 也不自动是它的 CRB。未知时延/角度、多径、干扰参数、先验或失配，都需要重新建模。下方速率图仍是解析 (I, E[CRB])，没有被本次噪声 MSE 替换。</p>
+</details>
+<details><summary>原文对照：这一个等号不能直接搬到所有 ISAC 论文</summary>
+<p><a href="https://arxiv.org/html/2204.06938v8#S2">Xiong 等原研究 v8，§II-A–B</a>讨论感知端已知随机发射实现、条件信息矩阵逆的平均，并包含参数先验及高 SNR 可达性讨论；它是复向量 Bayesian 框架。<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">作者教程 v2，§IV-B 式(19)–(22)</a>区分依赖估计器的 MSE 与条件界平均。这里保留已知随机输入这一角色，省略复向量、先验和完整区域优化。</p>
+<p>本站实标量无先验 LS 等号、卡方矩与 t/F 校验都是独立经典教学推导，不是论文完整区域/图的复现，也不是新 2026 结果。<a href="https://web.stanford.edu/class/stats203/lectures/lecture3/">Stanford STATS203 线性回归讲义</a>提供高斯 LS/ML、无偏与方差框架（原讲义含截距，非本节原式）；<a href="https://ocw.mit.edu/courses/6-432-stochastic-processes-detection-and-estimation-spring-2004/1bdddce863f648174c43f64a321e645a_rec6.pdf">MIT 6.432 recitation 6</a>提供 CRB/效率背景。</p>
+<p>读论文时追问：图中是某个估计器的 MSE、条件 CRB 的平均，还是含先验的 Bayesian CRB？它在什么条件下讨论可达性？<a href="reading.html#case-crb">回到同题证据对照 →</a></p>
+</details>
+<noscript><p>交互需要 JavaScript。默认固定块 T=8、种子=2026 的高斯能量约 7.210331434，条件解析 MSE≈0.138689880；BPSK E=8、条件解析 MSE=0.125。若改为重抽块，解析期望才是高斯 1/6、BPSK 1/8；静态文字没有假造模拟曲线。</p></noscript>
 </div>
 
 <div class="lab crb-lab rate-lab" id="rate-crb-bridge"><div class="lab-title">基础桥梁 · 从判对一个符号，到同一输入设计的两个指标</div>
