@@ -35,3 +35,11 @@ DOM harness execution and static responsive markup checks do not certify browser
 - `python3 scripts/validate-joint-beamforming.py --check`
 
 Local verification on 2026-10-10 passed 271/271 Node tests, generator freshness, independent Python --check, and git diff --check. The independent Python validator and JSON report are linked from the lesson. NumPy is only required for that independent developer check; the browser uses no Python dependency.
+
+## Live browser verification
+
+PR [#25](https://github.com/LoonyReina/ISAC/pull/25) deployed merge `bd0ad6ce3d9891c2e8ab9426c865aa24159c8591`; [Pages run 38061810464](https://github.com/LoonyReina/ISAC/actions/runs/38061810464) succeeded. Seventeen remote files and seven live HTML/JS/CSS entry files matched reviewed local bytes on 2026-10-10.
+
+The cloud browser was exercised at 1168 CSS pixels and 323 CSS pixels (resized desktop window with 150% zoom, not a physical phone). Verified default A/B/C results, noise and QoS changes, exact zero/negative-infinity at eta=0, eta=1, the 12 dB crossing between eta=.96 and .97, repeated reset, and matrix disclosure open/close. All four SVG text bounding boxes fit their narrow rendered widths; the page had no horizontal overflow. The wide plots and narrow power pattern were visually inspected. Keyboard ArrowRight scrolled the narrow table inside its focusable region. Bibliography-to-case navigation and browser Back worked; the knowledge-map beam-design panel included the new mechanism and source/case links.
+
+This closes the deployment and listed browser checks for that release. It does not certify a physical mobile device, a real screen reader, print rendering, or untested browser engines.
