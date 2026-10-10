@@ -16,7 +16,7 @@ function render(id,focus=false){
  changing=true;
  for(const g of groups){const match=Boolean(entry)&&g.dataset.mapGroup===entry.dataset.mapGroup;g.open=match;g.dataset.selected=String(match);}
  changing=false;
- if(focus)panel.focus();
+ if(focus){panel.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
 }
 function route(hash){let value;try{value=decodeURIComponent(hash.slice(1));}catch{return {invalid:true};}
  const entry=entries.find(e=>e.id===value);if(entry)return {entry};
