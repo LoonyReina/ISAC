@@ -205,3 +205,25 @@ Release 19 · 官方服务需求
 阅读：与信道模型、无线实现、研究文章分别阅读。
 
 范围：提供明确版本入口，不声称它是所有后续版本的最新全文。
+
+## 2026-10-10 · 理论主线配套页（theory.html）
+
+保持首页 18 章与旧页不变；新页把两条基础线、共同似然、设计演进、七问论文读法和当前证据地图连接起来。
+
+新增共享模型是本站独立教学推导：32 样本实基带、Barker13、Ts=10 ns、整数延迟 0–12、独立实 Gaussian 噪声。通信条件于已知增益 1、相位参考与延迟，未知符号 ±1；感知已知发射实现，未知整数延迟与实增益。未知复增益仅作公式推广，不宣称交互已经模拟复数多径。
+
+直接阅读范围与边界：
+- Zhang 等，https://arxiv.org/html/2102.12780v1 ：§II 模型与 §III 接收处理；匹配/估计角色用于教学重构
+- Liu 等，https://arxiv.org/html/2108.07165v1 ：§I.C、IV.B、V、VII；演进按并存设计路线而非技术淘汰史组织
+- Xiong 等教程，https://arxiv.org/html/2310.09749v2 ：§I–II、IV.A–D；随机发射实现可为感知端已知，以及 CRB–rate 权衡
+- 原始研究 https://arxiv.org/abs/2204.06938v8 ：本次核对摘要及版本历史；具体端点解释参考上列教程。未逐节审核全部原始证明
+- 基本界综述 https://arxiv.org/html/2104.09954v2 ：§III 指标；标量 CRB 例子由本站独立推导，不声称整篇研究复现
+
+2026 小范围证据地图：
+- ITU 官方 https://www.itu.int/en/ITU-R/study-groups/rsg5/rwp5d/IMT-2030/Pages/default.aspx ：2026 最低性能要求/评估指南为拟于 12 月批准的草案
+- 3GPP 官方 https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4446 ：TR 38.765 20.0.0 / Release 20 / 2026-06-23 上传
+- https://www.3gpp.org/news-events/3gpp-news/ran113-reports ：推进中工作项，不等于完整标准已经完成
+- https://arxiv.org/abs/2602.00054 ：分布式 SIMO 子带全双工室内原型；页面信息和摘要支持特定配置，不外推普遍收益
+- https://arxiv.org/abs/2607.18680v1 ：2026-07-21 预印本、理论与仿真；不称实网验证
+
+当前主线是代表性证据图，不是文献计量热度排名，亦未完成旧站全部来源的重新审计。
