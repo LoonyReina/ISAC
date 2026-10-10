@@ -101,3 +101,23 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 - 地图概念入口使用 `map-node-*`，分组使用 `map-group-*`。不占用旧基础章锚点。无 JavaScript 时通过原生展开与普通链接直接阅读。
 - 新增机制时注册 `units` 并在相关概念的 `unitRefs` 引用它；新增方向时注册 `directions` 并添加 reference-only `directionNodes`。概念数、实验数、案例数由记录派生。`available` / `proposed`、前置实验 / 专项机制、部分原文核对 / 完整复现继续分别展示。
 - 地图测试区分静态契约、模拟 DOM 与真实浏览器检查；前两者不代表已经验证屏幕阅读器或线上布局。
+
+## 研究论文影响证据目录
+
+`registry.researchDirectoryFile` 指向 `site/research-directory.json`，它是候选论文的唯一书目与影响证据来源。书目身份、发表时间、机制、引用快照、服务访问时间、学会推荐 / 奖项 / 官方资源和证据边界均在此维护。`scripts/render-research-directory.cjs` 将其生成到 `reading.html#influential-papers`，不增加平行门户，也不在线请求计量服务。标题与导航中的篇数从 `cards.length` 生成，增删论文无需同步修改计数文案。`research-directory.css` 仅为该目录提供窄屏样式。
+
+书目卡片只保存可选 `caseId`，不复制教学案例的路径、模型或完成状态。生成器从 `registry.cases → units → pages` 解析入口，且对应本地文件存在才生成教学案例链接；否则保留不可点击的“准备中 / 尚未实现”。新增论文交互必须先注册并验证相应案例，不能单靠有论文 DOI 就成为 available。
+
+2026-10-10 的核验把 OpenAlex 与 Semantic Scholar 数量分别保存；2025 项是施引文献发表年份，不是当年新增索引数。Perceptive Mobile Network 的 OpenAlex DOI 与仓储记录拆分，不能相加，且不参加该服务的数量比较。目录不是穷尽排名，也没有经过验证的社交讨论量。所有计量访问时间和记录更新时间保留在可展开详情中。
+
+验证：`tests/research-directory.test.cjs` 检查论文唯一身份、来源与快照值、奖项年份、记录拆分、未实现链接门禁和无 JavaScript 披露；全站原有结构测试继续核对本地资源、锚点与生成新鲜度。测试不声称重新访问远程来源或通过浏览器视觉回归。
+
+## 波形案例与书目集成核验（2026-10-10）
+
+在知识地图版本之上，波形案例、九篇论文目录和六层研究方向共享同一注册表。地图的波形概念保留导频入口，并通过 `unitRefs` 增加严格协方差实验；静止单径时延估计与已知 H、S、R_d 的波形设计分别说明。书目中的 `case-waveform` 通过规范案例解析为实际机制链接，不重复存储论文对照或实验完成状态。共享样式与地图脚本的缓存版本保持一致。
+
+集成后实际运行：`node --test tests/*.test.cjs` 为256项通过、0失败；包括全站本地路径、资源、锚点、唯一ID与兼容路由检查，以及两项专门的跨功能集成回归。`node scripts/generate-site.cjs --check`、`python3 scripts/generate-waveform.py --check`、`git diff --check` 均通过。波形数值核心、界面脚本、样式、状态数据、生成器与原有波形测试均未改动；波形页面只由站点生成器同步共享样式缓存版本。此轮未执行真实浏览器或线上部署检查，不能将静态和模拟DOM回归视为这两类验证。
+
+### 窄屏详情定位修正
+
+真实云端浏览器初查在323 CSS像素宽度发现：选择概念后，原生 `focus()` 可把较长详情面板滚到中部，标题与问题不在视口。现仅在主动选择概念时先用 `focus({preventScroll:true})` 保持键盘焦点，再用 `scrollIntoView({block:'start',behavior:'auto'})` 配合既有 `scroll-margin-top` 展示面板顶部。Back/Forward与hash恢复不触发该显式滚动，返回全景焦点逻辑不变。地图脚本缓存更新为 `knowledge-map-v2`，样式无需修改。新增DOM回归验证焦点/滚动调用顺序、参数和历史恢复行为；修正后全量257项通过、0失败，门户新鲜度、脚本语法与diff检查通过。实际浏览器修正后复验仍需单独完成。

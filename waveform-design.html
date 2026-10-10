@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="同一雷达发射协方差，怎样调整时域波形来拟合通信符号？严格协方差 Procrustes 全局最优机制、交互实验与 2018 原文对照。"><title>方向图相同，通信符号为什么不同？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="waveform.css"><script defer src="waveform-core.js"></script><script defer src="waveform.js"></script></head><body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="theory-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">方向图相同，通信符号为什么不同？</span></nav><p class="site-role">研究主题 · 严格协方差最优波形与原文对照</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#array">阵列与方向</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="waveform-design.html#experiment">① 预测与实验</a><a href="waveform-design.html#paper">② 原文与证据</a><a href="waveform-design.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<div class="cover"><p class="eyebrow">研究案例 / 严格协方差下的波形设计</p><h1>方向图相同，<br>通信符号为什么不同？</h1><p>雷达的空间功率方向图只看到一块波形的协方差；通信接收机却要在每个时刻看到指定的复数符号。固定前者，仍然有空间调整后者。</p><div class="cover-tags"><span>复数矩阵</span><span>同预算比较</span><span>全局最优证书</span></div></div>
+<section class="chapter" id="intuition"><header class="chapter-head"><p class="eyebrow">01 / 先理解作者解决了什么</p><h2>固定照向哪里，不必固定每一列怎么发</h2></header>
+<p>四根天线同时发射八个复基带样本。每一列是一个时刻的四路 I/Q 系数，每一行是一根天线的时间序列。空间方向图取决于这些行之间的平均相关性，并没有把八列的排列和相位全部规定死。</p>
+<p>通信有另一种要求：已知两位用户的通道后，希望八个时刻的接收复数分别靠近预定 QPSK 符号。只设计雷达方向图的波形未必做到这点。2018 年论文的关键是：把这两个要求放到一个明确优化问题里，在严格协方差约束下用一次奇异值分解获得全局最小的符号匹配误差。</p>
+<div class="wf-callout"><strong>先预测：</strong>如果两个发射块的 XXᴴ/L 完全相同，功率方向图会不同吗？它们经过同一 H 后的 HX，也一定相同吗？先选一个答案，再看实验。</div>
+<p>先修：<a href="foundations.html#iq">I/Q 与复数</a>、<a href="foundations.html#array">阵列与方向</a>。本页需要矩阵乘法与共轭转置，但会说明每一步对应哪个物理对象。</p></section>
+<section class="chapter" id="model"><header class="chapter-head"><p class="eyebrow">02 / 写清观测、已知量与约束</p><h2>要优化的是发射块 X，不是接收机的估计值</h2></header>
+<div class="equation">Y = HX + W；X ∈ ℂᴺˣᴸ，H ∈ ℂᴷˣᴺ，S ∈ ℂᴷˣᴸ<br>本实验 N=4，K=2，L=8，Pₜ=1；设计误差 E(X)=||HX−S||²ꜰ</div>
+<p>H 是已知、块内不变的窄带下行线性通道；若习惯写单用户 yₖ=hₖᴴx，则 H 第 k 行已是 hₖᴴ，计算 HX 时不能再取共轭。S 是已知目标符号，X 是待设计变量；上标 ᴴ 表示共轭转置，||·||ꜰ 是所有复数绝对值平方之和再开方。实验直接画无噪声 HX，未抽样 W。</p>
+<div class="equation">Rₓ = XXᴴ/L = R_d，tr(R_d)=Pₜ<br>aₙ(θ)=exp(jπn sinθ)，n=0,…,N−1；P(θ)=aᴴRₓa</div>
+<p>Rₓ 是发射样本协方差；其迹是四根天线合计的平均功率，块能量为 LPₜ=8。ULA 阵元间距为半波长，θ 从阵列正前方计。图中 P(θ) 是原始归一化功率，使用不除以 √N 的导向向量；不对每条曲线各自峰值归一化。</p>
+<div class="equation">R_d(β,θ₀) = (Pₜ/N)[(1−β)I + βa(θ₀)a(θ₀)ᴴ]<br>β ∈ {0,0.4,0.8}，θ₀ ∈ {−30°,0°,30°}</div>
+<p>这是本站透明的合成目标协方差，不是原文三方向最小二乘雷达设计。β=0 时 R_d=I/4，方向图恒为1；β 增大时把空间功率集中到 θ₀，但总功率仍为1。β&lt;1 保证正定，L≥N 使满秩协方差可实现。θ₀ 是照射方向，不是通信用户的物理位置。</p></section>
+<section class="chapter" id="experiment"><header class="chapter-head"><p class="eyebrow">03 / 一次只改一个条件</p><h2>方向图重合，星座误差却改变</h2></header>
+<p>橙色空心圆 / 实线：不看 H、S 的固定 DFT 参考；青色方块 / 虚线：严格协方差全局最优。两者共享 H、S、R_d、阵列、样本数与能量。切换协方差会改变问题本身，不能把不同 β 的结果当作同一雷达约束下的算法排名。</p>
+<div class="wf-controls"><label for="wf-channel">通信通道 H（两行均单位范数）<select id="wf-channel"><option value="complex">一般复数通道</option><option value="orthogonal">两行正交</option><option value="correlated">两行相关，相关系数 0.95</option></select></label><label for="wf-beta">方向性 β<select id="wf-beta"><option value="0">0：全向</option><option value="0.4">0.4：中等</option><option value="0.8" selected>0.8：较强</option></select></label><label for="wf-angle">雷达参考方向 θ₀<select id="wf-angle"><option value="-30">−30°</option><option value="0" selected>0°</option><option value="30">30°</option></select></label><label for="wf-user">星座图显示哪位用户<select id="wf-user"><option value="0">用户 1</option><option value="1">用户 2</option></select></label></div>
+<p><button type="button" id="wf-reset">重置参数</button></p>
+<p id="wf-status" class="wf-status" role="status" aria-live="polite">正在载入已验证的有限状态…</p><noscript><p>启用 JavaScript 后可选择 27 个预计算状态；推导、验证记录和原文对照无需 JavaScript。</p></noscript>
+<div class="wf-legend"><span class="wf-ref">○ 橙色：固定参考</span><span class="wf-opt">■ 青色：严格最优</span><span>＋ 深色：目标符号 S</span></div>
+<div class="wf-figures"><figure><figcaption><strong>空间功率：</strong>横轴为角度，纵轴为 aᴴRₓa。两条线故意同时画出；重合是相同协方差的可视化结果；完整协方差约束由下表残差检查。固定纵轴 0–4。</figcaption><svg id="wf-pattern" viewBox="0 0 600 300" role="img" aria-label="参考与严格最优波形的共同尺度功率方向图"></svg></figure><figure><figcaption><strong>接收复数：</strong>横轴 I，纵轴 Q，显示所选用户的8个 HX 样本。细线连向该时刻指定的 S；不是最近星座点判决，没有加噪声。</figcaption><svg id="wf-symbols" viewBox="0 0 600 300" role="img" aria-label="实际 HX 与目标 S 的复平面误差"></svg></figure></div>
+<figure class="wf-time"><figcaption><strong>时间自由度：</strong>第一根天线 X 的实部，横轴为离散样本序号。两条不同序列仍能产生同一个协方差；这里只展示一行的一部分，未画 RF 载波。</figcaption><svg id="wf-time" viewBox="0 0 600 300" role="img" aria-label="第一根发射天线的实际复基带实部序列"></svg></figure>
+<p>所有图都由已存储的 H、S、X 重新计算，选择器只选择实际求解过的离散状态，不插值优化器。显示用户只改变星座视图，下表误差仍累计两位用户的16个复数。</p>
+<div class="wf-table-wrap"><table class="wf-table"><caption>资源与最优性检查（归一化基带单位）</caption><thead><tr><th scope="col">检查量</th><th scope="col">固定参考</th><th scope="col">严格最优</th></tr></thead><tbody id="wf-metrics"></tbody></table></div><p id="wf-bound"></p>
+<details><summary>查看当前 H 与全部复数数据</summary><pre id="wf-matrix" class="wf-matrix"></pre><p><a href="data/waveform-states.json">27 个状态的完整 H、S、R_d、X、奇异值和下界 JSON</a>；每个复数编码为 [实部, 虚部]。界面 H 仅显示三位小数，计算使用文件完整精度。</p></details>
+<p><strong>试三次：</strong>先选 β=0 验证平坦方向图；保持 β、θ₀ 不变切换通道，检查方向图不变而符号误差改变；最后固定通道增大 β，观察更集中的空间功率分布如何改变可用的符号拟合自由度。不要预设误差随 β 单调。</p></section>
+<section class="chapter" id="solution"><header class="chapter-head"><p class="eyebrow">04 / 为什么一次 SVD 就能全局最优</p><h2>把协方差固定，把时间方向转到最合适的位置</h2></header>
+<p>对正定 R_d 作下三角 Cholesky 分解 R_d=FFᴴ。写 X=√L FZ，则严格约束等价于 ZZᴴ=I。Z 有 N 行、L 列，行彼此正交且各自单位范数；它控制剩余的时间方向。</p>
+<div class="equation">E(X)=L tr(HR_dHᴴ)+||S||²ꜰ−2√L Re tr(ZᴴC)<br>C=FᴴHᴴS ∈ ℂᴺˣᴸ</div>
+<p>前两项已经固定。降低误差就是提高 Z 和 C 的复数内积。做薄 SVD：C=UΣVᴴ，其中 U 为 N×N，Vᴴ 为 N×L；奇异值 σᵢ≥0。复数迹不等式给出 Re tr(ZᴴC)≤Σᵢσᵢ。取 Z*=UVᴴ 便达到这个上界，且 Z*Z*ᴴ=I。</p>
+<div class="equation">X*=√L FUVᴴ<br>E*=L tr(HR_dHᴴ)+||S||²ꜰ−2√L Σᵢσᵢ(FᴴHᴴS)</div>
+<p>上表的 E−E* 就是直接算出的符号误差与该理论下界之间的差。最优解接近0的差值是数值检查；全局性来自上面的迹不等式，不来自随机搜索次数。K=2&lt;N=4 使 C 秩最多为2，因此解可能不唯一，不能要求不同 SVD 库给出逐元素相同的 X。</p>
+<h3>为什么这个基线公平，却不是论文全部基线？</h3><div class="equation">Z_ref[n,m]=exp(j2πnm/L)/√L<br>X_ref=√L FZ_ref；Z_ref Z_refᴴ=I</div>
+<p>参考选择 L 点单位 DFT 的前 N 行，也满足相同 R_d 和 LPₜ。它故意忽略 H、S，隔离出“时间方向对通信符号的影响”，不是通信算法的强基线。这里没有以多给功率换取误差改善，也没有与违反严格协方差的通信 ZF 混排。全局最优只指这个确定性的约束最小二乘问题。</p></section>
+<section class="chapter" id="paper"><header class="chapter-head"><p class="eyebrow">05 / 与原始研究逐项对照</p><h2>论文不只画一个好看的方向图</h2></header>
+<p><strong>固定原文：</strong>Fan Liu、Longfei Zhou、Christos Masouros、Ang Li、Wu Luo、Athina Petropulu，<a href="https://doi.org/10.1109/TSP.2018.2847648">Toward Dual-functional Radar-Communication Systems: Optimal Waveform Design</a>，IEEE TSP 66(16)，4264–4279，2018 年8月。公式定位采用 <a href="https://arxiv.org/abs/1711.05220v1">2017-11-14 的 arXiv v1</a>（预印本标题为 Towards）；<a href="https://arxiv.org/pdf/1711.05220v1">固定版本 PDF</a>。</p>
+<ul><li><strong>问题与模型：</strong>§II，式(1)–(7)，把通信多用户干扰 / 符号误差与发射雷达协方差放在同一 X 上。本站保留已知 H、S 和窄带复基带模型。</li><li><strong>严格设计：</strong>§III，式(8)–(15)，从全向约束走到给定方向协方差，用正交 Procrustes 和 Cholesky 变换得到闭式全局解。本站交互实现这一机制；符号推导使用 N×L 薄 SVD 形式。</li><li><strong>原文图3–4：</strong>§VI 的通信性能与雷达方向图数值比较，采用 N=16、L=20、K=4、Pₜ=1、单位功率 QPSK、复高斯信道和半波长 ULA；方向性参考针对 −π/3、0、π/3。本站是 N=4、L=8、K=2 和确定通道、单方向混合协方差，未复现这些图或论文通信速率曲线。</li><li><strong>后续方法：</strong>§IV 将通信误差与波形偏差加权，式(16)起进入带总能量约束的权衡；§V 常模设计进入另一类非凸问题。本站不实现这两部分，不把严格解当作常模解。</li></ul>
+<p><strong>创新落点：</strong>把一般“共同发射”的想法变成可精确求解的波形层问题；严格方案保住指定的空间协方差，同时寻找更好的逐符号通信匹配。放松雷达约束以及加入常模硬件要求时，求解结构发生变化，不能沿用本页的一次 SVD 结论。</p>
+<details><summary>为什么选它深入：多来源影响力证据与局限</summary><p>2026-10-10 的两家文献库分别记录：<a href="https://api.openalex.org/works/https://doi.org/10.1109/TSP.2018.2847648">OpenAlex 980 次引用</a>；<a href="https://www.semanticscholar.org/paper/abaf9a91f636542a230d32dec71206bfeba703e1">Semantic Scholar 972 次引用</a>。它们是不同索引的快照，不能相加。OpenAlex 的2025引用出版年桶为206，不是2025首次入库的引用数。</p><p><a href="https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac">IEEE ComSoc 的 ISAC Best Readings</a>列入该文；<a href="https://signalprocessingsociety.org/community-involvement/award-recipients">IEEE SPS 官方获奖记录</a>列出2021 Young Author Best Paper Award（2022领取）。编辑推荐有作者重合，不是完全独立投票；这些证据支持学术影响力，不是社交讨论量，也不是穷尽性排名。</p></details>
+<p class="sources">原文机制与书目信息核对：2026-10-10；重点范围为 §II–IV、§VI，§V 仅核对方法结构。本站证据是独立推导与确定性数值计算；原文证据为理论和仿真，均不等于硬件实测。</p></section>
+<section class="chapter" id="limits"><header class="chapter-head"><p class="eyebrow">06 / 什么没有被这次成功证明</p><h2>相同方向图，不等于相同的全部雷达能力</h2></header>
+<ul><li>协方差确定这里的空间发射功率，但不确定延迟–多普勒模糊函数、距离旁瓣或具体接收处理性能。本页没有目标、杂波、检测器、CRB、RMSE 或虚警率模型。</li><li>E/(KL) 是每个复数样本的确定性匹配误差，包含增益失配及残余多用户干扰；它不是误码率、容量、编码速率或估计误差。更小 E 不自动证明所有这些指标改善。</li><li>满秩 R_d 要求 L≥N；β=1 会失去 Cholesky 所需的正定性，因此选择器不提供。每个天线每个时刻的幅度可变，总能量约束不等于逐样本常模，也没有峰均比或功放约束。</li><li>假设 H 完全已知，S 已知且可联合设计整个块；没有信道估计误差、频率选择性、OFDM、RF 约束或实时计算成本模型。</li><li>只比较每个选中状态内的同预算两种波形。27 个有限状态不是 Monte Carlo 统计，也不是跨环境普遍性能排序。</li></ul>
+<h3>下一研究问题：通信拟合变好，距离旁瓣是否变坏？</h3><p>先固定当前 H、S、R_d、L 和能量，用 X_ref 与 X* 的实际时间序列计算同一种匹配滤波器的延迟相关旁瓣。再问：只用协方差约束是否足以保障你关心的雷达任务？这是下一项待做的研究，不是本页已经验证的结论。若进一步加入常模约束，应重新写可行集，并建立新算法与新最优性边界。</p></section>
+<section class="chapter" id="reproduce"><header class="chapter-head"><p class="eyebrow">07 / 留下一条可重跑的证据链</p><h2>检查可行性、最优值，再检查图</h2></header>
+<p><a href="scripts/generate-waveform.py">生成与独立优化验证脚本</a>固定 NumPy RNG 种子 20182847648，并把完整 H、S、X 作为规范数据保存；<a href="data/waveform-validation.json">实际验证记录</a>记录 NumPy / SciPy 版本、误差与容差。浏览器不依赖这两个 Python 库，只读取本站 JSON。</p>
+<ol><li>运行 python3 scripts/generate-waveform.py --check：重新求解并检查已提交复数数组的能量、协方差与全局下界，不依赖 SVD 向量符号完全一致。</li><li>运行 node --test tests/waveform.test.cjs：使用独立 JavaScript 复数乘法从存储数组重算每条图与数值；检查27状态、固定资源与全向不变量。</li><li>生成器额外检查540个随机可行候选、零信道 / 秩亏 / L=N / 零符号 / 近简并情况，并拒绝 L&lt;N 与奇异协方差；三组小型复数问题用 SciPy SLSQP 从随机可行点独立求解。</li><li>先对照源代码、下界和残差，再解释误差变化。随机候选及局部优化只提供交叉检验，不能替代解析全局性证明。</li></ol>
+<p><a href="practice.html#notebook">将你选中的通道、β、θ₀、预期与观察写入实验记录 →</a></p></section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次固定资源的波形实验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+</main></body></html>

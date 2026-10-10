@@ -1,0 +1,96 @@
+{
+  "generator": "scripts/generate-waveform.py",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "seed": 20182847648,
+  "states": 27,
+  "randomFeasibleChecks": 540,
+  "worstResiduals": {
+    "covariance": 9.168797198788009e-16,
+    "lowerBound": 7.105427357601002e-15,
+    "eigenNuclear": 3.156041339380522e-08,
+    "energy": 8.881784197001252e-15
+  },
+  "edgeCases": [
+    {
+      "name": "zero-channel",
+      "metrics": {
+        "error": 15.999999999999996,
+        "energy": 8.000000000000002,
+        "covarianceResidual": 1.1102230246251565e-16
+      },
+      "boundResidual": 0.0
+    },
+    {
+      "name": "rank-one-channel",
+      "metrics": {
+        "error": 7.9999999999999964,
+        "energy": 8.000000000000004,
+        "covarianceResidual": 4.194516884586951e-16
+      },
+      "boundResidual": 5.329070518200751e-15
+    },
+    {
+      "name": "square-block",
+      "metrics": {
+        "error": 2.4644090278159956,
+        "energy": 3.999999999999999,
+        "covarianceResidual": 3.631264844439468e-16
+      },
+      "boundResidual": 8.881784197001252e-16
+    },
+    {
+      "name": "zero-symbols",
+      "metrics": {
+        "error": 4.0,
+        "energy": 8.000000000000002,
+        "covarianceResidual": 1.1102230246251565e-16
+      },
+      "boundResidual": 0.0
+    },
+    {
+      "name": "near-degenerate",
+      "metrics": {
+        "error": 9.997337789859693e-25,
+        "energy": 2.000000000000001,
+        "covarianceResidual": 3.1401849173675503e-16
+      },
+      "boundResidual": 8.88178420699859e-16
+    },
+    {
+      "name": "short-block",
+      "rejected": true
+    },
+    {
+      "name": "singular-covariance",
+      "rejected": true
+    }
+  ],
+  "independentSLSQP": [
+    {
+      "trial": 0,
+      "success": true,
+      "objectiveGap": 2.4424906541753444e-15,
+      "constraintResidual": 1.27675647831893e-15
+    },
+    {
+      "trial": 1,
+      "success": true,
+      "objectiveGap": -1.8207657603852567e-13,
+      "constraintResidual": 4.474198789239381e-14
+    },
+    {
+      "trial": 2,
+      "success": true,
+      "objectiveGap": 4.9404924595819466e-14,
+      "constraintResidual": 2.992051051364797e-14
+    }
+  ],
+  "tolerances": {
+    "covariance": 1e-10,
+    "objective": 1e-10,
+    "SLSQP": 1e-07,
+    "eigenNuclear": 1e-06
+  },
+  "note": "Hermitian eigenvalue nuclear norm check has sqrt sensitivity near zero eigenvalues; SVD and direct objective agree at tighter tolerance. These are independent synthetic mechanism checks, not paper-figure reproduction."
+}
