@@ -63,6 +63,12 @@ node --test tests/*.test.cjs
 
 ## 研究阅读地图
 
-`research.html` 将现有标量 CRB、导频设计、网络时钟与 SBFD 四个案例按问题整理，链接完整 18 章与理论主线。每张卡分开先修、交互机制、论文/本站证据、结论边界和待检验的下一问；没有新增数值模型或论文复现。
+`research.html` 将标量 CRB、导频设计、网络时钟、SBFD 与近场空间曲率五个案例按问题整理，链接完整 18 章与理论主线。每张卡分开先修、交互机制、论文/本站证据、结论边界和待检验的下一问；目录本身不执行数值模型；各案例区分独立机制实验与论文复现。
 
 导航不依赖 JavaScript。首页和理论页使用 `research.css` 的局部样式显示案例卡片，旧页面、锚点与实验保留。静态链接与结构回归：`node --test tests/research-navigation.test.cjs`；全部回归：`node --test tests/*.test.cjs`。检查范围见 `docs/RESEARCH-NAVIGATION-VALIDATION.md`。
+
+## 近场空间曲率案例
+
+`near-field.html` 从第 06 章的平面波假设接到同角不同距的精确球面空间匹配。单程、未知公共复增益、等幅度、无噪声；三条计算曲线共用归一化，并显示实际孔径、残余相位和局部几何敏感度。不是论文的 CRB/MUSIC/优化复现。核心为 `near-field-core.js`，视图为 `near-field.js` 与 `near-field.css`。固定阅读 2023 年起源论文的 2025 v5。
+
+新增数值与 DOM 检查见 `tests/near-field*.test.cjs`，完整范围和待执行真实浏览器检查见 `docs/NEAR-FIELD-VALIDATION.md`。本轮聚合回归 173 项通过。
