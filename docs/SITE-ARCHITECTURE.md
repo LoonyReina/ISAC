@@ -1,0 +1,83 @@
+# 学习框架与兼容迁移
+
+## 设计目的
+
+网站只有一条四阶段路线：基础讲义 → 机制实验 → 论文阅读 → 研究实践。首页负责定位；机制目录负责找实验；阅读方向负责扩展知识；案例页面负责同题的讲解、互动与证据。不要在每个页面重复展示全部案例入口。
+
+### 主要页面所有权
+
+| 页面 | 负责什么 | 不负责什么 |
+|---|---|---|
+| index | 学习地图与阶段选择 | 整本讲义、全部论文卡片 |
+| foundations | 原 00–13 章物理与处理链，全部原课程控件 | 第二套研究方向目录 |
+| theory | 共同观测模型、CRB/速率桥梁 | 重复列出所有主题 |
+| experiments | 注册可用机制与按需补充沙盒 | 复制实验代码 |
+| reading | 方向、层次、已有案例导读、研究进展、来源 | 把计划写成已完成复现 |
+| practice | 六步工作流、最小设计、实验本、四周节奏 | 保存/上传用户输入 |
+| 四个专题页面 | 导频、时钟、资源、近场的同题闭环 | 新的一级入口 |
+| sandbox / resolution | 原版中独有的补充对照 | 另一套并行课程首页 |
+
+CRB 是第五个研究案例，留在 theory 中，与共享模型和速率桥梁共用一套完整 UI。
+
+## 内容注册表
+
+`site/registry.json` 是共享框架的唯一来源：
+
+- `stages`：稳定的四阶段顺序、标签、入口与学习产出
+- `pages`：页面角色、所属阶段、先修、同题内容与一个推荐下一步
+- `units`：可访问的机制实验、问题、先修和主研究方向
+- `cases`：已核对的主题、问题/证据/边界、机制、原文位置与下一问；每个既有主题的 `paperComparison` 保存部分核对记录，原文定位和资源预算保留 summary，并为后续逐字段整理留位
+- `directions`：可横向扩展的研究领域；每方向六层资源有明确 `available` / `proposed` 状态
+- `levelDefinitions` / `statusSemantics`：六层意义与可用状态的边界
+- `paperComparisonSchema`：原文对照需要填写的证据契约
+- `legacy`：旧文件与旧锚点的明确目标；不能把所有旧链接粗略送回首页
+
+每个方向只有一张简洁问题卡。六层材料默认收起，已有与尚缺项一起说明；没有实际资源时不生成实验按钮。原文链接仅是入口，完整对照需要版本、章节/图/式、观测/未知量、保留/省略条件、论文/本站证据类别、指标与资源预算。未知字段留空并标注待核对。前置实验不等于该方向专项实现，研究计划不等于已验证复现。
+
+## 静态生成与手写边界
+
+运行 `node scripts/generate-site.cjs`，提交生成产物；运行 `--check` 在内存重算并比较，发现漂移即失败。无第三方包、无网络、无时间戳、无线上构建。
+
+- index、experiments、reading、practice、resolution 与三张兼容页整体生成
+- 研究脉络、前沿、书目、实践和补充响应正文维护在 `site/content-*.html`
+- foundations、theory、四个专题、sandbox 保留手写科学正文；生成器只覆盖 `SITE:HEADER`、`SITE:CONTEXT`、`SITE:NEXT` 三个成对区域
+- 各模型核心与 UI 脚本不参加框架生成，不挪动其控件 ID、加载顺序或全局协作接口
+- 不直接编辑生成的 legacy-routes.js，它由 `legacy` 生成
+
+`course-ui.js` 同时初始化 OFDM、CFAR、阵列、几何、打印和进度。其余两个扩展依赖统一输入/播放循环与 `window.ISACCourseReady` / `window.ISACCourseUI`。因此保留原 00–13 章完整 DOM；没有绑定控件的原 14、15、17 章移到 reading，原 16 章内容融入 practice。理论页 research-method 内包含真实 CRB 与速率实验，不能连同七问文字整体删除。
+
+## 旧 URL 映射
+
+| 原入口 | 新内容 |
+|---|---|
+| index.html（无 hash） | 学习地图 |
+| index.html#start 至 #geometry、相关控件 | foundations.html 对应 ID |
+| index.html#branches / #frontiers / #reading / #ref-* | reading.html 对应 ID |
+| index.html#practice / #roadmap | practice.html 对应 ID |
+| index.html#velocity-matching | foundations 的运行时速度匹配模块 |
+| research.html#case-* | reading.html#case-* |
+| learn.html#各实验与控件 | sandbox.html 对应 ID |
+| learn.html（无 hash） | experiments.html#supplements |
+| overview.html#lab 及其控件 | resolution.html 对应 ID |
+| overview.html#roadmap / #faq | practice 中已融合的节奏/自测 |
+| overview.html#ref1…7 | reading 的七篇原文条目 |
+| overview 其他章节 | 对应基础、共同模型、研究工作流 |
+
+映射包含原静态 ID，而不只主章节。旧页面保留无 JS 的逐项对应链接。已知 hash 首次载入与同文档 hashchange 都用 location.replace，保留部署子目录与查询字符串；未知 hash 不执行任意跳转。没有目标 URL 查询参数，也没有 SPA 历史拦截。速度模块在运行时建立 ID；无 JS 时有同名 noscript 文本回到静态 OFDM 推导，七个静态面板全部可读。
+
+旧 overview 的理想响应实验没有新加数值模型：沿用原 B/T 计算，仅改进边界说明。独立两条 sinc² 响应不是相干叠加双目标功率，不能直接宣称检测成功率。
+
+## 新增一个主题的步骤
+
+1. 先选既有方向；只有新的观测对象/研究问题确实跨出现有范围时才增加方向
+2. 写一个初学者能预测的现象，声明输入、已知/未知、单位、几何与资源
+3. 建立纯模型与数值测试，再把真实输出接到可访问的原生控件/图表/数字替代
+4. 在 `units` 注册机制；在 `pages` 指定阶段、先修、同题实验/原文/边界与下一步
+5. 在 `cases` 填经核对的来源与对照字段；不确定部分明确留待核对
+6. 在方向的相应层引用同一资源，不复制实现，不把通用计划标成已复现
+7. 生成并运行全量测试；检查手机/桌面、键盘、禁用 JS、返回键与打印
+8. 若改过旧 URL，补 `legacy` 映射，绝不悄悄删除他人书签
+
+## 回归与发布
+
+导航测试检查所有根 HTML 本地路径/fragment、唯一 ID、无 JS 链接、共享导航/当前位置、注册表引用、生成一致性与旧路由行为。数值测试保留，静态断言从旧入口迁移到当前语义归属。PR 中区分真正执行过的测试与待执行浏览器/上线检查。部署仍是 GitHub Pages 的 main 根目录与 .nojekyll。
