@@ -60,3 +60,9 @@ node --test tests/*.test.cjs
 `network-clock.html` 把论文七问与一个独立标量时延实验连接起来：忽略偏差、已知偏差校正（oracle）、互易标量估计；展示总路径与位置误差的区别、单向不可辨识、共线镜像和互易失效。纯核心 `network-core.js`，原生控件/SVG `network.js` 与 `network.css`。不是 SCPD 或原始 OFDM 复现。
 
 全部测试仍使用 `node --test tests/*.test.cjs`。本次 118 项通过；真实浏览器待复核项目及数值边界见 `docs/NETWORK-VALIDATION.md`。
+
+## 研究阅读地图
+
+`research.html` 将现有标量 CRB、导频设计、网络时钟与 SBFD 四个案例按问题整理，链接完整 18 章与理论主线。每张卡分开先修、交互机制、论文/本站证据、结论边界和待检验的下一问；没有新增数值模型或论文复现。
+
+导航不依赖 JavaScript。首页和理论页使用 `research.css` 的局部样式显示案例卡片，旧页面、锚点与实验保留。静态链接与结构回归：`node --test tests/research-navigation.test.cjs`；全部回归：`node --test tests/*.test.cjs`。检查范围见 `docs/RESEARCH-NAVIGATION-VALIDATION.md`。
