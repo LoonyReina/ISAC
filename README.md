@@ -1,74 +1,58 @@
-# ISAC 交互讲义：从一束电波到一张感知图
+# ISAC 交互学习：从物理直觉到研究证据
 
-面向学过信号与系统、通信原理的本科生。在线阅读：
-https://loonyreina.github.io/ISAC/
+面向有信号与系统/通信原理基础、但尚未学过雷达或估计理论的读者。
+在线阅读：https://loonyreina.github.io/ISAC/
 
-## 阅读路线
+## 一条主路线，四个阶段
 
-首页由独立实验集合重整为 18 章连续讲义：问题与沿革 → 回波/延迟 → I/Q/相位 → 匹配滤波 → 多普勒 → 阵列 → OFDM 通信接收 → 七步感知处理 → CFAR → 性能指标 → 收发设计 → 真实信道/干扰 → 多站几何 → 研究分支 → 2026 原文案例 → 复现路线与参考资料。
+1. `index.html` 是唯一学习地图：选择当前阶段，不堆叠所有案例
+2. `foundations.html` 是连续基础讲义（原 00–13 章）：回波 → I/Q → 匹配 → 多普勒 → 阵列 → OFDM → 检测 → 系统与几何
+3. `experiments.html` 按观测、处理、研究机制列出真实可用的互动实验；搜索只是渐进增强，无 JavaScript 时所有链接仍可用
+4. `reading.html` 是研究方向与原文入口：八个可扩展方向、每方向六层学习深度、五个已实现专题、研究进展与固定版本书目
+5. `practice.html` 是研究工作流、待执行的导频实验设计、可复制记录单和四周节奏
 
-OFDM 默认只显示一个复数样本，随后依次解释一行、距离匹配、一列、相位矩阵、距离–慢时间和距离–速度。每幅图注明输入、坐标、颜色含义；峰由复数计算产生，不按目标真值伪造。
+`theory.html` 提供共同观测模型、标量 CRB 和速率桥梁。导频、网络时钟、SBFD、近场页面保留原模型与原文导读，并共享阶段导航、当前位置、先修、同主题路线与下一步。
 
-- `index.html`：新的静态长篇讲义；无需 JavaScript 也可读正文。
-- `course.css`：响应式目录、正文、图示与打印样式。
-- `course-core.js`：浏览器/Node 共用的纯数值模型。
-- `course.js`：Canvas、七步导航与交互；动画默认暂停。
-- `tests/course.test.cjs`：18 项新模型测试。
-- `docs/READING-MAP.md`：七篇综述及近期原文的阅读位置、证据与教学对应。
-- `docs/COURSE-VALIDATION.md`：本次实际执行的检查和未验证范围。
+所有实验遵循“先预测 → 改一个量 → 观察 → 解释/核对原文”。七步 OFDM 仍默认只显示第一步；动画默认暂停。图像由同一数值模型驱动，不手绘假峰、不上传参数。
 
-`learn.html`、`learn.css`、`learn.js`、`lab-core.js` 与旧模型测试保留上一轮五实验版本；`overview.html` 保留最初全景介绍。它们不再与新首页同步。首页兼容 `#concept`、`#lab`、`#methods`、`#roadmap` 等旧锚点，导航中也提供旧版入口。
+## 可继续扩展的内容架构
 
-## 本地预览与数值测试
+- `site/registry.json`：阶段、页面、机制单元、研究方向、主题证据与旧链接映射的单一注册表
+- `scripts/generate-site.cjs`：无第三方依赖的确定性静态生成器
+- `site/content-*.html`：手写的研究脉络、参考文献、实践与补充模型正文
+- `site.css`：共享外壳、响应式目录与可访问状态
+- `catalog.js`：可选实验筛选；`legacy-routes.js`：生成的已知旧链接转接
+- 科学页面中的 `SITE:HEADER`、`SITE:CONTEXT`、`SITE:NEXT` 标记区域由生成器维护；其余科学正文和 JS 保持手写
 
-```sh
-python3 -m http.server 8000
-# 浏览器打开 http://localhost:8000
-node --test tests/course.test.cjs
-# 上一版的独立回归仍可运行：
-node --test tests/lab-core.test.cjs
-```
+研究横向按波形/导频、检测/估计、通感权衡、空间感知、多站协作、真实信道、数据驱动感知、原型/标准组织。每个方向纵向按问题直觉、观测模型、互动实验、原文对照、创新边界、复现检验扩展。已有前置实验不标成专项实现，通用计划不标成论文复现；未实现层次不产生死链接。
 
-没有前端依赖、构建步骤、外部脚本或参数上传。浏览器绘图不代表完整射频收发仿真。
+详细迁移表、新主题接入步骤与证据字段契约见 [架构与迁移指南](docs/SITE-ARCHITECTURE.md)。
 
-## 修改与发布
-
-从最新 `main` 建分支，按 `AGENTS.md` 修改、测试和提交 PR。GitHub Pages 从 `main` 根目录发布，`.nojekyll` 与既有部署方式不变。新的模型参数统一放在 `course-core.js`，更改后同步检查正文、坐标、数值读数与测试。
-
-## 阅读与证据边界
-
-原文检索截至 2026-10-08。讲义基于七篇综述相关模型/方法章节重新组织，并连接 2026 年预印本的理论、仿真、原型与系统问题；不宣称穷尽全部最新文献或复现所有公式/实验。标准版本、研究报告和可部署产品分开表述。
-
-不提交凭据、第三方论文全文或未经许可的图表。本仓库与此前 Sites 版本独立维护。
-
-## I/Q 与路径相位的可视化补课
-
-第 3 章从“天线只能发实数”开始：两路系数 → 正交实载波相加 → 同一条 RF → 接收投影 → 复数记号。第 5 章把车辆位移、两段路径、波长、I/Q 旋转与快/慢时间连起来。没有替换原第 8 章的七步 OFDM。
-
-新增模型/视图：`intuition-core.js`、`intuition.js`、`intuition.css`；数值测试 `tests/intuition.test.cjs`。完整验证和阅读出处见 `docs/IQ-PATH-VALIDATION.md`。
-
-运行全部数值测试：
+## 本地维护与验证
 
 ```sh
+node scripts/generate-site.cjs
+node scripts/generate-site.cjs --check
 node --test tests/*.test.cjs
+python3 -m http.server 8000
 ```
 
-本轮结果：50 项通过（新增 21 + 原讲义 18 + 旧实验 11）。动画默认暂停，浏览器本地运行，不发送实验参数。
+生成的 HTML/JS 一并提交。GitHub Pages 仍从 `main` 根目录发布，保留 `.nojekyll`；线上无构建步骤、无依赖、无 SPA 路由。编辑器构建与线上运行分离。
 
-## 网络时钟与双基地几何案例
+当前框架迁移的实际测试记录见 [验证记录](docs/FRAMEWORK-VALIDATION.md)。历史各实验的科学假设、已做/未做验证仍见 `docs/*-VALIDATION.md`。静态检查不能替代浏览器交互、键盘、打印或上线回归。
 
-`network-clock.html` 把论文七问与一个独立标量时延实验连接起来：忽略偏差、已知偏差校正（oracle）、互易标量估计；展示总路径与位置误差的区别、单向不可辨识、共线镜像和互易失效。纯核心 `network-core.js`，原生控件/SVG `network.js` 与 `network.css`。不是 SCPD 或原始 OFDM 复现。
+## 旧书签与补充材料
 
-全部测试仍使用 `node --test tests/*.test.cjs`。本次 118 项通过；真实浏览器待复核项目及数值边界见 `docs/NETWORK-VALIDATION.md`。
+- 原 `index.html#…` 转到该内容的真实新位置：基础、阅读或实践，保留所有原静态 ID 与运行时速度匹配入口
+- `research.html` 转到 `reading.html`，保留五案例锚点
+- `learn.html` 的实验转到 `sandbox.html`；`overview.html` 的独有响应模型整合到 `resolution.html`，四周路线/FAQ 整合进实践
+- 兼容页提供不用 JavaScript 的对应链接；已知 hash 用 `location.replace` 转接，避免返回键重定向循环
+- 补充沙盒不是第二套学习首页，只从机制目录按需进入；其独立参数、声学/电磁区别、噪声/归一化条件保留
 
-## 研究阅读地图
+## 科学与出处边界
 
-`research.html` 将标量 CRB、导频设计、网络时钟、SBFD 与近场空间曲率五个案例按问题整理，链接完整 18 章与理论主线。每张卡分开先修、交互机制、论文/本站证据、结论边界和待检验的下一问；目录本身不执行数值模型；各案例区分独立机制实验与论文复现。
+本次重构不新增论文检索，不把教学机制称作原论文完整复现。原文核对日期/版本、理论/仿真/实测/原型证据层级分别保留。近期材料主要截至原记录的 2026-10-08 / 2026-10-10；版本和逐项核对范围见 [来源地图](docs/READING-MAP.md)。
 
-导航不依赖 JavaScript。首页和理论页使用 `research.css` 的局部样式显示案例卡片，旧页面、锚点与实验保留。静态链接与结构回归：`node --test tests/research-navigation.test.cjs`；全部回归：`node --test tests/*.test.cjs`。检查范围见 `docs/RESEARCH-NAVIGATION-VALIDATION.md`。
+`course-core.js`、`intuition-core.js`、`velocity-core.js`、`theory-core.js` 及各专题核心负责纯计算；对应 UI 模块消费同一输出。所有数值回归独立保留。不要把分辨尺度、精度、不模糊范围、CRB、检出率混成一个“性能”。
 
-## 近场空间曲率案例
-
-`near-field.html` 从第 06 章的平面波假设接到同角不同距的精确球面空间匹配。单程、未知公共复增益、等幅度、无噪声；三条计算曲线共用归一化，并显示实际孔径、残余相位和局部几何敏感度。不是论文的 CRB/MUSIC/优化复现。核心为 `near-field-core.js`，视图为 `near-field.js` 与 `near-field.css`。固定阅读 2023 年起源论文的 2025 v5。
-
-新增数值与 DOM 检查见 `tests/near-field*.test.cjs`，完整范围和待执行真实浏览器检查见 `docs/NEAR-FIELD-VALIDATION.md`。本轮聚合回归 173 项通过。
+修改从最新 `main` 建分支，通过 PR 审核与测试再合并；部署之后另做真实线上交互检查。不提交凭据、第三方论文全文或未经许可的图表。
