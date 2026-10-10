@@ -1,0 +1,32 @@
+/* Reading navigation only; no changes to experiment or model styles. */
+.research-entry{margin:28px 0;padding:22px;background:var(--wash);border:1px solid #bfd9d4;border-radius:10px}
+.research-entry h3{margin:0 0 10px;font-size:21px}
+.research-entry>p{margin:8px 0 16px;font-size:16px}
+.research-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:16px 0 0}
+.research-links li{min-width:0}
+.research-links a{display:block;height:100%;padding:15px 17px;background:#fff;border:1px solid var(--line);border-radius:8px;text-decoration:none;overflow-wrap:anywhere}
+.research-links a:hover{border-color:var(--teal);background:#f7fcfa}
+.research-links strong,.research-links span{display:block}
+.research-links span{font-size:14px;color:var(--muted);line-height:1.7;margin-top:5px}
+.research-main{max-width:1100px;margin:auto;padding:0 28px}
+.research-main .cover{padding-top:46px}
+.research-main .cover>p{max-width:44em}
+.research-jumps{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:25px}
+.research-jumps a{padding:5px 0}
+.research-foundations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0;list-style:none}
+.research-foundations li{min-width:0;background:white;border:1px solid var(--line);border-radius:9px;padding:20px}
+.research-foundations h3{font-size:19px;margin:0 0 10px}
+.research-foundations p{font-size:15px;margin:8px 0}
+.research-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.research-case{min-width:0;background:white;border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:10px;padding:24px;scroll-margin-top:90px}
+.research-case h3{font-size:23px;margin:8px 0 18px}
+.research-case .eyebrow{margin:0}
+.research-case dl{margin:0;font-size:15px}
+.research-case dt{font-weight:750;margin-top:18px;color:var(--ink)}
+.research-case dd{margin:5px 0 0;color:var(--muted);overflow-wrap:anywhere}
+.research-case dd a{font-weight:600}
+.research-case .next-chapter{margin-top:24px}
+.research-evidence li{margin:12px 0}
+@media(max-width:760px){.research-main{padding:0 18px}.research-foundations,.research-cases{grid-template-columns:1fr}.research-case{padding:20px}.research-entry{padding:18px}.research-main .cover{padding-top:34px}}
+@media(max-width:520px){.research-links{grid-template-columns:1fr}}
+@media print{.research-main{max-width:none;padding:0}.research-cases,.research-foundations{display:block}.research-case,.research-foundations li{margin:15px 0;break-inside:avoid}.research-entry{break-inside:avoid}.research-case .next-chapter{display:block}}
