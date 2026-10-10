@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="从稀疏 OFDM 导频的相位观测，推导距离模糊；比较梳状与连续导频，拆解参考信号设计论文。"><title>研究案例 · 导频省下来，距离为什么重复？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="pilot.css"><script defer src="pilot-core.js"></script><script defer src="pilot.js"></script></head><body>
+<a class="skip" href="#case">跳到案例</a><header class="top"><a class="brand" href="index.html">ISAC <span>交互讲义</span></a><div><a href="theory.html#research-method">理论主线</a><a href="#experiment">导频实验</a></div></header>
+<main class="theory-main pilot-main"><div class="cover"><p class="eyebrow">研究案例 02 / 从采样结构到波形设计</p><h1>导频省下来，<br>距离为什么重复？</h1><p>一个 40 m 的目标，为什么也像在 2.5 m？先亲手制造这个歧义，再看论文怎样把它变成设计问题。</p><div class="cover-tags"><span>已知导频 → 复数观测</span><span>真实计算的频谱与匹配</span><span>原研究 × 独立教学模型</span></div><nav class="study-links" aria-label="案例目录"><a href="#case">七问拆解</a><a href="#model">模型与推导</a><a href="#experiment">做实验</a><a href="#reproduce">复核与边界</a></nav></div>
+<section class="chapter" id="case"><header class="chapter-head"><p class="eyebrow">01 / 先定位研究问题</p><h2>少用导频，能否仍然分清距离与速度？</h2><p class="goal">先修：<a href="index.html#ofdm">OFDM 七步</a>、<a href="index.html#limits">分辨率与不模糊范围</a>。本页独立新增，不替代原 18 章与理论主线的两个实验。</p></header>
+<p>主读：Zhang 等，<a href="https://arxiv.org/pdf/2401.09643v3">OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing，arXiv v3，2024-11-13</a>。本页核对 §II、§III 与 §V；这里摘取设计逻辑，没有复现论文的整套二维算法或原图。</p>
+<ol class="reading-chain">
+<li><strong>问题：</strong>通信参考信号只占部分时频格，感知端却要估计延迟和多普勒。§II 把导频间隔与跨符号偏移变成设计变量。</li>
+<li><strong>基线：</strong>固定梳状位置，对比跨符号交错位置。本文实验另设“64 个连续导频”和“同数量连续导频”作为教学对照，不冒充论文完整基线。</li>
+<li><strong>局限：</strong>§II–III 说明尖峰变窄不等于歧义消失；重复峰会限制可用的延迟–多普勒区域。</li>
+<li><strong>创新：</strong>§III、V 分析交错偏移如何改变二维重复峰的位置，讨论与梳齿间隔互素的线性偏移。创新是有条件的图样设计准则，绝非“零填充提高分辨率”。</li>
+<li><strong>证据：</strong>这里读到的依据是解析条件与数值图样（§III、§V，特别是式(16)–(19)、图10）。它们不是本页参数下的实测结果。</li>
+<li><strong>边界：</strong>论文研究二维问题；本页只切出静止单径、一符号、无噪声的距离问题。不同符号的相干组合还要求增益/相位稳定或校准，并正确处理运动。</li>
+<li><strong>复现：</strong>先验证下方最小别名等式，再去复现指定版本的二维图。记录导频位置、总能量、符号数、运动模型与算法，而不是只比较最好看的峰。</li>
+</ol>
+<div class="callout"><b>本文做的是机制实验，不是宣称复现原论文</b><p>下面所有参数、曲线与数字由本站独立模型生成。没有交错多符号模式，没有 IAA/MUSIC，没有扩展保护间隔，也不从无噪声峰高推断检出率或通信吞吐量。</p></div></section>
+<section class="chapter" id="model"><header class="chapter-head"><p class="eyebrow">02 / 把每个符号接到图上</p><h2>只观察梳齿，就只知道相位差的一部分</h2></header>
+<p>已知非零导频 X[k]，在 OFDM 对角信道近似成立时，接收机先算 H[k]=Y[k]/X[k]。导频集合 P 决定真正观测哪些 k；没选中的频点不是“测到了零信道”。本例只有一个静止单站目标，τ=2R/c，取 c=3×10⁸ m/s。</p>
+<div class="equation">H[k] = a exp(−j2πkΔfτ)，k∈P<br>S(τ′) = |Σ<sub>k∈P</sub> H[k] exp(+j2πkΔfτ′)|² / |P|²</div>
+<p class="eqnote">k：子载波序号；Δf=1 MHz；τ、τ′：真值/候选往返延迟（s）；a：未知且随频率不变的复增益。生成器设 |a|=1，但接收机不拿真值相位作先验。对每个候选，拟合 â=ΣH[k]exp(+j2πkΔfτ′)/|P|；未知增益最小二乘残差越小，S 越大。纵轴 S 无量纲，不是概率。图中用 R′=cτ′/2 标横轴。</p>
+<p>令 P={r,r+q,…,r+(K−1)q}。候选延迟多走 1/(qΔf)，每个梳齿上的相位都会多转整数圈，外加同一个常数相位：</p>
+<div class="equation">exp[j2π(r+ℓq)/q] = exp(j2πr/q)<br>Δτ<sub>alias</sub> = 1/(qΔf)<br>ΔR<sub>alias</sub> = c/(2qΔf)</div>
+<p>常数相位可以被未知复增益吸收，所以换一个梳齿偏移 r 也不能单独消除这个歧义。q=4 时周期是 250 ns，即 37.5 m；40 m 与 2.5、77.5、115 m 的归一化匹配均为 1。它们是同一观测的多种解释，不是四个真实目标。</p>
+<p class="sources">处理背景：<a href="https://www.cel.kit.edu/download/VTC2012_BraunFuhrJondral.pdf">Braun、Fuhr、Jondral，2012，Spectral Estimation-based OFDM Radar Algorithms for IEEE 802.11a Signals</a>，§II.C 式(6)–(7)给出周期图与坐标映射；§II.D 分析缺失 DC 载波如何改变旁瓣。一个缺口与周期梳状缺采样不是同一种图样，本页不复现其 Hamming 窗、DC 缺口或 27 dB 数值。</p></section>
+<section class="chapter" id="experiment"><header class="chapter-head"><p class="eyebrow">03 / 受控实验</p><h2>同一真值，三种导频集合</h2><p class="goal">先看哪些频点真的被观察，再看它们怎样支持多个候选距离。所有曲线从相同复数公式计算，不是预画的峰。</p></header>
+<div class="lab"><div class="lab-title">无噪声 · 一个符号 · 矩形权重 · 无自动播放</div><noscript><p>交互需 JavaScript。默认 q=4、r=0、R=40 m，梳状导频为 0,4,…,60（16 个），别名为 2.5、40、77.5、115 m；三种图样在真值处得分均为 1。</p></noscript>
+<div class="experiment-grid"><div><label for="pilot-q">梳齿间隔 q（子载波数）</label><select id="pilot-q"><option value="2">2 · 32 个导频</option><option value="4" selected>4 · 16 个导频</option><option value="8">8 · 8 个导频</option></select><label for="pilot-offset">单符号梳齿偏移 r</label><select id="pilot-offset"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select><label for="pilot-phase">生成增益相位 arg(a)</label><select id="pilot-phase"><option value="0">0 rad</option><option value="1.5707963267948966">π/2 rad</option><option value="3.141592653589793">π rad</option></select></div>
+<div><label class="range-label" for="pilot-range">真值距离 R <output id="pilot-range-out">40 m</output></label><input id="pilot-range" type="range" min="0" max="149" step="0.5" value="40"><label for="pilot-step">候选距离格距（仅改变搜索采样）</label><select id="pilot-step"><option value="2.5">2.5 m · 粗网格</option><option value="1">1 m</option><option value="0.25" selected>0.25 m</option><option value="0.1">0.1 m · 密网格</option></select><label class="range-label" for="pilot-candidate">手选候选 R′ <output id="pilot-candidate-out">2.5 m</output></label><input id="pilot-candidate" type="range" min="0" max="150" step="0.25" value="2.5"></div></div>
+<fieldset><legend>图中显示哪些对照？</legend><label><input id="pilot-show-full" type="checkbox" checked>64 个连续导频</label><label><input id="pilot-show-block" type="checkbox" checked>同数量连续导频</label></fieldset><div class="actions"><button id="pilot-reset" type="button">恢复 40 m / q=4 示例</button></div>
+<p id="pilot-resources" class="readout"></p>
+<h3>① 观测位置：不是把没有的数据当零值</h3><p>横轴为子载波序号 k（无量纲），频率偏移为 k×1 MHz。每一竖线表示一个已知导频；三行是三次独立的假想配置，不是同时叠加发射。颜色和线型与下一图一致。</p><div class="pilot-legend"><span class="comb">青色实线：梳状</span><span class="full">棕色虚线：全连续</span><span class="block">紫色点线：等数量连续</span></div><svg id="pilot-mask" class="theory-chart" role="img" aria-label="三种导频位置；数字替代见导频表"></svg>
+<h3>② 距离匹配：窄主瓣也可能有多个同高峰</h3><p>横轴 R′（m），纵轴 S（无量纲）。折线连接当前搜索格点；手选候选的圆点和黑色竖线另按精确 R′ 计算，可不落在搜索格上。别名列表由解析周期计算，不依赖网格是否恰好命中。显示 [0,150] m，150 m 是与 0 m 等价的边界，不算新的不模糊区间。</p><svg id="pilot-response" class="theory-chart" role="img" aria-label="三种图样的距离匹配得分；完整候选得分表在下方"></svg><p id="pilot-result" class="readout" role="status" aria-live="polite" aria-atomic="true"></p><p id="pilot-selected"></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="资源与尺度比较，可横向滚动"><table><caption>资源与尺度：均为当前模型的计算值</caption><thead><tr><th scope="col">配置</th><th scope="col">导频数</th><th scope="col">端点跨度 MHz</th><th scope="col">精确重复周期 m</th><th scope="col">真峰到首零点 m</th><th scope="col">手选 S</th></tr></thead><tbody id="pilot-summary"></tbody></table></div>
+<p class="small">“端点跨度”是 (k最大−k最小)Δf；“首零点”按等间隔 K 个点的精确矩形窗公式 c/(2KqΔf)（连续图样 q=1）。它是本模型的主瓣尺度，不是任意目标/算法的通用分辨率阈值，更不是估计误差。</p>
+<details><summary>读取复数观测与导频位置</summary><div><p>H 的实、虚部无量纲；此表只列梳状配置。相位控制改变复数值，但不改变未知复增益匹配的功率图。</p><div class="table-scroll" tabindex="0" role="region" aria-label="梳状复数样本表"><table><thead><tr><th scope="col">k</th><th scope="col">偏移 MHz</th><th scope="col">Re H</th><th scope="col">Im H</th></tr></thead><tbody id="pilot-data"></tbody></table></div></div></details>
+<details><summary>读取全部搜索格点得分（不下采样）</summary><div><p>隐藏曲线仍保留在表中。每个数字均由同一个核心函数计算。</p><div class="table-scroll" tabindex="0" role="region" aria-label="全部距离得分表"><table><thead><tr><th scope="col">R′ m</th><th scope="col">梳状 S</th><th scope="col">全连续 S</th><th scope="col">等数量 S</th></tr></thead><tbody id="pilot-scores"></tbody></table></div></div></details>
+</div>
+<h3>三步预测，再用控件反驳自己</h3><ol><li>默认选择 2.5 m 和 40 m：梳状都到 1；全连续在 2.5 m 不到 1。换 r=1，再试一次：拟合复增益的相位改变，歧义仍在。</li><li>把格距从 2.5 m 改成 0.1 m：曲线更密，重复周期不变。这相当于更密地计算匹配；FFT 零填充也不会创造缺失的频率观测。</li><li>把 q 从 4 改成 8：梳状只剩 8 个导频、周期缩至 18.75 m；等数量连续块变窄带，主瓣更宽。尖峰、无歧义与资源不能只挑一个指标。</li></ol>
+</section>
+<section class="chapter" id="reproduce"><header class="chapter-head"><p class="eyebrow">04 / 什么结论经得住复核？</p><h2>先做对最小例子，再研究真实设计</h2></header>
+<p><b>资源公平：</b>每个选中导频取相同单位发射能量，所以全连续的总导频能量为 64，梳状与等数量块为 64/q。图分别除以 K²，使真峰都为 1，只比较形状；这不会把它们变成等总能量或等噪声性能的对照。若改成固定总能量，需重新分配每个导频的功率并建立噪声模型。本页没有计算 SNR 收益。</p>
+<p><b>观测假设：</b>没有时钟偏差、载频偏差、频率选择性散射增益、噪声、多径、遮挡、符号内运动或距离迁移。相位斜率模型假定已正确同步并消除 ISI/ICI；这里不模拟 CP，不能把 150 m 周期当作真实系统的最大探测距离。双站应先解释路径长度/路径差，不能直接照搬单站的一半距离换算。</p>
+<p><b>向论文迈进一步：</b>单符号改偏移不会去模糊；跨符号交错需要把偏移与多普勒联合建模。若每符号增益相位都可任意独立变化，不能把频点简单拼接成一个相干宽带观测。论文的二维区域与此页静止切片必须分开核验。</p>
+<details><summary>可复算检查点与失败条件</summary><div><ol><li>默认 P={0,4,…,60}；K=16；τ=266.6667 ns。用 H[k] 代入 S：2.5、40、77.5、115 m 都应为 1，允许浮点误差 10⁻¹²。</li><li>梳状首零点偏离真峰 2.34375 m，全连续也是 2.34375 m；等数量连续块为 9.375 m。梳状与全连续主瓣尺度相同，不代表同 SNR，也不代表同不模糊范围。</li><li>令 r=1：在 R′=77.5 m，â 相对真值增益转过 +π/2，|â|²仍为 1。若代码把未知相位固定为 0，会错误消除这个别名。</li><li>网格不命中峰时，离散最大值可能小于 1；不要把采样漏峰当成消除模糊。多个理论同高峰不得自动宣判唯一目标。</li></ol></div></details>
+<p class="sources">来源核对日期：2026-10-10。Zhang 等：上链 v3 PDF，§II（图样定义）、§III（二维模糊分析）、§V（2D FFT 的重复条件）。Braun 等：KIT 作者 PDF，2012，§II.C–D。没有逐式审核全部证明、附录或实测数据；此页的单径参数与测试是本站独立教学推导。</p>
+<a class="next-chapter" href="theory.html#research-method">回到七问框架与 CRB 机制实验 →</a></section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="index.html">返回完整 18 章</a></footer></main></body></html>

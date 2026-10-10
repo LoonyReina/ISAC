@@ -235,3 +235,15 @@ Release 19 · 官方服务需求
 新增实验仅独立推导实标量 y_i=θx_i+n_i：固定无先验增益、已知输入实现、独立实高斯噪声。原研究的复向量、Bayesian 信息与通信速率目标不被此标量模型替代。对 Gaussian 输入 Q=Σx_i²/P~χ²_T，E[1/Q]=1/(T−2)（T>2）；Var(1/Q)=2/[(T−2)²(T−4)]（T>4）。T≤2 均值发散；T=3、4 均值有限但方差发散。所有这些标量公式由本站教学推导得出，不归为原论文完整结果复现。
 
 Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号不改变块能量，BPSK 一侧直接用精确值；Gaussian 一侧不做逐块能量归一化。比较使用相同 T、P、σ²；改变 T 会同时改变单块时长/样本预算，不能被当成无额外资源收益。
+
+## 2026-10-10 · 导频设计研究案例
+
+新增 `pilot-design.html`，从首页阅读路线和 `theory.html#research-method` 链入，保留 18 章和理论页两个实验。
+
+直接打开并阅读的原始文献：
+- Rui Zhang 等，*OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing*，arXiv:2401.09643v3，2024-11-13，https://arxiv.org/pdf/2401.09643v3 。核对全文 PDF 中 §II 的 q/符号间隔/偏移图样、§III 的 Delay-and-Sum 模糊分析和 Schemes A–D、§V 的 2D FFT 式(14)–(19)与图10文字说明。仅据这些部分介绍研究设计逻辑；未逐式审核全部证明、§VI–VIII 超分辨推导或重做原始数值图。
+- Martin Braun、Manuel Fuhr、Friedrich K. Jondral，*Spectral Estimation-based OFDM Radar Algorithms for IEEE 802.11a Signals*，2012，KIT 作者全文 PDF：https://www.cel.kit.edu/download/VTC2012_BraunFuhrJondral.pdf 。核对 §II.C 周期图式(6)–(7)、格点/坐标与窗口说明，及 §II.D 式(8)–(9)缺失 DC 分析。没有把缺一个 DC 点当作周期梳状采样，也没有复现其 Hamming 窗旁瓣数值。
+
+本站独立教学模型：单站静止单径 H[k]=a exp(−j2πkΔfτ)，未知频率平坦复增益，τ=2R/c，c=3e8 m/s，64 个频率格，Δf=1 MHz。采用直接复数求和，不借用原论文图。计算图样为 q∈{2,4,8} 梳状、64 连续、同数量连续块；所有精确别名、首零点和归一化由该模型推导。单符号偏移造成的共同相位由拟合复增益吸收，不演示多符号相干拼接。
+
+资源与证据边界：每个导频单位能量固定，因此不同导频数量不是等总能量；K² 归一化只对齐无噪声真峰。格距改变搜索采样，不改变物理信息。首零点是矩形权重单径图样尺度，不是通用分辨率或估计精度。没有噪声、检测阈值、吞吐量、CP/ISI/ICI、二维多普勒或硬件验证。验证见 `PILOT-VALIDATION.md`。
