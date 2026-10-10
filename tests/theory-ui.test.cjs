@@ -52,3 +52,12 @@ test('DOM smoke: rate axes stay in view and exactly two unconnected markers rend
     for(const n of svg.children){for(const key of ['x','x1','x2','cx'])if(n.attrs[key]!==undefined)a.ok(+n.attrs[key]>=0&&+n.attrs[key]<=width);for(const key of ['y','y1','y2','cy'])if(n.attrs[key]!==undefined)a.ok(+n.attrs[key]>=0&&+n.attrs[key]<=285);}
   }
 });
+
+test('DOM smoke: low-SNR table precision distinguishes BPSK and Gaussian information',()=>{
+  const {els}=setup(388);els['rate-snr'].value='-20';els['rate-snr'].fire('input');
+  const rows=els['rate-table-body'].children;
+  a.equal(rows[0].children[1].textContent,'0.007177645');a.equal(rows[1].children[1].textContent,'0.007177646');
+  a.notEqual(rows[0].children[1].textContent,rows[1].children[1].textContent);
+  a.match(els['rate-result'].textContent,/I=0.007178/);
+  const html=fs.readFileSync(require.resolve('../theory.html'),'utf8');a.match(html,/显示相同不证明精确相等/);
+});
