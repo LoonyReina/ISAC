@@ -1,0 +1,25 @@
+<aside class="scene-guide" id="scene-guide" aria-labelledby="scene-title">
+  <h3 id="scene-title">先用同一场景，找一个研究问题</h3>
+  <p>基站给机器人发消息，同时接收车辆反射。机器人想知道发了什么；基站想知道车在哪里、怎样运动。</p>
+  <p class="scene-path" aria-label="路径与角色示意，不是测量曲线">基站 → 机器人（通信接收）<br>基站 → 车辆 → 基站（感知接收）</p>
+  <h4>① 换一个接收角色</h4>
+  <div class="scene-controls" data-scene-controls hidden role="group" aria-label="选择接收任务">
+    <button type="button" data-scene-role="message" aria-pressed="false" aria-controls="scene-message">恢复消息</button>
+    <button type="button" data-scene-role="echo" aria-pressed="false" aria-controls="scene-echo">解释反射</button>
+  </div>
+  <div id="scene-roles" aria-live="polite" aria-atomic="true">
+    <p id="scene-message" data-scene-panel="message"><strong>机器人：</strong>接收通信样本；利用已知导频估计信道，未知的是待恢复的消息符号。发射端知道消息，不代表机器人已知道。</p>
+    <p id="scene-echo" data-scene-panel="echo"><strong>基站：</strong>接收车辆回波；本例本地已知发射信号，未知的是传播时延等参数。知道发了什么，还不等于知道距离。</p>
+  </div>
+  <p class="scene-boundary">两个接收机通常得到不同观测：共享发射不等于同一个 Y。这里只画路径；理论页的“同样本”是受控对照。</p>
+  <h4>② 共享之后，还要比较代价</h4>
+  <details data-scene-prediction><summary>先猜：感知多占已知资源，两项任务就一定一起变好吗？</summary><p>不一定。先固定带宽、能量、观察时长、孔径和已知条件，再比较通信与感知指标。</p></details>
+  <details><summary>需要基础或想亲手验证？</summary><p><a href="foundations.html#history">先分清两种任务</a>，或进入<a href="theory.html#shared-model">同样本受控实验</a>：恢复无噪声示例（b=+1、d=5、σ=0），不换噪声，只切换通信 / 感知。看样本是否改变、待估量和候选是否改变；不要用两种得分的高低比较性能。</p></details>
+  <h4>③ 把疑问放回处理链</h4>
+  <p>选择瓶颈，标出下方已有方向卡。这是主要入口，不是互斥分类；全部方向始终保留。无脚本时可看每张卡的“链路入口”。</p>
+  <div class="scene-controls" data-scene-controls hidden role="group" aria-label="选择链路瓶颈"><!-- SCENE:POSITIONS --></div>
+  <p id="scene-status" role="status" aria-live="polite"></p>
+  <a id="scene-jump" hidden>前往首个对应方向 ↓</a>
+  <button type="button" id="scene-reset" data-scene-controls hidden>重置场景选择</button>
+  <p>我想研究____；它卡在____；先改____，观察____；实验还没证明____。沿原卡六层继续；读论文时核对版本、观测、未知量、资源预算和证据类型，再到<a href="practice.html#notebook">研究记录单</a>整理。</p>
+</aside>
