@@ -22,6 +22,7 @@
 <li><a href="pilot-design.html"><strong>导频与歧义</strong><span>导频省下来，距离为什么重复？</span></a></li>
 <li><a href="network-clock.html"><strong>时钟与几何</strong><span>时钟差 10 ns，位置差多少？</span></a></li>
 <li><a href="sbfd-resource.html"><strong>资源与双孔径</strong><span>分的是带宽，测速看的是时间</span></a></li>
+<li><a href="near-field.html"><strong>波前曲率与距离</strong><span>同一个方向，为什么还可能分出远近？</span></a></li>
 </ul>
 </nav>
 <p>每章的“停一下”不是考试，而是让你先猜结果，再打开答案。</p>
@@ -193,7 +194,8 @@
 <h3>发射波束与接收波束是两次不同的选择</h3>
 <p>发射权重控制把能量主要送往哪里；接收权重控制如何从到达各天线的信号中挑出某个方向。可以分别设计，也可以联合设计。通信用户与感知目标不在同一方向时，发射能量如何分配就是实实在在的权衡。</p>
 <p>阵列增大通常使主瓣变窄，但还涉及栅瓣、互耦、宽带波束偏斜、近场波前和校准误差。MIMO 雷达若能分离不同发射通道，还可构造虚拟阵列；这需要可分离波形与正确的虚拟阵元位置，不能简单把天线数量相乘当成无条件收益。</p>
-<p class="sources">原文接力：<a href="#ref-S1">[S1]</a> · <a href="#ref-S2">[S2]</a></p><details class="checkpoint"><summary>停一下，先预测：角度与距离都影响相位，怎么分得开？</summary><div><p>看的是不同坐标上的变化：同一时刻、同一频率，跨阵元比较主要提供角度；同一时刻、同一阵元，跨频率比较主要提供延迟。三种采样轴的角色不同；真实宽带、多径条件下也可能耦合。</p></div></details><a class="next-chapter" href="#ofdm-basics">下一章 07 → 先把 OFDM 通信接收机搭回来</a></section>
+<p>如果只放松平面波假设，保留波前弯曲，同一方向的不同距离还会给出相同的阵列向量吗？<a href="near-field.html#geometry">接着读近场的几何推导</a>，再用<a href="near-field.html#experiment">一个空间匹配实验</a>检查曲率留下了什么线索。</p>
+<p class="sources">原文接力：<a href="#ref-S1">[S1]</a> · <a href="#ref-S2">[S2]</a></p><details class="checkpoint"><summary>停一下，先预测：角度与距离都影响相位，怎么分得开？</summary><div><p>在本章远场近似下，看的是不同坐标上的变化：同一时刻、同一频率，跨阵元比较主要提供角度；同一时刻、同一阵元，跨频率比较主要提供延迟。三种采样轴的角色不同；真实宽带、多径条件下也可能耦合。</p></div></details><a class="next-chapter" href="#ofdm-basics">下一章 07 → 先把 OFDM 通信接收机搭回来</a></section>
 <section class="chapter" id="ofdm-basics" data-number="07"><header class="chapter-head"><div class="eyebrow">走通一条接收链 / 07</div><h2>先把 OFDM 通信接收机搭回来</h2><p class="goal">需要回忆正交基展开；先别把通信 FFT 和感知 FFT 混在一起。</p></header>
 <h3>同一时间发多根频率，为什么能够分别读出来？</h3>
 <p>在长度 T<sub>u</sub> 的有效符号区间中，选频率 kΔf，且 Δf = 1/T<sub>u</sub>。每根频率上放一个复数权重 X[k]，然后相加：</p>
