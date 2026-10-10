@@ -412,7 +412,8 @@
           "other": []
         },
         "verificationNote": "2026-10-10 核对固定 v1 严格设计机制；独立复数推导、双实现数值检查与小规模约束求解交叉验证，不代表完整论文复现"
-      }
+      },
+      "learningEntry": "waveform-design.html#intuition"
     },
     {
       "id": "case-joint-beamforming",
@@ -482,7 +483,8 @@
           ]
         },
         "verificationNote": "2026-10-10 原文研究交接核对固定 v2 §II–VI 与附录；解析机制经独立复数线性代数核查。本文原理对照与合成数值不是论文优化器或完整仿真复现。"
-      }
+      },
+      "learningEntry": "joint-beamforming.html#intuition"
     }
   ],
   "legacy": {
@@ -1529,6 +1531,14 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "实标量 LS：比较估计误差与条件 CRB",
+              "href": "theory.html#estimator-crb",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "先回看共同观测与标量 CRB；这里只估计无量纲实增益，不是非线性测距、角度估计或多目标跟踪。"
             }
           ],
           "coverage": "direction-specific"
@@ -1595,7 +1605,7 @@
         }
       ],
       "nextExtension": "增加连续参数估计与离格目标的可比实验，明确模型失配和低 SNR 条件。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "coverage": "已有匹配、CFAR 与实标量 LS/CRB 教学实验；非线性测距与多目标跟踪尚未实现",
       "scenePositions": [
         "interpret"
       ]
@@ -2780,13 +2790,14 @@
         "kind": "concept",
         "groupId": "inference",
         "label": "参数估计与误差",
-        "question": "估计器真的能达到下界吗？",
-        "knownUnknown": "实际估计器接收 x、y；θ 只作评估真值",
+        "question": "同一份观测怎样给出参数估计，误差又该怎样评价？",
+        "knownUnknown": "先固定样本比较未知参数的候选；深入实标量 LS 时，估计器接收 x、y，θ 只作评估真值",
         "boundary": "实标量 LS 等号不能直接搬到非线性距离或角度",
         "unitRefs": [
+          "shared",
           "estimator-crb"
         ],
-        "entryUnitRef": "estimator-crb"
+        "entryUnitRef": "shared"
       },
       {
         "id": "association",
@@ -2891,6 +2902,17 @@
           "joint-beamforming"
         ],
         "entryUnitRef": "array"
+      },
+      {
+        "id": "mutual-assistance",
+        "kind": "concept",
+        "groupId": "codesign",
+        "label": "通信与感知互助",
+        "href": "theory.html#evolution",
+        "question": "感知结果怎样帮助波束选择，通信网络又怎样帮助感知？",
+        "knownUnknown": "感知输出可辅助通信决策；通信网络可提供同步、节点协作与信息融合条件",
+        "boundary": "共享设备与资源的集成收益，应与任务互助的协同收益分别计量；本站尚无感知辅助波束选择或在线闭环互助实现",
+        "unitRefs": []
       },
       {
         "id": "resource-design",
@@ -3577,6 +3599,14 @@
         "target": "direction:prototype",
         "type": "research_entry",
         "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "mutual-assistance",
+        "target": "direction:networks",
+        "type": "research_entry",
+        "label": "沿网络协作方向核对同步与融合条件；在线互助闭环尚未实现",
         "provenance": "editorial-pedagogic",
         "scientificClaim": false
       }
