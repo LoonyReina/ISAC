@@ -14,7 +14,8 @@ class Element{
  append(...xs){for(const x of xs){x.parent=this;this.children.push(x);}}
  replaceChildren(...xs){for(const c of this.children)c.parent=null;this.children=[];this._text='';for(const x of xs)this.append(...(x.tagName==='#fragment'?x.children.slice():[x]));}
  get isConnected(){return this.connected||Boolean(this.parent&&this.parent.isConnected);}
- focus(){if(!this.isConnected)return;for(let e=this;e;e=e.parent){if(e.hidden)return;if(e.parent?.tagName==='details'&&!e.parent.open&&e.tagName!=='summary')return;}this.focused=true;}
+ focus(options){this.focusOptions=options;this.revealCalls??=[];this.revealCalls.push('focus');if(!this.isConnected)return;for(let e=this;e;e=e.parent){if(e.hidden)return;if(e.parent?.tagName==='details'&&!e.parent.open&&e.tagName!=='summary')return;}this.focused=true;}
+ scrollIntoView(options){this.scrollOptions=options;this.revealCalls??=[];this.revealCalls.push('scroll');}
  setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs||(k.startsWith('data-')&&k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase()) in this.dataset);}
  addEventListener(k,fn){(this.events[k]??=[]).push(fn);}
  fire(k,extra={}){const event={target:this,preventDefault(){this.defaultPrevented=true;},...extra};for(const fn of this.events[k]||[])fn(event);return event;}
@@ -94,3 +95,15 @@ test('generator rejects duplicate node IDs and invalid canonical or editorial re
 });
 
 test('DOM focus model rejects closed-disclosure descendants but accepts its visible summary',()=>{const h=setup(),group=h.groups[0],button=group.querySelector('button'),summary=group.querySelector('summary');a.equal(group.open,false);button.focus();a.equal(button.focused,undefined);summary.focus();a.ok(summary.focused);group.open=true;button.focus();a.ok(button.focused);});
+
+test('DOM selection focuses without native scrolling then reveals panel start; history restoration does neither',()=>{
+ const h=setup({hash:'#map-node-iq'});a.equal(h.panel.revealCalls,undefined);
+ h.click(h.byId('map-node-iq').querySelector('button'));
+ a.ok(h.panel.focused);a.equal(h.panel.focusOptions.preventScroll,true);
+ a.equal(h.panel.scrollOptions.block,'start');a.equal(h.panel.scrollOptions.behavior,'auto');
+ a.deepEqual(h.panel.revealCalls,['focus','scroll']);
+ for(const event of ['popstate','hashchange'])h.navigate('#map-node-waveform-design',event);
+ a.deepEqual(h.panel.revealCalls,['focus','scroll']);
+ a.match(read('knowledge-map.css'),/\.map-detail\{[^}]*scroll-margin-top:/);
+ a.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v2'));
+});
