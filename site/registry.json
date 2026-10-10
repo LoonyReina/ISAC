@@ -1,0 +1,2130 @@
+{
+  "stages": [
+    {
+      "id": "foundations",
+      "label": "基础讲义",
+      "href": "foundations.html",
+      "step": "01",
+      "outcome": "把传播路径写成接收机的复数观测",
+      "description": "从回波、I/Q 与相位出发，沿 00–13 章构造 OFDM 感知链。",
+      "next": "先从一束回波开始"
+    },
+    {
+      "id": "experiments",
+      "label": "机制实验",
+      "href": "experiments.html",
+      "step": "02",
+      "outcome": "只改变一个条件，解释曲线为什么变",
+      "description": "按观测、处理和约束选择实验；先预测，再用数值检验。",
+      "next": "选一个想弄清的问题"
+    },
+    {
+      "id": "reading",
+      "label": "论文阅读",
+      "href": "reading.html",
+      "step": "03",
+      "outcome": "把作者的主张与证据逐一对应",
+      "description": "按八个方向深入已有主题，读固定版本原文，分清机制演示、仿真与实测。",
+      "next": "带着问题回到原文"
+    },
+    {
+      "id": "practice",
+      "label": "研究实践",
+      "href": "practice.html",
+      "step": "04",
+      "outcome": "留下一个能复核、也能失败的最小实验",
+      "description": "从问题、资源预算和基线，走到试验记录、边界与下一问。",
+      "next": "写下你的第一个实验计划"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-crb",
+      "title": "平均功率相同，估计界也相同吗？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#limits\">第 10 章：分辨率、精度与界</a>；<a href=\"theory.html#shared-model\">已知输入的观测模型</a>",
+        "问题": "发射信号可以随机，但感知端知道这次实现。先求每块的界再平均，为什么不同于先平均能量再求界？",
+        "交互机制": "改变块长与抽样块数，对照固定幅度、Gaussian 输入和解析参考。看低能量块怎样影响倒数的平均。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/2204.06938v8\">CRB–rate 原始研究 v8</a>的理论及数值分析；本站：独立实标量推导与发射块 Monte Carlo。另见<a href=\"https://arxiv.org/html/2310.09749v2#S4.SS2\">教程 v2 §IV-B</a>。",
+        "结论边界": "不是估计器误差实验，也未复现完整 CRB–rate 区域。小块长时倒数矩可能发散；有限抽样均值不能证明收敛。",
+        "下一研究问题": "进入多参数信息矩阵后，如何保留输入已知条件，并在相同资源约束下比较完整权衡区域？"
+      },
+      "unit": "crb",
+      "paper": "theory.html#research-method",
+      "next": "theory.html#rate-crb-bridge",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
+        "sourceUrl": "https://arxiv.org/html/2204.06938v8",
+        "version": "v8，2023-06-07；首稿 2022",
+        "supportingSources": [
+          {
+            "url": "https://arxiv.org/html/2310.09749v2#S4.SS2",
+            "version": "v2，2023-10-17",
+            "locator": "§IV-B 式(19)–(22)"
+          }
+        ],
+        "paperEvidenceType": "理论与数值分析",
+        "siteArtifactType": "独立实标量机制演示；两个互信息–平均条件 CRB 工作点",
+        "metrics": [
+          "Fisher 信息 J",
+          "平均条件 CRB，增益平方",
+          "互信息，bit/每实信道使用"
+        ],
+        "unknowns": [
+          "未逐项录入原文完整维度、约束、求解器与图参数",
+          "本站未重做原文区域或指定图",
+          "两个候选点不是完整 Pareto 边界"
+        ],
+        "comparisonLink": "theory.html#crb-mechanism",
+        "sourceId": "case-crb-paper",
+        "locator": {
+          "summary": "主论文 §II；配套教程 v2（2023-10-17）§IV-B 式(19)–(22)，速率桥接见 §IV-A–C",
+          "section": null,
+          "figure": null,
+          "equation": null
+        },
+        "retainedAssumptions": [
+          "感知端知道随机发射信号的具体实现",
+          "先计算实现条件下的 CRB，再按输入分布平均",
+          "用相同平均功率比较输入分布"
+        ],
+        "omittedMechanisms": [
+          "原文复向量模型、先验信息、最优 CRB–rate 区域",
+          "衰落算例及论文图的数值复现",
+          "实际估计器误差、导频和编码开销、硬件失真"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定 P=1、感知噪声方差=1；T 为单块实样本数，B 为独立发射块数。改 B 不增加单块观测时长；两种输入具有相同平均块能量 TP，高斯单块能量未强制归一化。连续带宽和物理孔径未建模。",
+          "bandwidth": null,
+          "energy": null,
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": null,
+          "other": []
+        },
+        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+      }
+    },
+    {
+      "id": "case-pilot",
+      "title": "导频省下来，距离为什么重复？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#matched\">第 4 章：匹配滤波</a>；<a href=\"foundations.html#ofdm\">第 8 章：沿频率读距离</a>",
+        "问题": "梳状导频能留下尖锐主峰，为什么仍有多个同高距离候选？更密的搜索格点能解决吗？",
+        "交互机制": "改变梳状间隔、偏移和搜索格距，对照导频位置、复数观测与归一化距离匹配曲线。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/pdf/2401.09643v3\">参考信号图样设计 v3（2024-11-13）</a>的分析与数值结果；本站：无噪声静止单径的独立复数求和。背景：<a href=\"https://www.cel.kit.edu/download/VTC2012_BraunFuhrJondral.pdf\">Braun 等，2012 作者 PDF</a>。",
+        "结论边界": "归一化只对齐真峰，不代表等总能量或等 SNR。单符号未知复增益可吸收偏移造成的公共相位；这里没有二维多普勒处理。",
+        "下一研究问题": "跨符号交错时，怎样联合处理多普勒与增益相位，并在固定总能量下验证去模糊？"
+      },
+      "unit": "pilot",
+      "paper": "pilot-design.html#case",
+      "next": "pilot-design.html#reproduce",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing",
+        "sourceUrl": "https://arxiv.org/pdf/2401.09643v3",
+        "version": "v3，2024-11-13",
+        "paperEvidenceType": "解析条件与数值图样",
+        "siteArtifactType": "静止单径、单符号、无噪声的距离切片机制演示",
+        "metrics": [
+          "归一化距离匹配功率",
+          "别名/重复峰位置",
+          "峰形与距离歧义"
+        ],
+        "unknowns": [
+          "完整二维复现还需导频位置、总能量、符号数、运动模型和算法的逐项原文配置",
+          "本文未逐式审核全部证明、附录或实测数据"
+        ],
+        "comparisonLink": "pilot-design.html#case",
+        "sourceId": "case-pilot-paper",
+        "locator": {
+          "summary": "§II、§III、§V；式(16)–(19)、图10",
+          "section": null,
+          "figure": null,
+          "equation": null
+        },
+        "retainedAssumptions": [
+          "导频梳状间隔及偏移改变歧义结构",
+          "重复峰与峰宽需要分别判断",
+          "最小静止单径延迟别名关系"
+        ],
+        "omittedMechanisms": [
+          "原文完整二维延迟–多普勒图样与算法",
+          "跨符号运动及相干组合",
+          "噪声、SNR 收益和实测结果"
+        ],
+        "resourceBudget": {
+          "summary": "每个选中导频取单位发射能量：全连续为 64，梳状与等数量连续块为 64/q。按 K² 归一化使真峰为1只比较形状，不构成等总能量或等噪声性能对照。",
+          "bandwidth": null,
+          "energy": null,
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": null,
+          "other": []
+        },
+        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+      }
+    },
+    {
+      "id": "case-clock",
+      "title": "时钟差 10 ns，位置差多少？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#echo\">第 2 章：传播延迟</a>；<a href=\"foundations.html#geometry\">第 13 章：双基地与多站几何</a>",
+        "问题": "同一个时延读数里，哪部分来自传播，哪部分来自时钟？总路径误差为什么不能直接当作位置误差？",
+        "交互机制": "改变站位、时钟偏差和噪声，对照忽略偏差、已知偏差校正与互易估计；检查椭圆、候选位置和镜像歧义。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/2607.18680v1\">联合同步与感知 v1（2026-07-21）</a>的理论与仿真；本站：已关联标量时延的有限网格实验。不是实网验证。",
+        "结论边界": "不是 SCPD、原始 OFDM 或多目标关联复现。双向平均使用两次观测；局部可辨识不保证全局唯一。论文条件 RMSE 还需结合对应成功率阅读。",
+        "下一研究问题": "当互易假设失效、时频偏差与目标关联同时未知时，该如何报告失败试验和整体定位表现？"
+      },
+      "unit": "clock",
+      "paper": "network-clock.html#case",
+      "next": "network-clock.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+        "sourceUrl": "https://arxiv.org/html/2607.18680v1",
+        "version": "v1，2026-07-21",
+        "paperEvidenceType": "可辨识/界分析与数值仿真；不是实网测量",
+        "siteArtifactType": "已关联单目标标量时延机制演示；忽略偏差、oracle 与标量互易三种教学对照",
+        "metrics": [
+          "本站一次确定性试验的路径/位置误差",
+          "原文成功试验条件下的 RMSE",
+          "原文成功率，表I仅对应图2–3"
+        ],
+        "unknowns": [
+          "图4–6 每组扫描缺少配套成功率表，不可将条件 RMSE 当作无条件误差",
+          "本站未独立重证全部定理或重做原图",
+          "完整原文功率、带宽、时长与失败定义尚未结构化录入"
+        ],
+        "comparisonLink": "network-clock.html#case",
+        "sourceId": "case-clock-paper",
+        "locator": {
+          "summary": "§II 式(1)–(5)；§III-A 式(7)–(11)；§IV-A 式(16)–(27)、算法1；§VI 图2–10、表I",
+          "section": null,
+          "figure": null,
+          "equation": null
+        },
+        "retainedAssumptions": [
+          "传播延迟与时钟偏差共同进入时间读数",
+          "利用双向互易观测区分部分偏差",
+          "从路径约束推断位置，观察几何和可辨识性"
+        ],
+        "omittedMechanisms": [
+          "互易 MIMO-OFDM 复数观测、CFO、多径和多目标分离",
+          "结构 CP/Vandermonde 求解及算法基线",
+          "幅相信道、检测、关联、跟踪与硬件实测"
+        ],
+        "resourceBudget": {
+          "summary": "原文 §VI 记录 M=10、N=36、K=20、R=20 与 CP-VDM 初始化。本站为等权路径最小二乘，不建立 SNR 到时延方差的映射，不等同原文参数预算。",
+          "bandwidth": null,
+          "energy": null,
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": null,
+          "other": []
+        },
+        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+      }
+    },
+    {
+      "id": "case-sbfd",
+      "title": "分的是带宽，测速看的是时间",
+      "fields": {
+        "先修": "<a href=\"foundations.html#ofdm\">第 8 章：频率与慢时间</a>；<a href=\"pilot-design.html\">导频与距离歧义案例</a>",
+        "问题": "把频带分给多个节点之后，为什么不能从测速表现相近，直接推出距离分辨率或通信性能相同？",
+        "交互机制": "只改变感知频格数与相干观察符号数，检查三子带资源账本、距离切片和速度切片。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/2602.00054v1\">SBFD ISAC 原型研究 v1</a>的硬件测量；本站：无噪声理想匹配模型。两类结果分别阅读，不用理想曲线替代实测。",
+        "结论边界": "论文测速为单站，多基地仍是未来工作。只有 SBFD 承载通信，对照的带宽与感知节点数也不同；不能称作公平通信性能排名。",
+        "下一研究问题": "固定总带宽、能量、时长与有效载荷后，如何逐项加入频偏、多径和非线性，建立匹配的实验对照？"
+      },
+      "unit": "sbfd",
+      "paper": "sbfd-resource.html#case",
+      "next": "sbfd-resource.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "arXiv:2602.00054v1 的 SBFD ISAC 原型研究",
+        "sourceUrl": "https://arxiv.org/html/2602.00054v1",
+        "version": "v1；原案例记录提交日期为 2026-01-19，核对日期为 2026-10-10；本次未重新核验版本页",
+        "paperEvidenceType": "三台 X410 的特定配置原型测量",
+        "siteArtifactType": "理想单目标频格账本与归一化模糊函数计算；非硬件性能预测",
+        "metrics": [
+          "距离与速度的峰到首零点名义尺度",
+          "归一化匹配功率 dB",
+          "原文测量指标与本站理想尺度分别报告"
+        ],
+        "unknowns": [
+          "节点3的通信收发角色在原文叙述中仍待澄清",
+          "六次、每次五秒测量如何分配到各模式不明确",
+          "CP 与真实采样率等硬件复现参数待核对",
+          "本站默认名义测速尺度0.1416244545 m/s与作者0.145 m/s的差异未解释",
+          "无原始 IQ 与校准条件，未复现测量曲线"
+        ],
+        "comparisonLink": "sbfd-resource.html#case",
+        "sourceId": "case-sbfd-paper",
+        "locator": {
+          "summary": "§II–VI；表I–II；图4–10",
+          "section": null,
+          "figure": null,
+          "equation": null
+        },
+        "retainedAssumptions": [
+          "频格分配改变频率孔径",
+          "观测符号数决定时间孔径",
+          "距离与速度的名义分辨尺度需要分开比较"
+        ],
+        "omittedMechanisms": [
+          "射频自干扰、接收机饱和、硬件同步误差",
+          "实测 IQ、功率校准、BER 与真实速度 RMSE",
+          "能量与通信吞吐量模型"
+        ],
+        "resourceBudget": {
+          "summary": "原文 SBFD 共用20 MHz；分离完整频带对照合计60 MHz（6.74/6.80/6.86 GHz）。本站独立选 Fₛ=20 MHz、N=2048、Δf=9765.625 Hz、f꜀=6.8 GHz、Tₒ=128 μs，默认1216符号；Fₛ=B 是教学选择。只 SBFD 承载通信；图9轨迹数也不同，因此不是公平通感排名。",
+          "bandwidth": null,
+          "energy": null,
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": null,
+          "other": []
+        },
+        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+      }
+    },
+    {
+      "id": "case-near-field",
+      "title": "同一个方向，为什么还可能分出远近？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#array\">第 6 章：跨阵元相位与方向</a>；<a href=\"theory.html#shared-model\">观测模型中的已知与未知</a>",
+        "问题": "只保留单频空间观测、允许未知公共复增益时，球面波的曲率能否让同一方向的不同距离留下不同的相对相位？",
+        "交互机制": "改变真距离与阵元数，对照球面/球面、球面/平面和平面/平面的归一化匹配响应。间距固定，阵元数变化也会改变孔径。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/2302.01153v5\">近场 ISAC 原始研究（2023 首稿，固定 2025 v5）</a>的理论与数值仿真；本站：未知复增益下的一程、无噪声空间匹配。边界背景见<a href=\"https://arxiv.org/html/2110.06661v2\">近场波束成形基础原文 v2</a>。",
+        "结论边界": "不是单站双程雷达、MUSIC 或论文优化器复现。匹配峰宽、局部曲率、CRB 与实际 MSE 不同；进入通常所说的近场，不保证能分开两个目标。",
+        "下一研究问题": "当角度也未知时，距离与角度怎样耦合？如何在相同孔径、总能量和观测预算下验证估计误差与失败率？"
+      },
+      "unit": "near-field",
+      "paper": "near-field.html#paper",
+      "next": "near-field.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Near-Field Integrated Sensing and Communications",
+        "sourceUrl": "https://arxiv.org/html/2302.01153v5",
+        "version": "首稿2023-02-02；固定v5，2025-09-23；未逐版比较修订",
+        "paperEvidenceType": "理论与数值仿真",
+        "siteArtifactType": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
+        "metrics": [
+          "本站归一化空间匹配与局部曲率，非 CRB",
+          "论文速率–RCRB 权衡",
+          "论文近场位置峰与远场角度脊"
+        ],
+        "unknowns": [
+          "完整复现仍需快拍数、复增益、随机几何、求解器及归一化约定",
+          "本站未复刻论文图2–4或优化器",
+          "原文与本站角度基准不同，符号须显式换算"
+        ],
+        "comparisonLink": "near-field.html#paper",
+        "sourceId": "case-near-field-paper",
+        "locator": {
+          "summary": "§II–IV、附录A–B；式(1)–(7)、(13)、(16)–(22)；图2–4",
+          "section": null,
+          "figure": null,
+          "equation": null
+        },
+        "retainedAssumptions": [
+          "球面波空间相位含距离相关曲率",
+          "未知公共复增益不能被默认为已知",
+          "平面波和球面波响应具有不同距离依赖"
+        ],
+        "omittedMechanisms": [
+          "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
+          "路径损耗、噪声、多径、多用户通信和完整收发阵列通道",
+          "完整双目标检测与分辨概率"
+        ],
+        "resourceBudget": {
+          "summary": "本站λ=0.01 m、d=0.005 m、θ₀=0，等幅度无噪声；改变N也改变孔径。原文§IV使用65阵元、28 GHz、0.5 m孔径、四用户、目标(20 m,45°)、20 dBm、−60 dBm噪声、五条RF链。两套配置不可混用。",
+          "bandwidth": null,
+          "energy": null,
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": null,
+          "other": []
+        },
+        "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+      }
+    }
+  ],
+  "legacy": {
+    "index.html": {
+      "print-book": "foundations.html#print-book",
+      "progress": "foundations.html#progress",
+      "start": "foundations.html#start",
+      "concept": "foundations.html#concept",
+      "research-entry-title": "experiments.html#research",
+      "history": "foundations.html#history",
+      "echo": "foundations.html#echo",
+      "echo-r-value": "foundations.html#echo-r-value",
+      "echo-r": "foundations.html#echo-r",
+      "echo-t-value": "foundations.html#echo-t-value",
+      "echo-t": "foundations.html#echo-t",
+      "echo-c": "foundations.html#echo-c",
+      "echo-read": "foundations.html#echo-read",
+      "iq": "foundations.html#iq",
+      "iq-real": "foundations.html#iq-real",
+      "iq-tx": "foundations.html#iq-tx",
+      "quad-i-value": "foundations.html#quad-i-value",
+      "quad-i": "foundations.html#quad-i",
+      "quad-q-value": "foundations.html#quad-q-value",
+      "quad-q": "foundations.html#quad-q",
+      "quad-unit": "foundations.html#quad-unit",
+      "quad-i-node": "foundations.html#quad-i-node",
+      "quad-first-node": "foundations.html#quad-first-node",
+      "quad-q-node": "foundations.html#quad-q-node",
+      "quad-second-node": "foundations.html#quad-second-node",
+      "quad-total-node": "foundations.html#quad-total-node",
+      "quad-clock-value": "foundations.html#quad-clock-value",
+      "quad-clock": "foundations.html#quad-clock",
+      "quad-wave": "foundations.html#quad-wave",
+      "quad-tx-read": "foundations.html#quad-tx-read",
+      "iq-rx": "foundations.html#iq-rx",
+      "quad-rxi": "foundations.html#quad-rxi",
+      "quad-rxq": "foundations.html#quad-rxq",
+      "quad-lo-value": "foundations.html#quad-lo-value",
+      "quad-lo": "foundations.html#quad-lo",
+      "quad-lo-reset": "foundations.html#quad-lo-reset",
+      "quad-lo-45": "foundations.html#quad-lo-45",
+      "quad-i-blind": "foundations.html#quad-i-blind",
+      "quad-mix": "foundations.html#quad-mix",
+      "quad-rx-read": "foundations.html#quad-rx-read",
+      "iq-complex": "foundations.html#iq-complex",
+      "quad-coordinates": "foundations.html#quad-coordinates",
+      "quad-plane": "foundations.html#quad-plane",
+      "quad-polar-read": "foundations.html#quad-polar-read",
+      "iq-delay": "foundations.html#iq-delay",
+      "iq-tau-value": "foundations.html#iq-tau-value",
+      "iq-tau": "foundations.html#iq-tau",
+      "iq-wave": "foundations.html#iq-wave",
+      "iq-phase": "foundations.html#iq-phase",
+      "iq-read": "foundations.html#iq-read",
+      "matched": "foundations.html#matched",
+      "match-kind": "foundations.html#match-kind",
+      "match-wrong": "foundations.html#match-wrong",
+      "match-noise": "foundations.html#match-noise",
+      "match-second": "foundations.html#match-second",
+      "match-lag-value": "foundations.html#match-lag-value",
+      "match-lag": "foundations.html#match-lag",
+      "match-align": "foundations.html#match-align",
+      "match-wave": "foundations.html#match-wave",
+      "match-product": "foundations.html#match-product",
+      "match-score": "foundations.html#match-score",
+      "match-read": "foundations.html#match-read",
+      "doppler": "foundations.html#doppler",
+      "motion-lab": "foundations.html#motion-lab",
+      "motion-v-value": "foundations.html#motion-v-value",
+      "motion-v": "foundations.html#motion-v",
+      "motion-t-value": "foundations.html#motion-t-value",
+      "motion-t": "foundations.html#motion-t",
+      "motion-next": "foundations.html#motion-next",
+      "motion-path": "foundations.html#motion-path",
+      "motion-dr": "foundations.html#motion-dr",
+      "motion-dl": "foundations.html#motion-dl",
+      "motion-cycles": "foundations.html#motion-cycles",
+      "motion-angle": "foundations.html#motion-angle",
+      "motion-ruler": "foundations.html#motion-ruler",
+      "motion-vector": "foundations.html#motion-vector",
+      "motion-iq": "foundations.html#motion-iq",
+      "motion-read": "foundations.html#motion-read",
+      "doppler-sampling": "foundations.html#doppler-sampling",
+      "slow-lab": "foundations.html#slow-lab",
+      "dop-v-value": "foundations.html#dop-v-value",
+      "dop-v": "foundations.html#dop-v",
+      "dop-tr": "foundations.html#dop-tr",
+      "dop-m-value": "foundations.html#dop-m-value",
+      "dop-m": "foundations.html#dop-m",
+      "dop-still": "foundations.html#dop-still",
+      "dop-import": "foundations.html#dop-import",
+      "dop-alias": "foundations.html#dop-alias",
+      "dop-restore": "foundations.html#dop-restore",
+      "dop-timeline": "foundations.html#dop-timeline",
+      "dop-snapshot-value": "foundations.html#dop-snapshot-value",
+      "dop-probe": "foundations.html#dop-probe",
+      "dop-c": "foundations.html#dop-c",
+      "dop-read": "foundations.html#dop-read",
+      "dop-alias-read": "foundations.html#dop-alias-read",
+      "array": "foundations.html#array",
+      "arr-a-value": "foundations.html#arr-a-value",
+      "arr-a": "foundations.html#arr-a",
+      "arr-s-value": "foundations.html#arr-s-value",
+      "arr-s": "foundations.html#arr-s",
+      "arr-n-value": "foundations.html#arr-n-value",
+      "arr-n": "foundations.html#arr-n",
+      "arr-align": "foundations.html#arr-align",
+      "arr-phasors": "foundations.html#arr-phasors",
+      "arr-beam": "foundations.html#arr-beam",
+      "arr-read": "foundations.html#arr-read",
+      "ofdm-basics": "foundations.html#ofdm-basics",
+      "synth-k-value": "foundations.html#synth-k-value",
+      "synth-k": "foundations.html#synth-k",
+      "synth-phase-value": "foundations.html#synth-phase-value",
+      "synth-phase": "foundations.html#synth-phase",
+      "synth-wave": "foundations.html#synth-wave",
+      "synth-read": "foundations.html#synth-read",
+      "ofdm": "foundations.html#ofdm",
+      "ofdm-guide": "foundations.html#ofdm-guide",
+      "o-r-value": "foundations.html#o-r-value",
+      "o-r": "foundations.html#o-r",
+      "o-v-wrap": "foundations.html#o-v-wrap",
+      "o-v-value": "foundations.html#o-v-value",
+      "o-v": "foundations.html#o-v",
+      "o-default": "foundations.html#o-default",
+      "o-stage-status": "foundations.html#o-stage-status",
+      "o-cell": "foundations.html#o-cell",
+      "o-cell-c": "foundations.html#o-cell-c",
+      "o-wrapped": "foundations.html#o-wrapped",
+      "o-row": "foundations.html#o-row",
+      "o-row-read": "foundations.html#o-row-read",
+      "o-trial-value": "foundations.html#o-trial-value",
+      "o-trial": "foundations.html#o-trial",
+      "o-align": "foundations.html#o-align",
+      "o-residual": "foundations.html#o-residual",
+      "o-range": "foundations.html#o-range",
+      "o-trial-read": "foundations.html#o-trial-read",
+      "o-column": "foundations.html#o-column",
+      "o-column-read": "foundations.html#o-column-read",
+      "o-k-value": "foundations.html#o-k-value",
+      "o-k": "foundations.html#o-k",
+      "o-m-value": "foundations.html#o-m-value",
+      "o-m": "foundations.html#o-m",
+      "o-remove": "foundations.html#o-remove",
+      "o-grid": "foundations.html#o-grid",
+      "o-grid-read": "foundations.html#o-grid-read",
+      "o-intermediate": "foundations.html#o-intermediate",
+      "o-inter-read": "foundations.html#o-inter-read",
+      "o-rd": "foundations.html#o-rd",
+      "o-rd-read": "foundations.html#o-rd-read",
+      "o-prev": "foundations.html#o-prev",
+      "o-next": "foundations.html#o-next",
+      "cfar": "foundations.html#cfar",
+      "cf-scenario": "foundations.html#cf-scenario",
+      "cf-p": "foundations.html#cf-p",
+      "cf-cut-value": "foundations.html#cf-cut-value",
+      "cf-cut": "foundations.html#cf-cut",
+      "cf-guard-value": "foundations.html#cf-guard-value",
+      "cf-guard": "foundations.html#cf-guard",
+      "cf-c": "foundations.html#cf-c",
+      "cf-read": "foundations.html#cf-read",
+      "cf-monte": "foundations.html#cf-monte",
+      "cf-stats": "foundations.html#cf-stats",
+      "limits": "foundations.html#limits",
+      "lab": "foundations.html#lab",
+      "res-b-value": "foundations.html#res-b-value",
+      "res-b": "foundations.html#res-b",
+      "res-pad": "foundations.html#res-pad",
+      "res-c": "foundations.html#res-c",
+      "res-read": "foundations.html#res-read",
+      "codesign": "foundations.html#codesign",
+      "methods": "foundations.html#methods",
+      "realworld": "foundations.html#realworld",
+      "geometry": "foundations.html#geometry",
+      "geo-angle-value": "foundations.html#geo-angle-value",
+      "geo-angle": "foundations.html#geo-angle",
+      "geo-c": "foundations.html#geo-c",
+      "geo-read": "foundations.html#geo-read",
+      "branches": "reading.html#branches",
+      "frontiers": "reading.html#frontiers",
+      "practice": "practice.html#practice",
+      "roadmap": "practice.html#roadmap",
+      "reading": "reading.html#reading",
+      "ref-S1": "reading.html#ref-S1",
+      "ref-S2": "reading.html#ref-S2",
+      "ref-S3": "reading.html#ref-S3",
+      "ref-S4": "reading.html#ref-S4",
+      "ref-S5": "reading.html#ref-S5",
+      "ref-S6": "reading.html#ref-S6",
+      "ref-S7": "reading.html#ref-S7",
+      "ref-CF": "reading.html#ref-CF",
+      "ref-R1": "reading.html#ref-R1",
+      "ref-R2": "reading.html#ref-R2",
+      "ref-R3": "reading.html#ref-R3",
+      "ref-R4": "reading.html#ref-R4",
+      "ref-R5": "reading.html#ref-R5",
+      "ref-R6": "reading.html#ref-R6",
+      "ref-R7": "reading.html#ref-R7",
+      "ref-STD": "reading.html#ref-STD",
+      "ref-REQ": "reading.html#ref-REQ",
+      "ref-Q1": "reading.html#ref-Q1",
+      "ref-Q2": "reading.html#ref-Q2",
+      "ref-Q3": "reading.html#ref-Q3",
+      "ref-D1": "reading.html#ref-D1",
+      "velocity-matching": "foundations.html#velocity-matching"
+    },
+    "research.html": {
+      "": "reading.html",
+      "foundations": "reading.html#foundations",
+      "foundations-title": "reading.html#foundations-title",
+      "cases": "reading.html#cases",
+      "cases-title": "reading.html#cases-title",
+      "case-crb": "reading.html#case-crb",
+      "crb-title": "reading.html#crb-title",
+      "case-pilot": "reading.html#case-pilot",
+      "pilot-title": "reading.html#pilot-title",
+      "case-clock": "reading.html#case-clock",
+      "clock-title": "reading.html#clock-title",
+      "case-sbfd": "reading.html#case-sbfd",
+      "sbfd-title": "reading.html#sbfd-title",
+      "case-near-field": "reading.html#case-near-field",
+      "near-field-title": "reading.html#near-field-title",
+      "evidence": "reading.html#evidence",
+      "evidence-title": "reading.html#evidence-title"
+    },
+    "learn.html": {
+      "": "experiments.html#supplements",
+      "main": "sandbox.html#main",
+      "start": "sandbox.html#start",
+      "concept": "sandbox.html#concept",
+      "doppler": "sandbox.html#doppler",
+      "dvOut": "sandbox.html#dvOut",
+      "dv": "sandbox.html#dv",
+      "dPlay": "sandbox.html#dPlay",
+      "dReset": "sandbox.html#dReset",
+      "dStill": "sandbox.html#dStill",
+      "dtOut": "sandbox.html#dtOut",
+      "dt": "sandbox.html#dt",
+      "dopplerCanvas": "sandbox.html#dopplerCanvas",
+      "dResult": "sandbox.html#dResult",
+      "matched": "sandbox.html#matched",
+      "mWave": "sandbox.html#mWave",
+      "mWrong": "sandbox.html#mWrong",
+      "mSecond": "sandbox.html#mSecond",
+      "mNoiseOut": "sandbox.html#mNoiseOut",
+      "mNoise": "sandbox.html#mNoise",
+      "mLagOut": "sandbox.html#mLagOut",
+      "mLag": "sandbox.html#mLag",
+      "mPlay": "sandbox.html#mPlay",
+      "matchedCanvas": "sandbox.html#matchedCanvas",
+      "mResult": "sandbox.html#mResult",
+      "ofdm": "sandbox.html#ofdm",
+      "oRangeOut": "sandbox.html#oRangeOut",
+      "oRange": "sandbox.html#oRange",
+      "oSpeedOut": "sandbox.html#oSpeedOut",
+      "oSpeed": "sandbox.html#oSpeed",
+      "oRemove": "sandbox.html#oRemove",
+      "oGrid": "sandbox.html#oGrid",
+      "ofdmCanvas": "sandbox.html#ofdmCanvas",
+      "oResult": "sandbox.html#oResult",
+      "cfar": "sandbox.html#cfar",
+      "cScene": "sandbox.html#cScene",
+      "cNoiseOut": "sandbox.html#cNoiseOut",
+      "cNoise": "sandbox.html#cNoise",
+      "cPfa": "sandbox.html#cPfa",
+      "cTrainOut": "sandbox.html#cTrainOut",
+      "cTrain": "sandbox.html#cTrain",
+      "cGuardOut": "sandbox.html#cGuardOut",
+      "cGuard": "sandbox.html#cGuard",
+      "cCutOut": "sandbox.html#cCutOut",
+      "cCut": "sandbox.html#cCut",
+      "cPlay": "sandbox.html#cPlay",
+      "cSeed": "sandbox.html#cSeed",
+      "cCenter": "sandbox.html#cCenter",
+      "cfarCanvas": "sandbox.html#cfarCanvas",
+      "cResult": "sandbox.html#cResult",
+      "cMonte": "sandbox.html#cMonte",
+      "cMonteResult": "sandbox.html#cMonteResult",
+      "beam": "sandbox.html#beam",
+      "bSteerOut": "sandbox.html#bSteerOut",
+      "bSteer": "sandbox.html#bSteer",
+      "bNOut": "sandbox.html#bNOut",
+      "bN": "sandbox.html#bN",
+      "bTarget": "sandbox.html#bTarget",
+      "bUser": "sandbox.html#bUser",
+      "bPlay": "sandbox.html#bPlay",
+      "beamCanvas": "sandbox.html#beamCanvas",
+      "bResult": "sandbox.html#bResult",
+      "research": "practice.html#design-interface",
+      "sources": "sandbox.html#sources",
+      "s1": "sandbox.html#s1",
+      "s2": "sandbox.html#s2",
+      "s3": "sandbox.html#s3",
+      "s4": "sandbox.html#s4",
+      "s5": "sandbox.html#s5",
+      "s6": "sandbox.html#s6",
+      "s7": "sandbox.html#s7",
+      "scfar": "sandbox.html#scfar"
+    },
+    "overview.html": {
+      "": "index.html",
+      "start": "index.html",
+      "arrow1": "foundations.html#echo",
+      "arrow2": "foundations.html#echo",
+      "concept": "foundations.html#start",
+      "history": "foundations.html#history",
+      "model": "theory.html#shared-model",
+      "lab": "resolution.html#lab",
+      "bwval": "resolution.html#bwval",
+      "bw": "resolution.html#bw",
+      "tmval": "resolution.html#tmval",
+      "tm": "resolution.html#tm",
+      "dr": "resolution.html#dr",
+      "dv": "resolution.html#dv",
+      "ratio": "resolution.html#ratio",
+      "response": "resolution.html#response",
+      "lineA": "resolution.html#lineA",
+      "lineB": "resolution.html#lineB",
+      "labnote": "resolution.html#labnote",
+      "architecture": "foundations.html#codesign",
+      "methods": "practice.html#research-method",
+      "experiment": "practice.html#practice",
+      "reading": "reading.html#reading",
+      "ref1": "reading.html#ref-S1",
+      "ref2": "reading.html#ref-S2",
+      "ref3": "reading.html#ref-S3",
+      "ref4": "reading.html#ref-S4",
+      "ref5": "reading.html#ref-S5",
+      "ref6": "reading.html#ref-S6",
+      "ref7": "reading.html#ref-S7",
+      "roadmap": "practice.html#roadmap",
+      "faq": "practice.html#faq"
+    }
+  },
+  "units": [
+    {
+      "id": "echo",
+      "title": "回波与传播延迟",
+      "href": "foundations.html#echo",
+      "question": "电波往返的时间怎样成为距离？",
+      "prerequisites": [
+        "foundations.html#start"
+      ],
+      "group": "observation",
+      "primaryDirectionId": "receiver",
+      "action": "改变目标距离与物理时刻，比较去程、反射和回程。"
+    },
+    {
+      "id": "iq",
+      "title": "实波形与 I/Q",
+      "href": "foundations.html#iq",
+      "question": "两路实数怎样记录同一条电波？",
+      "prerequisites": [
+        "foundations.html#echo"
+      ],
+      "group": "observation",
+      "primaryDirectionId": "waveforms",
+      "action": "改变 I/Q 系数，对照真实波形、两路基带与复向量。"
+    },
+    {
+      "id": "matched",
+      "title": "匹配滤波",
+      "href": "foundations.html#matched",
+      "question": "怎样从接收信号找出延迟？",
+      "prerequisites": [
+        "foundations.html#iq"
+      ],
+      "group": "observation",
+      "primaryDirectionId": "receiver",
+      "action": "移动候选延迟，对照模板与接收样本的对齐程度。"
+    },
+    {
+      "id": "doppler",
+      "title": "路径变化与多普勒",
+      "href": "foundations.html#doppler",
+      "question": "位移怎样成为跨时刻的相位？",
+      "prerequisites": [
+        "foundations.html#iq"
+      ],
+      "group": "observation",
+      "primaryDirectionId": "receiver",
+      "action": "改变运动状态，对照路径长度、波长与相位变化。"
+    },
+    {
+      "id": "array",
+      "title": "阵列与方向",
+      "href": "foundations.html#array",
+      "question": "跨阵元的相位斜坡来自哪里？",
+      "prerequisites": [
+        "foundations.html#iq"
+      ],
+      "group": "observation",
+      "primaryDirectionId": "spatial",
+      "action": "改变方向与阵列参数，比较阵元相位和匹配响应。"
+    },
+    {
+      "id": "ofdm",
+      "title": "七步 OFDM 感知链",
+      "href": "foundations.html#ofdm",
+      "question": "从一个复数样本怎样走到距离–速度？",
+      "prerequisites": [
+        "foundations.html#ofdm-basics"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "waveforms",
+      "action": "按七步依次打开一格、一行、一列与二维匹配，再改距离或速度。"
+    },
+    {
+      "id": "cfar",
+      "title": "检测与 CFAR",
+      "href": "foundations.html#cfar",
+      "question": "一处峰有多大才值得报警？",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "receiver",
+      "action": "改变背景、保护格与虚警设置，观察门限与候选峰。"
+    },
+    {
+      "id": "geometry",
+      "title": "双站与多站几何",
+      "href": "foundations.html#geometry",
+      "question": "总路径约束怎样变成位置？",
+      "prerequisites": [
+        "foundations.html#echo"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "networks",
+      "action": "移动目标在等路径椭圆上的位置，比较不变的总路径与变化的位置。"
+    },
+    {
+      "id": "shared",
+      "title": "共同观测：判决与估计",
+      "href": "theory.html#shared-model",
+      "question": "相同样本，换一个未知量会怎样？",
+      "prerequisites": [
+        "foundations.html#matched"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "tradeoffs",
+      "action": "切换通信判决/感知估计，保留相同样本并改变候选。"
+    },
+    {
+      "id": "crb",
+      "title": "随机能量与标量 CRB",
+      "href": "theory.html#crb-mechanism",
+      "question": "先求逆再平均，为什么会改变结果？",
+      "prerequisites": [
+        "foundations.html#limits"
+      ],
+      "group": "research",
+      "primaryDirectionId": "tradeoffs",
+      "action": "改变块长与抽样块数，对照块能量和倒数平均。"
+    },
+    {
+      "id": "rate",
+      "title": "速率与估计界桥梁",
+      "href": "theory.html#rate-crb-bridge",
+      "question": "已知实现的感知与未知消息的通信如何比较？",
+      "prerequisites": [
+        "theory.html#crb-mechanism"
+      ],
+      "group": "research",
+      "primaryDirectionId": "tradeoffs",
+      "action": "改变 SNR 与块长，对照输入分布的互信息和估计界。"
+    },
+    {
+      "id": "pilot",
+      "title": "稀疏导频与歧义",
+      "href": "pilot-design.html#experiment",
+      "question": "尖锐主峰为什么仍有多个同高候选？",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "group": "research",
+      "primaryDirectionId": "waveforms",
+      "action": "改变梳状间隔或偏移，记录同高候选与拟合相位。"
+    },
+    {
+      "id": "clock",
+      "title": "时钟偏差与定位",
+      "href": "network-clock.html#experiment",
+      "question": "10 ns 偏差怎样污染几何约束？",
+      "prerequisites": [
+        "foundations.html#geometry"
+      ],
+      "group": "research",
+      "primaryDirectionId": "networks",
+      "action": "改变时钟偏差、噪声与站位，比较三种校正方式。"
+    },
+    {
+      "id": "sbfd",
+      "title": "频谱资源与双孔径",
+      "href": "sbfd-resource.html#experiment",
+      "question": "距离看带宽，速度为什么看观察时间？",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "group": "research",
+      "primaryDirectionId": "tradeoffs",
+      "action": "分别改变感知频格数和观察符号数，比较距离/速度切片。"
+    },
+    {
+      "id": "near-field",
+      "title": "波前曲率与距离",
+      "href": "near-field.html#experiment",
+      "question": "同方向的目标还能留下不同空间指纹吗？",
+      "prerequisites": [
+        "foundations.html#array"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "改变真距离或阵元数，对照三种空间匹配；留意孔径同时改变。"
+    }
+  ],
+  "pages": [
+    {
+      "path": "foundations.html",
+      "title": "基础讲义：从回波到多站几何",
+      "stage": "foundations",
+      "role": "连续讲义 · 00–13 章",
+      "prerequisites": [],
+      "next": "experiments.html",
+      "nextLabel": "选择一个机制实验"
+    },
+    {
+      "path": "theory.html",
+      "title": "共同观测与性能边界",
+      "stage": "foundations",
+      "role": "基础桥梁 + 估计界专题",
+      "prerequisites": [
+        "foundations.html#matched",
+        "foundations.html#limits"
+      ],
+      "next": "reading.html#case-crb",
+      "nextLabel": "核对 CRB–rate 原文与证据"
+    },
+    {
+      "path": "sandbox.html",
+      "title": "补充实验：参数与失败对照",
+      "stage": "experiments",
+      "role": "补充沙盒 · 独立参数与模型",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "next": "experiments.html",
+      "nextLabel": "回到机制实验目录"
+    },
+    {
+      "path": "pilot-design.html",
+      "title": "导频省下来，距离为什么重复？",
+      "stage": "experiments",
+      "role": "研究主题 · 机制与原文同页对照",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "case": "case-pilot",
+      "next": "practice.html#notebook",
+      "nextLabel": "把这个主题写成可复核的实验记录"
+    },
+    {
+      "path": "network-clock.html",
+      "title": "时钟差 10 ns，位置差多少？",
+      "stage": "experiments",
+      "role": "研究主题 · 机制与原文同页对照",
+      "prerequisites": [
+        "foundations.html#geometry"
+      ],
+      "case": "case-clock",
+      "next": "practice.html#notebook",
+      "nextLabel": "把这个主题写成可复核的实验记录"
+    },
+    {
+      "path": "sbfd-resource.html",
+      "title": "分的是带宽，测速看的是时间",
+      "stage": "experiments",
+      "role": "研究主题 · 机制与原文同页对照",
+      "prerequisites": [
+        "foundations.html#ofdm"
+      ],
+      "case": "case-sbfd",
+      "next": "practice.html#notebook",
+      "nextLabel": "把这个主题写成可复核的实验记录"
+    },
+    {
+      "path": "near-field.html",
+      "title": "同一个方向，为什么还可能分出远近？",
+      "stage": "experiments",
+      "role": "研究主题 · 机制与原文同页对照",
+      "prerequisites": [
+        "foundations.html#array"
+      ],
+      "case": "case-near-field",
+      "next": "practice.html#notebook",
+      "nextLabel": "把这个主题写成可复核的实验记录"
+    },
+    {
+      "path": "experiments.html",
+      "title": "机制实验",
+      "stage": "experiments",
+      "role": "学习阶段 02",
+      "prerequisites": [],
+      "next": "reading.html",
+      "nextLabel": "带着实验现象阅读原文"
+    },
+    {
+      "path": "reading.html",
+      "title": "论文阅读",
+      "stage": "reading",
+      "role": "学习阶段 03",
+      "prerequisites": [],
+      "next": "practice.html",
+      "nextLabel": "设计一个可复核的实验"
+    },
+    {
+      "path": "practice.html",
+      "title": "研究实践",
+      "stage": "practice",
+      "role": "学习阶段 04",
+      "prerequisites": [],
+      "next": "reading.html",
+      "nextLabel": "选择下一条研究支线"
+    },
+    {
+      "path": "index.html",
+      "title": "ISAC 交互学习地图",
+      "stage": "",
+      "role": "四个阶段 · 从物理直觉到研究证据",
+      "prerequisites": [],
+      "next": "foundations.html#start",
+      "nextLabel": "开始基础讲义"
+    },
+    {
+      "path": "resolution.html",
+      "title": "带宽与观察时间：理想响应尺度",
+      "stage": "experiments",
+      "role": "补充机制 · 理想单目标响应对照",
+      "prerequisites": [
+        "foundations.html#limits"
+      ],
+      "next": "foundations.html#limits",
+      "nextLabel": "区分分辨尺度、精度与不模糊范围"
+    }
+  ],
+  "schemaVersion": 1,
+  "levelDefinitions": [
+    {
+      "id": "intuition",
+      "label": "先理解问题"
+    },
+    {
+      "id": "model",
+      "label": "看清观测与模型"
+    },
+    {
+      "id": "experiment",
+      "label": "动手改变一个条件"
+    },
+    {
+      "id": "papers",
+      "label": "与原文对照"
+    },
+    {
+      "id": "limits",
+      "label": "寻找创新与适用边界"
+    },
+    {
+      "id": "reproduction",
+      "label": "设计可复现检验"
+    }
+  ],
+  "statusSemantics": {
+    "available": "实际存在、可到达的学习材料；不表示完整论文复现",
+    "proposed": "尚未实现，不生成可点击实验按钮，不列入已有覆盖数",
+    "coverage": "按层报告已有资源的 scope，不使用完成百分比；foundation-only 标为前置实验，shared-template 标为通用计划",
+    "sourceEvidence": "论文证据层级沿用原文/现有阅读记录，与本站资源完成状态分开存储",
+    "reproduction": "reproduction-plan 不等于 reproduction-verified；仅有可重现结果、参数、版本、命令和验证记录时才标 verified",
+    "paperComparison": "每个原文对照槽必须能逐步填入精确版本、章节/图/式、保留/省略假设、论文证据类型、指标及资源预算；链接只算入口，不算完整对照。现有案例按已核实字段逐项迁移，空字段标待核对。"
+  },
+  "paperComparisonSchema": {
+    "sourceId": "stable existing bibliography ID",
+    "version": "exact cited version/date; null until verified",
+    "locator": {
+      "section": null,
+      "figure": null,
+      "equation": null,
+      "summary": "Exact locators preserved together when fields are not yet separately structured"
+    },
+    "researchQuestion": "the paper question compared with the teaching question",
+    "observationsAndUnknowns": "explicit measured data and estimated/designed variables",
+    "retainedAssumptions": [],
+    "omittedMechanisms": [],
+    "paperEvidenceType": "theory | simulation | measured | prototype | survey | official-document",
+    "siteArtifactType": "mechanism-demo | paper-guide | reproduction-plan | reproduction-verified",
+    "metrics": [],
+    "resourceBudget": {
+      "bandwidth": null,
+      "energy": null,
+      "duration": null,
+      "aperture": null,
+      "priorKnowledge": null,
+      "other": [],
+      "summary": "Versioned paper budget and independent teaching budget, explicitly separated"
+    },
+    "comparisonStatus": "partial | verified",
+    "verificationNote": "Unknown fields stay unverified; no inferred equivalence or reproduction claim"
+  },
+  "directions": [
+    {
+      "id": "waveforms",
+      "title": "波形与导频：发什么、留哪些已知格子？",
+      "question": "同一帧既传数据又探测目标，哪些频率和符号必须已知？",
+      "scope": "发射信号、调制坐标、导频位置与歧义；OTFS 是后续专题，不是与全部 ISAC 并列的大类。",
+      "prerequisites": [
+        "iq",
+        "ofdm-basics",
+        "ofdm"
+      ],
+      "primaryCaseIds": [
+        "case-pilot"
+      ],
+      "relatedDirectionIds": [
+        "tradeoffs",
+        "receiver"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "先搭回 OFDM 通信接收机",
+              "href": "foundations.html#ofdm-basics",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "从一个复数到距离–速度图",
+              "href": "foundations.html#ofdm",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "导频的观测模型",
+              "href": "pilot-design.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "改导频位置，比较距离歧义",
+              "href": "pilot-design.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "coverage": "direction-specific"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "导频案例：原文问题与本站简化",
+              "href": "pilot-design.html#case",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "原文 R1：导频与数据的模糊函数",
+              "href": "reading.html#ref-R1",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "综述 S6：OTFS 的问题入口",
+              "href": "reading.html#ref-S6",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "不要把感知变换当作 OTFS 调制",
+              "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "导频案例的复现步骤",
+              "href": "pilot-design.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "在相同带宽、能量和观测时长下，扩展分数延迟或符号内多普勒实验。",
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+    },
+    {
+      "id": "receiver",
+      "title": "检测与估计：怎样从样本找到目标？",
+      "question": "有一个峰，为什么还不能立刻说找到目标、测准了位置？",
+      "scope": "匹配、检测、参数估计与跟踪；区分分辨率、误差和虚警。",
+      "prerequisites": [
+        "matched",
+        "doppler",
+        "cfar",
+        "limits"
+      ],
+      "primaryCaseIds": [],
+      "relatedDirectionIds": [
+        "waveforms",
+        "channels",
+        "tradeoffs"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "先用已知波形寻找延迟",
+              "href": "foundations.html#matched",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "复数匹配如何变成坐标",
+              "href": "foundations.html#ofdm",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "从峰到检测门限",
+              "href": "foundations.html#cfar",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "改变背景与虚警设置",
+              "href": "foundations.html#cfar",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "改变带宽与补零，区分分辨率和格距",
+              "href": "foundations.html#limits",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "coverage": "direction-specific"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "综述 S2：接收处理的共同模型",
+              "href": "reading.html#ref-S2",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "CFAR 原始技术说明入口",
+              "href": "reading.html#ref-CF",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "连续估计、MUSIC 与模型假设",
+              "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "单目标基线与重复试验",
+              "href": "practice.html#practice",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "增加连续参数估计与离格目标的可比实验，明确模型失配和低 SNR 条件。",
+      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+    },
+    {
+      "id": "tradeoffs",
+      "title": "通感权衡：资源怎样分才有意义？",
+      "question": "通信速率、感知信息和实际误差之间，哪些代价被同一个预算连接？",
+      "scope": "性能极限、波形/功率/时频资源联合设计；不把理论界当成算法误差。",
+      "prerequisites": [
+        "limits",
+        "codesign"
+      ],
+      "primaryCaseIds": [
+        "case-crb",
+        "case-sbfd"
+      ],
+      "relatedDirectionIds": [
+        "waveforms",
+        "receiver",
+        "prototype"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "先分清四种性能语言",
+              "href": "foundations.html#limits",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "共同观测：已知什么、估计什么",
+              "href": "theory.html#shared-model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "随机能量与 CRB 的条件关系",
+              "href": "theory.html#crb-mechanism",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "通信速率与 CRB 的桥接",
+              "href": "theory.html#rate-crb-bridge",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "频率孔径与时间孔径分别改变什么",
+              "href": "sbfd-resource.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "coverage": "direction-specific"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "资源案例的论文问题",
+              "href": "sbfd-resource.html#case",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "综述 S3：性能极限",
+              "href": "reading.html#ref-S3",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "原文 R5：双站波形设计",
+              "href": "reading.html#ref-R5",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "SBFD 教学模型不能证明什么",
+              "href": "sbfd-resource.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "固定公平比较条件",
+              "href": "foundations.html#codesign",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "在固定总能量、时长和带宽下加入可执行估计器，以 RMSE 对照理论界。",
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+    },
+    {
+      "id": "spatial",
+      "title": "空间感知：天线怎样分清方向与远近？",
+      "question": "相同方向的两个点，为什么有时还能借波前曲率区分距离？",
+      "scope": "阵列几何、波束、近远场、可重构传播；RIS/可重构阵列作为逐步扩展专题。",
+      "prerequisites": [
+        "iq",
+        "array",
+        "limits"
+      ],
+      "primaryCaseIds": [
+        "case-near-field"
+      ],
+      "relatedDirectionIds": [
+        "channels",
+        "networks"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "方向藏在阵元间的相位里",
+              "href": "foundations.html#array",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "从平面波走到球面波几何",
+              "href": "near-field.html#geometry",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "改变阵元相位与指向",
+              "href": "foundations.html#array",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "改变距离与孔径，检查波前曲率",
+              "href": "near-field.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "coverage": "direction-specific"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "近场案例的原文对照",
+              "href": "near-field.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "未知复增益、孔径和单目标边界",
+              "href": "near-field.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "RIS 与可重构阵列的额外未知量",
+              "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "增加多目标与校准误差实验，先明确孔径和阵元数各自是否保持固定。",
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+    },
+    {
+      "id": "networks",
+      "title": "多站协作：几条路径怎样拼成位置？",
+      "question": "多一个站一定更准吗，时钟偏差为什么能伪装成距离变化？",
+      "scope": "多站/双站几何、同步、关联、融合与协作开销。",
+      "prerequisites": [
+        "echo",
+        "geometry"
+      ],
+      "primaryCaseIds": [
+        "case-clock"
+      ],
+      "relatedDirectionIds": [
+        "spatial",
+        "channels",
+        "prototype"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "总路径不等于两倍目标距离",
+              "href": "foundations.html#geometry",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "时钟偏差进入哪一个观测量",
+              "href": "network-clock.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "改变时钟与几何，比较位置误差",
+              "href": "network-clock.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "双站几何的直观实验",
+              "href": "foundations.html#geometry",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "coverage": "direction-specific"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "网络时钟案例的原文问题",
+              "href": "network-clock.html#case",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "原文 R4：多站检测与协作开销",
+              "href": "reading.html#ref-R4",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "不可辨识、镜像与互易假设",
+              "href": "network-clock.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "在标量时延基线后加入多目标关联，分别记录漏检、错配与回传开销。",
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+    },
+    {
+      "id": "channels",
+      "title": "真实信道：墙、噪声与干扰怎样改变答案？",
+      "question": "最强回波若来自墙，理想单目标模型会在哪里失效？",
+      "scope": "目标散射、杂波、多径、自干扰、外部干扰与信道校准。",
+      "prerequisites": [
+        "echo",
+        "cfar",
+        "realworld"
+      ],
+      "primaryCaseIds": [],
+      "relatedDirectionIds": [
+        "receiver",
+        "networks",
+        "prototype"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "逐条拆掉理想条件",
+              "href": "foundations.html#realworld",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "从单路径到多路径的模型入口",
+              "href": "foundations.html#echo",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "目标、背景与干扰分别是什么",
+              "href": "foundations.html#realworld",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "先观察 CFAR 对非均匀背景的反应",
+              "href": "foundations.html#cfar",
+              "kind": "interactive",
+              "scope": "foundation-only",
+              "status": "available",
+              "note": "这是检测背景教学，不是完整真实信道或杂波抑制系统"
+            },
+            {
+              "label": "目标—杂波—干扰分量可视化",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "proposed",
+              "note": "待扩展：保留相干复数叠加并分别切换各分量"
+            }
+          ],
+          "coverage": "foundation-only",
+          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "综述 S4：信道建模",
+              "href": "reading.html#ref-S4",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "综述 S5：干扰来源",
+              "href": "reading.html#ref-S5",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "原文 R3：杂波感知框架",
+              "href": "reading.html#ref-R3",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "模型、测量与工程损耗的边界",
+              "href": "foundations.html#realworld",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "加入可解释的目标与背景反射模型，再比较失配前后的虚警和估计误差。",
+      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+    },
+    {
+      "id": "learning",
+      "title": "数据驱动感知：CSI 怎样成为动作或姿态？",
+      "question": "信道测量不直接等于骨架，学习系统补入了哪些数据先验？",
+      "scope": "模型辅助学习、感知任务映射、数据划分、泛化与消融；不默认学习方法创造缺失的可辨识信息。",
+      "prerequisites": [
+        "iq",
+        "ofdm",
+        "branches"
+      ],
+      "primaryCaseIds": [],
+      "relatedDirectionIds": [
+        "receiver",
+        "channels"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "AI 究竟在学处理链的哪一层",
+              "href": "reading.html#branches",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "先认清 CSI 所来自的复数观测",
+              "href": "foundations.html#ofdm",
+              "kind": "model",
+              "scope": "foundation-only",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "亲手改变 I/Q，理解幅相输入",
+              "href": "foundations.html#iq",
+              "kind": "interactive",
+              "scope": "foundation-only",
+              "status": "available",
+              "note": "这是理解输入表示的前置实验，不是训练模型或姿态估计"
+            },
+            {
+              "label": "数据泄漏与跨场景泛化对照",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "proposed",
+              "note": "待扩展：对比相邻帧划分与跨场景划分，使用获准数据"
+            }
+          ],
+          "coverage": "foundation-only",
+          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "原文 R6：幅度、相位与姿态输入",
+              "href": "reading.html#ref-R6",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "数据泄漏、场景变化与几何约束",
+              "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "先设计幅度/相位消融和跨场景评估记录，再增加可运行学习实验。",
+      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+    },
+    {
+      "id": "prototype",
+      "title": "原型与标准：怎样走出理想仿真？",
+      "question": "把一张感知图接进真实基站，还缺哪些时限、校准、接口与证据？",
+      "scope": "实时实现、硬件误差、系统服务、评估与标准文件；不把愿景、需求、原型与部署等同。",
+      "prerequisites": [
+        "ofdm",
+        "cfar",
+        "realworld",
+        "frontiers"
+      ],
+      "primaryCaseIds": [],
+      "relatedDirectionIds": [
+        "networks",
+        "channels",
+        "tradeoffs"
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "id": "intuition",
+          "label": "先理解问题",
+          "items": [
+            {
+              "label": "从理想接收链走向实际系统",
+              "href": "foundations.html#realworld",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "id": "model",
+          "label": "看清观测与模型",
+          "items": [
+            {
+              "label": "看清接收链各步输入输出",
+              "href": "foundations.html#ofdm",
+              "kind": "model",
+              "scope": "foundation-only",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "id": "experiment",
+          "label": "动手改变一个条件",
+          "items": [
+            {
+              "label": "按七步检查算法接收链",
+              "href": "foundations.html#ofdm",
+              "kind": "interactive",
+              "scope": "foundation-only",
+              "status": "available",
+              "note": "浏览器教学数值链，不是实时基站、射频硬件或协议复现"
+            },
+            {
+              "label": "处理时限与系统误差预算实验",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "proposed",
+              "note": "待扩展：把采集、处理、报告延迟及校准误差显式列入预算"
+            }
+          ],
+          "coverage": "foundation-only",
+          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+        },
+        {
+          "level": 4,
+          "id": "papers",
+          "label": "与原文对照",
+          "items": [
+            {
+              "label": "原文 R2：实时基站实现",
+              "href": "reading.html#ref-R2",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "综述 R7：标准化研究的层次",
+              "href": "reading.html#ref-R7",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "官方服务需求版本入口",
+              "href": "reading.html#ref-REQ",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ],
+          "comparisonStatus": "partial",
+          "comparisonSchemaRef": "paperComparisonSchema",
+          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+        },
+        {
+          "level": 5,
+          "id": "limits",
+          "label": "寻找创新与适用边界",
+          "items": [
+            {
+              "label": "区分预印本、原型、标准与服务授权",
+              "href": "reading.html#frontiers",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "level": 6,
+          "id": "reproduction",
+          "label": "设计可复现检验",
+          "items": [
+            {
+              "label": "用统一记录单设计复现",
+              "href": "practice.html",
+              "kind": "reproduction-plan",
+              "scope": "shared-template",
+              "status": "available",
+              "note": "已有学习工作流，不表示对应论文已复现"
+            }
+          ]
+        }
+      ],
+      "nextExtension": "先做处理链预算与输入输出清单，再设计能验证一项系统限制的原型实验。",
+      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+    }
+  ]
+}
