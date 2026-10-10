@@ -87,7 +87,7 @@
     }
     $('rate-snr-out').textContent=`${Math.round(10*Math.log10(s.gamma))} dB；γ=${format(s.gamma)}；σ꜀²=${format(s.communicationNoiseVariance)}`;
     $('rate-result').textContent=`T=${s.T}，σₛ²=1。BPSK：I=${s.points[0].information.toFixed(6)}，D=${s.points[0].averageCrb.toFixed(6)}；高斯：I=${s.points[1].information.toFixed(6)}，D=${s.points[1].averageCrb.toFixed(6)}。仅两个设计点，无连线。`;
-    fillTable('rate-table-body',s.points.map(p=>[p.name==='Gaussian'?'高斯 N(0,1)':'等概率 BPSK ±1',p.information.toFixed(6),p.averageCrb.toFixed(6),s.T]));
+    fillTable('rate-table-body',s.points.map(p=>[p.name==='Gaussian'?'高斯 N(0,1)':'等概率 BPSK ±1',p.information.toFixed(9),p.averageCrb.toFixed(6),s.T]));
   }
   $('rate-snr').addEventListener('input',e=>{rateState.gamma=10**(+e.target.value/10);renderRate();});
   $('rate-length').addEventListener('change',e=>{rateState.T=+e.target.value;renderRate();});
