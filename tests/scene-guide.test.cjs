@@ -39,7 +39,7 @@ test('scene guide enhances existing reading cards, with native optional no-JS an
   const html=read('reading.html'),source=read('site/content-scene-guide.html');
   a.equal((html.match(/class="direction-card"/g)||[]).length,registry.directions.length);
   a.ok(html.indexOf('id="directions"')<html.indexOf('id="scene-guide"'));a.ok(html.indexOf('id="scene-guide"')<html.indexOf('class="direction-grid"'));
-  a.match(html,/type="module" src="scene-guide.js\?v=scene-guide-v1"/);a.match(html,/href="scene-guide.css\?v=scene-guide-v1"/);
+  a.match(html,/type="module" src="scene-guide.js\?v=scene-guide-v2"/);a.match(html,/href="scene-guide.css\?v=scene-guide-v1"/);
   a.match(source,/data-scene-prediction><summary>/);a.match(source,/共享发射不等于同一个 Y/);a.match(source,/本例本地已知发射信号/);a.match(source,/未知的是待恢复的消息符号/);
   for(const m of source.matchAll(/<p[^>]+data-scene-panel[^>]*>/g))a.ok(!m[0].includes('hidden'));
   a.match(source,/data-scene-controls hidden/);a.match(source,/role="status" aria-live="polite"/);
@@ -73,4 +73,17 @@ test('generator accepts unmarked future directions and changed position mapping 
 });
 test('UI is a no-op on other pages; visual states have text cues, wrapping controls and visible focus',()=>{
   vm.runInNewContext(read('scene-guide.js'),{document:{getElementById:()=>null}});const css=read('scene-guide.css');for(const text of ['flex-wrap:wrap','min-height:44px',':focus-visible','[hidden]','@media(max-width:480px)','@media print'])a.ok(css.includes(text));a.ok(!/animation:|transition:|scroll-behavior:smooth/.test(css));a.match(read('reading.html'),/对应所选瓶颈/);
+});
+
+test('DOM status uses the dedicated registry label while buttons retain their visible hints',()=>{
+  const h=setup();
+  for(const position of registry.scenePositions){
+    const button=h.positions.find(b=>b.dataset.scenePosition===position.id);
+    a.equal(button.dataset.sceneLabel,position.label);
+    a.ok(button.textContent.includes(position.hint));
+    button.click();
+    const count=registry.directions.filter(d=>d.scenePositions.includes(position.id)).length;
+    a.equal(h.status.textContent,`${position.label}：已标出 ${count} 个主要入口，全部方向仍可阅读。`);
+    a.ok(!h.status.textContent.includes(position.hint));
+  }
 });
