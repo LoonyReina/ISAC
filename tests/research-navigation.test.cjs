@@ -1,85 +1,22 @@
-// Static navigation contracts, not a substitute for rendered browser/keyboard QA.
-const {test}=require('node:test');
-const a=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
-const root=path.resolve(__dirname,'..');
-const read=name=>fs.readFileSync(path.join(root,name),'utf8');
-const hub=read('research.html');
-const pages=['research.html','index.html','theory.html','pilot-design.html','network-clock.html','sbfd-resource.html','near-field.html'];
-const routes=['theory.html#crb-mechanism','pilot-design.html','network-clock.html','sbfd-resource.html','near-field.html'];
-test('hub and both entrances expose all five case routes as native links',()=>{
- for(const name of ['research.html','index.html','theory.html']){
-  const h=read(name);
-  for(const route of routes)a.ok(h.includes(`href="${route}"`),`${name}: ${route}`);
-  a.match(h,/href="research.css\?v=1"/);
- }
- for(const name of pages.filter(n=>n!=='research.html'))a.ok(read(name).includes('href="research.html"'),`${name}: hub return`);
-});
-test('five case cards preserve prerequisite, question, mechanism, evidence, limit and next-question structure',()=>{
- const cards=[...hub.matchAll(/<article class="research-case"[^>]*>([\s\S]*?)<\/article>/g)];
- a.equal(cards.length,5);
- for(const [,card]of cards){
-  for(const label of ['先修','问题','交互机制','证据类型','结论边界','下一研究问题'])a.ok(card.includes(`<dt>${label}</dt>`),label);
-  a.match(card,/<dd>论文：/);
-  a.match(card,/本站：/);
- }
- a.match(hub,/五个问题，五个入口/);
- a.match(hub,/五个案例是可独立选择的主题/);
- a.match(hub,/不是难度排名或技术演进顺序/);
- a.match(hub,/不是本站已经得到的结论/);
- for(const route of ['index.html#start','index.html#reading','theory.html#pathway','theory.html#research-method'])a.ok(hub.includes(`href="${route}"`));
-});
-test('near-field entry connects the array assumptions to bounded, versioned evidence',()=>{
- const card=hub.match(/<article class="research-case" id="case-near-field"[^>]*>([\s\S]*?)<\/article>/)[1];
- for(const route of ['index.html#array','near-field.html','near-field.html#experiment'])a.ok(card.includes(`href="${route}"`),route);
- a.ok(hub.includes('href="#case-near-field"'));
- a.match(card,/未知公共复增益/);
- a.match(card,/阵元数变化也会改变孔径/);
- a.match(card,/2023 首稿，固定 2025 v5/);
- a.match(card,/https:\/\/arxiv\.org\/html\/2302\.01153v5/);
- a.match(card,/https:\/\/arxiv\.org\/html\/2110\.06661v2/);
- a.match(card,/不保证能分开两个目标/);
- const course=read('index.html');
- a.match(course,/在本章远场近似下/);
- a.ok(course.includes('href="near-field.html#geometry"'));
- a.ok(course.includes('href="near-field.html#experiment"'));
- const nearField=read('near-field.html');
- for(const id of ['geometry','experiment','paper','limits'])a.ok(nearField.includes(`id="${id}"`),`near-field.html: ${id}`);
-});
-test('all local href/src paths and fragments in affected pages resolve',()=>{
- for(const name of pages){
-  const h=read(name);
-  for(const [,raw]of h.matchAll(/\b(?:href|src)="([^"]+)"/g)){
-   if(/^(?:https?:|mailto:|data:)/.test(raw))continue;
-   const [file,fragment]=raw.split('#');
-   const target=path.resolve(root,(file||name).split('?')[0]);
-   a.ok(target.startsWith(root+path.sep),`${name}: path escapes root`);
-   a.ok(fs.existsSync(target),`${name}: missing ${raw}`);
-   if(fragment){
-    const ids=[...fs.readFileSync(target,'utf8').matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
-    a.ok(ids.includes(decodeURIComponent(fragment)),`${name}: missing anchor ${raw}`);
-   }
-  }
- }
-});
-test('hub labels, skip target and unique IDs are present, with no script dependency',()=>{
- for(const name of pages){
-  const h=read(name),ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
-  a.equal(new Set(ids).size,ids.length,`${name}: duplicate ID`);
-  for(const [,label]of h.matchAll(/aria-labelledby="([^"]+)"/g))for(const id of label.split(/\s+/))a.ok(ids.includes(id),`${name}: absent label ${id}`);
- }
- a.match(hub,/<html lang="zh-CN">/);
- a.match(hub,/<a class="skip" href="#foundations">/);
- a.equal([...hub.matchAll(/<h1[ >]/g)].length,1);
- a.ok(!/<script\b|<button\b|<input\b|<select\b|localStorage|analytics/i.test(hub));
-});
-test('hub primary sources reuse documented URLs; static responsive rules remain scoped',()=>{
- const sources=read('docs/READING-MAP.md');
- for(const [,url]of hub.matchAll(/href="(https:[^"]+)"/g))a.ok(sources.includes(url.split('#')[0]),`undocumented source ${url}`);
- const css=read('research.css');
- a.match(css,/@media\(max-width:760px\)/);
- a.match(css,/@media\(max-width:520px\)/);
- a.match(css,/grid-template-columns:1fr/);
- a.ok(!/^(?:body|html|a|h[1-6]|p)\s*\{/m.test(css),'no unscoped element rule');
-});
+// Navigation/metadata contracts; numerical tests remain separate and unchanged.
+const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),read=n=>fs.readFileSync(path.join(root,n),'utf8'),r=JSON.parse(read('site/registry.json'));
+const pages=fs.readdirSync(root).filter(n=>n.endsWith('.html'));
+const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+function resolve(raw,from){if(/^(?:https?:|mailto:|data:)/.test(raw))return;const [file,hash]=raw.split('#'),target=path.resolve(root,(file||from).split('?')[0]);a.ok(target.startsWith(root+path.sep),`${from}: escaped root ${raw}`);a.ok(fs.existsSync(target),`${from}: missing file ${raw}`);if(hash)a.ok(ids(fs.readFileSync(target,'utf8')).includes(decodeURIComponent(hash)),`${from}: absent fragment ${raw}`);}
+test('committed static output matches the deterministic registry generator',()=>{cp.execFileSync(process.execPath,['scripts/generate-site.cjs','--check'],{cwd:root,stdio:'pipe'});});
+test('all local links/resources/fragments resolve across every root HTML page',()=>{for(const file of pages)for(const [,href]of read(file).matchAll(/\b(?:href|src)="([^"]+)"/g))resolve(href,file);});
+test('all root pages have one H1, unique static IDs and valid accessible labels',()=>{for(const file of pages){const h=read(file),all=ids(h);a.equal(new Set(all).size,all.length,`${file}: duplicate IDs`);a.equal([...h.matchAll(/<h1[ >]/g)].length,1,`${file}: H1`);for(const [,labels]of h.matchAll(/aria-labelledby="([^"]+)"/g))for(const id of labels.split(/\s+/))a.ok(all.includes(id),`${file}: label ${id}`);a.match(h,/<html lang="zh-CN">/);a.ok(h.includes('href="#site-main"'));a.ok(all.includes('site-main'));}});
+test('every canonical page has identical native stage links and correct current location',()=>{for(const page of r.pages){const h=read(page.path),nav=h.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0];for(const stage of r.stages)a.ok(nav.includes(`href="${stage.href}"`));a.ok(!/learn.html|overview.html|research.html/.test(nav));if(page.stage)a.ok(nav.includes(`href="${r.stages.find(s=>s.id===page.stage).href}" aria-current="`));a.match(h,/class="site-breadcrumb" aria-label="当前位置"/);a.equal([...h.matchAll(/class="site-next"/g)].length,1);}});
+test('homepage is a four-stage map; coherent scientific chain now lives in foundations',()=>{const home=read('index.html'),book=read('foundations.html');a.equal([...home.matchAll(/class="stage-card"/g)].length,4);a.ok(!home.includes('src="course.js'));for(const id of ['echo','iq','matched','doppler','array','ofdm-basics','ofdm','cfar','limits','codesign','realworld','geometry'])a.ok(book.includes(`id="${id}"`));for(const id of ['branches','frontiers','reading','ref-S1'])a.ok(read('reading.html').includes(`id="${id}"`));for(const id of ['practice','roadmap','research-method','faq'])a.ok(read('practice.html').includes(`id="${id}"`));for(const file of ['foundations.html','theory.html'])a.ok(!read(file).includes('class="research-entry"'));for(const id of ['print-book','progress'])a.ok(book.includes(`id="${id}"`));});
+test('case catalog preserves prerequisite, problem, mechanism, source, limits and next question',()=>{const hub=read('reading.html'),cards=[...hub.matchAll(/<article class="research-case"[^>]*>([\s\S]*?)<\/article>/g)];a.equal(cards.length,r.cases.length);for(const [,card]of cards){for(const label of ['先修','问题','交互机制','证据类型','结论边界','下一研究问题'])a.ok(card.includes(`<dt>${label}</dt>`));a.match(card,/<dd>论文：/);a.match(card,/本站：/);}a.match(hub,/不是难度排名或技术演进顺序/);a.match(hub,/不是本站已经得到的结论/);for(const c of r.cases){resolve(c.paper,'reading.html');resolve(c.next,'reading.html');resolve(r.units.find(u=>u.id===c.unit).href,'experiments.html');}});
+test('near-field evidence remains bounded and versioned after migration',()=>{const card=r.cases.find(c=>c.id==='case-near-field'),s=JSON.stringify(card);for(const text of ['未知公共复增益','阵元数变化也会改变孔径','2023 首稿，固定 2025 v5','不保证能分开两个目标','2302.01153v5','2110.06661v2'])a.ok(s.includes(text),text);const book=read('foundations.html');a.match(book,/在本章远场近似下/);for(const href of ['near-field.html#geometry','near-field.html#experiment'])a.ok(book.includes(`href="${href}"`));});
+test('direction registry supports honest six-layer growth without dead placeholder links',()=>{a.ok(r.directions.length>=8);a.equal(new Set(r.directions.map(d=>d.id)).size,r.directions.length);for(const d of r.directions){a.equal(d.levels.length,6);for(const level of d.levels)for(const item of level.items){a.ok(['available','proposed'].includes(item.status));if(item.status==='available')resolve(item.href,'reading.html');}for(const id of d.primaryCaseIds)a.ok(r.cases.some(c=>c.id===id));for(const id of d.relatedDirectionIds)a.ok(r.directions.some(d=>d.id===id));}for(const u of r.units){resolve(u.href,'experiments.html');a.ok(r.directions.some(d=>d.id===u.primaryDirectionId));}a.equal([...read('reading.html').matchAll(/class="direction-depth"/g)].length,r.directions.length);a.ok(!read('reading.html').includes('class="direction-depth" open'));});
+test('all declared legacy IDs have static fallbacks and valid canonical destinations',()=>{for(const [file,routes]of Object.entries(r.legacy)){const h=read(file);for(const [id,target]of Object.entries(routes)){if(id)a.ok(ids(h).includes(id),`${file} fallback ${id}`);resolve(target,file);}}for(const old of ['start','concept','lab','methods','roadmap','ref-S1','iq','velocity-matching'])a.ok(r.legacy['index.html'][old],old);});
+test('known old hashes replace history at actual canonical owners and preserve project base/search',()=>{function run(file,hash,search=''){const calls=[],location={pathname:'/ISAC/'+file,hash,search,href:'https://example.test/ISAC/'+file+search+hash,replace:x=>calls.push(x)};vm.runInNewContext(read('legacy-routes.js'),{location,URL,window:{addEventListener(){}}});return calls;}a.deepEqual(run('index.html','#iq','?view=1'),['https://example.test/ISAC/foundations.html?view=1#iq']);a.deepEqual(run('index.html','#ref-S1'),['https://example.test/ISAC/reading.html#ref-S1']);a.deepEqual(run('index.html','#practice'),['https://example.test/ISAC/practice.html#practice']);a.deepEqual(run('index.html','#velocity-matching'),['https://example.test/ISAC/foundations.html#velocity-matching']);a.deepEqual(run('research.html','#case-clock'),['https://example.test/ISAC/reading.html#case-clock']);a.deepEqual(run('index.html','#curriculum'),[]);a.deepEqual(run('index.html','#%ZZ'),[]);a.deepEqual(run('index.html','#https://evil.test'),[]);a.deepEqual(run('index.html',''),[]);});
+test('registry case citations retain documented source URLs',()=>{const source=read('docs/READING-MAP.md');for(const c of r.cases)for(const [,url]of JSON.stringify(c.fields).replace(/\\"/g,'"').matchAll(/href="(https:[^"]+)"/g))a.ok(source.includes(url.split('#')[0]),`undocumented ${url}`);});
+test('catalog enhancement is optional and shared styling supports small screens and print',()=>{const h=read('experiments.html');for(const u of r.units)a.ok(h.includes(`href="${u.href}"`));a.match(h,/class="experiment-search" role="search" hidden/);a.match(h,/role="status" aria-live="polite"/);const css=read('site.css');for(const text of ['@media(max-width:700px)','@media(max-width:480px)','@media print','prefers-reduced-motion'])a.ok(css.includes(text));});
+
+test('legacy redirect also responds to a same-document hash change',()=>{const listeners={},calls=[],location={pathname:'/ISAC/index.html',hash:'',search:'',href:'https://example.test/ISAC/index.html',replace:url=>calls.push(url)};vm.runInNewContext(read('legacy-routes.js'),{location,URL,window:{addEventListener:(event,fn)=>listeners[event]=fn}});a.equal(calls.length,0);location.hash='#iq';location.href+='#iq';listeners.hashchange();a.deepEqual(calls,['https://example.test/ISAC/foundations.html#iq']);});
+test('without JavaScript all seven OFDM derivations are made readable',()=>{a.match(read('foundations.html'),/<noscript><style>\.step-panel\[hidden\]\{display:block!important\}/);});
+test('each existing case distinguishes partial paper comparison from its independent teaching model',()=>{for(const c of r.cases){const p=c.paperComparison;a.ok(p,`${c.id}: comparison missing`);a.equal(p.comparisonStatus,'partial');for(const k of ['version','sourceTitle','sourceUrl','paperEvidenceType','siteArtifactType','verificationNote'])a.ok(p[k],`${c.id}: ${k}`);a.ok(p.locator.summary);a.ok(p.resourceBudget.summary);for(const k of ['retainedAssumptions','omittedMechanisms','metrics','unknowns'])a.ok(Array.isArray(p[k])&&p[k].length,`${c.id}: ${k}`);resolve(p.comparisonLink,'reading.html');}a.equal([...read('reading.html').matchAll(/class="paper-comparison"/g)].length,r.cases.length);});

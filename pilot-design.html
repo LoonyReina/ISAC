@@ -1,8 +1,14 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="从稀疏 OFDM 导频的相位观测，推导距离模糊；比较梳状与连续导频，拆解参考信号设计论文。"><title>研究案例 · 导频省下来，距离为什么重复？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="pilot.css"><script defer src="pilot-core.js"></script><script defer src="pilot.js"></script></head><body>
-<a class="skip" href="#case">跳到案例</a><header class="top"><a class="brand" href="index.html">ISAC <span>交互讲义</span></a><div><a href="theory.html#research-method">理论主线</a><a href="#experiment">导频实验</a></div></header>
-<main class="theory-main pilot-main"><div class="cover"><p class="eyebrow">研究案例 02 / 从采样结构到波形设计</p><h1>导频省下来，<br>距离为什么重复？</h1><p>一个 40 m 的目标，为什么也像在 2.5 m？先亲手制造这个歧义，再看论文怎样把它变成设计问题。</p><div class="cover-tags"><span>已知导频 → 复数观测</span><span>真实计算的频谱与匹配</span><span>原研究 × 独立教学模型</span></div><nav class="study-links" aria-label="案例目录"><a href="#case">七问拆解</a><a href="#model">模型与推导</a><a href="#experiment">做实验</a><a href="#reproduce">复核与边界</a></nav></div>
-<section class="chapter" id="case"><header class="chapter-head"><p class="eyebrow">01 / 先定位研究问题</p><h2>少用导频，能否仍然分清距离与速度？</h2><p class="goal">先修：<a href="index.html#ofdm">OFDM 七步</a>、<a href="index.html#limits">分辨率与不模糊范围</a>。本页独立新增，不替代原 18 章与理论主线的两个实验。</p></header>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="从稀疏 OFDM 导频的相位观测，推导距离模糊；比较梳状与连续导频，拆解参考信号设计论文。"><title>研究案例 · 导频省下来，距离为什么重复？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="pilot.css"><script defer src="pilot-core.js"></script><script defer src="pilot.js"></script><link rel="stylesheet" href="site.css"></head><body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="theory-main pilot-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">导频省下来，距离为什么重复？</span></nav><p class="site-role">研究主题 · 机制与原文同页对照</p><p class="site-prereq">需要时回看：<a href="foundations.html#ofdm">七步 OFDM 感知链</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="pilot-design.html#experiment">① 预测与实验</a><a href="pilot-design.html#case">② 原文与证据</a><a href="pilot-design.html#reproduce">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END --><div class="cover"><p class="eyebrow">研究案例 02 / 从采样结构到波形设计</p><h1>导频省下来，<br>距离为什么重复？</h1><p>一个 40 m 的目标，为什么也像在 2.5 m？先亲手制造这个歧义，再看论文怎样把它变成设计问题。</p><div class="cover-tags"><span>已知导频 → 复数观测</span><span>真实计算的频谱与匹配</span><span>原研究 × 独立教学模型</span></div></div>
+<section class="chapter" id="case"><header class="chapter-head"><p class="eyebrow">01 / 先定位研究问题</p><h2>少用导频，能否仍然分清距离与速度？</h2><p class="goal">先修：<a href="foundations.html#ofdm">OFDM 七步</a>、<a href="foundations.html#limits">分辨率与不模糊范围</a>。本页独立新增，不替代原 18 章与理论主线的两个实验。</p></header>
 <p>主读：Zhang 等，<a href="https://arxiv.org/pdf/2401.09643v3">OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing，arXiv v3，2024-11-13</a>。本页核对 §II、§III 与 §V；这里摘取设计逻辑，没有复现论文的整套二维算法或原图。</p>
 <ol class="reading-chain">
 <li><strong>问题：</strong>通信参考信号只占部分时频格，感知端却要估计延迟和多普勒。§II 把导频间隔与跨符号偏移变成设计变量。</li>
@@ -43,4 +49,7 @@
 <p><b>向论文迈进一步：</b>单符号改偏移不会去模糊；跨符号交错需要把偏移与多普勒联合建模。若每符号增益相位都可任意独立变化，不能把频点简单拼接成一个相干宽带观测。论文的二维区域与此页静止切片必须分开核验。</p>
 <details><summary>可复算检查点与失败条件</summary><div><ol><li>默认 P={0,4,…,60}；K=16；τ=266.6667 ns。用 H[k] 代入 S：2.5、40、77.5、115 m 都应为 1，允许浮点误差 10⁻¹²。</li><li>梳状首零点偏离真峰 2.34375 m，全连续也是 2.34375 m；等数量连续块为 9.375 m。梳状与全连续主瓣尺度相同，不代表同 SNR，也不代表同不模糊范围。</li><li>令 r=1：在 R′=77.5 m，â 相对真值增益转过 +π/2，|â|²仍为 1。若代码把未知相位固定为 0，会错误消除这个别名。</li><li>网格不命中峰时，离散最大值可能小于 1；不要把采样漏峰当成消除模糊。多个理论同高峰不得自动宣判唯一目标。</li></ol></div></details>
 <p class="sources">来源核对日期：2026-10-10。Zhang 等：上链 v3 PDF，§II（图样定义）、§III（二维模糊分析）、§V（2D FFT 的重复条件）。Braun 等：KIT 作者 PDF，2012，§II.C–D。没有逐式审核全部证明、附录或实测数据；此页的单径参数与测试是本站独立教学推导。</p>
-<a class="next-chapter" href="theory.html#research-method">回到七问框架与 CRB 机制实验 →</a></section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="index.html">返回完整 18 章</a> · <a href="research.html">研究阅读地图</a></footer></main></body></html>
+</section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="foundations.html">返回连续基础</a> · <a href="reading.html">研究阅读地图</a></footer><!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">把这个主题写成可复核的实验记录 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+</main></body></html>

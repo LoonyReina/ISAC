@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="研究实践；从物理直觉、互动实验到原文证据与研究实践。"><title>研究实践 | ISAC 交互学习</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="research.css"><link rel="stylesheet" href="site.css"></head><body data-route="practice.html">
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html" aria-current="page"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END --><main class="site-main"><!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <span aria-current="page">研究实践</span></nav><p class="site-role">学习阶段 04</p></div>
+<!-- SITE:CONTEXT:END -->
+<div class="cover">
+  <p class="eyebrow">研究实践 / 从一个问题到可复核的记录</p>
+  <h1>先做一个能解释的实验</h1>
+  <p>不急着换模型。沿着问题、观测、基线、改动和证据走一遍，留下别人能重做的记录。</p>
+  <nav class="study-links" aria-label="研究实践目录"><a href="#research-method">六步研究路线</a><a href="#pilot-plan">导频设计示例</a><a href="#notebook">实验记录模板</a></nav>
+</div>
+<section class="chapter" id="practice">
+  <header class="chapter-head"><p class="eyebrow">01 / 把阅读变成行动</p><h2 id="research-method">六步完成第一轮研究</h2></header>
+  <ol class="reading-chain">
+    <li><strong>选一个可检验的问题。</strong>先说清系统、未知量、作者改动和证据，再问：基线在哪里失败？把“改善感知”缩成一个问题，例如“单符号导频偏移能否消除距离歧义”。用<a href="reading.html">阅读路线</a>找原文，记录版本与章节。</li>
+    <li><strong>声明观测与资源。</strong>列出可控、已知、未知、噪声；注明谁知道发射符号、是否同步、单站还是双站。固定带宽、总能量、时长、孔径和先验。写清坐标、单位与近似；单站 R=cτ/2 不能直接搬到双站。忘了数据怎样形成，就回到<a href="foundations.html#ofdm">OFDM 观测</a>。</li>
+    <li><strong>建立可解释基线。</strong>从无噪声单目标开始，核对相位符号和峰坐标；再看非整格、独立噪声重复试验、第二目标。一次只推进一层。先在<a href="experiments.html">实验目录</a>选择对应机制，不必把所有现实因素一起加入。</li>
+    <li><strong>只改变一个假设。</strong>写下预测及推翻它的条件，再改导频、时钟或模型中的一项。资源随之变化时，必须注明，不能把额外资源算作算法收益。</li>
+    <li><strong>先定证据，再看曲线。</strong>区分<a href="foundations.html#limits">分辨率、格距与不模糊范围</a>，以及误差、CRB、检出率和虚警率。报告试验数、失败比例及适用的不确定性；保留失败样本，不挑最好的一张图。推导、仿真和实测分开标注。</li>
+    <li><strong>保存可复现记录。</strong>留下参数、代码版本、种子、重复次数、数值容差和图表原始值。先复核端点与最小算例，再挑战论文中的一张图；教学机制复算不等于整篇论文复现。</li>
+  </ol>
+</section>
+<section class="chapter" id="pilot-plan">
+  <header class="chapter-head"><p class="eyebrow">02 / 一份待执行的设计</p><h2>只移动梳状导频，会不会消除歧义？</h2><p class="goal">以下是拟开展实验与理论预测，不是新增实测结果。</p></header>
+  <p><strong>模型与预算：</strong>使用<a href="pilot-design.html#model">已实现的单径模型</a>：静止单站、单符号、无噪声；已知导频，未知复增益。Δf=1 MHz、q=4、K=16、R=40 m，每个导频单位能量，总量16。固定导频数、端点跨度和候选距离网格。</p>
+  <p><strong>基线与唯一改动：</strong>在<a href="pilot-design.html#experiment">导频实验</a>先取偏移 r=0，再只改 r=1。候选假设是“移动梳齿能去模糊”。先按模型推算：重复周期 c/(2qΔf)=37.5 m；偏移引入的公共相位可被未知增益吸收，因此预计该假设不成立。</p>
+  <p><strong>怎样判定：</strong>记录 R′=2.5、40、77.5、115 m 的匹配得分 S 与拟合增益相位。横轴 R′ 用 m，S 无量纲且不是概率；同高峰表示观测歧义，不是多个目标。若出现唯一峰，先查网格漏峰或误用真值相位，并按<a href="pilot-design.html#reproduce">复核检查点</a>重算。</p>
+  <p><strong>边界与下一轮：</strong>这里只检验确定性歧义，不报告噪声精度或吞吐量收益。跨符号交错是另一轮研究：先声明相干性、运动与新增时长预算，不能把不同符号的频点直接拼起来。</p>
+</section>
+<section class="chapter" id="notebook">
+  <header class="chapter-head"><p class="eyebrow">03 / 复制到自己的实验本</p><h2>最小实验记录</h2></header>
+  <p>复制下列文字到本地笔记即可；此页不保存或上传记录。</p>
+  <pre class="notebook-template">日期 / 代码版本 / 文献版本与章节：
+研究问题 / 可推翻的预测：
+观测数据 / 已知、未知、可控量：
+几何 / 同步 / 近似 / 坐标与单位：
+固定资源 / 基线 / 本轮唯一改动：
+参数 / 种子 / 次数 / 容差：
+指标 / 原始值 / 失败判据与失败次数：
+结果 / 不确定性 / 与预测的差异：
+结论适用范围 / 尚未验证 / 下一步：</pre>
+  <p>完成后应能回答：这轮真正改变了什么？证据排除了哪种解释？还有什么没有证明？</p>
+</section>
+
+<section class="chapter" id="roadmap">
+  <header class="chapter-head"><p class="eyebrow">04 / 可调整的四周节奏</p><h2>每周留下一件可检查的产出</h2></header>
+  <p>按每周约5–8小时安排，仅作建议；复数信号、傅里叶变换、概率或线性代数不熟时，先补当前实验需要的部分。</p>
+  <ol><li>第一周：画通信与感知链路，解释单站、双站和已知量</li><li>第二周：跑通单目标距离–多普勒处理，标清峰坐标与单位</li><li>第三周：一次扫描一个参数，留下带重复次数的误差记录</li><li>第四周：选一条研究支线，写出问题、基线、指标和复现计划</li></ol>
+  <details id="faq"><summary>开始前自测：哪些“提升”还不能成立？</summary><p>复用通信信号仍有同步、算力与调度成本；带宽翻倍不保证定位误差减半；CRB降低不保证估计器达到它。报告实际误差、失败条件和资源代价，才能判断改进。数学、编程或硬件切入都适用这条路线。</p></details>
+</section>
+
+<details class="practice-extension"><summary>进一步：改发射、改接收，哪些接口必须重查？</summary><div><section class="chapter" id="design-interface"><div class="eyebrow">从五个实验，回到论文里的研究问题</div><h2>波形与接收处理：可以分开创新，不能脱离接口</h2><div class="two"><article class="card"><h3>固定方法，优化“拿什么去照”</h3><p>接收端仍用相关、FFT 和已校准的检测器，发射端改进序列、功率、导频或波束。要更新已知模板和参数，并验证性能改善确实出现在接收结果里。</p></article><article class="card"><h3>固定信号，优化“怎样读回来”</h3><p>保留 OFDM/WiFi 信号，研究抗频偏、杂波抑制、超分辨估计或数据未知时的接收机。这是另一条独立的研究切入点。</p></article></div><div class="formula">θ̂ = E(y; s, w)<br>可固定 E 的算法形式，优化 s、w；也可固定 s、w，优化 E；还可联合优化。</div><p>关键是分清<strong>算法结构</strong>和<strong>算法依赖的参数</strong>。接收端若知道 s，可在同一匹配框架内换模板；如果采样格局、波形基函数或统计模型变了，就要检查原方法是否还适用。结构必须适配，也不意味着适配本身一定构成新算法贡献。</p><div class="table-wrap"><table><thead><tr><th>你改了什么</th><th>哪些可保持</th><th>哪些必须重新检查</th></tr></thead><tbody><tr><td>相位码 / 序列</td><td>相关计算框架</td><td>参考模板、模糊函数、旁瓣与实际检测</td></tr><tr><td>波束权重</td><td>距离 / 速度处理主线</td><td>目标有效增益、阵列校准、角度估计模型</td></tr><tr><td>子载波功率 / 占用图</td><td>已知符号消除与变换思路</td><td>小幅度除法的噪声放大、空载波、非均匀采样</td></tr><tr><td>OFDM → 另一种信号结构</td><td>延迟 / 多普勒仍是物理参数</td><td>解调、匹配和估计链要与新结构对应；不是照搬 FFT</td></tr></tbody></table></div>
+<details><summary>评价论文：CRB 降了，是否就等于系统更好？</summary><p>CRB 衡量模型内的信息下界，不直接等于某个算法的 RMSE。先问模型是否可辨识、估计器是否偏置、低信噪比是否出现错误峰值，再比较具体算法。<a href="reading.html#ref-S3">[3] §III.A</a> 给出了 MSE、Fisher 信息和下界的关系。</p><p>做波形研究时，先固定总能量、带宽、观测时间、阵列和通信约束，再说明你额外改变了什么。可以报告模糊函数或 CRB，但“真实检测改善”还需要对应的检测概率–虚警概率、估计误差、复杂度与失配实验。不存在每篇论文必须同时创新波形和接收机的规则；贡献要和证据对应。</p></details>
+<div class="note"><b>你现在可以用一句话给一篇论文定位：</b>它在什么观测模型和先验下，改变发射、接收、资源还是融合，用什么指标证明什么收益？“RIS + AI + UAV”只是可能的工具，不是问题本身。</div></section></div></details>
+
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="reading.html">选择下一条研究支线 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END --></main></body></html>
