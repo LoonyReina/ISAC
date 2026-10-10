@@ -107,3 +107,15 @@ test('DOM selection focuses without native scrolling then reveals panel start; h
  a.match(read('knowledge-map.css'),/\.map-detail\{[^}]*scroll-margin-top:/);
  a.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v2'));
 });
+
+test('detail reveal adds a small gap to root header scroll-padding at desktop and narrow widths',()=>{
+ const css=read('knowledge-map.css'),shell=read('site.css');
+ const detailRules=[...css.matchAll(/(?:^|})\s*\.map-detail\{([^}]*)\}/gm)].map(m=>m[1]);
+ const offsets=detailRules.flatMap(rule=>[...rule.matchAll(/scroll-margin-top:([^;}]*)/g)].map(m=>m[1]));
+ a.deepEqual(offsets,['16px','16px']);
+ a.match(shell,/html\{scroll-padding-top:110px/);
+ a.match(shell,/@media\(max-width:700px\)\{html\{scroll-padding-top:150px/);
+ a.match(css,/@media\(max-width:600px\)[\s\S]*?\.map-detail\{padding:22px 20px;scroll-margin-top:16px\}/);
+ const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=knowledge-map-v2'));
+ a.ok(html.includes('knowledge-map.js?v=knowledge-map-v2'));
+});
