@@ -54,3 +54,8 @@
 本次小修正基于上述最新 main，不改数学或真实坐标。浏览器发现 −20 dB 时六位小数把两个 I 都显示为 0.007178，因此旧提示“数值表可区分差异”过强。表格 I 改为九位小数，分别显示 0.007177645 / 0.007177646；readout 仍为六位。显式说明所有显示值都舍入，打印相同不证明精确相等。只更新 UI 的缓存 query 为 `rate-v4`。
 
 新增 DOM 回归验证 −20 dB 两行显示不同且舍入提示存在。完整 `node --test tests/*.test.cjs`：157 项通过，0 失败；`git diff --check` 通过。上述已发布浏览器事实不冒充本小修正的上线验证；本小修正未由实现任务发布或运行浏览器。
+
+
+## Post-rounding publication check (parent-reported, 2026-10-10)
+
+PR #15 merged at main `0df32b751e94b0a02f026275d8173bad6dff95dc`; Pages run `38044724442` succeeded and the parent reported 157 tests passing. Parent verified deployed theory HTML/JS byte matches. In the actual cloud browser at −20 dB, the table showed `0.007177645` and `0.007177646`, with the rounding caveat visible. The summary readout intentionally remains at six decimals. This small follow-up supplements the earlier PR #14 full-browser QA; it was reported by the parent and was not repeated by the near-field implementation worker.
