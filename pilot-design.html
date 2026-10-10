@@ -43,4 +43,4 @@
 <p><b>向论文迈进一步：</b>单符号改偏移不会去模糊；跨符号交错需要把偏移与多普勒联合建模。若每符号增益相位都可任意独立变化，不能把频点简单拼接成一个相干宽带观测。论文的二维区域与此页静止切片必须分开核验。</p>
 <details><summary>可复算检查点与失败条件</summary><div><ol><li>默认 P={0,4,…,60}；K=16；τ=266.6667 ns。用 H[k] 代入 S：2.5、40、77.5、115 m 都应为 1，允许浮点误差 10⁻¹²。</li><li>梳状首零点偏离真峰 2.34375 m，全连续也是 2.34375 m；等数量连续块为 9.375 m。梳状与全连续主瓣尺度相同，不代表同 SNR，也不代表同不模糊范围。</li><li>令 r=1：在 R′=77.5 m，â 相对真值增益转过 +π/2，|â|²仍为 1。若代码把未知相位固定为 0，会错误消除这个别名。</li><li>网格不命中峰时，离散最大值可能小于 1；不要把采样漏峰当成消除模糊。多个理论同高峰不得自动宣判唯一目标。</li></ol></div></details>
 <p class="sources">来源核对日期：2026-10-10。Zhang 等：上链 v3 PDF，§II（图样定义）、§III（二维模糊分析）、§V（2D FFT 的重复条件）。Braun 等：KIT 作者 PDF，2012，§II.C–D。没有逐式审核全部证明、附录或实测数据；此页的单径参数与测试是本站独立教学推导。</p>
-<a class="next-chapter" href="theory.html#research-method">回到七问框架与 CRB 机制实验 →</a></section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="index.html">返回完整 18 章</a></footer></main></body></html>
+<a class="next-chapter" href="theory.html#research-method">回到七问框架与 CRB 机制实验 →</a></section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="index.html">返回完整 18 章</a> · <a href="research.html">研究阅读地图</a></footer></main></body></html>
