@@ -352,6 +352,67 @@
         },
         "verificationNote": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
       }
+    },
+    {
+      "id": "case-waveform",
+      "title": "方向图相同，通信符号为什么不同？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#array\">阵列与方向</a>",
+        "问题": "固定雷达发射协方差，为什么仍能改变逐时刻通信符号误差？",
+        "交互机制": "选择通道与正定参考协方差，在相同功率、样本数和方向图下比较固定 DFT 与严格全局最优波形。",
+        "证据类型": "<a href=\"https://arxiv.org/pdf/1711.05220v1\">2018 波形设计论文的固定预印本 v1</a>：理论与仿真；本站：有限状态精确线性代数与全局下界。",
+        "结论边界": "只优化确定性 ||HX−S||²；相同空间协方差不等于相同延迟–多普勒性能。无噪声、BER、容量、CRB 或常模结论。",
+        "下一研究问题": "相同协方差下通信拟合变好时，实际时间波形的延迟旁瓣怎样变化？"
+      },
+      "unit": "waveform-design",
+      "paper": "waveform-design.html#paper",
+      "next": "waveform-design.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Toward Dual-functional Radar-Communication Systems: Optimal Waveform Design",
+        "sourceUrl": "https://arxiv.org/pdf/1711.05220v1",
+        "version": "arXiv v1，2017-11-14（Towards）；期刊 TSP 66(16)，2018-08，DOI 10.1109/TSP.2018.2847648",
+        "paperEvidenceType": "闭式最优性分析与数值仿真",
+        "siteArtifactType": "严格协方差 Procrustes 的独立合成机制实现；27 个有限状态与全局下界核验，非原图复现",
+        "metrics": [
+          "确定性符号误差 E/(KL)",
+          "原始空间功率 aᴴRₓa",
+          "块能量 ||X||² 与协方差残差",
+          "目标值与全局下界之差"
+        ],
+        "unknowns": [
+          "未复现原文图3–4的通信性能或多方向雷达设计",
+          "未实现加权权衡、常模分支定界或硬件模型"
+        ],
+        "comparisonLink": "waveform-design.html#paper",
+        "sourceId": "case-waveform-paper",
+        "locator": {
+          "summary": "v1 §II 式(1)–(7)；§III 式(8)–(15)；§VI 图3–4。§IV–V 仅作为未实现边界",
+          "section": "§II–III、§VI",
+          "figure": "图3–4",
+          "equation": "式(8)–(15)"
+        },
+        "retainedAssumptions": [
+          "H、S 已知的窄带下行复基带模型",
+          "固定发射协方差与总功率",
+          "L≥N、正定 R_d 的 Procrustes 闭式解"
+        ],
+        "omittedMechanisms": [
+          "原文 N=16、L=20、K=4 与三方向协方差设计",
+          "噪声、速率、BER、延迟–多普勒性能",
+          "加权信赖域和常模约束"
+        ],
+        "resourceBudget": {
+          "summary": "本站 N=4、K=2、L=8、Pₜ=1，半波长 ULA、单位 QPSK。每个状态的参考与最优共享 H、S、R_d 和总能量8；只改变时间方向。未定义物理带宽、样本周期或 RF 载频，归一化复基带单位。",
+          "bandwidth": null,
+          "energy": "LPₜ=8，归一化块能量",
+          "duration": "L=8；不指定物理采样周期",
+          "aperture": "四阵元、间距 λ/2，孔径 3λ/2",
+          "priorKnowledge": "精确已知 H、S、目标 R_d",
+          "other": []
+        },
+        "verificationNote": "2026-10-10 核对固定 v1 严格设计机制；独立复数推导、双实现数值检查与小规模约束求解交叉验证，不代表完整论文复现"
+      }
     }
   ],
   "legacy": {
@@ -878,6 +939,19 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "改变真距离或阵元数，对照三种空间匹配；留意孔径同时改变。"
+    },
+    {
+      "id": "waveform-design",
+      "title": "同方向图的最优波形",
+      "href": "waveform-design.html#experiment",
+      "question": "空间协方差相同，逐符号通信误差也相同吗？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array"
+      ],
+      "group": "research",
+      "primaryDirectionId": "waveforms",
+      "action": "固定资源改变 H、β 或方向，比较实际复数波形、HX 与全局下界。"
     }
   ],
   "pages": [
@@ -1007,6 +1081,19 @@
       ],
       "next": "foundations.html#limits",
       "nextLabel": "区分分辨尺度、精度与不模糊范围"
+    },
+    {
+      "path": "waveform-design.html",
+      "title": "方向图相同，通信符号为什么不同？",
+      "stage": "experiments",
+      "role": "研究主题 · 严格协方差最优波形与原文对照",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array"
+      ],
+      "case": "case-waveform",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次固定资源的波形实验"
     }
   ],
   "schemaVersion": 1,
@@ -1077,14 +1164,15 @@
       "id": "waveforms",
       "title": "波形与导频：发什么、留哪些已知格子？",
       "question": "同一帧既传数据又探测目标，哪些频率和符号必须已知？",
-      "scope": "发射信号、调制坐标、导频位置与歧义；OTFS 是后续专题，不是与全部 ISAC 并列的大类。",
+      "scope": "发射信号、调制坐标、导频歧义与严格协方差波形优化；OTFS 为后续专题。",
       "prerequisites": [
         "iq",
         "ofdm-basics",
         "ofdm"
       ],
       "primaryCaseIds": [
-        "case-pilot"
+        "case-pilot",
+        "case-waveform"
       ],
       "relatedDirectionIds": [
         "tradeoffs",
@@ -1099,6 +1187,13 @@
             {
               "label": "先搭回 OFDM 通信接收机",
               "href": "foundations.html#ofdm-basics",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "相同方向图，不同通信符号",
+              "href": "waveform-design.html#intuition",
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
@@ -1123,6 +1218,13 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "X、H、S 与发射协方差",
+              "href": "waveform-design.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1134,6 +1236,13 @@
             {
               "label": "改导频位置，比较距离歧义",
               "href": "pilot-design.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "严格协方差的最优波形实验",
+              "href": "waveform-design.html#experiment",
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
@@ -1166,6 +1275,13 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "2018 波形设计：原文与创新",
+              "href": "waveform-design.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -1180,6 +1296,13 @@
             {
               "label": "不要把感知变换当作 OTFS 调制",
               "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "协方差不保证全部雷达性能",
+              "href": "waveform-design.html#limits",
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
@@ -1205,6 +1328,13 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "全局下界与独立数值验证",
+              "href": "waveform-design.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         }
@@ -2563,11 +2693,12 @@
         "kind": "concept",
         "groupId": "codesign",
         "label": "波形与导频设计",
-        "question": "已知格子的安排如何改变感知歧义？",
-        "knownUnknown": "设计变量是导频位置等；任务未知量仍需明确",
-        "boundary": "当前演示为静止单径距离切片",
+        "question": "导频位置如何改变感知歧义？固定空间协方差后，时间波形如何改变通信符号误差？",
+        "knownUnknown": "导频模型：已知导频、估计静止单径时延；波形模型：H、目标符号 S 与协方差 R_d 已知，设计复数发射矩阵 X",
+        "boundary": "导频实验仅为静止单径距离切片；波形实验仅优化无噪声确定性符号误差，固定协方差不保证相同延迟–多普勒性能",
         "unitRefs": [
-          "pilot"
+          "pilot",
+          "waveform-design"
         ],
         "entryUnitRef": "pilot"
       },
@@ -3309,5 +3440,6 @@
         ]
       }
     ]
-  }
+  },
+  "researchDirectoryFile": "site/research-directory.json"
 }
