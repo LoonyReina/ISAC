@@ -2206,5 +2206,1108 @@
       "label": "全链资源怎么分",
       "hint": "带宽、时长怎样分给两项任务？"
     }
-  ]
+  ],
+  "knowledgeMap": {
+    "schemaVersion": 1,
+    "title": "ISAC 知识地图",
+    "disclaimer": "这是本站的教学组织方式，不是公认的穷尽研究分类；连线说明学习、观测或证据关系，不表示技术因果或历史演进。",
+    "groups": [
+      {
+        "id": "communication",
+        "label": "通信基础",
+        "question": "消息如何进入电波？",
+        "kind": "concepts"
+      },
+      {
+        "id": "radar",
+        "label": "雷达基础",
+        "question": "回波如何带回目标信息？",
+        "kind": "concepts"
+      },
+      {
+        "id": "observation",
+        "label": "共同观测",
+        "question": "接收机究竟知道什么？",
+        "kind": "concepts"
+      },
+      {
+        "id": "dimensions",
+        "label": "感知坐标",
+        "question": "沿哪一维样本读参数？",
+        "kind": "concepts"
+      },
+      {
+        "id": "inference",
+        "label": "检测与估计",
+        "question": "有峰、检测到、估准是同一件事吗？",
+        "kind": "concepts"
+      },
+      {
+        "id": "metrics",
+        "label": "指标与边界",
+        "question": "分得开、估得准和不混淆如何区分？",
+        "kind": "concepts"
+      },
+      {
+        "id": "codesign",
+        "label": "联合设计",
+        "question": "在同一个资源预算下怎样取舍？",
+        "kind": "concepts"
+      },
+      {
+        "id": "reality",
+        "label": "真实系统",
+        "question": "理想条件失效后，哪一步要重做？",
+        "kind": "concepts"
+      },
+      {
+        "id": "research",
+        "label": "八个研究方向",
+        "question": "带着机制问题沿六层深入",
+        "kind": "generated-directions"
+      },
+      {
+        "id": "evidence",
+        "label": "原文、实验与复核",
+        "question": "这项结论由什么证据支持？",
+        "kind": "generated-evidence"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "messages",
+        "kind": "concept",
+        "groupId": "communication",
+        "label": "消息、调制与判决",
+        "question": "通信接收机要从什么候选中作选择？",
+        "knownUnknown": "已知候选信号；未知消息/符号",
+        "boundary": "此处共同观测是教学模型，不代表完整编码链",
+        "unitRefs": [
+          "shared"
+        ],
+        "entryUnitRef": "shared"
+      },
+      {
+        "id": "iq",
+        "kind": "concept",
+        "groupId": "communication",
+        "label": "I/Q 与复包络",
+        "question": "两路实数如何记录幅度和相位？",
+        "knownUnknown": "已知本振与样本；待描述的是复包络",
+        "boundary": "真实射频电压、复向量和功率不可混用",
+        "unitRefs": [
+          "iq"
+        ],
+        "entryUnitRef": "iq"
+      },
+      {
+        "id": "ofdm-basics",
+        "kind": "concept",
+        "groupId": "communication",
+        "label": "子载波与 OFDM",
+        "href": "foundations.html#ofdm-basics",
+        "question": "一排子载波怎样组成真实发送波形？",
+        "knownUnknown": "已知子载波系数；理解合成与解调坐标",
+        "boundary": "通信解调 FFT 与感知变换承担不同任务",
+        "unitRefs": []
+      },
+      {
+        "id": "communication-rate",
+        "kind": "concept",
+        "groupId": "communication",
+        "label": "互信息与通信指标",
+        "question": "未知消息与已知发射实现为什么对应不同任务？",
+        "knownUnknown": "通信消息未知；感知侧输入实现已知",
+        "boundary": "本站两个解析工作点不是完整 Pareto 边界",
+        "unitRefs": [
+          "rate"
+        ],
+        "entryUnitRef": "rate"
+      },
+      {
+        "id": "echo",
+        "kind": "concept",
+        "groupId": "radar",
+        "label": "传播路径与回波",
+        "question": "传播时间如何约束目标的位置？",
+        "knownUnknown": "已知发射时刻与波速；未知传播路径",
+        "boundary": "单站往返与双站总路径必须分别解释",
+        "unitRefs": [
+          "echo"
+        ],
+        "entryUnitRef": "echo"
+      },
+      {
+        "id": "matched",
+        "kind": "concept",
+        "groupId": "radar",
+        "label": "模板与匹配",
+        "question": "一个候选延迟如何与样本比较？",
+        "knownUnknown": "已知模板与样本；搜索候选延迟",
+        "boundary": "最大匹配峰不等于通过检测的目标",
+        "unitRefs": [
+          "matched"
+        ],
+        "entryUnitRef": "matched"
+      },
+      {
+        "id": "geometry",
+        "kind": "concept",
+        "groupId": "radar",
+        "label": "单站、双站与多站几何",
+        "question": "同一个总路径读数能否唯一确定位置？",
+        "knownUnknown": "已知站位与路径观测；未知目标位置",
+        "boundary": "局部可辨识不保证全局唯一",
+        "unitRefs": [
+          "geometry"
+        ],
+        "entryUnitRef": "geometry"
+      },
+      {
+        "id": "shared-model",
+        "kind": "concept",
+        "groupId": "observation",
+        "label": "已知量与未知量",
+        "question": "同一组样本，换一个未知量会怎样？",
+        "knownUnknown": "明确输入、样本、噪声假设和待估参数",
+        "boundary": "模型相似不意味着任务指标相同",
+        "unitRefs": [
+          "shared"
+        ],
+        "entryUnitRef": "shared"
+      },
+      {
+        "id": "sampling",
+        "kind": "concept",
+        "groupId": "observation",
+        "label": "快时间、子载波、慢时间",
+        "question": "每个索引到底在数哪一种采样？",
+        "knownUnknown": "样本沿频率、观察时刻与阵元排列",
+        "boundary": "Tr 是观察起始间隔，不自动等于符号长度",
+        "unitRefs": [
+          "ofdm"
+        ],
+        "entryUnitRef": "ofdm"
+      },
+      {
+        "id": "phase",
+        "kind": "concept",
+        "groupId": "observation",
+        "label": "路径长度与复相位",
+        "question": "路径改变为什么会成为相位改变？",
+        "knownUnknown": "几何路径变化影响相位；接收机只看到缠绕相位",
+        "boundary": "教学真值累计圈数不等于已恢复整圈",
+        "unitRefs": [
+          "doppler"
+        ],
+        "entryUnitRef": "doppler"
+      },
+      {
+        "id": "known-pilots",
+        "kind": "concept",
+        "groupId": "observation",
+        "label": "已知输入与导频",
+        "question": "哪些发射格子已知，留下哪些歧义？",
+        "knownUnknown": "已知选中的导频；未知延迟与复增益",
+        "boundary": "归一化峰高不是等总能量或等 SNR",
+        "unitRefs": [
+          "pilot"
+        ],
+        "entryUnitRef": "pilot"
+      },
+      {
+        "id": "delay",
+        "kind": "concept",
+        "groupId": "dimensions",
+        "label": "延迟 / 距离",
+        "question": "沿频率的相位变化提供什么延迟线索？",
+        "knownUnknown": "已知频率样本；搜索延迟参数",
+        "boundary": "从延迟到距离需要指定传播几何",
+        "unitRefs": [
+          "ofdm",
+          "echo"
+        ],
+        "entryUnitRef": "ofdm"
+      },
+      {
+        "id": "doppler",
+        "kind": "concept",
+        "groupId": "dimensions",
+        "label": "多普勒 / 速度",
+        "question": "跨观察时刻的相位变化说明什么？",
+        "knownUnknown": "已知观察时刻；未知多普勒参数",
+        "boundary": "速度换算依赖路径几何，不能普遍使用单站倍频式",
+        "unitRefs": [
+          "doppler",
+          "ofdm"
+        ],
+        "entryUnitRef": "doppler"
+      },
+      {
+        "id": "angle",
+        "kind": "concept",
+        "groupId": "dimensions",
+        "label": "角度 / 空间",
+        "question": "不同阵元为什么看到不同相位？",
+        "knownUnknown": "已知阵元位置；未知方向或空间位置",
+        "boundary": "远场方向模型与近场波前曲率模型须区分",
+        "unitRefs": [
+          "array",
+          "near-field"
+        ],
+        "entryUnitRef": "array"
+      },
+      {
+        "id": "detection",
+        "kind": "concept",
+        "groupId": "inference",
+        "label": "检测、虚警与漏检",
+        "question": "多大的峰足以拒绝纯背景解释？",
+        "knownUnknown": "已知背景假设；判决是否存在目标",
+        "boundary": "检测不等于参数精度；需要虚警与检出率语境",
+        "unitRefs": [
+          "cfar"
+        ],
+        "entryUnitRef": "cfar"
+      },
+      {
+        "id": "estimation",
+        "kind": "concept",
+        "groupId": "inference",
+        "label": "参数估计与误差",
+        "question": "估计器真的能达到下界吗？",
+        "knownUnknown": "实际估计器接收 x、y；θ 只作评估真值",
+        "boundary": "实标量 LS 等号不能直接搬到非线性距离或角度",
+        "unitRefs": [
+          "estimator-crb"
+        ],
+        "entryUnitRef": "estimator-crb"
+      },
+      {
+        "id": "association",
+        "kind": "concept",
+        "groupId": "inference",
+        "label": "关联、融合与跟踪",
+        "href": "reading.html#direction-networks",
+        "question": "多条观测来自同一目标吗？",
+        "knownUnknown": "要区分目标关联、状态与多站观测",
+        "boundary": "当前标量时延实验不是多目标关联或跟踪实现",
+        "unitRefs": []
+      },
+      {
+        "id": "task-learning",
+        "kind": "concept",
+        "groupId": "inference",
+        "label": "任务映射与学习先验",
+        "href": "reading.html#direction-learning",
+        "question": "复数测量怎样成为动作或姿态判断？",
+        "knownUnknown": "测量是输入；任务标签和数据先验需另外说明",
+        "boundary": "仅有基础输入实验，专项训练/泛化实验未实现",
+        "unitRefs": []
+      },
+      {
+        "id": "resolution",
+        "kind": "concept",
+        "groupId": "metrics",
+        "label": "分辨率与搜索格距",
+        "href": "foundations.html#limits",
+        "question": "曲线采得更密就能分开更近目标吗？",
+        "knownUnknown": "给定物理观测条件；区分响应尺度与绘图格点",
+        "boundary": "插值/零填充不自动增加物理分辨能力",
+        "unitRefs": []
+      },
+      {
+        "id": "ambiguity",
+        "kind": "concept",
+        "groupId": "metrics",
+        "label": "歧义与可辨识性",
+        "question": "不同参数是否产生无法区分的观测？",
+        "knownUnknown": "比较候选参数的观测响应",
+        "boundary": "同高候选、局部精度和全局唯一是不同问题",
+        "unitRefs": [
+          "pilot",
+          "clock"
+        ],
+        "entryUnitRef": "pilot"
+      },
+      {
+        "id": "fisher-crb",
+        "kind": "concept",
+        "groupId": "metrics",
+        "label": "Fisher 信息与 CRB",
+        "question": "模型和已知条件固定后，估计界如何变化？",
+        "knownUnknown": "给定输入实现计算条件界，再说明如何平均",
+        "boundary": "理论界不是一次估计误差或通用可达性保证",
+        "unitRefs": [
+          "crb",
+          "estimator-crb"
+        ],
+        "entryUnitRef": "crb"
+      },
+      {
+        "id": "budget",
+        "kind": "concept",
+        "groupId": "metrics",
+        "label": "带宽、能量、时长、孔径",
+        "href": "foundations.html#codesign",
+        "question": "比较两条曲线时哪些资源保持相同？",
+        "knownUnknown": "显式记录共享预算和先验",
+        "boundary": "预算不同不能宣称无条件性能优越",
+        "unitRefs": [
+          "sbfd",
+          "rate"
+        ]
+      },
+      {
+        "id": "waveform-design",
+        "kind": "concept",
+        "groupId": "codesign",
+        "label": "波形与导频设计",
+        "question": "已知格子的安排如何改变感知歧义？",
+        "knownUnknown": "设计变量是导频位置等；任务未知量仍需明确",
+        "boundary": "当前演示为静止单径距离切片",
+        "unitRefs": [
+          "pilot"
+        ],
+        "entryUnitRef": "pilot"
+      },
+      {
+        "id": "beam-design",
+        "kind": "concept",
+        "groupId": "codesign",
+        "label": "波束与空间设计",
+        "question": "阵列响应如何随方向和孔径变化？",
+        "knownUnknown": "设计阵列/波束条件；读取空间匹配响应",
+        "boundary": "现有基础阵列实验不等于完整联合波束优化",
+        "unitRefs": [
+          "array",
+          "near-field"
+        ],
+        "entryUnitRef": "array"
+      },
+      {
+        "id": "resource-design",
+        "kind": "concept",
+        "groupId": "codesign",
+        "label": "时频资源分配",
+        "question": "频格数和观察符号数分别改变什么？",
+        "knownUnknown": "分别改变资源条件；检查距离与速度切片",
+        "boundary": "只依据本实验明确保留的模型比较",
+        "unitRefs": [
+          "sbfd"
+        ],
+        "entryUnitRef": "sbfd"
+      },
+      {
+        "id": "joint-objectives",
+        "kind": "concept",
+        "groupId": "codesign",
+        "label": "联合目标与权衡",
+        "question": "同一预算下通信和感知各自衡量什么？",
+        "knownUnknown": "同时定义通信指标、感知指标和约束",
+        "boundary": "两个候选输入工作点不是最优权衡边界",
+        "unitRefs": [
+          "rate",
+          "crb"
+        ],
+        "entryUnitRef": "rate"
+      },
+      {
+        "id": "channels",
+        "kind": "concept",
+        "groupId": "reality",
+        "label": "多径、杂波与干扰",
+        "href": "foundations.html#realworld",
+        "question": "最强回波来自墙时会怎样？",
+        "knownUnknown": "区分目标、背景、干扰和噪声",
+        "boundary": "当前 CFAR 前置教学不是完整真实信道系统",
+        "unitRefs": [
+          "cfar"
+        ]
+      },
+      {
+        "id": "synchronization",
+        "kind": "concept",
+        "groupId": "reality",
+        "label": "同步与校准",
+        "question": "时钟偏差会被误读成什么几何量？",
+        "knownUnknown": "已知站位；时钟偏差和传播延迟可能混合",
+        "boundary": "当前为已关联标量时延模型，非完整 OFDM 同步",
+        "unitRefs": [
+          "clock"
+        ],
+        "entryUnitRef": "clock"
+      },
+      {
+        "id": "near-field",
+        "kind": "concept",
+        "groupId": "reality",
+        "label": "近场与模型失配",
+        "question": "同方向远近目标能否留下不同空间指纹？",
+        "knownUnknown": "给定阵列和候选空间位置；比较匹配模型",
+        "boundary": "改变阵元数时物理孔径可能同时变化",
+        "unitRefs": [
+          "near-field"
+        ],
+        "entryUnitRef": "near-field"
+      },
+      {
+        "id": "implementation",
+        "kind": "concept",
+        "groupId": "reality",
+        "label": "原型、实时性与标准",
+        "href": "reading.html#direction-prototype",
+        "question": "怎样区分愿景、需求、原型和部署？",
+        "knownUnknown": "明确处理链、时限、校准与证据范围",
+        "boundary": "浏览器数值实验不是实时硬件或标准符合性验证",
+        "unitRefs": []
+      }
+    ],
+    "directionNodes": [
+      {
+        "id": "direction:waveforms",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "waveforms"
+        }
+      },
+      {
+        "id": "direction:receiver",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "receiver"
+        }
+      },
+      {
+        "id": "direction:tradeoffs",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "tradeoffs"
+        }
+      },
+      {
+        "id": "direction:spatial",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "spatial"
+        }
+      },
+      {
+        "id": "direction:networks",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "networks"
+        }
+      },
+      {
+        "id": "direction:channels",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "channels"
+        }
+      },
+      {
+        "id": "direction:learning",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "learning"
+        }
+      },
+      {
+        "id": "direction:prototype",
+        "kind": "direction",
+        "groupId": "research",
+        "registryRef": {
+          "collection": "directions",
+          "id": "prototype"
+        }
+      }
+    ],
+    "edgeTypes": [
+      {
+        "id": "prerequisite",
+        "label": "先修",
+        "directed": true,
+        "meaning": "建议学习顺序，不是严格数学依赖"
+      },
+      {
+        "id": "measurement_dimension",
+        "label": "观测维度",
+        "directed": false,
+        "meaning": "在哪一维样本中读取参数，必须附条件"
+      },
+      {
+        "id": "design_tradeoff",
+        "label": "设计与取舍",
+        "directed": false,
+        "meaning": "共同预算下需要一起检查的设计变量和指标，不宣称单调优势"
+      },
+      {
+        "id": "scope_check",
+        "label": "边界辨析",
+        "directed": false,
+        "meaning": "区分任务/指标或检查模型条件"
+      },
+      {
+        "id": "research_entry",
+        "label": "研究入口",
+        "directed": true,
+        "meaning": "概念连接到现有方向路线，不是技术演进"
+      },
+      {
+        "id": "evidence",
+        "label": "证据 / 机制",
+        "directed": false,
+        "meaning": "连接到实验或原文，必须注明本站机制演示与论文证据的区别"
+      }
+    ],
+    "edges": [
+      {
+        "source": "iq",
+        "target": "ofdm-basics",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "ofdm-basics",
+        "target": "sampling",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "echo",
+        "target": "matched",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "iq",
+        "target": "phase",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "echo",
+        "target": "geometry",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "iq",
+        "target": "shared-model",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "shared-model",
+        "target": "messages",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "shared-model",
+        "target": "known-pilots",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "phase",
+        "target": "delay",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "phase",
+        "target": "doppler",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "phase",
+        "target": "angle",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "matched",
+        "target": "detection",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "shared-model",
+        "target": "estimation",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "estimation",
+        "target": "fisher-crb",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "fisher-crb",
+        "target": "joint-objectives",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "budget",
+        "target": "joint-objectives",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "angle",
+        "target": "near-field",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "geometry",
+        "target": "synchronization",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "detection",
+        "target": "association",
+        "type": "prerequisite",
+        "label": "建议先理解",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "sampling",
+        "target": "delay",
+        "type": "measurement_dimension",
+        "label": "频率维提供延迟信息",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "sampling",
+        "target": "doppler",
+        "type": "measurement_dimension",
+        "label": "慢时间维提供多普勒信息",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "sampling",
+        "target": "angle",
+        "type": "measurement_dimension",
+        "label": "空间维提供方向信息",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "geometry",
+        "target": "delay",
+        "type": "measurement_dimension",
+        "label": "几何规定延迟到位置的解释",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "known-pilots",
+        "target": "ambiguity",
+        "type": "design_tradeoff",
+        "label": "已知格子与候选可区分性",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "budget",
+        "target": "resolution",
+        "type": "design_tradeoff",
+        "label": "固定条件下检查响应尺度",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "budget",
+        "target": "resource-design",
+        "type": "design_tradeoff",
+        "label": "共同资源约束",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "waveform-design",
+        "target": "communication-rate",
+        "type": "design_tradeoff",
+        "label": "同时检查通信代价",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "waveform-design",
+        "target": "ambiguity",
+        "type": "design_tradeoff",
+        "label": "同时检查感知歧义",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "beam-design",
+        "target": "angle",
+        "type": "design_tradeoff",
+        "label": "检查方向响应",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "resource-design",
+        "target": "delay",
+        "type": "design_tradeoff",
+        "label": "检查频率资源对应的延迟响应",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "resource-design",
+        "target": "doppler",
+        "type": "design_tradeoff",
+        "label": "检查时间资源对应的多普勒响应",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "joint-objectives",
+        "target": "communication-rate",
+        "type": "design_tradeoff",
+        "label": "通信评价维度",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "joint-objectives",
+        "target": "fisher-crb",
+        "type": "design_tradeoff",
+        "label": "感知理论界评价维度",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "joint-objectives",
+        "target": "estimation",
+        "type": "design_tradeoff",
+        "label": "另行检验实际误差",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "resolution",
+        "target": "estimation",
+        "type": "scope_check",
+        "label": "能分开与估得准不同",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "resolution",
+        "target": "ambiguity",
+        "type": "scope_check",
+        "label": "峰宽与重复峰不同",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "fisher-crb",
+        "target": "estimation",
+        "type": "scope_check",
+        "label": "下界与实际误差不同",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "detection",
+        "target": "estimation",
+        "type": "scope_check",
+        "label": "存在性判决与参数估计不同",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "channels",
+        "target": "detection",
+        "type": "scope_check",
+        "label": "背景假设需要重新检查",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "synchronization",
+        "target": "geometry",
+        "type": "scope_check",
+        "label": "偏差会污染路径解释",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "near-field",
+        "target": "angle",
+        "type": "scope_check",
+        "label": "模型适用条件需要检查",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "task-learning",
+        "target": "shared-model",
+        "type": "scope_check",
+        "label": "数据先验不替代观测说明",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "implementation",
+        "target": "budget",
+        "type": "scope_check",
+        "label": "加入系统开销与时限",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "ofdm-basics",
+        "target": "direction:waveforms",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "known-pilots",
+        "target": "direction:waveforms",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "waveform-design",
+        "target": "direction:waveforms",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "matched",
+        "target": "direction:receiver",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "detection",
+        "target": "direction:receiver",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "estimation",
+        "target": "direction:receiver",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "association",
+        "target": "direction:receiver",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "joint-objectives",
+        "target": "direction:tradeoffs",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "fisher-crb",
+        "target": "direction:tradeoffs",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "budget",
+        "target": "direction:tradeoffs",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "angle",
+        "target": "direction:spatial",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "beam-design",
+        "target": "direction:spatial",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "near-field",
+        "target": "direction:spatial",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "geometry",
+        "target": "direction:networks",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "synchronization",
+        "target": "direction:networks",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "association",
+        "target": "direction:networks",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "channels",
+        "target": "direction:channels",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "task-learning",
+        "target": "direction:learning",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "implementation",
+        "target": "direction:prototype",
+        "type": "research_entry",
+        "label": "沿已有六层路线深入",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      }
+    ],
+    "bands": [
+      {
+        "label": "建立直觉",
+        "tone": "teal",
+        "groupIds": [
+          "communication",
+          "radar"
+        ]
+      },
+      {
+        "label": "从样本到结论",
+        "tone": "blue",
+        "groupIds": [
+          "observation",
+          "dimensions",
+          "inference"
+        ]
+      },
+      {
+        "label": "设计与现实约束",
+        "tone": "amber",
+        "groupIds": [
+          "metrics",
+          "codesign",
+          "reality"
+        ]
+      },
+      {
+        "label": "走向研究",
+        "tone": "plum",
+        "groupIds": [
+          "research",
+          "evidence"
+        ]
+      }
+    ]
+  }
 }
