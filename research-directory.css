@@ -1,0 +1,13 @@
+/* Bibliographic cards belong to reading.html; disclosures need no JavaScript. */
+.influence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.paper-group{margin-top:36px}.paper-group>h3{font-size:24px}.paper-group>p{font-size:15px;color:var(--site-muted)}
+.influence-card{min-width:0;padding:24px;background:#fff;border:1px solid var(--site-line);border-radius:10px;overflow-wrap:anywhere;scroll-margin-top:150px}
+.influence-card h4{font-size:21px;line-height:1.5;margin:6px 0 12px}.influence-card p{font-size:15px}.influence-card .eyebrow{font-size:12px}.paper-short-title{font-weight:650;color:var(--site-muted)}
+.paper-source-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.paper-source-links a{display:inline-flex;align-items:center;min-height:44px}
+.paper-status{padding:12px;background:#edf5f3;border-radius:6px}.paper-status span{display:block;font-size:12px;color:var(--site-muted);margin-top:5px}
+.paper-evidence{margin:18px 0 0}.paper-evidence summary,.paper-method summary{min-height:44px;font-size:14px;cursor:pointer;line-height:1.7}
+.paper-evidence>div{padding:0 12px 12px}.paper-evidence dl{display:block;font-size:14px}.paper-evidence dt{font-weight:700;margin-top:18px}.paper-evidence dd{margin:7px 0;line-height:1.8}.paper-evidence ul,.paper-method ul{padding-left:20px}.paper-evidence li,.paper-method li{margin:8px 0}.paper-method{font-size:14px}
+.paper-evidence summary:focus-visible,.paper-method summary:focus-visible{outline:3px solid var(--site-accent);outline-offset:4px}
+.paper-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:700px){.influence-grid{grid-template-columns:1fr}.influence-card{padding:20px}.influence-card h4{font-size:20px}}
+@media print{.influence-grid{display:block}.influence-card{break-inside:avoid;margin-bottom:18px}}
