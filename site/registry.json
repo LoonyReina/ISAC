@@ -1196,7 +1196,10 @@
         }
       ],
       "nextExtension": "在相同带宽、能量和观测时长下，扩展分数延迟或符号内多普勒实验。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "scenePositions": [
+        "transmit"
+      ]
     },
     {
       "id": "receiver",
@@ -1335,7 +1338,10 @@
         }
       ],
       "nextExtension": "增加连续参数估计与离格目标的可比实验，明确模型失配和低 SNR 条件。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "scenePositions": [
+        "interpret"
+      ]
     },
     {
       "id": "tradeoffs",
@@ -1482,7 +1488,10 @@
         }
       ],
       "nextExtension": "在固定总能量、时长和带宽下加入可执行估计器，以 RMSE 对照理论界。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "scenePositions": [
+        "resources"
+      ]
     },
     {
       "id": "spatial",
@@ -1607,7 +1616,10 @@
         }
       ],
       "nextExtension": "增加多目标与校准误差实验，先明确孔径和阵元数各自是否保持固定。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "scenePositions": [
+        "propagate"
+      ]
     },
     {
       "id": "networks",
@@ -1732,7 +1744,10 @@
         }
       ],
       "nextExtension": "在标量时延基线后加入多目标关联，分别记录漏检、错配与回传开销。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现"
+      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "scenePositions": [
+        "cooperate"
+      ]
     },
     {
       "id": "channels",
@@ -1872,7 +1887,10 @@
         }
       ],
       "nextExtension": "加入可解释的目标与背景反射模型，再比较失配前后的虚警和估计误差。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "scenePositions": [
+        "propagate"
+      ]
     },
     {
       "id": "learning",
@@ -1990,7 +2008,10 @@
         }
       ],
       "nextExtension": "先设计幅度/相位消融和跨场景评估记录，再增加可运行学习实验。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "scenePositions": [
+        "interpret"
+      ]
     },
     {
       "id": "prototype",
@@ -2124,7 +2145,37 @@
         }
       ],
       "nextExtension": "先做处理链预算与输入输出清单，再设计能验证一项系统限制的原型实验。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现"
+      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "scenePositions": [
+        "cooperate"
+      ]
+    }
+  ],
+  "scenePositions": [
+    {
+      "id": "transmit",
+      "label": "发什么",
+      "hint": "已知格子少了，出现同高峰？"
+    },
+    {
+      "id": "propagate",
+      "label": "怎样传播 / 采样",
+      "hint": "同方向远近，或墙面反射？"
+    },
+    {
+      "id": "interpret",
+      "label": "怎样解释",
+      "hint": "有峰就报警？换房间失效？"
+    },
+    {
+      "id": "cooperate",
+      "label": "怎样协作 / 落地",
+      "hint": "多站时钟偏差，或实时约束？"
+    },
+    {
+      "id": "resources",
+      "label": "全链资源怎么分",
+      "hint": "带宽、时长怎样分给两项任务？"
     }
   ]
 }
