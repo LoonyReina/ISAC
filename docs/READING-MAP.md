@@ -324,3 +324,15 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 原文定位沿用已核对资料：https://arxiv.org/html/2204.06938v8#S2 的 §II-A–B；https://arxiv.org/html/2310.09749v2#S4.SS2 的 §IV-B 式(19)–(22)。保留感知端已知输入实现、先求条件界再平均的组织方式；原研究为更一般的复向量/Bayesian 框架，其高 SNR 可达性讨论不能替代本站特定实标量 LS 的有限样本证明。没有新外部核查、原图或完整权衡区域复现，也没有把该经典结论称为 2026 年研究贡献。
 
 旧随机能量实验“只抽发射块、不模拟估计器误差”的局部说明继续有效。速率平面继续比较解析互信息与平均条件 CRB，不改为带噪声的经验 MSE 工作点。非线性距离/角度、未知输入或干扰参数、偏置估计器、先验或模型失配均需重推界，不能直接搬用这里的等号。
+
+## 2018 · 严格协方差波形设计（2026-10-10 增补）
+
+- 固定预印本：https://arxiv.org/pdf/1711.05220v1 ，版本 2017-11-14，标题 Towards Dual-functional Radar-Communication Systems: Optimal Waveform Design
+- 期刊：https://doi.org/10.1109/TSP.2018.2847648 ，IEEE TSP 66(16), 4264–4279, 2018-08，题名使用 Toward
+- 本站：`waveform-design.html`，`case-waveform`，方向 `waveforms`
+- 核对：§II 式(1)–(7) 通信与空间协方差；§III 式(8)–(15) 全向与方向性严格 Procrustes；§VI 图3–4 的通信/雷达数值比较；§IV 加权权衡、§V 常模仅标出未实现边界
+- 原图参数：N=16、L=20、K=4、Pt=1、单位 QPSK、半波长 ULA、复高斯信道、方向参考 −π/3、0、π/3；本站 N=4、L=8、K=2，用确定 H、S 及单方向混合正定协方差，不声称原图复现
+- 独立证据：27 个已序列化复数状态；浏览器从 H、S、X 重算方向图和符号误差；全局下界、协方差及能量检查；540 个随机可行候选、零通道等边缘条件、3 个复数小问题的 SciPy SLSQP 交叉校验
+- 影响力检索快照 2026-10-10：OpenAlex 980、Semantic Scholar 972，两个索引分开；OpenAlex 2025 引用出版年桶206。不是社交讨论量或全局排名
+- 来源：https://api.openalex.org/works/https://doi.org/10.1109/TSP.2018.2847648 ；https://www.semanticscholar.org/paper/abaf9a91f636542a230d32dec71206bfeba703e1 ；https://www.comsoc.org/publications/best-readings/integrated-sensing-and-communication-isac ；https://signalprocessingsociety.org/community-involvement/award-recipients
+- 限制：同协方差不保证相同延迟–多普勒模糊函数；确定性匹配误差不是 BER、容量或 CRB；未实现噪声、信道不确定性、加权信赖域、常模、硬件或测量
