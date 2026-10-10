@@ -128,7 +128,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "计划深读：通信波束与额外雷达波束的自由度；本站交互尚未实现。",
+      "readingPlan": "先比较三个同资源解析构造，再对照固定 v2 的流协方差、SINR 约束、紧 SDR 和优化型 ZF；本站未运行原文优化器或复现原图。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -137,11 +137,15 @@
         {
           "label": "期刊/会议DOI",
           "url": "https://doi.org/10.1109/tsp.2020.3004739"
+        },
+        {
+          "label": "本案例固定预印本 v2",
+          "url": "https://arxiv.org/abs/1912.03420v2"
         }
       ],
       "groupId": "joint-design",
       "shortTitle": "联合发射波束成形",
-      "caseId": null
+      "caseId": "case-joint-beamforming"
     },
     {
       "id": "mu_mimo",
