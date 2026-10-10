@@ -2,10 +2,14 @@
 
 ## 页面与代码
 
-- `index.html` 是本科起点的连续交互讲义，配套 `course.css`、`course.js` 与纯计算 `course-core.js`。
-- `learn.html` 及其 `learn.*`/`lab-core.js` 保留上一轮五实验页；`overview.html` 保留第一版全景。不要再把旧版与新首页同步覆盖。
-- 无构建依赖；根目录运行 `python3 -m http.server 8000`。新模型测试：`node --test tests/course.test.cjs`；旧版测试独立保留。
-- Pages 使用 `main` 根目录与 `.nojekyll`。从最新 `main` 创建分支，通过 PR 审核合并。
+- `index.html` 是唯一四阶段学习地图；`foundations.html` 保留原 00–13 章连续基础与全部原绑定控件，配套 `course.css`、`course.js`、`course-ui.js`、`course-core.js` 与直觉/速度扩展。
+- `experiments.html` 注册机制实验；`reading.html` 组织八个研究方向、六层深度、主题原文与原 14/15/17 章；`practice.html` 承接研究工作流和原 16 章任务。
+- `site/registry.json` 是共享导航、主题、研究方向、证据槽与兼容路线的单一来源。科学正文手写；只允许生成器改写 `SITE:HEADER/CONTEXT/NEXT` 标记区域。生成门户正文源在 `site/content-*.html`，不要直接编辑生成门户。
+- 新增主题先注册方向、先修、模型、实验、原文证据与下一问；横向增方向，纵向补六层。available/proposed、前置实验/专项机制、研究计划/已验证复现必须分清，未实现内容不得生成假按钮。
+- 原文对照需版本、章节/图/式、观测与未知量、保留/省略条件、论文与本站证据类型、指标和资源预算；未知字段标待核对，不从链接推断完整复现。
+- `sandbox.html`、`resolution.html` 仅为按需补充实验，不能成为平行首页。`learn.html`、`overview.html`、`research.html` 与旧首页锚点保留明确兼容映射及无 JS 对应链接。
+- 无第三方构建依赖：`node scripts/generate-site.cjs` 更新静态产物；`node scripts/generate-site.cjs --check` 验证新鲜度；`node --test tests/*.test.cjs` 跑全部数值与结构回归。根目录 `python3 -m http.server 8000` 可预览。
+- Pages 使用 `main` 根目录与 `.nojekyll`。提交生成 HTML/JS；线上无需构建。从最新 `main` 创建分支，通过 PR 审核合并。架构迁移与接入清单见 `docs/SITE-ARCHITECTURE.md`。
 
 ## 教学顺序
 
