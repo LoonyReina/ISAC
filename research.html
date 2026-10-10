@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ISAC 研究阅读入口：从先修知识与问题出发，选择 CRB、导频、网络时钟或 SBFD 案例，分清交互机制、论文证据与结论边界。">
+<meta name="description" content="ISAC 研究阅读入口：从先修知识与问题出发，选择 CRB、导频、网络时钟、SBFD 或近场案例，分清交互机制、论文证据与结论边界。">
 <title>研究阅读地图 · 从问题到证据 | ISAC 交互讲义</title>
 <link rel="stylesheet" href="course.css?v=iq-path-v4">
 <link rel="stylesheet" href="research.css?v=1">
@@ -13,11 +13,11 @@
 <header class="top"><a class="brand" href="index.html">ISAC <span>交互讲义</span></a><div><a href="index.html#start">18 章讲义</a><a href="theory.html">理论主线</a></div></header>
 <main class="research-main">
 <div class="cover">
-<p class="eyebrow">研究阅读地图 / 四个问题，四个入口</p>
+<p class="eyebrow">研究阅读地图 / 五个问题，五个入口</p>
 <h1>带着一个问题，<br>走进一篇研究。</h1>
 <p>先补需要的基础，再用小实验看清机制。读论文时，把作者的证据与本站的教学模型分开。</p>
-<p class="small">四个案例是可独立选择的主题，不是难度排名或技术演进顺序。这里整理已有内容，不新增论文复现或最新文献检索。</p>
-<nav class="research-jumps" aria-label="研究主题"><a href="#case-crb">估计界与随机性</a><a href="#case-pilot">导频与歧义</a><a href="#case-clock">时钟与几何</a><a href="#case-sbfd">资源与双孔径</a></nav>
+<p class="small">五个案例是可独立选择的主题，不是难度排名或技术演进顺序。这里整理已有内容，不新增论文复现或最新文献检索。</p>
+<nav class="research-jumps" aria-label="研究主题"><a href="#case-crb">估计界与随机性</a><a href="#case-pilot">导频与歧义</a><a href="#case-clock">时钟与几何</a><a href="#case-sbfd">资源与双孔径</a><a href="#case-near-field">波前曲率与距离</a></nav>
 </div>
 <section class="chapter" id="foundations" aria-labelledby="foundations-title">
 <header class="chapter-head"><p class="eyebrow">先修 / 选一个适合的起点</p><h2 id="foundations-title">还没准备好读论文？从这里接上</h2><p class="goal">不要求先学完全部内容。每个案例下方都有可回看的先修章节；基础仍不清楚时，再回到完整讲义。</p></header>
@@ -73,6 +73,17 @@
 <dt>结论边界</dt><dd>论文测速为单站，多基地仍是未来工作。只有 SBFD 承载通信，对照的带宽与感知节点数也不同；不能称作公平通信性能排名。</dd>
 <dt>下一研究问题</dt><dd>固定总带宽、能量、时长与有效载荷后，如何逐项加入频偏、多径和非线性，建立匹配的实验对照？</dd>
 </dl><a class="next-chapter" href="sbfd-resource.html#experiment">打开资源与双孔径实验 →</a>
+</article>
+<article class="research-case" id="case-near-field" aria-labelledby="near-field-title">
+<p class="eyebrow">近场阵列 / 波前曲率与未知增益</p><h3 id="near-field-title"><a href="near-field.html">同一个方向，为什么还可能分出远近？</a></h3>
+<dl>
+<dt>先修</dt><dd><a href="index.html#array">第 6 章：跨阵元相位与方向</a>；<a href="theory.html#shared-model">观测模型中的已知与未知</a></dd>
+<dt>问题</dt><dd>只保留单频空间观测、允许未知公共复增益时，球面波的曲率能否让同一方向的不同距离留下不同的相对相位？</dd>
+<dt>交互机制</dt><dd>改变真距离与阵元数，对照球面/球面、球面/平面和平面/平面的归一化匹配响应。间距固定，阵元数变化也会改变孔径。</dd>
+<dt>证据类型</dt><dd>论文：<a href="https://arxiv.org/html/2302.01153v5">近场 ISAC 原始研究（2023 首稿，固定 2025 v5）</a>的理论与数值仿真；本站：未知复增益下的一程、无噪声空间匹配。边界背景见<a href="https://arxiv.org/html/2110.06661v2">近场波束成形基础原文 v2</a>。</dd>
+<dt>结论边界</dt><dd>不是单站双程雷达、MUSIC 或论文优化器复现。匹配峰宽、局部曲率、CRB 与实际 MSE 不同；进入通常所说的近场，不保证能分开两个目标。</dd>
+<dt>下一研究问题</dt><dd>当角度也未知时，距离与角度怎样耦合？如何在相同孔径、总能量和观测预算下验证估计误差与失败率？</dd>
+</dl><a class="next-chapter" href="near-field.html#experiment">打开波前曲率与距离匹配实验 →</a>
 </article>
 </div>
 </section>
