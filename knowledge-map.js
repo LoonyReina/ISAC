@@ -5,6 +5,7 @@ const map=document.getElementById('knowledge-map');
 if(!map)return;
 const panel=document.getElementById('map-detail'),form=map.querySelector('.map-tools'),query=document.getElementById('map-search'),status=document.getElementById('map-status'),results=document.getElementById('map-search-results');
 const groups=[...map.querySelectorAll('.map-group')],entries=[...map.querySelectorAll('[data-map-entry]')];
+const lessons=[...(document.getElementById('map-lesson-search')?.content?.querySelectorAll('[data-map-unit]')||[])];
 let selected='',origin=null,changing=false;
 const normalize=value=>value.trim().toLocaleLowerCase();
 const entryFor=id=>entries.find(e=>e.dataset.mapEntry===id);
@@ -29,9 +30,15 @@ function choose(id,control){const e=entryFor(id);if(!e){status.textContent='这�
 }
 function reset(focus=true){const back=origin,backGroup=back?.closest('.map-group');query.value='';results.replaceChildren();results.hidden=true;status.textContent='';render('');push('#knowledge-map');origin=null;if(focus)(backGroup?backGroup.querySelector('summary'):back&&back.isConnected?back:query).focus();}
 function search(){const q=normalize(query.value);results.replaceChildren();results.hidden=!q;if(!q){status.textContent='';return;}
+ const direct=lessons.filter(e=>normalize(e.textContent).includes(q));
+ // Exact lesson names lead partial names; the permanent map and relation order stay put.
+ direct.sort((a,b)=>Number(normalize(b.textContent)===q)-Number(normalize(a.textContent)===q));
  const matches=entries.filter(e=>normalize(e.dataset.mapSearch).includes(q));
- for(const e of matches){const li=document.createElement('li'),button=document.createElement('button'),g=groups.find(g=>g.dataset.mapGroup===e.dataset.mapGroup);button.type='button';button.dataset.mapNode=e.dataset.mapEntry;button.textContent=e.querySelector('a').textContent+' · '+g.querySelector('.map-group-name').textContent;li.append(button);results.append(li);}
- status.textContent=matches.length?`找到 ${matches.length} 个入口；四阶段路线仍在下方。`:'没有匹配的概念或方向。试试“相位”“导频”，或清除搜索。';
+ function result(control,title,type){const li=document.createElement('li'),label=document.createElement('span'),kind=document.createElement('small');label.textContent=title;kind.textContent=type;control.append(label,kind);li.append(control);results.append(li);}
+ for(const e of direct){const link=document.createElement('a');link.setAttribute('href',e.getAttribute('href'));link.dataset.mapUnit=e.dataset.mapUnit;result(link,e.textContent,'课程入口 · 直接打开');}
+ for(const e of matches){const button=document.createElement('button'),g=groups.find(g=>g.dataset.mapGroup===e.dataset.mapGroup);button.type='button';button.dataset.mapNode=e.dataset.mapEntry;button.setAttribute('aria-controls','map-detail');result(button,e.querySelector('a').textContent,(e.dataset.mapKind==='direction'||e.dataset.mapEntry.startsWith('direction:')?'研究方向':'概念关系')+' · '+g.querySelector('.map-group-name').textContent+' · 查看关系');}
+ const count=direct.length+matches.length;
+ status.textContent=count?`找到 ${count} 个入口（${direct.length} 个课程入口，${matches.length} 个概念或方向）；四阶段路线仍在下方。`:'没有匹配的概念、课程或方向。试试“相位”“导频”，或清除搜索。';
 }
 map.addEventListener('click',event=>{const target=event.target.closest('button');if(!target)return;
  if(target.hasAttribute('data-map-node'))choose(target.dataset.mapNode,target);
