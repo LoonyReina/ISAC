@@ -1,0 +1,2916 @@
+{
+  "schema": "ofdm-interpolation-reference-v1",
+  "scope": "Independent analytical teaching model; no hardware/NR replication",
+  "config": {
+    "c_mps": 300000000.0,
+    "carrier_hz": 5000000000.0,
+    "subcarrier_spacing_hz": 1000000.0,
+    "N": 32,
+    "M": 33,
+    "probe_start_interval_s": 0.0005,
+    "useful_duration_s": 1e-06,
+    "cp_s": 1e-06,
+    "frequency_span_hz": 31000000.0,
+    "nominal_grid_bandwidth_hz": 32000000.0,
+    "first_last_time_span_s": 0.016,
+    "dft_duration_s": 0.0165,
+    "range_dft_spacing_m": 4.6875,
+    "doppler_dft_spacing_hz": 60.6060606060606,
+    "velocity_dft_spacing_mps": 1.8181818181818181,
+    "range_alias_period_m": 150.0,
+    "doppler_alias_period_hz": 2000.0,
+    "velocity_alias_period_mps": 60.0
+  },
+  "validation": [
+    {
+      "name": "midpoint chord identity",
+      "passed": true,
+      "detail": {
+        "max_absolute_error": 7.196666384297434e-15,
+        "states": 96
+      }
+    },
+    {
+      "name": "observed cells unchanged",
+      "passed": true,
+      "detail": {
+        "max_absolute_error": 0.0
+      }
+    },
+    {
+      "name": "interpolation adjoint identity",
+      "passed": true,
+      "detail": {
+        "max_absolute_error": 3.1776437161565096e-14
+      }
+    },
+    {
+      "name": "independent scalar matched sum",
+      "passed": true,
+      "detail": {
+        "max_absolute_error": 4.466432928546676e-16
+      }
+    },
+    {
+      "name": "static missing cells recovered algebraically in noiseless constant channel",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "null transmit symbols never divided",
+      "passed": true,
+      "detail": {
+        "null_cells": 84,
+        "active_cells": 972
+      }
+    },
+    {
+      "name": "filled covariance rank equals input count",
+      "passed": true,
+      "detail": {
+        "covariance_sigma2_one": [
+          [
+            1.0,
+            0.5,
+            0.0
+          ],
+          [
+            0.5,
+            0.5,
+            0.5
+          ],
+          [
+            0.0,
+            0.5,
+            1.0
+          ]
+        ],
+        "rank": 2,
+        "displayed_cells": 3
+      }
+    },
+    {
+      "name": "correct covariance and transformed template preserve residual",
+      "passed": true,
+      "detail": {
+        "original_squared_residual": 0.4553934851509307,
+        "lifted_mahalanobis_residual": 0.4553934851509305
+      }
+    },
+    {
+      "name": "interpolation cannot separate identical observed sequences",
+      "passed": true,
+      "detail": {
+        "dopplers_hz": [
+          -375,
+          625.0
+        ],
+        "observed_times_m": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "max_observed_difference": 9.797174393178826e-16
+      }
+    },
+    {
+      "name": "noise-only covariance Monte Carlo",
+      "passed": true,
+      "detail": {
+        "seed": 8675309,
+        "trials": 60000,
+        "maximum_absolute_error": 0.006051967011979631,
+        "acceptance_tolerance": 0.025,
+        "expected_covariance": [
+          [
+            1.0,
+            0.5,
+            0.0
+          ],
+          [
+            0.5,
+            0.5,
+            0.5
+          ],
+          [
+            0.0,
+            0.5,
+            1.0
+          ]
+        ],
+        "empirical_covariance_real": [
+          [
+            0.9989971473730967,
+            0.4988533226406506,
+            -0.0012905020917963193
+          ],
+          [
+            0.4988533226406506,
+            0.5006170275503709,
+            0.5023807324600916
+          ],
+          [
+            -0.0012905020917963193,
+            0.5023807324600916,
+            1.0060519670119796
+          ]
+        ],
+        "empirical_covariance_imag": [
+          [
+            -6.501404750158853e-20,
+            -0.00033487383750528644,
+            -0.0006697476750105716
+          ],
+          [
+            0.0003348738375052862,
+            2.6645072646141982e-20,
+            -0.0003348738375052881
+          ],
+          [
+            0.0006697476750105726,
+            0.0003348738375052878,
+            7.60274653605166e-20
+          ]
+        ]
+      }
+    },
+    {
+      "name": "pointwise threshold accounts for covariance",
+      "passed": true,
+      "detail": {
+        "trials": 60000,
+        "target_pfa": 0.01,
+        "observed_correct_pfa": 0.0094,
+        "binomial_standard_error": 0.000406201920231798,
+        "wrong_independent_marginal_pfa": 0.07806666666666667,
+        "wrong_model_expected_pfa": 0.0774263682681127,
+        "true_sum_variance": 4.5,
+        "wrong_independent_sum_variance": 2.5
+      }
+    },
+    {
+      "name": "fill does not create coherent SNR advantage over observed ML at a known template",
+      "passed": true,
+      "detail": {
+        "static_observed_noise_factor": 0.00102880658436214,
+        "static_interpolated_noise_factor": 0.0012859418044077135,
+        "naive_iid_full_grid_factor": 0.000946969696969697
+      }
+    },
+    {
+      "name": "closed-form static filled noise norm",
+      "passed": true,
+      "detail": {
+        "maximum_absolute_error": 0.0,
+        "formula": "1050+6*G^2"
+      }
+    },
+    {
+      "name": "pointwise noncentrality cannot exceed observed-data matched statistic",
+      "passed": true,
+      "detail": {
+        "maximum_positive_excess": 0.0,
+        "states": 28
+      }
+    },
+    {
+      "name": "invalid gap and unbracketed cells rejected",
+      "passed": true,
+      "detail": {
+        "expected_rejections": 4,
+        "actual_rejections": 4
+      }
+    }
+  ],
+  "examples": [
+    {
+      "range_m": 37.5,
+      "fd_hz": 0,
+      "velocity_mps": 0.0,
+      "masked": [
+        0.9323273456060363,
+        0.3616154319649614
+      ],
+      "interpolated": [
+        0.9323273456060363,
+        0.3616154319649615
+      ],
+      "masked_power": 1.000000000000003,
+      "interpolated_power": 1.000000000000003,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0012859418044077135,
+      "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 2.9347503914472164e-34,
+      "midpoint_ratio": [
+        1.0,
+        -0.0
+      ],
+      "midpoint_true": [
+        -0.9323273456060338,
+        -0.3616154319649637
+      ],
+      "midpoint_filled": [
+        -0.9323273456060338,
+        -0.3616154319649637
+      ],
+      "left_endpoint": [
+        -0.9323273456060338,
+        -0.3616154319649637
+      ],
+      "right_endpoint": [
+        -0.9323273456060338,
+        -0.3616154319649637
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 31.25,
+      "velocity_mps": 0.9375,
+      "masked": [
+        0.9323273456060349,
+        0.36161543196496126
+      ],
+      "interpolated": [
+        0.9281237624917344,
+        0.3599850169279657
+      ],
+      "masked_power": 1.0000000000000004,
+      "interpolated_power": 0.9910029309144412,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.001269876609824782,
+      "interpolated_noise_relative_to_iid_full_grid": 1.3409896999749698,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 0.0035266108846807006,
+      "midpoint_ratio": [
+        0.9238795325112865,
+        -1.7079006212061315e-15
+      ],
+      "midpoint_true": [
+        0.3616154319649653,
+        -0.9323273456060331
+      ],
+      "midpoint_filled": [
+        0.33408909623265753,
+        -0.8613581522059912
+      ],
+      "left_endpoint": [
+        -0.022697132471693096,
+        -0.9997423869065283
+      ],
+      "right_endpoint": [
+        0.6908753249370082,
+        -0.7229739175054541
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 62.5,
+      "velocity_mps": 1.875,
+      "masked": [
+        0.9323273456060346,
+        0.3616154319649613
+      ],
+      "interpolated": [
+        0.9164929237131966,
+        0.3554738430266127
+      ],
+      "masked_power": 0.9999999999999998,
+      "interpolated_power": 0.9663209322924722,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.001224805677929718,
+      "interpolated_noise_relative_to_iid_full_grid": 1.2933947958937821,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 0.052020197860402725,
+      "midpoint_ratio": [
+        0.707106781186547,
+        -5.1754564278973725e-17
+      ],
+      "midpoint_true": [
+        0.9323273456060338,
+        0.3616154319649636
+      ],
+      "midpoint_filled": [
+        0.6592549883636799,
+        0.25570072412412814
+      ],
+      "left_endpoint": [
+        0.9149557124878085,
+        -0.4035542642395528
+      ],
+      "right_endpoint": [
+        0.40355426423955126,
+        0.9149557124878092
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 125,
+      "velocity_mps": 3.75,
+      "masked": [
+        0.9323273456060346,
+        0.36161543196496126
+      ],
+      "interpolated": [
+        0.8823659127853822,
+        0.34223723267028683
+      ],
+      "masked_power": 0.9999999999999998,
+      "interpolated_power": 0.8956959274713968,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0010848672785279806,
+      "interpolated_noise_relative_to_iid_full_grid": 1.1456198461255476,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 0.5973520582468494,
+      "midpoint_ratio": [
+        5.1754564278973725e-17,
+        -2.0073688931363714e-17
+      ],
+      "midpoint_true": [
+        -0.9323273456060338,
+        -0.3616154319649635
+      ],
+      "midpoint_filled": [
+        -5.551115123125783e-17,
+        0.0
+      ],
+      "left_endpoint": [
+        -0.3616154319649619,
+        0.9323273456060345
+      ],
+      "right_endpoint": [
+        0.36161543196496176,
+        -0.9323273456060345
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 250,
+      "velocity_mps": 7.5,
+      "masked": [
+        0.9323273456060345,
+        0.36161543196496126
+      ],
+      "interpolated": [
+        0.847570314187304,
+        0.32874130178632843
+      ],
+      "masked_power": 0.9999999999999996,
+      "interpolated_power": 0.8264462809917351,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0008868609413995039,
+      "interpolated_noise_relative_to_iid_full_grid": 0.9365251541178761,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 2.2857142857142843,
+      "midpoint_ratio": [
+        -1.0,
+        9.315821570215271e-16
+      ],
+      "midpoint_true": [
+        -0.9323273456060339,
+        -0.36161543196496326
+      ],
+      "midpoint_filled": [
+        0.9323273456060343,
+        0.36161543196496243
+      ],
+      "left_endpoint": [
+        0.9323273456060339,
+        0.3616154319649634
+      ],
+      "right_endpoint": [
+        0.9323273456060346,
+        0.3616154319649615
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 500,
+      "velocity_mps": 15.0,
+      "masked": [
+        0.9323273456060346,
+        0.36161543196496126
+      ],
+      "interpolated": [
+        0.8475703141873042,
+        0.3287413017863285
+      ],
+      "masked_power": 0.9999999999999998,
+      "interpolated_power": 0.8264462809917354,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0008608815426997245,
+      "interpolated_noise_relative_to_iid_full_grid": 0.9090909090909092,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 2.285714285714286,
+      "midpoint_ratio": [
+        1.0,
+        -1.759655185485107e-15
+      ],
+      "midpoint_true": [
+        -0.9323273456060341,
+        -0.3616154319649628
+      ],
+      "midpoint_filled": [
+        -0.9323273456060348,
+        -0.36161543196496115
+      ],
+      "left_endpoint": [
+        -0.932327345606034,
+        -0.36161543196496304
+      ],
+      "right_endpoint": [
+        -0.9323273456060355,
+        -0.36161543196495927
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": 800,
+      "velocity_mps": 24.0,
+      "masked": [
+        0.9323273456060348,
+        0.36161543196496143
+      ],
+      "interpolated": [
+        0.8480761627063109,
+        0.32893750179222925
+      ],
+      "masked_power": 1.0000000000000004,
+      "interpolated_power": 0.8274330578359739,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0008563885885527648,
+      "interpolated_noise_relative_to_iid_full_grid": 0.9043463495117197,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 2.012954015345954,
+      "midpoint_ratio": [
+        -0.8090169943749455,
+        -2.871309708785057e-15
+      ],
+      "midpoint_true": [
+        0.9668208848261437,
+        -0.2554552341683226
+      ],
+      "midpoint_filled": [
+        -0.782174526340973,
+        0.2066676257442015
+      ],
+      "left_endpoint": [
+        -0.632021707075914,
+        0.7749506834533715
+      ],
+      "right_endpoint": [
+        -0.9323273456060319,
+        -0.3616154319649685
+      ]
+    },
+    {
+      "range_m": 37.5,
+      "fd_hz": -800,
+      "velocity_mps": -24.0,
+      "masked": [
+        0.9323273456060348,
+        0.36161543196496143
+      ],
+      "interpolated": [
+        0.8480761627063108,
+        0.32893750179222947
+      ],
+      "masked_power": 1.0000000000000004,
+      "interpolated_power": 0.8274330578359739,
+      "masked_noise_factor": 0.00102880658436214,
+      "interpolated_noise_factor": 0.0008563885885527648,
+      "interpolated_noise_relative_to_iid_full_grid": 0.9043463495117197,
+      "masked_standardized_power": null,
+      "interpolated_standardized_power": null,
+      "active_count": 972,
+      "filled_count": 84,
+      "total_transmit_energy_units": 972,
+      "missing_cell_nmse": 2.0129540153459526,
+      "midpoint_ratio": [
+        -0.8090169943749457,
+        2.8929525566509365e-15
+      ],
+      "midpoint_true": [
+        0.5417164490053871,
+        0.8405612939441084
+      ],
+      "midpoint_filled": [
+        -0.43825781337780917,
+        -0.6800283716145762
+      ],
+      "left_endpoint": [
+        0.05581171885041728,
+        -0.9984413112641934
+      ],
+      "right_endpoint": [
+        -0.9323273456060356,
+        -0.36161543196495893
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": 0,
+        "gap": 8
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 0,
+        "velocity_mps": 0.0,
+        "masked": [
+          0.9323273456060363,
+          0.3616154319649614
+        ],
+        "interpolated": [
+          0.9323273456060363,
+          0.3616154319649615
+        ],
+        "masked_power": 1.000000000000003,
+        "interpolated_power": 1.000000000000003,
+        "masked_noise_factor": 0.00102880658436214,
+        "interpolated_noise_factor": 0.0012859418044077135,
+        "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 972,
+        "filled_count": 84,
+        "total_transmit_energy_units": 972,
+        "missing_cell_nmse": 2.9347503914472164e-34,
+        "midpoint_ratio": [
+          1.0,
+          -0.0
+        ],
+        "midpoint_true": [
+          -0.9323273456060338,
+          -0.3616154319649637
+        ],
+        "midpoint_filled": [
+          -0.9323273456060338,
+          -0.3616154319649637
+        ],
+        "left_endpoint": [
+          -0.9323273456060338,
+          -0.3616154319649637
+        ],
+        "right_endpoint": [
+          -0.9323273456060338,
+          -0.3616154319649637
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060338,
+            0.3616154319649637
+          ],
+          "observed": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            -0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060338,
+            0.3616154319649637
+          ],
+          "observed": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.9323273456060345,
+            0.36161543196496176
+          ],
+          "observed": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ],
+          "filled": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ],
+          "truth_for_display_only": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060336,
+            0.36161543196496415
+          ],
+          "observed": [
+            -0.9323273456060336,
+            -0.36161543196496415
+          ],
+          "filled": [
+            -0.9323273456060336,
+            -0.36161543196496415
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060336,
+            -0.36161543196496415
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 0,
+          "velocity_mps": 0.0,
+          "masked": [
+            0.9323273456060363,
+            0.3616154319649614
+          ],
+          "interpolated": [
+            0.9323273456060363,
+            0.3616154319649615
+          ],
+          "masked_power": 1.000000000000003,
+          "interpolated_power": 1.000000000000003,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 0,
+          "velocity_mps": 0.0,
+          "masked": [
+            0.06538810315056762,
+            0.01822524440885279
+          ],
+          "interpolated": [
+            -4.21528513017217e-16,
+            -5.610353035266764e-19
+          ],
+          "masked_power": 0.00460776356739169,
+          "interpolated_power": 1.7768660204711789e-31,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 60.6060606060606,
+          "velocity_mps": 1.818181818181818,
+          "masked": [
+            0.07175343975781281,
+            0.036016044894235114
+          ],
+          "interpolated": [
+            -4.902598614125166e-18,
+            -7.322274223920288e-18
+          ],
+          "masked_power": 0.006445711606901633,
+          "interpolated_power": 7.765117298150947e-35,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012282269693916243,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2970076796775551,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            -0.007104213421807721,
+            0.15648077290903586
+          ],
+          "interpolated": [
+            -0.003480137853049388,
+            0.07665516627125732
+          ],
+          "masked_power": 0.024536702138551844,
+          "interpolated_power": 0.005888125875550334,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.00121053256954956,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2783223934443353,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            -7.900524377937256e-16,
+            6.808505744365601e-16
+          ],
+          "interpolated": [
+            -7.669591400120498e-16,
+            7.831735105472357e-16
+          ],
+          "masked_power": 1.0877403591744028e-30,
+          "interpolated_power": 1.201587070070904e-30,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": 31.25,
+        "gap": 8
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 31.25,
+        "velocity_mps": 0.9375,
+        "masked": [
+          0.9323273456060349,
+          0.36161543196496126
+        ],
+        "interpolated": [
+          0.9281237624917344,
+          0.3599850169279657
+        ],
+        "masked_power": 1.0000000000000004,
+        "interpolated_power": 0.9910029309144412,
+        "masked_noise_factor": 0.00102880658436214,
+        "interpolated_noise_factor": 0.001269876609824782,
+        "interpolated_noise_relative_to_iid_full_grid": 1.3409896999749698,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 972,
+        "filled_count": 84,
+        "total_transmit_energy_units": 972,
+        "missing_cell_nmse": 0.0035266108846807006,
+        "midpoint_ratio": [
+          0.9238795325112865,
+          -1.7079006212061315e-15
+        ],
+        "midpoint_true": [
+          0.3616154319649653,
+          -0.9323273456060331
+        ],
+        "midpoint_filled": [
+          0.33408909623265753,
+          -0.8613581522059912
+        ],
+        "left_endpoint": [
+          -0.022697132471693096,
+          -0.9997423869065283
+        ],
+        "right_endpoint": [
+          0.6908753249370082,
+          -0.7229739175054541
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.022697132471693096,
+            0.9997423869065283
+          ],
+          "observed": [
+            -0.022697132471693096,
+            -0.9997423869065283
+          ],
+          "filled": [
+            -0.022697132471693096,
+            -0.9997423869065283
+          ],
+          "truth_for_display_only": [
+            -0.022697132471693096,
+            -0.9997423869065283
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.06649942470439457,
+            -0.965146328231394
+          ],
+          "truth_for_display_only": [
+            0.07540405025574218,
+            -0.9971530620747396
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.33408909623265753,
+            -0.8613581522059912
+          ],
+          "truth_for_display_only": [
+            0.3616154319649653,
+            -0.9323273456060331
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.6016787677609206,
+            -0.7575699761805884
+          ],
+          "truth_for_display_only": [
+            0.6166847354852577,
+            -0.7872102241583742
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.6908753249370082,
+            0.7229739175054541
+          ],
+          "observed": [
+            0.6908753249370082,
+            -0.7229739175054541
+          ],
+          "filled": [
+            0.6908753249370082,
+            -0.7229739175054541
+          ],
+          "truth_for_display_only": [
+            0.6908753249370082,
+            -0.7229739175054541
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            -0.3616154319649617,
+            0.9323273456060345
+          ],
+          "observed": [
+            0.9323273456060345,
+            0.3616154319649617
+          ],
+          "filled": [
+            0.9323273456060345,
+            0.3616154319649617
+          ],
+          "truth_for_display_only": [
+            0.9323273456060345,
+            0.3616154319649617
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.36161543196496576,
+            0.9323273456060329
+          ],
+          "observed": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ],
+          "filled": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ],
+          "truth_for_display_only": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.9323273456060349,
+            0.36161543196496126
+          ],
+          "interpolated": [
+            0.9281237624917344,
+            0.3599850169279657
+          ],
+          "masked_power": 1.0000000000000004,
+          "interpolated_power": 0.9910029309144412,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.001269876609824782,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3409896999749698,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.06538810315056762,
+            0.01822524440885281
+          ],
+          "interpolated": [
+            0.0034114336915790576,
+            0.0009508490049094046
+          ],
+          "masked_power": 0.004607763567391692,
+          "interpolated_power": 1.2541993662177924e-05,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012698766098247821,
+          "interpolated_noise_relative_to_iid_full_grid": 1.34098969997497,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 91.8560606060606,
+          "velocity_mps": 2.755681818181818,
+          "masked": [
+            0.07175343975781272,
+            0.036016044894235114
+          ],
+          "interpolated": [
+            0.003671138843847554,
+            0.0018426977418679663
+          ],
+          "masked_power": 0.006445711606901617,
+          "interpolated_power": 1.6872795378691658e-05,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0011636015296259052,
+          "interpolated_noise_relative_to_iid_full_grid": 1.228763215284956,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            0.21234149215106635,
+            0.009640285196080789
+          ],
+          "interpolated": [
+            0.263612647074334,
+            0.011967991151170903
+          ],
+          "masked_power": 0.04518184438760315,
+          "interpolated_power": 0.06963486050973189,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.00121053256954956,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2783223934443353,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            -1.1500878081980818e-16,
+            -5.890432230120111e-16
+          ],
+          "interpolated": [
+            -1.5711363301855813e-16,
+            -5.380996438829284e-16
+          ],
+          "masked_power": 3.6019893824203645e-31,
+          "interpolated_power": 3.1423592042722444e-31,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": 125,
+        "gap": 8
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 125,
+        "velocity_mps": 3.75,
+        "masked": [
+          0.9323273456060346,
+          0.36161543196496126
+        ],
+        "interpolated": [
+          0.8823659127853822,
+          0.34223723267028683
+        ],
+        "masked_power": 0.9999999999999998,
+        "interpolated_power": 0.8956959274713968,
+        "masked_noise_factor": 0.00102880658436214,
+        "interpolated_noise_factor": 0.0010848672785279806,
+        "interpolated_noise_relative_to_iid_full_grid": 1.1456198461255476,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 972,
+        "filled_count": 84,
+        "total_transmit_energy_units": 972,
+        "missing_cell_nmse": 0.5973520582468494,
+        "midpoint_ratio": [
+          5.1754564278973725e-17,
+          -2.0073688931363714e-17
+        ],
+        "midpoint_true": [
+          -0.9323273456060338,
+          -0.3616154319649635
+        ],
+        "midpoint_filled": [
+          -5.551115123125783e-17,
+          0.0
+        ],
+        "left_endpoint": [
+          -0.3616154319649619,
+          0.9323273456060345
+        ],
+        "right_endpoint": [
+          0.36161543196496176,
+          -0.9323273456060345
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.3616154319649619,
+            -0.9323273456060345
+          ],
+          "observed": [
+            -0.3616154319649619,
+            0.9323273456060345
+          ],
+          "filled": [
+            -0.3616154319649619,
+            0.9323273456060345
+          ],
+          "truth_for_display_only": [
+            -0.3616154319649619,
+            0.9323273456060345
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.2712115739737214,
+            0.6992455092045259
+          ],
+          "truth_for_display_only": [
+            -0.6908753249370082,
+            0.7229739175054543
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -5.551115123125783e-17,
+            0.0
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649635
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            -0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.2712115739737213,
+            -0.6992455092045259
+          ],
+          "truth_for_display_only": [
+            -0.02269713247169334,
+            -0.9997423869065283
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.36161543196496176,
+            0.9323273456060345
+          ],
+          "observed": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ],
+          "filled": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ],
+          "truth_for_display_only": [
+            0.36161543196496176,
+            -0.9323273456060345
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.9323273456060346,
+            0.36161543196496154
+          ],
+          "observed": [
+            0.36161543196496154,
+            -0.9323273456060346
+          ],
+          "filled": [
+            0.36161543196496154,
+            -0.9323273456060346
+          ],
+          "truth_for_display_only": [
+            0.36161543196496154,
+            -0.9323273456060346
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060337,
+            0.36161543196496393
+          ],
+          "observed": [
+            -0.9323273456060337,
+            -0.36161543196496393
+          ],
+          "filled": [
+            -0.9323273456060337,
+            -0.36161543196496393
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060337,
+            -0.36161543196496393
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 125,
+          "velocity_mps": 3.75,
+          "masked": [
+            0.9323273456060346,
+            0.36161543196496126
+          ],
+          "interpolated": [
+            0.8823659127853822,
+            0.34223723267028683
+          ],
+          "masked_power": 0.9999999999999998,
+          "interpolated_power": 0.8956959274713968,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0010848672785279806,
+          "interpolated_noise_relative_to_iid_full_grid": 1.1456198461255476,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 125,
+          "velocity_mps": 3.75,
+          "masked": [
+            0.06538810315056762,
+            0.01822524440885279
+          ],
+          "interpolated": [
+            0.04054638877583361,
+            0.011301258328817603
+          ],
+          "masked_power": 0.00460776356739169,
+          "interpolated_power": 0.001771728082575715,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0010848672785279806,
+          "interpolated_noise_relative_to_iid_full_grid": 1.1456198461255476,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 185.6060606060606,
+          "velocity_mps": 5.5681818181818175,
+          "masked": [
+            0.07175343975781306,
+            0.03601604489423551
+          ],
+          "interpolated": [
+            0.038921687965736224,
+            0.019536418962837983
+          ],
+          "masked_power": 0.006445711606901695,
+          "interpolated_power": 0.0018965694599936715,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0009573182710195322,
+          "interpolated_noise_relative_to_iid_full_grid": 1.010928094196626,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            -0.0005087375440855002,
+            0.011205694336542265
+          ],
+          "interpolated": [
+            0.0002331694920172479,
+            -0.005135901775933441
+          ],
+          "masked_power": 0.00012582639945277755,
+          "interpolated_power": 2.643185506404385e-05,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.00121053256954956,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2783223934443353,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            4.326406935115159e-17,
+            2.119963536074327e-17
+          ],
+          "interpolated": [
+            6.337279465996471e-17,
+            -6.725724452279225e-19
+          ],
+          "masked_power": 2.3212042362497308e-33,
+          "interpolated_power": 4.016563456708132e-33,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": 250,
+        "gap": 8
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 250,
+        "velocity_mps": 7.5,
+        "masked": [
+          0.9323273456060345,
+          0.36161543196496126
+        ],
+        "interpolated": [
+          0.847570314187304,
+          0.32874130178632843
+        ],
+        "masked_power": 0.9999999999999996,
+        "interpolated_power": 0.8264462809917351,
+        "masked_noise_factor": 0.00102880658436214,
+        "interpolated_noise_factor": 0.0008868609413995039,
+        "interpolated_noise_relative_to_iid_full_grid": 0.9365251541178761,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 972,
+        "filled_count": 84,
+        "total_transmit_energy_units": 972,
+        "missing_cell_nmse": 2.2857142857142843,
+        "midpoint_ratio": [
+          -1.0,
+          9.315821570215271e-16
+        ],
+        "midpoint_true": [
+          -0.9323273456060339,
+          -0.36161543196496326
+        ],
+        "midpoint_filled": [
+          0.9323273456060343,
+          0.36161543196496243
+        ],
+        "left_endpoint": [
+          0.9323273456060339,
+          0.3616154319649634
+        ],
+        "right_endpoint": [
+          0.9323273456060346,
+          0.3616154319649615
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.9323273456060339,
+            -0.3616154319649634
+          ],
+          "observed": [
+            0.9323273456060339,
+            0.3616154319649634
+          ],
+          "filled": [
+            0.9323273456060339,
+            0.3616154319649634
+          ],
+          "truth_for_display_only": [
+            0.9323273456060339,
+            0.3616154319649634
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.932327345606034,
+            0.36161543196496315
+          ],
+          "truth_for_display_only": [
+            0.4035542642395531,
+            0.9149557124878083
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.9323273456060343,
+            0.36161543196496243
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060339,
+            -0.36161543196496326
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.9323273456060346,
+            0.3616154319649617
+          ],
+          "truth_for_display_only": [
+            0.9149557124878083,
+            -0.40355426423955326
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.9323273456060346,
+            -0.3616154319649615
+          ],
+          "observed": [
+            0.9323273456060346,
+            0.3616154319649615
+          ],
+          "filled": [
+            0.9323273456060346,
+            0.3616154319649615
+          ],
+          "truth_for_display_only": [
+            0.9323273456060346,
+            0.3616154319649615
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.9323273456060347,
+            0.3616154319649613
+          ],
+          "observed": [
+            0.3616154319649613,
+            -0.9323273456060347
+          ],
+          "filled": [
+            0.3616154319649613,
+            -0.9323273456060347
+          ],
+          "truth_for_display_only": [
+            0.3616154319649613,
+            -0.9323273456060347
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060338,
+            0.3616154319649637
+          ],
+          "observed": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "filled": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060338,
+            -0.3616154319649637
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 250,
+          "velocity_mps": 7.5,
+          "masked": [
+            0.9323273456060345,
+            0.36161543196496126
+          ],
+          "interpolated": [
+            0.847570314187304,
+            0.32874130178632843
+          ],
+          "masked_power": 0.9999999999999996,
+          "interpolated_power": 0.8264462809917351,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0008868609413995039,
+          "interpolated_noise_relative_to_iid_full_grid": 0.9365251541178761,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 250,
+          "velocity_mps": 7.5,
+          "masked": [
+            0.06538810315056762,
+            0.018225244408852793
+          ],
+          "interpolated": [
+            0.0687848877298179,
+            0.019172010352169786
+          ],
+          "masked_power": 0.004607763567391692,
+          "interpolated_power": 0.005098926760947359,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.000886860941399504,
+          "interpolated_noise_relative_to_iid_full_grid": 0.9365251541178762,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 310.6060606060606,
+          "velocity_mps": 9.318181818181818,
+          "masked": [
+            0.0717534397578134,
+            0.036016044894235266
+          ],
+          "interpolated": [
+            0.06018976928575862,
+            0.03021175625985909
+          ],
+          "masked_power": 0.006445711606901727,
+          "interpolated_power": 0.0045355585429779875,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.000872588998855089,
+          "interpolated_noise_relative_to_iid_full_grid": 0.921453982790974,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            -0.0014247535507526867,
+            0.031382297179064114
+          ],
+          "interpolated": [
+            -0.004370388564875427,
+            0.09626425051438017
+          ],
+          "masked_power": 0.000986878498915478,
+          "interpolated_power": 0.009285906223303338,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.00121053256954956,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2783223934443353,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            -1.2593756269918632e-17,
+            3.3038792387730116e-18
+          ],
+          "interpolated": [
+            3.383707912484686e-17,
+            -6.88258383779397e-18
+          ],
+          "masked_power": 1.6951831501051018e-34,
+          "interpolated_power": 1.19231788398541e-33,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": 31.25,
+        "gap": 16
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 31.25,
+        "velocity_mps": 0.9375,
+        "masked": [
+          0.9323273456060348,
+          0.3616154319649612
+        ],
+        "interpolated": [
+          0.9003266206170265,
+          0.34920352959544526
+        ],
+        "masked_power": 1.0,
+        "interpolated_power": 0.9325311288735922,
+        "masked_noise_factor": 0.001141552511415525,
+        "interpolated_noise_factor": 0.002108254546865505,
+        "interpolated_noise_relative_to_iid_full_grid": 2.2263168014899732,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 876,
+        "filled_count": 180,
+        "total_transmit_energy_units": 876,
+        "missing_cell_nmse": 0.04856224070040989,
+        "midpoint_ratio": [
+          0.7071067811865481,
+          -1.2421095426953684e-15
+        ],
+        "midpoint_true": [
+          0.3616154319649653,
+          -0.9323273456060331
+        ],
+        "midpoint_filled": [
+          0.2557007241241287,
+          -0.659254988363681
+        ],
+        "left_endpoint": [
+          -0.40355426423955115,
+          -0.9149557124878092
+        ],
+        "right_endpoint": [
+          0.9149557124878085,
+          -0.4035542642395528
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            -0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.07392677005771126,
+            -0.787105350425745
+          ],
+          "truth_for_display_only": [
+            -0.022697132471693096,
+            -0.9997423869065283
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.008480103487748747,
+            -0.755142759910229
+          ],
+          "truth_for_display_only": [
+            0.07540405025574218,
+            -0.9971530620747396
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.2557007241241287,
+            -0.659254988363681
+          ],
+          "truth_for_display_only": [
+            0.3616154319649653,
+            -0.9323273456060331
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.5029213447605085,
+            -0.5633672168171329
+          ],
+          "truth_for_display_only": [
+            0.6166847354852577,
+            -0.7872102241583742
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.5853282183059686,
+            -0.5314046263016169
+          ],
+          "truth_for_display_only": [
+            0.6908753249370082,
+            -0.7229739175054541
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            -0.3616154319649617,
+            0.9323273456060345
+          ],
+          "observed": [
+            0.9323273456060345,
+            0.3616154319649617
+          ],
+          "filled": [
+            0.9323273456060345,
+            0.3616154319649617
+          ],
+          "truth_for_display_only": [
+            0.9323273456060345,
+            0.3616154319649617
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.36161543196496576,
+            0.9323273456060329
+          ],
+          "observed": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ],
+          "filled": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ],
+          "truth_for_display_only": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.9323273456060348,
+            0.3616154319649612
+          ],
+          "interpolated": [
+            0.9003266206170265,
+            0.34920352959544526
+          ],
+          "masked_power": 1.0,
+          "interpolated_power": 0.9325311288735922,
+          "masked_noise_factor": 0.001141552511415525,
+          "interpolated_noise_factor": 0.002108254546865505,
+          "interpolated_noise_relative_to_iid_full_grid": 2.2263168014899732,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.15547269144410944,
+            0.04333399600147973
+          ],
+          "interpolated": [
+            0.02597030876137153,
+            0.007238552607337153
+          ],
+          "masked_power": 0.02604959299433152,
+          "interpolated_power": 0.0007268535810101583,
+          "masked_noise_factor": 0.001141552511415525,
+          "interpolated_noise_factor": 0.0021082545468655033,
+          "interpolated_noise_relative_to_iid_full_grid": 2.2263168014899715,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 91.8560606060606,
+          "velocity_mps": 2.755681818181818,
+          "masked": [
+            0.1274857239597451,
+            0.06399040342882385
+          ],
+          "interpolated": [
+            0.02035504832674389,
+            0.01021704794689663
+          ],
+          "masked_power": 0.02034738154452396,
+          "interpolated_power": 0.0005187160611332639,
+          "masked_noise_factor": 0.001141552511415525,
+          "interpolated_noise_factor": 0.0011804508930410075,
+          "interpolated_noise_relative_to_iid_full_grid": 1.246556143051304,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            0.15601463389472398,
+            0.007083050751273941
+          ],
+          "interpolated": [
+            0.2413461439850593,
+            0.010957093855849486
+          ],
+          "masked_power": 0.024390735597249875,
+          "interpolated_power": 0.05836801912222287,
+          "masked_noise_factor": 0.001141552511415525,
+          "interpolated_noise_factor": 0.0014977291227438543,
+          "interpolated_noise_relative_to_iid_full_grid": 1.58160195361751,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            -1.772718195349675e-16,
+            -6.422601299322722e-16
+          ],
+          "interpolated": [
+            -1.020532731529274e-16,
+            -5.675370860518679e-16
+          ],
+          "masked_power": 4.4392337250185726e-31,
+          "interpolated_power": 3.3251321460547137e-31,
+          "masked_noise_factor": 0.001141552511415525,
+          "interpolated_noise_factor": 0.0023189996556473827,
+          "interpolated_noise_relative_to_iid_full_grid": 2.4488636363636362,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": null,
+        "seed": 20261011,
+        "fd_hz": -125,
+        "gap": 4
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": -125,
+        "velocity_mps": -3.75,
+        "masked": [
+          0.9323273456060346,
+          0.3616154319649614
+        ],
+        "interpolated": [
+          0.9247444284947475,
+          0.35867429775960336
+        ],
+        "masked_power": 0.9999999999999998,
+        "interpolated_power": 0.9837995099054218,
+        "masked_noise_factor": 0.000980392156862745,
+        "interpolated_noise_factor": 0.0010082711856833737,
+        "interpolated_noise_relative_to_iid_full_grid": 1.0647343720816427,
+        "masked_standardized_power": null,
+        "interpolated_standardized_power": null,
+        "active_count": 1020,
+        "filled_count": 36,
+        "total_transmit_energy_units": 1020,
+        "missing_cell_nmse": 0.060488135909318216,
+        "midpoint_ratio": [
+          0.7071067811865469,
+          -5.175456427897371e-17
+        ],
+        "midpoint_true": [
+          -0.9323273456060337,
+          -0.36161543196496393
+        ],
+        "midpoint_filled": [
+          -0.6592549883636798,
+          -0.25570072412412836
+        ],
+        "left_endpoint": [
+          -0.40355426423955093,
+          -0.9149557124878093
+        ],
+        "right_endpoint": [
+          -0.9149557124878086,
+          0.4035542642395525
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.36161543196496554,
+            0.932327345606033
+          ],
+          "observed": [
+            0.36161543196496554,
+            -0.932327345606033
+          ],
+          "filled": [
+            0.36161543196496554,
+            -0.932327345606033
+          ],
+          "truth_for_display_only": [
+            0.36161543196496554,
+            -0.932327345606033
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.9997423869065283,
+            -0.02269713247169285
+          ],
+          "observed": [
+            -0.02269713247169285,
+            -0.9997423869065283
+          ],
+          "filled": [
+            -0.02269713247169285,
+            -0.9997423869065283
+          ],
+          "truth_for_display_only": [
+            -0.02269713247169285,
+            -0.9997423869065283
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            -0.6592549883636798,
+            -0.25570072412412836
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060337,
+            -0.36161543196496393
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": true,
+          "x": [
+            -0.0,
+            -1.0
+          ],
+          "y": [
+            0.7229739175054539,
+            0.6908753249370085
+          ],
+          "observed": [
+            -0.6908753249370085,
+            0.7229739175054539
+          ],
+          "filled": [
+            -0.6908753249370085,
+            0.7229739175054539
+          ],
+          "truth_for_display_only": [
+            -0.6908753249370085,
+            0.7229739175054539
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.36161543196496565,
+            -0.932327345606033
+          ],
+          "observed": [
+            -0.36161543196496565,
+            0.932327345606033
+          ],
+          "filled": [
+            -0.36161543196496565,
+            0.932327345606033
+          ],
+          "truth_for_display_only": [
+            -0.36161543196496565,
+            0.932327345606033
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.9323273456060344,
+            0.361615431964962
+          ],
+          "observed": [
+            0.361615431964962,
+            -0.9323273456060344
+          ],
+          "filled": [
+            0.361615431964962,
+            -0.9323273456060344
+          ],
+          "truth_for_display_only": [
+            0.361615431964962,
+            -0.9323273456060344
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.9323273456060335,
+            0.3616154319649644
+          ],
+          "observed": [
+            -0.9323273456060335,
+            -0.3616154319649644
+          ],
+          "filled": [
+            -0.9323273456060335,
+            -0.3616154319649644
+          ],
+          "truth_for_display_only": [
+            -0.9323273456060335,
+            -0.3616154319649644
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": -125,
+          "velocity_mps": -3.75,
+          "masked": [
+            0.9323273456060346,
+            0.3616154319649614
+          ],
+          "interpolated": [
+            0.9247444284947475,
+            0.35867429775960336
+          ],
+          "masked_power": 0.9999999999999998,
+          "interpolated_power": 0.9837995099054218,
+          "masked_noise_factor": 0.000980392156862745,
+          "interpolated_noise_factor": 0.0010082711856833737,
+          "interpolated_noise_relative_to_iid_full_grid": 1.0647343720816427,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": -125,
+          "velocity_mps": -3.75,
+          "masked": [
+            0.026704721118634943,
+            0.007443251077901176
+          ],
+          "interpolated": [
+            0.00615394491092449,
+            0.0017152531527326242
+          ],
+          "masked_power": 0.0007685441166327442,
+          "interpolated_power": 4.081313134465264e-05,
+          "masked_noise_factor": 0.000980392156862745,
+          "interpolated_noise_factor": 0.0010082711856833734,
+          "interpolated_noise_relative_to_iid_full_grid": 1.0647343720816425,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": -64.3939393939394,
+          "velocity_mps": -1.931818181818182,
+          "masked": [
+            0.0311634598514423,
+            0.015642240606967287
+          ],
+          "interpolated": [
+            0.007406836657211739,
+            0.0037178003238702846
+          ],
+          "masked_power": 0.0012158409211187123,
+          "interpolated_power": 6.868326851478555e-05,
+          "masked_noise_factor": 0.000980392156862745,
+          "interpolated_noise_factor": 0.0010222690934676153,
+          "interpolated_noise_relative_to_iid_full_grid": 1.0795161627018017,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            -0.0030855989642274966,
+            0.0679648656566926
+          ],
+          "interpolated": [
+            -0.002048019782235779,
+            0.04511065468183819
+          ],
+          "masked_power": 0.004628743884700315,
+          "interpolated_power": 0.002039165550852479,
+          "masked_noise_factor": 0.000980392156862745,
+          "interpolated_noise_factor": 0.001021306960403226,
+          "interpolated_noise_relative_to_iid_full_grid": 1.0785001501858067,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            -1.2401727673260467e-17,
+            -1.925822431770384e-17
+          ],
+          "interpolated": [
+            -2.923277052847785e-17,
+            -1.5238198415808787e-17
+          ],
+          "masked_power": 5.246820531527139e-34,
+          "interpolated_power": 1.0867575637302004e-33,
+          "masked_noise_factor": 0.000980392156862745,
+          "interpolated_noise_factor": 0.0010276773415977961,
+          "interpolated_noise_relative_to_iid_full_grid": 1.0852272727272727,
+          "masked_standardized_power": null,
+          "interpolated_standardized_power": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "range_m": 37.5,
+        "phase": 0.37,
+        "snr_db": 0,
+        "seed": 20261011,
+        "fd_hz": 31.25,
+        "gap": 8
+      },
+      "metrics": {
+        "range_m": 37.5,
+        "fd_hz": 31.25,
+        "velocity_mps": 0.9375,
+        "masked": [
+          0.9424429900101968,
+          0.33642524588371187
+        ],
+        "interpolated": [
+          0.9404466427219148,
+          0.3387027177991884
+        ],
+        "masked_power": 1.0013807354872757,
+        "interpolated_power": 0.9991594188514775,
+        "masked_noise_factor": 0.00102880658436214,
+        "interpolated_noise_factor": 0.001269876609824782,
+        "interpolated_noise_relative_to_iid_full_grid": 1.3409896999749698,
+        "masked_standardized_power": 973.3420748936319,
+        "interpolated_standardized_power": 786.8161450657335,
+        "active_count": 972,
+        "filled_count": 84,
+        "total_transmit_energy_units": 972,
+        "missing_cell_nmse": 0.5272767921304629,
+        "midpoint_ratio": [
+          0.6967132655902823,
+          0.6204068415577891
+        ],
+        "midpoint_true": [
+          0.3616154319649653,
+          -0.9323273456060331
+        ],
+        "midpoint_filled": [
+          0.8303645322775479,
+          -0.42521614155235954
+        ],
+        "left_endpoint": [
+          0.15980347498547776,
+          -0.5315027085622747
+        ],
+        "right_endpoint": [
+          1.500925589569618,
+          -0.31892957454244436
+        ]
+      },
+      "cells": [
+        {
+          "m": 12,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -0.15980347498547776,
+            0.5315027085622747
+          ],
+          "observed": [
+            0.15980347498547776,
+            -0.5315027085622747
+          ],
+          "filled": [
+            0.15980347498547776,
+            -0.5315027085622747
+          ],
+          "truth_for_display_only": [
+            -0.022697132471693096,
+            -0.9997423869065283
+          ]
+        },
+        {
+          "m": 13,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            0.6077356206511932,
+            -0.07298225897648973
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.3274437393084953,
+            -0.5049310668097958
+          ],
+          "truth_for_display_only": [
+            0.07540405025574218,
+            -0.9971530620747396
+          ]
+        },
+        {
+          "m": 16,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            1.2895230048138806,
+            -0.869487922021028
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            0.8303645322775479,
+            -0.42521614155235954
+          ],
+          "truth_for_display_only": [
+            0.3616154319649653,
+            -0.9323273456060331
+          ]
+        },
+        {
+          "m": 19,
+          "k": 14,
+          "active": false,
+          "x": [
+            0.0,
+            0.0
+          ],
+          "y": [
+            -0.10330772896139864,
+            -0.7092296321989581
+          ],
+          "observed": [
+            0.0,
+            0.0
+          ],
+          "filled": [
+            1.3332853252466004,
+            -0.34550121629492314
+          ],
+          "truth_for_display_only": [
+            0.6166847354852577,
+            -0.7872102241583742
+          ]
+        },
+        {
+          "m": 20,
+          "k": 14,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            -1.500925589569618,
+            0.31892957454244436
+          ],
+          "observed": [
+            1.500925589569618,
+            -0.31892957454244436
+          ],
+          "filled": [
+            1.500925589569618,
+            -0.31892957454244436
+          ],
+          "truth_for_display_only": [
+            0.6908753249370082,
+            -0.7229739175054541
+          ]
+        },
+        {
+          "m": 16,
+          "k": 9,
+          "active": true,
+          "x": [
+            0.0,
+            1.0
+          ],
+          "y": [
+            0.3640175536055369,
+            0.5573177222177697
+          ],
+          "observed": [
+            0.5573177222177697,
+            -0.3640175536055369
+          ],
+          "filled": [
+            0.5573177222177697,
+            -0.3640175536055369
+          ],
+          "truth_for_display_only": [
+            0.9323273456060345,
+            0.3616154319649617
+          ]
+        },
+        {
+          "m": 16,
+          "k": 22,
+          "active": true,
+          "x": [
+            -1.0,
+            0.0
+          ],
+          "y": [
+            0.23512728018575607,
+            1.1652743289857797
+          ],
+          "observed": [
+            -0.23512728018575607,
+            -1.1652743289857797
+          ],
+          "filled": [
+            -0.23512728018575607,
+            -1.1652743289857797
+          ],
+          "truth_for_display_only": [
+            0.36161543196496576,
+            -0.9323273456060329
+          ]
+        }
+      ],
+      "candidates": [
+        {
+          "range_m": 37.5,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.9424429900101968,
+            0.33642524588371187
+          ],
+          "interpolated": [
+            0.9404466427219148,
+            0.3387027177991884
+          ],
+          "masked_power": 1.0013807354872757,
+          "interpolated_power": 0.9991594188514775,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.001269876609824782,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3409896999749698,
+          "masked_standardized_power": 973.3420748936319,
+          "interpolated_standardized_power": 786.8161450657335
+        },
+        {
+          "range_m": 42.1875,
+          "fd_hz": 31.25,
+          "velocity_mps": 0.9375,
+          "masked": [
+            0.06700571061568811,
+            0.03841743797046545
+          ],
+          "interpolated": [
+            0.01814209868226109,
+            0.017282483155019675
+          ],
+          "masked_power": 0.005965664795327898,
+          "interpolated_power": 0.0006278199686004384,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012698766098247821,
+          "interpolated_noise_relative_to_iid_full_grid": 1.34098969997497,
+          "masked_standardized_power": 5.798626181058716,
+          "interpolated_standardized_power": 0.49439446615767274
+        },
+        {
+          "range_m": 37.5,
+          "fd_hz": 91.8560606060606,
+          "velocity_mps": 2.755681818181818,
+          "masked": [
+            0.0699348345777887,
+            0.046930929661077966
+          ],
+          "interpolated": [
+            0.0022457121079998464,
+            0.011085125128472203
+          ],
+          "masked_power": 0.007093393246275717,
+          "interpolated_power": 0.000127923221985903,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0011636015296259052,
+          "interpolated_noise_relative_to_iid_full_grid": 1.228763215284956,
+          "masked_standardized_power": 6.894778235379996,
+          "interpolated_standardized_power": 0.10993730992002904
+        },
+        {
+          "range_m": 40.0,
+          "fd_hz": 70.0,
+          "velocity_mps": 2.1,
+          "masked": [
+            0.20909594090572267,
+            0.003650991300927485
+          ],
+          "interpolated": [
+            0.2539541197826871,
+            0.008734688812740962
+          ],
+          "masked_power": 0.043734442240728914,
+          "interpolated_power": 0.0645689897432548,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.00121053256954956,
+          "interpolated_noise_relative_to_iid_full_grid": 1.2783223934443353,
+          "masked_standardized_power": 42.5098778579885,
+          "interpolated_standardized_power": 53.339324663756024
+        },
+        {
+          "range_m": 75.0,
+          "fd_hz": 0.0,
+          "velocity_mps": 0.0,
+          "masked": [
+            0.020356218029477874,
+            0.005453265344539047
+          ],
+          "interpolated": [
+            0.02238017804877142,
+            0.006172536676968521
+          ],
+          "masked_power": 0.0004441137153815907,
+          "interpolated_power": 0.0005389725785232318,
+          "masked_noise_factor": 0.00102880658436214,
+          "interpolated_noise_factor": 0.0012859418044077135,
+          "interpolated_noise_relative_to_iid_full_grid": 1.3579545454545454,
+          "masked_standardized_power": 0.4316785313509061,
+          "interpolated_standardized_power": 0.41912672616742164
+        }
+      ]
+    }
+  ]
+}
