@@ -1,8 +1,10 @@
 'use strict';
 // Bibliographic evidence lives in one data file. Teaching cases remain registry-owned.
+const {createLearningEntryResolver}=require('./learning-entry.cjs');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const link=(href,label)=>`<a href="${esc(href)}">${esc(label)}</a>`;
 function renderResearchDirectory(data, registry, exists){
+ const learningEntries=createLearningEntryResolver(registry);
  function activeUnit(card){
   const c=registry.cases.find(c=>c.id===card.caseId);
   const unit=c&&registry.units.find(u=>u.id===c.unit);
@@ -11,7 +13,7 @@ function renderResearchDirectory(data, registry, exists){
  }
  function caseRoute(card){
   const unit=activeUnit(card);
-  if(unit)return `<p class="paper-status">${link(unit.href,'进入教学案例 →')}<span>独立机制模型，非完整论文复现</span></p>`;
+  if(unit)return `<p class="paper-status">${link(learningEntries.caseEntry(registry.cases.find(c=>c.id===card.caseId)),'进入教学案例 →')}<span>独立机制模型，非完整论文复现</span></p>`;
   return `<p class="paper-status">${card.caseId?'教学案例准备中':'深度交互尚未实现'}<span>可先阅读已核实的原文</span></p>`;
  }
  function card(c){
