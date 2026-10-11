@@ -439,7 +439,7 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
 });
 
 test('the perceptive paper card is usable while the unavailable DeepSense card and the split-record warning remain honest',()=>{
- const html=read('reading.html'),card=article(html,'paper-perceptive');a.ok(card.includes('href="'+u.href+'"'));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
+ const html=read('reading.html'),card=article(html,'paper-perceptive');a.ok(card.includes('href="'+c.learningEntry+'"'));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
  a.match(html,/深度交互已接入：8 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  a.match(card,/DOI 拆分记录，不可比/);a.match(card,/仓储记录 295 次/);a.match(card,/未逐条去重，不能相加/);a.match(card,/排除OpenAlex引用排名/);a.match(card,/记录拆分，未给出可比计数/);
  const pending=data.cards.filter(c=>!c.caseId);a.deepEqual(pending.map(c=>c.id),['deepsense']);

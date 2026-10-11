@@ -14,17 +14,17 @@ test('actual bibliography case is active and resolves only to the registered wav
  const data=JSON.parse(read(registry.researchDirectoryFile)),card=data.cards.find(c=>c.id==='optimal_waveform'),c=registry.cases.find(c=>c.id===card.caseId),unit=registry.units.find(u=>u.id===c.unit);
  assert.equal(c.id,'case-waveform');assert.equal(unit.id,'waveform-design');
  const article=read('reading.html').match(/<article class="influence-card" id="paper-optimal_waveform"[\s\S]*?<\/article>/)[0];
- assert.ok(article.includes(`href="${unit.href}"`));assert.ok(!article.includes('教学案例准备中'));
+ assert.ok(article.includes(`href="${c.learningEntry||unit.href}"`));assert.ok(!article.includes('教学案例准备中'));
  assert.match(article,/独立机制模型，非完整论文复现/);assert.ok(!('paperComparison' in card));
  for(const page of ['index.html','reading.html','experiments.html','waveform-design.html'])assert.ok(read(page).includes('site.css?v=knowledge-map-v1'));
- assert.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v2'));
+ assert.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v3'));
 });
 
 test('joint beamforming canonical case is integrated as its own mechanism and precise source comparison',()=>{
  const data=JSON.parse(read(registry.researchDirectoryFile)),card=data.cards.find(c=>c.id==='joint_beamforming'),c=registry.cases.find(c=>c.id===card.caseId),unit=registry.units.find(u=>u.id===c.unit);
  assert.equal(c.id,'case-joint-beamforming');assert.equal(unit.id,'joint-beamforming');assert.equal(unit.href,'joint-beamforming.html#experiment');
  const article=read('reading.html').match(/<article class="influence-card" id="paper-joint_beamforming"[\s\S]*?<\/article>/)[0];
- assert.ok(article.includes(`href="${unit.href}"`));assert.ok(!article.includes('教学案例准备中'));assert.equal(c.paperComparison.sourceUrl,'https://arxiv.org/abs/1912.03420v2');assert.equal(c.paperComparison.comparisonStatus,'partial');
+ assert.ok(article.includes(`href="${c.learningEntry||unit.href}"`));assert.ok(!article.includes('教学案例准备中'));assert.equal(c.paperComparison.sourceUrl,'https://arxiv.org/abs/1912.03420v2');assert.equal(c.paperComparison.comparisonStatus,'partial');
  assert.ok(registry.pages.some(p=>p.path==='joint-beamforming.html'));assert.ok(registry.directions.some(d=>d.primaryCaseIds.includes(c.id)));
  for(const page of ['index.html','experiments.html','reading.html'])assert.ok(read(page).includes('joint-beamforming.html#experiment'),page);
 });
@@ -40,7 +40,7 @@ test('point-target CRB beamforming has a separate canonical identity and preserv
  for(const [id,entry]of [['beam-design','array'],['fisher-crb','crb']]){const n=registry.knowledgeMap.nodes.find(n=>n.id===id);assert.ok(n.unitRefs.includes(unit.id));assert.equal(n.entryUnitRef,entry);}
  for(const id of ['spatial','tradeoffs']){const d=registry.directions.find(d=>d.id===id);assert.ok(d.primaryCaseIds.includes(c.id));for(const [level,anchor]of [['intuition','intuition'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','limits'],['reproduction','reproduce']])assert.ok(d.levels.find(l=>l.id===level).items.some(i=>i.status==='available'&&i.href===`crb-beamforming.html#${anchor}`));}
  for(const page of ['index.html','experiments.html','reading.html'])assert.ok(read(page).includes(unit.href),page);
- const article=read('reading.html').match(/<article class="influence-card" id="paper-crb"[\s\S]*?<\/article>/)[0];assert.ok(article.includes(unit.href));assert.ok(!/教学案例准备中|深度交互尚未实现/.test(article));
+ const article=read('reading.html').match(/<article class="influence-card" id="paper-crb"[\s\S]*?<\/article>/)[0];assert.ok(article.includes(c.learningEntry||unit.href));assert.ok(!/教学案例准备中|深度交互尚未实现/.test(article));
 });
 
 test('CRB paper metadata fixes one journal edition and separates the exact special case from independent extensions',()=>{

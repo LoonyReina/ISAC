@@ -16,7 +16,7 @@ class Element{
  get isConnected(){return this.connected||Boolean(this.parent&&this.parent.isConnected);}
  focus(options){this.focusOptions=options;this.revealCalls??=[];this.revealCalls.push('focus');if(!this.isConnected)return;for(let e=this;e;e=e.parent){if(e.hidden)return;if(e.parent?.tagName==='details'&&!e.parent.open&&e.tagName!=='summary')return;}this.focused=true;}
  scrollIntoView(options){this.scrollOptions=options;this.revealCalls??=[];this.revealCalls.push('scroll');}
- setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs||(k.startsWith('data-')&&k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase()) in this.dataset);}
+ getAttribute(k){return this.attrs[k]??null;}setAttribute(k,v){this.attrs[k]=String(v);}hasAttribute(k){return k in this.attrs||(k.startsWith('data-')&&k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase()) in this.dataset);}
  addEventListener(k,fn){(this.events[k]??=[]).push(fn);}
  fire(k,extra={}){const event={target:this,preventDefault(){this.defaultPrevented=true;},...extra};for(const fn of this.events[k]||[])fn(event);return event;}
  matches(s){if(s.startsWith('.'))return (this.attrs.class||'').split(/\s+/).includes(s.slice(1));if(s.startsWith('[')){const m=s.match(/^\[([^=\]]+)(?:="([^"]*)")?\]$/);return this.hasAttribute(m[1])&&(m[2]===undefined||this.attrs[m[1]]===m[2]);}return this.tagName===s;}
@@ -105,7 +105,7 @@ test('DOM selection focuses without native scrolling then reveals panel start; h
  for(const event of ['popstate','hashchange'])h.navigate('#map-node-waveform-design',event);
  a.deepEqual(h.panel.revealCalls,['focus','scroll']);
  a.match(read('knowledge-map.css'),/\.map-detail\{[^}]*scroll-margin-top:/);
- a.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v2'));
+ a.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v3'));
 });
 
 test('detail reveal adds a small gap to root header scroll-padding at desktop and narrow widths',()=>{
@@ -116,8 +116,8 @@ test('detail reveal adds a small gap to root header scroll-padding at desktop an
  a.match(shell,/html\{scroll-padding-top:110px/);
  a.match(shell,/@media\(max-width:700px\)\{html\{scroll-padding-top:150px/);
  a.match(css,/@media\(max-width:600px\)[\s\S]*?\.map-detail\{padding:22px 20px;scroll-margin-top:16px\}/);
- const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=learning-path-v1'));
- a.ok(html.includes('knowledge-map.js?v=knowledge-map-v2'));
+ const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=learning-entry-v1'));
+ a.ok(html.includes('knowledge-map.js?v=knowledge-map-v3'));
 });
 
 test('optional case learning entries resolve real same-page anchors and fall back to canonical units',()=>{
@@ -240,4 +240,79 @@ test('mutual assistance preserves its native theory entry and links only the bou
  const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
  const runtime=setup();runtime.search('互助');a.equal(runtime.results.children.length,1);runtime.click(runtime.results.querySelector('button'));a.equal(runtime.location.hash,'#map-node-mutual-assistance');
  a.ok(read('index.html').includes(`<strong>${k.nodes.length}</strong> 个核心概念`));
+});
+
+test('generated lesson index has exactly one canonical native link per registered unit, including case-free units',()=>{
+ const html=render(registry),h=setup({html}),index=h.byId('map-lesson-search').content.querySelectorAll('a');
+ a.equal(index.length,registry.units.length);a.equal(new Set(index.map(e=>e.dataset.mapUnit)).size,index.length);
+ for(const u of registry.units){const c=registry.cases.find(c=>c.unit===u.id),entry=index.find(e=>e.dataset.mapUnit===u.id);a.equal(entry.textContent,u.title);a.equal(entry.attrs.href,c?.learningEntry||u.href);resolve(entry.attrs.href);a.equal(entry.hasAttribute('data-map-node'),false);}
+ a.ok(registry.units.some(u=>!registry.cases.some(c=>c.unit===u.id)));
+ a.equal(h.map.querySelectorAll('[data-map-unit]').length,0,'inert template is not a second visible directory');
+ a.equal(h.map.querySelectorAll('[data-map-entry]').length,40);
+});
+
+test('exact and partial Chinese and English unit titles expose direct learning entries before relationship results',()=>{
+ const h=setup();
+ for(const u of registry.units){h.search(u.title);const links=h.results.querySelectorAll('a');a.ok(links.some(e=>e.dataset.mapUnit===u.id),u.title);a.equal(links[0].dataset.mapUnit,u.id);a.equal(h.results.children[0].querySelector('a'),links[0]);}
+ for(const [term,id,href]of [
+  ['共享阵列','shared-array','shared-array.html#question'],['置零','shared-array','shared-array.html#question'],
+  ['插值','ofdm-interpolation','ofdm-interpolation.html#mechanism'],['  oFdM  ','ofdm-interpolation','ofdm-interpolation.html#mechanism'],
+  [' GoLaY ','golay-radar','golay-radar.html#experiment'],['通信门槛','crb-beamforming','crb-beamforming.html#intuition'],
+  ['递归','perceptive-clutter','perceptive-clutter.html#question'],['稀疏导频','pilot','pilot-design.html#experiment'],
+  [' I/Q ','iq','foundations.html#iq']
+ ]){h.search(term);const links=h.results.querySelectorAll('a'),entry=links.find(e=>e.dataset.mapUnit===id);a.ok(entry,term);a.equal(entry.attrs.href,href,term);a.match(entry.textContent,/课程入口 · 直接打开/);a.equal(links.filter(e=>e.dataset.mapUnit===id).length,1);a.ok(h.results.querySelector('button'),term+' retains relationships');}
+});
+
+test('search keeps concept and direction matches, types and ordering, without introducing fake lesson relevance',()=>{
+ const h=setup();
+ for(const q of ['I/Q','相位','CRB',...registry.directions.map(d=>d.title)]){
+  h.search(q);const expected=h.map.querySelectorAll('[data-map-entry]').filter(e=>e.dataset.mapSearch.toLocaleLowerCase().includes(q.toLocaleLowerCase()));
+  a.deepEqual(h.results.querySelectorAll('button').map(e=>e.dataset.mapNode),expected.map(e=>e.dataset.mapEntry));
+  for(const b of h.results.querySelectorAll('button')){a.equal(b.attrs['aria-controls'],'map-detail');a.match(b.textContent,/查看关系/);a.match(b.textContent,b.dataset.mapNode.startsWith('direction:')?/研究方向/:/概念关系/);}
+ }
+ // A physical-question word may select concepts, but does not imply a title match.
+ h.search('旁瓣');a.equal(h.results.querySelectorAll('a').length,0);
+ for(const q of ['DeepSense','MU-MIMO','目标—杂波—干扰分量可视化','no-such-lesson-42']){h.search(q);a.equal(h.results.children.length,0);a.match(h.status.textContent,/没有匹配的概念、课程或方向/);}
+});
+
+test('search count includes all typed matches without a hidden cap or repeated unit attachments',()=>{
+ const r=structuredClone(registry),word='MATCH ALL';
+ for(const u of r.units)u.title=word+' '+u.title;
+ for(const n of r.knowledgeMap.nodes)n.label=word+' '+n.label;
+ for(const d of r.directions)d.title=word+' '+d.title;
+ const h=setup({html:render(r)});h.search(word);
+ const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
+ a.equal(lessons.length,24);a.equal(relations.length,40);a.equal(h.results.children.length,64);
+ a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,24);a.match(h.status.textContent,/找到 64 个入口（24 个课程入口，40 个概念或方向）/);
+ a.deepEqual(h.results.children.slice(0,24).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
+ a.ok(h.groups.some(g=>g.textContent.includes('24 个实验 · 13 个专题')));
+});
+
+test('native lesson results preserve keyboard defaults, map selection and history; clear, reset, Escape and repeated search remain coherent',()=>{
+ const h=setup({hash:'#map-node-beam-design'});h.search('置零');
+ const link=h.results.querySelector('a'),button=h.results.querySelector('button'),hash=h.location.hash;
+ a.equal(link.attrs.href,'shared-array.html#question');a.equal(link.hasAttribute('data-map-node'),false);a.equal(link.hasAttribute('tabindex'),false);a.equal(link.hasAttribute('role'),false);
+ link.focus();a.ok(link.focused);a.equal(h.click(link).defaultPrevented,undefined);
+ a.equal(h.map.fire('keydown',{target:link,key:'Enter'}).defaultPrevented,undefined);
+ a.equal(h.pushes.length,0);a.equal(h.location.hash,hash);
+ a.ok(h.map.querySelector('.map-tools').fire('submit').defaultPrevented);a.equal(h.results.querySelectorAll('a').length,1);
+ h.click(button);a.match(h.panel.textContent,/局部关系/);const selected=h.location.hash;
+ for(const event of ['popstate','hashchange']){h.navigate(hash,event);a.equal(h.query.value,'置零');a.equal(h.results.querySelector('a').attrs.href,'shared-array.html#question');h.navigate(selected,event);}
+ h.map.querySelector('.map-tools').fire('reset');a.equal(h.location.hash,selected);a.ok(h.results.hidden);a.ok(h.query.focused);
+ h.search('Golay');h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');a.ok(h.results.hidden);a.equal(h.query.value,'');a.ok(h.query.focused);
+ h.search('插值');h.click(h.map.querySelector('[data-map-reset]'));a.equal(h.results.children.length,0);a.ok(h.groups.every(g=>!g.open));
+});
+
+test('search accessibility exposes controls, polite totals, native links and visible focus/touch styles',()=>{
+ const h=setup();a.equal(h.query.attrs['aria-controls'],'map-search-results');a.equal(h.query.attrs['aria-describedby'],'map-status');a.equal(h.status.attrs.role,'status');a.equal(h.status.attrs['aria-live'],'polite');a.equal(h.results.attrs['aria-label'],'搜索结果');
+ h.search('CRB');a.ok(h.results.querySelectorAll('a').every(a=>a.attrs.href));a.ok(h.results.querySelectorAll('button').every(b=>b.type==='button'));
+ const css=read('knowledge-map.css');a.match(css,/\.map-search-results a\{min-height:44px/);a.match(css,/\.map-search-results button,\.map-search-results a\{[^}]*overflow-wrap:anywhere/);a.match(css,/:is\(a,button,input,summary\):focus-visible/);
+ a.doesNotMatch(read('knowledge-map.js'),/require\(|node:fs|learning-entry\.cjs|fetch\(/);
+});
+
+test('mixed cached HTML without the lesson template retains original concept and direction search',()=>{
+ const html=render(registry).replace(/<template id="map-lesson-search">[\s\S]*?<\/template>/,'').replace(/ data-map-kind="(?:concept|direction)"/g,'');
+ const h=setup({html});h.search('CRB');a.ok(h.results.querySelector('button'));a.equal(h.results.querySelectorAll('a').length,0);h.click(h.results.querySelector('button'));a.match(h.panel.textContent,/局部关系/);
+ h.search(registry.directions[0].title);a.match(h.results.querySelector('button').textContent,/研究方向/);h.click(h.results.querySelector('button'));a.equal(h.location.hash,'#map-node-direction-'+registry.directions[0].id);
+ h.map.fire('keydown',{key:'Escape'});a.ok(h.results.hidden);a.equal(h.location.hash,'#knowledge-map');
 });

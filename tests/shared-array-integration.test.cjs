@@ -76,9 +76,9 @@ test('shared-array prerequisites, section anchors and generated portals resolve 
  a.ok(h.includes('href="experiments.html" aria-current="location"'));a.ok(read('index.html').includes('<strong>24</strong> 个机制实验'));
 });
 
-test('eighth existing card is live only through its actual canonical experiment while DeepSense stays resource-only',()=>{
+test('eighth existing card is live only through its canonical learning entry while DeepSense stays resource-only',()=>{
  const html=read('reading.html'),card=article(html,'paper-mu_mimo'),deep=article(html,'paper-deepsense');
- a.ok(card.includes(`href="${u.href}"`));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
+ a.ok(card.includes(`href="${c.learningEntry}"`));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
  a.match(html,/深度交互已接入：8 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);a.match(deep,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(deep));
  const {renderResearchDirectory}=require('../scripts/render-research-directory.cjs');
  for(const registry of [r,{...r,cases:r.cases.filter(x=>x.id!==c.id)}]){

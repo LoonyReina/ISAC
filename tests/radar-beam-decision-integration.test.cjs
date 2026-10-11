@@ -95,7 +95,7 @@ test('radar page and generated portals expose real sections, shared navigation a
 
 test('radar rendered card remains usable and DeepSense remains an unavailable resource entry',()=>{
  const html=read('reading.html'),radar=article(html,'paper-radar_prediction'),deep=article(html,'paper-deepsense');
- a.ok(radar.includes(`href="${u.href}"`));a.match(radar,/独立机制模型，非完整论文复现/);a.doesNotMatch(radar,/教学案例准备中|深度交互尚未实现/);
+ a.ok(radar.includes(`href="${c.learningEntry}"`));a.match(radar,/独立机制模型，非完整论文复现/);a.doesNotMatch(radar,/教学案例准备中|深度交互尚未实现/);
  a.match(html,/深度交互已接入：8 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  a.match(deep,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(deep));
  for(const pending of data.cards.filter(c=>!c.caseId)){const h=article(html,'paper-'+pending.id);a.match(h,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(h));}

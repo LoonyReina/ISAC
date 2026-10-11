@@ -36,7 +36,10 @@ body[data-route="index.html"] .site-role{margin:0;font-size:12px;letter-spacing:
 .map-search-results:empty{display:none}
 .map-search-results li{padding:8px 0;border-bottom:1px solid #d9e2e8}
 .map-search-results li:last-child{border-bottom:0;padding-bottom:0}
-.map-search-results button{width:100%;text-align:left;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;background:#fff}
+.map-search-results button,.map-search-results a{width:100%;text-align:left;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;background:#fff;overflow-wrap:anywhere}
+.map-search-results a{min-height:44px;border:1px solid #87aaa6;border-radius:7px;padding:9px 12px;font-size:13px;line-height:1.5;color:#076c66;background:#f5fbf8;text-decoration:none}
+.map-search-results a:hover{background:#eaf5f2;border-color:#087f78}
+.map-search-results a>span{text-decoration:underline;text-underline-offset:3px}
 .map-search-results small{color:#526879}
 .map-workspace{display:grid;grid-template-columns:minmax(0,2fr) minmax(300px,1fr);gap:28px;align-items:start}
 .map-atlas{position:relative;min-width:0;padding:0}
