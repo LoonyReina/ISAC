@@ -21,3 +21,29 @@ test('accessible native controls,meaningful descriptions and honest static fallb
 
 test('disabled geometric routes are muted rather than implying nonzero observations',()=>{const s=setup();s.els['mc-zero'].fire('click');a.equal(s.els['mc-geometry'].children.filter(x=>x.attrs['data-zero-contribution']==='true').length,3);a.match(s.els['mc-paths'].textContent,/直达几何路线仍存在/);a.match(s.els['mc-paths'].textContent,/反射几何路线仍存在/);a.match(s.els['mc-energy'].textContent,/当前合成样本求和/);s.els['mc-reset'].fire('click');a.equal(s.els['mc-geometry'].children.filter(x=>x.attrs['data-zero-contribution']==='true').length,0);});
 test('tiny numerical underflow clears stale output and is not reported as physical no-response',()=>{const s=setup();for(const b of [1e-170,Number.MIN_VALUE]){change(s,'mc-rho',0);change(s,'mc-b',b);for(const id of plots)a.equal(s.els[id].children.length,0);a.equal(s.els['mc-download'].disabled,true);a.equal(s.els['mc-maximum'].textContent,'');a.match(s.els['mc-status'].textContent,/binary64 数值范围/);a.match(s.els['mc-status'].textContent,/不能把数值下溢解释为物理无响应/);s.els['mc-reset'].fire('click');}change(s,'mc-rho',0);change(s,'mc-b',1e-150);a.equal(full(s).receiver.status,'single_grid_maximum');a.equal(s.els['mc-status'].textContent,'');});
+
+// Conservative model of 12px SVG text (up to 12px/character, 16px line box).
+// This checks renderer coordinates, not measured browser/font bounding boxes.
+function axisTextBox(n){const x=Number(n.attrs.x),y=Number(n.attrs.y),width=n.textContent.length*12,anchor=n.attrs['text-anchor'];return {left:x-(anchor==='end'?width:anchor==='middle'?width/2:0),right:x+(anchor==='end'?0:anchor==='middle'?width/2:width),top:y-13,bottom:y+3};}
+function boxClearance(a,b){return Math.max(a.left-b.right,b.left-a.right,a.top-b.bottom,b.top-a.bottom);}
+test('geometry axis units clear all ticks at 220–1000px without moving the spatial frame or tick anchors',()=>{
+ const s=setup(286),g=s.els['mc-geometry'],geometry=full(s).generatorOnly.geometry;
+ for(let width=220;width<=1000;width++){
+  g.clientWidth=width;s.events.resize();
+  const w=Math.max(230,width),h=width<600?300:430,scale=Math.min((w-44)/12,(h-54)/9),left=(w-12*scale)/2,top=(h-9*scale)/2,x=v=>left+(v+2)*scale,y=v=>top+(6.5-v)*scale;
+  a.equal(g.attrs.viewBox,`0 0 ${w} ${h}`);a.equal(g.attrs.preserveAspectRatio,'xMidYMid meet');a.equal(Number(g.attrs['data-metres-pixel-scale']),scale);
+  const units=g.children.filter(n=>['x / m','y / m'].includes(n.textContent)),xTicks=g.children.filter(n=>n.attrs['text-anchor']==='middle'),yTicks=g.children.filter(n=>n.attrs['text-anchor']==='start');
+  a.equal(units.length,2);a.deepEqual(xTicks.map(n=>n.textContent),['0','6','10']);a.deepEqual(yTicks.map(n=>n.textContent),['0','2','4','6']);
+  for(const n of xTicks){a.equal(Number(n.attrs.x),x(Number(n.textContent)));a.equal(Number(n.attrs.y),h-6);}
+  for(const n of yTicks){a.equal(Number(n.attrs.x),12);a.equal(Number(n.attrs.y),y(Number(n.textContent))+4);}
+  const labels=[...units,...xTicks,...yTicks],pixelScale=Math.min(width/w,1);
+  for(let i=0;i<labels.length;i++){
+   const box=axisTextBox(labels[i]);a.ok(box.left>=0&&box.right<=w&&box.top>=0&&box.bottom<=h,`${width}px: ${labels[i].textContent} stays inside SVG`);
+   for(let j=i+1;j<labels.length;j++)a.ok(boxClearance(box,axisTextBox(labels[j]))*pixelScale>=4,`${width}px: ${labels[i].textContent} clears ${labels[j].textContent} by 4px`);
+  }
+  const wall=g.children[0];a.equal(Number(wall.attrs.x1),x(-2));a.equal(Number(wall.attrs.x2),x(10));a.equal(Number(wall.attrs.y1),y(0));a.equal(Number(wall.attrs.y2),y(0));
+  const points=g.children.filter(n=>'cx'in n.attrs);a.equal(points.length,4);
+  for(const [i,p]of [geometry.transmitter,geometry.terminal,geometry.reflection,geometry.imageTransmitter].entries()){a.equal(Number(points[i].attrs.cx),x(p[0]));a.equal(Number(points[i].attrs.cy),y(p[1]));}
+ }
+ a.match(html,/multipath-channel\.js\?v=multipath-channel-v2-axis-label/);
+});
