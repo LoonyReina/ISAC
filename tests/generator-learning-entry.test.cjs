@@ -54,6 +54,7 @@ test('both catalogs follow a changed learningEntry instead of hard-coding a ques
 
 test('prerequisite links name their subjects consistently in cards and shared page context',()=>{
  const render=generator(),subjects={
+  'offgrid-range.html#model':'离格测距的观测与模型',
   ...Object.fromEntries(registry.units.map(u=>[u.href,u.title])),
   'foundations.html#start':'基础讲义的起点与学习约定',
   'foundations.html#limits':'性能指标与边界',
