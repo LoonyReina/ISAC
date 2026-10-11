@@ -485,6 +485,78 @@
         "verificationNote": "2026-10-10 原文研究交接核对固定 v2 §II–VI 与附录；解析机制经独立复数线性代数核查。本文原理对照与合成数值不是论文优化器或完整仿真复现。"
       },
       "learningEntry": "joint-beamforming.html#intuition"
+    },
+    {
+      "id": "case-crb-beamforming",
+      "title": "提高通信门槛，角度估计下界一定立刻变差吗？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#array\">阵列与波束做什么</a>；<a href=\"foundations.html#matched\">功率与噪声</a>；<a href=\"foundations.html#limits\">下界与实际误差的区别</a>。深入时接上<a href=\"joint-beamforming.html#model\">联合空间流</a>与<a href=\"theory.html#crb-mechanism\">标量 CRB</a>。",
+        "问题": "一组发射天线同时服务一个通信用户、照射一个点目标。总功率固定时，提高用户最低 SNR，最小可达的角度 CRB 为什么先不变、再上升，最后通信要求不可行？",
+        "交互机制": "调节最低通信 SNR 与合成信道空间重合度 ρ，观察单用户精确最优波束的平坦区、取舍区和可证明不可行区。另用同一波束分开已知反射系数信息、未知复反射系数造成的损失与有效信息。",
+        "证据类型": "<a href=\"https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf\">2022 CRB 波束优化论文，固定已发表期刊版</a>：单用户闭式定理、证明与一般模型仿真；本站：单用户点目标精确解的独立合成实例、实参数 Fisher 矩阵和数值复核，非整篇论文复现。",
+        "结论边界": "主实验是单通信流、总功率约束与未知复反射系数 α；不存在其他流干扰，使用 SNR。显示的是角度标准差下界，不是实际 RMSE。可选同方向图实验另换信道并增加独立探测流，属于本站独立构造，不是原文 SDR 或对主实验的性能胜出。",
+        "下一研究问题": "增加用户、杂波或未知信道后，哪些变化会与角度混淆？怎样在相同资源下重新求解设计，并用实际估计器检验下界与失效概率？"
+      },
+      "unit": "crb-beamforming",
+      "paper": "crb-beamforming.html#paper",
+      "next": "crb-beamforming.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
+        "sourceUrl": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf",
+        "version": "IEEE TSP 70，240–253（2022）；2021-12-15 在线发表，2022-01-11 当前版本；DOI 10.1109/TSP.2021.3135692。公式编号均指此期刊版，不混用 arXiv v1。",
+        "sourceId": "crb",
+        "comparisonLink": "crb-beamforming.html#paper",
+        "researchQuestion": "原文在通信约束与总发射功率预算下最小化点目标或扩展目标估计 CRB；本站实现单用户点目标闭式最优特例，解释约束何时开始起作用。",
+        "observationsAndUnknowns": "雷达观测 Y=αb(θ)a(θ)ᴴX+Z，已知发射块 X、阵列与噪声方差；θ 与复反射系数 α 未知。用户观测 yₗ=hᴴwsₗ+zₗ，h 已知；设计单流波束 w。对 θ 求导时固定 X 和 w，不对优化策略求导。",
+        "locator": {
+          "summary": "期刊 pp.241–242 §II-A/B 式(1)–(9)：观测、未知复系数与点目标 CRB；pp.243–244 §III-A/B 式(19)–(29)、引理1/定理1：单用户最优解；pp.248–249 附录 A/B：张成空间与约束证明。式(10)–(18)扩展目标、式(30)–(33)及定理2多用户 SDR 仅作未实现边界。",
+          "section": "§II-A/B、§III-A/B、附录 A/B",
+          "figure": "未复现原文图；本站曲线使用独立合成参数",
+          "equation": "主实现式(7)、(19)–(29)；背景式(1)–(9)；未实现式(10)–(18)、(30)–(33)"
+        },
+        "paperEvidenceType": "理论（点目标 CRB、单用户闭式最优解、多用户 SDR 与扩展目标设计）和数值仿真",
+        "siteArtifactType": "单用户点目标闭式最优特例的独立合成实现、完整实参数 Fisher/Schur 复核；另附明确分开的双流协方差构造，非原图或完整论文复现",
+        "retainedAssumptions": [
+          "窄带远场单点目标；中心化半波长均匀线阵，导数以弧度计，阵列向量不做单位范数归一化",
+          "一个单天线用户、一条单位功率通信流；精确已知用户信道 h，以 SNR 要求和总平均功率约束设计 w",
+          "雷达已知实际发射块 X，噪声为独立圆对称复 Gaussian；θ 和 α 的实、虚部均为未知参数",
+          "通过 Schur 补消去未知复反射系数；只在常规可辨识模型下报告局部无偏方差下界"
+        ],
+        "omittedMechanisms": [
+          "未运行多用户 SDR、秩一恢复、CVX 或扩展目标优化；定理2的秩一结论另有满列秩条件",
+          "未复现论文图、随机信道平均、实际角度估计器、检测器或硬件精度",
+          "未施加每天线等平均功率或逐天线恒包络；总功率预算不同于上一页联合预编码案例",
+          "可选双流实验是本站独立构造：另设 h=u、增加独立探测流；不是原文单流定理的方案对比"
+        ],
+        "metrics": [
+          "最低与实际用户 SNR 分开；总功率与可证明通信可行性",
+          "角度 CRB（rad²）、角度标准差下界（度），不等于实际 RMSE",
+          "已知 α 的假想 Fisher 信息、未知 α 的信息损失与有效角度信息（rad⁻²）",
+          "相同固定尺度的角功率 |a(ψ)ᴴw|²；ρ 是合成信道幅度重合度，不是用户物理角度",
+          "可选实验：全方向功率图与通信 SINR 相同，但未知 α 下的 CRB 不同；不作跨场景优越性比较"
+        ],
+        "unknowns": [
+          "未复现原文完整优化器、原图或全部仿真参数；合成教学设置与论文仿真设置分开",
+          "理论下界能否被实际非线性角度估计器达到、低 SNR 的失败概率仍需另行检验",
+          "多用户、扩展目标、杂波与不完美信道下的最优取舍未实现"
+        ],
+        "resourceBudget": {
+          "summary": "独立合成设置：Nt=8、Nr=12，中心化 λ/2 ULA，θ₀=0，L=64，P=1、块能量 LP=64，‖h‖=1，σC²=.01、σR²=100，α=1 仅为评估真值且对估计器未知。固定信道场景内只改通信要求；改变 ρ 会更换信道。可选构造另设 h=u、p=.5 并增加独立探测流，不能与主实验当作同模型排名。",
+          "bandwidth": "窄带归一化模型；未指定 RF 载频或物理带宽",
+          "energy": "总平均功率 P=1；L=64 块能量 LP=64；不要求每天线等功率",
+          "duration": "64 个复快拍；未指定物理采样周期",
+          "aperture": "发射 3.5λ，接收 5.5λ；均为 λ/2 阵元间距",
+          "priorKnowledge": "已知 h、X、阵列与噪声方差；θ、复 α 未知，无参数先验",
+          "other": [
+            "默认 ρ=.5、最低 SNR=18 dB；通信 SNR 上限20 dB",
+            "ρ=0 且要求达上限时通信可行但目标零陷，常规角度 CRB 不可用",
+            "原文仿真设置不作为本页合成参数来源"
+          ]
+        },
+        "verificationNote": "2026-10-10 独立下载并检查作者机构托管的已发表期刊版与单用户定理范围；该次 PDF 的 SHA-256 为 3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d。独立数值实现与完整实参数 Fisher 复核见本页；未复现原图或整篇论文。"
+      },
+      "learningEntry": "crb-beamforming.html#intuition"
     }
   ],
   "legacy": {
@@ -1038,6 +1110,20 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "比较三个同资源解析构造；改变信道混合比例，核对协方差、方向互相关和每用户信号/干扰功率。"
+    },
+    {
+      "id": "crb-beamforming",
+      "title": "通信门槛与角度 CRB 最优波束",
+      "href": "crb-beamforming.html#experiment",
+      "question": "提高最低通信 SNR，角度标准差下界为什么先平坦、再变差？",
+      "prerequisites": [
+        "foundations.html#array",
+        "foundations.html#matched",
+        "foundations.html#limits"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "先猜通信要求何时影响回波信息，再调 SNR 门槛与信道重合度，区分有余量、最优取舍与可证明不可行。"
     }
   ],
   "pages": [
@@ -1194,6 +1280,20 @@
       "case": "case-joint-beamforming",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次固定资源的联合预编码检验"
+    },
+    {
+      "path": "crb-beamforming.html",
+      "title": "提高通信门槛，角度估计下界一定立刻变差吗？",
+      "stage": "experiments",
+      "role": "研究主题 · 单用户点目标精确最优波束、未知反射系数与原文对照",
+      "prerequisites": [
+        "foundations.html#array",
+        "foundations.html#matched",
+        "foundations.html#limits"
+      ],
+      "case": "case-crb-beamforming",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次固定信道与总功率下的 CRB 检验"
     }
   ],
   "schemaVersion": 1,
@@ -1621,7 +1721,8 @@
       ],
       "primaryCaseIds": [
         "case-crb",
-        "case-sbfd"
+        "case-sbfd",
+        "case-crb-beamforming"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -1641,6 +1742,13 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "提高通信门槛，角度下界一定立刻变差吗？",
+              "href": "crb-beamforming.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1652,6 +1760,13 @@
             {
               "label": "共同观测：已知什么、估计什么",
               "href": "theory.html#shared-model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "一条通信流、点目标回波与未知复反射系数",
+              "href": "crb-beamforming.html#model",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -1698,6 +1813,13 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "单用户精确最优解：平坦区、取舍区与不可行区",
+              "href": "crb-beamforming.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "coverage": "direction-specific"
@@ -1734,6 +1856,13 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "2022 CRB 波束优化：固定期刊版单用户定理",
+              "href": "crb-beamforming.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -1765,6 +1894,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "标准差下界不是 RMSE，独立双流构造不能跨模型排名",
+              "href": "crb-beamforming.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1780,12 +1916,20 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "独立核验闭式最优解、Fisher 信息与奇异边界",
+              "href": "crb-beamforming.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "合成特例与独立数值复核，不表示多用户 SDR、原图或整篇论文已复现"
             }
           ]
         }
       ],
-      "nextExtension": "从已知输入的实标量 LS 等号出发，在固定资源下加入非线性距离/角度或未知干扰参数，重新推导界并检验误差与失败率。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "nextExtension": "从实标量 LS 等号与单点角度 CRB 出发，在固定资源下加入实际非线性估计器、杂波或未知信道，检验下界、经验误差与失败率。",
+      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现",
       "scenePositions": [
         "resources"
       ]
@@ -1802,7 +1946,8 @@
       ],
       "primaryCaseIds": [
         "case-near-field",
-        "case-joint-beamforming"
+        "case-joint-beamforming",
+        "case-crb-beamforming"
       ],
       "relatedDirectionIds": [
         "channels",
@@ -1829,6 +1974,13 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "提高通信门槛，角度下界一定立刻变差吗？",
+              "href": "crb-beamforming.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1847,6 +1999,13 @@
             {
               "label": "流分解、空间协方差与每用户 SINR",
               "href": "joint-beamforming.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "一条通信流、点目标回波与未知复反射系数",
+              "href": "crb-beamforming.html#model",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -1878,6 +2037,13 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "单用户精确最优解：平坦区、取舍区与不可行区",
+              "href": "crb-beamforming.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "coverage": "direction-specific"
@@ -1897,6 +2063,13 @@
             {
               "label": "2020 联合波束：固定 v2 原文对照",
               "href": "joint-beamforming.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "2022 CRB 波束优化：固定期刊版单用户定理",
+              "href": "crb-beamforming.html#paper",
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
@@ -1931,6 +2104,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "标准差下界不是 RMSE，独立双流构造不能跨模型排名",
+              "href": "crb-beamforming.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1954,12 +2134,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "确定性合成机制的复核步骤，不表示整篇论文已复现"
+            },
+            {
+              "label": "独立核验闭式最优解、Fisher 信息与奇异边界",
+              "href": "crb-beamforming.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "合成特例与独立数值复核，不表示多用户 SDR、原图或整篇论文已复现"
             }
           ]
         }
       ],
       "nextExtension": "增加多目标与校准误差实验，先明确孔径和阵元数各自是否保持固定。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现",
       "scenePositions": [
         "transmit",
         "propagate"
@@ -2852,11 +3040,12 @@
         "groupId": "metrics",
         "label": "Fisher 信息与 CRB",
         "question": "模型和已知条件固定后，估计界如何变化？",
-        "knownUnknown": "给定输入实现计算条件界，再说明如何平均",
-        "boundary": "理论界不是一次估计误差或通用可达性保证",
+        "knownUnknown": "标量模型给定输入实现计算条件界，再说明如何平均；点目标角度模型已知发射块，θ 与复反射系数 α 未知，须消去干扰参数",
+        "boundary": "理论界不是一次估计误差或通用可达性保证；角度标准差下界不是 RMSE，目标零陷的奇异模型不能报告有限常规 CRB",
         "unitRefs": [
           "crb",
-          "estimator-crb"
+          "estimator-crb",
+          "crb-beamforming"
         ],
         "entryUnitRef": "crb"
       },
@@ -2893,13 +3082,14 @@
         "kind": "concept",
         "groupId": "codesign",
         "label": "波束与空间设计",
-        "question": "相同阵列和资源下，独立雷达流怎样改变协方差与用户干扰？",
-        "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率",
-        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR",
+        "question": "同一阵列的空间权重怎样影响通信信号、干扰与目标角度下界？",
+        "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率；深入单用户点目标时，固定总功率与信道，设计 w 并消去未知复反射系数",
+        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较",
         "unitRefs": [
           "array",
           "near-field",
-          "joint-beamforming"
+          "joint-beamforming",
+          "crb-beamforming"
         ],
         "entryUnitRef": "array"
       },

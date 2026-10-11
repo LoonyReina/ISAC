@@ -1,0 +1,2291 @@
+{
+  "status": "PASS",
+  "precision_decimal_digits": 230,
+  "core_sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8",
+  "final_sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8",
+  "check_count": 376,
+  "failure_count": 0,
+  "failures": [],
+  "checks": [
+    {
+      "name": "0_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "0_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "0_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "0_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "0_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "0_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "0_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "0_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "0_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "0_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "0_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "0_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "0_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "0_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "1_high_precision_schur",
+      "passed": true,
+      "actual": 10839.194337452376,
+      "expected": "10839.19433745237720954879"
+    },
+    {
+      "name": "1_rad2",
+      "passed": true,
+      "actual": 9.225777939461118e-05,
+      "expected": "0.00009225777939461117009385878"
+    },
+    {
+      "name": "1_root_degree",
+      "passed": true,
+      "actual": 0.5503311948587071,
+      "expected": "0.5503311948587070249336957"
+    },
+    {
+      "name": "1_pattern_-90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952380952381"
+    },
+    {
+      "name": "1_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769307482992"
+    },
+    {
+      "name": "1_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422791331252"
+    },
+    {
+      "name": "1_pattern_-0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478340466508"
+    },
+    {
+      "name": "1_pattern_-1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "1_pattern_0",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "1_pattern_1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "1_pattern_0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478340466508"
+    },
+    {
+      "name": "1_pattern_5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422791331252"
+    },
+    {
+      "name": "1_pattern_37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769307482992"
+    },
+    {
+      "name": "1_pattern_90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952380952381"
+    },
+    {
+      "name": "2_singular",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "2_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "2_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "2_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "2_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "2_pattern_-1e-16",
+      "passed": true,
+      "actual": 1.2627104393296608e-33,
+      "expected": "1.262710439329661223435338e-33"
+    },
+    {
+      "name": "2_pattern_0",
+      "passed": true,
+      "actual": 0,
+      "expected": "0.0"
+    },
+    {
+      "name": "2_pattern_1e-16",
+      "passed": true,
+      "actual": 1.2627104393296608e-33,
+      "expected": "1.262710439329661223435338e-33"
+    },
+    {
+      "name": "2_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "2_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "2_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "2_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "3_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "3_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "3_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "3_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "3_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "3_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "3_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "3_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "3_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "3_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "3_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "3_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "3_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "3_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "4_high_precision_schur",
+      "passed": true,
+      "actual": 10839.194337452376,
+      "expected": "10839.19433745237720954879"
+    },
+    {
+      "name": "4_rad2",
+      "passed": true,
+      "actual": 9.225777939461118e-05,
+      "expected": "0.00009225777939461117009385878"
+    },
+    {
+      "name": "4_root_degree",
+      "passed": true,
+      "actual": 0.5503311948587071,
+      "expected": "0.5503311948587070249336957"
+    },
+    {
+      "name": "4_pattern_-90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952380952381"
+    },
+    {
+      "name": "4_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769307482992"
+    },
+    {
+      "name": "4_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422791331252"
+    },
+    {
+      "name": "4_pattern_-0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478340466508"
+    },
+    {
+      "name": "4_pattern_-1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "4_pattern_0",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "4_pattern_1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.0"
+    },
+    {
+      "name": "4_pattern_0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478340466508"
+    },
+    {
+      "name": "4_pattern_5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422791331252"
+    },
+    {
+      "name": "4_pattern_37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769307482992"
+    },
+    {
+      "name": "4_pattern_90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952380952381"
+    },
+    {
+      "name": "5_high_precision_schur",
+      "passed": true,
+      "actual": 1.445225911660317e-196,
+      "expected": "1.445225911660316961273172e-196"
+    },
+    {
+      "name": "5_rad2",
+      "passed": true,
+      "actual": 6.919333454595838e+195,
+      "expected": "6.919333454595837757039408e+195"
+    },
+    {
+      "name": "5_root_degree",
+      "passed": true,
+      "actual": 4.766007952426844e+99,
+      "expected": "4.766007952426843370939619e+99"
+    },
+    {
+      "name": "5_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "5_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "5_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "5_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "5_pattern_-1e-16",
+      "passed": true,
+      "actual": 1.2627104393296608e-33,
+      "expected": "1.262710439329661223435338e-33"
+    },
+    {
+      "name": "5_pattern_0",
+      "passed": true,
+      "actual": 8e-200,
+      "expected": "8.0e-200"
+    },
+    {
+      "name": "5_pattern_1e-16",
+      "passed": true,
+      "actual": 1.2627104393296608e-33,
+      "expected": "1.262710439329661223435338e-33"
+    },
+    {
+      "name": "5_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "5_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "5_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "5_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "6_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "6_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "6_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "6_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "6_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "6_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "6_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "6_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "6_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "6_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "6_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "6_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "6_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "6_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "7_high_precision_schur",
+      "passed": true,
+      "actual": 10839.194337452376,
+      "expected": "10839.19433745237722206481"
+    },
+    {
+      "name": "7_rad2",
+      "passed": true,
+      "actual": 9.225777939461118e-05,
+      "expected": "0.00009225777939461116998732867"
+    },
+    {
+      "name": "7_root_degree",
+      "passed": true,
+      "actual": 0.5503311948587071,
+      "expected": "0.5503311948587070246159619"
+    },
+    {
+      "name": "7_pattern_-90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.09523809523809523776532366"
+    },
+    {
+      "name": "7_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769308791872"
+    },
+    {
+      "name": "7_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422793769816"
+    },
+    {
+      "name": "7_pattern_-0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478347394711"
+    },
+    {
+      "name": "7_pattern_-1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000006928203"
+    },
+    {
+      "name": "7_pattern_0",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000006928203"
+    },
+    {
+      "name": "7_pattern_1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000006928203"
+    },
+    {
+      "name": "7_pattern_0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478347394711"
+    },
+    {
+      "name": "7_pattern_5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.600372673897422793769816"
+    },
+    {
+      "name": "7_pattern_37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769308791872"
+    },
+    {
+      "name": "7_pattern_90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.09523809523809523776532366"
+    },
+    {
+      "name": "8_high_precision_schur",
+      "passed": true,
+      "actual": 1.4452259116603172e-32,
+      "expected": "1.445225911660316961273172e-32"
+    },
+    {
+      "name": "8_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e+31,
+      "expected": "6.919333454595837757039408e+31"
+    },
+    {
+      "name": "8_root_degree",
+      "passed": true,
+      "actual": 476600795242684300,
+      "expected": "476600795242684337.0939619"
+    },
+    {
+      "name": "8_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "8_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "8_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "8_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "8_pattern_-1e-16",
+      "passed": true,
+      "actual": 1.2707104393296608e-33,
+      "expected": "1.270710439329661223435338e-33"
+    },
+    {
+      "name": "8_pattern_0",
+      "passed": true,
+      "actual": 8e-36,
+      "expected": "8.0e-36"
+    },
+    {
+      "name": "8_pattern_1e-16",
+      "passed": true,
+      "actual": 1.2707104393296608e-33,
+      "expected": "1.270710439329661223435338e-33"
+    },
+    {
+      "name": "8_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "8_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "8_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "8_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "9_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "9_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "9_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "9_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "9_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "9_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "9_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "9_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "9_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "9_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "9_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "9_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "9_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "9_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "10_high_precision_schur",
+      "passed": true,
+      "actual": 10839.194337452376,
+      "expected": "10839.19433745237733470903"
+    },
+    {
+      "name": "10_rad2",
+      "passed": true,
+      "actual": 9.225777939461118e-05,
+      "expected": "0.0000922577793946111690285577"
+    },
+    {
+      "name": "10_root_degree",
+      "passed": true,
+      "actual": 0.5503311948587071,
+      "expected": "0.5503311948587070217563571"
+    },
+    {
+      "name": "10_pattern_-90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952347960937"
+    },
+    {
+      "name": "10_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769320571793"
+    },
+    {
+      "name": "10_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.60037267389742281571689"
+    },
+    {
+      "name": "10_pattern_-0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478409748538"
+    },
+    {
+      "name": "10_pattern_-1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000069282032"
+    },
+    {
+      "name": "10_pattern_0",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000069282032"
+    },
+    {
+      "name": "10_pattern_1e-16",
+      "passed": true,
+      "actual": 5.999999999999999,
+      "expected": "6.000000000000000069282032"
+    },
+    {
+      "name": "10_pattern_0.001",
+      "passed": true,
+      "actual": 5.9999999368644765,
+      "expected": "5.999999936864478409748538"
+    },
+    {
+      "name": "10_pattern_5",
+      "passed": true,
+      "actual": 4.600372673897422,
+      "expected": "4.60037267389742281571689"
+    },
+    {
+      "name": "10_pattern_37",
+      "passed": true,
+      "actual": 0.13671851851997685,
+      "expected": "0.1367185185199769320571793"
+    },
+    {
+      "name": "10_pattern_90",
+      "passed": true,
+      "actual": 0.0952380952380952,
+      "expected": "0.0952380952380952347960937"
+    },
+    {
+      "name": "11_high_precision_schur",
+      "passed": true,
+      "actual": 1.4452259116603173e-30,
+      "expected": "1.445225911660316961273172e-30"
+    },
+    {
+      "name": "11_rad2",
+      "passed": true,
+      "actual": 6.919333454595836e+29,
+      "expected": "6.919333454595837757039408e+29"
+    },
+    {
+      "name": "11_root_degree",
+      "passed": true,
+      "actual": 47660079524268430,
+      "expected": "47660079524268433.70939619"
+    },
+    {
+      "name": "11_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "11_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "11_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "11_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "11_pattern_-1e-16",
+      "passed": true,
+      "actual": 2.062710439329661e-33,
+      "expected": "2.062710439329661223435338e-33"
+    },
+    {
+      "name": "11_pattern_0",
+      "passed": true,
+      "actual": 8.000000000000001e-34,
+      "expected": "8.0e-34"
+    },
+    {
+      "name": "11_pattern_1e-16",
+      "passed": true,
+      "actual": 2.062710439329661e-33,
+      "expected": "2.062710439329661223435338e-33"
+    },
+    {
+      "name": "11_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820737"
+    },
+    {
+      "name": "11_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "11_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "11_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "12_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "12_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "12_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "12_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "12_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "12_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "12_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "12_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "12_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "12_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "12_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "12_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "12_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "12_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "13_high_precision_schur",
+      "passed": true,
+      "actual": 10839.19433745239,
+      "expected": "10839.19433745238972557233"
+    },
+    {
+      "name": "13_rad2",
+      "passed": true,
+      "actual": 9.225777939461106e-05,
+      "expected": "0.00009225777939461106356375124"
+    },
+    {
+      "name": "13_root_degree",
+      "passed": true,
+      "actual": 0.5503311948587067,
+      "expected": "0.5503311948587067071998323"
+    },
+    {
+      "name": "13_pattern_-90",
+      "passed": true,
+      "actual": 0.09523809523809486,
+      "expected": "0.09523809523809490818079856"
+    },
+    {
+      "name": "13_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851851997704,
+      "expected": "0.1367185185199770616363049"
+    },
+    {
+      "name": "13_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673897426,
+      "expected": "4.600372673897425229894989"
+    },
+    {
+      "name": "13_pattern_-0.001",
+      "passed": true,
+      "actual": 5.999999936864485,
+      "expected": "5.99999993686448526866952"
+    },
+    {
+      "name": "13_pattern_-1e-16",
+      "passed": true,
+      "actual": 6.000000000000005,
+      "expected": "6.00000000000000692820323"
+    },
+    {
+      "name": "13_pattern_0",
+      "passed": true,
+      "actual": 6.000000000000005,
+      "expected": "6.00000000000000692820323"
+    },
+    {
+      "name": "13_pattern_1e-16",
+      "passed": true,
+      "actual": 6.000000000000005,
+      "expected": "6.00000000000000692820323"
+    },
+    {
+      "name": "13_pattern_0.001",
+      "passed": true,
+      "actual": 5.999999936864485,
+      "expected": "5.99999993686448526866952"
+    },
+    {
+      "name": "13_pattern_5",
+      "passed": true,
+      "actual": 4.600372673897426,
+      "expected": "4.600372673897425229894989"
+    },
+    {
+      "name": "13_pattern_37",
+      "passed": true,
+      "actual": 0.13671851851997704,
+      "expected": "0.1367185185199770616363049"
+    },
+    {
+      "name": "13_pattern_90",
+      "passed": true,
+      "actual": 0.09523809523809486,
+      "expected": "0.09523809523809490818079856"
+    },
+    {
+      "name": "14_high_precision_schur",
+      "passed": true,
+      "actual": 1.4452259116603172e-26,
+      "expected": "1.445225911660316961273172e-26"
+    },
+    {
+      "name": "14_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e+25,
+      "expected": "6.919333454595837757039408e+25"
+    },
+    {
+      "name": "14_root_degree",
+      "passed": true,
+      "actual": 476600795242684.3,
+      "expected": "476600795242684.3370939619"
+    },
+    {
+      "name": "14_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "14_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "14_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "14_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820817"
+    },
+    {
+      "name": "14_pattern_-1e-16",
+      "passed": true,
+      "actual": 8.00126271043933e-30,
+      "expected": "8.001262710439329661223435e-30"
+    },
+    {
+      "name": "14_pattern_0",
+      "passed": true,
+      "actual": 8e-30,
+      "expected": "8.0e-30"
+    },
+    {
+      "name": "14_pattern_1e-16",
+      "passed": true,
+      "actual": 8.00126271043933e-30,
+      "expected": "8.001262710439329661223435e-30"
+    },
+    {
+      "name": "14_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249679820817"
+    },
+    {
+      "name": "14_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196385"
+    },
+    {
+      "name": "14_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535429"
+    },
+    {
+      "name": "14_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.3809523809523809523809524"
+    },
+    {
+      "name": "15_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "15_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "15_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "15_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "15_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "15_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "15_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "15_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "15_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "15_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "15_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "15_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "15_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "15_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "16_high_precision_schur",
+      "passed": true,
+      "actual": 10839.194337464893,
+      "expected": "10839.19433746489323308584"
+    },
+    {
+      "name": "16_rad2",
+      "passed": true,
+      "actual": 9.225777939450465e-05,
+      "expected": "0.00009225777939450463998632233"
+    },
+    {
+      "name": "16_root_degree",
+      "passed": true,
+      "actual": 0.5503311948583893,
+      "expected": "0.5503311948583892910702011"
+    },
+    {
+      "name": "16_pattern_-90",
+      "passed": true,
+      "actual": 0.0952380952377653,
+      "expected": "0.09523809523776532365570136"
+    },
+    {
+      "name": "16_pattern_-37",
+      "passed": true,
+      "actual": 0.13671851852010777,
+      "expected": "0.136718518520107818753974"
+    },
+    {
+      "name": "16_pattern_-5",
+      "passed": true,
+      "actual": 4.600372673899861,
+      "expected": "4.60037267389986135506799"
+    },
+    {
+      "name": "16_pattern_-0.001",
+      "passed": true,
+      "actual": 5.999999936871406,
+      "expected": "5.999999936871406543478072"
+    },
+    {
+      "name": "16_pattern_-1e-16",
+      "passed": true,
+      "actual": 6.000000000006926,
+      "expected": "6.000000000006928203230272"
+    },
+    {
+      "name": "16_pattern_0",
+      "passed": true,
+      "actual": 6.000000000006926,
+      "expected": "6.000000000006928203230272"
+    },
+    {
+      "name": "16_pattern_1e-16",
+      "passed": true,
+      "actual": 6.000000000006926,
+      "expected": "6.000000000006928203230272"
+    },
+    {
+      "name": "16_pattern_0.001",
+      "passed": true,
+      "actual": 5.999999936871406,
+      "expected": "5.999999936871406543478072"
+    },
+    {
+      "name": "16_pattern_5",
+      "passed": true,
+      "actual": 4.600372673899861,
+      "expected": "4.60037267389986135506799"
+    },
+    {
+      "name": "16_pattern_37",
+      "passed": true,
+      "actual": 0.13671851852010777,
+      "expected": "0.136718518520107818753974"
+    },
+    {
+      "name": "16_pattern_90",
+      "passed": true,
+      "actual": 0.0952380952377653,
+      "expected": "0.09523809523776532365570136"
+    },
+    {
+      "name": "17_high_precision_schur",
+      "passed": true,
+      "actual": 1.4452259116603168e-20,
+      "expected": "1.445225911660316961273172e-20"
+    },
+    {
+      "name": "17_rad2",
+      "passed": true,
+      "actual": 69193334545958390000,
+      "expected": "69193334545958377570.39408"
+    },
+    {
+      "name": "17_root_degree",
+      "passed": true,
+      "actual": 476600795242.6843,
+      "expected": "476600795242.6843370939619"
+    },
+    {
+      "name": "17_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.380952380952380952380952"
+    },
+    {
+      "name": "17_pattern_-37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535444"
+    },
+    {
+      "name": "17_pattern_-5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196388"
+    },
+    {
+      "name": "17_pattern_-0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249759820735"
+    },
+    {
+      "name": "17_pattern_-1e-16",
+      "passed": true,
+      "actual": 8.00000000126271e-24,
+      "expected": "8.000000001262710439329661e-24"
+    },
+    {
+      "name": "17_pattern_0",
+      "passed": true,
+      "actual": 8e-24,
+      "expected": "8.0e-24"
+    },
+    {
+      "name": "17_pattern_1e-16",
+      "passed": true,
+      "actual": 8.00000000126271e-24,
+      "expected": "8.000000001262710439329661e-24"
+    },
+    {
+      "name": "17_pattern_0.001",
+      "passed": true,
+      "actual": 1.2627104274962498e-07,
+      "expected": "0.0000001262710427496249759820735"
+    },
+    {
+      "name": "17_pattern_5",
+      "passed": true,
+      "actual": 2.4885145291340254,
+      "expected": "2.488514529134025914196388"
+    },
+    {
+      "name": "17_pattern_37",
+      "passed": true,
+      "actual": 0.02336618055486564,
+      "expected": "0.02336618055486565247535444"
+    },
+    {
+      "name": "17_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523808,
+      "expected": "0.380952380952380952380952"
+    },
+    {
+      "name": "18_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "18_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "18_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "18_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "18_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "18_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "18_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "18_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "18_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "18_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "18_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "18_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "18_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "18_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "19_high_precision_schur",
+      "passed": true,
+      "actual": 10839.19446261261,
+      "expected": "10839.19446261261185747177"
+    },
+    {
+      "name": "19_rad2",
+      "passed": true,
+      "actual": 9.225777832931014e-05,
+      "expected": "0.00009225777832931011317909706"
+    },
+    {
+      "name": "19_root_degree",
+      "passed": true,
+      "actual": 0.5503311916813686,
+      "expected": "0.5503311916813684358433993"
+    },
+    {
+      "name": "19_pattern_-90",
+      "passed": true,
+      "actual": 0.09523809193895082,
+      "expected": "0.09523809193895086177356722"
+    },
+    {
+      "name": "19_pattern_-37",
+      "passed": true,
+      "actual": 0.1367185198288569,
+      "expected": "0.1367185198288569799400853"
+    },
+    {
+      "name": "19_pattern_-5",
+      "passed": true,
+      "actual": 4.600372698283058,
+      "expected": "4.600372698283060017929725"
+    },
+    {
+      "name": "19_pattern_-0.001",
+      "passed": true,
+      "actual": 6.000000006146505,
+      "expected": "6.00000000614650805614299"
+    },
+    {
+      "name": "19_pattern_-1e-16",
+      "passed": true,
+      "actual": 6.000000069282028,
+      "expected": "6.000000069282031902755088"
+    },
+    {
+      "name": "19_pattern_0",
+      "passed": true,
+      "actual": 6.000000069282028,
+      "expected": "6.000000069282031902755088"
+    },
+    {
+      "name": "19_pattern_1e-16",
+      "passed": true,
+      "actual": 6.000000069282028,
+      "expected": "6.000000069282031902755088"
+    },
+    {
+      "name": "19_pattern_0.001",
+      "passed": true,
+      "actual": 6.000000006146505,
+      "expected": "6.00000000614650805614299"
+    },
+    {
+      "name": "19_pattern_5",
+      "passed": true,
+      "actual": 4.600372698283058,
+      "expected": "4.600372698283060017929725"
+    },
+    {
+      "name": "19_pattern_37",
+      "passed": true,
+      "actual": 0.1367185198288569,
+      "expected": "0.1367185198288569799400853"
+    },
+    {
+      "name": "19_pattern_90",
+      "passed": true,
+      "actual": 0.09523809193895082,
+      "expected": "0.09523809193895086177356722"
+    },
+    {
+      "name": "20_high_precision_schur",
+      "passed": true,
+      "actual": 1.4452259116603171e-12,
+      "expected": "1.445225911660316961273172e-12"
+    },
+    {
+      "name": "20_rad2",
+      "passed": true,
+      "actual": 691933345459.5837,
+      "expected": "691933345459.5837757039408"
+    },
+    {
+      "name": "20_root_degree",
+      "passed": true,
+      "actual": 47660079.52426843,
+      "expected": "47660079.52426843370939619"
+    },
+    {
+      "name": "20_pattern_-90",
+      "passed": true,
+      "actual": 0.3809523809523807,
+      "expected": "0.3809523809523809142857143"
+    },
+    {
+      "name": "20_pattern_-37",
+      "passed": true,
+      "actual": 0.023366180554865647,
+      "expected": "0.02336618055486566758899935"
+    },
+    {
+      "name": "20_pattern_-5",
+      "passed": true,
+      "actual": 2.488514529134025,
+      "expected": "2.488514529134026195777471"
+    },
+    {
+      "name": "20_pattern_-0.001",
+      "passed": true,
+      "actual": 1.262710435496249e-07,
+      "expected": "0.0000001262710435496249427278652"
+    },
+    {
+      "name": "20_pattern_-1e-16",
+      "passed": true,
+      "actual": 8e-16,
+      "expected": "8.000000000000000012627104e-16"
+    },
+    {
+      "name": "20_pattern_0",
+      "passed": true,
+      "actual": 8e-16,
+      "expected": "8.0e-16"
+    },
+    {
+      "name": "20_pattern_1e-16",
+      "passed": true,
+      "actual": 8e-16,
+      "expected": "8.000000000000000012627104e-16"
+    },
+    {
+      "name": "20_pattern_0.001",
+      "passed": true,
+      "actual": 1.262710435496249e-07,
+      "expected": "0.0000001262710435496249427278652"
+    },
+    {
+      "name": "20_pattern_5",
+      "passed": true,
+      "actual": 2.488514529134025,
+      "expected": "2.488514529134026195777471"
+    },
+    {
+      "name": "20_pattern_37",
+      "passed": true,
+      "actual": 0.023366180554865647,
+      "expected": "0.02336618055486566758899935"
+    },
+    {
+      "name": "20_pattern_90",
+      "passed": true,
+      "actual": 0.3809523809523807,
+      "expected": "0.3809523809523809142857143"
+    },
+    {
+      "name": "21_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "21_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "21_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "21_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "21_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "21_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "21_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "21_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "21_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "21_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "21_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "21_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "21_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "21_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "22_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "22_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "22_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "22_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "22_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "22_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "22_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "22_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "22_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "22_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "22_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "22_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "22_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "22_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "23_high_precision_schur",
+      "passed": true,
+      "actual": 3613.0647791507927,
+      "expected": "3613.06477915079240318293"
+    },
+    {
+      "name": "23_rad2",
+      "passed": true,
+      "actual": 0.0002767733381838335,
+      "expected": "0.0002767733381838335102815763"
+    },
+    {
+      "name": "23_root_degree",
+      "passed": true,
+      "actual": 0.9532015904853687,
+      "expected": "0.9532015904853686741879238"
+    },
+    {
+      "name": "23_pattern_-90",
+      "passed": true,
+      "actual": 0.28571428571428564,
+      "expected": "0.2857142857142857142857143"
+    },
+    {
+      "name": "23_pattern_-37",
+      "passed": true,
+      "actual": 0.06115029320990273,
+      "expected": "0.06115029320990274523300261"
+    },
+    {
+      "name": "23_pattern_-5",
+      "passed": true,
+      "actual": 3.1924672440551576,
+      "expected": "3.192467244055158206574674"
+    },
+    {
+      "name": "23_pattern_-0.001",
+      "passed": true,
+      "actual": 2.000000063135521,
+      "expected": "2.000000063135521279905481"
+    },
+    {
+      "name": "23_pattern_-1e-16",
+      "passed": true,
+      "actual": 1.9999999999999996,
+      "expected": "2.0"
+    },
+    {
+      "name": "23_pattern_0",
+      "passed": true,
+      "actual": 1.9999999999999996,
+      "expected": "2.0"
+    },
+    {
+      "name": "23_pattern_1e-16",
+      "passed": true,
+      "actual": 1.9999999999999996,
+      "expected": "2.0"
+    },
+    {
+      "name": "23_pattern_0.001",
+      "passed": true,
+      "actual": 2.000000063135521,
+      "expected": "2.000000063135521279905481"
+    },
+    {
+      "name": "23_pattern_5",
+      "passed": true,
+      "actual": 3.1924672440551576,
+      "expected": "3.192467244055158206574674"
+    },
+    {
+      "name": "23_pattern_37",
+      "passed": true,
+      "actual": 0.06115029320990273,
+      "expected": "0.06115029320990274523300261"
+    },
+    {
+      "name": "23_pattern_90",
+      "passed": true,
+      "actual": 0.28571428571428564,
+      "expected": "0.2857142857142857142857143"
+    },
+    {
+      "name": "24_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "24_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "24_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "24_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "24_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "24_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "24_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "24_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "24_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "24_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "24_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "24_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "24_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "24_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "25_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "25_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "25_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "25_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "25_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "25_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "25_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "25_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "25_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "25_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "25_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "25_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "25_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "25_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "26_high_precision_schur",
+      "passed": true,
+      "actual": 14452.25911660317,
+      "expected": "14452.25911660316961273172"
+    },
+    {
+      "name": "26_rad2",
+      "passed": true,
+      "actual": 6.919333454595837e-05,
+      "expected": "0.00006919333454595837757039408"
+    },
+    {
+      "name": "26_root_degree",
+      "passed": true,
+      "actual": 0.47660079524268434,
+      "expected": "0.4766007952426843370939619"
+    },
+    {
+      "name": "26_pattern_-90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    },
+    {
+      "name": "26_pattern_-37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "26_pattern_-5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "26_pattern_-0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "26_pattern_-1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "26_pattern_0",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "26_pattern_1e-16",
+      "passed": true,
+      "actual": 7.999999999999998,
+      "expected": "8.0"
+    },
+    {
+      "name": "26_pattern_0.001",
+      "passed": true,
+      "actual": 7.999999873728956,
+      "expected": "7.999999873728956870747021"
+    },
+    {
+      "name": "26_pattern_5",
+      "passed": true,
+      "actual": 5.3043253888185555,
+      "expected": "5.304325388818555083709541"
+    },
+    {
+      "name": "26_pattern_37",
+      "passed": true,
+      "actual": 0.174502631175014,
+      "expected": "0.1745026311750140235059476"
+    },
+    {
+      "name": "26_pattern_90",
+      "passed": true,
+      "actual": 2.999519565323715e-32,
+      "expected": "8.880967450439176707113053e-462",
+      "criterion": "absolute 1e-25 for trig-array null"
+    }
+  ]
+}
