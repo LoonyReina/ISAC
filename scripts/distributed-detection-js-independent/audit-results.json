@@ -1,0 +1,1439 @@
+{
+  "core_file": "distributed-detection-core.js",
+  "core_sha256": "955846d7e7361ad5b2d9f6ab8690d3a6579dc58d0d2634f523ab4b3ba63170c7",
+  "oracle_precision_decimal_digits": 100,
+  "fixtures_sha256": "27f9a9a924653b8c897fa3fd7a77d4bf44f659eb42e092155b9c4f51e58580dd",
+  "runtime_versions": {
+    "node": "v24.19.0",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "mpmath": "1.3.0"
+  },
+  "checks": [
+    {
+      "name": "high_precision_calibration",
+      "passed": true,
+      "detail": {
+        "cases": 336,
+        "maxErrors": {
+          "thresholdRelative": 3.893257249314056e-16,
+          "energyThresholdRelative": 9.643584864057833e-17,
+          "logPfaRelative": 7.603027240321104e-16,
+          "pdAbsolute": 1.5308362676678135e-16,
+          "energyPdAbsolute": 1.128425748213758e-16,
+          "missRelative": 6.970673327036751e-16,
+          "energyMissRelative": 6.676258078182469e-16
+        },
+        "worstCases": {
+          "energyThresholdRelative": {
+            "rho": 0.0,
+            "kappa": 0.0,
+            "pfa": 0.05
+          },
+          "missRelative": {
+            "rho": 10000.0,
+            "kappa": 1e-08,
+            "pfa": 1e-06
+          },
+          "energyMissRelative": {
+            "rho": 3.0,
+            "kappa": 0.25,
+            "pfa": 0.5
+          },
+          "pdAbsolute": {
+            "rho": 1.0,
+            "kappa": 1e-12,
+            "pfa": 0.05
+          },
+          "energyPdAbsolute": {
+            "rho": 0.001,
+            "kappa": 1.0,
+            "pfa": 0.5
+          },
+          "thresholdRelative": {
+            "rho": 10000.0,
+            "kappa": 0.99999999,
+            "pfa": 0.999999
+          },
+          "logPfaRelative": {
+            "rho": 10000.0,
+            "kappa": 0.99999999,
+            "pfa": 0.999999
+          }
+        },
+        "maxThresholdRelativeDifferenceFromExactDecimalIntent": 2.212172012165824e-05,
+        "oracleInputs": "Exact binary64 values passed to JavaScript; fixture decimal intent retained separately",
+        "scope": "336 inherited independent fixture parameter points, recomputed by 100-digit independent scalar oracle"
+      }
+    },
+    {
+      "name": "stable_tail_and_cdf",
+      "passed": true,
+      "detail": {
+        "cases": 96,
+        "maxLogTailRelativeError": 2.5381913151618993e-16,
+        "maxLowerCdfRelativeError": 2.3229984960882387e-16,
+        "maxSurvivalAbsoluteError": 9.172064925940497e-17,
+        "nearEqualWeights": "Actual distinct weights retained, no equal-weight snapping",
+        "scales": [
+          1e-100,
+          1,
+          1e+100
+        ]
+      }
+    },
+    {
+      "name": "quadratic_likelihood_phase_covariance",
+      "passed": true,
+      "detail": {
+        "cases": 252,
+        "maxQScaledAbsoluteError": 6.979235971310059e-16,
+        "maxCovariancePhaseScaledAbsoluteError": 8.88345386519208e-16,
+        "maxMatrixScaledAbsoluteError": 8.88345386519208e-16,
+        "scale": "sum energy times maximum H0 weight; avoids misleading relative errors at nullspace",
+        "rankOneNullspace": [
+          {
+            "rho": 1e-10,
+            "q": 0,
+            "matrix": 4.1359030619379577e-25
+          },
+          {
+            "rho": 3,
+            "q": 0,
+            "matrix": 2.0301221021717147e-15
+          },
+          {
+            "rho": 10000.0,
+            "q": 0,
+            "matrix": 1.4551187668983402e-15
+          }
+        ],
+        "singleStationDataOnlyRotationChangesDetected": 117
+      }
+    },
+    {
+      "name": "raw_dense_covariance_sufficiency",
+      "passed": true,
+      "detail": {
+        "cases": 16,
+        "maxDenseLogLrAbsoluteError": 1.0179357357031904e-14,
+        "maxMatchedOutputAbsoluteError": 6.661338147750939e-16,
+        "checks": [
+          "full 2L-by-2L covariance",
+          "orthogonal residual perturbation",
+          "common waveform phase",
+          "known complex noise-power normalization"
+        ]
+      }
+    },
+    {
+      "name": "phase_and_energy_likelihood_counterexamples",
+      "passed": true,
+      "detail": {
+        "sameEnergyComplexStatistics": [
+          3.36,
+          1.7142857142857142
+        ],
+        "jointDecisions": [
+          true,
+          false
+        ],
+        "sameSumEnergyDomainLogLr": [
+          0.307551590767041,
+          0.14494560545912433
+        ],
+        "phaseIntegrationPointsPerCase": 4096,
+        "interpretation": "Energy sum is not the optimal two-energy-message detector when rho*kappa>0; no optimal-energy ROC claimed"
+      }
+    },
+    {
+      "name": "finite_payload_ledger",
+      "passed": true,
+      "detail": {
+        "cases": 12,
+        "scope": "Two-receiver star-unicast scalar payload only; no finite-bit losslessness, latency, hardware, computation or measured traffic claim"
+      }
+    },
+    {
+      "name": "independent_actual_js_detector_monte_carlo",
+      "passed": true,
+      "detail": {
+        "seed": 843287,
+        "generator": "Independent xorshift32 uniform, Box-Muller complex CN, Cholesky correlated amplitude; actual exported JS decision functions",
+        "trialsPerHypothesis": 300000,
+        "interval": "99% exact Clopper-Pearson, pointwise not simultaneous",
+        "rows": [
+          {
+            "hypothesis": "H0",
+            "joint": {
+              "count": 15203,
+              "rate": 0.05067666666666667,
+              "analytic": 0.05,
+              "exact99pctInterval": [
+                0.049650636871631494,
+                0.05171697672419139
+              ]
+            },
+            "energy": {
+              "count": 15070,
+              "rate": 0.05023333333333333,
+              "analytic": 0.05,
+              "exact99pctInterval": [
+                0.0492115925831276,
+                0.05126936856960927
+              ]
+            }
+          },
+          {
+            "hypothesis": "H1",
+            "joint": {
+              "count": 193196,
+              "rate": 0.6439866666666667,
+              "analytic": 0.6433127617254235,
+              "exact99pctInterval": [
+                0.641730937705515,
+                0.646237825041164
+              ]
+            },
+            "energy": {
+              "count": 187110,
+              "rate": 0.6237,
+              "analytic": 0.6243193955523239,
+              "exact99pctInterval": [
+                0.6214180813462834,
+                0.6259779920760944
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "actual_js_raw_generator_moments",
+      "passed": true,
+      "detail": {
+        "seed": 453893,
+        "trialsPerHypothesis": 20000,
+        "rows": [
+          {
+            "hypothesis": "H0",
+            "means": [
+              0.0017198479944949452,
+              0.0017668745266878436,
+              0.00522892814419016,
+              0.006575096414112728
+            ],
+            "covariance": [
+              0.9804070165104382,
+              1.0018241204869311,
+              -0.0005673340975814739,
+              0.003278757198412332
+            ],
+            "pseudoCovariance": [
+              -0.0015155494075544797,
+              -0.003984243721596613,
+              -0.002811425824686628,
+              -0.0017063298940720338,
+              0.0038693032129265034,
+              0.00334282888969641
+            ],
+            "truthLeaks": 0
+          },
+          {
+            "hypothesis": "H1",
+            "means": [
+              0.0019687639040651844,
+              -0.0006541634436730588,
+              -0.006207353113588096,
+              0.00620229256993361
+            ],
+            "covariance": [
+              4.0610573574749464,
+              4.021840237686831,
+              2.2703763665865195,
+              0.01810804871082043
+            ],
+            "pseudoCovariance": [
+              -0.002167356685118912,
+              0.010660087179452868,
+              -0.016096732437030636,
+              0.04886976089834874,
+              0.012833234101179366,
+              0.0012527278088081371
+            ],
+            "truthLeaks": 0
+          }
+        ],
+        "maxMomentErrorInStandardErrors": 2.770866297829049,
+        "tolerance": "Prespecified six standard errors per component; raw generator moments and properness, not rare-tail verification"
+      }
+    },
+    {
+      "name": "generated_waveform_and_scale_endpoints",
+      "passed": true,
+      "detail": {
+        "waveformEndpointCases": 8192,
+        "maxRelativeEnergyError": 4.440892098500626e-16,
+        "matchedNoiseEnergyScaleCases": 63,
+        "maxMatchedRelativeError": 2.220446049250313e-16,
+        "note": "QPSK helper may move generated amplitude one representable step inward to respect inclusive energy domain; supplied values are never clipped"
+      }
+    },
+    {
+      "name": "wilson_interval_endpoints",
+      "passed": true,
+      "detail": {
+        "cases": 60,
+        "maxAbsoluteError": 2.641030666084054e-16,
+        "exactEndpoints": true,
+        "method": "Independent 100-digit Wilson score expression"
+      }
+    },
+    {
+      "name": "input_guards_truth_separation",
+      "passed": true,
+      "detail": {
+        "cases": 226,
+        "allPassed": true,
+        "checks": [
+          {
+            "name": "rho_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_1e-12_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_5e-324_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_10001_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_-Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_3_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rho_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_-1e-12_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_1.000001_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_false_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_0.75_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "kappa_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_1e-13_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_0.9999999999999_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_0.05_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "pfa_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_6",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_6",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_6",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_7",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_7",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_7",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_8",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_8",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_8",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_9",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_9",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_9",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_10",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_10",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_10",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_11",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_11",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_11",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_12",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_12",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_12",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_13",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_13",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_13",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_14",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_14",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_14",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "quadratic_pair_15",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "energy_pair_15",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "decision_pair_15",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_6",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_7",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_8",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_9",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_10",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_11",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "waveform_12",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_1e-9_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_1000000000_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_1_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "noise_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_4097_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_1.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_16_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_length_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_1e-9_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_1000000000_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_1_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "qpsk_energy_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "matched_observation_110",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "matched_observation_111",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "matched_observation_112",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "matched_observation_113",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "matched_observation_114",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "raw_observation_115",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "raw_observation_116",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "raw_observation_117",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "raw_observation_118",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "raw_observation_119",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_1_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_weight_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_threshold_NaN",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_zero_quantile",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_threshold_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_threshold_1_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "tail_threshold_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "lower_cdf_positive_zero",
+            "passed": true
+          },
+          {
+            "name": "tail_atom_and_infinity",
+            "passed": true
+          },
+          {
+            "name": "zero_tie_undefined_undefined",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_0.01_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "zero_tie_strict_boundary",
+            "passed": true
+          },
+          {
+            "name": "ledger_blocks_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_blocks_1.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_blocks_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_blocks_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_blocks_10_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_blocks_9007199254740991_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_129_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_1.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_bitsPerReal_32_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelUpdates_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelUpdates_0.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelUpdates_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelUpdates_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelUpdates_9007199254740991_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelDownRealsPerUpdate_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelDownRealsPerUpdate_0.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelDownRealsPerUpdate_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelDownRealsPerUpdate_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_modelDownRealsPerUpdate_9007199254740991_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_templateMode_invalid_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_templateMode_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_templateMode_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_0_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_4097_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_1.5_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "ledger_length_16_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "inherited_ledger_options",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "inherited_phase_options",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "poisoned_truth_unread",
+            "passed": true
+          },
+          {
+            "name": "raw_poisoned_truth_unread",
+            "passed": true
+          },
+          {
+            "name": "detector_no_truth_parameter",
+            "passed": true
+          },
+          {
+            "name": "forged_model_quadratic_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_quadratic_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_quadratic_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_quadratic_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_quadratic_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_quadratic_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_calibration_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_model_raw_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_joint_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_energy_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_joint_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_energy_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_joint_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_energy_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_joint_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_energy_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_joint_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "forged_calibration_energy_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_5",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "generator_truth_contract_6",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_-1_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_4294967296_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_NaN_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_Infinity_number",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_true_boolean",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_1_string",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_seed_null_object",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_normal_0",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_normal_1",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_normal_2",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_normal_3",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "rng_normal_4",
+            "passed": true,
+            "error_type": "RangeError"
+          },
+          {
+            "name": "branded_objects_frozen",
+            "passed": true
+          }
+        ],
+        "independenceLimit": "Function interfaces cannot establish that caller-supplied rho=0 tieUniform is independent; documentation must require it"
+      }
+    },
+    {
+      "name": "core_unchanged_during_audit",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "Finite deterministic grid, not every possible binary64 input",
+    "Monte Carlo covers representative ordinary probabilities, not 1e-12 tails",
+    "No browser/UI, publication, paper MAPRT reproduction, or optimal two-energy-domain ROC",
+    "Known white noise, calibrated coordinates, known prior and fixed single hypothesis; no unknown-noise or search-wide guarantee"
+  ]
+}
