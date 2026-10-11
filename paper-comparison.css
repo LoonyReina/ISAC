@@ -1,0 +1,28 @@
+/* Reading-only comparison. All scientific plots stay in their existing lessons. */
+.paper-comparisons{overflow-wrap:anywhere}
+.comparison-group{margin-top:28px;padding:24px;border:1px solid var(--site-line);border-radius:12px;background:#f6faf9;min-width:0}
+.comparison-group h3{margin-top:0;font-size:26px}.comparison-group h4{font-size:18px}.comparison-group h5{font-size:16px}
+.comparison-group p,.comparison-group li{font-size:16px}.comparison-group .small,.comparison-citations{font-size:13px!important}
+.comparison-scope{border-left:3px solid #087267;padding-left:14px;color:#254d47}
+.comparison-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.comparison-card{min-width:0;padding:18px;border:1px solid #c5d8d2;border-radius:8px;background:#fff}
+.comparison-card .eyebrow{font-size:13px;margin:0}.comparison-card h4{margin:8px 0 16px}.comparison-card p{line-height:1.7}
+.comparison-boundary{border-top:1px solid #dce6e2;padding-top:12px}
+.comparison-flow{padding:10px;background:#edf4f1;border-radius:5px;margin:10px 0}.comparison-flow>strong{font-size:13px}
+.comparison-flow ol{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:7px}
+.comparison-flow li{display:flex;gap:8px;align-items:baseline;font-size:14px;min-width:0}.comparison-flow li+li:before{content:'↓';color:#346d60}
+.comparison-flow li span{font-size:11px;color:#38584f;border:1px solid #b3cbc2;border-radius:3px;padding:0 3px;flex-shrink:0}
+.comparison-group details{margin:16px 0}.comparison-group summary{min-height:44px;padding:10px 0;cursor:pointer;line-height:1.5;font-weight:600}
+.comparison-group details details{background:#fff;padding:0 14px;border:1px solid #d1ded9;border-radius:5px}
+.comparison-citations{margin:8px 0}.comparison-links{line-height:1.9}.comparison-source-list{padding-left:20px}.comparison-source-list li{margin:10px 0;scroll-margin-top:140px}
+.comparison-group fieldset{min-width:0;margin:16px 0;padding:14px;border:1px solid #9cb9af;border-radius:6px}.comparison-group legend{font-weight:600;padding:0 6px}
+.comparison-options{display:flex;flex-wrap:wrap;gap:8px}.comparison-options label{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;background:#fff;border:1px solid #a8bfb7;border-radius:5px;cursor:pointer;min-width:0}
+.comparison-options input{width:18px;height:18px;flex-shrink:0;accent-color:#08665e}.comparison-options label:has(input:checked){background:#e2f1e9;border-color:#08665e}
+.comparison-group button{min-height:44px;margin-top:12px;padding:10px 14px;border:1px solid #8ca9a5;border-radius:6px;background:#fff;color:#18453f;font:inherit;line-height:1.5;cursor:pointer}
+.comparison-group :is(button,a,summary,input):focus-visible{outline:3px solid #18453f;outline-offset:3px}
+.comparison-status{font-size:14px!important;color:#285247}.comparison-status:empty{display:none}
+.comparison-group [data-comparison-feedback]{padding:0 16px;border-left:3px solid #087267;background:#fff}
+.comparison-group [hidden]{display:none!important}.comparison-lenses>details{padding:0 14px;background:#fff;border:1px solid #d1ded9;border-radius:5px}
+@media(max-width:960px){.comparison-cards{grid-template-columns:1fr}.comparison-card{padding:20px}.comparison-flows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.comparison-flow{margin:0}}
+@media(max-width:480px){.comparison-group{padding:16px}.comparison-card{padding:14px}.comparison-flows{grid-template-columns:1fr}.comparison-options{display:block}.comparison-options label{margin:8px 0;padding:8px}.comparison-group fieldset{padding:10px}.comparison-group h3{font-size:23px}}
+@media print{.comparison-group [data-comparison-controls],.comparison-group .comparison-status,.comparison-group [data-comparison-feedback]{display:none!important}.comparison-group [data-comparison-panel][hidden]{display:block!important}.comparison-group details>*{display:block!important}.comparison-group details::details-content{display:block!important;content-visibility:visible}.comparison-cards{display:block}.comparison-card{break-inside:avoid}.comparison-group{padding:0;background:#fff;border:0}}

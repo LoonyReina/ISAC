@@ -6,6 +6,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),registry=JSON.parse(fs.readFileSync(path.join(root,'site/registry.json'),'utf8'));
 const check=process.argv.includes('--check'), changed=[];
 const {renderResearchDirectory}=require(path.join(__dirname,'render-research-directory.cjs'));
+const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));
 const {createLearningEntryResolver}=require(path.join(__dirname,'learning-entry.cjs'));
 const learningEntries=createLearningEntryResolver(registry);
 const {buildNotebookTopics,notebookHref,renderNotebookOptions,renderNotebookData}=require(path.join(__dirname,'notebook-topics.cjs'));
@@ -68,14 +69,15 @@ function directionCard(d){
 function sceneGuide(){return read('site/content-scene-guide.html').replace('<!-- SCENE:POSITIONS -->',registry.scenePositions.map(p=>`<button type="button" data-scene-position="${esc(p.id)}" data-scene-label="${esc(p.label)}" aria-pressed="false">${esc(p.label)}<span>${esc(p.hint)}</span></button>`).join(''));}
 const researchDirectory=JSON.parse(read(registry.researchDirectoryFile));
 let reading=cover('03 / 论文阅读','沿一个方向，<br>把理解一层层做深。','用问题组织研究，用模型、实验和原文校验理解。先找到自己想弄清的机制，再读作者究竟证明了什么。');
-reading+=`<nav class="study-links" aria-label="论文阅读目录"><a href="#directions">按研究方向找问题</a><a href="#influential-papers">${researchDirectory.cards.length} 篇论文与影响证据</a><a href="#cases">已有教学案例</a><a href="#reading-2026">2026 阅读补充</a><a href="#reading">基础书目与来源</a></nav>`;
+reading+=`<nav class="study-links" aria-label="论文阅读目录"><a href="#directions">按研究方向找问题</a>${registry.paperComparisonGroups?.length?'<a href="#paper-comparisons">同方向论文对读</a>':''}<a href="#influential-papers">${researchDirectory.cards.length} 篇论文与影响证据</a><a href="#cases">已有教学案例</a><a href="#reading-2026">2026 阅读补充</a><a href="#reading">基础书目与来源</a></nav>`;
 reading+=`<section class="site-section" id="foundations"><h2 id="foundations-title">先接上必需的基础</h2><p>${link('foundations.html#start','连续基础讲义')} · ${link('theory.html#pathway','通信与感知的已知、未知')} · ${link('practice.html#research-method','把问题写成可复核计划')}</p><p>不必先读完所有内容；每个主题会指出当前需要的基础。</p></section>`;
 reading+=`<section class="site-section" id="directions"><h2>研究方向地图</h2><p>方向可以横向增加；每个方向沿“直觉问题 → 观测模型 → 互动实验 → 原文对照 → 边界与复现”逐层深入。下面只列已有内容，未实现的层次明确标出。</p>${sceneGuide()}<div class="direction-grid">${registry.directions.map(directionCard).join('')}</div></section>`;
+reading+=renderComparisonGroups(registry);
 reading+=renderResearchDirectory(researchDirectory,registry,file=>fs.existsSync(path.join(root,file)));
 reading+=`<section class="site-section" id="cases"><h2 id="cases-title">${registry.cases.length} 个已有主题：从机制走回原文</h2><p>这些案例是可独立选择的主题，不是难度排名或技术演进顺序。下一问是待检验的问题，不是本站已经得到的结论。</p><nav class="research-jumps" aria-label="已有主题">${registry.cases.map(c=>link('#'+c.id,c.title)).join('')}</nav><div class="research-cases">${registry.cases.map(readingCard).join('')}</div></section>`;
 reading+='<section class="site-section" id="evidence"><h2 id="evidence-title">从证据看结论能走多远</h2><ol><li>保留论文版本、章节、图号/公式和资源预算，先核对作者研究的对象。</li><li>明确本站实验保留和省略了什么；独立机制演示不能替代论文完整算法与原型。</li><li>理论界、仿真、硬件实测、标准愿景各自回答不同问题；同时记录失败条件。</li></ol><p><a href="docs/READING-MAP.md">查看逐项来源与核对范围</a> · <a href="theory.html#evidence-map">查看理论页的证据示例</a></p></section>';
 reading+=read('site/content-branches.html')+read('site/content-frontiers.html')+read('site/content-reading.html');
-emit('reading.html',document(pageFor('reading.html'),reading,{styles:'<link rel="stylesheet" href="scene-guide.css?v=scene-guide-v1"><link rel="stylesheet" href="research-directory.css?v=influence-v1">',scripts:'<script type="module" src="scene-guide.js?v=scene-guide-v2"></script>'}));
+emit('reading.html',document(pageFor('reading.html'),reading,{styles:'<link rel="stylesheet" href="scene-guide.css?v=scene-guide-v1"><link rel="stylesheet" href="research-directory.css?v=influence-v1"><link rel="stylesheet" href="paper-comparison.css?v=paper-comparison-v1">',scripts:'<script type="module" src="scene-guide.js?v=scene-guide-v2"></script><script defer src="paper-comparison.js?v=paper-comparison-v1"></script>'}));
 function practiceContent(){
  let body=read('site/content-practice.html');
  for(const [marker,html]of [['<!-- NOTEBOOK:OPTIONS -->',renderNotebookOptions(notebookTopics)],['<!-- NOTEBOOK:TOPICS -->',renderNotebookData(notebookTopics)]]){

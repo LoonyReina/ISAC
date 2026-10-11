@@ -117,9 +117,24 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   'docs/READING-MAP.md':'d5140f2a9fe408e2342ee3c44ad93ded2cd79a09dcce94f22fa8c21307a0932d',
   'scripts/learning-entry.cjs':'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287',
   'scripts/notebook-topics.cjs':'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477',
-  'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9',
-  'scripts/generate-site.cjs':'97793677fbea4ead386121de1f6e62dfac9ec1a01cdad88576bf3de0281c5cb9'
+  'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9'
  };
  for(const [file,digest]of Object.entries(expected))a.equal(hash(read(file)),digest,file);
+ // The later reading-only comparison adds exactly these five hooks. Preserve
+ // the byte-level guard for all other generator behavior rather than silently
+ // rebasing its original fingerprint or weakening scientific/notebook checks.
+ let generator=read('scripts/generate-site.cjs');
+ for(const hook of [
+  "const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));\n",
+  '${registry.paperComparisonGroups?.length?\'<a href="#paper-comparisons">同方向论文对读</a>\':\'\'}',
+  'reading+=renderComparisonGroups(registry);\n',
+  '<link rel="stylesheet" href="paper-comparison.css?v=paper-comparison-v1">',
+  '<script defer src="paper-comparison.js?v=paper-comparison-v1"></script>'
+ ]){a.equal(generator.split(hook).length,2,'exactly one comparison hook');generator=generator.replace(hook,'');}
+ a.equal(hash(generator),'97793677fbea4ead386121de1f6e62dfac9ec1a01cdad88576bf3de0281c5cb9','generator outside reading-only hooks');
+ // A mutation outside those hooks must still trip the preserved-byte guard.
+ const unrelated=generator.replace('const notebookTopics=buildNotebookTopics(registry);','const notebookTopics=[];');
+ a.notEqual(unrelated,generator);
+ a.throws(()=>a.equal(hash(unrelated),'97793677fbea4ead386121de1f6e62dfac9ec1a01cdad88576bf3de0281c5cb9'),{code:'ERR_ASSERTION'});
  const directory=JSON.parse(read(r.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);a.deepEqual(directory.cards.filter(c=>!c.caseId).map(c=>c.id),['deepsense']);
 });
