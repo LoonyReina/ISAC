@@ -88,7 +88,7 @@ test('radar page and generated portals expose real sections, shared navigation a
  for(const anchor of ['mechanism','experiment','model','paper','limits','reproduce'])resolve(`${p.path}#${anchor}`);
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.next])resolve(href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp(`<!-- SITE:${key}:START -->`,'g'))||[]).length,1);
- a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html#notebook"'));
+ a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html?topic=radar-beam-decision#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  a.ok(read('index.html').includes(`href="${c.learningEntry}"`));a.equal(article(read('reading.html'),'ref-RADAR'),article(read('site/content-reading.html'),'ref-RADAR'));
 });
