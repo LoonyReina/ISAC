@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="用原创合成数据理解感知辅助通信：猜中最优波束、保住功率与少试几个波束，是三个不同问题。训练七近邻预测器，比较固定候选排名下的 top-K 命中和通信功率损失。">
+<title>猜中最优波束，与保住通信增益是一回事吗？ | ISAC</title>
+<link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="radar-beam-decision.css?v=radar-beam-v1">
+<script defer src="radar-beam-decision-core.js"></script><script defer src="radar-beam-decision.js"></script>
+</head><body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="theory-main rb-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">猜中最优波束，与保住通信增益是一回事吗？</span></nav><p class="site-role">研究主题 · 合成感知辅助通信、候选波束与评估边界</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#array">阵列与方向</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="radar-beam-decision.html#experiment">① 预测与实验</a><a href="radar-beam-decision.html#paper">② 原文与证据</a><a href="radar-beam-decision.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<header class="rb-hero"><p class="eyebrow">感知辅助通信 / 一次候选决策</p>
+<h1>猜中最优波束，<br>与保住通信增益是一回事吗？</h1>
+<p>雷达观测已经到手；怎样减少通信端逐个试波束的次数？先让一个训练好的小模型推荐候选，再检查：有没有猜中第一名，少掉了多少功率，又花了几次探测。</p>
+<p class="rb-boundary"><strong>原创合成教学模型。</strong>没有下载 DeepSense 测量，没有训练论文 CNN，也没有复现论文准确率。这里是感知信息帮助通信选波束；不表示同一射频波形同时完成雷达与通信。</p></header>
+<section class="rb-section" id="mechanism"><h2>先把“看到了什么”与“想知道什么”分开</h2>
+<p>通信阵列有 64 个固定指向，编号 0–63。一个方向附近可能有两个波束都很强：选错第一名，不一定损失很多功率。接收机的实际任务，是用有限次探测找一个够好的通信波束。</p>
+<ol class="rb-steps"><li><strong>拿到感知特征</strong><span>本页合成一个带偏移与噪声的方向读数，以及两项环境特征。真实方向未知。</span></li><li><strong>用训练样本推荐</strong><span>七近邻模型只读取当前特征，用训练集的波束标签学映射，给 64 个候选排队。</span></li><li><strong>探测前 K 个，再选最强</strong><span>理想化地测完 K 个候选的通信功率，取其中最高者；这是候选探测后的结果。</span></li></ol>
+<p class="rb-small">先修：<a href="foundations.html#array">阵列相位与方向匹配</a> · <a href="foundations.html#iq">I/Q 与复数功率</a>。暂时不需要懂神经网络；展开后面的模型，才解释七近邻怎么算。</p></section>
+<section class="rb-section" id="experiment"><h2>只改一个决定：你愿意试几个波束？</h2>
+<noscript><p class="rb-result">交互需要 JavaScript。本页的机制、公式与原文边界仍可阅读：固定排名下，K 增大，命中率不会降低、候选内最佳功率不会下降，但探测次数也增加。</p></noscript>
+<div class="rb-controls"><label for="rb-k">候选探测数 K <output id="rb-k-value" for="rb-k">1 / 64</output><input id="rb-k" type="range" min="1" max="64" step="1" value="1"></label><label for="rb-sample">查看哪条保留观测？<select id="rb-sample" aria-describedby="rb-example-note"><option value="0">第 1 条观测</option></select></label></div>
+<div class="rb-actions"><button id="rb-k-one" type="button">只试 1 个</button><button id="rb-k-five" type="button">试 5 个</button><button id="rb-k-all" type="button">遍历 64 个</button><button id="rb-example" type="button">找一个错标签、低损失的例子</button></div>
+<p id="rb-example-note" class="rb-small">“找例子”是按评估真值挑选的教学样本：只在预测完成后，挑选一个 K=1 的低损失错标签样本，帮助读图；不会改变训练、预测或全体成绩。</p>
+<p id="rb-current" class="rb-budget"></p>
+<div class="rb-flow"><div><h3>① 模型实际读取</h3><p id="rb-observed" class="rb-data"></p><p class="rb-small">这是合成特征，不是雷达原始 IQ、距离–角度图或真实测量。</p></div><div><h3>② 先固定候选排名</h3><p id="rb-predicted" class="rb-data"></p><p id="rb-candidates" class="rb-data"></p><p class="rb-small">排名不随 K 改变。扩大 K 只是取同一队列更长的前缀；分数不是校准后的概率。</p></div></div>
+<h3>③ 现在揭示真值，只作教学评估</h3>
+<p class="rb-small">下面 64 个功率是模拟器知道的答案。真实接收机在探测前看不到它们，预测器也没有读取它们。横轴是<strong>波束编号，不是角度</strong>；纵轴是归一化接收功率，线性 0–1，无单位。每根柱是一个波束的功率，不是空间中的目标。</p>
+<figure class="rb-figure"><figcaption id="rb-power-caption">同一条未知通信信道，试不同波束会收到多少功率？</figcaption><div class="rb-legend"><span><i class="rb-key rb-grey"></i>未列入候选</span><span><i class="rb-key rb-teal"></i>前 K 个候选</span><span><i class="rb-key rb-purple"></i>最优标签：紫色方框</span><span><i class="rb-key rb-orange"></i>候选内最佳：橙色圆点</span></div><svg id="rb-power" role="img" aria-labelledby="rb-power-caption" aria-describedby="rb-truth"></svg><p id="rb-truth" class="rb-small"></p></figure>
+<div class="rb-metrics"><div><span>精确标签命中</span><strong id="rb-hit"></strong><small id="rb-hit-note"></small></div><div><span>候选探测后功率损失</span><strong id="rb-loss"></strong><small>对比遍历全部 64 个后的最高功率</small></div><div><span>这次花了多少探测</span><strong id="rb-cost"></strong><small id="rb-cost-note"></small></div></div>
+<p id="rb-conclusion" class="rb-result"></p>
+<p class="rb-small">这里假定每次探测等成本、K 次测量完全准确，而且探测期间信道不变。不计感知采集、推理、训练、波束切换与失败后回退成本。K/64 只是探测次数占比，不能直接换成总时延、吞吐量或能耗收益。</p>
+<div class="rb-actions"><button id="rb-reset" type="button">重置整个实验</button><span>回到种子 37、保留整条轨迹、有校准偏移、K=1 和第 1 条观测</span></div>
+<p id="rb-status" class="rb-status" role="status" aria-live="polite"></p>
+<details class="rb-disclosure" id="rb-batch"><summary>不只看一条：当前 K 在全部保留观测上表现怎样？</summary><div><p>同一组 64 条测试观测来自 4 条相关轨迹。先固定所有预测，再揭示标签和功率。下面是这一份合成数据的结果，不是 64 次独立实验，也不是论文成绩。</p><p id="rb-batch-result" class="rb-result"></p><p>“波束错标签”与“损失超过 3 dB”是两个不同事件。后者只是本模型选定的功率损失门槛；没有噪声、编码与速率门槛模型，不能称为通信中断率。</p></div></details>
+</section>
+<section class="rb-section" id="model"><h2>最少的模型：方向 → 阵列功率 → 标签</h2>
+<details class="rb-disclosure"><summary>展开阵列、训练和三个指标的计算</summary><div>
+<p>把方向用 u=sin(θ) 表示；θ 从阵列法线计，u 无单位。16 个阵元间距为半波长。a(u) 是一个方向的单位范数复数相位向量；拿它与波束 j 的相位向量做匹配，得到该方向的归一化通信功率。</p>
+<div class="rb-equation">a(u)[m] = exp(jπmu) / √M，m=0,…,M−1，M=16<br>Pⱼ = |a(u)ᴴa(uⱼ)|²，uⱼ=−0.95+1.9j/63，j=0,…,63<br>标签 y：在最大功率附近的数值并列项中，取最小编号</div>
+<p>这里 j 在 exp(j·) 中是虚数单位，在下标中是波束编号；M 是阵元数。64 个波束在 u 上等距，角度上并不等距。功率只计方向匹配，已把路径增益、发射功率与距离衰减归一化；不是瓦特、SINR 或 bit/s。</p>
+<p><strong>训练可用标签，预测不可偷看测试答案。</strong>模型保存 512 条训练样本的 x 和标签，把标签换成对应波束坐标 uᵧ。收到新的 x 后，按三维特征的欧氏距离找到 7 个最近训练点，以 1/(距离平方+10⁻⁶) 加权平均它们的 uᵧ，得到 û。再用 û 的理想阵列响应对 64 个波束排序。测试标签、测试真实方向、测试功率、场景/轨迹/帧编号都不进入这个接口。</p>
+<div class="rb-equation">Sₖ = 固定预测排名的前 K 个波束<br>命中 = 1[y 属于 Sₖ]<br>损失 = 10 log₁₀(maxⱼPⱼ / maxⱼ∈SₖPⱼ) dB<br>探测次数占比 = K/64</div>
+<p>损失的分母是<strong>把 K 个候选都探测后</strong>的最高功率。K&gt;1 时，它不是“直接使用排名第一名”的增益。标签没猜中时，两个邻近波束也可能几乎一样强；K=64 则必命中、损失为零，但没有节省探测。</p>
+<p class="rb-small">数值并列采用固定规则：在当前剩余最大线性功率的 10⁻¹² 绝对容差内，先取最小编号，再重复。损失参考实际最大功率，不用并列标签功率替代；指标不设 dB 下限。候选功率恰为零时显示 +∞ dB；浮点 sinc 在解析零点可能留下极小正残差，对应很大但有限的计算损失。本图直接显示线性功率，没有用于指标的显示裁剪。</p>
+</div></details></section>
+<section class="rb-section" id="split"><h2>研究延伸：保留“新帧”，还是保留“新场景”？</h2>
+<details class="rb-disclosure" id="rb-extension"><summary>展开训练范围、种子与对照条件</summary><div>
+<p>先锁住同一批测试锚点：场景 2 的轨迹 8–11，各取帧号除以 4 余 2 的 16 帧，共 64 条。三个方案都训练 512 条，7 个邻居等超参数事先固定。这里可以反复改变条件并查看结果，因此是固定玩具评估集的交互探索，不是未被查看过的最终测试基准。变化的是<strong>哪些训练样本允许进入池子</strong>。</p>
+<div class="rb-controls"><label for="rb-protocol">主实验采用哪一种训练范围？<select id="rb-protocol"><option value="held_trajectories" selected>保留整条轨迹 · 未见过的整次经过</option><option value="interleaved_frames">交错帧 · 同一轨迹内插值</option><option value="held_scene">保留整个场景 · 未见校准环境</option></select></label><label for="rb-seed">数据种子（整数 0–99999）<input id="rb-seed" type="number" min="0" max="99999" step="1" value="37"></label><label for="rb-control">合成数据对照<select id="rb-control"><option value="shifted">有偏移 + 有稳定环境特征</option><option value="zero-shift">去掉偏移，保留环境特征</option><option value="neutral">去掉偏移，也去掉环境特征</option></select></label></div>
+<p id="rb-control-note" class="rb-budget"></p>
+<p>感知特征是 x=(u+b场景+b轨迹+ε，w·c场景，w·c轨迹)。场景特征固定取 −1、0、1；轨迹特征是每条轨迹固定的随机数。它们<strong>人为携带组别线索</strong>，不是从真实雷达提取的特征。元数据不进入预测，并不等于特征里没有组别信息。噪声满足 εₜ=0.8εₜ₋₁+0.6σzₜ，σ=0.006，体现时间相关。</p>
+<p class="rb-small">默认场景偏移为 0.12c场景；每条轨迹偏移独立均匀取自 [−0.04,0.04]；w=0.18。“去掉偏移”仍保留后两维；“也去掉环境特征”才把它们置零。改变这些设定是一个合成反例实验，不是对真实 DeepSense 数据泄漏或因果机制的判断。</p>
+<div class="rb-table-scroll" tabindex="0" role="region" aria-label="同测试集同训练预算的协议结果，可横向滚动"><table><caption>同一 K、同一 64 条测试锚点、各 512 条训练数据；不保证成绩排序</caption><thead><tr><th scope="col">训练范围</th><th scope="col">标签命中</th><th scope="col">平均损失</th><th scope="col">损失 &gt;3 dB</th><th scope="col">同轨迹重叠 / 4</th><th scope="col">±2 帧内有训练邻居的锚点 / 64</th></tr></thead><tbody id="rb-comparison"></tbody></table></div>
+<p id="rb-membership" class="rb-small"></p>
+<p>交错帧适合问“已经见过同一经过过程，能否对其中未用于训练的帧做插值判断？”训练池可能含有比测试帧更晚的帧，这不是在线下一帧预测。保留轨迹与保留场景则逐步排除这种熟悉程度。随机帧划分不自动等于错误；把同轨迹结果说成跨场景能力，才超出了证据。换种子或移除环境特征，三个方案的次序可能反转。</p>
+<p class="rb-small">网页使用独立的 Mulberry32 / Box–Muller 随机数与固定抽样规则；种子相同会复现本页结果，但不与早期 NumPy 原型逐种子一致，也不对应论文的数据划分。这里只有 4 条相关测试轨迹，不绘制把 64 帧当独立样本的二项置信区间。</p>
+</div></details></section>
+<section class="rb-section" id="paper"><h2>回到原文：雷达输入与通信标签来自两套设备</h2>
+<p>Demirhan 与 Alkhateeb：<a href="https://doi.org/10.1109/WCNC51071.2022.9771564">Radar Aided 6G Beam Prediction: Deep Learning Algorithms and Real-World Demonstration</a>，WCNC 2022，2655–2660 页。以下主定位固定对应 <a href="https://par.nsf.gov/biblio/10404321">NSF PAR 的六页录用作者稿</a>，不把不同版本的划分规则拼在一起。</p>
+<details class="rb-disclosure"><summary>展开原文定位、版本差异与本站没有做的部分</summary><div><ul>
+<li>六页录用稿 §II，第 1–2 页，式(4)–(6)：通信信道、码本与最佳波束标签。输入是当前雷达帧，标签是 64 个测量通信波束中最强的一项</li>
+<li>§III，第 2–4 页；第 4 页表 II：雷达预处理与 CNN。原始维度为 4 个接收通道 × 每 chirp 256 个样本 × 128 个 chirp；使用距离–角度、距离–速度或雷达立方体幅度。本页没有实现这些预处理或 CNN</li>
+<li>第 4 页图 3：独立的 77 GHz FMCW 雷达与 60 GHz 通信阵列；RGB 用于样本筛选，不是雷达单模态预测器的输入</li>
+<li>§IV-A/B，第 4–5 页：采集与标签；<strong>第 5 页</strong>的划分句为 6319 条筛选样本，70/20/10 训练/验证/测试，按验证表现选检查点并训练五次。文中未确立保留整条轨迹或整个场景的分组隔离</li>
+<li>§V，第 5–6 页，图 5–7：准确率、计算成本与训练数据量的研究结果。它们属于该数据和模型；本页没有重现这些分数、时延或端到端节省</li></ul>
+<p><a href="https://arxiv.org/abs/2111.09676v1">2021-11-18 的九页 arXiv v1</a> 是另一个版本：§III-C 式(10)定义 top-K 成员命中；§V-B，第 6 页写的是 70/30 训练/测试。不能把这个划分写成 WCNC 六页稿的 70/20/10。</p>
+<p><a href="https://arxiv.org/abs/2211.09769v2">DeepSense 6G 资源论文 v2（2023-03-20）</a> 的 §III、§V 描述多模态采集、时间戳与后处理对齐。同步不意味着所有曝光时刻完全相同或时差已经为零；§VII 的跨场景例子使用视觉和位置，不能挪来当本页雷达模型的成绩。本站继续把 DeepSense 条目作为资源阅读入口。</p>
+<p>官方测量档案需要登录；本次没有取得已核验且可再发布的数值子集。真实测量档案的下载和使用条件尚未在本实验落实；当前官方场景页面的样本集也不能直接等同于论文筛选后的 6319 条。没有真实档案、版本、许可、时间戳、分组与标签方向核验，就不声称完成数据集复现。</p>
+</div></details></section>
+<section class="rb-section" id="limits"><h2>少试几个候选，还不是完整通信收益</h2><ul>
+<li>本页的标签、单径 ULA 功率与特征都是原创合成；没有测量天线方向图、多径、遮挡、移动时延、反馈错误或真实雷达特征</li>
+<li>预测器确实用训练标签拟合七近邻映射，但它不是论文 CNN；排名分数不代表可靠概率，当前帧决策也不等于预测未来最佳波束</li>
+<li>每个 K 的比较保持同一信道、相同 64 波束码本、16 阵元与同一排名。K 增大保证的是候选集合性质；实际速率、功耗与时延可能因额外探测而变差</li>
+<li>例如 K=5 的理想次数节省是 1−5/64=92.1875%。这不是实测“93% 端到端节省”；雷达与模型也有成本</li>
+<li>超参数事先固定；若开始根据结果挑邻居数或特征，应另划验证集、保护最终测试集，再按轨迹或场景重采样评价不确定性</li></ul>
+<p><strong>下一问：</strong>有真实测量时，应该怎样把感知采集与推理耗时、候选探测、失败回退和数据划分，一起纳入通信收益？先写清可获取的观测、时间、资源与失败标准。</p>
+<p>继续：<a href="theory.html#evolution">通信与感知互助的层次</a> · <a href="joint-beamforming.html">固定资源下的联合波束设计</a> · <a href="practice.html#notebook">记录一次可复核比较</a></p></section>
+<section class="rb-section" id="reproduce"><h2>每个候选与分数都能重算</h2><p>浏览器从种子生成样本，实际构造训练集、拟合七近邻、冻结排名，再读测试真值评价。下方 JSON 导出当前配置、全部训练/测试样本编号、特征、训练标签、预测和评估真值；非有限损失以字符串 “Infinity” 保存，不伪装成零或空值。</p>
+<ul class="rb-file-links"><li><a href="radar-beam-decision-core.js">纯数值核心</a></li><li><a href="scripts/validate-radar-beam-decision.py">独立 Python 交叉验证</a></li><li><a href="data/radar-beam-decision-validation.json">固定数值核验</a></li><li><a href="data/radar-beam-decision-sources.json">来源与版本定位</a></li><li><a href="docs/RADAR-BEAM-DECISION-VALIDATION.md">验证范围与边界</a></li></ul>
+<details class="rb-disclosure" id="rb-export"><summary>展开当前实验完整记录</summary><div><p class="rb-small">评估真值单独存于 evaluationOnly；它不会进入预测接口。显示的是当前主协议；展开分组延伸后，还会附上三协议的训练编号、相同测试编号和结果。</p><button id="rb-download" type="button">下载当前 JSON</button><pre id="rb-raw" tabindex="0" role="region" aria-label="当前配置、样本与结果，可用方向键滚动"></pre></div></details></section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同码本、同训练量的候选决策检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+<footer>独立合成模型 · 训练输入与评估真值分开 · 不上传交互数据</footer>
+</main></body></html>
