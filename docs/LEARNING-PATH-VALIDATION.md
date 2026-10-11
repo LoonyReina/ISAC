@@ -36,3 +36,11 @@ Changed stylesheets have new cache keys: `knowledge-map.css?v=learning-path-v1` 
 These are source, numerical, generator, and custom-DOM checks. No browser, actual keyboard, screen-reader, narrow-screen layout, network loading, deployment, or postpublication verification was performed for this refinement. The earlier live verification in `JOINT-BEAMFORMING-VALIDATION.md` describes the previous release and was preserved unchanged.
 
 Before publication, inspect concept-to-beginner and concept-to-case navigation, the direction disclosure and glossary with Enter/Space and Tab, search and repeated selection, Back/Forward, Escape/reset, and no-JavaScript links in a real browser. Check desktop and 375/390 CSS-pixel widths for overflow and visible focus. Verify final deployed assets separately after publication.
+
+## Subsequent live verification
+
+PR [#26](https://github.com/LoonyReina/ISAC/pull/26) deployed merge `8c71db677874f50b504b3eea98fa7d362aafb173`; [Pages run 38063058694](https://github.com/LoonyReina/ISAC/actions/runs/38063058694) succeeded on 2026-10-10. Twelve remote files and five live entry/style files matched reviewed local bytes.
+
+Actual cloud-browser checks at 1168 and 388 CSS pixels verified concept-to-beginner and concept-to-case links, Back/Forward restoration, the closed six-level direction disclosure, Enter/Space toggling with visible focus, Escape reset, search for mutual assistance, and the six-term joint-case glossary. Opening a research disclosure did not add a history entry; restoring a selected direction started its disclosure closed. Beginner/deep-case blocks and the glossary were visually inspected on the narrow viewport; neither page had horizontal overflow. The viewport was restored to 1168 CSS pixels and 100% zoom.
+
+These were resized desktop-browser checks, not physical-phone or real screen-reader certification. Actual JavaScript-disabled browsing, print and other browser engines were not tested; no-JavaScript support was checked only through source/native markup.
