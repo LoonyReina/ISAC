@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "n_per_hypothesis_per_case": 100000,
+  "total_raw_trials": 800000,
+  "waveform": {
+    "kind": "fixed unit-energy QPSK",
+    "length": 4,
+    "energy": 1.0
+  },
+  "noise_power": 1.0,
+  "target_false_alarm": 0.05,
+  "thresholds": "H0 analytic calibration, fixed before simulations; never tuned on sampled H1 or alpha",
+  "gaussian_generator": "stdlib random.Random.gauss: CN(0,1)=(N(0,1)+iN(0,1))/sqrt(2)",
+  "alternative_generator": "hidden alpha via station-basis Cholesky, independent of detector eigenbasis; one draw per observation block",
+  "intervals": "Marginal two-sided 95% Wilson score; some misses are expected and do not imply a model error. 6-sigma plus 1/N is a broad deterministic regression sanity check, not a confidence claim.",
+  "results": [
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 0.0
+      },
+      "hypothesis": "H0",
+      "seed": 20261011,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 4999,
+        "trials": 100000,
+        "estimate": 0.04999,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04865651763640037,
+          0.051358054933186625
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 4999,
+        "trials": 100000,
+        "estimate": 0.04999,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04865651763640037,
+          0.051358054933186625
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 0.0,
+        "normal_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "negative": 0,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 0,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 0.0
+      },
+      "hypothesis": "H1",
+      "seed": 20261012,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 66939,
+        "trials": 100000,
+        "estimate": 0.66939,
+        "analytic": 0.6677053909767143,
+        "wilson_95": [
+          0.6664678227625407,
+          0.6722991636431785
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 66939,
+        "trials": 100000,
+        "estimate": 0.66939,
+        "analytic": 0.6677053909767143,
+        "wilson_95": [
+          0.6664678227625407,
+          0.6722991636431785
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 0.0,
+        "normal_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "negative": 0,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 0,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 0.75
+      },
+      "hypothesis": "H0",
+      "seed": 20262011,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 4900,
+        "trials": 100000,
+        "estimate": 0.049,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04767929861704681,
+          0.050355350010503105
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 4947,
+        "trials": 100000,
+        "estimate": 0.04947,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04814321232339675,
+          0.05083140019582733
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": -0.00047,
+        "normal_95": [
+          -0.001527474046695766,
+          0.0005874740466957661
+        ],
+        "positive": 1432,
+        "negative": 1479,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 2911,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 0.75
+      },
+      "hypothesis": "H1",
+      "seed": 20262012,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 64512,
+        "trials": 100000,
+        "estimate": 0.64512,
+        "analytic": 0.6433127617254235,
+        "wilson_95": [
+          0.6421489008813123,
+          0.6480799500968918
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 62535,
+        "trials": 100000,
+        "estimate": 0.62535,
+        "analytic": 0.6243193955523237,
+        "wilson_95": [
+          0.6223452298177199,
+          0.6283451400149556
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 0.01977,
+        "normal_95": [
+          0.018265292152418983,
+          0.021274707847581016
+        ],
+        "positive": 3955,
+        "negative": 1978,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 5933,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 1.0
+      },
+      "hypothesis": "H0",
+      "seed": 20263011,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 4893,
+        "trials": 100000,
+        "estimate": 0.04893,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04761020798550453,
+          0.05028444601988115
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 4944,
+        "trials": 100000,
+        "estimate": 0.04944,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04811359980277238,
+          0.050801015021238446
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": -0.00051,
+        "normal_95": [
+          -0.0019172248694688996,
+          0.0008972248694688995
+        ],
+        "positive": 2552,
+        "negative": 2603,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 5155,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 3.0,
+        "kappa": 1.0
+      },
+      "hypothesis": "H1",
+      "seed": 20263012,
+      "tie_seed": null,
+      "trials": 100000,
+      "joint": {
+        "count": 65065,
+        "trials": 100000,
+        "estimate": 0.65065,
+        "analytic": 0.6518363448688391,
+        "wilson_95": [
+          0.647689300237657,
+          0.6535991258915216
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 59009,
+        "trials": 100000,
+        "estimate": 0.59009,
+        "analytic": 0.5909663239453965,
+        "wilson_95": [
+          0.5870383396798783,
+          0.5931347390454965
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 0.06056,
+        "normal_95": [
+          0.05868771216354618,
+          0.062432287836453826
+        ],
+        "positive": 7774,
+        "negative": 1718,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 9492,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 0.0,
+        "kappa": 0.75
+      },
+      "hypothesis": "H0",
+      "seed": 20264011,
+      "tie_seed": 21264010,
+      "trials": 100000,
+      "joint": {
+        "count": 5039,
+        "trials": 100000,
+        "estimate": 0.05039,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.0490513954487774,
+          0.05176314639031952
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 5038,
+        "trials": 100000,
+        "estimate": 0.05038,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04904152321377678,
+          0.0517530193935824
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 1e-05,
+        "normal_95": [
+          -0.0019056675873936725,
+          0.0019256675873936726
+        ],
+        "positive": 4777,
+        "negative": 4776,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 9553,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    },
+    {
+      "model": {
+        "rho": 0.0,
+        "kappa": 0.75
+      },
+      "hypothesis": "H1",
+      "seed": 20264012,
+      "tie_seed": 21264011,
+      "trials": 100000,
+      "joint": {
+        "count": 4969,
+        "trials": 100000,
+        "estimate": 0.04969,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.048360374977986634,
+          0.05105422063946791
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "energy_sum": {
+        "count": 4894,
+        "trials": 100000,
+        "estimate": 0.04894,
+        "analytic": 0.05,
+        "wilson_95": [
+          0.04762007802947004,
+          0.05029457520765337
+        ],
+        "analytic_inside_wilson_95": true,
+        "within_6_standard_errors": true
+      },
+      "paired_difference": {
+        "estimate": 0.00075,
+        "normal_95": [
+          -0.0011479331783449357,
+          0.002647933178344936
+        ],
+        "positive": 4726,
+        "negative": 4651,
+        "caveat": "Paired normal interval; no multiplicity adjustment. At kappa=0 positive rho the two decisions are algebraically identical."
+      },
+      "disagreements": 9377,
+      "raw_match_checks": 1000,
+      "max_raw_match_log_lr_error": 0.0
+    }
+  ],
+  "all_broad_regression_checks_pass": true
+}
