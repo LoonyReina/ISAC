@@ -51,7 +51,7 @@ ${c.readingSteps?`<ol class="guide-reading-steps">${c.readingSteps.map(s=>`<li><
 <p class="guide-connection"><strong>需要时回看已有机制：</strong>${c.prerequisites.map(p=>link(p.href,p.label)).join(' · ')}</p>
 ${c.notebook?`<p>${link(notebookHref(c.notebook.id),'记录已有机制：'+c.notebook.title)}<br><span class="small">打开的是已有机制的空白实验本，不是这篇论文的复现模板；请自己记录原文条件与差异。</span></p>`:''}
 </div></details>
-<details class="guide-source"><summary>固定原文与核对位置</summary><div><p>${link(c.source.url,c.source.title)}<br>${escapeHtml(c.source.authors)}</p><p><strong>本次阅读版本：</strong>${escapeHtml(c.source.edition)}</p><p><strong>原文位置：</strong>${escapeHtml(c.source.locator)}</p>${c.source.publicationUrl?`<p>${link(c.source.publicationUrl,'后续发表记录')}${c.source.publicationTitle?'<br>'+escapeHtml(c.source.publicationTitle):''}<br>导读的公式与图号仍按上面的固定预印本；未将正式发表版本视为已逐式核对。</p>`:''}</div></details>
+<details class="guide-source"><summary>固定原文与核对位置</summary><div><p>${link(c.source.url,c.source.title)}<br>${escapeHtml(c.source.authors)}</p><p><strong>本次阅读版本：</strong>${escapeHtml(c.source.edition)}</p><p><strong>原文位置：</strong>${escapeHtml(c.source.locator)}</p>${c.source.publicationUrl?`<p>${link(c.source.publicationUrl,'正式发表记录')}${c.source.publicationTitle?'<br>'+escapeHtml(c.source.publicationTitle):''}<br>导读的公式与图号按上面明确标注的本次阅读版本；不同版本不混用编号。</p>`:''}</div></details>
 </article>`;
  return `<section class="site-section research-guides" id="research-guides" aria-labelledby="research-guides-title" data-research-guides>
 <h2 id="research-guides-title">${cards.length} 篇问题式导读：从一个疑问读进原文</h2><p>先看问题和机制，再展开创新、证据与限制。这些是新增阅读资源；已有实验和教学案例的数量不变，导读不表示整篇论文已复现。</p>
