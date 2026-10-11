@@ -13,7 +13,7 @@ test('shared-array has one canonical mechanism in the existing eight-direction f
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(i=>i[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'spatial');
  a.equal(c.learningEntry,'shared-array.html#question');a.equal(u.href,'shared-array.html#experiment');a.equal(c.paper,'shared-array.html#paper');a.equal(c.next,'shared-array.html#boundaries');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,24);a.equal(r.cases.length,13);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,25);a.equal(r.cases.length,14);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('shared-array provides all six learning layers without replacing existing beginner entries',()=>{
@@ -73,7 +73,7 @@ test('shared-array prerequisites, section anchors and generated portals resolve 
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((h.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
  for(const href of [u.href,c.paper,c.next,p.next])a.ok(h.includes(`href="${href}"`),href);
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);a.ok(read('index.html').includes(`href="${c.learningEntry}"`));
- a.ok(h.includes('href="experiments.html" aria-current="location"'));a.ok(read('index.html').includes('<strong>24</strong> 个机制实验'));
+ a.ok(h.includes('href="experiments.html" aria-current="location"'));a.ok(read('index.html').includes('<strong>25</strong> 个机制实验'));
 });
 
 test('eighth existing card is live only through its canonical learning entry while DeepSense stays resource-only',()=>{
