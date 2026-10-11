@@ -1,0 +1,262 @@
+{
+  "checked_date_utc": "2026-10-11",
+  "case_id": "case-radar-beam-decision",
+  "bibliography_id": "radar_prediction",
+  "title": "Radar Aided 6G Beam Prediction: Deep Learning Algorithms and Real-World Demonstration",
+  "authors": [
+    "Umut Demirhan",
+    "Ahmed Alkhateeb"
+  ],
+  "doi": "10.1109/WCNC51071.2022.9771564",
+  "conference": "WCNC 2022",
+  "pages": "2655–2660",
+  "institutional_url": "https://www.wi-lab.net/research/radar-aided-beam-prediction-paper/",
+  "primary_edition": {
+    "version": "WCNC 2022 accepted manuscript, six PDF pages",
+    "record_url": "https://par.nsf.gov/biblio/10404321",
+    "pdf_url": "https://par.nsf.gov/servlets/purl/10404321",
+    "pdf_sha256": "34cc5b1602b185bdcf256848ee88b26f778a4fa1ee9f49a63fcfd0d9fca61d21",
+    "pdf_pages": 6,
+    "page_numbering": "One-based PDF pages, not conference print pagination",
+    "locators": [
+      {
+        "pages": [
+          1,
+          2
+        ],
+        "locator": "§II Eqs.(4)–(6)",
+        "type": "communication model and label",
+        "use": "Communication channel and strongest measured beam among 64"
+      },
+      {
+        "pages": [
+          2,
+          3,
+          4
+        ],
+        "locator": "§III",
+        "type": "preprocessing and CNN",
+        "use": "Radar-feature mapping and classifier; not implemented here"
+      },
+      {
+        "page": 4,
+        "locator": "Table II",
+        "type": "input dimensions",
+        "use": "Range-angle, range-velocity and radar-cube feature sizes"
+      },
+      {
+        "page": 4,
+        "locator": "Fig.3",
+        "type": "hardware configuration",
+        "use": "Separate 77 GHz FMCW radar and 60 GHz communication array"
+      },
+      {
+        "page": 4,
+        "locator": "§IV-A",
+        "type": "collection",
+        "use": "Collection setup and observations"
+      },
+      {
+        "pages": [
+          4,
+          5
+        ],
+        "locator": "§IV-B",
+        "type": "label construction and splitting",
+        "use": "Filtered measurement task and strongest communication-beam labels"
+      },
+      {
+        "page": 5,
+        "locator": "§IV-B split sentence",
+        "type": "evaluation split",
+        "use": "6,319 filtered samples; 70/20/10 train/validation/test, visually verified; no held-trajectory/held-scene split established"
+      },
+      {
+        "pages": [
+          5,
+          6
+        ],
+        "locator": "§V Figs.5–7",
+        "type": "study-specific results",
+        "use": "Accuracy, processing cost and training-set size; not reproduced"
+      }
+    ],
+    "radar_raw_dimensions": {
+      "receive_channels": 4,
+      "samples_per_chirp": 256,
+      "chirps": 128
+    },
+    "sample_count": 6319,
+    "split_fractions": {
+      "train": 0.7,
+      "validation": 0.2,
+      "test": 0.1
+    },
+    "split_sentence_pdf_page": 5,
+    "input_label_boundary": "Current radar frame is input; strongest measured communication beam is label. RGB filters samples and is not radar-only predictor input.",
+    "evaluation_boundary": "Five training instances and validation-based checkpoint selection do not establish held-trajectory or held-scene independence."
+  },
+  "other_editions_and_resources": [
+    {
+      "id": "radar-arxiv-v1",
+      "version": "arXiv:2111.09676v1",
+      "date": "2021-11-18",
+      "landing_url": "https://arxiv.org/abs/2111.09676v1",
+      "pdf_url": "https://arxiv.org/pdf/2111.09676v1",
+      "pdf_sha256": "ef61a4147b09d8beb720d58b262559454b1810df44543cbadd511119318598db",
+      "pdf_pages": 9,
+      "locators": [
+        {
+          "locator": "§III-C Eq.(10)",
+          "use": "Top-K membership definition"
+        },
+        {
+          "page": 6,
+          "locator": "§V-B",
+          "use": "6,319 samples and 70/30 train/test, different from six-page accepted manuscript"
+        },
+        {
+          "locator": "§VI",
+          "use": "CPU preprocessing and GPU inference; version-specific details are not silently transferred"
+        }
+      ],
+      "split_fractions": {
+        "train": 0.7,
+        "test": 0.3
+      },
+      "license": "CC BY 4.0",
+      "boundary": "Paper license does not establish a dataset license."
+    },
+    {
+      "id": "deepsense-v2",
+      "version": "arXiv:2211.09769v2",
+      "date": "2023-03-20",
+      "landing_url": "https://arxiv.org/abs/2211.09769v2",
+      "pdf_url": "https://arxiv.org/pdf/2211.09769v2",
+      "pdf_sha256": "1dced2fe12b13a07c9269873dac90cce7a0a89916be20f7bfa6c6ce3ada01f59",
+      "locators": [
+        {
+          "locator": "§III",
+          "use": "Scenario means a collection session; data groups are aligned multimodal samples"
+        },
+        {
+          "locator": "§V-A/B",
+          "use": "Capture-rate coordination, stored UTC timestamps and post-processing alignment; synchronized does not establish identical exposure or verified zero skew"
+        },
+        {
+          "locator": "§VII",
+          "use": "Cross-scenario example uses vision and position in scenarios 1 and 5, not radar-only Scenario 9"
+        }
+      ],
+      "boundary": "Resource paper only; no measurement archive used; its bibliography card remains caseId null."
+    },
+    {
+      "id": "author-code",
+      "commit": "8a23f440b65fdc090b8161e4bfe4c1e0310ca67a",
+      "commit_date": "2025-04-21",
+      "url": "https://github.com/umut-demirhan/Radar-aided-beam-prediction/tree/8a23f440b65fdc090b8161e4bfe4c1e0310ca67a",
+      "license": "CC BY-NC-SA 4.0",
+      "execution": "Read-only research audit; never executed or imported into teaching code",
+      "locators": [
+        {
+          "path": "dataset.py",
+          "lines": "19–27",
+          "use": "MAT data arrays, unit1_radar_1, beam_index_1"
+        },
+        {
+          "path": "train.py",
+          "lines": "24–25,44–46",
+          "use": "Separate premade train/validation/test CSVs; memberships unverified"
+        },
+        {
+          "path": "train.py",
+          "lines": "103–109",
+          "use": "Minimum validation loss checkpoint, distinct from manuscript maximum validation top-1 wording"
+        },
+        {
+          "path": "scenario9_radar_beam-prediction_inference.py",
+          "lines": "59–61",
+          "use": "65 - y reversal, comment [1,64]; actual CSV base unverified, no speculative correction"
+        },
+        {
+          "path": "README.md",
+          "lines": "26–27",
+          "use": "New models need not exactly reproduce reported results"
+        }
+      ]
+    }
+  ],
+  "real_data_status": {
+    "downloaded_measurements": false,
+    "verified_redistributable_subset": false,
+    "access": "Official archive access requires login; no login gate bypassed and no archive opened.",
+    "current_documented_scenario9_count": 5964,
+    "count_boundary": "Current documentation is not interchangeable with the accepted manuscript 6,319-sample task set; no downloaded rows checked.",
+    "group_field_documented": "seq_index",
+    "license_link_statement": "Current task/scenario links specify CC BY-NC-ND 4.0; account-only additional terms unknown.",
+    "unverified": [
+      "Archive/version and rows",
+      "Exact split memberships",
+      "Measurement timestamps/availability",
+      "Label orientation and CSV index base",
+      "Permission to redistribute derived teaching arrays"
+    ]
+  },
+  "teaching_model": {
+    "status": "Independent synthetic sensing-assisted communication mechanism; not paper-data, CNN or measured-result reproduction",
+    "array_elements": 16,
+    "codebook_beams": 64,
+    "antenna_spacing_wavelengths": 0.5,
+    "aperture_wavelengths": 7.5,
+    "channel": "Single-path narrowband communication; unit-norm ULA response",
+    "learner": "Fixed seven-neighbor supervised regressor on synthetic sensor features and training beam-label coordinates",
+    "knn_neighbors": 7,
+    "training_samples_per_protocol": 512,
+    "synthetic_scenes": 3,
+    "passes_per_scene": 12,
+    "frames_per_pass": 64,
+    "test_anchor_count": 64,
+    "test_pass_count": 4,
+    "split_contract": "Same anchors and matched training count for other frames from same passes, held passes, and held scenes; splits ask different questions.",
+    "feature_boundary": "Context values are synthetic group fingerprints by construction; metadata-renaming invariance tests the interface, not absence of group-identifying information.",
+    "random_generator": "JavaScript Mulberry32 uniforms and Box–Muller normal draws; not NumPy default_rng sample equivalence",
+    "oracle_separation": "Prediction reads sensor features and trained model only; IDs, true direction, test labels and evaluation powers do not enter prediction. Freeze ranking before evaluation.",
+    "hyperparameters": "Model hyperparameters including seven neighbors are prescribed in advance; no automatic model selection. Interactive exploration reuses the same toy evaluation anchors, so they are not an untouched final benchmark. Tuning against results would require a separate validation partition and protected final test.",
+    "near_tie_rule": "Within 1e-12 absolute relative-linear-power tolerance of remaining maximum, choose lowest beam index; anchored rule shared by labels and ranking.",
+    "gain_loss": "10 log10(max_j P_j / max_{j in S_K} P_j), using actual maximum; never clip. Exact zero candidate power yields positive Infinity. Plot floor is display-only.",
+    "floating_nulls": "Analytic ULA nulls may retain tiny positive floating-point residuals; they are not silently replaced with exact zeros.",
+    "probe_budget": "K/64 counts equal-cost ideal probes only; no measured end-to-end latency, throughput or energy gain.",
+    "metrics": [
+      "Top-K exact-label hit rate",
+      "Beam miss rate",
+      "Mean and p95 candidate-probing power loss",
+      "Loss exceedance above stated dB threshold",
+      "K/64 probe fraction"
+    ],
+    "uncertainty_boundary": "64 anchors from four correlated passes are not 64 independent trials; no naive per-frame binomial confidence intervals.",
+    "not_implemented": [
+      "Real measurements",
+      "Author CNN or preprocessing",
+      "RF hardware",
+      "Communication coding/decoding",
+      "Probe measurement noise",
+      "Online fallback/switching costs",
+      "End-to-end gain"
+    ]
+  },
+  "existing_influence_snapshots": {
+    "snapshot_date": "2026-10-10",
+    "radar_prediction": {
+      "openalex": 141,
+      "semantic_scholar": 161,
+      "completed_year_2025": 37
+    },
+    "deepsense": {
+      "openalex": 289,
+      "semantic_scholar": 377,
+      "completed_year_2025": 104
+    },
+    "preservation": "Existing directory citation services, timestamps, endorsements and socialDiscussion retained independently; no new card or refreshed impact snapshot."
+  },
+  "verification_scope": "Exact-version source locators and independent-model specification. Numerical, UI, browser and deployment checks must be reported separately after execution."
+}
