@@ -1753,6 +1753,20 @@
       "group": "research",
       "primaryDirectionId": "networks",
       "action": "先比较局部功率相同的同相/反相观测，再改变 ρ、κ 与规定 Pfa；观察原始与复匹配曲线重合、能量和基线及模板更新下的双向载荷。"
+    },
+    {
+      "id": "offgrid-range",
+      "title": "离格目标与测距网格",
+      "href": "offgrid-range.html#experiment",
+      "question": "同一个目标，网格更密就一定测得更准吗？",
+      "prerequisites": [
+        "foundations.html#matched",
+        "foundations.html#ofdm",
+        "foundations.html#limits"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "receiver",
+      "action": "固定同一复数观测与物理预算，比较粗细距离候选；先看单次带符号误差，再保留全部重复试验，检查 RMSE 与大误差次数。"
     }
   ],
   "pages": [
@@ -2024,6 +2038,19 @@
       "case": "case-distributed-detection",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同观测、同虚警率的检测检验"
+    },
+    {
+      "path": "offgrid-range.html",
+      "title": "同一个目标，网格更密就一定测得更准吗？",
+      "stage": "experiments",
+      "role": "基础机制 · 离格单目标测距与同观测误差比较",
+      "prerequisites": [
+        "foundations.html#matched",
+        "foundations.html#ofdm",
+        "foundations.html#limits"
+      ],
+      "next": "practice.html?topic=offgrid-range#notebook",
+      "nextLabel": "记录一次同观测的测距检验"
     }
   ],
   "schemaVersion": 1,
@@ -2372,6 +2399,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "同一个目标，网格更密就一定测得更准吗？",
+              "href": "offgrid-range.html#experiment",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
             }
           ]
         },
@@ -2401,6 +2436,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "从复数观测到逐候选拟合未知增益",
+              "href": "offgrid-range.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
             }
           ]
         },
@@ -2438,6 +2481,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "固定同一观测，比较粗细距离候选",
+              "href": "offgrid-range.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
             }
           ],
           "coverage": "direction-specific"
@@ -2501,6 +2552,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "更高匹配得分与更小距离误差的边界",
+              "href": "offgrid-range.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
             }
           ]
         },
@@ -2531,12 +2590,28 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "保留全部重复试验，复核 RMSE 与大误差",
+              "href": "offgrid-range.html#trials",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "下载证据并记录同观测的测距检验",
+              "href": "offgrid-range.html#record",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
             }
           ]
         }
       ],
-      "nextExtension": "增加连续参数估计与离格目标的可比实验，明确模型失配和低 SNR 条件。",
-      "coverage": "已有匹配、CFAR、实标量 LS/CRB 与递归背景专项机制；真实信道校准、非线性测距与多目标跟踪尚未实现",
+      "nextExtension": "在现有离格单目标有限网格比较之外，检验连续参数估计、模型失配与低 SNR 门限效应；不能把一个经探索选取的有限反例当作普遍排序。",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。",
       "scenePositions": [
         "interpret"
       ]
@@ -4083,7 +4158,8 @@
           "echo",
           "golay-radar",
           "ofdm-interpolation",
-          "multipath-channel"
+          "multipath-channel",
+          "offgrid-range"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -4138,11 +4214,12 @@
         "groupId": "inference",
         "label": "参数估计与误差",
         "question": "同一份观测怎样给出参数估计，误差又该怎样评价？",
-        "knownUnknown": "先固定样本比较未知参数的候选；深入实标量 LS 时，估计器接收 x、y，θ 只作评估真值",
+        "knownUnknown": "先固定样本比较未知参数的候选；实标量 LS 只接收 x、y；非线性测距在每个距离候选拟合未知复增益。参数真值只供生成与评价，不提供给估计器",
         "boundary": "实标量 LS 等号不能直接搬到非线性距离或角度",
         "unitRefs": [
           "shared",
-          "estimator-crb"
+          "estimator-crb",
+          "offgrid-range"
         ],
         "entryUnitRef": "shared"
       },
@@ -4179,7 +4256,9 @@
         "question": "曲线采得更密就能分开更近目标吗？",
         "knownUnknown": "给定物理观测条件；区分响应尺度与绘图格点",
         "boundary": "插值/零填充不自动增加物理分辨能力",
-        "unitRefs": []
+        "unitRefs": [
+          "offgrid-range"
+        ]
       },
       {
         "id": "ambiguity",
