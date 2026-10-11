@@ -5197,6 +5197,24 @@
         "unitId": "pilot",
         "guideId": "ofdm-passive-atomic-errors-2017",
         "nextGuideId": "zak-otfs-semiblind-offgrid-2026"
+      },
+      {
+        "nodeId": "angle",
+        "unitId": "array",
+        "guideId": "channels-shared-clusters-2024",
+        "nextGuideId": "channels-sensing-communication-mapping-2026"
+      },
+      {
+        "nodeId": "echo",
+        "unitId": "echo",
+        "guideId": "channels-target-environment-coupling-2025",
+        "nextGuideId": "channels-sensing-communication-mapping-2026"
+      },
+      {
+        "nodeId": "beam-design",
+        "unitId": "array",
+        "guideId": "mimo-ofdm-realtime-testbed-2023",
+        "nextGuideId": "sbfd-resource-synchronization-2026"
       }
     ]
   },
