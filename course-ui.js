@@ -6,7 +6,7 @@ const ink='#183248',muted='#556d80',teal='#087f78',blue='#2b64be',orange='#bc671
 const val=id=>Number($(id).value),on=id=>$(id).checked;
 const f=(x,n=2)=>Math.abs(x)<1e-10?(0).toFixed(n):x.toFixed(n);
 const degree=x=>x*180/Math.PI,complex=z=>`${f(z.re,3)} ${z.im<0?'−':'+'} j${f(Math.abs(z.im),3)}`;
-let stage=0,active=null,frame=0,printDetails=[];
+let stage=0,active=null,frame=0,printState=null;
 function inputs(){document.querySelectorAll('input[type=range]').forEach(e=>{let o=$(e.id+'-value');if(!o)return;const digits=e.dataset.digits;const value=digits===undefined?Number(e.value):Number(e.value).toFixed(Number(digits));o.textContent=`${value} ${e.dataset.unit||''}`.trim();});}
 function prep(id){const el=$(id);if(!el||!el.getClientRects().length||el.closest('[hidden]'))return null;const w=el.getBoundingClientRect().width,h=Number(el.dataset.h),dpr=Math.min(window.devicePixelRatio||1,2);
  el.width=Math.round(w*dpr);el.height=Math.round(h*dpr);el.style.height=h+'px';const g=el.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,w,h);g.font='14px system-ui, sans-serif';g.textBaseline='middle';g.lineWidth=1.5;return{g,w,h,el};}
@@ -71,7 +71,18 @@ function drawOfdm(){const R=val('o-r'),v=val('o-v'),base=C.ofdm(R,v),s=on('o-rem
  heat('o-rd',s.P,'rd',{k:s.best.r,m:7-s.best.d});$('o-rd-read').textContent=`最大匹配响应在 R̂ = ${f(s.best.r*s.dR,3)} m，v̂ = ${f(s.best.d*s.dv,2)} m/s；仿真真值是 ${f(R,3)} m、${f(v,2)} m/s。${on('o-remove')?'橙框只是最大响应标记，尚未经过 CFAR 检验。非整格目标的网格估计会有量化差异。':'警告：通信数据未消除，当前最大峰不可作为正确目标估计。'} 功率按相干匹配参考归一化，色标 −50 至 0 dB。`;
 }
 const stepNames=['一格','一行','距离匹配','一列','相位矩阵','距离–时间','距离–速度'];
-function setStep(n,scroll=false){stage=Math.max(0,Math.min(6,n));document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=Number(p.dataset.panel)!==stage);document.querySelectorAll('[data-step]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.step)===stage)));$('o-v-wrap').hidden=stage<3;$('o-prev').disabled=stage===0;$('o-next').disabled=stage===6;$('o-next').textContent=stage===6?'七步已走完':'下一步：'+stepNames[stage+1];$('o-stage-status').textContent=`第 ${stage+1} / 7 步：${stepNames[stage]}`;drawOfdm();if(scroll)document.querySelector(`[data-panel="${stage}"]`).scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+function setStep(n,scroll=false,focus=false){
+ stage=Math.max(0,Math.min(6,n));
+ document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=Number(p.dataset.panel)!==stage);
+ document.querySelectorAll('[data-step]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.step)===stage)));
+ $('o-v-wrap').hidden=stage<3;$('o-prev').disabled=stage===0;$('o-next').disabled=stage===6;
+ $('o-next').textContent=stage===6?'七步已走完':'下一步：'+stepNames[stage+1];
+ $('o-stage-status').textContent=`第 ${stage+1} / 7 步：${stepNames[stage]}`;drawOfdm();
+ const panel=document.querySelector(`[data-panel="${stage}"]`);
+ // Only an explicit keyboard/assistive activation moves focus; legacy hash and print calls do not.
+ if(focus)panel.querySelector('h3').focus({preventScroll:true});
+ if(scroll)panel.scrollIntoView({block:'start',behavior:focus||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+}
 function drawCF(){let guard=val('cf-guard'),half=8,cut=val('cf-cut'),p=Number($('cf-p').value),powers=C.cfarData($('cf-scenario').value),threshold=C.ca(powers,half,guard,p),min=half+guard,max=79-half-guard;cut=Math.max(min,Math.min(max,cut));$('cf-cut').min=min;$('cf-cut').max=max;$('cf-cut').value=cut;$('cf-cut-value').textContent=cut+' 格';
  let o=prep('cf-c');if(o){const ymax=Math.max(25,...powers,...threshold.filter(Number.isFinite))*1.12,a=axes(o,{title:'原始功率与局部门限；窗口随 CUT 移动',xmin:0,xmax:79,ymin:0,ymax,xlabel:'检测格编号（此处为一维剖面）',ylabel:'线性功率'});for(let i=cut-guard-half;i<=cut+guard+half;i++){o.g.fillStyle=i===cut?'#ffe6bd':Math.abs(i-cut)<=guard?'#e8e3f4':'#ddede7';o.g.fillRect(a.x(i-.45),a.T,a.ww/80,a.hh);}path(o.g,powers.map((v,i)=>[a.x(i),a.y(v)]),blue,1.5);path(o.g,threshold.map((v,i)=>[a.x(i),a.y(v)]),orange,2,[6,3]);dot(o.g,a.x(cut),a.y(powers[cut]),5,teal);text(o.g,'蓝：功率；橙虚线：门限',a.L+3,a.T+12,muted,11);}
  let alpha=C.caFactor(16,p);$('cf-read').textContent=`浅绿=16个训练格，浅紫=保护格，橙底=CUT。当前 CUT=${cut}，功率=${f(powers[cut],3)}；背景平均=${f(threshold[cut]/alpha,3)}；α=${f(alpha,3)}；门限=${f(threshold[cut],3)}。判决：${powers[cut]>threshold[cut]?'超过门限，报警':'未超过门限，不报警'}。这一次判决不等于检出率或虚警率。`;
@@ -86,7 +97,7 @@ const redraws={quad:()=>window.Intuition?.drawIQ(),motion:()=>window.Intuition?.
 function renderAll(){inputs();Object.values(redraws).forEach(fn=>fn());}
 function changed(e){inputs();const key=e.target.id.split('-')[0];if(redraws[key])redraws[key]();if(key==='cf'&&e.target.id!=='cf-cut')$('cf-stats').textContent='参数已更改；请重新运行统计检验。';}
 document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',changed));
-document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>setStep(+b.dataset.step,true)));$('o-next').onclick=()=>setStep(stage+1,true);$('o-prev').onclick=()=>setStep(stage-1,true);
+document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',e=>setStep(+b.dataset.step,true,e.detail===0)));$('o-next').onclick=e=>setStep(stage+1,true,e.detail===0);$('o-prev').onclick=e=>setStep(stage-1,true,e.detail===0);
 $('o-default').onclick=()=>{$('o-r').value=37.5;$('o-v').value=7.5;$('o-remove').checked=true;$('o-wrapped').checked=false;$('o-trial').value=0;$('o-k').value=1;$('o-m').value=0;inputs();drawOfdm();};
 $('o-align').onclick=()=>{$('o-trial').value=$('o-r').value;inputs();drawOfdm();};$('match-align').onclick=()=>{$('match-lag').value=25;inputs();drawMatch();};$('arr-align').onclick=()=>{$('arr-s').value=$('arr-a').value;inputs();drawArray();};$('dop-still').onclick=()=>{$('dop-v').value=0;inputs();drawDop();};
 $('o-grid').addEventListener('pointerdown',e=>{const el=e.currentTarget,a=el._grid;if(!a)return;const b=el.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top,k=Math.floor((x-a.L)/a.ww*a.cols),m=Math.floor((y-a.T)/a.hh*a.rows);if(k>=0&&k<16&&m>=0&&m<16){$('o-k').value=k;$('o-m').value=m;inputs();drawOfdm();}});
@@ -96,10 +107,54 @@ function tick(t){if(!active)return;const a=active;let dt=Math.min(.08,(t-a.last)
 document.querySelectorAll('[data-play]').forEach(b=>{b.dataset.original=b.textContent;b.setAttribute('aria-pressed','false');b.onclick=()=>{if(active?.b===b){stop();return;}stop();const el=$(b.dataset.play);active={b,el,rate:+b.dataset.rate,raw:+el.value,last:performance.now()};b.textContent='暂停';b.setAttribute('aria-pressed','true');frame=requestAnimationFrame(tick);};});
 document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>{stop();let el=$(b.dataset.reset);el.value=el.min;changed({target:el});});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-$('print-book').onclick=()=>window.print();window.addEventListener('beforeprint',()=>{stop();printDetails=Array.from(document.querySelectorAll('main details')).map(e=>[e,e.open]);printDetails.forEach(([e])=>e.open=true);document.querySelectorAll('.step-panel').forEach(p=>p.hidden=false);renderAll();});window.addEventListener('afterprint',()=>{printDetails.forEach(([e,open])=>e.open=open);printDetails=[];setStep(stage);});
+$('print-book').onclick=()=>window.print();
+window.addEventListener('beforeprint',()=>{
+ stop();if(printState)return;
+ printState={stage,details:Array.from(document.querySelectorAll('main details')).map(e=>[e,e.open])};
+ printState.details.forEach(([e])=>e.open=true);document.querySelectorAll('.step-panel').forEach(p=>p.hidden=false);renderAll();
+});
+window.addEventListener('afterprint',()=>{
+ if(!printState)return;const saved=printState;printState=null;
+ saved.details.forEach(([e,open])=>e.open=open);setStep(saved.stage);
+});
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(renderAll,160);});
-function readingProgress(){const top=window.scrollY,total=document.documentElement.scrollHeight-window.innerHeight;$('progress').style.width=(100*top/Math.max(total,1))+'%';let current='start';document.querySelectorAll('.chapter').forEach(s=>{if(s.getBoundingClientRect().top<window.innerHeight*.28)current=s.id;});document.querySelectorAll('.toc nav a').forEach(a=>{if(a.hash==='#'+current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}
-window.addEventListener('scroll',readingProgress,{passive:true});document.querySelectorAll('.mobile-toc a').forEach(a=>a.onclick=()=>a.closest('details').open=false);
-renderAll();setStep(0);readingProgress();
+const chapterLinks=Array.from(document.querySelectorAll('.toc nav a,.mobile-toc nav a'));
+function currentChapter(id){
+ let label='';chapterLinks.forEach(a=>{if(a.hash==='#'+id){a.setAttribute('aria-current','location');label=a.textContent.trim();}else a.removeAttribute('aria-current');});
+ $('mobile-chapter-current').textContent=label?'当前：'+label:'00–13 · 选择章节';
+}
+function hashChapter(){
+ let id;try{id=decodeURIComponent(window.location.hash.slice(1));}catch{return null;}
+ return $(id)?.closest('.chapter');
+}
+function readingProgress(){
+ const top=window.scrollY,total=document.documentElement.scrollHeight-window.innerHeight;$('progress').style.width=(100*top/Math.max(total,1))+'%';
+ let current='start';document.querySelectorAll('.chapter').forEach(s=>{if(s.getBoundingClientRect().top<window.innerHeight*.28)current=s.id;});currentChapter(current);
+}
+window.addEventListener('scroll',readingProgress,{passive:true});
+window.addEventListener('hashchange',()=>{const chapter=hashChapter();if(chapter)currentChapter(chapter.id);else readingProgress();});
+window.addEventListener('pageshow',readingProgress);
+document.querySelectorAll('.mobile-toc a').forEach(a=>a.addEventListener('click',e=>{
+ // Keep native anchors/history. Close the disclosure before the browser scrolls to the chapter.
+ if(e.button>0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
+ a.closest('details').open=false;
+ const chapter=$(a.hash.slice(1));if(!chapter)return;
+ currentChapter(chapter.id);
+ if(e.detail===0){const heading=chapter.querySelector('h2');heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+}));
+try{
+ renderAll();setStep(0);readingProgress();
+ $('ofdm-guide').classList.add('is-enhanced');drawOfdm();
+ const chapter=hashChapter();if(chapter){
+  currentChapter(chapter.id);
+  // Collapsing the six static fallback panels can move a cold-linked later chapter.
+  // Re-align once after enhancement; leave native history and keyboard focus alone.
+  const hash=window.location.hash;
+  if(hash==='#'+chapter.id)requestAnimationFrame(()=>{if(window.location.hash===hash)chapter.scrollIntoView({block:'start',behavior:'instant'});});
+ }
+}catch(error){
+ // A failed initial render must not leave six chapters hidden or expose inert controls.
+ $('ofdm-guide').classList.remove('is-enhanced');document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=false);throw error;
+}
 window.ISACCourseUI={setStep,getStage:()=>stage,renderAll,stop};
 })();
