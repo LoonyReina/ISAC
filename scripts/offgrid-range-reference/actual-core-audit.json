@@ -1,0 +1,37 @@
+{
+  "corePath": "offgrid-range-core.js",
+  "sha256": "ae47307d87ea1295aba99f9bf4d284332d26a6454d9a0b37520c252eae9b17ab",
+  "checks": [
+    "noise-free-offgrid model/schema/RNG/settings/ledger match independent fixture",
+    "noise-free-offgrid every observation and both estimates match independent Python fixture",
+    "noise-free-offgrid all summary values match Python aggregates",
+    "high-snr-offgrid model/schema/RNG/settings/ledger match independent fixture",
+    "high-snr-offgrid every observation and both estimates match independent Python fixture",
+    "high-snr-offgrid all summary values match Python aggregates",
+    "low-snr-counterexample model/schema/RNG/settings/ledger match independent fixture",
+    "low-snr-counterexample every observation and both estimates match independent Python fixture",
+    "low-snr-counterexample all summary values match Python aggregates",
+    "RNG uint32 states/uniforms exact; Gaussian port bounded",
+    "receiver source has no generator truth/noise/RNG dependency",
+    "all-zero and midpoint ties deterministic",
+    "global phase rotation keeps same selected range/profile score",
+    "fixed endpoints, off-grid units and first-null values",
+    "selected row does not alter trial data; selection replays same observed Y",
+    "chunking preserves trial order/prefix and completed output",
+    "cancel preserves every attempted row and suppresses full-run aggregates",
+    "finite invalid generator settings preserve failure rows",
+    "nonfinite input, zero energy and non-increasing candidates reject",
+    "low-SNR large and boundary errors remain in RMSE"
+  ],
+  "trialsCompared": 2001,
+  "estimatesCompared": 4002,
+  "maxObservationDifference": 2.220446049250313e-16,
+  "maxScoreDifference": 2.6645352591003757e-15,
+  "maxGainDifference": 6.661338147750939e-16,
+  "maxResidualDifference": 1.7763568394002505e-15,
+  "notes": [
+    "Python emits negative zero for some QPSK real parts; JavaScript JSON canonicalizes to zero. Ledger comparison treats those exact mathematical zeros identically."
+  ],
+  "checkCount": 20,
+  "scope": "Read-only actual production-core audit against independent fixtures and edge cases; not UI/browser verification"
+}
