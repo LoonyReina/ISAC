@@ -44,7 +44,7 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
 });
 
 test('existing paper layers point to actual readings without expanding mechanisms, cases or concepts',()=>{
- a.equal(r.units.length,19);a.equal(r.cases.length,8);a.equal(r.knowledgeMap.nodes.length,31);a.equal(r.directions.length,8);
+ a.equal(r.units.length,20);a.equal(r.cases.length,9);a.equal(r.knowledgeMap.nodes.length,31);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);
