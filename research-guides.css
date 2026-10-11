@@ -12,6 +12,27 @@
 .guide-depth dl{display:block;font-size:15px}.guide-depth dt{font-weight:700;margin-top:18px}.guide-depth dd{margin:7px 0;line-height:1.85}.guide-depth ul,.guide-reading-steps{padding-left:20px}.guide-depth li{margin:8px 0;font-size:14px;line-height:1.8}
 .guide-source{border-top:1px solid var(--site-line);padding-top:12px}.guide-source p{font-size:14px}.guide-connection a,.guide-source a{overflow-wrap:anywhere}
 .research-guides :focus-visible{outline:3px solid var(--site-accent);outline-offset:4px}
+/* Original qualitative traces: every state has a word and a border treatment. */
+.guide-visual-trace{margin:20px 0;border:1px solid var(--site-line);border-radius:8px;padding:0 12px}
+.guide-visual-trace>summary{min-height:44px;box-sizing:border-box;padding:11px 0;cursor:pointer;font-size:15px;font-weight:650;line-height:1.65}
+.trace-body{container-type:inline-size;padding:6px 0 14px;min-width:0}.trace-body h5{font-size:18px;line-height:1.6;margin:6px 0 14px}
+.trace-figure{margin:0}.trace-figure figcaption{font-size:13px;line-height:1.7;color:var(--site-muted);margin-bottom:16px}
+.trace-steps{display:grid;grid-template-columns:1fr;gap:16px;list-style:none;padding:0;margin:0}
+.trace-step{container-type:inline-size;min-width:0;padding:12px;border:1px solid var(--site-line);border-radius:8px;background:#f6f8fa}
+.trace-step h6{display:flex;align-items:baseline;gap:8px;font-size:15px;line-height:1.65;margin:0 0 14px;color:#152b40}
+.trace-step-number{display:inline-flex;align-items:center;justify-content:center;flex:0 0 28px;height:28px;border-radius:50%;background:#174a64;color:#fff;font-size:14px}
+.trace-blocks{display:grid;grid-template-columns:1fr;gap:10px;align-items:stretch}
+.trace-block{min-width:0;padding:12px;background:#fff;border:2px solid #637887;border-radius:6px;overflow-wrap:anywhere}
+.trace-block p{font-size:14px;line-height:1.7;margin:7px 0 0}.trace-block .trace-state{display:inline-block;margin:0;font-size:12px;font-weight:750;color:#233b4d}.trace-block .trace-block-label{font-weight:700}
+.trace-status-known,.trace-status-supported{border-color:#087f78}.trace-status-unknown{border-style:dashed;border-color:#916426}.trace-status-design{border-style:double;border-width:3px;border-color:#69618a}.trace-status-not-established{border-style:dashed;border-color:#8c5965}
+.trace-explanation,.trace-answer{margin-top:10px}.trace-explanation>summary,.trace-answer>summary{min-height:44px;box-sizing:border-box;cursor:pointer;font-size:14px;line-height:1.7;padding:10px 0}
+.trace-explanation>div p,.trace-answer>div p,.trace-explanation-print p,.trace-answer-print p{font-size:14px;line-height:1.8}.trace-source,.trace-lesson{overflow-wrap:anywhere}
+.trace-step .trace-connector{text-align:center;font-size:12px;color:var(--site-muted);margin:12px 0 0}
+.trace-checkpoint{border-top:1px solid var(--site-line);padding-top:12px;margin-top:12px}.trace-checkpoint>p{font-size:15px;line-height:1.8}.trace-next{margin-top:20px}.trace-body .trace-edition{font-size:12px;line-height:1.8;color:var(--site-muted)}
+.guide-trace-print{display:none}
+@container(min-width:400px){.trace-blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container(min-width:720px){.trace-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.research-guide-grid{grid-template-columns:1fr}.research-guide-card{padding:20px}.research-guide-card h4{font-size:20px}}
 @media(max-width:480px){.guide-controls{padding:14px}.guide-controls>div{flex-basis:100%}}
 @media print{.research-guides .guide-controls,.research-guides [data-guide-empty]{display:none!important}.research-guides [data-research-guide][hidden],.research-guides [data-guide-group][hidden]{display:block!important}.research-guide-grid{display:block}.research-guide-card{break-inside:avoid;margin-bottom:18px}.research-guides details::details-content{display:block!important;content-visibility:visible!important}.research-guides details>div{display:block!important}}
+@media print{.guide-visual-trace{display:none!important}.guide-trace-print{display:block!important}.research-guide-card[data-visual-trace-card]{break-inside:auto}.trace-body,.trace-step{container-type:normal}.trace-steps{display:block}.trace-step{break-inside:avoid;margin-bottom:14px}.trace-blocks{grid-template-columns:repeat(2,minmax(0,1fr))}.trace-step .trace-connector{display:none}}
