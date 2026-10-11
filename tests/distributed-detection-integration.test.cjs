@@ -96,6 +96,6 @@ test('generated portals expose real learning and experiment links, accurate coun
  a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>26</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
- a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html#notebook"'));
+ a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));
  for(const href of p.prerequisites)a.ok(page.includes(`href="${href}"`));
 });

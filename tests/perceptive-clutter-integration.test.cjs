@@ -433,7 +433,7 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
  for(const anchor of ['question','model','experiment','source','boundary','validation'])resolve(p.path+'#'+anchor);
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.next])resolve(href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
- a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html#notebook"'));
+ a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html?topic=perceptive-clutter#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes('href="'+u.href+'"'),file);a.ok(read('index.html').includes('href="'+c.learningEntry+'"'));
  const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes('<strong>26</strong> 个机制实验'));a.ok(home.includes('<strong>8</strong> 个研究方向'));
 });
