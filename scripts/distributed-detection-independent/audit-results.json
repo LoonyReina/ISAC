@@ -1,0 +1,154 @@
+{
+  "reference_path": "scripts/distributed-detection-reference/detection_reference.py",
+  "reference_sha256": "4c3594b498431ba33f638b5c3be9811691e48231396a903dcbc1e906fcde2f0b",
+  "oracle_precision_decimal_digits": 100,
+  "checks": [
+    {
+      "name": "tail_equal_zero_near_limits",
+      "passed": true,
+      "detail": {
+        "cases": 72,
+        "max_log_tail_relative_error": 2.5381913151618993e-16,
+        "max_lower_cdf_relative_error": 2.195105928755955e-16,
+        "worst_case": [
+          0.1,
+          0.25
+        ]
+      }
+    },
+    {
+      "name": "fixed_pfa_336_case_high_precision_grid",
+      "passed": true,
+      "detail": {
+        "cases": 336,
+        "max_threshold_relative_error": 3.893257249314056e-16,
+        "max_log_pfa_relative_error": 7.603027240321104e-16,
+        "max_pd_absolute_error": 1.5308362676678135e-16,
+        "max_miss_relative_error": 6.970673327036751e-16,
+        "worst_threshold_case": [
+          10000.0,
+          0.99999999,
+          0.999999
+        ]
+      }
+    },
+    {
+      "name": "matrix_eigen_conjugation_phase",
+      "passed": true,
+      "detail": {
+        "cases": 240,
+        "max_matrix_eigen_absolute_error": 5.329070518200751e-15,
+        "coordinate_covariance": "C12 phase transforms by theta1 minus theta2"
+      }
+    },
+    {
+      "name": "full_raw_gaussian_and_residual_sufficiency",
+      "passed": true,
+      "detail": {
+        "cases": 16,
+        "max_full_dense_llr_absolute_error": 1.0179357357031904e-14
+      }
+    },
+    {
+      "name": "phase_and_energy_domain_counterexamples",
+      "passed": true,
+      "detail": {
+        "same_energy_Q": [
+          3.36,
+          1.7142857142857142
+        ],
+        "energy_LLR_same_sum": [
+          0.307551590767041,
+          0.14494560545912433
+        ],
+        "interpretation": "Energy sum is not the optimal two-energy test when rho*kappa>0"
+      }
+    },
+    {
+      "name": "independent_monte_carlo",
+      "passed": true,
+      "detail": {
+        "seed": 843287,
+        "trials_per_hypothesis": 300000,
+        "interval": "99% exact Clopper-Pearson, pointwise not simultaneous",
+        "rows": [
+          {
+            "hypothesis": "H0",
+            "joint_rate": 0.05003333333333333,
+            "joint_count": 15010,
+            "joint_99pct_exact_CI": [
+              0.04901353473202748,
+              0.05106743283753746
+            ],
+            "analytic": 0.05,
+            "energy_rate": 0.05009333333333333,
+            "energy_count": 15028,
+            "energy_99pct_exact_CI": [
+              0.049072951612129885,
+              0.051128014032666765
+            ],
+            "energy_analytic": 0.05
+          },
+          {
+            "hypothesis": "H1",
+            "joint_rate": 0.6441233333333334,
+            "joint_count": 193237,
+            "joint_99pct_exact_CI": [
+              0.6418677955726754,
+              0.6463742961685929
+            ],
+            "analytic": 0.6433127617254235,
+            "energy_rate": 0.6257233333333333,
+            "energy_count": 187717,
+            "energy_99pct_exact_CI": [
+              0.6234438333422995,
+              0.6279988425159634
+            ],
+            "energy_analytic": 0.6243193955523237
+          }
+        ],
+        "raw_generator_trials": 20000,
+        "raw_generator_seed": 453893,
+        "raw_generator_covariance": [
+          [
+            "(4.014688562159972-4.27165824589054e-19j)",
+            "(2.241517400119165+0.004966592505178033j)"
+          ],
+          [
+            "(2.241517400119165-0.004966592505178034j)",
+            "(3.975603812123277-7.411154263028659e-19j)"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "zero_randomization_input_truth_contract",
+      "passed": true,
+      "detail": {
+        "rho_zero": "Exact Pfa requires external independent uniform; statistical independence cannot be enforced by function signature",
+        "input_guards": "Declared finite ranges checked",
+        "truth_firewall": "Detector signatures take observations/model only; simulation labels remain generator inputs"
+      }
+    },
+    {
+      "name": "finite_payload_ledger",
+      "passed": true,
+      "detail": {
+        "length": 16,
+        "blocks": 7,
+        "raw_reals": 448,
+        "complex_reals": 104,
+        "energy_reals": 90,
+        "scope": "Numerical payload only, center already knows template/model, unicast to two receivers, one template update and two model updates"
+      }
+    }
+  ],
+  "failures": [],
+  "passed": true,
+  "limitations": [
+    "No browser, repository edits, publishing, or paper MAPRT reproduction",
+    "Monte Carlo verifies ordinary representative probabilities, not 1e-12 tails",
+    "Numeric grid is finite; it does not prove every floating-point input",
+    "Energy-message optimal LRT is derived/phase-integrated, its full optimal ROC is not computed"
+  ]
+}
