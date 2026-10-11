@@ -42,7 +42,7 @@ test('unimplemented papers render no local action, and each mechanism requires a
  const absent={...registry,cases:registry.cases.filter(c=>!data.cards.some(card=>card.caseId===c.id))};const pending=render(absent);
  a.match(getCard('optimal_waveform',pending),/教学案例准备中/);
  for(const c of data.cards){const card=getCard(c.id,pending);a.ok(!/href="(?!https:)/.test(card),c.id);}
- for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html'],['case-golay-radar','80211ad','golay-radar.html'],['case-ofdm-interpolation','ofdm_full_duplex','ofdm-interpolation.html']]){
+ for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html'],['case-golay-radar','80211ad','golay-radar.html'],['case-ofdm-interpolation','ofdm_full_duplex','ofdm-interpolation.html'],['case-radar-beam-decision','radar_prediction','radar-beam-decision.html']]){
   a.match(getCard(paperId,pending),/教学案例准备中/);
   const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#experiment`}],pages:[...registry.pages,{path:file}]};
   a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#experiment"`));
@@ -63,12 +63,12 @@ test('adding or removing bibliography cards updates both generated heading and r
  for(const cards of [data.cards.slice(0,-1),[...data.cards,{...data.cards[0],id:'additional-paper'}]]){
   const changed={...data,cards},outputs={};
   vm.runInNewContext(read('scripts/generate-site.cjs'),{__dirname:path.join(root,'scripts'),process:{argv:[]},console:{log(){}},require:id=>id==='node:fs'?{...fs,readFileSync:(file,...args)=>String(file)===path.join(root,registry.researchDirectoryFile)?JSON.stringify(changed):fs.readFileSync(file,...args),writeFileSync:(file,text)=>outputs[path.basename(file)]=text}:require(id)});
-  const h=outputs['reading.html'];a.ok(h.includes(`>${cards.length} 篇研究论文：先选机制，再核对影响证据</h2>`));a.ok(h.includes(`href="#influential-papers">${cards.length} 篇论文与影响证据</a>`));a.equal([...h.matchAll(/class="influence-card"/g)].length,cards.length);a.ok(!h.includes('九篇'));
+  const h=outputs['reading.html'];a.ok(h.includes(`>${cards.length} 篇研究论文：先选机制，再核对影响证据</h2>`));a.ok(h.includes(`href="#influential-papers">${cards.length} 篇论文与影响证据</a>`));a.equal([...h.matchAll(/class="influence-card"/g)].length,cards.length);a.doesNotMatch(h.match(/<h2 id="influential-papers-title">[^<]*<\/h2>/)[0],/九篇/);a.doesNotMatch(h.match(/href="#influential-papers">[^<]*<\/a>/)[0],/九篇/);
  }
 });
 
-test('exactly five bibliography cases are active and four remain honestly unavailable',()=>{
- const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,5);a.equal(pending.length,4);
+test('exactly six bibliography cases are active and three remain honestly unavailable',()=>{
+ const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,6);a.equal(pending.length,3);
  for(const c of active){const card=getCard(c.id);a.ok(/href="(?!https:)/.test(card));a.ok(!/教学案例准备中|深度交互尚未实现/.test(card));a.ok(!/尚未实现|准备中/.test(c.readingPlan));}
  for(const c of pending){const card=getCard(c.id);a.match(card,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(card));}
 });

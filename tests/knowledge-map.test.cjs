@@ -160,7 +160,7 @@ test('case choices derive from canonical titles and entries in concept and direc
   a.ok(h.indexOf('class="map-case-paths"')<h.indexOf('class="map-local-map"'));
   a.ok(!block.closest('details'));a.match(h,/CANONICAL DEEP CASE &lt;renamed>/);
  }
- for(const [id,expected]of [['beam-design',['case-near-field','case-joint-beamforming','case-crb-beamforming']],['waveform-design',['case-pilot','case-waveform','case-golay-radar']]]){
+ for(const [id,expected]of [['beam-design',['case-near-field','case-joint-beamforming','case-crb-beamforming','case-radar-beam-decision']],['waveform-design',['case-pilot','case-waveform','case-golay-radar']]]){
   const links=parse(template(html,id)).querySelector('.map-case-paths').querySelectorAll('a');
   a.deepEqual(links.map(l=>l.textContent),expected.map(id=>r.cases.find(c=>c.id===id).title+' →'));
  }
@@ -183,6 +183,7 @@ test('case-free concepts and directions have no empty or proposed case choices',
  for(const n of registry.knowledgeMap.nodes.filter(n=>!registry.cases.some(c=>n.unitRefs.includes(c.unit))))a.equal(parse(template(html,n.id)).querySelector('.map-case-paths'),null,n.id);
  for(const d of registry.directions.filter(d=>!d.primaryCaseIds.length))a.equal(parse(template(html,'direction:'+d.id)).querySelector('.map-case-paths'),null,d.id);
  const r=structuredClone(registry),d=r.directions.find(d=>d.id==='learning');
+ d.primaryCaseIds=[]; // Explicitly exercise a case-free direction even after a real learning case is added.
  d.levels.find(l=>l.id==='intuition').items.unshift({label:'PROPOSED NEW CASE',status:'proposed',href:'unimplemented.html#case'});
  a.equal(parse(template(render(r),'direction:learning')).querySelector('.map-case-paths'),null);
 });
@@ -231,9 +232,11 @@ test('estimation starts with common observations and retains the scoped advanced
  resolve(item.href);a.ok(read('reading.html').includes(escape(item.note)));
 });
 
-test('mutual assistance is a bounded native theory route without a fabricated experiment',()=>{
- const k=registry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,[]);a.equal(n.entryUnitRef,undefined);resolve(n.href);
- const h=template(render(registry),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/协同收益/);a.match(h,/尚无感知辅助波束选择或在线闭环互助实现/);a.match(h,/尚无独立专项实验/);a.ok(!h.includes('进入机制实验'));a.equal(tree.querySelector('.map-case-paths'),null);
+test('mutual assistance preserves its native theory entry and links only the bounded synthetic mechanism',()=>{
+ const k=registry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,['radar-beam-decision']);a.equal(n.entryUnitRef,undefined);resolve(n.href);
+ const h=template(render(registry),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/任务互助收益/);a.match(h,/已有独立合成感知辅助波束候选机制/);a.match(h,/未实现在线闭环或端到端收益验证/);a.doesNotMatch(h,/尚无独立专项实验/);
+ const beginner=tree.querySelector('.map-beginner');a.deepEqual(beginner.querySelectorAll('a').map(l=>l.attrs.href),['theory.html#evolution','radar-beam-decision.html#experiment']);
+ const choices=tree.querySelector('.map-case-paths').querySelectorAll('a');a.equal(choices.length,1);a.equal(choices[0].attrs.href,'radar-beam-decision.html#mechanism');resolve(choices[0].attrs.href);
  const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
  const runtime=setup();runtime.search('互助');a.equal(runtime.results.children.length,1);runtime.click(runtime.results.querySelector('button'));a.equal(runtime.location.hash,'#map-node-mutual-assistance');
  a.ok(read('index.html').includes(`<strong>${k.nodes.length}</strong> 个核心概念`));
