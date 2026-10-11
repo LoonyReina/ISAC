@@ -21,7 +21,7 @@ test('OFDM prerequisites and shared navigation retain a usable first learning en
  a.deepEqual(u.prerequisites,expected);a.deepEqual(p.prerequisites,expected);
  const html=read(p.path);
  for(const href of expected){resolve(href);a.ok(c.fields['先修'].includes(`href="${href}"`));a.ok(html.includes(`href="${href}"`));}
- for(const href of [u.href,c.paper,c.next,'practice.html#notebook'])a.ok(html.includes(`href="${href}"`),href);
+ for(const href of [u.href,c.paper,c.next,'practice.html?topic=ofdm-interpolation#notebook'])a.ok(html.includes(`href="${href}"`),href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp(`<!-- SITE:${key}:START -->`,'g'))||[]).length,1);
  a.ok(html.includes('href="experiments.html" aria-current="location"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
