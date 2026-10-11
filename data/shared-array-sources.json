@@ -1,0 +1,57 @@
+{
+  "verified_date": "2026-10-11",
+  "canonical": {
+    "title": "MU-MIMO Communications With MIMO Radar: From Co-Existence to Joint Transmission",
+    "authors": [
+      "Fan Liu",
+      "Christos Masouros",
+      "Ang Li",
+      "Huafei Sun",
+      "Lajos Hanzo"
+    ],
+    "year": 2018,
+    "journal": "IEEE Transactions on Wireless Communications",
+    "volume": 17,
+    "issue": 4,
+    "pages": "2755-2770",
+    "doi": "10.1109/TWC.2018.2803045"
+  },
+  "editions": [
+    {
+      "type": "arxiv preprint v1 not accepted manuscript",
+      "date": "2017-07-03",
+      "url": "https://arxiv.org/pdf/1707.00519v1",
+      "sha256": "b9cbff1ab26b63926e1de87393121ec3ba6ca5de10a7bec99b95ddec91fb42ac",
+      "pdf_pages": 15
+    },
+    {
+      "type": "version of record hosted by UCL",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/1563386/7/Masouros%20VoR%2008288677.pdf",
+      "sha256": "4d8f2135a6014338d82dee21da2ba2e05e3c4567bc55c8cb2f4f5525c10855a2",
+      "pdf_pages": 16,
+      "printed_pages": "2755-2770"
+    }
+  ],
+  "institutional_accepted_manuscript": "Not located; no verified AAM edition claimed",
+  "printed_normalization_ambiguity": {
+    "locators": [
+      "VoR PDF page5 printed2759 Eq12/13",
+      "arxiv v1 PDF page5 Eq12/13"
+    ],
+    "literal": "diag(R1)=PR*1/N",
+    "global_total_antennas": "N",
+    "radar_covariance_shape": "NR by NR",
+    "conditional_trace": "NR*PR/N",
+    "author_simulation_implementation": "unverified; no inference of unequal simulated budgets"
+  },
+  "independent_model": "One-user LOS half-wave array; split source-independent vs shared data-only; total trace equality; not original optimizers",
+  "retained_bibliography_snapshot": {
+    "id": "mu_mimo",
+    "date": "2026-10-10",
+    "openalex": 963,
+    "semantic_scholar": 936,
+    "social": "unavailable",
+    "recommendation": "ComSoc",
+    "refreshed": false
+  }
+}
