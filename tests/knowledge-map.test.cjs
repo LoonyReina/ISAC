@@ -160,7 +160,7 @@ test('case choices derive from canonical titles and entries in concept and direc
   a.ok(h.indexOf('class="map-case-paths"')<h.indexOf('class="map-local-map"'));
   a.ok(!block.closest('details'));a.match(h,/CANONICAL DEEP CASE &lt;renamed>/);
  }
- for(const [id,expected]of [['beam-design',['case-near-field','case-joint-beamforming']],['waveform-design',['case-pilot','case-waveform']]]){
+ for(const [id,expected]of [['beam-design',['case-near-field','case-joint-beamforming','case-crb-beamforming']],['waveform-design',['case-pilot','case-waveform']]]){
   const links=parse(template(html,id)).querySelector('.map-case-paths').querySelectorAll('a');
   a.deepEqual(links.map(l=>l.textContent),expected.map(id=>r.cases.find(c=>c.id===id).title+' →'));
  }
