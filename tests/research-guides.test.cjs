@@ -5,8 +5,9 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
-const reviewedTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','bistatic-ofdm-clock-measurement-2023']);
-// Only the three reviewed optional trace fields are excluded. Every original
+const initialTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','bistatic-ofdm-clock-measurement-2023']);
+const reviewedTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','networks-cooperative-clusters-2024','cellfree-vq-compression-2026','bistatic-ofdm-clock-measurement-2023','isac-net-model-driven-passive','multimodal-transformer-beam-generalization']);
+// Only the seven reviewed optional trace fields are excluded. Every original
 // guide field and all fields on other guides stay under the earlier byte guards.
 const guideCores=cards=>cards.map(card=>{if(!reviewedTraceIds.has(card.id))return card;const {visualTrace,...core}=card;return core;});
 test('sixteen guide-only resources extend all eight existing directions without inflating lessons or snapshots',()=>{
@@ -108,7 +109,7 @@ test('local assets are versioned and loaded only on the reading page; styles sup
  for(const token of ['minmax(0,1fr)','min-width:0','overflow-wrap:anywhere','flex-wrap:wrap','min-height:44px',':focus-visible','@media(max-width:480px)','@media print','[hidden]','details::details-content'])a.ok(read('research-guides.css').includes(token),token);
  a.doesNotMatch(source,/innerHTML|outerHTML|insertAdjacentHTML|fetch\(|XMLHttpRequest|localStorage|sessionStorage|document\.cookie|history\.|scrollIntoView|\.focus\(|setInterval|requestAnimationFrame/);
 });
-test('exactly three optional traces preserve every original guide field and the old hash guards detect unrelated changes',()=>{
+test('exactly seven optional traces preserve every original guide field and the old hash guards detect unrelated changes',()=>{
  a.deepEqual(data.cards.filter(c=>c.visualTrace).map(c=>c.id),[...reviewedTraceIds]);
  const hash=cards=>crypto.createHash('sha256').update(JSON.stringify(guideCores(cards))).digest('hex');
  const original='32100afe8091bc850c4e7ba19ea614c04a226e9f3662491187d0101288dea8be';a.equal(hash(data.cards),original);
@@ -147,6 +148,18 @@ test('trace science keeps receiver knowledge, model observations and experimente
  a.match(otfs.steps[1].explanation,/雷达端仍需估计回波时延、多普勒和增益/);a.match(otfs.steps[1].explanation,/完美信道状态信息（CSI）/);a.match(otfs.steps[1].explanation,/信道获取另计/);a.match(otfs.checkpoint.answer,/已知路径数/);
  const near=cards['nearfield-multitarget-correlation'];a.match(near.steps[0].blocks[0].label,/模型\/仿真/);a.match(near.steps[3].blocks[0].text,/数值配置/);a.match(near.checkpoint.answer,/仍使用目标位置/);a.match(near.steps[3].explanation,/远场基线放宽/);
  const prototype=cards['bistatic-ofdm-clock-measurement-2023'];a.equal(prototype.steps[0].blocks[1].label,'试验者设置');a.match(prototype.steps[0].explanation,/接收机仍要估计时延和多普勒/);a.match(prototype.steps[1].explanation,/残余时钟误差/);a.match(prototype.checkpoint.answer,/不能/);
+});
+test('four network and learning traces preserve the first three and separate resource, training and inference conditions',()=>{
+ const originals=data.cards.filter(c=>initialTraceIds.has(c.id)).map(c=>[c.id,c.visualTrace]);
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(originals)).digest('hex'),'b5ce53bd2d967e1ee86c98453fb9bd8a298dcf34ab3b672e82ef1f97445671d0');
+ const added=data.cards.filter(c=>c.visualTrace&&!initialTraceIds.has(c.id));
+ a.deepEqual(added.map(c=>c.id),['networks-cooperative-clusters-2024','cellfree-vq-compression-2026','isac-net-model-driven-passive','multimodal-transformer-beam-generalization']);
+ a.equal(added.flatMap(c=>c.visualTrace.steps.filter(s=>s.lessonHref)).length,11);
+ const [meng,wang,net,multi]=added.map(c=>c.visualTrace);
+ a.match(meng.checkpoint.prompt,/固定参与协作簇的总发射功率预算/);a.doesNotMatch(meng.checkpoint.prompt,/固定全网/);a.match(meng.steps[3].explanation,/固定每站功率/);a.match(meng.steps[3].explanation,/不是实际定位 RMSE/);
+ a.match(wang.steps[1].explanation,/训练标签不等于在线时已知目标答案/);a.match(wang.steps[2].blocks[0].text,/上传离散潜特征/);a.match(wang.steps[2].blocks[1].text,/上传码字索引/);a.match(wang.checkpoint.answer,/回传梯度/);
+ a.match(net.steps[1].explanation,/初始估计变成真值/);a.match(net.steps[3].explanation,/图9的Perfect去掉CSI误差，图10的Perfect去掉解调误差/);a.match(net.checkpoint.answer,/低SNR/);
+ a.match(multi.steps[0].explanation,/最佳波束标签用于训练或评分/);a.match(multi.steps[1].explanation,/带标签适配数据/);a.match(multi.steps[3].explanation,/不能读成命中百分比/);a.match(multi.checkpoint.answer,/人工GPS校准/);
 });
 test('trace prose is escaped in visual blocks, explanations, search attributes and print transcripts',()=>{
  const d=structuredClone(data),t=d.cards[0].visualTrace,attack='<img src=x onerror=bad()> & "text" </script>';
@@ -259,7 +272,7 @@ test('pageshow reconciles browser-restored values; script reexecution attaches n
  h.execute();a.equal(h.query.events.input.length,1);a.equal(h.form.events.reset.length,1);a.equal(h.window.events.hashchange.length,1);a.equal(h.cards.filter(c=>!c.hidden).length,1);
 });
 test('native trace and checkpoint details start closed; print contains all matching explanations without disclosures',()=>{
- const h=setup();a.equal(h.document.querySelectorAll('[data-visual-trace]').length,3);
+ const h=setup();a.equal(h.document.querySelectorAll('[data-visual-trace]').length,7);
  for(const card of h.cards.filter(c=>c.querySelector('[data-visual-trace]'))){
   const native=card.querySelector('[data-visual-trace]'),print=card.querySelector('[class="guide-trace-print"]'),t=data.cards.find(c=>'guide-'+c.id===card.id).visualTrace;
   a.equal(native.open,false);a.equal(native.querySelectorAll('details').length,4);a.ok(native.querySelectorAll('details').every(d=>!d.open));a.equal(native.querySelectorAll('[class="trace-step"]').length,4);a.equal(print.querySelectorAll('details').length,0);a.equal(print.querySelectorAll('[class="trace-step"]').length,4);
@@ -285,6 +298,15 @@ test('existing search finds new trace text and filtering, reset and native hash 
  h.choose('waveforms');a.ok(card.hidden);h.form.fire('reset');a.ok(!card.hidden&&trace.open&&answer.open);
  h.search('no match');h.navigate('#guide-bistatic-ofdm-clock-measurement-2023');a.ok(!card.hidden&&trace.open&&answer.open);a.equal(h.select.value,'prototype');
  h.search('残余时钟');a.ok(!card.hidden);a.match(h.count.textContent,/1 \/ 16/);a.equal(trace.events.toggle,undefined);a.equal(answer.events.click,undefined);
+});
+test('new network and learning trace text is searchable and all four disclosures survive filter and reset',()=>{
+ const h=setup();
+ for(const [query,id]of [['固定参与协作簇的总发射功率预算','networks-cooperative-clusters-2024'],['训练标签不等于在线时已知目标答案','cellfree-vq-compression-2026'],['两类误差会相互影响','isac-net-model-driven-passive'],['最佳波束标签用于训练或评分','multimodal-transformer-beam-generalization']]){
+  h.form.fire('reset');h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);
+  const card=h.cards.find(c=>c.id==='guide-'+id),trace=card.querySelector('[data-visual-trace]'),answer=trace.querySelector('[class="trace-answer"]');trace.open=true;answer.open=true;
+  h.choose('prototype');a.ok(card.hidden);h.form.fire('reset');a.ok(!card.hidden&&trace.open&&answer.open);
+  h.search('no match');h.navigate('#guide-'+id);a.ok(!card.hidden&&trace.open&&answer.open);
+ }
 });
 test('malformed enhancement and missing roots preserve static reading instead of hiding content',()=>{
  for(const mutate of [r=>{r.querySelector('[data-guide-count]').attrs={};},r=>{r.querySelector('[data-research-guide]').dataset.guideDirection='missing';},r=>{r.querySelector('[data-research-guide]').dataset.guideSearch='';}]){
