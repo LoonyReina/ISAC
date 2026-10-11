@@ -1,0 +1,156 @@
+{
+  "noise-free-offgrid": {
+    "settings": {
+      "truthRangeM": 43.7,
+      "truthPhaseRad": 0.7,
+      "snrDb": null,
+      "snrConvention": "received useful signal energy / expected total useful-window noise energy; equals per-tone SNR for equal-energy tones",
+      "complexNoiseVariancePerTone": 0,
+      "realNoiseVariancePerComponent": 0,
+      "matchedFilterSignalToNoiseDb": null,
+      "seedUint32": 2026,
+      "trials": 1,
+      "plotTrialIndex": 0
+    },
+    "summary": {
+      "coarse": {
+        "attemptedTrials": 1,
+        "successfulTrials": 1,
+        "failedTrials": 0,
+        "biasM": 1.2999999999999972,
+        "mseM2": 1.6899999999999926,
+        "rmseM": 1.2999999999999972,
+        "grossErrorCount": 0,
+        "grossErrorFraction": 0.0,
+        "maximumAbsErrorM": 1.2999999999999972,
+        "boundaryEstimateCount": 0,
+        "status": "complete"
+      },
+      "fine": {
+        "attemptedTrials": 1,
+        "successfulTrials": 1,
+        "failedTrials": 0,
+        "biasM": -0.20000000000000284,
+        "mseM2": 0.04000000000000114,
+        "rmseM": 0.20000000000000284,
+        "grossErrorCount": 0,
+        "grossErrorFraction": 0.0,
+        "maximumAbsErrorM": 0.20000000000000284,
+        "boundaryEstimateCount": 0,
+        "status": "complete"
+      },
+      "paired": {
+        "successfulPairedTrials": 1,
+        "fineLowerAbsoluteErrorCount": 1,
+        "fineHigherAbsoluteErrorCount": 0,
+        "equalAbsoluteErrorCount": 0,
+        "nestedMaxScoreViolationCount": 0
+      }
+    },
+    "sha256": "25c656234f0f8f759eebcec6c11f70f4f6e6ef13646e8607d43a63fd7d970525",
+    "bytes": 11950
+  },
+  "high-snr-offgrid": {
+    "settings": {
+      "truthRangeM": 43.7,
+      "truthPhaseRad": 0.7,
+      "snrDb": 10,
+      "snrConvention": "received useful signal energy / expected total useful-window noise energy; equals per-tone SNR for equal-energy tones",
+      "complexNoiseVariancePerTone": 0.00625,
+      "realNoiseVariancePerComponent": 0.003125,
+      "matchedFilterSignalToNoiseDb": 22.04119982655925,
+      "seedUint32": 2026,
+      "trials": 1000,
+      "plotTrialIndex": 0
+    },
+    "summary": {
+      "coarse": {
+        "attemptedTrials": 1000,
+        "successfulTrials": 1000,
+        "failedTrials": 0,
+        "biasM": 1.2999999999999974,
+        "mseM2": 1.6899999999999926,
+        "rmseM": 1.2999999999999972,
+        "grossErrorCount": 0,
+        "grossErrorFraction": 0.0,
+        "maximumAbsErrorM": 1.2999999999999972,
+        "boundaryEstimateCount": 0,
+        "status": "complete"
+      },
+      "fine": {
+        "attemptedTrials": 1000,
+        "successfulTrials": 1000,
+        "failedTrials": 0,
+        "biasM": 0.005999999999997158,
+        "mseM2": 0.10159999999999997,
+        "rmseM": 0.3187475490101845,
+        "grossErrorCount": 0,
+        "grossErrorFraction": 0.0,
+        "maximumAbsErrorM": 0.7999999999999972,
+        "boundaryEstimateCount": 0,
+        "status": "complete"
+      },
+      "paired": {
+        "successfulPairedTrials": 1000,
+        "fineLowerAbsoluteErrorCount": 1000,
+        "fineHigherAbsoluteErrorCount": 0,
+        "equalAbsoluteErrorCount": 0,
+        "nestedMaxScoreViolationCount": 0
+      }
+    },
+    "sha256": "df388084a62c2d9818b8ad0c35fa97c442795d2fb98aeb9ea52113d1ddd27198",
+    "bytes": 1639637
+  },
+  "low-snr-counterexample": {
+    "settings": {
+      "truthRangeM": 25.1,
+      "truthPhaseRad": 0.7,
+      "snrDb": -5,
+      "snrConvention": "received useful signal energy / expected total useful-window noise energy; equals per-tone SNR for equal-energy tones",
+      "complexNoiseVariancePerTone": 0.1976423537605237,
+      "realNoiseVariancePerComponent": 0.09882117688026185,
+      "matchedFilterSignalToNoiseDb": 7.041199826559248,
+      "seedUint32": 7,
+      "trials": 1000,
+      "plotTrialIndex": 1
+    },
+    "summary": {
+      "coarse": {
+        "attemptedTrials": 1000,
+        "successfulTrials": 1000,
+        "failedTrials": 0,
+        "biasM": 8.02,
+        "mseM2": 570.086,
+        "rmseM": 23.87647377650226,
+        "grossErrorCount": 229,
+        "grossErrorFraction": 0.229,
+        "maximumAbsErrorM": 94.9,
+        "boundaryEstimateCount": 17,
+        "status": "complete"
+      },
+      "fine": {
+        "attemptedTrials": 1000,
+        "successfulTrials": 1000,
+        "failedTrials": 0,
+        "biasM": 8.403499999999998,
+        "mseM2": 603.6355500000001,
+        "rmseM": 24.568995705970565,
+        "grossErrorCount": 234,
+        "grossErrorFraction": 0.234,
+        "maximumAbsErrorM": 94.9,
+        "boundaryEstimateCount": 7,
+        "status": "complete"
+      },
+      "paired": {
+        "successfulPairedTrials": 1000,
+        "fineLowerAbsoluteErrorCount": 219,
+        "fineHigherAbsoluteErrorCount": 649,
+        "equalAbsoluteErrorCount": 132,
+        "nestedMaxScoreViolationCount": 0
+      }
+    },
+    "sha256": "bf1a54e84d0ea5dc9b26c0abd4751f29c7e800c0065b960048ebc4cf018ea4a9",
+    "bytes": 1631920
+  },
+  "generationSeconds": 0.39099955299752764
+}
