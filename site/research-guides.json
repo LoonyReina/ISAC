@@ -2586,6 +2586,168 @@
           }
         ]
       }
+    },
+    {
+      "id": "nearfield-mechanism-aware-mapping-2026",
+      "directionId": "spatial",
+      "title": "近场环境映射：球面波之外，还要知道谁看得见谁？",
+      "question": "同一面墙对不同阵元的反射点并不相同，遮挡又只挡住部分孔径；此时把所有回波都当作全阵列可见的点散射体，会把环境画成什么？",
+      "mechanism": "把逐收发阵元的绝对传播时延连接到候选几何：点散射体共享交互位置，光滑反射面共享法向但交互点可随阵元改变。带几何约束的空间交替广义期望最大化算法（GC-SAGE）交替分离路径、比较几何解释并估计逐阵元等效复幅度；该幅度体现部分可见与衰减，不唯一拆出二值可见性和衰减量。",
+      "innovation": "将近场曲率、多跳路径、部分遮挡及反射/散射机制放进同一参数估计框架。研究问题从已知点目标的波束设计，转到未知环境几何与空间非平稳信道的联合解释。",
+      "evidence": {
+        "kind": "参数模型＋迭代估计＋射线仿真＋实测信道的离线映射；非实时通信原型",
+        "summary": "Fig. 5 仅作点/面模型的定性对读；同一遮挡场测记录的 Fig. 8(c,d)→(e,f) 更适合比较几何解释。Fig. 9 随估计路径数给目标函数与累计时间：混合模型拟合残差更低、计算约两倍；这不是 均方根误差曲线，也不是通信收益证明。 此处散射基线已包含多跳和部分遮挡，混合模型另加镜面反射几何，并非简单地用“非平稳”胜过“全可见”。"
+      },
+      "limits": [
+        "已知收发阵元坐标与搜索区域边界，区域内物体几何待估；算法输入含路径数 L，脚注6建议 赤池信息准则（AIC） 或先给上界再细化，未证明任意未知目标数下的可靠检出。超过两跳的路径仅保留时延估计，不声称唯一重建全部交互点。",
+        "场测为 矢量网络分析仪（VNA） 扫频 28–30 GHz、750 个频点，单个接收天线转动形成半径0.5 m、720位置的虚拟圆阵；这不是720路同时接收，也不是移动场景实时 ISAC 收发机。文中未用通信吞吐量、误码率 或联合速率–感知曲线验证收益。 场测数据细节引用2019年的测量方法文献[18]，不能仅凭预印本年份称其为2026年新采集数据。",
+        "场测映射主要靠几何一致性和拟合残差对照，未给跨场景定位误差分布、检测率/虚警率曲线或校准误差鲁棒性统计。部分弱路径的绕射成因是作者的物理解释，而非逐路径独立真值标注。",
+        "Fig. 5 的 单发多收（SIMO）/多发多收（MIMO） 对照改变观测配置，不能称同资源算法胜出；Fig. 9 的混合模型增加参数/搜索，约两倍时间须计入。Table II 的误差属于射线仿真，并含1.18 m的两跳离群误差，不能冒充场测厘米级保证。",
+        "Fig. 5 两面板中 C3 的绘制位置存在表观不一致，故只据它解释点/面模型差别，不把(a)/(b)当作已核实同几何精度比较。Fig. 8 的线状反射段还受虚拟圆阵几何影响（脚注13），不等于完整恢复表面。",
+        "本卡按2026-05-01 v1投稿预印本阅读；未核实接收状态、公开作者代码或可下载原始数据。本站未实现 GC-SAGE、硬件测量或论文曲线复现。"
+      ],
+      "nextQuestion": "先固定同一份阵元–频率观测，再分别改变传播机制模型与可见孔径：更低残差是否仍对应正确墙面？若加入运动、阵元位置误差与统一计算预算，哪些几何信息仍可辨识？这是待验证问题，不是论文结论。",
+      "source": {
+        "title": "Propagation Mechanism-Aware Near-Field Spatially Non-Stationary Channel Estimation and Environment Mapping",
+        "authors": "Yuan Liu、Xuesong Cai、Dipankar Saha、M. R. Bhavani Shankar、Björn Ottersten",
+        "edition": "arXiv:2605.01162v1，2026-05-01；14页；作者标注向 IEEE Transactions 期刊投稿的预印本，未核实接收；2026-10-11核查固定 HTML/PDF",
+        "url": "https://arxiv.org/pdf/2605.01162v1",
+        "locator": "§II-B–D，式(1)–(13)、脚注6；§III-A/B，式(15)–(23)、算法1–2；§IV-B/C，Fig. 5–9，Tables I–III；References [1]–[46]",
+        "checkedAt": "2026-10-11",
+        "firstSubmittedAt": "2026-05-01T23:42:58Z",
+        "versionAt": "2026-05-01T23:42:58Z",
+        "publicationStatus": "作者在 arXiv v1 标注：向 IEEE Transactions 期刊投稿、等待可能发表的预印本；未核实接收或正式出版"
+      },
+      "prerequisites": [
+        {
+          "href": "near-field.html#geometry",
+          "label": "先懂球面波的角距线索"
+        },
+        {
+          "href": "theory.html#shared-model",
+          "label": "把已知输入、观测与未知参数分开"
+        },
+        {
+          "href": "shared-array.html#objects",
+          "label": "区分物理阵元、虚拟采样位置与孔径"
+        }
+      ],
+      "notebookTopicId": "near-field",
+      "readingSteps": [
+        {
+          "label": "先改掉全孔径点散射体假设",
+          "locator": "§II-B/C，式(1)–(10)，Fig. 1–2",
+          "purpose": "把相位曲率、逐阵元幅度、遮挡和镜面反射交互点分开，明确 空间非平稳性不只来自遮挡"
+        },
+        {
+          "label": "再跟踪几何约束如何参与估计",
+          "locator": "§II-D脚注6；§III-A/B，式(15)–(23)，算法1–2",
+          "purpose": "列出已知阵元坐标、搜索边界和路径数处理，再看椭球时延约束、散射/反射比较及高阶多跳歧义"
+        },
+        {
+          "label": "最后给证据和成本分类",
+          "locator": "§IV-B/C，Fig. 5–9，Tables I–III",
+          "purpose": "区分仿真误差、场测几何一致性、拟合残差和运行时间；把虚拟阵列与真实同时接收阵列分开"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "双阵列 ISPAC 导读问：在单点目标、给定阵列模型下，怎样留下角距信息并兼顾通信？多目标导读进一步问：已知目标位置时，怎样兼顾照射增益和目标间相关性？",
+        "changedCondition": "这里不再先给一组待照射的目标坐标，而是从已测信道解释未知环境。反射面交互点随阵元改变，遮挡与定向反射造成逐路径部分可见；因此“球面波＋点目标”仍可能不足。它为既有空间设计暴露模型失配问题，并不延伸或复现两篇旧文的优化器，也未给同条件性能排名。",
+        "links": [
+          {
+            "guideId": "nearfield-double-array-ispac",
+            "relationType": "problem-link",
+            "verificationNote": "核查本篇v1完整参考文献[1]–[46]，未见 Li 等的双阵列 ISPAC 题名或 arXiv:2311.07722；此为本站按观测模型变化建立的问题对读，不声称直接引用或算法继承。",
+            "sourceLocator": "旧文§II单点目标/双阵列模型；新文§II–IV与References [1]–[46]"
+          },
+          {
+            "guideId": "nearfield-multitarget-correlation",
+            "relationType": "problem-link",
+            "verificationNote": "核查本篇v1完整参考文献[1]–[46]，未见 Ruan 等多目标指示题名或 arXiv:2506.07052；已知坐标波束设计与未知环境映射的知识条件、指标和资源不同，不能据此称后者替代前者。",
+            "sourceLocator": "旧文§II-A/C/D；新文§II-B–D、§IV与References [1]–[46]"
+          }
+        ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "把光滑墙面当成一个点，会丢掉什么？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先固定同一份观测",
+            "blocks": [
+              {
+                "label": "VNA/虚拟阵列实测",
+                "status": "observed",
+                "text": "矢量网络分析仪（VNA）在各转台位置扫频，记录复信道响应；不是解码通信数据"
+              }
+            ],
+            "explanation": "单个接收天线依次移动，形成720位置的虚拟圆阵；这不是720路同时接收或实时通信演示。",
+            "sourceLocator": "§IV-C1，Fig. 6、Table III",
+            "lessonHref": "shared-array.html#objects"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "一个交互点还是一面反射面？",
+            "blocks": [
+              {
+                "label": "已知采样与几何",
+                "status": "known",
+                "text": "收发阵元坐标、频率采样与有界搜索区域"
+              },
+              {
+                "label": "待解释的环境",
+                "status": "unknown",
+                "text": "路径交互位置、反射面法向与有效幅度；路径数另需处理"
+              }
+            ],
+            "explanation": "点散射假设让各阵元共享交互位置；镜面反射则允许交互点变化、共享表面法向。两者都可含球面传播；差别不只是角距网格更密。",
+            "sourceLocator": "§II-C，式(6)–(10)、Fig. 2；§II-D脚注6；§III-A1，式(15)、脚注8",
+            "lessonHref": "near-field.html#geometry"
+          },
+          {
+            "id": "design",
+            "heading": "先预测遮挡会改变什么",
+            "blocks": [
+              {
+                "label": "候选几何解释",
+                "status": "design",
+                "text": "比较共享散射点与共享法向反射面的几何约束"
+              },
+              {
+                "label": "幅度更新",
+                "status": "design",
+                "text": "按几何时延估计逐阵元等效复幅度，而非独立恢复可见性与衰减"
+              }
+            ],
+            "explanation": "基线已处理多跳和部分遮挡；混合模型增加反射面几何。空间非平稳性表示同一路径沿孔径的响应会变；部分可见不只是统一降低信噪比。这里没有运行 GC-SAGE。",
+            "sourceLocator": "§III开头、§III-A2/B，式(18)–(23)；§IV-A2–3，Fig. 4"
+          },
+          {
+            "id": "evidence",
+            "heading": "先分清改进发生在哪一层",
+            "blocks": [
+              {
+                "label": "原文支持",
+                "status": "supported",
+                "text": "特定仿真及场测中的更合理几何解释和更低拟合残差"
+              },
+              {
+                "label": "尚未建立",
+                "status": "not-established",
+                "text": "同计算预算的普适优势、实时运动目标跟踪或通信吞吐量提升"
+              }
+            ],
+            "explanation": "Fig. 9 横轴是估计路径数，需同时读拟合残差与累计时间；Table II 的误差来自仿真，不能挪给场测。",
+            "sourceLocator": "§IV-B/C，Fig. 5、8、9；Table II"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "把阵列响应换成球面波，是否就足以描述光滑墙面与部分遮挡？",
+          "answer": "不够。球面波约束路程和相位；反射交互点、逐路径可见孔径和幅度仍需要模型。选用更复杂模型也要检查数据证据与额外计算成本。",
+          "sourceLocator": "§II-B/C；§IV-B/C"
+        }
+      }
     }
   ]
 }
