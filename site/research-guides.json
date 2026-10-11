@@ -474,7 +474,93 @@
           "locator": "§V，图3–5",
           "purpose": "连同每站功率、站点密度和可服务资源一起读曲线，再提出固定全网预算的检验"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "多加一站，增加的是观测，还是也增加了负担？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "感知侧的模型观测",
+                "status": "observed",
+                "text": "目标反射形成的单站与双站回波"
+              },
+              {
+                "label": "通信侧的模型观测",
+                "status": "observed",
+                "text": "用户收到的协作通信信号、干扰与噪声"
+              }
+            ],
+            "explanation": "感知侧把回波预处理结果送中央单元；通信侧多个基站发送同一用户的数据。两类协作簇承担不同任务，后续通信性能分析采用干扰受限近似、忽略噪声。",
+            "sourceLocator": "§II-A–D, Figure 1, equations (4), (7)–(10)",
+            "lessonHref": "foundations.html#geometry"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "网络分析的给定条件",
+                "status": "known",
+                "text": "站点分布模型、每站功率与可服务负载"
+              },
+              {
+                "label": "感知要估计的量",
+                "status": "unknown",
+                "text": "由单站与双站距离信息约束的目标位置"
+              }
+            ],
+            "explanation": "给定网络条件不等于接收端已知目标位置。论文用位置估计下界评价感知；请求更多站点还会改变负载与接受概率，不能直接把请求数当成实际参与数。",
+            "sourceLocator": "§II-A/B, equations (3)–(6); §III-B, equations (15)–(16); §V simulation setup"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "协作规模",
+                "status": "design",
+                "text": "分别选择通信簇与感知簇的大小"
+              },
+              {
+                "label": "功率分配",
+                "status": "design",
+                "text": "在每站功率预算内分配通信与感知功率"
+              }
+            ],
+            "explanation": "更多站点可能增加观测，也增加服务请求和回传需求。式(10)把通信数据与感知预处理结果计入回传约束，但明确省略信道状态信息（CSI）共享流量；它不是完整网络开销账本。",
+            "sourceLocator": "§II-A, equation (1); §II-D, equation (10); §III-B; §V, Figures 3–5",
+            "lessonHref": "distributed-detection.html#resources"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "给定随机网络模型下的定位下界、平均通信性能与资源权衡"
+              },
+              {
+                "label": "未由这些曲线证明",
+                "status": "not-established",
+                "text": "固定参与协作簇的总发射功率预算时，实际定位器一定随参与站数增加而更准"
+              }
+            ],
+            "explanation": "图2、3、5的定位轴是 Root CRLB，即无偏定位均方误差下界的平方根，不是实际定位 RMSE。仿真固定每站功率，没有在增加参与站数时按固定簇总功率重新归一化；还要核对负载与回传。有限负载设置中，最佳簇规模也可能有限。本站未运行本文网络模型。",
+            "sourceLocator": "§II-B, equations (3)–(6); §V simulation setup, Figures 2–5",
+            "lessonHref": "theory.html#estimator-crb"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "若参与站数增加时某条 Root CRLB 曲线下降，能预测在固定参与协作簇的总发射功率预算下，实际定位误差也一定下降吗？",
+          "answer": "不能。下界下降不等于某个实际定位器的误差已经下降；原文没有在增加参与站数时按固定簇总功率重新归一化，还要核对负载与回传。",
+          "sourceLocator": "§II-B, equations (3)–(6); §II-D, equation (10); §III-B; §V simulation setup, Figures 2–5"
+        }
+      }
     },
     {
       "id": "cellfree-vq-compression-2026",
@@ -535,7 +621,92 @@
           "locator": "§V-B/C/D/E，图6、12–14，式(29)–(30)",
           "purpose": "核对中央基线架构与码本设置，再看进入训练分布的杂波和同步残差，避免把有限仿真扩成普遍保证。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "把回波压成索引后，谁来估位置与速度？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "接收接入点（AP）",
+                "status": "observed",
+                "text": "各自的空间–频率–时间复回波样本"
+              },
+              {
+                "label": "中央处理单元（CPU）",
+                "status": "known",
+                "text": "用于联合估计的发射信号 X"
+              }
+            ],
+            "explanation": "各 AP 看见的是自己的回波，CPU 则拥有发射信号。先区分信息在哪里，再问前传应该上传原始回波、局部参数，还是编码后的特征。",
+            "sourceLocator": "§II, equations (6)–(11); §III-A/C, equations (12), (16); §IV training-dataset definition",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "在线查表的前提",
+                "status": "known",
+                "text": "训练完成后，AP 与 CPU 共享最终码本"
+              },
+              {
+                "label": "在线仍需估计",
+                "status": "unknown",
+                "text": "目标位置与完整二维速度，由 CPU 联合推断"
+              }
+            ],
+            "explanation": "码字索引指向潜特征，不是 AP 已算好的最终位置或速度。训练时 CPU 还需目标真值，并与各 AP 对齐样本；这些训练标签不等于在线时已知目标答案。",
+            "sourceLocator": "§III-B/C, equations (14)–(16); §IV training-dataset definition; §IV-B final paragraph and Algorithm 2"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "训练时的表示学习",
+                "status": "design",
+                "text": "AP 上传离散潜特征；CPU 回传梯度，共同训练编码、量化与解码"
+              },
+              {
+                "label": "在线时的前传表示",
+                "status": "design",
+                "text": "AP 上传码字索引；CPU 查码本恢复特征并融合估计"
+              }
+            ],
+            "explanation": "分布式执行的是 AP 端编码与量化，最终估计留在 CPU。每次更新有多个潜特征向量，一个索引不代表整帧；码本大小连接表示精细程度与在线载荷。",
+            "sourceLocator": "§III-A–D, equations (12)–(16); §IV-B, Algorithm 1 lines 9–16, footnote 4, Algorithm 2; §V-C, Figure 12"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "所设仿真中，定位/速度 RMSE 与在线前传载荷的折衷"
+              },
+              {
+                "label": "未由这些结果证明",
+                "status": "not-established",
+                "text": "整个生命周期总流量同样节省，或部署时无需同步与校准"
+              }
+            ],
+            "explanation": "在线载荷按每 AP、每次感知更新计，不含训练特征/梯度、码本同步与协议开销。基础模型假定完全同步；图14另把校准后残余时偏/频偏加入训练。本站未运行本文网络。",
+            "sourceLocator": "§II opening; §III-D; §IV-B; §V-B/C/E, Figures 6, 12, 14, equation (30)",
+            "lessonHref": "theory.html#estimator-crb"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "在线阶段只上传码字索引，能否推断训练阶段也只需传索引？",
+          "answer": "不能。具体训练流程上传离散潜特征、回传梯度；训练后共享最终码本，在线才只传索引。因此在线载荷公式不能直接当成训练或整个生命周期的通信总量。",
+          "sourceLocator": "§III-D; §IV-B, Algorithm 1 lines 9–16, footnote 4, final paragraph and Algorithm 2"
+        }
+      }
     },
     {
       "id": "bistatic-ofdm-clock-measurement-2023",
@@ -800,7 +971,93 @@
           "locator": "§IV-B；§V 表III–IV、式(43)、Fig. 8–10",
           "purpose": "分别核对仿真数据划分、通信/感知基线、NMSE 定义和低 SNR 失败，不把理想参考线当实验结果"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "训练数据有答案，接收时就不用再估计了吗？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "被动接收机",
+                "status": "observed",
+                "text": "来自外部发射机的 OFDM 接收样本，包含导频和数据时频格"
+              },
+              {
+                "label": "传播形成的混合",
+                "status": "observed",
+                "text": "直达径、目标反射径与噪声叠加"
+              }
+            ],
+            "explanation": "接收机看到的是混合样本，尚未直接读出目标或数据符号。本文直达径不含目标反射信息；目标路长是发射端经目标到接收端的路长之和。",
+            "sourceLocator": "§II-A/C, Figure 1, equation (17), PDF pp.7–11",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "接收机的参考",
+                "status": "known",
+                "text": "导频符号已知，可用于初始化信道和粗目标参数估计"
+              },
+              {
+                "label": "推理时仍要估计",
+                "status": "unknown",
+                "text": "数据符号、目标参数与信道；初始估计不是真值"
+              }
+            ],
+            "explanation": "训练数据由 MATLAB 合成，生成者掌握发射符号与目标设置；95%/5%划分训练与测试，并针对不同SNR训练。这不表示接收新帧时能直接读取真实符号或目标参数，也未把初始估计变成真值。",
+            "sourceLocator": "§II-C, PDF pp.8–9; §IV, Figure 4 and Algorithm 3, pp.16–18; §IV-B, p.20",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "保留的迭代结构",
+                "status": "design",
+                "text": "检测数据 → 联合导频与恢复数据估目标 → 重建信道 → 再检测"
+              },
+              {
+                "label": "学习的部分",
+                "status": "design",
+                "text": "展开为多层网络，学习每层五类更新系数或门限"
+              }
+            ],
+            "explanation": "解调误差会污染感知，目标/信道估计误差也会影响下一轮检测；反馈不保证总能纠错。少量可训练参数不等于少量运算：仍执行检测、DFT及含角度估计的信道重建。",
+            "sourceLocator": "§III, equation (21), p.12; Algorithm 2, p.15; §IV-A, Figure 5, Algorithm 3, equations (34)–(42), pp.17–20",
+            "lessonHref": "reading.html#ref-F2"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "给定合成数据和资源设置中的 BER/SER、距离与速度 NMSE 对照"
+              },
+              {
+                "label": "没有由这些曲线证明",
+                "status": "not-established",
+                "text": "任意场景收敛、零样本泛化或端到端实时部署"
+              }
+            ],
+            "explanation": "图8保留低SNR不收敛的情况。图9的Perfect去掉CSI误差，图10的Perfect去掉解调误差，都不是接收机免费得到的条件。仍有导频、离线训练与逐层推理代价；本站未训练或运行该网络。",
+            "sourceLocator": "§IV-B, p.20; §V, Tables III–IV, equation (43), Figures 8–10, pp.21–25"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "训练数据有正确符号，推理时就能把恢复的数据当成无误差的感知参考吗？",
+          "answer": "不能。新帧的数据符号仍须检测，目标与信道也仍须估计；两类误差会相互影响。图10的无解调误差Perfect只是比较条件，图8还显示低SNR下感知迭代可能不收敛。",
+          "sourceLocator": "§IV, Figure 4, Algorithm 3 and §IV-B, pp.16–20; §V-B, Figure 8, Figure 10 and Table IV, pp.23–25"
+        }
+      }
     },
     {
       "id": "multimodal-transformer-beam-generalization",
@@ -862,7 +1119,93 @@
           "locator": "§4.2，表2",
           "purpose": "比较模型运算量并标明未计成本，再提出需要另测的时延、功率损失与净吞吐量"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "换场景后的波束得分，带着哪些输入和准备条件？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "可用的传感器序列",
+                "status": "observed",
+                "text": "相机、雷达、LiDAR各有五个时刻，方案可选择输入模态"
+              },
+              {
+                "label": "用户位置线索",
+                "status": "observed",
+                "text": "只有前两个时刻的用户GPS位置，随后转换为校准角度"
+              }
+            ],
+            "explanation": "任务选择第5时刻的波束，而图像序列已包含第5时刻；不能画成只凭旧图像预测未来。波束扫描产生的最佳波束标签用于训练或评分，不是待预测样本的推理输入。",
+            "sourceLocator": "§1.1, Figure 1, pp.461–462; §2.1, p.463; §3.1, Figure 6, pp.465–466",
+            "lessonHref": "radar-beam-decision.html#mechanism"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "训练与场景准备",
+                "status": "known",
+                "text": "带标签开发/适配样本，以及人工校准得到的各场景GPS角度偏移"
+              },
+              {
+                "label": "推理时仍要预测",
+                "status": "unknown",
+                "text": "当前待预测样本第5时刻的最佳波束索引"
+              }
+            ],
+            "explanation": "场景31有少量带标签适配数据；校准还人工选择用户居中、波束标签在中心区间的样本。开发与适配数据合并后随机划分训练/验证；这套条件不能称为零样本泛化，也未证明按整轨迹隔离。",
+            "sourceLocator": "§1.1, pp.461–462; §2.1, p.463; §4.1, p.466",
+            "lessonHref": "radar-beam-decision.html#limits"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "网络与输入组合",
+                "status": "design",
+                "text": "CNN/Transformer融合时间与模态特征，末端拼接两次GPS角度，输出64波束得分"
+              },
+              {
+                "label": "训练与一致增强",
+                "status": "design",
+                "text": "使用软标签与损失设计；翻转时同步变换传感器数据、GPS角度和波束标签"
+              }
+            ],
+            "explanation": "GPS在末端拼接，不能画成所有输入都经过同一个注意力模块。表1最佳组合是图像加GPS及一致翻转；增加雷达或LiDAR并不自动提高得分，也会改变预处理与推理开销。",
+            "sourceLocator": "§2.2.3, p.465; §3.1–3.2, Figure 6, pp.465–466; §4.1, Table 1, p.467; §4.2, Table 2, p.468"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "带适配和校准条件的离线DBA评分，以及模型MAC/参数量比较"
+              },
+              {
+                "label": "未由这些分数证明",
+                "status": "not-established",
+                "text": "top-1命中率、免适配跨地点泛化或扣除全部开销后的净吞吐提升"
+              }
+            ],
+            "explanation": "DBA按候选与最佳标签的索引距离计分，并平均前1/2/3候选得分，不能读成命中百分比。MAC/参数量不等于实测时延或能耗；外部方法的CFAR/DBSCAN未计入，不能据表2排名端到端成本。本站未运行该网络。",
+            "sourceLocator": "§1.1, equations (1)–(2), p.462; §4.1, Table 1, p.467; §4.2, Table 2, p.468",
+            "lessonHref": "reading.html#ref-F3"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "看到更高的DBA，就能判定换到新地点后可免标注、低开销地直接部署吗？",
+          "answer": "不能。本文已有目标场景的带标签适配和人工GPS校准；DBA也不是最佳波束命中率或吞吐量。还须另测新地点的数据需求、传感与校准成本、推理时延以及所选波束的实际通信收益。",
+          "sourceLocator": "§1.1, equations (1)–(2), pp.461–462; §2.1, p.463; §4.1–4.2, Tables 1–2, pp.466–468"
+        }
+      }
     },
     {
       "id": "ofdm-ici-aware-receiver-2021",
