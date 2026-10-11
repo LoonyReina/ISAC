@@ -24,6 +24,7 @@
 </section>
 <section class="chapter" id="notebook">
   <header class="chapter-head"><p class="eyebrow">03 / 复制到自己的实验本</p><h2>最小实验记录</h2></header>
+  <p id="notebook-jump" hidden><a href="#notebook-form">直接进入四步填写 →</a></p>
   <p>复制下列文字到本地笔记即可；此页不保存或上传记录。</p>
   <pre class="notebook-template">日期 / 代码版本 / 文献版本与章节：
 研究问题 / 可推翻的预测：
@@ -35,6 +36,47 @@
 结果 / 不确定性 / 与预测的差异：
 结论适用范围 / 尚未验证 / 下一步：</pre>
   <p>完成后应能回答：这轮真正改变了什么？证据排除了哪种解释？还有什么没有证明？</p>
+  <div class="notebook-intro"><h3>也可以在本页逐步写一份研究草稿</h3>
+  <p>四步、十栏，从问题走到证据与边界。所有条目都由你填写；上面的导频计划仍是未执行的示例，不会复制成你的结果。留空或只写一部分，也可以下载。</p>
+  <p class="notebook-warning" id="notebook-loss-notice"><strong>先下载，再离开：</strong>内容只在当前页面中，不自动保存、不上传。刷新、关闭或离开页面可能丢失；浏览器下载请求也不等于文件已经保存，请检查实际文件。</p>
+  <noscript><p>逐步填写与下载需要 JavaScript；仍可复制上面的原始九行模板到自己的笔记中。</p></noscript></div>
+  <form id="notebook-form" tabindex="-1" autocomplete="off" aria-label="学习者研究草稿" aria-describedby="notebook-loss-notice notebook-limits" hidden>
+    <section class="notebook-reference" aria-labelledby="notebook-reference-heading">
+      <h4 id="notebook-reference-heading">可选参考主题 · 只读背景</h4>
+      <label for="notebook-topic">从现有教学单元接上一个问题</label>
+      <select id="notebook-topic" aria-describedby="notebook-reference-notice"><option value="">通用记录（不选择参考主题）</option><!-- NOTEBOOK:OPTIONS --></select>
+      <p id="notebook-reference-notice">这里只提供参考问题、动作与入口，不是你已完成的实验。切换主题会保留所有已填写文字，下载时参考主题与学习者条目分开。</p>
+      <h4 id="notebook-reference-title">通用研究记录</h4>
+      <dl><dt>本站参考问题</dt><dd id="notebook-reference-question">尚未选择参考主题。请在下方写自己的研究问题。</dd><dt>本站参考动作</dt><dd id="notebook-reference-action">参考主题是可选的，不会替你填写或执行实验。</dd></dl>
+      <nav class="notebook-reference-links" aria-label="参考主题入口"><a id="notebook-teaching" target="_blank" rel="noopener noreferrer" hidden>教学入口（新标签页）</a><a id="notebook-experiment" target="_blank" rel="noopener noreferrer" hidden>机制实验（新标签页）</a><a id="notebook-evidence" target="_blank" rel="noopener noreferrer" hidden>原文与证据（新标签页）</a><a id="notebook-boundary" target="_blank" rel="noopener noreferrer" hidden>边界与下一问（新标签页）</a></nav>
+      <p class="notebook-status" id="notebook-topic-status" role="status" aria-live="polite"></p>
+    </section>
+    <p id="notebook-limits">下方十栏初始全部空白，每栏最多 12,000 个字符（部分表情符号占两个字符）。长数据请留在本地证据文件，这里只写文件位置。字段检查只识别非空白文字，不判断正确性、执行情况或可复现性。</p>
+    <details class="notebook-step" open><summary>01 · 问题：先写你想检验什么</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-identity">1 · 记录标识 / 日期 / 代码版本 / 文献版本与章节</label><p id="notebook-identity-help">给本轮记录一个自己能识别的名称。日期、代码提交或版本、文献版本与章节都由你填写；导出时间不代表实验时间。</p><textarea id="notebook-identity" rows="4" maxlength="12000" aria-describedby="notebook-identity-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-question">2 · 研究问题 / 可推翻的预测</label><p id="notebook-question-help">你想检验哪个具体问题？先写下预测，以及什么观察会使你放弃它。</p><textarea id="notebook-question" rows="4" maxlength="12000" aria-describedby="notebook-question-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>02 · 观测：明确数据怎样形成</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-observations">3 · 观测数据 / 已知、未知、可控量</label><p id="notebook-observations-help">接收端实际拿到什么数据？谁知道发射符号？分别列出已知量、待估量、可控量与噪声来源。</p><textarea id="notebook-observations" rows="4" maxlength="12000" aria-describedby="notebook-observations-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-geometry">4 · 几何 / 同步 / 近似 / 坐标与单位</label><p id="notebook-geometry-help">是单站、双站还是多站？哪些时钟与相位已同步？说明所用近似、各坐标和单位，不把单站关系直接搬到双站。</p><textarea id="notebook-geometry" rows="4" maxlength="12000" aria-describedby="notebook-geometry-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>03 · 公平比较：先定预算与判据</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-comparison">5 · 基线 / 本轮唯一改动 / 固定资源</label><p id="notebook-comparison-help">和哪个可解释基线比？本轮只改什么？注明固定的带宽、总能量、时长、孔径与先验；若资源不同，也照实写出。</p><textarea id="notebook-comparison" rows="4" maxlength="12000" aria-describedby="notebook-comparison-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-parameters">6 · 参数 / 种子 / 重复次数 / 数值容差</label><p id="notebook-parameters-help">记录实际使用或计划使用的参数、随机种子、重复次数和数值容差，明确区分计划与已经执行的设置。</p><textarea id="notebook-parameters" rows="4" maxlength="12000" aria-describedby="notebook-parameters-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-metrics">7 · 指标 / 预先定义的失败判据</label><p id="notebook-metrics-help">在看结果前决定要量什么、什么算失败，并区分推导、仿真与实测证据。区分分辨率、精度、CRB、检出率和虚警率，不只挑最好的一张图。</p><textarea id="notebook-metrics" rows="4" maxlength="12000" aria-describedby="notebook-metrics-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>04 · 证据与边界：照实留下结果</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-results">8 · 实际结果 / 失败样本 / 证据文件位置</label><p id="notebook-results-help">只有执行后才能填写实际结果；尚未执行可留空或明确写“未执行”。保留失败次数、失败样本和本地原始数据、图表、日志的文件位置；此处不会读取或上传文件；请标明证据是推导、仿真还是实测。</p><textarea id="notebook-results" rows="4" maxlength="12000" aria-describedby="notebook-results-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-uncertainty">9 · 不确定性 / 与预测的差异</label><p id="notebook-uncertainty-help">哪些差异可能来自随机性、模型失配或数值误差？报告适用的不确定性与预测差异；不要用单次曲线代替重复证据。</p><textarea id="notebook-uncertainty" rows="4" maxlength="12000" aria-describedby="notebook-uncertainty-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-scope">10 · 适用范围 / 尚未验证 / 下一问</label><p id="notebook-scope-help">哪些条件下结论才成立？还有哪些解释没有排除、哪些实验尚未做？写下下一轮最小且可检验的问题。</p><textarea id="notebook-scope" rows="4" maxlength="12000" aria-describedby="notebook-scope-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <p>这份学习者笔记不包含、也不能代替实验页计算得到的 JSON 证据。若实验页提供完整模型记录，请另行下载，之后在第 8 栏记下证据文件位置。</p>
+    <div class="notebook-actions"><button id="notebook-check" type="button">检查填写情况</button><button id="notebook-download-md" type="button">下载 Markdown 草稿</button><button id="notebook-download-json" type="button">下载 JSON 草稿</button></div>
+    <p class="notebook-status" id="notebook-check-status" role="status" aria-live="polite">尚未检查填写情况；填写数量不代表研究质量或完成程度。</p>
+    <p class="notebook-status" id="notebook-download-status" role="status" aria-live="polite"></p>
+    <p class="notebook-warning"><strong>离开前请先下载：</strong>当前草稿不会自动保存。刷新、关闭或离开可能丢失；下载的是学习者自行填写的记录，空白或部分填写不代表实验已经完成。</p>
+  </form>
+  <!-- NOTEBOOK:TOPICS -->
 </section>
 
 <section class="chapter" id="roadmap">
