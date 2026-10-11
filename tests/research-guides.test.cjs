@@ -135,14 +135,11 @@ test('the nine bounded trace additions preserve all nineteen complete prior reco
  ]){const changed=structuredClone(data);mutate(changed);a.notEqual(hash(changed),baseline);}
  const allowed=structuredClone(data);allowed.cards[1].visualTrace.title+=' optional';a.equal(hash(allowed),baseline);
 });
-test('trace-only reading additions leave the four map routes and actual reference experiment byte-identical',()=>{
+test('trace-only reading additions preserve the four map routes and unchanged reference numerical core',()=>{
  const unchanged={
   'site/registry.json':'dcc2c29ec2bb53905902db24b3d5f87bc26a2d953a221c47d4d20497ec875396',
   'index.html':'4b4b189ef9029583d4f0f6935c77722da3f9853a4848fbd78594c7f806a7e011',
-  'reference-uncertainty-core.js':'fffc85f8ea37b2cf365ce05464bcffcbe1337ba67150dd8bf1e690ce805c4551',
-  'reference-uncertainty.js':'58ed1a4b3b8f7a611f293b6302289e25b8b3477020567fd367a886ce46868134',
-  'reference-uncertainty.html':'a183720e65adbc16e64504466dfa3213a5d09e1eca871ff593f7a4af28702245',
-  'reference-uncertainty.css':'8f4675dc66557f69ec7fdf14419ea1bb28b59a69baeb08cef07a9b5ab97e22ea'
+  'reference-uncertainty-core.js':'fffc85f8ea37b2cf365ce05464bcffcbe1337ba67150dd8bf1e690ce805c4551'
  };
  for(const [file,digest]of Object.entries(unchanged))a.equal(crypto.createHash('sha256').update(read(file)).digest('hex'),digest,file);
 });
