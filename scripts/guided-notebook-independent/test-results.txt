@@ -1,0 +1,31 @@
+✔ exactly ten blank native fields and non-submitting export controls are generated (22.353277ms)
+✔ topic selector accepts one registered ID and percent-encoded equivalents (1.052793ms)
+✔ unknown, duplicate, malformed, URL-shaped, whitespace and oversized topic inputs stay generic (146.245603ms)
+✔ blank and partial records export without claiming experiment execution or correctness (3.750306ms)
+✔ presence distinguishes only non-whitespace strings and never alters learner text (3.105242ms)
+✔ JSON bytes preserve Unicode, HTML, CR/LF, tabs, spaces, backticks and lone surrogates exactly (10.349021ms)
+✔ Markdown isolates every learner field literally even with adversarial fence closers and HTML (1.204115ms)
+✔ reference context is a detached whitelist separate from entries and includes fixed external provenance (0.394094ms)
+✔ over-limit or non-string fields are rejected without silently truncating data (8.344523ms)
+✔ topic changes preserve all learner fields and invalid options cannot create links (7.898707ms)
+✔ each export takes a fresh draft, topic and export time snapshot with safe names and MIME types (19.08863ms)
+✔ Blob, object-URL, anchor, append and click failures keep drafts and recover on retry (20.782343ms)
+✔ timers and pagehide revoke every created object URL exactly once across repeated downloads (7.859904ms)
+✔ no network, storage, clipboard, import or full-location/referrer capture exists (3.434313ms)
+✔ query size boundaries are explicit and a 64-character allowlisted ID is accepted exactly (0.339388ms)
+✔ query fuzz stays null or returns the exact registered object and never invents destinations (41.030137ms)
+✔ a failed later export does not lose an earlier pending URL or stale-copy the retry (27.210443ms)
+✔ literal registry text enters only text sinks and reference links use generated routes (1.578956ms)
+✔ reference list contains exactly registered units and real local destinations (70.141735ms)
+✔ HTML options escape hostile registry prose without changing its decoded text (13.854586ms)
+✔ inline JSON defeats closing-script, HTML-comment and line-separator injection and round-trips exactly (21.762629ms)
+✔ build-time IDs reject delimiter injection, whitespace, excess length and duplicate membership (52.01308ms)
+✔ build-time references reject remote, absolute, traversal, query, missing and malformed routes (53.087742ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 535.247332
