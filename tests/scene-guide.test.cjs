@@ -49,7 +49,11 @@ test('scene guide enhances existing reading cards, with native optional no-JS an
 test('registry positions drive all existing cards and do not claim unfinished dedicated modules',()=>{
   const html=read('reading.html');
   for(const d of registry.directions){a.ok(d.scenePositions.length);for(const pos of d.scenePositions)a.ok(registry.scenePositions.some(p=>p.id===pos));a.ok(html.includes(`id="direction-${d.id}" data-scene-positions="${d.scenePositions.join(' ')}"`));}
-  for(const id of ['channels','learning','prototype']){const card=html.match(new RegExp(`<article[^>]+id="direction-${id}"[^>]*>([\\s\\S]*?)</article>`))[1];a.match(card,/仅前置实验/);a.match(card,/专项实验尚未实现/);a.match(card,/专属深度交互模块待建设/);a.match(card,/（尚未实现）/);}
+  for(const id of ['channels','learning']){const card=html.match(new RegExp(`<article[^>]+id="direction-${id}"[^>]*>([\\s\\S]*?)</article>`))[1];a.match(card,/仅前置实验/);a.match(card,/专项实验尚未实现/);a.match(card,/专属深度交互模块待建设/);a.match(card,/（尚未实现）/);}
+  const prototype=html.match(/<article[^>]+id="direction-prototype"[^>]*>([\s\S]*?)<\/article>/)[1];
+  a.match(prototype,/已有 OFDM 时间插值专项机制/);a.match(prototype,/href="ofdm-interpolation.html#experiment"/);
+  a.match(prototype,/处理时限、自干扰抵消与射频硬件模块仍待建设/);a.match(prototype,/（尚未实现）/);
+  a.doesNotMatch(prototype,/专项实验尚未实现|专属深度交互模块待建设/);
 });
 test('DOM both roles start readable, toggle known/unknown panels and retain native button state',()=>{
   const h=setup();a.ok(h.panels.every(p=>!p.hidden));a.ok(h.controls.every(c=>!c.hidden));a.ok(h.jump.hidden);
