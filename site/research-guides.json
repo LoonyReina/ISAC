@@ -365,6 +365,129 @@
           "purpose": "核对中央基线架构与码本设置，再看进入训练分布的杂波和同步残差，避免把有限仿真扩成普遍保证。"
         }
       ]
+    },
+    {
+      "id": "bistatic-ofdm-clock-measurement-2023",
+      "directionId": "prototype",
+      "title": "双站原型：数据解出来，距离–多普勒图就准了吗？",
+      "question": "收发机不共用时钟时，通信同步留下的小误差，会怎样累积成感知图上的偏移和展宽？",
+      "mechanism": "先用前导校正定时、载频和采样频率，再用导频修正残差。接收端解码载荷后重建已发符号，把原本未知的数据格也用于信道估计与感知。",
+      "innovation": "把同步、通信解码和双站成像接成一条可测链，展示长帧的积累收益为何会被残余采样频偏侵蚀。",
+      "evidence": {
+        "kind": "同轴中频硬件验证＋目标模拟器；本站仅导读，未新增实验",
+        "summary": "图2记录残余采样频偏造成的迁移；图3比较实收 QPSK 星座；图4使用 LDPC 解码后重建的全帧成像。长载荷星座更散、旁瓣更明显，通信解码成功仍不保证感知无偏。"
+      },
+      "limits": [
+        "场景：两块 RFSoC 通过同轴连接，模拟强直达径和运动目标；独立时钟误差真实存在，但没有射频前端或空口传播验证。",
+        "资源：1 GHz 带宽、2048 子载波、512 点 CP；载荷为 512 或 4096 符号，QPSK＋2/3 码率 LDPC。长短帧并非等观察时长；表II的约 0.9 Gbit/s 按100%占空比计算，不是实测持续吞吐。",
+        "几何与校准：仅得到相对强主径的双站路径长度差；不能套单站 cτ/2。残余频移迁移未解决，转换器和线缆也未校准；本文未给实时处理时限。"
+      ],
+      "nextQuestion": "固定总观察时长和前导开销，把一次长帧改成多次重同步短帧，何时反而得到更可信的相干积累？",
+      "source": {
+        "title": "Bistatic OFDM-based Joint Radar-Communication: Synchronization, Data Communication and Sensing",
+        "authors": "Lucas Giroto de Oliveira、David Brunner、Axel Diewald、Charlotte Muth、Laurent Schmalen、Thomas Zwick、Benjamin Nuss",
+        "edition": "arXiv:2305.15058v1，2023-05-24，4页；本卡按该 PDF 编号。会议版 EuRAD 2023，359–362页。",
+        "url": "https://arxiv.org/pdf/2305.15058v1",
+        "locator": "§II，式(1)–(2)、图1；§III、表I；§IV，表II、图2–4；§V",
+        "publicationUrl": "https://doi.org/10.23919/EuRAD58043.2023.10289229"
+      },
+      "prerequisites": [
+        {
+          "href": "foundations.html#ofdm",
+          "label": "OFDM 七步：哪些格子由接收机恢复"
+        },
+        {
+          "href": "network-clock.html#model",
+          "label": "网络时钟：测得延迟不全是传播时间"
+        },
+        {
+          "href": "pilot-design.html#experiment",
+          "label": "导频间距：已知样本与歧义范围"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先分误差来源",
+          "locator": "§II，式(1)–(2)",
+          "purpose": "把传播时延/多普勒与定时、载频、采样频偏分别标出。"
+        },
+        {
+          "label": "顺着数据走一遍",
+          "locator": "§III；§IV图3–4",
+          "purpose": "确认解码重构发生在哪一步，再问错误数据会怎样污染感知。"
+        },
+        {
+          "label": "先看接线再看峰",
+          "locator": "§IV首段、表II",
+          "purpose": "区分真实硬件误差、模拟目标和没有验证的空口条件。"
+        },
+        {
+          "label": "检查长帧代价",
+          "locator": "图2–4；§V",
+          "purpose": "把更多样本的收益与残差累积拆开，不把峰变窄等同于整体更可靠。"
+        }
+      ]
+    },
+    {
+      "id": "mimo-ofdm-realtime-testbed-2023",
+      "directionId": "prototype",
+      "title": "实时 MIMO 原型：带宽为何由接收主机决定？",
+      "question": "同一波形既传数据又画距离–角度图，真正限制系统的是射频带宽、样本搬运，还是数字处理与校准？",
+      "mechanism": "相干的四发两收链形成虚拟阵列；已知发射符号用于雷达信道估计，另一接收机完成同步、均衡、解调和译码。逐虚拟通道减去历史均值，压低泄漏和固定背景。",
+      "innovation": "把数字 MIMO、毫米波前端和通信接收机做成实时可运行链，允许同时观察感知图与数据链路，并暴露主机吞吐及背景校准瓶颈。",
+      "evidence": {
+        "kind": "24 GHz 室内空口原型实测；本站仅导读，未新增实验",
+        "summary": "图5–7展示双反射器成像与通信接收界面；图8–10给出不同距离/角度下的雷达与通信 SNR 测量。§III-C明确包含 Viterbi 译码，因此确有数据接收链，而非只把随机符号当雷达波形。"
+      },
+      "limits": [
+        "资源：4发2收、64子载波；联合实验采用125 MHz，通信主机无法持续处理200 MHz。雷达低占空比时可用200 MHz，不能据此写成200 MHz满负荷联合业务。",
+        "同步与背景：阵列共用参考时钟、PPS和本振；背景估计人工启停，成像实验先空场学习再放目标。数字相减不等于消除ADC前的饱和。",
+        "场景与业务：室内强反射器/推车，通信测量每100 ms发送500字节；不能外推为道路部署或吞吐上限。实时界面也不代表给出了端到端最坏时延保证。"
+      ],
+      "nextQuestion": "若目标停住、背景变化或业务变密，怎样选择背景更新时机，并同时报告误检、丢包与处理超时？",
+      "source": {
+        "title": "Software-Defined MIMO OFDM Joint Radar-Communication Platform with Fully Digital mmWave Architecture",
+        "authors": "Ceyhun D. Ozkaptan、Haocheng Zhu、Eylem Ekici、Onur Altintas",
+        "edition": "arXiv:2302.05812v1，2023-02-11，7页；本卡按该 PDF 编号，对应 JC&S 2023 工作。作者仓库另列后续期刊论文，勿混用其结果。",
+        "url": "https://arxiv.org/pdf/2302.05812v1",
+        "locator": "§II，图1–2；§III-A/C，图3–4；§IV，式(1)–(2)；§V、表II、图5–10"
+      },
+      "prerequisites": [
+        {
+          "href": "foundations.html#ofdm",
+          "label": "OFDM 七步：通信 FFT 与感知变换"
+        },
+        {
+          "href": "foundations.html#array",
+          "label": "阵列相位：孔径从哪里来"
+        },
+        {
+          "href": "perceptive-clutter.html#model",
+          "label": "背景相减：稳定回波与目标的边界"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "画出样本经过的机器",
+          "locator": "§II，图1–2；§III开头",
+          "purpose": "标出ADC/DAC、网络搬运、主机处理与共同参考，检查相干性靠什么维持。"
+        },
+        {
+          "label": "确认通信确实在运行",
+          "locator": "§III-A/C，图3；图7",
+          "purpose": "沿编码、预编码、同步、均衡到译码追踪数据，不只看雷达热图。"
+        },
+        {
+          "label": "问背景从何而来",
+          "locator": "§IV式(1)–(2)；§V-A",
+          "purpose": "检查平均窗口中有没有目标，以及背景更新是谁触发。"
+        },
+        {
+          "label": "区分规格与负载",
+          "locator": "§V开头、表II；§V-D图10",
+          "purpose": "同时核对实际带宽、业务注入频率和观察环境，再评价实时能力。"
+        }
+      ]
     }
   ]
 }
