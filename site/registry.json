@@ -775,6 +775,93 @@
         "verificationNote": "2026-10-11 使用已核对的六页接受稿交接；SHA-256 34cc5b1602b185bdcf256848ee88b26f778a4fa1ee9f49a63fcfd0d9fca61d21。本站为独立合成模型；数值、界面、浏览器验证各自报告，不把来源核对称为论文复现。九篇目录影响证据沿用 2026-10-10 快照。"
       },
       "learningEntry": "radar-beam-decision.html#mechanism"
+    },
+    {
+      "id": "case-perceptive-clutter",
+      "title": "递归去背景：为什么慢目标也会变弱？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#ofdm\">OFDM 的慢时间列</a>；<a href=\"foundations.html#doppler\">路径相位与多普勒</a>；<a href=\"theory.html#shared-model\">共同观测中的已知与未知</a>。只研究同一个复信道系数，不要求先学稀疏恢复。",
+        "问题": "同一个复信道系数里叠着静态背景、运动目标与误差。把看起来不变的部分逐渐学成背景，为什么也会减弱慢目标，并在目标离开后留下尾迹？",
+        "交互机制": "先手算两步复数递归；在固定 512 个观测、2 ms 采样间隔与相同噪声实现下改变 α 或目标多普勒，查看 I/Q、冷启动、停止与离开。真值分量只作解释，接收机只处理复数总输入。",
+        "证据类型": "论文：<a href=\"https://opus.lib.uts.edu.au/bitstream/10453/137860/4/Framework%20for%20a%20Perceptive%20Mobile%20Network.pdf\">UTS 接收稿</a>与<a href=\"https://arxiv.org/pdf/1901.05558v1\">arXiv:1901.05558v1 固定 PDF</a>的框架、算法与仿真；本站：式(30)的独立单系数机制、有限记录线性算子与噪声协方差核验，不是商用网络部署或图11/12复现。",
+        "结论边界": "先更新背景，再做同一时刻的复数相减；减完再平方。长记忆可让稳态慢目标较少混入背景，也需要更长冷启动。背景估计噪声变小不等于输出白噪声；目标幅度下降不等于最优估计信息必然丢失，不给出未经校准的检出率或虚警率。",
+        "下一研究问题": "若真实复信道估计存在参考漂移或调制剥离误差，静态物体会怎样产生非零慢时间频率？须另建观测、校准与检测模型，不能沿用这里的理想相干条件。"
+      },
+      "unit": "perceptive-clutter",
+      "paper": "perceptive-clutter.html#source",
+      "next": "perceptive-clutter.html#boundary",
+      "learningEntry": "perceptive-clutter.html#question",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceId": "perceptive",
+        "sourceTitle": "Framework for a Perceptive Mobile Network Using Joint Communication and Radar Sensing",
+        "sourceUrl": "https://opus.lib.uts.edu.au/bitstream/10453/137860/4/Framework%20for%20a%20Perceptive%20Mobile%20Network.pdf",
+        "version": "UTS 机构接收稿，15 个物理 PDF 页（含 1 页版权封面）；对读 arXiv:1901.05558v1，2019-01-16，14 页。2020 卷56期3，pp.1926–1941；2019 在线发表/预印本，DOI 10.1109/TAES.2019.2939611。不为接收稿虚构版本号。",
+        "supportingSources": [
+          {
+            "url": "https://opus.lib.uts.edu.au/handle/10453/137860",
+            "version": "机构记录标 Accepted Manuscript",
+            "locator": "身份与接收稿来源；早期 2019、pp.1–1 元数据不替代最终卷期"
+          },
+          {
+            "url": "https://arxiv.org/pdf/1901.05558v1",
+            "version": "arXiv:1901.05558v1；2019-01-16",
+            "locator": "物理 PDF §VI pp.9–10，式(29)–(32)；比 UTS 接收稿相关页少 1 页"
+          }
+        ],
+        "comparisonLink": "perceptive-clutter.html#source",
+        "researchQuestion": "原文研究通信信号支持的移动感知网络及参数提取；本站仅问：相干复信道观测里的递归背景估计怎样混入慢目标、产生冷启动与相关输出噪声？",
+        "observationsAndUnknowns": "固定同一用户、子载波及矩阵元素，输入已除去已知调制、参考相位可比的复信道估计 x_p=C+A exp[j(φ+ωp)]+n_p。C、A、φ、f_D 是生成器真值，不进入接收机递归；累计整圈只供解释，不代表接收机已解相位模糊。",
+        "locator": {
+          "summary": "物理 PDF 页码：UTS §III-A pp.5–6 式(2)–(3)，§V-A pp.8–9 式(22)–(23)；§VI p.10 式(29)–(31)，p.11 式(32)。arXiv v1 对应 §VI pp.9–10；两份固定 PDF 的递归均为式(30)。UTS 图2/3 p.10、§VII-C p.13、图11/12 p.14；arXiv 图2/3 p.9、§VII-C与图11 p.12、图12 p.13。自动 HTML 式号不同，不混用。",
+          "section": "§III-A；§V-A；§VI；§VII-C（固定 PDF）",
+          "figure": "图2为背景响应幅度，图3为背景中的杂波/动态干扰功率比；图11为背景重建误差，图12为角度/路径距离估计，不是检出率",
+          "equation": "固定 PDF 式(30)：逐元素复数递归；式(31)的复相位须独立核对；式(32)是背景估计噪声，不是相减后噪声"
+        },
+        "paperEvidenceType": "系统框架、递归预处理与感知算法的理论/仿真；没有商用网络端到端部署证据",
+        "siteArtifactType": "独立单复系数、冷启动的递归背景机制；解析线性算子/协方差与显式复数 fixture 检验，不是整篇论文或图11/12复现",
+        "retainedAssumptions": [
+          "同一用户、子载波及矩阵元素已有可比的复信道估计，已剥离调制且参考相位不漂移",
+          "b_0=0；b_p=αb_(p−1)+(1−α)x_p；r_p=x_p−b_p，先更新再相减，不归一化冷启动权重",
+          "归一化复幅度 x_p=C+A exp[j(φ+2πf_D pT_h)]+n_p；n_p iid CN(0,σ²)，I/Q 各有 σ²/2 方差",
+          "固定复系数的局部近似；持续正弦、相位连续停止或离开是教学场景，不是原文跨稳定期多径运动模型",
+          "α 对照使用同一输入、同一噪声、同一初值与完整有限记录；生成器拆分仅作解释"
+        ],
+        "omittedMechanisms": [
+          "网络组织、完整 MIMO-OFDM、稀疏多径恢复、角度/距离估计、目标关联与检测器",
+          "真实通信数据剥离误差、时钟/载波漂移、硬件校准、RCS 与链路预算",
+          "原论文图11/12重做、实测或原型复现；不模拟更新间更密集观测与背景保持",
+          "未校准的 Pd/Pfa、独立白噪声 CA-CFAR 门限或吞吐量排名；输出在慢时间上相关"
+        ],
+        "metrics": [
+          "复数 I/Q 的输入、背景与残余，单位为归一化幅度；功率为幅度平方，不是瓦特或 dBm",
+          "冷启动静态分量残余幅度比 α^p，及达到 1% 所需更新次数",
+          "目标稳态功率传递 |1−H_b|² 与有限窗口目标分量能量比分开；不能以 1−|H_b|² 替代",
+          "输入 σ²、背景估计 V_b(p)、输出 K_pp 与非零相邻时刻协方差分别报告",
+          "有限记录 α>0、已知初值时变换可逆；保留完整复数记录及正确均值/协方差时，不能仅凭幅度下降宣称 Fisher 信息必然下降"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定 P=512 个慢时间复观测、T_h=2 ms、b_0=0；首样本 2 ms，末样本 1.024 s，首末间隔 1.022 s，DFT 记账 P T_h=1.024 s、格距 0.9765625 Hz。同一 α 对照只对同一条输入数字重处理，不添加 warm-up 或发射能量。P=512 不是原文 N=512 子载波；未建模通信吞吐量、RF 功耗、RCS 或检测性能。",
+          "bandwidth": "未设置信号带宽；慢时间采样率 500 Hz，约定不模糊区间 [−250,250) Hz，不等于占用带宽或物理分辨率",
+          "energy": "默认 |C|=4、A=1、σ²=.04 是归一化信道系数及幅度平方；目标/噪声功率比 25，静态/目标功率比 16。总输入含交叉项，不作为目标 SNR",
+          "duration": "P=512、T_h=.002 s；冷启动保留全部样本，没有免费训练历史；α=.995 达到 1% 静态幅度需 919 次/1.838 s，超过本记录",
+          "aperture": "一个复信道矩阵元素；无可验证的角度或距离分辨单元，不推出目标长距离运动不迁移",
+          "priorKnowledge": "接收机仅用 x、α 与初始 b_0；真值 C/A/φ/f_D、无噪分量与累计相位不进入递归",
+          "other": [
+            "默认 α=.95、f_D=2 Hz、C=4 exp(j.3)、A=1、φ=1.1 rad、σ²=.04；为本站教学选择",
+            "α=0 把全部输入减去；α=1 不学习背景；f_D=0 与背景无法分离，f_D=500 Hz 采样后与 DC 等价",
+            "停住后相位连续；离开后保留已学背景形成记忆尾迹，不把尾迹解释为新目标",
+            "原文 §VII-C 每 2 ms 采样；接收稿与 v1 的 RCS 设定不同，均不导入本站模型"
+          ]
+        },
+        "unknowns": [
+          "两份 PDF 式(31)按正频率、正向递归的复相位不匹配，但幅度相同；p=2 的手算反例是本站独立核验，不是作者发布的勘误",
+          "接收稿 §VII 增加 RCS=1 m²，v1 未考虑 RCS；不拼接两版预算",
+          "图2图注 p=30、T_h=20T_s、约 2.8 ms 与 §VII 的 T_s 算得 3.84 ms 不一致，未查明设置差异；不重建原图时长",
+          "真实复观测的漂移、剥离误差与检测门限须另建模型；本文未证明整篇算法、最优估计器或真实网络性能"
+        ],
+        "verificationNote": "2026-10-11 来源交接已核对 UTS 接收稿 SHA-256 a51c363bbb6b6a646a1de1ff20054722db60ad7ec2a303421d570ae5b8d82172，arXiv v1 SHA-256 e947f001746f33fb91be4c2b5781c9df29a67ce0023bd7975092db241f75f8ec。本站使用式(30)因果递归并独立验证复相位与输出协方差，不把来源核验视为整篇复现。九篇目录 metrics、endorsements、socialDiscussion 保持 2026-10-10 快照。"
+      }
     }
   ],
   "legacy": {
@@ -1384,6 +1471,21 @@
       "group": "research",
       "primaryDirectionId": "learning",
       "action": "先看合成传感器输入与候选排名，再改变 K；分别检查标签命中、理想探测后的功率损失和 K/64 预算。"
+    },
+    {
+      "id": "perceptive-clutter",
+      "title": "递归背景与慢目标",
+      "href": "perceptive-clutter.html#experiment",
+      "question": "把稳定回波学成背景再相减，为什么慢慢转动的目标也会变弱？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#ofdm",
+        "foundations.html#doppler",
+        "theory.html#shared-model"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "先手算两步复数更新，再用同一条观测改变记忆与多普勒；分开检查启动残余、目标混入与相关噪声。"
     }
   ],
   "pages": [
@@ -1596,6 +1698,21 @@
       "case": "case-radar-beam-decision",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同码本、同训练量的候选决策检验"
+    },
+    {
+      "path": "perceptive-clutter.html",
+      "title": "递归去背景：为什么慢目标也会变弱？",
+      "stage": "experiments",
+      "role": "研究主题 · 复数递归背景、慢时间运动与相关噪声",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#ofdm",
+        "foundations.html#doppler",
+        "theory.html#shared-model"
+      ],
+      "case": "case-perceptive-clutter",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同输入、同初值的递归背景检验"
     }
   ],
   "schemaVersion": 1,
@@ -1909,14 +2026,16 @@
       "id": "receiver",
       "title": "检测与估计：怎样从样本找到目标？",
       "question": "有一个峰，为什么还不能立刻说找到目标、测准了位置？",
-      "scope": "匹配、检测、参数估计与跟踪；区分分辨率、误差和虚警。",
+      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。",
       "prerequisites": [
         "matched",
         "doppler",
         "cfar",
         "limits"
       ],
-      "primaryCaseIds": [],
+      "primaryCaseIds": [
+        "case-perceptive-clutter"
+      ],
       "relatedDirectionIds": [
         "waveforms",
         "channels",
@@ -1934,6 +2053,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "把稳定回波学成背景，慢目标会怎样？",
+              "href": "perceptive-clutter.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ]
         },
@@ -1955,6 +2082,14 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "从两个复数样本手算递归背景",
+              "href": "perceptive-clutter.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ]
         },
@@ -1984,6 +2119,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "先回看共同观测与标量 CRB；这里只估计无量纲实增益，不是非线性测距、角度估计或多目标跟踪。"
+            },
+            {
+              "label": "同一条观测：记忆、慢目标与停止尾迹",
+              "href": "perceptive-clutter.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ],
           "coverage": "direction-specific"
@@ -2014,6 +2157,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定版本阅读入口；本站尚未完成该论文复现"
+            },
+            {
+              "label": "Perceptive 固定 PDF：递归、复相位与噪声",
+              "href": "perceptive-clutter.html#source",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ],
           "comparisonStatus": "partial",
@@ -2031,6 +2182,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "幅度、相关噪声与信息边界分别检查",
+              "href": "perceptive-clutter.html#boundary",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ]
         },
@@ -2053,12 +2212,20 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "用复数 fixture 与有限协方差复核机制",
+              "href": "perceptive-clutter.html#validation",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
             }
           ]
         }
       ],
       "nextExtension": "增加连续参数估计与离格目标的可比实验，明确模型失配和低 SNR 条件。",
-      "coverage": "已有匹配、CFAR 与实标量 LS/CRB 教学实验；非线性测距与多目标跟踪尚未实现",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB 与递归背景专项机制；真实信道校准、非线性测距与多目标跟踪尚未实现",
       "scenePositions": [
         "interpret"
       ]
@@ -3430,7 +3597,8 @@
           "doppler",
           "ofdm",
           "golay-radar",
-          "ofdm-interpolation"
+          "ofdm-interpolation",
+          "perceptive-clutter"
         ],
         "entryUnitRef": "doppler"
       },
@@ -3634,9 +3802,10 @@
         "href": "foundations.html#realworld",
         "question": "最强回波来自墙时会怎样？",
         "knownUnknown": "区分目标、背景、干扰和噪声",
-        "boundary": "当前 CFAR 前置教学不是完整真实信道系统",
+        "boundary": "CFAR 前置教学与单系数递归背景机制不等于完整真实信道、硬件校准或杂波检测系统",
         "unitRefs": [
-          "cfar"
+          "cfar",
+          "perceptive-clutter"
         ]
       },
       {
@@ -3675,6 +3844,19 @@
         "knownUnknown": "明确处理链、时限、校准与证据范围",
         "boundary": "浏览器数值实验不是实时硬件或标准符合性验证",
         "unitRefs": []
+      },
+      {
+        "id": "background-subtraction",
+        "kind": "concept",
+        "groupId": "inference",
+        "label": "递归背景与复数相减",
+        "href": "perceptive-clutter.html#question",
+        "question": "把稳定回波学成背景时，慢目标为何也会被学进去？",
+        "knownUnknown": "已知复数观测、记忆因子与初值；背景、目标和噪声的拆分仅供生成器解释",
+        "boundary": "先更新再做复数相减；冷启动、稳态传递与输出协方差分开，幅度减弱不自动等于信息丢失",
+        "unitRefs": [
+          "perceptive-clutter"
+        ]
       }
     ],
     "directionNodes": [
@@ -4291,6 +4473,54 @@
         "target": "direction:networks",
         "type": "research_entry",
         "label": "沿网络协作方向核对同步与融合条件；在线互助闭环尚未实现",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "iq",
+        "target": "background-subtraction",
+        "type": "prerequisite",
+        "label": "先分清相减的对象是复数而不是功率",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "phase",
+        "target": "background-subtraction",
+        "type": "prerequisite",
+        "label": "从慢时间相位理解背景与运动",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "background-subtraction",
+        "target": "doppler",
+        "type": "scope_check",
+        "label": "采样相位接近不变，可能混入背景或发生别名",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "background-subtraction",
+        "target": "detection",
+        "type": "scope_check",
+        "label": "数字去背景不等于完成存在性检测",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "background-subtraction",
+        "target": "channels",
+        "type": "scope_check",
+        "label": "单复系数背景不等于真实多径与漂移模型",
+        "provenance": "editorial-pedagogic",
+        "scientificClaim": false
+      },
+      {
+        "source": "background-subtraction",
+        "target": "direction:receiver",
+        "type": "research_entry",
+        "label": "沿已有六层路线核对预处理与后续估计条件",
         "provenance": "editorial-pedagogic",
         "scientificClaim": false
       }
