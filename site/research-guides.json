@@ -755,7 +755,12 @@
         "authors": "Zihuan Wang、Vincent W. S. Wong、Robert Schober",
         "edition": "arXiv:2602.20319v1，2026-02-23，17页；本卡按该固定 PDF 编号。期刊记录为 IEEE JSAC 44, 642–658, 2026；首页2025年日期为投稿/修订/录用日期。",
         "url": "https://arxiv.org/pdf/2602.20319v1",
-        "locator": "§II，式(6)–(11)；§III-A/B/C，图3–4、式(12)–(16)；§III-D；§IV-B，算法1–2与脚注4；§V-B/C/E，图6、12、14及式(30)"
+        "locator": "§II，式(6)–(11)；§III-A/B/C，图3–4、式(12)–(16)；§III-D；§IV-B，算法1–2与脚注4；§V-B/C/E，图6、12、14及式(30)",
+        "firstSubmittedAt": "2026-02-23T20:07:58Z",
+        "versionAt": "2026-02-23T20:07:58Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "arXiv与作者出版目录均列IEEE JSAC 44, 642–658（2026）；FAU机构记录列2025并给出期刊DOI。arXiv首次提交/固定v1为2026-02-23，不把它当作期刊首次发表日；本文按v1编号。",
+        "publicationUrl": "https://doi.org/10.1109/JSAC.2025.3613283"
       },
       "prerequisites": [
         {
@@ -877,6 +882,18 @@
           "answer": "不能。具体训练流程上传离散潜特征、回传梯度；训练后共享最终码本，在线才只传索引。因此在线载荷公式不能直接当成训练或整个生命周期的通信总量。",
           "sourceLocator": "§III-D; §IV-B, Algorithm 1 lines 9–16, footnote 4, final paragraph and Algorithm 2"
         }
+      },
+      "contextTrail": {
+        "oldQuestion": "协作簇导读先问：在随机站位、有限服务资源与回传预算下，选多少通信/感知站、怎样分功率，才能平衡平均速率与定位下界？它把回波预处理结果作为回传负载，尚未设计具体压缩表示。",
+        "changedCondition": "这里把问题移到既定AP部署与通信波束下：各站实际收到的空间–频率–时间回波，怎样编码、量化并交给CPU估位置和二维速度？设计变量变为编码器、码本与解码器；固定几何、训练真值、CPU已知发射信号和同步/残差训练条件须另核对。旧文的Root CRLB不能与本篇实际估计RMSE直接排优劣，旧文的网络回传速率约束，也不能直接与新文每 AP 每次在线更新的比特数比较；至少先统一更新频率、带宽及速率单位。",
+        "links": [
+          {
+            "guideId": "networks-cooperative-clusters-2024",
+            "relationType": "problem-link",
+            "verificationNote": "本站按“协作预算→观测表示”对读；核对本篇完整参考文献[1]–[39]未见Meng–Masouros该文，不声称引用、算法继承或性能优越。两文几何、先验/同步、指标与资源账本不同：旧文省略CSI共享，新文在线载荷省略训练/码本同步等；须统一条件后另做比较。",
+            "sourceLocator": "2024 v3 §II-A–D、式(3)–(10)、§V图2–5；2026 v1 §II–IV、§V-B/C/E图6/12/14、§VI及References [1]–[39]"
+          }
+        ]
       }
     },
     {

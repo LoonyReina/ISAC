@@ -323,7 +323,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
- a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,4);
+ a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
  a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,19,16]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
@@ -403,7 +403,7 @@ test('three additional source-backed selections preserve the first route and all
   ['echo','echo','channels-target-environment-coupling-2025','channels-sensing-communication-mapping-2026','problem-link'],
   ['beam-design','array','mimo-ofdm-realtime-testbed-2023','sbfd-resource-synchronization-2026','problem-link']
  ];
- a.deepEqual(registry.knowledgeMap.progressions.slice(1).map(p=>[p.nodeId,p.unitId,p.guideId,p.nextGuideId]),expected.map(e=>e.slice(0,4)));
+ a.deepEqual(registry.knowledgeMap.progressions.slice(1,4).map(p=>[p.nodeId,p.unitId,p.guideId,p.nextGuideId]),expected.map(e=>e.slice(0,4)));
  const before=structuredClone(registry);before.knowledgeMap.progressions.splice(1);
  const hash=v=>require('node:crypto').createHash('sha256').update(v).digest('hex');
  a.equal(hash(JSON.stringify(before)),'2a8a834a37e7bd94a77a87b645b201dfc81a2f798bfa04eff92dcbd02bc2d5c7');
@@ -436,4 +436,20 @@ test('direct-citation qualification stays visible and all three added ladders re
   a.equal(h.pushes.length,0);h.navigate('#map-node-known-pilots');a.ok(h.panel.querySelector('[data-map-progression="known-pilots"]'));h.navigate('#map-node-'+nodeId);a.ok(h.panel.querySelector('[data-map-progression="'+nodeId+'"]'));a.equal(h.pushes.length,0);
   h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');a.ok(h.groups.every(g=>!g.open));
  }
+});
+
+test('the fifth geometry ladder uses only reviewed existing joins and preserves the first four rendered routes',()=>{
+ const {progression,withoutNetworkProgression,withoutNetworkContext}=require('./helpers/network-context-preservation.cjs');
+ a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render();
+ for(const id of ['known-pilots','angle','echo','beam-design'])a.equal(template(current,id),template(old,id),id);
+ const n=registry.knowledgeMap.nodes.find(n=>n.id==='geometry'),u=registry.units.find(u=>u.id==='geometry'),g=guideData.cards.find(c=>c.id===progression.guideId),next=guideData.cards.find(c=>c.id===progression.nextGuideId);
+ a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links[0].guideId,g.id);a.equal(next.contextTrail.links[0].relationType,'problem-link');
+ const h=setup({hash:'#map-node-geometry'}),ladder=h.panel.querySelector('[data-map-progression="geometry"]');a.ok(ladder);a.equal(h.panel.querySelector('.map-beginner'),null);
+ a.deepEqual(ladder.querySelector('.map-progression-steps').querySelectorAll('a').map(x=>x.attrs.href),['index.html#map-node-geometry','foundations.html#geometry','reading.html#guide-networks-cooperative-clusters-2024','reading.html#guide-cellfree-vq-compression-2026']);
+ a.match(ladder.textContent,/本站按问题关联（非引用关系）/);a.match(ladder.textContent,/不声称引用、算法继承或性能优越/);a.doesNotMatch(ladder.textContent,/新文直接引用/);a.ok(ladder.textContent.includes(next.nextQuestion));
+ a.match(ladder.textContent,/固定版本：2026-02-23.*核查：2026-10-11/);a.match(ladder.textContent,/前置机制；不是论文算法复现/);
+ const fallback=parse(current).querySelectorAll('noscript').find(f=>f.closest('.map-group').dataset.mapGroup==='radar');a.ok(fallback.querySelector('[data-map-progression="geometry"]'));a.ok(fallback.querySelector('[data-map-progression="echo"]'));a.equal((current.match(/data-map-progression="geometry"/g)||[]).length,2);
+ for(const link of ladder.querySelectorAll('a'))a.equal(h.click(link).defaultPrevented,undefined);
+ h.navigate('#map-node-echo','popstate');h.navigate('#map-node-geometry','popstate');a.ok(h.panel.querySelector('[data-map-progression="geometry"]'));a.equal(h.pushes.length,0);
+ h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');
 });
