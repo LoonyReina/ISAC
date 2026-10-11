@@ -1,0 +1,17 @@
+/* Optional reading aid. All cards and native disclosures work without JS. */
+.research-guides [hidden]{display:none!important}
+.guide-controls{display:flex;flex-wrap:wrap;align-items:end;gap:14px;padding:20px;background:#edf5f3;border-radius:10px;margin:24px 0}
+.guide-controls>div{flex:1 1 220px;min-width:0}.guide-controls label{display:block;font-size:14px;font-weight:650;margin-bottom:6px}
+.guide-controls input,.guide-controls select,.guide-controls button{font:inherit;min-height:44px;border:1px solid var(--site-line);border-radius:6px;background:#fff;padding:9px 12px;color:#152b40}
+.guide-controls input,.guide-controls select{width:100%;max-width:100%;box-sizing:border-box}.guide-controls button{cursor:pointer}.guide-controls p{flex-basis:100%;margin:0;font-size:14px}
+.guide-direction-group{margin-top:32px;scroll-margin-top:150px}.guide-direction-group>h3{font-size:24px;margin-bottom:8px}
+.research-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.research-guide-card{min-width:0;padding:24px;background:#fff;border:1px solid var(--site-line);border-radius:10px;overflow-wrap:anywhere;scroll-margin-top:150px}
+.research-guide-card h4{font-size:22px;line-height:1.5;margin:8px 0 18px}.research-guide-card p{font-size:15px;line-height:1.85}.research-guide-card .eyebrow{font-size:12px}.research-guide-card .guide-question{font-size:17px;color:#152b40}
+.guide-depth,.guide-source{margin-top:18px}.guide-depth summary,.guide-source summary{min-height:44px;cursor:pointer;font-size:14px;line-height:1.7}.guide-depth>div,.guide-source>div{padding:0 12px 12px}
+.guide-depth dl{display:block;font-size:15px}.guide-depth dt{font-weight:700;margin-top:18px}.guide-depth dd{margin:7px 0;line-height:1.85}.guide-depth ul,.guide-reading-steps{padding-left:20px}.guide-depth li{margin:8px 0;font-size:14px;line-height:1.8}
+.guide-source{border-top:1px solid var(--site-line);padding-top:12px}.guide-source p{font-size:14px}.guide-connection a,.guide-source a{overflow-wrap:anywhere}
+.research-guides :focus-visible{outline:3px solid var(--site-accent);outline-offset:4px}
+@media(max-width:700px){.research-guide-grid{grid-template-columns:1fr}.research-guide-card{padding:20px}.research-guide-card h4{font-size:20px}}
+@media(max-width:480px){.guide-controls{padding:14px}.guide-controls>div{flex-basis:100%}}
+@media print{.research-guides .guide-controls,.research-guides [data-guide-empty]{display:none!important}.research-guides [data-research-guide][hidden],.research-guides [data-guide-group][hidden]{display:block!important}.research-guide-grid{display:block}.research-guide-card{break-inside:avoid;margin-bottom:18px}.research-guides details::details-content{display:block!important;content-visibility:visible!important}.research-guides details>div{display:block!important}}
