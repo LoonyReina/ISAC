@@ -12,6 +12,15 @@
 .guide-depth dl{display:block;font-size:15px}.guide-depth dt{font-weight:700;margin-top:18px}.guide-depth dd{margin:7px 0;line-height:1.85}.guide-depth ul,.guide-reading-steps{padding-left:20px}.guide-depth li{margin:8px 0;font-size:14px;line-height:1.8}
 .guide-source{border-top:1px solid var(--site-line);padding-top:12px}.guide-source p{font-size:14px}.guide-connection a,.guide-source a{overflow-wrap:anywhere}
 .research-guides :focus-visible{outline:3px solid var(--site-accent);outline-offset:4px}
+/* Question trails reuse native disclosures and ordinary guide anchors. */
+.guide-context-trail{margin:20px 0;border:1px solid var(--site-line);border-radius:8px;padding:0 14px;background:#f4f8f7}
+.guide-context-trail>summary{min-height:44px;padding:11px 0;box-sizing:border-box;cursor:pointer;font-size:15px;font-weight:650;line-height:1.7}
+.context-steps{padding-left:22px;margin:8px 0 18px}.context-steps>li{padding:4px 0 12px;border-bottom:1px solid var(--site-line)}.context-steps>li:last-child{border:0}
+.context-steps h5{font-size:16px;line-height:1.7;margin:10px 0}.context-steps p,.context-steps li{font-size:14px;line-height:1.8}.context-steps ul{padding-left:20px}
+.context-links>li{margin:12px 0}.context-relation{font-size:13px;color:#174a64}
+.research-guide-card .guide-currentness{font-size:12px;color:var(--site-muted)}.research-guide-card .guide-existing-source{font-size:13px}
+.research-guide-card .guide-onward{padding-top:14px;border-top:1px solid var(--site-line);font-size:14px}.guide-onward span{font-size:12px}
+.guide-source-status{font-size:14px;line-height:1.8}.guide-source-status dt{font-weight:700;margin-top:12px}.guide-source-status dd{margin:4px 0}
 /* Original qualitative traces: every state has a word and a border treatment. */
 .guide-visual-trace{margin:20px 0;border:1px solid var(--site-line);border-radius:8px;padding:0 12px}
 .guide-visual-trace>summary{min-height:44px;box-sizing:border-box;padding:11px 0;cursor:pointer;font-size:15px;font-weight:650;line-height:1.65}
