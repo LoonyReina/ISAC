@@ -16,9 +16,9 @@ function generator(r=registry,template=read('site/content-practice.html')){
  return {...render,output:file=>outputs.get(file)||read(file)};
 }
 
-test('all 27 notebook topics are canonical projections of the unchanged single registry',()=>{
+test('all 28 notebook topics are canonical projections of the unchanged single registry',()=>{
  const before=JSON.stringify(registry),topics=buildNotebookTopics(registry),entries=createLearningEntryResolver(registry);
- a.equal(topics.length,27);a.equal(topics.length,registry.units.length);a.equal(registry.cases.length,15);
+ a.equal(topics.length,28);a.equal(topics.length,registry.units.length);a.equal(registry.cases.length,15);
  a.deepEqual(topics.map(topic=>topic.id),registry.units.map(unit=>unit.id));
  for(const [index,unit]of registry.units.entries()){
   const topic=topics[index],source=registry.cases.find(c=>c.unit===unit.id);
