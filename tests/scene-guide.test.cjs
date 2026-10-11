@@ -49,7 +49,7 @@ test('scene guide enhances existing reading cards, with native optional no-JS an
 test('registry positions drive all existing cards and do not claim unfinished dedicated modules',()=>{
   const html=read('reading.html');
   for(const d of registry.directions){a.ok(d.scenePositions.length);for(const pos of d.scenePositions)a.ok(registry.scenePositions.some(p=>p.id===pos));a.ok(html.includes(`id="direction-${d.id}" data-scene-positions="${d.scenePositions.join(' ')}"`));}
-  for(const id of ['channels']){const card=html.match(new RegExp(`<article[^>]+id="direction-${id}"[^>]*>([\\s\\S]*?)</article>`))[1];a.match(card,/仅前置实验/);a.match(card,/专项实验尚未实现/);a.match(card,/专属深度交互模块待建设/);a.match(card,/（尚未实现）/);}
+  for(const id of ['channels']){const card=html.match(new RegExp(`<article[^>]+id="direction-${id}"[^>]*>([\\s\\S]*?)</article>`))[1];a.match(card,/仅前置实验/);a.match(card,/已有单向静态双路径专项机制/);a.match(card,/href="multipath-channel.html#experiment"/);a.match(card,/完整目标—杂波—干扰分量、漫散射与实测校准仍待建设/);a.doesNotMatch(card,/专项实验尚未实现|专属深度交互模块待建设/);a.match(card,/（尚未实现）/);}
   const learning=html.match(/<article[^>]+id="direction-learning"[^>]*>([\s\S]*?)<\/article>/)[1];
   a.match(learning,/已有感知辅助通信的独立合成波束候选机制/);a.match(learning,/href="radar-beam-decision.html#experiment"/);
   a.match(learning,/真实数据、CNN 与在线闭环仍待单独验证/);a.match(learning,/（尚未实现）/);

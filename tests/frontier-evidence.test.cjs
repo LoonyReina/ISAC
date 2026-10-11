@@ -44,7 +44,7 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
 });
 
 test('existing paper layers point to actual readings within the current canonical inventory',()=>{
- a.equal(r.units.length,24);a.equal(r.cases.length,13);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,25);a.equal(r.cases.length,14);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);

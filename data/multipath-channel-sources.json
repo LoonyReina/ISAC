@@ -1,0 +1,44 @@
+{
+  "schema": "multipath-channel-sources-v1",
+  "verified_on": "2026-10-11",
+  "title": "Evaluation of Position-related Information in Multipath Components for Indoor Positioning",
+  "authors": ["Erik Leitinger", "Paul Meissner", "Christoph Rüdisser", "Gregor Dumphart", "Klaus Witrisal"],
+  "journal": "IEEE Journal on Selected Areas in Communications 33(11), 2313–2328, 2015",
+  "DOI": "10.1109/JSAC.2015.2430520",
+  "primary_edition": "arxiv-1409.1467v2-html",
+  "sources": [
+    {
+      "id": "arxiv-1409.1467v2-html",
+      "url": "https://arxiv.org/html/1409.1467v2",
+      "identity_url": "https://arxiv.org/abs/1409.1467v2",
+      "version": "1409.1467v2",
+      "uploaded": "2018-12-10",
+      "format": "official arXiv HTML",
+      "sha256": "3fdf1f2eb476888236286ddf0cf8cd27628c0d4740760af91464323cc4725e01",
+      "hash_scope": "Fetched official HTML bytes, not PDF bytes and not a permanently stable rendering hash",
+      "locators": [
+        {"id": "S1", "location": "§I / Figure 1", "scope": "Known-map virtual anchors and one-way versus monostatic setups"},
+        {"id": "S2.EGx1", "location": "§II / equation (1)", "scope": "Coherent delayed signal sum, unit-energy pulse, diffuse multipath and noise"},
+        {"id": "S3.SS1", "location": "§III-A / equation (7)", "scope": "Unknown complex gains and sampled likelihood"},
+        {"id": "S4", "location": "§IV / equations (18)–(24)", "scope": "Geometry-to-delay relations and distinct gradients"},
+        {"id": "S5.SS1", "location": "§V-A / equations (36)–(38)", "scope": "Full EFIM and non-overlapping/orthogonal-path simplification"},
+        {"id": "S6.SS1", "location": "§VI-A / Figure 2 / Table II", "scope": "Measurement-informed validation"},
+        {"id": "S6.SS2.SSS1", "location": "§VI-B1 / Figures 3–5", "scope": "Synthetic path-overlap examples"}
+      ]
+    },
+    {
+      "id": "tu-graz-journal-identity",
+      "url": "https://tugraz.elsevierpure.com/en/publications/evaluation-of-position-related-information-in-multipath-component/",
+      "scope": "Journal title, authors, 2015 publication and DOI identity; separate from v2 upload date"
+    }
+  ],
+  "adaptation": {
+    "evidence_type": "Independent synthetic mechanism adaptation, not source-figure or measured-performance replication",
+    "retained": ["Specular image-source geometry", "One-way length-to-delay relation", "Complex signal addition", "Unknown complex gains", "Path-overlap caution"],
+    "independent_choices": ["Single ideal wall and one direct plus one reflected path", "6 GHz reference carrier", "128 signed integer bins -64..63 at 2 MHz spacing", "Fixed QPSK normalized useful energy 1", "0.5 microsecond useful interval and 0.125 microsecond CP", "Normalized 1/L amplitudes", "Fixed 0..14 m by 0.01 m complex matched response", "Supplied-delay Gram conditioning"],
+    "omitted": ["Diffuse multipath", "Noise", "Material and polarization model", "Clock estimation", "Multi-agent cooperation", "Tracking", "EFIM/CRB", "2D localization", "Detection", "Measurement replication"],
+    "original_resources": "§VI / Table I: unit-energy RRC, roll-off 0.6, pulse durations 0.5/1/2 ns; 7 GHz synthetic and 8 GHz validation carriers. Not the adaptation's resources.",
+    "metric_boundary": "Response power and specified-delay Gram conditioning are not original PEB, measured SINR, CRB, RMSE, detection probability or a performance ranking"
+  },
+  "distribution": "No downloaded paper full text, source figure or private research notes are distributed"
+}

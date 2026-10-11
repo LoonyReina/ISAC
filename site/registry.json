@@ -937,6 +937,79 @@
         },
         "verificationNote": "2026-10-11 使用逐页核对与独立复核的冻结研究交接。VoR SHA-256：4d8f2135a6014338d82dee21da2ba2e05e3c4567bc55c8cb2f4f5525c10855a2；arXiv v1：b9cbff1ab26b63926e1de87393121ec3ba6ca5de10a7bec99b95ddec91fb42ac。原文核对、独立研究数值、本站实现、浏览器及线上验证分别报告；九篇影响证据沿用 2026-10-10 快照"
       }
+    },
+    {
+      "id": "case-multipath-channel",
+      "title": "同一个终端，为什么收到两条路径？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#echo\">传播路径与时延</a>；<a href=\"foundations.html#iq\">I/Q 与复数观测</a>；<a href=\"foundations.html#matched\">候选模板匹配</a>；<a href=\"foundations.html#ofdm\">已知 OFDM 符号与频率相位</a>",
+        "问题": "只有一个接收终端，直达与墙面反射为何会产生两个复数贡献？为什么一个匹配峰既不等于一条路径，也不等于一个二维终端？",
+        "交互机制": "先预测直达/一次反射的路径，再改变终端高度、反射复系数或理想直达路衰减；固定发射网格、能量和接收机，从实际总观测 Y 计算复数匹配，比较相长/相消、峰位偏移与近重叠。改变高度得到不同静态快照，不是连续运动仿真。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/html/1409.1467v2\">Leitinger 等固定 arXiv v2</a>（IEEE JSAC 2015；v2 上传于 2018-12-10）的几何、多径位置信息理论与数值研究；本站：独立单向静态双路径模型、实际复数求和、解析核与独立参考校验，不是论文数值复现。",
+        "结论边界": "单向主动链路 τ=L/c，候选 d=cτ 是总路径长度，不能套用 cτ/2 或当作二维位置。接收机不读取墙面、真实时延、路径个数或分量标签；未知复增益保留。Gram 仅诊断给定两时延时的复幅度分离；无噪声、无 Doppler、无漫散射、无检测、无定位、无 CRB/EFIM。",
+        "下一研究问题": "加入未知时钟、噪声、角度或多锚点时，哪些额外观测与先验才足以区分反射路径并恢复位置？先写清资源，再设计检验；不能从两条曲线直接宣布多径有益。"
+      },
+      "unit": "multipath-channel",
+      "learningEntry": "multipath-channel.html#question",
+      "paper": "multipath-channel.html#source",
+      "next": "multipath-channel.html#boundary",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceId": "case-multipath-channel-paper",
+        "sourceTitle": "Evaluation of Position-related Information in Multipath Components for Indoor Positioning",
+        "sourceUrl": "https://arxiv.org/html/1409.1467v2",
+        "version": "Leitinger 等，IEEE JSAC 2015；固定阅读版本 arXiv:1409.1467v2，2018-12-10 上传。2018 是此版本上传年份，不是期刊发表年份。",
+        "locator": {
+          "summary": "固定 v2 §I/Figure 1：平面图与镜像锚点；§II 式(1)：复数延迟信号叠加；§III-A 式(7)：未知复幅度作为干扰参数；§IV 式(18)–(24)：几何与时延；§V-A 式(36)–(38)：非重叠/正交假设；§VI-B1 Figures 3–5：路径重叠的数值研究。",
+          "section": "§I–IV、§V-A、§VI-B1",
+          "figure": "Figure 1、Figures 3–5",
+          "equation": "式(1)、(7)、(18)–(24)、(36)–(38)"
+        },
+        "researchQuestion": "论文研究不同多径分量中的位置信息；本站只解释单向主动无线链路的直达/一次镜面反射、相干叠加和固定网格匹配，既不求二维位置，也不计算论文的 CRLB/EFIM。",
+        "observationsAndUnknowns": "接收机只接收实际相加的 128 个复数 Y、已知固定 QPSK X、基带频率 f 和预先固定的 0:0.01:14 m 候选网格；不接收 h、墙面坐标、真实时延、路径系数、路径个数或分量标签。未知复增益中的公共因子 A 及传播载波相位不能用于恢复绝对距离整圈；几何、分量曲线和指定真值时延的 Gram 仅供生成器侧解释。",
+        "retainedAssumptions": [
+          "沿用几何路径、镜像锚点、延迟信号的复数叠加及未知复幅度思想；镜像点是计算工具，不是另一部电台",
+          "本站固定已知时钟参考、单天线、无噪声静态快照与一次平面镜面反射；每条单向路径 τ=L/c，不使用单站 cτ/2",
+          "发射信号及频点已知；接收机仅处理总观测，真值诊断与接收机输入分离"
+        ],
+        "omittedMechanisms": [
+          "漫散射、噪声、Doppler、材料/极化、真实天线方向图、穿透、绕射和实测信道校准",
+          "未知时钟、未知地图、路径关联、目标检测、二维定位、多锚点、论文的 CRB/EFIM 与完整算法",
+          "论文原图、实验数据与数值参数复现；N=128、2 MHz、6 GHz、QPSK/CP、1/L 幅度和固定匹配接收机均是独立教学选择"
+        ],
+        "paperEvidenceType": "多径位置信息的理论分析与路径重叠数值研究；本站仅对照所列固定章节/公式，不转移论文数值结论",
+        "siteArtifactType": "独立单向静态双路径机制、实际复数观测匹配与解析核/独立夹具校验；非论文数值复现、检测器或二维定位系统",
+        "metrics": [
+          "单向总路径长度 L，m；时延 τ=L/c，s；超额时延，ns",
+          "发射能量归一化的复数匹配 z(d) 与线性功率 |z(d)|²；d 是候选总路径长度，不是二维位置",
+          "固定网格单最大值及相对真实直达路径的偏差；不是路径数量估计或通过统计检验的检测",
+          "给定两时延模板的相关系数 χ 与 Gram 条件数，只说明分离两个未知复幅度的条件性，不是时延 CRB、定位信息或可靠估计概率",
+          "接收有用能量包含相干交叉项；连续积分与数字样点能量分开记账"
+        ],
+        "resourceBudget": {
+          "summary": "所有场景固定 N=128、整数 k=−64…63、Δf=2 MHz、参考载波 6 GHz、完整频点与确定性 QPSK X；Σ|X|²=1。名义 DFT 带宽 256 MHz，端点跨度 254 MHz。有用时长 0.5 μs、CP 0.125 μs、突发 0.625 μs，接收窗口固定 [0,Tu)；全域最大绝对时延 10/c=33.35640952 ns<125 ns。连续 CP 能量 .21922241148558474、连续总能量 1.2192224114855845；数字 CP 能量 .21901243898695386、数字总能量约 1.2190124389869537，分别固定。单天线、噪声方差 0、1401 点候选网格与处理器不变；接收能量随几何/衰减/相干干涉自然改变，不补偿成固定接收 SNR。",
+          "bandwidth": "整数基带偏移 −128…126 MHz，RF 5.872…6.126 GHz；254 MHz 端点跨度与 256 MHz 名义 DFT 带宽分开，不声称硬件零带外泄漏",
+          "energy": "有用区连续能量与数字样点能量均为 1；CP 时间比例 1/4 不推出固定波形 CP 能量为 1/4。所有场景不重新归一化，不声明真实瓦特/焦耳",
+          "duration": "Tu=.5 μs，Tcp=.125 μs，完整突发 .625 μs；单个静态快照，没有慢时间/Doppler",
+          "aperture": "一根接收天线；没有阵列孔径或角度观测",
+          "priorKnowledge": "已知时钟参考、固定 X/f/候选网格；几何、墙面、真实路径数、分量和复系数不进入接收机",
+          "other": [
+            "T=(0,2) m、P=(6,h) m，h∈[.1,6]；有限墙段 y=0、x∈[−2,10]；验证反射点可见、折线路长和等角条件",
+            "|A|=1，b、ρ∈[0,1]，1/L 简化幅度；改变 h 同时改变路长、幅度和载波相位，是不同静态快照",
+            "b 只表示理想直达路衰减干预；不虚构遮挡物，b=0 不把最早可见反射路径重命名为 LOS",
+            "固定候选 0:0.01:14 m，不加入真值；纵轴固定 0…0.12，因 |z|²≤1/9，不按每场景峰值或接收能量缩放",
+            "全零响应返回 no_response/estimate=null；非零仅返回 single_grid_maximum；更细网格不增加带宽或独立信息"
+          ]
+        },
+        "unknowns": [
+          "本站没有复现论文的完整参数、数值曲线、CRLB/EFIM、地图利用或定位算法",
+          "已知墙面/地图、路径关联和时钟同步是额外资源，当前接收机不利用墙面或真实时延",
+          "近重叠≠所有位置信息消失，单峰≠单路径；可辨识性、峰分离、数值条件性和噪声下可靠估计须分别验证",
+          "真实材料、漫散射、噪声与非静态传播尚未实现；当前结果不能证明多径普遍有益"
+        ],
+        "comparisonLink": "multipath-channel.html#source",
+        "verificationNote": "2026-10-11 使用固定 arXiv v2（2018-12-10）与独立数值研究交接；论文年份为 2015。来源对照、独立参考、本站实现与浏览器/线上验收分别报告，不把来源核对称为论文复现。九篇影响目录及 2026-10-10 证据快照保持不变"
+      }
     }
   ],
   "legacy": {
@@ -1575,6 +1648,21 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "固定总功率，改变目标方向或雷达子阵大小；先区分 raw 投影诊断，再核对四个同预算配方的用户功率、目标照射与每天线功率。"
+    },
+    {
+      "id": "multipath-channel",
+      "title": "同一个终端，为什么收到两条路径？",
+      "href": "multipath-channel.html#experiment",
+      "question": "直达和墙面反射相干相加后，为什么同一个终端可能出现两个峰、一个峰或偏移的峰？",
+      "prerequisites": [
+        "foundations.html#echo",
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#ofdm"
+      ],
+      "group": "research",
+      "primaryDirectionId": "channels",
+      "action": "先看一程路径，再在固定发射预算与匹配网格下改变静态几何、反射复系数或理想直达路衰减；区分总观测、生成器分量与单最大值读数。"
     }
   ],
   "pages": [
@@ -1816,6 +1904,21 @@
       "case": "case-shared-array",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同阵列、同功率的空间置零检验"
+    },
+    {
+      "path": "multipath-channel.html",
+      "title": "同一个终端，为什么收到两条路径？",
+      "stage": "experiments",
+      "role": "研究主题 · 单向主动链路、镜面双路径与相干匹配",
+      "prerequisites": [
+        "foundations.html#echo",
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#ofdm"
+      ],
+      "case": "case-multipath-channel",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同波形、同网格的双路径检验"
     }
   ],
   "schemaVersion": 1,
@@ -3003,14 +3106,16 @@
     {
       "id": "channels",
       "title": "真实信道：墙、噪声与干扰怎样改变答案？",
-      "question": "最强回波若来自墙，理想单目标模型会在哪里失效？",
-      "scope": "目标散射、杂波、多径、自干扰、外部干扰与信道校准。",
+      "question": "同一个终端的直达与墙面反射怎样相干相加；回到真实环境时还缺哪些机制？",
+      "scope": "从单向主动链路的静态直达/一次镜面反射出发，再区分目标散射、杂波、漫散射、自干扰、外部干扰与信道校准。",
       "prerequisites": [
         "echo",
         "cfar",
         "realworld"
       ],
-      "primaryCaseIds": [],
+      "primaryCaseIds": [
+        "case-multipath-channel"
+      ],
       "relatedDirectionIds": [
         "receiver",
         "networks",
@@ -3028,6 +3133,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同一个终端，为什么收到两条路径？",
+              "href": "multipath-channel.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ]
         },
@@ -3049,6 +3162,14 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "从有限墙面几何到实际相加的复数 Y",
+              "href": "multipath-channel.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ]
         },
@@ -3071,10 +3192,18 @@
               "scope": "direction-specific",
               "status": "proposed",
               "note": "待扩展：保留相干复数叠加并分别切换各分量"
+            },
+            {
+              "label": "固定波形与网格：相干双路径怎样改变匹配峰？",
+              "href": "multipath-channel.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ],
-          "coverage": "foundation-only",
-          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+          "coverage": "direction-specific",
+          "notice": "已有单向静态双路径专项机制；完整目标—杂波—干扰分量、漫散射与实测校准仍待建设"
         },
         {
           "level": 4,
@@ -3101,11 +3230,19 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "Leitinger 2015：固定 v2 的几何、未知增益与路径重叠",
+              "href": "multipath-channel.html#source",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ],
           "comparisonStatus": "partial",
           "comparisonSchemaRef": "paperComparisonSchema",
-          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+          "note": "Leitinger 2015 按固定 arXiv v2（2018-12-10）逐项对照；综述与杂波框架保留阅读入口，均不代表完整论文复现"
         },
         {
           "level": 5,
@@ -3118,6 +3255,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "单峰、路径数与二维位置为何不能互换？",
+              "href": "multipath-channel.html#boundary",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ]
         },
@@ -3133,12 +3278,20 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "复核一程路长、复数匹配、解析核与固定资源账本",
+              "href": "multipath-channel.html#derivation",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单向静态双路径机制；不等于完整真实信道、二维定位或论文数值复现"
             }
           ]
         }
       ],
-      "nextExtension": "加入可解释的目标与背景反射模型，再比较失配前后的虚警和估计误差。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "nextExtension": "在明确新增资源与接收机先验后引入噪声、未知时钟和漫散射；再单独实现完整目标—杂波—干扰模型、路径关联或定位检验。",
+      "coverage": "已有单向静态双路径专项机制与六层原文对照；完整真实信道、漫散射与杂波抑制系统尚未实现",
       "scenePositions": [
         "propagate"
       ]
@@ -3739,9 +3892,10 @@
         "label": "路径长度与复相位",
         "question": "路径改变为什么会成为相位改变？",
         "knownUnknown": "几何路径变化影响相位；接收机只看到缠绕相位",
-        "boundary": "教学真值累计圈数不等于已恢复整圈",
+        "boundary": "教学真值累计圈数不等于已恢复整圈；双路径的未知复增益与载波相位不提供绝对距离整圈，静态高度对照不是 Doppler",
         "unitRefs": [
-          "doppler"
+          "doppler",
+          "multipath-channel"
         ],
         "entryUnitRef": "doppler"
       },
@@ -3767,12 +3921,13 @@
         "label": "延迟 / 距离",
         "question": "沿频率的相位变化或训练序列的错位相关，怎样提供时延线索？",
         "knownUnknown": "已知频率样本或训练序列；搜索延迟参数",
-        "boundary": "从延迟到距离需要指定传播几何",
+        "boundary": "从延迟到距离需要指定传播几何；主动单向链路 τ=L/c，候选总路径长度不是单站距离 cτ/2 或二维位置",
         "unitRefs": [
           "ofdm",
           "echo",
           "golay-radar",
-          "ofdm-interpolation"
+          "ofdm-interpolation",
+          "multipath-channel"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -3994,12 +4149,13 @@
         "groupId": "reality",
         "label": "多径、杂波与干扰",
         "href": "foundations.html#realworld",
-        "question": "最强回波来自墙时会怎样？",
-        "knownUnknown": "区分目标、背景、干扰和噪声",
-        "boundary": "CFAR 前置教学与单系数递归背景机制不等于完整真实信道、硬件校准或杂波检测系统",
+        "question": "同一个终端经直达与墙面反射到达的数据，为什么不等于两份独立功率？",
+        "knownUnknown": "区分目标、背景、干扰和噪声；双路径总观测已知、复增益未知，墙面、时延与分量真值只供生成器解释",
+        "boundary": "已有单向静态镜面双路径与单系数递归背景机制；仍不等于完整真实信道、漫散射、硬件校准、杂波检测或二维定位系统",
         "unitRefs": [
           "cfar",
-          "perceptive-clutter"
+          "perceptive-clutter",
+          "multipath-channel"
         ]
       },
       {

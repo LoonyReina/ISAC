@@ -14,7 +14,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'learning');
  a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,24);a.equal(r.cases.length,13);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
+ a.equal(r.units.length,25);a.equal(r.cases.length,14);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  const d=r.directions.find(d=>d.id==='learning');a.deepEqual(d.primaryCaseIds,[c.id]);a.match(d.title,/感知辅助通信/);a.match(d.scope,/感知辅助通信/);
  a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'reading.html#branches');
  for(const [level,anchor]of [['intuition','mechanism'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','limits'],['reproduction','reproduce']]){
