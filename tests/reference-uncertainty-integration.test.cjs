@@ -28,7 +28,7 @@ test('reference uncertainty adds one case-free mechanism and one page without in
  a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(registry.pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
- const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,19);a.equal(guides.cards.filter(c=>c.visualTrace).length,16);
+ const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,17);
  a.equal(hash(priorGuideSource(guides)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  a.equal(hash(read(registry.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
 });
@@ -94,7 +94,7 @@ test('native notebook projection and generated portals expose the mechanism with
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes('<strong>28</strong> 个机制实验'));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.match(reading,/15 个已有主题/);a.match(reading,/19 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
+ a.match(reading,/15 个已有主题/);a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(read('scripts/learning-entry.cjs')),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(read('scripts/notebook-topics.cjs')),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');
