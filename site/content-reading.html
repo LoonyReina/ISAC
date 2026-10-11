@@ -65,4 +65,14 @@
 <p><b>本站保留与改变：</b><a href="multipath-channel.html#model">先核对几何、波形与接收机究竟知道什么</a>。接收机只读实际相加的 Y、已知 X、频率和固定候选网格，不读取墙面、真实时延、路径个数或分量标签。N=128、Δf=2 MHz、6 GHz、QPSK/CP、1/L 幅度与单模板匹配均为独立教学设计。改变高度同时改变路长、幅度与载波相位，是不同静态快照；直达路衰减只称理想直达路衰减干预。</p>
 <p><b>怎么读实验：</b><a href="multipath-channel.html#experiment">先预测相长、相消与匹配峰偏移</a>。候选总路径长度 d=cτ 不是单站 cτ/2，也不是二维位置；全零响应没有可报告的最大点估计。固定发射预算、候选网格与线性纵轴，不把接收能量补偿成固定 SNR。连续 CP 能量和数字 CP 样点能量分别记账，不能由时间比例 1/4 推出两者都为 1/4。</p>
 <p><b>证据边界：</b><a href="multipath-channel.html#source">逐项对照来源与本站模型</a> · <a href="multipath-channel.html#boundary">分清单峰、路径数、检测与二维定位</a> · <a href="multipath-channel.html#derivation">复核解析核、资源账本与独立参考</a>。给定两时延的 Gram 只诊断两个未知复幅度的分离条件，不是时延 CRB/EFIM 或定位可靠性。本站没有噪声、Doppler、漫散射、路径关联、二维定位或论文数值复现；已知墙面、同步、角度和多锚点若加入，都要另列资源与先验。</p>
-</div></article></section>
+</div></article>
+<article class="reference" id="ref-DISTRIBUTED"><span class="ref-id">DISTRIBUTED</span><div>
+<h3><a href="https://arxiv.org/abs/2305.12523v2">Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO</a></h3>
+<p class="small">Behdad、Demir、Sung、Björnson、Cavdar · IEEE TWC 23(9)，11580–11596，2024 · <a href="https://doi.org/10.1109/TWC.2024.3383209">DOI</a> · 固定 arXiv v2，2024-03-27 · <a href="https://arxiv.org/pdf/2305.12523v2">固定版本 PDF</a>。本站不复制论文全文或原图。</p>
+<p><b>先从问题开始：</b><a href="distributed-detection.html#question">两个功率数，够不够判断有目标？</a>。先看<a href="distributed-detection.html#observation">两站复观测与同功率反例</a>，再看<a href="distributed-detection.html#model">独立边缘化 LRT 模型</a>与<a href="distributed-detection.html#experiment">固定虚警率的 ROC 和双向载荷</a>，最后<a href="distributed-detection.html#paper">核对原文与边界</a>、<a href="distributed-detection.html#practice">重算可复核的检验</a>。</p>
+<p><b>已核对的背景：</b>固定 v2 §VII 式(20)–(33) 对未知 RCS 与目标无关信道作最大化 MAPRT，先验允许一般 RCS 协方差；§IX/Table III 数值设置使用独立、等方差 Swerling-I RCS。本站对 α 积分，得到独立两站边缘化 LRT；不是论文 MAPRT，不把 κ&gt;0 例子标成论文设置，不复现原图。</p>
+<p><b>另一篇动机与缺口：</b><a href="https://doi.org/10.1109/LWC.2024.3462710">Zou、Behdad、Demir、Cavdar，Distributed Versus Centralized Sensing in Cell-Free Massive MIMO</a>，IEEE WCL 13(12)，3345–3349，2024。已有交接核对出版元数据并阅读公开转录，但没有取得稳定官方/作者全文或可散列 PDF；这里只用来提出计算位置与双向回传问题，不归属未核对的公式、fully/partly-informed 算法、载荷公式或性能曲线。</p>
+<p><b>本课保留与省略：</b>固定两个已校准站、已知有限波形、已知白噪声、已知随机反射先验及一个目标候选。原始复样本与两个复匹配输出有相同似然；ρ&gt;0、κ=0 时能量和也足够，κ&gt;0 时局部能量一般不能恢复完整复 LRT。能量和只是一个可解析基线，不代表最优能量域检验或全部分布式算法；不做未知噪声、相位校准、全图虚警、定位或有限比特无损保证。</p>
+<p><b>资源账本是独立约定：</b>两个站、星型单播、B 块、每站每块 L 个复样本，原始/复匹配/能量上行为 4LB/4B/2B 个实标量。本地模板下行按每块更新、一次更新或运行前有效缓存分别记账；模型更新单列，默认零表示未估计。上下行标量数不是测得的吞吐、端到端时延或能耗。九篇影响目录与快照保持原样，不因增加这条导读新增影响力卡。</p>
+</div></article>
+</section>
