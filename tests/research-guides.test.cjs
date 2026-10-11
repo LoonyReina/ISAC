@@ -5,14 +5,14 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
-test('eight guide-only resources extend four existing directions without inflating lessons or snapshots',()=>{
+test('twelve guide-only resources extend six existing directions without inflating lessons or snapshots',()=>{
  a.deepEqual([registry.cases.length,registry.units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,27,8,32]);
- a.equal(data.cards.length,8);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype']);
+ a.equal(data.cards.length,12);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver']);
  const directory=JSON.parse(read(registry.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);
  for(const c of data.cards){a.ok(!registry.cases.some(x=>x.id===c.id));a.ok(!registry.units.some(x=>x.id===c.id));a.equal(c.caseId,undefined);}
- const html=read('reading.html');a.match(html,/8 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
+ const html=read('reading.html');a.match(html,/12 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
  a.ok(html.indexOf('id="directions"')<html.indexOf('id="research-guides"'));a.ok(html.indexOf('id="research-guides"')<html.indexOf('id="paper-comparisons"'));
- a.equal((html.match(/class="research-guide-card"/g)||[]).length,8);
+ a.equal((html.match(/class="research-guide-card"/g)||[]).length,12);
 });
 test('beginner question, mechanism, innovation, evidence, limits and next question all survive without JS',()=>{
  const html=render();
@@ -48,13 +48,22 @@ test('prototype guides preserve the prior six and distinguish measured hardware 
  for(const phrase of ['同轴中频硬件验证','没有射频前端或空口传播验证','不是实测持续吞吐','不能套单站 cτ/2','24 GHz 室内空口原型实测','不同距离/角度下的雷达与通信 SNR 测量','联合实验采用125 MHz','不能据此写成200 MHz满负荷联合业务','每100 ms发送500字节','不代表给出了端到端最坏时延保证'])a.ok(html.includes(phrase),phrase);
  a.ok([bistatic,mimo].every(c=>c.notebookTopicId===undefined));a.doesNotMatch(mimo.evidence.summary,/给出距离\/角度及通信 SNR 测量/);
 });
+test('learning and receiver guides preserve the prior eight and keep metric, training and conditional-error boundaries',()=>{
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,8))).digest('hex'),'43655698eda60f21efad8e18e91741a744cea8c961454d0fe964da2c79eb731b');
+ const cards=data.cards.slice(8),html=render();
+ a.deepEqual(cards.map(c=>c.id),['isac-net-model-driven-passive','multimodal-transformer-beam-generalization','ofdm-ici-aware-receiver-2021','ofdm-passive-atomic-errors-2017']);
+ a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2307.15074v1','https://www.itu.int/dms_pub/itu-s/opb/jnl/S-JNL-VOL4.ISSUE3-2023-A33-PDF-E.pdf','https://arxiv.org/pdf/2103.15694v1','https://arxiv.org/pdf/1610.04218v2']);
+ for(const phrase of ['两图的 Perfect 含义不同','95%训练、5%测试','0.7844不是78.44%','不能称为零样本泛化','同一地点的日夜采集','MAC/参数数不等于实测时延或能耗','FDR不是单元虚警概率','只统计检测成功的事件','人为去掉ICI项','表I第5步','只计正确识别的目标','前向纠错（FEC）'])a.ok(html.includes(phrase),phrase);
+ for(const card of cards){a.equal(card.notebookTopicId,undefined);a.ok(card.readingSteps.length>=3);a.equal(card.prerequisites.length,3);}
+ a.match(cards[1].source.edition,/公开期刊PDF编号/);a.match(cards[3].source.edition,/算法在§IV、仿真在§V/);
+});
 test('reading navigation and direction links resolve to the same generated guide data',()=>{
- const html=read('reading.html');a.match(html,/href="#research-guides">8 篇问题式导读/);
- for(const id of ['waveforms','spatial','networks','prototype']){
+ const html=read('reading.html');a.match(html,/href="#research-guides">12 篇问题式导读/);
+ for(const id of ['waveforms','spatial','networks','prototype','learning','receiver']){
   const card=html.match(new RegExp('<article class="direction-card" id="direction-'+id+'"[\\s\\S]*?</article>'))[0];
   a.ok(card.includes(`href="#research-guides-${id}"`));a.match(card,/2 篇问题式原文导读/);a.match(card,/不增加实验覆盖/);
  }
- a.equal(M.renderGuideDirectionLink(build(),'learning'),'');
+ a.equal(M.renderGuideDirectionLink(build(),'channels'),'');
  a.match(registry.directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
  for(const [,href]of render().matchAll(/href="([^"]+)"/g)){
@@ -72,10 +81,11 @@ test('invalid identities, missing evidence and nonexistent routes fail at build 
  for(const mutate of mutations){const d=structuredClone(data);mutate(d);a.throws(()=>build(d),/Invalid|Missing/);}
 });
 test('plain-text serialization and data-only additions do not add HTML, cases or button stubs',()=>{
- const d=structuredClone(data),attack='<img src=x onerror=bad()> & "text" </script>';
- const card=structuredClone(d.cards[0]);card.id='new-reading';card.directionId='learning';card.title=attack;card.question=attack;card.source.edition=attack;d.cards.push(card);
- const html=render(d);a.match(html,/9 篇问题式导读/);a.match(html,/id="research-guides-learning"/);a.match(html,/id="guide-new-reading"/);a.ok(html.includes(M.escapeHtml(attack)));a.doesNotMatch(html,/<img|<script|case-new-reading|unit-new-reading/);
- a.match(M.renderGuideDirectionLink(build(d),'learning'),/1 篇问题式原文导读/);a.equal(M.renderResearchGuides([]),'');a.equal(build({...data,cards:[]}).length,0);
+ const d=structuredClone(data),r=structuredClone(registry),attack='<img src=x onerror=bad()> & "text" </script>';
+ const direction=structuredClone(r.directions[0]);direction.id='synthetic-direction';r.directions.push(direction);
+ const card=structuredClone(d.cards[0]);card.id='new-reading';card.directionId=direction.id;card.title=attack;card.question=attack;card.source.edition=attack;d.cards.push(card);
+ const html=render(d,r);a.ok(html.includes((data.cards.length+1)+' 篇问题式导读'));a.match(html,/id="research-guides-synthetic-direction"/);a.match(html,/id="guide-new-reading"/);a.ok(html.includes(M.escapeHtml(attack)));a.doesNotMatch(html,/<img|<script|case-new-reading|unit-new-reading/);
+ a.match(M.renderGuideDirectionLink(build(d,r),direction.id),/1 篇问题式原文导读/);a.equal(M.renderResearchGuides([]),'');a.equal(build({...data,cards:[]}).length,0);
 });
 test('local assets are versioned and loaded only on the reading page; styles support narrow screens and print',()=>{
  for(const name of ['research-guides.css?v=research-guides-v1','research-guides.js?v=research-guides-v1'])a.ok(read('reading.html').includes(name));
@@ -116,14 +126,14 @@ function setup({html,hash='',mutate}={}){
  return {document,root,window,select,query,form,cards,groups,execute,count:root?.querySelector('[data-guide-count]'),empty:root?.querySelector('[data-guide-empty]'),search(value){query.value=value;query.fire('input');},choose(value){select.value=value;select.fire('change');},navigate(value){window.location.hash=value;for(const fn of window.events.hashchange||[])fn();},pageshow(){for(const fn of window.events.pageshow||[])fn();}};
 }
 test('filter starts with all cards and exposes native labelled controls only after validation',()=>{
- const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/8 \/ 8 篇原文导读/);a.ok(h.empty.hidden);
+ const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12 篇原文导读/);a.ok(h.empty.hidden);
  for(const node of [h.select,h.query])a.ok(h.form.querySelector('[for="'+node.id+'"]'));
  a.equal(h.form.querySelector('button').attrs.type,'reset');a.equal(h.query.events.keydown,undefined);
 });
 test('direction and multiword question filters intersect, ignore case and show bounded empty results',()=>{
  const h=setup();h.choose('waveforms');a.equal(h.cards.filter(c=>!c.hidden).length,2);a.equal(h.groups[1].hidden,true);
  h.search('  oTfS   下一帧  ');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-otfs-sensing-assisted-2021']);
- h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 8/);
+ h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 12/);
  h.search('两');a.ok(h.cards.some(c=>!c.hidden));h.search('<script>');a.equal(h.empty.hidden,false);
 });
 test('repeated filtering and reset preserve disclosure state and unrelated content',()=>{
@@ -142,21 +152,31 @@ test('same-hash direction clicks also reveal cards before native anchor navigati
  h.document.querySelector('[href="#research-guides-waveforms"]').fire('click');a.equal(h.select.value,'waveforms');a.equal(h.query.value,'');a.ok(h.cards.slice(0,2).every(c=>!c.hidden));a.equal(h.window.location.hash,'#research-guides-waveforms');
 });
 test('third direction is selectable, searchable and deep-linkable with the existing enhancement',()=>{
- const h=setup();a.equal(h.groups.length,4);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks','prototype']);
- h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 8/);
+ const h=setup();a.equal(h.groups.length,6);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks','prototype','learning','receiver']);
+ h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 12/);
  h.search('Root CRLB');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024']);
  h.search('cpu 码本');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-cellfree-vq-compression-2026']);
  h.choose('waveforms');h.document.querySelector('[href="#research-guides-networks"]').fire('click');a.equal(h.select.value,'networks');a.equal(h.query.value,'');a.ok(h.cards.slice(4,6).every(c=>!c.hidden));
  for(const card of data.cards.slice(4,6)){h.choose('spatial');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'networks');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
- h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/8 \/ 8/);
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12/);
 });
 test('prototype group and both source cards reuse the existing filtering and native deep-link behavior',()=>{
- const h=setup();h.choose('prototype');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023','guide-mimo-ofdm-realtime-testbed-2023']);a.match(h.count.textContent,/2 \/ 8/);
+ const h=setup();h.choose('prototype');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023','guide-mimo-ofdm-realtime-testbed-2023']);a.match(h.count.textContent,/2 \/ 12/);
  h.search('同轴');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023']);
  h.search('125 MHz');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-mimo-ofdm-realtime-testbed-2023']);
- h.choose('networks');h.document.querySelector('[href="#research-guides-prototype"]').fire('click');a.equal(h.select.value,'prototype');a.equal(h.query.value,'');a.ok(h.cards.slice(6).every(c=>!c.hidden));
- for(const card of data.cards.slice(6)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'prototype');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
+ h.choose('networks');h.document.querySelector('[href="#research-guides-prototype"]').fire('click');a.equal(h.select.value,'prototype');a.equal(h.query.value,'');a.ok(h.cards.slice(6,8).every(c=>!c.hidden));
+ for(const card of data.cards.slice(6,8)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'prototype');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
  h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));
+});
+test('learning and receiver cards add two searchable direction groups without new runtime logic',()=>{
+ const h=setup();
+ for(const [direction,queries]of [['learning',[['ISAC-NET','isac-net-model-driven-passive'],['0.7844','multimodal-transformer-beam-generalization']]],['receiver',[['APES','ofdm-ici-aware-receiver-2021'],['原子范数','ofdm-passive-atomic-errors-2017']]]]){
+  h.form.fire('reset');h.choose(direction);a.equal(h.cards.filter(c=>!c.hidden).length,2);a.match(h.count.textContent,/2 \/ 12/);
+  for(const [query,id]of queries){h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
+  h.choose('prototype');h.document.querySelector('[href="#research-guides-'+direction+'"]').fire('click');a.equal(h.select.value,direction);a.equal(h.query.value,'');a.equal(h.cards.filter(c=>!c.hidden).length,2);
+ }
+ for(const card of data.cards.slice(8)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,card.directionId);a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12/);
 });
 test('pageshow reconciles browser-restored values; script reexecution attaches no duplicate listeners',()=>{
  const h=setup();h.select.value='spatial';h.query.value='Capon';h.pageshow();a.equal(h.cards.filter(c=>!c.hidden).length,1);a.equal(h.cards[3].hidden,false);
