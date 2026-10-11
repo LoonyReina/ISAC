@@ -1,0 +1,421 @@
+{
+  "referenceVersion": "offgrid-range-model-v1",
+  "passedChecks": 80,
+  "checks": [
+    {
+      "name": "receiver signature has no truth/gain/noise inputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unit energy known waveform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "two nested grids same closed endpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "search strictly shorter than one ambiguity period",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "physical first-null/period and maximum delay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nominal and endpoint bandwidth are distinct",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Parseval useful and full-symbol CP energy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed CP and duration ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free complex response equals analytic geometric sum",
+      "passed": true,
+      "detail": 2.837048893407221e-15
+    },
+    {
+      "name": "first-null response at offset 9.375",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "first-null response at offset -9.375",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "sampled delay periodicity at +150m",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "search endpoints are distinct observations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "arbitrary complex nuisance gain is fitted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global observation phase rotation leaves range/score unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all-zero observation preserves declared tie convention",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "symmetric midpoint numerical tie chooses lower range",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "invalid/nonfinite observations reject, not silently clipped",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero known waveform energy rejects",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noiseless SVD real LS grid winner equals profile receiver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noiseless all SVD LS scores match profile scores",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noiseless projected and direct residual energies match",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noisy-index1 SVD real LS grid winner equals profile receiver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noisy-index1 all SVD LS scores match profile scores",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noisy-index1 projected and direct residual energies match",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid attempted rows preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid distinct RNG domains/states",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid coarse RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid coarse gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid coarse signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid fine RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid fine gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid fine signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid row 0 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid row 0 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid row 0 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "noise-free-offgrid nested raw max objective nondecreasing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid attempted rows preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid distinct RNG domains/states",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid coarse RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid coarse gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid coarse signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid fine RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid fine gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid fine signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 0 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 0 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 0 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 1 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 1 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 1 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 999 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 999 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid row 999 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "high-snr-offgrid nested raw max objective nondecreasing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample attempted rows preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample distinct RNG domains/states",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample coarse RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample coarse gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample coarse signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample fine RMSE recomputes from all rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample fine gross-count recomputes before any trimming",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample fine signed errors retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 0 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 0 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 0 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 1 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 1 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 1 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 999 deterministic observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 999 coarse same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample row 999 fine same-observation replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "low-snr-counterexample nested raw max objective nondecreasing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed low-SNR teaching sample has larger fine RMSE",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed low-SNR sample has fine worse on 649 trials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "same high error/boundary outcomes retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure rows invalidate complete aggregate rather than disappear",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "generator failure preserves every attempted trial",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "uniforms avoid closed endpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bounded Gaussian-stream sanity (not a proof)",
+      "passed": true,
+      "detail": {
+        "drawCount": 32000,
+        "mean": 0.000576131479224752,
+        "variance": 0.991688344791459,
+        "lagOneCorrelation": 0.005363292150947588,
+        "sameToneAdjacentTrialCorrelation": -0.03066928539126321
+      }
+    }
+  ],
+  "runtimeSeconds": 0.19649505898996722,
+  "noiseDiagnostic": {
+    "drawCount": 32000,
+    "mean": 0.000576131479224752,
+    "variance": 0.991688344791459,
+    "lagOneCorrelation": 0.005363292150947588,
+    "sameToneAdjacentTrialCorrelation": -0.03066928539126321
+  },
+  "scope": "standalone independent Python reference and serialized fixtures; future JS/browser implementation not checked"
+}
