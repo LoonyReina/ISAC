@@ -12,7 +12,7 @@
     "学会阅读推荐、奖项和官方资源属于不同证据；社交讨论量未验证。",
     "ComSoc阅读目录的部分编辑也参与候选论文，推荐不是完全独立于作者的投票。",
     "Perceptive Mobile Network存在OpenAlex记录拆分，排除该服务的数量排名。",
-    "当前已有CRB–rate案例与2022年CRB波束优化论文身份不同；相关主题不等于同一论文。"
+    "标量高斯信道 CRB–rate 案例与2022年 CRB 波束优化案例分别登记；相关主题不等于同一论文，也不等于整篇论文复现。"
   ],
   "cards": [
     {
@@ -208,14 +208,14 @@
     },
     {
       "id": "crb",
-      "heading": "方向图好看，就一定估得准吗？",
+      "heading": "提高通信门槛，角度估计下界一定立刻变差吗？",
       "title": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
       "authors": "Fan Liu、Ya-Feng Liu、Ang Li、Christos Masouros、Yonina C. Eldar",
       "publicationLabel": "2022期刊；2021在线发表",
       "doi": "https://doi.org/10.1109/tsp.2021.3135692",
       "identitySource": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming_0.pdf",
-      "mechanism": "以点目标和扩展目标估计的CRB为设计指标，在逐用户SINR要求下优化通感波束。",
-      "evidenceBoundary": "CRB是估计性能下界；不能直接当作实际估计器MSE。与本站已有高斯信道CRB–rate案例不是同一篇论文。",
+      "mechanism": "原文以点目标和扩展目标估计的 CRB 为设计指标，在通信约束下优化通感波束；本站先实现单通信流、总功率预算的单用户 SNR 闭式特例。",
+      "evidenceBoundary": "CRB 是模型下的估计方差下界，开方显示角度标准差下界，不能当作实际 RMSE。本站实现单用户点目标闭式特例；可选双流实验是另换信道的独立构造，非多用户 SDR 或完整论文复现。与本站高斯信道 CRB–rate 案例不是同一篇论文。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -255,7 +255,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "计划深读：CRB目标与方向图目标的区别；本站交互尚未实现。",
+      "readingPlan": "先用单用户闭式最优解观察平坦区、取舍区与可证明不可行区，再核对期刊版式(7)、(19)–(29)和未知复反射系数。可选同方向图双流实验为本站独立构造，不是原文 SDR 或原图复现。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -264,11 +264,15 @@
         {
           "label": "期刊/会议DOI",
           "url": "https://doi.org/10.1109/tsp.2021.3135692"
+        },
+        {
+          "label": "本案例固定已发表期刊版",
+          "url": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf"
         }
       ],
       "groupId": "joint-design",
       "shortTitle": "CRB 波束优化",
-      "caseId": null
+      "caseId": "case-crb-beamforming"
     },
     {
       "id": "80211ad",
