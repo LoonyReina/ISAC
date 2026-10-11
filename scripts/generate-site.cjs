@@ -21,6 +21,7 @@ const pageFor=file=>registry.pages.find(p=>p.path===file);
 const caseFor=id=>registry.cases.find(c=>c.id===id);
 const unitFor=id=>registry.units.find(u=>u.id===id);
 const prerequisiteTitles={
+ 'offgrid-range.html#model':'离格测距的观测与模型',
  'foundations.html#start':'基础讲义的起点与学习约定',
  'foundations.html#limits':'性能指标与边界',
  'foundations.html#ofdm-basics':'OFDM 通信基础',

@@ -1767,6 +1767,20 @@
       "group": "processing",
       "primaryDirectionId": "receiver",
       "action": "固定同一复数观测与物理预算，比较粗细距离候选；先看单次带符号误差，再保留全部重复试验，检查 RMSE 与大误差次数。"
+    },
+    {
+      "id": "reference-uncertainty",
+      "title": "参考不确定性与距离匹配",
+      "href": "reference-uncertainty.html#experiment",
+      "question": "同一份回波，参考符号知道多少？",
+      "prerequisites": [
+        "foundations.html#matched",
+        "pilot-design.html#experiment",
+        "offgrid-range.html#model"
+      ],
+      "group": "processing",
+      "primaryDirectionId": "receiver",
+      "action": "固定同一份复回波，比较全符号 oracle、仅导频与注入错误的参考；记录等峰、复数合向量和参考信息预算，不把小残差当作距离正确的证明。"
     }
   ],
   "pages": [
@@ -2051,6 +2065,19 @@
       ],
       "next": "practice.html?topic=offgrid-range#notebook",
       "nextLabel": "记录一次同观测的测距检验"
+    },
+    {
+      "path": "reference-uncertainty.html",
+      "title": "同一份回波，参考符号知道多少？",
+      "stage": "experiments",
+      "role": "基础机制 · 单目标同回波与参考信息条件消融",
+      "prerequisites": [
+        "foundations.html#matched",
+        "pilot-design.html#experiment",
+        "offgrid-range.html#model"
+      ],
+      "next": "reading.html#guide-zak-otfs-semiblind-offgrid-2026",
+      "nextLabel": "沿问题读半盲估参的原文与边界"
     }
   ],
   "schemaVersion": 1,
@@ -2233,6 +2260,14 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "先比较导频留空与错误符号参考",
+              "href": "reference-uncertainty.html#experiment",
+              "kind": "interactive",
+              "scope": "foundation-only",
+              "status": "available",
+              "note": "半盲原文阅读前的参考不确定性机制；仅比较单目标 OFDM 距离匹配，没有 OTFS/Zak-OTFS 波形或半盲联合恢复。"
             }
           ],
           "coverage": "direction-specific"
@@ -2489,6 +2524,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "同一份回波，比较已知、未知与错误参考",
+              "href": "reference-uncertainty.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立单目标、单站静态 OFDM 教学模型；三分支共享同一复回波，但参考信息与处理样本数不同；不是半盲联合算法或论文复现。"
             }
           ],
           "coverage": "direction-specific"

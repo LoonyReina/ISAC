@@ -6,6 +6,8 @@ const renderMap=require('../scripts/knowledge-map.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-distributed-detection'),u=r.units.find(u=>u.id==='distributed-detection'),p=r.pages.find(p=>p.path==='distributed-detection.html');
+const {withoutReferenceUncertainty}=require('./helpers/reference-uncertainty-registry.cjs');
+const beforeReferenceUncertainty=withoutReferenceUncertainty(r);
 const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
 const resolve=href=>{const [file,anchor]=href.split('#');a.ok(fs.existsSync(path.join(root,file)),href);if(anchor)a.ok(read(file).includes(`id="${anchor}"`),href);};
 const article=(html,id)=>{const m=html.match(new RegExp(`<article[^>]* id="${id}"[^>]*>[\\s\\S]*?<\\/article>`));a.ok(m,id);return m[0];};
@@ -16,17 +18,17 @@ test('two-station detection adds one canonical lesson within the existing eight 
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'networks');
  a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,27);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('existing lessons, cases, pages, unrelated directions and legacy links match the current integration snapshot',()=>{
  // The case-free off-grid mechanism changes only its own unit/page and receiver depth;
  // offgrid-range-integration.test.cjs also locks every earlier unit/page and all case evidence.
- a.equal(hash(r.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
+ a.equal(hash(beforeReferenceUncertainty.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
  a.equal(hash(r.cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
- a.equal(hash(r.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
- // Reading-only scope clarification is the sole later change to these directions.
- const historicalDirections=structuredClone(r.directions.filter(x=>x.id!=='networks'));
+ a.equal(hash(beforeReferenceUncertainty.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
+ // Normalize the exact new mechanism hooks first; retain the older reading-only scope normalization.
+ const historicalDirections=structuredClone(beforeReferenceUncertainty.directions.filter(x=>x.id!=='networks'));
  const waveforms=historicalDirections.find(d=>d.id==='waveforms');
  a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
  waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
@@ -100,7 +102,7 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>27</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>28</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
  a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));

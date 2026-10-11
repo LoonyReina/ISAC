@@ -16,7 +16,7 @@ test('one bounded active-link lesson is canonical within the existing eight dire
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'channels');
  a.equal(c.learningEntry,'multipath-channel.html#question');a.equal(u.href,'multipath-channel.html#experiment');a.equal(c.paper,'multipath-channel.html#source');a.equal(c.next,'multipath-channel.html#boundary');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,27);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('channels has six bounded available layers and keeps broader proposed work unavailable',()=>{
@@ -85,7 +85,7 @@ test('source guide, six anchors and generated portals use the shared shell and v
  for(const [,href]of guide.matchAll(/href="(https:[^"]+)"/g))a.ok(doc.includes(href),href);
  a.doesNotMatch(guide,/class="influence-card"|<button|<input|<canvas/);a.equal(article(read('reading.html'),'ref-MULTIPATH'),guide);
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);a.ok(read('index.html').includes(`href="${c.learningEntry}"`));
- a.ok(read('index.html').includes('<strong>27</strong> 个机制实验'));a.ok(read('reading.html').includes('15 个已有主题'));
+ a.ok(read('index.html').includes('<strong>28</strong> 个机制实验'));a.ok(read('reading.html').includes('15 个已有主题'));
 });
 
 test('source manifest identifies fetched official HTML bytes without distributing paper text or mixing evidence',()=>{

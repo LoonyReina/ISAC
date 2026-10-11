@@ -283,7 +283,7 @@ test('search count includes all typed matches without a hidden cap or repeated u
  const h=setup({html:render(r)});h.search(word);
  const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
  const lessonCount=r.units.length,relationCount=r.knowledgeMap.nodes.length+r.directions.length;
- a.equal(lessonCount,27);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
+ a.equal(lessonCount,28);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
  a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,lessonCount);a.equal(h.status.textContent,`找到 ${lessonCount+relationCount} 个入口（${lessonCount} 个课程入口，${relationCount} 个概念或方向）；四阶段路线仍在下方。`);
  a.deepEqual(h.results.children.slice(0,lessonCount).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
  a.ok(h.groups.some(g=>g.textContent.includes(`${lessonCount} 个实验 · ${r.cases.length} 个专题`)));
