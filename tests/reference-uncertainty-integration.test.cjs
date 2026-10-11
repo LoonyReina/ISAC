@@ -2,11 +2,14 @@
 // Additive registry/navigation contracts, separate from numerical and browser validation.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {unit,page,hooks,withoutReferenceUncertainty,withoutReferencePrerequisite,prerequisiteHook}=require('./helpers/reference-uncertainty-registry.cjs');
+const {withoutMapProgressions,withoutMapProgressionGenerator}=require('./helpers/map-progression-preservation.cjs');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
+const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const registry=JSON.parse(read('site/registry.json'));
+const researchGuides=buildResearchGuides(JSON.parse(read(registry.researchGuidesFile)),registry);
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const baseline='c759bdb61a8ae539569b5ed526bf169793dace46510a381a998ffbd9264b56ae';
 function resolve(href){
@@ -30,7 +33,7 @@ test('reference uncertainty adds one case-free mechanism and one page without in
 });
 
 test('exact additive normalization preserves the complete pre-experiment registry and does not mutate its input',()=>{
- const before=JSON.stringify(registry),preserved=withoutReferenceUncertainty(registry);
+ const before=JSON.stringify(registry),preserved=withoutReferenceUncertainty(withoutMapProgressions(registry));
  a.equal(hash(preserved),baseline);a.equal(JSON.stringify(registry),before);
  a.deepEqual([preserved.units.length,preserved.cases.length,preserved.pages.length],[27,15,23]);
 });
@@ -46,7 +49,7 @@ test('additive normalization rejects modified units, page contracts and exact di
   r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='experiment').items.push(structuredClone(hooks[0].item)),
   r=>r.units.unshift(r.units.pop())
  ];
- for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);a.throws(()=>withoutReferenceUncertainty(changed));}
+ for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);a.throws(()=>withoutReferenceUncertainty(withoutMapProgressions(changed)));}
 });
 
 test('normalization cannot hide edits to old prose, sources, fields, links or same-href hooks elsewhere',()=>{
@@ -58,7 +61,7 @@ test('normalization cannot hide edits to old prose, sources, fields, links or sa
   r=>r.directions.find(d=>d.id==='channels').levels.find(l=>l.id==='experiment').items.push(structuredClone(hooks[0].item)),
   r=>r.knowledgeMap.nodes[0].unitRefs.push(unit.id),r=>r.legacy['index.html']['new-hook']=unit.href
  ];
- for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);a.notEqual(hash(withoutReferenceUncertainty(changed)),baseline);}
+ for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);a.notEqual(hash(withoutReferenceUncertainty(withoutMapProgressions(changed))),baseline);}
 });
 
 test('only two bounded direction experiment links are added without fabricated paper or reproduction layers',()=>{
@@ -91,7 +94,7 @@ test('native notebook projection and generated portals expose the mechanism with
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes('<strong>28</strong> 个机制实验'));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.match(reading,/15 个已有主题/);a.match(reading,/19 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
- const mapped=renderMap(registry);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
+ const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(read('scripts/learning-entry.cjs')),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(read('scripts/notebook-topics.cjs')),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');
  a.equal(hash(read('notebook.js')),'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9');
@@ -104,12 +107,12 @@ test('the reused off-grid numerical core and its existing UI remain byte-identic
 
 
 test('generator changes only by the exact new prerequisite title, with old behavior still guarded',()=>{
- const generator=read('scripts/generate-site.cjs'),preserved=withoutReferencePrerequisite(generator);
+ const generator=read('scripts/generate-site.cjs'),preserved=withoutReferencePrerequisite(withoutMapProgressionGenerator(generator));
  const expected='613b820c80dcac00fe18c4ae5b6a63c1eb044105245e69be5628767fa9c53479';
  a.equal(hash(preserved),expected);
  a.throws(()=>withoutReferencePrerequisite(generator.replace('离格测距的观测与模型','changed title')));
  a.throws(()=>withoutReferencePrerequisite(generator+prerequisiteHook));
  a.throws(()=>withoutReferencePrerequisite(generator.replace(prerequisiteHook,'')+prerequisiteHook));
  const unrelated=generator.replace('const notebookTopics=buildNotebookTopics(registry);','const notebookTopics=[];');
- a.notEqual(unrelated,generator);a.notEqual(hash(withoutReferencePrerequisite(unrelated)),expected);
+ a.notEqual(unrelated,generator);a.notEqual(hash(withoutReferencePrerequisite(withoutMapProgressionGenerator(unrelated))),expected);
 });
