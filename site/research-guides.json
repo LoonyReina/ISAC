@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "cards": [
+    {
+      "id": "otfs-joint-estimation-2020",
+      "directionId": "waveforms",
+      "title": "OTFS：同一帧怎样估参数，也传数据？",
+      "question": "发射数据符号后，已知这串符号的雷达端怎样估时延与多普勒，而不知道符号的通信端又怎样解调？",
+      "mechanism": "把信息放到时延–多普勒格，再映射成发射波形。雷达端把已知符号代入候选回波模型；通信端则在耦合观测中推断未知符号。接收端画出距离–多普勒图，本身不等于使用 OTFS 调制。",
+      "innovation": "把连续时延/多普勒、矩形脉冲下的输入输出模型，连接到近似最大似然估计、CRB 与因子图软检测，分开回答感知精度和通信可达率两个问题。",
+      "evidence": {
+        "kind": "理论推导＋数值仿真；本站仅导读，未新增实验",
+        "summary": "图4在所设单径条件下显示：进入较高 SNR 区域后，OTFS 的距离/速度 RMSE 接近 OFDM、FMCW 与下界。式(52)–(53)的速率差含不同保护间隔开销；图6–7还区分整格与分数参数下的检测表现。"
+      },
+      "limits": [
+        "模型：单站收发、忽略自干扰；窄角扇区内一个目标、可有多径。矩形脉冲推导限制最大时延小于符号时长，最大多普勒小于子载波间隔。",
+        "多径数值例已知路径数，且路径足够分离；这里的参数估计不能直接等同于未知目标数下的检出率/虚警率。",
+        "OTFS 按帧加保护间隔、OFDM 按符号加 CP；较少开销伴随整帧检测复杂度。不能据此宣称等资源、任意接收机下 OTFS 恒优，也不能把 CRB 当实测误差。"
+      ],
+      "nextQuestion": "若固定总时长、带宽、发射能量与接收计算预算，再逐步增大分数多普勒，性能变化来自波形、保护间隔还是检测器？",
+      "source": {
+        "title": "On the Effectiveness of OTFS for Joint Radar and Communication",
+        "authors": "Lorenzo Gaudio、Mari Kobayashi、Giuseppe Caire、Giulio Colavolpe",
+        "edition": "arXiv:1910.01896v1，2019-10-04，30页预印本；本卡按该 PDF 编号。后续 TWC 2020 期刊题名增加 Parameter Estimation，勿混用版本页码。",
+        "url": "https://arxiv.org/pdf/1910.01896v1",
+        "locator": "§II–III，式(12)–(16)；§IV-A/B，式(17)–(18)；§VI-B，图4、式(52)–(53)；§VI-C，图6–7",
+        "publicationTitle": "On the Effectiveness of OTFS for Joint Radar Parameter Estimation and Communication",
+        "publicationUrl": "https://doi.org/10.1109/TWC.2020.2998583"
+      },
+      "prerequisites": [
+        {
+          "href": "foundations.html#ofdm",
+          "label": "七步 OFDM：先分清调制与感知变换"
+        },
+        {
+          "href": "theory.html#estimator-crb",
+          "label": "估计器与 CRB：先分清误差与下界"
+        },
+        {
+          "href": "offgrid-range.html#experiment",
+          "label": "离格目标：先理解网格不是物理限制"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先认两端的已知量",
+          "locator": "§II；§IV-A，式(17)",
+          "purpose": "对雷达端，数据符号已知；对通信端，它们才是未知量。"
+        },
+        {
+          "label": "看耦合模型",
+          "locator": "§III，式(12)–(16)",
+          "purpose": "找出脉冲、分数参数与符号间/载波间耦合进入哪里。"
+        },
+        {
+          "label": "拆开三条性能曲线",
+          "locator": "§VI-B，图4；式(52)–(53)",
+          "purpose": "分别读雷达 RMSE、低 SNR 门限和包含保护间隔的通信速率。"
+        },
+        {
+          "label": "检查检测器是否匹配模型",
+          "locator": "§V-A；§VI-C，图6–7",
+          "purpose": "不要把某个检测器在失配模型下的退化，当成波形的普遍结论。"
+        }
+      ]
+    },
+    {
+      "id": "otfs-sensing-assisted-2021",
+      "directionId": "waveforms",
+      "title": "OTFS：测到的车辆状态怎样帮下一帧通信？",
+      "question": "路侧单元已经从回波估到位置和速度，能否用这些信息减少下一帧的波束训练与保护格开销？",
+      "mechanism": "先用回波估车辆状态，再预测下一时刻的角度、时延和多普勒。下行据此定波束并预补偿；上行利用预测的路径位置保留导频、取消其周围保护格，再估随机路径增益并检测数据。",
+      "innovation": "把感知结果接入通信收发流程；上行检测还把导频与数据互扰造成的信道估计不确定度纳入消息传递，而不是把估计值当成真值。",
+      "evidence": {
+        "kind": "系统模型＋算法推导＋数值仿真；本站仅导读，未新增实验",
+        "summary": "图9比较预测波束的接收 SNR；图11显示省去保护格仍有信道估计误差，保留保护格的基线可有更低 NMSE。图12中，计入估计不确定度的检测优于忽略它的版本，并接近所设完美 CSI 基线。"
+      },
+      "limits": [
+        "模型：车辆为点目标，短时匀速沿直路运动；阵列收发充分隔离。下行按 LoS 主导、理想收发滤波及整数多普勒简化；路径预测还依赖足够的时延/多普勒分辨率。",
+        "表II的“0%”针对保护格开销，不代表没有导频、无需估上行信道增益或不付出能量代价；图11采用导频功率比数据符号高20 dB的设置。",
+        "结果依赖车辆/散射路径与预测模型的对应关系。转弯、遮挡、未建模散射体、分数参数和预测失配需要另验；本站没有实现该 OTFS 收发机或复现曲线。"
+      ],
+      "nextQuestion": "若车辆突然加速或出现未被感知的反射路径，何时恢复保护格或追加训练才比继续相信预测更划算？",
+      "source": {
+        "title": "Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks",
+        "authors": "Weijie Yuan、Zhiqiang Wei、Shuangyang Li、Jinhong Yuan、Derrick Wing Kwan Ng",
+        "edition": "arXiv:2105.03125v2，2021-05-11，13页预印本；本卡按该 PDF 编号。后续发表于 IEEE JSTSP 15(6), 1515–1528, 2021。",
+        "url": "https://arxiv.org/pdf/2105.03125v2",
+        "locator": "§II-D，式(16)；§III-B/C，式(29)–(34)；§III-D1，图3–4、式(39)–(42)；§III-D2，式(57)；§IV，图9、11–12及表II",
+        "publicationUrl": "https://doi.org/10.1109/JSTSP.2021.3117404"
+      },
+      "prerequisites": [
+        {
+          "href": "foundations.html#doppler",
+          "label": "路径变化与多普勒：先分清单程和往返"
+        },
+        {
+          "href": "pilot-design.html#experiment",
+          "label": "导频：先问哪些格子已知"
+        },
+        {
+          "href": "radar-beam-decision.html#mechanism",
+          "label": "感知辅助波束决策：从估计走到行动"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "追踪一次感知到通信的闭环",
+          "locator": "§III-A/B，图2、式(29)–(30)",
+          "purpose": "列清哪些量来自本帧观测，哪些是对下一帧的预测。"
+        },
+        {
+          "label": "看下行为什么能简化检测",
+          "locator": "§III-C，式(33)–(34)",
+          "purpose": "先看预测误差残留项，再看预测足够准时的近似。"
+        },
+        {
+          "label": "看省掉保护格以后还剩什么",
+          "locator": "§III-D1，图3–4、式(39)–(42)",
+          "purpose": "明确导频仍在、随机增益仍待估计、数据干扰仍会进入观测。"
+        },
+        {
+          "label": "联合读误差、开销和检测",
+          "locator": "§IV，图11–12、表II；§III-D2，式(57)",
+          "purpose": "不能只读保护格比例，还要核对导频功率和误差如何传到 BER。"
+        }
+      ]
+    },
+    {
+      "id": "nearfield-double-array-ispac",
+      "directionId": "spatial",
+      "title": "双阵列 ISPAC：上下行怎样兼顾通信与角距定位？",
+      "question": "已经知道球面波含有距离信息，基站还需要怎样的收发结构，才能在下行发数据、上行收数据时都估计目标位置？",
+      "mechanism": "大主阵列的相位曲率随距离变化，小辅助阵列在本文几何中主要提供角度信息。下行由主阵列发射、辅助阵列收回波，结合已知发射信号先估角再估距；上行则由辅助阵列探测、主阵列从回波的空间结构中提取角距。",
+      "innovation": "把“大规模部分连接混合阵列＋小全数字阵列”组织成可切换上下行角色的双阵列框架，并设计两阶段定位与通信 QoS 约束下的角距 CRB 优化。距离线索不仅取决于孔径，也取决于探测信号和模拟合并保留了什么信息。",
+      "evidence": {
+        "kind": "理论推导＋数值仿真；本站为原文导读",
+        "summary": "Fig. 4 分别报告上下行定位 RMSE 与理论界；Fig. 5–6 展示通信 SINR 门槛、RF 链数与定位 RCRB 的权衡。文中仿真在较宽松通信要求下显示混合结构可接近全数字基线，不能据此认定所有工况等效。"
+      },
+      "limits": [
+        "模型前提：单点目标，处于主阵列近场而辅助阵列远场；阵列响应使用 Fresnel 二阶近似。这里的“近场”相对于具体阵列孔径，不是统一的空间标签。",
+        "假设完全自干扰消除；上行定位使用消除通信数据后的回波，下行辅助阵列已知发射信号。残余干扰、校准误差与未知波形会改变结论。",
+        "CRB 是模型条件下的估计界，不能替代 RMSE；混合收发优化不能概括为全局最优，文中上行子问题还使用 SDR 与高斯随机化。",
+        "读取的是固定 2023 年 v1 作者预印本，不把后续期刊版本视为已逐式核对。本站现有一程无噪声近场匹配并未实现该双阵列、MUSIC、CRB 优化或硬件。"
+      ],
+      "nextQuestion": "保持孔径、发射能量、观测时长和通信门槛不变，减少 RF 链或加入残余自干扰后，角度与距离哪一种信息先丢失？先写清观测模型，再选择 CRB 或实际 RMSE 验证。",
+      "source": {
+        "title": "Near-Field Integrated Sensing, Positioning, and Communication: A Downlink and Uplink Framework",
+        "authors": "Haochen Li、Zhaolin Wang、Xidong Mu、Zhiwen Pan、Yuanwei Liu",
+        "edition": "arXiv:2311.07722v1，2023-11-13；固定作者预印本，13 页；2026-10-11 核查 HTML 与 PDF",
+        "url": "https://arxiv.org/html/2311.07722v1",
+        "locator": "§II / Fig. 1；§II-A 式(4)–(8)；§II-B 式(13)–(19)；§III-A 式(20)–(23)；§IV-A、§IV-C；§V-D–F / Fig. 4–6"
+      },
+      "prerequisites": [
+        {
+          "href": "near-field.html#geometry",
+          "label": "先懂球面波曲率为何留下距离线索"
+        },
+        {
+          "href": "theory.html#crb-mechanism",
+          "label": "分开估计误差与 CRB"
+        },
+        {
+          "href": "joint-beamforming.html#model",
+          "label": "理解发射协方差与通信干扰"
+        }
+      ],
+      "notebookTopicId": "near-field",
+      "readingSteps": [
+        {
+          "label": "先画两种收发关系",
+          "locator": "§II，Fig. 1；式(8)、(13)、(19)",
+          "purpose": "标出谁发、谁收，哪个阵列看到球面波，以及干扰消除发生在哪一步"
+        },
+        {
+          "label": "追踪距离信息如何进入样本",
+          "locator": "§II-A 式(4)–(5)；§III-A 式(20)–(23)；§IV-A",
+          "purpose": "比较相位斜率与曲率，确认已知发射信号和混合合并在定位中的作用"
+        },
+        {
+          "label": "最后核对指标与资源",
+          "locator": "§V-A–B、§V-D–F，Fig. 4–6",
+          "purpose": "把 RMSE、RCRB、通信 SINR 门槛及 RF 链数分别记下，避免把理论下界当作实测误差"
+        }
+      ]
+    },
+    {
+      "id": "nearfield-multitarget-correlation",
+      "directionId": "spatial",
+      "title": "多目标近场：照亮三个位置，为什么还不够？",
+      "question": "同一方向上有不同距离的目标时，除了给每个目标足够功率，还要控制哪些关系，才能让接收端更容易区分它们？",
+      "mechanism": "球面波使阵列到不同位置的相对路程不同，同角异距的位置因此可能具有不同的空间响应。每个位置的照射增益只描述“得到多少能量”；两个位置的互相关还描述照射信号是否过于相似，这会影响后续多目标空间谱。",
+      "innovation": "把角度和距离同时放进多目标波束设计，联合抬高最弱目标的加权照射增益、限制目标间互相关，并满足用户速率与总功率约束。设计不要求预先知道目标 RCS，但仍使用目标位置或对应空间响应。",
+      "evidence": {
+        "kind": "优化推导＋数值空间谱；本站为原文导读",
+        "summary": "§III 给出 SDP 松弛及保留总协方差的秩一通信波束恢复；Fig. 5 比较加入互相关约束、去掉该约束及远场建模时的归一化 Capon 空间谱，说明仅看照射增益不足以评价这一设置中的多目标处理。"
+      },
+      "limits": [
+        "模型前提：全数字收发阵列、已知用户和目标位置、点目标与给定球面波信道；“不需要 RCS 先验”不等于能够在未知场景中自动发现所有目标。",
+        "远场基线在 §IV-A 降低用户最低速率，并移除同角目标对的互相关约束以保持可行；不能把图中差距写成相同约束下的公平性能倍数。",
+        "Fig. 5 是归一化 Capon 空间谱，未给出规定虚警率下的检出概率或定位 RMSE；谱峰不能直接当作可靠检测或误差保证。",
+        "固定 arXiv v1 的版本记录为 2025 年会议投稿预印本，本文不声称已核查期刊定稿。本站没有实现该 SDP、Capon 处理或原论文曲线复现。"
+      ],
+      "nextQuestion": "如果设计只知道目标所在的小区域，而不是准确坐标，原来的互相关约束还能保证什么？先固定相同资源与通信要求，再比较位置失配下的空间谱，并另设检测门限或 RMSE 评价。",
+      "source": {
+        "title": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
+        "authors": "Hang Ruan、Homa Nikbakht、Ruizhi Zhang、Honglei Chen、Yonina C. Eldar",
+        "edition": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF",
+        "url": "https://arxiv.org/html/2506.07052v1",
+        "locator": "§II-A；§II-C 式(3)–(7)；§II-D 式(11)–(14)及增益/互相关定义；§III 式(15)–(18)；§IV-A 基线设置；§IV-C 式(19)、Fig. 5"
+      },
+      "prerequisites": [
+        {
+          "href": "near-field.html#geometry",
+          "label": "区分同角异距与普通方向波束"
+        },
+        {
+          "href": "joint-beamforming.html#model",
+          "label": "理解协方差、照射功率与相关性"
+        },
+        {
+          "href": "foundations.html#cfar",
+          "label": "理解谱峰与目标检测的差别"
+        }
+      ],
+      "notebookTopicId": "near-field",
+      "readingSteps": [
+        {
+          "label": "先核对已知量和未知量",
+          "locator": "§II-A、§II-C 式(3)–(7)、§II-D",
+          "purpose": "把已知位置、未知 RCS 和逐阵元传播距离分开，避免把波束设计误读为盲定位"
+        },
+        {
+          "label": "把两个感知要求分开读",
+          "locator": "§II-D；§III 式(15b)–(15c)、式(18)",
+          "purpose": "分别解释单个目标增益、目标对互相关，以及恢复通信波束时为何要保留总协方差"
+        },
+        {
+          "label": "先查基线再看谱图",
+          "locator": "§IV-A；§IV-C 式(19)、Fig. 5",
+          "purpose": "标注被放宽的远场约束，辨认空间谱的坐标与含义，不把谱图当作 ROC 或 RMSE"
+        }
+      ]
+    }
+  ]
+}
