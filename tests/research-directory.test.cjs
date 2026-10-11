@@ -83,3 +83,24 @@ test('implemented-paper totals follow valid canonical cases and page availabilit
  a.match(missingNewPage,new RegExp(`深度交互已接入：${active.length-1} / ${data.cards.length} 篇`));
  a.match(getCard('crb',missingNewPage),/教学案例准备中/);
 });
+
+test('generic teaching links honor all eight canonical learning entries, with seven introductory changes and intentional Golay experiment-first',()=>{
+ let changes=0;
+ for(const card of data.cards.filter(card=>card.caseId)){
+  const c=registry.cases.find(c=>c.id===card.caseId),u=registry.units.find(u=>u.id===c.unit),href=c.learningEntry||u.href;
+  a.ok(getCard(card.id).includes(`href="${href}">进入教学案例 →</a>`),card.id);
+  if(href!==u.href){changes++;a.ok(!getCard(card.id).includes(`href="${u.href}">进入教学案例 →</a>`));}
+  const noEntry=structuredClone(registry);delete noEntry.cases.find(k=>k.id===c.id).learningEntry;
+  a.ok(getCard(card.id,render(noEntry)).includes(`href="${u.href}">进入教学案例 →</a>`));
+ }
+ a.equal(changes,7);a.ok(getCard('80211ad').includes('href="golay-radar.html#experiment">进入教学案例 →</a>'));
+ a.ok(!/href="(?!https:)/.test(getCard('deepsense')));
+});
+
+test('entry-route rendering preserves the complete nine-paper source and metrics snapshot',()=>{
+ const crypto=require('node:crypto'),hash=value=>crypto.createHash('sha256').update(value).digest('hex');
+ // Deliberate source/metrics updates require a separately reviewed snapshot refresh.
+ a.equal(hash(read(registry.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
+ const before=JSON.stringify(data);render();a.equal(JSON.stringify(data),before);
+ for(const card of data.cards){const h=getCard(card.id);a.ok(h.includes(esc(card.title)));a.ok(h.includes(esc(card.authors)));a.ok(h.includes(esc(card.readingPlan)));for(const {url,text,kind}of card.endorsements){a.ok(h.includes(esc(url)));a.ok(h.includes(esc(text)));a.ok(h.includes(esc(kind)));}}
+});
