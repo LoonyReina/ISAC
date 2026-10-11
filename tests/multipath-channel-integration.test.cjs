@@ -79,7 +79,7 @@ test('source guide, six anchors and generated portals use the shared shell and v
  const page=read(p.path);for(const href of expected){resolve(href);a.ok(c.fields['先修'].includes(`href="${href}"`));a.ok(page.includes(`href="${href}"`));}
  for(const anchor of ['question','model','experiment','source','boundary','derivation'])resolve(p.path+'#'+anchor);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((page.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
- a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html#notebook"'));
+ a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=multipath-channel#notebook"'));
  const guide=article(read('site/content-reading.html'),'ref-MULTIPATH'),doc=read('docs/READING-MAP.md');
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.path+'#model',p.path+'#derivation'])a.ok(guide.includes(`href="${href}"`),href);
  for(const [,href]of guide.matchAll(/href="(https:[^"]+)"/g))a.ok(doc.includes(href),href);
