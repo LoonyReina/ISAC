@@ -12,7 +12,7 @@ test('OFDM interpolation has one canonical case, unit and page in the existing p
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'prototype');
  a.equal(u.href,'ofdm-interpolation.html#experiment');a.equal(c.learningEntry,'ofdm-interpolation.html#mechanism');
  a.equal(c.paper,'ofdm-interpolation.html#paper');a.equal(c.next,'ofdm-interpolation.html#limits');
- a.equal(r.units.length,21);a.equal(r.cases.length,10);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,31);
+ a.equal(r.units.length,22);a.equal(r.cases.length,11);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,31);
  for(const href of [u.href,c.learningEntry,c.paper,c.next,p.next])resolve(href);
 });
 
@@ -47,20 +47,20 @@ test('all 31 beginner routes are preserved and only relevant existing concepts g
  a.deepEqual(r.knowledgeMap.nodes.find(n=>n.id==='waveform-design').unitRefs,['pilot','waveform-design','golay-radar']);
 });
 
-test('the original OFDM influence metadata is unchanged while its existing card becomes the fifth available paper',()=>{
+test('the original OFDM influence metadata is unchanged while its existing card stays available',()=>{
  const card=data.cards.find(k=>k.id==='ofdm_full_duplex'),preserved={...card};delete preserved.readingPlan;delete preserved.caseId;
  // Lock every pre-existing identity, influence, timestamp, source, endorsement and boundary field.
  a.equal(crypto.createHash('sha256').update(JSON.stringify(preserved)).digest('hex'),'61cb7ecd942fce2733d411adaea2a434b64ffcd40d0223cf1292fb71d504ce80');
  a.equal(card.caseId,c.id);a.equal(card.groupId,'signals-networks');a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(k=>k.doi)).size,9);
- a.equal(data.cards.filter(k=>k.caseId).length,5);a.equal(data.cards.filter(k=>!k.caseId).length,4);
+ a.equal(data.cards.filter(k=>k.caseId).length,6);a.equal(data.cards.filter(k=>!k.caseId).length,3);
  a.equal(card.metrics.snapshotDate,'2026-10-10');a.deepEqual([card.metrics.openAlex.count,card.metrics.semanticScholar.count,card.metrics.completedYear.count],[368,368,76]);
  a.doesNotMatch(card.readingPlan,/尚未实现|准备中/);
 });
 
-test('the fifth rendered paper follows canonical availability and keeps four genuinely pending entries',()=>{
+test('the rendered OFDM paper follows canonical availability and keeps three genuinely pending entries',()=>{
  const html=read('reading.html'),card=article(html,'paper-ofdm_full_duplex');
  a.ok(card.includes(`href="${u.href}"`));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现|本站交互尚未实现/);
- a.match(html,/深度交互已接入：5 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
+ a.match(html,/深度交互已接入：6 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  for(const pending of data.cards.filter(k=>!k.caseId)){const h=article(html,'paper-'+pending.id);a.match(h,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(h));}
 });
 
