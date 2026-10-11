@@ -7,6 +7,15 @@
 <p><b>证据边界：</b>第 4–5 页图2/Table I 是数值参考，第 5–6 页图3是自干扰仿真；第 8–11 页 §IV、图6–9才是射频测量。本站采用独立稀疏 OFDM 探测模型，只解释插值误差与噪声相关，不实现 LTE/NR 帧、自干扰抵消器或硬件复现。</p>
 <p><b>继续检验：</b><a href="ofdm-interpolation.html#experiment">同观测、共同尺度的比较</a> · <a href="ofdm-interpolation.html#paper">逐项原文对照</a> · <a href="ofdm-interpolation.html#limits">为什么更整齐的图不等于更好检测</a></p>
 </div></article>
+<article class="reference" id="ref-RADAR"><span class="ref-id">RADAR</span><div>
+<h3><a href="https://par.nsf.gov/servlets/purl/10404321" target="_blank" rel="noopener noreferrer">Radar Aided 6G Beam Prediction: Deep Learning Algorithms and Real-World Demonstration</a></h3>
+<p class="small">Umut Demirhan、Ahmed Alkhateeb · WCNC 2022，2655–2660 · <a href="https://doi.org/10.1109/WCNC51071.2022.9771564">会议 DOI</a> · <a href="https://par.nsf.gov/biblio/10404321">NSF PAR 记录</a> · 以下定位使用六页接受稿的 PDF 页码</p>
+<p><b>它接上：</b><a href="radar-beam-decision.html#mechanism">猜中最优标签，与保住通信功率的区别</a>。目标是利用当前雷达观测减少通信端逐个试波束的次数；不是 CSI 姿态估计，也不是未来标签预测。</p>
+<p><b>首次阅读：</b>pp.1–2 §II 式(4)–(6)定义通信信道、64 波束码本与最强标签；pp.2–4 §III、p.4 Table II 说明雷达特征和 CNN。p.4 图3使用独立的 77 GHz FMCW 雷达与 60 GHz 通信阵列，感知辅助通信不等于同一射频波形承担两项任务。</p>
+<p><b>划分与版本：</b>§IV-A p.4 与 §IV-B pp.4–5 说明采集、筛选和标签；6,319 个过滤样本的 70/20/10 训练/验证/测试划分句位于 p.5，不能由此推断轨迹或场景留出。<a href="https://arxiv.org/abs/2111.09676v1">旧 arXiv v1（2021-11-18，九页）</a>的 §V-B p.6 写的是 70/30，两版不混用。pp.5–6 §V、图5–7 的准确率、处理代价与训练量属于该实测研究，本站没有复现这些数字。</p>
+<p><b>资源边界：</b><a href="https://arxiv.org/abs/2211.09769v2">DeepSense 资源论文 v2</a>的场景与多模态对齐说明不能代替具体数据档案核查；<a href="https://github.com/umut-demirhan/Radar-aided-beam-prediction/tree/8a23f440b65fdc090b8161e4bfe4c1e0310ca67a">固定提交的作者代码</a>、论文和数据各有许可。本站没有下载测量、导入作者代码或训练 CNN，DeepSense 目录项仍是资源阅读入口。</p>
+<p><b>继续检验：</b><a href="radar-beam-decision.html#experiment">用独立合成观测改变候选数 K</a> · <a href="radar-beam-decision.html#paper">逐项原文对照</a> · <a href="radar-beam-decision.html#limits">理想 K/64 探测比例为何不是端到端增益</a>。七近邻排序只能读取特征；完整通信功率只在评估时揭示。</p>
+</div></article>
 <section id="reading-2026" aria-labelledby="reading-2026-title">
 <h3 id="reading-2026-title">2026 阅读补充：带着一个问题核对原文</h3>
 <p>核对日期：2026-10-11 UTC。按现有方向的学习缺口选取三篇资料，分别标明出版、作者版本与投稿状态；不是影响力排名，本站尚未完成这些论文的复现。</p>
