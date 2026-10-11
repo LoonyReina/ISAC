@@ -136,7 +136,7 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   '${renderGuideDirectionLink(researchGuides,d.id)}',
   '${researchGuides.length?`<a href="#research-guides">${researchGuides.length} 篇问题式导读</a>`:\'\'}',
   'reading+=renderResearchGuides(researchGuides);\n',
-  '<link rel="stylesheet" href="research-guides.css?v=research-guides-v2">',
+  '<link rel="stylesheet" href="research-guides.css?v=research-guides-v3">',
   '<script defer src="research-guides.js?v=research-guides-v1"></script>',
 
   '${registry.paperComparisonGroups?.length?\'<a href="#paper-comparisons">同方向论文对读</a>\':\'\'}',
