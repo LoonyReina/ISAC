@@ -1,0 +1,716 @@
+{
+  "status": "PASS",
+  "core_file": "multipath-channel-core.js",
+  "core_sha256": "414f00f2bcad736281881edd643308fa622887ccf4227aa2e227fe24119816a8",
+  "reference_file": "reference.py",
+  "reference_sha256": "b6f457769d20ee437f7ed0e8011e12b5948e2077df889024d3964649720bbc50",
+  "fixtures_sha256": "a5ce244eeceebd0e89463ac5d41cd2158b85f60ed973fab8b6d145b2e0c8585f",
+  "check_count": 109,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "receiver_sparse_Y_all",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_Y_first",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_Y_last",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_Y_interior",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_X_all",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_X_first",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_X_last",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_X_interior",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_f_all",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_f_first",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_f_last",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_f_interior",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_candidates_all",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_candidates_first",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_candidates_last",
+      "passed": true
+    },
+    {
+      "name": "receiver_sparse_candidates_interior",
+      "passed": true
+    },
+    {
+      "name": "sparse_lengths",
+      "passed": true
+    },
+    {
+      "name": "sparse_coefficients",
+      "passed": true
+    },
+    {
+      "name": "sparse_powers",
+      "passed": true
+    },
+    {
+      "name": "sparse_first_power",
+      "passed": true
+    },
+    {
+      "name": "sparse_wall",
+      "passed": true
+    },
+    {
+      "name": "sparse_analytic_candidates",
+      "passed": true
+    },
+    {
+      "name": "sparse_analytic_lengths",
+      "passed": true
+    },
+    {
+      "name": "sparse_interval_X",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_unknown_key",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_unknown_resource",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_nan",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_infinity",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_boolean",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_string",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_high_h",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_low_h",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_gain",
+      "passed": true
+    },
+    {
+      "name": "bad_scene_phase",
+      "passed": true
+    },
+    {
+      "name": "bad_freq_grid",
+      "passed": true
+    },
+    {
+      "name": "bad_pilot",
+      "passed": true
+    },
+    {
+      "name": "truth_enriched_grid",
+      "passed": true
+    },
+    {
+      "name": "candidate_limit",
+      "passed": true
+    },
+    {
+      "name": "candidate_range",
+      "passed": true
+    },
+    {
+      "name": "path_count_limit",
+      "passed": true
+    },
+    {
+      "name": "q_range",
+      "passed": true
+    },
+    {
+      "name": "q_infinite",
+      "passed": true
+    },
+    {
+      "name": "time_range",
+      "passed": true
+    },
+    {
+      "name": "interval_infinite",
+      "passed": true
+    },
+    {
+      "name": "receiver_inherited_sample_rejected",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_X_0",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_X_1",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_Y_0",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_Y_1",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_coefficient_0",
+      "passed": true
+    },
+    {
+      "name": "nested_inherited_coefficient_1",
+      "passed": true
+    },
+    {
+      "name": "tiny_positive_scene_power_underflow",
+      "passed": true,
+      "outcome": "rejected",
+      "error": "RangeError",
+      "message": "Numerical range limit: nonzero received samples or responses have powers that underflow to zero"
+    },
+    {
+      "name": "tiny_positive_coefficient_underflow",
+      "passed": true,
+      "outcome": "rejected",
+      "error": "RangeError",
+      "message": "Numerical range limit: a positive requested path gain underflowed to zero"
+    },
+    {
+      "name": "tiny_positive_reflection_underflow",
+      "passed": true,
+      "outcome": "rejected",
+      "error": "RangeError",
+      "message": "Numerical range limit: a positive requested path gain underflowed to zero"
+    },
+    {
+      "name": "external_nonzero_Y_power_underflow",
+      "passed": true,
+      "outcome": "rejected",
+      "error": "RangeError",
+      "message": "Numerical range limit: nonzero received samples or responses have powers that underflow to zero"
+    },
+    {
+      "name": "exact_zero_scene_genuine_no_response",
+      "passed": true
+    },
+    {
+      "name": "generic_tiny_X_large_Y",
+      "passed": true,
+      "outcome": "returned"
+    },
+    {
+      "name": "generic_tiny_path_length",
+      "passed": true,
+      "outcome": "rejected"
+    },
+    {
+      "name": "exact_tie_rule",
+      "passed": true
+    },
+    {
+      "name": "exact_zero_rule",
+      "passed": true
+    },
+    {
+      "name": "receiver_keys",
+      "passed": true
+    },
+    {
+      "name": "instrumented_truth_isolation",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_0",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_0",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_1",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_1",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_2",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_2",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_3",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_3",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_4",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_4",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_5",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_5",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_6",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_6",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_7",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_7",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_8",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_8",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_9",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_9",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_10",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_10",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_11",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_11",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_12",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_12",
+      "passed": true
+    },
+    {
+      "name": "physical_receiver_grid_13",
+      "passed": true
+    },
+    {
+      "name": "physical_energy_and_scale_13",
+      "passed": true
+    },
+    {
+      "name": "all_full_JS_Y_against_frozen_reference",
+      "passed": true,
+      "max_absolute_error": 2.736668548973739e-15
+    },
+    {
+      "name": "independent_RF_carrier_once",
+      "passed": true,
+      "max_absolute_error": 6.136933131275492e-15
+    },
+    {
+      "name": "all_full_JS_z_against_frozen_reference",
+      "passed": true,
+      "max_absolute_error": 2.475844407592483e-14
+    },
+    {
+      "name": "all_full_JS_z_against_independent_receiver",
+      "passed": true,
+      "max_absolute_error": 3.002224531865041e-16
+    },
+    {
+      "name": "all_full_JS_powers_against_reference",
+      "passed": true,
+      "max_absolute_error": 3.1155633628543455e-15
+    },
+    {
+      "name": "all_fixed_grid_peaks_and_flags",
+      "passed": true
+    },
+    {
+      "name": "101_geometries_and_angles",
+      "passed": true,
+      "max_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "JS_Y_from_explicit_fractional_delay_CP_and_DFT",
+      "passed": true,
+      "max_error": 3.2450389456072712e-15
+    },
+    {
+      "name": "JS_common_phase_rotation_invariance",
+      "passed": true
+    },
+    {
+      "name": "JS_complex_kernel_direct_sum",
+      "passed": true,
+      "max_direct_error": 1.5605871727997845e-12,
+      "max_reference_error": 1.1102569054260746e-16
+    },
+    {
+      "name": "JS_Gram_exact_near_alias_and_range_status",
+      "passed": true,
+      "max_log_error": 0.0,
+      "max_lambda_relative_error": 0.0,
+      "max_offdiagonal_error": 1.734723475976807e-18
+    },
+    {
+      "name": "JS_IDFT_and_actual_CP_energies",
+      "passed": true,
+      "continuous_cp": 0.21922241148558375,
+      "discrete_cp": 0.2190124389869537
+    },
+    {
+      "name": "JS_resource_invariants",
+      "passed": true
+    },
+    {
+      "name": "JS_relative_phase_interference_same_resources",
+      "passed": true,
+      "constructive_energy": 0.0987483501531557,
+      "destructive_energy": 0.00023704950039538135
+    },
+    {
+      "name": "JS_full_numeric_ledger_matches_reference",
+      "passed": true
+    },
+    {
+      "name": "JS_algebra_0",
+      "passed": true
+    },
+    {
+      "name": "JS_algebra_1",
+      "passed": true
+    },
+    {
+      "name": "JS_algebra_2",
+      "passed": true
+    },
+    {
+      "name": "source_frozen_during_audit",
+      "passed": true
+    }
+  ],
+  "scene_count": 14,
+  "scene_results": [
+    {
+      "index": 0,
+      "config": {
+        "h": 4.0,
+        "b": 1.0,
+        "rho": 0.7,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 632,
+        "apparentDistanceM": 6.32,
+        "power": 0.024876391205667047,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 1,
+      "config": {
+        "h": 1,
+        "b": 1.0,
+        "rho": 0.7,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 577,
+        "apparentDistanceM": 5.77,
+        "power": 0.014802475981648047,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 2,
+      "config": {
+        "h": 0.1,
+        "b": 1.0,
+        "rho": 0.7,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 631,
+        "apparentDistanceM": 6.31,
+        "power": 0.03391388153730985,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 3,
+      "config": {
+        "h": 6,
+        "b": 1.0,
+        "rho": 0.7,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 720,
+        "apparentDistanceM": 7.2,
+        "power": 0.02015970769778478,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 4,
+      "config": {
+        "h": 4.0,
+        "b": 1.0,
+        "rho": 0,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 632,
+        "apparentDistanceM": 6.32,
+        "power": 0.024998755600825324,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 5,
+      "config": {
+        "h": 4.0,
+        "b": 0,
+        "rho": 0.7,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 849,
+        "apparentDistanceM": 8.49,
+        "power": 0.0068051920794368745,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 6,
+      "config": {
+        "h": 4.0,
+        "b": 0,
+        "rho": 0,
+        "psi": 0.0,
+        "commonPhase": 0.37
+      },
+      "status": "no_response",
+      "peak": null
+    },
+    {
+      "index": 7,
+      "config": {
+        "h": 0.1,
+        "b": 0.9900519784684487,
+        "rho": 1,
+        "psi": 1.6677673803300648,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 633,
+        "apparentDistanceM": 6.33,
+        "power": 0.09874293489626564,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 8,
+      "config": {
+        "h": 0.1,
+        "b": 0.9900519784684487,
+        "rho": 1,
+        "psi": -1.4738252732597283,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 555,
+        "apparentDistanceM": 5.55,
+        "power": 0.00013532808953916673,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 9,
+      "config": {
+        "h": 0.10001,
+        "b": 1,
+        "rho": 1,
+        "psi": 3.141592653589793,
+        "commonPhase": 0.37
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 632,
+        "apparentDistanceM": 6.32,
+        "power": 0.054737307512530226,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 10,
+      "config": {
+        "h": 6,
+        "b": 1,
+        "rho": 1,
+        "psi": -3.141592653589793,
+        "commonPhase": 6.283185307179586
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 722,
+        "apparentDistanceM": 7.22,
+        "power": 0.018171835884480774,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 11,
+      "config": {
+        "h": 2.71828,
+        "b": 0.63,
+        "rho": 0.93,
+        "psi": -1.89,
+        "commonPhase": 1.11
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 758,
+        "apparentDistanceM": 7.58,
+        "power": 0.011464756486498157,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 12,
+      "config": {
+        "h": 1,
+        "b": 1,
+        "rho": 0.7,
+        "psi": 0,
+        "commonPhase": 0
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 577,
+        "apparentDistanceM": 5.77,
+        "power": 0.014802475981648043,
+        "exactTieCount": 1
+      }
+    },
+    {
+      "index": 13,
+      "config": {
+        "h": 1,
+        "b": 1,
+        "rho": 0.7,
+        "psi": 0,
+        "commonPhase": 1.23
+      },
+      "status": "single_grid_maximum",
+      "peak": {
+        "index": 577,
+        "apparentDistanceM": 5.77,
+        "power": 0.01480247598164805,
+        "exactTieCount": 1
+      }
+    }
+  ],
+  "elapsed_s": 6.029505491256714,
+  "scope": "Actual JavaScript scientific core and helper guards; no browser, UI interaction, repository regression suite, publication, or hardware validation"
+}
