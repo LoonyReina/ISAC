@@ -5149,5 +5149,571 @@
       }
     ]
   },
-  "researchDirectoryFile": "site/research-directory.json"
+  "researchDirectoryFile": "site/research-directory.json",
+  "paperComparisonGroups": [
+    {
+      "id": "beamforming",
+      "title": "同一组天线，三种研究问题",
+      "intro": "这三篇都研究通感发射设计，但改变的系统、信号流和评价指标不同。先看作者在解决什么，再判断哪些结论可以相互启发。",
+      "scopeNote": "选择只切换阅读视角，不改变论文假设、不重新求解优化，也不产生性能排名。论文证据与本站独立教学构造分别标明。",
+      "members": [
+        {
+          "caseId": "case-shared-array",
+          "label": "2018 · 架构与共享数据",
+          "branch": "分离子阵，还是共享通信数据？",
+          "question": "同一组天线，分开用和共同发数据，要付出哪些方向图与通信代价？",
+          "change": "比较分离与共享两种发射架构；共享分支只复用通信数据。",
+          "boundary": "共享不保证包含所有分离方案，也不是普遍更好的架构。",
+          "observation": "通信用户接收复数样本；雷达侧主要设计发射协方差与方向图，接收处理不在这篇的研究范围内。假定发射端精确知道平坦信道 H，目标方向图是设计输入；待优化的波束权重是决策变量，不是待估计的目标参数",
+          "constraints": "每位用户 SINR 下限；共享采用每天线平均功率相等。分离另有雷达零干扰、子阵预算与顺序优化",
+          "methods": "约束问题用 SDR 与近似秩恢复；另有惩罚项和流形方法，不能混称为同一硬 SINR 问题。",
+          "flows": [
+            {
+              "label": "分离",
+              "signal": "雷达流 / 通信流",
+              "array": "各自子阵",
+              "objective": "协方差与方向图拟合"
+            },
+            {
+              "label": "共享",
+              "signal": "只有通信数据",
+              "array": "共同使用全阵",
+              "objective": "协方差平方误差"
+            }
+          ],
+          "inspectedSource": {
+            "caseId": "case-shared-array",
+            "edition": "本对读固定 arXiv:1707.00519v1，2017-07-03；页码为该预印本 PDF 页码。原案例另列期刊 VoR 对照，不能混用",
+            "url": "https://arxiv.org/pdf/1707.00519v1",
+            "checkedOn": "2026-10-11",
+            "paperEvidence": "理论与数值仿真；2018 约束问题使用 SDR，非秩一结果需近似恢复。惩罚型方法与硬 SINR 约束问题不能混称",
+            "resources": "原文架构比较：20 天线，14+6 分组，4 用户，半波长 ULA；总功率20 dBm、噪声0 dBm，雷达/通信预算各半；图3–4门槛10 dB",
+            "unknowns": [
+              "本组固定 v1；原案例另有期刊 VoR 对照，不混用页码。本轮未重新核验期刊 VoR。",
+              "v1 式(12)–(13)的 PR/N 存在印刷归一化歧义。按全篇定义逐字代入，只能条件推出分离总迹≤0.85P₀；未核查作者代码或勘误，不能推断实际仿真用了不等功率。",
+              "蒙特卡洛试验数、配对信道政策和实际归一化执行未确认；没有复现作者优化器或原图。"
+            ],
+            "locators": [
+              {
+                "id": "shared-model",
+                "label": "§I-C p.2；§II / Fig.1，Eqs.(1)–(8)，pp.3–4",
+                "text": "模型与接收范围"
+              },
+              {
+                "id": "shared-optimization",
+                "label": "§III，Eqs.(9)–(20)，pp.4–6；共享原问题 Eq.(20)",
+                "text": "约束与优化目标"
+              },
+              {
+                "id": "shared-simulation",
+                "label": "§VI-A，pp.10–11，Figs.3–5",
+                "text": "原文仿真设置"
+              },
+              {
+                "id": "shared-normalization",
+                "label": "§III-B，p.5，Eqs.(12)–(14)；对照 p.6 Eq.(20c)",
+                "text": "印刷归一化待核对"
+              }
+            ]
+          },
+          "modelHref": "shared-array.html#objects"
+        },
+        {
+          "caseId": "case-joint-beamforming",
+          "label": "2020 · 联合信号流",
+          "branch": "通信流之外，加入独立雷达流",
+          "question": "只发 K 路数据不足以实现所需协方差时，能否增加独立雷达流并满足每位用户 SINR？",
+          "change": "共同分配通信与独立雷达因子，优化方向图误差和方向间相关性。",
+          "boundary": "增加信号因子不等于增加天线；协方差秩也不等于功率峰数。",
+          "observation": "用户接收通信数据、其他用户干扰与雷达流干扰；本机雷达知道两类发射样本，并接收目标回波。已知瞬时平坦 H，给定雷达照射方向；接收端仿真再估计角度和检测目标。设计输入的方向不等于接收机已知真实角度",
+          "constraints": "每位用户硬 SINR 下限、每天线平均功率相等。ZF 版本额外要求用户间干扰和雷达对用户干扰为零",
+          "methods": "SDR 证明秩一通信最优解存在并给出恢复式；ZF 是另加零干扰约束的受限设计，不能对任意协方差免费实现。",
+          "flows": [
+            {
+              "label": "联合流",
+              "signal": "通信流 + 独立雷达流",
+              "array": "共同使用全阵",
+              "objective": "方向图与相关性损失"
+            }
+          ],
+          "inspectedSource": {
+            "caseId": "case-joint-beamforming",
+            "edition": "arXiv:1912.03420v2，2020-02-02；该版标题末尾为 and Radar。式号与 PDF 页码固定此版",
+            "url": "https://arxiv.org/pdf/1912.03420v2",
+            "checkedOn": "2026-10-11",
+            "paperEvidence": "理论、发射方向图仿真、接收端距离压缩/LS-Capon 角度估计与 GLRT 检测仿真；不是硬件实测",
+            "resources": "10 天线、半波长 ULA、总功率1、用户噪声方差0.01；三束中心−40°/0°/40°，宽10°；1000次信道试验，QPSK块1024样本",
+            "unknowns": [
+              "原文已经包含角度 RMSE 与 GLRT 检测仿真。K=2 的 SSP 角度 RMSE 因经常检出失败而省略；缺失不等于零误差。",
+              "2020 使用的是 2018 的一个每阵元 SSP 惩罚型变体，不代表全部 2018 方法。",
+              "本站没有有限 QPSK 块、目标回波、估计器、检测器或作者优化器；未指定物理带宽和采样周期。"
+            ],
+            "locators": [
+              {
+                "id": "joint-model",
+                "label": "§II，Eqs.(1)–(7)，pp.3–4；§III-A/B，Eqs.(8)–(25)，pp.4–6",
+                "text": "信号模型、雷达损失与通信约束"
+              },
+              {
+                "id": "joint-optimization",
+                "label": "§IV-A/B，Eqs.(26)–(34)，pp.6–7；Theorem1、AppendixA",
+                "text": "SDR 存在性与恢复"
+              },
+              {
+                "id": "joint-zf",
+                "label": "§IV-C，Eqs.(35)–(44)，pp.7–9；Theorem2 p.8",
+                "text": "额外 ZF 约束与固定协方差可行性"
+              },
+              {
+                "id": "joint-simulation",
+                "label": "§V，p.9；Eq.(46) p.10；Figs.3–9 pp.10–12",
+                "text": "原文资源与绘图指标"
+              },
+              {
+                "id": "joint-receiver",
+                "label": "§V-C，pp.12–13；Figs.10–12；K=2 SSP角度RMSE缺失说明 p.13",
+                "text": "估计、检测证据与未检出样本"
+              },
+              {
+                "id": "joint-lineage",
+                "label": "§V p.9：2018每阵元SSP基线，ρ1=1、ρ2=2；参考文献[42] p.16",
+                "text": "实际使用的2018 SSP 变体"
+              }
+            ]
+          },
+          "modelHref": "joint-beamforming.html#model"
+        },
+        {
+          "caseId": "case-crb-beamforming",
+          "label": "2022 · 估计下界",
+          "branch": "直接优化目标参数的估计下界",
+          "question": "能否直接降低明确目标参数的估计下界，同时满足通信质量？",
+          "change": "点目标优化角度 CRB；扩展目标另估计响应矩阵 G。本站主实验仅做单用户点目标。",
+          "boundary": "CRB 是下界，不是实际误差；不能把整篇看成2020同一模型只换目标。",
+          "observation": "YC=HX+ZC；YR=GX+ZR。点目标G=αb(θ)a(θ)ᴴ；扩展目标直接估计完整响应矩阵G。已知H与发射样本X。θ对估计器未知，但发射设计在给定预测/名义方向处作局部优化；复反射系数α为干扰参数。扩展分支的未知量改为G",
+          "constraints": "每位用户SINR下限和总功率上限；不能默认为仍有2020每天线功率相等约束",
+          "methods": "单用户闭式解；点目标多用户 SDR 的秩一结论另需可行性与 H[a,ȧ] 满列秩。扩展目标采用另一条恢复定理。",
+          "flows": [
+            {
+              "label": "点目标",
+              "signal": "K 路通信数据",
+              "array": "共同使用全阵",
+              "objective": "角度 CRB"
+            },
+            {
+              "label": "扩展目标",
+              "signal": "数据 + 辅助探测流",
+              "array": "共同使用全阵",
+              "objective": "响应矩阵 G 的 CRB"
+            }
+          ],
+          "inspectedSource": {
+            "caseId": "case-crb-beamforming",
+            "edition": "作者托管期刊 VoR，IEEE TSP70 pp.240–253；首次发表2021-12-15，当前版本2022-01-11。以下为期刊印刷页码",
+            "url": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf",
+            "checkedOn": "2026-10-11",
+            "paperEvidence": "理论、闭式与数值解对照、点目标ML角度RMSE和扩展目标矩阵MSE仿真；CRB不是每个估计器实际达到的误差",
+            "resources": "16发射/20接收天线，总功率30dBm，通信与雷达噪声各0dBm，30快照；点目标方向0°。图3–4为4用户、15dB门槛",
+            "unknowns": [
+              "点目标设计在给定预测/名义角度作局部优化；未知角度不表示设计完全没有方向信息。",
+              "原文扩展目标比较会删除不可行的特征分解恢复基线样本；条件统计不能代替可行率。",
+              "2022 对比基线是否保留或改动2018/2020每天线约束，所读正文未充分说明；角度搜索精确格距与全部 RMSE 图试验数未确认。",
+              "本站未实现多用户 SDR、扩展目标优化或实际角度估计器；另附双流同方向图例是独立构造。"
+            ],
+            "locators": [
+              {
+                "id": "crb-model",
+                "label": "§II-A/B，pp.241–242，Eqs.(1)–(9)",
+                "text": "点目标观测与未知量"
+              },
+              {
+                "id": "crb-extended",
+                "label": "§II-C，pp.242–243，Eqs.(10)–(18)；§IV pp.245–246，Eqs.(34)–(49)",
+                "text": "扩展目标分支与恢复"
+              },
+              {
+                "id": "crb-equivalence",
+                "label": "§III-B，pp.243–244，Eqs.(20)–(29)，Lemma1/Theorem1；尤其Eqs.(24)–(25)",
+                "text": "有条件的单用户功率等价特例"
+              },
+              {
+                "id": "crb-sdr",
+                "label": "§III-C，p.244，Eqs.(30)–(33)，Theorem2；AppendixC",
+                "text": "多用户点目标定理条件"
+              },
+              {
+                "id": "crb-simulation",
+                "label": "§V，pp.246–248，Figs.2–7；p.247脚注1说明删除不可行基线样本",
+                "text": "仿真与不可行样本处理"
+              },
+              {
+                "id": "crb-lineage",
+                "label": "§V-B，pp.246–247，Figs.3–5；参考文献[11]/[12] p.252",
+                "text": "2018与2020基线引用"
+              }
+            ]
+          },
+          "modelHref": "crb-beamforming.html#model"
+        }
+      ],
+      "questions": [
+        {
+          "id": "streams",
+          "label": "信号从哪里来？",
+          "readings": [
+            {
+              "caseId": "case-shared-array",
+              "text": "分离时雷达和通信各用子阵；共享时全阵只发预编码通信数据，没有额外雷达符号。",
+              "refs": [
+                {
+                  "caseId": "case-shared-array",
+                  "locatorId": "shared-model"
+                }
+              ]
+            },
+            {
+              "caseId": "case-joint-beamforming",
+              "text": "新增独立雷达因子可提供更多协方差自由度，但雷达流也进入用户干扰。非冗余因子增加秩，不是把秩变成波峰数量。",
+              "refs": [
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-model"
+                }
+              ]
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "text": "点目标分支仍使用通信流；估计完整 G 的扩展目标分支另加探测流。本站单用户点目标不能代表后一分支。",
+              "refs": [
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-model"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-extended"
+                }
+              ]
+            }
+          ],
+          "answer": "先区分物理天线与信号因子，再看设计自由度由哪里产生。",
+          "limit": "“全部天线一起发射”不意味着信号模型、可行域和未知量相同。"
+        },
+        {
+          "id": "metrics",
+          "label": "什么叫感知更好？",
+          "readings": [
+            {
+              "caseId": "case-shared-array",
+              "text": "共享约束式拟合总协方差，目标是 Frobenius 平方误差；目标方向功率、整个方向图与协方差误差不是同一个量。",
+              "refs": [
+                {
+                  "caseId": "case-shared-array",
+                  "locatorId": "shared-optimization"
+                }
+              ]
+            },
+            {
+              "caseId": "case-joint-beamforming",
+              "text": "设计目标是方向图误差加交叉相关损失；式(46)绘图 MSE 只看功率方向图。论文已经评估角度 RMSE 与 GLRT 检测，不能说只画了方向图。",
+              "refs": [
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-model"
+                },
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-simulation"
+                },
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-receiver"
+                }
+              ]
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "text": "角度 CRB 与响应矩阵 G 的下界属于不同未知量。CRB 不保证实际估计器达到；单用户点目标还有与方向功率等价的有条件特例。",
+              "refs": [
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-model"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-extended"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-equivalence"
+                }
+              ]
+            }
+          ],
+          "answer": "区别设计时优化什么、仿真时评估什么，以及本站实际计算什么。",
+          "limit": "不同单位的损失、CRB、RMSE 或检测率不能合成一个“精度排名”。"
+        },
+        {
+          "id": "conditions",
+          "label": "哪些条件必须对齐？",
+          "readings": [
+            {
+              "caseId": "case-shared-array",
+              "text": "共享采用每天线平均功率相等；分离有子阵分配与严格置零。印刷 PR/N 的歧义仍需保留，不据此推断作者程序。",
+              "refs": [
+                {
+                  "caseId": "case-shared-array",
+                  "locatorId": "shared-optimization"
+                },
+                {
+                  "caseId": "case-shared-array",
+                  "locatorId": "shared-normalization"
+                }
+              ]
+            },
+            {
+              "caseId": "case-joint-beamforming",
+              "text": "每天线平均功率固定；通信与雷达流、用户数、噪声和有限块长度都属于比较资源。总平均功率不能替代这些条件。",
+              "refs": [
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-model"
+                },
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-simulation"
+                }
+              ]
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "text": "原问题用总功率上限，接收阵列、快拍、名义目标与未知复系数决定 CRB。点目标和扩展目标必须分开。",
+              "refs": [
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-model"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-extended"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-simulation"
+                }
+              ]
+            }
+          ],
+          "answer": "列出阵列、信号、约束、观测与先验的共同账本，标记尚未对齐的项。",
+          "limit": "三个教学页的默认输出不是已对齐的三方优化器竞赛。"
+        }
+      ],
+      "premises": [
+        {
+          "id": "total-power",
+          "label": "只把总功率设成同一个数",
+          "explanation": "仍不能直接横比。每天线条件、阵列孔径、信号流、噪声、快拍、目标、用户和指标都可能不同。",
+          "action": "先去各课资源与模型说明，写下实际总迹、逐天线功率、接收资源和未指定项。",
+          "refs": [
+            {
+              "caseId": "case-shared-array",
+              "locatorId": "shared-simulation"
+            },
+            {
+              "caseId": "case-joint-beamforming",
+              "locatorId": "joint-simulation"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-simulation"
+            }
+          ],
+          "caseIds": [
+            "case-shared-array",
+            "case-joint-beamforming",
+            "case-crb-beamforming"
+          ]
+        },
+        {
+          "id": "constraints",
+          "label": "再对齐每天线条件与信号流",
+          "explanation": "这可能改变原问题的可行域。2020 的每天线等式与2022 的总功率上限不同；修改条件后不能把原图当成新设置的结果。",
+          "action": "先选同一目标分支，明确哪项约束新增或放松；重新求解后记录实际功率、用户 SINR 和不可行样本。",
+          "refs": [
+            {
+              "caseId": "case-joint-beamforming",
+              "locatorId": "joint-model"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-model"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-extended"
+            }
+          ],
+          "caseIds": [
+            "case-joint-beamforming",
+            "case-crb-beamforming"
+          ]
+        },
+        {
+          "id": "observation",
+          "label": "还对齐观测、未知量与指标",
+          "explanation": "这是一份更完整的待执行计划，仍需共同基线、实现、求解或估计，以及失败检查。点选这一项没有完成公平性验证。",
+          "action": "先决定要比较角度 CRB、实际 RMSE 还是检测率，再固定资源、先验和随机种子；同时报告失败率与统计分母。",
+          "refs": [
+            {
+              "caseId": "case-joint-beamforming",
+              "locatorId": "joint-receiver"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-simulation"
+            }
+          ],
+          "caseIds": [
+            "case-shared-array",
+            "case-joint-beamforming",
+            "case-crb-beamforming"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "id": "same-power",
+          "prompt": "三个本站实验都出现 P=1，能否直接把输出排高低，判断哪篇方法最好？",
+          "options": [
+            {
+              "id": "yes",
+              "label": "可以，只要总功率相同",
+              "feedback": "总功率只是一项。2018 共享与2020原文采用每天线平均功率条件；2022采用总功率上限。本站三课的信号流、用户、接收模型与指标也不同，目标方向功率和角度 CRB 甚至不是同一单位。先填写共同任务、约束和资源账本。",
+              "refs": [
+                {
+                  "caseId": "case-shared-array",
+                  "locatorId": "shared-optimization"
+                },
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-model"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-model"
+                }
+              ],
+              "caseIds": [
+                "case-shared-array",
+                "case-joint-beamforming",
+                "case-crb-beamforming"
+              ]
+            },
+            {
+              "id": "align",
+              "label": "还不能；先对齐问题、指标、约束和其余资源",
+              "feedback": "这是必要的检查方向，但点选并未证明条件已对齐。先决定共同任务和指标，再保留相同资源与先验；修改问题后需重新求解或计算，并记录不可行、未检出和误差的统计分母，不能沿用原图宣称新条件下也成立。",
+              "refs": [
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-receiver"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-simulation"
+                }
+              ],
+              "caseIds": [
+                "case-shared-array",
+                "case-joint-beamforming",
+                "case-crb-beamforming"
+              ]
+            },
+            {
+              "id": "never",
+              "label": "永远不能比较不同论文的方法",
+              "feedback": "可以在明确的共同问题下比较。2020 对照了2018的一个每阵元 SSP 惩罚型变体；2022 图3–5把2020与2018列作方向图基线。但2022基线是否保留或改动每天线约束，所读正文未充分说明。这些引用支持继续核对比较协议，不能证明三个本站默认输出已是公平竞赛。",
+              "refs": [
+                {
+                  "caseId": "case-joint-beamforming",
+                  "locatorId": "joint-lineage"
+                },
+                {
+                  "caseId": "case-crb-beamforming",
+                  "locatorId": "crb-lineage"
+                }
+              ],
+              "caseIds": [
+                "case-shared-array",
+                "case-joint-beamforming",
+                "case-crb-beamforming"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "id": "power-equivalence",
+          "title": "一个重要例外：照得亮与 CRB 并非永远无关",
+          "text": "2022期刊版式(24)–(25)：在文中单用户、单通信流、对称中心化阵列的点目标模型中，已知发射样本、未知复反射系数 α、独立复高斯噪声；固定名义角度、|α|、接收阵列、快拍数和噪声，并且目标照射与接收角度信息非零时，角度 CRB 与目标方向发射功率成反比。因此最小化 CRB 等价于最大化这一个方向的功率，仍须满足通信 SNR 与总功率约束。这不等于拟合整个方向图，也不自动推广到一般多流或完整 G 估计。对称阵列是这里的充分设置，不是声称所有等价关系都必须满足的必要条件。",
+          "refs": [
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-equivalence"
+            }
+          ]
+        },
+        {
+          "id": "lineage",
+          "title": "为什么把这三篇放在一起？先核对引用与遗漏",
+          "text": "2020 使用2018的一个每阵元 SSP 变体；2022图3–5使用2020与2018的方向图基线。引用关系不是性能代际排名，也未核实所有基线功率约束完全一致。还要保留失败：2020省略常常未检出的 K=2 SSP 角度 RMSE，2022扩展目标比较删去不可行的特征分解恢复样本。缺失曲线不是零误差，条件统计不能代替失败率。",
+          "refs": [
+            {
+              "caseId": "case-joint-beamforming",
+              "locatorId": "joint-lineage"
+            },
+            {
+              "caseId": "case-joint-beamforming",
+              "locatorId": "joint-receiver"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-lineage"
+            },
+            {
+              "caseId": "case-crb-beamforming",
+              "locatorId": "crb-simulation"
+            }
+          ]
+        }
+      ],
+      "nextQuestions": [
+        {
+          "caseId": "case-shared-array",
+          "question": "逐天线功率上限会挡住当前配方吗？",
+          "fixed": "当前物理分组、信道、目标和实际总预算。",
+          "change": "先用既有逐天线输出，检查加入功率上限后哪些配方不再满足。",
+          "evidence": "记录逐天线平均功率、残余干扰和目标照射；区分当前配方不合约束与一般问题无解。",
+          "status": "现有实验可检查配方；加入新约束后的最优设计尚未实现。"
+        },
+        {
+          "caseId": "case-joint-beamforming",
+          "question": "提高通信门槛，哪一个构造先不满足？",
+          "fixed": "本页当前 H、信号构造、阵列和功率。",
+          "change": "只扫描通信门槛 Γ。",
+          "evidence": "记录每用户期望信号、其他数据干扰、雷达干扰、SINR 与构造通过情况。",
+          "status": "现有实验可执行这一检查；一般信道重新优化仍未实现，构造未通过不等于原问题不可行。"
+        },
+        {
+          "caseId": "case-crb-beamforming",
+          "question": "通信门槛何时开始抬高角度下界？",
+          "fixed": "本页信道 ρ、点目标、阵列、快拍与功率。",
+          "change": "只扫描最低通信 SNR。",
+          "evidence": "记录平坦区、取舍区、通信不可行与零照射不可辨识边界；输出是下界。",
+          "status": "现有单用户实验可执行；实现实际角度估计器并检验下界可达性仍是未执行计划。"
+        }
+      ]
+    }
+  ]
 }
