@@ -59,3 +59,10 @@ test('generator guard rejects missing, mutated, duplicate and relocated exact ho
  ];
  for(const mutate of mutations){const changed=mutate(generator);a.notEqual(changed,generator);a.throws(()=>generatorGuard(changed));}
 });
+
+test('the additional route selections stay exact rather than broadening the historical normalization',()=>{
+ for(let i=1;i<4;i++)for(const field of ['nodeId','unitId','guideId','nextGuideId']){
+  const r=structuredClone(registry);r.knowledgeMap.progressions[i][field]+='-changed';a.throws(()=>registryGuard(r));
+ }
+ for(const mutate of [r=>r.knowledgeMap.progressions.pop(),r=>r.knowledgeMap.progressions.reverse(),r=>r.knowledgeMap.progressions.push({...r.knowledgeMap.progressions[1]}),r=>r.knowledgeMap.progressions[1].relationType='direct-citation']){const r=structuredClone(registry);mutate(r);a.throws(()=>registryGuard(r));}
+});
