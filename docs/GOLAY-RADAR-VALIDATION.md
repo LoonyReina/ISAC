@@ -105,3 +105,14 @@ A separate auditor evaluated the frozen core SHA-256 `7bb174df7ec5bdaa1bbad3a963
 - Auditor reran the repository's 34/34 core tests and rechecked the core hash unchanged
 
 No material numerical issue remained. The magnitude helper can return Infinity if both components are `Number.MAX_VALUE`; this is outside the lesson's reachable values and is not asserted to be a finite representable magnitude. The browser error path clears nonfinite plotted results. This independent audit does not validate IEEE compliance, actual RF hardware, detector performance, physical fractional-delay behavior or deployment.
+
+
+## Verified publication and live browser checks
+
+On 2026-10-11 UTC, [PR #30](https://github.com/LoonyReina/ISAC/pull/30) merged as `ff83ffdc23cf352187c0995259d4aada714a4b81`. The Pages build and deployment run `38110542129` succeeded for that exact commit. All 22 remote files matched the frozen local tree; seven live entry files matched their expected bytes: the lesson HTML, runtime, core, CSS, reading directory, learning map and experiment catalog.
+
+Actual cloud Chrome checks covered desktop 1165 CSS client pixels and narrow 323 CSS client pixels at 150% desktop browser zoom, not a physical phone. Delay endpoints 0/127, complex reflection phase, real/imaginary components, the incorrect magnitude-first overlay, its persistent legend, the fixed weak-echo example, deterministic noise across close/reopen, velocities −50/0/+50 m/s, and the independent long-gap stress behaved as described. Repeated reset restored all default controls. All six SVGs redrew for narrow or reopened layouts; rendered text remained inside their SVG bounds, with no page-wide horizontal overflow.
+
+Native disclosures were exercised with Enter and Space. The labeled complex-data region accepted keyboard focus, and ArrowDown/ArrowRight scrolled inside it without widening the document. The bibliography card and the matching-template knowledge node both opened the initialized lesson; the beginner map route remained distinct from the deep case. The browser was restored to desktop width and 100% zoom.
+
+The captured error-log sample contained extension-origin metadata errors; no non-extension error appeared in that sample. This is not an all-browser console certification. Physical phones, real screen readers, print rendering, JavaScript-disabled browsing, other browser engines, hardware performance and IEEE compliance were not tested. No lesson code changes were required after deployment.

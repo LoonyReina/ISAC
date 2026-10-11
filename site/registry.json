@@ -627,6 +627,78 @@
         "verificationNote": "2026-10-11 采用已核对的固定 v1 原文与独立模型交接；原文块结构、本站孤立互补对及其边界分开。影响力计数沿用 2026-10-10 快照，本次不刷新。"
       },
       "learningEntry": "golay-radar.html#experiment"
+    },
+    {
+      "id": "case-ofdm-interpolation",
+      "title": "补出来的格子，为什么不是新观测？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#ofdm-basics\">OFDM 通信基础</a>；<a href=\"foundations.html#ofdm\">七步感知接收链</a>；<a href=\"foundations.html#doppler\">运动与跨时刻相位</a>。先看空格与两个端点，再比较接收处理。",
+        "问题": "通信资源格子没有发送已知符号时，接收机缺少哪项观测？把同一子载波前后的复数端点连起来，为什么有时能整理图形，却不能增加独立信息？",
+        "交互机制": "固定实际观测与噪声，比较掩模匹配求和和沿时间线性补值；从静止目标开始，再改变端点间隔与多普勒，观察复平面弦线误差、共同尺度响应和端点噪声相关。",
+        "证据类型": "<a href=\"https://arxiv.org/abs/1908.03418v1\">Baquero Barneto 等，固定 arXiv v1</a>：包含数值仿真、抵消器设计和射频测量；本站仅把第 3 页式(4)改编为独立稀疏 OFDM 探测模型，不是 LTE/NR 或硬件复现。",
+        "结论边界": "静止补值可压低掩模引起的部分旁瓣，但常规矩形孔径旁瓣仍存在；运动相位沿圆弧旋转而插值沿弦线。补值重复利用端点，噪声相关，不增加独立观测；更整齐的图不等于更好检测。",
+        "下一研究问题": "换成实际资源掩模、变幅 QAM 或相关杂波后，应怎样比较插值处理与直接使用真实观测的估计器，并重新校准搜索图的检测门限？"
+      },
+      "unit": "ofdm-interpolation",
+      "paper": "ofdm-interpolation.html#paper",
+      "next": "ofdm-interpolation.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Full-Duplex OFDM Radar With LTE and 5G NR Waveforms: Challenges, Solutions, and Measurements",
+        "sourceUrl": "https://arxiv.org/abs/1908.03418v1",
+        "version": "arXiv:1908.03418v1，2019-08-09；13 页作者稿。IEEE TMTT 67(10)，4042–4054，2019-10，DOI 10.1109/TMTT.2019.2930510。定位只采用固定 v1，未与期刊最终排版逐项比对。",
+        "sourceId": "ofdm_full_duplex",
+        "comparisonLink": "ofdm-interpolation.html#paper",
+        "researchQuestion": "原文研究 LTE/NR 空资源与自干扰对 OFDM 雷达的影响；本站聚焦固定子载波上的时间插值、运动失配与噪声相关，原文射频抵消和实测单独说明。",
+        "observationsAndUnknowns": "已知活动掩模、单位模 QPSK、子载波与稀疏探测起点；实际观测只有活动格子的 Y/X。目标时延、多普勒与公共复增益未知；真值仅用于合成和明确标出的评估，不进入补值权重或候选模板。空格不等于测得信道为零。",
+        "locator": {
+          "summary": "固定 v1 第 3 页 §II-A 式(1)–(3)：频率/时间模型与活动格子除法；第 3 页 §II-B 式(4)：固定子载波、沿时间的两端点线性插值；第 3–4 页式(5)：加窗周期图。第 4–5 页图2/Table I 是数值参考；第 5–6 页图3是自干扰仿真；第 8–11 页 §IV、图6–9才是射频测量。",
+          "section": "§II-A/B/C；§III；§IV-A–D",
+          "figure": "图1处理链；图2仿真；图3自干扰仿真；图6–9测量，均不作原图复现",
+          "equation": "式(1)–(5)；本站只改编式(4)，式(5)使用独立矩形权重模型"
+        },
+        "paperEvidenceType": "模型、数值仿真、抵消器设计与射频测量；各自场景和指标分开",
+        "siteArtifactType": "独立构造的稀疏 OFDM 探测、时间线性补值与同观测匹配比较，不是完整论文、LTE/NR 波形或硬件复现",
+        "retainedAssumptions": [
+          "仅在已知活动格子计算 Y/X；单位模已知 QPSK 使商噪声保持等方差",
+          "固定子载波沿时间连接两个真实活动端点，活动值保持不变，不做边界外推",
+          "单站、单目标、未知公共复增益；相干时钟、窄带与可忽略 ICI/距离迁移的近似",
+          "两种处理使用相同实际观测、噪声实现、候选网格、能量、频率与时间资源",
+          "补值为已知掩模决定的线性变换；相关噪声通过端点权重计算，不按满格独立噪声处理"
+        ],
+        "omittedMechanisms": [
+          "未实现 LTE/NR 标准资源映射、编码/解码、吞吐量、非单位模 QAM 或原文加窗配置",
+          "未实现射频/数字自干扰抵消、ADC 削顶、量化、非线性、时钟偏差或硬件测量",
+          "未实现多目标、杂波、加速度、增益变化、边界外推或永久空子载波恢复",
+          "未实现检测器或全图虚警校准，不给出检出率、实际 RMSE、标准符合性或部署结论"
+        ],
+        "metrics": [
+          "同一单位幅度参考下的复数匹配输出与功率，不逐图峰值归一化",
+          "缺失格子的复数重建误差和中点增益；不当作目标整体消失或估计偏差",
+          "实际观测数、计算补值数、发射能量与真实观测跨度分别列出",
+          "输出噪声方差计入端点复用产生的相关性；补值周期图不等于原观测似然"
+        ],
+        "unknowns": [
+          "没有重做原文波形、性能曲线、抵消器或射频实验，不声明 LTE/NR 兼容",
+          "实际 NR 掩模、QAM 噪声权重和相关杂波下的算法表现需另行检验",
+          "图像更整齐不是检测性能证明；搜索像素相关，单点统计量不能给出全图虚警保证"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定 N=32、M=33、Δf=1 MHz、Tr=0.5 ms，Tr 是稀疏探测起点间隔而非 Tu+CP。两种处理共享相同实际观测；默认 G=8 有 972 次观测、84 个计算补值，发射能量为 972 单位。改变 G 会改变实际观测数与总能量；补值不增加能量或独立数据。",
+          "bandwidth": "频率端点跨度 31 MHz；名义 DFT 带宽 32 MHz；不将候选网格间距当作物理分辨率",
+          "energy": "每个活动格子单位发射能量；总能量 K=1068−12G，两种处理相同",
+          "duration": "M=33，Tr=0.5 ms，实际起点跨度 16 ms；MTᵣ=16.5 ms 用于 DFT 格距；Tu=1 μs，CP=1 μs",
+          "aperture": "单站标量回波，无空间阵列；5 GHz，λ=0.06 m",
+          "priorKnowledge": "已知发射符号、掩模、时间频率坐标和噪声模型；目标参数与复增益未知，无目标真值辅助补值",
+          "other": [
+            "时延小于 CP；距离主区间 [0,150) m；多普勒周期 2000 Hz，不当作检测范围",
+            "20 条子载波完整观测，12 条只有内部时间空洞；不恢复永久空频率行",
+            "默认无噪声，启用噪声后两方法共用同一实现；单个种子不构成概率性能证据"
+          ]
+        },
+        "verificationNote": "2026-10-11 使用已核对的固定 v1 原文与独立推导交接。该 PDF SHA-256 为 fe694b1caabd7f2f79ca9e0e06e674ba1a48d60e598b514fcd7a248c5ca05af3；未与期刊最终排版比对。影响力证据沿用 2026-10-10 快照，本次不刷新。"
+      },
+      "learningEntry": "ofdm-interpolation.html#mechanism"
     }
   ],
   "legacy": {
@@ -1208,6 +1280,21 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "先移动时延，再按需展开带符号相关、较弱回波与运动；每次比较都核对相同能量、时间和接收窗口。"
+    },
+    {
+      "id": "ofdm-interpolation",
+      "title": "OFDM 空格与时间插值",
+      "href": "ofdm-interpolation.html#experiment",
+      "question": "沿时间补齐空格后，为什么图形会变，独立观测数却不变？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#ofdm-basics",
+        "foundations.html#ofdm",
+        "foundations.html#doppler"
+      ],
+      "group": "research",
+      "primaryDirectionId": "prototype",
+      "action": "先比较静止复数端点与补值，再加入运动和共同噪声；用同样的真实观测解释弦线误差、掩模旁瓣与相关噪声。"
     }
   ],
   "pages": [
@@ -1392,6 +1479,21 @@
       "case": "case-golay-radar",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同资源的训练序列相关检验"
+    },
+    {
+      "path": "ofdm-interpolation.html",
+      "title": "补出来的格子，为什么不是新观测？",
+      "stage": "experiments",
+      "role": "研究主题 · OFDM 时间插值、同观测比较与硬件证据边界",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#ofdm-basics",
+        "foundations.html#ofdm",
+        "foundations.html#doppler"
+      ],
+      "case": "case-ofdm-interpolation",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同观测、同资源的补值检验"
     }
   ],
   "schemaVersion": 1,
@@ -2729,7 +2831,9 @@
         "realworld",
         "frontiers"
       ],
-      "primaryCaseIds": [],
+      "primaryCaseIds": [
+        "case-ofdm-interpolation"
+      ],
       "relatedDirectionIds": [
         "networks",
         "channels",
@@ -2747,6 +2851,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "空格、端点与弦线：补值为什么不是新观测？",
+              "href": "ofdm-interpolation.html#mechanism",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ]
         },
@@ -2761,6 +2873,14 @@
               "kind": "model",
               "scope": "foundation-only",
               "status": "available"
+            },
+            {
+              "label": "稀疏 OFDM 探测、实际观测与补值算子",
+              "href": "ofdm-interpolation.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ]
         },
@@ -2783,10 +2903,18 @@
               "scope": "direction-specific",
               "status": "proposed",
               "note": "待扩展：把采集、处理、报告延迟及校准误差显式列入预算"
+            },
+            {
+              "label": "同观测比较：掩模匹配与时间补值",
+              "href": "ofdm-interpolation.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ],
-          "coverage": "foundation-only",
-          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+          "coverage": "direction-specific",
+          "notice": "已有同观测时间插值机制；处理时限、自干扰抵消与射频硬件模块仍待建设"
         },
         {
           "level": 4,
@@ -2813,11 +2941,19 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "全双工 OFDM 雷达：式(4)与独立射频证据",
+              "href": "ofdm-interpolation.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ],
           "comparisonStatus": "partial",
           "comparisonSchemaRef": "paperComparisonSchema",
-          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+          "note": "OFDM 插值按固定作者 v1 核对；实时基站与标准条目仍是独立阅读入口，不混为同一次复现"
         },
         {
           "level": 5,
@@ -2830,6 +2966,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "运动失配、噪声相关与硬件边界",
+              "href": "ofdm-interpolation.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ]
         },
@@ -2845,12 +2989,20 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "复核同观测插值与失败条件",
+              "href": "ofdm-interpolation.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立稀疏探测机制；不代表 LTE/NR 标准、射频硬件或整篇论文已复现"
             }
           ]
         }
       ],
-      "nextExtension": "先做处理链预算与输入输出清单，再设计能验证一项系统限制的原型实验。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "nextExtension": "在真实资源掩模、非单位模符号与相关杂波下检查补值误差和噪声权重，再设计处理时限、自干扰与硬件预算检验。",
+      "coverage": "已有 OFDM 时间插值专项机制与固定原文对照；实时处理、自干扰抵消和硬件复现尚未实现",
       "scenePositions": [
         "cooperate"
       ]
@@ -3062,7 +3214,8 @@
         "knownUnknown": "样本沿频率、观察时刻与阵元排列",
         "boundary": "Tr 是观察起始间隔，不自动等于符号长度",
         "unitRefs": [
-          "ofdm"
+          "ofdm",
+          "ofdm-interpolation"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -3089,7 +3242,8 @@
         "boundary": "归一化峰高不是等总能量或等 SNR",
         "unitRefs": [
           "pilot",
-          "golay-radar"
+          "golay-radar",
+          "ofdm-interpolation"
         ],
         "entryUnitRef": "pilot"
       },
@@ -3104,7 +3258,8 @@
         "unitRefs": [
           "ofdm",
           "echo",
-          "golay-radar"
+          "golay-radar",
+          "ofdm-interpolation"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -3119,7 +3274,8 @@
         "unitRefs": [
           "doppler",
           "ofdm",
-          "golay-radar"
+          "golay-radar",
+          "ofdm-interpolation"
         ],
         "entryUnitRef": "doppler"
       },

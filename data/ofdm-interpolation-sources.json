@@ -1,0 +1,138 @@
+{
+  "checked_date_utc": "2026-10-11",
+  "title": "Full-Duplex OFDM Radar With LTE and 5G NR Waveforms: Challenges, Solutions, and Measurements",
+  "authors": [
+    "Carlos Baquero Barneto",
+    "Taneli Riihonen",
+    "Matias Turunen",
+    "Lauri Anttila",
+    "Marko Fleischer",
+    "Kari Stadius",
+    "Jussi Ryynänen",
+    "Mikko Valkama"
+  ],
+  "doi": "10.1109/TMTT.2019.2930510",
+  "journal": "IEEE Transactions on Microwave Theory and Techniques",
+  "volume": 67,
+  "issue": 10,
+  "pages": "4042–4054",
+  "publication_month": "2019-10",
+  "institutional_url": "https://research.aalto.fi/en/publications/full-duplex-ofdm-radar-with-lte-and-5g-nr-waveforms-challenges-so/",
+  "version": "arXiv:1908.03418v1",
+  "submitted_utc": "2019-08-09T11:38:34Z",
+  "landing_url": "https://arxiv.org/abs/1908.03418v1",
+  "pdf_url": "https://arxiv.org/pdf/1908.03418v1",
+  "pdf_bytes": 7987066,
+  "pdf_sha256": "fe694b1caabd7f2f79ca9e0e06e674ba1a48d60e598b514fcd7a248c5ca05af3",
+  "pdf_pages": 13,
+  "pdf_metadata_creation": "2019-08-11 17:44:06 PDT",
+  "edition_note": "13-page author manuscript; arXiv comments say accepted by IEEE TMTT; final publisher typesetting not compared",
+  "visually_inspected_pdf_pages_1based": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "existing_influence_snapshot": {
+    "date": "2026-10-10",
+    "openalex": 368,
+    "semantic_scholar": 368,
+    "other_evidence": "ComSoc ISAC Best Readings 2022"
+  },
+  "locators": [
+    {
+      "page": 2,
+      "locator": "Fig.1",
+      "type": "system diagram",
+      "use": "Separate RF/DSP cancellation from radar-domain interpolation"
+    },
+    {
+      "page": 3,
+      "locator": "§II-A Eq.(1)",
+      "type": "model",
+      "use": "Frequency/time target phase"
+    },
+    {
+      "page": 3,
+      "locator": "Eqs.(2)–(3)",
+      "type": "processing",
+      "use": "Matched filtering versus active-cell division"
+    },
+    {
+      "page": 3,
+      "locator": "§II-B Eq.(4)",
+      "type": "algorithm",
+      "use": "Linear interpolation in time; bracketing active endpoints"
+    },
+    {
+      "pages": [
+        3,
+        4
+      ],
+      "locator": "Eq.(5)",
+      "type": "algorithm",
+      "use": "Windowed range-Doppler periodogram"
+    },
+    {
+      "pages": [
+        4,
+        5
+      ],
+      "locator": "Table I, Fig.2, §II-C",
+      "type": "simulation",
+      "use": "Reference performance; RMSE conditional on successful detection"
+    },
+    {
+      "pages": [
+        5,
+        6
+      ],
+      "locator": "Fig.3, §III-A",
+      "type": "simulation",
+      "use": "Synthetic direct self-interference examples"
+    },
+    {
+      "pages": [
+        6,
+        7
+      ],
+      "locator": "Eqs.(9)–(12), Fig.4",
+      "type": "hardware/algorithm design",
+      "use": "Cancellation models, not reproduced"
+    },
+    {
+      "page": 8,
+      "locator": "Fig.6, §IV-A/B",
+      "type": "RF measurement",
+      "use": "40MHz NR,2.44GHz;15dBm trace distinct from approx20dBm setup prose"
+    },
+    {
+      "pages": [
+        9,
+        10
+      ],
+      "locator": "Figs.7–8, §IV-C",
+      "type": "RF measurement",
+      "use": "Drone and local 3x3-neighborhood ROC;100 absent/100 present images"
+    },
+    {
+      "pages": [
+        10,
+        11
+      ],
+      "locator": "Fig.9, §IV-D",
+      "type": "RF measurement",
+      "use": "20ms vehicle example, radial velocity"
+    }
+  ],
+  "teaching_model_status": "Independent implemented sparse-probe mechanism; not LTE/NR or hardware replication",
+  "validation_artifacts": [
+    "../scripts/validate-ofdm-interpolation.py",
+    "ofdm-interpolation-validation.json"
+  ]
+}

@@ -377,7 +377,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "计划深读：理想OFDM模型到硬件链路的差距；本站交互尚未实现。",
+      "readingPlan": "先看同一子载波的时间空格与复数端点，再比较同观测的掩模匹配和线性补值；按固定 v1 式(4)区分运动失配、噪声相关与原文硬件实测。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -390,7 +390,7 @@
       ],
       "groupId": "signals-networks",
       "shortTitle": "全双工 OFDM 雷达",
-      "caseId": null
+      "caseId": "case-ofdm-interpolation"
     },
     {
       "id": "perceptive",
