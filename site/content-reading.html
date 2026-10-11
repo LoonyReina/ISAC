@@ -56,3 +56,13 @@
 <p><b>核对边界：</b>两版式(12)/(13)印刷为 diag(R₁)=P_R·1/N；沿全文 N=20、N_R=14、P_R=P_C=P₀/2 逐字解释，仅能条件推出分离 tr(R)≤0.85P₀。没有作者代码或勘误证据，不能据此判断作者实际仿真功率。本站自行定义并验证实际迹，不称作修复后复现。原文 7 vs 15 dB PSLR 只是特定仿真设置，不是通用赢家。</p>
 <p><b>继续检验：</b><a href="shared-array.html#mechanism">raw → 恢复预算，目标为何仍损失</a> · <a href="shared-array.html#paper">逐项原文对照</a> · <a href="shared-array.html#boundaries">区分投影未定义、空零空间与门槛未过</a> · <a href="shared-array.html#validation">复核实际功率与边界</a>。本站不运行作者优化算法、SDR、流形法或原图复现；下一问可从每天线功率上限与 CSI 误差开始。</p>
 </div></article></section>
+<section class="chapter" id="reading-multipath-channel"><header class="chapter-head"><div class="eyebrow">固定原文 / 从传播路径读复数观测</div><h2>一个终端，两条路径：先看叠加，再问位置</h2><p class="goal">把直达、镜面反射、未知复增益和实际匹配输出分开，避免把曲线上的峰直接当成物体。</p></header>
+<article class="reference" id="ref-MULTIPATH"><span class="ref-id">PATH</span><div>
+<h3><a href="https://arxiv.org/html/1409.1467v2">Evaluation of Position-related Information in Multipath Components for Indoor Positioning</a></h3>
+<p class="small">Leitinger 等 · IEEE JSAC 2015 · <a href="https://arxiv.org/abs/1409.1467v2">固定 arXiv:1409.1467v2，2018-12-10 上传</a>。2018 是此版本上传年份，不是期刊发表年份。</p>
+<p><b>先问：</b><a href="multipath-channel.html#question">同一个终端，为什么收到两条路径？</a> 这里是发射端到终端的单向主动链路：直达与一次墙面反射都是同一终端的传播路径，时延为 L/c；镜像锚点只是几何计算工具。</p>
+<p><b>原文定位：</b>固定 v2 的 §I/Figure 1 看平面图与镜像锚点；§II 式(1)看复数延迟信号之和；§III-A 式(7)看未知复幅度这一干扰参数；§IV 式(18)–(24)看几何与时延关系；§V-A 式(36)–(38)的解释带有非重叠/正交假设；§VI-B1 Figures 3–5 才是路径重叠的数值研究。不能把某一组图的结论外推为多径普遍有益。</p>
+<p><b>本站保留与改变：</b><a href="multipath-channel.html#model">先核对几何、波形与接收机究竟知道什么</a>。接收机只读实际相加的 Y、已知 X、频率和固定候选网格，不读取墙面、真实时延、路径个数或分量标签。N=128、Δf=2 MHz、6 GHz、QPSK/CP、1/L 幅度与单模板匹配均为独立教学设计。改变高度同时改变路长、幅度与载波相位，是不同静态快照；直达路衰减只称理想直达路衰减干预。</p>
+<p><b>怎么读实验：</b><a href="multipath-channel.html#experiment">先预测相长、相消与匹配峰偏移</a>。候选总路径长度 d=cτ 不是单站 cτ/2，也不是二维位置；全零响应没有可报告的最大点估计。固定发射预算、候选网格与线性纵轴，不把接收能量补偿成固定 SNR。连续 CP 能量和数字 CP 样点能量分别记账，不能由时间比例 1/4 推出两者都为 1/4。</p>
+<p><b>证据边界：</b><a href="multipath-channel.html#source">逐项对照来源与本站模型</a> · <a href="multipath-channel.html#boundary">分清单峰、路径数、检测与二维定位</a> · <a href="multipath-channel.html#derivation">复核解析核、资源账本与独立参考</a>。给定两时延的 Gram 只诊断两个未知复幅度的分离条件，不是时延 CRB/EFIM 或定位可靠性。本站没有噪声、Doppler、漫散射、路径关联、二维定位或论文数值复现；已知墙面、同步、角度和多锚点若加入，都要另列资源与先验。</p>
+</div></article></section>
