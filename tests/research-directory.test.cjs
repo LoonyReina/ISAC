@@ -39,10 +39,10 @@ test('bibliometrics, editorial overlap, social limits and paper identity are exp
  a.match(getCard('crb'),/不是同一篇论文/);a.match(getCard('deepsense'),/数据下载量不是论文引用数/);
 });
 test('unimplemented papers render no local action, and each mechanism requires an integrated canonical case',()=>{
- const absent={...registry,cases:registry.cases.filter(c=>!['case-waveform','case-joint-beamforming'].includes(c.id))};const pending=render(absent);
+ const absent={...registry,cases:registry.cases.filter(c=>!data.cards.some(card=>card.caseId===c.id))};const pending=render(absent);
  a.match(getCard('optimal_waveform',pending),/教学案例准备中/);
  for(const c of data.cards){const card=getCard(c.id,pending);a.ok(!/href="(?!https:)/.test(card),c.id);}
- for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html']]){
+ for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html']]){
   a.match(getCard(paperId,pending),/教学案例准备中/);
   const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#experiment`}],pages:[...registry.pages,{path:file}]};
   a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#experiment"`));
@@ -67,8 +67,19 @@ test('adding or removing bibliography cards updates both generated heading and r
  }
 });
 
-test('exactly two bibliography cases are active and seven remain honestly unavailable',()=>{
- const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,2);a.equal(pending.length,7);
+test('exactly three bibliography cases are active and six remain honestly unavailable',()=>{
+ const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,3);a.equal(pending.length,6);
  for(const c of active){const card=getCard(c.id);a.ok(/href="(?!https:)/.test(card));a.ok(!/教学案例准备中|深度交互尚未实现/.test(card));a.ok(!/尚未实现|准备中/.test(c.readingPlan));}
  for(const c of pending){const card=getCard(c.id);a.match(card,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(card));}
+});
+
+test('implemented-paper totals follow valid canonical cases and page availability rather than a fixed count',()=>{
+ const active=data.cards.filter(c=>c.caseId&&registry.cases.some(k=>k.id===c.caseId));
+ a.match(render(),new RegExp(`深度交互已接入：${active.length} / ${data.cards.length} 篇`));
+ const withoutCases={...registry,cases:registry.cases.filter(c=>!active.some(card=>card.caseId===c.id))};
+ a.match(render(withoutCases),new RegExp(`深度交互已接入：0 / ${data.cards.length} 篇`));
+ a.match(render(registry,()=>false),new RegExp(`深度交互已接入：0 / ${data.cards.length} 篇`));
+ const missingNewPage=render(registry,file=>file!=='crb-beamforming.html');
+ a.match(missingNewPage,new RegExp(`深度交互已接入：${active.length-1} / ${data.cards.length} 篇`));
+ a.match(getCard('crb',missingNewPage),/教学案例准备中/);
 });
