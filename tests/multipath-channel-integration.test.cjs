@@ -3,9 +3,11 @@
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
+const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-multipath-channel'),u=r.units.find(u=>u.id==='multipath-channel'),p=r.pages.find(p=>p.path==='multipath-channel.html');
+const researchGuides=buildResearchGuides(JSON.parse(read(r.researchGuidesFile)),r);
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
 const article=(html,id)=>{const m=html.match(new RegExp(`<article[^>]* id="${id}"[^>]*>[\\s\\S]*?<\\/article>`));a.ok(m,id);return m[0];};
 const resolve=href=>{const [file,anchor]=href.split('#');a.ok(fs.existsSync(path.join(root,file)),href);if(anchor)a.ok(read(file).includes(`id="${anchor}"`),href);};
@@ -41,7 +43,7 @@ test('existing phase, delay and channels nodes gain the lesson without altering 
 
 test('learning-entry resolver still routes generic lesson links to the question and explicit controls to the experiment',()=>{
  const resolver=createLearningEntryResolver(r);a.equal(resolver.caseEntry(c),c.learningEntry);a.equal(resolver.unitEntry(u),c.learningEntry);
- const html=renderMap(r);for(const id of ['phase','delay','channels','direction:channels']){
+ const html=renderMap(r,researchGuides);for(const id of ['phase','delay','channels','direction:channels']){
   const body=template(html,id);a.ok(body.includes(`href="${c.learningEntry}">${c.title} →</a>`),id);a.ok(body.includes(`href="${u.href}"`),id);
  }
  const without=structuredClone(r);delete without.cases.find(x=>x.id===c.id).learningEntry;a.equal(createLearningEntryResolver(without).unitEntry(without.units.find(x=>x.id===u.id)),u.href);
