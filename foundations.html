@@ -246,6 +246,7 @@
 <p>把 f<sub>D</sub> 增加 1/T<sub>r</sub>，慢时间采样也重复。因此常选对称区间 |f<sub>D</sub>| &lt; 1/(2T<sub>r</sub>)，对应 |v| &lt; λ/(4T<sub>r</sub>)。长孔径有助于分辨接近频率，短间隔有助于避免混叠——这是两个旋钮。</p>
 <p>贯穿示例中：ΔR = 9.375 m，Δv = 3.75 m/s；距离采样周期 150 m，速度对称边界 ±30 m/s。目标可以位于两格之间；网格搜索只会报告附近格子，不表示物理世界也被切成了格子。</p>
 <div class="lab"><div class="lab-title">动手推导 · 把坐标画密一点，并没有新增一个样本</div><label class="range-label" for="res-b">有效矩形带宽 B<output id="res-b-value">16 MHz</output></label><input id="res-b" type="range" min="8" max="64" step="8" value="16" data-unit="MHz"><label><input id="res-pad" type="checkbox"> 以 4 倍密度评估同一响应（补零插值直觉）</label><canvas id="res-c" width="800" height="250" data-h="250" role="img" aria-label="同一连续距离响应及不同栅格密度">同一连续距离响应及不同栅格密度。数值解释见图下文字。</canvas><p id="res-read" class="readout"></p><p class="small">展示单目标理想矩形频谱的 sinc² 包络；不将它冒充完整多目标相干检测。曲线形状由带宽决定，点的间隔由评估栅格决定。</p></div>
+<div class="callout" id="offgrid-range-bridge"><p>刚才只看响应形状。下一步用同一份带噪观测实际估计一个离格目标，比较粗细网格的误差。</p><p><a href="offgrid-range.html#experiment">进入离格单目标测距实验 →</a></p></div>
 <h3>CRB 到底界住了什么？</h3>
 <p>把未知距离看成 θ，接收数据分布是 p(y;θ)。θ 变一点，分布改变得越明显，数据就越有能力区分它；Fisher 信息量化这种敏感度。在相应正则条件下，无偏估计的方差受 Cramér–Rao 下界（CRB）约束。多参数时用 Fisher 信息矩阵，未知增益、初相位等“无关参数”也会影响可用信息。</p>
 <div class="equation">Var(θ̂) ≥ 1/J(θ)　（单参数、相应条件下）</div><p class="eqnote">这是理论界，不是“我的算法误差”。有偏、有限样本、低 SNR 门限效应或模型失配时，需要另外解释适用性。</p>
