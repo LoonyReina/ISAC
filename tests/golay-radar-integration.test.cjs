@@ -8,7 +8,7 @@ function resolve(href){const [file,hash]=href.split('#');a.ok(fs.existsSync(path
 test('Golay reuse is one canonical case, mechanism and page within the existing direction framework',()=>{
  a.equal(r.cases.filter(k=>k.id===c.id).length,1);a.equal(r.units.filter(k=>k.id===u.id).length,1);a.equal(r.pages.filter(k=>k.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(u.href,'golay-radar.html#experiment');a.equal(c.learningEntry,u.href);
- a.equal(u.primaryDirectionId,'waveforms');a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,31);
+ a.equal(u.primaryDirectionId,'waveforms');a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  a.equal(p.stage,'experiments');a.equal(c.paper,'golay-radar.html#paper');a.equal(c.next,'golay-radar.html#limits');
  for(const href of [u.href,c.learningEntry,c.paper,c.next,p.next])resolve(href);
 });
@@ -37,15 +37,15 @@ test('relevant concepts gain the deep case while keeping their beginner routes',
  a.deepEqual(r.knowledgeMap.nodes.find(n=>n.id==='waveform-design').unitRefs,['pilot','waveform-design','golay-radar']);
 });
 
-test('the existing 80211ad influence card remains available after the sixth case without duplicating the bibliography',()=>{
+test('the existing 80211ad influence card remains available after the seventh case without duplicating the bibliography',()=>{
  const card=data.cards.find(k=>k.id==='80211ad'),html=read('reading.html');
  a.equal(card.caseId,c.id);a.equal(card.groupId,'signals-networks');a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(k=>k.doi)).size,9);
- a.equal(data.cards.filter(k=>k.caseId).length,6);a.equal(data.cards.filter(k=>!k.caseId).length,3);
+ a.equal(data.cards.filter(k=>k.caseId).length,7);a.equal(data.cards.filter(k=>!k.caseId).length,2);
  a.equal(card.metrics.snapshotDate,'2026-10-10');a.deepEqual([card.metrics.openAlex.count,card.metrics.semanticScholar.count,card.metrics.completedYear.count],[711,659,92]);
  a.equal(card.identitySource,'https://arxiv.org/abs/1702.05833');a.equal(card.doi,'https://doi.org/10.1109/tvt.2017.2774762');
  const article=html.match(/<article class="influence-card" id="paper-80211ad"[\s\S]*?<\/article>/)[0];
  a.ok(article.includes(`href="${u.href}"`));a.match(article,/独立机制模型，非完整论文复现/);a.doesNotMatch(article,/教学案例准备中|深度交互尚未实现|本站交互尚未实现/);
- a.match(html,/深度交互已接入：6 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
+ a.match(html,/深度交互已接入：7 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
 });
 
 test('fixed author-version evidence distinguishes independent Golay construction from standard CEF processing',()=>{
