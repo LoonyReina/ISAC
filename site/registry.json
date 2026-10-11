@@ -699,6 +699,82 @@
         "verificationNote": "2026-10-11 使用已核对的固定 v1 原文与独立推导交接。该 PDF SHA-256 为 fe694b1caabd7f2f79ca9e0e06e674ba1a48d60e598b514fcd7a248c5ca05af3；未与期刊最终排版比对。影响力证据沿用 2026-10-10 快照，本次不刷新。"
       },
       "learningEntry": "ofdm-interpolation.html#mechanism"
+    },
+    {
+      "id": "case-radar-beam-decision",
+      "title": "猜中最优波束，与保住通信增益是一回事吗？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#array\">阵列与空间相位</a>。先分清传感器输入、通信波束标签与评估功率，再改变候选数。",
+        "问题": "雷达观测已经到手；怎样减少通信端逐个试波束的次数？没有猜中唯一最优标签，是否就损失了很多接收功率？",
+        "交互机制": "独立合成传感器特征，经固定七近邻模型排列 64 个通信波束；改变候选数 K，分别查看最优标签是否入选、理想探测后的功率损失与 K/64 探测比例。划分协议放在可选研究扩展。",
+        "证据类型": "<a href=\"https://par.nsf.gov/servlets/purl/10404321\">Demirhan 与 Alkhateeb，WCNC 2022 六页接受稿</a>包含雷达辅助通信波束预测的实测与 CNN 评估；本站使用独立合成数据和七近邻模型，没有下载 DeepSense 测量、训练论文 CNN 或复现论文准确率。",
+        "结论边界": "最优标签命中、候选探测后的功率损失和探测预算是三个指标；K 增大不保证净速率或端到端时延改善。感知辅助通信不等于同一射频波形同时完成通信与雷达；合成分组不是 DeepSense 泄漏证据。",
+        "下一研究问题": "固定测试锚点与训练数量后，换成未见轨迹或未见场景改变了哪项任务？若计入传感器、推断、探测、切换和回退开销，候选决策是否仍有通信收益？"
+      },
+      "unit": "radar-beam-decision",
+      "paper": "radar-beam-decision.html#paper",
+      "next": "radar-beam-decision.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Radar Aided 6G Beam Prediction: Deep Learning Algorithms and Real-World Demonstration",
+        "sourceUrl": "https://par.nsf.gov/servlets/purl/10404321",
+        "version": "WCNC 2022 六页接受稿，会议页码 2655–2660，DOI 10.1109/WCNC51071.2022.9771564；定位使用 PDF 页码 1–6。旧 arXiv:2111.09676v1（2021-11-18，九页）另列，不混用划分或式号。",
+        "sourceId": "radar_prediction",
+        "comparisonLink": "radar-beam-decision.html#paper",
+        "researchQuestion": "原文用当前雷达帧预测 64 个通信波束中最强的标签；本站只用独立合成观测解释候选标签、理想探测后的功率与探测次数，不研究 CSI 人体姿态或预测未来标签。",
+        "observationsAndUnknowns": "模型只接收合成传感器特征；训练时使用通信波束标签，测试真方向、标签与完整功率向量仅用于生成和明确标出的评估，不进入预测。先冻结排名，再评估；显示真值是教学揭示，不是接收机已知信息。",
+        "locator": {
+          "summary": "六页接受稿 pp.1–2 §II 式(4)–(6)：通信信道与码本标签；pp.2–4 §III 与 p.4 Table II：预处理/CNN 输入；p.4 图3：77 GHz 雷达和独立 60 GHz 通信阵列；p.4 §IV-A、pp.4–5 §IV-B：采集与标签，70/20/10 划分句位于 p.5；pp.5–6 §V、图5–7：准确率、代价与训练量。旧九页 arXiv v1 的 §V-B p.6 是 70/30。",
+          "section": "§II；§III；§IV-A/B；§V（均为六页接受稿）",
+          "figure": "p.4 图3、Table II；pp.5–6 图5–7，均不作原图复现",
+          "equation": "接受稿式(4)–(6) 的通信信道与码本标签；旧 arXiv v1 §III-C 式(10) 的 top-K 定义另列"
+        },
+        "paperEvidenceType": "雷达/通信测量、雷达特征 CNN 分类与该场景的准确率/处理代价评估；不是任意新场景的性能保证",
+        "siteArtifactType": "独立合成的感知辅助通信波束候选机制与分组评估，不是论文 CNN、DeepSense 数据或实测复现",
+        "retainedAssumptions": [
+          "目标为从固定 64 波束码本选择候选；输入为当前传感器观测，标签来自通信波束功率",
+          "本站采用单路径、窄带、单位范数半波长 ULA，M=16；完整功率向量只用于评估",
+          "候选排名在评估前冻结且随 K 嵌套；候选内功率比较假定信道不变并能完美探测 K 个波束",
+          "近并列采用对剩余最大功率的绝对容差 1e-12，在容差内选最小索引；标签与排名使用同一规则",
+          "功率损失使用实际最大功率，不用近并列标签功率代替；零候选功率产生正无穷，图形 dB 下限只影响显示"
+        ],
+        "omittedMechanisms": [
+          "没有下载真实测量、导入作者代码、训练 CNN 或复现论文准确率、计时与原图",
+          "没有模拟原始雷达 ADC、FMCW 处理链、RGB 筛选或真实多径/硬件标定",
+          "未实现通信编解码、误包率、吞吐量、时变探测噪声、切换、回退或在线端到端闭环",
+          "不同划分的合成上下文特征按构造携带组指纹；不是实际数据泄漏的诊断或论文泛化结论"
+        ],
+        "metrics": [
+          "top-K 精确标签命中率和波束漏选率分别报告；漏选不等于通信中断",
+          "loss_K=10 log10(max_j P_j / max_{j∈S_K} P_j)：完美探测候选后的功率损失，未裁剪",
+          "平均/p95 功率损失与超过给定 dB 阈值的比例；阈值超限不是 outage 概率",
+          "probe_fraction=K/64；K=64 命中率为 1、损失为 0、探测节省为 0，不推断端到端增益",
+          "四个相关测试轨迹上的 64 个锚点不是 64 次独立试验，不附逐帧独立二项置信区间"
+        ],
+        "unknowns": [
+          "接受稿 6,319 样本、70/20/10 及验证选择不证明轨迹或场景留出；旧 v1 的 70/30 不可混入 WCNC 标签",
+          "当前 Scenario 9 文档的 5,964 样本与接受稿任务集不同；未核对下载行、时间戳、拆分成员或标签方向",
+          "真实数据下载需登录及确认具体档案/许可；论文、作者代码、数据许可分开，不声明无限制开放数据",
+          "重新命名元数据不改变预测，只检验接口隔离；无法证明数值特征中没有组身份信息",
+          "不同随机种子和零偏移控制可能改变划分结果的排序，不预设留出协议的性能优劣"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定 M=16、N=64、七近邻与每协议 512 训练样本；三种协议使用同四个轨迹的 64 个测试锚点。只有 K/64 是理想探测计数比，未给出带宽、能量、时延或端到端增益。",
+          "bandwidth": "独立窄带通信方向响应模型，未设置可比较的占用带宽；不套用原文 77/60 GHz 硬件预算",
+          "energy": "单位范数阵列响应；相对线性功率 P_j 无量纲。探测总能量、传感器功耗和训练能耗未建模",
+          "duration": "K 次理想等成本探测；未给出秒级时长，不计传感器采集、推断、切换、回退或训练时间",
+          "aperture": "M=16 半波长 ULA，孔径 7.5λ；N=64 是码本候选数，不是阵元数或独立分辨方向数",
+          "priorKnowledge": "已知合成特征、训练波束标签、固定码本和模型；测试真方向、标签与全功率向量不可供预测使用",
+          "other": [
+            "3 场景 × 12 轨迹 × 64 帧；固定七近邻、512 训练样本；同 64 锚点来自四个相关轨迹",
+            "合成上下文数值按构造携带组指纹；同轨迹帧、留轨迹、留场景问的是不同泛化问题",
+            "七近邻等模型超参数预先固定，无自动模型选择；交互反复查看同一评估锚点，不是未触碰的最终基准。若据结果调参，须另设验证集并保护最终测试集",
+            "JavaScript 使用 Mulberry32/Box–Muller；不是 Python/NumPy default_rng 的逐样本移植，不沿用其默认性能数字"
+          ]
+        },
+        "verificationNote": "2026-10-11 使用已核对的六页接受稿交接；SHA-256 34cc5b1602b185bdcf256848ee88b26f778a4fa1ee9f49a63fcfd0d9fca61d21。本站为独立合成模型；数值、界面、浏览器验证各自报告，不把来源核对称为论文复现。九篇目录影响证据沿用 2026-10-10 快照。"
+      },
+      "learningEntry": "radar-beam-decision.html#mechanism"
     }
   ],
   "legacy": {
@@ -1295,6 +1371,19 @@
       "group": "research",
       "primaryDirectionId": "prototype",
       "action": "先比较静止复数端点与补值，再加入运动和共同噪声；用同样的真实观测解释弦线误差、掩模旁瓣与相关噪声。"
+    },
+    {
+      "id": "radar-beam-decision",
+      "title": "感知辅助通信的波束候选决策",
+      "href": "radar-beam-decision.html#experiment",
+      "question": "未猜中最强波束，是否就损失很多功率？增加候选数又花掉多少探测？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array"
+      ],
+      "group": "research",
+      "primaryDirectionId": "learning",
+      "action": "先看合成传感器输入与候选排名，再改变 K；分别检查标签命中、理想探测后的功率损失和 K/64 预算。"
     }
   ],
   "pages": [
@@ -1494,6 +1583,19 @@
       "case": "case-ofdm-interpolation",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同观测、同资源的补值检验"
+    },
+    {
+      "path": "radar-beam-decision.html",
+      "title": "猜中最优波束，与保住通信增益是一回事吗？",
+      "stage": "experiments",
+      "role": "研究主题 · 合成感知辅助通信、候选波束与评估边界",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array"
+      ],
+      "case": "case-radar-beam-decision",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同码本、同训练量的候选决策检验"
     }
   ],
   "schemaVersion": 1,
@@ -2685,18 +2787,22 @@
     },
     {
       "id": "learning",
-      "title": "数据驱动感知：CSI 怎样成为动作或姿态？",
-      "question": "信道测量不直接等于骨架，学习系统补入了哪些数据先验？",
-      "scope": "模型辅助学习、感知任务映射、数据划分、泛化与消融；不默认学习方法创造缺失的可辨识信息。",
+      "title": "数据驱动感知与感知辅助通信：从观测到任务决策",
+      "question": "传感器观测怎样支持动作、姿态或通信波束决策，标签准确率与实际任务收益又差在哪里？",
+      "scope": "模型辅助学习、感知任务映射与感知辅助通信；区分输入、标签、数据先验、功率损失、探测预算和跨场景评估，不默认学习创造缺失的信息。",
       "prerequisites": [
         "iq",
         "ofdm",
-        "branches"
+        "branches",
+        "array"
       ],
-      "primaryCaseIds": [],
+      "primaryCaseIds": [
+        "case-radar-beam-decision"
+      ],
       "relatedDirectionIds": [
         "receiver",
-        "channels"
+        "channels",
+        "spatial"
       ],
       "levels": [
         {
@@ -2707,6 +2813,13 @@
             {
               "label": "AI 究竟在学处理链的哪一层",
               "href": "reading.html#branches",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "猜中最优标签，是否就保住通信功率？",
+              "href": "radar-beam-decision.html#mechanism",
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
@@ -2723,6 +2836,13 @@
               "href": "foundations.html#ofdm",
               "kind": "model",
               "scope": "foundation-only",
+              "status": "available"
+            },
+            {
+              "label": "合成传感器输入、七近邻与通信码本",
+              "href": "radar-beam-decision.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
               "status": "available"
             }
           ]
@@ -2741,15 +2861,22 @@
               "note": "这是理解输入表示的前置实验，不是训练模型或姿态估计"
             },
             {
-              "label": "数据泄漏与跨场景泛化对照",
+              "label": "真实数据的划分审计与跨场景泛化",
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "proposed",
-              "note": "待扩展：对比相邻帧划分与跨场景划分，使用获准数据"
+              "note": "待扩展：确认获准数据、时间戳、标签与分组；合成协议对照不替代真实数据审计"
+            },
+            {
+              "label": "改变候选数，分开命中、功率损失与探测",
+              "href": "radar-beam-decision.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
-          "coverage": "foundation-only",
-          "notice": "目前可做前置基础实验；本方向专属深度交互模块待建设"
+          "coverage": "direction-specific",
+          "notice": "已有独立合成的波束候选机制；真实数据、CNN 与在线闭环仍待单独验证"
         },
         {
           "level": 4,
@@ -2778,11 +2905,25 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定版本阅读入口；本站尚未完成该论文复现"
+            },
+            {
+              "label": "WCNC 六页接受稿与独立合成机制",
+              "href": "radar-beam-decision.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "原文 RADAR：版本、样本划分与硬件证据",
+              "href": "reading.html#ref-RADAR",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
           "comparisonSchemaRef": "paperComparisonSchema",
-          "note": "现有原文阅读入口；完整逐项原文对照按字段核对后补充"
+          "note": "波束候选案例已有逐项版本和边界对照；真实数据与 CNN 复现未完成"
         },
         {
           "level": 5,
@@ -2792,6 +2933,13 @@
             {
               "label": "数据泄漏、场景变化与几何约束",
               "href": "reading.html#branches",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "理想候选探测不等于端到端通信收益",
+              "href": "radar-beam-decision.html#limits",
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
@@ -2810,12 +2958,19 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "固定种子、训练量与测试锚点复核",
+              "href": "radar-beam-decision.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         }
       ],
-      "nextExtension": "先设计幅度/相位消融和跨场景评估记录，再增加可运行学习实验。",
-      "coverage": "基础讲解与文献入口；专项实验尚未实现",
+      "nextExtension": "保持测试锚点与训练量一致，检查合成划分问题；真实数据研究须先核对许可、时间戳、标签方向和场景分组，再讨论通信系统成本。",
+      "coverage": "已有感知辅助通信的独立合成波束候选机制与划分对照；真实数据、CNN 和在线闭环复现尚未实现",
       "scenePositions": [
         "interpret"
       ]
@@ -3337,10 +3492,12 @@
         "groupId": "inference",
         "label": "任务映射与学习先验",
         "href": "reading.html#direction-learning",
-        "question": "复数测量怎样成为动作或姿态判断？",
-        "knownUnknown": "测量是输入；任务标签和数据先验需另外说明",
-        "boundary": "仅有基础输入实验，专项训练/泛化实验未实现",
-        "unitRefs": []
+        "question": "传感器测量怎样成为感知任务或通信波束决策？",
+        "knownUnknown": "观测特征是输入；训练标签、数据先验与评估真值须分开，预测不能读取测试功率",
+        "boundary": "已有独立合成七近邻波束候选实验；准确率、功率损失和探测预算不同，真实数据/CNN/姿态模型未复现",
+        "unitRefs": [
+          "radar-beam-decision"
+        ]
       },
       {
         "id": "resolution",
@@ -3418,12 +3575,13 @@
         "label": "波束与空间设计",
         "question": "同一阵列的空间权重怎样影响通信信号、干扰与目标角度下界？",
         "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率；深入单用户点目标时，固定总功率与信道，设计 w 并消去未知复反射系数",
-        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较",
+        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较；合成感知辅助案例选择既定码本候选，不是重新优化空间权重或实测通信增益。",
         "unitRefs": [
           "array",
           "near-field",
           "joint-beamforming",
-          "crb-beamforming"
+          "crb-beamforming",
+          "radar-beam-decision"
         ],
         "entryUnitRef": "array"
       },
@@ -3435,8 +3593,10 @@
         "href": "theory.html#evolution",
         "question": "感知结果怎样帮助波束选择，通信网络又怎样帮助感知？",
         "knownUnknown": "感知输出可辅助通信决策；通信网络可提供同步、节点协作与信息融合条件",
-        "boundary": "共享设备与资源的集成收益，应与任务互助的协同收益分别计量；本站尚无感知辅助波束选择或在线闭环互助实现",
-        "unitRefs": []
+        "boundary": "共享设备资源的集成收益与任务互助收益分别计量；已有独立合成感知辅助波束候选机制，未实现在线闭环或端到端收益验证",
+        "unitRefs": [
+          "radar-beam-decision"
+        ]
       },
       {
         "id": "resource-design",
