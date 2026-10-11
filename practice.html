@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="研究实践；从物理直觉、互动实验到原文证据与研究实践。"><title>研究实践 | ISAC 交互学习</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="research.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"></head><body data-route="practice.html">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="研究实践；从物理直觉、互动实验到原文证据与研究实践。"><title>研究实践 | ISAC 交互学习</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="research.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="notebook.css?v=guided-notebook-v1"><script defer src="notebook.js?v=guided-notebook-v1"></script></head><body data-route="practice.html">
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html" aria-current="page"><span>04</span> 研究实践</a></nav></header>
@@ -32,6 +32,7 @@
 </section>
 <section class="chapter" id="notebook">
   <header class="chapter-head"><p class="eyebrow">03 / 复制到自己的实验本</p><h2>最小实验记录</h2></header>
+  <p id="notebook-jump" hidden><a href="#notebook-form">直接进入四步填写 →</a></p>
   <p>复制下列文字到本地笔记即可；此页不保存或上传记录。</p>
   <pre class="notebook-template">日期 / 代码版本 / 文献版本与章节：
 研究问题 / 可推翻的预测：
@@ -43,6 +44,72 @@
 结果 / 不确定性 / 与预测的差异：
 结论适用范围 / 尚未验证 / 下一步：</pre>
   <p>完成后应能回答：这轮真正改变了什么？证据排除了哪种解释？还有什么没有证明？</p>
+  <div class="notebook-intro"><h3>也可以在本页逐步写一份研究草稿</h3>
+  <p>四步、十栏，从问题走到证据与边界。所有条目都由你填写；上面的导频计划仍是未执行的示例，不会复制成你的结果。留空或只写一部分，也可以下载。</p>
+  <p class="notebook-warning" id="notebook-loss-notice"><strong>先下载，再离开：</strong>内容只在当前页面中，不自动保存、不上传。刷新、关闭或离开页面可能丢失；浏览器下载请求也不等于文件已经保存，请检查实际文件。</p>
+  <noscript><p>逐步填写与下载需要 JavaScript；仍可复制上面的原始九行模板到自己的笔记中。</p></noscript></div>
+  <form id="notebook-form" tabindex="-1" autocomplete="off" aria-label="学习者研究草稿" aria-describedby="notebook-loss-notice notebook-limits" hidden>
+    <section class="notebook-reference" aria-labelledby="notebook-reference-heading">
+      <h4 id="notebook-reference-heading">可选参考主题 · 只读背景</h4>
+      <label for="notebook-topic">从现有教学单元接上一个问题</label>
+      <select id="notebook-topic" aria-describedby="notebook-reference-notice"><option value="">通用记录（不选择参考主题）</option><option value="echo">回波与传播延迟</option>
+<option value="iq">实波形与 I/Q</option>
+<option value="matched">匹配滤波</option>
+<option value="doppler">路径变化与多普勒</option>
+<option value="array">阵列与方向</option>
+<option value="ofdm">七步 OFDM 感知链</option>
+<option value="cfar">检测与 CFAR</option>
+<option value="geometry">双站与多站几何</option>
+<option value="shared">共同观测：判决与估计</option>
+<option value="crb">随机能量与标量 CRB</option>
+<option value="estimator-crb">下界什么时候真的能达到？</option>
+<option value="rate">速率与估计界桥梁</option>
+<option value="pilot">稀疏导频与歧义</option>
+<option value="clock">时钟偏差与定位</option>
+<option value="sbfd">频谱资源与双孔径</option>
+<option value="near-field">波前曲率与距离</option>
+<option value="waveform-design">同方向图的最优波形</option>
+<option value="joint-beamforming">独立雷达流与联合波束</option>
+<option value="crb-beamforming">通信门槛与角度 CRB 最优波束</option>
+<option value="golay-radar">通信训练复用与 Golay 互补相关</option>
+<option value="ofdm-interpolation">OFDM 空格与时间插值</option>
+<option value="radar-beam-decision">感知辅助通信的波束候选决策</option>
+<option value="perceptive-clutter">递归背景与慢目标</option>
+<option value="shared-array">分离与共享阵列：空间置零的代价</option>
+<option value="multipath-channel">同一个终端，为什么收到两条路径？</option>
+<option value="distributed-detection">两个功率数，够不够判断有目标？</option></select>
+      <p id="notebook-reference-notice">这里只提供参考问题、动作与入口，不是你已完成的实验。切换主题会保留所有已填写文字，下载时参考主题与学习者条目分开。</p>
+      <h4 id="notebook-reference-title">通用研究记录</h4>
+      <dl><dt>本站参考问题</dt><dd id="notebook-reference-question">尚未选择参考主题。请在下方写自己的研究问题。</dd><dt>本站参考动作</dt><dd id="notebook-reference-action">参考主题是可选的，不会替你填写或执行实验。</dd></dl>
+      <nav class="notebook-reference-links" aria-label="参考主题入口"><a id="notebook-teaching" target="_blank" rel="noopener noreferrer" hidden>教学入口（新标签页）</a><a id="notebook-experiment" target="_blank" rel="noopener noreferrer" hidden>机制实验（新标签页）</a><a id="notebook-evidence" target="_blank" rel="noopener noreferrer" hidden>原文与证据（新标签页）</a><a id="notebook-boundary" target="_blank" rel="noopener noreferrer" hidden>边界与下一问（新标签页）</a></nav>
+      <p class="notebook-status" id="notebook-topic-status" role="status" aria-live="polite"></p>
+    </section>
+    <p id="notebook-limits">下方十栏初始全部空白，每栏最多 12,000 个字符（部分表情符号占两个字符）。长数据请留在本地证据文件，这里只写文件位置。字段检查只识别非空白文字，不判断正确性、执行情况或可复现性。</p>
+    <details class="notebook-step" open><summary>01 · 问题：先写你想检验什么</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-identity">1 · 记录标识 / 日期 / 代码版本 / 文献版本与章节</label><p id="notebook-identity-help">给本轮记录一个自己能识别的名称。日期、代码提交或版本、文献版本与章节都由你填写；导出时间不代表实验时间。</p><textarea id="notebook-identity" rows="4" maxlength="12000" aria-describedby="notebook-identity-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-question">2 · 研究问题 / 可推翻的预测</label><p id="notebook-question-help">你想检验哪个具体问题？先写下预测，以及什么观察会使你放弃它。</p><textarea id="notebook-question" rows="4" maxlength="12000" aria-describedby="notebook-question-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>02 · 观测：明确数据怎样形成</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-observations">3 · 观测数据 / 已知、未知、可控量</label><p id="notebook-observations-help">接收端实际拿到什么数据？谁知道发射符号？分别列出已知量、待估量、可控量与噪声来源。</p><textarea id="notebook-observations" rows="4" maxlength="12000" aria-describedby="notebook-observations-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-geometry">4 · 几何 / 同步 / 近似 / 坐标与单位</label><p id="notebook-geometry-help">是单站、双站还是多站？哪些时钟与相位已同步？说明所用近似、各坐标和单位，不把单站关系直接搬到双站。</p><textarea id="notebook-geometry" rows="4" maxlength="12000" aria-describedby="notebook-geometry-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>03 · 公平比较：先定预算与判据</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-comparison">5 · 基线 / 本轮唯一改动 / 固定资源</label><p id="notebook-comparison-help">和哪个可解释基线比？本轮只改什么？注明固定的带宽、总能量、时长、孔径与先验；若资源不同，也照实写出。</p><textarea id="notebook-comparison" rows="4" maxlength="12000" aria-describedby="notebook-comparison-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-parameters">6 · 参数 / 种子 / 重复次数 / 数值容差</label><p id="notebook-parameters-help">记录实际使用或计划使用的参数、随机种子、重复次数和数值容差，明确区分计划与已经执行的设置。</p><textarea id="notebook-parameters" rows="4" maxlength="12000" aria-describedby="notebook-parameters-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-metrics">7 · 指标 / 预先定义的失败判据</label><p id="notebook-metrics-help">在看结果前决定要量什么、什么算失败，并区分推导、仿真与实测证据。区分分辨率、精度、CRB、检出率和虚警率，不只挑最好的一张图。</p><textarea id="notebook-metrics" rows="4" maxlength="12000" aria-describedby="notebook-metrics-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <details class="notebook-step"><summary>04 · 证据与边界：照实留下结果</summary><div class="notebook-step-body">
+      <div class="notebook-field"><label for="notebook-results">8 · 实际结果 / 失败样本 / 证据文件位置</label><p id="notebook-results-help">只有执行后才能填写实际结果；尚未执行可留空或明确写“未执行”。保留失败次数、失败样本和本地原始数据、图表、日志的文件位置；此处不会读取或上传文件；请标明证据是推导、仿真还是实测。</p><textarea id="notebook-results" rows="4" maxlength="12000" aria-describedby="notebook-results-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-uncertainty">9 · 不确定性 / 与预测的差异</label><p id="notebook-uncertainty-help">哪些差异可能来自随机性、模型失配或数值误差？报告适用的不确定性与预测差异；不要用单次曲线代替重复证据。</p><textarea id="notebook-uncertainty" rows="4" maxlength="12000" aria-describedby="notebook-uncertainty-help notebook-limits" spellcheck="false"></textarea></div>
+      <div class="notebook-field"><label for="notebook-scope">10 · 适用范围 / 尚未验证 / 下一问</label><p id="notebook-scope-help">哪些条件下结论才成立？还有哪些解释没有排除、哪些实验尚未做？写下下一轮最小且可检验的问题。</p><textarea id="notebook-scope" rows="4" maxlength="12000" aria-describedby="notebook-scope-help notebook-limits" spellcheck="false"></textarea></div>
+    </div></details>
+    <p>这份学习者笔记不包含、也不能代替实验页计算得到的 JSON 证据。若实验页提供完整模型记录，请另行下载，之后在第 8 栏记下证据文件位置。</p>
+    <div class="notebook-actions"><button id="notebook-check" type="button">检查填写情况</button><button id="notebook-download-md" type="button">下载 Markdown 草稿</button><button id="notebook-download-json" type="button">下载 JSON 草稿</button></div>
+    <p class="notebook-status" id="notebook-check-status" role="status" aria-live="polite">尚未检查填写情况；填写数量不代表研究质量或完成程度。</p>
+    <p class="notebook-status" id="notebook-download-status" role="status" aria-live="polite"></p>
+    <p class="notebook-warning"><strong>离开前请先下载：</strong>当前草稿不会自动保存。刷新、关闭或离开可能丢失；下载的是学习者自行填写的记录，空白或部分填写不代表实验已经完成。</p>
+  </form>
+  <script type="application/json" id="notebook-topics">[{"id":"echo","title":"回波与传播延迟","question":"电波往返的时间怎样成为距离？","action":"改变目标距离与物理时刻，比较去程、反射和回程。","teachingHref":"foundations.html#echo","experimentHref":"foundations.html#echo"},{"id":"iq","title":"实波形与 I/Q","question":"两路实数怎样记录同一条电波？","action":"改变 I/Q 系数，对照真实波形、两路基带与复向量。","teachingHref":"foundations.html#iq","experimentHref":"foundations.html#iq"},{"id":"matched","title":"匹配滤波","question":"怎样从接收信号找出延迟？","action":"移动候选延迟，对照模板与接收样本的对齐程度。","teachingHref":"foundations.html#matched","experimentHref":"foundations.html#matched"},{"id":"doppler","title":"路径变化与多普勒","question":"位移怎样成为跨时刻的相位？","action":"改变运动状态，对照路径长度、波长与相位变化。","teachingHref":"foundations.html#doppler","experimentHref":"foundations.html#doppler"},{"id":"array","title":"阵列与方向","question":"跨阵元的相位斜坡来自哪里？","action":"改变方向与阵列参数，比较阵元相位和匹配响应。","teachingHref":"foundations.html#array","experimentHref":"foundations.html#array"},{"id":"ofdm","title":"七步 OFDM 感知链","question":"从一个复数样本怎样走到距离–速度？","action":"按七步依次打开一格、一行、一列与二维匹配，再改距离或速度。","teachingHref":"foundations.html#ofdm","experimentHref":"foundations.html#ofdm"},{"id":"cfar","title":"检测与 CFAR","question":"一处峰有多大才值得报警？","action":"改变背景、保护格与虚警设置，观察门限与候选峰。","teachingHref":"foundations.html#cfar","experimentHref":"foundations.html#cfar"},{"id":"geometry","title":"双站与多站几何","question":"总路径约束怎样变成位置？","action":"移动目标在等路径椭圆上的位置，比较不变的总路径与变化的位置。","teachingHref":"foundations.html#geometry","experimentHref":"foundations.html#geometry"},{"id":"shared","title":"共同观测：判决与估计","question":"相同样本，换一个未知量会怎样？","action":"切换通信判决/感知估计，保留相同样本并改变候选。","teachingHref":"theory.html#shared-model","experimentHref":"theory.html#shared-model"},{"id":"crb","title":"随机能量与标量 CRB","question":"先求逆再平均，为什么会改变结果？","action":"改变块长与抽样块数，对照块能量和倒数平均。","teachingHref":"theory.html#crb-mechanism","experimentHref":"theory.html#crb-mechanism","evidenceHref":"theory.html#research-method","boundaryHref":"theory.html#estimator-crb"},{"id":"estimator-crb","title":"下界什么时候真的能达到？","question":"实际估计器的平均平方误差，何时等于条件 CRB？","action":"固定发射块只换噪声，再同时重抽发射块和噪声；比较 LS 误差、条件 CRB 与解析期望。","teachingHref":"theory.html#estimator-crb","experimentHref":"theory.html#estimator-crb"},{"id":"rate","title":"速率与估计界桥梁","question":"已知实现的感知与未知消息的通信如何比较？","action":"改变 SNR 与块长，对照输入分布的互信息和估计界。","teachingHref":"theory.html#rate-crb-bridge","experimentHref":"theory.html#rate-crb-bridge"},{"id":"pilot","title":"稀疏导频与歧义","question":"尖锐主峰为什么仍有多个同高候选？","action":"改变梳状间隔或偏移，记录同高候选与拟合相位。","teachingHref":"pilot-design.html#experiment","experimentHref":"pilot-design.html#experiment","evidenceHref":"pilot-design.html#case","boundaryHref":"pilot-design.html#reproduce"},{"id":"clock","title":"时钟偏差与定位","question":"10 ns 偏差怎样污染几何约束？","action":"改变时钟偏差、噪声与站位，比较三种校正方式。","teachingHref":"network-clock.html#experiment","experimentHref":"network-clock.html#experiment","evidenceHref":"network-clock.html#case","boundaryHref":"network-clock.html#limits"},{"id":"sbfd","title":"频谱资源与双孔径","question":"距离看带宽，速度为什么看观察时间？","action":"分别改变感知频格数和观察符号数，比较距离/速度切片。","teachingHref":"sbfd-resource.html#experiment","experimentHref":"sbfd-resource.html#experiment","evidenceHref":"sbfd-resource.html#case","boundaryHref":"sbfd-resource.html#limits"},{"id":"near-field","title":"波前曲率与距离","question":"同方向的目标还能留下不同空间指纹吗？","action":"改变真距离或阵元数，对照三种空间匹配；留意孔径同时改变。","teachingHref":"near-field.html#experiment","experimentHref":"near-field.html#experiment","evidenceHref":"near-field.html#paper","boundaryHref":"near-field.html#limits"},{"id":"waveform-design","title":"同方向图的最优波形","question":"空间协方差相同，逐符号通信误差也相同吗？","action":"固定资源改变 H、β 或方向，比较实际复数波形、HX 与全局下界。","teachingHref":"waveform-design.html#intuition","experimentHref":"waveform-design.html#experiment","evidenceHref":"waveform-design.html#paper","boundaryHref":"waveform-design.html#limits"},{"id":"joint-beamforming","title":"独立雷达流与联合波束","question":"方向图相同，为什么用户 SINR 仍会不同？","action":"比较三个同资源解析构造；改变信道混合比例，核对协方差、方向互相关和每用户信号/干扰功率。","teachingHref":"joint-beamforming.html#intuition","experimentHref":"joint-beamforming.html#experiment","evidenceHref":"joint-beamforming.html#paper","boundaryHref":"joint-beamforming.html#limits"},{"id":"crb-beamforming","title":"通信门槛与角度 CRB 最优波束","question":"提高最低通信 SNR，角度标准差下界为什么先平坦、再变差？","action":"先猜通信要求何时影响回波信息，再调 SNR 门槛与信道重合度，区分有余量、最优取舍与可证明不可行。","teachingHref":"crb-beamforming.html#intuition","experimentHref":"crb-beamforming.html#experiment","evidenceHref":"crb-beamforming.html#paper","boundaryHref":"crb-beamforming.html#limits"},{"id":"golay-radar","title":"通信训练复用与 Golay 互补相关","question":"移动回波后，相关峰为什么跟着走，旁瓣又怎样相消？","action":"先移动时延，再按需展开带符号相关、较弱回波与运动；每次比较都核对相同能量、时间和接收窗口。","teachingHref":"golay-radar.html#experiment","experimentHref":"golay-radar.html#experiment","evidenceHref":"golay-radar.html#paper","boundaryHref":"golay-radar.html#limits"},{"id":"ofdm-interpolation","title":"OFDM 空格与时间插值","question":"沿时间补齐空格后，为什么图形会变，独立观测数却不变？","action":"先比较静止复数端点与补值，再加入运动和共同噪声；用同样的真实观测解释弦线误差、掩模旁瓣与相关噪声。","teachingHref":"ofdm-interpolation.html#mechanism","experimentHref":"ofdm-interpolation.html#experiment","evidenceHref":"ofdm-interpolation.html#paper","boundaryHref":"ofdm-interpolation.html#limits"},{"id":"radar-beam-decision","title":"感知辅助通信的波束候选决策","question":"未猜中最强波束，是否就损失很多功率？增加候选数又花掉多少探测？","action":"先看合成传感器输入与候选排名，再改变 K；分别检查标签命中、理想探测后的功率损失和 K/64 预算。","teachingHref":"radar-beam-decision.html#mechanism","experimentHref":"radar-beam-decision.html#experiment","evidenceHref":"radar-beam-decision.html#paper","boundaryHref":"radar-beam-decision.html#limits"},{"id":"perceptive-clutter","title":"递归背景与慢目标","question":"把稳定回波学成背景再相减，为什么慢慢转动的目标也会变弱？","action":"先手算两步复数更新，再用同一条观测改变记忆与多普勒；分开检查启动残余、目标混入与相关噪声。","teachingHref":"perceptive-clutter.html#question","experimentHref":"perceptive-clutter.html#experiment","evidenceHref":"perceptive-clutter.html#source","boundaryHref":"perceptive-clutter.html#boundary"},{"id":"shared-array","title":"分离与共享阵列：空间置零的代价","question":"同样八根天线，消掉用户方向的雷达干扰后，目标照射能完全恢复吗？","action":"固定总功率，改变目标方向或雷达子阵大小；先区分 raw 投影诊断，再核对四个同预算配方的用户功率、目标照射与每天线功率。","teachingHref":"shared-array.html#question","experimentHref":"shared-array.html#experiment","evidenceHref":"shared-array.html#paper","boundaryHref":"shared-array.html#boundaries"},{"id":"multipath-channel","title":"同一个终端，为什么收到两条路径？","question":"直达和墙面反射相干相加后，为什么同一个终端可能出现两个峰、一个峰或偏移的峰？","action":"先看一程路径，再在固定发射预算与匹配网格下改变静态几何、反射复系数或理想直达路衰减；区分总观测、生成器分量与单最大值读数。","teachingHref":"multipath-channel.html#question","experimentHref":"multipath-channel.html#experiment","evidenceHref":"multipath-channel.html#source","boundaryHref":"multipath-channel.html#boundary"},{"id":"distributed-detection","title":"两个功率数，够不够判断有目标？","question":"保留同一两站观测和虚警率，为什么复匹配可无损，而两个局部功率有时不够？少上传是否也少传输？","action":"先比较局部功率相同的同相/反相观测，再改变 ρ、κ 与规定 Pfa；观察原始与复匹配曲线重合、能量和基线及模板更新下的双向载荷。","teachingHref":"distributed-detection.html#question","experimentHref":"distributed-detection.html#experiment","evidenceHref":"distributed-detection.html#paper","boundaryHref":"distributed-detection.html#practice"}]</script>
 </section>
 
 <section class="chapter" id="roadmap">
