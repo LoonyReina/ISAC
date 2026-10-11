@@ -6,7 +6,7 @@
 <!-- SITE:HEADER:END -->
 <main class="theory-main">
 <!-- SITE:CONTEXT:START -->
-<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">方向图相同，通信符号为什么不同？</span></nav><p class="site-role">研究主题 · 严格协方差最优波形与原文对照</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#array">阵列与方向</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="waveform-design.html#experiment">① 预测与实验</a><a href="waveform-design.html#paper">② 原文与证据</a><a href="waveform-design.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">方向图相同，通信符号为什么不同？</span></nav><p class="site-role">研究主题 · 严格协方差最优波形与原文对照</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#array">阵列与方向</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="waveform-design.html#experiment">① 预测与实验</a><a href="waveform-design.html#paper">② 原文与证据</a><a href="waveform-design.html#limits">③ 边界与下一问</a><a href="practice.html?topic=waveform-design#notebook">④ 记录一次研究</a></nav></div>
 <!-- SITE:CONTEXT:END -->
 <div class="cover"><p class="eyebrow">研究案例 / 严格协方差下的波形设计</p><h1>方向图相同，<br>通信符号为什么不同？</h1><p>雷达的空间功率方向图只看到一块波形的协方差；通信接收机却要在每个时刻看到指定的复数符号。固定前者，仍然有空间调整后者。</p><div class="cover-tags"><span>复数矩阵</span><span>同预算比较</span><span>全局最优证书</span></div></div>
 <section class="chapter" id="intuition"><header class="chapter-head"><p class="eyebrow">01 / 先理解作者解决了什么</p><h2>固定照向哪里，不必固定每一列怎么发</h2></header>
@@ -55,6 +55,6 @@
 <ol><li>运行 python3 scripts/generate-waveform.py --check：重新求解并检查已提交复数数组的能量、协方差与全局下界，不依赖 SVD 向量符号完全一致。</li><li>运行 node --test tests/waveform.test.cjs：使用独立 JavaScript 复数乘法从存储数组重算每条图与数值；检查27状态、固定资源与全向不变量。</li><li>生成器额外检查540个随机可行候选、零信道 / 秩亏 / L=N / 零符号 / 近简并情况，并拒绝 L&lt;N 与奇异协方差；三组小型复数问题用 SciPy SLSQP 从随机可行点独立求解。</li><li>先对照源代码、下界和残差，再解释误差变化。随机候选及局部优化只提供交叉检验，不能替代解析全局性证明。</li></ol>
 <p><a href="practice.html#notebook">将你选中的通道、β、θ₀、预期与观察写入实验记录 →</a></p></section>
 <!-- SITE:NEXT:START -->
-<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次固定资源的波形实验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html?topic=waveform-design#notebook">记录一次固定资源的波形实验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
 <!-- SITE:NEXT:END -->
 </main></body></html>
