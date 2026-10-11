@@ -324,7 +324,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,4);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,19,7]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,19,16]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
@@ -377,8 +377,7 @@ test('native ladder links and explanation work with unchanged selection, search,
 test('ladder remains a vertical native disclosure with versioned styles and no runtime or source-data changes',()=>{
  const css=read('knowledge-map.css');a.match(css,/\.map-progression-steps\{[^}]*border-left:/);a.match(css,/\.map-progression-why>summary\{[^}]*min-height:44px/);a.match(css,/\.map-progression\{[^}]*overflow-wrap:anywhere/);a.ok(read('index.html').includes('knowledge-map.css?v=map-progression-v1'));
  a.doesNotMatch(read('knowledge-map.js'),/progression|researchGuides|contextTrail/);
- const digest=file=>require('node:crypto').createHash('sha256').update(read(file)).digest('hex');
- a.equal(digest('site/research-guides.json'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
+ a.equal(require('node:crypto').createHash('sha256').update(require('./helpers/research-guide-trace-preservation.cjs').priorGuideSource(guideData)).digest('hex'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  const generator=read('scripts/generate-site.cjs');a.ok(generator.indexOf('const researchGuides=')<generator.indexOf("const home=pageFor('index.html');"));a.match(generator,/'knowledge-map\.cjs'\)\)\(registry,researchGuides\)/);
 });
 

@@ -3,6 +3,7 @@
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {unit,page,hooks,withoutReferenceUncertainty,withoutReferencePrerequisite,prerequisiteHook}=require('./helpers/reference-uncertainty-registry.cjs');
 const {withoutMapProgressions,withoutMapProgressionGenerator}=require('./helpers/map-progression-preservation.cjs');
+const {priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
@@ -27,8 +28,8 @@ test('reference uncertainty adds one case-free mechanism and one page without in
  a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(registry.pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
- const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,19);a.equal(guides.cards.filter(c=>c.visualTrace).length,7);
- a.equal(hash(read(registry.researchGuidesFile)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
+ const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,19);a.equal(guides.cards.filter(c=>c.visualTrace).length,16);
+ a.equal(hash(priorGuideSource(guides)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  a.equal(hash(read(registry.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
 });
 
