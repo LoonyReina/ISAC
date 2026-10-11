@@ -321,9 +321,9 @@ test('mixed cached HTML without the lesson template retains original concept and
  h.map.fire('keydown',{key:'Escape'});a.ok(h.results.hidden);a.equal(h.location.hash,'#knowledge-map');
 });
 
-test('one four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
+test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
- a.deepEqual(registry.knowledgeMap.progressions,[selection]);
+ a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,4);
  a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,19,7]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
@@ -337,8 +337,8 @@ test('one four-ID selection reuses existing concept, unit, prerequisite and type
 });
 test('the relevant native group contains the identical no-JS ladder while enhanced controls retain existing templates',()=>{
  const h=render(),body=template(h,'known-pilots'),ladder=body.match(/<section class="map-progression"[\s\S]*?<\/section>/)[0];
- a.equal((h.match(/<noscript>/g)||[]).length,1);a.ok(h.includes('<noscript><div class="map-progression-fallback">'+ladder+'</div></noscript>'));
- const nojs=parse(h),fallback=nojs.querySelector('noscript');a.equal(fallback.closest('.map-group').dataset.mapGroup,'observation');a.equal(fallback.querySelectorAll('a').filter(e=>e.attrs.href.startsWith('reading.html#guide-')).length,2);
+ a.equal((h.match(/<noscript>/g)||[]).length,4);a.ok(h.includes('<noscript><div class="map-progression-fallback">'+ladder+'</div></noscript>'));
+ const nojs=parse(h),fallback=nojs.querySelectorAll('noscript').find(e=>e.closest('.map-group').dataset.mapGroup==='observation');a.equal(fallback.closest('.map-group').dataset.mapGroup,'observation');a.equal(fallback.querySelectorAll('a').filter(e=>e.attrs.href.startsWith('reading.html#guide-')).length,2);
  a.ok(fallback.querySelectorAll('a').every(e=>!e.hidden));a.equal(fallback.querySelector('details').open,false);a.equal(new Set(ids(h)).size,ids(h).length);
  const runtime=setup({hash:'#map-node-known-pilots'});a.ok(runtime.panel.querySelector('.map-progression'));a.equal(runtime.map.querySelectorAll('[data-map-entry]').length,40);
 });
@@ -396,4 +396,45 @@ test('selected guides must remain unique and their relationship and source metad
  for(const mutate of mutations){const d=structuredClone(guideData);mutate(d);a.throws(()=>render(registry,d),/Invalid/);}
  const validated=buildResearchGuides(guideData,registry);a.throws(()=>renderMap(registry,[...validated,validated.at(-1)]),/progression guide data/);
  const before=JSON.stringify(registry),papers=JSON.stringify(guideData);render();a.equal(JSON.stringify(registry),before);a.equal(JSON.stringify(guideData),papers);
+});
+
+test('three additional source-backed selections preserve the first route and all earlier registry data',()=>{
+ const expected=[
+  ['angle','array','channels-shared-clusters-2024','channels-sensing-communication-mapping-2026','direct-citation'],
+  ['echo','echo','channels-target-environment-coupling-2025','channels-sensing-communication-mapping-2026','problem-link'],
+  ['beam-design','array','mimo-ofdm-realtime-testbed-2023','sbfd-resource-synchronization-2026','problem-link']
+ ];
+ a.deepEqual(registry.knowledgeMap.progressions.slice(1).map(p=>[p.nodeId,p.unitId,p.guideId,p.nextGuideId]),expected.map(e=>e.slice(0,4)));
+ const before=structuredClone(registry);before.knowledgeMap.progressions.splice(1);
+ const hash=v=>require('node:crypto').createHash('sha256').update(v).digest('hex');
+ a.equal(hash(JSON.stringify(before)),'2a8a834a37e7bd94a77a87b645b201dfc81a2f798bfa04eff92dcbd02bc2d5c7');
+ const first=template(render(),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';
+ a.equal(first.split(correction).length,2);
+ // Preserve first-release markup except the separately reviewed attribution correction.
+ const normalize=h=>h.replace(correction,'代表性原文将这个实验列为先修');
+ a.equal(hash(normalize(first)),'d3ce8298ff66b06ba60e4ef17faf702ff4e94e0bab9c2460e3c869c39c5217f0');
+ a.notEqual(hash(normalize(first.replace('本站按问题关联（非引用关系）','unreviewed relation'))),'d3ce8298ff66b06ba60e4ef17faf702ff4e94e0bab9c2460e3c869c39c5217f0');
+ for(const [nodeId,unitId,guideId,nextGuideId,type]of expected){
+  const n=registry.knowledgeMap.nodes.find(n=>n.id===nodeId),u=registry.units.find(u=>u.id===unitId),g=guideData.cards.find(g=>g.id===guideId),next=guideData.cards.find(g=>g.id===nextGuideId),relation=next.contextTrail.links.find(e=>e.guideId===g.id);
+  a.ok(n.unitRefs.includes(unitId));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(relation.relationType,type);
+  const ladder=parse(template(render(),nodeId)).querySelector('.map-progression');
+  a.deepEqual(ladder.querySelector('.map-progression-steps').querySelectorAll('a').map(a=>a.attrs.href),['index.html#map-node-'+nodeId,u.href,'reading.html#guide-'+guideId,'reading.html#guide-'+nextGuideId]);
+  a.ok(ladder.textContent.includes(next.nextQuestion));a.ok(ladder.textContent.includes(relation.verificationNote));
+  a.match(ladder.textContent,/本站的代表性原文导读将这个机制列为先修/);a.doesNotMatch(ladder.textContent,/代表性原文将这个实验列为先修/);
+ }
+ for(const id of ['direction:networks','direction:spatial'])a.doesNotMatch(template(render(),id),/class="map-progression"/);
+});
+test('direct-citation qualification stays visible and all three added ladders retain native navigation and group fallbacks',()=>{
+ const visibleText=n=>n.tagName==='details'&&!n.open?n.querySelector('summary').textContent:n._text+n.children.map(visibleText).join('');
+ const document=parse(render()),fallbacks=document.querySelectorAll('noscript');a.equal(fallbacks.length,4);
+ for(const nodeId of ['angle','echo','beam-design']){
+  const n=registry.knowledgeMap.nodes.find(n=>n.id===nodeId),h=setup({hash:'#map-node-'+nodeId}),ladder=h.panel.querySelector('.map-progression');a.ok(ladder);a.equal(ladder.querySelector('details').open,false);
+  if(nodeId==='angle'){a.match(visibleText(ladder),/新文直接引用共享簇论文作为相关背景；不代表扩展或复现其随机模型/);a.match(visibleText(ladder),/新文直接引用此文/);}
+  else a.match(visibleText(ladder),/本站按问题关联（非引用关系）/);
+  if(nodeId==='beam-design')a.match(ladder.textContent,/不能称为该平台升级/);
+  const fallback=fallbacks.find(f=>f.closest('.map-group').dataset.mapGroup===n.groupId);a.ok(fallback.querySelector('[data-map-progression="'+nodeId+'"]'));
+  for(const link of ladder.querySelectorAll('a')){a.equal(h.click(link).defaultPrevented,undefined);a.equal(h.map.fire('keydown',{target:link,key:'Enter'}).defaultPrevented,undefined);}
+  a.equal(h.pushes.length,0);h.navigate('#map-node-known-pilots');a.ok(h.panel.querySelector('[data-map-progression="known-pilots"]'));h.navigate('#map-node-'+nodeId);a.ok(h.panel.querySelector('[data-map-progression="'+nodeId+'"]'));a.equal(h.pushes.length,0);
+  h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');a.ok(h.groups.every(g=>!g.open));
+ }
 });
