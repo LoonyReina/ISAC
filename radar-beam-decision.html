@@ -4,7 +4,7 @@
 <meta name="description" content="用原创合成数据理解感知辅助通信：猜中最优波束、保住功率与少试几个波束，是三个不同问题。训练七近邻预测器，比较固定候选排名下的 top-K 命中和通信功率损失。">
 <title>猜中最优波束，与保住通信增益是一回事吗？ | ISAC</title>
 <link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="radar-beam-decision.css?v=radar-beam-v1">
-<script defer src="radar-beam-decision-core.js"></script><script defer src="radar-beam-decision.js"></script>
+<script defer src="radar-beam-decision-core.js"></script><script defer src="experiment-record.js?v=record-preview-v1"></script><script defer src="radar-beam-decision.js?v=record-preview-v1"></script>
 </head><body>
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
@@ -81,9 +81,9 @@
 <li>超参数事先固定；若开始根据结果挑邻居数或特征，应另划验证集、保护最终测试集，再按轨迹或场景重采样评价不确定性</li></ul>
 <p><strong>下一问：</strong>有真实测量时，应该怎样把感知采集与推理耗时、候选探测、失败回退和数据划分，一起纳入通信收益？先写清可获取的观测、时间、资源与失败标准。</p>
 <p>继续：<a href="theory.html#evolution">通信与感知互助的层次</a> · <a href="joint-beamforming.html">固定资源下的联合波束设计</a> · <a href="practice.html#notebook">记录一次可复核比较</a></p></section>
-<section class="rb-section" id="reproduce"><h2>每个候选与分数都能重算</h2><p>浏览器从种子生成样本，实际构造训练集、拟合七近邻、冻结排名，再读测试真值评价。下方 JSON 导出当前配置、全部训练/测试样本编号、特征、训练标签、预测和评估真值；非有限损失以字符串 “Infinity” 保存，不伪装成零或空值。</p>
+<section class="rb-section" id="reproduce"><h2>每个候选与分数都能重算</h2><p>浏览器从种子生成样本，实际构造训练集、拟合七近邻、冻结排名，再读测试真值评价。下载的完整 JSON 包含当前配置、全部训练/测试样本编号、特征、训练标签、预测和评估真值；非有限损失以字符串 “Infinity” 保存，不伪装成零或空值。</p>
 <ul class="rb-file-links"><li><a href="radar-beam-decision-core.js">纯数值核心</a></li><li><a href="scripts/validate-radar-beam-decision.py">独立 Python 交叉验证</a></li><li><a href="data/radar-beam-decision-validation.json">固定数值核验</a></li><li><a href="data/radar-beam-decision-sources.json">来源与版本定位</a></li><li><a href="docs/RADAR-BEAM-DECISION-VALIDATION.md">验证范围与边界</a></li></ul>
-<details class="rb-disclosure" id="rb-export"><summary>展开当前实验完整记录</summary><div><p class="rb-small">评估真值单独存于 evaluationOnly；它不会进入预测接口。显示的是当前主协议；展开分组延伸后，还会附上三协议的训练编号、相同测试编号和结果。</p><button id="rb-download" type="button">下载当前 JSON</button><pre id="rb-raw" tabindex="0" role="region" aria-label="当前配置、样本与结果，可用方向键滚动"></pre></div></details></section>
+<details class="rb-disclosure" id="rb-export"><summary>查看当前记录预览与下载完整 JSON</summary><div><p id="rb-preview-help">下方仅为限长 JSON 预览（最多 12,000 字符），不是完整数据；数组仅显示开头若干项，omittedItems 标明省略数量。复现请下载完整 JSON，包含全部成员、特征、排名和评估功率。文件只在本机生成，不上传参数。</p><p class="rb-small">评估真值单独存于 evaluationOnly；它不会进入预测接口。记录当前主协议；展开分组延伸后，还会附上三协议的训练编号、相同测试编号和结果。非有限数以 “Infinity”、“-Infinity” 或 “NaN” 字符串保留，不混成空值。</p><button id="rb-download" type="button" disabled>下载当前完整 JSON</button><p id="rb-download-status" class="rb-small" role="status" aria-live="polite"></p><pre id="rb-raw" tabindex="0" role="region" aria-label="当前记录预览，非完整数据，可用方向键滚动" aria-describedby="rb-preview-help"></pre></div></details></section>
 <!-- SITE:NEXT:START -->
 <aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同码本、同训练量的候选决策检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
 <!-- SITE:NEXT:END -->

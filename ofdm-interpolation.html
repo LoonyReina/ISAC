@@ -4,7 +4,7 @@
 <meta name="description" content="OFDM 空资源格不是零信道。沿时间连接两个已测复数端点，观察静止补值、运动相位偏差和相关噪声；在相同观测上比较两种处理。">
 <title>补出来的格子，为什么不是新观测？ | ISAC</title>
 <link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="ofdm-interpolation.css?v=ofdm-interpolation-v2">
-<script defer src="ofdm-interpolation-core.js"></script><script defer src="ofdm-interpolation.js"></script>
+<script defer src="ofdm-interpolation-core.js"></script><script defer src="experiment-record.js?v=record-preview-v1"></script><script defer src="ofdm-interpolation.js?v=record-preview-v1"></script>
 </head><body>
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
@@ -105,7 +105,7 @@
 <p>继续：<a href="pilot-design.html">比较频率梳状导频的模糊</a> · <a href="sbfd-resource.html">区分资源孔径与采样密度</a> · <a href="practice.html#notebook">记录一次同资源检验</a></p></section>
 <section class="oi-section" id="reproduce"><h2>每个格子、每条曲线都能重算</h2><p>前端用无依赖 JavaScript 纯数值核心；参考值来自独立 Python/NumPy 实现，并经另一套独立实现核对。没有上传交互参数、复制论文 PDF 或把实测结果嵌进曲线。</p>
 <ul class="oi-file-links"><li><a href="ofdm-interpolation-core.js">纯数值核心</a></li><li><a href="scripts/validate-ofdm-interpolation.py">Python/NumPy 参考脚本</a></li><li><a href="data/ofdm-interpolation-validation.json">固定参考与复数 fixtures</a></li><li><a href="data/ofdm-interpolation-sources.json">固定来源与定位</a></li><li><a href="docs/OFDM-INTERPOLATION-VALIDATION.md">验证方法与实际范围</a></li></ul>
-<details class="oi-disclosure"><summary>查看当前资源、复数样本和固定网格的完整数据</summary><div><p>数组顺序是 m×32+k；未观测的原始商值为 null，避免把存储零当成测量。truthForEvaluation 仅用于教学评估。功率数组按 Doppler 行、距离列排列；只有展开处理图后才计算完整网格。</p><pre id="oi-raw" tabindex="0" role="region" aria-label="当前完整复数和功率数据，可用方向键滚动"></pre></div></details></section>
+<details class="oi-disclosure" id="oi-export"><summary>查看当前记录预览与下载完整 JSON</summary><div><p id="oi-preview-help">下方仅为限长 JSON 预览（最多 12,000 字符），不是完整数据；数组仅显示开头若干项，omittedItems 标明省略数量。复现请下载完整 JSON，包含当前资源、全部复数样本，以及已计算的完整功率网格。文件只在本机生成，不上传参数。</p><p>数组顺序是 m×32+k；未观测的原始商值为 null，避免把存储零当成测量。truthForEvaluation 仅用于教学评估。功率数组按 Doppler 行、距离列排列；只有展开处理图后才计算完整网格，尚未计算时 maps 为 null。非有限数保留为 “Infinity”、“-Infinity” 或 “NaN” 字符串，不混成空值。</p><button id="oi-download" type="button" disabled>下载当前完整 JSON</button><p id="oi-download-status" class="oi-small" role="status" aria-live="polite"></p><pre id="oi-raw" tabindex="0" role="region" aria-label="当前记录预览，非完整数据，可用方向键滚动" aria-describedby="oi-preview-help"></pre></div></details></section>
 <!-- SITE:NEXT:START -->
 <aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同观测、同资源的补值检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
 <!-- SITE:NEXT:END -->
