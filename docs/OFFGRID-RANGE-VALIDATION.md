@@ -12,10 +12,11 @@ influential-paper card, external citation, source snapshot, map concept/edge,
 or receiver paper-level item was added. The historical notebook manifests and
 validation records remain historical and unchanged.
 
-Implementation and command-line checks completed on 2026-10-11 UTC. This
-record makes no browser, accessibility-technology, actual saved-download-file,
-commit, push, CI, deployment, or live-site claim. Those release stages are not
-part of this implementation worker's execution.
+Implementation and command-line checks completed on 2026-10-11 UTC. The
+implementation worker's checks below are separate from the release owner's
+subsequent deployment and cloud Chromium verification, recorded in the live
+validation section. The documentation closeout made no code changes and did
+not itself repeat browser or deployment operations.
 
 ## Scientific contract
 
@@ -83,6 +84,74 @@ are not real browser geometry, keyboard traversal, screen-reader, history,
 network-loading, or downloaded-file inspection. Source review confirms
 responsive coordinates and semantic labels but cannot certify rendering.
 
+## Live release validation — 2026-10-11 UTC
+
+The release owner verified [PR #46](https://github.com/LoonyReina/ISAC/pull/46)
+merged at `c351063c1ec22d61d29e1be2f9fb196131d92f94`, and the exact
+[Pages run 38131596734](https://github.com/LoonyReina/ISAC/actions/runs/38131596734)
+succeeded. All 48 changed remote files matched the expected bytes. The owner
+also reran the full 774-test suite, generator freshness, diff checks and the
+47-file payload manifest successfully before this documentation-only closeout.
+These are checks of that released revision, not a claim that this later
+documentation update has already been deployed.
+
+Actual cloud Chromium checks on the
+[live lesson](https://loonyreina.github.io/ISAC/offgrid-range.html#experiment):
+
+- Desktop client width 1173 CSS px and a 300%-zoom client width 391 CSS px had
+  no page-level horizontal overflow. Plot viewBox widths changed from 966 to
+  333, retaining 12 px text; inspected ruler/score screenshots were legible
+  and in bounds. The narrow view was a zoomed desktop browser, not a phone or
+  other physical mobile device.
+- The default 43.7 m target displayed coarse 45 m / +1.3 m error and fine
+  43.5 m / −0.2 m error.
+- A high-SNR run was cancelled after 450 of 1000 attempted trials. Its caption
+  reported incomplete; all whole-batch RMSE, bias and gross-error fields read
+  `不可计算（未完成）`. All 450 attempted rows remained, partial download was
+  enabled, and its bounded preview text contained 10,226 characters; this
+  partial preview was not separately parsed as JSON.
+- A new high-SNR run completed all 1000 trials: coarse RMSE 1.3 m; fine RMSE
+  0.318747549 m and bias 0.006 m; both gross-error counts were zero.
+- The selected low-SNR counterexample completed 1000 trials. Coarse/fine RMSE
+  was 23.8764738 / 24.5689957 m, bias 8.02 / 8.4035 m, and gross-error counts
+  229 / 234. Paired absolute-error counts were 219 lower, 132 equal and 649
+  higher for the fine grid. The plot contained 1000 circles and 1000
+  rectangles on the fixed −120…120 m error axis.
+- Its initially selected trial 2 showed coarse 25 m / −0.1 m error / score
+  0.863720830311 versus fine 24 m / −1.1 m / 0.884421640501. Selecting trial 12
+  showed coarse 20 m / −5.1 m and fine 6 m / −19.1 m without changing the
+  aggregate statistics. Next-page navigation displayed original-order rows
+  26–50, with 25 rows on that page.
+- The complete-run preview was valid, 10,522 characters, and explicitly
+  marked `preview-only` with `completeRecord:false`. A full-JSON download
+  event and destination path were observed, but the downloaded file's bytes
+  were **not read**. This verifies initiation, not saved-file contents or
+  replay. The preview was closed, but its immediate post-close DOM state was
+  not independently checked in the browser; that behavior has regression
+  coverage.
+- Native Enter opened the settings disclosure. Editing R to 121 marked the
+  old result stale, disabled download and trial selection, and cleared the
+  preview. Run rejected the invalid setting; reset restored the default.
+  Narrow resizing preserved the computed batch, all 2000 error markers and
+  its statistics.
+- The lesson's contextual notebook link selected `offgrid-range`, retained
+  ten blank learner fields, and exposed only teaching/experiment links back
+  to the lesson. Browser Back restored the prior low-SNR batch. Map search
+  for `离格` returned one course entry and three concept/direction results;
+  the course link opened canonical `#experiment` at the beginner heading and
+  default state.
+- An error-log sample requested with a 50-entry limit contained no
+  non-extension error. The actual returned count was not recorded. This is a
+  sampled observation, not a guarantee that every error source or interaction
+  was covered.
+
+For this documentation-only closeout, the focused off-grid suite passed
+**57/57** and the independent notebook safety suite passed **23/23**, with no
+skipped, cancelled or todo tests. Generator freshness, `git diff --check` and
+the updated 47-file manifest also passed. Only this document and its manifest
+entry were changed; the full 774-test rerun above belongs to the release
+owner's verification of the released revision.
+
 ## Reproduction and evidence
 
 From the repository root:
@@ -116,9 +185,11 @@ Verify from the repository root:
 sha256sum -c docs/OFFGRID-RANGE-CHANGED-FILES.sha256
 ```
 
-## Remaining release checks
+## Remaining verification limits
 
-Real desktop/narrow-screen rendering; mouse/keyboard interactions; direct
-anchors and Back/Forward restoration; JS-disabled reading; download event plus
-actual saved JSON content; final commit / remote identity; CI / Pages and live
-resources. These have not been performed by this implementation worker.
+No actual JS-disabled, print, screen-reader, physical-device or
+downloaded-file-byte/replay test was performed in the live pass. The reported
+keyboard and Back checks cover the specified flows, not exhaustive keyboard
+traversal or Back/Forward behavior across every page. Other browsers and all
+possible layouts/interactions remain unverified. The implementation worker's
+simulated-DOM results do not fill those gaps.
