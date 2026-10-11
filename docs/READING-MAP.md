@@ -348,3 +348,15 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - 证据：复数因子产生实际 R、1801角度功率、数值特征值与逐用户 D/Iu/Ir/噪声/SINR；独立 NumPy 检验含η端点与极小正值。全站结构和 DOM 回归另测，不代表真实浏览器或部署验证。
 - 限制：集合 R≠任意有限块 XXᴴ/N；秩不限制功率峰数量；三构造失败不代表一般问题不可行。固定R★的SINR上界只在本例模型下成立。不复现原文优化曲线、检测/角度估计或硬件。
 - 基线识别：原文 SSP 引用 TWC 2018 DOI10.1109/TWC.2018.2803045；与本站 TSP 2018 严格协方差 waveform-design 案例不同。本站A不是SSP。引用/奖项快照沿用原研究目录，没有重新估计或宣称新的影响排名。
+
+## 2022 · 单用户点目标 CRB 最优波束（2026-10-10 增补）
+
+- 期刊：Fan Liu、Ya-Feng Liu、Ang Li、Christos Masouros、Yonina C. Eldar，*Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming*，IEEE TSP 70，240–253，DOI https://doi.org/10.1109/TSP.2021.3135692
+- 固定已发表版：作者机构托管 PDF https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf 。2021-12-15 在线发表、2022-01-11 当前版本；正文定位采用此期刊版。2026-10-10 独立下载并检查前述无 `_0` 的期刊 PDF，该次文件 SHA-256 为 `3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d`。原有影响目录身份来源 https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming_0.pdf 保留；两个入口不视为两篇论文或两份引用记录。arXiv https://arxiv.org/abs/2101.12530v1 的题名为 *…Joint Radar-Communication Design*，不混用其式号。
+- 身份与入口：`case-crb-beamforming`、`crb-beamforming.html#intuition`。它是独立的空间波束与点目标角度案例；既有 `case-crb` 仍为高斯信道标量 CRB–rate 及 LS 机制，不合并论文身份。
+- 六层入口：`#intuition` 先看发射天线、用户和反射目标；`#model` 分清已知发射块与未知 θ、复 α；`#experiment` 调通信门槛；`#paper` 对照原文；`#limits` 检查预算与奇异条件；`#reproduce` 独立复核。它们接入空间感知和通感权衡两个既有方向，知识地图仍保留 31 个概念及原有入门入口。
+- 原文定位：pp.241–242 §II-A/B 式(1)–(9) 的流模型、未知复系数与点目标 CRB；pp.243–244 §III-A/B 式(19)–(29)、引理1/定理1的单用户闭式最优解；pp.248–249 附录 A/B 的张成空间和活动约束证明。扩展目标式(10)–(18)、多用户式(30)–(33)/定理2仅作范围边界，定理2的秩一结论有满列秩条件。
+- 本站主实验：独立合成 Nt=8、Nr=12、中心化 λ/2 ULA、θ₀=0、L=64、P=1、块能量64、‖h‖=1、σC²=.01、σR²=100；α=1 仅用于评估下界，对估计器仍未知。单通信流无其他流干扰，通信指标为 SNR。ρ 为合成信道幅度重合度，不是用户物理角度；改变 ρ 更换信道场景。按相同总功率求精确最优 w，不要求每天线等功率。
+- 下界与边界：完整实参数 (θ, Re α, Im α) Fisher 矩阵经 Schur 补给出有效角度信息。主图纵轴是归一化有效角度信息 g（无量纲）；角度标准差下界（度）由旁边数值单独显示，不是实际 RMSE。最低 SNR 低于转折时有余量，超过转折后发生最优取舍，超过20 dB通信上限可证明不可行；ρ=0且门槛恰达上限时通信可行，但目标零陷使常规角度 CRB 不可用。
+- 可选 `#companion`：本站另设 h=u、p=.5 并增加独立探测流的构造。保持整条角功率图、通信 SINR 与总功率一致，改变两空间模式输出的相关性，说明未知复 α 下的角度信息还取决于完整协方差。它不是原文多用户 SDR、主实验候选对比、原图复现或跨场景优越性证据。
+- 影响证据沿用2026-10-10快照：OpenAlex 773、Semantic Scholar 855分别显示；2025年施引文献245篇是出版年桶，不是当年索引增长。2024 IEEE SPS最佳论文奖于2025年颁发，非青年作者奖；ComSoc 2022年2月阅读推荐是编辑推荐，不能替代社交讨论量。没有重新刷新或合并引用计数。
