@@ -121,3 +121,13 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 ### 窄屏详情定位修正
 
 真实云端浏览器初查在323 CSS像素宽度发现：选择概念后，原生 `focus()` 可把较长详情面板滚到中部，标题与问题不在视口。现仅在主动选择概念时先用 `focus({preventScroll:true})` 保持键盘焦点，再用 `scrollIntoView({block:'start',behavior:'auto'})` 配合既有 `scroll-margin-top` 展示面板顶部。Back/Forward与hash恢复不触发该显式滚动，返回全景焦点逻辑不变。地图脚本缓存更新为 `knowledge-map-v2`，样式无需修改。新增DOM回归验证焦点/滚动调用顺序、参数和历史恢复行为；修正后全量257项通过、0失败，门户新鲜度、脚本语法与diff检查通过。实际浏览器修正后复验仍需单独完成。
+
+## 分离/共享阵列机制接入（2026-10-11）
+
+`case-shared-array`、`shared-array` unit 和 `shared-array.html` page 是同一规范路线，首读 `#question`，实验 `#experiment`，原文 `#paper`，边界 `#boundaries`。页面另有 `#objects`、`#mechanism`、`#validation`，共享壳只由生成器维护。
+
+- 复用现有空间与通感权衡方向的六层结构，新增先修、资源账本、可用实验、固定版本原文和实际检验入口；不新建方向或改变旧入口
+- 知识地图复用 `budget`、`beam-design`、`joint-objectives`，保留原基础入口及32个概念；规范实验增至24个、专题增至13个
+- 既有9篇影响目录只激活 `mu_mimo`，已接入深度案例8/9；所有引用、来源、日期、学会推荐、社交快照保持不变。DeepSense继续保持资源入口，没有虚构交互按钮
+- 2018共享只发通信数据，2020联合波束模型另有独立雷达流；raw投影单列诊断，四个主配方对齐实际总功率；不把配方比较标成架构通用赢家或完整论文复现
+- `tests/shared-array-integration.test.cjs` 检查规范注册、六层、三处地图引用、原文定位、资源与边界、书目证据不变及静态链接。数值、界面与实际浏览器验证另行记录；此架构说明本身不声明其通过
