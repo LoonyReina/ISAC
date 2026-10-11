@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="同样八根天线：先数物理资源，再手算空间相消，理解分离子阵严格置零和恢复发射功率的代价。固定总功率的四种解析配方，不是架构优劣排行榜。">
+<title>同样八根天线，分开使用会少掉什么？ | ISAC</title>
+<link rel="stylesheet" href="course.css">
+<link rel="stylesheet" href="site.css?v=knowledge-map-v1">
+<link rel="stylesheet" href="shared-array.css?v=shared-array-v1">
+<script defer src="shared-array-core.js?v=shared-array-v1"></script>
+<script defer src="experiment-record.js?v=record-preview-v1"></script>
+<script defer src="shared-array.js?v=shared-array-v1"></script>
+</head>
+<body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="site-main sa-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">同样八根天线，分开使用会少掉什么？</span></nav><p class="site-role">研究主题 · 分离/共享资源账本与空间置零代价</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#array">阵列与方向</a> · <a href="foundations.html#codesign">相关基础</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="shared-array.html#experiment">① 预测与实验</a><a href="shared-array.html#paper">② 原文与证据</a><a href="shared-array.html#boundaries">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<header class="sa-hero" id="question">
+<p class="eyebrow">阵列资源 / 空间零干扰的代价</p>
+<h1>同样八根天线，<br>分开使用会少掉什么？</h1>
+<p class="sa-lead">一半发用户数据，一半照向目标。如果还要求雷达信号完全不打扰用户，补回发射功率后，目标方向也能恢复原来的强度吗？</p>
+<p class="sa-scope">先看物理对象，再手算一次相消。主实验只改目标方向；共享阵列、边界和原文推导可以逐层展开。本页没有求架构最优解。</p>
+</header>
+
+<section class="sa-section" id="objects">
+<p class="sa-step">01 / 先数物理资源</p>
+<h2>天线没少，单份信号能用的范围变了</h2>
+<p>固定一排 8 根发射天线，相邻间隔半个波长 λ/2。用户在正前方；目标在另一个方向。默认把左 4 根交给独立雷达符号 s，右 4 根交给用户数据 c。改变每根天线的复数权重，就是同时改变它发出的幅度和相位。</p>
+<figure class="sa-figure"><figcaption id="sa-array-caption"><strong>同一排天线，两种信号接法。</strong>横向是实际天线位置，不是方向图。橙色 R 表示独立雷达符号 s，青绿 C 表示通信数据 c；共享时全部发同一份 c。两行只是两种接法对照，不是两套同时存在的阵列。</figcaption><svg id="sa-array" role="img" aria-labelledby="sa-array-caption" viewBox="0 0 700 215" height="215"></svg></figure>
+<p id="sa-aperture" class="sa-result">8 根天线，8 条理想复权重发射路径，总孔径 3.5λ；分离时雷达和通信各用 1.5λ 子孔径，共享数据可用 3.5λ。</p>
+<p class="sa-small">这里一根天线对应一条理想全数字 RF 发射路径，RF 路径数不是信号流数。分离是 1 条数据流 + 1 条独立雷达流，共享是 1 条数据流 + 0 条独立雷达流。没有计算真实硬件成本、接收 RF 链或功放效率。</p>
+<div class="sa-budget"><strong>同一预算：</strong>总平均发射功率 P=1；分离时雷达 0.5、通信 0.5；共享时一份数据使用 1。带宽、符号时间与观察时段相同，均未指定 Hz 或秒。用户噪声功率固定 0.05。</div>
+</section>
+
+<section class="sa-section">
+<p class="sa-step">02 / 先手算一次相消</p>
+<h2>用户方向安静，不等于每根天线都不发声</h2>
+<p>暂时只看<strong>一个独立的两天线小例子</strong>。正前方的用户收到两路同相叠加。让雷达权重分别为 +1/2 和 −1/2：</p>
+<div class="sa-handcalc"><article><h3>发射账</h3><p class="sa-equation">|1/2|² + |−1/2|² = 1/2</p><p>两根天线都在发，平均总功率是 0.5。</p></article><article><h3>用户方向账</h3><p class="sa-equation">1/2 + (−1/2) = 0</p><p>先加复数幅度，再平方。相位相反，所以这个方向的雷达项为零。</p></article></div>
+<p>若另一方向的传播相位恰好再给第二路一个负号，收到的幅度就变成 1/2+1/2=1，方向功率为 1。这不是凭空增加总功率，而是不同方向的相干叠加不同。</p>
+<p class="sa-small">方向功率不是把所有角度的曲线值直接相加得到的“总发射功率”。总预算始终按各天线平均功率之和计算。</p>
+<p class="sa-predict"><strong>带着这个问题往下看：</strong>如果用户和目标几乎在同一方向，让用户听不见雷达，会不会也让目标听不见？</p>
+</section>
+
+<section class="sa-section" id="experiment">
+<p class="sa-step">03 / 先比较分离子阵的 A 与 B</p>
+<h2>消掉干扰，再把功率补回来</h2>
+<p>A：左边雷达子阵直接朝目标，右边通信子阵朝用户。B：先从雷达权重中扣掉会进入用户方向的那部分，再把雷达平均功率恢复到 0.5。<strong>B 有定义时，A 与 B 都实际发出总功率 1。</strong></p>
+<div class="sa-controls">
+<label for="sa-target">目标方向参数 u = sin θ <output id="sa-angle" for="sa-target sa-target-number">u=0.25；θ≈14.4775°</output><input id="sa-target" type="range" min="-0.9" max="0.9" step="0.005" value="0.25" aria-describedby="sa-target-help"></label>
+<div class="sa-input-row"><label for="sa-target-number">精确输入 u<input id="sa-target-number" type="number" min="-0.9" max="0.9" step="any" value="0.25" inputmode="decimal" aria-describedby="sa-target-help"></label><button id="sa-reset" type="button">恢复全部默认值</button></div>
+<p id="sa-target-help" class="sa-small">只改变目标方向，用户固定 θ=0°。相邻天线的导向相位差为 πu；滑块等间隔改变 u，角度 θ 的步长不相等。范围 −0.9–0.9；可在输入框使用 1e-12。精确输入是计算依据，滑块只是近似位置。</p>
+</div>
+<p class="sa-small">默认 u=0.25 刻意选为 8 元全阵的一对正交方向：八路相位贡献相加为零，并不是两个方向相差 90°。它方便看出差别，不是典型随机信道。通信门槛 Γ=20（约 13.01 dB）。</p>
+<div class="sa-cards">
+<article class="sa-recipe sa-a"><h3>A · 分离，不置零</h3><p class="sa-small">直接朝目标发独立雷达符号</p><p id="sa-a-result" class="sa-numbers">总功率 1；用户 SINR≈2.2135；目标总照射≈2.8536。</p><p id="sa-a-components">目标：雷达 2 + 通信 0.8536。</p></article>
+<article class="sa-recipe sa-b"><h3>B · 分离，置零后补功率</h3><p class="sa-small">恢复雷达预算，不恢复原权重方向</p><p id="sa-b-result" class="sa-numbers">总功率 1；用户 SINR=40；目标总照射=2。</p><p id="sa-b-components">目标：雷达 1.1464 + 通信 0.8536。</p></article>
+</div>
+<h3>用户收到了什么？</h3>
+<p>用户收到自己的数据、未知的独立雷达符号和噪声。三项先分开算平均功率：D 是想要的数据，Iᵣ 是雷达干扰，σ² 是噪声；本页只有一位用户，没有其他用户干扰。</p>
+<figure class="sa-figure"><figcaption id="sa-user-caption"><strong>用户功率分解。</strong>每行横向是线性功率 0–8；青绿为 D、橙色为 Iᵣ、灰色为噪声。下方读数保留小量，条宽不能替代数值。雷达相消发生在复数叠加时，不是在这幅功率条上做减法。</figcaption><svg id="sa-user" role="img" aria-labelledby="sa-user-caption" viewBox="0 0 700 210" height="210"></svg></figure>
+<p id="sa-user-values" class="sa-result">A：2/(0.8536+0.05)≈2.2135，未过门槛。B：2/(0+0.05)=40，通过门槛。</p>
+<div class="sa-raw"><p class="sa-step">中间步骤 / 只作功率诊断</p><h3>刚投影完时，其实少发了一些功率</h3><p>把原单位雷达权重投影到“用户听不见”的空间，剩下的能量比例叫 q。此时还没补功率，不能放入同预算排行榜。</p><p id="sa-projection" class="sa-numbers">q≈0.5732；雷达平均功率从 0.5 降到 0.2866，整体只发 0.7866。</p><p id="sa-restoration">把幅度乘 1/√q≈1.3208 后，雷达功率回到 0.5；目标雷达照射只从 0.6572 变成 1.1464，仍小于 A 的 2。</p><p class="sa-small">raw 表示未补功率的投影，只在灰框和完整记录里出现，不绘成同预算主方向图。</p></div>
+<h3>功率回来了，目标方向却未必回来</h3>
+<p>下面横轴是相对正前方的角度 θ，纵轴是发射方向功率 aᴴRa，线性范围固定 0–8。A 为橙线，B 为青绿线；竖线分别标出用户与目标方向。<strong>不按各条曲线的峰值归一化。</strong></p>
+<figure class="sa-figure"><figcaption id="sa-pattern-caption">A 与 B 使用相同物理阵列和相同实际总功率；曲线包含通信与雷达的全部照射。它不是目标回波或检测结果。</figcaption><svg id="sa-pattern" role="img" aria-labelledby="sa-pattern-caption" viewBox="0 0 700 300" height="300"></svg></figure>
+<p id="sa-conclusion" class="sa-result">默认 4+4 分组：B 雷达目标照射变弱；通信仍贡献 0.8536，所以总照射是 2。</p>
+<p id="sa-status" class="sa-status" role="status" aria-live="polite">交互正在初始化；手算与默认数值可以直接阅读。</p>
+<noscript><p class="sa-result">本页交互需要 JavaScript。默认 A 的 SINR≈2.2135、目标总照射≈2.8536；B 的 SINR=40、目标总照射=2。q≈0.573223，补功率倍率≈1.320803。下方 C 朝用户的 SINR=160、目标理论零；D 朝目标的目标照射=8、用户 SINR 理论零。四者总发射功率均为 1。</p></noscript>
+</section>
+
+<details class="sa-disclosure" id="sa-shared"><summary>04 / 如果八根都发同一份用户数据呢？</summary><div>
+<h2>共享消掉的是独立雷达项，不是所有取舍</h2>
+<p>共享时 x=wc，所有天线都发送同一份用户数据 c。雷达复用这份数据探测；没有另一个独立符号 s，因此没有独立雷达干扰项。<strong>这不是让用户消除一个已知雷达符号。</strong></p>
+<label for="sa-aim">重点查看哪种共享配方？<select id="sa-aim"><option value="user" selected>C · 全阵朝用户</option><option value="target">D · 全阵朝目标</option></select></label>
+<div class="sa-cards"><article class="sa-recipe sa-c"><h3>C · 共享，朝用户</h3><p id="sa-c-result" class="sa-numbers">SINR=160；目标方向功率理论为 0。</p></article><article class="sa-recipe sa-d"><h3>D · 共享，朝目标</h3><p id="sa-d-result" class="sa-numbers">目标方向功率=8；用户 SINR 理论为 0。</p></article></div>
+<p id="sa-shared-reading" class="sa-result">默认 C 把数据送给用户，却恰好在目标方向形成零点。没有独立雷达干扰，不等于两个任务都完成。</p>
+<p>在相同 0–8 线性坐标下比较四种明确配方：橙 A、青绿 B、蓝 C、紫 D。所选共享配方加粗，另外一条仍保留。B 未定义时不画它，也不拿别的波束冒充 B。</p>
+<figure class="sa-figure"><figcaption id="sa-shared-caption">四种配方的发射方向功率；同总功率、同角度范围、无峰值归一化。它们不是优化后的 Pareto 边界。</figcaption><svg id="sa-shared-pattern" role="img" aria-labelledby="sa-shared-caption" viewBox="0 0 700 300" height="300"></svg></figure>
+<p>默认 B 与 C 都通过通信门槛，B 在目标方向更强。保持 4+4 分组、让两个方向重合时，C 的目标照射为 8，A 为 4，另一个严格零干扰见证为 2；此时 B 未定义。这只能说明<strong>几何与配方会改变结果</strong>。某个配方失败，不证明该架构的所有设计都无解。</p>
+<p class="sa-small">与 <a href="joint-beamforming.html">2020 联合波束成形课</a>分开读：那一页在共享阵列上另加独立雷达流；本页的 2018 共享模型只使用通信符号。</p>
+</div></details>
+
+<details class="sa-disclosure" id="boundaries"><summary>05 / 亲手碰到边界，并检查每天线功率</summary><div>
+<h2>“未定义”“不可行”“没过门槛”是三件事</h2>
+<label for="sa-nr">左侧雷达子阵的天线数 Nᵣ<select id="sa-nr"><option value="1">1 + 7</option><option value="2">2 + 6</option><option value="4" selected>4 + 4 · 默认</option><option value="6">6 + 2</option><option value="7">7 + 1</option></select></label>
+<p class="sa-small">总共仍是 8 根，但每份信号的子孔径随分组改变。雷达和通信预算仍各为 0.5；用户信道始终从同一全阵信道截取，不对子阵另行归一化。</p>
+<div class="sa-presets" role="group" aria-label="边界场景"><button id="sa-aligned" type="button">重合 · u=0</button><button id="sa-near-positive" type="button">很接近 · +10⁻¹²</button><button id="sa-near-negative" type="button">很接近 · −10⁻¹²</button><button id="sa-orthogonal" type="button">4 元正交 · u=0.5</button><button id="sa-one" type="button">只有 1 根雷达天线</button><button id="sa-default-geometry" type="button">默认 · 4+4，u=0.25</button></div>
+<p class="sa-small">边界按钮同时恢复标注的分组：前三项与“4 元正交”均使用 4+4；“只有 1 根”使用 1+7、u=0.5。</p>
+<p id="sa-boundary" class="sa-result">当前投影可归一化；严格置零子空间的维数为 3。</p>
+<p id="sa-witness" class="sa-small"></p>
+<ul><li><strong>精确重合且 Nᵣ&gt;1：</strong>目标导向的投影为零，B 的 0/0 归一化未定义，但零空间仍存在。另造一个相消波束可以花满雷达预算，只是它对重合目标的雷达照射也为零。</li><li><strong>Nᵣ=1 且非零用户信道：</strong>零空间维数为 0，正雷达预算与严格零干扰不能同时满足；这是当前固定分组子问题不可行。</li><li><strong>非常接近：</strong>q 很小但为正；补功率倍数很大，最终雷达功率仍是 0.5，不表示 RF 输出无限增大。</li></ul>
+<h3>总功率相同，是否就有相同功放要求？</h3>
+<p>下图逐根画 B 的实际平均功率 Rₘₘ。虚线 1/8=0.125 只是假如额外要求每天线相等时的参照；本模型<strong>只约束总功率</strong>，没有每天线相等、每天线 1/8 上限、常模或瞬时峰值约束。</p>
+<figure class="sa-figure"><figcaption id="sa-antenna-caption">B 的每天线平均功率，横轴为物理天线编号 m，纵轴为归一化功率；无有效 B 时清空，不显示旧结果。</figcaption><svg id="sa-antenna" role="img" aria-labelledby="sa-antenna-caption" viewBox="0 0 700 270" height="270"></svg></figure>
+<p id="sa-antenna-reading" class="sa-result">默认 B 最大每天线功率≈0.20210，大于 0.125；不能声称满足相同的每天线额定上限。</p>
+<p class="sa-small">固定 4+4 且功率各半时，B 的总目标照射恰好恒为 2（B 有定义时）。这是雷达损失和通信照射变化的特殊抵消；改成 6+2 就没有此恒等式，不是雷达能力保持不变。</p>
+</div></details>
+
+<details class="sa-disclosure" id="mechanism"><summary>06 / 用复数权重和协方差把账写清楚</summary><div>
+<h2>每个公式对应哪个物理量？</h2>
+<p>m=0,…,7；u=sin θ；aₘ(u)=exp(jπmu)，导向向量不除以 √N，所以 ‖a‖²=N。目标和用户处于窄带远场半波长 ULA 的同一合成 LOS 几何中。用户信道 h=√g exp(jφ)a(u用户)，本页 g=1、φ=0.37；假设发射端完整、精确知道 h。没有把子阵信道重新归一化。</p>
+<p>用户收到 y=hᴴx+n。c、s 都是零均值、单位方差、相互独立的复符号。这里算集合平均协方差；有限个独立随机符号不保证样本交叉项恰为零。原论文采用 hᵀx；令本页 h 等于原文信道的共轭即可等价，不能再重复共轭。</p>
+<div class="sa-equation">分离：x=w꜀c+wᵣs；R=w꜀w꜀ᴴ+wᵣwᵣᴴ<br>共享：x=wc；R=wwᴴ<br>D=|hᴴw꜀|²；Iᵣ=|hᴴwᵣ|²；SINR=D/(Iᵣ+σ²)<br>总预算 tr(R)=ΣₘRₘₘ；目标照射 T=a(u目标)ᴴRa(u目标)</div>
+<p>分离两因子在物理天线上的支撑不重叠，因此 R 为块对角。共享的同一数据横跨全阵，R 可以有跨块相关。共享只保留一个因子 w，Iᵣ=0；单用户也使多用户干扰为 0。</p>
+<h3>投影 q 为什么也决定目标损失？</h3>
+<p>在雷达子阵上，令 bᵣ=aᵣ(u目标)/√Nᵣ、bᵤ=aᵣ(u用户)/√Nᵣ。Π=I−bᵤbᵤᴴ 去掉用户方向；v=Πbᵣ，q=‖v‖²。A 使用 √Pᵣbᵣ；raw 使用 √Pᵣv；B 在 q&gt;0 时使用 √Pᵣv/√q。</p>
+<div class="sa-equation">A 的目标雷达功率：PᵣNᵣ<br>raw 的雷达发射功率：Pᵣq；目标雷达功率：PᵣNᵣq²<br>B 的雷达发射功率：Pᵣ；目标雷达功率：PᵣNᵣq</div>
+<p>只在“固定雷达子阵、单目标、精确单用户信道、正半定协方差、总雷达功率 Pᵣ、严格零干扰”这个子问题里，B 达到目标照射上界：Rᵣ 的支撑位于 ker(hᵣᴴ)，故 aᵣᴴRᵣaᵣ≤Pᵣ‖Πaᵣ‖²=PᵣNᵣq。q&gt;0 时上述秩一权重达到等号。<strong>这不是整体分离/共享最优比较。</strong></p>
+<p>推广到 K 位用户时，零空间维数是 Nᵣ−rank(Hᵣ)，不是“每增加一位用户一定少一维”；相关信道不一定增加秩。即使维数大于零，额外每天线约束或指定方向图仍可能无解。本页程序仅计算 K=1。</p>
+<h3>数值零不能冒充物理结论</h3>
+<p>近重合时不用 1−|ρ|² 直接相减，而是用居中阵元和稳定的 exp(jx)−1 残差计算 q；先得到单位残差向量，再乘 √Pᵣ，避免 Pᵣ/q 溢出。近端射用端点余量求周期差，避免把两个不同方向误判为精确别名。</p>
+<p>主目标读数使用上面的解析因子恒等式；完整记录另存同一权重直接复数求和的 *_direct 诊断。极深零点可能有双精度舍入残差，不能叫物理泄漏。正 q 进入次正规数或平方下溢时，程序明确报数值范围错误；它既不是精确重合，也不是子问题不可行，不用 epsilon 抬高 q。即使雷达预算为零，核心仍会计算该 q 诊断；这一极端输入也受相同数值范围限制。主界面固定 Pᵣ=0.5。</p>
+<p id="sa-direct" class="sa-small"></p>
+<p>T 只问“发射端朝该方向有多少照射”。目标反射系数 β、接收阵列、传播损耗和接收噪声不在此指标内，不是把它们偷偷固定为 1；所以它不等于回波 SNR、CRB、检测概率、角度精度或空间分辨率。</p>
+</div></details>
+
+<details class="sa-disclosure" id="paper"><summary>07 / 带着资源账本回到 2018 原文</summary><div>
+<h2>从共存到联合传输，原文实际优化了什么？</h2>
+<p>Fan Liu、Christos Masouros、Ang Li、Huafei Sun、Lajos Hanzo，<cite>MU-MIMO Communications With MIMO Radar: From Co-Existence to Joint Transmission</cite>，IEEE TWC 17(4)，2755–2770，2018。<a href="https://doi.org/10.1109/TWC.2018.2803045" target="_blank" rel="noopener">DOI</a> · <a href="https://discovery.ucl.ac.uk/id/eprint/1563386/7/Masouros%20VoR%2008288677.pdf" target="_blank" rel="noopener">期刊 VoR（UCL）</a> · <a href="https://arxiv.org/pdf/1707.00519v1" target="_blank" rel="noopener">arXiv v1，2017-07-03</a>。v1 是预印本，未核实为接受稿；VoR 是已发表版本，不能混用版本页码。</p>
+<ol class="sa-source-list"><li><strong>先看信号是谁：</strong>VoR §II / Fig.1，印刷 p.2757；v1 PDF p.3。分离观测和 SINR 为式(1)–(4)：VoR pp.2757–2758；v1 pp.3–4。</li><li><strong>共享只发通信数据：</strong>式(5)–(8)，VoR p.2758；v1 p.4。原模型没有附加独立雷达流。</li><li><strong>严格雷达零干扰：</strong>式(11)，VoR p.2759；v1 p.4。分离总协方差与方向图在式(14)–(18)，VoR p.2759；v1 p.5。</li><li><strong>然后读优化：</strong>分离雷达式(12),(13)、通信式(19)，VoR p.2759 / v1 p.5；共享式(20)，VoR p.2760 / v1 p.6。原文使用 SDR、秩一恢复与流形方法，本页没有实现这些求解器。</li></ol>
+<div class="sa-source-grid"><article><h3>保留</h3><p>同一物理 ULA、窄带远场、精确 CSI；分离的独立雷达/通信与块对角协方差；共享复用数据；SINR 中的实际雷达干扰。</p></article><article><h3>改变与省略</h3><p>20 元、14+6、4 用户、Rayleigh 改成 8 元可变分组、1 用户 LOS 合成通道。本站约束实际总迹，省略每天线相等、优化器、接收处理与蒙特卡洛统计复现。</p></article></div>
+<p>原文 §VI（VoR pp.2764–2766 / v1 pp.10–11）含理论与仿真，主要比较场景使用 N=20、Nᵣ=14、N꜀=6、K=4、P₀=20 dBm、N₀=0 dBm、雷达/通信预算各半、iid 复高斯信道；图 3/4 门槛为 10 dB。文中 7 与 15 dB 的旁瓣比是该场景结果，不能改写成普遍通信增益或检测优势。</p>
+<details class="sa-nested"><summary>原文归一化记号的条件核算与局限</summary><div><p>两版式(12),(13)都印为 diag(R₁)=Pᵣ·1/N；附近又定义 R₁ 为 Nᵣ×Nᵣ、Pᵣ 为雷达功率。按全篇 N 为总阵元数逐字计算，tr(R₁)=NᵣPᵣ/N。若 N=20、Nᵣ=14、Pᵣ=P꜀=P₀/2，则雷达迹为 0.35P₀，再由式(19)的通信上限只能推出总迹≤0.85P₀。共享式(20c)规定总迹 P₀。</p><p><strong>这是印刷归一化歧义的条件推算，不是作者实际执行了不公平仿真的证据。</strong>未检查作者代码或勘误，不能断言其实际实现。式(12)还有全阵/子阵导向符号的不一致。本站自行明确维数、直接强制 tr(Rᵣ)=Pᵣ，不自称“修复后复现”。详情与版次散列见<a href="scripts/shared-array-reference/source-audit.md">公开来源核对说明</a>。</p></div></details>
+<p class="sa-small">文献卡继续保留 2026-10-10 的 OpenAlex 963 / Semantic Scholar 936 快照、ComSoc 推荐和社交数据不可用状态；本页没有刷新书目指标。引用数、推荐与科学验证是不同证据。</p>
+</div></details>
+
+<section class="sa-section" id="validation">
+<p class="sa-step">08 / 留下一份能复核的记录</p>
+<h2>下载的是这一次完整计算</h2>
+<p>本站证据是独立推导、确定性复数计算、闭式和程序不变量对照，不是作者算法结果、原图复现或硬件实测。完整 JSON 含所有配方的复数权重、8×8 协方差、每天线功率、用户功率、目标贡献、边界状态和方向图采样；复数编码为 [实部, 虚部]。</p>
+<details class="sa-disclosure" id="sa-export"><summary>查看限长记录预览</summary><div><p>预览最多 12,000 字符，只显示部分数组项；omittedItems 标明省略数量，不能用预览代替复现数据。请下载完整 JSON 查看和复制全部 w꜀、wᵣ、R。</p><pre id="sa-raw" tabindex="0" aria-label="限长 JSON 预览"></pre></div></details>
+<button id="sa-download" type="button" disabled>下载完整 JSON</button><p id="sa-download-status" class="sa-small" role="status"></p>
+<p class="sa-small">下载仅在本机浏览器中生成，不上传实验参数。<a href="docs/SHARED-ARRAY-VALIDATION.md">验证说明与复跑命令</a> · <a href="data/shared-array-fixtures.json">冻结数值样例</a> · <a href="data/shared-array-sources.json">版本与来源数据</a></p>
+<p class="sa-predict"><strong>下一问：</strong>如果必须限制每根天线的最大平均功率，B 还能保留多大的严格零干扰照射？先写清额外约束，再研究优化；不要从本页四个配方推断答案。</p>
+</section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同阵列、同功率的空间置零检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+</main>
+</body>
+</html>

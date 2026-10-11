@@ -371,7 +371,7 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'receiver');
  a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,23);a.equal(r.cases.length,12);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,24);a.equal(r.cases.length,13);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const d=r.directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
  for(const [level,anchor]of [['intuition','question'],['model','model'],['experiment','experiment'],['papers','source'],['limits','boundary'],['reproduction','validation']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href==='perceptive-clutter.html#'+anchor);
@@ -395,11 +395,13 @@ test('all original beginner entries and proposed work survive the narrowly scope
 test('all nine metrics, endorsements and social snapshots are deeply equal and only the existing perceptive entry changes',()=>{
  a.deepEqual(data.cards.map(({id,metrics,endorsements,socialDiscussion})=>({id,metrics,endorsements,socialDiscussion})),expectedEvidence);
  const preserved=structuredClone(data),card=preserved.cards.find(c=>c.id==='perceptive');delete card.caseId;delete card.readingPlan;
+ // Normalize only the later authorized mu_mimo activation before checking this earlier complete-directory snapshot.
+ const shared=preserved.cards.find(c=>c.id==='mu_mimo');shared.caseId=null;shared.readingPlan='计划深读：同一阵列预算下的分离与共享；本站交互尚未实现。';
  // Every other card field, directory field, timestamp, title, source URL and influence claim stays byte-equivalent after JSON parsing.
  a.equal(hash(preserved),'1a98b4a214b9be08e69a0a8087d6117018887e34bee20a04657bf10d656398ca');
  const actual=data.cards.find(c=>c.id==='perceptive');a.equal(actual.caseId,c.id);a.equal(actual.groupId,'signals-networks');
  a.match(actual.readingPlan,/独立单系数机制/);a.match(actual.readingPlan,/没有实现完整网络组织、稀疏多径恢复或论文图11\/12/);
- a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(c=>c.doi)).size,9);a.equal(data.cards.filter(c=>c.caseId).length,7);a.equal(data.cards.filter(c=>!c.caseId).length,2);
+ a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(c=>c.doi)).size,9);a.equal(data.cards.filter(c=>c.caseId).length,8);a.equal(data.cards.filter(c=>!c.caseId).length,1);
  a.equal(actual.metrics.snapshotDate,'2026-10-10');a.equal(actual.metrics.openAlex.comparable,false);a.equal(actual.metrics.openAlex.count,1);a.equal(actual.metrics.openAlex.alternateRecord.count,295);a.equal(actual.metrics.semanticScholar.count,295);
  a.equal(actual.metrics.completedYear.comparable,false);a.equal(actual.metrics.completedYear.count,null);a.equal(actual.socialDiscussion.status,'unavailable');a.match(actual.metrics.openAlex.warning,/未逐条去重，不能相加；排除OpenAlex引用排名/);
 });
@@ -433,14 +435,14 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
  a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes('href="'+u.href+'"'),file);a.ok(read('index.html').includes('href="'+c.learningEntry+'"'));
- const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes('<strong>23</strong> 个机制实验'));a.ok(home.includes('<strong>8</strong> 个研究方向'));
+ const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes('<strong>24</strong> 个机制实验'));a.ok(home.includes('<strong>8</strong> 个研究方向'));
 });
 
-test('the seventh existing paper card is usable while two unavailable cards and the split-record warning remain honest',()=>{
+test('the perceptive paper card is usable while the unavailable DeepSense card and the split-record warning remain honest',()=>{
  const html=read('reading.html'),card=article(html,'paper-perceptive');a.ok(card.includes('href="'+u.href+'"'));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
- a.match(html,/深度交互已接入：7 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
+ a.match(html,/深度交互已接入：8 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  a.match(card,/DOI 拆分记录，不可比/);a.match(card,/仓储记录 295 次/);a.match(card,/未逐条去重，不能相加/);a.match(card,/排除OpenAlex引用排名/);a.match(card,/记录拆分，未给出可比计数/);
- const pending=data.cards.filter(c=>!c.caseId);a.deepEqual(pending.map(c=>c.id),['mu_mimo','deepsense']);
+ const pending=data.cards.filter(c=>!c.caseId);a.deepEqual(pending.map(c=>c.id),['deepsense']);
  for(const item of pending){const h=article(html,'paper-'+item.id);a.match(h,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(h));}
 });
 

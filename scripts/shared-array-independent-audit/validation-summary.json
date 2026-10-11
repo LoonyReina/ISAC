@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "Independent actual-JavaScript mathematical core, helper guards, and static scientific/source content; no browser or publication validation",
+  "core_sha256": "4642fbf9f2f054052119f6944bc2c6f20a4f16390167c8017b7887bfa5fd0bd6",
+  "mathematical_and_source_cross_checks": 148162,
+  "guard_checks": 52,
+  "static_content_checks": 21,
+  "requests": 209,
+  "random_covariance_cases": 24,
+  "expected_numerical_errors": 7,
+  "failures": 0,
+  "files_sha256": {
+    "README.md": "ddd0e9c929736014bcba5cede1a7e6013eb07d9ef080acb96c3da5b4eab7d4e7",
+    "actual-content-results.json": "ce113b9d1ad060e5e757f49e43aa99234f9d9cf71dd87ca6b15c9a6f3c3d3d60",
+    "actual-guard-results.json": "df00c6e12eb21cf1a6d59eb0b8daa0f6d9b840fb58e2ff960729c13ace553420",
+    "actual-js-inputs.json": "d247c0bc86617fb5ea7dd1659406041a29d339b038d1b1998387200960b1eef1",
+    "actual-js-results.json": "ae80610a8c6d1b07f58c55dc25b2de4e8d85fb4e0d72d02ff1fbbe90bcc34382",
+    "actual_js_adapter.mjs": "88f15220ecfa1fea3d012c3e72a9a87d059fd8161d6c8d4730bf10f912fbe458",
+    "audit_actual_content.py": "5525ee610df9588ebc1f89021404878ee920669e2d7b269446678054ed410454",
+    "audit_actual_guards.cjs": "6ab73f6e842dfe47878f3630a2676b2b46a9b75cb02db3bf7c114a5e5bda7981",
+    "audit_actual_js.py": "97918386e755f253f5aea03e31fe8458c0952887cbf850f91859324f6067fd70",
+    "prepare_actual_js_inputs.py": "a5e9cd1a62dd8b9fa2414cf10c0cc69868b0c701e2cf16c19b1b67a84e1de0b0",
+    "run_actual_js.mjs": "5856acdb0807aef8dfd550e36bae8ddab25978342983461feda008c5dc9361a3"
+  }
+}
