@@ -2121,7 +2121,7 @@
       "id": "waveforms",
       "title": "波形与导频：发什么、留哪些已知格子？",
       "question": "同一帧既传数据又探测目标，哪些频率和符号必须已知？",
-      "scope": "发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。",
+      "scope": "发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。",
       "prerequisites": [
         "iq",
         "ofdm-basics",
@@ -5150,6 +5150,7 @@
     ]
   },
   "researchDirectoryFile": "site/research-directory.json",
+  "researchGuidesFile": "site/research-guides.json",
   "paperComparisonGroups": [
     {
       "id": "beamforming",

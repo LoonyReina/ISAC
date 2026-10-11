@@ -32,7 +32,12 @@ test('every earlier unit, case, page, unrelated direction and legacy route is pr
  a.equal(hash(r.units.filter(x=>x.id!==u.id)),'8fc37c5693efdcd718fa3824c7136f763857ba1d762d5904157261e63fb340a2');
  a.equal(hash(r.cases),'8bad502395d9fad13770b4afab9ed26575eca9545599f5c82abbe55ff6187362');
  a.equal(hash(r.pages.filter(x=>x.path!==p.path)),'10ef3d09ee0bdfc391203f8911e3746999630f7dcfeb5448fb394875f1d3939b');
- a.equal(hash(r.directions.filter(d=>d.id!=='receiver')),'3ee503aa4655bba2a42d975d611a5140bedfabe66e5d8c5c48c27b425197fb5d');
+ // Reading-only scope clarification is the sole later change to these directions.
+ const historicalDirections=structuredClone(r.directions.filter(d=>d.id!=='receiver'));
+ const waveforms=historicalDirections.find(d=>d.id==='waveforms');
+ a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
+ waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
+ a.equal(hash(historicalDirections),'3ee503aa4655bba2a42d975d611a5140bedfabe66e5d8c5c48c27b425197fb5d');
  a.equal(hash(r.legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
@@ -120,17 +125,25 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9'
  };
  for(const [file,digest]of Object.entries(expected))a.equal(hash(read(file)),digest,file);
- // The later reading-only comparison adds exactly these five hooks. Preserve
+ // Later reading-only features add these exact hooks. Preserve
  // the byte-level guard for all other generator behavior rather than silently
  // rebasing its original fingerprint or weakening scientific/notebook checks.
  let generator=read('scripts/generate-site.cjs');
  for(const hook of [
   "const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));\n",
+  "const {buildResearchGuides,renderResearchGuides,renderGuideDirectionLink}=require(path.join(__dirname,'research-guides.cjs'));\n",
+  'const researchGuides=buildResearchGuides(JSON.parse(read(registry.researchGuidesFile)),registry);\n',
+  '${renderGuideDirectionLink(researchGuides,d.id)}',
+  '${researchGuides.length?`<a href="#research-guides">${researchGuides.length} 篇问题式导读</a>`:\'\'}',
+  'reading+=renderResearchGuides(researchGuides);\n',
+  '<link rel="stylesheet" href="research-guides.css?v=research-guides-v1">',
+  '<script defer src="research-guides.js?v=research-guides-v1"></script>',
+
   '${registry.paperComparisonGroups?.length?\'<a href="#paper-comparisons">同方向论文对读</a>\':\'\'}',
   'reading+=renderComparisonGroups(registry);\n',
   '<link rel="stylesheet" href="paper-comparison.css?v=paper-comparison-v1">',
   '<script defer src="paper-comparison.js?v=paper-comparison-v1"></script>'
- ]){a.equal(generator.split(hook).length,2,'exactly one comparison hook');generator=generator.replace(hook,'');}
+ ]){a.equal(generator.split(hook).length,2,'exactly one reading-only hook');generator=generator.replace(hook,'');}
  a.equal(hash(generator),'97793677fbea4ead386121de1f6e62dfac9ec1a01cdad88576bf3de0281c5cb9','generator outside reading-only hooks');
  // A mutation outside those hooks must still trip the preserved-byte guard.
  const unrelated=generator.replace('const notebookTopics=buildNotebookTopics(registry);','const notebookTopics=[];');

@@ -25,7 +25,12 @@ test('existing lessons, cases, pages, unrelated directions and legacy links matc
  a.equal(hash(r.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
  a.equal(hash(r.cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
  a.equal(hash(r.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
- a.equal(hash(r.directions.filter(x=>x.id!=='networks')),'8cbd0865146fb27cfdceab1f7297c6182f5ea771378f5e6cbef02f54c6d370d4');
+ // Reading-only scope clarification is the sole later change to these directions.
+ const historicalDirections=structuredClone(r.directions.filter(x=>x.id!=='networks'));
+ const waveforms=historicalDirections.find(d=>d.id==='waveforms');
+ a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
+ waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
+ a.equal(hash(historicalDirections),'8cbd0865146fb27cfdceab1f7297c6182f5ea771378f5e6cbef02f54c6d370d4');
  a.equal(hash(r.legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
