@@ -6,12 +6,14 @@ const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(regis
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
 const {remainingTraceIds,withoutRemainingTraces,priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
+const {withoutNetworkContext,withoutNetworkProgression}=require('./helpers/network-context-preservation.cjs');
 const initialTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','bistatic-ofdm-clock-measurement-2023']);
 const previousTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','networks-cooperative-clusters-2024','cellfree-vq-compression-2026','bistatic-ofdm-clock-measurement-2023','isac-net-model-driven-passive','multimodal-transformer-beam-generalization']);
 // Only the sixteen reviewed optional trace fields are excluded. Every original
-// guide field and all fields on the three context guides retain exact guards.
+// guide field and the three original context guides retain exact guards; the
+// network addition is separately checked before the earlier fingerprints run.
 const reviewedTraceIds=new Set([...previousTraceIds,...remainingTraceIds]);
-const guideCores=cards=>cards.map(card=>{if(!reviewedTraceIds.has(card.id))return card;const {visualTrace,...core}=card;return core;});
+const guideCores=cards=>withoutNetworkContext({cards}).cards.map(card=>{if(!reviewedTraceIds.has(card.id))return card;const {visualTrace,...core}=card;return core;});
 test('nineteen guide-only resources extend all eight existing directions without inflating lessons or snapshots',()=>{
  a.deepEqual([registry.cases.length,registry.units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,28,8,32]);
  a.equal(data.cards.length,19);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver','channels','channels','tradeoffs','tradeoffs','channels','waveforms','prototype']);
@@ -141,7 +143,12 @@ test('trace-only reading additions preserve the four map routes and unchanged re
   'index.html':'4b4b189ef9029583d4f0f6935c77722da3f9853a4848fbd78594c7f806a7e011',
   'reference-uncertainty-core.js':'fffc85f8ea37b2cf365ce05464bcffcbe1337ba67150dd8bf1e690ce805c4551'
  };
- for(const [file,digest]of Object.entries(unchanged))a.equal(crypto.createHash('sha256').update(read(file)).digest('hex'),digest,file);
+ for(const [file,digest]of Object.entries(unchanged)){
+  let prior=read(file);
+  if(file==='site/registry.json')prior=JSON.stringify(withoutNetworkProgression(registry),null,2)+'\n';
+  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);}
+  a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
+ }
 });
 test('optional traces validate exact structure, information statuses, evidence boundaries and approved local lessons',()=>{
  const mutations=[
@@ -273,7 +280,7 @@ test('same-hash direction clicks also reveal cards before native anchor navigati
 test('third direction is selectable, searchable and deep-linkable with the existing enhancement',()=>{
  const h=setup();a.equal(h.groups.length,8);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks','prototype','learning','receiver','channels','tradeoffs']);
  h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 19/);
- h.search('Root CRLB');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024']);
+ h.search('Root CRLB');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);
  h.search('cpu 码本');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-cellfree-vq-compression-2026']);
  h.choose('waveforms');h.document.querySelector('[href="#research-guides-networks"]').fire('click');a.equal(h.select.value,'networks');a.equal(h.query.value,'');a.ok(h.cards.filter(c=>c.dataset.guideDirection==='networks').every(c=>!c.hidden));
  for(const card of data.cards.slice(4,6)){h.choose('spatial');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'networks');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
@@ -381,7 +388,7 @@ test('three context cards preserve the original sixteen complete records and sev
  const before=JSON.stringify(data);build();render();a.equal(JSON.stringify(data),before,'derived reverse links never mutate source cards');
 });
 test('context trails keep relation direction, fixed-source locators and four ordered questions in native disclosures',()=>{
- const h=setup(),all=build();a.equal(h.document.querySelectorAll('[data-context-trail]').length,3);
+ const h=setup(),all=build();a.equal(h.document.querySelectorAll('[data-context-trail]').length,4);
  for(const c of all.filter(c=>c.contextTrail)){
   const card=h.cards.find(x=>x.id==='guide-'+c.id),trail=card.querySelector('[data-context-trail]');a.equal(trail.open,false);a.equal(trail.querySelectorAll('details').length,0);
   a.deepEqual(trail.querySelectorAll('h5').map(x=>x.textContent),['旧问题从哪里来？','这次改变了什么条件？','证据目前支持到哪里？','尚待检验的下一问']);
@@ -394,7 +401,7 @@ test('context trails keep relation direction, fixed-source locators and four ord
    a.ok(next.querySelector('[href="#guide-'+c.id+'"]'));a.ok(next.textContent.includes(entry.relationType==='direct-citation'?'新文直接引用本卡原文':'本站按问题关联'));
   }
  }
- a.equal(h.document.querySelectorAll('[class="guide-onward"]').length,6);
+ a.equal(h.document.querySelectorAll('[class="guide-onward"]').length,7);
  a.doesNotMatch(source,/context-trail|contextTrail|publicationStatus/);
 });
 test('first submission, exact version and checked dates remain distinct with author-reported publication status',()=>{
@@ -429,7 +436,7 @@ test('context prose and publication status are safely escaped in text, source de
  a.ok(trail.querySelectorAll('a').every(x=>x.getAttribute('href').startsWith('#guide-')||x.getAttribute('href')===c.source.url));
 });
 test('context searches and bidirectional guide anchors reuse filtering without collapsing native reading state',()=>{
- const h=setup();h.search('2026脉络');a.deepEqual(new Set(h.cards.filter(c=>!c.hidden).map(c=>c.id)),new Set(data.cards.slice(16).map(c=>'guide-'+c.id)));a.match(h.count.textContent,/3 \/ 19/);
+ const h=setup();h.search('2026脉络');a.deepEqual(new Set(h.cards.filter(c=>!c.hidden).map(c=>c.id)),new Set(data.cards.filter(c=>c.contextTrail).map(c=>'guide-'+c.id)));a.match(h.count.textContent,/4 \/ 19/);
  const old=h.cards.find(c=>c.id==='guide-ofdm-passive-atomic-errors-2017'),next=h.cards.find(c=>c.id==='guide-zak-otfs-semiblind-offgrid-2026'),trail=next.querySelector('[data-context-trail]');trail.open=true;
  h.choose('receiver');h.search('no match');old.querySelector('[class="guide-onward"]').querySelector('[href="#'+next.id+'"]').fire('click');a.equal(h.select.value,'waveforms');a.equal(h.query.value,'');a.equal(next.hidden,false);a.equal(trail.open,true);
  h.search('no match');trail.querySelector('[href="#'+old.id+'"]').fire('click');a.equal(h.select.value,'receiver');a.equal(old.hidden,false);a.equal(trail.open,true);
@@ -437,5 +444,35 @@ test('context searches and bidirectional guide anchors reuse filtering without c
  h.form.fire('reset');h.search('Gaudio等2022');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),[next.id]);
  h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.equal(trail.open,true);
  // A later check does not reclassify an older version as that year's work.
- const d=structuredClone(data);d.cards[16].source.checkedAt='2027-01-01';const future=setup({html:render(d)});future.search('2027脉络');a.ok(future.cards.every(c=>c.hidden));future.search('2026脉络');a.equal(future.cards.filter(c=>!c.hidden).length,3);
+ const d=structuredClone(data);d.cards[16].source.checkedAt='2027-01-01';const future=setup({html:render(d)});future.search('2027脉络');a.ok(future.cards.every(c=>c.hidden));future.search('2026脉络');a.equal(future.cards.filter(c=>!c.hidden).length,4);
+});
+
+test('one network context and five source fields preserve all nineteen prior cards and sixteen traces exactly',()=>{
+ const hash=d=>crypto.createHash('sha256').update(JSON.stringify(withoutNetworkContext(d),null,2)+'\n').digest('hex'),before=JSON.stringify(data);
+ const baseline='39a643d26a4ffad9e5e8e3071b273947f4769a40e5d1ae02f5526400d9a70e09';a.equal(hash(data),baseline);a.equal(JSON.stringify(data),before);
+ const network=d=>d.cards.find(c=>c.id==='cellfree-vq-compression-2026');
+ for(const mutate of [d=>{network(d).question+=' changed';},d=>{network(d).visualTrace.title+=' changed';},d=>{d.cards[16].contextTrail.changedCondition+=' changed';},d=>{network(d).source.edition+=' changed';},d=>{network(d).source.unreviewed='extra';}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
+ for(const mutate of [d=>{network(d).contextTrail.links[0].relationType='direct-citation';},d=>{network(d).contextTrail.changedCondition+=' changed';},d=>{network(d).source.publicationUrl='https://example.test/wrong';},d=>{delete network(d).source.checkedAt;},d=>{network(d).source.checkedAt='2026-10-12';}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/exact reviewed/);}
+ a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.units.length,registry.cases.length],[19,16,4,28,15]);
+ const immutable={
+  'reference-uncertainty-record.js':'43f70469c54f55be0f6b8e38344df41b8115d33ff4205e34f13b23ec34730eee',
+  'reference-uncertainty.js':'fd2c838f3b75a825db4536756977d2cbc4b0a588833e6d6bfbd70c57dcc5067a',
+  'reference-uncertainty.html':'13984179f9ea76c7150a25de72d598550125776e26a21e0226f8f99d04d09ef2',
+  'reference-uncertainty.css':'63e05e77ca87c67dcb90c3a2e351ac6c5788af8747fe02f2724dad3953cf3f8c'
+ };
+ for(const [file,digest]of Object.entries(immutable))a.equal(crypto.createHash('sha256').update(read(file)).digest('hex'),digest,file);
+});
+test('network question bridge distinguishes metric and payload units while keeping publication timing qualified',()=>{
+ const c=data.cards.find(c=>c.id==='cellfree-vq-compression-2026'),h=setup(),card=h.cards.find(x=>x.id==='guide-'+c.id),trail=card.querySelector('[data-context-trail]');
+ a.equal(c.contextTrail.links.length,1);a.equal(c.contextTrail.links[0].guideId,'networks-cooperative-clusters-2024');a.equal(c.contextTrail.links[0].relationType,'problem-link');
+ for(const phrase of ['Root CRLB','RMSE','每 AP 每次在线更新的比特数','更新频率、带宽及速率单位','不声称引用、算法继承或性能优越','训练/码本同步'])a.ok(trail.textContent.includes(phrase),phrase);
+ a.equal(c.source.firstSubmittedAt,'2026-02-23T20:07:58Z');a.equal(c.source.versionAt,c.source.firstSubmittedAt);a.equal(c.source.checkedAt,'2026-10-11');
+ a.ok(card.querySelector('[href="https://doi.org/10.1109/JSAC.2025.3613283"]'));
+ a.match(card.querySelector('[class="guide-source"]').textContent,/不把它当作期刊首次发表日/);
+ a.match(card.querySelector('[class="guide-currentness"]').textContent,/2026脉络.*固定版本：2026-02-23.*非最新保证/);
+ const old=h.cards.find(x=>x.id==='guide-networks-cooperative-clusters-2024');a.ok(old.querySelector('[class="guide-onward"]').querySelector('[href="#'+card.id+'"]'));
+ trail.open=true;card.querySelector('[data-visual-trace]').open=true;
+ h.choose('receiver');h.search('no match');old.querySelector('[href="#'+card.id+'"]').fire('click');a.equal(card.hidden,false);a.equal(h.select.value,'networks');a.equal(trail.open,true);
+ h.search('no match');trail.querySelector('[href="#'+old.id+'"]').fire('click');a.equal(old.hidden,false);a.equal(h.select.value,'networks');a.equal(trail.open,true);
+ h.form.fire('reset');h.search('协作预算 观测表示');a.deepEqual(h.cards.filter(x=>!x.hidden).map(x=>x.id),[card.id]);a.equal(card.querySelector('[data-visual-trace]').open,true);
 });
