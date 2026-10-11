@@ -63,7 +63,7 @@ The nine-page [arXiv v1](https://arxiv.org/abs/2111.09676v1), dated 2021-11-18, 
 
 Only the existing `radar_prediction` bibliography card's `caseId` and `readingPlan` changed. The other eight cards and every citation/social snapshot remain unchanged; `deepsense.caseId` remains null. Counts become 22 units, 11 cases and six available teaching cases among nine paper cards, with the same eight directions and 31 concept entry routes. The learning direction now explicitly includes sensing-assisted communications. New deep references do not replace any beginner entry.
 
-## Verification layers
+## Original implementation verification layers
 
 1. Pure-core tests cover normalization and invalid data, deterministic generation, all 63 midpoint ties, a nontransitive tie counterexample, direct array response, actual-max reference, exact-zero and tiny-positive losses, matched train/test membership, train-label dependence, frozen nested rankings, metadata renaming, and throwing getters preventing oracle access.
 2. Default plus 40 seed/control settings are cross-checked with a separately written Python stdlib implementation. It compares every generated feature and label, full training/test memberships, estimated coordinates, complete 64-beam rankings, selected full power vectors and aggregate metrics. Validation data is an audit artifact, never loaded as a leaderboard by the UI.
@@ -71,7 +71,7 @@ Only the existing `radar_prediction` bibliography card's `caseId` and `readingPl
 4. Mock-DOM UI tests execute the actual controller. They check K=1/5/64, all 64 plotted powers, unchanged predictions during sample selection, evaluation-only example selection, lazy split comparison, controls, seed reproducibility, reset, missing/throwing core, invalid-state clearing, explicit infinite-loss rendering/export and downloadable JSON. Geometry is checked at SVG widths including 220,259,291,323,375,600 and 1000 pixels. Native labels, focus styling, closed disclosures and keyboard-focusable export/table regions are statically checked.
 5. Integration tests check all real local routes, six research-depth layers, generated portals, preservation hashes for the original directory/DeepSense card, exact source editions and all 31 beginner routes.
 
-These checks do not certify rendered text bounds, real browser download behavior, actual keyboard/screen-reader interaction, online assets or deployment. Real-browser and live-site checks are separate release work and are not claimed here.
+These implementation checks alone do not certify rendered text bounds, real browser download behavior, actual keyboard/screen-reader interaction, online assets or deployment. The later deployment and cloud Chrome checks are recorded separately below; their scope must not be inferred from the local tests.
 
 ## Rerun
 
@@ -86,7 +86,7 @@ git diff --check
 
 The fixed seed49 regression is a NumPy-prototype **power fixture**, not a claim that JavaScript seed49 generates that same row. Reference power 0.9960103361670658 and candidate power 3.1550589621386463×10⁻¹³ give 124.99256365562623 dB; a 10⁻¹² floor would incorrectly change the result to approximately 119.9826 dB.
 
-## Executed final local checks
+## Executed original implementation local checks
 
 On 2026-10-11, the final numerical core SHA-256 is `e563509a99a5ed93a6dd0dd9df81a9366e4c7d3d7ec895ddc3bc9d98927eb358`.
 
@@ -98,4 +98,52 @@ On 2026-10-11, the final numerical core SHA-256 is `e563509a99a5ed93a6dd0dd9df81
 - Separate input-robustness audit: **71/71 checks passed**, including sparse full rankings outside the selected prefix, invalid geometry, nonfinite/overflow inputs and uncapped zero/tiny-positive power losses
 - Separate actual-controller mock-DOM learning/UI review: **7 grouped checks passed**; all **32** local page links/resources resolved
 
-No browser was opened, no commit or publication was made during this implementation. Browser-rendered text, actual keyboard/download behavior and deployed-site asset loading still require the parent release check. This document must not be read as a deployment or measured-radio certification.
+At the end of the original implementation stage, no browser had been opened and no commit or publication had been made in that stage. The subsequent release and live checks below close the deployment and browser checks only to the extent explicitly recorded. Neither stage is a measured-radio certification.
+
+## PR #33 deployment and live QA closeout
+
+The following checks were completed later on 2026-10-11 UTC, after the implementation checks above.
+
+### Release identity and repository verification
+
+- PR #33 head: `51cfa5de00c43e32e20d90b18a0e8de5c29fea5f`; merge commit: `b9cf4a6ad5e7dfed82f549122375570b58fc2ddc`
+- GitHub Pages deployment run `38114363989` completed successfully for that exact merge commit
+- All 26 remote release files matched the frozen release manifest, whose SHA-256 was `16e36d672ad4516e8fde733945a87a3f2c53412f5e03443c08c7aba6c81af8ac`
+- An independent release rerun passed all 432 repository tests, generator freshness and `git diff --check`; the audited numerical-core SHA-256 remained `e563509a99a5ed93a6dd0dd9df81a9366e4c7d3d7ec895ddc3bc9d98927eb358`
+
+The remote-file comparison verifies repository contents. A separate live HTTP byte-comparison attempt did not complete, and a bounded retry timed out. No live-served SHA-256 equality is claimed. Successful deployment of the exact merge and actual live rendering/interactions were verified separately from that incomplete byte check.
+
+### Actual cloud Chrome checks
+
+The deployed lesson was tested in cloud Chrome at a 1,165 CSS-pixel viewport with 100% desktop zoom and at a 323 CSS-pixel viewport with 150% desktop zoom. These were actual browser sessions, not mock-DOM tests or a physical-phone test.
+
+- The page initialized real model predictions. With seed 37 and the held-pass protocol, sample 2050 at K=1 missed label 6, selected beam 7 and showed approximately 0.639 dB loss. K=5 contained label 6 and gave zero loss. K=64 gave a label hit, zero loss and 64 probes
+- The example finder selected sample 2054, with recommendation 9 versus label 10 and approximately 0.019 dB loss. Its explanation visibly disclosed that evaluation truth was used to choose the example
+- Keyboard Home/End reached K=1/64. Repeated reset restored the full default state. Native Enter opened disclosures. Neutral-control and held-scene selections recalculated model scores
+- Native keyboard entry of seed 49 followed by Tab updated the calculation; ArrowUp then updated it to seed 50. An automation-only fill-plus-Tab attempt changed the input without delivering the change event, so native typing was used to verify actual keyboard behavior
+- At the narrow viewport, controls and the legend wrapped, and the linear 64-beam chart remained readable with distinct label-square and probed-circle markers. Measured SVG text bounds fit the 276 CSS-pixel chart; document width and scroll width both measured 323 CSS pixels
+- Keyboard ArrowRight scrolled the table within its container. ArrowDown/ArrowRight scrolled the raw JSON within its container; observed container-scroll changes included 26.67 CSS pixels
+- The complete 618,865-character record parsed as JSON with seed 37, 512 training observations, 64 test anchors, frozen predictions separated from `evaluationOnly`, and protocol comparisons. A real browser download event completed
+- The bibliography's `radar_prediction` action opened the initialized lesson. The knowledge-map task-learning relation and its deep action opened the initialized `#mechanism` section. The original nine influence-card snapshots were preserved; integration counts were 22 units, 11 cases, 31 concepts, eight directions and six active teaching cases among nine paper cards
+
+The browser was restored to the 1,165 CSS-pixel / 100% zoom state after the checks.
+
+### Observed limitation and remaining coverage
+
+With the full raw-JSON disclosure expanded, automated retrieval of the full accessibility tree timed out. DOM focus and container scrolling remained functional, and closing the disclosure restored accessibility-tree retrieval. This is an observed automation limitation with the large expanded record; it does not establish a real screen-reader failure or a page crash. Screen-reader behavior was not certified.
+
+The sampled error log contained extension-origin metadata errors only; it is not an all-time or full-browser-console guarantee. No physical phone, other browser engine, screen reader, print flow, no-JavaScript browser session or radio hardware was tested. The closeout records the deployed PR #33 behavior, including its full raw-JSON disclosure, and does not certify later changes to record previews.
+
+## Bounded record preview follow-up — local verification, 2026-10-11 UTC
+
+The PR #33 live observation above led to a presentation-only follow-up shared with the OFDM lesson. The record disclosure now says “查看当前记录预览与下载完整 JSON”; its keyboard-focusable JSON region is explicitly labeled as a preview. The inline record is valid JSON capped at 12,000 JavaScript string characters, with `previewInfo.completeRecord: false` and explicit collection counts (`totalItems`, `shownItems`, `omittedItems`, `firstItems`). Short scalar coordinates remain intact. A budget fallback lists omitted top-level fields instead of cutting JSON syntax.
+
+The full current record is built from the same successful render and stays out of the DOM. A native button requests a locally generated JSON Blob containing all 512 training rows, all 64 prediction inputs and frozen 64-beam rankings, all 64 evaluation-only power vectors, memberships, definitions and metrics. When the split extension is open, the complete record retains all three protocol comparisons. `evaluationOnly` remains separate from prediction inputs; infinite losses remain the explicit string `"Infinity"`. There is no scientific-core change, network upload, extra dependency or new truth input to prediction.
+
+Closing the disclosure clears its preview text without rerunning training. Reset and computation failures clear the export snapshot and revoke pending object URLs; successful rendering enables the current download again. Download-start failures retain only the bounded preview and explicitly say it is not a substitute for the full record. Each download request gets its own temporary URL, revoked after the request or on page exit. The status reports a request to the browser rather than claiming the file was saved.
+
+The final local repository suite passed **443/443 tests**, including **34/34** shared-helper and two-lesson UI tests. New coverage checks bounded JSON, omission accounting, original complete-download contents, repeated controls/disclosures/downloads/reset, stale-export clearing, missing helpers, Blob/URL/click failures, URL lifecycle and Infinity semantics. The independent Python radar validator again passed its default plus 40 seed/control comparisons and regenerated its reference file byte-for-byte; the OFDM validator also regenerated its unchanged artifact after 15 checks. Site generation, freshness and whitespace checks passed.
+
+A separate independent review found no correctness defects and compared 23 representative actual-controller snapshots across both lessons; every previous full record matched its new complete-download record byte-for-byte. This included all three radar protocols, all control presets, K=1/5/64, sample selection, extension states and seeds 0/49/99999, plus OFDM map/noise/gap/focus states. Default radar preview/full lengths were 7,123/300,220 characters with the extension closed and 8,098/618,863 with it open. The largest tested preview was 8,358 characters. Every observed preview-DOM write was empty or valid preview-only JSON within the 12,000-character bound.
+
+These follow-up checks are numerical/controller/mock-DOM verification. No new browser interaction, publication, screen-reader result or resolution of the previous accessibility-tree timeout is claimed here; the prior PR #33 live checks apply only to that deployed version.
