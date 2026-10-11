@@ -1,0 +1,311 @@
+{
+  "core_sha256": "4642fbf9f2f054052119f6944bc2c6f20a4f16390167c8017b7887bfa5fd0bd6",
+  "checks": 52,
+  "failures": [],
+  "results": [
+    {
+      "name": "evaluate invalid null",
+      "pass": true,
+      "error": "configuration must be an object",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid []",
+      "pass": true,
+      "error": "configuration must be an object",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"n\":0}",
+      "pass": true,
+      "error": "both physical subarrays must be nonempty",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"n\":129}",
+      "pass": true,
+      "error": "n exceeds the supported maximum of 128 elements",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"n\":3.2}",
+      "pass": true,
+      "error": "n and nr must be integers",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"n\":true}",
+      "pass": true,
+      "error": "n and nr must be integers",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"nr\":0}",
+      "pass": true,
+      "error": "both physical subarrays must be nonempty",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"nr\":8}",
+      "pass": true,
+      "error": "both physical subarrays must be nonempty",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"nr\":1.5}",
+      "pass": true,
+      "error": "n and nr must be integers",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"noise_power\":0}",
+      "pass": true,
+      "error": "strictly positive power and noise required",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"total_power\":0}",
+      "pass": true,
+      "error": "strictly positive power and noise required",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"target_u\":1.01}",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"user_u\":-1.01}",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"radar_fraction\":-0.1}",
+      "pass": true,
+      "error": "invalid power fraction or channel gain",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"radar_fraction\":1.1}",
+      "pass": true,
+      "error": "invalid power fraction or channel gain",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"channel_gain\":-1}",
+      "pass": true,
+      "error": "invalid power fraction or channel gain",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"qos_linear\":-1}",
+      "pass": true,
+      "error": "qos must be nonnegative",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"noise_power\":null}",
+      "pass": true,
+      "error": "parameters must be finite",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"target_u\":null}",
+      "pass": true,
+      "error": "parameters must be finite",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"qos_linear\":\"20\"}",
+      "pass": true,
+      "error": "parameters must be finite",
+      "code": null
+    },
+    {
+      "name": "evaluate invalid {\"unexpected\":1}",
+      "pass": true,
+      "error": "unknown configuration field: unexpected",
+      "code": null
+    },
+    {
+      "name": "largest supported N=128",
+      "pass": true
+    },
+    {
+      "name": "tiny positive q subnormal",
+      "pass": true,
+      "error": "positive projection energy is subnormal; relative-accuracy range exceeded, not geometric infeasibility",
+      "code": "NUMERICAL_RANGE"
+    },
+    {
+      "name": "tiny positive q underflow",
+      "pass": true,
+      "error": "positive geometric projection underflowed; do not label it infeasible",
+      "code": "NUMERICAL_RANGE"
+    },
+    {
+      "name": "finite inputs derived overflow",
+      "pass": true,
+      "error": "derived value exceeds the finite numerical range; not geometric infeasibility",
+      "code": "NUMERICAL_RANGE"
+    },
+    {
+      "name": "covariance empty factors",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "covariance empty vectors",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "covariance ragged factors",
+      "pass": true,
+      "error": "factor dimensions must agree",
+      "code": null
+    },
+    {
+      "name": "covariance nonfinite pair",
+      "pass": true,
+      "error": "complex value must be a dense finite [real, imaginary] pair",
+      "code": null
+    },
+    {
+      "name": "covariance sparse vector",
+      "pass": true,
+      "error": "beam vector must be dense",
+      "code": null
+    },
+    {
+      "name": "covariance too many rows",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "pattern empty factors",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "pattern ragged factors",
+      "pass": true,
+      "error": "factor dimensions must agree",
+      "code": null
+    },
+    {
+      "name": "pattern nonfinite coordinate",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "pattern nonphysical coordinate",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "inner mismatched vectors",
+      "pass": true,
+      "error": "vector dimensions must agree",
+      "code": null
+    },
+    {
+      "name": "inner nonfinite input",
+      "pass": true,
+      "error": "complex value must be a dense finite [real, imaginary] pair",
+      "code": null
+    },
+    {
+      "name": "norm2 nonfinite input",
+      "pass": true,
+      "error": "complex value must be a dense finite [real, imaginary] pair",
+      "code": null
+    },
+    {
+      "name": "scale nonfinite scalar",
+      "pass": true,
+      "error": "scale must be finite",
+      "code": null
+    },
+    {
+      "name": "scale malformed pair",
+      "pass": true,
+      "error": "complex value must be a dense finite [real, imaginary] pair",
+      "code": null
+    },
+    {
+      "name": "steering invalid coordinate",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "steering sparse indices",
+      "pass": true,
+      "error": "element indices must be dense integers in [0,127]",
+      "code": null
+    },
+    {
+      "name": "steering nonfinite index",
+      "pass": true,
+      "error": "element indices must be dense integers in [0,127]",
+      "code": null
+    },
+    {
+      "name": "projection zero dimensions",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "projection excessive dimensions",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "projection invalid direction",
+      "pass": true,
+      "error": "u must equal a physical sin(theta) in [-1,1]",
+      "code": null
+    },
+    {
+      "name": "projection negative channel gain",
+      "pass": true,
+      "error": "channel gain must be finite and nonnegative",
+      "code": null
+    },
+    {
+      "name": "Dirichlet invalid dimensions",
+      "pass": true,
+      "error": "element count must be an integer in [1,128]",
+      "code": null
+    },
+    {
+      "name": "Dirichlet nonfinite delta",
+      "pass": true,
+      "error": "spatial difference must be finite",
+      "code": null
+    },
+    {
+      "name": "zero radar factor remains valid",
+      "pass": true
+    },
+    {
+      "name": "zero channel one radar element",
+      "pass": true
+    },
+    {
+      "name": "exact alias correctly undefined",
+      "pass": true
+    }
+  ]
+}
