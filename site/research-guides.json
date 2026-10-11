@@ -62,7 +62,92 @@
           "locator": "§V-A；§VI-C，图6–7",
           "purpose": "不要把某个检测器在失配模型下的退化，当成波形的普遍结论。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一串发射符号，为什么一端已知、另一端还要猜？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "雷达端",
+                "status": "observed",
+                "text": "目标反射形成的回波样本"
+              },
+              {
+                "label": "通信端",
+                "status": "observed",
+                "text": "经过通信信道的接收样本"
+              }
+            ],
+            "explanation": "两端共享发射波形，不应画成收到同一个 Y。这里的两个接收观测框对应不同任务。",
+            "sourceLocator": "§II; §III, equations (12)–(16)",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "雷达端的参考",
+                "status": "known",
+                "text": "本地知道这次发射的数据符号"
+              },
+              {
+                "label": "通信端的任务",
+                "status": "unknown",
+                "text": "待发送的消息符号对这个接收端仍未知，必须检测"
+              }
+            ],
+            "explanation": "已知是相对于某个接收端说的；发送端知道消息，不会自动让通信接收端知道消息。雷达端仍需估计回波时延、多普勒和增益。通信端虽不知道数据符号，这一检测分析仍假定完美信道状态信息（CSI）；信道获取另计。",
+            "sourceLocator": "§II; §IV-A, equation (17); §V-A"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "感知处理",
+                "status": "design",
+                "text": "把已知符号放入耦合回波模型，构造近似最大似然参数估计"
+              },
+              {
+                "label": "通信处理",
+                "status": "design",
+                "text": "在耦合观测中使用因子图软检测恢复未知符号"
+              }
+            ],
+            "explanation": "先认清未知量，再读检测器或估计器；画出距离–多普勒图，本身不说明发射端用了 OTFS 调制。",
+            "sourceLocator": "§III, equations (12)–(16); §IV-A/B; §V-A"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "给定设置中的参数 RMSE、CRB 和通信速率分析/数值仿真"
+              },
+              {
+                "label": "未由这些图证明",
+                "status": "not-established",
+                "text": "未知目标数量下的检测概率，或任意资源/接收机条件下的波形优越性"
+              }
+            ],
+            "explanation": "图4的参数误差与式(52)–(53)的速率回答不同问题；保护间隔开销和接收复杂度也要核对。本站没有运行本文接收机。",
+            "sourceLocator": "§VI-B, Figure 4, equations (52)–(53); §VI-C, Figures 6–7",
+            "lessonHref": "theory.html#estimator-crb"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "论文画出了距离–速度估计 RMSE，就证明了未知目标数时的检出率吗？",
+          "answer": "不能。参数误差、目标是否被检出是不同评价任务；本文多径数值例还使用已知路径数和足够分离的路径条件。",
+          "sourceLocator": "§VI-B, Figure 4 and the multipath numerical setup."
+        }
+      }
     },
     {
       "id": "otfs-sensing-assisted-2021",
@@ -240,7 +325,93 @@
           "locator": "§IV-A；§IV-C 式(19)、Fig. 5",
           "purpose": "标注被放宽的远场约束，辨认空间谱的坐标与含义，不把谱图当作 ROC 或 RMSE"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "位置已知时，照射强度与目标间相似性是同一件事吗？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "模型/仿真中的接收观测",
+                "status": "observed",
+                "text": "多个目标回波叠加的阵列观测"
+              },
+              {
+                "label": "设计输入",
+                "status": "known",
+                "text": "给定的用户、目标位置和球面波空间响应"
+              }
+            ],
+            "explanation": "先画清设计所用位置来自假设；不要把位置标签画成已经由接收机估出来的结果。",
+            "sourceLocator": "§II-A; §II-C, equations (3)–(7); §II-D, equations (11)–(14)",
+            "lessonHref": "near-field.html#geometry"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "目标位置",
+                "status": "known",
+                "text": "作为设计输入已知"
+              },
+              {
+                "label": "目标反射强弱",
+                "status": "unknown",
+                "text": "设计不要求预先知道 RCS"
+              }
+            ],
+            "explanation": "RCS 是目标散射强弱的表征。‘不需要 RCS 先验’没有把‘已知目标位置’这一条件取消。",
+            "sourceLocator": "§II-A; §II-D; §III"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "每个位置",
+                "status": "design",
+                "text": "抬高最弱目标的加权照射增益"
+              },
+              {
+                "label": "每对位置",
+                "status": "design",
+                "text": "约束目标间互相关，同时满足通信速率与总功率限制"
+              }
+            ],
+            "explanation": "单个位置的照射增益与一对位置的互相关是两种约束；能量足够不自动说明两个照射信号容易区分。",
+            "sourceLocator": "§II-D, gain/cross-correlation definitions; §III, equations (15b)–(15f)",
+            "lessonHref": "joint-beamforming.html#model"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "特定数值配置下的归一化 Capon 空间谱对照"
+              },
+              {
+                "label": "未由谱峰证明",
+                "status": "not-established",
+                "text": "规定虚警率下的检出概率或位置 RMSE"
+              }
+            ],
+            "explanation": "先核对远场基线放宽了哪些约束，再读图5。本站没有实现该 SDP、Capon 处理或原图复现。",
+            "sourceLocator": "§IV-A; §IV-C, equation (19), Figure 5",
+            "lessonHref": "foundations.html#cfar"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "不需要 RCS 先验，是否表示这套设计能在未知场景中自动找出所有目标？",
+          "answer": "不能。本文设计仍使用目标位置/空间响应；未知反射强弱和未知目标位置不是同一个问题。",
+          "sourceLocator": "§II-A; §II-D; §III."
+        }
+      }
     },
     {
       "id": "networks-cooperative-clusters-2024",
@@ -426,7 +597,92 @@
           "locator": "图2–4；§V",
           "purpose": "把更多样本的收益与残差累积拆开，不把峰变窄等同于整体更可靠。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "数据已经解出来，感知参考就完全正确了吗？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "实际拿到什么？",
+            "blocks": [
+              {
+                "label": "接收样本",
+                "status": "observed",
+                "text": "两块独立时钟 RFSoC 之间的同轴中频接收数据"
+              },
+              {
+                "label": "试验者设置",
+                "status": "known",
+                "text": "强主径和运动目标由实验连接与目标模拟器构造"
+              }
+            ],
+            "explanation": "这是含真实时钟误差的硬件验证；模拟路径的真值由试验者设置，接收机仍要估计时延和多普勒。接线条件不是空口部署，也不能画成道路上已测得的目标。",
+            "sourceLocator": "§IV opening; Table II"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些已知，哪些仍未知？",
+            "blocks": [
+              {
+                "label": "成功解码之后",
+                "status": "known",
+                "text": "可重建发射符号，扩充用于感知的参考格子"
+              },
+              {
+                "label": "仍需处理",
+                "status": "unknown",
+                "text": "残余采样频偏等同步误差及目标相关参数"
+              }
+            ],
+            "explanation": "符号恢复改变了哪些数据格可作参考；它并不保证接收样本里的残余时钟误差消失。",
+            "sourceLocator": "§II, equations (1)–(2); §III; §IV, Figures 2–4",
+            "lessonHref": "network-clock.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "作者能改什么？",
+            "blocks": [
+              {
+                "label": "接收处理链",
+                "status": "design",
+                "text": "前导同步 → 导频修正残差 → 解码并重建符号 → 全帧感知"
+              },
+              {
+                "label": "比较设置",
+                "status": "design",
+                "text": "短载荷与长载荷，检查积累收益和残差累积"
+              }
+            ],
+            "explanation": "长短帧并非等观察时长。图中的顺序是本文处理流程；打开说明不会模拟某个误差数值。",
+            "sourceLocator": "§III; Table II; §IV, Figures 2–4",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文证据",
+                "status": "supported",
+                "text": "同轴硬件中的残差迁移、星座和全帧成像对照"
+              },
+              {
+                "label": "没有验证",
+                "status": "not-established",
+                "text": "空口传播、持续吞吐或端到端实时处理时限"
+              }
+            ],
+            "explanation": "通信解码成功不保证感知无偏。量是相对强主径的双站路径长度差，不可自动套用单站 cτ/2；图2不能笼统标为最终校正输出。",
+            "sourceLocator": "§IV, Table II, Figures 2–4; §V"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "若所有数据符号都成功解码，还能仅凭这一点保证距离–多普勒图不偏不展宽吗？",
+          "answer": "不能。重建符号解决参考数据问题，残余时钟误差仍会进入感知处理；须另外核对残差、几何和校准。",
+          "sourceLocator": "§II, equations (1)–(2); §IV, Figures 2–4; §V."
+        }
+      }
     },
     {
       "id": "mimo-ofdm-realtime-testbed-2023",
