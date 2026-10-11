@@ -209,7 +209,92 @@
           "locator": "§IV，图11–12、表II；§III-D2，式(57)",
           "purpose": "不能只读保护格比例，还要核对导频功率和误差如何传到 BER。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "预测了路径位置，为什么上行还需要导频？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "模型中先后收到什么？",
+            "blocks": [
+              {
+                "label": "本帧感知",
+                "status": "observed",
+                "text": "路侧单元收到车辆反射的回波"
+              },
+              {
+                "label": "随后上行",
+                "status": "observed",
+                "text": "路侧单元收到包含导频与数据贡献的上行信号"
+              }
+            ],
+            "explanation": "先从回波估车辆状态，再预测下一时刻的路径；本帧观测与下一帧预测不能画成同一个已知真值。下行波束与预补偿也依赖这些预测。",
+            "sourceLocator": "§II-D, equation (16); §III-A/B, Figure 2, equations (29)–(30)",
+            "lessonHref": "radar-beam-decision.html#mechanism"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "预测替代了哪些训练？",
+            "blocks": [
+              {
+                "label": "上行处理的输入",
+                "status": "known",
+                "text": "导频值已知；路径时延与多普勒来自感知预测"
+              },
+              {
+                "label": "仍未知",
+                "status": "unknown",
+                "text": "随机路径增益与上行数据；预测和估计也有不确定性"
+              }
+            ],
+            "explanation": "预测路径落在哪里，不会直接给出随机路径增益。模型采用点目标、短时直路匀速运动及足够的参数分辨率；下行另按 LoS 主导、理想滤波与整数多普勒简化。",
+            "sourceLocator": "§II; §III-B/C, equations (29)–(34); §III-D1, equations (39)–(42)",
+            "lessonHref": "pilot-design.html#experiment"
+          },
+          {
+            "id": "design",
+            "heading": "省下保护格后怎样接收？",
+            "blocks": [
+              {
+                "label": "符号布局",
+                "status": "design",
+                "text": "保留导频格，数据填入原保护区域，接收端出现导频–数据互扰"
+              },
+              {
+                "label": "上行检测",
+                "status": "design",
+                "text": "估路径增益，并在消息传递中计入信道估计不确定度"
+              }
+            ],
+            "explanation": "保护格原本隔开导频与数据；拿掉后会引入互扰，因此省开销与处理不确定度必须一起读。不能把预测当完美 CSI。",
+            "sourceLocator": "§III-D1, Figures 3–4, equations (39)–(42); §III-D2, equation (57)"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文比较",
+                "status": "supported",
+                "text": "图11比较信道估计误差，图12比较上行检测；表II统计保护格开销"
+              },
+              {
+                "label": "尚未证明",
+                "status": "not-established",
+                "text": "零导频、零能量代价，或转弯与未建模路径下仍能可靠预测"
+              }
+            ],
+            "explanation": "图11采用导频功率比数据高20 dB的设置，保留保护格的基线仍可有更低 NMSE。图12支持在所设条件下计入估计不确定度的价值；本站未运行该收发机。",
+            "sourceLocator": "§IV, Figures 11–12, Table II"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "表II的保护格开销为0%，能推出上行完全不用导频吗？",
+          "answer": "不能。省掉的是保护格，导频仍在，随机增益仍要估计；还需核对导频功率、互扰及最终检测误差。",
+          "sourceLocator": "§III-D1, Figures 3–4; §IV, Figure 11 and Table II"
+        }
+      }
     },
     {
       "id": "nearfield-double-array-ispac",
@@ -267,7 +352,93 @@
           "locator": "§V-A–B、§V-D–F，Fig. 4–6",
           "purpose": "把 RMSE、RCRB、通信 SINR 门槛及 RF 链数分别记下，避免把理论下界当作实测误差"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "小辅助阵列看不到距离曲率，下行怎样仍能估距？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "模型中谁发、谁收？",
+            "blocks": [
+              {
+                "label": "下行定位",
+                "status": "observed",
+                "text": "大主阵列发射，小辅助阵列接收目标回波"
+              },
+              {
+                "label": "上行定位",
+                "status": "observed",
+                "text": "小辅助阵列探测，大主阵列接收并在消除通信数据后处理回波"
+              }
+            ],
+            "explanation": "目标处于主阵列近场、辅助阵列远场；主阵列使用部分连接混合结构，辅助阵列为全数字。两条流程的观测位置不同，不能合成一个不分方向的接收框。",
+            "sourceLocator": "§II, Figure 1; §II-A, equations (7)–(8); §II-B, equations (13)–(19)",
+            "lessonHref": "near-field.html#geometry"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "距离信息靠什么留下？",
+            "blocks": [
+              {
+                "label": "下行估距的参考",
+                "status": "known",
+                "text": "辅助阵列知道主阵列发射信号 X，并使用给定的阵列模型"
+              },
+              {
+                "label": "待估目标参数",
+                "status": "unknown",
+                "text": "角度、距离，以及目标反射与传播的未知复增益"
+              }
+            ],
+            "explanation": "辅助阵列的空间响应主要给角度；下行距离线索来自主阵列近场响应与已知发射信号共同形成的观测。模型限于单点目标、Fresnel 二阶近似及完全自干扰消除；上行还依赖通信信号消除。",
+            "sourceLocator": "§II-A, equations (4)–(8); §II-B; §III-A, equations (20)–(23)"
+          },
+          {
+            "id": "design",
+            "heading": "怎样提取并保留这些信息？",
+            "blocks": [
+              {
+                "label": "定位处理",
+                "status": "design",
+                "text": "下行先 MUSIC 估角，再结合 X 做距离搜索；上行利用主阵列近场结构分两阶段定位"
+              },
+              {
+                "label": "收发设计",
+                "status": "design",
+                "text": "在通信 SINR 门槛与功率限制下，优化角距 CRB 及混合收发配置"
+              }
+            ],
+            "explanation": "较大孔径带来距离相关相位，合并与探测设计决定接收端保留多少信息。定位算法与最小化理论界是两件事；优化含松弛与随机化，不能称全套全局最优。",
+            "sourceLocator": "§III-A/B; §IV-A/C",
+            "lessonHref": "joint-beamforming.html#model"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "分别核对",
+                "status": "supported",
+                "text": "图4给上下行定位 RMSE 与界；图5–6给通信门槛、RF 链数与 RCRB 的权衡"
+              },
+              {
+                "label": "尚未证明",
+                "status": "not-established",
+                "text": "小阵列独自提供近场距离信息，或混合结构在所有条件下等效全数字"
+              }
+            ],
+            "explanation": "RMSE 是算法误差，RCRB 是界的平方根；不同天线/RF 链配置的曲线不能直接算作纯算法收益。这些是所设模型下的数值结果，本站未实现双阵列或硬件。",
+            "sourceLocator": "§V-A/B; §V-D–F, Figures 4–6",
+            "lessonHref": "theory.html#crb-mechanism"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "下行辅助阵列的空间响应主要含角度，是否意味着整个下行观测没有距离信息？",
+          "answer": "不是。已知发射信号与主阵列的近场响应共同留下距离线索；原文先估角，再利用该模型估距，不能把距离能力归给小辅助阵列本身。",
+          "sourceLocator": "§II-A, equations (7)–(8); §III-A, equations (20)–(23)"
+        }
+      }
     },
     {
       "id": "nearfield-multitarget-correlation",
@@ -914,7 +1085,92 @@
           "locator": "§V开头、表II；§V-D图10",
           "purpose": "同时核对实际带宽、业务注入频率和观察环境，再评价实时能力。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "沿样本走一遍：射频带宽够，联合处理就跟得上吗？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先分开两条接收链",
+            "blocks": [
+              {
+                "label": "雷达接收链",
+                "status": "observed",
+                "text": "四发两收的相干阵列采集回波，数字处理生成距离–角度图"
+              },
+              {
+                "label": "通信接收链",
+                "status": "observed",
+                "text": "另一接收机采集通信样本，经同步、均衡、解调与Viterbi译码恢复数据"
+              }
+            ],
+            "explanation": "把样本从射频前端沿传输接口走到主机。两条链共享波形，但任务和处理负担不同；阵列的共同参考不表示独立通信接收机也共享所有时钟。",
+            "sourceLocator": "§II，图1–2；§III-A/C，图3–4",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "背景参考从哪里得到？",
+            "blocks": [
+              {
+                "label": "本地参考",
+                "status": "known",
+                "text": "雷达端知道发射符号；成像实验先在空场景采集背景均值"
+              },
+              {
+                "label": "新回波与处理余量",
+                "status": "unknown",
+                "text": "新目标的距离、角度仍待估计；射频规格本身不能告诉我们主机能否持续处理联合负载"
+              }
+            ],
+            "explanation": "空场景均值是额外取得的参考，不是系统自动认出哪些回波属于背景。背景估计由人工启停。",
+            "sourceLocator": "§IV，式(1)–(2)；§V开头及§V-A",
+            "lessonHref": "perceptive-clutter.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "把带宽和背景更新当成两个选择",
+            "blocks": [
+              {
+                "label": "样本预算",
+                "status": "design",
+                "text": "按两条主机处理链的负担选择实际联合带宽，并核对数据注入频率"
+              },
+              {
+                "label": "背景相减",
+                "status": "design",
+                "text": "逐虚拟通道估计均值，再从当前信道估计中相减；明确何时学习、何时停止更新"
+              }
+            ],
+            "explanation": "先预测：若只提高前端允许的带宽，而通信主机不变，哪条链会先成为瓶颈？背景更新还需另问：学习时若已有目标，是否会把它纳入参考？后一问是机制推断，非原文新增实测结论。",
+            "sourceLocator": "§III开头；§IV，式(1)–(2)；§V开头、表II、§V-D"
+          },
+          {
+            "id": "evidence",
+            "heading": "现在检查实际运行条件",
+            "blocks": [
+              {
+                "label": "室内空口证据",
+                "status": "supported",
+                "text": "联合实验使用125 MHz；200 MHz是雷达低占空比时的能力，通信主机不能持续处理该带宽"
+              },
+              {
+                "label": "仍没有证明",
+                "status": "not-established",
+                "text": "200 MHz满负荷联合业务、自动背景/目标分离，或任意场景下的实时跟踪与最坏时延保证"
+              }
+            ],
+            "explanation": "图5–7展示成像与通信界面，图8–10报告相应设置中的SNR。每100 ms发送500字节是给定业务负载，不是测得的吞吐上限；这里也没有运行论文平台。",
+            "sourceLocator": "§V开头、表II；§V-A/D，图5–10"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "只看到表II的200 MHz规格，就把原型标成“200 MHz持续联合通感”，你预计会漏掉哪一项约束？",
+          "answer": "会漏掉通信主机的持续处理能力。正文将联合实验带宽降至125 MHz；雷达低占空比能力不能替代联合负载证据。背景也依赖人工空场学习，不能从实时界面推出自动跟踪。",
+          "sourceLocator": "§V开头、表II；§IV；§V-A/D"
+        }
+      }
     },
     {
       "id": "isac-net-model-driven-passive",
@@ -1263,7 +1519,92 @@
           "locator": "§V，式(64)、表I–II、图7–10、式(66)及脚注8",
           "purpose": "不要把理想无ICI基准、FDR、条件RMSE混成同一种性能保证。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一批 OFDM 样本，怎样把干扰中的相位用于测速？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "模型中的接收观测是什么？",
+            "blocks": [
+              {
+                "label": "阵列观测",
+                "status": "observed",
+                "text": "天线×符号内采样×跨符号的复数接收数据"
+              },
+              {
+                "label": "被简化模型丢掉的变化",
+                "status": "observed",
+                "text": "高速目标在符号内引起相位变化，产生载波间干扰（ICI）"
+              }
+            ],
+            "explanation": "符号内频偏与跨符号多普勒描述同一批样本中的相位关系；不能把它们画成两套独立新增测量。",
+            "sourceLocator": "§II-B/C, equations (5)–(13)",
+            "lessonHref": "foundations.html#ofdm"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "知道数据，为什么仍会失配？",
+            "blocks": [
+              {
+                "label": "雷达端参考",
+                "status": "known",
+                "text": "发射数据符号与发射配置"
+              },
+              {
+                "label": "待估目标",
+                "status": "unknown",
+                "text": "角度、往返时延、多普勒与复反射增益"
+              }
+            ],
+            "explanation": "已知符号不会消除未知速度引起的 ICI。模型还要求远场点目标、收发完全隔离、CP 覆盖时延及相应窄带/时变近似；角度初筛依赖符号统计、样本量、目标分离和子空间阶数。",
+            "sourceLocator": "§II-B–D; §III-A, Lemma 1, equations (16)–(19)"
+          },
+          {
+            "id": "design",
+            "heading": "接收机怎样使用这些相位？",
+            "blocks": [
+              {
+                "label": "先分离回波",
+                "status": "design",
+                "text": "从候选角度联合估频偏与信道，逐次减去较强回波"
+              },
+              {
+                "label": "再检出与解模糊",
+                "status": "design",
+                "text": "对清理后的信道做时延–多普勒检测，用符号内频偏辅助跨符号测速"
+              }
+            ],
+            "explanation": "先解释 ICI，再消除强目标影响，弱目标才可能显露。同角度多目标处理仍受稀疏条件与停止门限限制；使用相位信息不等于保证任意密集目标可辨。",
+            "sourceLocator": "§III, Algorithm 1; §IV, equations (53)–(56), Algorithms 2–3"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "需联读的曲线",
+                "status": "supported",
+                "text": "图7检出率、图8错误发现率 FDR、图9–10检测成功条件下的 RMSE"
+              },
+              {
+                "label": "尚未证明",
+                "status": "not-established",
+                "text": "ICI 始终有益，或较低条件误差意味着漏检和虚警也更少"
+              }
+            ],
+            "explanation": "原文 FDR=V/(V+S)：V 为无法关联到已有目标的检出数，S 为跨试验参考目标检出数；不是无目标单元的虚警概率。式(66)只统计已检出目标；FFT 与所提方法的关联坐标口径不同。无 ICI 基线为合成观测；本站未运行接收算法。",
+            "sourceLocator": "§V, equation (64), Figures 7–10, equation (66), footnote 8",
+            "lessonHref": "offgrid-range.html#trials"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "只看较低的条件 RMSE，就能确认漏检更少、单元虚警概率也更低吗？",
+          "answer": "不能。先查哪些事件进入 RMSE，再联读检出率与 FDR。FDR 的分母不是无目标单元数，不能替换为单元虚警概率；不同方法的检测关联还使用不同的模糊坐标口径。",
+          "sourceLocator": "§V-B, Figures 7–10, equation (66), footnote 8"
+        }
+      }
     },
     {
       "id": "ofdm-passive-atomic-errors-2017",
@@ -1321,7 +1662,93 @@
           "locator": "§III-C；§IV，表I第5步；§V-B，第19–21页、图8",
           "purpose": "恢复信号后还要读取参数；检查搜索网格、改动后的资源及条件RMSE筛选。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "参考符号会出错，怎样避免把错误残差解释成目标？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "模型中的接收观测与参考",
+            "blocks": [
+              {
+                "label": "接收格",
+                "status": "observed",
+                "text": "含直达、多径杂波与目标的 OFDM 接收样本"
+              },
+              {
+                "label": "可用参考",
+                "status": "known",
+                "text": "解调得到的符号估计，而非保证正确的真实发射符号"
+              }
+            ],
+            "explanation": "先分清符号估计与真值：一旦估计错误，直接把它当完美参考就会使回波模型失配。原文只做符号解调，不做前向纠错译码。",
+            "sourceLocator": "§II-A, equations (6)–(11)",
+            "lessonHref": "pilot-design.html#experiment"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "两种未知分别是什么？",
+            "blocks": [
+              {
+                "label": "处理输入",
+                "status": "known",
+                "text": "接收格、估计符号以及 OFDM 时频参数"
+              },
+              {
+                "label": "待恢复的量",
+                "status": "unknown",
+                "text": "路径时延、多普勒、复增益，以及错误符号造成的样本残差"
+              }
+            ],
+            "explanation": "错误残差来自符号估计与真值的差作用于回波，不是额外物理路径。模型依赖路径稀疏、错误样本稀疏、符号内相位变化可忽略及复高斯噪声。",
+            "sourceLocator": "§II-A, equations (3), (6)–(11); §III-A"
+          },
+          {
+            "id": "design",
+            "heading": "分别约束回波与错误",
+            "blocks": [
+              {
+                "label": "连续路径结构",
+                "status": "design",
+                "text": "用原子范数表示连续时延–多普勒域中的稀疏回波"
+              },
+              {
+                "label": "少量错误样本",
+                "status": "design",
+                "text": "用 ℓ1 项约束异常残差，联合恢复后再从对偶谱读取参数"
+              }
+            ],
+            "explanation": "连续域建模减少对预设参数格的依赖，却不保证无限分辨率。表I第5步读出参数仍搜索网格；模型、数值求解与参数读出必须分开。",
+            "sourceLocator": "§III-A/C, equations (20), (26)–(32); §IV, Table I, step 5",
+            "lessonHref": "offgrid-range.html#model"
+          },
+          {
+            "id": "evidence",
+            "heading": "证据支持到哪里？",
+            "blocks": [
+              {
+                "label": "原文数值结果",
+                "status": "supported",
+                "text": "图6–7比较含解调错误的谱图；图8比较正确识别目标的条件 RMSE"
+              },
+              {
+                "label": "尚未证明",
+                "status": "not-established",
+                "text": "任意密集错误都可恢复、所有近邻可分，或完整漏检/虚警性能已获保证"
+              }
+            ],
+            "explanation": "图8减少子载波数并改变路径功率，不能与前面谱图混作同预算实验。未正确识别的目标不进入该 RMSE；错误变密、近邻杂波都会限制方法。被动传播参数转位置与速度还需几何；本站未实现该优化器。",
+            "sourceLocator": "§V-A/B, Figures 6–8; p.19 statistical setup",
+            "lessonHref": "offgrid-range.html#trials"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "连续域建模是否说明实现完全不用网格，而且低 RMSE 已涵盖所有目标？",
+          "answer": "都不能。表I第5步读出参数仍搜索网格；图8只统计正确识别的目标，并采用不同于前面谱图的观测预算。读出格距、物理可分性和评价筛选是三个问题。",
+          "sourceLocator": "§IV, Table I, step 5; §V-B, pp.19–21, Figure 8"
+        }
+      }
     },
     {
       "id": "channels-shared-clusters-2024",
@@ -1378,7 +1805,92 @@
           "locator": "§IV-C，图7–8及各自设置",
           "purpose": "分别核对是否保留独有通信簇、是否使用功率，确认图中并未评估实际通感任务收益"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一散射区域，为什么仍要画成两组路径？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先看两端实际测到了什么",
+            "blocks": [
+              {
+                "label": "通信测量",
+                "status": "observed",
+                "text": "28 GHz室内探测得到通向通信终端的复信道，并形成角度–时延功率图"
+              },
+              {
+                "label": "近似单站感知测量",
+                "status": "observed",
+                "text": "另一链路测返回基站附近的回波，同样经过校准、扫描和多径提取"
+              }
+            ],
+            "explanation": "先在图1标出终端位置，再读图2。两张功率图来自不同传播路线，不能把相近亮斑直接当作相同复数信道。",
+            "sourceLocator": "§II-A/B，表I、图1–2、式(1)",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "共享了什么，还缺什么？",
+            "blocks": [
+              {
+                "label": "测量条件",
+                "status": "known",
+                "text": "已知探测序列、扫描角度与测量几何；两类多径带有各自的来源标签"
+              },
+              {
+                "label": "共享关系",
+                "status": "unknown",
+                "text": "哪些路径来自共同散射区域仍需判别；其时延、增益和最终任务收益不能由角度相近直接读出"
+              }
+            ],
+            "explanation": "1 GHz零到零带宽、5°扫描步进及有线同步属于测量条件。5°步进不是保证的角分辨率；同一散射体也不意味着通信时延乘二就是感知时延。",
+            "sourceLocator": "§II-A/B，表I；§III-A，式(2a,b)",
+            "lessonHref": "foundations.html#array"
+          },
+          {
+            "id": "design",
+            "heading": "先配对结构，再生成信道",
+            "blocks": [
+              {
+                "label": "联合聚类",
+                "status": "design",
+                "text": "选取有效多径、补偿两链路功率，再把带来源标签的路径联合聚类"
+              },
+              {
+                "label": "共享与独有",
+                "status": "design",
+                "text": "同时安排共享簇和各自独有的簇，用共享度（SD，本文的共享功率占比）记录共享部分"
+              }
+            ],
+            "explanation": "先预测：增大共享簇比例时，最直接改变的是模型中两类信道的联系，还是已经实现的通信速率？注意选径动态范围、簇数范围以及图7、图8的不同生成设置。",
+            "sourceLocator": "§III-A/B，式(3)–(5)；§IV-A，图5；§IV-C，图7–8"
+          },
+          {
+            "id": "evidence",
+            "heading": "把实测、生成和任务收益分开",
+            "blocks": [
+              {
+                "label": "结构与统计证据",
+                "status": "supported",
+                "text": "实测支持该场景存在共享散射结构；图7–8用测量提取的参数生成角度分布和SD统计"
+              },
+              {
+                "label": "仍没有证明",
+                "status": "not-established",
+                "text": "SD升高必然提高通信速率、降低定位误差，或在未测场景中仍能获得同样收益"
+              }
+            ],
+            "explanation": "图7忽略功率、保留独有通信簇；图8忽略独有通信簇。SD是共享功率指标，不是复信道相关系数。两图都不是通感接收算法的性能实验，本站未重跑模型。",
+            "sourceLocator": "§IV-A，图5；§IV-C，图7–8及各自设置"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "若一个生成模型的SD更高，你会先预测“共享功率占比更高”，还是“通信速率一定更高”？为什么？",
+          "answer": "先选共享功率占比更高。这是SD的定义；能否转成速率或感知收益，还要固定资源与接收算法并另测任务指标。原文图7–8的统计生成不能代替这一步。",
+          "sourceLocator": "§III-A，式(3)；§IV-C，图7–8"
+        }
+      }
     },
     {
       "id": "channels-target-environment-coupling-2025",
@@ -1436,7 +1948,92 @@
           "locator": "§IV-A/B，图11–14、式(15)、表II",
           "purpose": "分开测量、参数拟合与模型生成；理解功率分布相似并不等于相位准确或任务成功"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "放入目标后：旧路径留下、减弱，还是被改写？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "把无目标与有目标摆在一起",
+            "blocks": [
+              {
+                "label": "空场景参考",
+                "status": "observed",
+                "text": "105 GHz工厂中先测无目标信道，得到角度–时延功率图"
+              },
+              {
+                "label": "加入目标",
+                "status": "observed",
+                "text": "把载有金属箱的自动导引车（AGV）放到七个位置，对比旧路径的变化和新增路径"
+              }
+            ],
+            "explanation": "先逐项比较路径，再解释物理原因。图中某条可能传播路线是结合布局作出的解释，不表示每条路线都被单独真值验证。",
+            "sourceLocator": "§II-A/B/C，表I、图2–7",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "空场背景并非永久不变",
+            "blocks": [
+              {
+                "label": "本次验证的输入",
+                "status": "known",
+                "text": "无目标测量、目标放置位置以及从本次测量提取的目标分量和参数"
+              },
+              {
+                "label": "目标到来后的信道",
+                "status": "unknown",
+                "text": "哪些原路径会受遮挡、出现哪些关联新路径，以及参数换位置后是否仍适用"
+              }
+            ],
+            "explanation": "这些输入有取得成本。验证用到了空场背景，不能把这套对照读成无需背景信息的盲检测。",
+            "sourceLocator": "§III-A，式(3)–(9)；§IV-A/B",
+            "lessonHref": "foundations.html#realworld"
+          },
+          {
+            "id": "design",
+            "heading": "不要只在原背景上加一个回波",
+            "blocks": [
+              {
+                "label": "改写原背景",
+                "status": "design",
+                "text": "用遮挡区域耦合因子（BR-CF）刻画遮挡区域，作用于原环境信道的路径分量"
+              },
+              {
+                "label": "区分新路径",
+                "status": "design",
+                "text": "用前向散射耦合因子（FS-CF）描述关联新路径强度，再加入与该遮挡耦合机制不同的目标路径"
+              }
+            ],
+            "explanation": "先预测：如果目标挡住一条原来的强路径，只做“原背景＋目标回波”，哪一部分会保留得过多？按式(3)–(9)追踪旧分量如何改变，再看新增分量。",
+            "sourceLocator": "§III-A，式(3)–(9)、图8–9"
+          },
+          {
+            "id": "evidence",
+            "heading": "先问验证用了哪一批数据",
+            "blocks": [
+              {
+                "label": "同次测量模型对照",
+                "status": "supported",
+                "text": "图11–12进行物理/统计提参；图13–14与表II对照两个位置的模型与实测功率分布"
+              },
+              {
+                "label": "仍没有证明",
+                "status": "not-established",
+                "text": "独立场景或留出位置的泛化、复相位正确、定位精度提高，或完整运动跟踪成功"
+              }
+            ],
+            "explanation": "验证用本次测量的空场信道、目标分量及参数，并非留出测试。式(15)的相似度指标（SI）比较归一化功率分布；它不保证绝对功率或相位准确。模型写有多普勒项，但验证采用固定位置水平扫描；本站未复现模型。",
+            "sourceLocator": "§IV-A/B，图11–14、式(15)、表II；§III-A，式(9)"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "先预测：目标遮住一条强背景路径时，保留原背景再加目标回波会漏掉什么？若相似度指标（SI）很高，能否据此说新位置的定位误差也小？",
+          "answer": "它会漏掉原路径的减弱或消失；目标会改变背景本身。SI很高只说明所比归一化功率分布较相似，同次测量提参后的对照不能证明留出位置的定位精度或泛化。",
+          "sourceLocator": "§II-B/C，图4–7；§III-A，式(3)–(9)；§IV-B，式(15)、图13–14、表II"
+        }
+      }
     },
     {
       "id": "tradeoffs-feedback-capacity-distortion-2018",
@@ -1499,7 +2096,93 @@
           "locator": "§IV-A/B，式(13)–(16)、(22)–(25)，pp.3–4",
           "purpose": "c(x)是固定输入x时的平均状态估计损失；b(x)另表示发射成本，B是其平均预算。算法寻找输入概率，定理才说明其对应的长码长通信极限，二者都不构成硬件实验。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "发0还是发1：消息与状态各能留下多少线索？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "理论模型：把观测送到正确的一端",
+            "blocks": [
+              {
+                "label": "通信端拿到Y",
+                "status": "observed",
+                "text": "接收发射符号X经过随机状态S作用后的通信样本Y"
+              },
+              {
+                "label": "发射端拿到Z",
+                "status": "observed",
+                "text": "广义反馈Z返回发射端，用于估计状态；二元例中特取Z=Y"
+              }
+            ],
+            "explanation": "一般模型允许有噪反馈，不能把二元例的Z=Y搬到所有信道。发射本次符号时只能利用过去的反馈，不是提前看到本次状态。",
+            "sourceLocator": "§II，式(1)、图1；§V-A",
+            "lessonHref": "theory.html#shared-model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "谁已经知道状态真值？",
+            "blocks": [
+              {
+                "label": "通信端与统计模型",
+                "status": "known",
+                "text": "通信接收端完美知道S；系统给定状态分布与信道概率律；发射端知道自己发的X"
+              },
+              {
+                "label": "发射端要估计S",
+                "status": "unknown",
+                "text": "实际状态对发射端未知，必须结合X与Z估计；通信端仍需恢复未知消息"
+              }
+            ],
+            "explanation": "这里假定无记忆信道、独立同分布状态。知道状态分布不等于知道状态实现值；通信侧获取完美状态知识的训练成本不在定理中。",
+            "sourceLocator": "§II，图1与编码定义；§III，Lemma 2",
+            "lessonHref": "foundations.html#limits"
+          },
+          {
+            "id": "design",
+            "heading": "改变符号出现的概率",
+            "blocks": [
+              {
+                "label": "先为符号算感知代价",
+                "status": "design",
+                "text": "给定X与Z，选平均损失最小的状态估计，再算每种输入的平均失真代价"
+              },
+              {
+                "label": "再分配输入概率",
+                "status": "design",
+                "text": "在平均失真和输入成本预算内选择符号概率，同时保留传独立消息的能力"
+              }
+            ],
+            "explanation": "先用二元例Y=SX判断：发1时Z能否区分S=0和S=1？发0时呢？这里选择的是输入概率，不是凭空增加带宽、天线或一次免费测量。",
+            "sourceLocator": "§III，式(3)–(4)；§IV-A，式(13)–(16)；§V-A，式(26)–(28)"
+          },
+          {
+            "id": "evidence",
+            "heading": "零失真是否就代表两项任务都完成？",
+            "blocks": [
+              {
+                "label": "编码定理与二元例",
+                "status": "supported",
+                "text": "在本文条件下得到长码长、消息错误概率趋零时的容量–失真边界；二元例一直发1能准确读状态，却不能携带独立消息"
+              },
+              {
+                "label": "仍没有证明",
+                "status": "not-established",
+                "text": "有限帧吞吐量、目标距离/角度CRB，或联合方案优于一切分时设计"
+              }
+            ],
+            "explanation": "二元例令q=P(S=1)、p=P(X=0)，二者在[0,1/2]内，平均判错失真为qp，边界速率为qH₂(p) bit/次信道使用。图2分时基线特定地在通信阶段不利用反馈，不能当成所有基线。本站未运行数值优化或通信码。",
+            "sourceLocator": "§III，Theorem 1；§V-A，Proposition 1、式(26)–(28)、图2",
+            "lessonHref": "theory.html#rate-crb-bridge"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "在Y=SX、Z=Y的二元例里，如果把每个符号都设为1，你预测状态判错和独立消息速率会怎样变化？",
+          "answer": "此时Z=S，状态判错可以为零；但输入序列不随消息变化，独立消息速率也为零。发0时Z恒为0，丢失状态区分能力；改变符号概率才产生本文的权衡。",
+          "sourceLocator": "§V-A，Proposition 1、式(26)–(28)"
+        }
+      }
     },
     {
       "id": "tradeoffs-causal-state-communication-2013",
@@ -1562,7 +2245,93 @@
           "locator": "§III-A，Proposition 1、式(9)，p.3714；§III-B/C，pp.3714–3715",
           "purpose": "确定性且给定X可由Y唯一反推S时，消息解码后能恢复状态。再看加噪声的例子，说明结论改变来自观测条件，而不是所有联合设计都必然牺牲一端。"
         }
-      ]
+      ],
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "过去状态已告诉发射端，下一块还要告诉谁？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "理论模型：状态重建放在接收端",
+            "blocks": [
+              {
+                "label": "接收端观察Y",
+                "status": "observed",
+                "text": "接收整段信道输出Y，同时恢复独立消息与状态序列"
+              },
+              {
+                "label": "发射端获知过去S",
+                "status": "observed",
+                "text": "模型直接向发射端提供过去状态；并没有从接收端返回Y的输出反馈"
+              }
+            ],
+            "explanation": "这是状态通信的基础理论桥梁。发射端获知S是模型的信息条件，不是论文已经设计好雷达去探测S；不要与2018年的发射端反馈感知互换。",
+            "sourceLocator": "§II，图1，p.3710；§III开头，p.3713",
+            "lessonHref": "theory.html#shared-model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "把时间顺序标清楚",
+            "blocks": [
+              {
+                "label": "发射端已知",
+                "status": "known",
+                "text": "第i次发射时知道独立消息和前i−1次状态；一般严格因果模型尚不知道当前状态"
+              },
+              {
+                "label": "接收端仍未知",
+                "status": "unknown",
+                "text": "没有状态真值，要从接收样本及传来的描述中重建状态，并解出独立消息"
+              }
+            ],
+            "explanation": "主模型为有限字母表无记忆信道与独立同分布状态。旧样本含状态线索，不等于给出真值；§IV允许发射端知道当前状态，是另一组条件。",
+            "sourceLocator": "§III编码定义，p.3713；§IV，p.3715",
+            "lessonHref": "foundations.html#codesign"
+          },
+          {
+            "id": "design",
+            "heading": "把上一块的描述放进下一块",
+            "blocks": [
+              {
+                "label": "压缩状态描述",
+                "status": "design",
+                "text": "利用接收端已有的旧样本作辅助信息，只传还缺的状态描述"
+              },
+              {
+                "label": "与新消息共用速率",
+                "status": "design",
+                "text": "块马尔可夫编码让当前块承载新消息和上一块状态描述，选择描述精度与速率分配"
+              }
+            ],
+            "explanation": "先预测：若消息解码后已知X，而且无噪声Y能唯一确定S，还需要额外描述吗？U是编码理论中的辅助随机变量，不是多出来的一路物理测量。",
+            "sourceLocator": "§II-A，pp.3711–3712；§III，Remark 4，p.3713；Appendix B，可达性证明，p.3718"
+          },
+          {
+            "id": "evidence",
+            "heading": "先找没有冲突的特例",
+            "blocks": [
+              {
+                "label": "定理与可逆特例",
+                "status": "supported",
+                "text": "长码长定理刻画可靠消息速率和平均状态失真；在确定性且给定X可由Y唯一反推S的特例，通信容量与零失真可并存"
+              },
+              {
+                "label": "仍没有证明",
+                "status": "not-established",
+                "text": "含噪状态信道也能免费重建状态，或该编码定理已成为有限时延ISAC雷达跟踪器"
+              }
+            ],
+            "explanation": "一般描述成本取决于输入；只有原文所列输入不变条件成立，式(8)才能写成容量减去同一个Wyner–Ziv率失真函数。跨块描述需要等待。这里只读渐近定理，未实现通信码或复现数值。",
+            "sourceLocator": "§III，Theorem 2、式(4)、Remark 4、式(7)–(8)，p.3713；§III-A，Proposition 1、式(9)，p.3714",
+            "lessonHref": "foundations.html#limits"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "预测两个情形：解出X后，无噪声Y能唯一反推S；加入噪声后，同一个Y可能对应不同S。哪一个情形可直接推出零状态失真不占额外描述速率？",
+          "answer": "第一个，并且要保留确定性、给定X对S可逆的条件。消息解码后即可由X、Y恢复S；加噪后不再有这个保证，需重新分析剩余不确定性和描述成本。这不是“所有通感都无权衡”的结论。",
+          "sourceLocator": "§III-A，Proposition 1、式(9)，p.3714；§III-B/C，pp.3714–3715"
+        }
+      }
     },
     {
       "id": "channels-sensing-communication-mapping-2026",
