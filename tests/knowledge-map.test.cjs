@@ -282,10 +282,10 @@ test('search count includes all typed matches without a hidden cap or repeated u
  for(const d of r.directions)d.title=word+' '+d.title;
  const h=setup({html:render(r)});h.search(word);
  const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
- a.equal(lessons.length,25);a.equal(relations.length,40);a.equal(h.results.children.length,65);
- a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,25);a.match(h.status.textContent,/找到 65 个入口（25 个课程入口，40 个概念或方向）/);
- a.deepEqual(h.results.children.slice(0,25).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
- a.ok(h.groups.some(g=>g.textContent.includes('25 个实验 · 14 个专题')));
+ a.equal(lessons.length,26);a.equal(relations.length,40);a.equal(h.results.children.length,66);
+ a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,26);a.match(h.status.textContent,/找到 66 个入口（26 个课程入口，40 个概念或方向）/);
+ a.deepEqual(h.results.children.slice(0,26).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
+ a.ok(h.groups.some(g=>g.textContent.includes('26 个实验 · 15 个专题')));
 });
 
 test('native lesson results preserve keyboard defaults, map selection and history; clear, reset, Escape and repeated search remain coherent',()=>{

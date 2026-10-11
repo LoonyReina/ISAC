@@ -1010,6 +1010,81 @@
         "comparisonLink": "multipath-channel.html#source",
         "verificationNote": "2026-10-11 使用固定 arXiv v2（2018-12-10）与独立数值研究交接；论文年份为 2015。来源对照、独立参考、本站实现与浏览器/线上验收分别报告，不把来源核对称为论文复现。九篇影响目录及 2026-10-10 证据快照保持不变"
       }
+    },
+    {
+      "id": "case-distributed-detection",
+      "title": "两个功率数，够不够判断有目标？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数观测</a>；<a href=\"foundations.html#matched\">已知模板匹配</a>；<a href=\"foundations.html#cfar\">目标存在性、虚警与检出率</a>；<a href=\"foundations.html#geometry\">多站几何与同步边界</a>",
+        "问题": "两个站都能做本地匹配时，上传原始复样本、两个复匹配输出或两个局部功率，分别保留了哪些检测信息？减少上行是否也减少双向总载荷？",
+        "交互机制": "先看同相与反相两组复观测：各站功率完全相同，相关先验下联合证据却不同。再在同一固定候选、同一原始观测和同一虚警率下，比较原始处理、复匹配充分压缩与局部匹配能量和；改变相关先验与模板更新方式，分别检查 ROC 和双向载荷。",
+        "证据类型": "论文：<a href=\"https://arxiv.org/abs/2305.12523v2\">Behdad 等固定 arXiv v2（2024-03-27）</a>提供多站融合与未知随机反射的研究背景；本站：独立两站边缘化 LRT、解析 ROC 与双向实标量账本，不复现论文的最大化 MAPRT。<a href=\"https://doi.org/10.1109/LWC.2024.3462710\">Zou 等（2024）</a>仅提供计算位置与双向回传问题动机，稳定官方/作者全文尚未取得。",
+        "结论边界": "固定两个已校准接收站、已知有限波形、已知白噪声和高斯反射先验；只检验一个固定目标候选，不估位置、不扫描全图。ρ>0、κ=0 时能量和充分；κ>0 时局部能量一般不能恢复复 LRT，但本站能量和只是一个基线，不是最优能量域检验。不把实数充分性外推为有限比特无损或把载荷数当作真实时延。",
+        "下一研究问题": "未知噪声、相位漂移、杂波、多个候选与有限位量化会破坏哪些充分性或门限条件？先补充模型与资源，再检验，不先宣布集中式或分布式架构优劣。"
+      },
+      "unit": "distributed-detection",
+      "learningEntry": "distributed-detection.html#question",
+      "paper": "distributed-detection.html#paper",
+      "next": "distributed-detection.html#practice",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceId": "Behdad2024",
+        "sourceTitle": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
+        "sourceUrl": "https://arxiv.org/abs/2305.12523v2",
+        "version": "Behdad、Demir、Sung、Björnson、Cavdar，IEEE TWC 23(9)，11580–11596，2024；固定 arXiv:2305.12523v2，2024-03-27。DOI 10.1109/TWC.2024.3383209。",
+        "locator": {
+          "summary": "固定 v2 §VII 式(20)–(33)：对未知 RCS 与目标无关信道作最大化的 MAPRT；先验允许一般 RCS 协方差。§IX/Table III 的数值设置使用独立、等方差 Swerling-I RCS。这里只核对背景与差别，不把本站 κ>0 例子标成论文仿真设置；不复现论文原图。",
+          "section": "§VII；§IX/Table III",
+          "figure": null,
+          "equation": "式(20)–(33)，只定位原论文 MAPRT，不作为本站边缘化 LRT 公式来源"
+        },
+        "researchQuestion": "原文研究 cell-free 多站目标检测与功率分配；本站独立研究两站固定候选下的充分压缩、相对相位证据与双向数值载荷。Zou2024（DOI 10.1109/LWC.2024.3462710）仅为分布/集中计算与双向回传的动机，不提供已验证的公式或算法对照。",
+        "observationsAndUnknowns": "H₀:yᵣ=nᵣ，H₁:yᵣ=αᵣs+nᵣ。两个站各收到 L 个复样本；s、E=sᴴs、复噪声功率 σ² 和 α∼proper CN(0,qRκ) 先验已知，ρ=qE/σ²。当次 α、H 标签和目标真值只在模拟器内部；接收机只读取观测、模型和门限。匹配输出 zᵣ=sᴴyᵣ/(σ√E) 保留相位，不接收真实 α 或位置。",
+        "retainedAssumptions": [
+          "以未知随机反射及中央联合处理为研究背景；本站先对 α 积分，不将其优化，故不是论文 MAPRT 实现",
+          "本站固定两个已校准接收站、一个有限已知波形、同一固定候选、已知独立 proper 复高斯白噪声与已知高斯反射先验",
+          "κ 改变跨站相关性而不改变各站平均反射能量；同一参数点的三种处理共享同一原始观测、波形、噪声、时长和先验",
+          "原始样本的正交噪声残差在两个假设下相同且独立；在这些条件下两个复匹配输出是充分压缩"
+        ],
+        "omittedMechanisms": [
+          "论文未知目标无关信道、阵列、多用户波束、功率优化、完整 cell-free 网络架构及最大化 MAPRT",
+          "噪声/先验估计、同步与相位校准过程、杂波、目标关联、多候选搜索、位置/时延/多普勒估计",
+          "相关先验下最优能量域边缘化似然、有限位量化/饱和、真实链路吞吐、端到端时延、能耗与硬件",
+          "Zou2024 稳定官方/作者全文尚未取得；不归属未核对的公式、fully/partly-informed 算法、载荷公式或原始性能曲线"
+        ],
+        "paperEvidenceType": "多站目标检测与功率分配的理论方法和数值研究；本站只沿所列固定章节核对背景与模型差异",
+        "siteArtifactType": "独立两站边缘化 LRT、解析 Pd/ROC、确定性反例与双向载荷账本；非原论文 MAPRT、算法或曲线复现",
+        "metrics": [
+          "固定候选的规定 Pfa、H₀ 校准门限与解析 Pd；Pd 同时对随机 α 和噪声平均，不是一次判决准确率",
+          "原始复样本与两个复匹配输出的 log Λ=Q−log det C；两者相同检测信息，曲线重合",
+          "局部匹配能量和 S=|z₁|²+|z₂|² 是可解析基线；κ>0 时不代表最优能量域检验或全部分布式算法",
+          "ρ=0 时 H₀/H₁ 相同，恒零 Q 达到任意中间 Pfa 需独立随机化；Pd=Pfa",
+          "两站星型单播的上下行实标量数和显式模板更新次数；不是实测网络吞吐、时延或能耗"
+        ],
+        "resourceBudget": {
+          "summary": "同一参数点固定两个接收站、L 个复样本/站/块、已知 s 与 E、σ²、q、κ、时长和一个目标候选。B 块的原始上行为 4LB、复匹配上行为 4B、能量上行为 2B 个实标量。本地匹配模板下行：每块下发 4LB、本次一次更新 4L、运行前有效缓存为本次 0（不是历史免费）；原始上传不需要额外给站端下发模板。模型下行单列更新数与每次标量数，默认 0 表示未估计。该账本是本站独立的星型单播约定。",
+          "bandwidth": "没有指定 Hz 或系统占用带宽；L 是每站有限复样本数，不能把减小回传标量解释成提高物理分辨率",
+          "energy": "同一处理器比较固定 E=sᴴs、q 和 σ²；tr(qRκ)=2q 不随 κ 变化。ρ=qE/σ² 是每站匹配后平均 SNR，真实 α 不输入检测器",
+          "duration": "每块 L 个样本，B 个块是载荷账本范围；没有设定采样周期或真实链路时延",
+          "aperture": "固定两个已校准接收站；不增加站数、天线数或孔径来换取免费收益",
+          "priorKnowledge": "站端本地匹配需要 s/E/σ² 与一致相位/尺度约定；中心需要相关先验、ρ 和 Pfa。局部计算本身无需每站持有 κ/q；未知当次 α 只用于生成观测",
+          "other": [
+            "L=16、B=10，仅模板与观测：每块下发时原始/复匹配/能量总载荷为 640/680/660；只更新一次为 640/104/84；已缓存为 640/40/20",
+            "模型更新、同步维护、包头、时间戳、可靠传输、RF 链、计算、组播与链路并行不能从本标量账本推得",
+            "bits_per_real 仅按编码宽度换算载荷；没有模拟量化，因此实数数学充分性不等于有限比特无损",
+            "跨 κ 改变 H₁ 分布；同 Pfa 最优性限于同一已知模型，不推出相关性越大越好或集中式必胜"
+          ]
+        },
+        "unknowns": [
+          "本课不是 Behdad2024 最大化 MAPRT 或原论文图/整篇算法复现；本站 α 边缘化、解析 ROC 与载荷公式均为独立推导",
+          "Zou2024 只核对到出版元数据与公开转录，缺少可稳定定位的官方/作者全文；后续公式级比较须先获得该全文",
+          "已知白噪声、已知先验、固定候选和校准前提一旦改变，原始/匹配充分性及原门限需重新论证",
+          "能量和不等于全部能量信息的最优检验；相关情形的复 LRT 优势不能归纳成全部集中/分布架构排名",
+          "没有执行论文原图复现、硬件实验或实际网络时延测量；网站数值、DOM、真实浏览器与线上部署验收分别报告"
+        ],
+        "comparisonLink": "distributed-detection.html#paper",
+        "verificationNote": "2026-10-11 使用冻结研究交接：Behdad 固定 v2 PDF SHA-256 30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10；该交接已复查本地 PDF 散列与 §VII/§IX 文本，本站不宣称本次重新下载。Zou2024 全文来源未闭合。原文、独立推导、本站实现和实际验收分别报告；九篇影响目录及 2026-10-10 快照保持不变"
+      }
     }
   ],
   "legacy": {
@@ -1663,6 +1738,21 @@
       "group": "research",
       "primaryDirectionId": "channels",
       "action": "先看一程路径，再在固定发射预算与匹配网格下改变静态几何、反射复系数或理想直达路衰减；区分总观测、生成器分量与单最大值读数。"
+    },
+    {
+      "id": "distributed-detection",
+      "title": "两个功率数，够不够判断有目标？",
+      "href": "distributed-detection.html#experiment",
+      "question": "保留同一两站观测和虚警率，为什么复匹配可无损，而两个局部功率有时不够？少上传是否也少传输？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#cfar",
+        "foundations.html#geometry"
+      ],
+      "group": "research",
+      "primaryDirectionId": "networks",
+      "action": "先比较局部功率相同的同相/反相观测，再改变 ρ、κ 与规定 Pfa；观察原始与复匹配曲线重合、能量和基线及模板更新下的双向载荷。"
     }
   ],
   "pages": [
@@ -1919,6 +2009,21 @@
       "case": "case-multipath-channel",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同波形、同网格的双路径检验"
+    },
+    {
+      "path": "distributed-detection.html",
+      "title": "两个功率数，够不够判断有目标？",
+      "stage": "experiments",
+      "role": "研究主题 · 两站充分压缩、联合检测与双向回传账本",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#cfar",
+        "foundations.html#geometry"
+      ],
+      "case": "case-distributed-detection",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同观测、同虚警率的检测检验"
     }
   ],
   "schemaVersion": 1,
@@ -2977,15 +3082,16 @@
     },
     {
       "id": "networks",
-      "title": "多站协作：几条路径怎样拼成位置？",
-      "question": "多一个站一定更准吗，时钟偏差为什么能伪装成距离变化？",
-      "scope": "多站/双站几何、同步、关联、融合与协作开销。",
+      "title": "多站协作：怎样融合证据，付出多少开销？",
+      "question": "时钟偏差怎样影响定位，回传哪些观测才足以检测目标？位置估计与存在性判决各需要什么条件？",
+      "scope": "多站/双站几何、同步、关联、复观测融合、充分压缩与双向协作开销。",
       "prerequisites": [
         "echo",
         "geometry"
       ],
       "primaryCaseIds": [
-        "case-clock"
+        "case-clock",
+        "case-distributed-detection"
       ],
       "relatedDirectionIds": [
         "spatial",
@@ -3004,6 +3110,13 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "两个功率数，够不够判断有目标？",
+              "href": "distributed-detection.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -3015,6 +3128,20 @@
             {
               "label": "时钟偏差进入哪一个观测量",
               "href": "network-clock.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "两个站各自收到什么复样本",
+              "href": "distributed-detection.html#observation",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "已知先验下的边缘化 LRT 与充分压缩",
+              "href": "distributed-detection.html#model",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -3036,6 +3163,13 @@
             {
               "label": "双站几何的直观实验",
               "href": "foundations.html#geometry",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "同虚警率比较复融合与局部匹配能量和",
+              "href": "distributed-detection.html#experiment",
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
@@ -3061,6 +3195,13 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "Behdad v2 背景、Zou 全文缺口与本站独立推导",
+              "href": "distributed-detection.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -3075,6 +3216,13 @@
             {
               "label": "不可辨识、镜像与互易假设",
               "href": "network-clock.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "检查校准、已知噪声与能量和基线的边界",
+              "href": "distributed-detection.html#paper",
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
@@ -3093,12 +3241,19 @@
               "scope": "shared-template",
               "status": "available",
               "note": "已有学习工作流，不表示对应论文已复现"
+            },
+            {
+              "label": "重算门限、相位反例与双向载荷",
+              "href": "distributed-detection.html#practice",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         }
       ],
       "nextExtension": "在标量时延基线后加入多目标关联，分别记录漏检、错配与回传开销。",
-      "coverage": "专题机制、原文导读与边界；尚非整篇论文复现",
+      "coverage": "已有网络时钟与两站固定候选检测机制、原文导读及双向载荷账本；未实现完整 cell-free 网络或整篇论文复现",
       "scenePositions": [
         "cooperate"
       ]
@@ -3841,7 +3996,8 @@
         "boundary": "最大匹配峰不等于通过检测的目标",
         "unitRefs": [
           "matched",
-          "golay-radar"
+          "golay-radar",
+          "distributed-detection"
         ],
         "entryUnitRef": "matched"
       },
@@ -3971,7 +4127,8 @@
         "knownUnknown": "已知背景假设；判决是否存在目标",
         "boundary": "检测不等于参数精度；需要虚警与检出率语境",
         "unitRefs": [
-          "cfar"
+          "cfar",
+          "distributed-detection"
         ],
         "entryUnitRef": "cfar"
       },
@@ -4065,7 +4222,8 @@
         "unitRefs": [
           "sbfd",
           "rate",
-          "shared-array"
+          "shared-array",
+          "distributed-detection"
         ]
       },
       {

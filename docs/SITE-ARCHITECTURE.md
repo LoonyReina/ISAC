@@ -147,3 +147,15 @@ PR #37 合并提交 `840d7fe24b08c59a3385117ba6e9936496fe974f`，对应 Pages `3
 云端 Chrome 实测：共享阵列搜索得到 1 个直接课程入口和 3 个概念关系；插值得到 1+4，Golay 得到 1+5，I/Q 得到 1 个基础课链接和 1 个概念关系。直接链接以键盘 Enter 打开正确的入门锚点；浏览器返回保留搜索，前进仍到对应课程。概念按钮继续选择关系面板，Escape、无结果提示和清除搜索恢复正常。读取全部九张论文卡的实际链接，七张转入既有入门讲解、Golay 保留实验入口、DeepSense 保持无教学链接；实际跟随共享阵列论文卡验证标题与 #question。其余锚点由结构测试核验，未声称逐个浏览点击。
 
 桌面 1165 CSS 像素与窄屏 323 CSS 像素（桌面浏览器 150% 缩放，非实体手机）均已检查。窄屏结果项约 258×61 CSS 像素，课程／概念类型清楚，键盘可操作，无横向页面溢出。最终恢复桌面大小与 100% 缩放；抽样错误仅见浏览器扩展元数据错误，无网站来源错误。混合缓存旧 HTML 的降级由独立运行的模拟 DOM 测试覆盖，不冒充实际缓存实验。未验证其他浏览器、真实读屏、打印或无 JavaScript 网络场景，也未进行线上 HTTP 逐字节散列比较。
+
+
+## 两站检测机制接入（2026-10-11）
+
+`case-distributed-detection`、`distributed-detection` unit 与 `distributed-detection.html` page 使用同一规范注册，所属研究方向为既有 `networks`。通用课程入口是 `#question`，显式实验入口是 `#experiment`；`scripts/learning-entry.cjs` 保持唯一解析器，不增加页面专用跳转或浏览器路由。
+
+- 同页教学顺序为 `#question` → `#observation` → `#model` → `#experiment` → `#paper` → `#practice`；既有六层方向结构不改 schema。观测与数学都列在 model 层，paper 层与 limits 层分别链接同一个包含来源和边界的 `#paper`，reproduction 层链接可复核的 `#practice`。不为凑层数制造不存在的锚点
+- 复用 `matched`、`detection`、`budget` 三个概念的 `unitRefs`，保留全部32个概念、原始入门入口和关系边。总数更新为26个机制、15个案例、8个方向；原25个机制与14个案例完整保留
+- 网络时钟仍是 networks 的原有案例和首个直觉入口；新机制追加，不把已关联标量时延定位和固定候选存在性检测混为一个模型。旧四阶段导航、锚点、兼容映射与其他七个方向保持不变
+- `site/content-reading.html#ref-DISTRIBUTED` 是普通来源导读，不是影响力卡。Behdad2024固定v2只作为研究背景，本站边缘化LRT不是其最大化MAPRT；Zou2024保留稳定官方/作者全文缺口，不生成未核对公式/算法的复现宣传
+- `site/research-directory.json` 完全保持字节一致，9篇影响目录与8篇已接入状态不变；不增删论文、不刷新引用/学会/社交快照。来源导读与新增教学案例可以独立于影响目录扩展
+- `tests/distributed-detection-integration.test.cjs` 检查规范注册、六个实际锚点、中央入口解析、旧记录/关系/来源快照不变，以及来源与资源边界；旧集成测试只同步全局机制/案例计数和网络方向新增项。正文完成后统一运行既有生成器；本节不是数值、浏览器或上线通过声明
