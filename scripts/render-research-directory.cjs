@@ -3,11 +3,15 @@
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const link=(href,label)=>`<a href="${esc(href)}">${esc(label)}</a>`;
 function renderResearchDirectory(data, registry, exists){
- function caseRoute(card){
+ function activeUnit(card){
   const c=registry.cases.find(c=>c.id===card.caseId);
   const unit=c&&registry.units.find(u=>u.id===c.unit);
   const file=unit?.href?.split('#')[0];
-  if(c&&unit&&file&&registry.pages.some(p=>p.path===file)&&exists(file))return `<p class="paper-status">${link(unit.href,'进入教学案例 →')}<span>独立机制模型，非完整论文复现</span></p>`;
+  return c&&unit&&file&&registry.pages.some(p=>p.path===file)&&exists(file)?unit:null;
+ }
+ function caseRoute(card){
+  const unit=activeUnit(card);
+  if(unit)return `<p class="paper-status">${link(unit.href,'进入教学案例 →')}<span>独立机制模型，非完整论文复现</span></p>`;
   return `<p class="paper-status">${card.caseId?'教学案例准备中':'深度交互尚未实现'}<span>可先阅读已核实的原文</span></p>`;
  }
  function card(c){
@@ -27,6 +31,7 @@ ${oa.warning?`<dt>记录拆分警告</dt><dd>${esc(oa.warning)}</dd>`:''}
 </div></details></article>`;
  }
  return `<section class="site-section influence-directory" id="influential-papers" aria-labelledby="influential-papers-title"><h2 id="influential-papers-title">${data.cards.length} 篇研究论文：先选机制，再核对影响证据</h2><p>${esc(data.subtitle)}</p><p>${esc(data.selectionSummary)}</p>
+<p class="paper-implementation-count">深度交互已接入：${data.cards.filter(c=>activeUnit(c)).length} / ${data.cards.length} 篇。已有案例可先动手；其余论文保留已核实的原文入口。</p>
 <p class="small">身份、两套引用服务与学会 / 官方来源的交叉核验日期：<time datetime="${esc(data.verifiedOn)}">${esc(data.verifiedOn)}</time>。引用是带日期的快照，非实时排行榜；下面的原文入口不代表本站已实现交互。</p>
 <details class="paper-method"><summary>这份目录怎样选择，哪些结论不能推出？</summary><ul>${data.methodNotes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></details>
 <nav class="study-links" aria-label="研究论文按机制分组">${data.groups.map(g=>link('#papers-'+g.id,g.title)).join('')}</nav>
