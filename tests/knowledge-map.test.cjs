@@ -1,7 +1,9 @@
 // Static contracts and a custom DOM simulation only: not browser, visual, or screen-reader QA.
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
-const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json')),render=require('../scripts/knowledge-map.cjs');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json')),renderMap=require('../scripts/knowledge-map.cjs');
+const {buildResearchGuides}=require('../scripts/research-guides.cjs'),guideData=JSON.parse(read(registry.researchGuidesFile));
+const render=(r=registry,data=guideData)=>renderMap(r,buildResearchGuides(data,r));
 const escape=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const decode=s=>s.replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 const ids=h=>[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
@@ -116,7 +118,7 @@ test('detail reveal adds a small gap to root header scroll-padding at desktop an
  a.match(shell,/html\{scroll-padding-top:110px/);
  a.match(shell,/@media\(max-width:700px\)\{html\{scroll-padding-top:150px/);
  a.match(css,/@media\(max-width:600px\)[\s\S]*?\.map-detail\{padding:22px 20px;scroll-margin-top:16px\}/);
- const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=learning-entry-v1'));
+ const html=read('index.html');a.ok(html.includes('knowledge-map.css?v=map-progression-v1'));
  a.ok(html.includes('knowledge-map.js?v=knowledge-map-v3'));
 });
 
@@ -172,6 +174,7 @@ test('explicit beginner routes and actions survive reversed unitRefs',()=>{
  const after=render(r);
  for(const n of r.knowledgeMap.nodes.filter(n=>n.entryUnitRef)){
   const u=r.units.find(u=>u.id===n.entryUnitRef),b=parse(template(before,n.id)).querySelector('.map-beginner'),c=parse(template(after,n.id)).querySelector('.map-beginner');
+  if(r.knowledgeMap.progressions.some(p=>p.nodeId===n.id)){a.equal(b,null);a.equal(c,null);const ladder=parse(template(after,n.id)).querySelector('.map-progression');a.ok(ladder.textContent.includes(u.action));a.equal(ladder.querySelectorAll('a').filter(l=>l.attrs.href===u.href).length,1);continue;}
   a.equal(c.textContent,b.textContent,n.id);a.deepEqual(c.querySelectorAll('a').map(l=>l.attrs.href),[u.href,u.href],n.id);a.ok(c.textContent.includes(u.action));
  }
  const linkOnly=r.knowledgeMap.nodes.find(n=>!n.entryUnitRef&&n.unitRefs.length),u=r.units.find(u=>u.id===linkOnly.unitRefs[0]);
@@ -316,4 +319,81 @@ test('mixed cached HTML without the lesson template retains original concept and
  const h=setup({html});h.search('CRB');a.ok(h.results.querySelector('button'));a.equal(h.results.querySelectorAll('a').length,0);h.click(h.results.querySelector('button'));a.match(h.panel.textContent,/局部关系/);
  h.search(registry.directions[0].title);a.match(h.results.querySelector('button').textContent,/研究方向/);h.click(h.results.querySelector('button'));a.equal(h.location.hash,'#map-node-direction-'+registry.directions[0].id);
  h.map.fire('keydown',{key:'Escape'});a.ok(h.results.hidden);a.equal(h.location.hash,'#knowledge-map');
+});
+
+test('one four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
+ const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
+ a.deepEqual(registry.knowledgeMap.progressions,[selection]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,19,7]);
+ const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
+ a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
+ const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
+ a.ok(h.indexOf('class="map-progression"')<h.indexOf('class="map-local-map"'));
+ a.deepEqual(ladder.querySelector('.map-progression-steps').querySelectorAll('a').map(e=>e.attrs.href),['index.html#map-node-known-pilots','pilot-design.html#experiment','reading.html#guide-ofdm-passive-atomic-errors-2017','reading.html#guide-zak-otfs-semiblind-offgrid-2026']);
+ a.equal(parse(h).querySelector('.map-beginner'),null);a.equal(ladder.querySelectorAll('button').length,0);a.equal(ladder.querySelectorAll('[id]').length,0);a.doesNotMatch(ladder.textContent,/reference-uncertainty|因果继承|最新论文/);
+ a.match(ladder.textContent,/前置机制；不是论文算法复现/);a.match(ladder.textContent,/本站按问题关联（非引用关系）/);a.match(ladder.textContent,/固定版本：2026-08-04.*核查：2026-10-11/);a.match(ladder.textContent,/不是最新保证/);
+ a.ok(ladder.textContent.includes(next.nextQuestion));a.ok(ladder.textContent.includes(next.source.edition));a.ok(ladder.textContent.includes(next.contextTrail.links.find(e=>e.guideId===g.id).sourceLocator));
+ for(const id of ['messages','iq','direction:waveforms'])a.doesNotMatch(template(render(),id),/class="map-progression"/);
+});
+test('the relevant native group contains the identical no-JS ladder while enhanced controls retain existing templates',()=>{
+ const h=render(),body=template(h,'known-pilots'),ladder=body.match(/<section class="map-progression"[\s\S]*?<\/section>/)[0];
+ a.equal((h.match(/<noscript>/g)||[]).length,1);a.ok(h.includes('<noscript><div class="map-progression-fallback">'+ladder+'</div></noscript>'));
+ const nojs=parse(h),fallback=nojs.querySelector('noscript');a.equal(fallback.closest('.map-group').dataset.mapGroup,'observation');a.equal(fallback.querySelectorAll('a').filter(e=>e.attrs.href.startsWith('reading.html#guide-')).length,2);
+ a.ok(fallback.querySelectorAll('a').every(e=>!e.hidden));a.equal(fallback.querySelector('details').open,false);a.equal(new Set(ids(h)).size,ids(h).length);
+ const runtime=setup({hash:'#map-node-known-pilots'});a.ok(runtime.panel.querySelector('.map-progression'));a.equal(runtime.map.querySelectorAll('[data-map-entry]').length,40);
+});
+test('ladder text derives from source records, escapes arbitrary prose and keeps fixed link identities',()=>{
+ const r=structuredClone(registry),d=structuredClone(guideData),attack='A <img src=x onerror=bad()> & "B" </script>';
+ const n=r.knowledgeMap.nodes.find(n=>n.id==='known-pilots'),u=r.units.find(u=>u.id==='pilot'),g=d.cards.find(g=>g.id==='ofdm-passive-atomic-errors-2017'),next=d.cards.find(g=>g.id==='zak-otfs-semiblind-offgrid-2026');
+ n.label=attack;n.question=attack;u.title=attack;u.action=attack;g.title=attack;g.question=attack;next.title=attack;next.question=attack;next.nextQuestion=attack;next.source.edition=attack;next.source.checkedAt='2026-10-12';next.contextTrail.links.find(e=>e.guideId===g.id).verificationNote=attack;
+ const h=template(render(r,d),'known-pilots'),ladder=parse(h).querySelector('.map-progression');a.ok(h.includes(escape(attack)));a.doesNotMatch(h,/<img|<script|onerror="bad/);a.ok(ladder.textContent.includes(attack));a.match(ladder.textContent,/核查：2026-10-12/);
+ a.ok(ladder.querySelectorAll('a').every(e=>!e.attrs.href.includes('img')));
+ next.contextTrail.links.find(e=>e.guideId===g.id).relationType='direct-citation';const changed=parse(template(render(r,d),'known-pilots')).querySelector('.map-progression');a.match(changed.textContent,/新文直接引用此文/);a.doesNotMatch(changed.textContent,/本站按问题关联（非引用关系）/);
+});
+test('progression selection rejects missing, duplicate, mismatched and unsafe references rather than inventing navigation edges',()=>{
+ const mutations=[
+  r=>{r.knowledgeMap.progressions=null;},r=>{r.knowledgeMap.progressions={};},r=>{r.knowledgeMap.progressions=[null];},r=>{r.knowledgeMap.progressions[0].nodeId=['known-pilots'];},
+  r=>{r.knowledgeMap.progressions[0].unitId='../pilot';},r=>{r.knowledgeMap.progressions[0].title='unreviewed';},r=>{delete r.knowledgeMap.progressions[0].guideId;},r=>{r.knowledgeMap.progressions.push({...r.knowledgeMap.progressions[0]});},
+  r=>{r.knowledgeMap.progressions[0].nodeId='missing';},r=>{r.knowledgeMap.progressions[0].unitId='reference-uncertainty';},r=>{r.knowledgeMap.progressions[0].guideId='missing';},r=>{r.knowledgeMap.progressions[0].nextGuideId='missing';},
+  r=>{r.knowledgeMap.progressions[0].nextGuideId=r.knowledgeMap.progressions[0].guideId;},r=>{r.knowledgeMap.nodes.find(n=>n.id==='known-pilots').unitRefs=['golay-radar'];},r=>{r.knowledgeMap.progressions[0].unitId='golay-radar';}
+ ];
+ for(const mutate of mutations){const r=structuredClone(registry);mutate(r);a.throws(()=>render(r),/Invalid knowledge-map progression/);}
+ for(const mutate of [d=>{d.cards.find(g=>g.id==='ofdm-passive-atomic-errors-2017').prerequisites=d.cards[0].prerequisites;},d=>{d.cards.find(g=>g.id==='zak-otfs-semiblind-offgrid-2026').contextTrail.links=[];},d=>{d.cards.find(g=>g.id==='zak-otfs-semiblind-offgrid-2026').contextTrail.links[1].relationType=['problem-link'];}]){const d=structuredClone(guideData);mutate(d);a.throws(()=>render(registry,d),/Invalid/);}
+ a.throws(()=>renderMap(registry),/progression guide data/);
+ const without=structuredClone(registry);delete without.knowledgeMap.progressions;a.doesNotThrow(()=>renderMap(without));a.doesNotMatch(renderMap(without),/class="map-progression"/);
+});
+test('progressions verify generated anchor targets and prevent unregistered source IDs from becoming URLs',()=>{
+ const r=structuredClone(registry),d=structuredClone(guideData);r.knowledgeMap.progressions[0].guideId='unpublished-guide';d.cards.find(g=>g.id==='ofdm-passive-atomic-errors-2017').id='unpublished-guide';d.cards.find(g=>g.id==='zak-otfs-semiblind-offgrid-2026').contextTrail.links[1].guideId='unpublished-guide';a.throws(()=>render(r,d),/Missing unit learning entry fragment/);
+ const other=structuredClone(registry),n=other.knowledgeMap.nodes.find(n=>n.id==='known-pilots');n.id='unpublished-node';other.knowledgeMap.progressions[0].nodeId=n.id;other.knowledgeMap.edges=other.knowledgeMap.edges.filter(e=>e.source!=='known-pilots'&&e.target!=='known-pilots');a.throws(()=>render(other),/Missing unit learning entry fragment/);
+});
+test('native ladder links and explanation work with unchanged selection, search, Back/Forward and Escape handling',()=>{
+ const h=setup({hash:'#map-node-known-pilots'}),ladder=h.panel.querySelector('.map-progression'),why=ladder.querySelector('details');a.equal(why.open,false);why.open=true;
+ for(const link of ladder.querySelectorAll('a')){a.equal(h.click(link).defaultPrevented,undefined);a.equal(h.map.fire('keydown',{target:link,key:'Enter'}).defaultPrevented,undefined);}
+ a.equal(h.pushes.length,0);a.equal(h.location.hash,'#map-node-known-pilots');
+ h.search('导频');h.map.querySelector('.map-tools').fire('reset');a.equal(h.panel.querySelector('.map-progression-why'),why);a.equal(why.open,true);a.ok(h.panel.querySelector('.map-progression'));
+ for(const event of ['hashchange','popstate']){h.navigate('#map-node-iq',event);a.equal(h.panel.querySelector('.map-progression'),null);h.navigate('#map-node-known-pilots',event);a.ok(h.panel.querySelector('.map-progression'));}
+ a.equal(h.pushes.length,0);h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');a.equal(h.panel.querySelector('.map-progression'),null);a.ok(h.groups.every(g=>!g.open));
+});
+test('ladder remains a vertical native disclosure with versioned styles and no runtime or source-data changes',()=>{
+ const css=read('knowledge-map.css');a.match(css,/\.map-progression-steps\{[^}]*border-left:/);a.match(css,/\.map-progression-why>summary\{[^}]*min-height:44px/);a.match(css,/\.map-progression\{[^}]*overflow-wrap:anywhere/);a.ok(read('index.html').includes('knowledge-map.css?v=map-progression-v1'));
+ a.doesNotMatch(read('knowledge-map.js'),/progression|researchGuides|contextTrail/);
+ const digest=file=>require('node:crypto').createHash('sha256').update(read(file)).digest('hex');
+ a.equal(digest('site/research-guides.json'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
+ const generator=read('scripts/generate-site.cjs');a.ok(generator.indexOf('const researchGuides=')<generator.indexOf("const home=pageFor('index.html');"));a.match(generator,/'knowledge-map\.cjs'\)\)\(registry,researchGuides\)/);
+});
+
+test('selected guides must remain unique and their relationship and source metadata must pass existing guide validation',()=>{
+ const nextId='zak-otfs-semiblind-offgrid-2026',mutations=[
+  d=>d.cards.push(structuredClone(d.cards.find(g=>g.id===nextId))),
+  d=>{const t=d.cards.find(g=>g.id===nextId).contextTrail;t.links.push(structuredClone(t.links[1]));},
+  d=>{d.cards.find(g=>g.id===nextId).contextTrail.links.pop();},
+  d=>{d.cards.find(g=>g.id===nextId).source.url='javascript:alert(1)';},
+  d=>{d.cards.find(g=>g.id===nextId).source.url='https://user:password@example.test/paper';},
+  d=>{d.cards.find(g=>g.id===nextId).source.url='https://example.test/paper#unverified';},
+  d=>{d.cards.find(g=>g.id===nextId).source.checkedAt='2026-02-30';},
+  d=>{d.cards.find(g=>g.id===nextId).contextTrail.links[1].sourceLocator='';}
+ ];
+ for(const mutate of mutations){const d=structuredClone(guideData);mutate(d);a.throws(()=>render(registry,d),/Invalid/);}
+ const validated=buildResearchGuides(guideData,registry);a.throws(()=>renderMap(registry,[...validated,validated.at(-1)]),/progression guide data/);
+ const before=JSON.stringify(registry),papers=JSON.stringify(guideData);render();a.equal(JSON.stringify(registry),before);a.equal(JSON.stringify(guideData),papers);
 });
