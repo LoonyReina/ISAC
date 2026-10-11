@@ -1,13 +1,16 @@
 'use strict';
 // Registry, navigation and preservation checks; these are not browser or scientific validation.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {withoutMapProgressions,withoutMapProgressionGenerator}=require('./helpers/map-progression-preservation.cjs');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
+const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const r=JSON.parse(read('site/registry.json')),u=r.units.find(u=>u.id==='offgrid-range'),p=r.pages.find(p=>p.path==='offgrid-range.html');
 const {withoutReferenceUncertainty,withoutReferencePrerequisite}=require('./helpers/reference-uncertainty-registry.cjs');
 const beforeReferenceUncertainty=withoutReferenceUncertainty(r);
+const researchGuides=buildResearchGuides(JSON.parse(read(r.researchGuidesFile)),r);
 const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
 const template=(html,id)=>{const m=html.match(new RegExp(`<template[^>]+id="map-template-${id}"[^>]*>([\\s\\S]*?)<\\/template>`));a.ok(m,id);return m[1];};
 function resolve(href){
@@ -49,11 +52,11 @@ test('only delay, estimation and resolution gain unit references; original conce
  const estimation=nodes.find(n=>n.id==='estimation'),resolution=nodes.find(n=>n.id==='resolution');
  a.equal(estimation.entryUnitRef,'shared');a.match(estimation.knownUnknown,/非线性测距/);a.match(estimation.knownUnknown,/每个距离候选拟合未知复增益/);a.match(estimation.knownUnknown,/真值只供生成与评价，不提供给估计器/);
  a.equal(estimation.boundary,'实标量 LS 等号不能直接搬到非线性距离或角度');a.equal(resolution.href,'foundations.html#limits');a.ok(!resolution.entryUnitRef);
- const preserved=structuredClone(r.knowledgeMap);
+ const preserved=withoutMapProgressions(r).knowledgeMap;
  for(const n of preserved.nodes)n.unitRefs=n.unitRefs.filter(id=>id!==u.id);
  preserved.nodes.find(n=>n.id==='estimation').knownUnknown='先固定样本比较未知参数的候选；深入实标量 LS 时，估计器接收 x、y，θ 只作评估真值';
  a.equal(hash(preserved),'ac34027eec50100720f9216c7304cc1b89a2949ed1798accef56c24cbb82afa1');
- const html=renderMap(r),body=template(html,'resolution');
+ const html=renderMap(r,researchGuides),body=template(html,'resolution');
  a.ok(body.indexOf('href="foundations.html#limits"')<body.indexOf(`href="${u.href}"`));a.ok(body.includes(`href="${u.href}">进入机制实验 →</a>`));
  a.doesNotMatch(body,/此概念尚无独立专项实验/);
  for(const id of ['delay','estimation','resolution','direction:receiver'])a.ok(template(html,id).includes(`href="${u.href}"`),id);
@@ -130,7 +133,7 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
  // Later reading-only features add these exact hooks. Preserve
  // the byte-level guard for all other generator behavior rather than silently
  // rebasing its original fingerprint or weakening scientific/notebook checks.
- let generator=withoutReferencePrerequisite(read('scripts/generate-site.cjs'));
+ let generator=withoutReferencePrerequisite(withoutMapProgressionGenerator(read('scripts/generate-site.cjs')));
  for(const hook of [
   "const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));\n",
   "const {buildResearchGuides,renderResearchGuides,renderGuideDirectionLink}=require(path.join(__dirname,'research-guides.cjs'));\n",

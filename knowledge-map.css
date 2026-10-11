@@ -159,3 +159,9 @@ body[data-route="index.html"] .site-legacy summary{padding:16px 0}
 .map-group .map-disclosure-open{display:none}
 .map-group[open] .map-disclosure-open{display:inline}
 .map-group[open] .map-disclosure-closed{display:none}
+/* One existing-data question ladder, in the current detail panel and no-JS group. */
+.map-progression{margin:22px 0;padding:16px;border:1px solid #bad3ce;border-radius:8px;background:#f4f9f6;overflow-wrap:anywhere}
+.map-progression h4{font-size:16px!important;margin:0 0 16px!important;line-height:1.6}.map-progression-steps{list-style:none;margin:0;padding:0;border-left:2px solid #a7cbc3}
+.map-progression-steps>li{position:relative;margin:0 0 18px;padding:0 0 0 16px;min-width:0}.map-progression-steps>li:last-child{margin-bottom:0}.map-progression-steps>li::before{content:"";position:absolute;left:-5px;top:7px;width:8px;height:8px;border-radius:50%;background:#087f78}
+.map-progression-kind{display:block;font-size:11px;font-weight:700;color:#32695f;margin-bottom:4px}.map-progression-steps>li>a{display:inline-block;min-height:44px;padding:8px 0;font-size:14px;font-weight:650;line-height:1.7}.map-progression p{font-size:13px!important;line-height:1.8!important;margin:4px 0 10px!important;color:#3d5967}.map-progression .map-progression-boundary,.map-progression .map-progression-date{font-size:12px!important;color:#586b69}
+.map-progression-why{border-top:1px solid #c6ddd7;margin-top:16px}.map-progression-why>summary{min-height:44px;padding:12px 0;font-size:13px;line-height:1.7;cursor:pointer}.map-progression-why>div{padding:0 0 8px}.map-progression-fallback{padding:0 14px 14px}
