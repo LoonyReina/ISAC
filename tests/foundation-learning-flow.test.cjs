@@ -4,7 +4,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const C=require('../course-core.js');
 const read=name=>fs.readFileSync(require.resolve('../'+name),'utf8');
 const html=read('foundations.html'),css=read('course.css'),source=read('course-ui.js');
-function setup({hash='',core=C,run=true,reduced=false,deferFrames=false}={}){
+function setup({hash='',core=C,run=true,reduced=false,deferFrames=false,height=800,scrollPaddingTop='110px'}={}){
  const events={},scrolls=[],focuses=[],frames=[];let document;
  class E{
   constructor(tag,attrs={}){this.tagName=tag;this.attrs=attrs;this.children=[];this.parent=null;this.dataset={};this.style={};this.listeners={};this.hidden='hidden'in attrs;this.open='open'in attrs;this.disabled='disabled'in attrs;this.checked='checked'in attrs;this.value=attrs.value||'';this.id=attrs.id||'';this.hash=(attrs.href||'').startsWith('#')?attrs.href:'';this.top=1000;for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;this.classList={add:n=>this.attrs.class=[this.attrs.class||'',n].join(' '),remove:n=>this.attrs.class=(this.attrs.class||'').split(/\s+/).filter(x=>x!==n).join(' '),contains:n=>(this.attrs.class||'').split(/\s+/).includes(n)};}
@@ -28,8 +28,8 @@ function setup({hash='',core=C,run=true,reduced=false,deferFrames=false}={}){
   querySelector(s){return this.querySelectorAll(s)[0]||null;}
   addEventListener(t,fn){(this.listeners[t]??=[]).push(fn);}
   fire(t,extras={}){const event={target:this,currentTarget:this,detail:0,button:0,...extras};for(const fn of this.listeners[t]||[])fn(event);this['on'+t]?.(event);return event;}
-  getClientRects(){return [];}
-  getBoundingClientRect(){return {top:this.top,bottom:this.top+400,width:600};}
+  getClientRects(){return this.visible?[this.getBoundingClientRect()]:[];}
+  getBoundingClientRect(){return {top:this.top,bottom:this.bottom??this.top+400,width:600};}
   scrollIntoView(options){scrolls.push({node:this,options});}
   focus(options){document.activeElement=this;focuses.push({node:this,options});}
  }
@@ -41,7 +41,7 @@ function setup({hash='',core=C,run=true,reduced=false,deferFrames=false}={}){
  }
  document=root;document.getElementById=id=>root.querySelectorAll('[id]').find(e=>e.id===id)||null;document.documentElement=root.querySelector('html');document.documentElement.scrollHeight=20000;document.hidden=false;document.activeElement=null;
  for(const el of root.querySelectorAll('select'))el.value=(el.querySelector('[selected]')||el.querySelector('option'))?.attrs.value||'';
- const window={Course:core,location:{hash},scrollY:0,innerHeight:800,matchMedia:()=>({matches:reduced}),addEventListener:(t,fn)=>(events[t]??=[]).push(fn),print(){}};
+ const window={Course:core,location:{hash},scrollY:0,innerHeight:height,scrollPaddingTop,getComputedStyle:el=>el===document.documentElement?{scrollPaddingTop:window.scrollPaddingTop}:{position:el.position||'static'},matchMedia:()=>({matches:reduced}),addEventListener:(t,fn)=>(events[t]??=[]).push(fn),print(){}};
  const context={window,document,requestAnimationFrame:fn=>deferFrames?frames.push(fn):fn(0),cancelAnimationFrame(){},setTimeout:fn=>fn(),clearTimeout(){},performance:{now:()=>0},console};
  const s={document,window,events,scrolls,focuses,flushFrames:()=>frames.splice(0).forEach(fn=>fn(0)),els:Object.fromEntries(root.querySelectorAll('[id]').map(e=>[e.id,e])),fire:t=>(events[t]||[]).forEach(fn=>fn()),run:()=>vm.runInNewContext(source,context)};
  if(run)s.run();return s;
@@ -79,10 +79,13 @@ test('mobile chapter disclosure is outside the cover and repeats exactly the des
 test('deep links and Back-like hash changes synchronize both directories and the mobile current chapter',()=>{
  for(const hash of ['#iq','#ofdm','#cfar']){const s=setup({hash});assert.deepEqual(currentLinks(s).map(a=>a.hash),[hash,hash]);assert.match(s.els['mobile-chapter-current'].textContent,/^当前：/);assert.equal(s.focuses.length,0);assert.equal(s.scrolls.length,1);assert.equal(s.scrolls[0].node,s.els[hash.slice(1)]);assert.equal(s.scrolls[0].options.behavior,'instant');s.window.location.hash='#matched';s.fire('hashchange');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#matched','#matched']);s.window.location.hash=hash;s.fire('hashchange');assert.deepEqual(currentLinks(s).map(a=>a.hash),[hash,hash]);}
 });
-test('mobile keyboard anchor closes disclosure and focuses chapter without overriding native navigation',()=>{
- const s=setup(),mobile=s.document.querySelector('.mobile-toc'),link=mobile.querySelectorAll('a').find(a=>a.hash==='#cfar');mobile.open=true;const before=s.window.location.hash;link.fire('click');assert.equal(mobile.open,false);assert.equal(s.document.activeElement,s.els.cfar.querySelector('h2'));assert.equal(s.window.location.hash,before);assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
- mobile.open=true;const n=s.focuses.length;link.fire('click',{detail:1,ctrlKey:true});assert.equal(mobile.open,true);assert.equal(s.focuses.length,n);
+test('mobile keyboard anchor focuses after native fragment default resets focus, without overriding navigation',()=>{
+ const s=setup({deferFrames:true}),mobile=s.document.querySelector('.mobile-toc'),link=mobile.querySelectorAll('a').find(a=>a.hash==='#cfar');mobile.open=true;const before=s.window.location.hash;link.fire('click');assert.equal(mobile.open,false);assert.equal(s.document.activeElement,null);assert.equal(s.window.location.hash,before);assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
+ // Model the browser default after event handlers: change the hash and reset focus to BODY.
+ s.window.location.hash=link.hash;s.document.activeElement=s.document.querySelector('body');s.fire('hashchange');s.flushFrames();assert.equal(s.document.activeElement,s.els.cfar.querySelector('h2'));assert.equal(s.focuses.at(-1).options.preventScroll,true);
+ mobile.open=true;const n=s.focuses.length;link.fire('click',{detail:1,ctrlKey:true});s.flushFrames();assert.equal(mobile.open,true);assert.equal(s.focuses.length,n);
 });
+
 test('scroll and history restoration update chapter state without announcing every scroll as a live status',()=>{
  const s=setup();s.els.iq.top=120;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#iq','#iq']);s.els.cfar.top=100;s.fire('pageshow');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);assert.equal(s.els['mobile-chapter-current'].attrs['aria-live'],undefined);
 });
@@ -97,4 +100,32 @@ test('sticky chapter bar clearance combines shared root scroll padding with the 
 test('cold-link realignment runs only once and yields to a newer hash without changing focus or history',()=>{
  const s=setup({hash:'#cfar',deferFrames:true});assert.equal(s.scrolls.length,0);s.window.location.hash='#iq';s.fire('hashchange');s.flushFrames();assert.equal(s.scrolls.length,0);assert.equal(s.window.location.hash,'#iq');assert.equal(s.focuses.length,0);assert.deepEqual(currentLinks(s).map(a=>a.hash),['#iq','#iq']);
  const stable=setup({hash:'#cfar',deferFrames:true});stable.flushFrames();stable.flushFrames();assert.equal(stable.scrolls.length,1);assert.equal(stable.window.location.hash,'#cfar');assert.equal(stable.focuses.length,0);
+});
+
+test('short zoomed viewport keeps a fractional 150px native CFAR landing current after scroll and pageshow',()=>{
+ const s=setup({hash:'#cfar',height:250,scrollPaddingTop:'150px'});s.els.ofdm.top=-800;s.els.cfar.top=150.135;s.els.limits.top=190;
+ for(const event of ['scroll','pageshow']){s.fire(event);assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);assert.match(s.els['mobile-chapter-current'].textContent,/09/);}
+ s.els.cfar.top=153;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#ofdm','#ofdm']);
+});
+test('opening the mobile directory measures only its sticky summary, never the expanded list bottom',()=>{
+ const s=setup({height:250,scrollPaddingTop:'150px'}),mobile=s.document.querySelector('.mobile-toc'),summary=mobile.querySelector('summary');mobile.position='sticky';mobile.visible=true;mobile.top=0;mobile.bottom=240;summary.visible=true;summary.top=0;summary.bottom=56;s.els.ofdm.top=-800;s.els.cfar.top=150.135;s.els.limits.top=190;
+ for(const open of [false,true,false]){mobile.open=open;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);}
+});
+test('active chapter also clears visible sticky or fixed header geometry when it exceeds root padding',()=>{
+ const s=setup({height:250,scrollPaddingTop:'20px'}),mobile=s.document.querySelector('.mobile-toc'),summary=mobile.querySelector('summary'),header=s.document.querySelector('.site-header');mobile.position='sticky';summary.visible=true;summary.top=0;summary.bottom=96;s.els.ofdm.top=-800;s.els.cfar.top=97.5;s.els.limits.top=160;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
+ mobile.position='relative';s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#ofdm','#ofdm']);header.visible=true;header.position='fixed';header.top=0;header.bottom=132;s.els.cfar.top=133;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
+ header.visible=false;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#ofdm','#ofdm']);
+});
+test('resize recomputes root padding and viewport reading line without needing another scroll event',()=>{
+ const s=setup({height:800,scrollPaddingTop:'110px'});s.els.ofdm.top=-800;s.els.cfar.top=180;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
+ s.window.innerHeight=250;s.window.scrollPaddingTop='150px';s.fire('resize');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#ofdm','#ofdm']);s.window.scrollPaddingTop='190px';s.fire('resize');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);
+});
+test('percentage and auto scroll-padding values remain finite and responsive',()=>{
+ const s=setup({height:250,scrollPaddingTop:'60%'});s.els.ofdm.top=-800;s.els.cfar.top=150.135;s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#cfar','#cfar']);s.window.scrollPaddingTop='auto';s.fire('scroll');assert.deepEqual(currentLinks(s).map(a=>a.hash),['#ofdm','#ofdm']);
+});
+test('deferred mobile keyboard focus yields to Back or a newer link and supports repeat same-hash activation',()=>{
+ const s=setup({deferFrames:true}),mobile=s.document.querySelector('.mobile-toc'),iq=mobile.querySelectorAll('a').find(a=>a.hash==='#iq'),cfar=mobile.querySelectorAll('a').find(a=>a.hash==='#cfar'),body=s.document.querySelector('body');
+ iq.fire('click');s.window.location.hash='#iq';s.document.activeElement=body;s.window.location.hash='#cfar';s.fire('hashchange');s.flushFrames();assert.equal(s.document.activeElement,body);assert.equal(s.focuses.length,0);
+ cfar.fire('click');s.document.activeElement=body;s.flushFrames();assert.equal(s.document.activeElement,s.els.cfar.querySelector('h2'));assert.equal(s.window.location.hash,'#cfar');
+ const n=s.focuses.length;cfar.fire('click',{detail:1});s.document.activeElement=body;s.flushFrames();assert.equal(s.document.activeElement,body);assert.equal(s.focuses.length,n);
 });

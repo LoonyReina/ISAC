@@ -117,7 +117,7 @@ window.addEventListener('afterprint',()=>{
  if(!printState)return;const saved=printState;printState=null;
  saved.details.forEach(([e,open])=>e.open=open);setStep(saved.stage);
 });
-let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(renderAll,160);});
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{renderAll();readingProgress();},160);});
 const chapterLinks=Array.from(document.querySelectorAll('.toc nav a,.mobile-toc nav a'));
 function currentChapter(id){
  let label='';chapterLinks.forEach(a=>{if(a.hash==='#'+id){a.setAttribute('aria-current','location');label=a.textContent.trim();}else a.removeAttribute('aria-current');});
@@ -127,9 +127,21 @@ function hashChapter(){
  let id;try{id=decodeURIComponent(window.location.hash.slice(1));}catch{return null;}
  return $(id)?.closest('.chapter');
 }
+function chapterReadingLine(){
+ const padding=window.getComputedStyle(document.documentElement).scrollPaddingTop,amount=parseFloat(padding);
+ const rootPadding=Number.isFinite(amount)?amount*(padding.endsWith('%')?window.innerHeight/100:1):0;
+ function stickyBottom(selector){
+  const el=document.querySelector(selector);if(!el||!el.getClientRects().length)return 0;
+  const container=el.closest('.mobile-toc')||el,position=window.getComputedStyle(container).position;
+  return position==='sticky'||position==='fixed'?Math.max(0,el.getBoundingClientRect().bottom):0;
+ }
+ // Native anchor placement includes scroll-padding, even when zoom leaves a very short viewport.
+ // Only the disclosure summary counts: expanding its list must not advance the reading chapter.
+ return Math.max(window.innerHeight*.28,rootPadding,stickyBottom('.site-header'),stickyBottom('.mobile-toc summary'))+2;
+}
 function readingProgress(){
  const top=window.scrollY,total=document.documentElement.scrollHeight-window.innerHeight;$('progress').style.width=(100*top/Math.max(total,1))+'%';
- let current='start';document.querySelectorAll('.chapter').forEach(s=>{if(s.getBoundingClientRect().top<window.innerHeight*.28)current=s.id;});currentChapter(current);
+ const readingLine=chapterReadingLine();let current='start';document.querySelectorAll('.chapter').forEach(s=>{if(s.getBoundingClientRect().top<=readingLine)current=s.id;});currentChapter(current);
 }
 window.addEventListener('scroll',readingProgress,{passive:true});
 window.addEventListener('hashchange',()=>{const chapter=hashChapter();if(chapter)currentChapter(chapter.id);else readingProgress();});
@@ -140,7 +152,11 @@ document.querySelectorAll('.mobile-toc a').forEach(a=>a.addEventListener('click'
  a.closest('details').open=false;
  const chapter=$(a.hash.slice(1));if(!chapter)return;
  currentChapter(chapter.id);
- if(e.detail===0){const heading=chapter.querySelector('h2');heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+ if(e.detail===0){
+  const heading=chapter.querySelector('h2'),hash=a.hash;heading.setAttribute('tabindex','-1');
+  // Native fragment navigation can reset focus after click handlers; run after that default action.
+  requestAnimationFrame(()=>{if(window.location.hash===hash)heading.focus({preventScroll:true});});
+ }
 }));
 try{
  renderAll();setStep(0);readingProgress();
