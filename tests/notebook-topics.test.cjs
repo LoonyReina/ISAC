@@ -16,9 +16,9 @@ function generator(r=registry,template=read('site/content-practice.html')){
  return {...render,output:file=>outputs.get(file)||read(file)};
 }
 
-test('all 26 notebook topics are canonical projections of the unchanged single registry',()=>{
+test('all 27 notebook topics are canonical projections of the unchanged single registry',()=>{
  const before=JSON.stringify(registry),topics=buildNotebookTopics(registry),entries=createLearningEntryResolver(registry);
- a.equal(topics.length,26);a.equal(registry.cases.length,15);
+ a.equal(topics.length,27);a.equal(topics.length,registry.units.length);a.equal(registry.cases.length,15);
  a.deepEqual(topics.map(topic=>topic.id),registry.units.map(unit=>unit.id));
  for(const [index,unit]of registry.units.entries()){
   const topic=topics[index],source=registry.cases.find(c=>c.unit===unit.id);
@@ -73,7 +73,7 @@ test('generated options and JSON cannot cross HTML or script boundaries',()=>{
  const r=structuredClone(registry),payload='</option><script>"&\'<!--</script>\u2028\u2029';
  r.units[0].title=payload;r.units[0].question=payload;r.units[0].action=payload;
  const topics=buildNotebookTopics(r),options=renderNotebookOptions(topics),script=renderNotebookData(topics);
- a.equal([...options.matchAll(/<option value=/g)].length,26);
+ a.equal([...options.matchAll(/<option value=/g)].length,registry.units.length);
  a.doesNotMatch(options,/<script|<!--/);
  a.match(options,/&lt;\/option&gt;&lt;script&gt;&quot;&amp;&#39;&lt;!--&lt;\/script&gt;/);
  a.equal([...script.matchAll(/<\/script>/g)].length,1);
@@ -88,7 +88,7 @@ test('practice generation fills both placeholders and includes notebook assets o
  const json=practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1];
  a.deepEqual(JSON.parse(json),topics);
  const select=practice.match(/<select[^>]+id="notebook-topic"[^>]*>([\s\S]*?)<\/select>/)[1];
- a.equal([...select.matchAll(/<option value="[^"]+"/g)].length,26);
+ a.equal([...select.matchAll(/<option value="[^"]+"/g)].length,registry.units.length);
  for(const topic of topics)a.ok(select.includes(`<option value="${topic.id}">`),topic.id);
  for(const page of registry.pages){
   const html=render.output(page.path);
