@@ -1,18 +1,18 @@
 'use strict';
 // Content, generator and simulated DOM regression. No browser or source refetch claim.
-const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
-test('four guide-only resources extend two existing directions without inflating lessons or snapshots',()=>{
+test('six guide-only resources extend three existing directions without inflating lessons or snapshots',()=>{
  a.deepEqual([registry.cases.length,registry.units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,27,8,32]);
- a.equal(data.cards.length,4);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial']);
+ a.equal(data.cards.length,6);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks']);
  const directory=JSON.parse(read(registry.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);
  for(const c of data.cards){a.ok(!registry.cases.some(x=>x.id===c.id));a.ok(!registry.units.some(x=>x.id===c.id));a.equal(c.caseId,undefined);}
- const html=read('reading.html');a.match(html,/4 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
+ const html=read('reading.html');a.match(html,/6 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
  a.ok(html.indexOf('id="directions"')<html.indexOf('id="research-guides"'));a.ok(html.indexOf('id="research-guides"')<html.indexOf('id="paper-comparisons"'));
- a.equal((html.match(/class="research-guide-card"/g)||[]).length,4);
+ a.equal((html.match(/class="research-guide-card"/g)||[]).length,6);
 });
 test('beginner question, mechanism, innovation, evidence, limits and next question all survive without JS',()=>{
  const html=render();
@@ -29,13 +29,23 @@ test('fixed editions travel with the inspected source and scientific limits rema
  for(const phrase of ['保护格','20 dB','不是统一的空间标签','完全自干扰消除','已知用户和目标位置','降低用户最低速率','归一化 Capon 空间谱','规定虚警率','本站没有实现'])a.ok(html.includes(phrase),phrase);
  a.doesNotMatch(html,/先看门限区/);a.match(html,/先分清误差与下界/);
 });
+test('network guides preserve the first batch and bound cooperation, compression and publication claims',()=>{
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,4))).digest('hex'),'2b258d793a0cf561885f7ef24508216946550188cedc923f56afb7d0fe0cab48');
+ const [meng,wang]=data.cards.slice(4),html=render();
+ a.equal(meng.id,'networks-cooperative-clusters-2024');a.equal(wang.id,'cellfree-vq-compression-2026');
+ a.equal(meng.source.url,'https://arxiv.org/pdf/2403.20228v3');a.equal(wang.source.url,'https://arxiv.org/pdf/2602.20319v1');
+ a.match(meng.source.edition,/2024-06-11/);a.match(meng.source.edition,/SPAWC 2024 会议版本/);a.match(wang.source.edition,/2026-02-23/);
+ for(const phrase of ['Root CRLB','每站发射功率','省略 CSI 共享流量','非相干处理不等于无需时间同步','CPU 查码本','接入点（AP）','中央处理单元（CPU）','三维卷积网络（3D CNN）','潜特征向量数','Nc 是码本大小','先分清径向分量与完整速度','在线才只传索引','训练特征/梯度','输出维度按目标数 Q 设置','校准后残余时偏/频偏'])a.ok(html.includes(phrase),phrase);
+ a.ok(html.includes(`href="${meng.source.publicationUrl}">后续发表记录</a>`));a.match(html,/未将正式发表版本视为已逐式核对/);a.doesNotMatch(html,/>后续期刊记录<|未将期刊定稿/);
+ a.ok([meng,wang].every(c=>c.notebookTopicId===undefined));
+});
 test('reading navigation and direction links resolve to the same generated guide data',()=>{
- const html=read('reading.html');a.match(html,/href="#research-guides">4 篇问题式导读/);
- for(const id of ['waveforms','spatial']){
+ const html=read('reading.html');a.match(html,/href="#research-guides">6 篇问题式导读/);
+ for(const id of ['waveforms','spatial','networks']){
   const card=html.match(new RegExp('<article class="direction-card" id="direction-'+id+'"[\\s\\S]*?</article>'))[0];
   a.ok(card.includes(`href="#research-guides-${id}"`));a.match(card,/2 篇问题式原文导读/);a.match(card,/不增加实验覆盖/);
  }
- a.equal(M.renderGuideDirectionLink(build(),'networks'),'');
+ a.equal(M.renderGuideDirectionLink(build(),'learning'),'');
  a.match(registry.directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
  for(const [,href]of render().matchAll(/href="([^"]+)"/g)){
@@ -54,9 +64,9 @@ test('invalid identities, missing evidence and nonexistent routes fail at build 
 });
 test('plain-text serialization and data-only additions do not add HTML, cases or button stubs',()=>{
  const d=structuredClone(data),attack='<img src=x onerror=bad()> & "text" </script>';
- const card=structuredClone(d.cards[0]);card.id='new-reading';card.directionId='networks';card.title=attack;card.question=attack;card.source.edition=attack;d.cards.push(card);
- const html=render(d);a.match(html,/5 篇问题式导读/);a.match(html,/id="research-guides-networks"/);a.match(html,/id="guide-new-reading"/);a.ok(html.includes(M.escapeHtml(attack)));a.doesNotMatch(html,/<img|<script|case-new-reading|unit-new-reading/);
- a.match(M.renderGuideDirectionLink(build(d),'networks'),/1 篇问题式原文导读/);a.equal(M.renderResearchGuides([]),'');a.equal(build({...data,cards:[]}).length,0);
+ const card=structuredClone(d.cards[0]);card.id='new-reading';card.directionId='learning';card.title=attack;card.question=attack;card.source.edition=attack;d.cards.push(card);
+ const html=render(d);a.match(html,/7 篇问题式导读/);a.match(html,/id="research-guides-learning"/);a.match(html,/id="guide-new-reading"/);a.ok(html.includes(M.escapeHtml(attack)));a.doesNotMatch(html,/<img|<script|case-new-reading|unit-new-reading/);
+ a.match(M.renderGuideDirectionLink(build(d),'learning'),/1 篇问题式原文导读/);a.equal(M.renderResearchGuides([]),'');a.equal(build({...data,cards:[]}).length,0);
 });
 test('local assets are versioned and loaded only on the reading page; styles support narrow screens and print',()=>{
  for(const name of ['research-guides.css?v=research-guides-v1','research-guides.js?v=research-guides-v1'])a.ok(read('reading.html').includes(name));
@@ -88,7 +98,7 @@ function parse(html){
  return doc;
 }
 function setup({html,hash='',mutate}={}){
- const document=parse(html??M.renderGuideDirectionLink(build(),'waveforms')+M.renderGuideDirectionLink(build(),'spatial')+render());
+ const document=parse(html??[...new Set(data.cards.map(c=>c.directionId))].map(id=>M.renderGuideDirectionLink(build(),id)).join('')+render());
  const root=document.querySelector('[data-research-guides]'),window={location:{hash},events:{},addEventListener(t,fn){(this.events[t]??=[]).push(fn);}};
  const trap=()=>{throw new Error('Forbidden side effect');};const env={document,window,fetch:trap,XMLHttpRequest:trap,localStorage:new Proxy({}, {get:trap}),history:new Proxy({}, {get:trap})};
  if(mutate)mutate(root,document);
@@ -97,14 +107,14 @@ function setup({html,hash='',mutate}={}){
  return {document,root,window,select,query,form,cards,groups,execute,count:root?.querySelector('[data-guide-count]'),empty:root?.querySelector('[data-guide-empty]'),search(value){query.value=value;query.fire('input');},choose(value){select.value=value;select.fire('change');},navigate(value){window.location.hash=value;for(const fn of window.events.hashchange||[])fn();},pageshow(){for(const fn of window.events.pageshow||[])fn();}};
 }
 test('filter starts with all cards and exposes native labelled controls only after validation',()=>{
- const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/4 \/ 4 篇原文导读/);a.ok(h.empty.hidden);
+ const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/6 \/ 6 篇原文导读/);a.ok(h.empty.hidden);
  for(const node of [h.select,h.query])a.ok(h.form.querySelector('[for="'+node.id+'"]'));
  a.equal(h.form.querySelector('button').attrs.type,'reset');a.equal(h.query.events.keydown,undefined);
 });
 test('direction and multiword question filters intersect, ignore case and show bounded empty results',()=>{
  const h=setup();h.choose('waveforms');a.equal(h.cards.filter(c=>!c.hidden).length,2);a.equal(h.groups[1].hidden,true);
  h.search('  oTfS   下一帧  ');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-otfs-sensing-assisted-2021']);
- h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 4/);
+ h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 6/);
  h.search('两');a.ok(h.cards.some(c=>!c.hidden));h.search('<script>');a.equal(h.empty.hidden,false);
 });
 test('repeated filtering and reset preserve disclosure state and unrelated content',()=>{
@@ -115,12 +125,21 @@ test('repeated filtering and reset preserve disclosure state and unrelated conte
 test('initial deep links and back/forward hash changes reveal filtered targets without writing history',()=>{
  const h=setup({hash:'#guide-nearfield-double-array-ispac'});a.equal(h.select.value,'spatial');a.equal(h.cards[2].hidden,false);a.equal(h.cards[0].hidden,true);
  h.search('no match');h.navigate('#guide-otfs-joint-estimation-2020');a.equal(h.select.value,'waveforms');a.equal(h.query.value,'');a.equal(h.cards[0].hidden,false);
- h.search('no match');h.navigate('#research-guides-spatial');a.equal(h.select.value,'spatial');a.ok(h.cards.slice(2).every(c=>!c.hidden));
+ h.search('no match');h.navigate('#research-guides-spatial');a.equal(h.select.value,'spatial');a.ok(h.cards.slice(2,4).every(c=>!c.hidden));
  h.search('kept');for(const hash of ['#%ZZ','#other','#https://evil.test'])h.navigate(hash);a.equal(h.query.value,'kept');
 });
 test('same-hash direction clicks also reveal cards before native anchor navigation',()=>{
  const h=setup({hash:'#research-guides-waveforms'});h.choose('spatial');h.search('no match');
  h.document.querySelector('[href="#research-guides-waveforms"]').fire('click');a.equal(h.select.value,'waveforms');a.equal(h.query.value,'');a.ok(h.cards.slice(0,2).every(c=>!c.hidden));a.equal(h.window.location.hash,'#research-guides-waveforms');
+});
+test('third direction is selectable, searchable and deep-linkable with the existing enhancement',()=>{
+ const h=setup();a.equal(h.groups.length,3);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks']);
+ h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 6/);
+ h.search('Root CRLB');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024']);
+ h.search('cpu 码本');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-cellfree-vq-compression-2026']);
+ h.choose('waveforms');h.document.querySelector('[href="#research-guides-networks"]').fire('click');a.equal(h.select.value,'networks');a.equal(h.query.value,'');a.ok(h.cards.slice(4).every(c=>!c.hidden));
+ for(const card of data.cards.slice(4)){h.choose('spatial');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'networks');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/6 \/ 6/);
 });
 test('pageshow reconciles browser-restored values; script reexecution attaches no duplicate listeners',()=>{
  const h=setup();h.select.value='spatial';h.query.value='Capon';h.pageshow();a.equal(h.cards.filter(c=>!c.hidden).length,1);a.equal(h.cards[3].hidden,false);
