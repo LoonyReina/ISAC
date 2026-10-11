@@ -32,7 +32,7 @@ test('joint beamforming canonical case is integrated as its own mechanism and pr
 test('point-target CRB beamforming has a separate canonical identity and preserves the beginner concept map',()=>{
  const data=JSON.parse(read(registry.researchDirectoryFile)),card=data.cards.find(c=>c.id==='crb'),c=registry.cases.find(c=>c.id===card.caseId),unit=registry.units.find(u=>u.id===c.unit);
  assert.equal(c.id,'case-crb-beamforming');assert.equal(c.learningEntry,'crb-beamforming.html#intuition');assert.equal(unit.id,'crb-beamforming');assert.equal(unit.href,'crb-beamforming.html#experiment');
- assert.equal(registry.units.length,26);assert.equal(registry.cases.length,15);assert.equal(registry.knowledgeMap.nodes.length,32);
+ assert.equal(registry.units.length,27);assert.equal(registry.cases.length,15);assert.equal(registry.knowledgeMap.nodes.length,32);
  assert.equal(registry.cases.find(c=>c.id==='case-crb').unit,'crb');assert.equal(registry.units.find(u=>u.id==='crb').href,'theory.html#crb-mechanism');
  assert.ok(registry.pages.some(p=>p.path==='crb-beamforming.html'&&p.case===c.id));
  const page=read('crb-beamforming.html');for(const id of ['intuition','model','experiment','solution','nuisance','companion','paper','limits','reproduce'])assert.ok(page.includes(`id="${id}"`),id);
