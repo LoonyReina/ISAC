@@ -3,10 +3,15 @@
 // hashes still cover every other field and byte; no baseline is refreshed here.
 const a=require('node:assert/strict');
 const progression={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
+const progressions=[progression,
+ {nodeId:'angle',unitId:'array',guideId:'channels-shared-clusters-2024',nextGuideId:'channels-sensing-communication-mapping-2026'},
+ {nodeId:'echo',unitId:'echo',guideId:'channels-target-environment-coupling-2025',nextGuideId:'channels-sensing-communication-mapping-2026'},
+ {nodeId:'beam-design',unitId:'array',guideId:'mimo-ofdm-realtime-testbed-2023',nextGuideId:'sbfd-resource-synchronization-2026'}
+];
 function withoutMapProgressions(registry){
  const old=structuredClone(registry),map=old.knowledgeMap;
  a.equal(Object.keys(map).at(-1),'progressions','map progression is an appended key');
- a.deepEqual(map.progressions,[progression],'exactly one reviewed map progression');
+ a.deepEqual(map.progressions,progressions,'exactly four reviewed map progressions');
  delete map.progressions;
  return old;
 }
@@ -27,4 +32,4 @@ function withoutMapProgressionGenerator(source){
   .replace(mapCall,oldMapCall)
   .replace(homeEmit,homeEmit.replace('map-progression-v1','learning-entry-v1'));
 }
-module.exports={withoutMapProgressions,withoutMapProgressionGenerator,progression,guideDeclaration,homeDeclaration,directionDeclaration,mapCall,homeEmit};
+module.exports={withoutMapProgressions,withoutMapProgressionGenerator,progression,progressions,guideDeclaration,homeDeclaration,directionDeclaration,mapCall,homeEmit};
