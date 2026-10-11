@@ -5,6 +5,10 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
+const reviewedTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','bistatic-ofdm-clock-measurement-2023']);
+// Only the three reviewed optional trace fields are excluded. Every original
+// guide field and all fields on other guides stay under the earlier byte guards.
+const guideCores=cards=>cards.map(card=>{if(!reviewedTraceIds.has(card.id))return card;const {visualTrace,...core}=card;return core;});
 test('sixteen guide-only resources extend all eight existing directions without inflating lessons or snapshots',()=>{
  a.deepEqual([registry.cases.length,registry.units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,27,8,32]);
  a.equal(data.cards.length,16);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver','channels','channels','tradeoffs','tradeoffs']);
@@ -30,7 +34,7 @@ test('fixed editions travel with the inspected source and scientific limits rema
  a.doesNotMatch(html,/先看门限区/);a.match(html,/先分清误差与下界/);
 });
 test('network guides preserve the first batch and bound cooperation, compression and publication claims',()=>{
- a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,4))).digest('hex'),'2b258d793a0cf561885f7ef24508216946550188cedc923f56afb7d0fe0cab48');
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(guideCores(data.cards.slice(0,4)))).digest('hex'),'2b258d793a0cf561885f7ef24508216946550188cedc923f56afb7d0fe0cab48');
  const [meng,wang]=data.cards.slice(4),html=render();
  a.equal(meng.id,'networks-cooperative-clusters-2024');a.equal(wang.id,'cellfree-vq-compression-2026');
  a.equal(meng.source.url,'https://arxiv.org/pdf/2403.20228v3');a.equal(wang.source.url,'https://arxiv.org/pdf/2602.20319v1');
@@ -40,7 +44,7 @@ test('network guides preserve the first batch and bound cooperation, compression
  a.ok([meng,wang].every(c=>c.notebookTopicId===undefined));
 });
 test('prototype guides preserve the prior six and distinguish measured hardware from untested service claims',()=>{
- a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,6))).digest('hex'),'4f1e87ac19393b4c1190345aac8dccd9213303c0b642c7f66d2445d563370076');
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(guideCores(data.cards.slice(0,6)))).digest('hex'),'4f1e87ac19393b4c1190345aac8dccd9213303c0b642c7f66d2445d563370076');
  const [bistatic,mimo]=data.cards.slice(6),html=render();
  a.equal(bistatic.id,'bistatic-ofdm-clock-measurement-2023');a.equal(mimo.id,'mimo-ofdm-realtime-testbed-2023');
  a.equal(bistatic.source.url,'https://arxiv.org/pdf/2305.15058v1');a.equal(mimo.source.url,'https://arxiv.org/pdf/2302.05812v1');
@@ -49,7 +53,7 @@ test('prototype guides preserve the prior six and distinguish measured hardware 
  a.ok([bistatic,mimo].every(c=>c.notebookTopicId===undefined));a.doesNotMatch(mimo.evidence.summary,/给出距离\/角度及通信 SNR 测量/);
 });
 test('learning and receiver guides preserve the prior eight and keep metric, training and conditional-error boundaries',()=>{
- a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,8))).digest('hex'),'43655698eda60f21efad8e18e91741a744cea8c961454d0fe964da2c79eb731b');
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(guideCores(data.cards.slice(0,8)))).digest('hex'),'43655698eda60f21efad8e18e91741a744cea8c961454d0fe964da2c79eb731b');
  const cards=data.cards.slice(8,12),html=render();
  a.deepEqual(cards.map(c=>c.id),['isac-net-model-driven-passive','multimodal-transformer-beam-generalization','ofdm-ici-aware-receiver-2021','ofdm-passive-atomic-errors-2017']);
  a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2307.15074v1','https://www.itu.int/dms_pub/itu-s/opb/jnl/S-JNL-VOL4.ISSUE3-2023-A33-PDF-E.pdf','https://arxiv.org/pdf/2103.15694v1','https://arxiv.org/pdf/1610.04218v2']);
@@ -58,7 +62,7 @@ test('learning and receiver guides preserve the prior eight and keep metric, tra
  a.match(cards[1].source.edition,/公开期刊PDF编号/);a.match(cards[3].source.edition,/算法在§IV、仿真在§V/);
 });
 test('channel and tradeoff guides preserve the prior twelve and separate measurement, state knowledge and inspected editions',()=>{
- a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,12))).digest('hex'),'168ce52facfc17311ee3b5ddbece81d58f37608c68a06e35d0d825f3ca3d9de1');
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(guideCores(data.cards.slice(0,12)))).digest('hex'),'168ce52facfc17311ee3b5ddbece81d58f37608c68a06e35d0d825f3ca3d9de1');
  const cards=data.cards.slice(12),html=render();
  a.deepEqual(cards.map(c=>c.id),['channels-shared-clusters-2024','channels-target-environment-coupling-2025','tradeoffs-feedback-capacity-distortion-2018','tradeoffs-causal-state-communication-2013']);
  a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2211.06615v2','https://arxiv.org/pdf/2506.00480v1','https://arxiv.org/pdf/1805.05713v1','https://web.eng.ucsd.edu/~yhk/pdfs/it2013jun.pdf']);
@@ -99,10 +103,60 @@ test('plain-text serialization and data-only additions do not add HTML, cases or
  a.match(M.renderGuideDirectionLink(build(d,r),direction.id),/1 篇问题式原文导读/);a.equal(M.renderResearchGuides([]),'');a.equal(build({...data,cards:[]}).length,0);
 });
 test('local assets are versioned and loaded only on the reading page; styles support narrow screens and print',()=>{
- for(const name of ['research-guides.css?v=research-guides-v1','research-guides.js?v=research-guides-v1'])a.ok(read('reading.html').includes(name));
+ for(const name of ['research-guides.css?v=research-guides-v2','research-guides.js?v=research-guides-v1'])a.ok(read('reading.html').includes(name));
  for(const page of registry.pages.filter(p=>p.path!=='reading.html'))a.doesNotMatch(read(page.path),/src="research-guides\.js|href="research-guides\.css/);
  for(const token of ['minmax(0,1fr)','min-width:0','overflow-wrap:anywhere','flex-wrap:wrap','min-height:44px',':focus-visible','@media(max-width:480px)','@media print','[hidden]','details::details-content'])a.ok(read('research-guides.css').includes(token),token);
  a.doesNotMatch(source,/innerHTML|outerHTML|insertAdjacentHTML|fetch\(|XMLHttpRequest|localStorage|sessionStorage|document\.cookie|history\.|scrollIntoView|\.focus\(|setInterval|requestAnimationFrame/);
+});
+test('exactly three optional traces preserve every original guide field and the old hash guards detect unrelated changes',()=>{
+ a.deepEqual(data.cards.filter(c=>c.visualTrace).map(c=>c.id),[...reviewedTraceIds]);
+ const hash=cards=>crypto.createHash('sha256').update(JSON.stringify(guideCores(cards))).digest('hex');
+ const original='32100afe8091bc850c4e7ba19ea614c04a226e9f3662491187d0101288dea8be';a.equal(hash(data.cards),original);
+ const changed=structuredClone(data.cards);changed[0].question+=' altered core';a.notEqual(hash(changed),original);
+ const extra=structuredClone(data.cards);extra[0].visualTraceExtra='unreviewed';a.notEqual(hash(extra),original);
+ const unrelated=structuredClone(data.cards);unrelated[1].visualTrace=structuredClone(unrelated[0].visualTrace);a.notEqual(hash(unrelated),original);
+ const onlyTrace=structuredClone(data.cards);onlyTrace[0].visualTrace.title+=' optional';a.equal(hash(onlyTrace),original);
+});
+test('optional traces validate exact structure, information statuses, evidence boundaries and approved local lessons',()=>{
+ const mutations=[
+  c=>{c.visualTrace=null;},c=>{c.visualTrace.kind='simulation';},c=>{c.visualTrace.image='https://example.test/plot';},c=>{c.visualTrace.title='';},c=>{c.visualTrace.steps.pop();},c=>{c.visualTrace.steps.reverse();},
+  c=>{c.visualTrace.steps[0].id='new-route';},c=>{c.visualTrace.steps[0].blocks=[];},c=>{c.visualTrace.steps[0].blocks.push(structuredClone(c.visualTrace.steps[0].blocks[0]));},
+  c=>{c.visualTrace.steps[0].blocks[0].status='known" onclick="bad';},c=>{c.visualTrace.steps[0].blocks[0].status='__proto__';},c=>{c.visualTrace.steps[0].blocks[0].status=['known'];},c=>{c.visualTrace.steps[0].blocks[0].text={html:'bad'};},c=>{c.visualTrace.steps[0].blocks[0].coordinates=[1,2];},
+  c=>{c.visualTrace.steps[0].sourceLocator='';},c=>{c.visualTrace.steps[0].sourceUrl='https://example.test/unreviewed';},c=>{c.visualTrace.steps[0].explanation='x'.repeat(2001);},
+  c=>{c.visualTrace.steps[1].blocks[1].status='known';},c=>{c.visualTrace.steps[2].blocks[0].status='observed';},c=>{c.visualTrace.steps[3].blocks[1].status='supported';},
+  c=>{c.visualTrace.steps[0].lessonHref='foundations.html#array';},c=>{c.visualTrace.steps[0].lessonHref='https://example.test/lesson';},c=>{c.visualTrace.steps[0].lessonHref='foundations.html?x=1#ofdm';},
+  c=>{c.visualTrace.checkpoint.answer='';},c=>{c.visualTrace.checkpoint.sourceLocator='';},c=>{c.visualTrace.checkpoint.html='<button>fake</button>';}
+ ];
+ for(const mutate of mutations){const d=structuredClone(data);mutate(d.cards[0]);a.throws(()=>build(d),/Invalid visual trace/);}
+ const d=structuredClone(data);d.cards[0].prerequisites[0].href='foundations.html#missing';d.cards[0].visualTrace.steps[0].lessonHref='foundations.html#missing';a.throws(()=>build(d),/Missing/);
+});
+test('trace links use the fixed parent source and reviewed prerequisite routes without new hash targets or models',()=>{
+ const html=render(),without=render({...data,cards:guideCores(data.cards)});
+ a.equal(M.renderVisualTrace({}),'');a.equal(M.traceSearchText(undefined),'');a.doesNotMatch(without,/data-visual-trace|class="guide-trace-print"/);
+ for(const c of build()){
+  const article=h=>h.slice(h.indexOf('id="guide-'+c.id+'"')).split('</article>')[0];
+  if(!c.visualTrace){a.equal(article(html),article(without));continue;}
+  const trace=M.renderVisualTrace(c);a.doesNotMatch(trace,/\bid=|<svg|<canvas|<img|<script|<button/);
+  for(const [,href]of trace.matchAll(/href="([^"]+)"/g))a.ok([c.source.url,'#direction-'+c.directionId,...c.prerequisites.map(p=>p.href)].includes(href),href);
+  a.match(trace,/本图没有运行算法，也不是论文仿真曲线/);a.match(trace,/箭头表示阅读顺序/);a.match(trace,/框的大小不表示数值/);
+ }
+});
+test('trace science keeps receiver knowledge, model observations and experimenter truth separate',()=>{
+ const cards=Object.fromEntries(data.cards.filter(c=>c.visualTrace).map(c=>[c.id,c.visualTrace]));
+ const otfs=cards['otfs-joint-estimation-2020'];a.equal(otfs.steps[1].blocks[0].status,'known');a.match(otfs.steps[1].blocks[0].text,/数据符号/);a.doesNotMatch(otfs.steps[1].blocks[0].text,/时延|多普勒|增益/);
+ a.match(otfs.steps[1].explanation,/雷达端仍需估计回波时延、多普勒和增益/);a.match(otfs.steps[1].explanation,/完美信道状态信息（CSI）/);a.match(otfs.steps[1].explanation,/信道获取另计/);a.match(otfs.checkpoint.answer,/已知路径数/);
+ const near=cards['nearfield-multitarget-correlation'];a.match(near.steps[0].blocks[0].label,/模型\/仿真/);a.match(near.steps[3].blocks[0].text,/数值配置/);a.match(near.checkpoint.answer,/仍使用目标位置/);a.match(near.steps[3].explanation,/远场基线放宽/);
+ const prototype=cards['bistatic-ofdm-clock-measurement-2023'];a.equal(prototype.steps[0].blocks[1].label,'试验者设置');a.match(prototype.steps[0].explanation,/接收机仍要估计时延和多普勒/);a.match(prototype.steps[1].explanation,/残余时钟误差/);a.match(prototype.checkpoint.answer,/不能/);
+});
+test('trace prose is escaped in visual blocks, explanations, search attributes and print transcripts',()=>{
+ const d=structuredClone(data),t=d.cards[0].visualTrace,attack='<img src=x onerror=bad()> & "text" </script>';
+ t.title=attack;t.steps[0].heading=attack;t.steps[0].blocks[0].label=attack;t.steps[0].blocks[0].text=attack;t.steps[0].explanation=attack;t.steps[0].sourceLocator=attack;t.checkpoint.prompt=attack;t.checkpoint.answer=attack;
+ const html=render(d);a.ok(html.includes(M.escapeHtml(attack)));a.doesNotMatch(html,/<img|<script|onerror="bad/);a.ok(M.traceSearchText(t).includes(attack));
+});
+test('trace styles preserve native targets, information-state text and reliable same-data print expansion',()=>{
+ const css=read('research-guides.css');
+ for(const token of ['.guide-visual-trace>summary','min-height:44px','.trace-status-unknown{border-style:dashed','.trace-status-design{border-style:double','.guide-trace-print{display:none}','.guide-trace-print{display:block!important}','.guide-visual-trace{display:none!important}','[data-visual-trace-card]{break-inside:auto}','@container(min-width:400px)','@container(min-width:720px)'])a.ok(css.includes(token),token);
+ a.doesNotMatch(css,/animation:|transition:|scroll-behavior:smooth/);a.doesNotMatch(source,/visual-trace|trace-checkpoint/);
 });
 
 const decode=s=>s.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
@@ -203,6 +257,34 @@ test('all eight directions remain filterable with channel and tradeoff searches 
 test('pageshow reconciles browser-restored values; script reexecution attaches no duplicate listeners',()=>{
  const h=setup();h.select.value='spatial';h.query.value='Capon';h.pageshow();a.equal(h.cards.filter(c=>!c.hidden).length,1);a.equal(h.cards[3].hidden,false);
  h.execute();a.equal(h.query.events.input.length,1);a.equal(h.form.events.reset.length,1);a.equal(h.window.events.hashchange.length,1);a.equal(h.cards.filter(c=>!c.hidden).length,1);
+});
+test('native trace and checkpoint details start closed; print contains all matching explanations without disclosures',()=>{
+ const h=setup();a.equal(h.document.querySelectorAll('[data-visual-trace]').length,3);
+ for(const card of h.cards.filter(c=>c.querySelector('[data-visual-trace]'))){
+  const native=card.querySelector('[data-visual-trace]'),print=card.querySelector('[class="guide-trace-print"]'),t=data.cards.find(c=>'guide-'+c.id===card.id).visualTrace;
+  a.equal(native.open,false);a.equal(native.querySelectorAll('details').length,4);a.ok(native.querySelectorAll('details').every(d=>!d.open));a.equal(native.querySelectorAll('[class="trace-step"]').length,4);a.equal(print.querySelectorAll('details').length,0);a.equal(print.querySelectorAll('[class="trace-step"]').length,4);
+  for(const value of [t.title,t.checkpoint.prompt,t.checkpoint.answer,t.checkpoint.sourceLocator,...t.steps.flatMap(s=>[s.heading,s.explanation,s.sourceLocator,...s.blocks.flatMap(b=>[b.label,b.text])])]){a.ok(native.textContent.includes(value));a.ok(print.textContent.includes(value));}
+  a.equal(native.querySelectorAll('[id]').length,0);a.equal(print.querySelectorAll('[id]').length,0);
+ }
+});
+test('the fourth stage asks for a prediction before one native reveal exposes evidence and the answer',()=>{
+ const h=setup();
+ const visibleText=node=>node.tag==='details'&&!node.open?node.querySelector('summary').textContent:node._text+node.children.map(visibleText).join('');
+ for(const card of h.cards.filter(c=>c.querySelector('[data-visual-trace]'))){
+  const trace=card.querySelector('[data-visual-trace]'),fourth=trace.querySelectorAll('[class="trace-step"]')[3],answer=fourth.querySelector('[class="trace-answer"]'),t=data.cards.find(c=>'guide-'+c.id===card.id).visualTrace;
+  a.equal(fourth.querySelectorAll('details').length,1);a.equal(answer.querySelector('summary').textContent,'展开证据与解释');a.equal(answer.open,false);
+  a.ok(visibleText(fourth).includes(t.checkpoint.prompt));
+  for(const value of [t.checkpoint.answer,t.steps[3].explanation,...t.steps[3].blocks.map(b=>b.text)])a.ok(!visibleText(fourth).includes(value));
+  answer.open=true;for(const value of [t.checkpoint.answer,t.steps[3].explanation,...t.steps[3].blocks.map(b=>b.text)])a.ok(visibleText(fourth).includes(value));
+ }
+});
+test('existing search finds new trace text and filtering, reset and native hash recovery retain open trace state',()=>{
+ const h=setup();
+ for(const [query,id]of [['完美信道状态信息','otfs-joint-estimation-2020'],['作为设计输入已知','nearfield-multitarget-correlation'],['试验者设置','bistatic-ofdm-clock-measurement-2023']]){h.form.fire('reset');h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
+ const card=h.cards.find(c=>c.id==='guide-bistatic-ofdm-clock-measurement-2023'),trace=card.querySelector('[data-visual-trace]'),answer=trace.querySelector('[class="trace-answer"]');trace.open=true;answer.open=true;
+ h.choose('waveforms');a.ok(card.hidden);h.form.fire('reset');a.ok(!card.hidden&&trace.open&&answer.open);
+ h.search('no match');h.navigate('#guide-bistatic-ofdm-clock-measurement-2023');a.ok(!card.hidden&&trace.open&&answer.open);a.equal(h.select.value,'prototype');
+ h.search('残余时钟');a.ok(!card.hidden);a.match(h.count.textContent,/1 \/ 16/);a.equal(trace.events.toggle,undefined);a.equal(answer.events.click,undefined);
 });
 test('malformed enhancement and missing roots preserve static reading instead of hiding content',()=>{
  for(const mutate of [r=>{r.querySelector('[data-guide-count]').attrs={};},r=>{r.querySelector('[data-research-guide]').dataset.guideDirection='missing';},r=>{r.querySelector('[data-research-guide]').dataset.guideSearch='';}]){
