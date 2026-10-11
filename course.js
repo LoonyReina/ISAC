@@ -5,7 +5,7 @@
  const base=new URL('.',document.currentScript.src);
  function load(name){return new Promise((resolve,reject)=>{
   const script=document.createElement('script');
-  script.src=new URL(name+'?v=velocity-bridge-1',base).href;
+  script.src=new URL(name+'?v=learning-flow-v1',base).href;
   script.onload=resolve;
   script.onerror=()=>reject(new Error('Unable to load '+name));
   document.head.appendChild(script);
