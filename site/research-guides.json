@@ -1563,6 +1563,243 @@
           "purpose": "确定性且给定X可由Y唯一反推S时，消息解码后能恢复状态。再看加噪声的例子，说明结论改变来自观测条件，而不是所有联合设计都必然牺牲一端。"
         }
       ]
+    },
+    {
+      "id": "channels-sensing-communication-mapping-2026",
+      "directionId": "channels",
+      "title": "测到墙和金属板，能预测通信反射路径吗？",
+      "question": "雷达看见的环境反射，怎样变成另一处通信接收机的路径线索？同一个散射体是否意味着相同的信道？",
+      "mechanism": "先从单站回波的时延和扫描角度找出主要散射位置，再按发射端、散射体和通信接收端的几何关系计算双站路径。把预测的超额时延与通信测量中的主径对照，而不是直接复制雷达信道系数。",
+      "innovation": "把统计模型中的“共享环境”接到可检查的物体与路径对应：通过单站感知图、双站通信测量和几何关系，检验两种观测究竟共享了什么。",
+      "evidence": {
+        "kind": "室内信道实测与几何校验；本站仅原文导读",
+        "summary": "§3.2、图5把两条通信主径分别关联到金属板与墙。实验使用62.64 GHz、1.76 GHz带宽、两个单站位置及一条4 m双站链路；支持的是该场景的主径对应，未证明跨场景完整复信道恢复或通信速率收益。"
+      },
+      "limits": [
+        "测量是约1 m高度的水平扫描；波束宽度、扫描步进、提峰门槛与物体可见性都会限制保留下来的路径。扫描步进不是角分辨率。",
+        "§3.3报告的3 mm是墙体几何校验误差，不是多目标定位RMSE。雷达散射截面（RCS，描述散射强弱）还使用双站直达路径功率标定，不能说仅凭单站观测独立获得。",
+        "没有留出房间、设备或动态遮挡的盲测；不把主径几何关系外推为所有多径的幅相关系。本站未复现测量或原图。"
+      ],
+      "nextQuestion": "冻结校准和选径门槛，在未参与建图的接收位置预测通信主径，再加入遮挡物：时延误差、漏检和误配何时明显增加？先验预测须在查看通信测量前完成。",
+      "source": {
+        "title": "Experimental Characterization of ISAC Channel Mapping and Environment Awareness",
+        "authors": "Zhuangzhuang Cui、Rizqi Hersyandika、Haoqiu Xiong、Sofie Pollin",
+        "edition": "arXiv:2601.18558v1，2026-01-26；固定4页作者预印本",
+        "url": "https://arxiv.org/html/2601.18558v1",
+        "locator": "§1 / References [5]；§2.1–2.2 / 图1–2；§3.1 / 式(1)–(2)、图4；§3.2 / 式(3)、图5；§3.3 / 式(4)、图6",
+        "firstSubmittedAt": "2026-01-26T15:06:55Z",
+        "versionAt": "2026-01-26T15:06:55Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "版本页注明submitted to URSI-GASS 2026；本次未确认录用或出版"
+      },
+      "prerequisites": [
+        {
+          "href": "multipath-channel.html#model",
+          "label": "先看同一信号的多条路径怎样相加"
+        },
+        {
+          "href": "foundations.html#echo",
+          "label": "区分总路径与单站目标距离"
+        },
+        {
+          "href": "foundations.html#array",
+          "label": "区分扫描步进与角分辨率"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先画两种路径",
+          "locator": "§2、图1–2；§3.2、式(3)",
+          "purpose": "分别画单站往返与双站折线路径，不能沿用同一个距离换算。"
+        },
+        {
+          "label": "再查哪些峰被保留",
+          "locator": "§3.1、图4；§3.2、图5",
+          "purpose": "记录扫描、提峰和几何对应条件；没有被保留的路径也要算进边界。"
+        },
+        {
+          "label": "最后检查校准与外推",
+          "locator": "§3.3、式(4)、图6",
+          "purpose": "分清几何误差、散射强度与定位统计误差，提出留出位置检验。"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "共享簇模型问通感信道怎样统计相关；目标–环境耦合研究问目标加入后哪些背景路径会改变。",
+        "changedCondition": "这里转向已测场景中具体物体与通信主径的几何对应；下一步可以检验接收位置或遮挡变化是否破坏映射。",
+        "links": [
+          {
+            "guideId": "channels-shared-clusters-2024",
+            "relationType": "direct-citation",
+            "verificationNote": "新文直接引用共享簇论文作为相关背景；不代表扩展或复现其随机模型。",
+            "sourceLocator": "2026 v1 §1及参考文献[5]"
+          },
+          {
+            "guideId": "channels-target-environment-coupling-2025",
+            "relationType": "problem-link",
+            "verificationNote": "编辑提出的问题关联；核对完整参考文献[1]–[6]未见该旧文，未声称引用或继承。",
+            "sourceLocator": "2026 v1 §3及完整参考文献[1]–[6]"
+          }
+        ]
+      }
+    },
+    {
+      "id": "zak-otfs-semiblind-offgrid-2026",
+      "directionId": "waveforms",
+      "title": "只知道导频，还能边解数据边找目标吗？",
+      "question": "双站接收机不知道大部分数据符号，目标又落在时延–多普勒网格之间，怎样避免把符号错误当成另一条路径？",
+      "mechanism": "采用Zak变换形式的OTFS收发模型，以已知导频初始化，再交替更新连续路径参数和未知相移键控（PSK）符号。原子范数用于表达连续参数上的稀疏路径；星座约束帮助符号回到合法取值。",
+      "innovation": "把未知符号和离格参数放进同一个接收问题，而不是先把信道估计当真值再解调；矩形窗、导频和保护格仍需明确计入观测与资源。",
+      "evidence": {
+        "kind": "模型与收敛推导＋蒙特卡洛仿真；本站仅原文导读",
+        "summary": "固定v2的图6说明：优于已知真实信道的线性最小均方误差（LMMSE）检测器，来自检测方式不同，不是信道估计超越真值。图9加入全部符号已知的对照，并分开路径参数误差与总信道归一化均方误差（NMSE）。"
+      },
+      "limits": [
+        "本文针对PSK符号与稀疏路径；未知数据不代表无需导频、保护格或先验帧结构。双站时延和多普勒不能直接套单站距离、速度公式。",
+        "§IV-C保证的是在所列条件下接近驻点，即局部一阶变化已很小；不是全局最优。§IV-B表明帧规模与活动路径增多仍会提高计算成本，未提供硬件实时验证。",
+        "§V使用给定目标间距与无直达链路的仿真；连续参数模型不能分开任意接近的目标。文中虚警率以总检出数为分母，不等于无目标条件下的经典虚警概率。",
+        "本站未实现完整Zak-OTFS、联合迭代或原论文曲线。现有离格单目标实验只能帮助理解网格与参数，不能替代该论文复现。"
+      ],
+      "nextQuestion": "固定带宽、总能量、导频与保护格、观察时长和计算时限，逐步减小双目标间距：联合估参–解调还比先估信道再解调改善多少？同时报告误比特率、漏检、错误目标数及耗时，不能只看成功匹配后的误差。",
+      "source": {
+        "title": "Zak-OTFS ISAC with Bistatic Sensing via Semi-Blind Atomic Norm Denoising Scheme",
+        "authors": "Kecheng Zhang、Weijie Yuan、Maria Sabrina Greco",
+        "edition": "arXiv:2601.03639v2，2026-08-04；固定作者版本，首稿2026-01-07",
+        "url": "https://arxiv.org/html/2601.03639v2",
+        "locator": "§II–III；§IV-B/C、Theorem 1；§V-B / 图6；§V-C / 图8–9；References",
+        "firstSubmittedAt": "2026-01-07T06:33:13Z",
+        "versionAt": "2026-08-04T02:17:35Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "arXiv作者记录注明Accepted by IEEE Transactions on Signal Processing；本卡不按期刊排版定稿编号"
+      },
+      "prerequisites": [
+        {
+          "href": "pilot-design.html#experiment",
+          "label": "先问接收机知道哪些格子"
+        },
+        {
+          "href": "offgrid-range.html#model",
+          "label": "理解离格参数与未知复增益"
+        },
+        {
+          "href": "offgrid-range.html#trials",
+          "label": "把失败试验与成功条件误差分开"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先列接收机的已知量",
+          "locator": "§II-D；§III、式(29)–(32)",
+          "purpose": "把导频、未知数据和连续路径参数分开，确认两类未知怎样互相影响。"
+        },
+        {
+          "label": "核对计算与保证",
+          "locator": "§IV-B/C、Theorem 1",
+          "purpose": "区分每次更新成本、总迭代成本与驻点保证，不把加速说成实时。"
+        },
+        {
+          "label": "用两个对照拆开收益",
+          "locator": "§V-B、图6；§V-C、图9",
+          "purpose": "分别改变检测器和符号已知条件，避免把不同信息条件的曲线当公平性能排名。"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "早期OTFS导读分开已知符号的雷达端与未知符号的通信端；被动OFDM导读另用稀疏项处理错误参考符号。",
+        "changedCondition": "这里让同一双站接收机联合恢复未知PSK符号与连续路径参数，收益取决于两类更新能否在计算预算内互相帮助。",
+        "links": [
+          {
+            "guideId": "otfs-joint-estimation-2020",
+            "relationType": "problem-link",
+            "verificationNote": "核对新文参考文献未见该原文；[5]是Gaudio等2022年的另一篇论文，不作直接引用链。",
+            "sourceLocator": "2026 v2 §I、§III；References [5]及完整书目"
+          },
+          {
+            "guideId": "ofdm-passive-atomic-errors-2017",
+            "relationType": "problem-link",
+            "verificationNote": "以不可靠符号和连续参数为对读问题；新文完整书目未见该旧文，不声称继承其算法。",
+            "sourceLocator": "2026 v2 §III及完整References"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sbfd-resource-synchronization-2026",
+      "directionId": "prototype",
+      "title": "频带分开后，多台设备就能一起测准吗？",
+      "question": "把感知与通信安排在不同子带，能减少互扰；但启动时间对齐以后，是否已经足够做多站联合感知？",
+      "mechanism": "原型在共享频段内分配感知和通信子带，并预留导频与保护格。主机协调设备启动，记录样本后分别处理通信和单站回波；要判断多站能力，还得检查时偏、频偏与相位关系。",
+      "innovation": "把子带全双工（SBFD）的资源分配放进多设备原型，联合检查通信与感知可用性，并显露保护带、同步和样本搬运的实际约束。",
+      "evidence": {
+        "kind": "室内原型测量与运动捕捉真值对照；本站仅新增对读视角",
+        "summary": "§V的单站测速图9报告速度RMSE约0.1–0.3 m/s（每时刻跨六次运行平均），不是每次测量的绝对误差界；0.145 m/s是作者报告的速度分辨率。图10给出非直达条件下的通信样例。两类样本均在记录后离线处理。"
+      },
+      "limits": [
+        "实测频点为6.8 GHz、共享20 MHz。主机启动对齐小于0.1 ms不能证明采样频率、载频或相位相干；多站感知仍是后续工作。",
+        "60 MHz对照的三个节点全做感知；只有SBFD模式测通信。同带对照又是无隔离设置，不能据此宣称等总资源、等业务下的联合性能排名。",
+        "导频、保护格、收发隔离材料与连续样本搬运都属于资源条件；离线处理结果不代表端到端实时能力。",
+        "该论文已经用于本站case-sbfd；本卡只是新的同步与资源对读入口。sbfd-resource机制是理想无噪声模型，不是新增案例、硬件测量或原图复现。"
+      ],
+      "nextQuestion": "先固定20 MHz、总功率、观察时长与业务负载，再分别扫描保护带、时偏和频偏：何时通信仍通过门槛，感知却已超出误差要求？若增加多站融合，须先声明采用非相干还是相干处理，并另验同步条件。",
+      "source": {
+        "title": "Experimental Validation of SBFD ISAC in an FR3 Distributed SIMO Testbed",
+        "authors": "Bixing Yan、Kwadwo Mensah Obeng Afrane、Achiel Colpaert、Andre Kokkeler、Sofie Pollin、Yang Miao",
+        "edition": "arXiv:2602.00054v1，6页；官方提交历史为2026-01-19，不能按编号改写为2月",
+        "url": "https://arxiv.org/html/2602.00054v1",
+        "locator": "§II–III / 表I；§III-B；§IV-A / 表II；§IV-B3–5；§V-B/C / 图8–10；§VI",
+        "firstSubmittedAt": "2026-01-19T19:03:37Z",
+        "versionAt": "2026-01-19T19:03:37Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "arXiv作者记录注明Accepted by ICC 2026；本卡固定v1，不混用会议成稿"
+      },
+      "prerequisites": [
+        {
+          "href": "sbfd-resource.html#experiment",
+          "label": "先看频格与观察时间各影响什么"
+        },
+        {
+          "href": "sbfd-resource.html#case",
+          "label": "分开本站理想机制与原型证据"
+        },
+        {
+          "href": "network-clock.html#model",
+          "label": "测得延迟不全是传播时间"
+        }
+      ],
+      "notebookTopicId": "sbfd",
+      "readingSteps": [
+        {
+          "label": "先核资源和业务",
+          "locator": "§IV-A、表II；§II-A、表I",
+          "purpose": "逐模式记下总频谱、感知节点和通信业务，再决定哪些曲线可以比较。"
+        },
+        {
+          "label": "找出同步做到哪一步",
+          "locator": "§III-B；§IV-B3–5",
+          "purpose": "区分启动对齐、相位相干、样本记录和离线处理。"
+        },
+        {
+          "label": "最后读实测指标",
+          "locator": "§V-B/C、图8–10；§VI",
+          "purpose": "将分辨率、速度RMSE、通信样例与未完成的多站感知分开。"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "已有双站OFDM同步与实时MIMO原型导读分别追问：时钟如何影响观测，处理链能否按时完成？",
+        "changedCondition": "新对读用子带隔离降低互扰，但测量采用离线处理与单站测速；系统级结论仍需对齐资源、业务和同步能力。",
+        "links": [
+          {
+            "guideId": "bistatic-ofdm-clock-measurement-2023",
+            "relationType": "problem-link",
+            "verificationNote": "按时钟与观测问题对读；新文参考文献[1]–[5]未列该旧文。",
+            "sourceLocator": "2026 v1 §III-B、§IV-B4及References"
+          },
+          {
+            "guideId": "mimo-ofdm-realtime-testbed-2023",
+            "relationType": "problem-link",
+            "verificationNote": "按样本搬运和处理时限对读；新文参考文献[1]–[5]未列该旧文，不能称为该平台升级。",
+            "sourceLocator": "2026 v1 §III-A、§IV-B3–5及References"
+          }
+        ]
+      }
     }
   ]
 }
