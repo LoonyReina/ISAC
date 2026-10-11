@@ -5,14 +5,14 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
-test('twelve guide-only resources extend six existing directions without inflating lessons or snapshots',()=>{
+test('sixteen guide-only resources extend all eight existing directions without inflating lessons or snapshots',()=>{
  a.deepEqual([registry.cases.length,registry.units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,27,8,32]);
- a.equal(data.cards.length,12);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver']);
+ a.equal(data.cards.length,16);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver','channels','channels','tradeoffs','tradeoffs']);
  const directory=JSON.parse(read(registry.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);
  for(const c of data.cards){a.ok(!registry.cases.some(x=>x.id===c.id));a.ok(!registry.units.some(x=>x.id===c.id));a.equal(c.caseId,undefined);}
- const html=read('reading.html');a.match(html,/12 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
+ const html=read('reading.html');a.match(html,/16 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
  a.ok(html.indexOf('id="directions"')<html.indexOf('id="research-guides"'));a.ok(html.indexOf('id="research-guides"')<html.indexOf('id="paper-comparisons"'));
- a.equal((html.match(/class="research-guide-card"/g)||[]).length,12);
+ a.equal((html.match(/class="research-guide-card"/g)||[]).length,16);
 });
 test('beginner question, mechanism, innovation, evidence, limits and next question all survive without JS',()=>{
  const html=render();
@@ -36,7 +36,7 @@ test('network guides preserve the first batch and bound cooperation, compression
  a.equal(meng.source.url,'https://arxiv.org/pdf/2403.20228v3');a.equal(wang.source.url,'https://arxiv.org/pdf/2602.20319v1');
  a.match(meng.source.edition,/2024-06-11/);a.match(meng.source.edition,/SPAWC 2024 会议版本/);a.match(wang.source.edition,/2026-02-23/);
  for(const phrase of ['Root CRLB','每站发射功率','省略 CSI 共享流量','非相干处理不等于无需时间同步','CPU 查码本','接入点（AP）','中央处理单元（CPU）','三维卷积网络（3D CNN）','潜特征向量数','Nc 是码本大小','先分清径向分量与完整速度','在线才只传索引','训练特征/梯度','输出维度按目标数 Q 设置','校准后残余时偏/频偏'])a.ok(html.includes(phrase),phrase);
- a.ok(html.includes(`href="${meng.source.publicationUrl}">后续发表记录</a>`));a.match(html,/未将正式发表版本视为已逐式核对/);a.doesNotMatch(html,/>后续期刊记录<|未将期刊定稿/);
+ a.ok(html.includes(`href="${meng.source.publicationUrl}">正式发表记录</a>`));a.match(html,/不同版本不混用编号/);a.doesNotMatch(html,/>后续期刊记录<|未将期刊定稿/);
  a.ok([meng,wang].every(c=>c.notebookTopicId===undefined));
 });
 test('prototype guides preserve the prior six and distinguish measured hardware from untested service claims',()=>{
@@ -50,20 +50,31 @@ test('prototype guides preserve the prior six and distinguish measured hardware 
 });
 test('learning and receiver guides preserve the prior eight and keep metric, training and conditional-error boundaries',()=>{
  a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,8))).digest('hex'),'43655698eda60f21efad8e18e91741a744cea8c961454d0fe964da2c79eb731b');
- const cards=data.cards.slice(8),html=render();
+ const cards=data.cards.slice(8,12),html=render();
  a.deepEqual(cards.map(c=>c.id),['isac-net-model-driven-passive','multimodal-transformer-beam-generalization','ofdm-ici-aware-receiver-2021','ofdm-passive-atomic-errors-2017']);
  a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2307.15074v1','https://www.itu.int/dms_pub/itu-s/opb/jnl/S-JNL-VOL4.ISSUE3-2023-A33-PDF-E.pdf','https://arxiv.org/pdf/2103.15694v1','https://arxiv.org/pdf/1610.04218v2']);
  for(const phrase of ['两图的 Perfect 含义不同','95%训练、5%测试','0.7844不是78.44%','不能称为零样本泛化','同一地点的日夜采集','MAC/参数数不等于实测时延或能耗','FDR不是单元虚警概率','只统计检测成功的事件','人为去掉ICI项','表I第5步','只计正确识别的目标','前向纠错（FEC）'])a.ok(html.includes(phrase),phrase);
  for(const card of cards){a.equal(card.notebookTopicId,undefined);a.ok(card.readingSteps.length>=3);a.equal(card.prerequisites.length,3);}
  a.match(cards[1].source.edition,/公开期刊PDF编号/);a.match(cards[3].source.edition,/算法在§IV、仿真在§V/);
 });
+test('channel and tradeoff guides preserve the prior twelve and separate measurement, state knowledge and inspected editions',()=>{
+ a.equal(crypto.createHash('sha256').update(JSON.stringify(data.cards.slice(0,12))).digest('hex'),'168ce52facfc17311ee3b5ddbece81d58f37608c68a06e35d0d825f3ca3d9de1');
+ const cards=data.cards.slice(12),html=render();
+ a.deepEqual(cards.map(c=>c.id),['channels-shared-clusters-2024','channels-target-environment-coupling-2025','tradeoffs-feedback-capacity-distortion-2018','tradeoffs-causal-state-communication-2013']);
+ a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2211.06615v2','https://arxiv.org/pdf/2506.00480v1','https://arxiv.org/pdf/1805.05713v1','https://web.eng.ucsd.edu/~yhk/pdfs/it2013jun.pdf']);
+ a.deepEqual([...new Set(data.cards.map(c=>c.directionId))].sort(),registry.directions.map(d=>d.id).sort());
+ for(const phrase of ['伪噪声（PN）','自动导引车（AGV）','相似度指标（SI）','1 GHz零到零带宽','不是复信道相关系数','非视距遮挡角域上下文有不一致','不能当作独立场景泛化证据','通信端完美状态知识','qH₂(p)','失真 qp','描述代价不随输入符号变化','没有从接收端返回Y的输出反馈','Appendix B，pp.3718–3719'])a.ok(html.includes(phrase),phrase);
+ const vor=html.slice(html.indexOf('id="guide-tradeoffs-causal-state-communication-2013"')).split('</article>')[0];
+ a.match(vor,/作者托管IEEE TIT期刊VoR/);a.match(vor,/>正式发表记录<\/a>/);a.match(vor,/按上面明确标注的本次阅读版本；不同版本不混用编号/);a.doesNotMatch(vor,/固定预印本|未将正式发表版本视为已逐式核对/);
+ for(const card of cards){a.equal(card.notebookTopicId,undefined);a.equal(card.prerequisites.length,3);}
+});
 test('reading navigation and direction links resolve to the same generated guide data',()=>{
- const html=read('reading.html');a.match(html,/href="#research-guides">12 篇问题式导读/);
- for(const id of ['waveforms','spatial','networks','prototype','learning','receiver']){
+ const html=read('reading.html');a.match(html,/href="#research-guides">16 篇问题式导读/);
+ for(const id of ['waveforms','spatial','networks','prototype','learning','receiver','channels','tradeoffs']){
   const card=html.match(new RegExp('<article class="direction-card" id="direction-'+id+'"[\\s\\S]*?</article>'))[0];
   a.ok(card.includes(`href="#research-guides-${id}"`));a.match(card,/2 篇问题式原文导读/);a.match(card,/不增加实验覆盖/);
  }
- a.equal(M.renderGuideDirectionLink(build(),'channels'),'');
+ a.equal(M.renderGuideDirectionLink([],registry.directions[0].id),'');
  a.match(registry.directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
  for(const [,href]of render().matchAll(/href="([^"]+)"/g)){
@@ -126,14 +137,14 @@ function setup({html,hash='',mutate}={}){
  return {document,root,window,select,query,form,cards,groups,execute,count:root?.querySelector('[data-guide-count]'),empty:root?.querySelector('[data-guide-empty]'),search(value){query.value=value;query.fire('input');},choose(value){select.value=value;select.fire('change');},navigate(value){window.location.hash=value;for(const fn of window.events.hashchange||[])fn();},pageshow(){for(const fn of window.events.pageshow||[])fn();}};
 }
 test('filter starts with all cards and exposes native labelled controls only after validation',()=>{
- const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12 篇原文导读/);a.ok(h.empty.hidden);
+ const h=setup();a.equal(h.root.dataset.guidesReady,'true');a.equal(h.form.hidden,false);a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/16 \/ 16 篇原文导读/);a.ok(h.empty.hidden);
  for(const node of [h.select,h.query])a.ok(h.form.querySelector('[for="'+node.id+'"]'));
  a.equal(h.form.querySelector('button').attrs.type,'reset');a.equal(h.query.events.keydown,undefined);
 });
 test('direction and multiword question filters intersect, ignore case and show bounded empty results',()=>{
  const h=setup();h.choose('waveforms');a.equal(h.cards.filter(c=>!c.hidden).length,2);a.equal(h.groups[1].hidden,true);
  h.search('  oTfS   下一帧  ');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-otfs-sensing-assisted-2021']);
- h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 12/);
+ h.choose('spatial');a.ok(h.cards.every(c=>c.hidden));a.ok(h.groups.every(g=>g.hidden));a.equal(h.empty.hidden,false);a.match(h.count.textContent,/0 \/ 16/);
  h.search('两');a.ok(h.cards.some(c=>!c.hidden));h.search('<script>');a.equal(h.empty.hidden,false);
 });
 test('repeated filtering and reset preserve disclosure state and unrelated content',()=>{
@@ -152,16 +163,16 @@ test('same-hash direction clicks also reveal cards before native anchor navigati
  h.document.querySelector('[href="#research-guides-waveforms"]').fire('click');a.equal(h.select.value,'waveforms');a.equal(h.query.value,'');a.ok(h.cards.slice(0,2).every(c=>!c.hidden));a.equal(h.window.location.hash,'#research-guides-waveforms');
 });
 test('third direction is selectable, searchable and deep-linkable with the existing enhancement',()=>{
- const h=setup();a.equal(h.groups.length,6);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks','prototype','learning','receiver']);
- h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 12/);
+ const h=setup();a.equal(h.groups.length,8);a.deepEqual(h.select.querySelectorAll('option').map(o=>o.value),['','waveforms','spatial','networks','prototype','learning','receiver','channels','tradeoffs']);
+ h.choose('networks');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024','guide-cellfree-vq-compression-2026']);a.match(h.count.textContent,/2 \/ 16/);
  h.search('Root CRLB');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-networks-cooperative-clusters-2024']);
  h.search('cpu 码本');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-cellfree-vq-compression-2026']);
  h.choose('waveforms');h.document.querySelector('[href="#research-guides-networks"]').fire('click');a.equal(h.select.value,'networks');a.equal(h.query.value,'');a.ok(h.cards.slice(4,6).every(c=>!c.hidden));
  for(const card of data.cards.slice(4,6)){h.choose('spatial');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,'networks');a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
- h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12/);
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/16 \/ 16/);
 });
 test('prototype group and both source cards reuse the existing filtering and native deep-link behavior',()=>{
- const h=setup();h.choose('prototype');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023','guide-mimo-ofdm-realtime-testbed-2023']);a.match(h.count.textContent,/2 \/ 12/);
+ const h=setup();h.choose('prototype');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023','guide-mimo-ofdm-realtime-testbed-2023']);a.match(h.count.textContent,/2 \/ 16/);
  h.search('同轴');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-bistatic-ofdm-clock-measurement-2023']);
  h.search('125 MHz');a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-mimo-ofdm-realtime-testbed-2023']);
  h.choose('networks');h.document.querySelector('[href="#research-guides-prototype"]').fire('click');a.equal(h.select.value,'prototype');a.equal(h.query.value,'');a.ok(h.cards.slice(6,8).every(c=>!c.hidden));
@@ -171,12 +182,23 @@ test('prototype group and both source cards reuse the existing filtering and nat
 test('learning and receiver cards add two searchable direction groups without new runtime logic',()=>{
  const h=setup();
  for(const [direction,queries]of [['learning',[['ISAC-NET','isac-net-model-driven-passive'],['0.7844','multimodal-transformer-beam-generalization']]],['receiver',[['APES','ofdm-ici-aware-receiver-2021'],['原子范数','ofdm-passive-atomic-errors-2017']]]]){
-  h.form.fire('reset');h.choose(direction);a.equal(h.cards.filter(c=>!c.hidden).length,2);a.match(h.count.textContent,/2 \/ 12/);
+  h.form.fire('reset');h.choose(direction);a.equal(h.cards.filter(c=>!c.hidden).length,2);a.match(h.count.textContent,/2 \/ 16/);
   for(const [query,id]of queries){h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
   h.choose('prototype');h.document.querySelector('[href="#research-guides-'+direction+'"]').fire('click');a.equal(h.select.value,direction);a.equal(h.query.value,'');a.equal(h.cards.filter(c=>!c.hidden).length,2);
  }
- for(const card of data.cards.slice(8)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,card.directionId);a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
- h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/12 \/ 12/);
+ for(const card of data.cards.slice(8,12)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,card.directionId);a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/16 \/ 16/);
+});
+test('all eight directions remain filterable with channel and tradeoff searches and native anchor recovery',()=>{
+ const h=setup();
+ for(const direction of registry.directions){h.form.fire('reset');h.choose(direction.id);a.equal(h.cards.filter(c=>!c.hidden).length,2);a.match(h.count.textContent,/2 \/ 16/);}
+ for(const [direction,queries]of [['channels',[['PN','channels-shared-clusters-2024'],['AGV','channels-target-environment-coupling-2025']]],['tradeoffs',[['Z=Y','tradeoffs-feedback-capacity-distortion-2018'],['Wyner–Ziv','tradeoffs-causal-state-communication-2013']]]]){
+  h.form.fire('reset');h.choose(direction);
+  for(const [query,id]of queries){h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
+  h.choose('prototype');h.document.querySelector('[href="#research-guides-'+direction+'"]').fire('click');a.equal(h.select.value,direction);a.equal(h.query.value,'');a.equal(h.cards.filter(c=>!c.hidden).length,2);
+ }
+ for(const card of data.cards.slice(12)){h.choose('waveforms');h.search('no match');h.navigate('#guide-'+card.id);a.equal(h.select.value,card.directionId);a.ok(h.cards.find(c=>c.id==='guide-'+card.id&&!c.hidden));}
+ h.form.fire('reset');a.ok(h.cards.every(c=>!c.hidden));a.ok(h.groups.every(g=>!g.hidden));a.match(h.count.textContent,/16 \/ 16/);
 });
 test('pageshow reconciles browser-restored values; script reexecution attaches no duplicate listeners',()=>{
  const h=setup();h.select.value='spatial';h.query.value='Capon';h.pageshow();a.equal(h.cards.filter(c=>!c.hidden).length,1);a.equal(h.cards[3].hidden,false);
