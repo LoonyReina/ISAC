@@ -56,7 +56,7 @@ function directionCard(d){
 function sceneGuide(){return read('site/content-scene-guide.html').replace('<!-- SCENE:POSITIONS -->',registry.scenePositions.map(p=>`<button type="button" data-scene-position="${esc(p.id)}" data-scene-label="${esc(p.label)}" aria-pressed="false">${esc(p.label)}<span>${esc(p.hint)}</span></button>`).join(''));}
 const researchDirectory=JSON.parse(read(registry.researchDirectoryFile));
 let reading=cover('03 / 论文阅读','沿一个方向，<br>把理解一层层做深。','用问题组织研究，用模型、实验和原文校验理解。先找到自己想弄清的机制，再读作者究竟证明了什么。');
-reading+=`<nav class="study-links" aria-label="论文阅读目录"><a href="#directions">按研究方向找问题</a><a href="#influential-papers">${researchDirectory.cards.length} 篇论文与影响证据</a><a href="#cases">已有教学案例</a><a href="#reading">基础书目与来源</a></nav>`;
+reading+=`<nav class="study-links" aria-label="论文阅读目录"><a href="#directions">按研究方向找问题</a><a href="#influential-papers">${researchDirectory.cards.length} 篇论文与影响证据</a><a href="#cases">已有教学案例</a><a href="#reading-2026">2026 阅读补充</a><a href="#reading">基础书目与来源</a></nav>`;
 reading+=`<section class="site-section" id="foundations"><h2 id="foundations-title">先接上必需的基础</h2><p>${link('foundations.html#start','连续基础讲义')} · ${link('theory.html#pathway','通信与感知的已知、未知')} · ${link('practice.html#research-method','把问题写成可复核计划')}</p><p>不必先读完所有内容；每个主题会指出当前需要的基础。</p></section>`;
 reading+=`<section class="site-section" id="directions"><h2>研究方向地图</h2><p>方向可以横向增加；每个方向沿“直觉问题 → 观测模型 → 互动实验 → 原文对照 → 边界与复现”逐层深入。下面只列已有内容，未实现的层次明确标出。</p>${sceneGuide()}<div class="direction-grid">${registry.directions.map(directionCard).join('')}</div></section>`;
 reading+=renderResearchDirectory(researchDirectory,registry,file=>fs.existsSync(path.join(root,file)));
