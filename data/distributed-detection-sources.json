@@ -1,0 +1,39 @@
+{
+  "updated": "2026-10-11",
+  "model": "Independent two-receiver known-noise marginalized Gaussian LRT; not source-paper reproduction",
+  "primary": {
+    "title": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
+    "authors": [
+      "Zinat Behdad",
+      "Özlem Tuğfe Demir",
+      "Ki Won Sung",
+      "Emil Björnson",
+      "Cicek Cavdar"
+    ],
+    "publication": "IEEE TWC 23(9), 11580–11596, 2024",
+    "doi": "https://doi.org/10.1109/TWC.2024.3383209",
+    "versionUrl": "https://arxiv.org/abs/2305.12523v2",
+    "pdfUrl": "https://arxiv.org/pdf/2305.12523v2",
+    "versionDate": "2024-03-27",
+    "fixedPdfSha256": "30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10",
+    "verifiedLocators": [
+      "§V, equations (17)–(18)",
+      "§VII, equations (20)–(33)",
+      "§IX, p.11 independent reflection numerical setup"
+    ],
+    "boundary": "Paper maximizes over unknown reflection and target-free channels; this lesson integrates unknown reflection, omits target-free channels, and supplies independent analytic curves. General source covariance is not its independent simulation setting."
+  },
+  "motivation": {
+    "title": "Distributed Versus Centralized Sensing in Cell-Free Massive MIMO",
+    "publication": "IEEE WCL 13(12), 3345–3349, 2024",
+    "doi": "https://doi.org/10.1109/LWC.2024.3462710",
+    "verified": "Publication metadata only; stable official/author full text not verified",
+    "boundary": "No equation-level, algorithm-level or original resource-count attribution"
+  },
+  "originalArtifacts": {
+    "reference": "scripts/distributed-detection-reference/detection_reference.py",
+    "referenceSha256": "4c3594b498431ba33f638b5c3be9811691e48231396a903dcbc1e906fcde2f0b",
+    "highPrecisionFixtures": "scripts/distributed-detection-independent/high-precision-fixtures.json"
+  },
+  "copyrightBoundary": "Only original teaching/reference/audit artifacts are redistributed. No third-party paper full text."
+}
