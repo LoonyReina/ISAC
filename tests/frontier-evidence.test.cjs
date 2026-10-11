@@ -43,8 +43,8 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
  for(const text of ['综述预印本 v1','submitted to IEEE Communications Surveys','本次未确认接受或出版','对象主要是无线定位','不能直接等同人体姿态','不把投稿预印本标成已接收'])a.ok(f3.includes(text));
 });
 
-test('existing paper layers point to actual readings without expanding mechanisms, cases or concepts',()=>{
- a.equal(r.units.length,22);a.equal(r.cases.length,11);a.equal(r.knowledgeMap.nodes.length,31);a.equal(r.directions.length,8);
+test('existing paper layers point to actual readings within the current canonical inventory',()=>{
+ a.equal(r.units.length,23);a.equal(r.cases.length,12);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);
