@@ -16,14 +16,16 @@ test('two-station detection adds one canonical lesson within the existing eight 
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'networks');
  a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,26);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(r.units.length,27);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
-test('all existing lessons, cases, pages, unrelated directions and legacy links remain unchanged',()=>{
- a.equal(hash(r.units.filter(x=>x.id!==u.id)),'b09fe36e8088604b0deb3dc27ac2b751d13bcade8056ef331ecabd316bdd5c0b');
+test('existing lessons, cases, pages, unrelated directions and legacy links match the current integration snapshot',()=>{
+ // The case-free off-grid mechanism changes only its own unit/page and receiver depth;
+ // offgrid-range-integration.test.cjs also locks every earlier unit/page and all case evidence.
+ a.equal(hash(r.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
  a.equal(hash(r.cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
- a.equal(hash(r.pages.filter(x=>x.path!==p.path)),'ecc9c95532c4759731ee6c02b387ab4fc3e6e97b05765d816dbaef904869762a');
- a.equal(hash(r.directions.filter(x=>x.id!=='networks')),'1534c2a715e283c03aaba19a40a83565a00308acfc42564dba1c6b34c7b7e999');
+ a.equal(hash(r.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
+ a.equal(hash(r.directions.filter(x=>x.id!=='networks')),'8cbd0865146fb27cfdceab1f7297c6182f5ea771378f5e6cbef02f54c6d370d4');
  a.equal(hash(r.legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
@@ -93,7 +95,7 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>26</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>27</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
  a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));

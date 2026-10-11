@@ -225,10 +225,10 @@ test('DOM disclosure toggles and native links add no history; restored templates
 
 test('estimation starts with common observations and retains the scoped advanced LS route',()=>{
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='estimation'),advanced=registry.units.find(u=>u.id==='estimator-crb');
- a.equal(n.entryUnitRef,'shared');a.deepEqual(n.unitRefs,['shared','estimator-crb']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
+ a.equal(n.entryUnitRef,'shared');a.deepEqual(n.unitRefs,['shared','estimator-crb','offgrid-range']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
  const h=template(render(registry),n.id),beginner=parse(h).querySelector('.map-beginner');a.equal(beginner.querySelector('a').attrs.href,'theory.html#shared-model');a.ok(h.includes('href="'+advanced.href+'"'));
  const d=registry.directions.find(d=>d.id==='receiver'),item=d.levels.find(l=>l.id==='experiment').items.find(i=>i.href===advanced.href);
- a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(d.coverage,/非线性测距与多目标跟踪尚未实现/);
+ a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(d.coverage,/离格单目标有限网格测距/);a.match(d.coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
  resolve(item.href);a.ok(read('reading.html').includes(escape(item.note)));
 });
 
@@ -282,10 +282,11 @@ test('search count includes all typed matches without a hidden cap or repeated u
  for(const d of r.directions)d.title=word+' '+d.title;
  const h=setup({html:render(r)});h.search(word);
  const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
- a.equal(lessons.length,26);a.equal(relations.length,40);a.equal(h.results.children.length,66);
- a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,26);a.match(h.status.textContent,/找到 66 个入口（26 个课程入口，40 个概念或方向）/);
- a.deepEqual(h.results.children.slice(0,26).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
- a.ok(h.groups.some(g=>g.textContent.includes('26 个实验 · 15 个专题')));
+ const lessonCount=r.units.length,relationCount=r.knowledgeMap.nodes.length+r.directions.length;
+ a.equal(lessonCount,27);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
+ a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,lessonCount);a.equal(h.status.textContent,`找到 ${lessonCount+relationCount} 个入口（${lessonCount} 个课程入口，${relationCount} 个概念或方向）；四阶段路线仍在下方。`);
+ a.deepEqual(h.results.children.slice(0,lessonCount).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
+ a.ok(h.groups.some(g=>g.textContent.includes(`${lessonCount} 个实验 · ${r.cases.length} 个专题`)));
 });
 
 test('native lesson results preserve keyboard defaults, map selection and history; clear, reset, Escape and repeated search remain coherent',()=>{

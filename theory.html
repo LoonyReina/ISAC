@@ -101,6 +101,7 @@
 <p>标准化统计 E·e² ~ χ²(1)，理论均值 1；它用于诊断生成过程，不是未加权 MSE，也不是 MSE 置信区间。<span id="estimator-diagnostic">运行后显示本次标准化均值。</span></p>
 <p>数值契约：xoshiro128**，SplitMix32 域种子，Box–Muller 正态生成器，版本 xoshiro128ss-splitmix32-boxmuller-v1；均匀数严格在 (0,1)。按模式、输入族及输入/噪声分开四个随机域；相同 T/模式/种子增加 B 时，旧试验前缀完全保留。绘图不消耗随机数。复现限于该实现；不承诺不同运行时的超越函数逐位一致。遇到零能量或非有限值明确失败，不加 epsilon、不重抽、不删试验。</p>
 <p>如果接收机只有带误差的 x̂，直接代入 LS 未必无偏，1/Σx̂² 也不自动是它的 CRB。未知时延/角度、多径、干扰参数、先验或失配，都需要重新建模。下方速率图仍是解析 (I, E[CRB])，没有被本次噪声 MSE 替换。</p>
+<p id="offgrid-range-next">下一步用<a href="offgrid-range.html#experiment">离格单目标测距实验</a>检验非线性距离参数：每个有限网格候选都拟合未知复增益，再用全部试验评价误差；这里的实标量 LS=CRB 等号不转移到该估计器。</p>
 </details>
 <details><summary>原文对照：这一个等号不能直接搬到所有 ISAC 论文</summary>
 <p><a href="https://arxiv.org/html/2204.06938v8#S2">Xiong 等原研究 v8，§II-A–B</a>讨论感知端已知随机发射实现、条件信息矩阵逆的平均，并包含参数先验及高 SNR 可达性讨论；它是复向量 Bayesian 框架。<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">作者教程 v2，§IV-B 式(19)–(22)</a>区分依赖估计器的 MSE 与条件界平均。这里保留已知随机输入这一角色，省略复向量、先验和完整区域优化。</p>
