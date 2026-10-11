@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-11",
+  "analyticalSourceVersion": "arXiv:1702.05833v1",
+  "paper": {
+    "title": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+    "authors": [
+      "Preeti Kumari",
+      "Junil Choi",
+      "Nuria Gonzalez-Prelcic",
+      "Robert W. Heath Jr."
+    ],
+    "doi": "10.1109/TVT.2017.2774762",
+    "journal": "IEEE Transactions on Vehicular Technology",
+    "volume": 67,
+    "issue": 4,
+    "pages": "3012–3027",
+    "issueDate": "2018-04",
+    "onlineYear": 2017,
+    "onlineYearProvenance": "Existing verified research-directory record; not re-audited in this handoff"
+  },
+  "sources": [
+    {
+      "id": "arxiv-v1",
+      "url": "https://arxiv.org/pdf/1702.05833v1",
+      "landing": "https://arxiv.org/abs/1702.05833v1",
+      "type": "original author preprint",
+      "fixedVersionDate": "2017-02-20",
+      "pages": 35,
+      "sha256": "c16755b358bfe4152fea3bba5bc54c05370a0d8491aa481a73816bb12447e8b8",
+      "usedFor": [
+        "Fig2 original block signs and lengths",
+        "Eqs10,11,13 positive delay-Doppler model",
+        "Eqs18,19 CEF correlation and CP-related processing",
+        "Eq24 phase-difference velocity and Eq27 ambiguity",
+        "Remark3 finite-observation resolution",
+        "simulation rather than road-measurement evidence"
+      ],
+      "redistributePDF": false
+    },
+    {
+      "id": "ieee-vts",
+      "url": "https://vtsociety.org/media/ieee-80211ad-based-radar-approach-joint-vehicular-communication-radar-system",
+      "type": "publisher society record",
+      "usedFor": [
+        "DOI identity",
+        "authors",
+        "TVT67(4)3012–3027 April2018"
+      ]
+    },
+    {
+      "id": "mathworks-golay",
+      "url": "https://www.mathworks.com/help/wlan/ref/wlangolaysequence.html",
+      "type": "official implementation documentation",
+      "usedFor": [
+        "standard-specific Golay generator refers to IEEE802.11ad2012§21.11",
+        "standard generator lengths32,64,128",
+        "autocorrelation-sum property"
+      ],
+      "notUsedFor": "This handoff does not reproduce or verify its actual chip arrays"
+    },
+    {
+      "id": "mathworks-dmg-spectrum",
+      "url": "https://www.mathworks.com/help/wlan/ug/802-11ad-transmitter-spectral-emission-mask-testing.html",
+      "type": "official implementation example",
+      "usedFor": [
+        "2.16GHz channel width differs from chip rate",
+        "pulse-shaping and spectral-mask processing needed for a waveform implementation"
+      ]
+    },
+    {
+      "id": "ieee-hosted-coexistence-model",
+      "url": "https://mentor.ieee.org/802.18/dcn/18/18-18-0080-00-0000-google-s-waiver-request-supplement-to-coexist-with-802-11-with-motion-sensing-57-64ghz.pdf",
+      "type": "original technical coexistence study hosted by IEEE, not the normative standard",
+      "usedFor": [
+        "Section3.1 explicitly distinguishes2160MHz channel bandwidth,1760MHz SC chip rate,0.56818ns chip period"
+      ],
+      "caution": "Do not treat submission as normative IEEE standard text"
+    }
+  ],
+  "independentConstruction": {
+    "standardCompliance": false,
+    "paperPerformanceReproduction": false,
+    "baseSequence": "A0=B0=[1]; A_next=[A,B]; B_next=[A,-B]",
+    "receiver": "Two fixed isolated records with guard>=max searched integer delay; full samplewise global Doppler phase; complex sum before magnitude",
+    "fairBaseline": "AA vs AB, same2N active chips,amplitude,guards,separation,noise variance",
+    "data": "Synthetic locally generated; no external dataset"
+  },
+  "importantCautions": [
+    "The isolated Fig2 512-chip blocks are not an aperiodic complementary pair, but original surrounding context [−A,U,V,−B] provides cyclic extensions and exact summed local correlation over relative lags−128…128 in an independently verified construction; do not detach Eq18 from CP/timing context.",
+    "arXiv v1 Eq20 Doppler sign is inconsistent with the direct positive-exponent Eq13 plus Eq18 correlation convention; use a declared independent convention.",
+    "arXiv v1 Eq29 as printed with Ts is dimensionless; do not label a literal port bps.",
+    "Journal full text not inspected; do not attribute preprint equation numbering or apparent issues to final journal edition.",
+    "Current citation counts and social discussion counts were not rechecked here."
+  ]
+}

@@ -557,6 +557,76 @@
         "verificationNote": "2026-10-10 独立下载并检查作者机构托管的已发表期刊版与单用户定理范围；该次 PDF 的 SHA-256 为 3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d。独立数值实现与完整实参数 Fisher 复核见本页；未复现原图或整篇论文。"
       },
       "learningEntry": "crb-beamforming.html#intuition"
+    },
+    {
+      "id": "case-golay-radar",
+      "title": "通信训练序列，为什么也能测距？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#matched\">模板相关与时延</a>；<a href=\"foundations.html#doppler\">运动与相位变化</a>。先移动回波，再按需展开互补机制。",
+        "问题": "通信需要找帧起点，雷达需要找回波时延。已知训练序列怎样同时提供对齐线索，互补相关又在什么条件下成立？",
+        "交互机制": "在相同发射能量、起点间隔与完整接收窗口下比较重复 A+A 和互补 A+B；移动未知回波时延，保留复数相关后相加，再看较弱回波、运动与合成长间隔。",
+        "证据类型": "<a href=\"https://arxiv.org/abs/1702.05833v1\">802.11ad 雷达论文，固定 arXiv v1</a>：分析与仿真；本站：独立递归构造的 Golay 对与简化回波模型，不是完整 IEEE 帧实现或论文性能复现。",
+        "结论边界": "孤立非周期互补对不等于原文 CEF 块；真实帧的边界、循环延拓与提取窗口需另行处理。相关峰不是通过检测的目标，整数时延格距不是实际测距精度。",
+        "下一研究问题": "加入分数时延、脉冲成形或不同目标速度后，哪些互补条件会失效？怎样在同样的能量、时间和接收假设下检验？"
+      },
+      "unit": "golay-radar",
+      "paper": "golay-radar.html#paper",
+      "next": "golay-radar.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+        "sourceUrl": "https://arxiv.org/abs/1702.05833v1",
+        "version": "arXiv:1702.05833v1，2017-02-20；期刊 IEEE TVT 67(4)，3012–3027，2018-04，DOI 10.1109/TVT.2017.2774762。章节、图与式号只采用固定 v1，不混用未检查的期刊 PDF。",
+        "sourceId": "80211ad",
+        "comparisonLink": "golay-radar.html#paper",
+        "researchQuestion": "原文研究 IEEE 802.11ad 通信前导复用为车载雷达；本站只用独立构造解释已知序列相关、互补抵消和运动失配，不实现原文完整接收机。",
+        "observationsAndUnknowns": "已知两条发射序列、各次起点、芯片间隔、固定接收窗口与搜索区间；未知目标时延、复反射系数与多普勒。真值仅用于合成回波和标线，不用于挪动接收窗口。",
+        "locator": {
+          "summary": "固定 v1 §II-A、图1–2：STF/CEF 结构；§III-A 式(1)：基带模型；§III-C 式(10)–(11)、§IV-A 式(13)–(19)：回波与相关处理；§IV-B.3 式(24)、(27)与 §IV-C Remark 3：跨帧相位与有限观测边界；§V：分析与仿真。",
+          "section": "§II-A、§III-A/C、§IV-A/B.3/C、§V",
+          "figure": "图1–2仅作结构对照；不复现性能图",
+          "equation": "式(1)、(10)–(11)、(13)–(19)、(24)、(27)；Remark 3"
+        },
+        "paperEvidenceType": "理论分析与数值仿真，不是道路实测证据",
+        "siteArtifactType": "独立构造的孤立非周期 Golay 对、固定窗口复数相关与有界合成回波，不是标准帧或原图复现",
+        "retainedAssumptions": [
+          "发射训练序列已知；延迟通过完整接收记录上的候选相关搜索",
+          "采用单站几何；复反射系数未知，互补求和先保留复数再取幅度",
+          "静止互补对要求两次回波的复反射系数保持一致；运动模型保留序列内与两次之间的相位变化",
+          "重复 A+A 与互补 A+B 在同一状态中使用相同能量、起点间隔、搜索区间和接收窗口"
+        ],
+        "omittedMechanisms": [
+          "未实现 IEEE 标准芯片顺序、相位旋转、完整 STF/CEF 帧、同步与 CP 提取处理",
+          "未实现分数时延、脉冲成形、频谱掩模、射频损伤、距离迁移或通信数据解调",
+          "未实现目标检测器、虚警控制、检出率、实际测距精度或硬件测试",
+          "未实现原文多帧速度接收机或吞吐量模型；长间隔只作改变时间资源的合成压力测试"
+        ],
+        "metrics": [
+          "固定归一化的复数相关分量及相加后的幅度，不作逐曲线峰值归一化",
+          "候选整数时延与单站距离坐标；相关输出不是检测决策",
+          "发射芯片能量、两次起点间隔、接收窗口与完整观测跨度分别列出",
+          "弱回波是选定相位与时延的相干叠加示例，不据此给出概率性能结论"
+        ],
+        "unknowns": [
+          "没有核查 IEEE 标准芯片序列或实现完整 CEF 处理，不声明标准兼容",
+          "没有复现论文仿真曲线、道路场景、检测概率或实际测距精度",
+          "分数时延、非理想同步、不同目标速度和硬件误差的表现需另行建模检验"
+        ],
+        "resourceBudget": {
+          "summary": "两个方案使用相同长度与单位芯片幅度、两次发送、保护间隔、完整捕获和搜索窗口。合成长间隔保持发射能量但增加观测时长；芯片采样率、占用 RF 带宽、距离格距与物理分辨能力分别解释。",
+          "bandwidth": "理想芯片采样模型，不将芯片率等同于占用 RF 带宽",
+          "energy": "同一状态下两方案发射芯片数与每芯片能量相同",
+          "duration": "固定的发送起点和完整记录；长间隔另标增加的时间资源",
+          "aperture": "单站标量回波，不模拟空间阵列",
+          "priorKnowledge": "已知训练序列、定时原点和搜索区间；目标时延、复反射系数和多普勒未知",
+          "other": [
+            "完整窗口与保护间隔限制接收支持，不当作通用雷达最大距离",
+            "独立递归构造不声称等于标准 Ga/Gb 芯片顺序"
+          ]
+        },
+        "verificationNote": "2026-10-11 采用已核对的固定 v1 原文与独立模型交接；原文块结构、本站孤立互补对及其边界分开。影响力计数沿用 2026-10-10 快照，本次不刷新。"
+      },
+      "learningEntry": "golay-radar.html#experiment"
     }
   ],
   "legacy": {
@@ -1124,6 +1194,20 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "先猜通信要求何时影响回波信息，再调 SNR 门槛与信道重合度，区分有余量、最优取舍与可证明不可行。"
+    },
+    {
+      "id": "golay-radar",
+      "title": "通信训练复用与 Golay 互补相关",
+      "href": "golay-radar.html#experiment",
+      "question": "移动回波后，相关峰为什么跟着走，旁瓣又怎样相消？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#doppler"
+      ],
+      "group": "research",
+      "primaryDirectionId": "waveforms",
+      "action": "先移动时延，再按需展开带符号相关、较弱回波与运动；每次比较都核对相同能量、时间和接收窗口。"
     }
   ],
   "pages": [
@@ -1294,6 +1378,20 @@
       "case": "case-crb-beamforming",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次固定信道与总功率下的 CRB 检验"
+    },
+    {
+      "path": "golay-radar.html",
+      "title": "通信训练序列，为什么也能测距？",
+      "stage": "experiments",
+      "role": "研究主题 · 通信训练复用、独立 Golay 互补模型与原文边界",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#matched",
+        "foundations.html#doppler"
+      ],
+      "case": "case-golay-radar",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同资源的训练序列相关检验"
     }
   ],
   "schemaVersion": 1,
@@ -1364,7 +1462,7 @@
       "id": "waveforms",
       "title": "波形与导频：发什么、留哪些已知格子？",
       "question": "同一帧既传数据又探测目标，哪些频率和符号必须已知？",
-      "scope": "发射信号、调制坐标、导频歧义与严格协方差波形优化；OTFS 为后续专题。",
+      "scope": "发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。",
       "prerequisites": [
         "iq",
         "ofdm-basics",
@@ -1372,7 +1470,8 @@
       ],
       "primaryCaseIds": [
         "case-pilot",
-        "case-waveform"
+        "case-waveform",
+        "case-golay-radar"
       ],
       "relatedDirectionIds": [
         "tradeoffs",
@@ -1395,6 +1494,13 @@
             {
               "label": "相同方向图，不同通信符号",
               "href": "waveform-design.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "已知训练序列为什么也能提供时延线索",
+              "href": "golay-radar.html#mechanism",
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
@@ -1433,6 +1539,13 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "固定接收窗口中的 Golay 回波与复数相关",
+              "href": "golay-radar.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -1451,6 +1564,13 @@
             {
               "label": "严格协方差的最优波形实验",
               "href": "waveform-design.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "移动回波，比较等资源 A+A 与 A+B",
+              "href": "golay-radar.html#experiment",
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
@@ -1497,6 +1617,13 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "802.11ad 雷达原文与独立 Golay 模型的区别",
+              "href": "golay-radar.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -1518,6 +1645,13 @@
             {
               "label": "协方差不保证全部雷达性能",
               "href": "waveform-design.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "互补条件、运动失配与相关峰的解释边界",
+              "href": "golay-radar.html#limits",
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
@@ -1547,6 +1681,13 @@
             {
               "label": "全局下界与独立数值验证",
               "href": "waveform-design.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "重新计算互补相关并核对接收支持",
+              "href": "golay-radar.html#reproduce",
               "kind": "reproduction-plan",
               "scope": "direction-specific",
               "status": "available"
@@ -2881,7 +3022,8 @@
         "knownUnknown": "已知模板与样本；搜索候选延迟",
         "boundary": "最大匹配峰不等于通过检测的目标",
         "unitRefs": [
-          "matched"
+          "matched",
+          "golay-radar"
         ],
         "entryUnitRef": "matched"
       },
@@ -2943,10 +3085,11 @@
         "groupId": "observation",
         "label": "已知输入与导频",
         "question": "哪些发射格子已知，留下哪些歧义？",
-        "knownUnknown": "已知选中的导频；未知延迟与复增益",
+        "knownUnknown": "已知选中的导频或训练序列；未知延迟与复增益",
         "boundary": "归一化峰高不是等总能量或等 SNR",
         "unitRefs": [
-          "pilot"
+          "pilot",
+          "golay-radar"
         ],
         "entryUnitRef": "pilot"
       },
@@ -2955,12 +3098,13 @@
         "kind": "concept",
         "groupId": "dimensions",
         "label": "延迟 / 距离",
-        "question": "沿频率的相位变化提供什么延迟线索？",
-        "knownUnknown": "已知频率样本；搜索延迟参数",
+        "question": "沿频率的相位变化或训练序列的错位相关，怎样提供时延线索？",
+        "knownUnknown": "已知频率样本或训练序列；搜索延迟参数",
         "boundary": "从延迟到距离需要指定传播几何",
         "unitRefs": [
           "ofdm",
-          "echo"
+          "echo",
+          "golay-radar"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -2974,7 +3118,8 @@
         "boundary": "速度换算依赖路径几何，不能普遍使用单站倍频式",
         "unitRefs": [
           "doppler",
-          "ofdm"
+          "ofdm",
+          "golay-radar"
         ],
         "entryUnitRef": "doppler"
       },
@@ -3100,12 +3245,13 @@
         "kind": "concept",
         "groupId": "codesign",
         "label": "波形与导频设计",
-        "question": "导频位置如何改变感知歧义？固定空间协方差后，时间波形如何改变通信符号误差？",
-        "knownUnknown": "导频模型：已知导频、估计静止单径时延；波形模型：H、目标符号 S 与协方差 R_d 已知，设计复数发射矩阵 X",
-        "boundary": "导频实验仅为静止单径距离切片；波形实验仅优化无噪声确定性符号误差，固定协方差不保证相同延迟–多普勒性能",
+        "question": "导频位置如何改变感知歧义？固定空间协方差后，时间波形如何改变通信符号误差？互补训练序列又怎样改变相关旁瓣？",
+        "knownUnknown": "导频模型：已知导频、估计静止单径时延；波形模型：H、目标符号 S 与协方差 R_d 已知，设计复数发射矩阵 X；训练复用模型：序列与接收窗口已知，时延、复反射系数与多普勒未知",
+        "boundary": "导频实验仅为静止单径距离切片；波形实验仅优化无噪声确定性符号误差，固定协方差不保证相同延迟–多普勒性能；Golay 实验使用独立孤立互补对，不是完整标准帧或检测性能复现",
         "unitRefs": [
           "pilot",
-          "waveform-design"
+          "waveform-design",
+          "golay-radar"
         ],
         "entryUnitRef": "pilot"
       },

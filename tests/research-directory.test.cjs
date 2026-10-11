@@ -42,7 +42,7 @@ test('unimplemented papers render no local action, and each mechanism requires a
  const absent={...registry,cases:registry.cases.filter(c=>!data.cards.some(card=>card.caseId===c.id))};const pending=render(absent);
  a.match(getCard('optimal_waveform',pending),/教学案例准备中/);
  for(const c of data.cards){const card=getCard(c.id,pending);a.ok(!/href="(?!https:)/.test(card),c.id);}
- for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html']]){
+ for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html'],['case-golay-radar','80211ad','golay-radar.html']]){
   a.match(getCard(paperId,pending),/教学案例准备中/);
   const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#experiment`}],pages:[...registry.pages,{path:file}]};
   a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#experiment"`));
@@ -67,8 +67,8 @@ test('adding or removing bibliography cards updates both generated heading and r
  }
 });
 
-test('exactly three bibliography cases are active and six remain honestly unavailable',()=>{
- const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,3);a.equal(pending.length,6);
+test('exactly four bibliography cases are active and five remain honestly unavailable',()=>{
+ const active=data.cards.filter(c=>c.caseId),pending=data.cards.filter(c=>!c.caseId);a.equal(active.length,4);a.equal(pending.length,5);
  for(const c of active){const card=getCard(c.id);a.ok(/href="(?!https:)/.test(card));a.ok(!/教学案例准备中|深度交互尚未实现/.test(card));a.ok(!/尚未实现|准备中/.test(c.readingPlan));}
  for(const c of pending){const card=getCard(c.id);a.match(card,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(card));}
 });
