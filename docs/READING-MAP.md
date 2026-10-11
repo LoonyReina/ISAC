@@ -360,3 +360,44 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - 下界与边界：完整实参数 (θ, Re α, Im α) Fisher 矩阵经 Schur 补给出有效角度信息。主图纵轴是归一化有效角度信息 g（无量纲）；角度标准差下界（度）由旁边数值单独显示，不是实际 RMSE。最低 SNR 低于转折时有余量，超过转折后发生最优取舍，超过20 dB通信上限可证明不可行；ρ=0且门槛恰达上限时通信可行，但目标零陷使常规角度 CRB 不可用。
 - 可选 `#companion`：本站另设 h=u、p=.5 并增加独立探测流的构造。保持整条角功率图、通信 SINR 与总功率一致，改变两空间模式输出的相关性，说明未知复 α 下的角度信息还取决于完整协方差。它不是原文多用户 SDR、主实验候选对比、原图复现或跨场景优越性证据。
 - 影响证据沿用2026-10-10快照：OpenAlex 773、Semantic Scholar 855分别显示；2025年施引文献245篇是出版年桶，不是当年索引增长。2024 IEEE SPS最佳论文奖于2025年颁发，非青年作者奖；ComSoc 2022年2月阅读推荐是编辑推荐，不能替代社交讨论量。没有重新刷新或合并引用计数。
+
+## 2026-10-11 UTC · 前沿阅读与官方标准状态补充
+
+这是有界的证据更新，不把初始 2026-10-08 检索截止日期改成全书重新核查。网页新增三个固定版本阅读入口，接入已有 receiver、spatial、learning 方向的原文层；没有新增机制、论文复现案例或知识概念。原九篇影响目录与引用计数保持原快照。
+
+### 标准：分别记录需求、架构、研究报告和待完成工作
+
+- ITU 官方页面：https://www.itu.int/en/ITU-R/study-groups/rsg5/rwp5d/IMT-2030/Pages/default.aspx 。最低性能要求草案 5/116 与评估指南草案 5/119 已提交 SG5，拟于 2026 年 12 月审批；截至本次核对仍称 draft new Report，不写成已批准报告。
+- TS 23.137 官方版本记录：https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=5516 。标题 Integrated Sensing and Communication; Stage 2，类型 TS；Rel-20 v20.0.0 于 2026-09-24 上传，官方状态 Under Change Control。只核对元数据，未成功读取该版本全文，因此不描述未经核对的功能实体或程序，不称首个架构标准，也不推断完整 6G 空口、所有 ISAC 能力或商用互操作完成。
+- TR 38.765 官方版本记录：https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4446 。NR ISAC 研究报告，Rel-20 v20.0.0 于 2026-06-23 上传，已进入变更控制。TR 的研究报告身份与 TS 的规范身份分别标注；上传日不改写成会议通过日。
+- NR_Sensing_bis-Core 官方工作项：https://portal.3gpp.org/desktopmodules/WorkItem/WorkItemDetails.aspx?workitemId=1121123 。2026 年 9 月记录完成度 25%，截至本次核对仍在推进；立项/工作进度不等于全部技术完成，不以计划结束日期宣称实际结果。
+- TS 22.137 官方目录：https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4198 。继续固定阅读 ETSI V19.1.0：https://www.etsi.org/deliver/etsi_ts/122100_122199/122137/19.01.00_60/ts_122137v190100p.pdf 。3GPP v19.1.0 上传日为 2024-04-04，所链 ETSI 转置文本封面日期为 2026-01。官方目录另列 Rel-20 v20.0.0、Rel-21 v21.0.0，均在 2026-10-02 上传。没有逐条比较这些版本，不从版本晋升推断新增功能。
+
+### F1 · A Tutorial on MIMO-OFDM ISAC: From Far-Field to Near-Field
+
+- 作者：Qianglong Dai 等
+- 固定全文：https://arxiv.org/html/2504.19091v2 ；版本记录：https://arxiv.org/abs/2504.19091v2 ，v2 为 2025-12-31
+- 2026 期刊记录：https://cris.technion.ac.il/en/publications/a-tutorial-on-mimo-ofdm-isac-from-far-field-to-near-field/ ；DOI https://doi.org/10.1109/COMST.2025.3650568 。2026 出版与 2025 作者版本分开，不称 2026 首次提出
+- 核查导读：§III 的观测模型；§IV-B–E 的估计方法与复杂度；§V-B–C 的远场失配与近场扩展
+- 学习问题：相同观测、孔径和样本量下，联合估计改善了什么，又付出多少计算量？
+- 边界：教程、推导与数值对比；§III-D 的原型来自引用文献，不能作为教程全部算法的实测证据。作者对 OFDM 的预期不是已确定的 6G 波形。本站没有复现算法或原图
+
+### F2 · A Tutorial on AI-Empowered Integrated Sensing and Communications
+
+- 作者：Mojtaba Vaezi、Gayan Aruma Baduge、Esa Ollila、Sergiy A. Vorobyov
+- 固定全文：https://arxiv.org/html/2504.13363v3 ；版本记录：https://arxiv.org/abs/2504.13363v3 ，v3 为 2026-02-13
+- 作者出版记录：https://www.ece.villanova.edu/~mvaezi/publications.html 列 IEEE Communications Surveys & Tutorials 28，4980–5013，2026 年 2 月；arXiv 注记仍为 To appear。网页保留这一差异，阅读对象标为固定作者版本
+- 核查导读：§V-C 的模型辅助学习/算法展开；§VI-A 的波形案例与泛化限制；§VII 的边界
+- 学习问题：固定功率与通信约束后，学习省掉哪些优化步骤；换信道或用户数时，目标值与约束是否仍成立？
+- 边界：§VI-B 先用纯通信混合预编码演示 learned optimizer，ISAC 扩展另引文献，不把整节曲线标成通感联合实验；仿真不等于实时部署认证。本站没有实现新的学习模型或复现教程曲线
+
+### F3 · Learning-Driven Channel Representation for Wireless Localization: From Channel Observations to Location Inference
+
+- 作者：Hongyu Xie 等
+- 固定全文：https://arxiv.org/html/2607.14938v1 ；版本与投稿记录：https://arxiv.org/abs/2607.14938v1 ，v1 为 2026-07-16
+- 状态：综述预印本，作者标明 submitted to IEEE Communications Surveys & Tutorials；本次未确认接受或出版，不标已接收
+- 核查导读：§IV-C–E 的表示与迁移；§V-D–F 的分布漂移、评估协议和部署成本
+- 学习问题：场景内随机划分与跨房间/设备划分分别测出了什么，适配标注量、计算量与定位误差应怎样一起报告？
+- 边界：主要对象是无线定位，不能直接等同人体姿态、全场景泛化或新的硬件实测结论；这里只借鉴评估框架，不作跨论文性能排名
+
+资料核查涉及以上三篇的相关全文章节与版本记录；没有逐式复现或对综述引用的全部实验二次验真。TS 23.137 的全文下载未成功解析，只使用官方元数据。页面实现依据这一证据快照转写；结构、生成器与回归验证范围另见 [本次验证记录](FRONTIER-OCTOBER-VALIDATION.md)。
