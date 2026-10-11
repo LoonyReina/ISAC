@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="OFDM 空资源格不是零信道。沿时间连接两个已测复数端点，观察静止补值、运动相位偏差和相关噪声；在相同观测上比较两种处理。">
+<title>补出来的格子，为什么不是新观测？ | ISAC</title>
+<link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="ofdm-interpolation.css?v=ofdm-interpolation-v1">
+<script defer src="ofdm-interpolation-core.js"></script><script defer src="ofdm-interpolation.js"></script>
+</head><body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="theory-main oi-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">补出来的格子，为什么不是新观测？</span></nav><p class="site-role">研究主题 · OFDM 时间插值、同观测比较与硬件证据边界</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#ofdm-basics">OFDM 通信基础</a> · <a href="foundations.html#ofdm">七步 OFDM 感知链</a> · <a href="foundations.html#doppler">路径变化与多普勒</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="ofdm-interpolation.html#experiment">① 预测与实验</a><a href="ofdm-interpolation.html#paper">② 原文与证据</a><a href="ofdm-interpolation.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<header class="oi-hero"><p class="eyebrow">通信资源复用 / 先区分“测到”和“算出”</p>
+<h1>补出来的格子，<br>为什么不是新观测？</h1>
+<p>通信没有在每个时刻、每个子载波都发送符号。雷达处理想要一张整齐的复数网格，能不能把空格连起来？先看一个静止回波，再让它动起来。</p>
+<p class="oi-boundary">取自 2019 年全双工 OFDM 雷达论文的时间插值机制。本页是独立的稀疏探测教学模型，未复现 LTE/NR 标准波形、射频硬件或论文实测。</p></header>
+<section id="mechanism" class="oi-section">
+<h2>空格表示没测到，不表示信道为零</h2>
+<p>横向每列是一次探测时刻 m，纵向每行是一个子载波 k。蓝格发送已知单位幅度符号 X；橙色空格的 X=0。接收端只在<strong>蓝格</strong>计算 d=Y/X。空格里的接收噪声不能除以零变成信道观测。</p>
+<div id="experiment" class="oi-controls">
+<label for="oi-fd">模拟目标的运动 <select id="oi-fd"><option value="0">0 Hz · 先看静止</option><option value="31.25">31.25 Hz · 小幅转动</option><option value="62.5">62.5 Hz · 再快一点</option><option value="125">125 Hz · G=8 时中点相消</option><option value="250">250 Hz · G=8 时中点反向</option><option value="500">500 Hz · 中点对了，其他点呢？</option><option value="-125">−125 Hz · 反向运动</option><option value="800">800 Hz · 上界压力</option></select></label>
+<label for="oi-gap">两端实测时刻相隔 G <select id="oi-gap"><option value="2">2 次间隔 · 1 ms</option><option value="4">4 次间隔 · 2 ms</option><option value="8" selected>8 次间隔 · 4 ms</option><option value="16">16 次间隔 · 8 ms</option></select></label>
+</div>
+<div class="oi-actions"><button id="oi-reset" type="button">重置整页实验</button><span>模拟真值：R=37.5 m，复增益 a=exp(j0.37)，幅度 1；不传给插值或候选匹配</span></div>
+<p id="oi-budget" class="oi-budget">实际观测 972 格；待补 84 格；补后显示 1056 格。总发射能量仍为 972 单位，首末探测相隔 16 ms。</p>
+<figure class="oi-figure"><figcaption><strong>先看资源状态，不看功率。</strong>蓝格是实际发送并取得商值的位置，空心橙格未观测；紫色外框指出固定的 k=14 行。改变 G 会改变缺口、实际观测数和总能量，不能当成同能量的跨设置比较。</figcaption><div class="oi-legend"><span class="oi-observed">■ 蓝：已观测</span><span class="oi-filled">□ 橙：未观测</span><span class="oi-selected">紫框：下面追踪的 k=14</span></div><svg id="oi-grid" role="img" aria-label="32 子载波与 33 次探测的资源状态网格" viewBox="0 0 800 235"></svg></figure>
+<p id="oi-intro" class="oi-result">在固定 k=14 上，用 m=12 与 m=20 两个真实观测端点，计算中间 7 格。没有新增发射或接收。</p>
+<p id="oi-status" class="oi-status" role="status" aria-live="polite">交互正在初始化；默认静止场景和下方固定说明可直接阅读。</p>
+<noscript><p class="oi-result">交互需要 JavaScript。默认 G=8、fD=0、无噪声时，972 个观测可在恒定信道假设下精确补齐 84 格。运动至 125 Hz 时中点幅度为零；250 Hz 时中点反向；500 Hz 时中点偶然正确，整个缺口仍有误差。</p></noscript>
+</section>
+<details class="oi-disclosure" id="chord"><summary>① 为什么运动时会补错？把两个实测端点连成一条直线</summary><div>
+<p>每个信道格都是复数，也就是一支有方向和长度的箭头。这里只追踪<strong>同一个子载波 k=14，沿时间补值</strong>。紫色虚线是模拟器知道的真实转动；橙线只使用两个实测端点，接收机看不到缺口里的真值。</p>
+<label class="oi-slider" for="oi-time">观察缺口中的哪个时刻？<output id="oi-time-value" for="oi-time">m=16 · 中点</output><input id="oi-time" type="range" min="12" max="20" step="1" value="16"></label>
+<div class="oi-legend"><span class="oi-observed">蓝圆：实测值</span><span class="oi-filled">橙线 / 方块：线性补值</span><span class="oi-selected">紫虚线 / 圆环：模拟真值</span></div>
+<div class="oi-plot-pair">
+<figure class="oi-figure"><figcaption><strong>先看实部随时间。</strong>横轴是稀疏探测时刻（ms），纵轴是复信道的实部，既可正也可负。橙线只连接两个端点；缺口内的紫虚线只是教学对照。</figcaption><svg id="oi-trace" role="img" aria-label="固定子载波上实测端点、补值和模拟真实实部的时间轨迹" viewBox="0 0 460 290"></svg></figure>
+<figure class="oi-figure"><figcaption><strong>再看完整复数箭头。</strong>横轴实部 I，纵轴虚部 Q，等比例坐标。紫圆弧按时间转动，橙色弦连接实测端点；圆环与方块标出同一选中时刻。</figcaption><svg id="oi-phasor" role="img" aria-label="复平面真实旋转轨迹与实测端点之间的线性插值弦" viewBox="0 0 460 290"></svg></figure>
+</div>
+<p id="oi-cell" class="oi-result"></p><p id="oi-curvature" class="oi-budget"></p>
+<div class="oi-equation">u = (m−m₀)/G<br>补值 = (1−u) d[k,m₀] + u d[k,m₁]<br>无噪声的中点：补值 / 真值 = cos(π fD G Tr)</div>
+<p>u 是在两端之间走过的比例，Tr=0.5 ms 是探测起点间隔。只有 u=1/2 时才用最后一行公式；负比值代表箭头反向，零幅度时相位未定义。公式描述的是<strong>单格复信道的重建偏差</strong>，不是距离估计偏差或整目标消失。</p>
+<p>保持 G=8，依次试 0、125、250、500 Hz。500 Hz 时两端之间转两圈：中点恰好又对上，但 m=13、15 等位置仍然错。请移动时刻滑条验证，不能只检查中点。</p>
+<details class="oi-inner"><summary>查看端点与选中格的实际复数值</summary><div><p>“未观测”不会显示成测得了 0。真值一列仅供模拟评估；复数写为（实部，虚部）。</p><div class="oi-table-scroll" tabindex="0" role="region" aria-label="当前复数数值表，可横向滚动"><table><caption>固定 k=14；由当前数值核心计算</caption><thead><tr><th scope="col">时刻</th><th scope="col">原始商值 d</th><th scope="col">处理后</th><th scope="col">模拟真值</th></tr></thead><tbody id="oi-cells"></tbody></table></div></div></details>
+</div></details>
+<details class="oi-disclosure" id="processors"><summary>② 同一批观测，直接匹配与补值后匹配有什么不同？</summary><div>
+<p>接收机在一张<strong>固定候选网格</strong>上逐个尝试距离和 Doppler，不知道目标答案。蓝色方案只累加已观测格；橙色方案先沿时间补齐，再按完整矩形网格累加。两者共享同一份观测、噪声和发射资源。</p>
+<div class="oi-equation">z观测(R′,f′) = Σ已观测 conj(s) d / K<br>z补值(R′,f′) = Σ全部 conj(s) 补值 / J<br>s[k,m] = exp(−j2π k Δf · 2R′/c + j2π f′mTr)</div>
+<p>K 是实际观测数，J=1056。模板 s 是该<strong>候选</strong>距离 R′、Doppler f′ 会产生的相位斜坡；conj(s) 反向转回后相加。先保持复数，再取功率 |z|²。不同分母使静止、无噪声的正确候选均给出单位功率，不代表补出来的格子独立。</p>
+<p class="oi-small">不熟悉这一步？先回看 <a href="foundations.html#iq">I/Q</a>、<a href="foundations.html#ofdm-basics">OFDM 的一格一行</a>、<a href="foundations.html#ofdm">距离–慢时间–速度的七步链</a>和<a href="foundations.html#doppler">多普勒相位</a>。</p>
+<figure class="oi-figure"><figcaption><strong>相同色标、相同候选坐标。</strong>每格是匹配功率，不是检测目标。色标固定 −40 至 +6 dB，0 dB 始终代表单位功率；只裁剪显示颜色，原始线性数值保留。白色十字是真值评估标记，未参与计算。横轴 R′，纵轴 f′；两图都包含 64×65 个候选。</figcaption><div class="oi-map-pair"><div><h3>只用实际观测 · |z观测|²</h3><svg id="oi-masked-map" role="img" aria-label="直接对实际观测匹配的固定候选距离多普勒功率" viewBox="0 0 460 320"></svg></div><div><h3>时间补值后 · |z补值|²</h3><svg id="oi-filled-map" role="img" aria-label="相同观测沿时间插值后匹配的固定候选距离多普勒功率" viewBox="0 0 460 320"></svg></div></div><div class="oi-scale" aria-label="共同功率颜色刻度"><span>−40 dB</span><span>−20 dB</span><span>0 dB</span><span>+6 dB</span></div></figure>
+<p id="oi-processing-result" class="oi-result"></p>
+<p>默认静止场景下，补值在这个恒定信道模型里是精确的，因此能修复资源缺口在部分原有零点造成的泄漏。<strong>完整矩形孔径自身的 Dirichlet 旁瓣仍然存在</strong>，不能说“所有旁瓣都消失”。运动时，补值偏差也会进入匹配结果。</p>
+<p>横轴候选步长 2.34375 m、纵轴 25 Hz，只是在更密地计算匹配函数；原始 DFT 格距分别是 4.6875 m、60.6061 Hz。候选变密没有增加物理分辨率，某个格子变亮也不等于通过检测。</p>
+</div></details>
+<details class="oi-disclosure" id="noise"><summary>③ 中点噪声变小了，为什么仍不是多了一次独立测量？</summary><div>
+<p>假设两端的误差分别为 e₀、e₁。中点的误差是 (e₀+e₁)/2。它看起来更平滑，却和两端重复使用同一份误差：如果左端偏了一点，所有依赖它的补值都会跟着偏。</p>
+<label class="oi-check" for="oi-noise"><input id="oi-noise" type="checkbox">加入固定种子的复高斯噪声（每个已观测格的信号/噪声功率比 0 dB）</label>
+<p class="oi-small">种子 20261011；调整控件不重抽噪声。两种处理一直使用同一份接收数据。一次噪声实现不是统计性能、检出率或虚警率试验。</p>
+<div class="oi-table-scroll" tabindex="0" role="region" aria-label="三个显示点的理论噪声协方差表"><table><caption>理论协方差 / σ²：两端独立，中点取平均</caption><thead><tr><th scope="col">与谁一起变化</th><th scope="col">左端</th><th scope="col">中点</th><th scope="col">右端</th></tr></thead><tbody><tr><th scope="row">左端</th><td>1</td><td>1/2</td><td>0</td></tr><tr><th scope="row">中点</th><td>1/2</td><td>1/2</td><td>1/2</td></tr><tr><th scope="row">右端</th><td>0</td><td>1/2</td><td>1</td></tr></tbody></table></div>
+<p>对角线是各点方差，非对角线表示共享的噪声变化。三格的协方差矩阵秩为 2，只有两份独立输入。中点方差虽是 σ²/2，它与任一端点的协方差也是 σ²/2。</p>
+<p id="oi-noise-result" class="oi-result"></p>
+<details class="oi-inner"><summary>更进一步：保留原观测，就没有凭空增加或删除信息</summary><div>
+<p>把补值过程记成线性变换 L。它原样保留全部已观测格，所以从结果中再选出这些格，就能取回原始数据。<strong>补值本身不增加信息，也不丢掉已保留的信息</strong>；后续把它当成独立完整网格处理，可能改变统计效率。</p>
+<div class="oi-equation">Cov(补值噪声) = σ² L Lᴴ<br>Var(z观测) = σ²/K<br>Var(z补值) = σ² ‖Lᴴs‖² / J²</div>
+<p>Lᴴs 把每个补值格的模板权重退回到两个真实端点。程序据此计算精确输出噪声，不需要求大矩阵的逆。静止候选下 ‖Lᴴs‖²=1050+6G²；G=8 时，补值后方差反而大于只用观测的匹配方差。</p>
+<p>在本页单目标、等方差独立噪声模型下，原观测匹配可消去未知复增益，得到相应的单目标似然排序。补值后的常规完整网格模板一般不等于变换后的真实均值，因此不能直接冠以同样的最优性。要保留等价似然，必须同时变换均值并处理相关噪声。</p>
+<p>本页不设置门限、CFAR 或全图虚警率。候选格之间在两种处理下都可能相关，不能把 4160 个图像格当成 4160 次独立检验。</p>
+</div></details>
+</div></details>
+<section class="oi-section" id="model"><h2>这个例子保留了什么条件？</h2>
+<details class="oi-disclosure"><summary>展开单位、时钟、已知量与未知量</summary><div>
+<div class="oi-equation">Y[k,m] = X[k,m] h[k,m] + W[k,m]<br>h[k,m] = a exp(−j2π k Δf τ) exp(j2π fD mTr)<br>τ=2R/c；fD=2v/λ；λ=c/fc</div>
+<p>单站、低速窄带近似；v&gt;0 表示接近。复增益 a、R、fD 是未知目标参数。模拟器设置它们生成数据，接收处理只知道发射符号、资源掩码、时刻、载频和候选范围。真值轨迹、误差和真值候选得分都属于评估层。</p>
+<dl class="oi-definitions"><dt>频率与采样</dt><dd>近似光速 c=3×10⁸ m/s，fc=5 GHz，λ=0.06 m；32 个子载波，Δf=1 MHz。频率端点跨度 31 MHz，名义 DFT 带宽 NΔf=32 MHz。</dd>
+<dt>三个不同的时间</dt><dd>有用符号 Tu=1/Δf=1 μs，CP=1 μs；两次稀疏探测起点相隔 Tr=0.5 ms，绝不等于 Tu+CP=2 μs。33 次探测的首末跨度 16 ms；DFT 用的 MTr=16.5 ms。这是人为稀疏相干探测安排，不是 LTE/NR numerology。</dd>
+<dt>范围与近似</dt><dd>距离模糊周期 150 m，候选范围 [0,150) m，满足 τ&lt;CP。Doppler 模糊周期 2000 Hz，通常取 [−1000,1000) Hz，对应单站速度 [−30,30) m/s。交互只取 |fD|≤800 Hz，即 |v|≤24 m/s；16 ms 内位移最多 0.384 m，对比原始距离格距 4.6875 m。它们是模型近似检查，不是实测探测距离或精度。</dd>
+<dt>观测与噪声</dt><dd>活跃格 X=j^((k+3m) mod 4)，幅度 1；W 为独立适当复高斯噪声，E|W|²=σ²，实虚部各 σ²/2。只有活跃格相除，商值噪声仍等方差。若改成非恒模 QAM，除法后方差 σ²/|X|² 会变化，不能直接沿用本页的等权统计。</dd>
+<dt>缺口与资源</dt><dd>k=10…21 行，在 m₀=16−G/2、m₁=16+G/2 之间空缺；真实端点保留。G∈{2,4,8,16}。实际观测及单位能量总数 K=1068−12G；补值数 12(G−1)。每种设置内处理方法同资源，跨 G 的能量不同。</dd></dl>
+<p>保留理想同步、相干时钟、单点目标、跨频率/时间恒定复增益、足够 CP、可忽略符号内多普勒/ICI 和距离迁移的对角 OFDM 近似。不模拟时域收发链或射频瞬时波形。</p>
+</div></details></section>
+<section class="oi-section" id="paper"><h2>回到论文：插值、仿真和硬件实测是三件事</h2>
+<p>Baquero Barneto 等：<a href="https://doi.org/10.1109/TMTT.2019.2930510">Full-Duplex OFDM Radar With LTE and 5G NR Waveforms: Challenges, Solutions, and Measurements</a>，IEEE TMTT 67(10)，4042–4054，2019 年 10 月。下面式号、图号固定对应 <a href="https://arxiv.org/abs/1908.03418v1">2019-08-09 的 arXiv v1</a>（13 页作者稿），未逐页对照期刊最终排版。</p>
+<p>论文关注两个实际障碍：通信资源格中的空缺，以及强发射泄漏带来的自干扰。本文借用前一个障碍中的时间插值规则；论文的射频/数字抵消器和实测结果属于另一条证据链。</p>
+<details class="oi-disclosure"><summary>展开原文定位：哪里是算法，哪里才是测量？</summary><div><ul>
+<li>第 2 页图 1：射频/DSP 抵消与商值→插值→窗函数→周期图的处理链，系统框图本身不是实测增益</li>
+<li>第 3 页 §II-A 式(1)–(3)：目标频率/时间相位，以及匹配处理和已知符号相除的区别</li>
+<li>第 3 页 §II-B 式(4)：固定子载波、沿时间用相邻有效端点插值；保留原有效值。本页只改编这一步，既不是频率插值，也不恢复永久空载波</li>
+<li>第 3–4 页式(5)：含窗函数的距离–Doppler 周期图。本页采用矩形权重；未复现实测采用的 Hamming 窗或整幅检测门限，也不沿用独立像素假设</li>
+<li>第 4–5 页表 I、图 2、§II-C：数值性能；其中 RMSE 条件于成功检测。第 5–6 页图 3 的直接自干扰例子仍是仿真</li>
+<li>第 6–7 页式(9)–(12)、图 4：抵消器模型与设计，本页没有实现</li>
+<li>第 8 页图 6、§IV-A/B：40 MHz NR、2.44 GHz 的射频测量；图中的 15 dBm 轨迹与设置文字约 20 dBm 不应混成一个工作点</li>
+<li>第 9–10 页图 7–8、§IV-C：无人机测量及局部 3×3 邻域 ROC（各 100 幅有/无目标图）；第 10–11 页图 9、§IV-D：20 ms 车辆例子。均不是本页的合成数据</li></ul>
+<p>模拟插值不能恢复被前端饱和截掉的信息；硬件中的模拟抑制用于保护接收链。数字抵消的时延范围也需避免误消期望回波。本页没有读取原始测量 IQ，未重画论文性能图或验证抵消 dB。</p>
+</div></details></section>
+<section class="oi-section" id="limits"><h2>格子变整齐，结论要保持克制</h2><ul>
+<li>只在同一子载波上有左右真实端点时补值。不做边缘外推，不恢复永久空置的 DC/保护带，不把补值再次当成新观测端点</li>
+<li>静止且无噪声时的精确补值依赖恒定信道模型；运动误差、共享噪声和真实资源数要一起看。中点碰巧正确并不代表整个缺口正确</li>
+<li>不包括多径、杂波、加速度、时变增益、同步/CFO/相噪、饱和、ADC 量化或射频滤波；没有吞吐率、BER、标准合规或硬件复现结论</li>
+<li>展示复数重建和匹配功率，不宣布检测、定位精度提升或新增独立信息</li></ul>
+<p><strong>下一问：</strong>若资源掩码换成真实 NR 调度，或符号幅度不再相同，如何直接针对实际观测和噪声设计估计器？先写清新的模型、资源、基线和失败标准，再讨论性能。</p>
+<p>继续：<a href="pilot-design.html">比较频率梳状导频的模糊</a> · <a href="sbfd-resource.html">区分资源孔径与采样密度</a> · <a href="practice.html#notebook">记录一次同资源检验</a></p></section>
+<section class="oi-section" id="reproduce"><h2>每个格子、每条曲线都能重算</h2><p>前端用无依赖 JavaScript 纯数值核心；参考值来自独立 Python/NumPy 实现，并经另一套独立实现核对。没有上传交互参数、复制论文 PDF 或把实测结果嵌进曲线。</p>
+<ul class="oi-file-links"><li><a href="ofdm-interpolation-core.js">纯数值核心</a></li><li><a href="scripts/validate-ofdm-interpolation.py">Python/NumPy 参考脚本</a></li><li><a href="data/ofdm-interpolation-validation.json">固定参考与复数 fixtures</a></li><li><a href="data/ofdm-interpolation-sources.json">固定来源与定位</a></li><li><a href="docs/OFDM-INTERPOLATION-VALIDATION.md">验证方法与实际范围</a></li></ul>
+<details class="oi-disclosure"><summary>查看当前资源、复数样本和固定网格的完整数据</summary><div><p>数组顺序是 m×32+k；未观测的原始商值为 null，避免把存储零当成测量。truthForEvaluation 仅用于教学评估。功率数组按 Doppler 行、距离列排列；只有展开处理图后才计算完整网格。</p><pre id="oi-raw" tabindex="0" role="region" aria-label="当前完整复数和功率数据，可用方向键滚动"></pre></div></details></section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同观测、同资源的补值检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+<footer>独立稀疏探测模型 · 相同实际观测 · 真值仅用于模拟与评估</footer>
+</main></body></html>
