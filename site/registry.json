@@ -862,6 +862,81 @@
         ],
         "verificationNote": "2026-10-11 来源交接已核对 UTS 接收稿 SHA-256 a51c363bbb6b6a646a1de1ff20054722db60ad7ec2a303421d570ae5b8d82172，arXiv v1 SHA-256 e947f001746f33fb91be4c2b5781c9df29a67ce0023bd7975092db241f75f8ec。本站使用式(30)因果递归并独立验证复相位与输出协方差，不把来源核验视为整篇复现。九篇目录 metrics、endorsements、socialDiscussion 保持 2026-10-10 快照。"
       }
+    },
+    {
+      "id": "case-shared-array",
+      "title": "同样八根天线，分开使用会少掉什么？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#iq\">I/Q 与复数</a>；<a href=\"foundations.html#array\">阵列与方向</a>；<a href=\"foundations.html#codesign\">固定资源再比较</a>。先数物理天线、信号流和实际功率，再看空间置零。",
+        "问题": "同一排八根天线拆成雷达与通信子阵后，要求雷达不干扰用户，会丢掉多少目标方向照射？补回发射功率，能否补回被投影掉的方向分量？",
+        "交互机制": "四个实际总功率 P=1 的解析配方：分离不置零、分离置零后恢复雷达功率、共享数据朝用户、共享数据朝目标。改变目标方向或连续分组，核对用户 D/I_r/σ²、目标照射分解与逐天线功率；raw 投影单独作为未花满预算的诊断。",
+        "证据类型": "论文：<a href=\"https://discovery.ucl.ac.uk/id/eprint/1563386/7/Masouros%20VoR%2008288677.pdf\">Fan Liu 等，TWC 2018 已发表版本</a>的理论与仿真；本站：独立 LOS 合成机制、解析空间权重与复数协方差核验，不运行作者优化算法。",
+        "结论边界": "2018 共享模型只发通信数据，没有额外独立雷达流；2020 联合波束页才加入独立雷达流。目标方向功率不是回波 SNR、CRB、检测率或分辨率；四种配方不构成架构最优包络，不宣称共享普遍获胜。",
+        "下一研究问题": "若加入每天线功率上限或 CSI 误差，在同一分组与实际预算下还能保持严格置零吗？先记录残余干扰、目标照射与功率，再讨论多用户零空间。"
+      },
+      "unit": "shared-array",
+      "paper": "shared-array.html#paper",
+      "next": "shared-array.html#boundaries",
+      "learningEntry": "shared-array.html#question",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceId": "mu_mimo",
+        "sourceTitle": "MU-MIMO Communications With MIMO Radar: From Co-Existence to Joint Transmission",
+        "sourceUrl": "https://discovery.ucl.ac.uk/id/eprint/1563386/7/Masouros%20VoR%2008288677.pdf",
+        "version": "Fan Liu、Christos Masouros、Ang Li、Huafei Sun、Lajos Hanzo；IEEE TWC 17(4)，2755–2770，2018-04，DOI 10.1109/TWC.2018.2803045。UCL 已发表版本 VoR：16 页；arXiv:1707.00519v1：2017-07-03，15 页投稿稿，未确认为接受稿。下列主定位使用 VoR 印刷页码，另列 v1 PDF 页码。",
+        "comparisonLink": "shared-array.html#paper",
+        "researchQuestion": "原文比较固定总阵列的分离子阵与数据共享发射，在通信 SINR 和功率约束下设计方向图；本站只隔离固定雷达子阵严格空间置零的方向损失，不复现原文 SDR、流形法或随机信道性能曲线。",
+        "observationsAndUnknowns": "分离 x=w_c c+w_r s，c、s 零均值、单位方差且独立，集合协方差 R=w_c w_cᴴ+w_r w_rᴴ 为块对角；用户 y=hᴴx+n。共享 x=wc 只复用同一份通信数据，不另计雷达干扰。已知精确单用户 LOS 信道 h=√g exp(jφ)a(u_user)，φ=.37、g=1；原文用转置约定，本站 h=conj(h_paper)。目标仅计算发射侧 aᴴRa，未知复反射系数 β、接收阵列和接收噪声均未建模，不能把它们当已知 1。",
+        "locator": {
+          "summary": "VoR §II/Fig.1 p.2757（v1 p.3）：物理分组；式(1)–(4) pp.2757–2758（v1 pp.3–4）：分离观测与 SINR；式(5)–(8) p.2758（v1 p.4）：只复用通信数据的共享模型；式(11) p.2759（v1 p.4）：雷达零干扰；式(14)–(18) p.2759（v1 p.5）：块对角协方差和总体方向图；式(20) p.2760（v1 p.6）：共享优化；§VI pp.2764–2766（v1 pp.10–11）：特定仿真。",
+          "section": "VoR §II、§III-B/C、§VI；arXiv v1 单独标页，不拼接版本定位",
+          "figure": "Fig.1：连续物理分组；Figs.3–5：原文特定仿真，未作原图复现",
+          "equation": "式(1)–(8)、(11)、(14)–(20)；式(12)/(13)的 PR/N 印刷归一化歧义单独说明"
+        },
+        "paperEvidenceType": "理论与数值仿真；原文 7 vs 15 dB PSLR 是特定设置下的示例，不是普遍架构定理",
+        "siteArtifactType": "独立单用户 LOS 解析机制；四个同总功率配方及独立 raw 诊断，非作者算法、最优 Pareto 包络、原图或硬件复现",
+        "retainedAssumptions": [
+          "同一排窄带远场半波长 ULA，连续雷达/通信子阵；理想全数字发射模型与精确 CSI",
+          "分离雷达与通信符号独立，零均值单位方差；集合交叉项为零，不声称有限随机符号块精确正交",
+          "分离用户 SINR 分母含未知雷达符号功率；一位用户使其他用户干扰为零",
+          "2018 共享只使用通信数据探测，独立雷达流数为零；不同于 2020 联合波束页",
+          "导向向量 a_m(u)=exp(jπmu) 不除以 √N；子阵取原物理下标且不重新归一化每阵元信道"
+        ],
+        "omittedMechanisms": [
+          "原文 iid Rayleigh、多用户、20 元阵列换成 N=8、单用户 LOS；不复现统计分布或 Monte Carlo 曲线",
+          "不运行 SDR、流形优化、随机秩一恢复、作者代码或整篇论文优化器；C/D 只是两个共享波束端点配方",
+          "只强制实际总功率和雷达子预算，不保留原文每天线相等约束；B 的逐天线功率可能超过 1/8",
+          "不建模目标 β、接收机、回波衰减、CRB、检测概率、BER、RF 效率、耦合、常模或峰值约束"
+        ],
+        "metrics": [
+          "实际总功率 tr(R)、雷达/通信子预算、逐天线 R_mm；1/8 参考线只作额外约束诊断",
+          "用户期望功率 D、独立雷达干扰 I_r、噪声 σ² 与 SINR，Γ=20 只判当前配方",
+          "目标总方向功率 T=aᴴRa 及雷达/通信贡献；所有同预算方向图共同使用 0–8 线性尺度",
+          "q=||Πb_r||²；raw 雷达功率 P_r q 与目标功率 P_r N_r q²；恢复功率后目标雷达部分 P_r N_r q",
+          "归一化投影未定义、固定子问题不可行、通信门槛未过、目标零点与数值范围错误分别标识"
+        ],
+        "unknowns": [
+          "没有检查作者代码或勘误；式(12)/(13)印刷 PR/N 不证明作者仿真实际用了不等功率",
+          "条件计算：按 N=20、N_r=14、P_r=P_c=P₀/2 逐字解释印刷式，仅得分离 tr(R)≤0.85P₀；不能声称恰好等于 .85 或推断作者执行",
+          "固定分组、精确 CSI、单目标、固定雷达预算和严格零干扰下，归一化投影达到窄子问题上界；不建立架构最优性或通用赢家",
+          "近重合的直接矩阵近零求和受消减限制；解析主要指标与 *_direct 诊断分别保留，不以 epsilon 伪造非零波束",
+          "未验证真实硬件、浏览器与线上部署；Python 研究核验不能替代本站 JavaScript 实现和界面的实际测试"
+        ],
+        "resourceBudget": {
+          "summary": "同一 N=8 阵列，位置 mλ/2 (m=0…7)，总孔径 3.5λ，8 条理想发射 RF 链。默认 4+4 子阵各有 1.5λ 连续孔径；分离 1 通信流+1独立雷达流，共享 1 通信流+0独立雷达流。A/B/C/D 实际 P=1，分离 P_r=P_c=.5；raw 默认实际总功率 .7866116524，单列诊断。仅总功率约束，不保证相同功放额定能力。σ²=.05、g=1、Γ=20；u_user=0、u_target=.25 是刻意选的全阵正交方向。",
+          "bandwidth": "同频窄带合成模型，未指定 Hz；各配方带宽相同",
+          "energy": "相同实际平均总功率 P=1；没有指定符号时长，不换算焦耳；方向图离散求和不是发射功率预算",
+          "duration": "相同符号时间与观察时段；集合二阶矩，无指定秒数或有限训练块",
+          "aperture": "全阵总孔径固定 3.5λ；改变连续分组会改变单路信号的子孔径",
+          "priorKnowledge": "精确已知完整 h 与阵列响应，同一每阵元信道直接截取子向量；用户未知独立雷达符号",
+          "other": [
+            "B 默认最大单天线平均功率约 .2020976572，大于 1/8；不符合每天线相等约束",
+            "原文 N=20、N_r=14、N_c=6、K=4、P₀=20 dBm、N₀=0 dBm，不与本站归一化例作数值等价比较",
+            "q=0 且 N_r>1 时目标导向投影未定义，但零空间仍可非空；N_r=1 且信道非零、P_r>0 时固定严格置零子问题才不可行"
+          ]
+        },
+        "verificationNote": "2026-10-11 使用逐页核对与独立复核的冻结研究交接。VoR SHA-256：4d8f2135a6014338d82dee21da2ba2e05e3c4567bc55c8cb2f4f5525c10855a2；arXiv v1：b9cbff1ab26b63926e1de87393121ec3ba6ca5de10a7bec99b95ddec91fb42ac。原文核对、独立研究数值、本站实现、浏览器及线上验证分别报告；九篇影响证据沿用 2026-10-10 快照"
+      }
     }
   ],
   "legacy": {
@@ -1486,6 +1561,20 @@
       "group": "research",
       "primaryDirectionId": "receiver",
       "action": "先手算两步复数更新，再用同一条观测改变记忆与多普勒；分开检查启动残余、目标混入与相关噪声。"
+    },
+    {
+      "id": "shared-array",
+      "title": "分离与共享阵列：空间置零的代价",
+      "href": "shared-array.html#experiment",
+      "question": "同样八根天线，消掉用户方向的雷达干扰后，目标照射能完全恢复吗？",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "foundations.html#codesign"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "固定总功率，改变目标方向或雷达子阵大小；先区分 raw 投影诊断，再核对四个同预算配方的用户功率、目标照射与每天线功率。"
     }
   ],
   "pages": [
@@ -1713,6 +1802,20 @@
       "case": "case-perceptive-clutter",
       "next": "practice.html#notebook",
       "nextLabel": "记录一次同输入、同初值的递归背景检验"
+    },
+    {
+      "path": "shared-array.html",
+      "title": "同样八根天线，分开使用会少掉什么？",
+      "stage": "experiments",
+      "role": "研究主题 · 分离/共享资源账本与空间置零代价",
+      "prerequisites": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "foundations.html#codesign"
+      ],
+      "case": "case-shared-array",
+      "next": "practice.html#notebook",
+      "nextLabel": "记录一次同阵列、同功率的空间置零检验"
     }
   ],
   "schemaVersion": 1,
@@ -2242,7 +2345,8 @@
       "primaryCaseIds": [
         "case-crb",
         "case-sbfd",
-        "case-crb-beamforming"
+        "case-crb-beamforming",
+        "case-shared-array"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -2269,6 +2373,13 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同样八根天线，分开使用会少掉什么？",
+              "href": "shared-array.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -2287,6 +2398,13 @@
             {
               "label": "一条通信流、点目标回波与未知复反射系数",
               "href": "crb-beamforming.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "数清天线、信号流、子孔径与实际功率",
+              "href": "shared-array.html#objects",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -2340,6 +2458,13 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "四个同功率配方与独立 raw 投影诊断",
+              "href": "shared-array.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "coverage": "direction-specific"
@@ -2383,6 +2508,13 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "2018 分离/共享阵列：VoR 与固定 v1 对照",
+              "href": "shared-array.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -2421,6 +2553,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "重合方向、空零空间和配方失败分别意味着什么",
+              "href": "shared-array.html#boundaries",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -2444,12 +2583,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "合成特例与独立数值复核，不表示多用户 SDR、原图或整篇论文已复现"
+            },
+            {
+              "label": "核对迹、目标照射分解、投影比例与边界",
+              "href": "shared-array.html#validation",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立解析配方与实现核验，不表示原文优化算法、原图或整篇论文已复现"
             }
           ]
         }
       ],
       "nextExtension": "从实标量 LS 等号与单点角度 CRB 出发，在固定资源下加入实际非线性估计器、杂波或未知信道，检验下界、经验误差与失败率。",
-      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现",
+      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制",
       "scenePositions": [
         "resources"
       ]
@@ -2458,7 +2605,7 @@
       "id": "spatial",
       "title": "空间感知：天线怎样分清方向与远近？",
       "question": "阵列怎样区分方向与远近，又怎样同时承载通信和雷达流？",
-      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。",
+      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。",
       "prerequisites": [
         "iq",
         "array",
@@ -2467,7 +2614,8 @@
       "primaryCaseIds": [
         "case-near-field",
         "case-joint-beamforming",
-        "case-crb-beamforming"
+        "case-crb-beamforming",
+        "case-shared-array"
       ],
       "relatedDirectionIds": [
         "channels",
@@ -2501,6 +2649,13 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同样八根天线，分开使用会少掉什么？",
+              "href": "shared-array.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -2526,6 +2681,13 @@
             {
               "label": "一条通信流、点目标回波与未知复反射系数",
               "href": "crb-beamforming.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "数清天线、信号流、子孔径与实际功率",
+              "href": "shared-array.html#objects",
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
@@ -2561,6 +2723,13 @@
             {
               "label": "单用户精确最优解：平坦区、取舍区与不可行区",
               "href": "crb-beamforming.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available"
+            },
+            {
+              "label": "四个同功率配方与独立 raw 投影诊断",
+              "href": "shared-array.html#experiment",
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
@@ -2601,6 +2770,13 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定版本阅读入口；本站尚未完成该论文复现"
+            },
+            {
+              "label": "2018 分离/共享阵列：VoR 与固定 v1 对照",
+              "href": "shared-array.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ],
           "comparisonStatus": "partial",
@@ -2639,6 +2815,13 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "重合方向、空零空间和配方失败分别意味着什么",
+              "href": "shared-array.html#boundaries",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available"
             }
           ]
         },
@@ -2670,12 +2853,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "合成特例与独立数值复核，不表示多用户 SDR、原图或整篇论文已复现"
+            },
+            {
+              "label": "核对迹、目标照射分解、投影比例与边界",
+              "href": "shared-array.html#validation",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "独立解析配方与实现核验，不表示原文优化算法、原图或整篇论文已复现"
             }
           ]
         }
       ],
-      "nextExtension": "增加多目标与校准误差实验，先明确孔径和阵元数各自是否保持固定。",
-      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现",
+      "nextExtension": "固定同一物理阵列与实际功率，分别加入每天线功率上限、CSI 误差或更多用户，先检查残余干扰与目标照射，再讨论多目标或校准代价。",
+      "coverage": "专题机制、原文导读与单用户点目标 CRB 闭式特例；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制",
       "scenePositions": [
         "transmit",
         "propagate"
@@ -3714,11 +3905,12 @@
         "label": "带宽、能量、时长、孔径",
         "href": "foundations.html#codesign",
         "question": "比较两条曲线时哪些资源保持相同？",
-        "knownUnknown": "显式记录共享预算和先验",
-        "boundary": "预算不同不能宣称无条件性能优越",
+        "knownUnknown": "显式记录共享预算和先验；同一物理阵列还要区分各信号可用子孔径、实际 tr(R) 与逐天线功率。",
+        "boundary": "预算不同不能宣称无条件性能优越 raw 投影未花满预算，应与四个 P=1 配方分开；同总功率不等于同功放额定能力。",
         "unitRefs": [
           "sbfd",
-          "rate"
+          "rate",
+          "shared-array"
         ]
       },
       {
@@ -3742,14 +3934,15 @@
         "groupId": "codesign",
         "label": "波束与空间设计",
         "question": "同一阵列的空间权重怎样影响通信信号、干扰与目标角度下界？",
-        "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率；深入单用户点目标时，固定总功率与信道，设计 w 并消去未知复反射系数",
-        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较；合成感知辅助案例选择既定码本候选，不是重新优化空间权重或实测通信增益。",
+        "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率；深入单用户点目标时，固定总功率与信道，设计 w 并消去未知复反射系数；分离/共享页先固定连续物理分组，比较严格空间置零与复用通信数据。",
+        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较；合成感知辅助案例选择既定码本候选，不是重新优化空间权重或实测通信增益。 2018 共享仅复用通信数据，2020 页面另有独立雷达流；目标照射不是接收估计性能，投影未定义不等于零空间为空。",
         "unitRefs": [
           "array",
           "near-field",
           "joint-beamforming",
           "crb-beamforming",
-          "radar-beam-decision"
+          "radar-beam-decision",
+          "shared-array"
         ],
         "entryUnitRef": "array"
       },
@@ -3786,11 +3979,12 @@
         "label": "联合目标与权衡",
         "question": "同一预算下通信和感知各自衡量什么？",
         "knownUnknown": "同时定义通信指标、感知指标和约束",
-        "boundary": "两个候选输入工作点不是最优权衡边界；三个解析预编码构造也不是一般信道的最优边界",
+        "boundary": "两个候选输入工作点不是最优权衡边界；三个解析预编码构造也不是一般信道的最优边界 分离/共享的四个同功率配方与 raw 诊断也不能建立架构通用赢家。",
         "unitRefs": [
           "rate",
           "crb",
-          "joint-beamforming"
+          "joint-beamforming",
+          "shared-array"
         ],
         "entryUnitRef": "rate"
       },
