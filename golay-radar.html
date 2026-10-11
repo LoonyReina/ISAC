@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="把通信训练序列逐个错位对齐，从相关峰理解时延；等能量比较 A+A 与 Golay A+B，再观察弱回波、真实多普勒和长间隔的边界。">
+<title>通信训练序列，为什么也能测距？ | ISAC</title>
+<link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="golay-radar.css?v=golay-v1">
+<script defer src="golay-radar-core.js"></script><script defer src="golay-radar.js"></script>
+</head>
+<body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="theory-main gr-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">通信训练序列，为什么也能测距？</span></nav><p class="site-role">研究主题 · 通信训练复用、独立 Golay 互补模型与原文边界</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#matched">匹配滤波</a> · <a href="foundations.html#doppler">路径变化与多普勒</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="golay-radar.html#experiment">① 预测与实验</a><a href="golay-radar.html#paper">② 原文与证据</a><a href="golay-radar.html#limits">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<header class="gr-hero">
+<p class="eyebrow">通信中心型 ISAC / 训练序列也能成为尺子</p>
+<h1>通信训练序列，<br>为什么也能测距？</h1>
+<p>通信要找到一帧从哪里开始；雷达要找到回波晚了多久。两者都可以把收到的信号和已知序列<strong>逐个错位对齐</strong>，看看哪一次最像。</p>
+<p class="gr-boundary">参考 802.11ad 雷达论文的训练序列复用思路；本页用独立构造的 Golay 对解释机制，不是完整 IEEE 帧实现或论文性能复现。</p>
+</header>
+<section class="gr-section" id="experiment" aria-labelledby="experiment-title">
+<h2 id="experiment-title">先拖动回波，看峰的位置怎么变</h2>
+<p>每条序列有 128 个正负芯片（短符号）。两种方案都发两次：橙色重复 A+A，青色改发互补 A+B。它们的<strong>能量、时间与接收窗口完全相同</strong>。</p>
+<div class="gr-controls">
+<label for="gr-delay">模拟回波时延 d <output id="gr-delay-value" for="gr-delay">12 芯片 · 1.022 m</output><input id="gr-delay" type="range" min="0" max="127" step="1" value="12"></label>
+<label for="gr-mode">突出观察哪种方案<select id="gr-mode"><option value="AB">A+B · 两条互补序列</option><option value="AA">A+A · 重复同一序列</option></select></label>
+</div>
+<div class="gr-actions"><button id="gr-reset" type="button">重置整页实验</button><span>无噪声、静止、单位回波；模拟真值只用于生成回波和标线</span></div>
+<p class="gr-budget" id="gr-budget">共同预算：256 个单位能量芯片；两次起点间隔 145.455 ns；完整观测跨度 290.341 ns</p>
+<figure class="gr-figure">
+<figcaption><strong>在每个候选距离上试一次对齐。</strong>横轴是候选单站距离 R，纵轴是归一化相关幅度 |z|，不是功率。竖虚线只标注模拟真值；固定纵轴，不把每条曲线重新缩放到同样高。</figcaption>
+<div class="gr-legend"><span class="gr-aa">橙色虚线 A+A</span><span class="gr-ab">青色实线 A+B</span><span>细竖线：真值</span><span class="gr-second" id="gr-wrong-legend" hidden>紫色点线：先取幅度（错误顺序）</span></div>
+<svg id="gr-range" role="img" aria-label="等资源 A+A 与 A+B 的候选距离相关幅度" viewBox="0 0 800 290"></svg>
+</figure>
+<p id="gr-story" class="gr-result">默认时延 12 芯片对应 1.022 m。两种方案的真值处幅度都是 1；A+B 在其他整数候选时延的结果为零。</p>
+<p id="gr-status" class="gr-status" role="status" aria-live="polite">默认结果与下方说明可直接阅读；交互正在初始化。</p>
+<noscript><p class="gr-callout">交互需要 JavaScript。默认 d=12：A+A 真值幅度 1、最大其他位置幅度 0.1484375；A+B 真值幅度 1、其他位置严格为零。两者均发 256 个单位能量芯片；弱回波、运动与边界的固定结论见下文。</p></noscript>
+<p class="gr-read-next">先试 d=0、12、127。接收机始终扫描 0–127，没有跟着真值挪动接收窗口。下一步要问：<a href="#mechanism">A+B 的旁瓣究竟去了哪里？</a></p>
+</section>
+
+<details class="gr-disclosure" id="mechanism">
+<summary>① 为什么互补？保留正负号，先相加，再取幅度</summary>
+<div>
+<p>“最像”不是逐格比较绝对值：每个已知芯片与对应接收样本相乘，再把 128 项相加。错位时，有些正项和负项不能抵消，就形成旁瓣。B 被专门构造成让它的旁瓣与 A 相反。</p>
+<figure class="gr-figure"><figcaption><strong>本页独立生成的 128 芯片序列。</strong>青色格为 +1，深紫格为 −1；每行从左到右是发射顺序。条带只展示正负符号，不是 RF 瞬时电压。</figcaption><svg id="gr-chips" role="img" aria-label="当前两次发送的二元芯片符号" viewBox="0 0 800 130"></svg></figure>
+<div class="gr-controls">
+<label for="gr-phase">共同的未知反射系数 α<select id="gr-phase"><option value="real">1 + 0j · 先看实数</option><option value="complex">0.6 + 0.8j · 同样的单位幅度</option></select></label>
+<label for="gr-component">相关分量图显示<select id="gr-component"><option value="real">实部 · 有正有负</option><option value="imag">虚部 · 有正有负</option></select></label>
+</div>
+<p>复数可以想成有两个分量的箭头。反射增加共同相位时，相反的旁瓣箭头仍会相消；接收机不必事先知道 α。下图只显示选中的一个分量，最后的幅度同时使用实部和虚部。</p>
+<figure class="gr-figure"><figcaption><strong>同一页时延与当前突出方案的相关分量。</strong>蓝线为 C₁/N，紫色虚线为 C₂/N，青线为它们的平均 z；纵轴固定 −1.2–1.2。主峰以外，观察蓝、紫是否反号。</figcaption><div class="gr-legend"><span class="gr-first">第一条相关 C₁/N</span><span class="gr-second">第二条相关 C₂/N</span><span class="gr-ab">先相加 z</span></div><svg id="gr-components" role="img" aria-label="两次相关的带符号分量与先相加结果" viewBox="0 0 800 290"></svg></figure>
+<label class="gr-check" for="gr-wrong"><input id="gr-wrong" type="checkbox">叠加错误顺序：先取幅度，再相加</label>
+<p class="gr-small">勾选后，首张距离图增加紫色点线 (|C₁|+|C₂|)/(2N)。它会丢掉相位和正负号，无法让相反旁瓣抵消。</p>
+<p id="gr-cancellation" class="gr-result"></p>
+<div class="gr-equation">正确：z[ℓ] = (C₁[ℓ] + C₂[ℓ]) / (2N)，然后取 |z[ℓ]|<br>不同：(|C₁[ℓ]| + |C₂[ℓ]|) / (2N)</div>
+<p>ℓ 是接收机尝试的时延，N=128。α=1 时，第 12+21=33 个候选位置的单目标相关分别是 −13/128 与 +13/128，平均后为零；如果先取幅度，两项都变成正数。拖动时延会改变这组数出现的位置。</p>
+</div>
+</details>
+
+<details class="gr-disclosure" id="weak-echo">
+<summary>② 加一个较弱回波：旁瓣与另一个回波会怎样相加？</summary>
+<div>
+<p>这是独立的固定练习：强回波 d=12、α=1；弱回波 d=33、α=0.1，初相位相同。刻意选在强回波 A 相关的负旁瓣上，看看<strong>相干相加</strong>的影响。上方时延与相位控件不会改动本练习。</p>
+<label class="gr-check" for="gr-noise"><input id="gr-noise" type="checkbox">加入固定种子的复高斯噪声，输入方差 σ²=0.1</label>
+<p class="gr-small">两种方案使用相同输入噪声样本；种子不随重绘改变。10 dB 指强回波的每芯片 SNR=|α₁|²/σ²；弱回波每芯片为 −10 dB，不是两者都为 10 dB。</p>
+<figure class="gr-figure"><figcaption><strong>放大弱回波周围的候选位置。</strong>横轴仅显示 d=26–40 对应距离，纵轴固定 0–0.25。强回波本体在视野之外；这里的非零值可能来自强回波旁瓣、弱回波或噪声。</figcaption><div class="gr-legend"><span class="gr-aa">A+A</span><span class="gr-ab">A+B</span><span>真值标线：弱回波</span></div><svg id="gr-weak" role="img" aria-label="固定弱回波附近的两种相关输出，局部放大" viewBox="0 0 800 290"></svg></figure>
+<p id="gr-weak-result" class="gr-result">无噪声时，d=33 处 A+A 的带符号结果为 0.1−13/128=−0.0015625，A+B 为 0.1。</p>
+<p>这说明一个弱回波可能与较强回波的旁瓣相消，并不意味着“任意弱目标都能检出”。本页没有门限、CFAR、检出概率、虚警率或 Monte Carlo 检测评估；一次噪声实现也不代表统计性能。</p>
+</div>
+</details>
+
+<details class="gr-disclosure" id="doppler">
+<summary>③ 目标运动时还互补吗？先看真实量级，再看长间隔压力测试</summary>
+<div>
+<p>本练习固定单回波 d=12、α=1、无噪声。运动会让每个接收样本的复相位随<strong>绝对时间</strong>转动，两次相关不再完全互补。这里逐样本计算，保留序列内部与两次之间的相位变化。</p>
+<label for="gr-velocity">单站径向速度 v（正号表示接近）<output id="gr-velocity-value" for="gr-velocity">+50 m/s</output><input id="gr-velocity" type="range" min="-50" max="50" step="1" value="50"></label>
+<p id="gr-doppler-budget" class="gr-budget">真实量级对照：60 GHz 载频；短间隔 D=256 芯片，时间预算与首图相同</p>
+<p id="gr-doppler-result" class="gr-result">+50 m/s 时 fD≈20.014 kHz，跨两次起点相位差≈0.01829 rad；真值幅度≈0.9999547，最大其他位置幅度≈0.0011789。变化很小。</p>
+<figure class="gr-figure"><figcaption><strong>只放大 A+B 的非真值位置。</strong>青线为运动时 |z|，灰色虚线为静止参考零线；真值位置 d=12 留空，不把主峰算成旁瓣。纵轴固定 0–0.003，和首图不同，不能直接比较视觉高度。</figcaption><svg id="gr-doppler" role="img" aria-label="真实速度下的非真值位置残余幅度，固定放大尺度" viewBox="0 0 800 290"></svg></figure>
+<details class="gr-inner" id="long-gap">
+<summary>再问：保持 +50 m/s，但把两次发送隔得很远呢？</summary><div>
+<p><strong>合成压力测试，非标准帧。</strong>仍是相同的两个 128 芯片序列和总能量，但把起点间隔从 256 增至 43,970 芯片（约 24.983 μs）。这次跨段相位接近 π，两份主峰也可能互相抵消。</p>
+<p id="gr-stress-budget" class="gr-budget"></p>
+<figure class="gr-figure"><figcaption><strong>同为 +50 m/s，比较两种时间预算。</strong>青色实线是短间隔，紫色虚线是长间隔；纵轴回到固定 0–1.2，均为 A+B 的完整幅度。旁瓣零点失效与主峰消失来自改动后的相位演化。</figcaption><div class="gr-legend"><span class="gr-ab">D=256 · 短间隔</span><span class="gr-second">D=43,970 · 合成压力</span></div><svg id="gr-stress" role="img" aria-label="短间隔与合成长间隔的 A+B 相关幅度" viewBox="0 0 800 290"></svg></figure>
+<p id="gr-stress-result" class="gr-result"></p>
+<p>长间隔没有增加发射能量，却增加了经过的时间。它不能与短间隔曲线一起用来宣称“同时间资源”的性能优劣，也不能用来暗示普通车辆在原始短帧中会出现同样的剧烈失效。</p>
+</div></details>
+<div class="gr-equation">fD = 2v/λ，λ = c/fc；接收样本相位 = 2π fD (起点 + 样本时刻)<br>真值处 |z[d]| = |Σₙ exp(jωn)/N| · |cos(ωD/2)|，ω = 2π fD Tc</div>
+<p>单站、低速窄带近似；v&gt;0 表示接近、相位递增。第一个因子来自 128 芯片内部的转动，第二个因子来自两次起点间的转动。实际程序直接累加有限样本，所以静止时没有 0/0。</p>
+<p>本页没有估计或补偿未知 Doppler，也没有慢时间速度谱。若知道真值并逐样本反向转回，可以恢复单一 Doppler 的理想静止结果；但那是已知真值的理想补偿，不是一个已经实现的接收机估计算法。</p>
+</div>
+</details>
+
+<section class="gr-section" id="model">
+<h2>把“已知什么、在找什么”说清楚</h2>
+<p>发射机知道自己发过的 A、B 及发射时刻。接收机知道搜索范围和采样时钟；它不知道回波的时延、复反射系数或速度。滑条设置的是<strong>模拟场景真值</strong>，不是给接收机开答案窗口。</p>
+<details class="gr-disclosure"><summary>展开可复核模型：序列、固定窗口、相关与距离单位</summary><div>
+<dl class="gr-definitions">
+<dt>芯片时间 Tc</dt><dd>Tc=1/(1.76 GHz)，载频 fc=60 GHz，光速 c=299,792,458 m/s。芯片速率不是占用 RF 带宽，也不是 2.16 GHz 信道宽度。</dd>
+<dt>独立构造的 Golay 对</dt><dd>从 A₀=B₀=[1] 开始，每步 A′=[A,B]、B′=[A,−B]，递推至 N=128。未核对 IEEE 标准 Ga128/Gb128 的芯片顺序、π/2 旋转或扰码。</dd>
+<dt>两次固定接收记录</dt><dd>发送起点 q₁=0、q₂=D=N+G；G=128，最大候选时延 dmax=127。每个窗口都从自己的发送起点开始，固定采 N+dmax=255 个样本。G≥dmax 保证前一段最晚回波不侵入后一段；没有按某个目标真值截取窗口。</dd>
+<dt>距离换算</dt><dd>单站往返时延 τ=dTc，因此 R=cτ/2。每格约 8.5168 cm，搜索终点约 10.8164 m。这是理想整数时延网格，不是距离精度、分辨率、CRB 或论文的汽车场景量程。</dd>
+</dl>
+<div class="gr-equation">yq[n] = Σp αp q[n−dp] exp(j2π fp (qstart+n)Tc) + wq[n]<br>Cq[ℓ] = Σₙ₌₀ᴺ⁻¹ conj(q[n]) yq[n+ℓ]，ℓ=0,…,127<br>z[ℓ] = (CA[ℓ]+CB[ℓ])/(2N)</div>
+<p>序列在 0…N−1 之外补零；每个候选 ℓ 都使用完整 128 个接收样本。两种方案的芯片幅度均为 1、总芯片能量均为 2N=256；A+A 使用与发送相符的两个 A 模板及同样的归一化。</p>
+<div class="gr-equation">Rq[k] = Σₙ conj(q[n])q[n+k]<br>RA[k] + RB[k] = 2N δ[k]<br>静止、完整窗口：z[ℓ] = Σp αp δ[ℓ−dp] + η[ℓ]</div>
+<p>δ[0]=1，其余整数位置为 0。白噪声 E|w|²=σ² 时，每个固定候选位置的输出噪声方差为 σ²/(2N)；这是固定输入条件下的相关噪声计算，不是搜索所有位置后的虚警率。</p>
+<p>主设置的活跃发送时间为 256Tc≈145.455 ns；第一芯片至第二次发送结束为 384Tc≈218.182 ns；含最迟回波的完整观测跨度为 511Tc≈290.341 ns。最后所需样本的全局编号为 510。若重复探测对，起点间隔至少 511 芯片才能保持本模型的非重叠条件；本页只算一对。</p>
+</div></details>
+</section>
+
+<section class="gr-section" id="paper">
+<h2>从这个机制，回到 802.11ad 雷达论文</h2>
+<p>Kumari、Choi、Gonzalez-Prelcic、Heath：<a href="https://doi.org/10.1109/TVT.2017.2774762">IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System</a>，IEEE TVT 67(4)，3012–3027，2018 年 4 月刊。在线发表标识为 2017；下面的式号与图号固定指向 <a href="https://arxiv.org/abs/1702.05833v1">2017-02-20 的 arXiv v1</a>。</p>
+<p>通信系统原本用已知训练序列做同步和信道估计。论文进一步利用这些已知波形的回波估计距离与速度；本页只抽出“相关找时延、互补压旁瓣”这条机制。</p>
+<details class="gr-disclosure"><summary>展开原文定位、保留条件与不能直接照搬的 CEF 边界</summary><div>
+<ul>
+<li><strong>训练复用：</strong>§II.A，印刷页 6，图 1–2：STF/CEF 的通信训练作用与结构；§II.B，页 7：Doppler 敏感性</li>
+<li><strong>回波模型：</strong>§III.A，页 8–9，式(1)包含滤波；§III.B.2，页 12，式(6)前给出单站距离/速度关系；§III.C 式(10)–(11)、§IV.A 式(13)给出时延/Doppler 相位</li>
+<li><strong>真实接收处理：</strong>§IV.A，页 17–18，式(14)–(19)有 STF 粗/细同步、CEF 相关和 CP 相关位移；本页没有复现这些提取步骤</li>
+<li><strong>速度与证据：</strong>§IV.B.3，页 21–22，式(24)、(27)涉及相位差速度和模糊；§IV.C Remark 3 涉及有限观测。§V 是分析与 Monte Carlo 仿真，本页没有复现原图或道路实测</li>
+</ul>
+<h3>不能把原文 512 芯片块截出来，当成本页的孤立互补对</h3>
+<p>图 2 的带符号块是 U=[−B,−A,+B,−A]、V=[−B,+A,−B,−A]；相邻流为 [−A,U,V,−B]。把 U/V 单独拿出做非周期自相关，其最外侧旁瓣和为 ±2，不会为零。用本页递推基序列计算，最大非零旁瓣和为 66，而零延迟值为 1024。</p>
+<p>它们的<strong>周期</strong>相关和可以互补；原始相邻序列还为各块提供循环扩展，在已对齐的局部通道窗口里起作用。因此必须一起核对边界、CP、提取起点与有效时延窗，不能据孤立块计算否定原文接收机。本页没有标准 CEF 模式开关，也没有完整 IEEE 合规结论。</p>
+<p>该局部通道时延扩展条件是在粗同步之后使用，不能说成原论文的绝对探测距离上限。本页从发送时刻起的 0–127 芯片短窗，也不能拿来复现原论文的 50 m 或 200 m 场景。</p>
+<p>为避免混用符号，本站统一采用正 Doppler 指数、接近为正；v1 式(20)显示的慢时间负号与前面的直接相关约定不能不加说明地拼接。v1 式(29)含 Tc 的字面量为无量纲，本页不据此报告 bps。期刊全文未核对，这些定位与提醒仅针对所链接的 v1。</p>
+<p>辅助核对：<a href="https://www.mathworks.com/help/wlan/ref/wlangolaysequence.html">标准特定 Golay 生成器的官方文档</a>与<a href="https://www.mathworks.com/help/wlan/ug/802-11ad-transmitter-spectral-emission-mask-testing.html">脉冲成形/频谱示例</a>。它们不意味着本页实现通过标准验证。</p>
+</div></details>
+</section>
+
+<section class="gr-section" id="limits">
+<h2>看到了相关峰，还不能宣布检测成功</h2>
+<ul>
+<li>保留：两个相干、隔离的发射段；已知发射时序；未知但跨两段恒定的复反射系数；整数芯片时延；逐样本 Doppler；可选独立适当复高斯白噪声</li>
+<li>省略：分数时延、发射/接收脉冲成形、距离迁移、频偏与相噪、射频自干扰、杂波、同步误差、标准帧提取、检测门限与通信解码</li>
+<li>输出：归一化复相关及其幅度；没有检出率、虚警率、BER、吞吐率、毫米级精度或 IEEE 合规认证</li>
+<li>公平范围：同一个面板内 A+A 与 A+B 同能量、同时间、同噪声；合成长间隔面板明确改变时间资源</li>
+</ul>
+<p><strong>下一问：</strong>如果两段之间的反射系数变了，或者回波落在半个芯片处，还能保持零旁瓣吗？先写出改变的观测模型，再决定接收模板、预算与指标；不能把这个整数时延例子直接外推。</p>
+<p>继续：<a href="foundations.html#matched">回看匹配滤波</a> · <a href="foundations.html#doppler">理解跨次观测的速度相位</a> · <a href="practice.html#notebook">记录你的预测、条件与失败点</a></p>
+</section>
+
+<section class="gr-section" id="reproduce">
+<h2>每条曲线都能重新算</h2>
+<p>浏览器使用无依赖的纯 JavaScript 数值核心。静态参考由独立 Python 标准库脚本生成，检查递推互补、完整接收窗口、复数相位、能量、真实 Doppler、噪声与边界。没有嵌入论文 PDF 或外部数据集。</p>
+<ul class="gr-file-links"><li><a href="golay-radar-core.js">JavaScript 数值核心</a></li><li><a href="scripts/validate-golay-radar.py">便携 Python 参考与检查脚本</a></li><li><a href="data/golay-radar-validation.json">生成参考结果</a></li><li><a href="data/golay-radar-sources.json">固定版本来源清单</a></li><li><a href="docs/GOLAY-RADAR-VALIDATION.md">验证范围与执行记录</a></li></ul>
+<details class="gr-disclosure"><summary>查看首个实验当前的复数结果与资源数据</summary><div><p>每个复数为 [实部, 虚部]。数据按候选时延 0–127 排列，未按每幅图重新归一化。</p><pre id="gr-raw" tabindex="0" role="region" aria-label="当前实验完整复数数据，可用方向键滚动"></pre></div></details>
+</section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同资源的训练序列相关检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+<footer>独立教学构造 · 固定版本原文对照 · 数值与边界可复核</footer>
+</main>
+</body></html>
