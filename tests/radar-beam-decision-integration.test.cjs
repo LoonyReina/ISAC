@@ -14,7 +14,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'learning');
  a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,22);a.equal(r.cases.length,11);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,31);
+ a.equal(r.units.length,23);a.equal(r.cases.length,12);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  const d=r.directions.find(d=>d.id==='learning');a.deepEqual(d.primaryCaseIds,[c.id]);a.match(d.title,/感知辅助通信/);a.match(d.scope,/感知辅助通信/);
  a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'reading.html#branches');
  for(const [level,anchor]of [['intuition','mechanism'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','limits'],['reproduction','reproduce']]){
@@ -28,7 +28,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
 
 test('radar registry preserves every existing concept beginner route and adds only three relevant deep references',()=>{
  const expected=[['messages','shared',null],['iq','iq',null],['ofdm-basics',null,'foundations.html#ofdm-basics'],['communication-rate','rate',null],['echo','echo',null],['matched','matched',null],['geometry','geometry',null],['shared-model','shared',null],['sampling','ofdm',null],['phase','doppler',null],['known-pilots','pilot',null],['delay','ofdm',null],['doppler','doppler',null],['angle','array',null],['detection','cfar',null],['estimation','shared',null],['association',null,'reading.html#direction-networks'],['task-learning',null,'reading.html#direction-learning'],['resolution',null,'foundations.html#limits'],['ambiguity','pilot',null],['fisher-crb','crb',null],['budget',null,'foundations.html#codesign'],['waveform-design','pilot',null],['beam-design','array',null],['mutual-assistance',null,'theory.html#evolution'],['resource-design','sbfd',null],['joint-objectives','rate',null],['channels',null,'foundations.html#realworld'],['synchronization','clock',null],['near-field','near-field',null],['implementation',null,'reading.html#direction-prototype']];
- a.deepEqual(r.knowledgeMap.nodes.map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected);
+ a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.id!=='background-subtraction').map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected);
  a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(u.id)).map(n=>n.id),['task-learning','beam-design','mutual-assistance']);
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(id=>id===u.id).length<=1);
  a.doesNotMatch(r.knowledgeMap.nodes.find(n=>n.id==='mutual-assistance').boundary,/尚无感知辅助波束选择/);
@@ -37,10 +37,10 @@ test('radar registry preserves every existing concept beginner route and adds on
 test('radar directory changes only its existing caseId and readingPlan while all nine paper records stay preserved',()=>{
  const preserved=structuredClone(data),card=preserved.cards.find(c=>c.id==='radar_prediction');delete card.caseId;delete card.readingPlan;
  // Locks every unrelated card, all metadata, snapshots, links, timestamps, endorsements and socialDiscussion.
- a.equal(hash(preserved),'f7f4e616b0947c4621dc9a43a6dea028754febecfc64083c5d1290b00e1d0a38');
+ a.equal(hash(preserved),'eb6167bcfa54f017705fb7371a9ab585be116f2fad7d09d3cc7f3fd9f2027fb7');
  const radar=data.cards.find(c=>c.id==='radar_prediction'),deep=data.cards.find(c=>c.id==='deepsense');
  a.equal(radar.caseId,c.id);a.equal(radar.groupId,'data-learning');a.match(radar.readingPlan,/独立合成机制/);a.match(radar.readingPlan,/未使用 DeepSense 测量、训练论文 CNN/);
- a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(c=>c.doi)).size,9);a.equal(data.cards.filter(c=>c.caseId).length,6);a.equal(data.cards.filter(c=>!c.caseId).length,3);
+ a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(c=>c.doi)).size,9);a.equal(data.cards.filter(c=>c.caseId).length,7);a.equal(data.cards.filter(c=>!c.caseId).length,2);
  a.equal(deep.caseId,null);a.equal(hash(deep),'9a14492c0b9bd213f26096975627bb6c7c6382335995b89bb4e7a492c87b2ffb');
  a.equal(radar.metrics.snapshotDate,'2026-10-10');a.deepEqual([radar.metrics.openAlex.count,radar.metrics.semanticScholar.count],[141,161]);
  a.deepEqual([deep.metrics.openAlex.count,deep.metrics.semanticScholar.count],[289,377]);a.equal(radar.socialDiscussion.status,'unavailable');
@@ -91,10 +91,10 @@ test('radar page and generated portals expose real sections, shared navigation a
  a.ok(read('index.html').includes(`href="${c.learningEntry}"`));a.equal(article(read('reading.html'),'ref-RADAR'),article(read('site/content-reading.html'),'ref-RADAR'));
 });
 
-test('radar rendered sixth card is usable and DeepSense remains an unavailable resource entry',()=>{
+test('radar rendered card remains usable and DeepSense remains an unavailable resource entry',()=>{
  const html=read('reading.html'),radar=article(html,'paper-radar_prediction'),deep=article(html,'paper-deepsense');
  a.ok(radar.includes(`href="${u.href}"`));a.match(radar,/独立机制模型，非完整论文复现/);a.doesNotMatch(radar,/教学案例准备中|深度交互尚未实现/);
- a.match(html,/深度交互已接入：6 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
+ a.match(html,/深度交互已接入：7 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  a.match(deep,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(deep));
  for(const pending of data.cards.filter(c=>!c.caseId)){const h=article(html,'paper-'+pending.id);a.match(h,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(h));}
 });

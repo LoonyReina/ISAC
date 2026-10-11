@@ -1,0 +1,34 @@
+{
+  "status": "PASS bounded teaching core",
+  "core_filename": "perceptive-clutter-core.js",
+  "tested_sha256": "298a998abbdc1aface1916cdc74ee2abef1213977337d5c2b41a82b907f02924",
+  "current_sha256": "298a998abbdc1aface1916cdc74ee2abef1213977337d5c2b41a82b907f02924",
+  "changed_while_testing": false,
+  "checks": {
+    "filter_operator_both_orders": {
+      "cases": 22,
+      "max_error": 4.965068306494546e-16
+    },
+    "finite_covariance_operator": {
+      "cases": 176,
+      "max_error": 2.220446049250313e-16
+    },
+    "steady_complex_gain": {
+      "cases": 198,
+      "max_error": 2.4492935982947064e-16
+    },
+    "actual_simulations": {
+      "cases": 18,
+      "max_matrix_error": 3.580361673049448e-15,
+      "same_noise_and_input_verified": true,
+      "stop_depart_and_two_orders": true
+    },
+    "python_explicit_fixture_cross_language": true,
+    "alias_and_count_one": true,
+    "input_guard_rejections": 17,
+    "zero_tiny_power_and_memory_endpoints": true,
+    "repaired_domain_and_subnormal_edges": true
+  },
+  "outside_ui_caveats": [],
+  "node_version": "v24.19.0"
+}

@@ -101,3 +101,12 @@ Executed local checks for this follow-up:
 - Site generation, generator freshness and whitespace checks passed. The independent Python OFDM reference reran all 15 checks and regenerated its existing JSON artifact without any byte changes; the radar reference also reran default plus 40 seed/control comparisons without changing its artifact
 
 These are controller/mock-DOM and reference checks. This follow-up has not yet been checked in a real browser or deployed; actual download completion, keyboard layout and accessibility-tree retrieval must be rechecked separately. It is not a screen-reader certification.
+
+
+## Published bounded-record follow-up — 2026-10-11 UTC
+
+PR #34 merged as `c159fdbddac0a60cc46c0667c9db4545dbdf973d`; Pages run `38115398555` succeeded for that exact commit. All ten changed remote files matched the frozen reviewed artifact. The parent independently reran 443 passing repository tests, generator freshness and whitespace checks. Both scientific cores were unchanged. The separate 23-snapshot old/full versus new/download comparison was byte-identical.
+
+Actual cloud Chrome review covered 1165 CSS-pixel desktop and 323 CSS-pixel narrow views at 150% desktop-browser zoom. Expanded preview accessibility-tree retrieval completed successfully on both lessons, where the previous full records had timed out. Previews parsed as valid JSON with `completeRecord:false`, exact collection counts and explicit omissions. Full local downloads completed through the browser's download events; this does not independently certify downloaded bytes, which were covered by the separate snapshot audit. Native keyboard opening, focus and internal scrolling, control-dependent preview updates, closing and reset clearing were checked. The document did not overflow horizontally at 323 pixels; the browser was restored to 1165 pixels at 100% zoom. This was not a physical-phone, real screen-reader or multi-engine certification.
+
+The actual default map-open preview contained 4,341 characters; each 4,160-cell power map reported two shown entries and 4,158 omitted. Changing to 125 Hz updated preview settings, and reset returned 0 Hz/G=8 while closing and clearing the preview.

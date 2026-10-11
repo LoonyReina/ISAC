@@ -12,7 +12,7 @@ test('OFDM interpolation has one canonical case, unit and page in the existing p
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'prototype');
  a.equal(u.href,'ofdm-interpolation.html#experiment');a.equal(c.learningEntry,'ofdm-interpolation.html#mechanism');
  a.equal(c.paper,'ofdm-interpolation.html#paper');a.equal(c.next,'ofdm-interpolation.html#limits');
- a.equal(r.units.length,22);a.equal(r.cases.length,11);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,31);
+ a.equal(r.units.length,23);a.equal(r.cases.length,12);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  for(const href of [u.href,c.learningEntry,c.paper,c.next,p.next])resolve(href);
 });
 
@@ -41,7 +41,7 @@ test('all six prototype depth layers gain actual sections while keeping their be
 
 test('all 31 beginner routes are preserved and only relevant existing concepts gain the deep mechanism',()=>{
  const expected=[['messages','shared'],['iq','iq'],['ofdm-basics',null,'foundations.html#ofdm-basics'],['communication-rate','rate'],['echo','echo'],['matched','matched'],['geometry','geometry'],['shared-model','shared'],['sampling','ofdm'],['phase','doppler'],['known-pilots','pilot'],['delay','ofdm'],['doppler','doppler'],['angle','array'],['detection','cfar'],['estimation','shared'],['association',null,'reading.html#direction-networks'],['task-learning',null,'reading.html#direction-learning'],['resolution',null,'foundations.html#limits'],['ambiguity','pilot'],['fisher-crb','crb'],['budget',null,'foundations.html#codesign'],['waveform-design','pilot'],['beam-design','array'],['mutual-assistance',null,'theory.html#evolution'],['resource-design','sbfd'],['joint-objectives','rate'],['channels',null,'foundations.html#realworld'],['synchronization','clock'],['near-field','near-field'],['implementation',null,'reading.html#direction-prototype']];
- a.deepEqual(r.knowledgeMap.nodes.map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected.map(([id,entry,href])=>[id,entry,href??null]));
+ a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.id!=='background-subtraction').map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected.map(([id,entry,href])=>[id,entry,href??null]));
  a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(u.id)).map(n=>n.id),['sampling','known-pilots','delay','doppler']);
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(id=>id===u.id).length<=1);
  a.deepEqual(r.knowledgeMap.nodes.find(n=>n.id==='waveform-design').unitRefs,['pilot','waveform-design','golay-radar']);
@@ -52,15 +52,15 @@ test('the original OFDM influence metadata is unchanged while its existing card 
  // Lock every pre-existing identity, influence, timestamp, source, endorsement and boundary field.
  a.equal(crypto.createHash('sha256').update(JSON.stringify(preserved)).digest('hex'),'61cb7ecd942fce2733d411adaea2a434b64ffcd40d0223cf1292fb71d504ce80');
  a.equal(card.caseId,c.id);a.equal(card.groupId,'signals-networks');a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(k=>k.doi)).size,9);
- a.equal(data.cards.filter(k=>k.caseId).length,6);a.equal(data.cards.filter(k=>!k.caseId).length,3);
+ a.equal(data.cards.filter(k=>k.caseId).length,7);a.equal(data.cards.filter(k=>!k.caseId).length,2);
  a.equal(card.metrics.snapshotDate,'2026-10-10');a.deepEqual([card.metrics.openAlex.count,card.metrics.semanticScholar.count,card.metrics.completedYear.count],[368,368,76]);
  a.doesNotMatch(card.readingPlan,/尚未实现|准备中/);
 });
 
-test('the rendered OFDM paper follows canonical availability and keeps three genuinely pending entries',()=>{
+test('the rendered OFDM paper follows canonical availability and keeps two genuinely pending entries',()=>{
  const html=read('reading.html'),card=article(html,'paper-ofdm_full_duplex');
  a.ok(card.includes(`href="${u.href}"`));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现|本站交互尚未实现/);
- a.match(html,/深度交互已接入：6 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
+ a.match(html,/深度交互已接入：7 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  for(const pending of data.cards.filter(k=>!k.caseId)){const h=article(html,'paper-'+pending.id);a.match(h,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(h));}
 });
 

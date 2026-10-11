@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="从一个复数读数和两步手算，理解递归背景相减：长记忆为什么更少抹去慢目标，又为什么需要更长启动时间。固定同一批观测，分清幅度、功率、噪声与论文证据。">
+<title>递归去背景：为什么慢目标也会变弱？ | ISAC</title>
+<link rel="stylesheet" href="course.css">
+<link rel="stylesheet" href="site.css?v=knowledge-map-v1">
+<link rel="stylesheet" href="perceptive-clutter.css?v=perceptive-clutter-v1">
+<script defer src="perceptive-clutter-core.js?v=perceptive-clutter-v1"></script>
+<script defer src="experiment-record.js?v=record-preview-v1"></script>
+<script defer src="perceptive-clutter.js?v=perceptive-clutter-v1"></script>
+</head>
+<body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="site-main pc-main">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <a href="experiments.html">机制实验</a> <span aria-hidden="true">/</span> <span aria-current="page">递归去背景：为什么慢目标也会变弱？</span></nav><p class="site-role">研究主题 · 复数递归背景、慢时间运动与相关噪声</p><p class="site-prereq">需要时回看：<a href="foundations.html#iq">实波形与 I/Q</a> · <a href="foundations.html#ofdm">七步 OFDM 感知链</a> · <a href="foundations.html#doppler">路径变化与多普勒</a> · <a href="theory.html#shared-model">共同观测：判决与估计</a></p><nav class="site-topic-nav" aria-label="本主题学习路线"><a href="perceptive-clutter.html#experiment">① 预测与实验</a><a href="perceptive-clutter.html#source">② 原文与证据</a><a href="perceptive-clutter.html#boundary">③ 边界与下一问</a><a href="practice.html#notebook">④ 记录一次研究</a></nav></div>
+<!-- SITE:CONTEXT:END -->
+<header class="pc-hero">
+<p class="eyebrow">接收处理 / 先保留复数，再学习背景</p>
+<h1>递归去背景：<br>为什么慢目标也会变弱？</h1>
+<p class="pc-lead">把墙的回波记成背景，再减掉它。可一个慢慢移动的目标，会不会也被记进去？</p>
+<p class="pc-scope">本页只处理同一格复信道随时间的变化。先看懂一支箭头，再手算两步；原文、噪声和研究边界放在下方展开阅读。</p>
+</header>
+
+<section class="pc-section" id="question">
+<p class="pc-step">01 / 先看接收机拿到了什么</p>
+<h2>一格读数里，墙和目标叠在一起</h2>
+<p>固定同一用户、同一子载波、同一对收发天线。每隔 2 ms 取一次已经去除已知通信调制的复信道读数，记为 x。它有实部 I 和虚部 Q，像一支有长度、有方向的箭头。</p>
+<p>接收机<strong>只能看到总和 x</strong>。它并不知道哪一部分来自墙、哪一部分来自目标。这里先不求距离和方向，只问：能不能用过去的读数学习稳定背景 b，再留下变化的部分 r？</p>
+<p class="pc-small">静态不等于无用；是否移除要由任务决定。这里观察背景相减的作用，不预先把所有静止物体都当成干扰。</p>
+<div class="pc-equation pc-key-equation" aria-label="默认处理下，输入 x 等于当前背景 b 加剩余 r">x = b + r</div>
+<p class="pc-small">这是复数相加，不是功率相加，也不是房间里的位置关系。幅度的单位是归一化信道系数；幅度平方才是归一化功率，不能读成瓦特或 dBm。</p>
+<p class="pc-predict"><strong>先猜一下：</strong>目标相位每次只转过一点点，会不会看起来也像“稳定背景”？</p>
+</section>
+
+<section class="pc-section" id="model">
+<p class="pc-step">02 / 用两步算清楚规则</p>
+<h2>旧背景留一点，新读数放一点</h2>
+<p>α（读作 alpha）控制保留多少旧背景。例如 α=0.95，就是旧背景占 95%，新读数占 5%。从 b₀=0 开始，每来一个新读数，先更新背景，再做复数相减：</p>
+<div class="pc-equation">
+<span>b<sub>p</sub> = α b<sub>p−1</sub> + (1−α) x<sub>p</sub></span>
+<span>r<sub>p</sub> = x<sub>p</sub> − b<sub>p</sub></span>
+</div>
+<p class="pc-small">p 是第几次观测。相减时，I 减 I，Q 减 Q。背景与剩余都可以带正负号；不能先平方，再把两份功率相减。</p>
+<div class="pc-handcalc">
+<article><h3>第 1 步</h3><p>先用一个无噪声小例子：α=0.5，x₁=1+j，初始 b₀=0。</p><p class="pc-arithmetic">b₁ = 0.5×0 + 0.5×(1+j)<br>= 0.5+0.5j</p><p class="pc-arithmetic">r₁ = (1+j) − (0.5+0.5j)<br>= 0.5+0.5j</p></article>
+<article><h3>第 2 步</h3><p>下一个输入 x₂=2−j。先保留刚才背景的一半，再加入新读数的一半。</p><p class="pc-arithmetic">b₂ = 0.5×(0.5+0.5j) + 0.5×(2−j)<br>= 1.25−0.25j</p><p class="pc-arithmetic">r₂ = (2−j) − (1.25−0.25j)<br>= 0.75−0.75j</p></article>
+</div>
+<p>第二步里，第一个读数的权重已经从 0.5 降到 0.25。越旧的读数，留下的权重越小。<strong>α 越大，背景记得越久，但改变得越慢。</strong></p>
+</section>
+
+<section class="pc-section" id="experiment">
+<p class="pc-step">03 / 同一批观测，只换背景记忆</p>
+<h2>记得久一点，就一定更好吗？</h2>
+<p>下面固定 512 个观测、每次相隔 2 ms、背景从零开始。先保持默认目标 2 Hz，只改变 α。不同 α 使用同一份输入和噪声，不增加观测或发射资源。</p>
+<div class="pc-control-panel">
+<label class="pc-number-label" for="pc-alpha">保留旧背景的比例 α <output id="pc-alpha-value" for="pc-alpha">0.950</output><input id="pc-alpha" type="number" min="0" max="1" step="any" value="0.95" inputmode="decimal" aria-describedby="pc-alpha-help"></label>
+<p class="pc-small" id="pc-alpha-help">范围 0–1。先试 0.90、0.95、0.99、0.995，再检查两个端点。</p>
+<div class="pc-presets" role="group" aria-label="背景记忆预设"><button id="pc-a90" type="button">α=0.90</button><button id="pc-a95" type="button">α=0.95</button><button id="pc-a99" type="button">α=0.99</button><button id="pc-a995" type="button">α=0.995</button><button id="pc-a0" type="button">α=0 · 全部学入</button><button id="pc-a1" type="button">α=1 · 完全不学</button></div>
+<div class="pc-control-row"><label for="pc-window">时间图的显示范围<select id="pc-window"><option value="early" selected>前 64 次 · 看启动</option><option value="all">全部 512 次</option><option value="late">最后 128 次</option></select></label><div><button id="pc-reset" type="button">恢复实验默认值</button><p class="pc-small">切换显示范围只缩放视图，不重算预算、不丢弃样本。</p></div></div>
+</div>
+<p id="pc-budget" class="pc-budget">固定 512 个复数观测；间隔 2 ms。第一次在 2 ms，最后一次在 1.024 s；首末相隔 1.022 s。所有处理共享同一批观测，b₀=0。</p>
+<label class="pc-slider" for="pc-sample">停在哪一次观测？ <output id="pc-sample-value" for="pc-sample">p=16 · 32 ms</output><input id="pc-sample" type="range" min="1" max="512" step="1" value="16"></label>
+<label class="pc-check" for="pc-truth"><input id="pc-truth" type="checkbox">查看生成器真值（仅用于解释，不是接收机输入）</label>
+<div class="pc-legend" aria-label="三幅复数图的共同图例"><span class="pc-input"><i aria-hidden="true"></i>灰：输入 x</span><span class="pc-background"><i aria-hidden="true"></i>橙：已学背景 b</span><span class="pc-residual"><i aria-hidden="true"></i>青绿：剩余 r（高级旧背景模式为 u）</span></div>
+<p class="pc-small">勾选真值后，紫色只表示生成器对照：I/Q 图中的紫点是静态分量 C，紫虚线从 C 指向无噪声总和 C+s；时间图的紫虚线是目标分量单独通过同一滤波器的输出。这些分量没有被接收机从 x 中分离出来。</p>
+<div class="pc-vector-layout">
+<figure class="pc-figure"><figcaption id="pc-iq-caption"><strong>同一时刻的复数箭头。</strong>横轴 I、纵轴 Q，等比例显示，单位都是归一化幅度。默认时序下，橙色背景加青绿色剩余，恰好得到灰色输入：x=b+r。真值标记只在勾选后显示。</figcaption><svg id="pc-iq" role="img" aria-labelledby="pc-iq-caption" viewBox="0 0 520 330"></svg></figure>
+<div class="pc-vector-readout"><h3>用数值核对，不只看箭头</h3><p id="pc-vector-numbers" class="pc-result">初始化后显示选中时刻的 I/Q 输入、所减背景与剩余，并核对复数相加。</p><p>这里的“背景”是算法学到的状态，并不保证只含墙。目标与噪声也可能进入橙色箭头。</p><p class="pc-small">高级区切换为旧背景时，青绿输出记作 u=x−b<sub>p−1</sub>；数值读数说明当前所减的是哪一个背景。</p></div>
+</div>
+<p>再沿时间看两路读数。横轴是观测时刻，单位秒（s），纵轴分别是 I 和 Q，单位仍是归一化幅度；三种颜色的含义与上图一致。选中时刻在当前视图内时，竖线标出滑条选择的时刻。</p>
+<figure class="pc-figure"><figcaption id="pc-i-caption"><strong>I：实部随时间。</strong>保留正负号，看背景怎样逐步跟上输入，以及相减后还剩多少。</figcaption><svg id="pc-i" role="img" aria-labelledby="pc-i-caption" viewBox="0 0 760 280"></svg></figure>
+<figure class="pc-figure"><figcaption id="pc-q-caption"><strong>Q：虚部随时间。</strong>与 I 一起才能描述复数转动；不能只凭某一路过零就说目标消失。</figcaption><svg id="pc-q" role="img" aria-labelledby="pc-q-caption" viewBox="0 0 760 280"></svg></figure>
+<p id="pc-conclusion" class="pc-result">α 大时，背景更新更慢。它较难跟上目标的相位转动，也需要更久才能学会静态背景。</p>
+<div class="pc-diagnostics"><article><h3>墙还剩多少？</h3><p class="pc-small">生成器拆分诊断 · 静态分量的残余幅度比例，不是从总输入分离出的实测值</p><p id="pc-static">等待当前参数计算。</p></article><article><h3>这份记忆有多长？</h3><p class="pc-small">解析时间尺度 · 与本次完整观测预算一起阅读</p><p id="pc-memory">默认 α=0.95，记忆衰减时间约 39 ms；静态残余幅度降到 1% 需要 90 次更新，即 180 ms。</p></article></div>
+<p class="pc-predict"><strong>试一试：</strong>从 α=0.95 换成 0.995，再看完整记录。背景记得更久，但 512 次观测是否足够让静态残余幅度降到 1%？</p>
+
+<div class="pc-subsection">
+<p class="pc-step">04 / 保持预算，让目标慢下来</p>
+<h2>它仍在动，却越来越像背景</h2>
+<p>这里的 f<sub>D</sub> 是目标在复平面里每秒转多少圈，单位 Hz。默认 2 Hz；改成 0.5 Hz 后，每次观测间的转角更小。<strong>输入目标的幅度没变，但背景更容易跟上它。</strong></p>
+<div class="pc-control-panel"><label class="pc-number-label" for="pc-fd">模拟目标的多普勒 f<sub>D</sub>（Hz）<input id="pc-fd" type="number" min="-100" max="100" step="any" value="2" inputmode="decimal" aria-describedby="pc-fd-help"></label><p class="pc-small" id="pc-fd-help">这会改变生成器输入；接收滤波器仍只接收 x 和 α，不读取目标的真实 f<sub>D</sub>。负频率表示反向转动。</p><div class="pc-presets" role="group" aria-label="目标转动预设"><button id="pc-f0" type="button">0 Hz · 不转</button><button id="pc-fslow" type="button">0.5 Hz · 很慢</button><button id="pc-f2" type="button">2 Hz · 默认</button><button id="pc-f20" type="button">20 Hz · 较快</button></div></div>
+<figure class="pc-figure"><figcaption id="pc-gain-caption"><strong>启动结束后，一个持续转动的目标能通过多少？</strong>横轴 f<sub>D</sub>（Hz），纵轴是输出目标功率 / 输入目标功率。采用固定 0–4 的线性纵轴，保留真实的零，不设显示地板，也不各自归一到峰值。默认“先更新再相减”曲线不超过 1；高级“用旧背景相减”可能超过 1。标记指出当前频率。</figcaption><svg id="pc-gain-plot" role="img" aria-labelledby="pc-gain-caption" viewBox="0 0 760 280"></svg></figure>
+<div class="pc-diagnostics"><article><h3>长期的目标通过量</h3><p class="pc-small">解析稳态功率比 · 假设目标一直这样转动，启动影响已经消失</p><p id="pc-gain">等待当前参数计算。</p></article><article><h3>这 512 次里实际通过多少？</h3><p class="pc-small">生成器拆分诊断 · 当前整段目标能量比，包含启动；缩放视图不会改变它</p><p id="pc-finite">等待当前参数计算。</p></article></div>
+<p>较大 α 能让慢目标的稳态通过量增加，同时让静态背景建立更慢。稳态曲线与这 512 次的能量比回答不同问题，不能互相替代，更不是检测概率或估计准确率。</p>
+<div class="pc-endpoints"><p><strong>α=0：</strong>默认时序把当前输入全部学入背景，剩余为零。目标和噪声也一起归零，不代表完美感知。</p><p><strong>α=1：</strong>背景永远停在初值 0，输出就是输入，完全没有学背景。</p><p><strong>f<sub>D</sub>=0：</strong>目标也变成常量。只看这一格复数，无法把静态墙与静止目标分开。</p></div>
+<p id="pc-status" class="pc-status" role="status" aria-live="polite">交互正在初始化。上面的两步手算和下方原文说明可以直接阅读。</p>
+<noscript><p class="pc-result">交互需要 JavaScript。默认 α=0.95、目标 2 Hz 时，稳态目标功率通过量约 18.4%；静态残余幅度降到 1% 需要 180 ms。改成 α=0.995 后目标更容易通过，但达到同样静态残余幅度需要 1.838 s，超出本页 1.024 s 记录。以上是模型计算，不是实测或检测结果。</p></noscript>
+</div>
+</section>
+
+<details class="pc-disclosure" id="pc-advanced">
+<summary>再往下一层：停止、离开、相减时序与相关噪声</summary>
+<div>
+<h2>背景也会记住过去的目标</h2>
+<p>这些设置不增加采样数或隐藏预热。停止模式让目标在 p=256 后保持原有相位；离开模式从 p=257 起把目标分量置零。观察最后一段：残余的尾迹可能来自旧背景，并不证明又出现了一个目标。</p>
+<div class="pc-control-row"><label for="pc-scenario">目标在记录中怎样变化？<select id="pc-scenario"><option value="continuous" selected>持续转动 · 默认</option><option value="stop">p=256 后停住 · 相位连续</option><option value="depart">p=257 起离开 · 目标变零</option></select></label><label for="pc-order">当前显示哪一种相减时序？<select id="pc-order"><option value="updated" selected>先更新，再相减 · r=x−b</option><option value="previous">用旧背景相减 · u=x−b前</option></select></label></div>
+<p>两种模式都按相同规则更新背景。“旧背景”模式显示 u<sub>p</sub>=x<sub>p</sub>−b<sub>p−1</sub>；默认模式显示 r<sub>p</sub>=x<sub>p</sub>−b<sub>p</sub>。它们满足 <strong>r<sub>p</sub>=αu<sub>p</sub></strong>。α&gt;0 时只是输出尺度不同，噪声也一起缩放；用同一个绝对检测门限比较会混入尺度差异。</p>
+<p class="pc-small">图和读数跟随当前时序。默认数学规则“先更新再相减”也可等价实现为 r=α(x−旧背景)，以减轻浮点消减误差。α=0 时 r=0，但旧背景输出 u 不必为零；α=1 时两种输出都等于 x。</p>
+<h3>背景估计的噪声小，不等于输出没有噪声</h3>
+<p>输入噪声的归一化功率是 σ²=E|n|²，两路 I/Q 的方差各为 σ²/2。递归会让背景变平滑；但当前噪声也参与当前背景，所以相减时不能把它们当作互不相关。</p>
+<div class="pc-control-row"><label for="pc-noise">输入复噪声功率 σ²<input id="pc-noise" type="number" min="0" max="1" step="any" value="0.04" inputmode="decimal"></label><label for="pc-seed">噪声种子<input id="pc-seed" type="number" min="0" max="99999" step="1" value="7319" inputmode="numeric"></label></div>
+<div class="pc-actions"><button id="pc-new-noise" type="button">换一份噪声</button><span>同一种子产生相同的标准化噪声；改 α、频率、时序或视图不会重新抽样。改 σ² 只缩放同一份噪声。</span></div>
+<p id="pc-noise-text" class="pc-result">等待输入、背景估计和当前输出的解析噪声方差。</p>
+<figure class="pc-figure"><figcaption id="pc-noise-caption"><strong>理论方差随时间变化。</strong>横轴是观测时刻，单位秒（s），纵轴是归一化功率。灰线为输入 σ²，橙线为背景估计噪声方差，青绿线为当前时序的输出噪声方差。这是解析期望，不是从一条噪声曲线估出的统计性能。</figcaption><svg id="pc-noise-plot" role="img" aria-labelledby="pc-noise-caption" viewBox="0 0 760 280"></svg></figure>
+<p id="pc-noise-cov" class="pc-result">等待相邻时刻噪声协方差；非零协方差意味着输出在慢时间上不再是白噪声。</p>
+<details class="pc-inner"><summary>展开有限时刻的方差与协方差</summary><div>
+<p>令 β<sub>p</sub> 是背景估计里的噪声，η<sub>p</sub> 是默认输出 r 里的噪声。输入 n<sub>p</sub> 独立且服从 proper 复高斯分布，初值 b₀=0。下面为本课独立推导：</p>
+<div class="pc-equation"><span>V<sub>b</sub>(p) = E|β<sub>p</sub>|² = σ² (1−α)/(1+α) · (1−α<sup>2p</sup>)</span><span>E[n<sub>p</sub>β<sub>p</sub>*] = (1−α)σ²</span><span>K<sub>pp</sub> = E|η<sub>p</sub>|² = σ² [2α²/(1+α) − (1−α)/(1+α) · α<sup>2p</sup>]</span><span>K<sub>pq</sub> = −σ² (1−α)/(1+α) · [α<sup>|p−q|+1</sup> + α<sup>p+q</sup>]，p≠q</span></div>
+<p>K 的对角线是方差，非对角线是时刻之间的协方差。旧背景输出的方差为 σ²+V<sub>b</sub>(p−1)；α&gt;0 时，它的完整协方差为 K/α²。零噪声时方差与协方差为零，相关系数不定义。</p>
+<p>若把背景冻结后用于<strong>将来独立的新观测</strong>，其噪声方差是 σ²+V<sub>b</sub>(p)，又是另一种条件。多个新观测共用同一冻结背景，也会共享背景误差。本页只模拟更新时刻，不模拟更新间插入的观测。</p>
+<p>不能把这条相关输出直接套进要求独立训练样本的 CA-CFAR 公式。本页没有门限、虚警率或检出率曲线；一次固定种子记录也不是独立 Monte Carlo 试验。</p>
+</div></details>
+<p id="pc-alias" class="pc-budget"><strong>整圈采样检查：</strong>每 2 ms 采样一次，即 500 Hz。一个 500 Hz 的复正弦每次正好转一整圈，采样结果与 0 Hz 相同，也会被当作静态。这是采样别名；主控限制为 −100 至 100 Hz，不表示现实运动不会混叠。复慢时间通常约定不模糊区间为 [−250,250) Hz。</p>
+</div>
+</details>
+
+<section class="pc-section pc-research-section" id="source">
+<h2>回到原文，带着三个问题读</h2>
+<p>本页来自 Rahman 等的感知移动网络论文中的递归背景机制。下面固定 PDF 版本，区分论文结论、本课改编与独立公式核验。</p>
+<details class="pc-disclosure"><summary>原文定位、版本差异与两步复相位检查</summary><div>
+<p><a href="https://doi.org/10.1109/TAES.2019.2939611">Framework for a Perceptive Mobile Network Using Joint Communication and Radar Sensing</a>，IEEE TAES 56(3)，1926–1941。出版标签：<strong>2020 卷期；2019 在线发表 / 预印本</strong>。论文提供框架、算法与仿真证据；本页不把它扩写成商用部署或硬件实测结论。</p>
+<dl class="pc-definitions"><dt>主核验版本</dt><dd><a href="https://opus.lib.uts.edu.au/handle/10453/137860">UTS 机构记录</a>标记的 Accepted Manuscript，<a href="https://opus.lib.uts.edu.au/bitstream/10453/137860/4/Framework%20for%20a%20Perceptive%20Mobile%20Network.pdf">15 页接收稿 PDF</a>，第一页是版权封面。没有为它自造 v2/v3 标签。</dd><dt>对读版本</dt><dd><a href="https://arxiv.org/abs/1901.05558v1">arXiv:1901.05558v1</a>，2019-01-16 提交；<a href="https://arxiv.org/pdf/1901.05558v1">固定 v1 PDF</a>，14 页。下列页码均为从 1 开始的<strong>物理 PDF 页</strong>，不是网页自动 HTML 式号。</dd></dl>
+<ol class="pc-source-checks"><li><strong>递归到底作用在什么上？</strong>两份 PDF §III-A 式(2)–(3)给复路径与未知初相位；§V-A 式(22)–(23)讨论信号剥离与误差。§VI 式(30)对每用户、每子载波的信道矩阵逐项递归平均。本页固定其中一个系数，输入须已处于可比的相位参考下。</li><li><strong>式(31)的复数值能直接拿来相减吗？</strong>UTS §VI 物理 p.10；arXiv v1 §VI 物理 p.9。先核对因果递归，再看下面的两步例子；只核对幅度还不够。</li><li><strong>式(32)描述谁的噪声？</strong>UTS 物理 p.11；arXiv v1 物理 p.10。它对应背景估计的噪声方差 V<sub>b</sub>，不是相减后的输出方差。本页的输出协方差是另外推导的。</li></ol>
+<h3>只针对这条式子，检查一次相位</h3>
+<p>按文中正频率、正向递归的约定，取 α=0.5、每次转 π/2、初相位 0、单位幅度。于是 s₁=j，s₂=−1，背景从零开始：</p>
+<div class="pc-equation"><span>按式(30)递归：b₁=0.5j；b₂=−0.5+0.25j</span><span>按这两份固定 PDF 式(31)直接代入：b₂=−0.25+0.5j</span><span>两者幅度都为 √0.3125，但复数相位不同。</span></div>
+<p>因此，<strong>在上述符号与时间约定下</strong>，式(31)与式(30)在此两步检查中给出不同的复数。相同幅度不能保证复数相减相同。本站采用式(30)的因果递归，用直接展开所得闭式独立校验。这是本次针对指定公式的独立核验，<strong>不是作者发布的勘误，也不是对整篇论文的全面审计</strong>。</p>
+<p>这个复相位检查不否定等幅度的图2，也不能据此断言未经逐页核验的期刊最终排版有同样问题。结论只针对这里列出的两份固定 PDF，以及上述频率与递归约定。</p>
+<details class="pc-inner"><summary>直接展开递归，得到有限时刻复响应</summary><div>
+<p>对 s<sub>p</sub>=A exp[j(φ+ωp)]，ω=2πf<sub>D</sub>T<sub>h</sub>，从 b₀=0 得：</p>
+<div class="pc-equation">b<sub>p</sub><sup>s</sup> = A exp[j(φ+ωp)] (1−α) [1−(α exp(−jω))<sup>p</sup>] / [1−α exp(−jω)]</div>
+<p>对 0≤α&lt;1，启动项消失后的背景响应 H<sub>b</sub>=(1−α)/(1−α exp(−jω))；默认输出响应 G=1−H<sub>b</sub>。目标功率比要算 |1−H<sub>b</sub>|²，不能写成 1−|H<sub>b</sub>|²。α=1 由原始递归单独处理，避免在零频率处套出 0/0。</p>
+</div></details>
+<h3>哪些图没有复现？</h3>
+<p>UTS p.10 / arXiv p.9 的图2是背景正弦响应幅度，图3是背景估计里的杂波 / 动态干扰功率比，都不是最终检出率。§VII-C 的图11给背景重建误差，图12给处理后的角度 / 路径距离估计。本页没有完整网络、多径恢复或角度 / 距离估计，<strong>没有重现这些论文图</strong>。</p>
+<p>两版还有不能混用的设置：接收稿 §VII 增加 RCS=1 m²，arXiv v1 写未考虑 RCS；本页不使用任一链路预算。图2图注的 p=30、T<sub>h</sub>=20T<sub>s</sub>、约 2.8 ms，与按 §VII 参数得到的 3.84 ms 不一致，可能存在未列出的设置变化，目前未确定原因。本页不借此复现图的时长，也不擅改原文。</p>
+<p>自动 HTML 的相关式号与固定 PDF 不同。复核时以“<strong>PDF §VI 式(30)–(32)，UTS p.10–11 / arXiv p.9–10</strong>”定位。版本、文件哈希与完整证据槽见<a href="data/perceptive-clutter-sources.json">固定来源记录</a>。</p>
+</div></details>
+</section>
+
+<section class="pc-section pc-research-section" id="boundary">
+<h2>结论到哪里为止？</h2>
+<p>能看见慢目标变弱、启动更长，并不等于已经证明检测变差或信息永久丢失。</p>
+<details class="pc-disclosure"><summary>模型、资源账本与研究下一问</summary><div>
+<h3>生成器知道什么，接收机又知道什么？</h3>
+<div class="pc-equation"><span>x<sub>p</sub> = C + A exp[j(φ+2πf<sub>D</sub>pT<sub>h</sub>)] + n<sub>p</sub></span><span>p=1,…,512；T<sub>h</sub>=0.002 s；b₀=0</span></div>
+<p>默认真值 C=4 exp(j0.3)、A=1、φ=1.1 rad、f<sub>D</sub>=2 Hz；输入噪声独立，n<sub>p</sub>∼CN(0,0.04)。<strong>C、A、φ、f<sub>D</sub> 只供生成和评估，接收滤波器不知道这些真值</strong>，只使用复数输入 x、α 和初始状态。真值分量的残余与能量比是把各分量单独送入同一线性滤波器得到的教学诊断。</p>
+<p>固定时延和阵列相位被吸收到复增益里，仅保留随慢时间变化的载波相位。这是固定复系数的局部近似，未指定可验证的距离 / 角度分辨单元，不能据此保证长距离运动始终没有单元迁移。持续正弦贯穿本次记录是教学假设。</p>
+<h3>哪些资源一样，哪些没有建模？</h3>
+<ul><li>固定 512 个慢时间观测，间隔 2 ms；这里的 512 不是原论文的 512 个子载波。2 ms 也不是 OFDM 符号时长、快时间采样间隔或 5G slot。</li><li>采样率 500 Hz；第一次观测为 2 ms，最后一次为 1.024 s，首末跨度 1.022 s。常用 DFT 记账时长 P T<sub>h</sub>=1.024 s，格距 1/(P T<sub>h</sub>)=0.9765625 Hz；本页不画频谱。</li><li>所有 α 与相减时序对照使用同一记录、同一噪声、同一初值。前 64 次 / 全部 / 最后 128 次只是视图，不额外加入训练历史，不归一化冷启动权重。</li><li>新样本权重为 1−α，旧样本逐次衰减；到第 p 次，权重和只有 1−α<sup>p</sup>。对常量 C，默认静态残余为 Cα<sup>p</sup>。</li><li>对 0&lt;α&lt;1，衰减时间 τ=−T<sub>h</sub>/ln α；稳态权重平均年龄 T<sub>h</sub>α/(1−α)，两者定义不同。默认 α=0.95 时分别约 38.99 ms 与 38 ms。</li><li>默认目标 / 噪声功率比为 1/0.04=25（约 13.98 dB），静态 / 目标功率比为 16（约 12.04 dB）。不能把有交叉项的总输入功率当成目标 SNR。</li><li>各模式都是数字重处理，不额外增加发射能量。但未建模带宽、阵列孔径、通信符号开销、吞吐量、RCS、RF 功耗、硬件饱和或链路预算。</li></ul>
+<h3>“衰减”为什么不自动等于 Fisher 信息损失？</h3>
+<p>对有限记录和已知初值，默认相减可写作 r=Lx。α&gt;0 时，下三角矩阵 L 的对角为 α，所以可逆。若完整保留复数记录，后续同时使用<strong>正确变换后的均值和完整噪声协方差</strong>，不能仅凭目标幅度变小就宣布 Fisher 信息或最优估计性能必然下降。</p>
+<p>α=0、丢弃启动或低频、只保存功率、忽略相关噪声、量化与有限精度，需要另外分析。本页不实现估计器或检测器，不报告 RMSE、CRB、检出率、虚警率或性能排名。</p>
+<p>纯复正弦的模方是常量；先取功率会丢掉本模型里用来表达 Doppler 的相位。这里也没有把 Doppler 统一换成速度：一般双站低速窄带关系为 f<sub>D</sub>=−(dL/dt)/λ，只有另加单站径向约定时才出现双程因子 2。</p>
+<h3>下一问仍是研究计划</h3>
+<p>真实复信道估计中的参考漂移、信号剥离误差，会怎样把静态物体变成非零 Doppler？这需要新的观测模型、数据、基线和失败标准。<strong>真实链路验证与完整论文复现目前均为 proposed（研究计划）</strong>，不由这个单系数实验补证。</p>
+<p>需要时回看：<a href="foundations.html#iq">I/Q 与复数相减</a> · <a href="foundations.html#ofdm">慢时间的一列</a> · <a href="theory.html#shared-model">共同观测与未知量</a> · <a href="practice.html#notebook">记录一次同资源检验</a></p>
+</div></details>
+</section>
+
+<section class="pc-section pc-research-section" id="validation">
+<h2>记录参数，让这次观察可以重算</h2>
+<p>本页是独立的标量机制实验。数值研究原型已核验；网站、交互与发布检查的实际范围，以验证记录为准。</p>
+<details class="pc-disclosure"><summary>查看数值核心、来源与验证范围</summary><div>
+<p>图形和读数来自同一个数值核心。精确复数样例、递归与闭式、有限协方差、端点、停止 / 离开、采样别名和有限记录可逆性都可单独检查。统计噪声验证与一次固定种子显示记录是两件事。</p>
+<ul class="pc-file-links"><li><a href="perceptive-clutter-core.js?v=perceptive-clutter-v1">JavaScript 纯数值核心</a></li><li><a href="data/perceptive-clutter-sources.json">固定来源、页码与版本</a></li><li><a href="docs/PERCEPTIVE-CLUTTER-VALIDATION.md">验证方法与实际完成范围</a></li></ul>
+<p>验证通过不等于真实系统复现。本站不上传交互参数，不分发论文全文，不把论文仿真图或硬件数据冒充本模型输出。</p>
+</div></details>
+<details class="pc-disclosure" id="pc-export"><summary>查看限长记录预览，下载完整 JSON</summary><div>
+<p id="pc-preview-help">下方是有长度上限的 JSON 预览，最多显示 12,000 字符；长数组只保留开头若干项，omittedItems 标出省略数量。预览不是完整数据。下载按钮导出当前完整记录，含参数、观测预算与全部复数样本；文件只在本机生成。</p>
+<p class="pc-small">真值分量与诊断仅用于教学评估，不能视为接收机已知量。请同时记录当前相减时序、场景和种子。非有限数以 “Infinity”、“-Infinity” 或 “NaN” 字符串保留，不冒充有限值。</p>
+<button id="pc-download" type="button" disabled>下载当前完整 JSON</button>
+<p id="pc-download-status" class="pc-small" role="status" aria-live="polite"></p>
+<pre id="pc-raw" tabindex="0" role="region" aria-label="当前记录限长预览，非完整数据，可用方向键滚动" aria-describedby="pc-preview-help"></pre>
+</div></details>
+</section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html#notebook">记录一次同输入、同初值的递归背景检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
+<!-- SITE:NEXT:END -->
+</main>
+</body>
+</html>

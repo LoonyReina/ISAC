@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "coreSha256": "298a998abbdc1aface1916cdc74ee2abef1213977337d5c2b41a82b907f02924",
+  "trials": 160000,
+  "seed": 18373491,
+  "N": 7,
+  "alpha": 0.82,
+  "sigma2": 0.37,
+  "p": 3,
+  "q": 6,
+  "maxAbsoluteZ": 1.3126213071276502,
+  "moments": {
+    "inputReal": {
+      "mean": -0.00033531747727751223,
+      "theory": 0,
+      "standardError": 0.00107280747210757,
+      "z": -0.31256072128092904
+    },
+    "inputImag": {
+      "mean": -0.0001376408715944415,
+      "theory": 0,
+      "standardError": 0.001076732808686276,
+      "z": -0.12783196581738546
+    },
+    "inputRealVariance": {
+      "mean": 0.18414550107551184,
+      "theory": 0.185,
+      "standardError": 0.0006509866325101968,
+      "z": -1.3126213071276502
+    },
+    "inputImagVariance": {
+      "mean": 0.1854954261996981,
+      "theory": 0.185,
+      "standardError": 0.000657905432530735,
+      "z": 0.7530355811052948
+    },
+    "inputIQCov": {
+      "mean": 0.0002531870723262783,
+      "theory": 0,
+      "standardError": 0.0004612842696805866,
+      "z": 0.5488742820161548
+    },
+    "background": {
+      "mean": 0.03310682880945048,
+      "theory": 0.033211441896922,
+      "standardError": 0.00008259002951850393,
+      "z": -1.2666551650534086
+    },
+    "post": {
+      "mean": 0.26168953440803705,
+      "theory": 0.26226876685887995,
+      "standardError": 0.0006573486749014479,
+      "z": -0.8811647044542142
+    },
+    "pre": {
+      "mean": 0.38918729091023035,
+      "theory": 0.3900487312,
+      "standardError": 0.0009776155188897155,
+      "z": -0.8811647044514875
+    },
+    "crossRe": {
+      "mean": -0.0226450120609023,
+      "theory": -0.022678445754553047,
+      "standardError": 0.00047145288341491546,
+      "z": 0.07091629901290276
+    },
+    "crossIm": {
+      "mean": -0.0002950904211886986,
+      "theory": 0,
+      "standardError": 0.0004679092930562057,
+      "z": -0.630657320912094
+    },
+    "pseudoRe": {
+      "mean": 0.0005361225161963672,
+      "theory": 0,
+      "standardError": 0.00047175747874014714,
+      "z": 1.136436708174951
+    },
+    "pseudoIm": {
+      "mean": -0.00037210046454890856,
+      "theory": 0,
+      "standardError": 0.0004710145327918603,
+      "z": -0.7899978421968107
+    }
+  },
+  "qualification": "Across-trial standard errors. Independent coefficient sums supply theory. Stochastic diagnostic; no browser or detector calibration claim."
+}
