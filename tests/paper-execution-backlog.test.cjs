@@ -268,3 +268,25 @@ test('Worker response measurements cannot masquerade as rendered-result timings'
  bad(m=>delete m.measurementBoundary);bad(m=>m.samples[0].workerResponseMs=-1);bad(m=>m.samples[0].controlToResultMs=m.samples[0].workerResponseMs);bad(m=>m.p95Ms=42);
  const future=structuredClone(backlog);future.sequence.activeStages=[{paperId:future.papers[0].id,stage:'independent-numerical-reference',status:'pending'}];validate(future);future.sequence.activeStages[0].paperId='invented';assert.throws(()=>validate(future));
 });
+
+test('joint dated browser evidence preserves failure states and scoped terminal-response samples',()=>{
+ const p=backlog.papers.find(p=>p.id==='joint_beamforming'),e=JSON.parse(read(['assets/data/joint-beamforming-browser-20261012.json','data/joint-beamforming-browser-20261012.json']));
+ assert.equal(e.mainCommit,'ec7a5c334a98faef1725be3bcc43a6c46af12d08');assert.equal(e.environment.viewportWidth,1180);
+ assert.equal(e.downloadAudits.length,5);assert.equal(e.downloadAudits.reduce((n,r)=>n+r.recordedNumericalSlots,0),15);assert.ok(e.downloadAudits.every(r=>r.passed&&/^[0-9a-f]{64}$/.test(r.sha256)));
+ const byName=Object.fromEntries(e.downloadAudits.map(x=>[x.record,x]));assert.equal(byName['budget-record.json'].methods.sdr.status,'iteration_limit');assert.equal(byName['certificate-record.json'].methods.sdr.status,'iteration_limit');assert.equal(byName['certificate-record.json'].methods.zf.status,'infeasible_certificate');assert.equal(byName['zero-row-record.json'].methods.sdr.status,'infeasible_bound');
+ assert.equal(p.stages.latency,'measured');assert.equal(p.realtime.benchmark.measurementType,'individual-worker-response-samples');assert.equal(p.realtime.benchmark.sampleCount,4);assert.match(p.realtime.benchmark.measurementBoundary,/excludes final rendering\/paint/);assert.equal(p.realtime.benchmark.p95Ms,null);assert.equal(p.realtime.benchmark.medianMs,null);assert.equal(p.realtime.benchmark.worstMs,null);
+ assert.equal(p.liveValidation.sourceCommit,e.mainCommit);assert.equal(p.liveValidation.recordedNumericalSlots,15);assert.equal(p.stages.fullPaper,'not-reproduced');assert.match(JSON.stringify(p.blockers),/Narrow\/other-browser/);
+ for(const resource of e.deployedResources)assert.equal(resource.sha256,resource.expected);
+});
+
+test('weighted actual-download audit stays pre-fix and cannot imply interruption or import acceptance',()=>{
+ const e=JSON.parse(read(['assets/data/waveform-weighted-browser-20261012.json','data/waveform-weighted-browser-20261012.json'])),p=backlog.papers.find(p=>p.id==='optimal_waveform'),a=e.independentDownloadAudit;
+ assert.equal(e.mainCommit,'ec7a5c334a98faef1725be3bcc43a6c46af12d08');assert.match(e.postFixGate,/PENDING/);assert.equal(e.records.length,5);assert.equal(e.records.find(r=>r.file==='max-domain-sweep-record.json').bytes,4793548);assert.equal(a.uniqueWeightedSolves,24);assert.equal(a.independentPython.checks,1965);assert.equal(a.independentPython.failures,0);assert.equal(a.independentPython.nearHardLocations,0);assert.equal(a.allStrictAndWeightedWaveformsAndCertificatesExactProductionReplay,true);
+ assert.ok(e.notVerified.some(x=>x.includes('already disabled')));assert.ok(e.foundAndAssigned.some(x=>x.includes('1MiB')));assert.match(p.branchGates.find(x=>x.branch==='Section IV weighted equality-energy').browser,/post-fix-hosted-acceptance-pending/);assert.equal(p.stages.fullPaper,'not-reproduced');
+ const doc=read(['docs/WAVEFORM-WEIGHTED-BROWSER-VALIDATION.md']);assert.match(doc,/cancellation was NOT verified/);assert.match(doc,/Post-fix hosted-browser acceptance remains PENDING/);assert.match(doc,/Fig\.3 weighted curve remains nonmatching/);
+});
+
+test('dated desktop reports link exact release and leave whole-paper and next-core gates independent',()=>{
+ const j=read(['docs/JOINT-BEAMFORMING-BROWSER-VALIDATION.md']),w=read(['docs/WAVEFORM-WEIGHTED-BROWSER-VALIDATION.md']);assert.match(j,/38264401600/);assert.match(j,/15recorded numerical result slots/);assert.match(j,/not a claim that all five optimization problems were independently re-solved/);assert.match(j,/not all-browser or full-paper acceptance/);
+ assert.doesNotMatch(j+w,/\/(?:workspace|tmp)\//);assert.equal(backlog.scope.fullPaperReproductionsEstablished,0);assert.ok(backlog.sequence.activeStages.some(x=>x.paperId==='crb'&&x.stage==='independent-numerical-reference'&&x.status==='in-progress'));
+});

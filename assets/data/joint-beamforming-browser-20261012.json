@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "startUTC": "14:45:49",
+  "endUTC": "14:54:18",
+  "mainCommit": "ec7a5c334a98faef1725be3bcc43a6c46af12d08",
+  "url": "https://loonyreina.github.io/ISAC/joint-beamforming.html#experiment",
+  "environment": {
+    "browser": "dot cloud Chrome",
+    "reportedUserAgent": "Chrome/154.0.0.0 Linux x86_64",
+    "viewportWidth": 1180,
+    "documentScrollWidth": 1165,
+    "exactEngineBuildAndCPU": "unrecorded"
+  },
+  "passed": [
+    "Actual default radar/SDR/ZF solves; numerical audit of downloaded full states/factors",
+    "Fresh H00=0.823456789+0.123456789j and Gamma12.3 reach requests; baseline explicitly reused; keyboard Enter",
+    "1000-cap fixture: SDR iteration_limit, ZF accepted142 iterations",
+    "High-Gamma fixture: SDR20000 iteration_limit and ZF numerical infeasibility certificate1000, neither inferred from offline truth",
+    "Actually running SDR cancellation observed96 iterations; direct Run afterward observed96 iterations; reset during that rerun clears state",
+    "Preset replacement during actual SDR192 iterations clears export, replacement default finishes without stale overwrite",
+    "Blank H cell rejected with exact Chinese error and disabled run",
+    "Zero first user row produces actual analytic infeasibility bound0 for both methods",
+    "Actual full downloads and independent NumPy checker on5 records",
+    "Desktop screenshot: traces, raw pattern/legends readable; only H/table local horizontal scroll, no page overflow",
+    "Research notebook navigation and Back preserve canonical route",
+    "No site-origin console errors observed"
+  ],
+  "timingScope": "Control-to-terminal-response only, excluding final render/paint; each record also retains separately scoped core, render and assembly intervals. Distinct configurations are not a benchmark distribution.",
+  "timingSamplesMs": {
+    "default": 1456.1000000014901,
+    "freshEditedWithReusedBaseline": 535.3999999985099,
+    "shortBudget": 1687.800000000745,
+    "highGammaCap": 23301.800000000745
+  },
+  "open": [
+    "Narrow-screen and other-browser QA",
+    "Repeated fixed-input timing benchmark and exact paint time",
+    "All allowed H/Gamma domains, degeneracies and physical scenarios",
+    "Complete source1000-channel/K4/K6/SSP/receiver studies"
+  ],
+  "deployedResources": [
+    {
+      "path": "joint-beamforming.html",
+      "bytes": 39955,
+      "sha256": "ba5178c9ffb8ad42daa8b0f79286d0674fbcfc1e7eba13e28402de288ef4d036",
+      "expected": "ba5178c9ffb8ad42daa8b0f79286d0674fbcfc1e7eba13e28402de288ef4d036",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer.js",
+      "bytes": 23713,
+      "sha256": "b6a6c1a37b1ada4c13628b1c68d3418c20bfd0484a445265c56eda4bf14732c3",
+      "expected": "b6a6c1a37b1ada4c13628b1c68d3418c20bfd0484a445265c56eda4bf14732c3",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer-model.js",
+      "bytes": 7488,
+      "sha256": "fdcd02f83c3346b327224e692fa41c27732326b9eaf8791bbef5e43be23a1a3c",
+      "expected": "fdcd02f83c3346b327224e692fa41c27732326b9eaf8791bbef5e43be23a1a3c",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer-data.js",
+      "bytes": 10139,
+      "sha256": "89fc8965a95c8b0046be66837cc11335f904a9dcb326b1a29df101d785c9d43a",
+      "expected": "89fc8965a95c8b0046be66837cc11335f904a9dcb326b1a29df101d785c9d43a",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer.css",
+      "bytes": 4364,
+      "sha256": "9ee50d8b3ce5e25262665d7bc12bfe5798aaba605f308e2947c2ccd58191c84f",
+      "expected": "9ee50d8b3ce5e25262665d7bc12bfe5798aaba605f308e2947c2ccd58191c84f",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer/core.js",
+      "bytes": 21839,
+      "sha256": "a6de335f1a57d144cc8aebee1c33ec80397c3c948a9d93c38c1fafbcd1cf262b",
+      "expected": "a6de335f1a57d144cc8aebee1c33ec80397c3c948a9d93c38c1fafbcd1cf262b",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer/hermitian.js",
+      "bytes": 3658,
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+      "expected": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+      "match": true
+    },
+    {
+      "path": "joint-beamforming-optimizer/worker.js",
+      "bytes": 1456,
+      "sha256": "7c0ebef89c8c005e62af9725b0f333633d1f6657aae6096e503399a976afefde",
+      "expected": "7c0ebef89c8c005e62af9725b0f333633d1f6657aae6096e503399a976afefde",
+      "match": true
+    }
+  ],
+  "downloadAudits": [
+    {
+      "record": "default-record.json",
+      "bytes": 383042,
+      "sha256": "55bc0d6f6747ebf0bcb942a7751cce3f2fbf0844f066874a90dceb99aba8480f",
+      "auditSha256": "d5dd680ecef86ae6964e4e2a4717611ab7866dc43f9ea8420038b6650ce2c888",
+      "passed": true,
+      "recordedNumericalSlots": 3,
+      "radarBaselineReused": false,
+      "methods": {
+        "sdr": {
+          "status": "converged",
+          "iterations": 169
+        },
+        "zf": {
+          "status": "converged",
+          "iterations": 131
+        }
+      }
+    },
+    {
+      "record": "edited-record.json",
+      "bytes": 382785,
+      "sha256": "0c56fd97a6e41429d1a2ea7e692fc3c2c2fe1d5e6506c722d93d0e5af12d6150",
+      "auditSha256": "162359f44f9933312e86cccd46849de80f8f1bf08bae589319af5dda31c5670f",
+      "passed": true,
+      "recordedNumericalSlots": 3,
+      "radarBaselineReused": true,
+      "methods": {
+        "sdr": {
+          "status": "converged",
+          "iterations": 184
+        },
+        "zf": {
+          "status": "converged",
+          "iterations": 138
+        }
+      }
+    },
+    {
+      "record": "budget-record.json",
+      "bytes": 373934,
+      "sha256": "940da6a4bfe5db07e6e1f98362be69cd80adf5475a8912baf7bf88858e1567e4",
+      "auditSha256": "3e8d13f8eea3cec06d7052ff07d88d3c3ad068a1f03c53a685cfc1d870672280",
+      "passed": true,
+      "recordedNumericalSlots": 3,
+      "radarBaselineReused": false,
+      "methods": {
+        "sdr": {
+          "status": "iteration_limit",
+          "iterations": 1000
+        },
+        "zf": {
+          "status": "converged",
+          "iterations": 142
+        }
+      }
+    },
+    {
+      "record": "certificate-record.json",
+      "bytes": 491798,
+      "sha256": "16dfd367e826cf8e67c21cfd42a38d402179eb16438068cb4705b31b6663a25f",
+      "auditSha256": "12d1b578026efa4632ad93e639a31f40a557c8eb96d91673a8b098cee5f61ae6",
+      "passed": true,
+      "recordedNumericalSlots": 3,
+      "radarBaselineReused": false,
+      "methods": {
+        "sdr": {
+          "status": "iteration_limit",
+          "iterations": 20000
+        },
+        "zf": {
+          "status": "infeasible_certificate",
+          "iterations": 1000
+        }
+      }
+    },
+    {
+      "record": "zero-row-record.json",
+      "bytes": 145909,
+      "sha256": "1faa26044fa0d0eea204a9bcce1c053ffd8339c0b0a33cd82cabc58b64a7fa52",
+      "auditSha256": "7b42f490ed1ecdf744021e9e35e280eb3720e86719e3d04df69ebaf89160ea60",
+      "passed": true,
+      "recordedNumericalSlots": 3,
+      "radarBaselineReused": true,
+      "methods": {
+        "sdr": {
+          "status": "infeasible_bound",
+          "iterations": 0
+        },
+        "zf": {
+          "status": "infeasible_bound",
+          "iterations": 0
+        }
+      }
+    }
+  ],
+  "auditScope": "Independent NumPy recomputation of saved numerical states, objectives, constraints, recovered factors and bounds. Passing evidence consistency does not relabel an unsuccessful solve converged. Five downloads contain15recorded numerical slots, including reused radar baselines."
+}

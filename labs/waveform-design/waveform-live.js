@@ -1,6 +1,7 @@
 (()=>{'use strict';
  const $=id=>document.getElementById(id),M=window.WaveformLiveModel;
  if(!M){$('wfl-status').textContent='求解资源未能载入。当前没有计算结果；推导和离线历史仍可阅读。';return;}
+ const MAX_INPUT_BYTES=8*1024*1024;
  const controls=['wfl-n','wfl-k','wfl-l','wfl-seed','wfl-pt','wfl-beta','wfl-angle'];
  const defaults={N:4,K:2,L:8,seed:171105220,Pt:1,beta:.8,angle:0};
  const fieldNames={N:'wfl-n',K:'wfl-k',L:'wfl-l',seed:'wfl-seed',Pt:'wfl-pt',beta:'wfl-beta',angle:'wfl-angle'};
@@ -16,22 +17,31 @@
   for(const id of ['wfl-budget','wfl-rank','wfl-certificate','wfl-rate-status','wfl-rate-total','wfl-diagnostics'])$(id).textContent='';
  }
  function invalidate(message){epoch++;stopWorker();clearResult();$('wfl-error').hidden=true;$('wfl-error').textContent='';$('wfl-status').textContent=message;$('wfl-weighted-status').textContent=message;}
- function error(message,focus=true){stopWorker();clearResult();$('wfl-error').textContent=message;$('wfl-error').hidden=false;$('wfl-status').textContent='本次没有可用结果；请修正输入后重新求解。';if(focus&&$('wfl-error').focus)$('wfl-error').focus();}
+ function error(message,focus=true){stopWorker();clearResult();$('wfl-error').textContent=message;$('wfl-error').hidden=false;$('wfl-status').textContent='本次没有可用结果；请修正输入后重新求解。';$('wfl-weighted-status').textContent=message;if(focus&&$('wfl-error').focus)$('wfl-error').focus();}
  function settings(){const out={};for(const [key,id]of Object.entries(fieldNames))out[key]=Number($(id).value);return out;}
  function setSettings(value){for(const [key,id]of Object.entries(fieldNames))$(id).value=String(value[key]);}
  function fillGenerated(message){mode='generated';invalidate(message);try{const input=M.generated(settings());$('wfl-input').value=JSON.stringify({H:input.H,S:input.S,R:input.R},null,2);}catch(e){$('wfl-input').value='';error(M.friendlyError(e),false);}}
  function readInputs(){if(mode==='generated')return M.generated(settings());
-  const text=$('wfl-input').value;if(new TextEncoder().encode(text).length>1048576)throw new Error('粘贴的 JSON 超过1 MiB，请仅保留本次 H、S、R。');
+  const text=$('wfl-input').value;if(new TextEncoder().encode(text).length>MAX_INPUT_BYTES)throw new Error('粘贴的 JSON 超过8 MiB，请仅保留本次 H、S、R，或缩小附带记录。');
   let value;try{value=JSON.parse(text);}catch{throw new Error('无法读取矩阵。请使用包含 H、S、R 的 JSON；每个复数写成 [实部, 虚部]。');}
   const input={H:value&&value.H,S:value&&value.S,R:value&&value.R,origin:{kind:'manual',modelVersion:M.VERSION,generator:null}};M.inputBounds(input);return input;
  }
  function element(tag,attrs={},text){const n=document.createElementNS(ns,tag);for(const [key,value]of Object.entries(attrs))n.setAttribute(key,value);if(text!==undefined)n.textContent=String(text);return n;}
- function tick(value){return value===0?'0':Math.abs(value)>=10000||Math.abs(value)<.001?value.toExponential(1):value.toFixed(1);}
+ // Axis labels use the tick interval, so a small nonzero range never collapses
+ // into repeated 0.0 labels. Formatting changes neither plotted data nor scales.
+ function tick(value,step){
+  if(value===0)return '0';
+  const magnitude=Math.abs(value),stepOrder=Math.floor(Math.log10(step)),decimals=Math.max(0,1-stepOrder);
+  const scientific=magnitude>=10000||magnitude<.0001||decimals>6;
+  const digits=Math.min(16,Math.max(1,Math.ceil(Math.log10(magnitude)-Math.log10(step))+1));
+  const label=scientific?value.toExponential(digits):value.toFixed(decimals);
+  return Number(label)===0?'0':label;
+ }
  function chart(id,xmin,xmax,ymin,ymax,xlabel,ylabel){const svg=$(id);svg.replaceChildren();const width=Math.max(240,svg.clientWidth||600),left=66,right=width-18;
   if(![xmin,xmax,ymin,ymax].every(Number.isFinite)||!(xmax>xmin)||!(ymax>ymin))throw new Error('图形坐标超出可表示范围，未显示旧图。');
   svg.setAttribute('viewBox',`0 0 ${width} 300`);const x=v=>left+(v-xmin)/(xmax-xmin)*(right-left),y=v=>240-(v-ymin)/(ymax-ymin)*205,ticks=width<450?2:4;
   for(let i=0;i<=ticks;i++){const xv=xmin+(xmax-xmin)*i/ticks,yv=ymin+(ymax-ymin)*i/ticks;
-   svg.append(element('line',{x1:x(xv),x2:x(xv),y1:35,y2:240,stroke:'#e0e4eb'}),element('line',{x1:left,x2:right,y1:y(yv),y2:y(yv),stroke:'#e0e4eb'}),element('text',{x:x(xv),y:258,'text-anchor':'middle'},tick(xv)),element('text',{x:left-7,y:y(yv)+4,'text-anchor':'end'},tick(yv)));
+   svg.append(element('line',{x1:x(xv),x2:x(xv),y1:35,y2:240,stroke:'#e0e4eb'}),element('line',{x1:left,x2:right,y1:y(yv),y2:y(yv),stroke:'#e0e4eb'}),element('text',{x:x(xv),y:258,'text-anchor':'middle'},tick(xv,(xmax-xmin)/ticks)),element('text',{x:left-7,y:y(yv)+4,'text-anchor':'end'},tick(yv,(ymax-ymin)/ticks)));
   }
   svg.append(element('text',{x:width/2,y:284,'text-anchor':'middle'},xlabel),element('text',{x:left,y:19},ylabel));return {svg,x,y};
  }
