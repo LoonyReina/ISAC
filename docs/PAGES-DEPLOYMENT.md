@@ -1,21 +1,21 @@
 # GitHub Pages build and deployment
 
-Install the prepared workflow as `.github/workflows/pages.yml`. The deploy job only consumes the verified artifact from its own successful build job. The existing public URL and paths remain unchanged; no runtime URL rewriting, JSON regeneration, or content transformation is added by this workflow.
+The workflow is `.github/workflows/pages.yml`. The deploy job only consumes the verified artifact from its own successful build job. The existing public URL and paths remain unchanged; no runtime URL rewriting, JSON regeneration, or content transformation is added by this workflow.
 
 ## Verification contract
 
 - Node.js 24, Python 3.12; NumPy 2.3.5 and SciPy 1.17.0 match the checked-in waveform validation metadata. Only binary wheels are installed; no third-party JavaScript build dependencies or package cache are needed.
 - `node --test tests/compatibility-build.test.cjs` tests the new build boundary.
-- `node scripts/build-compatibility.cjs --test --reproducible` stages the approved compatibility tree, runs the unchanged site generator and freshness check, recomputes scientific waveform invariants, runs all 956 existing JavaScript regression tests, independently builds a second clean tree, and writes only the 367 explicit public paths to `dist/`.
+- `node scripts/build-compatibility.cjs --test --reproducible` stages the current mapped sources in the compatibility layout, runs the unchanged site generator and freshness check, recomputes scientific waveform invariants, runs all 956 existing JavaScript regression tests, independently builds a second clean tree, and writes only the explicit public paths to `dist/`. The normal build accepts current source edits; the separate `--audit-migration` release gate checks the old whole-tree baseline and exact maintainer-document exceptions.
 - `node scripts/build-compatibility.cjs --check` checks the existing artifact again; `git diff --exit-code` rejects tracked-source changes.
 - The Python check preserves canonical JSON bytes. BLAS/SVD sign choices can change regeneration output even when the result is scientifically equivalent. Do not replace `--check` with ordinary waveform generation in CI or compare newly generated waveform JSON byte-for-byte.
-- `include-hidden-files: true` is required in upload-pages-artifact v5 to preserve `.nojekyll`. The manifest/build checks reject arbitrary files, symlinks, changed hashes, and unexpected public paths before upload.
+- `include-hidden-files: true` is required in upload-pages-artifact v5 to preserve `.nojekyll`. The manifest/build checks reject unmapped files, symlinks, and unexpected public paths before upload; migration snapshot hashes are checked only by the explicit audit mode.
 
 ## Security boundary
 
 Workflow-level permissions are empty. Build gets only `contents: read`, with checkout credentials not persisted. PRs use `pull_request`, never `pull_request_target` or `workflow_run`; PRs cannot upload a deploy artifact or start deployment. No repository secrets, personal access token, or persistent credentials are introduced. The deploy job has only `pages: write` and `id-token: write`, runs only on main push/manual dispatch, uses `github-pages`, and neither checks out the repository nor executes its code. Deployment waits for every build verification step to pass. An active deployment is not cancelled by a newer run.
 
-## Safe first cutover
+## First-cutover procedure and recorded result
 
 1. Keep current main/root source files and Pages configuration intact while preparing/reviewing the workflow and building the exact artifact. Do not move/delete the old published root files yet.
 2. Merge the compatibility builder and this workflow with root source files unchanged. Verify the build job is green and its 367-path artifact exists for the expected commit. The first deploy may fail while Pages still uses branch publishing; this does not mean the artifact build failed.
@@ -23,6 +23,8 @@ Workflow-level permissions are empty. Build gets only `contents: read`, with che
 4. Rerun the workflow on main using `workflow_dispatch`, or rerun the failed deployment if its artifact is still retained. Confirm the deployed revision equals the intended main revision.
 5. Verify the live public URL, all compatibility entry points, HTML headers/navigation, local assets, anchors, and canonical JSON against the artifact. A green deployment alone is not full browser QA.
 6. Only after this succeeds should source-directory relocation proceed through the fixed compatibility/public manifest mapping. Root source deletion before a verified Actions publication is explicitly out of scope.
+
+The initial cutover was verified on 2026-10-12 at main `2e2625215f107ae8e6117650b80e5946192c645d`: hosted run `38196311829` built and deployed successfully, artifact `11723447928` contained the compatibility tree, and repository Pages Source persisted as GitHub Actions. Live geometry and reading entry checks passed before authorizing source relocation. This record concerns that revision, not future deployment results.
 
 Rollback before relocation: restore Pages publishing to main/root if needed; retained root files remain available. After relocation, restore the previous source-preserving commit or redeploy a known-good verified artifact. Never improvise by deleting Pages or creating a new site.
 

@@ -1,15 +1,14 @@
-# URL-preserving migration build — phase 1
+# Source layout and compatibility build
 
-This is a **migration baseline gate**, not the future everyday authoring build.
-No scientific source has moved yet and Pages deployment is unchanged. The public
-contract is the exact 27 HTML URLs, anchors, query/hash behavior, root JS/CSS URLs,
-and existing documentation, data and downloadable evidence from commit
-`2c9ef008c3e1d9d3f723ac54e8e55236ee7adb36`.
+The repository groups authored sources by responsibility. The public artifact
+still uses the existing flat HTML/JS/CSS URLs: that layout is the compatibility
+contract, not the authoring layout. GitHub Actions verifies the build and deploys
+`dist/`; never edit or commit `dist/`.
 
-## Run and inspect
+## Commands
 
-Requires Node.js 24 and Python 3 with NumPy and SciPy. The canonical waveform
-record reports NumPy 2.3.5 and SciPy 1.17.0. There are no new JS dependencies.
+Requires Node.js 24, Python 3.12, NumPy 2.3.5 and SciPy 1.17.0. No third-party
+JavaScript build dependencies are required.
 
 ```sh
 node --test tests/compatibility-build.test.cjs
@@ -18,76 +17,88 @@ node scripts/build-compatibility.cjs --check
 python3 -m http.server 8000 --directory dist
 ```
 
-`--out PATH` chooses another new output directory. Existing output is accepted
-only if its complete paths and bytes already match; a different tree is refused,
-never cleared or overwritten. `--check` requires output to exist and changes no
-output files. A successful new build is renamed into place only after validation.
-The wrapper creates and removes only its own temporary workspaces.
+The wrapper reconstructs the URL-shaped compatibility workspace from explicit
+source mappings. The unchanged site generator and original 956 regression tests
+run there, with their existing imports and fingerprint assertions intact. Do not
+run the old flat-layout tests or site generator directly from the source tree.
+Waveform validation uses `--check`: it recomputes scientific invariants without
+rewriting canonical JSON or depending on a particular BLAS SVD sign convention.
 
-The wrapper copies explicit manifest inputs into a fresh legacy-layout workspace,
-runs the **unchanged** site generator and its freshness check there, runs the
-existing waveform generator's **check mode**, and optionally executes the original
-956 tests there. Check mode recomputes the waveform invariants without replacing
-canonical JSON: ordinary regeneration could change SVD choices across BLAS builds.
-Every staged path and byte must remain identical after generators and tests.
-`--reproducible` repeats the clean staging/generator process independently and
-compares the complete trees. No generator writes into the source checkout.
+`--out PATH` selects another artifact directory. A normal build validates a fresh
+complete tree before replacing an existing output directory. Only an existing
+regular directory with exactly the expected public file paths can be replaced;
+unexpected files or symlinks cause failure. Replacement uses a sibling staging
+and backup directory with rollback, never file-by-file publication. `--check`
+compares a fresh current-source build with existing output and writes nothing.
+`--reproducible` compares two independent clean builds. Temporary directories
+created by the wrapper are removed after completion.
 
-## Explicit boundary and ownership
+## One source, explicit destinations
 
-`compatibility-manifest.json` lists every file, with no publishing globs:
+`compatibility-manifest.json` is the editable publication map. It has no content
+hashes. Each entry identifies:
 
-- `source`: current input path
-- `compatibility`: old path expected by unchanged generators, tests and imports
-- `public`: exact old URL path, or null for compatibility-only metadata
-- `owner`: named feature/domain responsibility
-- `plannedSource`: proposed next-phase location; it does not cause a move
-- `role`: source, generated compatibility seed, or baseline metadata
-- `sha256`: migration snapshot byte fingerprint
+- `source`: the current authoritative input location
+- `compatibility`: the path required by existing generators, tests and imports
+- `public`: the preserved public URL path, or null for build-only metadata
+- `owner`: the responsible feature/domain
+- `role`: authored source, temporary generated seed, or baseline metadata
 
-All 368 baseline files enter the compatibility workspace. All 367 except
-`.gitignore` enter `dist`, including the existing `scripts/`, `tests/`, `site/`,
-`docs/` and `data/` URLs. Some pages explicitly link tests and evidence scripts;
-pruning public source files is a separate decision. New build tools and this
-manifest are not automatically published. The baseline `.gitignore` is kept as
-`compatibility-seeds/project.gitignore`; the working root `.gitignore` additionally
-ignores generated `dist/`. This is the only phase-one alternate input location.
+There are no publishing globs. New source files need an explicit entry if they
+participate in the public build. Runtime links, assets, anchors, evidence packages
+and path-shaped Markdown links are checked against the complete public map.
+The existing 367 published paths, including provenance under `scripts/`, `tests/`,
+`site/`, `data/` and `docs/`, remain available. Build tooling and new deployment
+documentation are not automatically published.
 
-The planned tree groups responsibilities rather than collecting everything in a
-large JavaScript directory:
-
-| Ownership | Examples / planned locations |
+| Source ownership | Location |
 | --- | --- |
-| `shared` | `shared/styles/` for course/site styles; `shared/records/experiment-record.js` |
-| `features` | foundations (course, intuition, velocity), learning map, reading, catalog, notebook, compatibility; site build helpers under `scripts/site/` |
-| `labs` | `labs/channel-geometry/` keeps multipath and reflection aperture together; `labs/ofdm-reference/` keeps off-grid and reference uncertainty together; other labs own their core/controller/styles |
-| `content` | handwritten `content/pages/`, six `content/fragments/`, registry/guide data under `content/data/`; existing evidence datasets under `assets/data/` |
-| `validators` | topic reference and audit packages under `scripts/validation/`; original regression tests remain under `tests/` |
+| Shared styles and record shell | `shared/styles/`, `shared/records/` |
+| Foundations, map, reading, catalog, notebook | `features/<feature>/` |
+| Numerical models, controllers, topic styles | `labs/<topic>/` |
+| Handwritten scientific pages | `content/pages/` |
+| Portal fragments | `content/fragments/` |
+| Registry and research source records | `content/data/` |
+| Canonical numerical/evidence JSON | `assets/data/` |
+| Existing static renderer helpers | `scripts/site/` |
+| Independent reference/audit packages | `scripts/validation/<topic>/` |
+| Regression tests and historical records | `tests/`, `docs/` |
 
-Eight fully generated HTML files and `legacy-routes.js` will temporarily use
-`build/compatibility-seeds/` in the first source-layout move. They are bootstrap
-artifacts, not new authored content: today's generator validates some anchors
-before regenerating their destination pages. A stale seed must fail parity;
-regenerate deliberately with the existing generator and review the resulting
-changes. Do not hand-edit a generated seed or take it from a prior `dist` directory.
+For example, edit `labs/channel-geometry/reflection-aperture-core.js`; its emitted
+URL remains `reflection-aperture-core.js`. Edit
+`content/data/research-guides.json`; its emitted path remains
+`site/research-guides.json`. The manifest is the authoritative lookup for every
+source/public pair. Model bytes and public imports are not rewritten or bundled.
 
-The dependency audit checks all root HTML href/src destinations and HTML IDs,
-CSS URL/import references, literal runtime imports/fetches, the explicitly
-verified dynamic course loader, and path-shaped Markdown links. It is not a full
-Markdown/browser parser; mathematical bracket notation is not treated as a file
-URL. JSON provenance uses several different path conventions, so all its original
-files and evidence packages are retained byte-for-byte rather than guessing that
-every code-like JSON string is a local URL.
+## Migration audit is separate
 
-## Migration gate and sunset
+```sh
+node scripts/build-compatibility.cjs --audit-migration --test --reproducible
+```
 
-The independent frozen inventory (368/367 files, 27 HTML and whole-tree hashes)
-prevents dropping unlinked evidence or changing science under an organization-only
-change. It is temporary. After source moves and the Actions cutover preserve the
-public artifact, separate this baseline verifier from the normal build: ordinary
-content edits must derive output from current authoritative sources and mapping,
-not require rebasing hundreds of frozen file hashes. Keep targeted scientific,
-model, export and route regression guards. A later reviewed generator change can
-render before validating anchors or resolve anchors from source/registry, then
-remove the generated compatibility seeds. No such generator change is included
-in phase 1.
+This release-only gate compares the complete artifact with the frozen
+`migration-baseline.json` inventory from commit
+`2c9ef008c3e1d9d3f723ac54e8e55236ee7adb36`. Only the exact reviewed changes to
+`README.md`, `AGENTS.md` and `docs/SITE-ARCHITECTURE.md` are allowed, through their
+before/after fingerprints in `migration-maintainer-deltas.json`. Historical
+scientific validation reports are unchanged. An omitted evidence file or any
+unapproved scientific byte change fails this gate.
+
+The normal authoring build does not read this old snapshot or its exception list.
+A routine content edit does not require rebasing the complete public inventory.
+Permanent targeted numerical, source, export and route tests still apply.
+
+## Temporary generated-page bootstrap
+
+Eight generated HTML pages and `legacy-routes.js` currently reside in
+`build/compatibility-seeds/`. They are temporary generator bootstrap inputs, not
+authored pages: the old renderer validates some destination anchors before
+rendering their new page. The separate `project.gitignore` seed preserves a
+build-only historical input and is not a generated page.
+
+Never hand-edit generated seeds or take them from an unverified old `dist`.
+Adding/removing generated-page anchors still needs the next bounded generator
+refactor: render the complete output first, then perform mandatory link and
+anchor validation against that complete output before publication. That gate
+will remove all nine generated seeds without weakening strict standalone link
+validation. Source relocation does not by itself complete that refactor.
