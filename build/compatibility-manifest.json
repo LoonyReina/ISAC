@@ -240,6 +240,11 @@
       "id": "validators/waveform-design",
       "directory": "scripts/validation/waveform-design",
       "description": "Independent reference, fixtures, audit scripts, and validation evidence for waveform-design"
+    },
+    {
+      "id": "validators/nearfield-gc-sage",
+      "directory": "scripts/validation/nearfield-gc-sage",
+      "description": "Reduced one-bounce GC-SAGE independent references, common observations and numerical evidence"
     }
   ],
   "entries": [
@@ -671,6 +676,13 @@
       "role": "source"
     },
     {
+      "source": "docs/NEARFIELD-GC-SAGE-VALIDATION.md",
+      "compatibility": "docs/NEARFIELD-GC-SAGE-VALIDATION.md",
+      "public": "docs/NEARFIELD-GC-SAGE-VALIDATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
       "source": "docs/NETWORK-VALIDATION.md",
       "compatibility": "docs/NETWORK-VALIDATION.md",
       "public": "docs/NETWORK-VALIDATION.md",
@@ -1059,6 +1071,48 @@
       "source": "labs/near-field/near-field.js",
       "compatibility": "near-field.js",
       "public": "near-field.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/nearfield-gc-sage-core.js",
+      "compatibility": "nearfield-gc-sage-core.js",
+      "public": "nearfield-gc-sage-core.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/nearfield-gc-sage-observations.js",
+      "compatibility": "nearfield-gc-sage-observations.js",
+      "public": "nearfield-gc-sage-observations.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/nearfield-gc-sage-worker.js",
+      "compatibility": "nearfield-gc-sage-worker.js",
+      "public": "nearfield-gc-sage-worker.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/nearfield-gc-sage.css",
+      "compatibility": "nearfield-gc-sage.css",
+      "public": "nearfield-gc-sage.css",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/nearfield-gc-sage.html",
+      "compatibility": "nearfield-gc-sage.html",
+      "public": "nearfield-gc-sage.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/nearfield-gc-sage.js",
+      "compatibility": "nearfield-gc-sage.js",
+      "public": "nearfield-gc-sage.js",
       "owner": "labs/near-field",
       "role": "source"
     },
@@ -2211,6 +2265,412 @@
       "role": "source"
     },
     {
+      "source": "scripts/validation/nearfield-gc-sage/observations/INDEPENDENT-AUDIT.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/INDEPENDENT-AUDIT.md",
+      "public": "scripts/validation/nearfield-gc-sage/observations/INDEPENDENT-AUDIT.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/NOTICE",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/NOTICE",
+      "public": "scripts/validation/nearfield-gc-sage/observations/NOTICE",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/README.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/README.md",
+      "public": "scripts/validation/nearfield-gc-sage/observations/README.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/VERIFICATION.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/VERIFICATION.md",
+      "public": "scripts/validation/nearfield-gc-sage/observations/VERIFICATION.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/fixtures/analytical-noiseless.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/fixtures/analytical-noiseless.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/fixtures/analytical-noiseless.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/fixtures/oracle-association.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/fixtures/oracle-association.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/fixtures/oracle-association.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/independent-audit.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/independent-audit.py",
+      "public": "scripts/validation/nearfield-gc-sage/observations/independent-audit.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/oracle-evaluate-runner.cjs",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/oracle-evaluate-runner.cjs",
+      "public": "scripts/validation/nearfield-gc-sage/observations/oracle-evaluate-runner.cjs",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/oracle-generator.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/oracle-generator.py",
+      "public": "scripts/validation/nearfield-gc-sage/observations/oracle-generator.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/oracle-reference.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/oracle-reference.py",
+      "public": "scripts/validation/nearfield-gc-sage/observations/oracle-reference.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/results/generator-comparison.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/results/generator-comparison.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/results/generator-comparison.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/results/independent-audit.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/results/independent-audit.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/results/independent-audit.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/results/oracle-comparison.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/results/oracle-comparison.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/results/oracle-comparison.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/results/regime-comparison.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/results/regime-comparison.json",
+      "public": "scripts/validation/nearfield-gc-sage/observations/results/regime-comparison.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/observations/verify-regimes.cjs",
+      "compatibility": "scripts/validation/nearfield-gc-sage/observations/verify-regimes.cjs",
+      "public": "scripts/validation/nearfield-gc-sage/observations/verify-regimes.cjs",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/HISTORY-INDEPENDENT-AUDIT.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/HISTORY-INDEPENDENT-AUDIT.md",
+      "public": "scripts/validation/nearfield-gc-sage/port/HISTORY-INDEPENDENT-AUDIT.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/HISTORY.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/HISTORY.md",
+      "public": "scripts/validation/nearfield-gc-sage/port/HISTORY.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md",
+      "public": "scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/NOTICE",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/NOTICE",
+      "public": "scripts/validation/nearfield-gc-sage/port/NOTICE",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/PORT-REPORT.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/PORT-REPORT.md",
+      "public": "scripts/validation/nearfield-gc-sage/port/PORT-REPORT.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/README.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/README.md",
+      "public": "scripts/validation/nearfield-gc-sage/port/README.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/compare-reference.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/compare-reference.py",
+      "public": "scripts/validation/nearfield-gc-sage/port/compare-reference.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent-audit.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent-audit.py",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent-audit.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent-history-audit.js",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent-history-audit.js",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent-history-audit.js",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent-history-inputs.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent-history-inputs.py",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent-history-inputs.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent-runner.js",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent-runner.js",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent-runner.js",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent/cancellation-smoke.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent/cancellation-smoke.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent/cancellation-smoke.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent/fresh-comparison.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent/fresh-comparison.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent/fresh-comparison.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent/history-audit.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent/history-audit.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent/history-audit.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/independent/history-inputs.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/independent/history-inputs.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/independent/history-inputs.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/results/compact-expected.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/results/compact-expected.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/results/compact-expected.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/results/cross-language-summary.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/results/cross-language-summary.json",
+      "public": "scripts/validation/nearfield-gc-sage/port/results/cross-language-summary.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/run-fixture.js",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/run-fixture.js",
+      "public": "scripts/validation/nearfield-gc-sage/port/run-fixture.js",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/port/superseded/pre-history-v0.2.0/gc-sage.js",
+      "compatibility": "scripts/validation/nearfield-gc-sage/port/superseded/pre-history-v0.2.0/gc-sage.js",
+      "public": "scripts/validation/nearfield-gc-sage/port/superseded/pre-history-v0.2.0/gc-sage.js",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/DESIGN-AUDIT.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/DESIGN-AUDIT.md",
+      "public": "scripts/validation/nearfield-gc-sage/reference/DESIGN-AUDIT.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/README.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/README.md",
+      "public": "scripts/validation/nearfield-gc-sage/reference/README.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/VERIFICATION.md",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/VERIFICATION.md",
+      "public": "scripts/validation/nearfield-gc-sage/reference/VERIFICATION.md",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/experiments.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/experiments.py",
+      "public": "scripts/validation/nearfield-gc-sage/reference/experiments.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/export_port_fixture.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/export_port_fixture.py",
+      "public": "scripts/validation/nearfield-gc-sage/reference/export_port_fixture.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-expected.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-expected.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-expected.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-observations.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-observations.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/fixtures/default-observations.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/fixtures/geometry-and-gains.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/fixtures/geometry-and-gains.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/fixtures/geometry-and-gains.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrow-aperture-observations.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrow-aperture-observations.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrow-aperture-observations.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrowband-observations.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrowband-observations.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/fixtures/narrowband-observations.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/gc_sage.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/gc_sage.py",
+      "public": "scripts/validation/nearfield-gc-sage/reference/gc_sage.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/requirements.txt",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/requirements.txt",
+      "public": "scripts/validation/nearfield-gc-sage/reference/requirements.txt",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/absent_second_path_known_order_violated.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/absent_second_path_known_order_violated.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/absent_second_path_known_order_violated.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/alias-guard.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/alias-guard.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/alias-guard.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/default.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/default.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/default.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/heldout-tones.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/heldout-tones.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/heldout-tones.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/narrow_band_20_MHz.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/narrow_band_20_MHz.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/narrow_band_20_MHz.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/noiseless.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/noiseless.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/noiseless.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/reference_blind.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/reference_blind.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/reference_blind.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/small-aperture-seeds.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/small-aperture-seeds.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/small-aperture-seeds.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/snr-seeds.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/snr-seeds.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/snr-seeds.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/results/verification-summary.json",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/results/verification-summary.json",
+      "public": "scripts/validation/nearfield-gc-sage/reference/results/verification-summary.json",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/test_reference.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/test_reference.py",
+      "public": "scripts/validation/nearfield-gc-sage/reference/test_reference.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/nearfield-gc-sage/reference/verify.py",
+      "compatibility": "scripts/validation/nearfield-gc-sage/reference/verify.py",
+      "public": "scripts/validation/nearfield-gc-sage/reference/verify.py",
+      "owner": "validators/nearfield-gc-sage",
+      "role": "source"
+    },
+    {
       "source": "labs/shared-array/shared-array-core.js",
       "compatibility": "shared-array-core.js",
       "public": "shared-array-core.js",
@@ -2477,6 +2937,13 @@
       "role": "source"
     },
     {
+      "source": "tests/helpers/gc-sage-preservation.cjs",
+      "compatibility": "tests/helpers/gc-sage-preservation.cjs",
+      "public": "tests/helpers/gc-sage-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
       "source": "tests/helpers/map-progression-preservation.cjs",
       "compatibility": "tests/helpers/map-progression-preservation.cjs",
       "public": "tests/helpers/map-progression-preservation.cjs",
@@ -2599,6 +3066,41 @@
       "source": "tests/near-field.test.cjs",
       "compatibility": "tests/near-field.test.cjs",
       "public": "tests/near-field.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-gc-sage-core.test.cjs",
+      "compatibility": "tests/nearfield-gc-sage-core.test.cjs",
+      "public": "tests/nearfield-gc-sage-core.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-gc-sage-history.test.cjs",
+      "compatibility": "tests/nearfield-gc-sage-history.test.cjs",
+      "public": "tests/nearfield-gc-sage-history.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-gc-sage-integration.test.cjs",
+      "compatibility": "tests/nearfield-gc-sage-integration.test.cjs",
+      "public": "tests/nearfield-gc-sage-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-gc-sage-observations.test.cjs",
+      "compatibility": "tests/nearfield-gc-sage-observations.test.cjs",
+      "public": "tests/nearfield-gc-sage-observations.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-gc-sage-ui.test.cjs",
+      "compatibility": "tests/nearfield-gc-sage-ui.test.cjs",
+      "public": "tests/nearfield-gc-sage-ui.test.cjs",
       "owner": "validators/regression",
       "role": "source"
     },

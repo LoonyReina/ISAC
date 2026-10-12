@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 // Static contracts and a custom DOM simulation only: not browser, visual, or screen-reader QA.
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
@@ -287,7 +288,7 @@ test('search count includes all typed matches without a hidden cap or repeated u
  const h=setup({html:render(r)});h.search(word);
  const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
  const lessonCount=r.units.length,relationCount=r.knowledgeMap.nodes.length+r.directions.length;
- a.equal(lessonCount,28);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
+ a.equal(lessonCount,registry.units.length);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
  a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,lessonCount);a.equal(h.status.textContent,`找到 ${lessonCount+relationCount} 个入口（${lessonCount} 个课程入口，${relationCount} 个概念或方向）；四阶段路线仍在下方。`);
  a.deepEqual(h.results.children.slice(0,lessonCount).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
  a.ok(h.groups.some(g=>g.textContent.includes(`${lessonCount} 个实验 · ${r.cases.length} 个专题`)));
@@ -325,7 +326,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,registry.units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
@@ -405,7 +406,7 @@ test('three additional source-backed selections preserve the first route and all
   ['beam-design','array','mimo-ofdm-realtime-testbed-2023','sbfd-resource-synchronization-2026','problem-link']
  ];
  a.deepEqual(registry.knowledgeMap.progressions.slice(1,4).map(p=>[p.nodeId,p.unitId,p.guideId,p.nextGuideId]),expected.map(e=>e.slice(0,4)));
- const before=structuredClone(registry);before.knowledgeMap.progressions.splice(1);
+ const before=withoutGCSAGERegistry(registry);before.knowledgeMap.progressions.splice(1);
  const hash=v=>require('node:crypto').createHash('sha256').update(v).digest('hex');
  a.equal(hash(JSON.stringify(before)),'2a8a834a37e7bd94a77a87b645b201dfc81a2f798bfa04eff92dcbd02bc2d5c7');
  const first=template(render(),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';

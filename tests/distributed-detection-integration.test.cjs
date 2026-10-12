@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Integration and provenance contracts only; no numerical, browser or deployment claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -21,7 +22,7 @@ test('two-station detection adds one canonical lesson within the existing eight 
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'networks');
  a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'practice.html#notebook');
- a.equal(r.units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('existing lessons, cases, pages, unrelated directions and legacy links match the current integration snapshot',()=>{
@@ -105,7 +106,7 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes('<strong>28</strong> 个机制实验'));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('15 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
  a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));

@@ -10,7 +10,7 @@ const frontierTraceHashes={
 };
 const frontierTraceIds=Object.keys(frontierTraceHashes);
 function withoutFrontierTraces(data){
- const prior=withoutCapacityExecution(data);
+ const prior=withoutCapacityExecution(require('./gc-sage-preservation.cjs').withoutGCSAGEGuide(data));
  for(const id of frontierTraceIds){
   const matches=prior.cards.filter(c=>c.id===id);
   if(!matches.length)continue;

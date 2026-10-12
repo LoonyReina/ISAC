@@ -3466,7 +3466,8 @@
       },
       "experiment": {
         "targets": [
-          "First independent synthetic known-geometry multi-path fixture; then source ray-simulation settings and Fig8/9 measured fitting/runtime after raw-data access. Separate tiny-core performance from full14page-study reproduction."
+          "Validated reduced known-L=2 synthetic same-observation comparison, fixed-seed SNR/aperture failures and train-only held-out frequencies",
+          "Pending original ray-simulation settings and Fig.5–9 measured fitting/runtime after raw-data access"
         ],
         "baselines": [
           "Scattering-only GC-SAGE with per-channel gain/partial visibility on the same observations as hybrid; first target explicitly restricts both to one bounce",
@@ -3486,38 +3487,62 @@
           "Measured VNA750frequencies and720sequential virtual-array positions are not simultaneous realtime hardware",
           "Reducing element count must not silently reduce the physical aperture; report coordinates and actual tone support"
         ],
-        "unresolved": [],
-        "details": {}
+        "unresolved": [
+          "No paper figure replication or raw VNA experiment",
+          "No universal improvement or geometric-identifiability guarantee",
+          "Conservative all-channel region constraint; visible-only exemption remains ambiguous"
+        ],
+        "details": {
+          "browserDefault": "48 sparse virtual receivers across1.49146747855m,64tones/1GHz,1Tx,reference23,region[0,6.5]×[.05,6.5],knownL2,15dB nominal,seed260501162",
+          "resourceComparison": "Same observation and initializer; same per-family search limits, hybrid adds a candidate family. Actual candidate/refit counts and measured durations are shown, not an equal-total-compute claim.",
+          "apertureConfound": "Left edge stays at x=2m; changing aperture also changes viewpoint/reference position and finite-wall support.",
+          "noiseConvention": "Nominal SNR is calibrated to unblocked clean channel energy; finite support/blockage leaves the noise unchanged. Realized received SNR is evaluation-only.",
+          "failureRetention": "Normal/reference budget:60/80 hybrid converged,29/80 had all labels matched. Reference-blind:80/80 per budget remained unmatched despite convergence. These are bounded grid/default-seed results, not population success probabilities."
+        }
       },
       "implementation": {
-        "classification": "source specification ready; estimator not implemented; existing known-geometry forward helper only",
-        "live": "reflection-aperture-core.js computes five known receivers against known point/plane; no estimation, noise, or GC-SAGE",
-        "offline": null,
-        "details": {}
+        "classification": "implemented and independently validated reduced 2-D one-bounce known-L=2 GC-SAGE inverse estimator; browser lesson implemented, deployed acceptance pending",
+        "live": {
+          "href": "nearfield-gc-sage.html#experiment",
+          "scope": "Actual noisy observations, data-only reference initialization, per-path residual updates, candidate geometry search and per-channel complex-gain fitting for scattering-only and hybrid methods; actual update history and evaluation-only truth are separate."
+        },
+        "offline": {
+          "reference": "scripts/validation/nearfield-gc-sage/reference/gc_sage.py",
+          "scope": "Independent Python reduced estimator; fixed-seed SNR/aperture/failure and train-only held-out-frequency evidence."
+        },
+        "details": {
+          "algorithmVersion": "reduced-gc-sage-2d/0.2.0-all-channel-region",
+          "historySchema": "gc-sage-compact-history/1.0.0",
+          "simulatorVersion": "reduced-gc-sage-observations/1.0.0",
+          "coreSha256": "fe96407e6a09c71aa141d75fecaf26d23e15bbc1514f30ed121262dbdfc3ceda",
+          "simulatorSha256": "598f7eeb3c7a02a6a3b95c198a9c48d9b88f6f276eab422a6fb8d406600b496d"
+        }
       },
       "stages": {
         "source": "audited-for-selected-core",
-        "modelFidelity": "specified",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
-        "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
+        "fullPaper": "partial",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
         "source": "2026-10-12 fixed-v1 technical audit and equation-level one-bounce specification complete; full measured-study source/data contract remains open.",
-        "algorithm": "Estimator not implemented or independently validated. Geometry/reference fixtures are not an executed estimator.",
-        "selectedExperiment": "No Fig.5–9 reproduction. Fig.9 horizontal axis is fitted path count, not iteration count.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "algorithm": "Independent reduced Python/JS kernel, 55 fresh common-observation cases (110 fits) plus six complex-LS stress cases. Passive-history hash separately checked against the audited predecessor on eight cases:180 update boundaries. See scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md and HISTORY-INDEPENDENT-AUDIT.md.",
+        "selectedExperiment": "Reduced synthetic experiments and failure regimes validated; no paper Fig.5–9/TableI–III reproduction. Independent Python uses NumPy RNG; browser simulator has its own declared seeded RNG. Browser offered160 acquisitions×2budgets produced640 actual fits with all failures retained.",
+        "fullPaper": "Partial one-bounce,2-D,knownL=2 computational core only. Multi-bounce/3-D,unknown order,raw measurements and full paper figures remain open.",
+        "latency": "No deployed desktop control-to-result measurements yet. Worker cancellation and bounded controls are tested under VM; numerical-loop timings and paper Fig.9 runtime do not establish browser latency.",
+        "independentValidation": "Simulator/evaluator independent audit:24 tests,5000 fresh SciPy association cases,six analytic generator configurations,eight fresh fits. Owner evidence separately covers480 generator comparisons,1296 assignment cases and640 fit sweep. See scripts/validation/nearfield-gc-sage/observations/INDEPENDENT-AUDIT.md.",
+        "uiLearning": "Prediction, same-Y comparison, actual-history replay, truth reveal and atomic JSON implemented and VM-tested. Final rendered-browser layout, interactions, actual download and latency await deployment."
       },
       "missingImplementation": [
-        "Observation generator and hidden truth boundary",
-        "Residual-path SAGE loop",
-        "Geometric candidate search and LS amplitudes",
-        "Raw measured array data"
+        "Unknown path-count/model-order estimation and improved reference-blind initialization",
+        "Two-/higher-bounce and full3-D estimator",
+        "Raw measured array data and original Fig.5–9/TableI–III reproduction",
+        "Deployed browser/download validation and repeated latency benchmark"
       ],
       "dependencies": [
         "Noisy wideband observation generator and truth-isolated receiver interface",
@@ -3527,9 +3552,9 @@
         "Raw measured data, source search settings and author code/data availability remain unresolved"
       ],
       "blockers": [
-        "No implemented or independently validated estimator",
         "Multi-bounce/full-study processing and raw measured data unavailable",
-        "No measured browser latency; Fig.9 source runtime versus path count is not a browser benchmark"
+        "Reference-only initialization can miss or confuse paths; local convergence does not certify correct geometry",
+        "No measured deployed browser latency; source Fig.9 versus path count is not a browser benchmark"
       ],
       "realtime": {
         "status": "not-measured",
@@ -3556,15 +3581,17 @@
       "evidence": {
         "paperEvidence": "参数模型＋迭代估计＋射线仿真＋实测信道的离线映射；非实时通信原型",
         "existingRunnable": [
-          "reflection-aperture-core.js computes five known receivers against known point/plane; no estimation, noise, or GC-SAGE"
+          "nearfield-gc-sage-core.js: actual reduced inverse estimator; old reflection-aperture-core.js remains a separate known-geometry forward prerequisite"
         ],
-        "currentAudit": "2026-10-12 fixed-v1 technical audit and geometry/reference fixtures complete; no estimator implementation or paper-experiment validation."
+        "currentAudit": "2026-10-12: fixed-v1 source contract, reduced core, passive-history and simulator/evaluator independent numerical gates passed. Browser release gate remains pending."
       },
       "details": {
         "auditCorrections": [
           "Fig.9 plots runtime against path count, not iterations",
           "Per-channel complex gains remove global carrier-phase identifiability; a single tone has no geometry information after profiling these gains",
-          "Reduced model order L=2 and one-bounce assumptions must be explicit; no synthetic mechanism truth enters estimation"
+          "Reduced model order L=2 and one-bounce assumptions must be explicit; no synthetic mechanism truth enters estimation",
+          "Eq.19/21/23 all-channel region guard conservatively requires each modeled reflection interaction point in V, including low/zero-gain channels; prior reference-point-only evidence is superseded rather than silently relabelled.",
+          "Aperture is left anchored and changes viewpoint/support; per-channel gains leave geometry driven by frequency slope, not carrier phase."
         ]
       }
     },

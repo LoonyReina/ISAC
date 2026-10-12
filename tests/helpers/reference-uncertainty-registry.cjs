@@ -31,7 +31,7 @@ function removeExact(items,key,expected,label){
  items.splice(indices[0],1);
 }
 function withoutReferenceUncertainty(registry){
- const old=structuredClone(registry);
+ const old=registry.units.some(u=>u.id==='nearfield-gc-sage')?require('./gc-sage-preservation.cjs').withoutGCSAGERegistry(registry):structuredClone(registry);
  removeExact(old.units,'id',unit,'reference-uncertainty unit');
  removeExact(old.pages,'path',page,'reference-uncertainty page');
  for(const hook of hooks){

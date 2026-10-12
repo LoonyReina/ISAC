@@ -1,0 +1,129 @@
+{
+  "simulator_version": "reduced-gc-sage-observations/1.0.0",
+  "node": "v24.19.0",
+  "source_sha256": "598f7eeb3c7a02a6a3b95c198a9c48d9b88f6f276eab422a6fb8d406600b496d",
+  "reference_evaluation_cases": [
+    {
+      "name": "default/scattering",
+      "pass": true,
+      "sse": 160.56356999860245,
+      "clean_nmse_db": -25.816881835235243,
+      "association": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "default/hybrid",
+      "pass": true,
+      "sse": 156.20700221857695,
+      "clean_nmse_db": -27.62813786551473,
+      "association": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "reference-blind/scattering",
+      "pass": true,
+      "sse": 521.1685416068034,
+      "clean_nmse_db": -9.581877134235384,
+      "association": [
+        1,
+        null
+      ]
+    },
+    {
+      "name": "reference-blind/hybrid",
+      "pass": true,
+      "sse": 521.075678513704,
+      "clean_nmse_db": -9.584567820434991,
+      "association": [
+        1,
+        null
+      ]
+    },
+    {
+      "name": "absent-path/scattering",
+      "pass": true,
+      "sse": 157.5429980233511,
+      "clean_nmse_db": -25.52469281991689,
+      "association": [
+        1,
+        null
+      ]
+    },
+    {
+      "name": "absent-path/hybrid",
+      "pass": true,
+      "sse": 157.08016221564202,
+      "clean_nmse_db": -25.67571215574294,
+      "association": [
+        1,
+        null
+      ]
+    },
+    {
+      "name": "narrowband/scattering",
+      "pass": true,
+      "sse": 270.9483577832691,
+      "clean_nmse_db": -28.057865974487207,
+      "association": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "narrowband/hybrid",
+      "pass": true,
+      "sse": 270.9483577832691,
+      "clean_nmse_db": -28.057865974487207,
+      "association": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "noiseless/scattering",
+      "pass": true,
+      "sse": 3.0791225961742126,
+      "clean_nmse_db": -31.54528773600644,
+      "association": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "noiseless/hybrid",
+      "pass": true,
+      "sse": 0.000021741197938128765,
+      "clean_nmse_db": -83.05672284412952,
+      "association": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "null-geometry",
+      "pass": true,
+      "sse": 156.20700221857695,
+      "clean_nmse_db": -27.62813786551473,
+      "association": [
+        0,
+        1
+      ]
+    }
+  ],
+  "numeric_comparisons": 171,
+  "max_absolute_difference": 5.684341886080801e-13,
+  "max_scaled_difference": 9.605015870338772e-15,
+  "assignment_cases": 1296,
+  "all_passed": true,
+  "deliberate_presentation_changes": [
+    "Scattering-only mechanism score is null/unavailable",
+    "Undefined geometry entries consistently null",
+    "Visibility threshold opt-in and explicitly heuristic",
+    "Infinite conditional condition number serialized as null with reason",
+    "Perpendicular-normal line-offset uses original unit normal instead of reference sign(0) degeneration (independently tested)"
+  ]
+}

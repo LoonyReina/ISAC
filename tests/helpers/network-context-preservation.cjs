@@ -19,7 +19,7 @@ function withoutNetworkContext(data){
  return prior;
 }
 function withoutNetworkProgression(registry){
- const prior=structuredClone(registry),selections=prior.knowledgeMap.progressions;
+ const prior=registry.units.some(u=>u.id==='nearfield-gc-sage')?require('./gc-sage-preservation.cjs').withoutGCSAGERegistry(registry):structuredClone(registry),selections=prior.knowledgeMap.progressions;
  a.equal(selections.length,5,'exactly five reviewed progression selections');
  a.deepEqual(selections[4],progression,'only the declared geometry progression is appended');
  selections.pop();

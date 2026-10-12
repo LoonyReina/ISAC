@@ -1,0 +1,772 @@
+{
+  "scene": {
+    "samples": 48,
+    "tones": 64,
+    "aperture": 1.49146747855,
+    "bandwidth": 1000000000.0,
+    "snr_db": 15.0,
+    "seed": 260501162,
+    "point": [
+      1.0,
+      1.0
+    ],
+    "surface_start": [
+      1.5,
+      2.0
+    ],
+    "surface_end": [
+      2.0,
+      2.0
+    ],
+    "reflection_amplitude": 0.8,
+    "reflection_phase": 0.7,
+    "reflection_visible": false,
+    "reference_blind": false,
+    "relative_point_phase": 0.0
+  },
+  "options": {
+    "delay_grid": 1024,
+    "initializer_sweeps": 20,
+    "angle_grid": 256,
+    "refinement_rounds": 2,
+    "refinement_points": 17,
+    "max_sweeps": 12,
+    "relative_tolerance": 1e-06,
+    "stationary_sweeps": 2
+  },
+  "claim": "Independent reduced two-path one-bounce synthetic estimator; not a reproduction of full GC-SAGE or paper Figures 5-9",
+  "received_snr_db": 12.839724847039095,
+  "noise_variance": 0.0514898772410428,
+  "reference_pair": 23,
+  "reference_truth_visibility_evaluation_only": [
+    true,
+    false
+  ],
+  "reference_delay_search_bounds_ns": [
+    5.770225420066626,
+    55.0
+  ],
+  "sampling_diagnostics": {
+    "frequency_spacing_Hz": 15873015.87301588,
+    "delay_alias_period_ns": 62.99999999999997,
+    "inverse_bandwidth_ns": 1.0,
+    "rx_aperture_m": 1.4914674785499997,
+    "virtual_rx_spacing_m": 0.03173335060744664,
+    "virtual_rx_spacing_at_30GHz_wavelengths": 3.1755319148936003,
+    "samples": 3072,
+    "real_observations": 6144,
+    "free_complex_path_gains": 96,
+    "true_reference_design_condition_evaluation_only": 1.0679855752335694
+  },
+  "same_observations": true,
+  "same_initialization": true,
+  "scattering": {
+    "mode": "scattering",
+    "sse": 157.54299802303797,
+    "relative_residual_db": -13.118132006210498,
+    "clean_nmse_db": -25.524692819934252,
+    "converged": false,
+    "stopping_reason": "sweep budget reached",
+    "sweeps": 12,
+    "trace": [
+      {
+        "sweep": 0,
+        "path": null,
+        "sse": 2563.3058744375367,
+        "accepted": false,
+        "kind": "initial"
+      },
+      {
+        "sweep": 1,
+        "path": 0,
+        "sse": 2271.588458505783,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 2271.588458505783,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 1,
+        "path": 1,
+        "sse": 241.3313794458738,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 241.33137944587378,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 2,
+        "path": 0,
+        "sse": 195.70536278894383,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 195.70536278894383,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 2,
+        "path": 1,
+        "sse": 181.30317345408753,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 181.30317345408753,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 3,
+        "path": 0,
+        "sse": 173.92172749784814,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 173.92172749784814,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 3,
+        "path": 1,
+        "sse": 169.57676017533683,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 169.57676017533683,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 4,
+        "path": 0,
+        "sse": 166.79628408433024,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 166.79628408433027,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 4,
+        "path": 1,
+        "sse": 164.89213035922586,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 164.89213035922586,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 5,
+        "path": 0,
+        "sse": 163.51681558401555,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 163.51681558401552,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 5,
+        "path": 1,
+        "sse": 162.47836328940502,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 162.47836328940502,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 6,
+        "path": 0,
+        "sse": 161.6657329106549,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 161.6657329106549,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 6,
+        "path": 1,
+        "sse": 161.008605055673,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 161.008605055673,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 7,
+        "path": 0,
+        "sse": 160.46340562241437,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 160.46340562241434,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 7,
+        "path": 1,
+        "sse": 160.00021512268478,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 160.00021512268478,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 8,
+        "path": 0,
+        "sse": 159.60002357047318,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 159.60002357047316,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 8,
+        "path": 1,
+        "sse": 159.2504215525861,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 159.2504215525861,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 9,
+        "path": 0,
+        "sse": 158.9413743881239,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.9413743881239,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 9,
+        "path": 1,
+        "sse": 158.66738185239836,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.66738185239836,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 10,
+        "path": 0,
+        "sse": 158.4226606549533,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.4226606549533,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 10,
+        "path": 1,
+        "sse": 158.2047561795531,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.2047561795531,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 11,
+        "path": 0,
+        "sse": 158.00959463714224,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.00959463714224,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 11,
+        "path": 1,
+        "sse": 157.83572530020234,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.83572530020234,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 12,
+        "path": 0,
+        "sse": 157.68070147417853,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.68070147417853,
+        "reflection_subproblem_sse": null
+      },
+      {
+        "sweep": 12,
+        "path": 1,
+        "sse": 157.54299802303797,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.54299802303797,
+        "reflection_subproblem_sse": null
+      }
+    ],
+    "budget": {
+      "delay_candidates": 0,
+      "delay_tone_products": 0,
+      "scattering_candidates": 3684,
+      "reflection_candidates": 0,
+      "scattering_tone_products": 11317248,
+      "reflection_tone_products": 0,
+      "incumbent_tone_products": 73728,
+      "seconds": 0.349024831000861
+    },
+    "initialization_budget": {
+      "delay_candidates": 10317,
+      "delay_tone_products": 660288,
+      "scattering_candidates": 0,
+      "reflection_candidates": 0,
+      "scattering_tone_products": 0,
+      "reflection_tone_products": 0,
+      "incumbent_tone_products": 0,
+      "seconds": 0.016888881000340916
+    },
+    "initialization_reference_delays_ns": [
+      6.141054464326396,
+      10.017566183178133
+    ],
+    "true_reference_delays_ns": [
+      10.000615562174035,
+      14.53682891701466
+    ],
+    "observation_sha256": "7a191dd555fd4c912fdc0424727cb56b55a444b6cac886cbe27919ecc585b332",
+    "evaluation_association_tolerance_ns": 0.5,
+    "unmatched_estimate_indices": [
+      0
+    ],
+    "conditional_gain_design": {
+      "scope": "Linear gain identifiability conditional on fitted geometry; not a proof of geometric or mechanism identifiability",
+      "min_normalized_singular_value": 0.04246337472322466,
+      "max_condition_number": 33.28929747603195,
+      "minimum_channel_rank": 2
+    },
+    "paths": [
+      {
+        "truth_kind": "scattering",
+        "estimated_kind": "scattering",
+        "target_present": true,
+        "matched": true,
+        "reference_delay_error_ns": 0.016950621004097898,
+        "estimated_point": [
+          1.011164726615212,
+          1.0097545486533144
+        ],
+        "estimated_normal": null,
+        "visible_fraction_truth": 1.0,
+        "visible_fraction_estimate": 0.9791666666666666,
+        "visibility_accuracy": 0.9791666666666666,
+        "gain_power": [
+          1.1416550389334172,
+          0.7704568857468493,
+          0.000731464577255481,
+          0.43392047752092805,
+          0.8496950371079895,
+          1.0324074565962735,
+          1.039771366650487,
+          0.9713196924851448,
+          1.0341487804306628,
+          0.9695653183252574,
+          1.0211230678210574,
+          1.0589794112913005,
+          0.9986455452255798,
+          1.0363466517356485,
+          0.9578024888654202,
+          0.9952296510065377,
+          1.052233876468003,
+          0.9934871448265756,
+          1.0465678642708214,
+          0.940839862529388,
+          0.984419651458678,
+          1.0132310987390318,
+          1.0269187025033208,
+          0.9157821728111242,
+          1.006936980834352,
+          0.9633503737446633,
+          1.0327746275071938,
+          0.8990076338643146,
+          1.0079315864233525,
+          0.9662392023770616,
+          0.9235234463642186,
+          0.9382469904485894,
+          1.0164857773564573,
+          1.0264195000376874,
+          0.9502048857014951,
+          0.9827534274857124,
+          1.0061036192390127,
+          0.9989845875645978,
+          1.0649186868901117,
+          0.9797615643486297,
+          1.045218940759492,
+          1.102564511677642,
+          0.9616655323601165,
+          1.0532559249193603,
+          0.9762546053643202,
+          1.0708619372858286,
+          0.9944405440336808,
+          0.9524649032132969
+        ],
+        "visibility_threshold_power": 0.003704994492978704,
+        "interaction_rmse_m": 0.014825732353657927,
+        "point_error_m": 0.014825732353657927
+      },
+      {
+        "truth_kind": "reflection",
+        "target_present": false,
+        "estimated_kind": null,
+        "matched": false,
+        "reference_delay_error_ns": null,
+        "interaction_rmse_m": null,
+        "visible_fraction_truth": 0.0
+      }
+    ],
+    "mechanisms_correct": false
+  },
+  "hybrid": {
+    "mode": "hybrid",
+    "sse": 157.0801622161898,
+    "relative_residual_db": -13.130909653080929,
+    "clean_nmse_db": -25.67571215553494,
+    "converged": false,
+    "stopping_reason": "sweep budget reached",
+    "sweeps": 12,
+    "trace": [
+      {
+        "sweep": 0,
+        "path": null,
+        "sse": 2563.3058744375367,
+        "accepted": false,
+        "kind": "initial"
+      },
+      {
+        "sweep": 1,
+        "path": 0,
+        "sse": 2271.588458505783,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 2271.588458505783,
+        "reflection_subproblem_sse": 2566.9306994588414
+      },
+      {
+        "sweep": 1,
+        "path": 1,
+        "sse": 240.71723598758058,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 241.33137944587378,
+        "reflection_subproblem_sse": 240.71723598758058
+      },
+      {
+        "sweep": 2,
+        "path": 0,
+        "sse": 192.52122519709116,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 192.52122519709116,
+        "reflection_subproblem_sse": 372.39973680916023
+      },
+      {
+        "sweep": 2,
+        "path": 1,
+        "sse": 178.13932251862468,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 180.9497326358536,
+        "reflection_subproblem_sse": 178.13932251862468
+      },
+      {
+        "sweep": 3,
+        "path": 0,
+        "sse": 171.0761298911096,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 171.0761298911096,
+        "reflection_subproblem_sse": 311.68955903875076
+      },
+      {
+        "sweep": 3,
+        "path": 1,
+        "sse": 167.0402097888786,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 170.0510265774734,
+        "reflection_subproblem_sse": 167.04020978887857
+      },
+      {
+        "sweep": 4,
+        "path": 0,
+        "sse": 164.49390604708555,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 164.49390604708555,
+        "reflection_subproblem_sse": 283.44131515228935
+      },
+      {
+        "sweep": 4,
+        "path": 1,
+        "sse": 162.76677828365666,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 165.7488373812477,
+        "reflection_subproblem_sse": 162.76677828365666
+      },
+      {
+        "sweep": 5,
+        "path": 0,
+        "sse": 161.53267968043988,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 161.53267968043988,
+        "reflection_subproblem_sse": 266.19679013378914
+      },
+      {
+        "sweep": 5,
+        "path": 1,
+        "sse": 160.61748557835335,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 163.57567699775262,
+        "reflection_subproblem_sse": 160.61748557835335
+      },
+      {
+        "sweep": 6,
+        "path": 0,
+        "sse": 159.92014877251347,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 159.92014877251347,
+        "reflection_subproblem_sse": 254.17830098694444
+      },
+      {
+        "sweep": 6,
+        "path": 1,
+        "sse": 159.37769246423062,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 162.32626858876418,
+        "reflection_subproblem_sse": 159.3776924642306
+      },
+      {
+        "sweep": 7,
+        "path": 0,
+        "sse": 158.94846554659813,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.94846554659813,
+        "reflection_subproblem_sse": 245.09420403744593
+      },
+      {
+        "sweep": 7,
+        "path": 1,
+        "sse": 158.6036444964323,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 161.55421257679603,
+        "reflection_subproblem_sse": 158.6036444964323
+      },
+      {
+        "sweep": 8,
+        "path": 0,
+        "sse": 158.32262130145568,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 158.32262130145568,
+        "reflection_subproblem_sse": 237.81117595225555
+      },
+      {
+        "sweep": 8,
+        "path": 1,
+        "sse": 158.09032572799944,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 161.05022136218147,
+        "reflection_subproblem_sse": 158.09032572799944
+      },
+      {
+        "sweep": 9,
+        "path": 0,
+        "sse": 157.8955670095831,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.8955670095831,
+        "reflection_subproblem_sse": 231.70393705986544
+      },
+      {
+        "sweep": 9,
+        "path": 1,
+        "sse": 157.72994747558886,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 160.70330438055595,
+        "reflection_subproblem_sse": 157.72994747558886
+      },
+      {
+        "sweep": 10,
+        "path": 0,
+        "sse": 157.58711837202506,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.58711837202503,
+        "reflection_subproblem_sse": 226.40747496684656
+      },
+      {
+        "sweep": 10,
+        "path": 1,
+        "sse": 157.46225303917907,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 160.45073261083087,
+        "reflection_subproblem_sse": 157.46225303917907
+      },
+      {
+        "sweep": 11,
+        "path": 0,
+        "sse": 157.35166527466103,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.35166527466106,
+        "reflection_subproblem_sse": 221.70095989152847
+      },
+      {
+        "sweep": 11,
+        "path": 1,
+        "sse": 157.25251610147086,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 160.25609282932024,
+        "reflection_subproblem_sse": 157.25251610147086
+      },
+      {
+        "sweep": 12,
+        "path": 0,
+        "sse": 157.1625174180481,
+        "accepted": true,
+        "kind": "scattering",
+        "scattering_subproblem_sse": 157.16251741804808,
+        "reflection_subproblem_sse": 217.46333693916242
+      },
+      {
+        "sweep": 12,
+        "path": 1,
+        "sse": 157.08016221618982,
+        "accepted": true,
+        "kind": "reflection",
+        "scattering_subproblem_sse": 160.10557567736876,
+        "reflection_subproblem_sse": 157.08016221618982
+      }
+    ],
+    "budget": {
+      "delay_candidates": 0,
+      "delay_tone_products": 0,
+      "scattering_candidates": 3560,
+      "reflection_candidates": 2974,
+      "scattering_tone_products": 10936320,
+      "reflection_tone_products": 9136128,
+      "incumbent_tone_products": 73728,
+      "seconds": 0.6231812440000795
+    },
+    "initialization_budget": {
+      "delay_candidates": 10317,
+      "delay_tone_products": 660288,
+      "scattering_candidates": 0,
+      "reflection_candidates": 0,
+      "scattering_tone_products": 0,
+      "reflection_tone_products": 0,
+      "incumbent_tone_products": 0,
+      "seconds": 0.016888881000340916
+    },
+    "initialization_reference_delays_ns": [
+      6.141054464326396,
+      10.017566183178133
+    ],
+    "true_reference_delays_ns": [
+      10.000615562174035,
+      14.53682891701466
+    ],
+    "observation_sha256": "7a191dd555fd4c912fdc0424727cb56b55a444b6cac886cbe27919ecc585b332",
+    "evaluation_association_tolerance_ns": 0.5,
+    "unmatched_estimate_indices": [
+      0
+    ],
+    "conditional_gain_design": {
+      "scope": "Linear gain identifiability conditional on fitted geometry; not a proof of geometric or mechanism identifiability",
+      "min_normalized_singular_value": 0.09728092347615164,
+      "max_condition_number": 14.50298439254259,
+      "minimum_channel_rank": 2
+    },
+    "paths": [
+      {
+        "truth_kind": "scattering",
+        "estimated_kind": "reflection",
+        "target_present": true,
+        "matched": true,
+        "reference_delay_error_ns": 0.016950621004097898,
+        "estimated_point": [
+          1.0130605956594962,
+          1.010823936451624
+        ],
+        "estimated_normal": [
+          -0.49068284969258014,
+          0.871338247190819
+        ],
+        "visible_fraction_truth": 1.0,
+        "visible_fraction_estimate": 1.0,
+        "visibility_accuracy": 1.0,
+        "gain_power": [
+          0.8907530608939749,
+          0.817432074595636,
+          0.16217950809790876,
+          0.06977210662378153,
+          0.9295723537941927,
+          1.131162013489008,
+          1.0801271327298823,
+          0.9819208905453815,
+          1.0312618406144194,
+          0.9725712426759693,
+          1.021989312879122,
+          1.0658305125899148,
+          1.000756632685289,
+          1.0379743318570351,
+          0.9603165281463687,
+          0.9947430076016319,
+          1.0548473073498381,
+          0.9927649094319609,
+          1.0445116356408404,
+          0.9418586575902844,
+          0.9844638958724828,
+          1.0128318947222146,
+          1.0269258910473187,
+          0.9157821728111242,
+          1.0068864282648362,
+          0.9632632436198132,
+          1.032935432176283,
+          0.8997647125728239,
+          1.0080669741094865,
+          0.9668252741054503,
+          0.9240415508061298,
+          0.9382559561280174,
+          1.0166118575763907,
+          1.0274133768075255,
+          0.9509307969378713,
+          0.9835020341870372,
+          1.006445108863114,
+          0.9993351813360899,
+          1.0654635325206794,
+          0.9782998355112587,
+          1.0477290463299866,
+          1.1050740802166201,
+          0.9629395606691247,
+          1.0518027942742467,
+          0.9762440577447079,
+          1.071226524571164,
+          0.9937874146759237,
+          0.9554897962907294
+        ],
+        "visibility_threshold_power": 0.003704994492978704,
+        "interaction_rmse_m": 0.08856048519387079,
+        "point_error_m": 0.016962805171599652
+      },
+      {
+        "truth_kind": "reflection",
+        "target_present": false,
+        "estimated_kind": null,
+        "matched": false,
+        "reference_delay_error_ns": null,
+        "interaction_rmse_m": null,
+        "visible_fraction_truth": 0.0
+      }
+    ],
+    "mechanisms_correct": false
+  }
+}

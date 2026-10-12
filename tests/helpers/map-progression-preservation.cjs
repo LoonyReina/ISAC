@@ -279,6 +279,7 @@ const buildLinkValidationHooks={
  ],
 };
 function withoutBuildLinkValidation(file,source){
+ if(file==='site/registry.json')return JSON.stringify(require('./gc-sage-preservation.cjs').withoutGCSAGERegistry(JSON.parse(source)),null,2)+'\n';
  // Remove only the exact reviewed shell and executable-guide additions before
  // reversing deferred hooks; every historical digest stays fixed.
  if(file==='scripts/generate-site.cjs')source=withoutPilotContinuation(source);

@@ -1,0 +1,9 @@
+{
+  "tones": 64,
+  "bandwidth_Hz": 2000000000.0,
+  "declared_max_delay_ns": 55.0,
+  "alias_period_ns": 31.5,
+  "alias_path_length_m": 9.443462427,
+  "refused": true,
+  "reason": "Declared 55 ns delay prior exceeds the 31.5 ns tone-grid alias period; increase the tone count, reduce bandwidth, or explicitly supply an independently justified shorter delay prior"
+}

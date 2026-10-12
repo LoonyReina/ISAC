@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Registry, navigation and preservation checks; these are not browser or scientific validation.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -21,7 +22,7 @@ function resolve(href){
 
 test('off-grid range adds one case-free processing mechanism with honest fixed totals',()=>{
  a.ok(u&&p);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.deepEqual([r.units.length,r.cases.length,r.knowledgeMap.nodes.length,r.directions.length,r.pages.length],[28,15,32,8,24]);
+ a.deepEqual([withoutGCSAGERegistry(r).units.length,r.cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(r).pages.length],[28,15,32,8,24]);
  a.equal(u.title,'离格目标与测距网格');a.equal(u.question,'同一个目标，网格更密就一定测得更准吗？');a.equal(p.title,u.question);
  a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'experiments');
  a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'practice.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');
@@ -82,7 +83,7 @@ test('receiver gains five independent mechanism depths and two repeatable checks
 
 test('canonical case-free entry and notebook projection need no invented source or relaxed query rule',()=>{
  const entries=createLearningEntryResolver(r);a.equal(entries.unitEntry(u),u.href);
- const topics=buildNotebookTopics(r),topic=topics.find(t=>t.id===u.id);a.equal(topics.length,28);
+ const topics=buildNotebookTopics(r),topic=topics.find(t=>t.id===u.id);a.equal(topics.length,r.units.length);
  a.deepEqual(topic,{id:u.id,title:u.title,question:u.question,action:u.action,teachingHref:u.href,experimentHref:u.href});
  a.ok(!Object.hasOwn(topic,'evidenceHref'));a.ok(!Object.hasOwn(topic,'boundaryHref'));a.equal(notebookHref(u.id),p.next);
  for(const href of ['offgrid-range.html?view=1#experiment','offgrid-range.html#missing-anchor','https://example.test/offgrid-range.html#experiment','../offgrid-range.html#experiment']){
@@ -104,7 +105,7 @@ test('generated page shell keeps the fixed notebook query and real prerequisites
 test('generated portals expose the mechanism and accurate totals without adding research cases or bibliography cards',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html');
- for(const [count,label]of [[28,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
+ for(const [count,label]of [[r.units.length,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
  a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.match(reading,/15 个已有主题/);
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);a.doesNotMatch(reading,/id="case-offgrid-range"/);
  const practice=read('practice.html'),topics=JSON.parse(practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1]);

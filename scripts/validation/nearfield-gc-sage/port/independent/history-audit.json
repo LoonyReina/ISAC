@@ -1,0 +1,138 @@
+{
+  "pass": true,
+  "source_sha256": {
+    "current": "fe96407e6a09c71aa141d75fecaf26d23e15bbc1514f30ed121262dbdfc3ceda",
+    "predecessor": "6baeea9ea710162ba91ad8919c33c6b0a5d8f6cf664b8bd2f3ac2442a68fcc68"
+  },
+  "algorithm_version": "reduced-gc-sage-2d/0.2.0-all-channel-region",
+  "history_schema": "gc-sage-compact-history/1.0.0",
+  "records": [
+    {
+      "case": "default",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "default",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "zero-sweeps",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 0,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "zero-sweeps",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 0,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "one-sweep",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 2,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "one-sweep",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 2,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "low-snr",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "low-snr",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "small-aperture",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "small-aperture",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 8,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "narrowband",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 16,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "narrowband",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 16,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "reference-blind",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 24,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "reference-blind",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 24,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "absent-second-path",
+      "mode": "scattering",
+      "pass": true,
+      "boundaries": 24,
+      "bit_identical_old_off_on": true
+    },
+    {
+      "case": "absent-second-path",
+      "mode": "hybrid",
+      "pass": true,
+      "boundaries": 24,
+      "bit_identical_old_off_on": true
+    }
+  ],
+  "total_boundaries": 180,
+  "max_reconstructed_sse_error": 4.547473508864641e-13,
+  "max_recomputed_incumbent_sse_error": 1.1368683772161603e-13,
+  "chosen_sources": {
+    "scattering": 75,
+    "incumbent": 85,
+    "reflection": 20
+  },
+  "coverage": {
+    "mechanism_changes": 27,
+    "incumbent_updates": 85,
+    "unlocalized_states": 48,
+    "rejected_updates": 0
+  },
+  "scope": "Actual snapshots and actual core; post-run replay only. Rejected-update branch may require owner controlled fixture."
+}

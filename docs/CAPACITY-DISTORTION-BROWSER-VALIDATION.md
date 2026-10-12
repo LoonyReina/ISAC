@@ -32,7 +32,7 @@ These are three labelled smoke samples with different cache/model/input conditio
 
 The deployed neutral cost vector b=[0,0], B=0 correctly set the numerical `exactCostBoundary` flag, but the UI incorrectly inferred that feasible support had shrunk. All input symbols actually have minimum cost. The correction checks the actual returned support length: neutral all-symbol support is labelled unchanged; a true restriction such as b=[0,1], B=0 is labelled 1/2 symbols. The numerical core is unchanged. A targeted regression covers both conditions, and the controller asset version is advanced to prevent stale cached wording.
 
-This document records the deployed version above. The subsequent wording patch's local regression is separate from its post-deployment verification.
+Post-deployment check, 2026-10-12 11:31 UTC: PR72 main `8f2af8460a57bf3faabd08e93fae94c8a33e8080`, successful build/deployment `38242620713`, and controller `finite-ba-v2` were verified in Chrome. The neutral preset displayed “全部输入符号均为最低成本；支持未缩减” with p≈[0.119203, 0.880797]. The actual b=[0,1], B=0 boundary displayed “已缩减（1/2个符号）” with p=[1,0]. No numerical regression was observed in this narrow follow-up; the broader benchmark gate below remains open.
 
 ## Coverage remaining open
 
