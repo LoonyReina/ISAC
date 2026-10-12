@@ -39,16 +39,16 @@ test('the existing fixed-v1 guide exposes the bounded estimator as its one prima
 test('exact registry inverse retains all old fields and rejects missing, moved or changed additions',()=>{
  const before=JSON.stringify(r),prior=withoutGCSAGERegistry(r);a.equal(JSON.stringify(r),before);
  a.deepEqual(prior.units,r.units.slice(0,-1));a.deepEqual(prior.pages,r.pages.slice(0,-1));
- for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],r[key]);
+ for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r)[key]);
  for(const change of [x=>x.units.pop(),x=>x.pages.pop(),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>x.units.unshift(x.units.pop()),x=>{x.pages.at(-1).role+=' changed';},x=>{x.directions.find(d=>d.id==='spatial').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);change(x);a.throws(()=>withoutGCSAGERegistry(x));}
  const changed=structuredClone(r);changed.units[0].question+=' unrelated';a.equal(withoutGCSAGERegistry(changed).units[0].question,changed.units[0].question,'unrelated changes are not hidden');
 });
 
-test('exact guide inverse removes only one executable and the approved factual coverage sentence',()=>{
+test('exact guide inverse removes only one executable, factual coverage sentence and exact gain-aware question',()=>{
  const before=JSON.stringify(data),prior=withoutGCSAGEGuide(data);a.equal(JSON.stringify(data),before);
  for(const c of data.cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
- const expected=structuredClone(card(data));delete expected.executable;expected.limits[5]=additions.statusBefore;a.deepEqual(card(prior),expected);
- for(const change of [d=>delete card(d).executable,d=>{card(d).executable.coverage='algorithm-and-selected-figure';},d=>{card(d).executable.href='near-field.html#experiment';},d=>{card(d).limits[5]+=' complete';},d=>d.cards.push(structuredClone(card(d)))]){const d=structuredClone(data);change(d);a.throws(()=>withoutGCSAGEGuide(d));}
+ const expected=structuredClone(card(data));delete expected.executable;expected.limits[5]=additions.statusBefore;expected.question=additions.questionBefore;a.deepEqual(card(prior),expected);
+ for(const change of [d=>delete card(d).executable,d=>{card(d).executable.coverage='algorithm-and-selected-figure';},d=>{card(d).executable.href='near-field.html#experiment';},d=>{card(d).limits[5]+=' complete';},d=>{card(d).question+=' changed';},d=>d.cards.push(structuredClone(card(d)))]){const d=structuredClone(data);change(d);a.throws(()=>withoutGCSAGEGuide(d));}
  const changed=structuredClone(data);card(changed).mechanism+=' unrelated';a.equal(card(withoutGCSAGEGuide(changed)).mechanism,card(changed).mechanism);
 });
 
@@ -64,4 +64,11 @@ test('the runtime boundary is independently audited numerical bytes with no cach
  const worker=read('nearfield-gc-sage-worker.js');a.doesNotMatch(worker,/GCSAGEObservations|evaluation_only|fixtures\/|default-expected|fetch\(/);
  a.match(worker,/nearfield-gc-sage-core\.js/);a.match(worker,/initialize/);a.match(worker,/fit/);
  for(const p of ['scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md','scripts/validation/nearfield-gc-sage/port/HISTORY-INDEPENDENT-AUDIT.md','scripts/validation/nearfield-gc-sage/observations/VERIFICATION.md'])a.ok(page.includes(p)&&fs.existsSync(path.join(root,p)));
+});
+
+
+test('the mapping guide identifies a geometry difference while both estimators retain per-channel gains',()=>{
+ a.equal(card(data).question,additions.questionAfter);a.match(card(data).question,/不同阵元具有不同复增益/);a.doesNotMatch(card(data).question,/全阵列可见/);
+ const html=renderResearchGuides(buildResearchGuides(data,r)),selected=html.split('id="guide-'+additions.guideId+'"')[1].split('</article>')[0];a.ok(selected.includes(additions.questionAfter));
+ a.match(page,/两种方法都|两种|两方法/);a.match(card(data).executable.summary,/均拟合逐通道复增益/);
 });

@@ -13,7 +13,7 @@
     },
     "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record.",
     "fullPaperReproductionsEstablished": 0,
-    "liveTargetLatencyMeasurementsEstablished": 1,
+    "liveTargetLatencyMeasurementsEstablished": 2,
     "additionalCitationAuditStatus": "not-started"
   },
   "trackingContract": {
@@ -3501,7 +3501,7 @@
         }
       },
       "implementation": {
-        "classification": "implemented and independently validated reduced 2-D one-bounce known-L=2 GC-SAGE inverse estimator; browser lesson implemented, deployed acceptance pending",
+        "classification": "implemented and independently validated reduced 2-D one-bounce known-L=2 GC-SAGE inverse estimator; deployed desktop learning and downloaded-record checks passed for this bounded core",
         "live": {
           "href": "nearfield-gc-sage.html#experiment",
           "scope": "Actual noisy observations, data-only reference initialization, per-path residual updates, candidate geometry search and per-channel complex-gain fitting for scattering-only and hybrid methods; actual update history and evaluation-only truth are separate."
@@ -3526,17 +3526,17 @@
         "selectedExperiment": "partial",
         "fullPaper": "partial",
         "liveExecution": "partial-core",
-        "uiLearning": "partial",
-        "latency": "not-measured"
+        "uiLearning": "accepted",
+        "latency": "measured"
       },
       "stageEvidence": {
         "source": "2026-10-12 fixed-v1 technical audit and equation-level one-bounce specification complete; full measured-study source/data contract remains open.",
         "algorithm": "Independent reduced Python/JS kernel, 55 fresh common-observation cases (110 fits) plus six complex-LS stress cases. Passive-history hash separately checked against the audited predecessor on eight cases:180 update boundaries. See scripts/validation/nearfield-gc-sage/port/INDEPENDENT-AUDIT.md and HISTORY-INDEPENDENT-AUDIT.md.",
         "selectedExperiment": "Reduced synthetic experiments and failure regimes validated; no paper Fig.5–9/TableI–III reproduction. Independent Python uses NumPy RNG; browser simulator has its own declared seeded RNG. Browser offered160 acquisitions×2budgets produced640 actual fits with all failures retained.",
         "fullPaper": "Partial one-bounce,2-D,knownL=2 computational core only. Multi-bounce/3-D,unknown order,raw measurements and full paper figures remain open.",
-        "latency": "No deployed desktop control-to-result measurements yet. Worker cancellation and bounded controls are tested under VM; numerical-loop timings and paper Fig.9 runtime do not establish browser latency.",
+        "latency": "Actual first default desktop sample: 940.1 ms sampling-to-complete, 567.3 ms worker. Single observations with unlike settings are not pooled quantiles or a repeatable performance guarantee; repeated fixed-configuration benchmark remains open.",
         "independentValidation": "Simulator/evaluator independent audit:24 tests,5000 fresh SciPy association cases,six analytic generator configurations,eight fresh fits. Owner evidence separately covers480 generator comparisons,1296 assignment cases and640 fit sweep. See scripts/validation/nearfield-gc-sage/observations/INDEPENDENT-AUDIT.md.",
-        "uiLearning": "Prediction, same-Y comparison, actual-history replay, truth reveal and atomic JSON implemented and VM-tested. Final rendered-browser layout, interactions, actual download and latency await deployment."
+        "uiLearning": "2026-10-12 deployed main 8cd2f4e / PR73: actual desktop prediction/run/history/truth/cancellation/reset/stale-input/keyboard/navigation and downloaded-record replay passed. Individual selectable regimes were exercised; not the full 160 browser Cartesian combinations. See docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md."
       },
       "missingImplementation": [
         "Unknown path-count/model-order estimation and improved reference-blind initialization",
@@ -3554,23 +3554,37 @@
       "blockers": [
         "Multi-bounce/full-study processing and raw measured data unavailable",
         "Reference-only initialization can miss or confuse paths; local convergence does not certify correct geometry",
-        "No measured deployed browser latency; source Fig.9 versus path count is not a browser benchmark"
+        "Repeated fixed-configuration browser latency/memory benchmark remains open; individual smoke timings are not a performance guarantee"
       ],
       "realtime": {
-        "status": "not-measured",
-        "measuredLatencyMs": null,
+        "status": "measured",
+        "measuredLatencyMs": 940.1,
         "benchmark": {
-          "device": null,
-          "browser": null,
-          "sampleCount": null,
+          "device": "Desktop browser, viewport width 1180 CSS px and scrollWidth 1165; CPU and operating system not recorded",
+          "browser": "Chrome; version not recorded",
+          "measurementType": "individual-smoke-samples",
+          "sampleCount": 1,
           "medianMs": null,
           "p95Ms": null,
-          "worstMs": null
+          "worstMs": null,
+          "samples": [
+            {
+              "configuration": "first default reduced 2-D, known-L=2 acquisition, both sequential estimators",
+              "resourceState": "first measured run; cache state not recorded",
+              "controlToResultMs": 940.1,
+              "workerMs": 567.3,
+              "includesInputDebounce": false
+            }
+          ],
+          "summaryStatus": "Individual smoke sample; repeated fixed-configuration percentiles remain unmeasured",
+          "evidence": "docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md"
         },
         "details": {
-          "assessment": "Small path/array/frequency estimator is plausible after profiling; full VNA data/model search remains offline benchmark. Do not count forward geometry as algorithm.",
-          "measuredLatencyMs": null,
-          "requirement": "Benchmark actual default and largest permitted domain in a desktop browser; report iteration cap, convergence/residual, cancellation and numerical failure rather than claiming unmeasured real time."
+          "assessment": "Bounded deployed desktop functionality verified; first default sample includes sampling, Worker startup, initialization, both fits, evaluation and result rendering, excluding serialization/download. Method timing depends on fixed sequential order and runtime warm-up.",
+          "initializationMs": 36.4,
+          "scatteringMs": 220.9,
+          "hybridMs": 308.9,
+          "requirement": "Repeated homogeneous default/largest-permitted-domain latency, memory and cancellation benchmarking remains open; source Fig9 versus path count is separate."
         }
       },
       "priority": {
@@ -3583,7 +3597,7 @@
         "existingRunnable": [
           "nearfield-gc-sage-core.js: actual reduced inverse estimator; old reflection-aperture-core.js remains a separate known-geometry forward prerequisite"
         ],
-        "currentAudit": "2026-10-12: fixed-v1 source contract, reduced core, passive-history and simulator/evaluator independent numerical gates passed. Browser release gate remains pending."
+        "currentAudit": "2026-10-12: fixed-v1 source contract, reduced core, passive-history and simulator/evaluator numerical gates passed; deployed desktop and downloaded-record replay passed on main 8cd2f4e. Full-paper coverage and repeated fixed-configuration performance remain open."
       },
       "details": {
         "auditCorrections": [
@@ -3593,6 +3607,15 @@
           "Eq.19/21/23 all-channel region guard conservatively requires each modeled reflection interaction point in V, including low/zero-gain channels; prior reference-point-only evidence is superseded rather than silently relabelled.",
           "Aperture is left anchored and changes viewpoint/support; per-channel gains leave geometry driven by frequency slope, not carrier phase."
         ]
+      },
+      "liveValidation": {
+        "evidence": "docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md",
+        "sourceCommit": "8cd2f4e432bed3150a978c48763f19ee1e05a742",
+        "deploymentRun": "38246933365",
+        "coverage": "Bounded reduced core only; full paper remains partial",
+        "observationSha256": "20a915dff2f601ec31570dc1188984f44f26437ffa45a977907dc90a3eb9fcfc",
+        "downloadReplayMaximumSseDifference": 2.85e-14,
+        "downloadReplayMaximumStateDifference": 4.45e-16
       }
     },
     {
@@ -3625,8 +3648,8 @@
         },
         "paperIdentity": "arxiv:1711.05220",
         "fixedSourceIdentity": "arxiv:1711.05220v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "e79052feb8fd898002a71c9b1f20fd75cb757159b6e92071e97812e85b62d798",
+        "hashStatus": "recorded",
         "details": {
           "doi": "https://doi.org/10.1109/tsp.2018.2847648",
           "frozenAuditNote": "2026-10-10 核对固定 v1 严格设计机制；独立复数推导、双实现数值检查与小规模约束求解交叉验证，不代表完整论文复现",
@@ -3690,8 +3713,11 @@
         "details": {}
       },
       "implementation": {
-        "classification": "offline authentic strict-covariance solver; browser evaluates stored solutions",
-        "live": "waveform.js selects one of 27 stored X states; waveform-core.evaluate computes HX, sample covariance, residuals, energy and 181 pattern points from those arrays. It does not run SVD or solve new inputs.",
+        "classification": "fresh-input strict-covariance runtime implemented and independently validated; other paper branches and full figures open",
+        "live": {
+          "href": "waveform-design.html#experiment",
+          "scope": "Actual complex Cholesky/Jacobi SVD with full rank-deficient completion; recomputed same-covariance DFT reference, signed bound gap, matrices and cost ledger. Old27states remain separately labelled offline."
+        },
         "offline": "generate-waveform.py solve(H,S,R) performs complex Cholesky plus thin SVD and computes the nuclear-norm global bound.",
         "details": {
           "entryPoints": [
@@ -3736,41 +3762,56 @@
             "maxCovarianceResidual": 9.168797198788009e-16,
             "maxObjectiveGap": 7.105427357601002e-15,
             "browserLatencyMs": null
+          },
+          "liveCore": {
+            "core": "labs/waveform-design/procrustes-core.js",
+            "coreSha256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+            "sourceEquations": "Fixedv1 §III Eqs8–15",
+            "supportedAPI": "N,K≤32;N≤L≤128;Hermitian positive R,condition<1e12;strict finite/certificate validation",
+            "teachingBudget": "N≤16,K≤8,N≤L≤64;actual tr(R) and blockenergyreported",
+            "independentCoreChecks": 450,
+            "teachingNodeVMTests": 29,
+            "independentWorkerUIReviewCases": 16,
+            "freshReferenceComparison": "Teaching-layer check: 19 fixed + 32 fresh problems re-solved in JavaScript and independent Python; distinct from core 19 fixed + 328 fresh author checks",
+            "browserAccepted": false
           }
         }
       },
       "stages": {
-        "source": "audited-partial",
+        "source": "audited-for-selected-core",
         "modelFidelity": "partial",
-        "algorithm": "partial-offline",
+        "algorithm": "partial-live",
         "independentValidation": "partial",
-        "selectedExperiment": "pending",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "stored-solution-evaluation",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "offline authentic strict-covariance solver; browser evaluates stored solutions",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "2026-10-12 fixedv1 strict branch and paper experiment settings independently audited; original source/version/frozen earlier audit remain recorded.",
+        "algorithm": "Actual fresh-input strict-covariance Cholesky/complex Jacobi SVD, complete null-space directions and global objective certificate. Weighted tradeoff and constant-modulus branches remain open.",
+        "selectedExperiment": "256paired disclosed-seed omnidirectional source-parameter trials N16,K4,L20,Pt1,iidCN(0,1)H,unitQPSK. A declared parameter slice only; full original Figs3–4, direction design and averaging/ZF conventions remain open.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "Node worst679.5ms belongs to an identified numerical audit environment, not browser control-to-result timing. Actual browser measurements remain open.",
+        "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md.",
+        "uiLearning": "29focused tests and16independent Worker/UI review cases passed before site integration; deployed layout/keyboard/download and actualbrowser latency pending."
       },
       "missingImplementation": [
-        "Runtime solving is absent even for the strict branch",
-        "Weighted tradeoff and CMC branch-and-bound absent",
-        "Original reference-covariance construction and original figure sweeps absent"
+        "Weighted tradeoff and constant-modulus branch-and-bound",
+        "Original three-direction reference-covariance designer and full figure sweeps/ZF/averaging conventions",
+        "Actual deployed browser/download acceptance and repeated latency benchmark"
       ],
       "dependencies": [
-        "Audited complex SVD/Cholesky backend usable in the browser or an explicitly connected compute backend",
-        "Continuous input validation and L>=N / positive-definite covariance contract",
-        "Independent solver/objective/constraint oracle",
-        "A certified bound-gap implementation for the CMC branch; do not substitute a local optimizer while calling it global"
+        "Independent source/settings for remaining weighted and constant-modulus branches",
+        "Original directional covariance, ZF receiver/normalization and averaging settings",
+        "Bound-gap certification for constant-modulus search; a local optimum must not be called global",
+        "Actual supported-browser timing and publication checks"
       ],
       "blockers": [
-        "Runtime solving is absent even for the strict branch",
-        "Weighted tradeoff and CMC branch-and-bound absent"
+        "Weighted tradeoff and constant-modulus branch-and-bound absent",
+        "Original directional designer and complete paper figures open",
+        "Deployed browser/latency acceptance pending"
       ],
       "realtime": {
         "status": "not-measured",
@@ -3798,7 +3839,15 @@
           "startDataAccessInParallel": false
         }
       },
-      "evidence": {},
+      "evidence": {
+        "liveCore": {
+          "report": "docs/WAVEFORM-LIVE-VALIDATION.md",
+          "coreReview": "scripts/validation/waveform-design/INDEPENDENT_LIVE_REVIEW.md",
+          "reference": "scripts/validation/waveform-design/independent_procrustes_reference.py",
+          "freshValidation": "scripts/validation/waveform-design/waveform-live-validation.json",
+          "historicalEvidence": "Original implementation.details/evidenceFileHashes remain historical, not relabelled as fresh runtime coverage"
+        }
+      },
       "details": {
         "existingRegistryComparison": {
           "unknowns": [

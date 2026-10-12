@@ -29,7 +29,7 @@ test('existing lessons, cases, pages, unrelated directions and legacy links matc
  // The case-free off-grid mechanism changes only its own unit/page and receiver depth;
  // offgrid-range-integration.test.cjs also locks every earlier unit/page and all case evidence.
  a.equal(hash(beforeReferenceUncertainty.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
- a.equal(hash(r.cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r).cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
  a.equal(hash(beforeReferenceUncertainty.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
  // Normalize the exact new mechanism hooks first; retain the older reading-only scope normalization.
  const historicalDirections=structuredClone(beforeReferenceUncertainty.directions.filter(x=>x.id!=='networks'));
@@ -88,7 +88,7 @@ test('resource and metric metadata bound sufficiency, fixed Pfa and two-way scal
 });
 
 test('nine influence cards and eight active entries retain their exact evidence bytes',()=>{
- a.equal(hash(read(r.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(r.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
  a.equal(data.cards.length,9);a.equal(data.cards.filter(x=>x.caseId).length,8);a.deepEqual(data.cards.filter(x=>!x.caseId).map(x=>x.id),['deepsense']);a.ok(data.cards.every(x=>x.caseId!==c.id));
 });
 

@@ -44,4 +44,4 @@ From canonical source, run `node scripts/build-compatibility.cjs --test --reprod
 
 In the built artifact, numerical evidence scripts are ordinary local Node/Python programs; Python uses the declared NumPy/SciPy environment. See each package README for commands. The local full regression result is recorded by the release gate rather than hard-coded as a permanent whole-site content count.
 
-Pending: actual deployed desktop interactions/download, measured browser latency and repeated fixed-configuration performance; unknown path count, robust reference-blind initialization, multi-bounce/3-D, raw VNA data and complete paper experiment coverage. No whole-paper completion is claimed.
+Deployed desktop interactions/download and individual timing checks passed on 2026-10-12; see [the dated browser record](NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md). Pending: repeated fixed-configuration performance; unknown path count, robust reference-blind initialization, multi-bounce/3-D, raw VNA data and complete paper experiment coverage. No whole-paper completion is claimed.

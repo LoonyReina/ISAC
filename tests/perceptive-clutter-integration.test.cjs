@@ -395,7 +395,7 @@ test('all original beginner entries and proposed work survive the narrowly scope
 
 test('all nine metrics, endorsements and social snapshots are deeply equal and only the existing perceptive entry changes',()=>{
  a.deepEqual(data.cards.map(({id,metrics,endorsements,socialDiscussion})=>({id,metrics,endorsements,socialDiscussion})),expectedEvidence);
- const preserved=structuredClone(data),card=preserved.cards.find(c=>c.id==='perceptive');delete card.caseId;delete card.readingPlan;
+ const preserved=require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveCatalog(data),card=preserved.cards.find(c=>c.id==='perceptive');delete card.caseId;delete card.readingPlan;
  // Normalize only the later authorized mu_mimo activation before checking this earlier complete-directory snapshot.
  const shared=preserved.cards.find(c=>c.id==='mu_mimo');shared.caseId=null;shared.readingPlan='计划深读：同一阵列预算下的分离与共享；本站交互尚未实现。';
  // Every other card field, directory field, timestamp, title, source URL and influence claim stays byte-equivalent after JSON parsing.

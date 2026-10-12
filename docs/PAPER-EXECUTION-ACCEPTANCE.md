@@ -37,6 +37,8 @@ List transmitted variables, channel/state model, observed arrays and dimensions,
 
 Map each meaningful equation or pseudocode step to a pure numerical function. Preserve the paper’s objective, constraints, updates and information flow. A different optimizer or reduced dimension can be acceptable only with a stated equivalence or a clearly labelled deviation. Store all solver tolerances, initializations, iteration limits, feasibility/convergence diagnostics and failure reasons.
 
+Finite input entries alone are not a numerical-validity certificate. Require finite derived energies, residuals, objective values, normalization factors, projection/constraint errors and convergence thresholds throughout the core and its UI/model adapter. Check projection accuracy against the declared tolerance before accepting an outer update or convergence claim. An overflowing norm, denominator or tolerance must not turn an `Infinity <= Infinity` comparison into success. Use stable scaling where justified; otherwise reject with a numerical-range reason, without claiming the underlying mathematical problem is infeasible. Export must reject unexpected NaN/Infinity rather than silently converting it to null; genuinely unavailable diagnostics need an explicit status/reason and must not be treated as certified values. Add extreme finite-scale, near-degenerate and malformed-result regressions at both the solver and presentation/export boundary.
+
 Require a reduced but genuine instance that exercises the distinguishing mechanism. Do not replace atomic-norm optimization by a dense search, a trained network by a hand-tuned rule, or an iterative receiver by its oracle solution while retaining the paper’s name.
 
 ### 4. Validate independently

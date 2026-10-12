@@ -89,7 +89,7 @@ test('exact deferred-build injections normalize to all seven original source byt
   for(const {before,after}of buildLinkValidationHooks[file]){
    a.equal(injected.split(before).length,2,file+' exact original hook');injected=injected.replace(before,()=>after);
   }
-  const normalized=file==='scripts/generate-site.cjs'?withoutPilotContinuation(source):file==='scripts/research-guides.cjs'?withoutCapacityExecutionRenderer(source):source;
+  const normalized=file==='scripts/generate-site.cjs'?withoutPilotContinuation(source):file==='scripts/research-guides.cjs'?withoutCapacityExecutionRenderer(source):file==='scripts/render-research-directory.cjs'?require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRenderer(source):source;
   a.equal(injected,normalized,file+' only the reviewed deferred hooks differ after exact scoped additions are removed');
  }
 });

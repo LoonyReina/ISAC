@@ -3,8 +3,16 @@
 const {createLearningEntryResolver}=require('./learning-entry.cjs');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const link=(href,label)=>`<a href="${esc(href)}">${esc(label)}</a>`;
+// Optional algorithm status is local teaching coverage, never a citation or whole-paper claim.
+function executionStatus(card){
+ if(!Object.hasOwn(card,'executionStatus'))return '独立机制模型，非完整论文复现';
+ const e=card.executionStatus;
+ if(!e||typeof e!=='object'||Array.isArray(e)||Object.keys(e).sort().join(',')!=='scope,status'||e.status!=='validated-algorithm-core'||typeof e.scope!=='string'||!e.scope.trim()||e.scope.length>100)throw new Error('Invalid catalog execution status');
+ return esc(e.scope)+'：算法核心已数值验证；非完整论文复现';
+}
 function renderResearchDirectory(data, registry, exists, validationContext){
  const learningEntries=createLearningEntryResolver(registry,validationContext);
+ for(const card of data.cards)executionStatus(card);
  function activeUnit(card){
   const c=registry.cases.find(c=>c.id===card.caseId);
   const unit=c&&registry.units.find(u=>u.id===c.unit);
@@ -13,7 +21,7 @@ function renderResearchDirectory(data, registry, exists, validationContext){
  }
  function caseRoute(card){
   const unit=activeUnit(card);
-  if(unit)return `<p class="paper-status">${link(learningEntries.caseEntry(registry.cases.find(c=>c.id===card.caseId)),'进入教学案例 →')}<span>独立机制模型，非完整论文复现</span></p>`;
+  if(unit)return `<p class="paper-status">${link(learningEntries.caseEntry(registry.cases.find(c=>c.id===card.caseId)),'进入教学案例 →')}<span>${executionStatus(card)}</span></p>`;
   return `<p class="paper-status">${card.caseId?'教学案例准备中':'深度交互尚未实现'}<span>可先阅读已核实的原文</span></p>`;
  }
  function card(c){
