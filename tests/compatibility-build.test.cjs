@@ -5,27 +5,29 @@ const root=path.resolve(__dirname,'..'),manifest=JSON.parse(fs.readFileSync(path
 const baseline=JSON.parse(fs.readFileSync(path.join(root,'build/migration-baseline.json'),'utf8'));
 function temp(t){const p=fs.mkdtempSync(path.join(os.tmpdir(),'isac-build-test-'));t.after(()=>fs.rmSync(p,{recursive:true,force:true}));return p;}
 function changed(fn){const m=structuredClone(manifest);fn(m);return m;}
-function fixture(t){const p=temp(t);for(const e of manifest.entries){const dest=path.join(p,e.source);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join(root,e.source),dest);}return p;}
+function fixture(t){const p=temp(t);for(const e of manifest.entries.filter(e=>e.source!==null)){const dest=path.join(p,e.source);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join(root,e.source),dest);}return p;}
 function source(p,compatibility){return path.join(p,manifest.entries.find(e=>e.compatibility===compatibility).source);}
-function sourceRecords(p){return manifest.entries.map(e=>({path:e.source,sha256:M.sha(fs.readFileSync(path.join(p,e.source)))})).sort((a,b)=>a.path.localeCompare(b.path));}
+function sourceRecords(p){return manifest.entries.filter(e=>e.source!==null).map(e=>({path:e.source,sha256:M.sha(fs.readFileSync(path.join(p,e.source)))})).sort((a,b)=>a.path.localeCompare(b.path));}
 function auditFixture(){
  // Model the historical migration independently of today's editable content.
  const deltas={schemaVersion:1,entries:A.MAINTAINER_DOCUMENTS.map(compatibility=>({compatibility,beforeSha256:baseline.entries.find(e=>e.compatibility===compatibility).sha256,afterSha256:M.sha('approved migration doc: '+compatibility)}))};
- const docs=new Map(deltas.entries.map(e=>[e.compatibility,e.afterSha256]));
+ const buildDeltas={schemaVersion:1,entries:A.BUILD_FILES.map(compatibility=>({compatibility,beforeSha256:baseline.entries.find(e=>e.compatibility===compatibility).sha256,afterSha256:M.sha('approved build refactor: '+compatibility)}))};
+ const docs=new Map([...deltas.entries,...buildDeltas.entries].map(e=>[e.compatibility,e.afterSha256]));
  const records=key=>baseline.entries.filter(e=>e[key]!==null).map(e=>({path:e[key],sha256:docs.get(e.compatibility)||e.sha256}));
- return {manifest:{entries:baseline.entries.map(e=>({compatibility:e.compatibility,public:e.public}))},baseline:structuredClone(baseline),deltas,inputs:records('compatibility'),generated:records('compatibility'),publicRecords:records('public')};
+ return {manifest:{entries:baseline.entries.map(e=>({compatibility:e.compatibility,public:e.public}))},baseline:structuredClone(baseline),deltas,buildDeltas,inputs:records('compatibility'),generated:records('compatibility'),publicRecords:records('public')};
 }
 
-test('editable map explicitly owns legacy paths, generated seeds and directly linked evidence',()=>{
+test('editable map explicitly owns legacy paths, declared generated outputs and directly linked evidence',()=>{
  a.equal(M.validateManifest(manifest,root),manifest);a.equal(manifest.schemaVersion,2);
  a.deepEqual(manifest.entries.filter(e=>e.public===null).map(e=>e.compatibility),['.gitignore']);
- a.equal(manifest.entries.filter(e=>e.role==='generated-compatibility-seed').length,9);a.ok(manifest.entries.filter(e=>e.role==='generated-compatibility-seed').every(e=>e.source.startsWith('build/compatibility-seeds/')));
+ a.equal(manifest.entries.filter(e=>e.role==='generated').length,9);a.ok(manifest.entries.filter(e=>e.role==='generated').every(e=>e.source===null));
+ a.deepEqual(fs.readdirSync(path.join(root,'build/compatibility-seeds')),['project.gitignore']);
  for(const f of ['tests/crb-beamforming.test.cjs','tests/crb-beamforming-ui.test.cjs','tests/joint-beamforming.test.cjs','scripts/shared-array-reference/source-audit.md','scripts/generate-waveform.py','data/waveform-states.json'])a.ok(manifest.entries.some(e=>e.public===f),f);
- for(const f of ['scripts/build-compatibility.cjs','scripts/build/compatibility.cjs','scripts/build/migration-audit.cjs','tests/compatibility-build.test.cjs','build/compatibility-manifest.json','build/migration-baseline.json','build/migration-maintainer-deltas.json'])a.ok(!manifest.entries.some(e=>e.public===f),'build machinery is not auto-published');
+ for(const f of ['scripts/build-compatibility.cjs','scripts/build/compatibility.cjs','scripts/build/migration-audit.cjs','tests/compatibility-build.test.cjs','build/compatibility-manifest.json','build/migration-baseline.json','build/migration-maintainer-deltas.json','build/migration-build-deltas.json'])a.ok(!manifest.entries.some(e=>e.public===f),'build machinery is not auto-published');
  a.deepEqual(new Set(manifest.owners.map(o=>o.id.split('/')[0])),new Set(['content','features','labs','shared','validators']));
- a.ok(manifest.entries.some(e=>e.source!==e.compatibility&&e.source.startsWith('labs/')));
+ a.ok(manifest.entries.some(e=>e.source!==null&&e.source!==e.compatibility&&e.source.startsWith('labs/')));
  a.deepEqual(fs.readdirSync(root).filter(f=>f!=='.git'&&fs.lstatSync(path.join(root,f)).isFile()).sort(),['.gitignore','.nojekyll','AGENTS.md','README.md']);
- const pages=manifest.entries.filter(e=>/^[^/]+\.html$/.test(e.compatibility));a.equal(pages.length,27);a.ok(pages.every(e=>e.source.startsWith('content/pages/')||e.source.startsWith('build/compatibility-seeds/')));
+ const pages=manifest.entries.filter(e=>/^[^/]+\.html$/.test(e.compatibility));a.equal(pages.length,27);a.ok(pages.every(e=>e.role==='generated'&&e.source===null||e.source!==null&&e.source.startsWith('content/pages/')));
  a.ok(!fs.readdirSync(root).some(f=>/\.(?:html|js|css)$/.test(f)));
 });
 
@@ -73,13 +75,13 @@ test('clean builds use current sources, preserve dependencies, reproduce indepen
 test('ordinary CSS, fragment and handwritten edits need no fingerprint or seed rebaseline',t=>{
  const p=fixture(t),out=path.join(temp(t),'dist');
  fs.appendFileSync(source(p,'course.css'),'\n/* ordinary editable source */\n');fs.appendFileSync(source(p,'site/content-reading.html'),'\n<p id="editable-build-proof">Editable fragment proof</p>\n');
- fs.appendFileSync(source(p,'foundations.html'),'\n<!-- handwritten edit survives -->\n');fs.appendFileSync(source(p,'index.html'),'\n<!-- stale compatibility seed -->\n');
+ fs.appendFileSync(source(p,'foundations.html'),'\n<!-- handwritten edit survives -->\n');
  const before=sourceRecords(p),result=M.build({root:p,manifest,output:out,reproducible:true});
  a.match(fs.readFileSync(path.join(out,'course.css'),'utf8'),/ordinary editable source/);a.match(fs.readFileSync(path.join(out,'reading.html'),'utf8'),/editable-build-proof/);a.match(fs.readFileSync(path.join(out,'foundations.html'),'utf8'),/handwritten edit survives/);a.match(fs.readFileSync(path.join(out,'index.html'),'utf8'),/<!doctype html>/i);
  a.equal(result.migrationAudit,null);a.deepEqual(sourceRecords(p),before);
  // The ordinary build did not need either historical audit file in this fixture.
  a.equal(fs.existsSync(path.join(p,'build/migration-baseline.json')),false);
- for(const name of ['migration-baseline.json','migration-maintainer-deltas.json'])fs.copyFileSync(path.join(root,'build',name),path.join(p,'build',name));
+ for(const name of ['migration-baseline.json','migration-maintainer-deltas.json','migration-build-deltas.json'])fs.copyFileSync(path.join(root,'build',name),path.join(p,'build',name));
  a.throws(()=>M.build({root:p,manifest,output:path.join(temp(t),'audit-dist'),auditMigration:true}),/Migration/);
  const historical=auditFixture();historical.inputs.find(e=>e.path==='course.css').sha256=M.sha(fs.readFileSync(source(p,'course.css')));a.throws(()=>A.auditMigration(historical),/Migration audit source bytes/);
 });
@@ -125,7 +127,7 @@ test('legacy tests are rejected if they mutate even an otherwise generated stage
 
 test('independent-build reproducibility rejects nondeterministic generated bytes',t=>{
  const p=fixture(t),generator=source(p,'scripts/generate-site.cjs');
- fs.writeFileSync(generator,"const fs=require('node:fs');if(!process.argv.includes('--check'))fs.appendFileSync('index.html','<!-- '+require('node:crypto').randomBytes(16).toString('hex')+' -->');\n");
+ fs.writeFileSync(generator,"if(!process.argv.includes('--check')){\n"+fs.readFileSync(generator,'utf8').replace(/^#![^\n]*\n/,'')+"\nfs.appendFileSync('index.html','<!-- '+require('node:crypto').randomBytes(16).toString('hex')+' -->');\n}\n");
  a.throws(()=>M.build({root:p,manifest,output:path.join(temp(t),'dist'),reproducible:true}),/Independent clean builds differ/);
 });
 
@@ -145,7 +147,7 @@ test('migration exceptions are exactly three named documents with exact before/a
 
 test('editing a research-guide question updates reading.html without changing frozen audit data or seeds',t=>{
  const p=fixture(t),out=path.join(temp(t),'dist'),guide=source(p,'site/research-guides.json');
- const seeds=()=>manifest.entries.filter(e=>e.role==='generated-compatibility-seed').map(e=>({path:e.source,sha256:M.sha(fs.readFileSync(path.join(p,e.source)))}));
+ const seeds=()=>fs.readdirSync(path.join(p,'build/compatibility-seeds'));
  const beforeSeeds=seeds();M.build({root:p,manifest,output:out});const before=M.treeRecords(out);
  const content=JSON.parse(fs.readFileSync(guide,'utf8'));content.cards[0].question+=' Editable research question proof';fs.writeFileSync(guide,JSON.stringify(content,null,2)+'\n');
  a.throws(()=>M.build({root:p,manifest,output:out,check:true}),/output changed/);a.deepEqual(M.treeRecords(out),before);
@@ -157,8 +159,60 @@ test('editing a research-guide question updates reading.html without changing fr
 test('the migration allowance file retains only the reviewed maintainer-document hashes',()=>{
  const deltas=JSON.parse(fs.readFileSync(path.join(root,'build/migration-maintainer-deltas.json'),'utf8'));A.validateDeltas(deltas,baseline);
  a.deepEqual(Object.fromEntries(deltas.entries.map(e=>[e.compatibility,e.afterSha256])),{
-  'README.md':'bcf9b056a47fde6d96aa140a69931f6301d3e06511d90d48223dee31382a25b2',
-  'AGENTS.md':'ae64ba58b18f2531a438b556c315f7f74cfe95d88d20b02b0ae6d319f06189c1',
-  'docs/SITE-ARCHITECTURE.md':'0d96309242d22fbda15be656267ff0803afe02e9be1e3d54efce718a91e35e71'
+  'README.md':'221611ac55fc968a0d86c32f0af1c06ce8d88f6878657eef57a6c067419b9efd',
+  'AGENTS.md':'5a3a7779577eded6989db8e6d651f750f767f9c5434609efcc825aacce9f4f52',
+  'docs/SITE-ARCHITECTURE.md':'35478597def2bf1c9bf17b344dd23c0e784389e0d9c4b847bc964e10758b4ded'
  });
+});
+
+test('a clean checkout generates all nine declared outputs without a prior dist or generated input',t=>{
+ const p=fixture(t),out=path.join(temp(t),'fresh-dist');
+ for(const e of manifest.entries.filter(e=>e.role==='generated')){
+  a.equal(e.source,null);a.equal(fs.existsSync(path.join(p,e.compatibility)),false);a.equal(fs.existsSync(path.join(p,'build/compatibility-seeds',e.compatibility)),false);
+ }
+ a.equal(fs.existsSync(out),false);const result=M.build({root:p,manifest,output:out,reproducible:true});
+ a.equal(result.htmlPages,27);for(const e of manifest.entries.filter(e=>e.role==='generated'))a.ok(fs.statSync(path.join(out,e.public)).isFile());
+ a.throws(()=>M.validateManifest(changed(m=>{m.entries.find(e=>e.role==='generated').source='build/compatibility-seeds/obsolete.html';}),root),/null source/);
+ a.throws(()=>M.validateManifest(changed(m=>{const e=m.entries.find(e=>e.compatibility==='course.css');e.source=null;e.role='generated';}),root),/supported output/);
+});
+
+test('new guide and generated-page anchor resolve together; missing, removed and duplicate targets preserve old output',t=>{
+ const p=fixture(t),out=path.join(temp(t),'dist'),guidePath=source(p,'site/research-guides.json'),fragment=source(p,'site/content-reading.html');
+ const data=JSON.parse(fs.readFileSync(guidePath,'utf8')),card=structuredClone(data.cards[0]);
+ card.id='fixture-new-guide';card.title='Build fixture: newly authored guide';card.prerequisites=[{label:'New generated-page target',href:'reading.html#fixture-new-target'}];delete card.visualTrace;delete card.contextTrail;
+ data.cards.push(card);data.cards[0].prerequisites.push({label:'New guide target',href:'reading.html#guide-fixture-new-guide'});
+ fs.writeFileSync(guidePath,JSON.stringify(data,null,2)+'\n');fs.appendFileSync(fragment,'\n<section id="fixture-new-target"><a href="#guide-fixture-new-guide">New fixture link</a></section>\n');
+ const before=sourceRecords(p);M.build({root:p,manifest,output:out,reproducible:true});
+ const html=fs.readFileSync(path.join(out,'reading.html'),'utf8');a.match(html,/id="guide-fixture-new-guide"/);a.match(html,/id="fixture-new-target"/);a.deepEqual(sourceRecords(p),before);
+ a.deepEqual(fs.readdirSync(path.join(p,'build/compatibility-seeds')),['project.gitignore']);a.equal(fs.existsSync(path.join(p,'build/migration-baseline.json')),false);
+ const current=M.treeRecords(out),valid=fs.readFileSync(fragment,'utf8');
+ for(const invalid of [valid.replace('id="fixture-new-target"','id="removed-fixture-target"'),valid+'<div id="fixture-new-target"></div>',valid+'<a href="reading.html#missing-unregistered-target">broken</a>',valid+'<a href="/reading.html#reading">escaped project</a>',valid+'<img src="/course.css">',valid+'<a href="../reading.html#reading">escaped parent</a>',valid+'<a href="%2e%2e/reading.html#reading">escaped encoded parent</a>',valid+'<img src="../course.css">']){
+  fs.writeFileSync(fragment,invalid);a.throws(()=>M.build({root:p,manifest,output:out}),/Missing|Duplicate|Invalid|prefix/);a.deepEqual(M.treeRecords(out),current);
+ }
+ fs.writeFileSync(fragment,valid);M.build({root:p,manifest,output:out,check:true});
+});
+
+test('generated declarations cannot conceal missing outputs or unmap files the generator emits',t=>{
+ const p=fixture(t);
+ const missing=changed(m=>{m.entries.push({source:null,compatibility:'unimplemented-output.html',public:'unimplemented-output.html',owner:'features/site-generation',role:'generated'});});
+ a.throws(()=>M.build({root:p,manifest:missing,output:path.join(temp(t),'dist')}),/Output file set/);
+ for(const file of ['index.html','legacy-routes.js']){
+  const removed=changed(m=>{m.entries=m.entries.filter(e=>e.compatibility!==file);});
+  a.throws(()=>M.build({root:p,manifest:removed,output:path.join(temp(t),'dist')}),/Output file set/);
+ }
+});
+
+test('build-source migration exceptions are enumerated individually and reject scientific or missing entries',()=>{
+ const good=auditFixture();a.equal(A.auditMigration(good).buildSources.length,A.BUILD_FILES.length);
+ for(const mutate of [x=>x.buildDeltas.entries.pop(),x=>x.buildDeltas.entries.push({...x.buildDeltas.entries[0]}),x=>{x.buildDeltas.entries[0].compatibility='course-core.js';},x=>{x.buildDeltas.entries[0].beforeSha256='0'.repeat(64);},x=>{x.buildDeltas.entries[0].afterSha256='0'.repeat(64);}]){const changed=auditFixture();mutate(changed);a.throws(()=>A.auditMigration(changed));}
+ const generated=auditFixture(),outputs=new Set(manifest.entries.filter(e=>e.role==='generated').map(e=>e.compatibility));
+ for(const e of generated.manifest.entries)if(outputs.has(e.compatibility))e.source=null;
+ generated.inputs=generated.inputs.filter(e=>!outputs.has(e.path));a.doesNotThrow(()=>A.auditMigration(generated));
+ generated.generated.find(e=>e.path==='reading.html').sha256=M.sha('changed scientific output');a.throws(()=>A.auditMigration(generated),/generated bytes/);
+});
+
+test('the reviewed build-source exception record has exact independent bytes',()=>{
+ const bytes=fs.readFileSync(path.join(root,'build/migration-build-deltas.json'));
+ a.equal(M.sha(bytes),'66d7f5b6a11aa339b584c6a035a1d391c32ce6095e529df3099d5f9ad36ed56b');
+ a.doesNotThrow(()=>A.validateDeltas(JSON.parse(bytes),baseline,A.BUILD_FILES));
 });

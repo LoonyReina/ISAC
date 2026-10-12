@@ -13,12 +13,12 @@
 
 ## 构建、迁移与发布
 
-- `build/compatibility-manifest.json` 显式列出源码 → 旧布局暂存路径 → 公开路径及归属。更改源码目录不能顺带改 URL；不得用广泛复制通配符替代发布清单。已有文档、数据、脚本、测试与可下载证据的公开路径均需保留。
-- 从当前权威源码运行 `node scripts/build-compatibility.cjs --test --reproducible`。构建器在隔离的旧路径布局中执行生成、新鲜度/依赖检查和既有 956 项回归，并独立重建比较产物；不回写源码。构建器自身测试用 `node --test tests/compatibility-build.test.cjs`。
+- `build/compatibility-manifest.json` 版本 2 显式列出源码 → 旧布局暂存路径 → 公开路径及归属；九个生成产物保留各字段，以 `role: "generated"`、`source: null` 标明无需输入文件。更改源码目录不能顺带改 URL；不得用广泛复制通配符替代发布清单。已有文档、数据、脚本、测试与可下载证据的公开路径均需保留。
+- 从当前权威源码运行 `node scripts/build-compatibility.cjs --test --reproducible`。构建器在隔离的旧路径布局中执行生成、新鲜度/依赖检查、原有 956 项回归及新增生成校验回归，并独立重建比较产物；不回写源码。构建器自身测试用 `node --test tests/compatibility-build.test.cjs`。
 - `node scripts/build-compatibility.cjs --check` 验证现有 `dist/` 是否与当前源码的新构建完全一致，不是冻结旧内容的门禁。搬迁后不要直接在源码根目录运行 `node --test tests/*.test.cjs` 或旧路径生成器；它们仍依赖旧布局，由构建器负责暂存后调用。
 - 构建/科学验证使用 Node.js 24、Python 3.12、NumPy 2.3.5、SciPy 1.17.0；没有新增 JavaScript 包依赖。浏览器中的网站保持独立静态运行，不依赖这些构建工具。预览用 `python3 -m http.server 8000 --directory dist`。
-- 八张整体生成页面和 `legacy-routes.js` 临时保存在 `build/compatibility-seeds/`，仅为兼容生成器当前先校验目标、再生成的顺序。不要手改种子、不要用旧 `dist/` 回填；权威正文仍来自注册表、片段和生成器。移除种子需要另外审核“先渲染、再校验链接”的重构，不能在本次纯目录迁移中顺便改生成语义。
-- `--audit-migration` 是独立的迁移核验：对照冻结的迁移前清单，仅允许已审核的 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 三份当前维护文档的精确差异。不要将其加入日常内容编辑的冻结门禁，也不要重写旧散列以消除审计失败。
+- 八张整体生成页面和 `legacy-routes.js` 无需种子或旧 `dist/`：先从注册表、片段和生成器在内存中渲染完整页面与路由，再强制校验完整页面集的本地页面链接、锚点及重复 ID，全部通过后才写入暂存区。独立教学入口解析器继续立即严格校验；不得提供跳过最终校验的作者入口。新增指南或生成页锚点只改权威数据/片段并重新构建，不手改产物或重置历史散列。唯一保留的 `build/compatibility-seeds/project.gitignore` 是不发布的历史元数据，不是生成页面输入。
+- `--audit-migration` 是可选的历史迁移核验：保留冻结基线，通过 `build/migration-maintainer-deltas.json` 核对 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 三份当前维护文档的精确差异，并通过 `build/migration-build-deltas.json` 单独核对逐文件列明的必要生成器、辅助程序和测试源码差异；禁止通配符豁免。移除生成种子保留全部 367 个公开路径及 27 张 HTML、运行时资源、模型、数据字节，不把公开构建/测试源码的必要变化伪装成完全无差异。不要将历史审计加入日常内容编辑门禁，也不要重写旧散列以消除审计失败。
 - GitHub Pages 由 `.github/workflows/pages.yml` 验证、构建并发布 `dist/`，保留 `.nojekyll`；不从 `main` 源码根目录发布。PR 只验证，`main` 的 push 或手动工作流才部署。发布旧根入口删除之前先确认 Pages 已切换 GitHub Actions，并核实工作流成功。
 - 提交权威源码、构建配置和映射，不提交/手改 `dist/`。从最新 `main` 创建分支，通过 PR 审核合并。接入清单见 `docs/SITE-ARCHITECTURE.md`，构建细节见 `build/README.md`。
 

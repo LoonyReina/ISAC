@@ -1,6 +1,7 @@
 // Static contracts and a custom DOM simulation only: not browser, visual, or screen-reader QA.
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
+const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json')),renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs'),guideData=JSON.parse(read(registry.researchGuidesFile));
 const render=(r=registry,data=guideData)=>renderMap(r,buildResearchGuides(data,r));
@@ -378,7 +379,7 @@ test('ladder remains a vertical native disclosure with versioned styles and no r
  const css=read('knowledge-map.css');a.match(css,/\.map-progression-steps\{[^}]*border-left:/);a.match(css,/\.map-progression-why>summary\{[^}]*min-height:44px/);a.match(css,/\.map-progression\{[^}]*overflow-wrap:anywhere/);a.ok(read('index.html').includes('knowledge-map.css?v=map-progression-v1'));
  a.doesNotMatch(read('knowledge-map.js'),/progression|researchGuides|contextTrail/);
  a.equal(require('node:crypto').createHash('sha256').update(require('./helpers/research-guide-trace-preservation.cjs').priorGuideSource(guideData)).digest('hex'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
- const generator=read('scripts/generate-site.cjs');a.ok(generator.indexOf('const researchGuides=')<generator.indexOf("const home=pageFor('index.html');"));a.match(generator,/'knowledge-map\.cjs'\)\)\(registry,researchGuides\)/);
+ const generator=withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs'));a.ok(generator.indexOf('const researchGuides=')<generator.indexOf("const home=pageFor('index.html');"));a.match(generator,/'knowledge-map\.cjs'\)\)\(registry,researchGuides\)/);
 });
 
 test('selected guides must remain unique and their relationship and source metadata must pass existing guide validation',()=>{

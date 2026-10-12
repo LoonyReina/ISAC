@@ -14,8 +14,8 @@ function id(value,label){if(typeof value!=='string'||value.length>64||!idPattern
 function list(value,label,min=1){if(!Array.isArray(value)||value.length<min)fail(label);return value;}
 function unique(items,label){if(new Set(items).size!==items.length)fail('duplicate '+label);}
 function https(value,label){text(value,label);let u;try{u=new URL(value);}catch{fail(label+' URL');}if(u.protocol!=='https:'||u.username||u.password||u.hash||u.href!==value)fail(label+' URL');}
-function buildComparisonGroups(registry){
- const entries=createLearningEntryResolver(registry),canonical=createLearningEntryResolver({units:[],cases:[]});
+function buildComparisonGroups(registry,validationContext){
+ const entries=createLearningEntryResolver(registry,validationContext),canonical=createLearningEntryResolver({units:[],cases:[]},validationContext);
  const cases=new Map(registry.cases.map(c=>[c.id,c])),units=new Map(registry.units.map(u=>[u.id,u]));
  const groups=registry.paperComparisonGroups===undefined?[]:list(registry.paperComparisonGroups,'groups',0);
  unique(groups.map(g=>id(g.id,'group')),'group');
@@ -52,8 +52,8 @@ function buildComparisonGroups(registry){
   return {...g,members};
  });
 }
-function renderComparisonGroups(registry){
- const groups=buildComparisonGroups(registry);if(!groups.length)return '';
+function renderComparisonGroups(registry,validationContext){
+ const groups=buildComparisonGroups(registry,validationContext);if(!groups.length)return '';
  const esc=escapeHtml,link=(href,label)=>`<a href="${esc(href)}">${esc(label)}</a>`;
  function renderGroup(g){
   const base='comparison-'+g.id,members=new Map(g.members.map(m=>[m.caseId,m]));

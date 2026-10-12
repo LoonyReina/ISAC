@@ -1,7 +1,7 @@
 'use strict';
 // Registry, navigation and preservation checks; these are not browser or scientific validation.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const {withoutMapProgressions,withoutMapProgressionGenerator}=require('./helpers/map-progression-preservation.cjs');
+const {withoutMapProgressions,withoutMapProgressionGenerator,withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
@@ -129,11 +129,11 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   'scripts/notebook-topics.cjs':'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477',
   'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9'
  };
- for(const [file,digest]of Object.entries(expected))a.equal(hash(read(file)),digest,file);
+ for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,read(file))),digest,file);
  // Later reading-only features add these exact hooks. Preserve
  // the byte-level guard for all other generator behavior rather than silently
  // rebasing its original fingerprint or weakening scientific/notebook checks.
- let generator=withoutReferencePrerequisite(withoutMapProgressionGenerator(read('scripts/generate-site.cjs')));
+ let generator=withoutReferencePrerequisite(withoutMapProgressionGenerator(withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs'))));
  for(const hook of [
   "const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));\n",
   "const {buildResearchGuides,renderResearchGuides,renderGuideDirectionLink}=require(path.join(__dirname,'research-guides.cjs'));\n",

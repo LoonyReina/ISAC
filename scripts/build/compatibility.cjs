@@ -21,13 +21,13 @@ function validateManifest(manifest,root){
  const owners=new Set();
  for(const o of manifest.owners){exactFields(o,['id','directory','description'],'owner');safePath(o.id,'owner');if(o.directory!=='.')safePath(o.directory,'owner directory');insist(typeof o.description==='string'&&o.description.trim()&&!owners.has(o.id.toLowerCase()),'Invalid or duplicate owner');owners.add(o.id.toLowerCase());}
  for(const e of manifest.entries){
-  exactFields(e,['source','compatibility','public','owner','role'],'manifest entry');for(const key of ['source','compatibility'])safePath(e[key],key);if(e.public!==null)safePath(e.public,'public path');
-  insist(['source','generated-compatibility-seed','baseline-metadata'].includes(e.role),'Invalid source role');insist(manifest.owners.some(o=>o.id===e.owner),'Unknown source owner: '+e.owner);
+  exactFields(e,['source','compatibility','public','owner','role'],'manifest entry');safePath(e.compatibility,'compatibility');if(e.role==='generated')insist(e.source===null&&generatedPath(e.compatibility),'Generated outputs require a null source and supported output path');else safePath(e.source,'source');if(e.public!==null)safePath(e.public,'public path');
+  insist(['source','generated','baseline-metadata'].includes(e.role),'Invalid source role');insist(manifest.owners.some(o=>o.id===e.owner),'Unknown source owner: '+e.owner);
  }
- for(const key of ['source','compatibility'])uniquePaths(manifest.entries.map(e=>e[key]),key);uniquePaths(manifest.entries.filter(e=>e.public!==null).map(e=>e.public),'public path');
+ for(const key of ['source','compatibility'])uniquePaths(manifest.entries.filter(e=>e[key]!==null).map(e=>e[key]),key);uniquePaths(manifest.entries.filter(e=>e.public!==null).map(e=>e.public),'public path');
  const compatibility=new Set(manifest.entries.map(e=>e.compatibility));
  for(const required of ['scripts/generate-site.cjs','scripts/generate-waveform.py','scripts/render-research-directory.cjs','scripts/research-guides.cjs','scripts/paper-comparison-groups.cjs','scripts/learning-entry.cjs','scripts/notebook-topics.cjs','scripts/knowledge-map.cjs','site/registry.json','.nojekyll'])insist(compatibility.has(required),'Missing build input: '+required);
- for(const e of manifest.entries)regularFile(root,e.source);
+ for(const e of manifest.entries)if(e.source!==null)regularFile(root,e.source);
  return manifest;
 }
 function copyFile(source,dest){fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(source,dest);}
@@ -47,8 +47,9 @@ function checkDependencies(root,manifest){
  const all=new Map(manifest.entries.filter(e=>e.public!==null).map(e=>[e.public,e])),edges=[];
  const local=(from,raw,kind)=>{
   if(!raw||/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(raw))return;
-  const url=new URL(raw.replace(/&amp;/g,'&'),'https://compatibility.invalid/'+from);insist(url.origin==='https://compatibility.invalid','Unexpected URL origin');
-  let target;try{target=decodeURIComponent(url.pathname.slice(1));}catch{throw Error('Invalid encoded local URL: '+from+' → '+raw);}
+  insist(!raw.startsWith('/')&&!/[\u0000-\u0020\u007f\\]/.test(raw),'Invalid project-relative local URL: '+from+' → '+raw);
+  const url=new URL(raw.replace(/&amp;/g,'&'),'https://compatibility.invalid/ISAC/'+from);insist(url.origin==='https://compatibility.invalid'&&url.pathname.startsWith('/ISAC/'),'Local URL escapes project prefix: '+from+' → '+raw);
+  let target;try{target=decodeURIComponent(url.pathname.slice('/ISAC/'.length));}catch{throw Error('Invalid encoded local URL: '+from+' → '+raw);}
   if(!target)target='index.html';insist(all.has(target),'Unmapped public dependency: '+from+' → '+raw);insist(fs.existsSync(path.join(root,target)),'Missing public dependency: '+target);
   if(url.hash&&target.endsWith('.html')){let fragment;try{fragment=decodeURIComponent(url.hash.slice(1));}catch{throw Error('Invalid local fragment: '+raw);}const text=fs.readFileSync(path.join(root,target),'utf8');insist(text.includes('id="'+fragment+'"')||text.includes("id='"+fragment+"'"),'Missing public fragment: '+from+' → '+raw);}
   edges.push({from,to:target,kind});
@@ -70,10 +71,10 @@ function run(command,args,cwd){const env={...process.env};delete env.NODE_TEST_C
 function generatedPath(file){return /^[^/]+\.html$/.test(file)||file==='legacy-routes.js';}
 function stage(manifest,root,directory,runTests){
  fs.mkdirSync(directory,{recursive:true});const inputs=[];
- for(const e of manifest.entries){const source=regularFile(root,e.source),bytes=fs.readFileSync(source);inputs.push({path:e.compatibility,sha256:sha(bytes)});fs.mkdirSync(path.dirname(path.join(directory,e.compatibility)),{recursive:true});fs.writeFileSync(path.join(directory,e.compatibility),bytes);}
+ for(const e of manifest.entries.filter(e=>e.source!==null)){const source=regularFile(root,e.source),bytes=fs.readFileSync(source);inputs.push({path:e.compatibility,sha256:sha(bytes)});fs.mkdirSync(path.dirname(path.join(directory,e.compatibility)),{recursive:true});fs.writeFileSync(path.join(directory,e.compatibility),bytes);}
  inputs.sort(compare);assertTree(directory,inputs);
  run(process.execPath,['scripts/generate-site.cjs'],directory);
- assertPaths(directory,inputs.map(e=>e.path));
+ assertPaths(directory,manifest.entries.map(e=>e.compatibility));
  const generated=treeRecords(directory),initial=new Map(inputs.map(e=>[e.path,e.sha256]));
  for(const e of generated)insist(generatedPath(e.path)||e.sha256===initial.get(e.path),'Generator mutated a protected source: '+e.path);
  run(process.execPath,['scripts/generate-site.cjs','--check'],directory);assertTree(directory,generated);
@@ -90,7 +91,7 @@ function guardOutput(root,manifest,destination){
   if(stat)insist(!stat.isSymbolicLink(),'Output path must not contain symlinks');if(path.dirname(current)===current)break;
  }
  insist(destination!==root&&!root.startsWith(destination+path.sep),'Output cannot contain the source tree');
- for(const e of manifest.entries){const source=path.resolve(root,e.source);insist(source!==destination&&!source.startsWith(destination+path.sep),'Output overlaps a source input');}
+ for(const e of manifest.entries.filter(e=>e.source!==null)){const source=path.resolve(root,e.source);insist(source!==destination&&!source.startsWith(destination+path.sep),'Output overlaps a source input');}
 }
 function publish(distribution,destination,expected){
  const parent=path.dirname(destination);fs.mkdirSync(parent,{recursive:true});insist(fs.realpathSync(parent)===parent,'Output parent must not contain symlinks');
@@ -122,7 +123,7 @@ function build({root,manifest,output,runTests=false,reproducible=false,check=fal
   if(auditMigration){
    const {auditMigration:verify}=require('./migration-audit.cjs');
    const read=name=>JSON.parse(fs.readFileSync(regularFile(root,'build/'+name),'utf8'));
-   migrationAudit=verify({manifest,baseline:read('migration-baseline.json'),deltas:read('migration-maintainer-deltas.json'),inputs:first.inputs,generated:first.generated,publicRecords:publicExpected});
+   migrationAudit=verify({manifest,baseline:read('migration-baseline.json'),deltas:read('migration-maintainer-deltas.json'),buildDeltas:read('migration-build-deltas.json'),inputs:first.inputs,generated:first.generated,publicRecords:publicExpected});
   }
   // Recheck the destination after subprocesses, before any reads or publication.
   guardOutput(root,manifest,destination);

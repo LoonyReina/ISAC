@@ -4,6 +4,7 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
+const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-multipath-channel'),u=r.units.find(u=>u.id==='multipath-channel'),p=r.pages.find(p=>p.path==='multipath-channel.html');
@@ -48,7 +49,7 @@ test('learning-entry resolver still routes generic lesson links to the question 
  }
  const without=structuredClone(r);delete without.cases.find(x=>x.id===c.id).learningEntry;a.equal(createLearningEntryResolver(without).unitEntry(without.units.find(x=>x.id===u.id)),u.href);
  // PR #37 resolver remains the canonical validation implementation, unchanged by integration.
- a.equal(hash(read('scripts/learning-entry.cjs')),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
+ a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
 });
 
 test('fixed source metadata separates the 2015 paper, 2018 v2 upload and independent teaching design',()=>{

@@ -18,8 +18,10 @@ python3 -m http.server 8000 --directory dist
 ```
 
 The wrapper reconstructs the URL-shaped compatibility workspace from explicit
-source mappings. The unchanged site generator and original 956 regression tests
-run there, with their existing imports and fingerprint assertions intact. Do not
+source mappings, without generated-page seeds or a previous `dist/`. The site
+generator renders the complete page set in memory, validates it, and only then
+writes generated files. The original 956 regressions and added render/validation
+regressions run in that workspace with the existing flat-layout imports. Do not
 run the old flat-layout tests or site generator directly from the source tree.
 Waveform validation uses `--check`: it recomputes scientific invariants without
 rewriting canonical JSON or depending on a particular BLAS SVD sign convention.
@@ -38,11 +40,17 @@ created by the wrapper are removed after completion.
 `compatibility-manifest.json` is the editable publication map. It has no content
 hashes. Each entry identifies:
 
-- `source`: the current authoritative input location
+- `source`: the current authoritative input location, or null for generated output
 - `compatibility`: the path required by existing generators, tests and imports
 - `public`: the preserved public URL path, or null for build-only metadata
 - `owner`: the responsible feature/domain
-- `role`: authored source, temporary generated seed, or baseline metadata
+- `role`: `source`, `generated`, or `baseline-metadata`
+
+The map remains schema version 2 with these five entry fields. Exactly eight HTML
+pages and `legacy-routes.js` have `role: "generated"` and `source: null`; they
+retain explicit compatibility and public paths. They are outputs, not copied
+inputs. Source staging skips null sources and requires the complete mapped file
+set after generation.
 
 There are no publishing globs. New source files need an explicit entry if they
 participate in the public build. Runtime links, assets, anchors, evidence packages
@@ -76,29 +84,47 @@ source/public pair. Model bytes and public imports are not rewritten or bundled.
 node scripts/build-compatibility.cjs --audit-migration --test --reproducible
 ```
 
-This release-only gate compares the complete artifact with the frozen
-`migration-baseline.json` inventory from commit
-`2c9ef008c3e1d9d3f723ac54e8e55236ee7adb36`. Only the exact reviewed changes to
-`README.md`, `AGENTS.md` and `docs/SITE-ARCHITECTURE.md` are allowed, through their
-before/after fingerprints in `migration-maintainer-deltas.json`. Historical
-scientific validation reports are unchanged. An omitted evidence file or any
-unapproved scientific byte change fails this gate.
+This opt-in historical migration gate compares the complete artifact with the
+frozen `migration-baseline.json` inventory from commit
+`2c9ef008c3e1d9d3f723ac54e8e55236ee7adb36`. Exact reviewed changes to the three
+current maintainer documents (`README.md`, `AGENTS.md` and
+`docs/SITE-ARCHITECTURE.md`) remain in `migration-maintainer-deltas.json`. Necessary
+generator, helper and test-source changes are separately enumerated by exact
+path and before/after fingerprints in `migration-build-deltas.json`. There are
+no directory or glob exemptions, and the frozen baseline is not rebased.
 
-The normal authoring build does not read this old snapshot or its exception list.
+This generator refactor preserves all 367 public paths and the bytes of all 27
+HTML pages, runtime assets, numerical models and canonical data. Published
+build-related source and test files necessarily reflect the reviewed
+implementation changes. Historical scientific validation reports are unchanged.
+An omitted evidence file or an unlisted byte change fails the audit.
+
+The normal authoring build does not read this old snapshot or either delta list.
 A routine content edit does not require rebasing the complete public inventory.
 Permanent targeted numerical, source, export and route tests still apply.
 
-## Temporary generated-page bootstrap
+## Clean-source rendering and validation
 
-Eight generated HTML pages and `legacy-routes.js` currently reside in
-`build/compatibility-seeds/`. They are temporary generator bootstrap inputs, not
-authored pages: the old renderer validates some destination anchors before
-rendering their new page. The separate `project.gitignore` seed preserves a
-build-only historical input and is not a generated page.
+The eight generated HTML pages (`index`, `experiments`, `reading`, `practice`,
+`resolution`, `learn`, `overview`, `research`) and `legacy-routes.js` have no
+checked-in bootstrap copies. A clean checkout can build them without seeds or
+prior output. The sole retained `build/compatibility-seeds/project.gitignore`
+file preserves build-only historical metadata; it is neither a generated page
+nor a page-generation input.
 
-Never hand-edit generated seeds or take them from an unverified old `dist`.
-Adding/removing generated-page anchors still needs the next bounded generator
-refactor: render the complete output first, then perform mandatory link and
-anchor validation against that complete output before publication. That gate
-will remove all nine generated seeds without weakening strict standalone link
-validation. Source relocation does not by itself complete that refactor.
+The generator renders all generated pages, updated handwritten-page shells and
+legacy routes into memory before checking destinations. Mandatory validation
+then checks local page links, target fragments and duplicate IDs
+against the complete page set. Nothing is written until that validation passes.
+The wrapper then checks asset/document dependencies before publishing the validated tree.
+The rendering-only resolver does not provide a validation bypass to authors:
+standalone teaching-entry resolution still rejects invalid syntax, missing
+pages, missing fragments and invalid cross-canonical-page entries immediately.
+
+To add a research guide, edit `content/data/research-guides.json` and any required
+registry references. To add a generated-page anchor, edit its canonical fragment
+or generating input. Run the normal commands above; newly rendered destinations
+are checked in the same build. Never edit generated output, restore a removed
+seed, copy a previous `dist/`, or change historical fingerprints to make an
+ordinary content edit build. Tests, freshness, complete-output dependency checks
+and reproducibility remain required independently of the historical audit.

@@ -27,7 +27,7 @@
 - 科学页面中的 `SITE:HEADER`、`SITE:CONTEXT`、`SITE:NEXT` 标记区域由兼容构建中的生成器维护；其余科学正文和 JS 保持手写
 - `build/compatibility-manifest.json` 显式映射源码、旧布局暂存路径和公开路径；`scripts/build-compatibility.cjs` 从当前源码生成 `dist/`，不会把整个源码树按通配符发布
 
-八张整体生成页面与 `legacy-routes.js` 暂存在 `build/compatibility-seeds/`。它们仅用于兼容生成器“先校验部分目标锚点、再生成页面”的顺序，不是正文编辑入口；不要手改，也不要从旧 `dist/` 回填。后续另行审核“先渲染、再校验链接”的生成器重构后再移除这些临时种子。
+八张整体生成页面与 `legacy-routes.js` 直接从权威源码生成，清单中标记为 `role: "generated"`、`source: null`，不再需要生成种子或既有 `dist/`。生成器先在内存中完成页面、共享壳与兼容路由，再对完整页面集执行本地页面链接、锚点和重复 ID 校验；全部通过后才写入暂存区。独立调用的教学入口解析器仍立即严格校验目标。新增研究指南或生成页面锚点时，编辑 `content/data/` 和 `content/fragments/` 中的权威输入并重新构建，不手改产物，也不重置历史散列。`build/compatibility-seeds/project.gitignore` 仅保留为不发布的历史元数据，与生成页面无关。
 
 研究横向按波形/导频、检测/估计、通感权衡、空间感知、多站协作、真实信道、数据驱动感知、原型/标准组织。每个方向纵向按问题直觉、观测模型、互动实验、原文对照、创新边界、复现检验扩展。已有前置实验不标成专项实现，通用计划不标成论文复现；未实现层次不产生死链接。
 
@@ -60,11 +60,11 @@ node scripts/build-compatibility.cjs --check
 python3 -m http.server 8000 --directory dist
 ```
 
-第一条检查构建器；`--test` 在临时旧路径布局中运行既有 956 项回归；`--reproducible` 独立重建并比较完整产物。`--check` 将现有 `dist/` 与当前源码的一次全新构建比较，发现缺失、多余或过期内容即失败，不把迁移前的冻结字节当成日常内容限制。源码搬迁后不要在仓库根目录直接运行旧的 `node --test tests/*.test.cjs`，也不要绕过兼容构建直接调用旧路径生成器。
+第一条检查构建器；`--test` 在临时旧路径布局中运行原有 956 项回归及新增的生成顺序与完整页面校验回归；`--reproducible` 独立重建并比较完整产物。`--check` 将现有 `dist/` 与当前源码的一次全新构建比较，发现缺失、多余或过期内容即失败，不把迁移前的冻结字节当成日常内容限制。源码搬迁后不要在仓库根目录直接运行旧的 `node --test tests/*.test.cjs`，也不要绕过兼容构建直接调用旧路径生成器。
 
 提交权威源码和显式映射；`dist/` 是生成的发布产物，不手改、不作为正文来源。GitHub Pages 由 `.github/workflows/pages.yml` 在 Actions 中验证、构建并上传 `dist/`（含 `.nojekyll`），不再发布 `main` 源码根目录。PR 只执行验证；`main` 的 push 或手动工作流才进入部署。删除旧根目录入口的迁移发布前，必须先确认仓库 Pages 已使用 GitHub Actions，且对应工作流能成功发布兼容产物。
 
-仅在核验本次目录迁移时另外运行 `node scripts/build-compatibility.cjs --audit-migration`：它对照冻结的迁移前清单，只允许已审核的 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 三份维护文档的精确差异，其他公开内容仍须保持兼容。它不是日常构建，也不应通过重写冻结散列来放行后续内容编辑。构建细节见源码中的 `build/README.md`。
+仅在核验历史迁移兼容性时另外运行 `node scripts/build-compatibility.cjs --audit-migration`：它对照冻结的迁移前清单，分别核对 `migration-maintainer-deltas.json` 中三份当前维护文档（`README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md`）的精确差异，以及 `migration-build-deltas.json` 中逐文件列明的必要生成器、辅助程序和测试源码差异；这两份审计清单位于 `build/`，没有通配符豁免。此次移除生成种子保留全部 367 个公开路径，27 张 HTML、运行时资源、模型与数据字节不变；公开的构建相关源码和测试则如实反映实现变化。审计不是日常构建的前置条件，不应通过重写冻结散列来放行后续内容编辑。构建细节见源码中的 `build/README.md`。
 
 [框架验证记录](docs/FRAMEWORK-VALIDATION.md) 与 `docs/*-VALIDATION.md` 保留原日期、当时的路径、命令和实际验证范围；它们不是本次源码迁移的新验收声明。静态检查不能替代浏览器交互、键盘、打印或上线回归。
 

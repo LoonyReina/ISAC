@@ -4,6 +4,7 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
+const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-distributed-detection'),u=r.units.find(u=>u.id==='distributed-detection'),p=r.pages.find(p=>p.path==='distributed-detection.html');
@@ -62,7 +63,7 @@ test('the unchanged central resolver chooses the question for generic entries an
   const body=template(html,id);a.ok(body.includes(`href="${c.learningEntry}">${c.title} →</a>`),id);a.ok(body.includes(`href="${u.href}"`),id);
  }
  const without=structuredClone(r);delete without.cases.find(x=>x.id===c.id).learningEntry;a.equal(createLearningEntryResolver(without).unitEntry(without.units.find(x=>x.id===u.id)),u.href);
- a.equal(hash(read('scripts/learning-entry.cjs')),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
+ a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.ok(html.includes(`data-map-unit="${u.id}"`));
 });
 

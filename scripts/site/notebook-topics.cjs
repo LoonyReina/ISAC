@@ -12,11 +12,11 @@ function validateUnitId(id){
 
 function notebookHref(unitId){return 'practice.html?topic='+validateUnitId(unitId)+'#notebook';}
 
-function buildNotebookTopics(registry){
- const entries=createLearningEntryResolver(registry);
+function buildNotebookTopics(registry,validationContext){
+ const entries=createLearningEntryResolver(registry,validationContext);
  // Case evidence/boundary and explicit experiment links also have to resolve to
  // an existing local page and fragment, without weakening query rejection.
- const canonical=createLearningEntryResolver({units:[],cases:[]});
+ const canonical=createLearningEntryResolver({units:[],cases:[]},validationContext);
  const units=new Set(),cases=new Map();
  for(const unit of registry.units){
   const id=validateUnitId(unit.id);
