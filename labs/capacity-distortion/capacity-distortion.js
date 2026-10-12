@@ -122,7 +122,7 @@
     $('cd-model-note').textContent=inputs.mode==='paper'?(inputs.q===.4?'论文 Fig. 2 固定 q=0.4 配置':'论文二元模型的 q 参数变化（不是原图固定配置）'):inputs.mode==='ternary'?'独立三输入验证扩展；并非论文 Fig. 2/3':'噪声 / 输入成本扩展；并非论文 Fig. 2 原设定';
     updatePrediction();
     const fallbackCount=r.trace.filter(t=>t.innerFallback).length;
-    $('cd-status').textContent=statusText(r)+'；外迭代 '+r.iterations+' 次；从本次控件提交到结果 '+fmt(current.controlToResultMs,1)+' ms（本机本次测量，包含合并输入等待与 Worker 启动/扫描）。'+(fallbackCount?' 所选轨迹有 '+fallbackCount+' 步使用二分回退。':'')+(r.exactCostBoundary?' 精确最低成本支持已缩减。':'');
+    $('cd-status').textContent=statusText(r)+'；外迭代 '+r.iterations+' 次；从本次控件提交到结果 '+fmt(current.controlToResultMs,1)+' ms（本机本次测量，包含合并输入等待与 Worker 启动/扫描）。'+(fallbackCount?' 所选轨迹有 '+fallbackCount+' 步使用二分回退。':'')+(r.exactCostBoundary?(r.support.length<current.model.dimensions.inputs?' 精确最低成本支持已缩减（'+r.support.length+'/'+current.model.dimensions.inputs+' 个符号）。':' 全部输入符号均为最低成本；支持未缩减。'):'');
     $('cd-oracle').disabled=!current.paperOverlay;
     $('cd-overlay-note').textContent=current.paperOverlay?'青虚线：独立解析对照；棕点划线：论文分时线 (0,0)→(q,q)，通信阶段不用反馈感知；淡青水平虚线：允许失真预算的松弛平台，不是新的实际扫描点。方框端点是退化输入直接计算。':'解析二元对照、论文分时线与其预算平台仅对无噪声、无额外输入成本的二元模型有效，当前扩展不显示。';
     $('cd-model-data').textContent=JSON.stringify({ps:current.model.ps,wy:current.model.wy,vz:current.model.vz,loss:current.model.loss,costs:current.model.costs,budget:current.model.budget},null,2);
@@ -133,7 +133,7 @@
       $('cd-frontier-note').textContent='请将 B 调回可行范围。此记录只说明不可行，不含伪造的成功点。';return;
     }
     drawPmf();renderStep();drawFrontier();drawTraces();
-    $('cd-pmf-note').textContent='最终返回 p̄ = '+vector(r.p)+'；c = '+vector(current.risk.costs)+'. '+(inputs.q===0&&inputs.mode!=='ternary'?'q=0：I=D=0，最优分布不唯一；本次返回值不是唯一答案。':'')+(r.exactCostBoundary?' 初始支持已限制在最低成本符号。':'');
+    $('cd-pmf-note').textContent='最终返回 p̄ = '+vector(r.p)+'；c = '+vector(current.risk.costs)+'. '+(inputs.q===0&&inputs.mode!=='ternary'?'q=0：I=D=0，最优分布不唯一；本次返回值不是唯一答案。':'')+(r.exactCostBoundary?(r.support.length<current.model.dimensions.inputs?' 初始支持已限制在最低成本符号。':' 初始支持保留全部输入符号。'):'');
     const certified=current.frontier.filter(p=>p.converged&&p.feasible).length;
     $('cd-frontier-note').textContent=certified+' / '+current.frontier.length+' 个实际 μ 扫描点已认证；未认证点不用于连接最优前沿。扫描 μ = '+current.muGrid.join(', ')+'。有限扫描不是连续区域的穷尽证明。';
   }

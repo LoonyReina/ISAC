@@ -131,8 +131,22 @@ function validate(data) {
       const m = p.realtime.benchmark;
       assert.ok(nonempty(m.device) && nonempty(m.browser));
       assert.ok(Number.isInteger(m.sampleCount) && m.sampleCount > 0);
-      for (const k of ['medianMs','p95Ms','worstMs']) assert.ok(Number.isFinite(m[k]) && m[k] >= 0);
-      assert.ok(m.medianMs <= m.p95Ms && m.p95Ms <= m.worstMs);
+      assert.ok([undefined,'fixed-configuration-summary','individual-smoke-samples'].includes(m.measurementType));
+      if (m.measurementType === 'individual-smoke-samples') {
+        assert.ok(Array.isArray(m.samples) && m.samples.length === m.sampleCount);
+        for (const sample of m.samples) {
+          assert.ok(nonempty(sample.configuration) && nonempty(sample.resourceState));
+          assert.ok(Number.isFinite(sample.controlToResultMs) && sample.controlToResultMs >= 0);
+          assert.ok(sample.workerMs === null || (Number.isFinite(sample.workerMs) && sample.workerMs >= 0 && sample.workerMs <= sample.controlToResultMs));
+          assert.equal(typeof sample.includesInputDebounce, 'boolean');
+        }
+        for (const k of ['medianMs','p95Ms','worstMs']) assert.equal(m[k], null, 'mixed-condition smoke timings have no pooled statistics');
+        assert.ok(nonempty(m.summaryStatus) && nonempty(m.evidence));
+        assert.ok(m.samples.some(sample => sample.controlToResultMs === p.realtime.measuredLatencyMs), 'representative latency must identify an actual sample');
+      } else {
+        for (const k of ['medianMs','p95Ms','worstMs']) assert.ok(Number.isFinite(m[k]) && m[k] >= 0);
+        assert.ok(m.medianMs <= m.p95Ms && m.p95Ms <= m.worstMs);
+      }
     }
     if (p.stages.fullPaper === 'reproduced') {
       assert.equal(p.stages.source, 'complete');
@@ -227,4 +241,17 @@ test('plan checklist covers the same papers and states citation/measurement limi
   assert.match(acceptance, /Per-paper release gates/);
   assert.match(acceptance, /general finite-alphabet/);
   assert.doesNotMatch(text + plan + acceptance, /\/(?:workspace|tmp)\//);
+});
+
+test('measured smoke timings retain real samples without inventing pooled quantiles', () => {
+  const id='tradeoffs-feedback-capacity-distortion-2018', record=backlog.papers.find(p=>p.id===id);
+  if (record.realtime.benchmark.measurementType !== 'individual-smoke-samples') return;
+  const bad = mutate => {const clone=structuredClone(backlog);mutate(clone.papers.find(p=>p.id===id));assert.throws(()=>validate(clone));};
+  bad(p=>p.realtime.benchmark.medianMs=100);
+  bad(p=>p.realtime.benchmark.p95Ms=200);
+  bad(p=>p.realtime.benchmark.samples[0].controlToResultMs=-1);
+  bad(p=>p.realtime.benchmark.samples[0].workerMs=p.realtime.benchmark.samples[0].controlToResultMs+1);
+  bad(p=>p.realtime.benchmark.sampleCount++);
+  bad(p=>p.realtime.benchmark.measurementType='universal-performance-guarantee');
+  bad(p=>p.realtime.measuredLatencyMs=123456);
 });
