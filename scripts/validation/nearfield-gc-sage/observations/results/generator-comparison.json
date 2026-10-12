@@ -1,0 +1,5776 @@
+{
+  "scope": "Independent Python documented PRNG + unmodified reference scene/noise variance; no cross-seed NumPy noise equality claim",
+  "cases": 480,
+  "max_absolute_errors": {
+    "clean_complex": 7.421074851107613e-15,
+    "delays_s": 1.6543612251060553e-24,
+    "bounce_m": 0.0,
+    "noise_complex": 5.79473672968672e-15,
+    "noise_variance": 3.1086244689504383e-15,
+    "normal_standard": 8.881784197001252e-16
+  },
+  "all_passed": true,
+  "source_sha256": "598f7eeb3c7a02a6a3b95c198a9c48d9b88f6f276eab422a6fb8d406600b496d",
+  "records": [
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 5.277940006822452e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 5.79473672968672e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 5.063396036227354e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 5.277940006822452e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 5.79473672968672e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 5.063396036227354e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 3.1209907540287404e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 3.1209907540287404e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 1.5671457702085673e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 1.5632082117998628e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 1.577923392343183e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.5671457702085673e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.5632082117998628e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.577923392343183e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 8.968100940422724e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 1.003264240958173e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 5.551115123125783e-16,
+      "max_noise_error": 8.777083671441752e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 8.968100940422724e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.003264240958173e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 8.777083671441752e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 9.155133597044475e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 9.155133597044475e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 7.447602459741819e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 8.899114524108741e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 8.005932084973443e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 7.447602459741819e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 8.899114524108741e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 8.005932084973443e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 5.613217783960923e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.577566798522237e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 5.613217783960923e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 4.577566798522237e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 2.7894008272968645e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 2.7894008272968645e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.4217791915866692e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 1.4217791915866692e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 7.216449660063518e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 7.216449660063518e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 7.108895957933346e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 7.216449660063518e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 7.216449660063518e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 7.108895957933346e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.847302891456678e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.775249788392736e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.775249788392736e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 4.847302891456678e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 4.775249788392736e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 4.775249788392736e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3714374201337736e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.2887833992611187e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 2.3714374201337736e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.887379141862766e-15,
+      "max_noise_error": 2.2887833992611187e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.531698018113677e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 2.531698018113677e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 1.4217791915866692e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 1.4217791915866692e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 8.252325904466732e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 8.326672684688674e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 8.326672684688674e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 8.252325904466732e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 8.326672684688674e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 8.326672684688674e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.126162952233366e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.518280359883027e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.163336342344337e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 4.126162952233366e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 4.518280359883027e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6905523389740094e-15,
+      "max_noise_error": 4.163336342344337e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 1.897149936107019e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 2.2289299864601655e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 1.790180836524724e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 1.897149936107019e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 2.2289299864601655e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 1.790180836524724e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 1.1226435567921847e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 9.550499576785472e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 1.1226435567921847e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 9.550499576785472e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 5.978733960281817e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 5.900916318210353e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 5.978733960281817e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 5.900916318210353e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 3.608224830031759e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 3.908020529499657e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.421074851107613e-15,
+      "max_noise_error": 3.554447978966673e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 3.608224830031759e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 3.908020529499657e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.05,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.304727555988313e-15,
+      "max_noise_error": 3.554447978966673e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.4895204919483639e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.6011864169946886e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.4043333874306805e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.4895204919483639e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.6011864169946886e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.4043333874306805e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 9.036560719766055e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 8.899114524108741e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 9.036560719766055e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 8.899114524108741e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 5.721958498152797e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 5.721958498152797e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 3.2368285245694683e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 3.348690356123522e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.9893669801409083e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 3.2368285245694683e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 3.348690356123522e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.9893669801409083e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 6.753223014464258e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 6.753223014464258e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.449557262054371e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.449557262054371e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1102230246251565e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1443916996305594e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1102230246251565e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1443916996305594e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1103585416259206e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 9.309503074677274e-17,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1188630228279524e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1103585416259206e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 9.309503074677274e-17,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.1188630228279524e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 2.3603665272841412e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.561790726879384e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.3381095131927032e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.561790726879384e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 1.3381095131927032e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.34977029545232e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.252325904466732e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.010741897413915e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.34977029545232e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.252325904466732e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 8.010741897413915e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.2276033262255756e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.518280359883027e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.0053709487069576e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.2276033262255756e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.518280359883027e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 2.0658801409477063e-15,
+      "max_noise_error": 4.0053709487069576e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 3.123581453758768e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 3.123581453758768e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 1.6910413304902302e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 1.784146017590271e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 1.6653345369377348e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 1.6910413304902302e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 1.784146017590271e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 1.6653345369377348e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 1.0039119183961513e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 9.550499576785472e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 1.0039119183961513e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 9.550499576785472e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 5.36049202688126e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 6.131407058289218e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.828257633024339e-15,
+      "max_noise_error": 5.149762648337517e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 5.36049202688126e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 6.131407058289218e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.716449809854494e-15,
+      "max_noise_error": 5.149762648337517e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 2.5341311739065124e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 2.7465400791133423e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 2.673771110915334e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 2.5341311739065124e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 2.7465400791133423e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 2.673771110915334e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 1.4130832128153977e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 1.3732700395566711e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 1.422862452080264e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 1.4130832128153977e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 1.3732700395566711e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 8.34977029545232e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 8.920730087951354e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 8.908848018021073e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 8.34977029545232e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 8.920730087951354e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 8.908848018021073e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 5.36049202688126e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 5.721958498152797e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.283604593613869e-15,
+      "max_noise_error": 5.572324966150414e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 5.36049202688126e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 5.721958498152797e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.35,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.273443782444743e-15,
+      "max_noise_error": 5.572324966150414e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 6.280369834735101e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 8.882868333007365e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 6.280369834735101e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 8.882868333007365e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.220446049250313e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.6883057536160646e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.2887833992611187e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.237726045655905e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.6883057536160646e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.2887833992611187e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.237726045655905e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 8.326672684688674e-17,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.1123893155135927e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.1102230246251565e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 8.326672684688674e-17,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.1123893155135927e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.1102230246251565e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 6.753223014464258e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 6.684427777288334e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 6.753223014464258e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.449557262054371e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 4.47545209131181e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 4.449557262054371e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 4.47545209131181e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 3.376611507232129e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.5700924586837752e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.1102230246251565e-15,
+      "max_noise_error": 1.6883057536160646e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 1.5700924586837752e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.550499576785472e-16,
+      "max_noise_error": 1.6883057536160646e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 6.280369834735101e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 7.021666937153402e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 6.280369834735101e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 2.8305244335018383e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 2.355138688025663e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 2.8305244335018383e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 2.355138688025663e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 1.3877787807814457e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.9673202119229575e-15,
+      "max_noise_error": 1.3877787807814457e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.2412670766236366e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.3877787807814457e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.3877787807814457e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 3.342213888644167e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 3.342213888644167e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 2.7755575615628914e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 1.8619006149354548e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 2.0014830212433607e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.76985705904379e-15,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 1.8619006149354548e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 2.0014830212433607e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.636721891222372e-15,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 1.3608726004012153e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 1.4432899320127035e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 1.3608726004012153e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 1.1144649932300827e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 1.1133411481696098e-15,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 9.694605782913356e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 1.1144649932300827e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 1.1133411481696098e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 4.710277376051326e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 4.965068306494546e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 4.710277376051326e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 2.7894008272968645e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.297974859785581e-15,
+      "max_noise_error": 2.7833528704240246e-16,
+      "support": 48
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 2.7894008272968645e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 0.75,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.17877453496705e-15,
+      "max_noise_error": 2.7833528704240246e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.9860273225978185e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.2266822963392197e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.094764613337708e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.9860273225978185e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.2266822963392197e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.094764613337708e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 1.1226435567921847e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 9.036560719766055e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 9.485749680535094e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 1.1226435567921847e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 9.036560719766055e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 4.742874840267547e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.9893669801409083e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 3.348690356123522e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 4.577566798522237e-16,
+      "max_noise_error": 2.8305244335018383e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.9893669801409083e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 3.348690356123522e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 20000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.1401849173675503e-16,
+      "max_noise_error": 2.8305244335018383e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 1.3368855554576669e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 1.3368855554576669e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 5.551115123125783e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 3.510833468576701e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 3.510833468576701e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 2.482534153247273e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 2.0014830212433607e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 2.3714374201337736e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.047382306668854e-15,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 2.0014830212433607e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 2.3714374201337736e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 100000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 9.43689570931383e-16,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 3.1209907540287404e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 2.886579864025407e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 3.1209907540287404e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 2.8435583831733384e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 1.669954059090464e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 1.818360945611186e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 1.6653345369377348e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.669954059090464e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.818360945611186e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 1.6653345369377348e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 9.155133597044475e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 8.920730087951354e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 8.010741897413915e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 9.155133597044475e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 8.920730087951354e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 8.010741897413915e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 4.847302891456678e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 5.019559591980757e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 1.8906416838689214e-15,
+      "max_noise_error": 5.019559591980757e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 4.847302891456678e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 5.019559591980757e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 250000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 1.847779371410367e-15,
+      "max_noise_error": 5.019559591980757e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.318213734067276e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.288783399261119e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.3914935841127266e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.318213734067276e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 2.288783399261119e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.1957467920563633e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.1762602059271538e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.2008898127460164e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.1957467920563633e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.1762602059271538e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 1.2008898127460164e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 5.978733960281817e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 5.881301029635769e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 6.473657049138937e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 5.978733960281817e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 5.881301029635769e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 6.473657049138937e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.608224830031759e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.9472488203928496e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.554447978966673e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.608224830031759e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.9472488203928496e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 500000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 3.6654177513682334e-15,
+      "max_noise_error": 3.554447978966673e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 9.930136612989092e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 5,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 1.1102230246251565e-15,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 7.447602459741819e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 8.455206652451151e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 7.108895957933346e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 7.447602459741819e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 8.455206652451151e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 10,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 7.108895957933346e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 3.7238012298709097e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 4.0029660424867215e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 4.0029660424867215e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 3.7238012298709097e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 4.0029660424867215e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 15,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 4.0029660424867215e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 1.8619006149354548e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 2.2247786310271853e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "normal"
+      },
+      "max_clean_error": 7.240322668380536e-15,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 32
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 0,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 1.8619006149354548e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 260501162,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 2.2247786310271853e-16,
+      "support": 9
+    },
+    {
+      "config": {
+        "snrDb": 20,
+        "aperture": 1.49146747855,
+        "bandwidthHz": 1000000000,
+        "seed": 4294967295,
+        "scene": "reference-blind"
+      },
+      "max_clean_error": 7.167605349942085e-15,
+      "max_noise_error": 1.7554167342883506e-16,
+      "support": 9
+    }
+  ]
+}

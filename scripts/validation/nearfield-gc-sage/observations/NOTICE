@@ -1,0 +1,14 @@
+This package is an independent implementation of a bounded synthetic lesson.
+The mechanism-aware one-bounce geometry is informed by arXiv:2605.01162v1.
+It is not official author code, full GC-SAGE, or an experimental reproduction.
+
+The simulator/evaluation contract follows the adjacent independently implemented
+Python reference and the corrected all-channel-region lesson contract. Small
+assignment ties follow SciPy 1.17's tested shortest-augmenting-path ordering;
+SciPy is used only as an offline verification oracle, never imported at runtime.
+
+The browser pseudorandom generator is explicitly versioned and differs from
+NumPy PCG64. Tests use common arrays when comparing numerical solvers.
+
+Do not publish offline truth/expected-output fixtures as live results or route
+truth/evaluation metadata to the estimation worker.

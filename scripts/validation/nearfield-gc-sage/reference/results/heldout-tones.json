@@ -1,0 +1,23 @@
+{
+  "training_tones": 48,
+  "heldout_tones": 16,
+  "selection": "Every fourth frequency held out; gains and geometry fit only on the other tones",
+  "methods": {
+    "scattering": {
+      "heldout_sse": 43.97967564927817,
+      "heldout_relative_residual_db": -14.166856401809621,
+      "kinds": [
+        "scattering",
+        "scattering"
+      ]
+    },
+    "hybrid": {
+      "heldout_sse": 42.46012299870864,
+      "heldout_relative_residual_db": -14.319564143913261,
+      "kinds": [
+        "scattering",
+        "reflection"
+      ]
+    }
+  }
+}

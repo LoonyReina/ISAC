@@ -1,0 +1,2778 @@
+{
+  "algorithm_version": "reduced-gc-sage-2d/0.2.0-all-channel-region",
+  "scope": "Actual JS versus fresh unmodified Python reference; synthetic reduced one-bounce only",
+  "node": "v24.19.0",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "source_sha256": {
+    "gc_sage.py": "73bb37a4b5c764d09a3f9231fd4e5acb51063e458e9dd4d661f42d3f303edeb0",
+    "experiments.py": "77f461f96605cc5bffa405cb9643e4794a9aa60c7140e0bde2d04f0d309efc90",
+    "gc-sage.js": "fe96407e6a09c71aa141d75fecaf26d23e15bbc1514f30ed121262dbdfc3ceda"
+  },
+  "tolerances": {
+    "delay_ns_atol": 2e-05,
+    "state_absolute": 2e-05,
+    "sse_atol": 0.0002,
+    "sse_rtol": 2e-08
+  },
+  "cases": {
+    "default": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 5.687894599759602e-12
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 4.7257309176984563e-11
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 9.576410775480326e-10
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.632490112679079e-10
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.576979209668934e-10
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.512870408594608e-10
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.601261924923165e-10
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.603535661677597e-10
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.604956747149117e-10
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.59813553688582e-10
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.606946266809246e-10
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 6.015257414485617e-21
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 8.533174167268953e-13
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 8.533174167268953e-13
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 8.480993685111571e-13
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 1.926106496519253e-11
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 8.762556652497366e-13
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 1.8825302428027157e-11
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 9.429858983104515e-22
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 1.474376176702208e-13
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.474376176702208e-13
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.4891586228027442e-12
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.235120504818667e-12
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.7053025658242404e-13
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.262889958222104e-12
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 2.2504309526993893e-09
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.632490112679079e-10
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.979234967730008e-10
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.184883881767746e-10
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.503207027388271e-10
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.111840088531608e-10
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.502638593199663e-10
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.112976956908824e-10
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.499796422256622e-10
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2504309526993893e-09
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.507878763135523e-10
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.150777830451261e-10
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.107008397928439e-10
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.24286416900577e-10
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.111271654343e-10
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.244853688665899e-10
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.107861049211351e-10
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 6.013603053260511e-21
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 8.526512829121202e-13
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 8.526512829121202e-13
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 8.276712648580542e-13
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 1.9257123673455112e-11
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 8.305916718298612e-13
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 1.881417244220529e-11
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 9.57875149336406e-22
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 1.4788170688007085e-13
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 1.8388068845354155e-16
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.4832579608992091e-13
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.4437236128816977e-12
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.2653602044518948e-12
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.0613732115416497e-13
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.2640556923979602e-12
+        }
+      },
+      "js_initialization_seconds": 0.029565358000000007,
+      "js_sse": {
+        "scattering": 160.5635699986025,
+        "hybrid": 156.20700221857697
+      },
+      "js_fit_seconds": {
+        "scattering": 0.126686678,
+        "hybrid": 0.242012597
+      }
+    },
+    "noiseless": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 1.3061018933058222e-10
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 5.9943684690050335e-12
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 1.1303370683890535e-07
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.1303370683890535e-07
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.8491581599278106e-09
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.1373713344228236e-09
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.408424653628117e-09
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4084344235907338e-09
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4084495226238687e-09
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.408451743069918e-09
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4084357558583633e-09
+        },
+        "scattering_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.408439752661252e-09
+        },
+        "scattering_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.408436644036783e-09
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 8.158647817733023e-20
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.1571188451853232e-11
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.1571188451853232e-11
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.6905143951362334e-11
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.5867200048601546e-10
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.4192984894995098e-11
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.657856434939987e-10
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 1.362201032752326e-19
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 2.1287194229557826e-11
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.1287194229557826e-11
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.7779334388355892e-11
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.349690178011677e-10
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.289290896266948e-11
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.452875901865937e-10
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 1.1303370683890535e-07
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.1303370683890535e-07
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.8491581599278106e-09
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.0011670104059789e-09
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.5611287252379498e-09
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.072376547711946e-11
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6456579977084402e-09
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0722676091105337e-11
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6456460072997743e-09
+        },
+        "hybrid_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0722677656422224e-11
+        },
+        "hybrid_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.645649560013453e-09
+        },
+        "hybrid_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0722676623042028e-11
+        },
+        "hybrid_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.645650004102663e-09
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.3358942396735074e-07
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2106102786901829e-09
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.4046495017415737e-08
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.509210721426448e-11
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2995075177334456e-08
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0722677412476735e-11
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2995134685288576e-08
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.072267655189126e-11
+        },
+        "hybrid_trace9_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2995133353020947e-08
+        },
+        "hybrid_trace10_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.072267660610137e-11
+        },
+        "hybrid_trace11_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2995133797110157e-08
+        },
+        "hybrid_trace12_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.072267507127767e-11
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 8.157655200997959e-20
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.156186257844638e-11
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.156186257844638e-11
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.673328142715036e-11
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.597654591429688e-10
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.4193289908171272e-11
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.651779629214701e-10
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 1.380531355126501e-19
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 2.1330492927518208e-11
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 1.0162747130542566e-28
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.1330492927518208e-11
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.9359185734446854e-11
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.3983738045861855e-10
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 5.571099137569036e-13
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.54403117963642e-10
+        }
+      },
+      "js_initialization_seconds": 0.034937543,
+      "js_sse": {
+        "scattering": 3.0791225961742104,
+        "hybrid": 2.1741197938127827e-05
+      },
+      "js_fit_seconds": {
+        "scattering": 0.17887546799999998,
+        "hybrid": 0.45525735300000003
+      }
+    },
+    "narrow-aperture": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 1.1176837233506376e-11
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 4.9393822365573214e-11
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 2.0917241272400133e-09
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0917525489494437e-09
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0613413198589114e-09
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.066514070975245e-09
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0666846012318274e-09
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.066315119009232e-09
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0661445887526497e-09
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0658603716583457e-09
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0659740584960673e-09
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 1.1203334216418207e-20
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.6973089600469393e-12
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.6973089600469393e-12
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.6135981439902025e-12
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.392183756112388e-11
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 9.127663902486205e-13
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.591166253258393e-11
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 7.229558553713462e-22
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 1.1146639167236572e-13
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.1146639167236572e-13
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.7545964681175974e-12
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.9231062015355747e-12
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.2578826869003024e-13
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.988461908493001e-12
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 2.077769067909685e-09
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0917525489494437e-09
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0477841644606087e-09
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0693846636277158e-09
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0529853372863727e-09
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.068134108412778e-09
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.053212710961816e-09
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0677362044807523e-09
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0532695543806767e-09
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0777406462002546e-09
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0507968656602316e-09
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0562254121614387e-09
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0550317003653618e-09
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.055458026006818e-09
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0551738089125138e-09
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0557138213916915e-09
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.055259074040805e-09
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 1.1206642938868419e-20
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.6988632722814145e-12
+        },
+        "hybrid_path0_normal": {
+          "pass": true,
+          "max_abs_error": 9.29256671611256e-14
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.7010837183306649e-12
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.6122658763606523e-12
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 3.393446634802899e-11
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 9.125235289619837e-13
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 3.592118269502009e-11
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 7.279189390466644e-22
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 1.1146639167236572e-13
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 9.020562075079397e-17
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.1235457009206584e-13
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 1.754929535024985e-12
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.940203636114802e-12
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.2589929099249275e-13
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.9888470171046677e-12
+        }
+      },
+      "js_initialization_seconds": 0.036268736,
+      "js_sse": {
+        "scattering": 151.98041291762496,
+        "hybrid": 151.9445600385469
+      },
+      "js_fit_seconds": {
+        "scattering": 0.18306064000000002,
+        "hybrid": 0.21777668599999994
+      }
+    },
+    "narrowband": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 5.663280795431547e-07
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 7.144391744873246e-09
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 8.062648930717842e-07
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.697716111782938e-07
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.734671498837997e-07
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.000175171218871e-07
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.684101319682668e-07
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.171088552444417e-07
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.664582994948432e-07
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.266869144790689e-07
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.657009746253607e-07
+        },
+        "scattering_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.317031188198598e-07
+        },
+        "scattering_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.654055593775411e-07
+        },
+        "scattering_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.344208595190139e-07
+        },
+        "scattering_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652905082977668e-07
+        },
+        "scattering_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.359721164197254e-07
+        },
+        "scattering_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652456588402856e-07
+        },
+        "scattering_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.371534931939095e-07
+        },
+        "scattering_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652280373804388e-07
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.032125628633885e-16
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 3.7534127583782606e-08
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.0031166603782253e-08
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.4572171080917684e-08
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 6.646804329157874e-08
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 5.703921322648337e-16
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 7.902703824669288e-08
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.902703824669288e-08
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 4.8321907919479656e-08
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 5.007954100022527e-08
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.6638547803426995e-08
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 5.289677576514329e-08
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 8.062648930717842e-07
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.697716111782938e-07
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.734671498837997e-07
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.000175171218871e-07
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.684101319682668e-07
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.171088552444417e-07
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.664582994948432e-07
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.266869144790689e-07
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.657009746253607e-07
+        },
+        "hybrid_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.317031188198598e-07
+        },
+        "hybrid_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.654055593775411e-07
+        },
+        "hybrid_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.344208595190139e-07
+        },
+        "hybrid_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652905082977668e-07
+        },
+        "hybrid_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.359721164197254e-07
+        },
+        "hybrid_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652456588402856e-07
+        },
+        "hybrid_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.371534931939095e-07
+        },
+        "hybrid_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.652280373804388e-07
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.372437036996416e-07
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.751746693429595e-07
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.773961101520399e-07
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.705839379923418e-07
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.881524766162329e-07
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.689237691010931e-07
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.945880611259781e-07
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.683482294851274e-07
+        },
+        "hybrid_trace9_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.982740726220072e-07
+        },
+        "hybrid_trace10_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.681667284487048e-07
+        },
+        "hybrid_trace11_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.003260063560447e-07
+        },
+        "hybrid_trace12_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.681226747990877e-07
+        },
+        "hybrid_trace13_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.015736625566205e-07
+        },
+        "hybrid_trace14_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.681217084609671e-07
+        },
+        "hybrid_trace15_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.021630719667883e-07
+        },
+        "hybrid_trace16_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.681318834329431e-07
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.032125628633885e-16
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 3.7534127583782606e-08
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.0031166603782253e-08
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.4572171080917684e-08
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 6.646804329157874e-08
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 5.703921322648337e-16
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 7.902703824669288e-08
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.902703824669288e-08
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 4.8321907919479656e-08
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 5.007954100022527e-08
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.6638547803426995e-08
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 5.289677576514329e-08
+        }
+      },
+      "js_initialization_seconds": 0.05281275000000001,
+      "js_sse": {
+        "scattering": 270.9483577832691,
+        "hybrid": 270.9483577832691
+      },
+      "js_fit_seconds": {
+        "scattering": 0.162150987,
+        "hybrid": 0.269050181
+      }
+    },
+    "reference-blind": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 5.2156501340050454e-11
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 2.432853918321598e-11
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 5.662627700075973e-09
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2973836166784167e-09
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.662627700075973e-09
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.4475639293086715e-09
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.948735169018619e-10
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.062919055693783e-10
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.1745806811377406e-10
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.065441316924989e-10
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.062030711793341e-10
+        },
+        "scattering_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.35534275311511e-10
+        },
+        "scattering_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.5054093789076433e-10
+        },
+        "scattering_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.653202267945744e-10
+        },
+        "scattering_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.597495717462152e-10
+        },
+        "scattering_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.403091224958189e-10
+        },
+        "scattering_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.0813574742060155e-10
+        },
+        "scattering_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.468585418886505e-10
+        },
+        "scattering_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.835349732777104e-10
+        },
+        "scattering_trace17_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.984972186619416e-10
+        },
+        "scattering_trace18_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2005330063402653e-10
+        },
+        "scattering_trace19_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.546585164964199e-11
+        },
+        "scattering_trace20_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.127276381244883e-11
+        },
+        "scattering_trace21_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.4347278920467943e-10
+        },
+        "scattering_trace22_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.1407231542980298e-10
+        },
+        "scattering_trace23_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.8910562832606956e-10
+        },
+        "scattering_trace24_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.476543497527018e-10
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.855859710446649e-20
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 7.524647571699461e-12
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.524647571699461e-12
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.689242717401896e-10
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.8096941440125534e-10
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 2.7058350351993887e-11
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.7636187782675847e-10
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 3.308722450212111e-24
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 4.440892098500626e-16
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 4.440892098500626e-16
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.675543120389534e-10
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.68235211819956e-10
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 2.6926426366369327e-11
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.6809976461095175e-10
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 3.853870111925062e-09
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2973836166784167e-09
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.662627700075973e-09
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2341843103058636e-09
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.36779542826116e-10
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.581383912707679e-10
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.7698555388487875e-10
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.5133674575481564e-11
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.6761881599668413e-10
+        },
+        "hybrid_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.5706550483591855e-12
+        },
+        "hybrid_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.3669599613640457e-10
+        },
+        "hybrid_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.9895196601282805e-11
+        },
+        "hybrid_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2964741219766438e-10
+        },
+        "hybrid_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.297362465877086e-11
+        },
+        "hybrid_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.381739250267856e-10
+        },
+        "hybrid_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.673417374258861e-11
+        },
+        "hybrid_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.580691216280684e-10
+        },
+        "hybrid_trace17_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.71978045324795e-11
+        },
+        "hybrid_trace18_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.850129021680914e-10
+        },
+        "hybrid_trace19_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.0174971976084635e-10
+        },
+        "hybrid_trace20_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.2036950869951397e-10
+        },
+        "hybrid_trace21_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.1095835361629725e-10
+        },
+        "hybrid_trace22_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4719960240181535e-10
+        },
+        "hybrid_trace23_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2164491636212915e-10
+        },
+        "hybrid_trace24_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.744844434550032e-10
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.2919160730671138e-09
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.853870111925062e-09
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.331159182882402e-09
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4208369470434263e-10
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0487505025812425e-09
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.707967597525567e-11
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.7392949303030036e-09
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.1941559680271894e-11
+        },
+        "hybrid_trace9_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.435410013073124e-09
+        },
+        "hybrid_trace10_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.185452315956354e-12
+        },
+        "hybrid_trace11_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.1782503861468285e-09
+        },
+        "hybrid_trace12_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.399236447876319e-11
+        },
+        "hybrid_trace13_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.380300980410539e-10
+        },
+        "hybrid_trace14_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.468336894409731e-11
+        },
+        "hybrid_trace15_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.986056177993305e-10
+        },
+        "hybrid_trace16_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.66249286243692e-11
+        },
+        "hybrid_trace17_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.5065462472848594e-10
+        },
+        "hybrid_trace18_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.379164112033322e-11
+        },
+        "hybrid_trace19_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.950866135302931e-10
+        },
+        "hybrid_trace20_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.0732037480920553e-10
+        },
+        "hybrid_trace21_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.401013135677204e-11
+        },
+        "hybrid_trace22_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.163016349892132e-10
+        },
+        "hybrid_trace23_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.3878677641041577e-10
+        },
+        "hybrid_trace24_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2357759260339662e-10
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.518039148279992e-20
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 7.689848757763684e-12
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.689848757763684e-12
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.83222112429371e-10
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.959807954283633e-10
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 3.385697971980406e-11
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.928297604398722e-10
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 4.963083675318166e-24
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 4.440892098500626e-16
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 1.1102230246251565e-16
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 6.661338147750939e-16
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.8906066429357224e-10
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.8887647829378693e-10
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 3.2549365980294453e-11
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.8902891191506797e-10
+        }
+      },
+      "js_initialization_seconds": 0.025582601000000003,
+      "js_sse": {
+        "scattering": 521.1685416068035,
+        "hybrid": 521.075678513704
+      },
+      "js_fit_seconds": {
+        "scattering": 0.35763687,
+        "hybrid": 0.6267454440000002
+      }
+    },
+    "absent-path": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 5.2156501340050454e-11
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 2.432853918321598e-11
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 5.798852953375899e-09
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4287950256839395e-09
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.7987961099570384e-09
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.3790960312908283e-09
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.148219876602525e-10
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.9818814911996014e-10
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.220303940703161e-10
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0366996977827512e-10
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.0745005713251885e-10
+        },
+        "scattering_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.376907559664687e-10
+        },
+        "scattering_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.654019226611126e-10
+        },
+        "scattering_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.063291842408944e-10
+        },
+        "scattering_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.425668637646595e-10
+        },
+        "scattering_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.8548364500456955e-10
+        },
+        "scattering_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.198739134153584e-10
+        },
+        "scattering_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.5085357669449877e-10
+        },
+        "scattering_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.733351488539483e-10
+        },
+        "scattering_trace17_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.818048182642087e-10
+        },
+        "scattering_trace18_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.850448931392748e-10
+        },
+        "scattering_trace19_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.686739885073621e-10
+        },
+        "scattering_trace20_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.546620857581729e-10
+        },
+        "scattering_trace21_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.157527655479498e-10
+        },
+        "scattering_trace22_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.9179326449811924e-10
+        },
+        "scattering_trace23_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.433342499192804e-10
+        },
+        "scattering_trace24_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.1317881621362176e-10
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.733188825605035e-20
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 7.58504370423907e-12
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.58504370423907e-12
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.0730786531863998e-10
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.3218262035218373e-10
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 9.981433214678592e-12
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.3053103870296354e-10
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 3.308722450212111e-24
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 4.440892098500626e-16
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 4.440892098500626e-16
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.0311063941846896e-10
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.0311541337747485e-10
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 9.938867437386811e-12
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.0315304993800964e-10
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 4.076383675055695e-09
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.4287950256839395e-09
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.7987961099570384e-09
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.3075407423457364e-09
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.205063295463333e-10
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.3588419278676156e-10
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.3109691937861498e-10
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.8421709430404007e-13
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.0132339411939029e-10
+        },
+        "hybrid_trace9_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.318146006378811e-11
+        },
+        "hybrid_trace10_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.5275783122633584e-11
+        },
+        "hybrid_trace11_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.2610712474270258e-10
+        },
+        "hybrid_trace12_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.503331289626658e-12
+        },
+        "hybrid_trace13_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.049205249932129e-10
+        },
+        "hybrid_trace14_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.426148502214346e-11
+        },
+        "hybrid_trace15_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.9311308935575653e-10
+        },
+        "hybrid_trace16_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.1220890883123502e-10
+        },
+        "hybrid_trace17_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.765308065339923e-10
+        },
+        "hybrid_trace18_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.4708234630234074e-10
+        },
+        "hybrid_trace19_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.462208380573429e-10
+        },
+        "hybrid_trace20_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.681712546997005e-10
+        },
+        "hybrid_trace21_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.986588919564383e-10
+        },
+        "hybrid_trace22_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.7391244000464212e-10
+        },
+        "hybrid_trace23_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.369429345591925e-10
+        },
+        "hybrid_trace24_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.6916601452976465e-10
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.499672160018235e-10
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.076412096765125e-09
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.865672392246779e-10
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.3801939025579486e-10
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.5970158528944012e-09
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.6270542952697724e-11
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.3640146789839491e-09
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.410605131648481e-11
+        },
+        "hybrid_trace9_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.0775806913443375e-09
+        },
+        "hybrid_trace10_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.242739906767383e-11
+        },
+        "hybrid_trace11_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.811138402757933e-10
+        },
+        "hybrid_trace12_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.637943114474183e-10
+        },
+        "hybrid_trace13_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.2169290281890426e-10
+        },
+        "hybrid_trace14_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.4871837922546547e-10
+        },
+        "hybrid_trace15_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.218225851422176e-11
+        },
+        "hybrid_trace16_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.3583091862965375e-10
+        },
+        "hybrid_trace17_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.700986432406353e-10
+        },
+        "hybrid_trace18_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.133369202463655e-10
+        },
+        "hybrid_trace19_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 1.426201379217673e-09
+        },
+        "hybrid_trace20_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 4.746709691971773e-10
+        },
+        "hybrid_trace21_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.2972130864218343e-09
+        },
+        "hybrid_trace22_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.210836206970271e-10
+        },
+        "hybrid_trace23_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.2559626106376527e-09
+        },
+        "hybrid_trace24_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.478284492710372e-10
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 5.45310547019458e-20
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 7.719158645613788e-12
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.719158645613788e-12
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.7929702994811123e-10
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.945976795842853e-10
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.8070711593765054e-11
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.9538860246702825e-10
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 6.617444900424222e-24
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 2.220446049250313e-16
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 1.1102230246251565e-16
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 6.661338147750939e-16
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.852287295240785e-10
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.8519542283333976e-10
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 2.122887976518939e-11
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.852780789375231e-10
+        }
+      },
+      "js_initialization_seconds": 0.029161906999999994,
+      "js_sse": {
+        "scattering": 157.54299802335112,
+        "hybrid": 157.08016221564202
+      },
+      "js_fit_seconds": {
+        "scattering": 0.35308554,
+        "hybrid": 0.598934994
+      }
+    },
+    "low-snr": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 7.762679388179095e-13
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 6.628653181905975e-11
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 5.943547876086086e-10
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.943547876086086e-10
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.560671757441014e-10
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.681179805425927e-10
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.717559593496844e-10
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.658442437881604e-10
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6698111216537654e-10
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6493474908638746e-10
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6698111216537654e-10
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 8.205631676526035e-22
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.170175067954915e-13
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.170175067954915e-13
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.404743071338089e-13
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.6781649814511255e-12
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.9929023709064353e-13
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.7716370865071838e-12
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 1.6047303883528737e-22
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 2.4424906541753444e-14
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.4424906541753444e-14
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.4032165146792295e-13
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.989897384177766e-13
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 4.4297898682543746e-14
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 5.042355422091305e-13
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 5.943547876086086e-10
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.943547876086086e-10
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.560671757441014e-10
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.681179805425927e-10
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.717559593496844e-10
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.658442437881604e-10
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6698111216537654e-10
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6493474908638746e-10
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.6698111216537654e-10
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.226379577536136e-10
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.67435859516263e-10
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.039044819772243e-10
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.7471181713044643e-10
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.009486241964623e-10
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.744844434550032e-10
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 5.979927664157003e-10
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.7607605918310583e-10
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 8.205631676526035e-22
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 1.170175067954915e-13
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 1.170175067954915e-13
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.404743071338089e-13
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 2.6781649814511255e-12
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.9929023709064353e-13
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 2.7716370865071838e-12
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 1.6047303883528737e-22
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 2.4424906541753444e-14
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.4424906541753444e-14
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.4032165146792295e-13
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.989897384177766e-13
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 4.4297898682543746e-14
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 5.042355422091305e-13
+        }
+      },
+      "js_initialization_seconds": 0.029999076,
+      "js_sse": {
+        "scattering": 1536.390482134191,
+        "hybrid": 1536.390482134191
+      },
+      "js_fit_seconds": {
+        "scattering": 0.12611439700000002,
+        "hybrid": 0.21650890000000003
+      }
+    },
+    "heldout-tones": {
+      "pass": true,
+      "checks": {
+        "algorithm_version": {
+          "pass": true
+        },
+        "reference_delays_ns": {
+          "pass": true,
+          "max_abs_error": 1.4782308710437064e-10
+        },
+        "initializer_trace_sse": {
+          "pass": true,
+          "max_abs_error": 5.841993555577574e-12
+        },
+        "observation_sha256": {
+          "pass": true
+        },
+        "scattering_states_and_convergence": {
+          "pass": true
+        },
+        "scattering_sse_trace": {
+          "pass": true,
+          "max_abs_error": 3.24829443343333e-08
+        },
+        "scattering_trace_decisions": {
+          "pass": true
+        },
+        "scattering_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.24829443343333e-08
+        },
+        "scattering_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.030785008690145e-09
+        },
+        "scattering_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.7940391090814956e-09
+        },
+        "scattering_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.1611907515034545e-09
+        },
+        "scattering_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.161418125178898e-09
+        },
+        "scattering_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.161446546888328e-09
+        },
+        "scattering_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.161347070905322e-09
+        },
+        "scattering_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 7.1613328600506065e-09
+        },
+        "scattering_compute_ledger": {
+          "pass": true
+        },
+        "scattering_path0_delays": {
+          "pass": true,
+          "max_abs_error": 1.5636195119089882e-19
+        },
+        "scattering_path0_point": {
+          "pass": true,
+          "max_abs_error": 2.2194024396071654e-11
+        },
+        "scattering_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.2194024396071654e-11
+        },
+        "scattering_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.0742518813676725e-11
+        },
+        "scattering_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.874635417539963e-10
+        },
+        "scattering_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 2.3118306531275112e-11
+        },
+        "scattering_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 4.891542448870467e-10
+        },
+        "scattering_path1_delays": {
+          "pass": true,
+          "max_abs_error": 4.9036921073368587e-20
+        },
+        "scattering_path1_point": {
+          "pass": true,
+          "max_abs_error": 7.65698615623478e-12
+        },
+        "scattering_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.65698615623478e-12
+        },
+        "scattering_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "scattering_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 3.966100999052216e-11
+        },
+        "scattering_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 1.530738591437597e-10
+        },
+        "scattering_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 9.407807866068651e-12
+        },
+        "scattering_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 1.485424283576009e-10
+        },
+        "scattering_heldout_sse": {
+          "pass": true,
+          "max_abs_error": 2.8483739811235864e-09
+        },
+        "hybrid_states_and_convergence": {
+          "pass": true
+        },
+        "hybrid_sse_trace": {
+          "pass": true,
+          "max_abs_error": 3.24829443343333e-08
+        },
+        "hybrid_trace_decisions": {
+          "pass": true
+        },
+        "hybrid_trace1_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 3.24829443343333e-08
+        },
+        "hybrid_trace2_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 9.030785008690145e-09
+        },
+        "hybrid_trace3_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.569067068085133e-09
+        },
+        "hybrid_trace4_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.973948529775953e-09
+        },
+        "hybrid_trace5_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.9338881303337985e-09
+        },
+        "hybrid_trace6_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.97306745678361e-09
+        },
+        "hybrid_trace7_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.933845497769653e-09
+        },
+        "hybrid_trace8_scattering_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.972484811740287e-09
+        },
+        "hybrid_trace1_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.345328529278049e-08
+        },
+        "hybrid_trace2_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 8.807930385046348e-09
+        },
+        "hybrid_trace3_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.5371562628606625e-08
+        },
+        "hybrid_trace4_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.933930762897944e-09
+        },
+        "hybrid_trace5_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.5072750986510073e-08
+        },
+        "hybrid_trace6_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.934072871445096e-09
+        },
+        "hybrid_trace7_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 2.5072949938476086e-08
+        },
+        "hybrid_trace8_reflection_subproblem_sse": {
+          "pass": true,
+          "max_abs_error": 6.933873919479083e-09
+        },
+        "hybrid_compute_ledger": {
+          "pass": true
+        },
+        "hybrid_path0_delays": {
+          "pass": true,
+          "max_abs_error": 1.5635202502354819e-19
+        },
+        "hybrid_path0_point": {
+          "pass": true,
+          "max_abs_error": 2.2182033987405703e-11
+        },
+        "hybrid_path0_bounce_points": {
+          "pass": true,
+          "max_abs_error": 2.2182033987405703e-11
+        },
+        "hybrid_path0_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path0_gains_real": {
+          "pass": true,
+          "max_abs_error": 2.0074830686667156e-11
+        },
+        "hybrid_path0_prediction_real": {
+          "pass": true,
+          "max_abs_error": 4.87601195531262e-10
+        },
+        "hybrid_path0_gains_imag": {
+          "pass": true,
+          "max_abs_error": 2.194950297906839e-11
+        },
+        "hybrid_path0_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 4.913966178410334e-10
+        },
+        "hybrid_path1_delays": {
+          "pass": true,
+          "max_abs_error": 4.968046758993484e-20
+        },
+        "hybrid_path1_point": {
+          "pass": true,
+          "max_abs_error": 7.678302438307583e-12
+        },
+        "hybrid_path1_normal": {
+          "pass": true,
+          "max_abs_error": 7.245939959155123e-15
+        },
+        "hybrid_path1_bounce_points": {
+          "pass": true,
+          "max_abs_error": 7.681411062776533e-12
+        },
+        "hybrid_path1_theta": {
+          "pass": true,
+          "max_abs_error": 0.0
+        },
+        "hybrid_path1_gains_real": {
+          "pass": true,
+          "max_abs_error": 3.894736616549821e-11
+        },
+        "hybrid_path1_prediction_real": {
+          "pass": true,
+          "max_abs_error": 1.525085890907718e-10
+        },
+        "hybrid_path1_gains_imag": {
+          "pass": true,
+          "max_abs_error": 1.1280421041703903e-11
+        },
+        "hybrid_path1_prediction_imag": {
+          "pass": true,
+          "max_abs_error": 1.458307918866808e-10
+        },
+        "hybrid_heldout_sse": {
+          "pass": true,
+          "max_abs_error": 2.465810666762991e-09
+        }
+      },
+      "js_initialization_seconds": 0.021699544,
+      "js_sse": {
+        "scattering": 116.9729204983091,
+        "hybrid": 114.27811198173943
+      },
+      "js_fit_seconds": {
+        "scattering": 0.109899459,
+        "hybrid": 0.19470675899999998
+      }
+    }
+  },
+  "failures": [],
+  "pass": true
+}

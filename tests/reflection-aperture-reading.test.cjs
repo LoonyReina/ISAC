@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Reading-only association and frozen existing behavior; no paper algorithm claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -71,5 +72,5 @@ test('existing model, export, guide runtime and canonical registry/resolvers sta
   'site/registry.json':'b8414c17f5251f1ea940c62c69e6e8f93327b964e972b3f7c3e89bef14ce7f07'
  };
  for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,read(file))),digest,file);
- a.deepEqual([data.cards.length,registry.units.length,registry.cases.length,registry.knowledgeMap.nodes.length],[20,28,15,32]);
+ a.deepEqual([data.cards.length,withoutGCSAGERegistry(registry).units.length,registry.cases.length,registry.knowledgeMap.nodes.length],[20,28,15,32]);
 });

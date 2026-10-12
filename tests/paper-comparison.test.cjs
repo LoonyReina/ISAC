@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Build and source contracts, not browser layout or scientific numerical tests.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
@@ -12,7 +13,7 @@ function generateWith(r){
 const mutated=fn=>{const r=clone();fn(r.paperComparisonGroups[0],r);return r;};
 const expectBad=fn=>a.throws(()=>M.buildComparisonGroups(mutated(fn)),/Invalid|Missing/);
 test('comparison is a reading-only group without changing learning/catalog counts',()=>{
- a.equal(registry.units.length,28);a.equal(registry.cases.length,15);a.equal(registry.knowledgeMap.nodes.length,32);a.equal(registry.directions.length,8);a.equal(JSON.parse(read(registry.researchDirectoryFile)).cards.length,9);
+ a.equal(withoutGCSAGERegistry(registry).units.length,28);a.equal(registry.cases.length,15);a.equal(registry.knowledgeMap.nodes.length,32);a.equal(registry.directions.length,8);a.equal(JSON.parse(read(registry.researchDirectoryFile)).cards.length,9);
  const groups=M.buildComparisonGroups(registry);a.equal(groups.length,1);a.equal(groups[0].members.length,3);
  const html=read('reading.html');a.ok(html.indexOf('id="directions"')<html.indexOf('id="paper-comparisons"'));a.ok(html.indexOf('id="paper-comparisons"')<html.indexOf('id="influential-papers"'));
  for(const name of ['paper-comparisons','comparison-beamforming','comparison-beamforming-resources','comparison-beamforming-checks','comparison-beamforming-next'])a.ok(html.includes(`id="${name}"`));

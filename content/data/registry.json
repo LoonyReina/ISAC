@@ -1781,6 +1781,20 @@
       "group": "processing",
       "primaryDirectionId": "receiver",
       "action": "固定同一份复回波，比较全符号 oracle、仅导频与注入错误的参考；记录等峰、复数合向量和参考信息预算，不把小残差当作距离正确的证明。"
+    },
+    {
+      "id": "nearfield-gc-sage",
+      "title": "近场环境推断：点还是反射面？",
+      "href": "nearfield-gc-sage.html#experiment",
+      "question": "拟合得更好，环境就画对了吗？",
+      "prerequisites": [
+        "near-field.html#experiment",
+        "multipath-channel.html#experiment",
+        "foundations.html#ofdm"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "固定同一复宽带观测与数据初始化，实际运行仅散射和混合几何搜索；回看逐路径残差更新，再揭示真值、错误机制与实际计算代价。"
     }
   ],
   "pages": [
@@ -2078,6 +2092,19 @@
       ],
       "next": "reading.html#guide-zak-otfs-semiblind-offgrid-2026",
       "nextLabel": "沿问题读半盲估参的原文与边界"
+    },
+    {
+      "path": "nearfield-gc-sage.html",
+      "title": "拟合得更好，环境就画对了吗？",
+      "stage": "experiments",
+      "role": "论文算法缩减实现 · 二维、单次交互、已知双路径的宽带几何约束估计",
+      "prerequisites": [
+        "near-field.html#experiment",
+        "multipath-channel.html#experiment",
+        "foundations.html#ofdm"
+      ],
+      "next": "reading.html#guide-nearfield-mechanism-aware-mapping-2026",
+      "nextLabel": "回到原文：估计出了什么，仍未复现什么？"
     }
   ],
   "schemaVersion": 1,
@@ -2982,6 +3009,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "拟合得更好，环境就画对了吗？",
+              "href": "nearfield-gc-sage.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ]
         },
@@ -3017,6 +3052,14 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "宽带未知几何与逐通道复增益",
+              "href": "nearfield-gc-sage.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ]
         },
@@ -3059,6 +3102,14 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同观测运行散射与反射几何搜索",
+              "href": "nearfield-gc-sage.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ],
           "coverage": "direction-specific"
@@ -3103,6 +3154,14 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "2026 GC-SAGE：缩减算法与原文逐步对应",
+              "href": "nearfield-gc-sage.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ],
           "comparisonStatus": "partial",
@@ -3148,6 +3207,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "错误机制、未定位与保守区域先验",
+              "href": "nearfield-gc-sage.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ]
         },
@@ -3187,6 +3254,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立解析配方与实现核验，不表示原文优化算法、原图或整篇论文已复现"
+            },
+            {
+              "label": "下载实际双算法观测、结果与更新记录",
+              "href": "nearfield-gc-sage.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
             }
           ]
         }

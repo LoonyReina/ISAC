@@ -1,0 +1,727 @@
+{
+  "algorithm_version": "reduced-gc-sage-2d/0.2.0-all-channel-region",
+  "geometry_contract": "Every modeled one-bounce interaction lies in the declared region within 1e-10 m, including channels with near-zero fitted gain; conservative interpretation of source Eqs. 19, 21, 23",
+  "claim": "First offline numerical gate for an independent restricted one-bounce GC-SAGE model; not full-paper reproduction",
+  "timestamp_utc": "2026-10-12T11:06:27.585489+00:00",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "unit_tests": {
+    "run": 38,
+    "failures": 0,
+    "errors": 0
+  },
+  "options": {
+    "delay_grid": 1024,
+    "initializer_sweeps": 20,
+    "angle_grid": 256,
+    "refinement_rounds": 2,
+    "refinement_points": 17,
+    "max_sweeps": 12,
+    "relative_tolerance": 1e-06,
+    "stationary_sweeps": 2
+  },
+  "snr_summary": [
+    {
+      "nominal_snr_db": 5.0,
+      "runs": 10,
+      "hybrid_both_mechanisms_correct": 7,
+      "hybrid_lower_training_sse": 9,
+      "hybrid_lower_clean_nmse": 9,
+      "median_scattering_nmse_db": -18.8592798317094,
+      "median_hybrid_nmse_db": -19.13321880823326,
+      "hybrid_converged": 10
+    },
+    {
+      "nominal_snr_db": 10.0,
+      "runs": 10,
+      "hybrid_both_mechanisms_correct": 9,
+      "hybrid_lower_training_sse": 10,
+      "hybrid_lower_clean_nmse": 10,
+      "median_scattering_nmse_db": -23.369545220565612,
+      "median_hybrid_nmse_db": -24.18424197664107,
+      "hybrid_converged": 10
+    },
+    {
+      "nominal_snr_db": 15.0,
+      "runs": 10,
+      "hybrid_both_mechanisms_correct": 9,
+      "hybrid_lower_training_sse": 10,
+      "hybrid_lower_clean_nmse": 10,
+      "median_scattering_nmse_db": -27.12767199401102,
+      "median_hybrid_nmse_db": -28.944939561980235,
+      "hybrid_converged": 10
+    },
+    {
+      "nominal_snr_db": 20.0,
+      "runs": 10,
+      "hybrid_both_mechanisms_correct": 10,
+      "hybrid_lower_training_sse": 10,
+      "hybrid_lower_clean_nmse": 10,
+      "median_scattering_nmse_db": -29.64209189524436,
+      "median_hybrid_nmse_db": -34.01230774150657,
+      "hybrid_converged": 10
+    }
+  ],
+  "small_aperture": {
+    "runs": 10,
+    "both_mechanisms_correct": 4
+  },
+  "heldout": {
+    "training_tones": 48,
+    "heldout_tones": 16,
+    "selection": "Every fourth frequency held out; gains and geometry fit only on the other tones",
+    "methods": {
+      "scattering": {
+        "heldout_sse": 43.97967564927817,
+        "heldout_relative_residual_db": -14.166856401809621,
+        "kinds": [
+          "scattering",
+          "scattering"
+        ]
+      },
+      "hybrid": {
+        "heldout_sse": 42.46012299870864,
+        "heldout_relative_residual_db": -14.319564143913261,
+        "kinds": [
+          "scattering",
+          "reflection"
+        ]
+      }
+    }
+  },
+  "alias_guard": {
+    "tones": 64,
+    "bandwidth_Hz": 2000000000.0,
+    "declared_max_delay_ns": 55.0,
+    "alias_period_ns": 31.5,
+    "alias_path_length_m": 9.443462427,
+    "refused": true,
+    "reason": "Declared 55 ns delay prior exceeds the 31.5 ns tone-grid alias period; increase the tone count, reduce bandwidth, or explicitly supply an independently justified shorter delay prior"
+  },
+  "failure_examples": {
+    "narrow_band_20_MHz": {
+      "scene": {
+        "samples": 48,
+        "tones": 64,
+        "aperture": 1.49146747855,
+        "bandwidth": 20000000.0,
+        "snr_db": 15.0,
+        "seed": 260501162,
+        "point": [
+          1.0,
+          1.0
+        ],
+        "surface_start": [
+          1.5,
+          2.0
+        ],
+        "surface_end": [
+          2.0,
+          2.0
+        ],
+        "reflection_amplitude": 0.8,
+        "reflection_phase": 0.7,
+        "reflection_visible": true,
+        "reference_blind": false,
+        "relative_point_phase": 0.0
+      },
+      "received_snr_db": 13.895203308861927,
+      "same_observations": true,
+      "same_initialization": true,
+      "sampling_diagnostics": {
+        "frequency_spacing_Hz": 317460.31746031716,
+        "delay_alias_period_ns": 3150.0000000000027,
+        "inverse_bandwidth_ns": 50.0,
+        "rx_aperture_m": 1.4914674785499997,
+        "virtual_rx_spacing_m": 0.03173335060744664,
+        "virtual_rx_spacing_at_30GHz_wavelengths": 3.1755319148936003,
+        "samples": 3072,
+        "real_observations": 6144,
+        "free_complex_path_gains": 96,
+        "true_reference_design_condition_evaluation_only": 11.948821334832758
+      },
+      "scattering": {
+        "sse": 270.948358548497,
+        "relative_residual_db": -14.211840545428672,
+        "clean_nmse_db": -28.057865700854954,
+        "mechanisms_correct": false,
+        "converged": true,
+        "sweeps": 8,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 1.0
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.6666666666666666
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 2168,
+          "reflection_candidates": 0,
+          "scattering_tone_products": 6660096,
+          "reflection_tone_products": 0,
+          "incumbent_tone_products": 49152,
+          "seconds": 0.20034708900129772
+        },
+        "unmatched_estimate_indices": [
+          0,
+          1
+        ]
+      },
+      "hybrid": {
+        "sse": 270.948358548497,
+        "relative_residual_db": -14.211840545428672,
+        "clean_nmse_db": -28.057865700854954,
+        "mechanisms_correct": false,
+        "converged": true,
+        "sweeps": 8,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 1.0
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.6666666666666666
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 2168,
+          "reflection_candidates": 2056,
+          "scattering_tone_products": 6660096,
+          "reflection_tone_products": 6316032,
+          "incumbent_tone_products": 49152,
+          "seconds": 0.35177007099991897
+        },
+        "unmatched_estimate_indices": [
+          0,
+          1
+        ]
+      }
+    },
+    "reference_blind": {
+      "scene": {
+        "samples": 48,
+        "tones": 64,
+        "aperture": 1.49146747855,
+        "bandwidth": 1000000000.0,
+        "snr_db": 15.0,
+        "seed": 260501162,
+        "point": [
+          1.0,
+          1.0
+        ],
+        "surface_start": [
+          1.5,
+          2.0
+        ],
+        "surface_end": [
+          2.0,
+          2.0
+        ],
+        "reflection_amplitude": 0.8,
+        "reflection_phase": 0.7,
+        "reflection_visible": true,
+        "reference_blind": true,
+        "relative_point_phase": 0.0
+      },
+      "received_snr_db": 13.286257538432196,
+      "same_observations": true,
+      "same_initialization": true,
+      "sampling_diagnostics": {
+        "frequency_spacing_Hz": 15873015.87301588,
+        "delay_alias_period_ns": 62.99999999999997,
+        "inverse_bandwidth_ns": 1.0,
+        "rx_aperture_m": 1.4914674785499997,
+        "virtual_rx_spacing_m": 0.03173335060744664,
+        "virtual_rx_spacing_at_30GHz_wavelengths": 3.1755319148936003,
+        "samples": 3072,
+        "real_observations": 6144,
+        "free_complex_path_gains": 96,
+        "true_reference_design_condition_evaluation_only": 1.0679855752335694
+      },
+      "scattering": {
+        "sse": 521.168541607151,
+        "relative_residual_db": -8.344591753593882,
+        "clean_nmse_db": -9.581877134227678,
+        "mechanisms_correct": false,
+        "converged": false,
+        "sweeps": 12,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "estimated_kind": "scattering",
+            "target_present": true,
+            "matched": true,
+            "reference_delay_error_ns": 0.016950621004097898,
+            "estimated_point": [
+              1.0135348763042016,
+              1.0110909118483797
+            ],
+            "estimated_normal": null,
+            "visible_fraction_truth": 1.0,
+            "visible_fraction_estimate": 0.9791666666666666,
+            "visibility_accuracy": 0.9791666666666666,
+            "gain_power": [
+              1.2327026381372586,
+              0.6187011793946968,
+              0.0005605874066210064,
+              0.47130897805164856,
+              0.7459676626906115,
+              0.9342018162863281,
+              0.957487138536932,
+              0.9043519610461496,
+              0.9765296768673098,
+              0.9673307884123336,
+              1.0208414638098813,
+              1.0571808976073152,
+              0.9986261185932797,
+              1.0360658254141137,
+              0.9568889243209436,
+              0.9953634103952403,
+              1.051472514819246,
+              0.9937839857459663,
+              1.0474632536530757,
+              0.94040313430251,
+              0.9843176809158968,
+              1.0134183218336181,
+              1.0269055743246303,
+              0.9157821728111245,
+              1.0069560563003108,
+              0.9633441301652695,
+              1.032789759650897,
+              0.8987971719424747,
+              1.0078912530607471,
+              0.9662075437655544,
+              0.9235344134601455,
+              0.9384050811483228,
+              1.016551461921252,
+              1.0264046562886748,
+              0.9502522154436975,
+              0.9826941767701749,
+              1.0062061124633053,
+              0.9990694728787013,
+              1.064931285255917,
+              0.9798095574406478,
+              1.0454860343428636,
+              1.1028096434041046,
+              0.9617062626523226,
+              1.0531986809927507,
+              0.9762430608057573,
+              1.070897996925036,
+              0.994562347584639,
+              0.95255832569988
+            ],
+            "visibility_threshold_power": 0.003704994492978704,
+            "interaction_rmse_m": 0.01749860572155872,
+            "point_error_m": 0.01749860572155872
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.1875
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 3684,
+          "reflection_candidates": 0,
+          "scattering_tone_products": 11317248,
+          "reflection_tone_products": 0,
+          "incumbent_tone_products": 73728,
+          "seconds": 0.3173600850004732
+        },
+        "unmatched_estimate_indices": [
+          0
+        ]
+      },
+      "hybrid": {
+        "sse": 521.0756785138275,
+        "relative_residual_db": -8.345365659139837,
+        "clean_nmse_db": -9.584567820434472,
+        "mechanisms_correct": false,
+        "converged": false,
+        "sweeps": 12,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "estimated_kind": "reflection",
+            "target_present": true,
+            "matched": true,
+            "reference_delay_error_ns": 0.016950621004097898,
+            "estimated_point": [
+              1.0154332503250103,
+              1.012157326046207
+            ],
+            "estimated_normal": [
+              -0.4891535693031898,
+              0.8721976757810981
+            ],
+            "visible_fraction_truth": 1.0,
+            "visible_fraction_estimate": 1.0,
+            "visibility_accuracy": 1.0,
+            "gain_power": [
+              0.9028887558753509,
+              0.8498309506697913,
+              0.13417656544800588,
+              0.08836596087990932,
+              0.7914087581808243,
+              0.9955013660542334,
+              0.976439688722179,
+              0.9020770255242101,
+              0.9669360017152308,
+              0.9726304555177063,
+              1.0222475592058102,
+              1.0648339790706938,
+              1.0004294842953951,
+              1.0378726238270568,
+              0.9600933971365924,
+              0.994833472487707,
+              1.0542983031764193,
+              0.9929511847710234,
+              1.0449698130502276,
+              0.9416341209963408,
+              0.9844773384890575,
+              1.0129107128838042,
+              1.0269098684690114,
+              0.915782172811124,
+              1.0069042218252253,
+              0.963282405384267,
+              1.0329544954734557,
+              0.899602825296049,
+              1.0080429699240838,
+              0.9668235724620023,
+              0.9240579900903232,
+              0.9383604370485421,
+              1.0166443986828517,
+              1.0274275599290694,
+              0.9509683856205192,
+              0.9834673729600666,
+              1.0064825846981833,
+              0.9993547978187118,
+              1.0654348373442253,
+              0.9782284577510809,
+              1.0478855050292164,
+              1.1051960863730048,
+              0.9629131724489451,
+              1.0516272512063485,
+              0.9761263392185516,
+              1.0711168049350384,
+              0.9937002405655674,
+              0.9554689620196224
+            ],
+            "visibility_threshold_power": 0.003704994492978704,
+            "interaction_rmse_m": 0.08930177588460884,
+            "point_error_m": 0.01964652112177144
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": true,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.1875
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 3640,
+          "reflection_candidates": 2976,
+          "scattering_tone_products": 11182080,
+          "reflection_tone_products": 9142272,
+          "incumbent_tone_products": 73728,
+          "seconds": 0.6024957909994555
+        },
+        "unmatched_estimate_indices": [
+          0
+        ]
+      }
+    },
+    "absent_second_path_known_order_violated": {
+      "scene": {
+        "samples": 48,
+        "tones": 64,
+        "aperture": 1.49146747855,
+        "bandwidth": 1000000000.0,
+        "snr_db": 15.0,
+        "seed": 260501162,
+        "point": [
+          1.0,
+          1.0
+        ],
+        "surface_start": [
+          1.5,
+          2.0
+        ],
+        "surface_end": [
+          2.0,
+          2.0
+        ],
+        "reflection_amplitude": 0.8,
+        "reflection_phase": 0.7,
+        "reflection_visible": false,
+        "reference_blind": false,
+        "relative_point_phase": 0.0
+      },
+      "received_snr_db": 12.839724847039095,
+      "same_observations": true,
+      "same_initialization": true,
+      "sampling_diagnostics": {
+        "frequency_spacing_Hz": 15873015.87301588,
+        "delay_alias_period_ns": 62.99999999999997,
+        "inverse_bandwidth_ns": 1.0,
+        "rx_aperture_m": 1.4914674785499997,
+        "virtual_rx_spacing_m": 0.03173335060744664,
+        "virtual_rx_spacing_at_30GHz_wavelengths": 3.1755319148936003,
+        "samples": 3072,
+        "real_observations": 6144,
+        "free_complex_path_gains": 96,
+        "true_reference_design_condition_evaluation_only": 1.0679855752335694
+      },
+      "scattering": {
+        "sse": 157.54299802303797,
+        "relative_residual_db": -13.118132006210498,
+        "clean_nmse_db": -25.524692819934252,
+        "mechanisms_correct": false,
+        "converged": false,
+        "sweeps": 12,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "estimated_kind": "scattering",
+            "target_present": true,
+            "matched": true,
+            "reference_delay_error_ns": 0.016950621004097898,
+            "estimated_point": [
+              1.011164726615212,
+              1.0097545486533144
+            ],
+            "estimated_normal": null,
+            "visible_fraction_truth": 1.0,
+            "visible_fraction_estimate": 0.9791666666666666,
+            "visibility_accuracy": 0.9791666666666666,
+            "gain_power": [
+              1.1416550389334172,
+              0.7704568857468493,
+              0.000731464577255481,
+              0.43392047752092805,
+              0.8496950371079895,
+              1.0324074565962735,
+              1.039771366650487,
+              0.9713196924851448,
+              1.0341487804306628,
+              0.9695653183252574,
+              1.0211230678210574,
+              1.0589794112913005,
+              0.9986455452255798,
+              1.0363466517356485,
+              0.9578024888654202,
+              0.9952296510065377,
+              1.052233876468003,
+              0.9934871448265756,
+              1.0465678642708214,
+              0.940839862529388,
+              0.984419651458678,
+              1.0132310987390318,
+              1.0269187025033208,
+              0.9157821728111242,
+              1.006936980834352,
+              0.9633503737446633,
+              1.0327746275071938,
+              0.8990076338643146,
+              1.0079315864233525,
+              0.9662392023770616,
+              0.9235234463642186,
+              0.9382469904485894,
+              1.0164857773564573,
+              1.0264195000376874,
+              0.9502048857014951,
+              0.9827534274857124,
+              1.0061036192390127,
+              0.9989845875645978,
+              1.0649186868901117,
+              0.9797615643486297,
+              1.045218940759492,
+              1.102564511677642,
+              0.9616655323601165,
+              1.0532559249193603,
+              0.9762546053643202,
+              1.0708619372858286,
+              0.9944405440336808,
+              0.9524649032132969
+            ],
+            "visibility_threshold_power": 0.003704994492978704,
+            "interaction_rmse_m": 0.014825732353657927,
+            "point_error_m": 0.014825732353657927
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": false,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.0
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 3684,
+          "reflection_candidates": 0,
+          "scattering_tone_products": 11317248,
+          "reflection_tone_products": 0,
+          "incumbent_tone_products": 73728,
+          "seconds": 0.349024831000861
+        },
+        "unmatched_estimate_indices": [
+          0
+        ]
+      },
+      "hybrid": {
+        "sse": 157.0801622161898,
+        "relative_residual_db": -13.130909653080929,
+        "clean_nmse_db": -25.67571215553494,
+        "mechanisms_correct": false,
+        "converged": false,
+        "sweeps": 12,
+        "paths": [
+          {
+            "truth_kind": "scattering",
+            "estimated_kind": "reflection",
+            "target_present": true,
+            "matched": true,
+            "reference_delay_error_ns": 0.016950621004097898,
+            "estimated_point": [
+              1.0130605956594962,
+              1.010823936451624
+            ],
+            "estimated_normal": [
+              -0.49068284969258014,
+              0.871338247190819
+            ],
+            "visible_fraction_truth": 1.0,
+            "visible_fraction_estimate": 1.0,
+            "visibility_accuracy": 1.0,
+            "gain_power": [
+              0.8907530608939749,
+              0.817432074595636,
+              0.16217950809790876,
+              0.06977210662378153,
+              0.9295723537941927,
+              1.131162013489008,
+              1.0801271327298823,
+              0.9819208905453815,
+              1.0312618406144194,
+              0.9725712426759693,
+              1.021989312879122,
+              1.0658305125899148,
+              1.000756632685289,
+              1.0379743318570351,
+              0.9603165281463687,
+              0.9947430076016319,
+              1.0548473073498381,
+              0.9927649094319609,
+              1.0445116356408404,
+              0.9418586575902844,
+              0.9844638958724828,
+              1.0128318947222146,
+              1.0269258910473187,
+              0.9157821728111242,
+              1.0068864282648362,
+              0.9632632436198132,
+              1.032935432176283,
+              0.8997647125728239,
+              1.0080669741094865,
+              0.9668252741054503,
+              0.9240415508061298,
+              0.9382559561280174,
+              1.0166118575763907,
+              1.0274133768075255,
+              0.9509307969378713,
+              0.9835020341870372,
+              1.006445108863114,
+              0.9993351813360899,
+              1.0654635325206794,
+              0.9782998355112587,
+              1.0477290463299866,
+              1.1050740802166201,
+              0.9629395606691247,
+              1.0518027942742467,
+              0.9762440577447079,
+              1.071226524571164,
+              0.9937874146759237,
+              0.9554897962907294
+            ],
+            "visibility_threshold_power": 0.003704994492978704,
+            "interaction_rmse_m": 0.08856048519387079,
+            "point_error_m": 0.016962805171599652
+          },
+          {
+            "truth_kind": "reflection",
+            "target_present": false,
+            "estimated_kind": null,
+            "matched": false,
+            "reference_delay_error_ns": null,
+            "interaction_rmse_m": null,
+            "visible_fraction_truth": 0.0
+          }
+        ],
+        "budget": {
+          "delay_candidates": 0,
+          "delay_tone_products": 0,
+          "scattering_candidates": 3560,
+          "reflection_candidates": 2974,
+          "scattering_tone_products": 10936320,
+          "reflection_tone_products": 9136128,
+          "incumbent_tone_products": 73728,
+          "seconds": 0.6231812440000795
+        },
+        "unmatched_estimate_indices": [
+          0
+        ]
+      }
+    }
+  },
+  "source_sha256": {
+    "export_port_fixture.py": "7629b48af4d5ec989f188936b36e9e26952ff9205502e83b5f277d46bc928c65",
+    "experiments.py": "77f461f96605cc5bffa405cb9643e4794a9aa60c7140e0bde2d04f0d309efc90",
+    "gc_sage.py": "73bb37a4b5c764d09a3f9231fd4e5acb51063e458e9dd4d661f42d3f303edeb0",
+    "verify.py": "dda2dfa0edd0a8fb6e162b9223843f9b34341592fa806ce9cbc48a7bda42f16f",
+    "test_reference.py": "f25343d7f7acedf59db550567f9fb26b449111b6f98ad3e677e437dddfc04cca"
+  }
+}

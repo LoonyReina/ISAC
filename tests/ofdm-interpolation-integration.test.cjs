@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Registry, source and static navigation contracts; no browser or hardware claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
@@ -12,7 +13,7 @@ test('OFDM interpolation has one canonical case, unit and page in the existing p
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'prototype');
  a.equal(u.href,'ofdm-interpolation.html#experiment');a.equal(c.learningEntry,'ofdm-interpolation.html#mechanism');
  a.equal(c.paper,'ofdm-interpolation.html#paper');a.equal(c.next,'ofdm-interpolation.html#limits');
- a.equal(r.units.length,28);a.equal(r.cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
+ a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(r.cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  for(const href of [u.href,c.learningEntry,c.paper,c.next,p.next])resolve(href);
 });
 

@@ -1,3 +1,4 @@
+const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 // Evidence/status and link contracts only. No network, browser, or paper-reproduction claim.
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
@@ -44,7 +45,7 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
 });
 
 test('existing paper layers point to actual readings within the current canonical inventory',()=>{
- a.equal(r.units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);
