@@ -1,0 +1,15 @@
+{
+ "version":1,
+ "date":"2026-10-12",
+ "frozen_before_refinement_sweep":true,
+ "trigger":"All 113 nonaccepted primary outcomes, including 9 solver-infeasible outcomes. The original 704 attempts remain unchanged.",
+ "formulation":"Same QSDP in an explicit real Hermitian basis and PSD realification. Full-block dual adjoint Z=D11+D22+j(D21-D12), independently reviewed.",
+ "acceptance_gates":"Exactly the same VALIDATION-PLAN.json gates; no loosening",
+ "attempts":[
+  {"solver":"CLARABEL","tol_gap_abs":1e-9,"tol_gap_rel":1e-9,"tol_feas":1e-9,"max_iter":250,"warm_start":false},
+  {"when":"First refinement has neither a numerically accepted solution nor solver status infeasible","solver":"SCS","eps":2e-9,"max_iters":200000,"acceleration_lookback":10,"warm_start":false}
+ ],
+ "selection":"Keep primary if already accepted; otherwise select first refinement accepted by all unchanged residual/factor gates. Preserve and report every attempt and solver status. If no accepted solution, report confirmed solver-infeasible versus unresolved numerical failure separately.",
+ "runtime":"Primary same-budget timings remain the method comparison. Refinement timing is reported separately and is not a browser latency measure.",
+ "diagnostic_warning":"Native complex-dual extraction can be asymmetric and fail PSD/stationarity gates despite a valid underlying real-cone certificate. A rejection on those diagnostics alone is not proof the primal optimum is wrong."
+}

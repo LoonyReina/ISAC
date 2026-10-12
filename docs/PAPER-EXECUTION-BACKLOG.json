@@ -119,14 +119,15 @@
     "activeStages": [
       {
         "paperId": "joint_beamforming",
-        "stage": "independent-numerical-reference",
-        "status": "in-progress"
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Bounded radar/SDR/ZF numerical and teaching integration; hosted-browser acceptance remains open"
       },
       {
         "paperId": "optimal_waveform",
-        "stage": "independent-numerical-reference",
-        "status": "in-progress",
-        "branch": "Section IV weighted waveform of fixed1711.05220v1; validation pending, separate from delivered strict-covariance core"
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Section IV weighted waveform; numerical gate passed, Fig.3 nonmatch retained, hosted-browser acceptance pending"
       }
     ]
   },
@@ -3804,10 +3805,10 @@
         "url": "https://arxiv.org/pdf/1711.05220v1",
         "fixedVersion": "arXiv v1，2017-11-14（Towards）；期刊 TSP 66(16)，2018-08，DOI 10.1109/TSP.2018.2847648",
         "locators": {
-          "summary": "v1 §II 式(1)–(7)；§III 式(8)–(15)；§VI 图3–4。§IV–V 仅作为未实现边界",
-          "section": "§II–III、§VI",
-          "figure": "图3–4",
-          "equation": "式(8)–(15)"
+          "summary": "v1 §II 式(1)–(7)；§III 式(8)–(15)；§IV 式(16)–(25)、算法1；§VI 图3–6。§V 常模仅作为未实现边界",
+          "section": "§II–IV、§VI",
+          "figure": "图3–6；图3加权曲线非匹配",
+          "equation": "式(8)–(25)"
         },
         "paperIdentity": "arxiv:1711.05220",
         "fixedSourceIdentity": "arxiv:1711.05220v1",
@@ -3839,7 +3840,7 @@
         ]
       },
       "minimalFaithfulTarget": {
-        "description": "Run the existing strict-covariance solve on newly edited H, S, R and dimensions instead of selecting stored X. Return X, objective, covariance/energy residuals and global bound; compare to a fresh reference under the same budget.",
+        "description": "Use newly edited H/S/R to solve strict covariance, then reuse that exact X0 in Section IV weighted equality-energy optimization. Keep the two constraint sets and the two rho=1 endpoint conventions explicit; inspect fresh matrices, objective and numerical certificate.",
         "scope": "First executable milestone only; not sufficient to mark the entire paper reproduced",
         "acceptance": [
           "Algorithm executes from new inputs, with source equations and version documented",
@@ -3871,15 +3872,16 @@
           "Noise/SNR sweep and identical H/S/resources across paired methods"
         ],
         "unresolved": [
-          "Exact original random seeds/trial counts, solver tolerances and all CMC figure parameters must be transcribed before claiming numerical figure reproduction"
+          "Exact original random seeds/trial counts, solver tolerances and all CMC figure parameters must be transcribed before claiming numerical figure reproduction",
+          "The source-exact rho=.1 original-size 256-pair curve remains nonmatching against Fig.3: 12.882±.026(SE) at10dB and14.831±.038 at12dB, versus approximate visual source13.36/15.59. No weight/normalization tuning or seed explanation is asserted."
         ],
         "details": {}
       },
       "implementation": {
-        "classification": "fresh-input strict-covariance runtime implemented and independently validated; other paper branches and full figures open",
+        "classification": "fresh-input strict-covariance and Section IV weighted equality-energy cores independently validated; new weighted hosted-browser acceptance and remaining paper branches open",
         "live": {
           "href": "waveform-design.html#experiment",
-          "scope": "Actual complex Cholesky/Jacobi SVD with full rank-deficient completion; recomputed same-covariance DFT reference, signed bound gap, matrices and cost ledger. Old27states remain separately labelled offline."
+          "scope": "Actual complex Cholesky/Jacobi SVD with full rank-deficient completion; recomputed same-covariance DFT reference, signed bound gap, matrices and cost ledger. Old27states remain separately labelled offline. Section IV reuses the fresh strict X0, solves actual eigensystem/secular or explicit endpoint completion, and supports a paired same-input rho sweep; covariance equality is relaxed but block energy is equal."
         },
         "offline": "generate-waveform.py solve(H,S,R) performs complex Cholesky plus thin SVD and computes the nuclear-norm global bound.",
         "details": {
@@ -3937,6 +3939,17 @@
             "independentWorkerUIReviewCases": 16,
             "freshReferenceComparison": "Teaching-layer check: 19 fixed + 32 fresh problems re-solved in JavaScript and independent Python; distinct from core 19 fixed + 328 fresh author checks",
             "browserAccepted": false
+          },
+          "weightedCore": {
+            "core": "labs/waveform-design/weighted-core.js",
+            "coreSha256": "70f720a7f67f95b139f31171370d86e9e348bf9a91b4a0d0c38717a66cf5a6a3",
+            "referenceSha256": "5871d0a8ae481a723f662c120e87e24f8ef8534ebc5d88c8a63ce9bea987e880",
+            "sourceEquations": "Fixed v1 Section IV Eqs16–25, Algorithm1",
+            "constraint": "||X||_F²=L tr(R); XXᴴ/L=R is not imposed",
+            "reference": "Exact current strict solution X0, not the DFT teaching baseline",
+            "endpoints": "canonicalCompletion and explicit radarClosestTieBreak secondary convention; both primary optima retained",
+            "browserAccepted": false,
+            "browserLatencyMs": null
           }
         }
       },
@@ -3952,29 +3965,29 @@
         "latency": "measured"
       },
       "stageEvidence": {
-        "source": "2026-10-12 fixedv1 strict branch and paper experiment settings independently audited; original source/version/frozen earlier audit remain recorded.",
-        "algorithm": "Actual fresh-input strict-covariance Cholesky/complex Jacobi SVD, complete null-space directions and global objective certificate. Weighted tradeoff and constant-modulus branches remain open.",
-        "selectedExperiment": "256paired disclosed-seed omnidirectional source-parameter trials N16,K4,L20,Pt1,iidCN(0,1)H,unitQPSK. A declared parameter slice only; full original Figs3–4, direction design and averaging/ZF conventions remain open.",
+        "source": "2026-10-12 fixedv1 strict branch and paper experiment settings independently audited; original source/version/frozen earlier audit remain recorded. Section IV Eqs16–25 and original-parameter settings independently audited; source-exact Fig.3 discrepancy remains explicit.",
+        "algorithm": "Actual fresh-input strict-covariance core plus independently accepted weighted eigensystem/secular equality-energy core. Same-input X0 reuse, both endpoint conventions and floating-point certificates are explicit. Constant-modulus branch-and-bound remains open.",
+        "selectedExperiment": "256paired disclosed-seed omnidirectional source-parameter trials N16,K4,L20,Pt1,iidCN(0,1)H,unitQPSK. A declared parameter slice only; full original Figs3–4, direction design and averaging/ZF conventions remain open. Section IV separately has256paired source-parameter rho=.1 trials and1,920reduced-sweep solves. The Fig.3 weighted curve is explicitly nonmatching; these are algorithm/parameter-slice evidence, not full figure reproduction.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "Worker-response elapsed only: prepared inputs through validated Worker response, excluding input generation/parsing, rendering/paint and download. First default 342.8 ms; five later same-input samples 28.9/28.5/41.9/33.3/30.8 ms. Not Run-to-display latency or a stable p95 benchmark.",
-        "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md.",
-        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial."
+        "latency": "Worker-response elapsed only: prepared inputs through validated Worker response, excluding input generation/parsing, rendering/paint and download. First default 342.8 ms; five later same-input samples 28.9/28.5/41.9/33.3/30.8 ms. Not Run-to-display latency or a stable p95 benchmark. All listed observations concern the earlier strict-only deployed release; no weighted browser latency is established.",
+        "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md. Section IV Python v3 and JS v0.2 independently accepted, including fresh lifted SDP/SLSQP and boundary/malformed inputs; evidence in docs/WAVEFORM-WEIGHTED-VALIDATION.md. Teaching Node Worker/DOM checks are prepublication evidence, not browser verification. Independent integration review:33Worker checks (26fresh inputs/107weighted points),40non-rendering controller checks,94/94focused regressions; actual Node Worker threads, not browser execution.",
+        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial. The new weighted layer still requires its own hosted-browser acceptance; prior strict-only evidence is not transferred to it."
       },
       "missingImplementation": [
-        "Weighted tradeoff and constant-modulus branch-and-bound",
-        "Original three-direction reference-covariance designer and full figure sweeps/ZF/averaging conventions",
-        "Actual deployed browser/download acceptance and repeated latency benchmark"
+        "Constant-modulus/similarity-constrained branch-and-bound",
+        "Original three-direction reference-covariance designer, full figures and unresolved Fig.3 weighted mismatch/ZF/averaging conventions",
+        "New weighted hosted-browser/download/interruption/narrow acceptance and repeated painted-result latency benchmark"
       ],
       "dependencies": [
-        "Independent source/settings for remaining weighted and constant-modulus branches",
         "Original directional covariance, ZF receiver/normalization and averaging settings",
-        "Bound-gap certification for constant-modulus search; a local optimum must not be called global",
-        "Actual supported-browser timing and publication checks"
+        "Independent constant-modulus reference and bound-gap certification; a local optimum must not be called global",
+        "Resolve source-exact Fig.3 discrepancy without fitting undocumented parameters",
+        "Actual supported-browser checks for the new weighted layer and repeated timing"
       ],
       "blockers": [
-        "Weighted tradeoff and constant-modulus branch-and-bound absent",
-        "Original directional designer and complete paper figures open",
-        "Actual in-flight browser cancellation/reset overlap, narrow viewport and Run-to-painted-result benchmark remain open"
+        "Original Fig.3 weighted curve remains nonmatching",
+        "Constant-modulus branch, original directional designer and full paper figures remain open",
+        "New weighted hosted-browser acceptance and Run-to-painted-result benchmark remain open"
       ],
       "realtime": {
         "status": "measured",
@@ -4059,6 +4072,16 @@
           "reference": "scripts/validation/waveform-design/independent_procrustes_reference.py",
           "freshValidation": "scripts/validation/waveform-design/waveform-live-validation.json",
           "historicalEvidence": "Original implementation.details/evidenceFileHashes remain historical, not relabelled as fresh runtime coverage"
+        },
+        "weightedCore": {
+          "report": "docs/WAVEFORM-WEIGHTED-VALIDATION.md",
+          "liveReport": "docs/WAVEFORM-WEIGHTED-LIVE-VALIDATION.md",
+          "results": "scripts/validation/waveform-design/weighted/RESULTS.md",
+          "pythonReview": "scripts/validation/waveform-design/weighted/PYTHON-INDEPENDENT-REVIEW.md",
+          "javascriptReview": "scripts/validation/waveform-design/weighted/JAVASCRIPT-INDEPENDENT-REVIEW.md",
+          "discrepancy": "scripts/validation/waveform-design/weighted/figure-discrepancy-check.json",
+          "preservation": "Original rejected numerical/parser versions and histories remain recorded by the numerical evidence manifest; existing strict and27-state history hashes are unchanged.",
+          "uiReview": "scripts/validation/waveform-design/weighted/UI-INDEPENDENT-REVIEW.md"
         }
       },
       "details": {
@@ -4131,7 +4154,28 @@
         "inputSha256": "1ea45be3ef0573f08eb85828d0da98aeb5c95f7be57f2a009447c3c90b07a600",
         "downloadReplayMaximumXDifference": 0,
         "status": "deployed-smoke-passed-with-open-interruption-and-rendering-gates"
-      }
+      },
+      "branchGates": [
+        {
+          "branch": "strict-covariance",
+          "numerical": "passed-selected-core",
+          "browser": "prior-deployed-smoke-with-open-interruption/narrow/paint-gates",
+          "evidence": "docs/WAVEFORM-LIVE-BROWSER-VALIDATION.md"
+        },
+        {
+          "branch": "Section IV weighted equality-energy",
+          "numerical": "passed-selected-core",
+          "selectedExperiment": "source-parameter-slice-nonmatching-Fig3",
+          "browser": "pending",
+          "latency": "not-measured",
+          "evidence": "docs/WAVEFORM-WEIGHTED-LIVE-VALIDATION.md"
+        },
+        {
+          "branch": "constant-modulus/similarity",
+          "algorithm": "not-implemented",
+          "fullPaper": "not-reproduced"
+        }
+      ]
     },
     {
       "id": "joint_beamforming",
@@ -4163,12 +4207,12 @@
         },
         "paperIdentity": "arxiv:1912.03420",
         "fixedSourceIdentity": "arxiv:1912.03420v2",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "efab9278425f628e33296624fa656b782b84f11c0447bd98487828c04b4094e2",
+        "hashStatus": "recorded",
         "details": {
           "doi": "https://doi.org/10.1109/tsp.2020.3004739",
           "frozenAuditNote": "2026-10-10 原文研究记录核对固定 v2 §II–VI 与附录；解析机制经独立复数线性代数核查。本文原理对照与合成数值不是论文优化器或完整仿真复现。",
-          "sourceManifest": null,
+          "sourceManifest": "labs/joint-beamforming/validation/numerical-reference/SOURCE-MANIFEST.json",
           "supplementalPrimaryReadings": [
             "https://arxiv.org/html/1912.03420v2"
           ]
@@ -4225,14 +4269,19 @@
           "1000 iid Rayleigh channel trials per configuration, 1024 QPSK samples; original QSDP via CVX"
         ],
         "unresolved": [
-          "Exact seeds, solver tolerance/version and receiver metric details for Figs.9–12 still need a frozen execution specification"
+          "Exact seeds, solver tolerance/version and receiver metric details for Figs.9–12 still need a frozen execution specification",
+          "Selected32-channel/K2 transmit-only experiment differs from1000-trial/K4/K6/SSP/full figures; standalone numerical certification is not interval or symbolic proof.",
+          "Live bounded iteration_limit cannot be relabelled infeasible based on offline truth, timeout or the other method."
         ],
         "details": {}
       },
       "implementation": {
-        "classification": "live analytic recipes, no paper optimizer",
-        "live": "compute creates A/B/C factors for a specially constructed channel and evaluates covariance, eigenvalues, rank, 1801 beampattern points, target correlations and user powers/SINR. Changing Gamma checks fixed recipes; it never reoptimizes.",
-        "offline": null,
+        "classification": "actual bounded radar-only/SDR/optimized-ZF covariance solvers and factor recovery; original analytic recipes preserved separately",
+        "live": {
+          "href": "joint-beamforming.html#experiment",
+          "scope": "Fresh M10/K2 H and Gamma; actual Eq15 radar, Eq32 SDR and Eq40 optimized ZF with reconstruction, numerical diagnostics and real iteration records. Explicit same-model radar reuse is allowed only with provenance; iteration_limit remains unresolved, not inferred infeasible."
+        },
+        "offline": "Independent CVXPY original-grid M10/K2 reference:32paired channels×11thresholds,704primary attempts plus135refinements.347accepted outcomes per method, with the same5certified infeasible channel/threshold pairs; all original failures preserved.",
         "details": {
           "entryPoints": [
             "JointBeamformingCore.compute(eta,noise,threshold)",
@@ -4290,41 +4339,53 @@
             }
           },
           "fullRegressionRerun": false,
-          "newBrowserCheck": false
+          "newBrowserCheck": false,
+          "liveCovarianceCore": {
+            "version": "joint-covariance-drs-v0.3-prototype",
+            "files": {
+              "labs/joint-beamforming/optimizer/core.js": "a6de335f1a57d144cc8aebee1c33ec80397c3c948a9d93c38c1fafbcd1cf262b",
+              "labs/joint-beamforming/optimizer/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+              "labs/joint-beamforming/optimizer/worker.js": "7c0ebef89c8c005e62af9725b0f333633d1f6657aae6096e503399a976afefde"
+            },
+            "browserAccepted": false,
+            "browserLatencyMs": null,
+            "historicalContext": "Existing implementation.details fields describe the prior M8 analytic prerequisite, not the new solver."
+          }
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "live analytic recipes, no paper optimizer",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Fixed v2 PDF hash and full selected covariance equations/settings audited; remaining receiver and full-study details remain open.",
+        "algorithm": "Actual bounded radar-only Eq15, SDR Eq32 and optimized-ZF Eq40 with factor recovery, new H/Gamma and real solver iteration histories. The original M8 analytic prerequisite remains separate.",
+        "selectedExperiment": "32paired PCG64 channels×11thresholds atM10/K2 with original1801angle grid:347accepted SDR and347accepted ZF; five common infeasible pairs have independent residual-adjusted feasibility evidence. All704primary attempts and135refinements retained. Not1000-trial/K4/K6/SSP/full Fig3–8 reproduction.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No measured hosted-browser control-to-result latency. Offline Python/Node costs and a warm model-cache default are explicitly not browser timing.",
+        "independentValidation": "Independent original-grid covariance reference and v0.3 JavaScript/Node Worker numerical gates passed for the selected scope. This does not certify hosted-browser execution.",
+        "uiLearning": "Ordered new-input Worker lesson and prepublication controlled-DOM lifecycle checks; actual hosted-browser, download, layout and timing gate remains open."
       },
       "missingImplementation": [
-        "No SDR, optimized ZF, rank recovery or reference optimization",
-        "No SSP and no 1000-channel paired experiments",
-        "No finite transmitted QPSK block, target echoes or radar-receiver experiment"
+        "SSP baseline, K4/K6 and1000-channel full original statistical studies",
+        "Finite QPSK block, target echoes, Capon/detection and full radar-receiver experiments",
+        "Hosted-browser desktop/narrow interaction, exact download replay and measured control-to-result latency"
       ],
       "dependencies": [
-        "Convex Hermitian PSD/QSDP solver and declared numerical tolerance",
-        "Complex covariance factorization, rank-one recovery and row QR",
-        "Radar-only reference solver and SSP baseline",
-        "Seeded paired channel experiment harness with failed/infeasible trials retained"
+        "Independent selected-core/reference evidence retained with exact hashes",
+        "Remaining SSP/receiver settings and matched1000-trial experiment budget",
+        "Supported hosted-browser execution and real download/timing acceptance"
       ],
       "blockers": [
-        "No SDR, optimized ZF, rank recovery or reference optimization",
-        "No SSP and no 1000-channel paired experiments"
+        "Hosted-browser gate remains open for the new bounded solver lesson",
+        "SSP, K4/K6,1000-channel study and radar-receiver/full-paper coverage remain open"
       ],
       "realtime": {
         "status": "not-measured",
@@ -4338,7 +4399,7 @@
           "worstMs": null
         },
         "details": {
-          "minimal": "One small SDR/ZF instance is a credible worker/backend task but interactive latency is unmeasured; show progress/cancellation and stale-result protection.",
+          "minimal": "Actual bounded Worker solver is implemented and numerically checked; source-sized hard cases can take seconds or hit a declared iteration cap. Browser control-to-result latency remains unmeasured.",
           "full": "1000-channel sweeps plus receiver trials are batch work. Stored sweeps may be reference evidence but cannot masquerade as recomputation.",
           "latencyMs": null
         }
@@ -4352,7 +4413,16 @@
           "startDataAccessInParallel": false
         }
       },
-      "evidence": {},
+      "evidence": {
+        "numericalGate": "labs/joint-beamforming/validation/numerical-reference/NUMERICAL-GATE-REPORT.md",
+        "publicEvidence": "labs/joint-beamforming/validation/numerical-reference/PUBLIC-EVIDENCE.md",
+        "optionalOriginal": "labs/joint-beamforming/validation/OPTIONAL-REFERENCE-DOWNLOAD.md",
+        "originalArchive": "Three optional raw parts with exact reassembly hash; no hosted single ZIP and no startup fetch",
+        "originalArchiveSha256": "3baff9d3e29cec528442fc2c4b9ab8dc34aceb7076803ca4e0c1f6783b4a59b2",
+        "liveReport": "docs/JOINT-BEAMFORMING-LIVE-VALIDATION.md",
+        "exportChecker": "labs/joint-beamforming/validation/export-checker/check_export.py",
+        "historicalEvidence": "Original analytic evidenceFileHashes and frozen audit details remain unchanged and are not relabelled solver validation."
+      },
       "details": {
         "existingRegistryComparison": {
           "comparisonLink": "joint-beamforming.html#paper",

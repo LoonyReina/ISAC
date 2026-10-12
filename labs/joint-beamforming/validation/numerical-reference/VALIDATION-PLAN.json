@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "frozen_before_sweep": true,
+  "date": "2026-10-12",
+  "scope": "Original-dimensional M=10/K=2 reduced Monte Carlo slice of v2 Fig3 and Figs5-8; not full reproduction",
+  "primary_solver": "SCS, eps=2e-7, max_iters=100000, acceleration_lookback=10, warm_start=false",
+  "trials": 32,
+  "gamma_db": [4,6,8,10,12,14,16,18,20,22,24],
+  "seed_base": 2026101201,
+  "rng": "NumPy PCG64(seed_base+trial), complex CN(0,1)=(N(0,1)+j*N(0,1))/sqrt(2)",
+  "paired": "The same H is shared across both methods and every Gamma for each trial; same original power/noise/aperture/grid objective",
+  "gates": {
+    "primal_constraint_max_violation": 0.000002,
+    "minimum_covariance_eigenvalue": -0.000002,
+    "factor_covariance_fro": 0.00001,
+    "factor_per_antenna_error": 0.000002,
+    "recovered_sinr_relative_shortfall": 0.00002,
+    "stationarity_fro": 0.0002,
+    "dual_min_psd_eigenvalue": -0.000002,
+    "dual_min_inequality_value": -0.000002,
+    "complementarity_max_abs": 0.00002,
+    "relative_objective_gap": 0.00002
+  },
+  "infeasibility": "Retain exact solver status and residual certificate, never discard or replace with feasible output. A solver infeasible result is distinct from a hand-proved impossibility.",
+  "aggregate_policy": "Report all statuses and accepted counts. Performance averages use paired accepted cases only with denominator shown; feasibility and numerical-rejection counts always use all 32 trials. No interpolation over failed/infeasible cases.",
+  "open": ["1000 channel trials per configuration", "K=4 and K=6 original sweeps", "SSP comparison", "N=1024 QPSK transmitted block and finite-sample covariance", "Capon/receiver and estimation/detection figures9-12", "Original author seeds and CVX solver tolerances unknown", "Actual browser implementation and latency"]
+}

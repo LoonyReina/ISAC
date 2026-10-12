@@ -1,0 +1,75 @@
+{
+  "review_date_utc": "2026-10-12",
+  "verdict": "Pass for numerical-evidence consistency scope; not a browser-provenance or optimizer-success blanket certification",
+  "checker_sha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722",
+  "fixture_count": 67,
+  "direct_and_wrapped_checks": 134,
+  "mutation_expectations_met": 18,
+  "valid_mutation_controls": 5,
+  "rejected_hostile_or_missing_field_mutations": 13,
+  "result_statuses": {
+    "iteration_limit": 4,
+    "infeasible_certificate": 4,
+    "converged": 58,
+    "infeasible_bound": 1
+  },
+  "runtime_changed_by_review": false,
+  "reference_changed_by_review": false,
+  "files": [
+    {
+      "path": "joint-beamforming-export-checker/check_export.py",
+      "sha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722",
+      "bytes": 15302
+    },
+    {
+      "path": "joint-beamforming-review/export-checker-reviewed-snapshot.py",
+      "sha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722",
+      "bytes": 15302
+    },
+    {
+      "path": "joint-beamforming-review/EXPORT-CHECKER-REVIEW.md",
+      "sha256": "27be29a34150dd805f623833990ba8398b57d3c7e1fa28d31bb1eca867fc8aa4",
+      "bytes": 6632
+    },
+    {
+      "path": "joint-beamforming-review/test_export_checker_mutations.py",
+      "sha256": "ceaf28f6bfd3525ef85f227670b63a916d18084bd2785a91b0d1a505cc5ec64d",
+      "bytes": 5137
+    },
+    {
+      "path": "joint-beamforming-review/audit_export_checker_fixtures.py",
+      "sha256": "40c0866b02244dcabb8ff17477e6e510c7d71d9b3761d6b73182662af893c5e4",
+      "bytes": 2056
+    },
+    {
+      "path": "joint-beamforming-review/export_checker_final_mutation_audit.json",
+      "sha256": "a147697ac4366c19f7f347bc1ddbacff6f0a3a15f059462afd89dfd02221201f",
+      "bytes": 27056
+    },
+    {
+      "path": "joint-beamforming-review/export_checker_final_fixture_audit.json",
+      "sha256": "3e980002bd91b4f79a22aa1cbe3f00900e5f9f33085f832378e468a3f6df446d",
+      "bytes": 17225
+    },
+    {
+      "path": "joint-beamforming-review/export_checker_final_mutations.log",
+      "sha256": "712d5530512c6bd1c2dafc2ef483562962dcacdf97af9e7aeb7c44540232a26a",
+      "bytes": 3149
+    },
+    {
+      "path": "joint-beamforming-browser-prototype/js/core.js",
+      "sha256": "a6de335f1a57d144cc8aebee1c33ec80397c3c948a9d93c38c1fafbcd1cf262b",
+      "bytes": 21839
+    },
+    {
+      "path": "joint-beamforming-browser-prototype/js/hermitian.js",
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+      "bytes": 3658
+    },
+    {
+      "path": "joint-beamforming-browser-prototype/js/worker.js",
+      "sha256": "7c0ebef89c8c005e62af9725b0f333633d1f6657aae6096e503399a976afefde",
+      "bytes": 1456
+    }
+  ]
+}

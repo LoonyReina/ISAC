@@ -442,8 +442,9 @@ test('direct-citation qualification stays visible and all three added ladders re
 
 test('the fifth geometry ladder uses only reviewed existing joins and preserves the first four rendered routes',()=>{
  const {progression,withoutNetworkProgression,withoutNetworkContext}=require('./helpers/network-context-preservation.cjs');
- a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render();
- for(const id of ['known-pilots','angle','echo','beam-design'])a.equal(template(current,id),template(old,id),id);
+ a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render(),beforeSolverCoverage=render(require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(registry));
+ // Preserve original rendered routes after reversing only separately guarded solver-coverage fields.
+ for(const id of ['known-pilots','angle','echo','beam-design'])a.equal(template(beforeSolverCoverage,id),template(old,id),id);
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='geometry'),u=registry.units.find(u=>u.id==='geometry'),g=guideData.cards.find(c=>c.id===progression.guideId),next=guideData.cards.find(c=>c.id===progression.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links[0].guideId,g.id);a.equal(next.contextTrail.links[0].relationType,'problem-link');
  const h=setup({hash:'#map-node-geometry'}),ladder=h.panel.querySelector('[data-map-progression="geometry"]');a.ok(ladder);a.equal(h.panel.querySelector('.map-beginner'),null);

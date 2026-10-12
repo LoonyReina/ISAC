@@ -1,0 +1,30 @@
+{
+  "selected_outcomes": 704,
+  "directly_recomputed_accepted_solutions": 694,
+  "final_counts": {
+    "sdr": {
+      "accepted": 347,
+      "certified_infeasible": 5
+    },
+    "zf": {
+      "accepted": 347,
+      "certified_infeasible": 5
+    }
+  },
+  "infeasible_trials_at_24db": [
+    0,
+    6,
+    9,
+    20,
+    22
+  ],
+  "summary_statistics_max_discrepancy": {
+    "mean": 7.105427357601002e-15,
+    "mc_standard_error": 1.9629018699893804e-15,
+    "bootstrap95": 2.1316282072803006e-14
+  },
+  "primary_index_matches_freeze": true,
+  "issues": [],
+  "all_checks_passed": true,
+  "scope_confirmed": "M=10, K=2, 32 paired trials only; no 1000-trial reproduction, SSP, receivers, or browser execution"
+}

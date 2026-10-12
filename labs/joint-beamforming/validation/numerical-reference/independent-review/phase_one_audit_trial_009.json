@@ -1,0 +1,41 @@
+{
+  "source": "/workspace/shared/isac-paper-execution/joint-beamforming-reference/results/phase-one-trial-009-gamma-24.json",
+  "source_sha256": "58b95a68d265acbee9e10c67ff0f03322058b98519edb124a34ae6e59e6cdf73",
+  "original_lambda_sum": 1.0000000007997416,
+  "normalized_lambda_sum": 0.9999999999999999,
+  "normalized_min_lambda": 0.15045277336093857,
+  "normalized_constant_c": 0.0016919878265473625,
+  "normalized_stationarity_operator_norms": [
+    2.44295616758367e-09,
+    3.7531455433985245e-09,
+    1.867941798563498e-09
+  ],
+  "normalized_stationarity_min_eigenvalues": [
+    -2.4429561675836703e-09,
+    -3.753145543398528e-09,
+    -1.8679417985634977e-09
+  ],
+  "normalized_dual_min_eigenvalues": [
+    3.2803119896278714e-10,
+    0.0027248797149105443,
+    3.115796004320101e-10,
+    3.040598686133095e-11
+  ],
+  "negative_dual_cone_correction": 0.0,
+  "lower_bound_on_negative_margin_norm": 0.001691979762503853,
+  "lower_bound_on_negative_margin_eigen": 0.001691979762503853,
+  "upper_bound_on_maximum_margin_norm": -0.001691979762503853,
+  "primal_returned_margin": -0.0016919878887828128,
+  "primal_sinr_margin_slacks": [
+    1.7060635282978298e-10,
+    -2.5654351819975885e-10
+  ],
+  "primal_psd_min_eigenvalues": [
+    3.054943025647328e-08,
+    -2.6682842123475074e-10,
+    -2.3463399948415965e-10,
+    -1.7484341390579246e-10
+  ],
+  "primal_diag_max_error": 2.7755575615628914e-17,
+  "mathematical_infeasibility_supported_at_numerical_precision": true
+}

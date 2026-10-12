@@ -1,0 +1,31 @@
+{
+  "status": "ACCEPTED-JAVASCRIPT-NUMERICAL-CORE-ONLY",
+  "candidateSHA256": "70f720a7f67f95b139f31171370d86e9e348bf9a91b4a0d0c38717a66cf5a6a3",
+  "pythonReferenceSHA256": "5871d0a8ae481a723f662c120e87e24f8ef8534ebc5d88c8a63ce9bea987e880",
+  "sourcePDFSHA256": "e79052feb8fd898002a71c9b1f20fd75cb757159b6e92071e97812e85b62d798",
+  "primaryFreshInputs": 195,
+  "primaryActualJSSolves": 390,
+  "freshPrimalSDPComparisons": 24,
+  "unitaryComparisons": 24,
+  "secondaryFreshInputs": 41,
+  "secondaryActualJSSolves": 82,
+  "primaryOptimalNullspaceRivals": 1968,
+  "phaseComparisons": 6,
+  "negativeControls": 3,
+  "scalarAnalyticCases": 3123,
+  "admissionChecks": 32,
+  "invalidOptionTypeChecks": 6,
+  "fixedIssue": "Sparse complex-pair holes skipped by Array.some; corrected to explicit coordinate checks",
+  "remainingConditions": [
+    "Near-hard numerical branch classification and waveform accuracy must be distinguished from objective certification",
+    "Unresolved published Fig3 weighted-curve discrepancy remains open",
+    "UI and Worker integration need a separate validation gate"
+  ],
+  "notReviewed": [
+    "Browser UI",
+    "Worker integration",
+    "repository changes",
+    "publication",
+    "full-figure reproduction"
+  ]
+}

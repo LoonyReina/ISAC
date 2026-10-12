@@ -1,0 +1,1401 @@
+{
+  "status": "passed",
+  "coreSHA256": "70f720a7f67f95b139f31171370d86e9e348bf9a91b4a0d0c38717a66cf5a6a3",
+  "referenceSHA256": "5871d0a8ae481a723f662c120e87e24f8ef8534ebc5d88c8a63ce9bea987e880",
+  "fixtureCases": 26,
+  "freshCases": 128,
+  "seed": 171105232,
+  "cases": 154,
+  "maxEnergyRelativeResidual": 2.1707077669484842e-13,
+  "maxObjectiveRelativeGap": 2.358620106836949e-14,
+  "maxIndependentBoundRelativeGap": 4.326048830065348e-14,
+  "scope": "Actual fresh JavaScript X audited by separate Python objective, equality energy, PSD/KKT and independently accepted reference. No UI/browser/figure-reproduction claim.",
+  "rows": [
+    {
+      "name": "rho-zero-feasible-reference",
+      "inputSha256": "5bbf8712ec028e314eea5a98db831724485d6a20e8c9f070cc9e47aba6e6fff7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.4210854715202004e-14,
+      "objectiveGapRelativeToCertificateScale": 5.043779412756843e-29,
+      "independentBoundGapRelativeToCertificateScale": 8.881784197002234e-16,
+      "elapsedComputeMs": 1.5384949999999975
+    },
+    {
+      "name": "rho-one-hard-extra-energy",
+      "inputSha256": "dd76e5cc7f6d08bc43d7059251b7e8843fa615b67c391ba2bce24659cf72283f",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 6.280369834735101e-16,
+      "elapsedComputeMs": 0.23555600000000254
+    },
+    {
+      "name": "rho-one-singular-boundary",
+      "inputSha256": "6fcac770377956c6a625c446ff592a1e504a9b256b8d4eef154c6733af575c47",
+      "branch": "singular-boundary-no-completion",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.14701300000000117
+    },
+    {
+      "name": "rho-one-regular-insufficient-energy",
+      "inputSha256": "b5397519b7af480d695845d2e2bab74305e91a84e4673c976f542043cc7a3e8e",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.0774770000000018
+    },
+    {
+      "name": "zero-channel-zero-symbols-flat",
+      "inputSha256": "5da2166ec1640253e429deb15d8ceca0ce0004f381b4186606f0dfeb7d48a672",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.07368100000000766
+    },
+    {
+      "name": "full-rank-zero-symbols-negative-lambda",
+      "inputSha256": "cf252c583f9e313d685edbcea231d7cd680680fa75c175a4c375382e6311cfdd",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 5.551115123125783e-17,
+      "elapsedComputeMs": 0.061522999999994
+    },
+    {
+      "name": "repeated-minimum-eigenvalue",
+      "inputSha256": "716185dba82a958d6efa207785aef9458ed607cd98bc79a52dbc3297aa242f18",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.4802973661668753e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 1.644774851296528e-17,
+      "elapsedComputeMs": 0.132559999999998
+    },
+    {
+      "name": "complex-scalar-regular",
+      "inputSha256": "f8dbc9efb6d19ec09998790f4f1c68d4c96a29cadbd2c08831d7d6e61c594c95",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.105427357601002e-15,
+      "objectiveGapRelativeToCertificateScale": 3.489272363107635e-15,
+      "independentBoundGapRelativeToCertificateScale": 3.869920257264839e-15,
+      "elapsedComputeMs": 0.06072199999999839
+    },
+    {
+      "name": "arbitrary-reference-cancellation-rho-half",
+      "inputSha256": "f855881f8884d030fe5fd82c4900a983a259df088ebe0d12fa76bc230b155bd3",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 1.1102230246251565e-16,
+      "elapsedComputeMs": 0.07574400000000026
+    },
+    {
+      "name": "zero-power-singleton",
+      "inputSha256": "d9128243538d6f5202c274193b2c4c9df91cee32f88b0a37cb9ec0267817d516",
+      "branch": "zero-energy-singleton",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.0840469999999982
+    },
+    {
+      "name": "zero-reference-rho-zero",
+      "inputSha256": "7918d05b9125f6a2900d8935d620cc8f45626264d0e2af1e859caad79004ec47",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 2.2204460492503126e-16,
+      "elapsedComputeMs": 0.0714579999999927
+    },
+    {
+      "name": "L-less-than-N-general-objective",
+      "inputSha256": "0982e6d9f038c37dea791fa857c551e7c02396f69286dffe5c80be9fde87a74f",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 2.220446049250313e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 6.280369834735101e-16,
+      "elapsedComputeMs": 0.07398200000000088
+    },
+    {
+      "name": "zero-quadratic-large-energy-4",
+      "inputSha256": "3787abfd71bbd2d70388c08656eecb7e4355f1d536482c1243579c4dcdaf4085",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.053481000000005
+    },
+    {
+      "name": "zero-quadratic-large-energy-10",
+      "inputSha256": "03ded14ec2d049668c7bb8b884d731dc39c5d3573263a020111a49259cbea9dc",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.7763568394002506e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.04630000000000223
+    },
+    {
+      "name": "zero-quadratic-large-energy-1000000000000.0",
+      "inputSha256": "781b7aad92cf8346c6119696ce21d6e9becda023c285319426584c3cbb4281a5",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 0.0,
+      "elapsedComputeMs": 0.04474700000000098
+    },
+    {
+      "name": "fresh-0",
+      "inputSha256": "53b9ebe379be4ad557e0133a00e5206d7a464c3351910cdf130f8ff2c8e45b6d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.539753518810759e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 6.918464760861087e-16,
+      "elapsedComputeMs": 0.8637849999999929
+    },
+    {
+      "name": "fresh-1",
+      "inputSha256": "87f755f9cb374556ad990833a0a22b26896c09af5b4847529ef08f7d39f86a6c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.528626929035714e-14,
+      "objectiveGapRelativeToCertificateScale": -5.630030360497411e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.1508251737361723e-14,
+      "elapsedComputeMs": 5.3558439999999905
+    },
+    {
+      "name": "fresh-2",
+      "inputSha256": "4e9dbf35f0ac280162c2a9f14ccf1f9813e322451af8d18bccbcefbeecc73c85",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.6817050740305616e-14,
+      "objectiveGapRelativeToCertificateScale": 4.541488673680746e-28,
+      "independentBoundGapRelativeToCertificateScale": 6.696792405567569e-15,
+      "elapsedComputeMs": 8.521210999999994
+    },
+    {
+      "name": "fresh-3",
+      "inputSha256": "be3d6b5c70f7ea67ec13d73415fb5e25f70017b67784bb61f6b4a746b3dda495",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.5855194337095885e-14,
+      "objectiveGapRelativeToCertificateScale": 2.6181553868168188e-23,
+      "independentBoundGapRelativeToCertificateScale": 8.29479925390919e-15,
+      "elapsedComputeMs": 4.147607999999991
+    },
+    {
+      "name": "fresh-4",
+      "inputSha256": "0a634e57bde13f96627700f3a65b2f0cb74c632142b7af263e481d037ecc7db5",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.5296369255021438e-14,
+      "objectiveGapRelativeToCertificateScale": -5.898059818321144e-17,
+      "independentBoundGapRelativeToCertificateScale": 3.702157000650495e-15,
+      "elapsedComputeMs": 1.1987419999999958
+    },
+    {
+      "name": "fresh-5",
+      "inputSha256": "ae0cea59363b3a6e739cde509d05164b73c267952e08be97c7008f391cf7e1bd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3484048052746356e-14,
+      "objectiveGapRelativeToCertificateScale": -1.67243518497082e-15,
+      "independentBoundGapRelativeToCertificateScale": 3.1208455678509214e-15,
+      "elapsedComputeMs": 0.28714300000000037
+    },
+    {
+      "name": "fresh-6",
+      "inputSha256": "20255a65367b6eed3fca4fabd6532e5598f24deb17fb10e224a29a4d75836188",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.6139661286454255e-14,
+      "objectiveGapRelativeToCertificateScale": -7.629882682508558e-16,
+      "independentBoundGapRelativeToCertificateScale": 6.640787822454391e-15,
+      "elapsedComputeMs": 0.4215069999999912
+    },
+    {
+      "name": "fresh-7",
+      "inputSha256": "c335f43864d55061b260d864b9997848a2f85bd6ceaea2daae0413b32978f59c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 9.322397482272479e-15,
+      "objectiveGapRelativeToCertificateScale": 7.890481845555768e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.0707978270084304e-15,
+      "elapsedComputeMs": 0.13898000000000366
+    },
+    {
+      "name": "fresh-8",
+      "inputSha256": "c3c6547672842c34106019f7c04dc18e46f5709a6026508fca2229caeac58162",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.031559443981779e-14,
+      "objectiveGapRelativeToCertificateScale": -1.9378438267263618e-15,
+      "independentBoundGapRelativeToCertificateScale": 5.696027134989943e-15,
+      "elapsedComputeMs": 1.3219979999999936
+    },
+    {
+      "name": "fresh-9",
+      "inputSha256": "4f50c0043c26a047579d4f675a2f46382af9cc1e1176e3f273261ddcef12af20",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3791923821074505e-14,
+      "objectiveGapRelativeToCertificateScale": -2.0724163126336466e-15,
+      "independentBoundGapRelativeToCertificateScale": 3.781598701596789e-15,
+      "elapsedComputeMs": 0.6592259999999897
+    },
+    {
+      "name": "first-source-sized-rho-0p1",
+      "inputSha256": "1bd3dd08b04819c0cd0f33edef20df7a7a2351919153e42be5ba7b6e704eac68",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1297629498585593e-13,
+      "objectiveGapRelativeToCertificateScale": -4.664148328431657e-16,
+      "independentBoundGapRelativeToCertificateScale": 7.437273876004985e-15,
+      "elapsedComputeMs": 5.89180300000001
+    },
+    {
+      "name": "portable-fresh-0",
+      "inputSha256": "f83a39281fe5a2ff7f0ea4457918ec36e440d219445028aa021660aed0505de6",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.6135794113243546e-14,
+      "objectiveGapRelativeToCertificateScale": 7.853244103598811e-28,
+      "independentBoundGapRelativeToCertificateScale": 4.802563554232279e-16,
+      "elapsedComputeMs": 0.12855500000000575
+    },
+    {
+      "name": "portable-fresh-1",
+      "inputSha256": "ee08e80816259f803d161af4c4056fa359cb406f68d3a81d90e3ac2b630eab67",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1260864590480779e-14,
+      "objectiveGapRelativeToCertificateScale": 1.3877787807814457e-17,
+      "independentBoundGapRelativeToCertificateScale": 6.001025076204957e-16,
+      "elapsedComputeMs": 0.2424570000000017
+    },
+    {
+      "name": "portable-fresh-2",
+      "inputSha256": "325d0dbeef197f49345ff1930057fb996ce158c547a36fcb0d720465e6475d6e",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.5748292671349446e-13,
+      "objectiveGapRelativeToCertificateScale": -1.6492877289268968e-14,
+      "independentBoundGapRelativeToCertificateScale": 1.928946356348112e-14,
+      "elapsedComputeMs": 5.8204840000000075
+    },
+    {
+      "name": "portable-fresh-3",
+      "inputSha256": "5fc10b85b9c7497bec77dcabed661a7100acb20d91a82eb1a6098fb8bc36c56f",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.8812678855443894e-14,
+      "objectiveGapRelativeToCertificateScale": -3.0378659184129476e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.428779773577218e-15,
+      "elapsedComputeMs": 0.9958149999999932
+    },
+    {
+      "name": "portable-fresh-4",
+      "inputSha256": "460baf8164b4a595e1f4a1f8734f14096e1b65b0b0f62b2ed525cdc6ffa6144c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.344783908008639e-14,
+      "objectiveGapRelativeToCertificateScale": 1.6873555355331343e-14,
+      "independentBoundGapRelativeToCertificateScale": 2.0587023969183085e-14,
+      "elapsedComputeMs": 1.7690329999999932
+    },
+    {
+      "name": "portable-fresh-5",
+      "inputSha256": "c620762740ad0d775baa94a7bf114922e0626234176ae2242b17b059361540c9",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.7138410730320764e-14,
+      "objectiveGapRelativeToCertificateScale": -5.3929338236650114e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.924744433852648e-15,
+      "elapsedComputeMs": 1.4614890000000003
+    },
+    {
+      "name": "portable-fresh-6",
+      "inputSha256": "0a7a7286bd2d2876f154130debabc06f28d42b26b040d7ce98f7caadd1fe5910",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 9.218432631064461e-14,
+      "objectiveGapRelativeToCertificateScale": 9.397224962138063e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.2812385035145998e-14,
+      "elapsedComputeMs": 0.4174409999999966
+    },
+    {
+      "name": "portable-fresh-7",
+      "inputSha256": "bebd8ddad2bd77dfa438fb2e175ad4b6aa4e4d5a9d42dea4a35ad910a1d76f1d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1289765982978516e-13,
+      "objectiveGapRelativeToCertificateScale": 3.1898867829479708e-27,
+      "independentBoundGapRelativeToCertificateScale": 4.2245354267044754e-16,
+      "elapsedComputeMs": 1.4883389999999963
+    },
+    {
+      "name": "portable-fresh-8",
+      "inputSha256": "8eb5409cdff03d8d67d99e2663015c9eeebb1ca527a8b1c81831b8192cb4bc99",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.4853748349638168e-14,
+      "objectiveGapRelativeToCertificateScale": -9.736360221275548e-18,
+      "independentBoundGapRelativeToCertificateScale": 5.388724205895809e-15,
+      "elapsedComputeMs": 1.274345000000011
+    },
+    {
+      "name": "portable-fresh-9",
+      "inputSha256": "d4cd8271c8a7c9a324322dc3211fec08beaeac553c3dd7c984358f91e3488d63",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.4928386325282105e-13,
+      "objectiveGapRelativeToCertificateScale": 2.604144090654686e-16,
+      "independentBoundGapRelativeToCertificateScale": 6.609468509603368e-15,
+      "elapsedComputeMs": 1.5534570000000087
+    },
+    {
+      "name": "portable-fresh-10",
+      "inputSha256": "8108d284b82e4d7d8790d50d50c0329104110b362748715375e53eab2a37193d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1785776160666705e-14,
+      "objectiveGapRelativeToCertificateScale": 7.957457101074468e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.3446049218619877e-14,
+      "elapsedComputeMs": 1.1734240000000113
+    },
+    {
+      "name": "portable-fresh-11",
+      "inputSha256": "d4a05eea04590004b8ce9565f4136cee9144dad02f7d23f0d83a395dc3e6da6d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.394632371363556e-15,
+      "objectiveGapRelativeToCertificateScale": 3.9193813664601655e-19,
+      "independentBoundGapRelativeToCertificateScale": 1.175697951428707e-15,
+      "elapsedComputeMs": 0.5660649999999805
+    },
+    {
+      "name": "portable-fresh-12",
+      "inputSha256": "631454863ccd08ef3ab1968d6860ac6ea8cf96a81bd7abe37411a4095e58ede3",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.080873770429929e-14,
+      "objectiveGapRelativeToCertificateScale": -1.0002860572620138e-14,
+      "independentBoundGapRelativeToCertificateScale": 1.2057752196060746e-14,
+      "elapsedComputeMs": 2.610558999999995
+    },
+    {
+      "name": "portable-fresh-13",
+      "inputSha256": "64a4a38bf385a3a997045158db7f672fc9dbbad5ebb9322aafdbeffdd02e0cd3",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.4260846462365673e-15,
+      "objectiveGapRelativeToCertificateScale": 1.8645243645422536e-31,
+      "independentBoundGapRelativeToCertificateScale": 1.7974223049505774e-15,
+      "elapsedComputeMs": 4.738009000000005
+    },
+    {
+      "name": "portable-fresh-14",
+      "inputSha256": "12d9eac51361a679270843a482f39f6aeec1cb11124a78da57f6c52fb0dc61b7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.350213682308431e-15,
+      "objectiveGapRelativeToCertificateScale": 2.3605955575296006e-30,
+      "independentBoundGapRelativeToCertificateScale": 6.735546984551702e-16,
+      "elapsedComputeMs": 6.273529999999994
+    },
+    {
+      "name": "portable-fresh-15",
+      "inputSha256": "ce36cc09780e6882fe45dddd9f7594c4580283aa529709cd0c9babeede9d7927",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.697018300332572e-14,
+      "objectiveGapRelativeToCertificateScale": 4.795314525877612e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.1117846168279283e-14,
+      "elapsedComputeMs": 2.2805159999999773
+    },
+    {
+      "name": "portable-fresh-16",
+      "inputSha256": "c5bcb18e6e04a19b8dab85663d15e243d6f1d0a5ae8a45f7dc9853cdb6150782",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2921973833776072e-13,
+      "objectiveGapRelativeToCertificateScale": -8.909906778679544e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.0867390371297807e-14,
+      "elapsedComputeMs": 0.3442000000000007
+    },
+    {
+      "name": "portable-fresh-17",
+      "inputSha256": "5e204888963c8d89b510bb5314f830b4f6ac2381b67ceb5e90d1bf556cd72275",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3950671252046427e-14,
+      "objectiveGapRelativeToCertificateScale": 7.900510128633306e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.3313396503404426e-15,
+      "elapsedComputeMs": 0.19641699999999673
+    },
+    {
+      "name": "portable-fresh-18",
+      "inputSha256": "6f41814088b3e6576fb320f97e5bea21cde7eda1511b75a39ae6628e8039b55c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2319454057448185e-14,
+      "objectiveGapRelativeToCertificateScale": 7.443082665179749e-16,
+      "independentBoundGapRelativeToCertificateScale": 5.037628227908089e-15,
+      "elapsedComputeMs": 0.6051340000000209
+    },
+    {
+      "name": "portable-fresh-19",
+      "inputSha256": "fd20d9ac4ab63b0c098da52c7ca7549eefcd6d922e0bc98d655070dbf93c8b2f",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 9.044481674322121e-14,
+      "objectiveGapRelativeToCertificateScale": 8.762712214058064e-15,
+      "independentBoundGapRelativeToCertificateScale": 9.127815268622442e-15,
+      "elapsedComputeMs": 0.07299999999997908
+    },
+    {
+      "name": "portable-fresh-20",
+      "inputSha256": "7bafe33e7250b8707d712e13aa5ed15fe72c668ff63a24c4ea6a098f145b27fe",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1944265290824586e-14,
+      "objectiveGapRelativeToCertificateScale": -1.3626369602161244e-15,
+      "independentBoundGapRelativeToCertificateScale": 3.2232132728546553e-15,
+      "elapsedComputeMs": 0.1702269999999828
+    },
+    {
+      "name": "portable-fresh-21",
+      "inputSha256": "3c9fa0cde1558ee62959453a18f03988dde2678854a1ae20650dc0e82c308020",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.8144118714082286e-15,
+      "objectiveGapRelativeToCertificateScale": 5.989389755813983e-31,
+      "independentBoundGapRelativeToCertificateScale": 3.988554976478614e-16,
+      "elapsedComputeMs": 0.3595630000000085
+    },
+    {
+      "name": "portable-fresh-22",
+      "inputSha256": "a23f651b7850f0a6707b1ad6b2a99af224b734139a2a6633e385a574022ba23c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 9.851551378710221e-14,
+      "objectiveGapRelativeToCertificateScale": -7.35967867782802e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.7360574563431124e-14,
+      "elapsedComputeMs": 0.45537799999999606
+    },
+    {
+      "name": "portable-fresh-23",
+      "inputSha256": "e616fe398a8796434a73455de4b6e8c4239a0bbfd4d92d9f72ac5ce854f82b83",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.326266805641338e-14,
+      "objectiveGapRelativeToCertificateScale": 3.567666020464813e-15,
+      "independentBoundGapRelativeToCertificateScale": 6.446542026119553e-15,
+      "elapsedComputeMs": 1.4410570000000007
+    },
+    {
+      "name": "portable-fresh-24",
+      "inputSha256": "bb2f335d960c384bec63917d4025c2ff85d9afa25e45a0d2747bf261a4f8877c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.305326697215014e-14,
+      "objectiveGapRelativeToCertificateScale": -1.4902111070618152e-15,
+      "independentBoundGapRelativeToCertificateScale": 9.0699345437925e-15,
+      "elapsedComputeMs": 0.16768400000000838
+    },
+    {
+      "name": "portable-fresh-25",
+      "inputSha256": "fd0448233e1dbfb5dd85ffdad2cd7ddb2d4c2c87835b5309007786318fa50b7c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.5899679813957975e-13,
+      "objectiveGapRelativeToCertificateScale": 2.928500988094945e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.999352410868401e-15,
+      "elapsedComputeMs": 0.5002159999999947
+    },
+    {
+      "name": "portable-fresh-26",
+      "inputSha256": "d3317e515247249e4c85da332ebf7b68c22360118f47df401833baf4754d3934",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.660368675369242e-14,
+      "objectiveGapRelativeToCertificateScale": -5.418470550633073e-15,
+      "independentBoundGapRelativeToCertificateScale": 6.171665141125845e-15,
+      "elapsedComputeMs": 0.12999700000000303
+    },
+    {
+      "name": "portable-fresh-27",
+      "inputSha256": "803f5a3e2e517b55a8963e4e7e9e7789893560ed3d39d339213830546d3333a7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.796498537006119e-15,
+      "objectiveGapRelativeToCertificateScale": -5.453172514647714e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.0574755851169537e-14,
+      "elapsedComputeMs": 1.0278629999999964
+    },
+    {
+      "name": "portable-fresh-28",
+      "inputSha256": "4327fa816a8f1091bdea5e9b3eb2cebf64fec0db8ee955eac1a8ada08efa32f1",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.86154431383598e-14,
+      "objectiveGapRelativeToCertificateScale": 1.8078111985829943e-29,
+      "independentBoundGapRelativeToCertificateScale": 3.9205072894456627e-17,
+      "elapsedComputeMs": 0.03823800000000688
+    },
+    {
+      "name": "portable-fresh-29",
+      "inputSha256": "91a75e3443a36c0ece359d33a7a2386c6fd69d96b00658888b03cf517a1cc820",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.2118784677532808e-14,
+      "objectiveGapRelativeToCertificateScale": 4.282081892924799e-17,
+      "independentBoundGapRelativeToCertificateScale": 1.0092160258868414e-15,
+      "elapsedComputeMs": 0.05493300000000545
+    },
+    {
+      "name": "portable-fresh-30",
+      "inputSha256": "3f45f884ca93820ee578c23d0593f1c9f6cdee6c370210d61fddd81a84b8e01e",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.917023445278753e-15,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 4.326048830065348e-14,
+      "elapsedComputeMs": 1.5598569999999938
+    },
+    {
+      "name": "portable-fresh-31",
+      "inputSha256": "a52d0312a2d4873e918e2fdb8214a61c153c72f6a703aff89fb0679edb465441",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.4095116458673033e-14,
+      "objectiveGapRelativeToCertificateScale": 3.340098767842789e-15,
+      "independentBoundGapRelativeToCertificateScale": 5.1428745333414395e-15,
+      "elapsedComputeMs": 0.45514700000001085
+    },
+    {
+      "name": "portable-fresh-32",
+      "inputSha256": "b88db2470a1412be6928894d76617961f6c84a4c142af87bbac6f1e0baa289cc",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.5477000173441528e-14,
+      "objectiveGapRelativeToCertificateScale": -1.8177015728610424e-15,
+      "independentBoundGapRelativeToCertificateScale": 4.050059304798158e-15,
+      "elapsedComputeMs": 0.5881280000000118
+    },
+    {
+      "name": "portable-fresh-33",
+      "inputSha256": "b14d30286afe35ce366d8c3f83cc2e15b0bbc2a1c59641bf0d6551872dc02b37",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.9016261803107276e-14,
+      "objectiveGapRelativeToCertificateScale": -4.848522035611561e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.855516407756307e-15,
+      "elapsedComputeMs": 0.2541040000000123
+    },
+    {
+      "name": "portable-fresh-34",
+      "inputSha256": "ef8732c9c46ff462e0705a224c53db196996678823daae8569b93e53f8dd6f37",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.9300515255871917e-14,
+      "objectiveGapRelativeToCertificateScale": -1.0514172991418125e-14,
+      "independentBoundGapRelativeToCertificateScale": 1.4774753990430125e-14,
+      "elapsedComputeMs": 0.49578900000000203
+    },
+    {
+      "name": "portable-fresh-35",
+      "inputSha256": "79bf0e8cfff8b3b03f3d7fc62bc6d895e661edb7ff04945cd6cf6e36df38d3c0",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1422397055197784e-13,
+      "objectiveGapRelativeToCertificateScale": 3.2481145928449035e-27,
+      "independentBoundGapRelativeToCertificateScale": 7.362373926195996e-16,
+      "elapsedComputeMs": 0.8661290000000008
+    },
+    {
+      "name": "portable-fresh-36",
+      "inputSha256": "1639eb69db0be917cd07bdab191c0040be4c94274c90850ebcf2848c0311f104",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.333320258802701e-14,
+      "objectiveGapRelativeToCertificateScale": 2.9959105958790596e-17,
+      "independentBoundGapRelativeToCertificateScale": 6.2373219341845756e-15,
+      "elapsedComputeMs": 0.842993000000007
+    },
+    {
+      "name": "portable-fresh-37",
+      "inputSha256": "d1028e0a132e43b531b7c52ccfcca10c94bfb236e31ebce365375589fdd6db9d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.1527103439724705e-14,
+      "objectiveGapRelativeToCertificateScale": 2.4239668655386263e-15,
+      "independentBoundGapRelativeToCertificateScale": 5.805562304391199e-15,
+      "elapsedComputeMs": 1.6024809999999832
+    },
+    {
+      "name": "portable-fresh-38",
+      "inputSha256": "5313edb0b31aeca53005b7db96e98e3d5cc72e8b7035e606e8e674e591d2fe88",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.1951724494099184e-16,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 7.610577274481502e-17,
+      "elapsedComputeMs": 0.08840299999999957
+    },
+    {
+      "name": "portable-fresh-39",
+      "inputSha256": "73c10571b2a8cdb0b68c5144519f56773cccf350b05e52fa6fedf10cf270d7cd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.16937416105962e-14,
+      "objectiveGapRelativeToCertificateScale": 1.616015391996198e-17,
+      "independentBoundGapRelativeToCertificateScale": 3.0912914451461975e-15,
+      "elapsedComputeMs": 1.0118789999999933
+    },
+    {
+      "name": "portable-fresh-40",
+      "inputSha256": "cd69707fb666ecb19ebca6e96d40765077ea29fe4599049be5754062ac04aa77",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.9438142980772906e-14,
+      "objectiveGapRelativeToCertificateScale": 1.1098363984664829e-14,
+      "independentBoundGapRelativeToCertificateScale": 2.1375639603388762e-14,
+      "elapsedComputeMs": 1.6471589999999878
+    },
+    {
+      "name": "portable-fresh-41",
+      "inputSha256": "838fcaea6fb7d8f0f2c3a6ca80a5780fec6f2b8164a1e31d821559054151ed03",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.555464278597064e-14,
+      "objectiveGapRelativeToCertificateScale": -1.0953956483068203e-14,
+      "independentBoundGapRelativeToCertificateScale": 1.662816416620542e-14,
+      "elapsedComputeMs": 1.7383559999999818
+    },
+    {
+      "name": "portable-fresh-42",
+      "inputSha256": "9cc4e4086b87ba26c611c8452ee94655a2512c0a70c4df7741fbc67b7c41a905",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 0.0,
+      "objectiveGapRelativeToCertificateScale": -1.9593920782336165e-32,
+      "independentBoundGapRelativeToCertificateScale": 5.986951978470054e-16,
+      "elapsedComputeMs": 0.04619999999999891
+    },
+    {
+      "name": "portable-fresh-43",
+      "inputSha256": "9156c1dac86480143b9a9089a3e020fbe22fe5f1f62fa494ace55be22c48318a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1347245806070009e-13,
+      "objectiveGapRelativeToCertificateScale": 3.9390611079413653e-17,
+      "independentBoundGapRelativeToCertificateScale": 4.411985479552824e-16,
+      "elapsedComputeMs": 0.06604999999998995
+    },
+    {
+      "name": "portable-fresh-44",
+      "inputSha256": "55337940aa25409b02e98cf470fb947fe48f5084611c7fdee803afdc42742c61",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.45879839163247e-14,
+      "objectiveGapRelativeToCertificateScale": 6.477244410271013e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.4876578987052634e-14,
+      "elapsedComputeMs": 1.1139040000000193
+    },
+    {
+      "name": "portable-fresh-45",
+      "inputSha256": "b25397b010edb8f6467cacd07a06d117333a891c91a29368c5c4d455984ff392",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.6120751314007254e-14,
+      "objectiveGapRelativeToCertificateScale": 4.928239932353771e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.887126410480504e-15,
+      "elapsedComputeMs": 0.1571079999999938
+    },
+    {
+      "name": "portable-fresh-46",
+      "inputSha256": "69890ac0aac836d41653bdf7865a7fe31e4826a51a2088f2adfb1a737ca50dcc",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2740400813301705e-13,
+      "objectiveGapRelativeToCertificateScale": -2.358620106836949e-14,
+      "independentBoundGapRelativeToCertificateScale": 3.009907416487824e-14,
+      "elapsedComputeMs": 3.15912400000002
+    },
+    {
+      "name": "portable-fresh-47",
+      "inputSha256": "adfb7006d771c7714af4bc023596e18c9c663bb86de730ad5c91bee47436edcd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.326859381170525e-13,
+      "objectiveGapRelativeToCertificateScale": 3.5275538833922073e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.5034836632292364e-15,
+      "elapsedComputeMs": 0.5535469999999805
+    },
+    {
+      "name": "portable-fresh-48",
+      "inputSha256": "8dff5545e5ea10474541e01f91ef15268a87c00eb2314b0002bd1958ba9b94fc",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.0219029320396257e-13,
+      "objectiveGapRelativeToCertificateScale": -2.012461966826572e-14,
+      "independentBoundGapRelativeToCertificateScale": 2.1889870827449945e-14,
+      "elapsedComputeMs": 0.17567500000001246
+    },
+    {
+      "name": "portable-fresh-49",
+      "inputSha256": "16794c192335434a36633fcaca479b7b3aed0a0788bc6a6dca72d7b264c0b105",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1071359297529345e-13,
+      "objectiveGapRelativeToCertificateScale": 3.081765318583938e-27,
+      "independentBoundGapRelativeToCertificateScale": 4.30108718442699e-16,
+      "elapsedComputeMs": 1.1040279999999996
+    },
+    {
+      "name": "portable-fresh-50",
+      "inputSha256": "fa65c1be4e1da600971fdd86752c19b0df9483061932be3fa02fb6185de0c054",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.1943293024927655e-14,
+      "objectiveGapRelativeToCertificateScale": -3.8075973710843064e-16,
+      "independentBoundGapRelativeToCertificateScale": 7.691235017045594e-15,
+      "elapsedComputeMs": 0.7108840000000214
+    },
+    {
+      "name": "portable-fresh-51",
+      "inputSha256": "108c6760135224261bcfc80d0dd290b7ab2096d3fef0e0ad3cc2709efa69af47",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.6624375479564174e-14,
+      "objectiveGapRelativeToCertificateScale": -1.51462588702879e-15,
+      "independentBoundGapRelativeToCertificateScale": 5.276351670363508e-15,
+      "elapsedComputeMs": 0.7009789999999896
+    },
+    {
+      "name": "portable-fresh-52",
+      "inputSha256": "885effc02c29b9119843330f01cb6fee1947c6e4c410f8a0a1efd40219693b70",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.6535255777453736e-14,
+      "objectiveGapRelativeToCertificateScale": -1.8697431129300106e-15,
+      "independentBoundGapRelativeToCertificateScale": 3.4465676731667026e-15,
+      "elapsedComputeMs": 0.22070300000001453
+    },
+    {
+      "name": "portable-fresh-53",
+      "inputSha256": "59d37d6708126e64da5d220645f3b334be48030cea9a6112c4a1fab31bdc574a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.937879764014361e-16,
+      "objectiveGapRelativeToCertificateScale": 2.9047895260980796e-17,
+      "independentBoundGapRelativeToCertificateScale": 1.1177602739302261e-15,
+      "elapsedComputeMs": 0.06408700000000067
+    },
+    {
+      "name": "portable-fresh-54",
+      "inputSha256": "3313f02c3a758d7cc6d6479d6dcc146ebf14c05339edd93a207a94cbd21e4b37",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.0832048509784158e-14,
+      "objectiveGapRelativeToCertificateScale": 1.1479877894447355e-15,
+      "independentBoundGapRelativeToCertificateScale": 2.5257473933861726e-15,
+      "elapsedComputeMs": 0.6614299999999957
+    },
+    {
+      "name": "portable-fresh-55",
+      "inputSha256": "b5bc8b8e30d880eeb290c7fd70c68465dc100af5793f549a50349a0ed0ab66b9",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.4888898232270009e-15,
+      "objectiveGapRelativeToCertificateScale": 3.669495937662138e-30,
+      "independentBoundGapRelativeToCertificateScale": 6.862657848695146e-15,
+      "elapsedComputeMs": 5.463756000000018
+    },
+    {
+      "name": "portable-fresh-56",
+      "inputSha256": "5aaac2761db3786e56f78e5d01f5eef452f7a54b0061543717c235f4959d9b65",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3380140282545132e-15,
+      "objectiveGapRelativeToCertificateScale": 5.619622107014429e-31,
+      "independentBoundGapRelativeToCertificateScale": 6.39822683466376e-16,
+      "elapsedComputeMs": 2.421229000000011
+    },
+    {
+      "name": "portable-fresh-57",
+      "inputSha256": "f73d0f8a6afc1e8d20a3ba673fc483ea39a0c7fe800c8604226685d2112ac95a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.645574910245078e-15,
+      "objectiveGapRelativeToCertificateScale": -9.400097564403649e-18,
+      "independentBoundGapRelativeToCertificateScale": 3.6280657452055935e-15,
+      "elapsedComputeMs": 1.4989050000000077
+    },
+    {
+      "name": "portable-fresh-58",
+      "inputSha256": "3af9054ecd041267b037ebd71bac2c035649d461d2fdb1d51143b4b90e277004",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.9757445054835295e-15,
+      "objectiveGapRelativeToCertificateScale": 7.776988752054793e-16,
+      "independentBoundGapRelativeToCertificateScale": 4.119781473045963e-15,
+      "elapsedComputeMs": 9.721730000000008
+    },
+    {
+      "name": "portable-fresh-59",
+      "inputSha256": "239d00e0d9fd4f272801ac4b54ae8566e8d6c787cff6a605d6d61575bc8371f3",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.016930045315987e-14,
+      "objectiveGapRelativeToCertificateScale": 1.088080076255593e-14,
+      "independentBoundGapRelativeToCertificateScale": 2.1578100468678678e-14,
+      "elapsedComputeMs": 1.2369089999999971
+    },
+    {
+      "name": "portable-fresh-60",
+      "inputSha256": "77e7740068c86276fb287765700672d12d565fa3fa48fbad238d84b637965ffc",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.7573519138339205e-14,
+      "objectiveGapRelativeToCertificateScale": 2.1612194560059456e-14,
+      "independentBoundGapRelativeToCertificateScale": 2.177881673532267e-14,
+      "elapsedComputeMs": 0.07365200000000982
+    },
+    {
+      "name": "portable-fresh-61",
+      "inputSha256": "7ea329017fcd1df152f5fb0c3accc4f0c1228f2f086ca09f47961d421ebbfe45",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.190738223979505e-14,
+      "objectiveGapRelativeToCertificateScale": 3.3279052383155857e-20,
+      "independentBoundGapRelativeToCertificateScale": 7.041635797955984e-15,
+      "elapsedComputeMs": 1.6388059999999882
+    },
+    {
+      "name": "portable-fresh-62",
+      "inputSha256": "808ff22238bbc908e06a338a88e2e4ae28c0ef38cdb4d63bc7e290e39f078d9c",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.4085181203064792e-15,
+      "objectiveGapRelativeToCertificateScale": 1.6467207572351913e-32,
+      "independentBoundGapRelativeToCertificateScale": 1.1207825289359564e-15,
+      "elapsedComputeMs": 0.7581260000000043
+    },
+    {
+      "name": "portable-fresh-63",
+      "inputSha256": "ea353baeaa15c578b09b83cbe5a375510788440899ea53d1689fa2e838969390",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.8189492614044634e-14,
+      "objectiveGapRelativeToCertificateScale": 2.0133005170153017e-28,
+      "independentBoundGapRelativeToCertificateScale": 4.839579010310392e-16,
+      "elapsedComputeMs": 0.22016300000001365
+    },
+    {
+      "name": "portable-fresh-64",
+      "inputSha256": "9f70a33c4d50010e5b613e848c6bc5efd2b8db335075a454cb7cff9970d28f44",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.4891954182985672e-13,
+      "objectiveGapRelativeToCertificateScale": 5.38309677439502e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.3058856942251568e-14,
+      "elapsedComputeMs": 2.343771000000004
+    },
+    {
+      "name": "portable-fresh-65",
+      "inputSha256": "c1a20247dab55b61d3cbeb0f27cde326c5c05f5aa17f38abea738796e910034e",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.134357563786455e-14,
+      "objectiveGapRelativeToCertificateScale": 2.112051255320576e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.522448640727933e-14,
+      "elapsedComputeMs": 1.2606949999999983
+    },
+    {
+      "name": "portable-fresh-66",
+      "inputSha256": "d358ae5bd889a707c40839efa30949e800edf229cdb7bf6db3db0f3b82bb3325",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.659558362768744e-14,
+      "objectiveGapRelativeToCertificateScale": 3.1518396615448674e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.9299717395728928e-15,
+      "elapsedComputeMs": 1.034784000000002
+    },
+    {
+      "name": "portable-fresh-67",
+      "inputSha256": "506e5e4ab9aaef33b6f3230eaba9b5e7a99323884619626256743eea0a8e58b7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.314841425870007e-13,
+      "objectiveGapRelativeToCertificateScale": 1.3595790950296983e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.4041246902231156e-15,
+      "elapsedComputeMs": 0.36447100000000887
+    },
+    {
+      "name": "portable-fresh-68",
+      "inputSha256": "c9e4ef4f0aae443099d82743a78911ce28215efb8b668a8da60f74e1fa1fce70",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.6175847133382434e-13,
+      "objectiveGapRelativeToCertificateScale": 2.760125437611834e-21,
+      "independentBoundGapRelativeToCertificateScale": 3.5114560494466918e-15,
+      "elapsedComputeMs": 0.9131100000000174
+    },
+    {
+      "name": "portable-fresh-69",
+      "inputSha256": "527db4775420332c0927bc8dc4b5e4072d9c35fe641ac1b40430185e3c5030f9",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 3.983721951623507e-15,
+      "objectiveGapRelativeToCertificateScale": 1.6375868167132716e-30,
+      "independentBoundGapRelativeToCertificateScale": 4.076608026928158e-15,
+      "elapsedComputeMs": 1.0086139999999943
+    },
+    {
+      "name": "portable-fresh-70",
+      "inputSha256": "0c4f8b02e151aa8f015dcdd49f9d29697e6c2a1bf439767124427d47b5e51248",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.5128502769653946e-14,
+      "objectiveGapRelativeToCertificateScale": 7.570652252910094e-28,
+      "independentBoundGapRelativeToCertificateScale": 4.194039259146033e-16,
+      "elapsedComputeMs": 1.303479999999979
+    },
+    {
+      "name": "portable-fresh-71",
+      "inputSha256": "662666c5ebab14694063b38ad40fd65d610c03c218462c0f9e3375a51e362238",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.879949238133716e-14,
+      "objectiveGapRelativeToCertificateScale": 4.565505223431773e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.3087697134307771e-14,
+      "elapsedComputeMs": 0.2647699999999986
+    },
+    {
+      "name": "portable-fresh-72",
+      "inputSha256": "86bc0df89ed41c708d2f8472446abbd592307c88fe69d1b4b9e7ff1f12101d10",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.0183272549077922e-14,
+      "objectiveGapRelativeToCertificateScale": -5.741685938512388e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.335774506132632e-15,
+      "elapsedComputeMs": 0.2109089999999867
+    },
+    {
+      "name": "portable-fresh-73",
+      "inputSha256": "6cf82fbaf8f47d2e6cde659f973aab3a1b3c7c3552d6c429c62a4e59a6cf8b46",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.910036276354924e-14,
+      "objectiveGapRelativeToCertificateScale": -7.257317786395438e-15,
+      "independentBoundGapRelativeToCertificateScale": 9.596641118871076e-15,
+      "elapsedComputeMs": 0.8522780000000125
+    },
+    {
+      "name": "portable-fresh-74",
+      "inputSha256": "64bd0a2b29ab22efc5f4e7fe34dc8ca3388171abc847b0d1f1794243de4bf0bd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.0794010170916839e-14,
+      "objectiveGapRelativeToCertificateScale": 1.2941074522743336e-16,
+      "independentBoundGapRelativeToCertificateScale": 9.301506742856999e-15,
+      "elapsedComputeMs": 1.0602519999999913
+    },
+    {
+      "name": "portable-fresh-75",
+      "inputSha256": "b5995368819c5b393cbe668a6da8aa029e1210464f8d7c5bc0571a0e4574dbe6",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.260135195050476e-14,
+      "objectiveGapRelativeToCertificateScale": -8.295520696813805e-15,
+      "independentBoundGapRelativeToCertificateScale": 2.1001262837528494e-14,
+      "elapsedComputeMs": 1.0834169999999972
+    },
+    {
+      "name": "portable-fresh-76",
+      "inputSha256": "80c3bf42daaa6627b1c4e831553237a67c2df30c6c3c1d9d8c1429a1429dfb6f",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.747658538966847e-14,
+      "objectiveGapRelativeToCertificateScale": 9.427898039546012e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.1573129368180082e-14,
+      "elapsedComputeMs": 0.8289430000000095
+    },
+    {
+      "name": "portable-fresh-77",
+      "inputSha256": "52a3bff127d51f73cbca3fd8167a812dc7a6b47c5cb94dbab27bc985bfdf6ddd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1333138886430862e-13,
+      "objectiveGapRelativeToCertificateScale": 3.2016122190157796e-27,
+      "independentBoundGapRelativeToCertificateScale": 7.142012930915897e-16,
+      "elapsedComputeMs": 0.1874029999999891
+    },
+    {
+      "name": "portable-fresh-78",
+      "inputSha256": "49eb36ae745d34acdb952deca9a2cece665d9c87de92e7457a561bdb6c1b743a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2869957742084957e-14,
+      "objectiveGapRelativeToCertificateScale": 4.9389625772670786e-17,
+      "independentBoundGapRelativeToCertificateScale": 1.6214398871905348e-14,
+      "elapsedComputeMs": 1.07649600000002
+    },
+    {
+      "name": "portable-fresh-79",
+      "inputSha256": "c7aa3d495fd0ef0b7983856cc85bbc988a3c0a3df358cd3816c2f40678c0c582",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.6773338814473464e-14,
+      "objectiveGapRelativeToCertificateScale": 1.8333416722167433e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.9852209388277943e-15,
+      "elapsedComputeMs": 0.06841399999998998
+    },
+    {
+      "name": "portable-fresh-80",
+      "inputSha256": "cc90a4a5102c6901ff4c3b5563dc252cf765476fec66a96836eab88fe8797eb7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.1707077669484842e-13,
+      "objectiveGapRelativeToCertificateScale": 1.5697888988892734e-15,
+      "independentBoundGapRelativeToCertificateScale": 2.22581641521402e-15,
+      "elapsedComputeMs": 0.20767399999999725
+    },
+    {
+      "name": "portable-fresh-81",
+      "inputSha256": "0340a6c95e12ebbf7bce924b16c0e3ab81aeca7a231927ceafbcca218a13f9ea",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.658301448042666e-14,
+      "objectiveGapRelativeToCertificateScale": -5.41428806882867e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.388303384238858e-15,
+      "elapsedComputeMs": 0.7951609999999789
+    },
+    {
+      "name": "portable-fresh-82",
+      "inputSha256": "cfcb1edebbf2ee4039f808a13fc7d1d23653b8872078972d61ac21e224755e8f",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.766512432975978e-14,
+      "objectiveGapRelativeToCertificateScale": 1.554263769012195e-15,
+      "independentBoundGapRelativeToCertificateScale": 4.883017484157461e-15,
+      "elapsedComputeMs": 0.37409600000000864
+    },
+    {
+      "name": "portable-fresh-83",
+      "inputSha256": "58d6cebc0554d01c41bdc67abdc7224944da8de5fc77e712fbc2a86217d87026",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.321032329825757e-15,
+      "objectiveGapRelativeToCertificateScale": 9.122542192616613e-32,
+      "independentBoundGapRelativeToCertificateScale": 1.7079637816342419e-15,
+      "elapsedComputeMs": 0.5210270000000037
+    },
+    {
+      "name": "portable-fresh-84",
+      "inputSha256": "fe848dd9b4f83d5b82dcd3110dbef61dab7173ed33451115472d4beda4c206b7",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1397969710919732e-13,
+      "objectiveGapRelativeToCertificateScale": 3.2389836793178176e-27,
+      "independentBoundGapRelativeToCertificateScale": 4.914991006163686e-16,
+      "elapsedComputeMs": 0.06255500000000325
+    },
+    {
+      "name": "portable-fresh-85",
+      "inputSha256": "55dabff847cb705ea7753ea1fdcca2d62b9b34d7f2cd29a5048391bb7bdbc3f2",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.273154254994504e-14,
+      "objectiveGapRelativeToCertificateScale": 2.220446049250313e-16,
+      "independentBoundGapRelativeToCertificateScale": 4.4713002929945206e-15,
+      "elapsedComputeMs": 0.16985700000000747
+    },
+    {
+      "name": "portable-fresh-86",
+      "inputSha256": "4ab495ae24acb534ff6593aa60c7cf6c8f0d5daddc31c0968beadde96c8a7979",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.601256936023923e-14,
+      "objectiveGapRelativeToCertificateScale": -4.967725513402552e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.222435599224225e-15,
+      "elapsedComputeMs": 0.7130080000000021
+    },
+    {
+      "name": "portable-fresh-87",
+      "inputSha256": "487e94c19a113023c34dd41786de9240567b229f26b6478b65089be3dc0dd27c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.1668443264595795e-14,
+      "objectiveGapRelativeToCertificateScale": 3.783372509964955e-15,
+      "independentBoundGapRelativeToCertificateScale": 4.520130073044797e-15,
+      "elapsedComputeMs": 0.08753200000001016
+    },
+    {
+      "name": "portable-fresh-88",
+      "inputSha256": "814770be4fe4f127e22715932365fdf4ddf642b62290753dde068608cce84e19",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.760025876098218e-14,
+      "objectiveGapRelativeToCertificateScale": -3.7115236623267213e-17,
+      "independentBoundGapRelativeToCertificateScale": 8.508973999632025e-15,
+      "elapsedComputeMs": 0.9299860000000137
+    },
+    {
+      "name": "portable-fresh-89",
+      "inputSha256": "9d528dcdfe3e9f8d4489878c996a5ef8f6e65eb90b5aa08ced305545b9bdd582",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2653091777764984e-14,
+      "objectiveGapRelativeToCertificateScale": -2.200372490368599e-15,
+      "independentBoundGapRelativeToCertificateScale": 7.679431916559639e-15,
+      "elapsedComputeMs": 0.8760639999999853
+    },
+    {
+      "name": "portable-fresh-90",
+      "inputSha256": "076b2cb5ad6d77e601f0cc359a2962eada52bdb44b71d1a3ef3de35bfadf2532",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3129644340661275e-15,
+      "objectiveGapRelativeToCertificateScale": 0.0,
+      "independentBoundGapRelativeToCertificateScale": 3.9304339061643535e-15,
+      "elapsedComputeMs": 0.7069280000000049
+    },
+    {
+      "name": "portable-fresh-91",
+      "inputSha256": "849fe8fe9b81b8cbe410c41f0aa6af0ac3d1811e35d8600b3a554073f50d3ab6",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.488080489515138e-14,
+      "objectiveGapRelativeToCertificateScale": 7.486473711976293e-28,
+      "independentBoundGapRelativeToCertificateScale": 5.233043550841308e-16,
+      "elapsedComputeMs": 0.04553899999999089
+    },
+    {
+      "name": "portable-fresh-92",
+      "inputSha256": "87d599acf38554ad26126c77fde68f797917639be6423afbd617599b90429952",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.977335902229924e-15,
+      "objectiveGapRelativeToCertificateScale": -2.7665797127768238e-17,
+      "independentBoundGapRelativeToCertificateScale": 1.1861431564755912e-14,
+      "elapsedComputeMs": 0.44319999999999027
+    },
+    {
+      "name": "portable-fresh-93",
+      "inputSha256": "f464bd285aed4631b32542500849bfcc50e033623dadb0b8774bc8f222a8625a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.262882958102212e-16,
+      "objectiveGapRelativeToCertificateScale": 1.1991228578525815e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.2685896463105127e-16,
+      "elapsedComputeMs": 0.03250900000000456
+    },
+    {
+      "name": "portable-fresh-94",
+      "inputSha256": "bb26909f27b27561fd6bbc417f94263c56b0ec217c9ac694efa504454507ad4b",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 8.540487799255887e-14,
+      "objectiveGapRelativeToCertificateScale": -1.763492044620499e-14,
+      "independentBoundGapRelativeToCertificateScale": 3.004039382260195e-14,
+      "elapsedComputeMs": 1.1439379999999915
+    },
+    {
+      "name": "portable-fresh-95",
+      "inputSha256": "1f41cd9c30d9de210d1717d87d75a345e2e38c589ff47663067fba6eb21d8e3b",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.5648129832885165e-14,
+      "objectiveGapRelativeToCertificateScale": 8.45250881239e-17,
+      "independentBoundGapRelativeToCertificateScale": 2.5502905632376746e-15,
+      "elapsedComputeMs": 0.41320400000000745
+    },
+    {
+      "name": "portable-fresh-96",
+      "inputSha256": "113701e749e6b84b8f8ef4a951fc6e7ecfc59646c8d3a92fdfbc61b207e399c9",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.246158793821364e-15,
+      "objectiveGapRelativeToCertificateScale": -6.41148992471801e-22,
+      "independentBoundGapRelativeToCertificateScale": 1.941650489785314e-15,
+      "elapsedComputeMs": 1.680138999999997
+    },
+    {
+      "name": "portable-fresh-97",
+      "inputSha256": "ac37fa248ee4bfc2a9a6fdef108bc1b41cc23a74bcbc6adb789f7c7c4051dbc4",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 3.588874679548355e-16,
+      "objectiveGapRelativeToCertificateScale": 2.0295267916760466e-32,
+      "independentBoundGapRelativeToCertificateScale": 1.176489900077913e-15,
+      "elapsedComputeMs": 0.49879300000000626
+    },
+    {
+      "name": "portable-fresh-98",
+      "inputSha256": "3180e8de1b231cc827c0490126b27c0a8450db5fd160b370b9b52b882531edff",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.828260532299884e-14,
+      "objectiveGapRelativeToCertificateScale": 2.0143815616035237e-28,
+      "independentBoundGapRelativeToCertificateScale": 6.5848656732770795e-16,
+      "elapsedComputeMs": 0.0937110000000132
+    },
+    {
+      "name": "portable-fresh-99",
+      "inputSha256": "d5047ff3e6f9a9c7829660c9ab144b3b48c23b0436de7b81e5dc2dc72cb3de02",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.4271555305198986e-14,
+      "objectiveGapRelativeToCertificateScale": -9.985804212242311e-17,
+      "independentBoundGapRelativeToCertificateScale": 7.564173175205306e-15,
+      "elapsedComputeMs": 0.647658000000007
+    },
+    {
+      "name": "portable-fresh-100",
+      "inputSha256": "678727ba1f7274fc076c5b785480ac7843ac8d39d497136a09e6991be122613d",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.710342947584515e-14,
+      "objectiveGapRelativeToCertificateScale": -7.056036056459384e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.877967725941222e-14,
+      "elapsedComputeMs": 0.9335509999999942
+    },
+    {
+      "name": "portable-fresh-101",
+      "inputSha256": "5e629ce2da9a8a2e40ca6fa4319beb470c4851caa18c5991425ae2ae84e9e22a",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 9.615845790126881e-14,
+      "objectiveGapRelativeToCertificateScale": -6.498154756733043e-16,
+      "independentBoundGapRelativeToCertificateScale": 2.720300992800794e-15,
+      "elapsedComputeMs": 0.5676079999999786
+    },
+    {
+      "name": "portable-fresh-102",
+      "inputSha256": "200e7f4e5752d28efda37e230d13bae7ac2585ef0479150dcc827dfff245cd5b",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.236618254803043e-14,
+      "objectiveGapRelativeToCertificateScale": -1.1880098881600332e-14,
+      "independentBoundGapRelativeToCertificateScale": 1.3796640093559581e-14,
+      "elapsedComputeMs": 0.3195230000000038
+    },
+    {
+      "name": "portable-fresh-103",
+      "inputSha256": "39f41f9523356db198072c66c578d50c6670ad3399f6207f910683cd25b6a3ce",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.328975605632374e-13,
+      "objectiveGapRelativeToCertificateScale": 8.326134520065973e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.46662012185007e-15,
+      "elapsedComputeMs": 0.11719700000000444
+    },
+    {
+      "name": "portable-fresh-104",
+      "inputSha256": "98711084b946036709bf2767c1a5cdba3802ffb75658a438b73932c9758ebbc5",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 3.2118199443218934e-15,
+      "objectiveGapRelativeToCertificateScale": 3.362979537159989e-30,
+      "independentBoundGapRelativeToCertificateScale": 6.050154141669252e-15,
+      "elapsedComputeMs": 0.5736269999999877
+    },
+    {
+      "name": "portable-fresh-105",
+      "inputSha256": "51366c77aad2adbb3537b4bd8d666f5b8e440bdeacd2ede84951d8f9c0dcd3fd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.0883190183629923e-13,
+      "objectiveGapRelativeToCertificateScale": 1.2126317859861223e-27,
+      "independentBoundGapRelativeToCertificateScale": 2.612178882712524e-16,
+      "elapsedComputeMs": 0.3734440000000063
+    },
+    {
+      "name": "portable-fresh-106",
+      "inputSha256": "c3ac25d1eb7acea09988d58ec41e0ffd6693f2841cd76440a28d347cb87e4a76",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.311156655781787e-14,
+      "objectiveGapRelativeToCertificateScale": -2.0173015064288882e-16,
+      "independentBoundGapRelativeToCertificateScale": 4.996333260307036e-15,
+      "elapsedComputeMs": 0.26235600000001114
+    },
+    {
+      "name": "portable-fresh-107",
+      "inputSha256": "6882270efd56d98cb769ac1a2cf15250860ca79c3af7bd51349226b9f40f86fe",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.557185173841522e-15,
+      "objectiveGapRelativeToCertificateScale": -2.2292301410043818e-15,
+      "independentBoundGapRelativeToCertificateScale": 5.544049410769282e-15,
+      "elapsedComputeMs": 0.2612050000000181
+    },
+    {
+      "name": "portable-fresh-108",
+      "inputSha256": "4db3a7e761ef56d0bd5969e6ba78ebc416546be1a6149b8715f1d1f8f604c791",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.309356877985774e-14,
+      "objectiveGapRelativeToCertificateScale": 5.865564659289733e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.924161108614939e-15,
+      "elapsedComputeMs": 0.7656169999999918
+    },
+    {
+      "name": "portable-fresh-109",
+      "inputSha256": "1a1407484473f79aefef1842d53d6bfa7ad04a2e4a03873d47a8a92157386790",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.007412579051473e-15,
+      "objectiveGapRelativeToCertificateScale": 1.818445734451054e-17,
+      "independentBoundGapRelativeToCertificateScale": 2.2875041033791092e-15,
+      "elapsedComputeMs": 0.2227760000000103
+    },
+    {
+      "name": "portable-fresh-110",
+      "inputSha256": "2f063470a81bdfef50556b19e083a08fa315f36d2743726397db6ecbbbe45a7c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.061406639213383e-14,
+      "objectiveGapRelativeToCertificateScale": 3.897133583834215e-21,
+      "independentBoundGapRelativeToCertificateScale": 2.046152078386e-15,
+      "elapsedComputeMs": 0.2886869999999817
+    },
+    {
+      "name": "portable-fresh-111",
+      "inputSha256": "aa95a82e6c840fe4df04150c79cc44c670e82480998269878355415cdf4d9593",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.2618653032423166e-14,
+      "objectiveGapRelativeToCertificateScale": -1.0299516155017233e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.4579796529315443e-15,
+      "elapsedComputeMs": 0.1797820000000172
+    },
+    {
+      "name": "portable-fresh-112",
+      "inputSha256": "f665668a043320a07f374b3008a920917e758ce5c39ee57fb03ad4430b79e696",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.44451842936706e-14,
+      "objectiveGapRelativeToCertificateScale": 7.356460083252974e-28,
+      "independentBoundGapRelativeToCertificateScale": 4.3874570807698604e-16,
+      "elapsedComputeMs": 0.424461999999977
+    },
+    {
+      "name": "portable-fresh-113",
+      "inputSha256": "85ad6103d077d3e3dee4c652fc100d10ad9d282d798bd50a88e1726c0545b078",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.73421288730671e-14,
+      "objectiveGapRelativeToCertificateScale": -2.6671704575428533e-17,
+      "independentBoundGapRelativeToCertificateScale": 3.3344950799373295e-15,
+      "elapsedComputeMs": 0.15962100000001556
+    },
+    {
+      "name": "portable-fresh-114",
+      "inputSha256": "5e66dd23ca2feef83f398ba522750c538bce3998ae428d8f99b5f76749ab96fa",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 5.403198269211788e-14,
+      "objectiveGapRelativeToCertificateScale": 3.2626749434747202e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.763060309126572e-15,
+      "elapsedComputeMs": 0.2496979999999951
+    },
+    {
+      "name": "portable-fresh-115",
+      "inputSha256": "3e3f8171395ab6a30276ac0fcff4fe2d390d9d59d3422099c87ac7d34e6751f4",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1479757821298288e-14,
+      "objectiveGapRelativeToCertificateScale": 1.3991556671451763e-15,
+      "independentBoundGapRelativeToCertificateScale": 2.189479755070152e-15,
+      "elapsedComputeMs": 0.08809299999998643
+    },
+    {
+      "name": "portable-fresh-116",
+      "inputSha256": "1c64c88211c71e692a33398453d9b55ae9eb75ffa9717e6ce11625d90587de4c",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 3.536094037013014e-14,
+      "objectiveGapRelativeToCertificateScale": 1.4992541820784542e-17,
+      "independentBoundGapRelativeToCertificateScale": 2.317090137066137e-15,
+      "elapsedComputeMs": 0.2913700000000006
+    },
+    {
+      "name": "portable-fresh-117",
+      "inputSha256": "eaa406df71f3b750612217b8fe2663ac84ed39bf6f1d3fbca5e94e484028d8b3",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 7.256081204746981e-14,
+      "objectiveGapRelativeToCertificateScale": 6.630456644353555e-15,
+      "independentBoundGapRelativeToCertificateScale": 7.570658602953864e-15,
+      "elapsedComputeMs": 0.13853000000000293
+    },
+    {
+      "name": "portable-fresh-118",
+      "inputSha256": "9532a54aaee7127f457149afaa17c5af33efb66d392628207d5605aecbe8c840",
+      "branch": "hard-case-completion",
+      "energyRelativeResidual": 1.3380721970661057e-15,
+      "objectiveGapRelativeToCertificateScale": 4.579877680630032e-31,
+      "independentBoundGapRelativeToCertificateScale": 2.9408296599362105e-15,
+      "elapsedComputeMs": 0.6742189999999937
+    },
+    {
+      "name": "portable-fresh-119",
+      "inputSha256": "c830b73c5e94b62269380fa61305f2bc4eaf42339f796df9cc1c30766f31373f",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.002987966217781e-15,
+      "objectiveGapRelativeToCertificateScale": 4.054644293276663e-30,
+      "independentBoundGapRelativeToCertificateScale": 4.1689282193181075e-16,
+      "elapsedComputeMs": 0.26773399999999015
+    },
+    {
+      "name": "portable-fresh-120",
+      "inputSha256": "831b81ef08cbfee4ca323d12752befd8ef6cb33bdf1eb50c219757bd74f926fd",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 4.553621437514491e-14,
+      "objectiveGapRelativeToCertificateScale": -1.2394145298001605e-16,
+      "independentBoundGapRelativeToCertificateScale": 7.916459439628861e-15,
+      "elapsedComputeMs": 0.4560999999999922
+    },
+    {
+      "name": "portable-fresh-121",
+      "inputSha256": "ea4e86d566d34bb4a7341b4659787910bbcac5c0bac114274cc42d52f2d5cfc1",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.239549554837109e-14,
+      "objectiveGapRelativeToCertificateScale": 7.097113106628552e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.76183095675589e-15,
+      "elapsedComputeMs": 0.3065129999999954
+    },
+    {
+      "name": "portable-fresh-122",
+      "inputSha256": "c2772cc161f7cc386aa391985ec290890205916135985fa3f579fe8cf6647c39",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.1276066219300132e-14,
+      "objectiveGapRelativeToCertificateScale": 2.202692366607835e-15,
+      "independentBoundGapRelativeToCertificateScale": 1.5070449075280763e-14,
+      "elapsedComputeMs": 1.039871000000005
+    },
+    {
+      "name": "portable-fresh-123",
+      "inputSha256": "b13b6c4e960e99110c0bd2054d45f9d136d36dcf6e88d04c7b68e18b31f18340",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.3218802101559353e-14,
+      "objectiveGapRelativeToCertificateScale": 9.832578554753475e-17,
+      "independentBoundGapRelativeToCertificateScale": 6.502253636697917e-16,
+      "elapsedComputeMs": 0.08725200000000655
+    },
+    {
+      "name": "portable-fresh-124",
+      "inputSha256": "43e41a6f70b337c10b516c144c5b9f96d3a9f9a425bd388b389c4e5701493cd1",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 6.162626293461677e-14,
+      "objectiveGapRelativeToCertificateScale": -6.380584246486477e-15,
+      "independentBoundGapRelativeToCertificateScale": 8.25188429956661e-15,
+      "elapsedComputeMs": 0.7216700000000174
+    },
+    {
+      "name": "portable-fresh-125",
+      "inputSha256": "a6144a2c0dce8ed808136df2cfba05cac4557a5368ab25fbde2e7ae63775bb34",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.2650062631514523e-13,
+      "objectiveGapRelativeToCertificateScale": -8.408702487855561e-15,
+      "independentBoundGapRelativeToCertificateScale": 9.390077891686302e-15,
+      "elapsedComputeMs": 0.10109199999999419
+    },
+    {
+      "name": "portable-fresh-126",
+      "inputSha256": "9bb4c6f437998c479b7a8921301d3e7b98a0757a80b9023dba002c0a178ea48e",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 2.5036652480311578e-15,
+      "objectiveGapRelativeToCertificateScale": 1.6238737959888813e-30,
+      "independentBoundGapRelativeToCertificateScale": 4.75193036839156e-16,
+      "elapsedComputeMs": 0.3253620000000126
+    },
+    {
+      "name": "portable-fresh-127",
+      "inputSha256": "a3a0f063ce58f8d2f36300649dc7aacb0efb4b014770901ec646fd7114ab57de",
+      "branch": "regular-secular",
+      "energyRelativeResidual": 1.7207903698446573e-13,
+      "objectiveGapRelativeToCertificateScale": -4.517085561795199e-16,
+      "independentBoundGapRelativeToCertificateScale": 1.731361556586319e-15,
+      "elapsedComputeMs": 0.11217899999999759
+    }
+  ]
+}

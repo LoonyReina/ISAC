@@ -1,0 +1,489 @@
+{
+  "checker_sha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722",
+  "unchanged_from_reviewed_checker": true,
+  "fixtures": 67,
+  "direct_and_wrapped_checks": 134,
+  "statuses": {
+    "iteration_limit": 4,
+    "infeasible_certificate": 4,
+    "converged": 58,
+    "infeasible_bound": 1
+  },
+  "mutation_checks": 18,
+  "valid_control_documents": 5,
+  "hostile_or_missing_field_mutations": 13,
+  "all_mutation_expectations_met": true,
+  "issues": [],
+  "all_passed": true,
+  "records": [
+    {
+      "fixture": "js-benchmark/infeasible-trial-00-sdr.json",
+      "fixture_sha256": "228313386edfa00d6a8dd5f5f87070fce6e9773493d63d450eaec3ed5971f23e",
+      "status": "iteration_limit",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/infeasible-trial-00-zf.json",
+      "fixture_sha256": "ed24b64e6009f8227a109f69587cc533501ce57614f5a2b366174fa7c823304b",
+      "status": "infeasible_certificate",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/infeasible-trial-06-sdr.json",
+      "fixture_sha256": "8a6d9049ffda0cb124f037fd740c27804668afedb938c961da30956a162d55be",
+      "status": "iteration_limit",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/infeasible-trial-06-zf.json",
+      "fixture_sha256": "67a38c2f285088659e148275047418650ba676f79c7b05ec5c8625849bea6f80",
+      "status": "infeasible_certificate",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/one-iteration-limit.json",
+      "fixture_sha256": "94e355926f96f145c72ca4942cd1696f68c80bfc91a2c834dd85b2e6a0b697f2",
+      "status": "iteration_limit",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m4-sdr.json",
+      "fixture_sha256": "26af8d150a6fc77e0f5b4aa27717556b997296b0d5dbf236b2c0d4c62b0982ed",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m4-zf.json",
+      "fixture_sha256": "e77b27b7f5259dbba245a4dfdb8462747b8244c3b91174e93c78e9cae4bfdfd9",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m5-sdr.json",
+      "fixture_sha256": "177d9536ae38186720a4bb5ceb1f5d5c431ab67263fced3f4816cb591acee187",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m5-zf.json",
+      "fixture_sha256": "90e85783f08ddac8f6212bba79411b92f90860e64a8331fe349e10f245fe568e",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m6-sdr.json",
+      "fixture_sha256": "6c71830d0701c6a016fae1c056c025f3f82f3c26f1d172773750c3ac86091012",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m6-zf.json",
+      "fixture_sha256": "df593da17542b566482598f95a3c134bacf7764159794571610ad61301a27316",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m7-sdr.json",
+      "fixture_sha256": "201ec8f2c4b7cc7bb217d8c74ea771042a96309ed0cfead4d5f970385502e8b7",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m7-zf.json",
+      "fixture_sha256": "4bcf463fb74a0465acb819db55746e97051b00f091e599c38527806525326541",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m8-sdr.json",
+      "fixture_sha256": "a84339c11de95aae6908df5cec4bca2f6193fd9cbddaa3394e4718426408e762",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m8-zf.json",
+      "fixture_sha256": "8fbced1a7814cb6e4ab1a79a69a083dbe5db242da4b4a9123926f3f165c0f635",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m9-sdr.json",
+      "fixture_sha256": "a5d194e95184d56e059602b85d26b724c23285cd9973cd4ee899b1fcf4165e4d",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/reduced-m9-zf.json",
+      "fixture_sha256": "5f0fe40927cc0938be95305368f50289b2bc8fcd9a1f5add863ffe4766c34c2b",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-12-sdr.json",
+      "fixture_sha256": "1e8121d16c970093f977a647f9386d605115d38b3a7919c4d5e9958c07c8e998",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-12-zf.json",
+      "fixture_sha256": "535b8bc9343240f1b7e904f51015680eef741e6ee251a54c5c3bbe3df0501c75",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-18-sdr.json",
+      "fixture_sha256": "6e5358c3780a85dec4d8de55c06b0f4eed3ccafd6452ec34f78d4054e966303c",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-18-zf.json",
+      "fixture_sha256": "52f58a9deeb1772a223ab839f375ce0216786419304897715ce756c6a94d6ef3",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-22-sdr.json",
+      "fixture_sha256": "df46b0c33eba6a28c271bdba5b8d081b1dbb1dc9a4a9b9e007ea2d375988905d",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-22-zf.json",
+      "fixture_sha256": "d917c3164920462c31cccdedfc44fde7feb0c318dd814c480af414e35cdcdd8a",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-4-sdr.json",
+      "fixture_sha256": "8c3adbe7edce7a2d7ae2fd5adb6407a8c11b9da1efcb16d55ab2844ac0d5dc25",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-00-gamma-4-zf.json",
+      "fixture_sha256": "77cd3a5316e67de9ef5a09469d2f19dd06a4c4bb9672920ffc521c352faae270",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-12-sdr.json",
+      "fixture_sha256": "26d8e5b13046d29b0153a1312a4015b5f4cdeb5f16236131cd37213d8ad72ad5",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-12-zf.json",
+      "fixture_sha256": "dece4480a529abff105b4f7ceeef57d886207d843644c0f948a3791fa283b3ef",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-18-sdr.json",
+      "fixture_sha256": "d78ebc106c5ab577fa79ea8ba270287772dcfd2f89e9a652799bde19c20c6d7b",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-18-zf.json",
+      "fixture_sha256": "325253d60f9bc43feed6e05466d84396fa37a4a95c8b0a9a843fbb09bda3e2d6",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-22-sdr.json",
+      "fixture_sha256": "7ab3c5b0dc1c042737872884540344e36727e0840de6dfc4fff411e555af7303",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-22-zf.json",
+      "fixture_sha256": "d5d80ee5b9d0e54fcbc4b475b7faa1c342413ddadea6cca31cd592be02785558",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-4-sdr.json",
+      "fixture_sha256": "97a51719f0d5a58d2ec6e69757d3d20005ac2199651b9f92f66d4d826f14ec2c",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-02-gamma-4-zf.json",
+      "fixture_sha256": "8e921607841ee316cae3a91f359461e897a27a923b56dac8e613738b7ffc90bc",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-12-sdr.json",
+      "fixture_sha256": "62561546d46fd27ebbc169f9e62150ef372d5c9b3b9f877ad91ea6a0c6ac5aa2",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-12-zf.json",
+      "fixture_sha256": "6ada681b9924c1df868160c45741c9f41a151db7a9e6a387f0a15f295c6c265a",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-18-sdr.json",
+      "fixture_sha256": "5b257aed200f33f25b8c22b3ae8b101dd4a4dd12473b49223d910361a44770cb",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-18-zf.json",
+      "fixture_sha256": "b1d9d485bff55fb64da7e36fa9e32c5ff1ed5164bb7646f11911a32f578899cb",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-22-sdr.json",
+      "fixture_sha256": "70e37035f9626201315c168ac0b9d8e850fe165fc3c8ec7b3ec7f0d830793071",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-22-zf.json",
+      "fixture_sha256": "5bc35b44d23dc0e9793ba2bb307df1f9d2a27bad3c736ea3b8bdf816ec62110c",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-4-sdr.json",
+      "fixture_sha256": "9a10024d58406007022285e845e12c28c5ebc134422b2b523b06eef1f2da2415",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-06-gamma-4-zf.json",
+      "fixture_sha256": "111f151369f3c37b5980239f217f5ebcc9197eaee024e7fc4e7a9209bb7ce192",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-12-sdr.json",
+      "fixture_sha256": "5c3aec91efb646618a75d121981eb8b7bd35d92787e83f340587807769af57bd",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-12-zf.json",
+      "fixture_sha256": "99c74ec5006245134c60b7da2a09b56c85a7221905714333ddf6484ab0ff640c",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-18-sdr.json",
+      "fixture_sha256": "0cef836e280f0c29e3de9240975310baaaab8a2c8968e0413b969cc120e44009",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-18-zf.json",
+      "fixture_sha256": "3e707c406ccf2d3c9771631e5bbd31e7b871660c5683df83236ecc084f0d9575",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-22-sdr.json",
+      "fixture_sha256": "3428e784aa0ad3d7417a71a11a3de8531fc19e361f8818087591ab03e1055c3f",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-22-zf.json",
+      "fixture_sha256": "0a29290a476d807aad01925f72adacebded9e8724fa891ae2e525ab8262e3603",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-4-sdr.json",
+      "fixture_sha256": "1b37a5ca8a89cc9159c2e0b2141e29a888e9c4608e95c93bb8b9ad668e5545b1",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/trial-31-gamma-4-zf.json",
+      "fixture_sha256": "4fd52d1f4bd255f5e44a5367e489dcab1754ebb974d0e7fe4a14ba55dd3d78fd",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/unaccelerated-default.json",
+      "fixture_sha256": "e9dcf549d9ebf409262270f4598ccabbd088542766f02d5d49bf8ee980c665f1",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-benchmark/zero-channel-sdr.json",
+      "fixture_sha256": "c27c739859cc1eddaa6dea19574937333070fd9122cbab0bd375a2f4544d48c7",
+      "status": "infeasible_bound",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-extra/identical-real-users-sdr.json",
+      "fixture_sha256": "d62feba1637769f66d475370c0624a646ebdaba7d3fcc05b947f9ad9ad2c1904",
+      "status": "infeasible_certificate",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-extra/identical-real-users-zf.json",
+      "fixture_sha256": "f95d0fe28ec63da3d65238dee7c42307cbad6f7b769632ba7e5fd372fccd8509",
+      "status": "infeasible_certificate",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-extra/orthogonal-coordinate-users-sdr.json",
+      "fixture_sha256": "ee67d364b86bb1f8336bf1372297dc70ec81edcf4fb0783a6cb53fd2cbf4a4e0",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-extra/orthogonal-coordinate-users-zf.json",
+      "fixture_sha256": "2e3e903b858f1b6f89a60654893519d3f02d4d55eaa1011cd9d7802c34840cb0",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m10.json",
+      "fixture_sha256": "499c3c1f2bea82f61db6abc310af7c7df8e992a6f05bb476a7e2e213d032728d",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m4.json",
+      "fixture_sha256": "7dff3f655cdf55ff6f73b0e14f4c822595dab07921cff87d68893299dbbe5528",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m5.json",
+      "fixture_sha256": "1b0426289b7655cbd8154df1648be9969eb11a27438815c594b68ed0cf2ea699",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m6.json",
+      "fixture_sha256": "1b4e896f8be5f312135f257e322d9dba555940f8a74ab5747a1c5f8d33b7fdb0",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m7.json",
+      "fixture_sha256": "20e5ee9e97b5e4e907aa5ad94673c68ab93a7182847869eb601270c8e76395dc",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m8.json",
+      "fixture_sha256": "2d90ad22833b1dd8e8252910db43ce6a845d2265b467fac801567574dca4f5bf",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/m9.json",
+      "fixture_sha256": "b3c0957e7662d4b28c0515bb4f6a636b9789a5883e2c385be2e225f711d94b17",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-radar/zero-H-Gamma24.json",
+      "fixture_sha256": "6ffab881d57d6b56085603b2c12973780cb1f9ab5b2a3d57a3fe5a7b40d76694",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-ui-budgets/trial-00-gamma-12-sdr-1000.json",
+      "fixture_sha256": "dba9a8c7400be9721a5f5bd7c1ff70e05738e6af461c423063bff810b2626379",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-ui-budgets/trial-00-gamma-12-zf-1000.json",
+      "fixture_sha256": "d31246bddd11b52844e49f0269760fde71f11f6a00840c4cd476cabaa4977e1a",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-ui-budgets/trial-31-gamma-22-sdr-1000.json",
+      "fixture_sha256": "d93f79afa25e4f3434cfad38f93f158f292fcbc48e668e98203aa49010e37d93",
+      "status": "iteration_limit",
+      "direct_passed": true,
+      "wrapped_passed": true
+    },
+    {
+      "fixture": "js-ui-budgets/trial-31-gamma-22-zf-1000.json",
+      "fixture_sha256": "ea90826e207fb6f7e64e2e6a9cf1717c8ca11fca0ca92f19acfc15089f07cca4",
+      "status": "converged",
+      "direct_passed": true,
+      "wrapped_passed": true
+    }
+  ]
+}

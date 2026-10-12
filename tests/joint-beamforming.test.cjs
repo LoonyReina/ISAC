@@ -1,5 +1,5 @@
 // Deterministic numerical regression of the analytical teaching construction.
-const {test}=require('node:test'),assert=require('node:assert/strict'),C=require('../joint-beamforming-core.js');
+const {test}=require('node:test'),assert=require('node:assert/strict'),C=require(require('node:fs').existsSync(require('node:path').resolve(__dirname,'../joint-beamforming-core.js'))?'../joint-beamforming-core.js':'../labs/joint-beamforming/joint-beamforming-core.js');
 const near=(actual,expected,tol=1e-10)=>assert.ok(Math.abs(actual-expected)<=tol,`${actual} != ${expected} (tol ${tol})`);
 const abs2=z=>z[0]*z[0]+z[1]*z[1];
 function inner(a,b){return a.reduce((s,z,i)=>[s[0]+z[0]*b[i][0]+z[1]*b[i][1],s[1]+z[0]*b[i][1]-z[1]*b[i][0]],[0,0]);}

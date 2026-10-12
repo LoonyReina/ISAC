@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "archiveFile": "joint-beamforming-reference-v1.zip",
+  "archiveBytes": 25845796,
+  "archiveSha256": "3baff9d3e29cec528442fc2c4b9ab8dc34aceb7076803ca4e0c1f6783b4a59b2",
+  "encoding": "raw binary chunks; concatenate in listed order; no recompression",
+  "parts": [
+    {
+      "order": 1,
+      "file": "joint-beamforming-reference-v1.zip.part01",
+      "bytes": 9000000,
+      "sha256": "2d40fab63f5f43c06fbdb3a517523830c3fd0a2612b0e2f438264615fe722eaa"
+    },
+    {
+      "order": 2,
+      "file": "joint-beamforming-reference-v1.zip.part02",
+      "bytes": 9000000,
+      "sha256": "c8357ca4735d4d1beae6ab3f7a49dafd9ae11dc386064c07eb26d1b558f6cd50"
+    },
+    {
+      "order": 3,
+      "file": "joint-beamforming-reference-v1.zip.part03",
+      "bytes": 7845796,
+      "sha256": "87b936960755fe0efcf0e640a17930d09f380b3b2e4c1bf86ef4d2de08b5517f"
+    }
+  ],
+  "note": "The reconstructed archive is byte-identical to the original frozen reference. Optional offline evidence only; not startup assets."
+}
