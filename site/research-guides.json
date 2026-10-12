@@ -2426,6 +2426,92 @@
             "sourceLocator": "2026 v1 §3及完整参考文献[1]–[6]"
           }
         ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一面墙，怎样从单站回波走到通信路径？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先分开两种实测观测",
+            "blocks": [
+              {
+                "label": "单站扫描",
+                "status": "observed",
+                "text": "两个位置的功率–角度–时延图"
+              },
+              {
+                "label": "双站链路",
+                "status": "observed",
+                "text": "分离收发端之间的通信时延峰"
+              }
+            ],
+            "explanation": "看见同一物体，不代表两端拿到同一个信道。单站是往返路径，双站是经过散射体的折线路径。",
+            "sourceLocator": "§2.1–2.2，图1–2；§3.2，图5",
+            "lessonHref": "foundations.html#echo"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些几何已知，哪些系数仍未知？",
+            "blocks": [
+              {
+                "label": "可用参考",
+                "status": "known",
+                "text": "收发位置、扫描角和经校准的时延观测"
+              },
+              {
+                "label": "待判定关系",
+                "status": "unknown",
+                "text": "主要峰的物体对应；仅凭感知能否预测通信信道幅相"
+              }
+            ],
+            "explanation": "把位置与路径长度关联起来，只解决部分问题；一个峰的几何对应不能替代所有多径的复增益。",
+            "sourceLocator": "§2.1；§3.1–3.3，式(1)–(4)",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "把映射拆成选径与几何预测",
+            "blocks": [
+              {
+                "label": "选择候选",
+                "status": "design",
+                "text": "按门槛、最小间隔和距离门保留主要回波峰"
+              },
+              {
+                "label": "转换路径",
+                "status": "design",
+                "text": "由散射位置计算双站总路程，再减去直达路程"
+              }
+            ],
+            "explanation": "再将预测超额时延与通信峰比对。选径规则会影响哪些反射被看见；扫描步进也不等于角分辨率。",
+            "sourceLocator": "§2.1；§3.1–3.2，图4–5、式(3)",
+            "lessonHref": "foundations.html#array"
+          },
+          {
+            "id": "evidence",
+            "heading": "主径对应以后，还缺哪一步？",
+            "blocks": [
+              {
+                "label": "本场景支持",
+                "status": "supported",
+                "text": "图5把两条主要通信反射分别关联到金属板和墙"
+              },
+              {
+                "label": "仍未建立",
+                "status": "not-established",
+                "text": "换位置或房间后完整复信道的盲预测，以及通信速率收益"
+              }
+            ],
+            "explanation": "下一步可先冻结校准和选径规则，再去未用于建图的位置检验。这是延伸问题，不是本文已有结果。",
+            "sourceLocator": "§3.2，图5；§3.3，图6；§4"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "图5的两个时延峰对上了，是否就能把雷达信道直接交给通信接收机做均衡？",
+          "answer": "不能。这里核对的是主要路径的几何与时延，均衡还需要完整通信信道的复系数。§3.3的散射强度估计也借用了双站直达径功率标定，并非单站信息独立完成。",
+          "sourceLocator": "§3.2–3.3，式(3)–(4)、图5–6"
+        }
       }
     },
     {
@@ -2505,6 +2591,87 @@
             "sourceLocator": "2026 v2 §III及完整References"
           }
         ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "导频之外的未知符号，怎样反过来影响找目标？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "数值模型中，接收格子里装着什么？",
+            "blocks": [
+              {
+                "label": "仿真中的双站接收",
+                "status": "observed",
+                "text": "导频与数据经过多条连续时延–多普勒路径后的混合观测"
+              }
+            ],
+            "explanation": "离格扩散和未知符号同时进入观测；不能先把每个亮格当成一个已确认目标。",
+            "sourceLocator": "§II–III；§V-C，图7",
+            "lessonHref": "offgrid-range.html#model"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "半盲到底知道哪一半？",
+            "blocks": [
+              {
+                "label": "已提供",
+                "status": "known",
+                "text": "导频配置、帧结构与相移键控（PSK）星座约束"
+              },
+              {
+                "label": "联合求解",
+                "status": "unknown",
+                "text": "数据符号，以及各路径的时延、多普勒和复增益"
+              }
+            ],
+            "explanation": "半盲不等于没有导频与保护格；错误的符号判断也会影响下一次路径估计。",
+            "sourceLocator": "§II-D；§III，式(29)–(32)；§V-A",
+            "lessonHref": "pilot-design.html#experiment"
+          },
+          {
+            "id": "design",
+            "heading": "让两类未知交替修正",
+            "blocks": [
+              {
+                "label": "路径更新",
+                "status": "design",
+                "text": "用原子范数表达连续参数上的稀疏路径"
+              },
+              {
+                "label": "符号更新",
+                "status": "design",
+                "text": "用星座惩罚约束更新数据，与信道更新交替进行"
+              }
+            ],
+            "explanation": "导频估计用于初始化。更新策略与计算成本需要一起核对；驻点保证不代表找到全局最优。",
+            "sourceLocator": "§IV-A/B/C，Theorem 1"
+          },
+          {
+            "id": "evidence",
+            "heading": "把检测器收益与估参精度分开",
+            "blocks": [
+              {
+                "label": "仿真支持",
+                "status": "supported",
+                "text": "图6比较通信符号检测的误比特率（BER）；图9另比较全符号已知时的估计表现"
+              },
+              {
+                "label": "仍未建立",
+                "status": "not-established",
+                "text": "任意接近目标都能分开，或该算法已经能在硬件实时运行"
+              }
+            ],
+            "explanation": "图9(a)(b)是路径时延、多普勒误差，(c)是总信道归一化均方误差（NMSE），不能互相代替。阅读误差时还要回看图8的检出情况。",
+            "sourceLocator": "§IV-B；§V-B/C，图6、8–9",
+            "lessonHref": "offgrid-range.html#trials"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "图6中，半盲方法的误比特率（BER）低于使用完美信道状态信息（CSI）的线性最小均方误差（LMMSE）检测器，是否说明估计出的信道比真值还准？",
+          "answer": "不是。两条曲线的检测方法不同：星座惩罚参与的符号更新可以优于线性LMMSE。要分清已知信息带来的收益和检测器带来的收益，不能把这次比较当成超越真值的信道估计。",
+          "sourceLocator": "§V-B，图6及紧随其后的解释"
+        }
       }
     },
     {
@@ -2585,6 +2752,92 @@
             "sourceLocator": "2026 v1 §III-A、§IV-B3–5及References"
           }
         ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "子带隔开以后，沿着样本检查同步做到哪一步",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先看记录了哪些样本",
+            "blocks": [
+              {
+                "label": "射频数据",
+                "status": "observed",
+                "text": "各接收通道记录全20 MHz带宽内的子带信号"
+              },
+              {
+                "label": "运动参考",
+                "status": "observed",
+                "text": "运动捕捉系统记录目标运动，用于事后对照"
+              }
+            ],
+            "explanation": "接收到所有子带，不等于已经联合所有节点相干处理；感知与通信结果均来自记录后的处理。",
+            "sourceLocator": "§III-B；§IV-B3–5；§IV-C；§V-A，图7",
+            "lessonHref": "sbfd-resource.html#case"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "时间戳对齐还没有回答什么？",
+            "blocks": [
+              {
+                "label": "已有协调",
+                "status": "known",
+                "text": "主机统一启动时间，报告启动偏差小于0.1 ms"
+              },
+              {
+                "label": "尚待验证",
+                "status": "unknown",
+                "text": "跨节点采样频率、载频与相位关系是否满足融合要求"
+              }
+            ],
+            "explanation": "启动接近同时，是一项时间协调结果；是否能相干融合还要另验时频相位关系。",
+            "sourceLocator": "§III-B；§IV-C；§VI",
+            "lessonHref": "network-clock.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "把隔离与处理资源一起列出",
+            "blocks": [
+              {
+                "label": "频域分配",
+                "status": "design",
+                "text": "两个感知子带、一个通信子带，并计入保护格与导频"
+              },
+              {
+                "label": "观察与处理",
+                "status": "design",
+                "text": "选择感知观察窗，并记录样本后分别处理子带"
+              }
+            ],
+            "explanation": "比较模式时先查总带宽和业务：60 MHz对照全做感知，只有SBFD模式测通信。",
+            "sourceLocator": "§II-A，表I；§IV-A，表II；§IV-B3–4",
+            "lessonHref": "sbfd-resource.html#experiment"
+          },
+          {
+            "id": "evidence",
+            "heading": "单站实测支持到哪里？",
+            "blocks": [
+              {
+                "label": "原型已展示",
+                "status": "supported",
+                "text": "单站测速与运动真值对照，以及SBFD中的通信样例"
+              },
+              {
+                "label": "仍未建立",
+                "status": "not-established",
+                "text": "多站相干感知、端到端实时能力和等业务等资源联合排名"
+              }
+            ],
+            "explanation": "图9是每时刻跨六次运行的速度均方根误差（RMSE）；0.145 m/s另指速度分辨率，两者不能当作单次误差上限。",
+            "sourceLocator": "§V-B/C，图8–10；§IV-B4；§VI"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "启动偏差已小于0.1 ms，图9的测速也很好，能否据此把跨节点回波直接相干相加？",
+          "answer": "不能。该证据链是启动协调、离线单站处理及速度统计误差，还未建立跨节点相位相干；多站感知仍列为后续工作。先说明要做非相干还是相干融合，再检验相应同步条件。",
+          "sourceLocator": "§III-B；§IV-B3–4；§V-B，图8–9；§VI"
+        }
       }
     },
     {
