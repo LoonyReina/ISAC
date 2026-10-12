@@ -1,0 +1,317 @@
+{
+  "status": "passed",
+  "scope": "fresh runtime solves versus re-executed independent Python oracle; not browser acceptance",
+  "fixedFixtures": 19,
+  "freshGeneratedProblems": 32,
+  "coreSha256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+  "referenceSha256": "1939dee4f497171e26fea1e15e3b43db224c2333a9866b069e7616bb9bc71a6e",
+  "maximumCovarianceResidualRelative": 4.404817855414466e-15,
+  "checks": [
+    {
+      "id": "scalar-phase",
+      "covarianceResidualRelative": 3.1720657846433045e-16,
+      "objectiveError": 0,
+      "independentObjectiveTolerance": 3.5000000000000003e-9
+    },
+    {
+      "id": "analytic-diagonal-square",
+      "covarianceResidualRelative": 9.005097841339324e-17,
+      "objectiveError": 8.881784197001252e-16,
+      "independentObjectiveTolerance": 6.340000000000001e-9
+    },
+    {
+      "id": "fresh-complex-rank-deficient",
+      "covarianceResidualRelative": 1.6494509474657416e-16,
+      "objectiveError": 7.105427357601002e-15,
+      "independentObjectiveTolerance": 7.672544390810588e-9
+    },
+    {
+      "id": "zero-channel",
+      "covarianceResidualRelative": 1.2208599244614936e-16,
+      "objectiveError": -1.0658141036401503e-14,
+      "independentObjectiveTolerance": 3.1999999999999993e-9
+    },
+    {
+      "id": "zero-symbols",
+      "covarianceResidualRelative": 1.2208599244614936e-16,
+      "objectiveError": -1.4210854715202004e-14,
+      "independentObjectiveTolerance": 4.4725443908105885e-9
+    },
+    {
+      "id": "both-zero",
+      "covarianceResidualRelative": 1.2208599244614936e-16,
+      "objectiveError": 0,
+      "independentObjectiveTolerance": 2e-10
+    },
+    {
+      "id": "rank-one-channel",
+      "covarianceResidualRelative": 9.632030414946358e-16,
+      "objectiveError": 1.9539925233402755e-14,
+      "independentObjectiveTolerance": 9.33330570830531e-9
+    },
+    {
+      "id": "square-block",
+      "covarianceResidualRelative": 2.239620907493676e-16,
+      "objectiveError": 2.4424906541753444e-15,
+      "independentObjectiveTolerance": 3.836272195405294e-9
+    },
+    {
+      "id": "long-block",
+      "covarianceResidualRelative": 3.9326910223361705e-16,
+      "objectiveError": 5.684341886080802e-14,
+      "independentObjectiveTolerance": 2.6606193775827247e-8
+    },
+    {
+      "id": "overloaded-full-rank",
+      "covarianceResidualRelative": 1.5931979955920415e-16,
+      "objectiveError": -2.842170943040401e-14,
+      "independentObjectiveTolerance": 1.3876623238386072e-8
+    },
+    {
+      "id": "near-singular-covariance-1e8",
+      "covarianceResidualRelative": 3.4107599513793193e-16,
+      "objectiveError": 3.979039320256561e-12,
+      "independentObjectiveTolerance": 8.851992498241956e-9
+    },
+    {
+      "id": "repeated-singular-values",
+      "covarianceResidualRelative": 0,
+      "objectiveError": 5.551115123125783e-17,
+      "independentObjectiveTolerance": 1.6e-9
+    },
+    {
+      "id": "tiny-channel-singular-direction",
+      "covarianceResidualRelative": 0,
+      "objectiveError": 0,
+      "independentObjectiveTolerance": 9.333333333333332e-10
+    },
+    {
+      "id": "tiny-positive-power",
+      "covarianceResidualRelative": 3.056645746234847e-16,
+      "objectiveError": 8.881784197001252e-15,
+      "independentObjectiveTolerance": 3.200000004472544e-9
+    },
+    {
+      "id": "large-positive-power",
+      "covarianceResidualRelative": 4.1199643412281284e-16,
+      "objectiveError": 2.980232238769531e-7,
+      "independentObjectiveTolerance": 0.0447254471081059
+    },
+    {
+      "id": "paper-dimensions-omnidirectional",
+      "covarianceResidualRelative": 1.846908213364347e-15,
+      "objectiveError": -9.769962616701378e-15,
+      "independentObjectiveTolerance": 2.9116022339455244e-8
+    },
+    {
+      "id": "paper-dimensions-synthetic-directional",
+      "covarianceResidualRelative": 1.5930546448927962e-15,
+      "objectiveError": -2.842170943040401e-14,
+      "independentObjectiveTolerance": 2.8037742966699188e-8
+    },
+    {
+      "id": "single-user-many-antennas",
+      "covarianceResidualRelative": 7.805353464805002e-16,
+      "objectiveError": 6.106226635438361e-16,
+      "independentObjectiveTolerance": 4.988514705694191e-9
+    },
+    {
+      "id": "exactly-attainable-zero-objective",
+      "covarianceResidualRelative": 5.411179867931624e-16,
+      "objectiveError": 3.495177663073961e-30,
+      "independentObjectiveTolerance": 1.4235510279665497e-8
+    },
+    {
+      "id": "fresh-generated-0",
+      "covarianceResidualRelative": 2.2551405187698487e-16,
+      "objectiveError": 8.881784197001252e-16,
+      "independentObjectiveTolerance": 1.7135194473637406e-9
+    },
+    {
+      "id": "fresh-generated-1",
+      "covarianceResidualRelative": 4.4329806314528726e-16,
+      "objectiveError": 3.885780586188048e-16,
+      "independentObjectiveTolerance": 2.980989268200694e-9
+    },
+    {
+      "id": "fresh-generated-2",
+      "covarianceResidualRelative": 4.1513660028020255e-16,
+      "objectiveError": 0,
+      "independentObjectiveTolerance": 9.495017350838134e-9
+    },
+    {
+      "id": "fresh-generated-3",
+      "covarianceResidualRelative": 7.368864596771677e-16,
+      "objectiveError": -2.220446049250313e-15,
+      "independentObjectiveTolerance": 4.15669446126951e-9
+    },
+    {
+      "id": "fresh-generated-4",
+      "covarianceResidualRelative": 4.625235327831582e-16,
+      "objectiveError": 2.6645352591003757e-15,
+      "independentObjectiveTolerance": 7.935737842926111e-9
+    },
+    {
+      "id": "fresh-generated-5",
+      "covarianceResidualRelative": 7.958982185915234e-16,
+      "objectiveError": 9.947598300641403e-14,
+      "independentObjectiveTolerance": 4.366350177177137e-8
+    },
+    {
+      "id": "fresh-generated-6",
+      "covarianceResidualRelative": 3.149420982265915e-16,
+      "objectiveError": 3.552713678800501e-15,
+      "independentObjectiveTolerance": 6.230518490918848e-9
+    },
+    {
+      "id": "fresh-generated-7",
+      "covarianceResidualRelative": 5.908611740186644e-16,
+      "objectiveError": -2.1316282072803006e-14,
+      "independentObjectiveTolerance": 1.5081037289336786e-8
+    },
+    {
+      "id": "fresh-generated-8",
+      "covarianceResidualRelative": 4.2858779074522993e-16,
+      "objectiveError": 2.8421709430404007e-13,
+      "independentObjectiveTolerance": 1.390327118075565e-7
+    },
+    {
+      "id": "fresh-generated-9",
+      "covarianceResidualRelative": 3.4659655022882117e-16,
+      "objectiveError": -7.105427357601002e-15,
+      "independentObjectiveTolerance": 1.5112622566937905e-8
+    },
+    {
+      "id": "fresh-generated-10",
+      "covarianceResidualRelative": 1.4065954710467072e-15,
+      "objectiveError": 1.4210854715202004e-14,
+      "independentObjectiveTolerance": 2.6995039357938e-8
+    },
+    {
+      "id": "fresh-generated-11",
+      "covarianceResidualRelative": 2.9544029964761484e-15,
+      "objectiveError": 5.684341886080801e-13,
+      "independentObjectiveTolerance": 1.3309473636825772e-7
+    },
+    {
+      "id": "fresh-generated-12",
+      "covarianceResidualRelative": 5.619459918641027e-16,
+      "objectiveError": 1.4210854715202004e-13,
+      "independentObjectiveTolerance": 3.598362623063715e-8
+    },
+    {
+      "id": "fresh-generated-13",
+      "covarianceResidualRelative": 1.0375469857463378e-15,
+      "objectiveError": -2.842170943040401e-14,
+      "independentObjectiveTolerance": 2.8426385983394505e-8
+    },
+    {
+      "id": "fresh-generated-14",
+      "covarianceResidualRelative": 7.956119323999254e-16,
+      "objectiveError": 1.8189894035458565e-12,
+      "independentObjectiveTolerance": 2.4609984168511214e-7
+    },
+    {
+      "id": "fresh-generated-15",
+      "covarianceResidualRelative": 1.383743513524532e-15,
+      "objectiveError": -7.105427357601002e-14,
+      "independentObjectiveTolerance": 2.80924419003187e-8
+    },
+    {
+      "id": "fresh-generated-16",
+      "covarianceResidualRelative": 2.6959667607831945e-16,
+      "objectiveError": 5.273559366969494e-16,
+      "independentObjectiveTolerance": 3.8492670102644356e-9
+    },
+    {
+      "id": "fresh-generated-17",
+      "covarianceResidualRelative": 6.710541351442009e-16,
+      "objectiveError": 2.1316282072803006e-14,
+      "independentObjectiveTolerance": 2.0916119500193382e-8
+    },
+    {
+      "id": "fresh-generated-18",
+      "covarianceResidualRelative": 4.632709212190492e-16,
+      "objectiveError": -1.7763568394002505e-15,
+      "independentObjectiveTolerance": 2.892445589370203e-9
+    },
+    {
+      "id": "fresh-generated-19",
+      "covarianceResidualRelative": 5.313750681632283e-16,
+      "objectiveError": -4.618527782440651e-14,
+      "independentObjectiveTolerance": 1.242391284629151e-8
+    },
+    {
+      "id": "fresh-generated-20",
+      "covarianceResidualRelative": 1.6737182336497096e-16,
+      "objectiveError": 1.1368683772161603e-13,
+      "independentObjectiveTolerance": 5.963127241019222e-8
+    },
+    {
+      "id": "fresh-generated-21",
+      "covarianceResidualRelative": 5.538243613808293e-16,
+      "objectiveError": 7.105427357601002e-15,
+      "independentObjectiveTolerance": 6.92666968036961e-9
+    },
+    {
+      "id": "fresh-generated-22",
+      "covarianceResidualRelative": 1.7392935805949503e-15,
+      "objectiveError": 3.375077994860476e-14,
+      "independentObjectiveTolerance": 1.6969941066188237e-8
+    },
+    {
+      "id": "fresh-generated-23",
+      "covarianceResidualRelative": 1.797978651627518e-16,
+      "objectiveError": 2.2737367544323206e-13,
+      "independentObjectiveTolerance": 9.822149413217575e-8
+    },
+    {
+      "id": "fresh-generated-24",
+      "covarianceResidualRelative": 7.667477546381817e-16,
+      "objectiveError": -2.1316282072803006e-14,
+      "independentObjectiveTolerance": 1.6565146666718668e-8
+    },
+    {
+      "id": "fresh-generated-25",
+      "covarianceResidualRelative": 6.356019445498513e-16,
+      "objectiveError": 1.7763568394002505e-14,
+      "independentObjectiveTolerance": 2.6937925842608956e-8
+    },
+    {
+      "id": "fresh-generated-26",
+      "covarianceResidualRelative": 1.886550702208303e-15,
+      "objectiveError": 8.526512829121202e-14,
+      "independentObjectiveTolerance": 5.996436470444848e-8
+    },
+    {
+      "id": "fresh-generated-27",
+      "covarianceResidualRelative": 4.009821398856497e-15,
+      "objectiveError": 7.105427357601002e-15,
+      "independentObjectiveTolerance": 1.4588238853420493e-8
+    },
+    {
+      "id": "fresh-generated-28",
+      "covarianceResidualRelative": 5.721689223181559e-16,
+      "objectiveError": 4.263256414560601e-14,
+      "independentObjectiveTolerance": 2.939331558836026e-8
+    },
+    {
+      "id": "fresh-generated-29",
+      "covarianceResidualRelative": 8.689588387175645e-16,
+      "objectiveError": -6.821210263296962e-13,
+      "independentObjectiveTolerance": 1.5219148773573042e-7
+    },
+    {
+      "id": "fresh-generated-30",
+      "covarianceResidualRelative": 1.0953763702655924e-15,
+      "objectiveError": -5.684341886080802e-14,
+      "independentObjectiveTolerance": 2.1248629807053447e-8
+    },
+    {
+      "id": "fresh-generated-31",
+      "covarianceResidualRelative": 4.404817855414466e-15,
+      "objectiveError": 6.252776074688882e-13,
+      "independentObjectiveTolerance": 7.154873039180003e-8
+    }
+  ]
+}

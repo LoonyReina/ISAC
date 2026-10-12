@@ -36,7 +36,7 @@ test('radar registry preserves every existing concept beginner route and adds on
 });
 
 test('radar directory changes only its existing caseId and readingPlan while all nine paper records stay preserved',()=>{
- const preserved=structuredClone(data),card=preserved.cards.find(c=>c.id==='radar_prediction');delete card.caseId;delete card.readingPlan;
+ const preserved=require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveCatalog(data),card=preserved.cards.find(c=>c.id==='radar_prediction');delete card.caseId;delete card.readingPlan;
  // Normalize only the later authorized mu_mimo activation before checking this earlier complete-directory snapshot.
  const shared=preserved.cards.find(c=>c.id==='mu_mimo');shared.caseId=null;shared.readingPlan='计划深读：同一阵列预算下的分离与共享；本站交互尚未实现。';
  // Locks every unrelated card, all metadata, snapshots, links, timestamps, endorsements and socialDiscussion.

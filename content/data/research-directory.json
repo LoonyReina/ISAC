@@ -24,7 +24,7 @@
       "doi": "https://doi.org/10.1109/tsp.2018.2847648",
       "identitySource": "https://arxiv.org/abs/1711.05220",
       "mechanism": "同一发射波形兼顾多用户通信与雷达方向图，研究多用户干扰、加权权衡和恒模约束下的设计。",
-      "evidenceBoundary": "理论与数值仿真；独立教学简化不等于原论文完整优化器复现。",
+      "evidenceBoundary": "理论与数值仿真；本站已数值验证固定 v1 §III 式(8)–(15)的严格协方差分支。全局最优仅针对确定性总 MUI；高斯对数速率为二级诊断，不等于 QPSK 互信息、BER 或吞吐。其余分支与完整原图仍待复现。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -64,7 +64,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "阅读时先明确通信误差与雷达协方差各自的作用，再对照原文的目标函数与约束；教学案例的具体保留范围以案例原文对照为准。",
+      "readingPlan": "先用当前 H、S、R 运行严格分支，检查协方差、全局下界与逐用户误差，再回原文区分方向性协方差设计、加权权衡和常模分支；现场全向参数切片不等于完整图3–4。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -77,7 +77,11 @@
       ],
       "groupId": "joint-design",
       "shortTitle": "最优联合波形设计",
-      "caseId": "case-waveform"
+      "caseId": "case-waveform",
+      "executionStatus": {
+        "status": "validated-algorithm-core",
+        "scope": "严格协方差分支"
+      }
     },
     {
       "id": "joint_beamforming",

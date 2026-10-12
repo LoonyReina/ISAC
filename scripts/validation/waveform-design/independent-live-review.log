@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-12T11:58:36.880Z",
+  "pageSha256": "a62c13253e3d0485d1dcd7a90f3c9aa3bc896deb13618d5942e76faa148ef309",
+  "kind": "independent model/Worker/UI VM review; not real-browser or online acceptance",
+  "hashes": {
+    "procrustes-core.js": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+    "waveform-core.js": "55abf9bda20cbe84bb63ae833b65b25e91137dac10832e31850f97f6fa6258a8",
+    "waveform-live-model.js": "168d9c4c9a234b8331b9a4dbfbe3f1be9b77f0428458f151776ce1029a1fa8da",
+    "waveform-live-worker.js": "f8f329dadd715c7f30a7eb8d33739d122258a3d1e652c68853093779e4b2bfe1",
+    "waveform-live.js": "d5752b5f520fcda875d7c1e30a4e2989a63e47ba46e6cfa60c6df9ae08fd1264"
+  },
+  "cases": [
+    {
+      "name": "Frozen core hash is exact",
+      "status": "pass"
+    },
+    {
+      "name": "Independent complex Cholesky × DFT agrees with baseline and shared covariance on 20 new problems",
+      "status": "pass"
+    },
+    {
+      "name": "Complex off-diagonal imported covariance and K>N keep DFT convention",
+      "status": "pass"
+    },
+    {
+      "name": "Actual Worker freshly solves independent H, S and R edits and ignores stored X",
+      "status": "pass"
+    },
+    {
+      "name": "Per-user rate diagnostic uses unequal user powers/errors; pooled MSE differs",
+      "status": "pass"
+    },
+    {
+      "name": "Actual Worker + UI race: edit → new run → late old reply/error cannot replace current result",
+      "status": "pass"
+    },
+    {
+      "name": "Actual Worker + UI race: cancel/reset/paper preset/pagehide reject pending replies",
+      "status": "pass"
+    },
+    {
+      "name": "Repeated runs only count current completed request; SNR/view changes cause no new worker",
+      "status": "pass"
+    },
+    {
+      "name": "Export guards unannounced manual input replacement and roundtrips only H/S/R",
+      "status": "pass"
+    },
+    {
+      "name": "Worker rejects singular/nonfinite/malformed inputs as errors; UI recovers after invalid JSON",
+      "status": "pass"
+    },
+    {
+      "name": "Every certified model result is finite even when a reference error overflows",
+      "status": "pass"
+    },
+    {
+      "name": "UI cannot certify/export a nonfinite reference as null",
+      "status": "pass"
+    },
+    {
+      "name": "Positive tiny-power input accepted by frozen core remains usable in live adapter",
+      "status": "pass"
+    },
+    {
+      "name": "Rate denominator overflow cannot silently turn a positive diagnostic into zero",
+      "status": "pass"
+    },
+    {
+      "name": "Rate diagnostic is scale invariant across tiny, normal and huge powers",
+      "status": "pass"
+    },
+    {
+      "name": "Teaching labels general budget, default example, snapshot units and finite contract",
+      "status": "pass"
+    }
+  ],
+  "findings": {
+    "overflow": {
+      "input": {
+        "H": [
+          [
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "S": [
+          [
+            [
+              -6.703903964971299e+153,
+              0
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              4.49423283715579e+307,
+              0
+            ]
+          ]
+        ]
+      },
+      "coreObjective": 0,
+      "correctlyRejected": "参考或诊断指标超出浮点范围，未返回成功结果"
+    },
+    "overflowUi": {
+      "status": "本次没有可用结果；请修正输入后重新求解。",
+      "downloadEnabled": false,
+      "exported": 0
+    },
+    "rateDenominator": {
+      "actual": 0.4718254664698821,
+      "expected": 0.4718254664698813
+    }
+  },
+  "sourceLayout": "canonical repository"
+}

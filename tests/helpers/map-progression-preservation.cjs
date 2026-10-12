@@ -282,6 +282,7 @@ function withoutBuildLinkValidation(file,source){
  if(file==='site/registry.json')return JSON.stringify(require('./gc-sage-preservation.cjs').withoutGCSAGERegistry(JSON.parse(source)),null,2)+'\n';
  // Remove only the exact reviewed shell and executable-guide additions before
  // reversing deferred hooks; every historical digest stays fixed.
+ if(file==='scripts/render-research-directory.cjs')source=require('./waveform-live-preservation.cjs').withoutWaveformLiveRenderer(source);
  if(file==='scripts/generate-site.cjs')source=withoutPilotContinuation(source);
  if(file==='scripts/research-guides.cjs')source=withoutCapacityExecutionRenderer(source);
  const hooks=buildLinkValidationHooks[file];if(!hooks)return source;

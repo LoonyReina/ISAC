@@ -837,6 +837,13 @@
       "role": "source"
     },
     {
+      "source": "docs/WAVEFORM-LIVE-VALIDATION.md",
+      "compatibility": "docs/WAVEFORM-LIVE-VALIDATION.md",
+      "public": "docs/WAVEFORM-LIVE-VALIDATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
       "source": "docs/WAVEFORM-VALIDATION.md",
       "compatibility": "docs/WAVEFORM-VALIDATION.md",
       "public": "docs/WAVEFORM-VALIDATION.md",
@@ -1297,6 +1304,13 @@
       "public": "practice.html",
       "owner": "features/notebook",
       "role": "generated"
+    },
+    {
+      "source": "labs/waveform-design/procrustes-core.js",
+      "compatibility": "procrustes-core.js",
+      "public": "procrustes-core.js",
+      "owner": "labs/waveform-design",
+      "role": "source"
     },
     {
       "source": "labs/radar-beam-decision/radar-beam-decision-core.js",
@@ -2671,6 +2685,76 @@
       "role": "source"
     },
     {
+      "source": "scripts/validation/waveform-design/INDEPENDENT_LIVE_REVIEW.md",
+      "compatibility": "scripts/validation/waveform-design/INDEPENDENT_LIVE_REVIEW.md",
+      "public": "scripts/validation/waveform-design/INDEPENDENT_LIVE_REVIEW.md",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/independent-live-review-results.json",
+      "compatibility": "scripts/validation/waveform-design/independent-live-review-results.json",
+      "public": "scripts/validation/waveform-design/independent-live-review-results.json",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/independent-live-review.cjs",
+      "compatibility": "scripts/validation/waveform-design/independent-live-review.cjs",
+      "public": "scripts/validation/waveform-design/independent-live-review.cjs",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/independent-live-review.log",
+      "compatibility": "scripts/validation/waveform-design/independent-live-review.log",
+      "public": "scripts/validation/waveform-design/independent-live-review.log",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/independent_procrustes_reference.py",
+      "compatibility": "scripts/validation/waveform-design/independent_procrustes_reference.py",
+      "public": "scripts/validation/waveform-design/independent_procrustes_reference.py",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/teaching-python-crosscheck.json",
+      "compatibility": "scripts/validation/waveform-design/teaching-python-crosscheck.json",
+      "public": "scripts/validation/waveform-design/teaching-python-crosscheck.json",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/validate-waveform-live.cjs",
+      "compatibility": "scripts/validation/waveform-design/validate-waveform-live.cjs",
+      "public": "scripts/validation/waveform-design/validate-waveform-live.cjs",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/waveform-live-fixtures.json",
+      "compatibility": "scripts/validation/waveform-design/waveform-live-fixtures.json",
+      "public": "scripts/validation/waveform-design/waveform-live-fixtures.json",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/waveform-live-validation.json",
+      "compatibility": "scripts/validation/waveform-design/waveform-live-validation.json",
+      "public": "scripts/validation/waveform-design/waveform-live-validation.json",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/waveform-design/waveform-rate-counterexample.json",
+      "compatibility": "scripts/validation/waveform-design/waveform-rate-counterexample.json",
+      "public": "scripts/validation/waveform-design/waveform-rate-counterexample.json",
+      "owner": "validators/waveform-design",
+      "role": "source"
+    },
+    {
       "source": "labs/shared-array/shared-array-core.js",
       "compatibility": "shared-array-core.js",
       "public": "shared-array-core.js",
@@ -2982,6 +3066,13 @@
       "source": "tests/helpers/spatial-frontier-preservation.cjs",
       "compatibility": "tests/helpers/spatial-frontier-preservation.cjs",
       "public": "tests/helpers/spatial-frontier-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/waveform-live-preservation.cjs",
+      "compatibility": "tests/helpers/waveform-live-preservation.cjs",
+      "public": "tests/helpers/waveform-live-preservation.cjs",
       "owner": "validators/regression",
       "role": "source"
     },
@@ -3406,6 +3497,27 @@
       "role": "source"
     },
     {
+      "source": "tests/waveform-live-core.test.cjs",
+      "compatibility": "tests/waveform-live-core.test.cjs",
+      "public": "tests/waveform-live-core.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/waveform-live-reading.test.cjs",
+      "compatibility": "tests/waveform-live-reading.test.cjs",
+      "public": "tests/waveform-live-reading.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/waveform-live-ui.test.cjs",
+      "compatibility": "tests/waveform-live-ui.test.cjs",
+      "public": "tests/waveform-live-ui.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
       "source": "tests/waveform-ui.test.cjs",
       "compatibility": "tests/waveform-ui.test.cjs",
       "public": "tests/waveform-ui.test.cjs",
@@ -3476,6 +3588,27 @@
       "role": "source"
     },
     {
+      "source": "labs/waveform-design/waveform-live-model.js",
+      "compatibility": "waveform-live-model.js",
+      "public": "waveform-live-model.js",
+      "owner": "labs/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "labs/waveform-design/waveform-live-worker.js",
+      "compatibility": "waveform-live-worker.js",
+      "public": "waveform-live-worker.js",
+      "owner": "labs/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "labs/waveform-design/waveform-live.js",
+      "compatibility": "waveform-live.js",
+      "public": "waveform-live.js",
+      "owner": "labs/waveform-design",
+      "role": "source"
+    },
+    {
       "source": "labs/waveform-design/waveform.css",
       "compatibility": "waveform.css",
       "public": "waveform.css",
@@ -3487,6 +3620,13 @@
       "compatibility": "waveform.js",
       "public": "waveform.js",
       "owner": "labs/waveform-design",
+      "role": "source"
+    },
+    {
+      "source": "docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md",
+      "compatibility": "docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md",
+      "public": "docs/NEARFIELD-GC-SAGE-BROWSER-VALIDATION.md",
+      "owner": "content/documentation",
       "role": "source"
     }
   ]

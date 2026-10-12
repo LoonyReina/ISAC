@@ -105,6 +105,8 @@ const additions={
     }
   ],
   "guideId": "nearfield-mechanism-aware-mapping-2026",
+  "questionBefore": "同一面墙对不同阵元的反射点并不相同，遮挡又只挡住部分孔径；此时把所有回波都当作全阵列可见的点散射体，会把环境画成什么？",
+  "questionAfter": "同一面墙对不同阵元的反射点并不相同，遮挡又只挡住部分孔径；即使允许不同阵元具有不同复增益，把墙面仍解释成点散射体，会遗漏什么几何结构？",
   "executable": {
     "kind": "validated-paper-algorithm",
     "coverage": "algorithm",
@@ -127,7 +129,7 @@ function removeLast(items,key,expected,label){
  a.deepEqual(items.at(-1),expected,label+' has only reviewed fields');items.pop();
 }
 function withoutGCSAGERegistry(registry){
- const prior=structuredClone(registry);
+ const prior=require('./waveform-live-preservation.cjs').withoutWaveformLiveRegistry(registry);
  removeLast(prior.units,'id',additions.unit,'GC-SAGE unit');
  removeLast(prior.pages,'path',additions.page,'GC-SAGE page');
  for(const hook of additions.hooks){const d=prior.directions.find(d=>d.id===hook.directionId);a.ok(d);const level=d.levels.find(l=>l.id===hook.levelId);a.ok(level);removeLast(level.items,'href',hook.item,'GC-SAGE '+hook.levelId);}
@@ -140,7 +142,8 @@ function withoutGCSAGEGuide(data){
  a.equal(Object.keys(c).at(-1),'executable','appended GC-SAGE executable');
  a.deepEqual(c.executable,additions.executable,'exact GC-SAGE execution entry');
  a.equal(c.limits[5],additions.statusAfter,'exact reduced-coverage status');
- delete c.executable;c.limits[5]=additions.statusBefore;return prior;
+ a.equal(c.question,additions.questionAfter,'exact per-channel-gain question clarification');
+ delete c.executable;c.limits[5]=additions.statusBefore;c.question=additions.questionBefore;return prior;
 }
 function withoutGCSAGEHomeShell(html,count){
  const current=`<strong>${count}</strong> 个机制实验`,prior=`<strong>${count-1}</strong> 个机制实验`;

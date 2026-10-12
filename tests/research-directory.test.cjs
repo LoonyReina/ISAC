@@ -100,7 +100,7 @@ test('generic teaching links honor all eight canonical learning entries, with se
 test('entry-route rendering preserves the complete nine-paper source and metrics snapshot',()=>{
  const crypto=require('node:crypto'),hash=value=>crypto.createHash('sha256').update(value).digest('hex');
  // Deliberate source/metrics updates require a separately reviewed snapshot refresh.
- a.equal(hash(read(registry.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(registry.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
  const before=JSON.stringify(data);render();a.equal(JSON.stringify(data),before);
  for(const card of data.cards){const h=getCard(card.id);a.ok(h.includes(esc(card.title)));a.ok(h.includes(esc(card.authors)));a.ok(h.includes(esc(card.readingPlan)));for(const {url,text,kind}of card.endorsements){a.ok(h.includes(esc(url)));a.ok(h.includes(esc(text)));a.ok(h.includes(esc(kind)));}}
 });

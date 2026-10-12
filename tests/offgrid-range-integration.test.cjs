@@ -36,7 +36,7 @@ test('off-grid range adds one case-free processing mechanism with honest fixed t
 
 test('every earlier unit, case, page, unrelated direction and legacy route is preserved',()=>{
  a.equal(hash(beforeReferenceUncertainty.units.filter(x=>x.id!==u.id)),'8fc37c5693efdcd718fa3824c7136f763857ba1d762d5904157261e63fb340a2');
- a.equal(hash(r.cases),'8bad502395d9fad13770b4afab9ed26575eca9545599f5c82abbe55ff6187362');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r).cases),'8bad502395d9fad13770b4afab9ed26575eca9545599f5c82abbe55ff6187362');
  a.equal(hash(beforeReferenceUncertainty.pages.filter(x=>x.path!==p.path)),'10ef3d09ee0bdfc391203f8911e3746999630f7dcfeb5448fb394875f1d3939b');
  // Normalize the exact new mechanism hooks first; retain the older reading-only scope normalization.
  const historicalDirections=structuredClone(beforeReferenceUncertainty.directions.filter(d=>d.id!=='receiver'));
@@ -130,7 +130,7 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   'scripts/notebook-topics.cjs':'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477',
   'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9'
  };
- for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,read(file))),digest,file);
+ for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,file==='site/research-directory.json'?require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(file))):read(file))),digest,file);
  // Later reading-only features add these exact hooks. Preserve
  // the byte-level guard for all other generator behavior rather than silently
  // rebasing its original fingerprint or weakening scientific/notebook checks.

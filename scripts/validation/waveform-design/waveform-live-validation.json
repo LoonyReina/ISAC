@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-12",
+  "scope": "strict-covariance core and local teaching preparation; full paper not reproduced",
+  "authorCoreChecks": {
+    "status": "author-validation-passed",
+    "scope": "isolated strict-covariance numerical core; no UI/integration/publication",
+    "coreSha256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+    "unchangedReferenceSha256": "1939dee4f497171e26fea1e15e3b43db224c2333a9866b069e7616bb9bc71a6e",
+    "fixedOracleFixtures": 19,
+    "freshOracleProblems": 328,
+    "nodeTests": 18,
+    "randomUnsupportedConditioningCasesRejected": 50,
+    "independentOracleMaximumCovarianceResidualRelative": 5.565724907196307e-15,
+    "independentOracleMaximumObjectiveGapRelativeToCertificateScale": 3.5379724174147894e-13,
+    "internalMaximumCovarianceResidualRelative": 5.519000850151791e-15,
+    "internalMaximumObjectiveGapRelativeToCertificateScale": 2.658843498503529e-12,
+    "maximumJacobiSweeps": 10,
+    "maximumSVDReconstructionResidualRelative": 2.2327801241814492e-12,
+    "fixedReviewFinding": "Reject nonfinite requested energy and every nonfinite returned value; exact overflow regression passed; tiny unsupported covariance receives finite-range message",
+    "independentReview": "See REVIEW_NOTES.md and independent reviewer artifacts; not inferred from author checks",
+    "remaining": [
+      "Worker/UI integration and real-browser measurements",
+      "Original experiment and remaining paper branches"
+    ]
+  },
+  "independentCoreReview": {
+    "status": "passed",
+    "coreSha256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+    "totalChecks": 450,
+    "numericalComparisons": 240,
+    "expectedRangeRejections": 3,
+    "conditioningClassifications": 168,
+    "apiChecks": 39,
+    "maximumCovarianceResidualRelative": 9.825e-15,
+    "maximumObjectiveGapRelativeToCertificateScale": 7.45e-13,
+    "maximumJacobiSweeps": 18
+  },
+  "focusedTeachingChecks": {
+    "status": "passed",
+    "tests": 29,
+    "environment": "Node real model/Worker scripts and controlled DOM/Worker delivery",
+    "realBrowser": false
+  },
+  "gateStatus": {
+    "core": "independently-validated",
+    "teaching": "focused-and-independent-source-vm-review-passed-browser-pending",
+    "aggregateIntegration": "pending",
+    "renderedBrowser": "not-run",
+    "deployedBrowser": "not-run",
+    "fullPaper": "not-reproduced"
+  },
+  "limitations": [
+    "Original directional radar covariance design and original ZF/averaging conventions unresolved",
+    "Weighted tradeoff and constant-modulus branches absent",
+    "No browser or live-site acceptance inferred from Node/VM checks"
+  ],
+  "source": {
+    "url": "https://arxiv.org/pdf/1711.05220v1",
+    "version": "2017-11-14 v1",
+    "pdfSha256": "e79052feb8fd898002a71c9b1f20fd75cb757159b6e92071e97812e85b62d798",
+    "locators": "Section II Eqs.(1)-(7), Section III Eqs.(8)-(15), Section VI-A Figs.3-4"
+  },
+  "independentTeachingReview": {
+    "status": "passed",
+    "cases": 16,
+    "environment": "independent model/Worker/UI VM review; not real-browser or online acceptance",
+    "pageSha256": "a62c13253e3d0485d1dcd7a90f3c9aa3bc896deb13618d5942e76faa148ef309",
+    "runtimeHashes": {
+      "procrustes-core.js": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+      "waveform-core.js": "55abf9bda20cbe84bb63ae833b65b25e91137dac10832e31850f97f6fa6258a8",
+      "waveform-live-model.js": "168d9c4c9a234b8331b9a4dbfbe3f1be9b77f0428458f151776ce1029a1fa8da",
+      "waveform-live-worker.js": "f8f329dadd715c7f30a7eb8d33739d122258a3d1e652c68853093779e4b2bfe1",
+      "waveform-live.js": "d5752b5f520fcda875d7c1e30a4e2989a63e47ba46e6cfa60c6df9ae08fd1264"
+    },
+    "evidence": "independent-live-review-results.json",
+    "realBrowser": false
+  },
+  "teachingOracleCrosscheck": {
+    "status": "passed",
+    "scope": "fresh runtime solves versus re-executed independent Python oracle; not browser acceptance",
+    "fixedFixtures": 19,
+    "freshGeneratedProblems": 32,
+    "coreSha256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+    "referenceSha256": "1939dee4f497171e26fea1e15e3b43db224c2333a9866b069e7616bb9bc71a6e",
+    "maximumCovarianceResidualRelative": 4.404817855414466e-15
+  },
+  "timingLabelFollowup": {
+    "date": "2026-10-12",
+    "controllerSha256": "409c1c44769cf67470330da8d5229bc74aa9e7de1a374a627e8ea46fd29082d3",
+    "compatibilityField": "endToEndMs",
+    "scopeField": "endToEndScope",
+    "scope": "已准备输入至 Worker 结果接收并核对，含 Worker 启动；不含输入生成/解析、绘图、下载",
+    "regression": "tests/waveform-live-ui.test.cjs validates the visible label and actual exported scope",
+    "coreWorkerModelUnchanged": true,
+    "realBrowser": false
+  }
+}

@@ -31,7 +31,7 @@ test('reference uncertainty adds one case-free mechanism and one page without in
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
  const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
  a.equal(hash(priorGuideSource(guides)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
- a.equal(hash(read(registry.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(registry.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
 });
 
 test('exact additive normalization preserves the complete pre-experiment registry and does not mutate its input',()=>{

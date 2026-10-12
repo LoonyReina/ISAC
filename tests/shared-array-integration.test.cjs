@@ -32,7 +32,7 @@ test('shared-array provides all six learning layers without replacing existing b
 });
 
 test('only existing mu_mimo case and reading plan change; every other directory field and all nine snapshots are frozen',()=>{
- const preserved=structuredClone(data),card=preserved.cards.find(c=>c.id==='mu_mimo');delete card.caseId;delete card.readingPlan;
+ const preserved=require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveCatalog(data),card=preserved.cards.find(c=>c.id==='mu_mimo');delete card.caseId;delete card.readingPlan;
  a.equal(hash(preserved),'0e73dff1af33f5fe55c2783d585c9dc9e1a10a11bcc7852b7d2665f569d564e5');
  a.equal(hash(data.cards.map(({id,metrics,endorsements,socialDiscussion})=>({id,metrics,endorsements,socialDiscussion}))),'a4f90b03030f9dac09fa48676410a366f37c32a880693d77fa2f88e107383878');
  const actual=data.cards.find(c=>c.id==='mu_mimo');a.equal(actual.caseId,c.id);a.match(actual.readingPlan,/raw.*四个同预算配方/);a.match(actual.readingPlan,/不复现作者优化算法/);

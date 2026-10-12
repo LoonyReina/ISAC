@@ -72,7 +72,7 @@ test('resource metadata preserves fixed transmit resources and receiver versus t
 });
 
 test('all nine influence cards, eight active entries and all their original evidence stay byte-identical',()=>{
- a.equal(hash(read(r.researchDirectoryFile)),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(r.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
  a.equal(data.cards.length,9);a.equal(data.cards.filter(x=>x.caseId).length,8);a.deepEqual(data.cards.filter(x=>!x.caseId).map(x=>x.id),['deepsense']);a.ok(data.cards.every(x=>x.caseId!==c.id));
  const h=read('reading.html');a.equal((h.match(/class="influence-card"/g)||[]).length,9);a.match(h,/深度交互已接入：8 \/ 9 篇/);
  const pending=article(h,'paper-deepsense');a.match(pending,/深度交互尚未实现/);a.ok(!/href="(?!https:)/.test(pending));
