@@ -2,11 +2,12 @@
 // Reverse only the two reviewed teaching links before the original frozen-card
 // guard. Existing guide fields, traces, context trails and ordering stay protected.
 const a=require('node:assert/strict'),crypto=require('node:crypto');
+const {withoutFrontierTraces}=require('./frontier-trace-preservation.cjs');
 const spatialGuideId='nearfield-mechanism-aware-mapping-2026';
 const spatialGuideHash='bc6e730ecfb7d457af7fc143d4fa5cb497e6ca57c97b62121f3f74784a2158fd';
 const aperturePrerequisite={href:'multipath-channel.html#aperture-geometry',label:'独立教学图解：固定点与反射平面的五位置对照'};
 function withoutApertureTeachingLinks(data){
- const prior=structuredClone(data),matches=prior.cards.filter(c=>c.id===spatialGuideId);
+ const prior=withoutFrontierTraces(data),matches=prior.cards.filter(c=>c.id===spatialGuideId);
  if(matches.length){
   a.equal(matches.length,1,'only one reviewed spatial guide');
   const card=matches[0],positions=card.prerequisites.flatMap((p,i)=>p.href===aperturePrerequisite.href?[i]:[]);

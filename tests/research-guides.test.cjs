@@ -8,6 +8,7 @@ const source=read('research-guides.js');
 const {remainingTraceIds,withoutRemainingTraces,priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
 const {withoutNetworkContext,withoutNetworkProgression}=require('./helpers/network-context-preservation.cjs');
 const {spatialGuideId,withoutSpatialFrontier}=require('./helpers/spatial-frontier-preservation.cjs');
+const {frontierTraceIds,withoutFrontierTraces}=require('./helpers/frontier-trace-preservation.cjs');
 const initialTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','bistatic-ofdm-clock-measurement-2023']);
 const previousTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitarget-correlation','networks-cooperative-clusters-2024','cellfree-vq-compression-2026','bistatic-ofdm-clock-measurement-2023','isac-net-model-driven-passive','multimodal-transformer-beam-generalization']);
 // Only the sixteen reviewed optional trace fields are excluded. Every original
@@ -114,14 +115,14 @@ test('local assets are versioned and loaded only on the reading page; styles sup
  for(const token of ['minmax(0,1fr)','min-width:0','overflow-wrap:anywhere','flex-wrap:wrap','min-height:44px',':focus-visible','@media(max-width:480px)','@media print','[hidden]','details::details-content'])a.ok(read('research-guides.css').includes(token),token);
  a.doesNotMatch(source,/innerHTML|outerHTML|insertAdjacentHTML|fetch\(|XMLHttpRequest|localStorage|sessionStorage|document\.cookie|history\.|scrollIntoView|\.focus\(|setInterval|requestAnimationFrame/);
 });
-test('seventeen optional traces preserve every original guide field and the old hash guards detect unrelated changes',()=>{
- a.deepEqual(new Set(data.cards.filter(c=>c.visualTrace).map(c=>c.id)),new Set([...reviewedTraceIds,spatialGuideId]));a.ok(data.cards.slice(0,16).every(c=>c.visualTrace));a.ok(data.cards.slice(16,19).every(c=>!c.visualTrace));
+test('twenty optional traces preserve every original guide field and the old hash guards detect unrelated changes',()=>{
+ a.deepEqual(new Set(data.cards.filter(c=>c.visualTrace).map(c=>c.id)),new Set([...reviewedTraceIds,...frontierTraceIds,spatialGuideId]));a.ok(data.cards.slice(0,16).every(c=>c.visualTrace));a.ok(data.cards.slice(16,19).every(c=>c.visualTrace));
  const hash=cards=>crypto.createHash('sha256').update(JSON.stringify(guideCores(cards))).digest('hex');
  const original='32100afe8091bc850c4e7ba19ea614c04a226e9f3662491187d0101288dea8be';a.equal(hash(data.cards.slice(0,16)),original);
  const changed=structuredClone(data.cards.slice(0,16));changed[0].question+=' altered core';a.notEqual(hash(changed),original);
  const extra=structuredClone(data.cards.slice(0,16));extra[0].visualTraceExtra='unreviewed';a.notEqual(hash(extra),original);
  const allCores='7d8a2de4a2175b7b166902c0d8b50ddc6fdb327fa2d076fe582d5e4e96a0378c';a.equal(hash(data.cards),allCores);
- const unrelated=structuredClone(data.cards);unrelated[16].visualTrace=structuredClone(unrelated[0].visualTrace);a.notEqual(hash(unrelated),allCores);
+ const unrelated=structuredClone(data.cards);unrelated[16].visualTrace=structuredClone(unrelated[0].visualTrace);a.throws(()=>hash(unrelated),/exact reviewed frontier trace/);
  const onlyTrace=structuredClone(data.cards.slice(0,16));onlyTrace[0].visualTrace.title+=' optional';a.equal(hash(onlyTrace),original);
 });
 test('the nine bounded trace additions preserve all nineteen complete prior records and the seven earlier traces',()=>{
@@ -133,7 +134,7 @@ test('the nine bounded trace additions preserve all nineteen complete prior reco
  for(const mutate of [
   d=>{d.cards[1].question+=' changed';},d=>{d.cards[0].visualTrace.title+=' changed';},
   d=>{d.cards[16].contextTrail.oldQuestion+=' changed';},d=>{d.cards[16].source.checkedAt='2026-10-12';},
-  d=>{d.cards[1].visualTraceExtra='unreviewed';},d=>{d.cards[16].visualTrace=structuredClone(d.cards[0].visualTrace);},
+  d=>{d.cards[1].visualTraceExtra='unreviewed';},
   d=>{d.cards.push(d.cards.shift());}
  ]){const changed=structuredClone(data);mutate(changed);a.notEqual(hash(changed),baseline);}
  const allowed=structuredClone(data);allowed.cards[1].visualTrace.title+=' optional';a.equal(hash(allowed),baseline);
@@ -321,7 +322,7 @@ test('pageshow reconciles browser-restored values; script reexecution attaches n
  h.execute();a.equal(h.query.events.input.length,1);a.equal(h.form.events.reset.length,1);a.equal(h.window.events.hashchange.length,1);a.equal(h.cards.filter(c=>!c.hidden).length,1);
 });
 test('native trace and checkpoint details start closed; print contains all matching explanations without disclosures',()=>{
- const h=setup();a.equal(h.document.querySelectorAll('[data-visual-trace]').length,17);
+ const h=setup();a.equal(h.document.querySelectorAll('[data-visual-trace]').length,20);
  for(const card of h.cards.filter(c=>c.querySelector('[data-visual-trace]'))){
   const native=card.querySelector('[data-visual-trace]'),print=card.querySelector('[class="guide-trace-print"]'),t=data.cards.find(c=>'guide-'+c.id===card.id).visualTrace;
   a.equal(native.open,false);a.equal(native.querySelectorAll('details').length,4);a.ok(native.querySelectorAll('details').every(d=>!d.open));a.equal(native.querySelectorAll('[class="trace-step"]').length,4);a.equal(print.querySelectorAll('details').length,0);a.equal(print.querySelectorAll('[class="trace-step"]').length,4);
@@ -342,7 +343,7 @@ test('the fourth stage asks for a prediction before one native reveal exposes ev
 });
 test('existing search finds new trace text and filtering, reset and native hash recovery retain open trace state',()=>{
  const h=setup();
- for(const [query,id]of [['完美信道状态信息','otfs-joint-estimation-2020'],['作为设计输入已知','nearfield-multitarget-correlation'],['试验者设置','bistatic-ofdm-clock-measurement-2023']]){h.form.fire('reset');h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
+ for(const [query,id]of [['完美信道状态信息 信道获取另计','otfs-joint-estimation-2020'],['作为设计输入已知','nearfield-multitarget-correlation'],['试验者设置','bistatic-ofdm-clock-measurement-2023']]){h.form.fire('reset');h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);}
  const card=h.cards.find(c=>c.id==='guide-bistatic-ofdm-clock-measurement-2023'),trace=card.querySelector('[data-visual-trace]'),answer=trace.querySelector('[class="trace-answer"]');trace.open=true;answer.open=true;
  h.choose('waveforms');a.ok(card.hidden);h.form.fire('reset');a.ok(!card.hidden&&trace.open&&answer.open);
  h.search('no match');h.navigate('#guide-bistatic-ofdm-clock-measurement-2023');a.ok(!card.hidden&&trace.open&&answer.open);a.equal(h.select.value,'prototype');
@@ -380,7 +381,7 @@ test('three context cards preserve the original sixteen complete records and sev
  const baseline='611526c264adb9c6623f77aead79b9beaf5ba93e0b4713e387d7a19a043b43a1';
  a.equal(hash(data.cards.slice(0,16)),baseline);
  for(const mutate of [c=>{c[0].question+=' changed';},c=>{c[0].visualTrace.title+=' changed';},c=>{c[0].contextTrail={};}]){const old=structuredClone(data.cards.slice(0,16));mutate(old);a.notEqual(hash(old),baseline);}
- const added=build().slice(16,19);a.equal(added.length,3);a.ok(added.every(c=>c.contextTrail&&!c.visualTrace));
+ const added=build().slice(16,19);a.equal(added.length,3);a.ok(added.every(c=>c.contextTrail&&c.visualTrace));
  a.deepEqual(added.map(c=>c.id),['channels-sensing-communication-mapping-2026','zak-otfs-semiblind-offgrid-2026','sbfd-resource-synchronization-2026']);
  a.deepEqual(added.map(c=>c.source.url),['https://arxiv.org/html/2601.18558v1','https://arxiv.org/html/2601.03639v2','https://arxiv.org/html/2602.00054v1']);
  a.equal(added.filter(c=>c.existingSourceCase).length,1);a.equal(added.filter(c=>!c.existingSourceCase).length,2);
@@ -454,7 +455,7 @@ test('one network context and five source fields preserve all nineteen prior car
  const network=d=>d.cards.find(c=>c.id==='cellfree-vq-compression-2026');
  for(const mutate of [d=>{network(d).question+=' changed';},d=>{network(d).visualTrace.title+=' changed';},d=>{d.cards[16].contextTrail.changedCondition+=' changed';},d=>{network(d).source.edition+=' changed';},d=>{network(d).source.unreviewed='extra';}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
  for(const mutate of [d=>{network(d).contextTrail.links[0].relationType='direct-citation';},d=>{network(d).contextTrail.changedCondition+=' changed';},d=>{network(d).source.publicationUrl='https://example.test/wrong';},d=>{delete network(d).source.checkedAt;},d=>{network(d).source.checkedAt='2026-10-12';}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/exact reviewed/);}
- a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.units.length,registry.cases.length],[20,17,5,28,15]);
+ a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.units.length,registry.cases.length],[20,20,5,28,15]);
  const immutable={
   'reference-uncertainty-record.js':'43f70469c54f55be0f6b8e38344df41b8115d33ff4205e34f13b23ec34730eee',
   'reference-uncertainty.js':'fd2c838f3b75a825db4536756977d2cbc4b0a588833e6d6bfbd70c57dcc5067a',
@@ -484,7 +485,7 @@ test('one frozen spatial frontier card preserves all nineteen existing complete 
  a.equal(data.cards.length,20);a.equal(data.cards.at(-1).id,spatialGuideId);a.equal(hash(data),baseline);a.equal(JSON.stringify(data),before);
  for(const mutate of [d=>{d.cards[0].question+=' changed';},d=>{d.cards[0].visualTrace.title+=' changed';},d=>{d.cards[5].contextTrail.changedCondition+=' changed';},d=>{d.cards[5].source.publicationStatus+=' changed';},d=>{d.cards[16].contextTrail.links[0].verificationNote+=' changed';},d=>{d.cards[0].extra='unreviewed';}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
  for(const mutate of [d=>{d.cards.at(-1).source.publicationStatus='Accepted';},d=>{d.cards.at(-1).visualTrace.steps[0].blocks[0].text='unreviewed';},d=>{d.cards.at(-1).contextTrail.links[0].relationType='direct-citation';},d=>{d.cards.push(structuredClone(d.cards.at(-1)));}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/exact reviewed spatial|only one reviewed/);}
- a.deepEqual([data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.units.length,registry.cases.length,registry.knowledgeMap.progressions.length],[17,5,28,15,5]);
+ a.deepEqual([data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.units.length,registry.cases.length,registry.knowledgeMap.progressions.length],[20,5,28,15,5]);
  a.ok(registry.knowledgeMap.progressions.every(p=>p.guideId!==spatialGuideId&&p.nextGuideId!==spatialGuideId));
 });
 test('spatial mapping guide keeps measured sampling, limited inference, baseline conditions and submission status explicit',()=>{
@@ -508,4 +509,42 @@ test('new spatial question, both backlinks and native disclosures use existing s
  h.form.fire('reset');h.search('2026脉络');a.equal(h.cards.filter(c=>!c.hidden).length,5);a.equal(card.hidden,false);a.ok(trace.open&&answer.open);
  a.match(card.querySelector('[class="guide-currentness"]').textContent,/固定版本：2026-05-01.*非最新保证/);
  a.ok(card.querySelector('[href="practice.html?topic=near-field#notebook"]'));a.match(card.textContent,/已有机制的空白实验本/);
+});
+
+test('three frontier traces preserve all twenty complete prior records, seventeen traces and every context',()=>{
+ const hash=d=>crypto.createHash('sha256').update(JSON.stringify(withoutFrontierTraces(d),null,2)+'\n').digest('hex');
+ const baseline='a0882017952882b3240c014c3ff59c255f9c7eee60c5e504a5a1a9265daf10ae',before=JSON.stringify(data);
+ a.deepEqual(frontierTraceIds,['channels-sensing-communication-mapping-2026','zak-otfs-semiblind-offgrid-2026','sbfd-resource-synchronization-2026']);
+ a.equal(hash(data),baseline);a.equal(JSON.stringify(data),before);
+ a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.knowledgeMap.progressions.length,registry.units.length,registry.cases.length],[20,20,5,5,28,15]);
+ for(const mutate of [d=>{d.cards[16].question+=' changed';},d=>{d.cards[17].source.edition+=' changed';},d=>{d.cards[18].contextTrail.oldQuestion+=' changed';},d=>{d.cards[0].visualTrace.title+=' changed';},d=>{d.cards.at(-1).prerequisites.pop();},d=>{d.cards.at(-1).visualTrace.steps[2].lessonHref='near-field.html#geometry';},d=>{d.cards[17].extra='unreviewed';},d=>{d.cards.push(d.cards.shift());}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
+ for(const mutate of [d=>{delete d.cards[16].visualTrace;},d=>{d.cards[17].visualTrace.title+=' changed';},d=>{d.cards[18].visualTrace.steps[0].sourceLocator='unverified';},d=>{d.cards[16].visualTrace=structuredClone(d.cards[0].visualTrace);},d=>{d.cards.push(structuredClone(d.cards[16]));}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/reviewed frontier trace|one existing guide/);}
+ const immutable={
+  'multipath-channel.html':'c0b4b582c62aa6db9c82968605990dc8912efd546b45d3979320c82201db44cd',
+  'reflection-aperture-core.js':'f94ee1c993ced184f49bd0783c9448af8cc6b5c49ea1f14279bd5e588f40b6c5',
+  'reflection-aperture.js':'8a99a24e618bdc27bf7b9f921f890ac5c0661821ea5fb2bbc4e27223d6b95dfb',
+  'reflection-aperture.css':'b1c1d8ad11b30feb8b7cd1770668d915a8b023d4e53bb6f4ba6c9a9d2b31d78f',
+  'site/registry.json':'b8414c17f5251f1ea940c62c69e6e8f93327b964e972b3f7c3e89bef14ce7f07',
+  'index.html':'dbd0748cefe154f7ca182dfa6521f62047bbc24359411a9f2f07f7ddf78fabf0'
+ };
+ for(const [file,digest]of Object.entries(immutable))a.equal(crypto.createHash('sha256').update(read(file)).digest('hex'),digest,file);
+});
+test('frontier traces retain fixed sources and specific limits for measured mapping, numerical joint reception and prototype synchronization',()=>{
+ const [mapping,otfs,sbfd]=data.cards.slice(16,19),traces=[mapping,otfs,sbfd].map(c=>c.visualTrace),texts=traces.map(t=>JSON.stringify(t));
+ a.deepEqual([mapping,otfs,sbfd].map(c=>c.source.url),['https://arxiv.org/html/2601.18558v1','https://arxiv.org/html/2601.03639v2','https://arxiv.org/html/2602.00054v1']);
+ for(const [i,phrases]of [[0,['实测观测','通信信道幅相','扫描步进也不等于角分辨率','不是本文已有结果','双站直达径功率标定']],[1,['数值模型','通信符号','误比特率','驻点保证不代表找到全局最优','图9(a)(b)','总信道','超越真值']],[2,['记录后的处理','跨节点采样频率、载频与相位','只有SBFD模式测通信','跨六次运行','0.145 m/s','多站感知仍列为后续工作']]])for(const p of phrases)a.ok(texts[i].includes(p),p);
+ for(const gloss of ['误比特率（BER）','信道状态信息（CSI）','线性最小均方误差（LMMSE）'])a.ok(traces[1].checkpoint.prompt.includes(gloss));
+ a.match(traces[1].steps[3].sourceLocator,/图6、8–9/);a.match(traces[2].checkpoint.sourceLocator,/§III-B.*§V-B.*§VI/);
+ for(const c of [mapping,otfs,sbfd]){for(const step of c.visualTrace.steps){if(step.lessonHref)a.ok(c.prerequisites.some(p=>p.href===step.lessonHref));a.ok(step.sourceLocator);}a.equal(c.visualTrace.kind,'qualitative-reading-trace');}
+ a.equal(build().find(c=>c.id===sbfd.id).existingSourceCase.id,'case-sbfd');
+});
+test('frontier trace questions are searchable and their native prediction reveals survive filter and context navigation',()=>{
+ const h=setup();
+ for(const [query,id]of [['冻结校准','channels-sensing-communication-mapping-2026'],['超越真值','zak-otfs-semiblind-offgrid-2026'],['跨节点回波','sbfd-resource-synchronization-2026']]){
+  h.form.fire('reset');h.search(query);a.deepEqual(h.cards.filter(c=>!c.hidden).map(c=>c.id),['guide-'+id]);
+  const card=h.cards.find(c=>c.id==='guide-'+id),trace=card.querySelector('[data-visual-trace]'),answer=trace.querySelector('[class="trace-answer"]'),trail=card.querySelector('[data-context-trail]');a.equal(trace.open,false);a.equal(answer.open,false);trace.open=answer.open=trail.open=true;
+  h.choose('learning');h.search('no match');h.navigate('#guide-'+id);a.equal(card.hidden,false);a.equal(h.query.value,'');a.ok(trace.open&&answer.open&&trail.open);
+  h.form.fire('reset');a.ok(trace.open&&answer.open&&trail.open);
+ }
+ a.match(h.count.textContent,/20 \/ 20/);
 });
