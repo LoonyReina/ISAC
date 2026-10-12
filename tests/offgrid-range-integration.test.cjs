@@ -73,11 +73,11 @@ test('receiver gains five independent mechanism depths and two repeatable checks
   a.match(item.note,/独立离格单目标有限网格机制/);a.match(item.note,/不是连续优化、检测或论文复现/);resolve(item.href);
   if(level==='reproduction')a.equal(item.kind,'reproduction-plan');
  }
- a.equal(hash(d.levels.find(l=>l.id==='papers')),'a6d7c5bdfa684a4e1fb64256a5c3ae432cbf3f1e01484ab4d1079f0776a21ce3');
+ a.equal(hash(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).levels.find(l=>l.id==='papers')),'a6d7c5bdfa684a4e1fb64256a5c3ae432cbf3f1e01484ab4d1079f0776a21ce3');
  const preserved=structuredClone(beforeReferenceUncertainty.directions.find(x=>x.id===d.id));delete preserved.coverage;delete preserved.nextExtension;
  for(const l of preserved.levels)l.items=l.items.filter(i=>!i.href?.startsWith(p.path+'#'));
  a.equal(hash(preserved),'bc767b44c732476150458bb4f86ed74df350595d78be85e1f45c1b62285bcb11');
- a.equal(d.coverage,'已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。');
+ a.equal(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,'已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。');
  for(const term of ['连续参数估计','模型失配','低 SNR','有限反例','普遍排序'])a.ok(d.nextExtension.includes(term),term);
 });
 

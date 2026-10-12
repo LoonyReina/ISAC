@@ -1,0 +1,1142 @@
+{
+  "createdUtc": "2026-10-12T12:22:54.092Z",
+  "nodeVersion": "v24.19.0",
+  "scope": "Bounded lesson model/postprocessing/evaluation numerical audit; no browser or physical ICI validation",
+  "hashes": {
+    "model": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+    "core": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14"
+  },
+  "checks": [
+    {
+      "name": "core hash remains frozen accepted hash",
+      "passed": true
+    },
+    {
+      "name": "declared bounds and exact receiver keys",
+      "passed": true
+    },
+    {
+      "name": "independent BigInt RNG / column-major Eq6 / signal-dependent e / QPSK for 21 scenes",
+      "passed": true,
+      "maxEquationResidual": 4.440892098500626e-16
+    },
+    {
+      "name": "bit/sign flips exact and nested error support 0..8",
+      "passed": true
+    },
+    {
+      "name": "r/noise/z/true bits preserved byte-exact across error, penalty and cap changes",
+      "passed": true
+    },
+    {
+      "name": "noise CN(0,sigma^2), nominal path power definition and scaling",
+      "passed": true,
+      "samples": 65536,
+      "normalizedReMean": -0.0008177396293230448,
+      "normalizedImMean": -0.00010882189853290664,
+      "normalizedReVariance": 0.5002984979168207,
+      "normalizedImVariance": 0.501582718915738,
+      "normalizedCrossMoment": -0.0011746373708619398,
+      "normalizedComplexPower": 1.0018818973728656
+    },
+    {
+      "name": "generation rejects unknown/prototype keys and out-of-bounds values",
+      "passed": true,
+      "rejectedCases": 24
+    },
+    {
+      "name": "all inclusive bounded endpoints accepted",
+      "passed": true,
+      "endpointCases": 256
+    },
+    {
+      "name": "4096 dual grid cells independently match conjugation/sign/normalization",
+      "passed": true,
+      "cells": 4096,
+      "maxAbsoluteError": 0
+    },
+    {
+      "name": "on-grid phased atom gives dual peak at correct signed coordinates and unit ratio",
+      "passed": true
+    },
+    {
+      "name": "periodic peaks include wrap boundary; equal local plateau breaks by smallest index",
+      "passed": true
+    },
+    {
+      "name": "candidate threshold inclusive, monotonic, affects no other numerical cell",
+      "passed": true
+    },
+    {
+      "name": "actual complex residual cells and sum-of-squares agree independently",
+      "passed": true
+    },
+    {
+      "name": "simulation truth is separate and cannot influence solver/postprocessor",
+      "passed": true
+    },
+    {
+      "name": "strict association boundaries, periodic wrap, shared and close candidates",
+      "passed": true,
+      "cases": 11
+    },
+    {
+      "name": "one-to-one cardinality then minimum-distance association over 400 independent fixtures",
+      "passed": true
+    },
+    {
+      "name": "error support strict threshold and teaching disclosure",
+      "passed": true
+    },
+    {
+      "name": "all five teaching presets execute real frozen core and preserve observed false candidates",
+      "passed": true,
+      "presets": [
+        {
+          "name": "nominal",
+          "status": "converged",
+          "iterations": 504,
+          "candidates": 9,
+          "matches": 2,
+          "falseCandidates": 7
+        },
+        {
+          "name": "errorFree",
+          "status": "converged",
+          "iterations": 368,
+          "candidates": 3,
+          "matches": 2,
+          "falseCandidates": 1
+        },
+        {
+          "name": "closePaths",
+          "status": "converged",
+          "iterations": 590,
+          "candidates": 8,
+          "matches": 2,
+          "falseCandidates": 6
+        },
+        {
+          "name": "denseErrors",
+          "status": "converged",
+          "iterations": 558,
+          "candidates": 13,
+          "matches": 2,
+          "falseCandidates": 11
+        },
+        {
+          "name": "iterationLimit",
+          "status": "max_iter",
+          "iterations": 500,
+          "candidates": 9,
+          "matches": 2,
+          "falseCandidates": 7
+        }
+      ]
+    },
+    {
+      "name": "paired fixed-e-zero baseline executes all five presets with identical input",
+      "passed": true,
+      "presets": [
+        {
+          "name": "nominal",
+          "status": "converged",
+          "iterations": 950,
+          "candidates": 15,
+          "matches": 1,
+          "falseCandidates": 14
+        },
+        {
+          "name": "errorFree",
+          "status": "converged",
+          "iterations": 366,
+          "candidates": 3,
+          "matches": 2,
+          "falseCandidates": 1
+        },
+        {
+          "name": "closePaths",
+          "status": "converged",
+          "iterations": 1238,
+          "candidates": 11,
+          "matches": 1,
+          "falseCandidates": 10
+        },
+        {
+          "name": "denseErrors",
+          "status": "converged",
+          "iterations": 730,
+          "candidates": 14,
+          "matches": 2,
+          "falseCandidates": 12
+        },
+        {
+          "name": "iterationLimit",
+          "status": "max_iter",
+          "iterations": 500,
+          "candidates": 15,
+          "matches": 1,
+          "falseCandidates": 14
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "nominal",
+      "status": "converged",
+      "iterations": 504,
+      "objective": 1.0116013539948374,
+      "primal": 2.0183569019282466e-7,
+      "dual": 2.0365328352114312e-8,
+      "residualNorm": 0.30875300556804575,
+      "candidates": [
+        {
+          "phi": 0.078125,
+          "psi": 0.453125,
+          "ratio": 0.9999329246506778
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.609375,
+          "ratio": 0.9998774246433474
+        },
+        {
+          "phi": 0.84375,
+          "psi": 0.4375,
+          "ratio": 0.9997991048636359
+        },
+        {
+          "phi": 0.796875,
+          "psi": 0.390625,
+          "ratio": 0.9997525481659475
+        },
+        {
+          "phi": 0.140625,
+          "psi": 0.109375,
+          "ratio": 0.9996640448229601
+        },
+        {
+          "phi": 0.0625,
+          "psi": 0.84375,
+          "ratio": 0.9996140248734655
+        },
+        {
+          "phi": 0.71875,
+          "psi": 0.953125,
+          "ratio": 0.999570284257172
+        },
+        {
+          "phi": 0.484375,
+          "psi": 0.5625,
+          "ratio": 0.9987349676076472
+        },
+        {
+          "phi": 0.390625,
+          "psi": 0.890625,
+          "ratio": 0.9984848592822626
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 7,
+        "totalCandidates": 9,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 4,
+            "dphi": 0.010625000000000107,
+            "dpsi": -0.0006249999999998757
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 2,
+            "dphi": 0.013749999999999929,
+            "dpsi": 0.02750000000000008
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 2,
+        "falsePositives": 1,
+        "falseNegatives": 0,
+        "estimated": [
+          9,
+          11,
+          12
+        ],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    },
+    {
+      "name": "errorFree",
+      "status": "converged",
+      "iterations": 368,
+      "objective": 0.742921705041002,
+      "primal": 6.313908540710058e-8,
+      "dual": 2.6834151145594424e-8,
+      "residualNorm": 0.24785003850496423,
+      "candidates": [
+        {
+          "phi": 0.125,
+          "psi": 0.109375,
+          "ratio": 0.999860002267861
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.40625,
+          "ratio": 0.9996835786144466
+        },
+        {
+          "phi": 0.421875,
+          "psi": 0.890625,
+          "ratio": 0.9987022022241009
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 1,
+        "totalCandidates": 3,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 0,
+            "dphi": -0.004999999999999893,
+            "dpsi": -0.0006249999999998757
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 1,
+            "dphi": -0.001875000000000071,
+            "dpsi": -0.00374999999999992
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 0,
+        "estimated": [],
+        "actual": []
+      }
+    },
+    {
+      "name": "closePaths",
+      "status": "converged",
+      "iterations": 590,
+      "objective": 1.2394772203301627,
+      "primal": 9.569868040092377e-8,
+      "dual": 2.6773943712474432e-8,
+      "residualNorm": 0.28558211420268154,
+      "candidates": [
+        {
+          "phi": 0.109375,
+          "psi": 0.125,
+          "ratio": 0.9999233645438784
+        },
+        {
+          "phi": 0.203125,
+          "psi": 0.859375,
+          "ratio": 0.9998265539625982
+        },
+        {
+          "phi": 0.03125,
+          "psi": 0.09375,
+          "ratio": 0.9997144926418998
+        },
+        {
+          "phi": 0.84375,
+          "psi": 0.78125,
+          "ratio": 0.9994214362890309
+        },
+        {
+          "phi": 0.9375,
+          "psi": 0.40625,
+          "ratio": 0.9993644819435463
+        },
+        {
+          "phi": 0.3125,
+          "psi": 0,
+          "ratio": 0.9992349135465812
+        },
+        {
+          "phi": 0.265625,
+          "psi": 0.4375,
+          "ratio": 0.9989588052490486
+        },
+        {
+          "phi": 0.609375,
+          "psi": 0.390625,
+          "ratio": 0.9981826444745437
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 6,
+        "totalCandidates": 8,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 0,
+            "dphi": -0.020624999999999893,
+            "dpsi": 0.015000000000000124
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 2,
+            "dphi": -0.05875000000000008,
+            "dpsi": -0.05624999999999991
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 2,
+        "falsePositives": 1,
+        "falseNegatives": 0,
+        "estimated": [
+          9,
+          11,
+          12
+        ],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    },
+    {
+      "name": "denseErrors",
+      "status": "converged",
+      "iterations": 558,
+      "objective": 1.3025012559086822,
+      "primal": 1.929688219317167e-7,
+      "dual": 9.686042288400997e-9,
+      "residualNorm": 0.3350577999684786,
+      "candidates": [
+        {
+          "phi": 0.09375,
+          "psi": 0.140625,
+          "ratio": 0.9998573479266382
+        },
+        {
+          "phi": 0.6875,
+          "psi": 0.921875,
+          "ratio": 0.9998056163732201
+        },
+        {
+          "phi": 0.125,
+          "psi": 0.09375,
+          "ratio": 0.9997277775870462
+        },
+        {
+          "phi": 0.3125,
+          "psi": 0.609375,
+          "ratio": 0.9997020292966504
+        },
+        {
+          "phi": 0.890625,
+          "psi": 0.484375,
+          "ratio": 0.9996667432154913
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.421875,
+          "ratio": 0.9993392026602944
+        },
+        {
+          "phi": 0.84375,
+          "psi": 0.890625,
+          "ratio": 0.9993272876822884
+        },
+        {
+          "phi": 0.625,
+          "psi": 0.3125,
+          "ratio": 0.9992675155057662
+        },
+        {
+          "phi": 0.125,
+          "psi": 0.75,
+          "ratio": 0.9990320477595607
+        },
+        {
+          "phi": 0.8125,
+          "psi": 0.90625,
+          "ratio": 0.9989825812968528
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.046875,
+          "ratio": 0.9986984995337117
+        },
+        {
+          "phi": 0.453125,
+          "psi": 0.203125,
+          "ratio": 0.998631673505197
+        },
+        {
+          "phi": 0.203125,
+          "psi": 0.328125,
+          "ratio": 0.9984931001997617
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 11,
+        "totalCandidates": 13,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 2,
+            "dphi": -0.004999999999999893,
+            "dpsi": -0.016249999999999876
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 5,
+            "dphi": -0.001875000000000071,
+            "dpsi": 0.01187500000000008
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 1,
+        "falsePositives": 1,
+        "falseNegatives": 7,
+        "estimated": [
+          7,
+          10
+        ],
+        "actual": [
+          1,
+          3,
+          5,
+          8,
+          10,
+          11,
+          12,
+          14
+        ]
+      }
+    },
+    {
+      "name": "iterationLimit",
+      "status": "max_iter",
+      "iterations": 500,
+      "objective": 1.0116013544724882,
+      "primal": 2.2472909514970156e-7,
+      "dual": 2.2675602294692986e-8,
+      "residualNorm": 0.3087530099213804,
+      "candidates": [
+        {
+          "phi": 0.078125,
+          "psi": 0.453125,
+          "ratio": 0.9999329126276119
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.609375,
+          "ratio": 0.9998774050260987
+        },
+        {
+          "phi": 0.84375,
+          "psi": 0.4375,
+          "ratio": 0.9997991516392529
+        },
+        {
+          "phi": 0.796875,
+          "psi": 0.390625,
+          "ratio": 0.9997525866532914
+        },
+        {
+          "phi": 0.140625,
+          "psi": 0.109375,
+          "ratio": 0.9996640514546551
+        },
+        {
+          "phi": 0.0625,
+          "psi": 0.84375,
+          "ratio": 0.999614007632793
+        },
+        {
+          "phi": 0.71875,
+          "psi": 0.953125,
+          "ratio": 0.999570273931812
+        },
+        {
+          "phi": 0.484375,
+          "psi": 0.5625,
+          "ratio": 0.9987349455640036
+        },
+        {
+          "phi": 0.390625,
+          "psi": 0.890625,
+          "ratio": 0.9984848430838238
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 7,
+        "totalCandidates": 9,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 4,
+            "dphi": 0.010625000000000107,
+            "dpsi": -0.0006249999999998757
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 2,
+            "dphi": 0.013749999999999929,
+            "dpsi": 0.02750000000000008
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 2,
+        "falsePositives": 1,
+        "falseNegatives": 0,
+        "estimated": [
+          9,
+          11,
+          12
+        ],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    }
+  ],
+  "fixedErrorPresets": [
+    {
+      "name": "nominal",
+      "status": "converged",
+      "iterations": 950,
+      "objective": 1.0622598968223653,
+      "residualNorm": 0.3625952956025848,
+      "candidates": [
+        {
+          "phi": 0.53125,
+          "psi": 0.1875,
+          "ratio": 0.9998765336346573
+        },
+        {
+          "phi": 0.890625,
+          "psi": 0.484375,
+          "ratio": 0.9998214887642823
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.125,
+          "ratio": 0.9996759308562106
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.453125,
+          "ratio": 0.9996558450131038
+        },
+        {
+          "phi": 0.078125,
+          "psi": 0.78125,
+          "ratio": 0.9996369787874987
+        },
+        {
+          "phi": 0.6875,
+          "psi": 0.984375,
+          "ratio": 0.9995016844907075
+        },
+        {
+          "phi": 0.78125,
+          "psi": 0.6875,
+          "ratio": 0.9994342281397788
+        },
+        {
+          "phi": 0.734375,
+          "psi": 0.34375,
+          "ratio": 0.9992540337554742
+        },
+        {
+          "phi": 0.984375,
+          "psi": 0.9375,
+          "ratio": 0.9992154900685899
+        },
+        {
+          "phi": 0.796875,
+          "psi": 0.65625,
+          "ratio": 0.9992084516634452
+        },
+        {
+          "phi": 0.0625,
+          "psi": 0.8125,
+          "ratio": 0.9991312691694272
+        },
+        {
+          "phi": 0.390625,
+          "psi": 0.890625,
+          "ratio": 0.9991170167287
+        },
+        {
+          "phi": 0.453125,
+          "psi": 0.609375,
+          "ratio": 0.9980158546648691
+        },
+        {
+          "phi": 0.75,
+          "psi": 0.734375,
+          "ratio": 0.9965151683973814
+        },
+        {
+          "phi": 0.03125,
+          "psi": 0.859375,
+          "ratio": 0.9962928635018176
+        }
+      ],
+      "evaluation": {
+        "matched": 1,
+        "missed": 1,
+        "falseCandidates": 14,
+        "totalCandidates": 15,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 2,
+            "dphi": 0.026250000000000107,
+            "dpsi": 0.015000000000000124
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 2,
+        "estimated": [],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    },
+    {
+      "name": "errorFree",
+      "status": "converged",
+      "iterations": 366,
+      "objective": 0.7429217048985508,
+      "residualNorm": 0.24785003720116583,
+      "candidates": [
+        {
+          "phi": 0.125,
+          "psi": 0.109375,
+          "ratio": 0.9998599786551601
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.40625,
+          "ratio": 0.9996835784775604
+        },
+        {
+          "phi": 0.421875,
+          "psi": 0.890625,
+          "ratio": 0.9987022023301895
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 1,
+        "totalCandidates": 3,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 0,
+            "dphi": -0.004999999999999893,
+            "dpsi": -0.0006249999999998757
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 1,
+            "dphi": -0.001875000000000071,
+            "dpsi": -0.00374999999999992
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 0,
+        "estimated": [],
+        "actual": []
+      }
+    },
+    {
+      "name": "closePaths",
+      "status": "converged",
+      "iterations": 1238,
+      "objective": 1.465776064386422,
+      "residualNorm": 0.33171414345038575,
+      "candidates": [
+        {
+          "phi": 0.625,
+          "psi": 0.359375,
+          "ratio": 0.9998409526971894
+        },
+        {
+          "phi": 0.203125,
+          "psi": 0.53125,
+          "ratio": 0.999753521031459
+        },
+        {
+          "phi": 0.53125,
+          "psi": 0.59375,
+          "ratio": 0.9997441665619297
+        },
+        {
+          "phi": 0.125,
+          "psi": 0.859375,
+          "ratio": 0.9995767101510478
+        },
+        {
+          "phi": 0.4375,
+          "psi": 0.875,
+          "ratio": 0.9995220931108668
+        },
+        {
+          "phi": 0.890625,
+          "psi": 0.09375,
+          "ratio": 0.9992037902336786
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.125,
+          "ratio": 0.9988866439619457
+        },
+        {
+          "phi": 0.296875,
+          "psi": 0.328125,
+          "ratio": 0.9987906203334808
+        },
+        {
+          "phi": 0.859375,
+          "psi": 0.703125,
+          "ratio": 0.9985290430513644
+        },
+        {
+          "phi": 0.765625,
+          "psi": 0.921875,
+          "ratio": 0.9984709931199938
+        },
+        {
+          "phi": 0.9375,
+          "psi": 0.40625,
+          "ratio": 0.9984125473232167
+        }
+      ],
+      "evaluation": {
+        "matched": 1,
+        "missed": 1,
+        "falseCandidates": 10,
+        "totalCandidates": 11,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 6,
+            "dphi": 0.026250000000000107,
+            "dpsi": 0.015000000000000124
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 2,
+        "estimated": [],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    },
+    {
+      "name": "denseErrors",
+      "status": "converged",
+      "iterations": 730,
+      "objective": 1.3079244214531336,
+      "residualNorm": 0.34286843292788893,
+      "candidates": [
+        {
+          "phi": 0.09375,
+          "psi": 0.140625,
+          "ratio": 0.9998428290235913
+        },
+        {
+          "phi": 0.125,
+          "psi": 0.75,
+          "ratio": 0.9997830154792102
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.046875,
+          "ratio": 0.9997738116706071
+        },
+        {
+          "phi": 0.890625,
+          "psi": 0.484375,
+          "ratio": 0.9997624520600487
+        },
+        {
+          "phi": 0.65625,
+          "psi": 0.328125,
+          "ratio": 0.9996736209525757
+        },
+        {
+          "phi": 0.3125,
+          "psi": 0.609375,
+          "ratio": 0.9996328434018278
+        },
+        {
+          "phi": 0.828125,
+          "psi": 0.90625,
+          "ratio": 0.9995272519110685
+        },
+        {
+          "phi": 0.859375,
+          "psi": 0.890625,
+          "ratio": 0.9994542847300452
+        },
+        {
+          "phi": 0.125,
+          "psi": 0.09375,
+          "ratio": 0.9992914531456871
+        },
+        {
+          "phi": 0.078125,
+          "psi": 0.171875,
+          "ratio": 0.9991826725582884
+        },
+        {
+          "phi": 0.5,
+          "psi": 0.703125,
+          "ratio": 0.9990283414842549
+        },
+        {
+          "phi": 0.46875,
+          "psi": 0.1875,
+          "ratio": 0.9990131838129334
+        },
+        {
+          "phi": 0.703125,
+          "psi": 0.90625,
+          "ratio": 0.9986810585230637
+        },
+        {
+          "phi": 0.84375,
+          "psi": 0.421875,
+          "ratio": 0.9979245693007924
+        }
+      ],
+      "evaluation": {
+        "matched": 2,
+        "missed": 0,
+        "falseCandidates": 12,
+        "totalCandidates": 14,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 8,
+            "dphi": -0.004999999999999893,
+            "dpsi": -0.016249999999999876
+          },
+          {
+            "truthIndex": 1,
+            "candidateIndex": 13,
+            "dphi": 0.013749999999999929,
+            "dpsi": 0.01187500000000008
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 8,
+        "estimated": [],
+        "actual": [
+          1,
+          3,
+          5,
+          8,
+          10,
+          11,
+          12,
+          14
+        ]
+      }
+    },
+    {
+      "name": "iterationLimit",
+      "status": "max_iter",
+      "iterations": 500,
+      "objective": 1.0622602241764358,
+      "residualNorm": 0.3626011105430032,
+      "candidates": [
+        {
+          "phi": 0.53125,
+          "psi": 0.1875,
+          "ratio": 0.9998837288459426
+        },
+        {
+          "phi": 0.890625,
+          "psi": 0.484375,
+          "ratio": 0.9998335720976315
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.125,
+          "ratio": 0.9996786534896849
+        },
+        {
+          "phi": 0.15625,
+          "psi": 0.453125,
+          "ratio": 0.9996654831988975
+        },
+        {
+          "phi": 0.078125,
+          "psi": 0.78125,
+          "ratio": 0.9996401664727849
+        },
+        {
+          "phi": 0.6875,
+          "psi": 0.984375,
+          "ratio": 0.9995008809696446
+        },
+        {
+          "phi": 0.78125,
+          "psi": 0.6875,
+          "ratio": 0.999438837046561
+        },
+        {
+          "phi": 0.734375,
+          "psi": 0.34375,
+          "ratio": 0.9992595594427389
+        },
+        {
+          "phi": 0.984375,
+          "psi": 0.9375,
+          "ratio": 0.9992150977612575
+        },
+        {
+          "phi": 0.796875,
+          "psi": 0.65625,
+          "ratio": 0.9992114555714313
+        },
+        {
+          "phi": 0.0625,
+          "psi": 0.8125,
+          "ratio": 0.9991296033024726
+        },
+        {
+          "phi": 0.390625,
+          "psi": 0.890625,
+          "ratio": 0.9991104274240634
+        },
+        {
+          "phi": 0.453125,
+          "psi": 0.609375,
+          "ratio": 0.9980144814007456
+        },
+        {
+          "phi": 0.75,
+          "psi": 0.734375,
+          "ratio": 0.9965231369148658
+        },
+        {
+          "phi": 0.03125,
+          "psi": 0.859375,
+          "ratio": 0.9962885247288877
+        }
+      ],
+      "evaluation": {
+        "matched": 1,
+        "missed": 1,
+        "falseCandidates": 14,
+        "totalCandidates": 15,
+        "matchTolerancePhi": 0.0625,
+        "matchTolerancePsi": 0.0625,
+        "matches": [
+          {
+            "truthIndex": 0,
+            "candidateIndex": 2,
+            "dphi": 0.026250000000000107,
+            "dpsi": 0.015000000000000124
+          }
+        ],
+        "protocol": "one-to-one strict toroidal phi/psi errors <1/(4*4); declared teaching evaluation; not source detector or probability"
+      },
+      "errorEvaluation": {
+        "threshold": 0.01116783178330938,
+        "thresholdRule": "|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper",
+        "truePositives": 0,
+        "falsePositives": 0,
+        "falseNegatives": 2,
+        "estimated": [],
+        "actual": [
+          11,
+          12
+        ]
+      }
+    }
+  ],
+  "allPassed": true
+}

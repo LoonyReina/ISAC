@@ -129,14 +129,14 @@ function removeLast(items,key,expected,label){
  a.deepEqual(items.at(-1),expected,label+' has only reviewed fields');items.pop();
 }
 function withoutGCSAGERegistry(registry){
- const prior=require('./waveform-live-preservation.cjs').withoutWaveformLiveRegistry(registry);
+ const prior=require('./waveform-live-preservation.cjs').withoutWaveformLiveRegistry(require('./atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(registry));
  removeLast(prior.units,'id',additions.unit,'GC-SAGE unit');
  removeLast(prior.pages,'path',additions.page,'GC-SAGE page');
  for(const hook of additions.hooks){const d=prior.directions.find(d=>d.id===hook.directionId);a.ok(d);const level=d.levels.find(l=>l.id===hook.levelId);a.ok(level);removeLast(level.items,'href',hook.item,'GC-SAGE '+hook.levelId);}
  return prior;
 }
 function withoutGCSAGEGuide(data){
- const prior=structuredClone(data),matches=prior.cards.filter(c=>c.id===additions.guideId);
+ const prior=require('./atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(data),matches=prior.cards.filter(c=>c.id===additions.guideId);
  if(!matches.length)return prior;
  a.equal(matches.length,1,'one GC-SAGE guide');const c=matches[0];
  a.equal(Object.keys(c).at(-1),'executable','appended GC-SAGE executable');

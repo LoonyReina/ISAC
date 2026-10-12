@@ -1,0 +1,44 @@
+✔ default is data-free and paused; no Worker or synthetic result until Run (5.557738ms)
+✔ real Worker computes same input in two branches with no truth, seed, or path count (7533.1157ms)
+✔ candidate counts include extra peaks rather than silently taking two (6952.226254ms)
+✔ historical controls only select real recorded states; initialization has null diagnostics (657.202894ms)
+✔ complex decomposition uses actual result and sums in I/Q, not magnitudes (327.786676ms)
+✔ threshold and reveal are postprocessing only and export records current choices (594.816643ms)
+✔ any physical or solver input edit marks shown result stale and cancels both workers (1312.446658ms)
+✔ input edit during running stops old work; delayed progress/result/error cannot overwrite status (22.936787ms)
+✔ Run supersedes prior request IDs; wrong IDs and obsolete worker errors are ignored (194.118224ms)
+✔ both branches must finish the same run before export; cancellation forbids partial records (2814.287683ms)
+✔ reset cancels in-flight work, clears truth/results, and does not autostart (451.097581ms)
+✔ invalid DOM input is never silently repaired, generated, or exported (1894.166018ms)
+✔ silent DOM edits cannot export or accept a pending result for another input (258.127962ms)
+✔ missing/mismatched core or model and unavailable Worker are visible blockers (4.596623ms)
+✔ worker import, constructor, handshake mismatch and readiness timeout fail without fallback (7.875506ms)
+✔ numerical_failure and malformed result/history cannot become successful export (47.231054ms)
+✔ fresh error and penalty controls preserve actual observation, seed change updates it (9.429634ms)
+✔ presets load exact model configs and preserve max_iter instead of painting success (3802.510487ms)
+✔ actual close-path and dense-error scenes preserve misses/extra candidates independently of convergence (14657.651421ms)
+✔ scientific boundaries, plot prefaces, keyboard controls and responsive styles stay explicit (0.626857ms)
+✔ temporary invalid threshold during solving preserves both actual results for later postprocessing (239.905012ms)
+✔ a completed branch ignores delayed same-request progress or error and rejects forged convergence (230.980323ms)
+✔ manual edits visibly become custom inputs; malformed preset keys never run (1.61508ms)
+✔ range input sanitization cannot clamp final state to initialization or truncate branch switches (429.778362ms)
+✔ rejects individually corrupted zero-initialization component z.re (7.376451ms)
+✔ rejects individually corrupted zero-initialization component z.im (6.88649ms)
+✔ rejects individually corrupted zero-initialization component e.re (6.702663ms)
+✔ rejects individually corrupted zero-initialization component e.im (6.715462ms)
+✔ rejects individually corrupted zero-initialization component nu.re (6.860442ms)
+✔ rejects individually corrupted zero-initialization component nu.im (6.771937ms)
+✔ rejects individually corrupted zero-initialization component t (6.642121ms)
+✔ completed worker ignores late error with obsolete core or wrapper versions (323.404739ms)
+✔ completed worker ignores late progress with obsolete core or wrapper versions (292.758516ms)
+✔ completed worker ignores late result with obsolete core or wrapper versions (324.419422ms)
+✔ completed worker ignores late ready with obsolete core or wrapper versions (328.417164ms)
+✔ active worker still strictly rejects stale core or wrapper versions (8.180159ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43957.10081

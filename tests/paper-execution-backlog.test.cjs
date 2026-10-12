@@ -131,18 +131,21 @@ function validate(data) {
       const m = p.realtime.benchmark;
       assert.ok(nonempty(m.device) && nonempty(m.browser));
       assert.ok(Number.isInteger(m.sampleCount) && m.sampleCount > 0);
-      assert.ok([undefined,'fixed-configuration-summary','individual-smoke-samples'].includes(m.measurementType));
-      if (m.measurementType === 'individual-smoke-samples') {
+      assert.ok([undefined,'fixed-configuration-summary','individual-smoke-samples','individual-worker-response-samples'].includes(m.measurementType));
+      if (['individual-smoke-samples','individual-worker-response-samples'].includes(m.measurementType)) {
+        const responseOnly=m.measurementType==='individual-worker-response-samples';
+        if(responseOnly)assert.ok(nonempty(m.measurementBoundary));
         assert.ok(Array.isArray(m.samples) && m.samples.length === m.sampleCount);
         for (const sample of m.samples) {
           assert.ok(nonempty(sample.configuration) && nonempty(sample.resourceState));
+          if(responseOnly){assert.ok(Number.isFinite(sample.workerResponseMs)&&sample.workerResponseMs>=0);assert.ok(!Object.hasOwn(sample,'controlToResultMs'));}else{
           assert.ok(Number.isFinite(sample.controlToResultMs) && sample.controlToResultMs >= 0);
           assert.ok(sample.workerMs === null || (Number.isFinite(sample.workerMs) && sample.workerMs >= 0 && sample.workerMs <= sample.controlToResultMs));
-          assert.equal(typeof sample.includesInputDebounce, 'boolean');
+          assert.equal(typeof sample.includesInputDebounce, 'boolean');}
         }
         for (const k of ['medianMs','p95Ms','worstMs']) assert.equal(m[k], null, 'mixed-condition smoke timings have no pooled statistics');
         assert.ok(nonempty(m.summaryStatus) && nonempty(m.evidence));
-        assert.ok(m.samples.some(sample => sample.controlToResultMs === p.realtime.measuredLatencyMs), 'representative latency must identify an actual sample');
+        assert.ok(m.samples.some(sample => (responseOnly?sample.workerResponseMs:sample.controlToResultMs) === p.realtime.measuredLatencyMs), 'representative latency must identify an actual sample');
       } else {
         for (const k of ['medianMs','p95Ms','worstMs']) assert.ok(Number.isFinite(m[k]) && m[k] >= 0);
         assert.ok(m.medianMs <= m.p95Ms && m.p95Ms <= m.worstMs);
@@ -171,6 +174,8 @@ function validate(data) {
   assert.equal(data.scope.fullPaperReproductionsEstablished, data.papers.filter(p => p.stages.fullPaper === 'reproduced').length);
   assert.equal(data.scope.liveTargetLatencyMeasurementsEstablished, data.papers.filter(p => p.stages.latency === 'measured').length);
   for (const id of [data.sequence.current,data.sequence.next,...data.sequence.then,...data.sequence.dataAndWeightAccessInParallel]) assert.ok(expected.has(id));
+  for(const id of data.sequence.deliveredBoundedSlices||[])assert.ok(expected.has(id));
+  for(const entry of data.sequence.activeStages||[]){assert.ok(expected.has(entry.paperId));assert.ok(['site-integration','independent-numerical-reference','browser-validation'].includes(entry.stage));assert.ok(['in-progress','blocked','pending'].includes(entry.status));}
   assert.doesNotMatch(JSON.stringify(data), /\/(?:workspace|tmp)\//);
 }
 
@@ -254,4 +259,12 @@ test('measured smoke timings retain real samples without inventing pooled quanti
   bad(p=>p.realtime.benchmark.sampleCount++);
   bad(p=>p.realtime.benchmark.measurementType='universal-performance-guarantee');
   bad(p=>p.realtime.measuredLatencyMs=123456);
+});
+
+
+test('Worker response measurements cannot masquerade as rendered-result timings',()=>{
+ const candidate=backlog.papers.find(p=>p.realtime.benchmark.measurementType==='individual-worker-response-samples');if(!candidate)return;
+ const bad=mutate=>{const d=structuredClone(backlog),p=d.papers.find(p=>p.id===candidate.id);mutate(p.realtime.benchmark);assert.throws(()=>validate(d));};
+ bad(m=>delete m.measurementBoundary);bad(m=>m.samples[0].workerResponseMs=-1);bad(m=>m.samples[0].controlToResultMs=m.samples[0].workerResponseMs);bad(m=>m.p95Ms=42);
+ const future=structuredClone(backlog);future.sequence.activeStages=[{paperId:future.papers[0].id,stage:'independent-numerical-reference',status:'pending'}];validate(future);future.sequence.activeStages[0].paperId='invented';assert.throws(()=>validate(future));
 });

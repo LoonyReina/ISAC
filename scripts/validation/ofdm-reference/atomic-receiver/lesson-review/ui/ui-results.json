@@ -1,0 +1,129 @@
+{
+  "createdUtc": "2026-10-12T12:31:41.371Z",
+  "nodeVersion": "v24.19.0",
+  "scope": "Independent actual controller in Node VM with modeled range value sanitization and real Node Worker integration; no browser rendering or hosted acceptance",
+  "sourceHashes": {
+    "content/pages/atomic-ofdm-receiver.html": "9d7be02258115e605f9bdb541fcd1e67f15eef2a3e0a794553612b32f497ba54",
+    "labs/ofdm-reference/atomic-receiver.js": "b01de3d5ec1668469630a0b013b7ce1328fcb102504e4213db3bb1c6d93ae3ef",
+    "labs/ofdm-reference/atomic-receiver.css": "f19f6679205699ebd6a0276e3cfbacc6a7e5afc56cc5d31bf4fa387edac83421",
+    "labs/ofdm-reference/atomic-receiver-model.js": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+    "labs/ofdm-reference/atomic-receiver-worker.js": "233a726566f920819c009bb16a9bcd4fbbe472faa8eecfd8504cda7a21551bef",
+    "labs/ofdm-reference/atomic-receiver-core.js": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+    "tests/atomic-receiver-ui.test.cjs": "9a1a95eba7cb4cdd0e0c971fed223cb7e14d7bc57503b7c4dd2066b5faad2422"
+  },
+  "checks": [
+    {
+      "name": "no automatic Worker, animation, persistence, or numerical results before Run",
+      "passed": true
+    },
+    {
+      "name": "real concurrent Node Workers complete paired same-input solve and truthful JSON",
+      "passed": true,
+      "anl1": {
+        "status": "converged",
+        "iterations": 504,
+        "candidates": 9
+      },
+      "an": {
+        "status": "converged",
+        "iterations": 950,
+        "candidates": 15
+      },
+      "inspection": {
+        "method": "anl1",
+        "recordedIteration": 504,
+        "candidateThreshold": 0.995,
+        "truthRevealed": false,
+        "selectedCell": 0
+      }
+    },
+    {
+      "name": "range value sanitization: completion and longer/shorter branch switching select actual final state",
+      "passed": true
+    },
+    {
+      "name": "all retained histories render the exact state, residual, dual candidates and diagnostic values",
+      "passed": true,
+      "frames": 32,
+      "cells": 512
+    },
+    {
+      "name": "every displayed complex cell and SVG matrix label agrees with current numeric snapshot",
+      "passed": true,
+      "frames": 32,
+      "cells": 512
+    },
+    {
+      "name": "initialization is explicitly zero/null and noninterpolated controls visit recorded indices only",
+      "passed": true
+    },
+    {
+      "name": "candidate threshold and truth reveal change no solver/input and retain all extra candidates",
+      "passed": true
+    },
+    {
+      "name": "invalid transient threshold during pending results does not cancel solve and recovers export",
+      "passed": true
+    },
+    {
+      "name": "all generator/solver edits and preset/reset changes invalidate stale exports",
+      "passed": true
+    },
+    {
+      "name": "silent generator edits, invalid controls and superseded callbacks cannot export stale data",
+      "passed": true
+    },
+    {
+      "name": "late same-run messages and errors from completed Workers cannot overwrite current result",
+      "passed": true
+    },
+    {
+      "name": "partial solve, explicit cancel and Worker numerical errors never create a complete export",
+      "passed": true
+    },
+    {
+      "name": "missing/mismatched modules, constructor, handshake and timeout errors visibly block",
+      "passed": true
+    },
+    {
+      "name": "malformed final data, false convergence, nonzero initialization and fake history are rejected",
+      "passed": true,
+      "malformedCases": 19
+    },
+    {
+      "name": "real iteration-limit preset preserves paired max_iter and export stopping evidence",
+      "passed": true
+    },
+    {
+      "name": "static evidence claims, artifact sources and accessibility/responsive hooks remain bounded",
+      "passed": true,
+      "note": "Static hooks only; visual layout, keyboard behavior, contrast and hosted delivery require browser acceptance"
+    },
+    {
+      "name": "source/controller/test hashes unchanged during this UI audit run",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "nominal": {
+      "anl1": {
+        "status": "converged",
+        "iterations": 504,
+        "candidates": 9
+      },
+      "an": {
+        "status": "converged",
+        "iterations": 950,
+        "candidates": 15
+      },
+      "inspection": {
+        "method": "anl1",
+        "recordedIteration": 504,
+        "candidateThreshold": 0.995,
+        "truthRevealed": false,
+        "selectedCell": 0
+      }
+    }
+  },
+  "allPassed": true
+}

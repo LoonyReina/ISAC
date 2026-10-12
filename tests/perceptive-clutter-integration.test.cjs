@@ -378,7 +378,7 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href==='perceptive-clutter.html#'+anchor);
   a.equal(items.length,1);a.equal(items[0].status,'available');a.equal(items[0].scope,'direction-specific');resolve(items[0].href);
  }
- a.match(d.coverage,/递归背景与离格单目标有限网格测距/);a.match(d.coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
+ a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,/递归背景与离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
 });
 
 test('all original beginner entries and proposed work survive the narrowly scoped new concept',()=>{

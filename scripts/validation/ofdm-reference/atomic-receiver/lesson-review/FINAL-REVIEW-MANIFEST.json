@@ -1,0 +1,45 @@
+{
+  "frozen_utc_date": "2026-10-12",
+  "status": "passed within declared non-browser scopes",
+  "export_instruction": "Copy this manifest and exactly the allowlisted files; exclude diagnostic probes and author-staging copies. No further reviewer edits planned.",
+  "reviewed_source_hashes": {
+    "content/pages/atomic-ofdm-receiver.html": "9d7be02258115e605f9bdb541fcd1e67f15eef2a3e0a794553612b32f497ba54",
+    "labs/ofdm-reference/atomic-receiver.js": "b01de3d5ec1668469630a0b013b7ce1328fcb102504e4213db3bb1c6d93ae3ef",
+    "labs/ofdm-reference/atomic-receiver.css": "f19f6679205699ebd6a0276e3cfbacc6a7e5afc56cc5d31bf4fa387edac83421",
+    "labs/ofdm-reference/atomic-receiver-model.js": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+    "labs/ofdm-reference/atomic-receiver-worker.js": "233a726566f920819c009bb16a9bcd4fbbe472faa8eecfd8504cda7a21551bef",
+    "labs/ofdm-reference/atomic-receiver-core.js": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+    "tests/atomic-receiver-ui.test.cjs": "9a1a95eba7cb4cdd0e0c971fed223cb7e14d7bc57503b7c4dd2066b5faad2422"
+  },
+  "independent_suites": {
+    "model": 19,
+    "actual_history_worker": 16,
+    "controller_vm": 17
+  },
+  "author_ui_regressions_passed": 36,
+  "browser_validated": false,
+  "full_Fig8_reproduced": false,
+  "physical_ICI_validated": false,
+  "allowlisted_evidence_files": {
+    "MODEL-HISTORY-FREEZE.json": "5b171b0fdf7297117ce498d7d669ee8c4c97afb8942819b157cd6196a6188112",
+    "INDEPENDENT-MODEL-HISTORY-REVIEW.md": "6b382f7e69e21878edad30835e183f66fa92b2c4e437841a5690bc595c1e5285",
+    "check_model.cjs": "6bdb8172ea27d2c4b5d61197e43fe97b1d35a83e0b53ea717c11b290bf03159b",
+    "check_worker.cjs": "72c1f7ca0a1907ed4ce595cdc99e2fadbdc14534c2bcc5d6166d38eaa9a29922",
+    "worker-node-adapter.cjs": "1ab386cc7bb193dabae2045e026d41550574030256487ac615608430f913e302",
+    "model-results.json": "2d199420c39c9805b4c81c8c51e23a42a5abb5a102db960b302a7336f5889063",
+    "model-results.log": "994c97ab67a6f39cb4a30c49da90b905d8c9841ef7ce0bef2f1f6ef0e6ac060c",
+    "worker-results.json": "22e618feacd863cbb19940706b1a4624503a373aa1b3d655e9520f9d7c00692a",
+    "worker-results.log": "d3e8d0f28d84c7fbe0de58e418219e6bd574d9f28ebcd2adc8b62d00d59bc7ab",
+    "ui/UI-REVIEW-FREEZE.json": "071c28152d49ad2446f2d29bee80ad41ea5a26549cad2593a10cc45bfdf0ab1b",
+    "ui/INDEPENDENT-UI-REVIEW.md": "e4e3984aecac1d0338ed501f2b792754a4bc654c9988b28c5461949b87381c5d",
+    "ui/harness.cjs": "f3ddbcfeb0e83d6683356390d7c0fd788f4ad6afb6eb0f3da0ecabb9a2bc707a",
+    "ui/check_ui.cjs": "2a0f9f0ac9a77320f43761aae383bf5d880a024b0dd06331969e69e452268490",
+    "ui/ui-results.json": "08869fb859e387b7e3b635c8bc04c6f79472ad3254047c49fe28fbe0a9900104",
+    "ui/ui-results.log": "eec68e1ef6d86a3a2b04d3412ded683b02728aa9148e08af8eb76a02d5110a9d",
+    "ui/authentic-worker-fixtures.json": "94bc2490fd7a2f4cb12e1fa6edf021b818fb1f65a7998fe372e79ab3841def90",
+    "ui/run_authored_tests.cjs": "560396b1dcb8ac9c8a67e3d48d1398695c6ceec0256183770dc31d0ce5058c45",
+    "ui/authored-tests.json": "d08bc1689c0e5c13d5a77aba38f9e09517711e2be831475dafa29610b4f8406e",
+    "ui/authored-tests.log": "eb8237fb4eb7237f7f7fa19493da0e98bd58a2c54e64e2494c9f930a54502844",
+    "ui/authored-runner.log": "9d3b322a01d56a3a41f4ac43e445bb44f7460921cdcf471896b501a21623aa58"
+  }
+}

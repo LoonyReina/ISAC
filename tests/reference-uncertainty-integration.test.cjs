@@ -59,11 +59,11 @@ test('normalization cannot hide edits to old prose, sources, fields, links or sa
   r=>r.units[0].title+=' changed',r=>r.pages[0].role+=' changed',r=>r.cases[0].title+=' changed',
   r=>r.directions.find(d=>d.id==='receiver').coverage+=' changed',
   r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='papers').items[0].label+=' changed',
-  r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='model').items.push(structuredClone(hooks[0].item)),
+  r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='model').items.splice(-1,0,structuredClone(hooks[0].item)),
   r=>r.directions.find(d=>d.id==='channels').levels.find(l=>l.id==='experiment').items.push(structuredClone(hooks[0].item)),
   r=>r.knowledgeMap.nodes[0].unitRefs.push(unit.id),r=>r.legacy['index.html']['new-hook']=unit.href
  ];
- for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);a.notEqual(hash(withoutReferenceUncertainty(withoutMapProgressions(changed))),baseline);}
+ for(const mutate of mutations){const changed=structuredClone(registry);mutate(changed);let prior;try{prior=withoutReferenceUncertainty(withoutMapProgressions(changed));}catch(error){a.ok(error instanceof a.AssertionError,'an exact later-addition guard may reject the mutation before hashing');continue;}a.notEqual(hash(prior),baseline);}
 });
 
 test('only two bounded direction experiment links are added without fabricated paper or reproduction layers',()=>{

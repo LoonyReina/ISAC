@@ -1,0 +1,9 @@
+'use strict';
+// Stage only the new authored UI tests and their exact inputs in the reviewer's own directory.
+// Do not run the repository's legacy-layout aggregate from the source root.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{spawnSync}=require('node:child_process');
+const root=path.resolve(process.argv[2]||path.join(__dirname,'../../../../../..')),stage=path.join(__dirname,'author-staging');
+const locate=name=>{const canonical=path.join(root,name);return fs.existsSync(canonical)?canonical:path.join(root,path.basename(name));};fs.mkdirSync(path.join(stage,'tests'),{recursive:true});
+const pairs=[['content/pages/atomic-ofdm-receiver.html','atomic-ofdm-receiver.html'],...['atomic-receiver-core.js','atomic-receiver-model.js','atomic-receiver-worker.js','atomic-receiver.js','atomic-receiver.css'].map(x=>['labs/ofdm-reference/'+x,x]),['tests/atomic-receiver-ui.test.cjs','tests/atomic-receiver-ui.test.cjs']];const hashes={};
+for(const [from,to]of pairs){const data=fs.readFileSync(locate(from));fs.writeFileSync(path.join(stage,to),data);hashes[from]=crypto.createHash('sha256').update(data).digest('hex');}
+const run=spawnSync(process.execPath,['--test',path.join(stage,'tests/atomic-receiver-ui.test.cjs')],{cwd:stage,encoding:'utf8',timeout:180000,maxBuffer:10000000});fs.writeFileSync(path.join(__dirname,'authored-tests.log'),run.stdout+run.stderr);const report={nodeVersion:process.version,scope:'Authored UI regression suite, staged without altering the source worktree; not independent and not browser execution',exitCode:run.status,signal:run.signal,error:run.error?.message,sourceHashes:hashes,allPassed:run.status===0};fs.writeFileSync(path.join(__dirname,'authored-tests.json'),JSON.stringify(report,null,2));console.log(run.stdout+run.stderr);if(run.status!==0)process.exitCode=1;

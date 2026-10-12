@@ -38,15 +38,15 @@ test('the existing fixed-v1 guide exposes the bounded estimator as its one prima
 
 test('exact registry inverse retains all old fields and rejects missing, moved or changed additions',()=>{
  const before=JSON.stringify(r),prior=withoutGCSAGERegistry(r);a.equal(JSON.stringify(r),before);
- a.deepEqual(prior.units,r.units.slice(0,-1));a.deepEqual(prior.pages,r.pages.slice(0,-1));
- for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r)[key]);
- for(const change of [x=>x.units.pop(),x=>x.pages.pop(),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>x.units.unshift(x.units.pop()),x=>{x.pages.at(-1).role+=' changed';},x=>{x.directions.find(d=>d.id==='spatial').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);change(x);a.throws(()=>withoutGCSAGERegistry(x));}
+ const beforeGC=require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r);a.deepEqual(prior.units,beforeGC.units.slice(0,-1));a.deepEqual(prior.pages,beforeGC.pages.slice(0,-1));
+ for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(beforeGC)[key]);
+ for(const change of [x=>x.units.splice(-2,1),x=>x.pages.splice(-2,1),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>x.units.unshift(x.units.splice(-2,1)[0]),x=>{x.pages.at(-2).role+=' changed';},x=>{x.directions.find(d=>d.id==='spatial').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);change(x);a.throws(()=>withoutGCSAGERegistry(x));}
  const changed=structuredClone(r);changed.units[0].question+=' unrelated';a.equal(withoutGCSAGERegistry(changed).units[0].question,changed.units[0].question,'unrelated changes are not hidden');
 });
 
 test('exact guide inverse removes only one executable, factual coverage sentence and exact gain-aware question',()=>{
  const before=JSON.stringify(data),prior=withoutGCSAGEGuide(data);a.equal(JSON.stringify(data),before);
- for(const c of data.cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
+ for(const c of require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(data).cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
  const expected=structuredClone(card(data));delete expected.executable;expected.limits[5]=additions.statusBefore;expected.question=additions.questionBefore;a.deepEqual(card(prior),expected);
  for(const change of [d=>delete card(d).executable,d=>{card(d).executable.coverage='algorithm-and-selected-figure';},d=>{card(d).executable.href='near-field.html#experiment';},d=>{card(d).limits[5]+=' complete';},d=>{card(d).question+=' changed';},d=>d.cards.push(structuredClone(card(d)))]){const d=structuredClone(data);change(d);a.throws(()=>withoutGCSAGEGuide(d));}
  const changed=structuredClone(data);card(changed).mechanism+=' unrelated';a.equal(card(withoutGCSAGEGuide(changed)).mechanism,card(changed).mechanism);

@@ -1,0 +1,69 @@
+PASS core hash remains frozen accepted hash
+PASS declared bounds and exact receiver keys
+PASS independent BigInt RNG / column-major Eq6 / signal-dependent e / QPSK for 21 scenes
+PASS bit/sign flips exact and nested error support 0..8
+PASS r/noise/z/true bits preserved byte-exact across error, penalty and cap changes
+PASS noise CN(0,sigma^2), nominal path power definition and scaling
+PASS generation rejects unknown/prototype keys and out-of-bounds values
+PASS all inclusive bounded endpoints accepted
+PASS 4096 dual grid cells independently match conjugation/sign/normalization
+PASS on-grid phased atom gives dual peak at correct signed coordinates and unit ratio
+PASS periodic peaks include wrap boundary; equal local plateau breaks by smallest index
+PASS candidate threshold inclusive, monotonic, affects no other numerical cell
+PASS actual complex residual cells and sum-of-squares agree independently
+PASS simulation truth is separate and cannot influence solver/postprocessor
+PASS strict association boundaries, periodic wrap, shared and close candidates
+PASS one-to-one cardinality then minimum-distance association over 400 independent fixtures
+PASS error support strict threshold and teaching disclosure
+PASS all five teaching presets execute real frozen core and preserve observed false candidates
+PASS paired fixed-e-zero baseline executes all five presets with identical input
+{
+  "allPassed": true,
+  "checks": 19,
+  "hashes": {
+    "model": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+    "core": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14"
+  },
+  "presets": [
+    {
+      "name": "nominal",
+      "status": "converged",
+      "iterations": 950,
+      "candidates": 15,
+      "matches": 1,
+      "falseCandidates": 14
+    },
+    {
+      "name": "errorFree",
+      "status": "converged",
+      "iterations": 366,
+      "candidates": 3,
+      "matches": 2,
+      "falseCandidates": 1
+    },
+    {
+      "name": "closePaths",
+      "status": "converged",
+      "iterations": 1238,
+      "candidates": 11,
+      "matches": 1,
+      "falseCandidates": 10
+    },
+    {
+      "name": "denseErrors",
+      "status": "converged",
+      "iterations": 730,
+      "candidates": 14,
+      "matches": 2,
+      "falseCandidates": 12
+    },
+    {
+      "name": "iterationLimit",
+      "status": "max_iter",
+      "iterations": 500,
+      "candidates": 15,
+      "matches": 1,
+      "falseCandidates": 14
+    }
+  ]
+}

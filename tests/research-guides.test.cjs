@@ -149,7 +149,7 @@ test('trace-only reading additions preserve the four map routes and unchanged re
  for(const [file,digest]of Object.entries(unchanged)){
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutNetworkProgression(registry),null,2)+'\n';
-  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(prior,registry.units.length);}
+  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);}
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
 });
@@ -469,7 +469,7 @@ test('one network context and five source fields preserve all nineteen prior car
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(prior,registry.units.length);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
@@ -543,7 +543,7 @@ test('three frontier traces preserve all twenty complete prior records, seventee
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(prior,registry.units.length);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }

@@ -1799,6 +1799,20 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "固定同一复宽带观测与数据初始化，实际运行仅散射和混合几何搜索；回看逐路径残差更新，再揭示真值、错误机制与实际计算代价。"
+    },
+    {
+      "id": "atomic-ofdm-receiver",
+      "title": "参考符号错了，还能分开两条路径吗？",
+      "href": "atomic-ofdm-receiver.html#experiment",
+      "question": "优化停止了，路径就找全了吗？",
+      "prerequisites": [
+        "offgrid-range.html#model",
+        "reference-uncertainty.html#experiment",
+        "foundations.html#ofdm"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "固定同一份新生成的4×4复观测，实际运行式(27)有限Toeplitz SDP的CS-ANL1与e=0对照；回看真实迭代、复误差分离与残差，再独立探索候选阈值和失败计数。"
     }
   ],
   "pages": [
@@ -2109,6 +2123,19 @@
       ],
       "next": "reading.html#guide-nearfield-mechanism-aware-mapping-2026",
       "nextLabel": "回到原文：估计出了什么，仍未复现什么？"
+    },
+    {
+      "path": "atomic-ofdm-receiver.html",
+      "title": "参考符号错了，还能分开两条路径吗？",
+      "stage": "experiments",
+      "role": "论文算法有界实现 · 4×4连续矩Toeplitz SDP/ADMM与稀疏参考错误估计",
+      "prerequisites": [
+        "offgrid-range.html#model",
+        "reference-uncertainty.html#experiment",
+        "foundations.html#ofdm"
+      ],
+      "next": "reading.html#guide-ofdm-passive-atomic-errors-2017",
+      "nextLabel": "回到原文：有限SDP、候选提取与完整BER实验各验证了什么？"
     }
   ],
   "schemaVersion": 1,
@@ -2473,6 +2500,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "参考符号错了，误差会被当成路径吗？",
+              "href": "atomic-ofdm-receiver.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ]
         },
@@ -2510,6 +2545,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "复观测、结构化回波与稀疏错误分别是什么？",
+              "href": "atomic-ofdm-receiver.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ]
         },
@@ -2563,6 +2606,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单目标、单站静态 OFDM 教学模型；三分支共享同一复回波，但参考信息与处理样本数不同；不是半盲联合算法或论文复现。"
+            },
+            {
+              "label": "同观测实际求解两种接收机并回看迭代",
+              "href": "atomic-ofdm-receiver.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ],
           "coverage": "direction-specific"
@@ -2601,6 +2652,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立单系数机制与检验；不是网络框架、完整论文或真实信道复现"
+            },
+            {
+              "label": "2017被动OFDM：式(27)与独立推导更新对照",
+              "href": "atomic-ofdm-receiver.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ],
           "comparisonStatus": "partial",
@@ -2634,6 +2693,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "收敛、候选数与稀疏错误恢复各有什么边界？",
+              "href": "atomic-ofdm-receiver.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ]
         },
@@ -2680,12 +2747,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立离格单目标有限网格机制；同一复数观测、未知复增益逐候选拟合，不是连续优化、检测或论文复现"
+            },
+            {
+              "label": "下载新观测、真实双算法结果与迭代记录",
+              "href": "atomic-ofdm-receiver.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
             }
           ]
         }
       ],
       "nextExtension": "在现有离格单目标有限网格比较之外，检验连续参数估计、模型失配与低 SNR 门限效应；不能把一个经探索选取的有限反例当作普遍排序。",
-      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。",
       "scenePositions": [
         "interpret"
       ]
