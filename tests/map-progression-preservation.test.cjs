@@ -2,6 +2,7 @@
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {withoutMapProgressions,withoutMapProgressionGenerator,withoutBuildLinkValidation,buildLinkValidationHooks,progression,guideDeclaration,homeDeclaration,directionDeclaration,mapCall,homeEmit}=require('./helpers/map-progression-preservation.cjs');
 const {withoutReferenceUncertainty,withoutReferencePrerequisite}=require('./helpers/reference-uncertainty-registry.cjs');
+const {withoutPilotContinuation}=require('./helpers/pilot-continuation-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const registry=JSON.parse(read('site/registry.json')),generator=withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs'));
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
@@ -87,7 +88,7 @@ test('exact deferred-build injections normalize to all seven original source byt
   for(const {before,after}of buildLinkValidationHooks[file]){
    a.equal(injected.split(before).length,2,file+' exact original hook');injected=injected.replace(before,()=>after);
   }
-  a.equal(injected,source,file+' only the reviewed hooks differ');
+  a.equal(injected,file==='scripts/generate-site.cjs'?withoutPilotContinuation(source):source,file+' only the reviewed deferred hooks differ after the exact pilot addition is removed');
  }
 });
 
