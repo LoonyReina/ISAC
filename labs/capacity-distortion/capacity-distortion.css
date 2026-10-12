@@ -1,0 +1,20 @@
+/* The finite-alphabet lesson is isolated from the existing scalar CRB labs. */
+.cd-lesson{--cd-teal:#087f78;--cd-orange:#a74613;--cd-violet:#70489c;--cd-ink:#173849}
+.cd-source-panel{border-left:5px solid var(--cd-teal);background:#eaf4f2;padding:1rem 1.3rem;margin:1.3rem 0}
+.cd-source-panel p{margin-bottom:0}.cd-roles,.cd-step-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.cd-roles article,.cd-step-cards article{border:1px solid #d0dedc;border-radius:10px;background:#fff;padding:.9rem 1rem}
+.cd-roles h4,.cd-step-cards h4{margin:.1rem 0 .5rem}.cd-roles p,.cd-step-cards p{font-size:.91rem;margin:.4rem 0}
+.cd-lab{margin-top:1.5rem}.cd-lab fieldset{border:1px solid #c6d7d3;border-radius:9px;padding:1rem;margin:1rem 0}
+.cd-lab legend{font-weight:700;padding:0 .4rem}.cd-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem 1.3rem}
+.cd-controls label,.cd-lab>label{display:block;font-size:.92rem;font-weight:650}.cd-lab label output{display:block;color:var(--cd-teal);font-variant-numeric:tabular-nums}
+.cd-lab select,.cd-lab input[type=number]{display:block;width:100%;min-height:44px;background:#fff;color:var(--cd-ink);border:1px solid #92aaa3;border-radius:6px;padding:.55rem;margin-top:.35rem;font:inherit}
+.cd-lab input[type=range]{width:100%;min-height:44px;accent-color:var(--cd-teal)}.cd-lab input[type=checkbox]{accent-color:var(--cd-teal);width:1.1rem;height:1.1rem;vertical-align:middle}
+.cd-lab label:has(input[type=checkbox]){min-height:44px;display:flex;align-items:center;gap:.5rem;font-weight:400}
+.cd-lab button{min-height:44px;white-space:normal}.cd-lab button:disabled,.cd-lab input:disabled,.cd-lab select:disabled{opacity:.6;cursor:not-allowed}
+.cd-lab :focus-visible{outline:3px solid var(--cd-violet);outline-offset:3px}.cd-lab details{margin:1rem 0;border-top:1px solid #d0dedc;padding-top:.8rem}.cd-lab summary{min-height:44px;cursor:pointer;font-weight:650;padding:.4rem 0}
+.cd-actions{flex-wrap:wrap}#cd-run{background:var(--cd-teal);color:#fff}.cd-model-note{font-weight:700;border-bottom:1px solid #d0dedc;padding-bottom:.8rem}
+.cd-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1rem 0}.cd-metric{background:#f0f5f4;border:1px solid #d2dfdc;border-radius:9px;padding:.7rem}.cd-metric b{display:block;font-size:1.15rem;color:var(--cd-ink);font-variant-numeric:tabular-nums}.cd-metric span{display:block;font-size:.82rem}
+.cd-output-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}.cd-output-grid>section{min-width:0}.cd-output-grid h3,.cd-output-grid h4{margin-top:1rem}.cd-output-grid p{font-size:.87rem;line-height:1.7}.cd-chart{display:block;width:100%;height:auto;min-width:0;background:#fff;border:1px solid #d8e4e0;border-radius:8px;overflow:visible}.cd-chart text{font-family:system-ui,sans-serif;fill:var(--cd-ink);font-size:12px}.cd-chart .cd-grid{stroke:#e7eeeb;stroke-width:1}.cd-chart .cd-axis{stroke:#7e9990;stroke-width:1}.cd-chart .cd-warning{fill:var(--cd-orange)}
+.cd-step-cards{grid-template-columns:repeat(4,minmax(0,1fr));margin:.8rem 0}.cd-step-cards p{overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.cd-pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:26rem;overflow:auto;background:#f2f5f4;padding:1rem;font-size:.78rem}.cd-lab table{font-size:.82rem}.cd-lab th,.cd-lab td{white-space:nowrap;padding:.5rem}.cd-lab .table-scroll{overflow-x:auto;max-width:100%;max-height:32rem}.cd-lab [hidden]{display:none!important}.cd-overlay-controls{margin:.5rem 0}.cd-lesson .small{overflow-wrap:anywhere}
+@media(max-width:850px){.cd-roles,.cd-step-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.cd-output-grid{grid-template-columns:1fr}.cd-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.cd-controls,.cd-roles,.cd-step-cards{grid-template-columns:1fr}.cd-source-panel{padding:.8rem}.cd-lab fieldset{padding:.7rem}.cd-metric b{font-size:1rem}.cd-actions button{width:100%}.cd-chart text{font-size:12px}}

@@ -1,7 +1,8 @@
 'use strict';
-// Only these three reviewed optional traces are removed before historical guards.
+// Reverse the exact reviewed execution entry, then these three optional traces.
 // Full prior cards, other traces, context trails and their order remain protected.
 const a=require('node:assert/strict'),crypto=require('node:crypto');
+const {withoutCapacityExecution}=require('./capacity-execution-preservation.cjs');
 const frontierTraceHashes={
   "channels-sensing-communication-mapping-2026": "fea7341b5f62956169c87c936e33cbdca4032cded0d8fa1b823bce68ef34d099",
   "zak-otfs-semiblind-offgrid-2026": "10d0d7b8b0d773ca6265afd5aa145493b0527ef91834d5cf22a8dd8ffcb2f424",
@@ -9,7 +10,7 @@ const frontierTraceHashes={
 };
 const frontierTraceIds=Object.keys(frontierTraceHashes);
 function withoutFrontierTraces(data){
- const prior=structuredClone(data);
+ const prior=withoutCapacityExecution(data);
  for(const id of frontierTraceIds){
   const matches=prior.cards.filter(c=>c.id===id);
   if(!matches.length)continue;

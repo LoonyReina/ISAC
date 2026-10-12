@@ -62,6 +62,11 @@
       "description": "Deterministic shared site shell and portal generation"
     },
     {
+      "id": "labs/capacity-distortion",
+      "directory": "labs/capacity-distortion",
+      "description": "Finite-alphabet capacity–distortion optimizer and its teaching interface"
+    },
+    {
       "id": "labs/channel-geometry",
       "directory": "labs/channel-geometry",
       "description": "Topic-owned numerical core, UI, and styles for channel-geometry"
@@ -167,6 +172,11 @@
       "description": "Cross-site foundational and shell styles"
     },
     {
+      "id": "validators/capacity-distortion",
+      "directory": "scripts/validation/capacity-distortion",
+      "description": "Independent optimization reference and binary paper-experiment validation"
+    },
+    {
       "id": "validators/channel-geometry",
       "directory": "scripts/validation/channel-geometry",
       "description": "Independent reference, fixtures, audit scripts, and validation evidence for channel-geometry"
@@ -259,6 +269,34 @@
       "compatibility": "README.md",
       "public": "README.md",
       "owner": "shared/project",
+      "role": "source"
+    },
+    {
+      "source": "labs/capacity-distortion/capacity-distortion-core.js",
+      "compatibility": "capacity-distortion-core.js",
+      "public": "capacity-distortion-core.js",
+      "owner": "labs/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "labs/capacity-distortion/capacity-distortion-worker.js",
+      "compatibility": "capacity-distortion-worker.js",
+      "public": "capacity-distortion-worker.js",
+      "owner": "labs/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "labs/capacity-distortion/capacity-distortion.css",
+      "compatibility": "capacity-distortion.css",
+      "public": "capacity-distortion.css",
+      "owner": "labs/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "labs/capacity-distortion/capacity-distortion.js",
+      "compatibility": "capacity-distortion.js",
+      "public": "capacity-distortion.js",
+      "owner": "labs/capacity-distortion",
       "role": "source"
     },
     {
@@ -500,6 +538,20 @@
       "role": "source"
     },
     {
+      "source": "docs/CAPACITY-DISTORTION-NUMERICAL-AUDIT.md",
+      "compatibility": "docs/CAPACITY-DISTORTION-NUMERICAL-AUDIT.md",
+      "public": "docs/CAPACITY-DISTORTION-NUMERICAL-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "docs/CAPACITY-DISTORTION-SOURCE-AUDIT.md",
+      "compatibility": "docs/CAPACITY-DISTORTION-SOURCE-AUDIT.md",
+      "public": "docs/CAPACITY-DISTORTION-SOURCE-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
       "source": "docs/COURSE-VALIDATION.md",
       "compatibility": "docs/COURSE-VALIDATION.md",
       "public": "docs/COURSE-VALIDATION.md",
@@ -650,6 +702,27 @@
       "source": "docs/PAPER-COMPARISON-VALIDATION.md",
       "compatibility": "docs/PAPER-COMPARISON-VALIDATION.md",
       "public": "docs/PAPER-COMPARISON-VALIDATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "docs/PAPER-EXECUTION-ACCEPTANCE.md",
+      "compatibility": "docs/PAPER-EXECUTION-ACCEPTANCE.md",
+      "public": "docs/PAPER-EXECUTION-ACCEPTANCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "docs/PAPER-EXECUTION-BACKLOG.json",
+      "compatibility": "docs/PAPER-EXECUTION-BACKLOG.json",
+      "public": "docs/PAPER-EXECUTION-BACKLOG.json",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "docs/PAPER-EXECUTION-PLAN.md",
+      "compatibility": "docs/PAPER-EXECUTION-PLAN.md",
+      "public": "docs/PAPER-EXECUTION-PLAN.md",
       "owner": "content/documentation",
       "role": "source"
     },
@@ -2089,6 +2162,48 @@
       "role": "source"
     },
     {
+      "source": "scripts/validation/capacity-distortion/independent-reference-fixtures.json",
+      "compatibility": "scripts/validation/capacity-distortion/independent-reference-fixtures.json",
+      "public": "scripts/validation/capacity-distortion/independent-reference-fixtures.json",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/capacity-distortion/independent_reference.py",
+      "compatibility": "scripts/validation/capacity-distortion/independent_reference.py",
+      "public": "scripts/validation/capacity-distortion/independent_reference.py",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/capacity-distortion/production_crosscheck.py",
+      "compatibility": "scripts/validation/capacity-distortion/production_crosscheck.py",
+      "public": "scripts/validation/capacity-distortion/production_crosscheck.py",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/capacity-distortion/production_crosscheck_results.json",
+      "compatibility": "scripts/validation/capacity-distortion/production_crosscheck_results.json",
+      "public": "scripts/validation/capacity-distortion/production_crosscheck_results.json",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/capacity-distortion/randomized_optimizer_fixtures.json",
+      "compatibility": "scripts/validation/capacity-distortion/randomized_optimizer_fixtures.json",
+      "public": "scripts/validation/capacity-distortion/randomized_optimizer_fixtures.json",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/capacity-distortion/validate-capacity-distortion.cjs",
+      "compatibility": "scripts/validation/capacity-distortion/validate-capacity-distortion.cjs",
+      "public": "scripts/validation/capacity-distortion/validate-capacity-distortion.cjs",
+      "owner": "validators/capacity-distortion",
+      "role": "source"
+    },
+    {
       "source": "labs/shared-array/shared-array-core.js",
       "compatibility": "shared-array-core.js",
       "public": "shared-array-core.js",
@@ -2184,6 +2299,34 @@
       "compatibility": "site/research-guides.json",
       "public": "site/research-guides.json",
       "owner": "content/registry",
+      "role": "source"
+    },
+    {
+      "source": "tests/capacity-distortion-core.test.cjs",
+      "compatibility": "tests/capacity-distortion-core.test.cjs",
+      "public": "tests/capacity-distortion-core.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/capacity-distortion-integration.test.cjs",
+      "compatibility": "tests/capacity-distortion-integration.test.cjs",
+      "public": "tests/capacity-distortion-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/capacity-distortion-ui.test.cjs",
+      "compatibility": "tests/capacity-distortion-ui.test.cjs",
+      "public": "tests/capacity-distortion-ui.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/capacity-execution-reading.test.cjs",
+      "compatibility": "tests/capacity-execution-reading.test.cjs",
+      "public": "tests/capacity-execution-reading.test.cjs",
+      "owner": "validators/regression",
       "role": "source"
     },
     {
@@ -2309,6 +2452,13 @@
       "source": "tests/golay-radar.test.cjs",
       "compatibility": "tests/golay-radar.test.cjs",
       "public": "tests/golay-radar.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/capacity-execution-preservation.cjs",
+      "compatibility": "tests/helpers/capacity-execution-preservation.cjs",
+      "public": "tests/helpers/capacity-execution-preservation.cjs",
       "owner": "validators/regression",
       "role": "source"
     },
@@ -2526,6 +2676,13 @@
       "source": "tests/paper-comparison.test.cjs",
       "compatibility": "tests/paper-comparison.test.cjs",
       "public": "tests/paper-comparison.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/paper-execution-backlog.test.cjs",
+      "compatibility": "tests/paper-execution-backlog.test.cjs",
+      "public": "tests/paper-execution-backlog.test.cjs",
       "owner": "validators/regression",
       "role": "source"
     },
