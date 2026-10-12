@@ -491,7 +491,7 @@ test('spatial mapping guide keeps measured sampling, limited inference, baseline
  const c=data.cards.at(-1),text=JSON.stringify(c);a.equal(c.source.url,'https://arxiv.org/pdf/2605.01162v1');a.equal(c.source.firstSubmittedAt,'2026-05-01T23:42:58Z');a.equal(c.source.versionAt,c.source.firstSubmittedAt);a.equal(c.source.checkedAt,'2026-10-11');a.match(c.source.publicationStatus,/投稿.*未核实接收或正式出版/);
  for(const phrase of ['28–30 GHz','750 个频点','720位置','不是720路同时接收','2019年的测量方法文献','基线已包含多跳和部分遮挡','约两倍','1.18 m','Table II','未给跨场景定位误差分布','不是通信收益证明','不唯一拆出二值可见性和衰减量','脚注6','式(15)、脚注8'])a.ok(text.includes(phrase),phrase);
  a.deepEqual(c.contextTrail.links.map(x=>[x.guideId,x.relationType]),[['nearfield-double-array-ispac','problem-link'],['nearfield-multitarget-correlation','problem-link']]);
- a.deepEqual(c.prerequisites.map(x=>x.href),['near-field.html#geometry','theory.html#shared-model','shared-array.html#objects']);
+ a.deepEqual(c.prerequisites.map(x=>x.href),['near-field.html#geometry','theory.html#shared-model','shared-array.html#objects','multipath-channel.html#aperture-geometry']);
  const built=build().find(x=>x.id===spatialGuideId);a.equal(built.existingSourceCase,undefined);a.equal(built.notebook.id,'near-field');a.equal(c.visualTrace.steps[0].blocks[0].status,'observed');a.match(c.visualTrace.steps[0].blocks[0].label,/VNA\/虚拟阵列实测/);
  a.match(c.visualTrace.steps[2].explanation,/基线已处理多跳和部分遮挡/);a.match(c.visualTrace.steps[3].explanation,/Table II 的误差来自仿真，不能挪给场测/);
 });
