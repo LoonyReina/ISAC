@@ -13,7 +13,7 @@
     },
     "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record.",
     "fullPaperReproductionsEstablished": 0,
-    "liveTargetLatencyMeasurementsEstablished": 3,
+    "liveTargetLatencyMeasurementsEstablished": 4,
     "additionalCitationAuditStatus": "not-started"
   },
   "trackingContract": {
@@ -114,20 +114,27 @@
       "tradeoffs-feedback-capacity-distortion-2018",
       "nearfield-mechanism-aware-mapping-2026",
       "optimal_waveform",
-      "ofdm-passive-atomic-errors-2017"
+      "ofdm-passive-atomic-errors-2017",
+      "joint_beamforming"
     ],
     "activeStages": [
       {
         "paperId": "joint_beamforming",
         "stage": "browser-validation",
         "status": "pending",
-        "branch": "Bounded radar/SDR/ZF numerical and teaching integration; hosted-browser acceptance remains open"
+        "branch": "Bounded deployed desktop/download audit passed; narrow/other-browser and repeated paint-time gate remain open"
       },
       {
         "paperId": "optimal_waveform",
         "stage": "browser-validation",
         "status": "pending",
-        "branch": "Section IV weighted waveform; numerical gate passed, Fig.3 nonmatch retained, hosted-browser acceptance pending"
+        "branch": "Section IV pre-fix hosted numerical flows and5download audits passed; small display/import fixes pending post-fix hosted-browser acceptance"
+      },
+      {
+        "paperId": "crb",
+        "stage": "independent-numerical-reference",
+        "status": "in-progress",
+        "branch": "Multiuser CRB beamforming numerical work active; no new implementation or validation result claimed by this release"
       }
     ]
   },
@@ -3971,7 +3978,7 @@
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
         "latency": "Worker-response elapsed only: prepared inputs through validated Worker response, excluding input generation/parsing, rendering/paint and download. First default 342.8 ms; five later same-input samples 28.9/28.5/41.9/33.3/30.8 ms. Not Run-to-display latency or a stable p95 benchmark. All listed observations concern the earlier strict-only deployed release; no weighted browser latency is established.",
         "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md. Section IV Python v3 and JS v0.2 independently accepted, including fresh lifted SDP/SLSQP and boundary/malformed inputs; evidence in docs/WAVEFORM-WEIGHTED-VALIDATION.md. Teaching Node Worker/DOM checks are prepublication evidence, not browser verification. Independent integration review:33Worker checks (26fresh inputs/107weighted points),40non-rendering controller checks,94/94focused regressions; actual Node Worker threads, not browser execution.",
-        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial. The new weighted layer still requires its own hosted-browser acceptance; prior strict-only evidence is not transferred to it."
+        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial. The new weighted layer still requires its own hosted-browser acceptance; prior strict-only evidence is not transferred to it. On ec7a5c3 the weighted default/sweep/source endpoints/max-domain browser computations passed and5actual downloads passed fresh production replay plus1965independent Python checks. Collapsed default x-axis ticks and an oversized full-export reimport cap were found; fixes require a separate post-fix browser check. Actual in-flight weighted cancellation was not established."
       },
       "missingImplementation": [
         "Constant-modulus/similarity-constrained branch-and-bound",
@@ -3987,7 +3994,7 @@
       "blockers": [
         "Original Fig.3 weighted curve remains nonmatching",
         "Constant-modulus branch, original directional designer and full paper figures remain open",
-        "New weighted hosted-browser acceptance and Run-to-painted-result benchmark remain open"
+        "Small weighted display/import repair awaits post-fix hosted-browser acceptance; actual in-flight cancellation, narrow/other-browser and painted-result benchmark remain open"
       ],
       "realtime": {
         "status": "measured",
@@ -4081,7 +4088,8 @@
           "javascriptReview": "scripts/validation/waveform-design/weighted/JAVASCRIPT-INDEPENDENT-REVIEW.md",
           "discrepancy": "scripts/validation/waveform-design/weighted/figure-discrepancy-check.json",
           "preservation": "Original rejected numerical/parser versions and histories remain recorded by the numerical evidence manifest; existing strict and27-state history hashes are unchanged.",
-          "uiReview": "scripts/validation/waveform-design/weighted/UI-INDEPENDENT-REVIEW.md"
+          "uiReview": "scripts/validation/waveform-design/weighted/UI-INDEPENDENT-REVIEW.md",
+          "browserPreFix": "docs/WAVEFORM-WEIGHTED-BROWSER-VALIDATION.md"
         }
       },
       "details": {
@@ -4166,9 +4174,17 @@
           "branch": "Section IV weighted equality-energy",
           "numerical": "passed-selected-core",
           "selectedExperiment": "source-parameter-slice-nonmatching-Fig3",
-          "browser": "pending",
+          "browser": "pre-fix-desktop-numerical-flows-passed; post-fix-hosted-acceptance-pending",
           "latency": "not-measured",
-          "evidence": "docs/WAVEFORM-WEIGHTED-LIVE-VALIDATION.md"
+          "evidence": "docs/WAVEFORM-WEIGHTED-LIVE-VALIDATION.md",
+          "downloadAudit": {
+            "records": 5,
+            "uniqueWeightedSolves": 24,
+            "independentPythonChecks": 1965,
+            "productionWaveformsAndCertificatesReplayExactly": true,
+            "maximumObjectiveDifferenceRelativeToCertificateScale": 1.4819614306462935e-15,
+            "scope": "Pre-fix deployed ec7a5c3 downloads; does not certify subsequent UI fix or oversized browser reimport"
+          }
         },
         {
           "branch": "constant-modulus/similarity",
@@ -4347,9 +4363,11 @@
               "labs/joint-beamforming/optimizer/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
               "labs/joint-beamforming/optimizer/worker.js": "7c0ebef89c8c005e62af9725b0f333633d1f6657aae6096e503399a976afefde"
             },
-            "browserAccepted": false,
-            "browserLatencyMs": null,
-            "historicalContext": "Existing implementation.details fields describe the prior M8 analytic prerequisite, not the new solver."
+            "browserAccepted": true,
+            "browserLatencyMs": 1456.1000000014901,
+            "historicalContext": "Existing implementation.details fields describe the prior M8 analytic prerequisite, not the new solver.",
+            "browserAcceptanceScope": "Bounded deployed Chrome desktop smoke and actual downloaded-state audit on ec7a5c3; narrow/other-browser/repeated paint-time gates remain open",
+            "browserLatencyBoundary": "One Run-to-terminal-response sample, excluding final render/paint, not a repeated benchmark"
           }
         }
       },
@@ -4362,46 +4380,71 @@
         "fullPaper": "not-reproduced",
         "liveExecution": "partial-core",
         "uiLearning": "partial",
-        "latency": "not-measured"
+        "latency": "measured"
       },
       "stageEvidence": {
         "source": "Fixed v2 PDF hash and full selected covariance equations/settings audited; remaining receiver and full-study details remain open.",
         "algorithm": "Actual bounded radar-only Eq15, SDR Eq32 and optimized-ZF Eq40 with factor recovery, new H/Gamma and real solver iteration histories. The original M8 analytic prerequisite remains separate.",
         "selectedExperiment": "32paired PCG64 channels×11thresholds atM10/K2 with original1801angle grid:347accepted SDR and347accepted ZF; five common infeasible pairs have independent residual-adjusted feasibility evidence. All704primary attempts and135refinements retained. Not1000-trial/K4/K6/SSP/full Fig3–8 reproduction.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured hosted-browser control-to-result latency. Offline Python/Node costs and a warm model-cache default are explicitly not browser timing.",
+        "latency": "Four individual browser Run-to-terminal-response samples:1456.1ms default,535.4ms edited with explicitly reused radar baseline,1687.8ms short budget,23301.8ms high-Gamma capped run. Final render/paint excluded; configurations/resource states differ, so no pooled quantiles or real-time guarantee.",
         "independentValidation": "Independent original-grid covariance reference and v0.3 JavaScript/Node Worker numerical gates passed for the selected scope. This does not certify hosted-browser execution.",
-        "uiLearning": "Ordered new-input Worker lesson and prepublication controlled-DOM lifecycle checks; actual hosted-browser, download, layout and timing gate remains open."
+        "uiLearning": "2026-10-12 deployed ec7a5c3 Chrome desktop smoke passed actual default/new H/Gamma, capped/certified/zero-row outcomes, in-flight Cancel→Run/Reset/replacement, keyboard, navigation and5actual download audits. Narrow/other-browser and repeated paint-time gates remain open; docs/JOINT-BEAMFORMING-BROWSER-VALIDATION.md."
       },
       "missingImplementation": [
         "SSP baseline, K4/K6 and1000-channel full original statistical studies",
         "Finite QPSK block, target echoes, Capon/detection and full radar-receiver experiments",
-        "Hosted-browser desktop/narrow interaction, exact download replay and measured control-to-result latency"
+        "Narrow/other-browser acceptance and repeated fixed-input Run-to-painted-result benchmark"
       ],
       "dependencies": [
         "Independent selected-core/reference evidence retained with exact hashes",
         "Remaining SSP/receiver settings and matched1000-trial experiment budget",
-        "Supported hosted-browser execution and real download/timing acceptance"
+        "Remaining narrow/other-browser execution checks and repeated fixed-input paint-time acceptance"
       ],
       "blockers": [
-        "Hosted-browser gate remains open for the new bounded solver lesson",
+        "Narrow/other-browser gate and repeated fixed-input Run-to-painted-result benchmark remain open",
         "SSP, K4/K6,1000-channel study and radar-receiver/full-paper coverage remain open"
       ],
       "realtime": {
-        "status": "not-measured",
-        "measuredLatencyMs": null,
+        "status": "measured",
+        "measuredLatencyMs": 1456.1000000014901,
         "benchmark": {
-          "device": null,
-          "browser": null,
-          "sampleCount": null,
+          "device": "dot cloud desktop, Linux x86_64; viewport1180 CSS px, scrollWidth1165; CPU and exact engine build unrecorded",
+          "browser": "Chrome/154.0.0.0 reported user agent",
+          "measurementType": "individual-worker-response-samples",
+          "measurementBoundary": "Run control to final terminal Worker response for the batch; excludes final rendering/paint and record download. Core runtime, render and assembly intervals are separate.",
+          "sampleCount": 4,
           "medianMs": null,
           "p95Ms": null,
-          "worstMs": null
+          "worstMs": null,
+          "samples": [
+            {
+              "configuration": "M10/K2 default, three actual solves",
+              "resourceState": "First recorded default, radar not reused; cold network/process state not established",
+              "workerResponseMs": 1456.1000000014901
+            },
+            {
+              "configuration": "New H00=.823456789+.123456789j, Gamma12.3",
+              "resourceState": "Accepted same-model radar baseline explicitly reused; new ZF/SDR",
+              "workerResponseMs": 535.3999999985099
+            },
+            {
+              "configuration": "1000 cap; SDR unresolved, ZF converged",
+              "resourceState": "Separate preset, radar recomputed, unpooled mixed condition",
+              "workerResponseMs": 1687.800000000745
+            },
+            {
+              "configuration": "High-Gamma; SDR20000 cap, ZF certificate",
+              "resourceState": "Separate preset, radar recomputed, unsuccessful SDR retained",
+              "workerResponseMs": 23301.800000000745
+            }
+          ],
+          "summaryStatus": "Individual mixed-configuration observations only; no median/p95/worst summary, painted-result or stable performance claim",
+          "evidence": "docs/JOINT-BEAMFORMING-BROWSER-VALIDATION.md"
         },
         "details": {
-          "minimal": "Actual bounded Worker solver is implemented and numerically checked; source-sized hard cases can take seconds or hit a declared iteration cap. Browser control-to-result latency remains unmeasured.",
-          "full": "1000-channel sweeps plus receiver trials are batch work. Stored sweeps may be reference evidence but cannot masquerade as recomputation.",
-          "latencyMs": null
+          "assessment": "Bounded deployed desktop interaction and numerical audit of5actual downloads passed. Narrow/other-browser and repeated fixed-input paint timing remain open.",
+          "full": "1000-channel sweeps plus receiver trials remain separate batch work."
         }
       },
       "priority": {
@@ -4421,7 +4464,9 @@
         "originalArchiveSha256": "3baff9d3e29cec528442fc2c4b9ab8dc34aceb7076803ca4e0c1f6783b4a59b2",
         "liveReport": "docs/JOINT-BEAMFORMING-LIVE-VALIDATION.md",
         "exportChecker": "labs/joint-beamforming/validation/export-checker/check_export.py",
-        "historicalEvidence": "Original analytic evidenceFileHashes and frozen audit details remain unchanged and are not relabelled solver validation."
+        "historicalEvidence": "Original analytic evidenceFileHashes and frozen audit details remain unchanged and are not relabelled solver validation.",
+        "deployedDesktop": "docs/JOINT-BEAMFORMING-BROWSER-VALIDATION.md",
+        "browserSummary": "assets/data/joint-beamforming-browser-20261012.json"
       },
       "details": {
         "existingRegistryComparison": {
@@ -4486,6 +4531,20 @@
             "path": "tests/joint-beamforming-ui.test.cjs",
             "sha256": "100fbfe9dea9f4b4e6035ce115b48a1dd8c756b1558ed27b271f7970d0294cb0"
           }
+        ]
+      },
+      "liveValidation": {
+        "evidence": "docs/JOINT-BEAMFORMING-BROWSER-VALIDATION.md",
+        "sourceCommit": "ec7a5c334a98faef1725be3bcc43a6c46af12d08",
+        "deploymentRun": "38264401600",
+        "status": "bounded-deployed-desktop-and-downloaded-state-audit-passed",
+        "recordCount": 5,
+        "recordedNumericalSlots": 15,
+        "recordEvidence": "assets/data/joint-beamforming-browser-20261012.json",
+        "open": [
+          "narrow-screen and other-browser",
+          "repeated fixed-input painted-result timing",
+          "full source studies"
         ]
       }
     },

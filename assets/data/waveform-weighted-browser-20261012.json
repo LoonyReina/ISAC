@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-12",
+  "startUTC": "14:49:02",
+  "endUTC": "14:53:01",
+  "mainCommit": "ec7a5c334a98faef1725be3bcc43a6c46af12d08",
+  "url": "https://loonyreina.github.io/ISAC/waveform-design.html#weighted-experiment",
+  "environment": {
+    "browser": "dot cloud Chrome",
+    "viewportWidth": 1180,
+    "documentScrollWidth": 1165
+  },
+  "passed": [
+    "Actual default strict+weighted solve rho.1; exact energy and changed covariance disclosure",
+    "Actual fixed-input10-rho sweep",
+    "SourceN16K4L20 rho1 both endpoint conventions: same near-zero MUI, D .664717 vs28.5978",
+    "rho0 returns X0, D4.6907e-31",
+    "ZeroH rho1 nearest: MUI80,energy20,D0",
+    "MaxUI N16K8L64 rho.37 sweep11actualpoints",
+    "Rho/tie edit invalidates graph/export",
+    "Blank rho rejected with Chinese error in primary alert",
+    "Reset and keyboard Enter solve",
+    "Notebook navigation and Back",
+    "No observed site-origin console errors"
+  ],
+  "foundAndAssigned": [
+    "Default tradeoff x ticks all0.0 due one-decimal formatting; display fix required",
+    "Max-domain full export exceeds1MiB manual import text cap; bounded self-export roundtrip fix required",
+    "Weighted error reason appears in primary alert; duplicate local reason requested"
+  ],
+  "notVerified": [
+    "Actual in-flight weighted cancellation: maximum sweep completed before screenshot/cancel, button already disabled; not counted as cancellation",
+    "Narrow screen, repeated timing benchmark/full paint",
+    "Complete original figures; sourceFig3 weighted mismatch remains"
+  ],
+  "postFixGate": "PENDING; these observations and numerical audits identify the pre-fix deployed main ec7a5c3, not subsequent UI repair acceptance",
+  "independentDownloadAudit": {
+    "status": "PASS",
+    "scope": "Numerical/full-record/provenance audit of five actual hosted browser downloads; not post-fix browser certification",
+    "deployedMainReportedByCoordinatingReviewer": "ec7a5c334a98faef1725be3bcc43a6c46af12d08",
+    "records": 5,
+    "uniqueWeightedSolves": 24,
+    "allStrictAndWeightedWaveformsAndCertificatesExactProductionReplay": true,
+    "maxProductionTreeRelativeDifference": 1.7763568394002505e-15,
+    "independentPython": {
+      "downloadedRecords": 5,
+      "weightedLocations": 25,
+      "uniqueWeightedSolves": 24,
+      "checks": 1965,
+      "failures": 0,
+      "maxStrictCovarianceRelativeResidual": 2.150993941460135e-15,
+      "maxStrictSvdObjectiveGapAbsolute": 2.842170943040401e-14,
+      "maxReportedVsIndependentSvdBoundDifference": 5.451283868751489e-10,
+      "maxWeightedEnergyRelativeResidual": 2.2426505097428162e-13,
+      "maxWeightedObjectiveDifferenceRelativeToCertificateScale": 1.4819614306462935e-15,
+      "maxOriginalKktRelativeResidual": 1.3628540852740174e-15,
+      "maxScaledKktResidual": 1.6737870385641782e-15,
+      "nearHardLocations": 0,
+      "maxUniqueWaveformRelativeDifference": 2.8415901970096065e-13
+    },
+    "issues": [
+      "The 4,793,548-byte max-domain full export exceeds the audited controller 1 MiB reimport cap; reported for separate UI repair."
+    ],
+    "limitations": [
+      "No near-hard regular downloaded cases; no arbitrary near-hard waveform-accuracy claim",
+      "Canonical nonunique completions may differ across numerical bases; invariant checks used",
+      "This auditor did not operate a browser or verify the subsequent UI deployment"
+    ]
+  },
+  "records": [
+    {
+      "file": "default-record.json",
+      "bytes": 72678,
+      "sha256": "98da6e2e3062db5e1cc5b0127521ae675564dbe883288b70d9a1a0a180749c3d"
+    },
+    {
+      "file": "sweep-record.json",
+      "bytes": 350744,
+      "sha256": "e5f85f3a0845a918f87c78dac9f9c879bb76b3e2058516af32070d7f17ca0215"
+    },
+    {
+      "file": "source-rho1-closest-record.json",
+      "bytes": 382406,
+      "sha256": "4f8ac0d134d0156410efd74a03e892456c159bce3d221d7538a93c28c0b4eb27"
+    },
+    {
+      "file": "source-rho1-canonical-record.json",
+      "bytes": 381490,
+      "sha256": "6bd3b1982dab731fedbc1d8a3153743163855f52729acf7130175a9389248416"
+    },
+    {
+      "file": "max-domain-sweep-record.json",
+      "bytes": 4793548,
+      "sha256": "8cc8331d8a311c99d108c6621c9aad9f5bd566498439feaa9947ca12cc9eefa8"
+    }
+  ]
+}
