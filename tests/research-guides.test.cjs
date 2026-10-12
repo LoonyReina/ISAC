@@ -83,7 +83,7 @@ test('reading navigation and direction links resolve to the same generated guide
  const html=read('reading.html');a.match(html,/href="#research-guides">20 篇问题式导读/);
  for(const id of ['waveforms','spatial','networks','prototype','learning','receiver','channels','tradeoffs']){
   const card=html.match(new RegExp('<article class="direction-card" id="direction-'+id+'"[\\s\\S]*?</article>'))[0];
-  a.ok(card.includes(`href="#research-guides-${id}"`));a.ok(card.includes(data.cards.filter(c=>c.directionId===id).length+' 篇问题式原文导读'));a.match(card,/不增加实验覆盖/);
+  a.ok(card.includes(`href="#research-guides-${id}"`));a.ok(card.includes(data.cards.filter(c=>c.directionId===id).length+' 篇问题式原文导读'));a.match(card,data.cards.some(c=>c.directionId===id&&c.executable)?/算法覆盖以卡片标注为准/:/不增加实验覆盖/);
  }
  a.equal(M.renderGuideDirectionLink([],registry.directions[0].id),'');
  a.match(registry.directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);

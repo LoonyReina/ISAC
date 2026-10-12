@@ -41,6 +41,11 @@ function validateVisualTrace(trace,card,local){
  }
  if(!object(trace.checkpoint,['prompt','answer','sourceLocator'])||!['prompt','answer','sourceLocator'].every(k=>prose(trace.checkpoint[k])))throw new Error('Invalid visual trace checkpoint');
 }
+const executionCoverageLabels=Object.freeze({algorithm:'已数值验证论文算法','algorithm-and-selected-figure':'已数值验证论文算法与选定图'});
+function validateExecutable(executable,local){
+ if(!object(executable,['kind','coverage','href','label','summary','limitations','sourceLocators'])||executable.kind!=='validated-paper-algorithm'||typeof executable.coverage!=='string'||!Object.hasOwn(executionCoverageLabels,executable.coverage)||!['label','summary','limitations'].every(k=>prose(executable[k]))||!Array.isArray(executable.sourceLocators)||!executable.sourceLocators.length||executable.sourceLocators.length>8||!executable.sourceLocators.every(prose)||new Set(executable.sourceLocators).size!==executable.sourceLocators.length)throw new Error('Invalid research guide executable');
+ local.unitEntry({href:executable.href});
+}
 function buildResearchGuides(data,registry,validationContext){
  if(!data||data.schemaVersion!==1||!Array.isArray(data.cards))throw new Error('Invalid research guide data');
  const seen=new Set(),directions=new Map(registry.directions.map(d=>[d.id,d]));
@@ -69,6 +74,7 @@ function buildResearchGuides(data,registry,validationContext){
   if(card.readingSteps!==undefined&&(!Array.isArray(card.readingSteps)||!card.readingSteps.length||!card.readingSteps.every(s=>['label','locator','purpose'].every(k=>text(s[k])))))throw new Error('Invalid research guide reading steps');
   const notebook=card.notebookTopicId&&registry.units.find(u=>u.id===card.notebookTopicId);
   if(card.notebookTopicId!==undefined&&!notebook)throw new Error('Invalid research guide notebook topic');
+  if(Object.hasOwn(card,'executable'))validateExecutable(card.executable,local);
   if(card.visualTrace!==undefined)validateVisualTrace(card.visualTrace,card,local);
   if(card.contextTrail!==undefined)validateContextTrail(card.contextTrail,card,cards);
   const existingSourceCase=card.contextTrail&&registry.cases.find(c=>c.paperComparison?.sourceUrl===source.url);
@@ -114,9 +120,13 @@ function renderVisualTrace(card){
  const content=interactive=>`<div class="trace-body"><h5>${escapeHtml(trace.title)}</h5><figure class="trace-figure"><figcaption>原文关系示意；箭头表示阅读顺序，框的大小不表示数值。本图没有运行算法，也不是论文仿真曲线。</figcaption><ol class="trace-steps" role="list">${trace.steps.map((step,i)=>stage(step,i,interactive)).join('')}</ol></figure><p class="trace-next"><strong>带着下一问离开：</strong>${escapeHtml(card.nextQuestion)}</p><p class="trace-edition"><strong>本次阅读版本：</strong>${escapeHtml(card.source.edition)}</p><p>${link('#direction-'+card.directionId,'回到本方向的六层路线')} · ${link(card.source.url,'打开本次阅读的固定原文')}</p></div>`;
  return `<details class="guide-visual-trace" data-visual-trace><summary>用一张图拆解这篇论文</summary>${content(true)}</details><div class="guide-trace-print"><p><strong>用一张图拆解这篇论文 · 打印展开版</strong></p>${content(false)}</div>\n`;
 }
+function renderExecutable(card){
+ const e=card.executable;if(!e)return '';
+ return `<div class="guide-executable"><p class="site-primary"><strong>${link(e.href,e.label,' class="guide-executable-link"')}</strong></p><p><strong>${executionCoverageLabels[e.coverage]}：</strong>${escapeHtml(e.summary)}</p><p>${escapeHtml(e.limitations)}</p><p class="small">核对算法与实验：${e.sourceLocators.map(locator=>link(card.source.url,locator)).join(' · ')}</p></div>\n`;
+}
 function renderGuideDirectionLink(cards,directionId){
  const count=cards.filter(c=>c.directionId===directionId).length;
- return count?`<p class="small">阅读拓展：${link('#'+groupId(directionId),count+' 篇问题式原文导读')}（阅读资源，不增加实验覆盖）</p>`:'';
+ return count?`<p class="small">阅读拓展：${link('#'+groupId(directionId),count+' 篇问题式原文导读')}（${cards.some(c=>c.directionId===directionId&&c.executable)?'算法覆盖以卡片标注为准':'阅读资源，不增加实验覆盖'}）</p>`:'';
 }
 function renderResearchGuides(cards){
  if(!cards.length)return '';
@@ -128,7 +138,7 @@ function renderResearchGuides(cards){
 <p class="eyebrow">原文导读 · ${escapeHtml(c.evidence.kind)}</p><h4 id="guide-${escapeHtml(c.id)}-title">${escapeHtml(c.title)}</h4>
 ${c.source.checkedAt?`<p class="guide-currentness">${c.contextTrail?escapeHtml(c.source.versionAt.slice(0,4))+'脉络 · ':''}固定版本：<time datetime="${escapeHtml(c.source.versionAt)}">${escapeHtml(c.source.versionAt.slice(0,10))}</time> · 核查：<time datetime="${escapeHtml(c.source.checkedAt)}">${escapeHtml(c.source.checkedAt)}</time>（非最新保证）</p>`:''}${c.existingSourceCase?`<p class="guide-existing-source">已有案例原文的新对读：${link('#'+c.existingSourceCase.id,c.existingSourceCase.title)}；不计作新增论文或实验。</p>`:''}
 <p class="guide-question"><strong>先问：</strong>${escapeHtml(c.question)}</p><p><strong>直觉机制：</strong>${escapeHtml(c.mechanism)}</p>
-${renderVisualTrace(c)}${renderContextTrail(c,byId)}${onward(c)}<details class="guide-depth"><summary>继续读：创新 → 证据 → 边界 → 下一问</summary><div>
+${renderExecutable(c)}${renderVisualTrace(c)}${renderContextTrail(c,byId)}${onward(c)}<details class="guide-depth"><summary>继续读：创新 → 证据 → 边界 → 下一问</summary><div>
 <dl><dt>作者推进了哪一步？</dt><dd>${escapeHtml(c.innovation)}</dd><dt>证据支持到哪里？</dt><dd>${escapeHtml(c.evidence.summary)}</dd><dt>哪些条件不能略去？</dt><dd><ul>${c.limits.map(t=>`<li>${escapeHtml(t)}</li>`).join('')}</ul></dd><dt>带着什么问题继续？</dt><dd>${escapeHtml(c.nextQuestion)}</dd></dl>
 ${c.readingSteps?`<ol class="guide-reading-steps">${c.readingSteps.map(s=>`<li><strong>${escapeHtml(s.label)}</strong> · ${escapeHtml(s.locator)}<br>${escapeHtml(s.purpose)}</li>`).join('')}</ol>`:''}
 <p class="guide-connection"><strong>需要时回看已有机制：</strong>${c.prerequisites.map(p=>link(p.href,p.label)).join(' · ')}</p>

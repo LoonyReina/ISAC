@@ -1,0 +1,2719 @@
+{
+  "summary": {
+    "production_core_sha256": "a48f0da1ceecec77381b0b598d266155c7cbf72022412e53c3bd7034fb2299a1",
+    "fixture_count": 75,
+    "production_runs": 150,
+    "seed": 180505713,
+    "failures": [],
+    "max_objective_error": 9.997175309806039e-11,
+    "max_rate_error": 3.782487933978729e-09,
+    "max_distortion_error": 8.102664650344593e-10,
+    "max_probability_error": 1.403223581775137e-08,
+    "max_certificate_gap": 9.997996874844262e-11,
+    "max_iterations": 3501,
+    "runs_using_disclosed_bisection_fallback": 1,
+    "max_total_inner_iterations": 1566798
+  },
+  "outputs": [
+    {
+      "id": 0,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.42766030394966353,
+        0.365563555708465,
+        0.20677614034187158
+      ],
+      "rateBits": 0.1223504949597482,
+      "distortion": 0.07619475117410773,
+      "cost": 0.43967770663071776,
+      "objectiveNats": -0.3854454158834356,
+      "gapNats": 9.827033631282234e-11,
+      "iterations": 527,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 0,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.42766030394966353,
+        0.365563555708465,
+        0.20677614034187158
+      ],
+      "rateBits": 0.1223504949597482,
+      "distortion": 0.07619475117410773,
+      "cost": 0.43967770663071776,
+      "objectiveNats": -0.3854454158834356,
+      "gapNats": 9.827033631282234e-11,
+      "iterations": 527,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 1,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.8733710874162186,
+        1.0771066324777767e-87,
+        0.12662891258378148
+      ],
+      "rateBits": 0.04870521495402191,
+      "distortion": 0.23325679082481043,
+      "cost": 0.29730428950297555,
+      "objectiveNats": -1.2703846849060747,
+      "gapNats": 9.605494177833407e-11,
+      "iterations": 262,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 1,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.8733710874162186,
+        1.0771066324777767e-87,
+        0.12662891258378148
+      ],
+      "rateBits": 0.04870521495402191,
+      "distortion": 0.23325679082481043,
+      "cost": 0.29730428950297555,
+      "objectiveNats": -1.2703846849060747,
+      "gapNats": 9.605494177833407e-11,
+      "iterations": 262,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 2,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.4414831949788216,
+        0.5490521749513857,
+        0.009464630069792892
+      ],
+      "rateBits": 0.5366358417967093,
+      "distortion": 0.13171087930020983,
+      "cost": 0.2901404324703369,
+      "objectiveNats": 0.07055858898279643,
+      "gapNats": 9.997996874844262e-11,
+      "iterations": 1504,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 41
+    },
+    {
+      "id": 2,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4414831949788216,
+        0.5490521749513857,
+        0.009464630069792892
+      ],
+      "rateBits": 0.5366358417967093,
+      "distortion": 0.13171087930020983,
+      "cost": 0.2901404324703369,
+      "objectiveNats": 0.07055858898279643,
+      "gapNats": 9.997996874844262e-11,
+      "iterations": 1504,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 168
+    },
+    {
+      "id": 3,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.7827423497642078,
+        0.21725765017931783,
+        5.6474468690333604e-11
+      ],
+      "rateBits": 0.2880515340259186,
+      "distortion": 0.17339888604850281,
+      "cost": 0.9469291462219429,
+      "objectiveNats": -2.2439621670622008,
+      "gapNats": 7.261169443495419e-11,
+      "iterations": 17,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 712
+    },
+    {
+      "id": 3,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.7827423497653309,
+        0.21725765017819448,
+        5.647446868959466e-11
+      ],
+      "rateBits": 0.2880515340249602,
+      "distortion": 0.17339888604852055,
+      "cost": 0.9469291462213703,
+      "objectiveNats": -2.243962167063115,
+      "gapNats": 7.352607411803547e-11,
+      "iterations": 17,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3795
+    },
+    {
+      "id": 4,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.4179761663387428,
+        4.27106429054596e-10,
+        0.5820238332341509
+      ],
+      "rateBits": 0.1505353191540538,
+      "distortion": 0.06600338999450754,
+      "cost": 1.0093583778749675,
+      "objectiveNats": -0.338929750643127,
+      "gapNats": 9.559464331232448e-11,
+      "iterations": 188,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 574
+    },
+    {
+      "id": 4,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4179761663387428,
+        4.271064290527994e-10,
+        0.5820238332341509
+      ],
+      "rateBits": 0.1505353191540538,
+      "distortion": 0.06600338999450754,
+      "cost": 1.0093583778749675,
+      "objectiveNats": -0.338929750643127,
+      "gapNats": 9.559464331232448e-11,
+      "iterations": 188,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1533
+    },
+    {
+      "id": 5,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9661465172639458,
+        0.03385348258059403,
+        1.5546020006030535e-10
+      ],
+      "rateBits": 0.03481112712210889,
+      "distortion": 0.03017352182140781,
+      "cost": 0.8579383482957545,
+      "objectiveNats": -0.16738773041543292,
+      "gapNats": 7.2258310446216e-11,
+      "iterations": 39,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1602
+    },
+    {
+      "id": 5,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9661465172653623,
+        0.03385348257917745,
+        1.554602000348932e-10
+      ],
+      "rateBits": 0.03481112712071579,
+      "distortion": 0.03017352182140781,
+      "cost": 0.8579383482952294,
+      "objectiveNats": -0.16738773041639854,
+      "gapNats": 7.322403794418619e-11,
+      "iterations": 39,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 48399
+    },
+    {
+      "id": 6,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.39725082252484467,
+        0.4326879191220855,
+        0.17006125835306976
+      ],
+      "rateBits": 0.39219155613569107,
+      "distortion": 0.15329117983436716,
+      "cost": 0.747445776351259,
+      "objectiveNats": 0.16577873313278735,
+      "gapNats": 9.88754911279699e-11,
+      "iterations": 202,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 6,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.39725082252484467,
+        0.4326879191220855,
+        0.17006125835306976
+      ],
+      "rateBits": 0.39219155613569107,
+      "distortion": 0.15329117983436716,
+      "cost": 0.747445776351259,
+      "objectiveNats": 0.16577873313278735,
+      "gapNats": 9.88754911279699e-11,
+      "iterations": 202,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 7,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.26548533600078433,
+        0.2638907668240634,
+        0.4706238971751522
+      ],
+      "rateBits": 0.37423553121584757,
+      "distortion": 0.25641951800576523,
+      "cost": 1.5227160159581952,
+      "objectiveNats": -0.07016854014442814,
+      "gapNats": 9.482670204619126e-11,
+      "iterations": 161,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 7,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.26548533600078433,
+        0.2638907668240634,
+        0.4706238971751522
+      ],
+      "rateBits": 0.37423553121584757,
+      "distortion": 0.25641951800576523,
+      "cost": 1.5227160159581952,
+      "objectiveNats": -0.07016854014442814,
+      "gapNats": 9.482670204619126e-11,
+      "iterations": 161,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 8,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.07125548657819457,
+        4.139727559005649e-09,
+        0.928744509282078
+      ],
+      "rateBits": 0.0170532209438809,
+      "distortion": 0.20546500186480174,
+      "cost": 1.5413713859511853,
+      "objectiveNats": -1.5059740860805544,
+      "gapNats": 9.992096039468379e-11,
+      "iterations": 645,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 26240
+    },
+    {
+      "id": 8,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.07125548658573007,
+        4.041012389021696e-09,
+        0.9287445093732577
+      ],
+      "rateBits": 0.0170532208830836,
+      "distortion": 0.20546500185883237,
+      "cost": 1.5413713859508507,
+      "objectiveNats": -1.5059740860785995,
+      "gapNats": 9.796607969292381e-11,
+      "iterations": 646,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 226421
+    },
+    {
+      "id": 9,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.19173688624413024,
+        0.6254665481153008,
+        0.182796565640569
+      ],
+      "rateBits": 0.31231547432437723,
+      "distortion": 0.25352697140590846,
+      "cost": 1.3715333410346773,
+      "objectiveNats": -0.9876438228426367,
+      "gapNats": 9.217437924036176e-11,
+      "iterations": 113,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 9,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.19173688624413024,
+        0.6254665481153008,
+        0.182796565640569
+      ],
+      "rateBits": 0.31231547432437723,
+      "distortion": 0.25352697140590846,
+      "cost": 1.3715333410346773,
+      "objectiveNats": -0.9876438228426367,
+      "gapNats": 9.217437924036176e-11,
+      "iterations": 113,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 10,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5617442609279477,
+        3.389586676559149e-10,
+        0.4382557387330937
+      ],
+      "rateBits": 0.3946985353220017,
+      "distortion": 0.2586011982007138,
+      "cost": 0.9392196926948613,
+      "objectiveNats": -0.042705774197977775,
+      "gapNats": 8.289668951277918e-11,
+      "iterations": 86,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 10,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5617442609279477,
+        3.389586676559149e-10,
+        0.4382557387330937
+      ],
+      "rateBits": 0.3946985353220017,
+      "distortion": 0.2586011982007138,
+      "cost": 0.9392196926948613,
+      "objectiveNats": -0.042705774197977775,
+      "gapNats": 8.289668951277918e-11,
+      "iterations": 86,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 11,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.7388376226749338,
+        0.06645369987456996,
+        0.19470867745049625
+      ],
+      "rateBits": 0.25381386215548035,
+      "distortion": 0.2115899734770738,
+      "cost": 1.2556133084886352,
+      "objectiveNats": -2.971599942174205,
+      "gapNats": 9.669554046354278e-11,
+      "iterations": 327,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 13733
+    },
+    {
+      "id": 11,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.738837622675091,
+        0.06645369987545675,
+        0.1947086774494523
+      ],
+      "rateBits": 0.25381386215511215,
+      "distortion": 0.2115899734771337,
+      "cost": 1.2556133084880319,
+      "objectiveNats": -2.9715999421753514,
+      "gapNats": 9.7838182000487e-11,
+      "iterations": 327,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 50709
+    },
+    {
+      "id": 12,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.2629727596175427,
+        0.7370272403260341,
+        5.6423345292518784e-11
+      ],
+      "rateBits": 0.11523581479969033,
+      "distortion": 0.28622798914063047,
+      "cost": 0.09672025114280525,
+      "objectiveNats": -3.6255152348483697,
+      "gapNats": 4.914424422963748e-11,
+      "iterations": 27,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1107
+    },
+    {
+      "id": 12,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.2629727596197136,
+        0.7370272403238629,
+        5.6423345288206375e-11
+      ],
+      "rateBits": 0.11523581480025846,
+      "distortion": 0.2862279891407164,
+      "cost": 0.09672025114261527,
+      "objectiveNats": -3.6255152348490887,
+      "gapNats": 4.986322466038473e-11,
+      "iterations": 27,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 14755
+    },
+    {
+      "id": 13,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.42175890359125123,
+        0.5782410945555351,
+        1.8532137021991957e-09
+      ],
+      "rateBits": 0.39229722148083734,
+      "distortion": 0.14553466645661242,
+      "cost": 1.204295860535829,
+      "objectiveNats": 0.013373689150177337,
+      "gapNats": 9.993772476235563e-11,
+      "iterations": 373,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 13,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.42175890359125123,
+        0.5782410945555351,
+        1.8532137021991957e-09
+      ],
+      "rateBits": 0.39229722148083734,
+      "distortion": 0.14553466645661242,
+      "cost": 1.204295860535829,
+      "objectiveNats": 0.013373689150177337,
+      "gapNats": 9.993772476235563e-11,
+      "iterations": 373,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 14,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9252020420804958,
+        0.07028764477683165,
+        0.004510313142672488
+      ],
+      "rateBits": 0.058324307088184396,
+      "distortion": 0.3875937133533669,
+      "cost": 0.3300467082618842,
+      "objectiveNats": -0.9031424075752772,
+      "gapNats": 9.977407788852588e-11,
+      "iterations": 1388,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 56910
+    },
+    {
+      "id": 14,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9252020420811317,
+        0.07028764487012294,
+        0.004510313048745516
+      ],
+      "rateBits": 0.058324307060883776,
+      "distortion": 0.38759371334581194,
+      "cost": 0.3300467082608154,
+      "objectiveNats": -0.9031424075758085,
+      "gapNats": 9.937295430972881e-11,
+      "iterations": 1389,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 475042
+    },
+    {
+      "id": 15,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5949310265639467,
+        3.1157741671357544e-16,
+        0.4050689734360533
+      ],
+      "rateBits": 0.1733487573238834,
+      "distortion": 0.2778856649751651,
+      "cost": 0.40469346715706545,
+      "objectiveNats": -2.054416659675605,
+      "gapNats": 8.022471575941381e-11,
+      "iterations": 76,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 15,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5949310265639467,
+        3.1157741671357544e-16,
+        0.4050689734360533
+      ],
+      "rateBits": 0.1733487573238834,
+      "distortion": 0.2778856649751651,
+      "cost": 0.40469346715706545,
+      "objectiveNats": -2.054416659675605,
+      "gapNats": 8.022471575941381e-11,
+      "iterations": 76,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 16,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        8.278579159349697e-10,
+        0.7405615495994509,
+        0.2594384495726913
+      ],
+      "rateBits": 0.1498131263191527,
+      "distortion": 0.18919398348156574,
+      "cost": 0.4541239836187961,
+      "objectiveNats": -0.27778697609054204,
+      "gapNats": 9.964845615328954e-11,
+      "iterations": 272,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 16,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        8.278579159349697e-10,
+        0.7405615495994509,
+        0.2594384495726913
+      ],
+      "rateBits": 0.1498131263191527,
+      "distortion": 0.18919398348156574,
+      "cost": 0.4541239836187961,
+      "objectiveNats": -0.27778697609054204,
+      "gapNats": 9.964845615328954e-11,
+      "iterations": 272,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 17,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.18970355663187238,
+        0.8102964430016992,
+        3.664284632774996e-10
+      ],
+      "rateBits": 0.10140033828451585,
+      "distortion": 0.12603089803665002,
+      "cost": 0.17650324054363825,
+      "objectiveNats": -1.1202385641552057,
+      "gapNats": 9.967493497242685e-11,
+      "iterations": 363,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 17,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.18970355663187238,
+        0.8102964430016992,
+        3.664284632774996e-10
+      ],
+      "rateBits": 0.10140033828451585,
+      "distortion": 0.12603089803665002,
+      "cost": 0.17650324054363825,
+      "objectiveNats": -1.1202385641552057,
+      "gapNats": 9.967493497242685e-11,
+      "iterations": 363,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 18,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9905562675571586,
+        0.009443732341107031,
+        1.0173468402139756e-10
+      ],
+      "rateBits": 0.007720507489982492,
+      "distortion": 0.24062539430668414,
+      "cost": 0.08858607333279947,
+      "objectiveNats": -2.128480708899997,
+      "gapNats": 5.8044236084242584e-11,
+      "iterations": 26,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1095
+    },
+    {
+      "id": 18,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9905562675590022,
+        0.009443732339263041,
+        1.0173468397013427e-10
+      ],
+      "rateBits": 0.007720507488495365,
+      "distortion": 0.24062539430668403,
+      "cost": 0.0885860733312586,
+      "objectiveNats": -2.128480708901027,
+      "gapNats": 5.907452305109473e-11,
+      "iterations": 26,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 209243
+    },
+    {
+      "id": 19,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.41486511888192323,
+        0.23878382823759625,
+        0.34635105288048046
+      ],
+      "rateBits": 0.16987101969662646,
+      "distortion": 0.11465517797563907,
+      "cost": 0.7548917440889306,
+      "objectiveNats": -0.1784545999350552,
+      "gapNats": 8.891803959798494e-11,
+      "iterations": 92,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3772
+    },
+    {
+      "id": 19,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4148651188826823,
+        0.23878382823734493,
+        0.3463510528799726
+      ],
+      "rateBits": 0.16987101969648855,
+      "distortion": 0.11465517797567527,
+      "cost": 0.7548917440884687,
+      "objectiveNats": -0.17845459993524432,
+      "gapNats": 8.910755466828846e-11,
+      "iterations": 92,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 9489
+    },
+    {
+      "id": 20,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.16615268007738423,
+        0.633248282040633,
+        0.2005990378819826
+      ],
+      "rateBits": 0.3670290471229868,
+      "distortion": 0.3143129794012098,
+      "cost": 0.6442213431348762,
+      "objectiveNats": -0.39457084862775305,
+      "gapNats": 7.828898640482862e-11,
+      "iterations": 64,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 20,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.16615268007738423,
+        0.633248282040633,
+        0.2005990378819826
+      ],
+      "rateBits": 0.3670290471229868,
+      "distortion": 0.3143129794012098,
+      "cost": 0.6442213431348762,
+      "objectiveNats": -0.39457084862775305,
+      "gapNats": 7.828898640482862e-11,
+      "iterations": 64,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 21,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.4564214090068366,
+        2.3622627635855303e-10,
+        0.5435785907569372
+      ],
+      "rateBits": 0.23660524252554477,
+      "distortion": 0.31067962388307624,
+      "cost": 1.3880614413607686,
+      "objectiveNats": -0.8993291895206827,
+      "gapNats": 8.759382108536329e-11,
+      "iterations": 57,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 2255
+    },
+    {
+      "id": 21,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.45642140900756023,
+        2.362262763611295e-10,
+        0.5435785907562135
+      ],
+      "rateBits": 0.23660524252557003,
+      "distortion": 0.31067962388310233,
+      "cost": 1.3880614413601944,
+      "objectiveNats": -0.8993291895207545,
+      "gapNats": 8.766554149275407e-11,
+      "iterations": 57,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 5102
+    },
+    {
+      "id": 22,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.4818361572598888,
+        0.03266693283942623,
+        0.4854969099006848
+      ],
+      "rateBits": 0.18633022764885412,
+      "distortion": 0.24069501531070475,
+      "cost": 0.7099014658754306,
+      "objectiveNats": 0.11048893934886399,
+      "gapNats": 9.930338495944824e-11,
+      "iterations": 1206,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 22,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4818361572598888,
+        0.03266693283942623,
+        0.4854969099006848
+      ],
+      "rateBits": 0.18633022764885412,
+      "distortion": 0.24069501531070475,
+      "cost": 0.7099014658754306,
+      "objectiveNats": 0.11048893934886399,
+      "gapNats": 9.930338495944824e-11,
+      "iterations": 1206,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 23,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.7322618491465034,
+        0.2677381508475357,
+        5.9607218732354165e-12
+      ],
+      "rateBits": 0.16443729545435107,
+      "distortion": 0.11758199993591115,
+      "cost": 1.2792787780768409,
+      "objectiveNats": -1.0423151075565829,
+      "gapNats": 1.4269696535507137e-11,
+      "iterations": 10,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 412
+    },
+    {
+      "id": 23,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.7322618491479786,
+        0.26773815084606073,
+        5.960721873043132e-12
+      ],
+      "rateBits": 0.16443729545373822,
+      "distortion": 0.11758199993594376,
+      "cost": 1.279278778076655,
+      "objectiveNats": -1.0423151075573285,
+      "gapNats": 1.5015322318845392e-11,
+      "iterations": 10,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3187
+    },
+    {
+      "id": 24,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5951580428103372,
+        5.797785049274486e-10,
+        0.40484195660988415
+      ],
+      "rateBits": 0.3406203523526308,
+      "distortion": 0.006562449159361661,
+      "cost": 1.5173729650804741,
+      "objectiveNats": 0.21676078947570557,
+      "gapNats": 9.143960588708921e-11,
+      "iterations": 128,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 5248
+    },
+    {
+      "id": 24,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5951580428110822,
+        5.797785049291808e-10,
+        0.40484195660913924
+      ],
+      "rateBits": 0.3406203523524678,
+      "distortion": 0.006562449159361661,
+      "cost": 1.5173729650801424,
+      "objectiveNats": 0.2167607894755926,
+      "gapNats": 9.155257107984482e-11,
+      "iterations": 128,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 12523
+    },
+    {
+      "id": 25,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        1.0423652619827438e-08,
+        0.6501078139900194,
+        0.349892175586328
+      ],
+      "rateBits": 0.13732172242144797,
+      "distortion": 0.015703761188017428,
+      "cost": 1.424060115692042,
+      "objectiveNats": -0.052544692791433756,
+      "gapNats": 9.984882365365877e-11,
+      "iterations": 1565,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 63878
+    },
+    {
+      "id": 25,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        1.0423652628914968e-08,
+        0.6501078139912249,
+        0.3498921755851224
+      ],
+      "rateBits": 0.13732172242127066,
+      "distortion": 0.015703761188017428,
+      "cost": 1.4240601156910029,
+      "objectiveNats": -0.05254469279155666,
+      "gapNats": 9.997180860921162e-11,
+      "iterations": 1565,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 294722
+    },
+    {
+      "id": 26,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.6666554983907518,
+        0.3333444922753874,
+        9.333860801852737e-09
+      ],
+      "rateBits": 0.29847701448787617,
+      "distortion": 0.15456318419660633,
+      "cost": 1.2382476929948474,
+      "objectiveNats": -1.3083400203111077,
+      "gapNats": 9.963319058670095e-11,
+      "iterations": 1331,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 26,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.6666554983907518,
+        0.3333444922753874,
+        9.333860801852737e-09
+      ],
+      "rateBits": 0.29847701448787617,
+      "distortion": 0.15456318419660633,
+      "cost": 1.2382476929948474,
+      "objectiveNats": -1.3083400203111077,
+      "gapNats": 9.963319058670095e-11,
+      "iterations": 1331,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 27,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.04464859922945073,
+        0.5799695371120244,
+        0.3753818636585249
+      ],
+      "rateBits": 0.590010158249716,
+      "distortion": 0.13551539881056207,
+      "cost": 1.0770962640713582,
+      "objectiveNats": -0.8634891499766704,
+      "gapNats": 9.479983464899533e-11,
+      "iterations": 128,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3977
+    },
+    {
+      "id": 27,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.04464859923005436,
+        0.5799695371122628,
+        0.37538186365768283
+      ],
+      "rateBits": 0.5900101582497437,
+      "distortion": 0.13551539881056557,
+      "cost": 1.0770962640703197,
+      "objectiveNats": -0.863489149976684,
+      "gapNats": 9.480793927707509e-11,
+      "iterations": 128,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 11155
+    },
+    {
+      "id": 28,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.17080881061639908,
+        0.5026470668926494,
+        0.3265441224909516
+      ],
+      "rateBits": 0.3773507586623772,
+      "distortion": 0.0574947114148345,
+      "cost": 1.4919263265689044,
+      "objectiveNats": -0.03189431827290118,
+      "gapNats": 5.588079998730677e-11,
+      "iterations": 37,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1394
+    },
+    {
+      "id": 28,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.17080881061742187,
+        0.502647066892448,
+        0.3265441224901303
+      ],
+      "rateBits": 0.3773507586620798,
+      "distortion": 0.057494711414834504,
+      "cost": 1.491926326567881,
+      "objectiveNats": -0.03189431827310735,
+      "gapNats": 5.60753110612211e-11,
+      "iterations": 37,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 7159
+    },
+    {
+      "id": 29,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.32615541108235535,
+        0.5343981332872317,
+        0.13944645563041294
+      ],
+      "rateBits": 0.10393052860899887,
+      "distortion": 0.12419309250457887,
+      "cost": 0.5891889568930193,
+      "objectiveNats": 0.013115481581659191,
+      "gapNats": 9.95054177943544e-11,
+      "iterations": 763,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 574
+    },
+    {
+      "id": 29,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.32615541108235535,
+        0.5343981332872317,
+        0.13944645563041294
+      ],
+      "rateBits": 0.10393052860899887,
+      "distortion": 0.12419309250457887,
+      "cost": 0.5891889568930193,
+      "objectiveNats": 0.013115481581659191,
+      "gapNats": 9.95054177943544e-11,
+      "iterations": 763,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1989
+    },
+    {
+      "id": 30,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.33453191561149886,
+        0.370008819956699,
+        0.29545926443180204
+      ],
+      "rateBits": 0.26822012413230983,
+      "distortion": 0.12953156841326754,
+      "cost": 0.5313086197187691,
+      "objectiveNats": 0.013843329419361311,
+      "gapNats": 8.751926960925971e-11,
+      "iterations": 121,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 30,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.33453191561149886,
+        0.370008819956699,
+        0.29545926443180204
+      ],
+      "rateBits": 0.26822012413230983,
+      "distortion": 0.12953156841326754,
+      "cost": 0.5313086197187691,
+      "objectiveNats": 0.013843329419361311,
+      "gapNats": 8.751926960925971e-11,
+      "iterations": 121,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 31,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5769437899411063,
+        0.4230562100096301,
+        4.926382789142379e-11
+      ],
+      "rateBits": 0.16591405758335423,
+      "distortion": 0.24760234441984022,
+      "cost": 0.7905884072173992,
+      "objectiveNats": -1.1878643245202551,
+      "gapNats": 5.101541411534072e-11,
+      "iterations": 22,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 944
+    },
+    {
+      "id": 31,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5769437899423562,
+        0.4230562100083799,
+        4.926382789022315e-11
+      ],
+      "rateBits": 0.16591405758328032,
+      "distortion": 0.24760234442018658,
+      "cost": 0.7905884072160305,
+      "objectiveNats": -1.187864324522129,
+      "gapNats": 5.288924853630306e-11,
+      "iterations": 22,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 4358
+    },
+    {
+      "id": 32,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9332460215484976,
+        0.06675397834128811,
+        1.102144815046318e-10
+      ],
+      "rateBits": 0.12654782858600008,
+      "distortion": 0.38484915130180497,
+      "cost": 0.1692086834016109,
+      "objectiveNats": -5.168339705252425,
+      "gapNats": 7.318234906961152e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1334
+    },
+    {
+      "id": 32,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9332460215493845,
+        0.06675397834040096,
+        1.1021448149479736e-10
+      ],
+      "rateBits": 0.12654782858455724,
+      "distortion": 0.38484915130189723,
+      "cost": 0.16920868340033038,
+      "objectiveNats": -5.168339705254685,
+      "gapNats": 7.544276314774834e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 13265
+    },
+    {
+      "id": 33,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.47963747998106554,
+        0.2964662884369942,
+        0.2238962315819401
+      ],
+      "rateBits": 0.4135117317807536,
+      "distortion": 0.10657872768765307,
+      "cost": 0.7770752979440435,
+      "objectiveNats": 0.23459180960925213,
+      "gapNats": 9.871564676799949e-11,
+      "iterations": 477,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 33,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.47963747998106554,
+        0.2964662884369942,
+        0.2238962315819401
+      ],
+      "rateBits": 0.4135117317807536,
+      "distortion": 0.10657872768765307,
+      "cost": 0.7770752979440435,
+      "objectiveNats": 0.23459180960925213,
+      "gapNats": 9.871564676799949e-11,
+      "iterations": 477,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 34,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9922936189194863,
+        0.007706381069642706,
+        1.0871098427789764e-11
+      ],
+      "rateBits": 0.008682402420327771,
+      "distortion": 0.15920123394501876,
+      "cost": 0.27136561280360433,
+      "objectiveNats": -1.2458690647541684,
+      "gapNats": 2.1021850926672414e-11,
+      "iterations": 9,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 389
+    },
+    {
+      "id": 34,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9922936189212521,
+        0.007706381067876871,
+        1.0871098422984234e-11
+      ],
+      "rateBits": 0.008682402418361398,
+      "distortion": 0.15920123394510782,
+      "cost": 0.2713656128020617,
+      "objectiveNats": -1.2458690647562318,
+      "gapNats": 2.3085533484845655e-11,
+      "iterations": 9,
+      "fallbackIterations": 1,
+      "totalInnerIterations": 85046
+    },
+    {
+      "id": 35,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.845145159857169,
+        0.154854839930408,
+        2.1242300542625061e-10
+      ],
+      "rateBits": 0.10874643938671899,
+      "distortion": 0.0987092180186163,
+      "cost": 0.2956502785594555,
+      "objectiveNats": -0.9541505522129063,
+      "gapNats": 9.554401714240157e-11,
+      "iterations": 37,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1556
+    },
+    {
+      "id": 35,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.8451451598611652,
+        0.1548548399264118,
+        2.1242300527668323e-10
+      ],
+      "rateBits": 0.10874643938497537,
+      "distortion": 0.09870921801861632,
+      "cost": 0.29565027855792786,
+      "objectiveNats": -0.9541505522141149,
+      "gapNats": 9.675282797161344e-11,
+      "iterations": 37,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 101542
+    },
+    {
+      "id": 36,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.8789562439468069,
+        1.2719274327596776e-10,
+        0.12104375592600028
+      ],
+      "rateBits": 0.20542169132696697,
+      "distortion": 0.2940217409155331,
+      "cost": 0.3621956837153031,
+      "objectiveNats": -0.27148035745830223,
+      "gapNats": 9.854828064703725e-11,
+      "iterations": 27,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1109
+    },
+    {
+      "id": 36,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.8789562439476832,
+        1.271927432691575e-10,
+        0.12104375592512402
+      ],
+      "rateBits": 0.2054216913258145,
+      "distortion": 0.2940217409155379,
+      "cost": 0.362195683714312,
+      "objectiveNats": -0.27148035745910776,
+      "gapNats": 9.935385847370526e-11,
+      "iterations": 27,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 5567
+    },
+    {
+      "id": 37,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5377423480345898,
+        0.44504846919515106,
+        0.017209182770259103
+      ],
+      "rateBits": 0.08343950152922974,
+      "distortion": 0.031101921923396805,
+      "cost": 0.3764726589832422,
+      "objectiveNats": -0.0843508685853329,
+      "gapNats": 9.552066082552102e-11,
+      "iterations": 181,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 7423
+    },
+    {
+      "id": 37,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5377423480345102,
+        0.44504846919624985,
+        0.017209182769239988
+      ],
+      "rateBits": 0.08343950152840734,
+      "distortion": 0.031101921923396805,
+      "cost": 0.37647265898236915,
+      "objectiveNats": -0.08435086858590295,
+      "gapNats": 9.609117668230027e-11,
+      "iterations": 181,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 246170
+    },
+    {
+      "id": 38,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9999999997936646,
+        2.0633533529399965e-10,
+        2.124207142012902e-17
+      ],
+      "rateBits": 8.154822985416607e-11,
+      "distortion": 0.3250602916052846,
+      "cost": 0.15104639287569574,
+      "objectiveNats": -3.325520436035361,
+      "gapNats": 7.795319945103074e-11,
+      "iterations": 57,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 38,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9999999997936646,
+        2.0633533529399965e-10,
+        2.124207142012902e-17
+      ],
+      "rateBits": 8.154822985416607e-11,
+      "distortion": 0.3250602916052846,
+      "cost": 0.15104639287569574,
+      "objectiveNats": -3.325520436035361,
+      "gapNats": 7.795319945103074e-11,
+      "iterations": 57,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 39,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.6509194188243597,
+        0.13333509510921226,
+        0.21574548606642827
+      ],
+      "rateBits": 0.2132390168769389,
+      "distortion": 0.09782081784747382,
+      "cost": 0.7748461867713988,
+      "objectiveNats": -0.08072342700558527,
+      "gapNats": 9.971912184880694e-11,
+      "iterations": 264,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 10825
+    },
+    {
+      "id": 39,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.6509194188523207,
+        0.13333509503111546,
+        0.21574548611656366
+      ],
+      "rateBits": 0.21323901689844008,
+      "distortion": 0.09782081785397644,
+      "cost": 0.7748461867700898,
+      "objectiveNats": -0.08072342700587323,
+      "gapNats": 9.339953810361123e-11,
+      "iterations": 265,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 34428
+    },
+    {
+      "id": 40,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5506827675140661,
+        0.14704098305929497,
+        0.30227624942663894
+      ],
+      "rateBits": 0.3931225725019065,
+      "distortion": 0.10808176857437024,
+      "cost": 1.3761000799146934,
+      "objectiveNats": -0.8089741064253544,
+      "gapNats": 8.699618803120757e-11,
+      "iterations": 112,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 4593
+    },
+    {
+      "id": 40,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5506827675150063,
+        0.14704098305892638,
+        0.3022762494260673
+      ],
+      "rateBits": 0.39312257250147103,
+      "distortion": 0.10808176857437023,
+      "cost": 1.3761000799140937,
+      "objectiveNats": -0.8089741064256563,
+      "gapNats": 8.730272060830657e-11,
+      "iterations": 112,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 12271
+    },
+    {
+      "id": 41,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.45014491739995716,
+        0.5226692928450265,
+        0.02718578975501629
+      ],
+      "rateBits": 0.1474428202616274,
+      "distortion": 0.10158852198397388,
+      "cost": 1.1066036678944962,
+      "objectiveNats": -0.6337648551573192,
+      "gapNats": 9.925327226767422e-11,
+      "iterations": 301,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 12342
+    },
+    {
+      "id": 41,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4501449174009039,
+        0.5226692928443941,
+        0.027185789754701914
+      ],
+      "rateBits": 0.1474428202613853,
+      "distortion": 0.1015885219840142,
+      "cost": 1.106603667893682,
+      "objectiveNats": -0.6337648551577792,
+      "gapNats": 9.971345971138135e-11,
+      "iterations": 301,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 40467
+    },
+    {
+      "id": 42,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        3.150989836754955e-11,
+        0.9999999999684901,
+        2.540982115230905e-17
+      ],
+      "rateBits": 4.404079297311077e-11,
+      "distortion": 0.16886182208604852,
+      "cost": 0.15151681539296885,
+      "objectiveNats": -1.4872722859659593,
+      "gapNats": 3.8236303012695316e-11,
+      "iterations": 19,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 42,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        3.150989836754955e-11,
+        0.9999999999684901,
+        2.540982115230905e-17
+      ],
+      "rateBits": 4.404079297311077e-11,
+      "distortion": 0.16886182208604852,
+      "cost": 0.15151681539296885,
+      "objectiveNats": -1.4872722859659593,
+      "gapNats": 3.8236303012695316e-11,
+      "iterations": 19,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 43,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5493709318326909,
+        0.04723230072239547,
+        0.4033967674449136
+      ],
+      "rateBits": 0.22079461393564662,
+      "distortion": 0.40107705648616315,
+      "cost": 1.0805741571883347,
+      "objectiveNats": -0.24232652971863272,
+      "gapNats": 9.952971780080588e-11,
+      "iterations": 2922,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 43,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5493709318326909,
+        0.04723230072239547,
+        0.4033967674449136
+      ],
+      "rateBits": 0.22079461393564662,
+      "distortion": 0.40107705648616315,
+      "cost": 1.0805741571883347,
+      "objectiveNats": -0.24232652971863272,
+      "gapNats": 9.952971780080588e-11,
+      "iterations": 2922,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 44,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5676937187877577,
+        3.9677626254654876e-10,
+        0.43230628081546607
+      ],
+      "rateBits": 0.37580925563502954,
+      "distortion": 0.07184937889865875,
+      "cost": 0.46456723795010163,
+      "objectiveNats": -0.47351590434934426,
+      "gapNats": 9.12193653945792e-11,
+      "iterations": 87,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3567
+    },
+    {
+      "id": 44,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5676937187885407,
+        3.9677626251181824e-10,
+        0.43230628081468314
+      ],
+      "rateBits": 0.37580925563483597,
+      "distortion": 0.07184937889865875,
+      "cost": 0.46456723794934884,
+      "objectiveNats": -0.47351590434947843,
+      "gapNats": 9.135353584710515e-11,
+      "iterations": 87,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 8143
+    },
+    {
+      "id": 45,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9190165734259407,
+        2.772973316549642e-26,
+        0.08098342657405926
+      ],
+      "rateBits": 0.14945942536450715,
+      "distortion": 0.11684942596050463,
+      "cost": 1.3263146714509397,
+      "objectiveNats": -1.4472465810199666,
+      "gapNats": 8.806089191182309e-11,
+      "iterations": 48,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 45,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9190165734259407,
+        2.772973316549642e-26,
+        0.08098342657405926
+      ],
+      "rateBits": 0.14945942536450715,
+      "distortion": 0.11684942596050463,
+      "cost": 1.3263146714509397,
+      "objectiveNats": -1.4472465810199666,
+      "gapNats": 8.806089191182309e-11,
+      "iterations": 48,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 46,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.583404608918042,
+        0.41659538906898674,
+        2.012971070637357e-09
+      ],
+      "rateBits": 0.1825416601439303,
+      "distortion": 0.24837915076043696,
+      "cost": 1.173927062763791,
+      "objectiveNats": -0.0038889258838861462,
+      "gapNats": 9.708481241155198e-11,
+      "iterations": 354,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 14515
+    },
+    {
+      "id": 46,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.583404608919261,
+        0.416595389067768,
+        2.012971070051906e-09
+      ],
+      "rateBits": 0.182541660143871,
+      "distortion": 0.24837915076055647,
+      "cost": 1.1739270627633525,
+      "objectiveNats": -0.0038889258839900076,
+      "gapNats": 9.718841009753731e-11,
+      "iterations": 354,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 69305
+    },
+    {
+      "id": 47,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.22999188899162604,
+        0.40673730064387736,
+        0.3632708103644966
+      ],
+      "rateBits": 0.21311721310817744,
+      "distortion": 0.2770318761192782,
+      "cost": 0.40590975491493075,
+      "objectiveNats": -0.5256243286278146,
+      "gapNats": 9.60432844365755e-11,
+      "iterations": 190,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 47,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.22999188899162604,
+        0.40673730064387736,
+        0.3632708103644966
+      ],
+      "rateBits": 0.21311721310817744,
+      "distortion": 0.2770318761192782,
+      "cost": 0.40590975491493075,
+      "objectiveNats": -0.5256243286278146,
+      "gapNats": 9.60432844365755e-11,
+      "iterations": 190,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 48,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5688197336514207,
+        0.4311802661622023,
+        1.8637704051137265e-10
+      ],
+      "rateBits": 0.7247235019636604,
+      "distortion": 0.08775232758937672,
+      "cost": 0.7684258135383543,
+      "objectiveNats": -0.0930340772923518,
+      "gapNats": 9.658022992464765e-11,
+      "iterations": 61,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 48,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5688197336514207,
+        0.4311802661622023,
+        1.8637704051137265e-10
+      ],
+      "rateBits": 0.7247235019636604,
+      "distortion": 0.08775232758937672,
+      "cost": 0.7684258135383543,
+      "objectiveNats": -0.0930340772923518,
+      "gapNats": 9.658022992464765e-11,
+      "iterations": 61,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 49,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.625672311335698,
+        0.37432768864871685,
+        1.5585159102938945e-11
+      ],
+      "rateBits": 0.20936665725452056,
+      "distortion": 0.10324584596678653,
+      "cost": 0.08320739262104652,
+      "objectiveNats": -0.42967186831665727,
+      "gapNats": 2.856126446459939e-11,
+      "iterations": 12,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 494
+    },
+    {
+      "id": 49,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.625672311340564,
+        0.37432768864385085,
+        1.558515909737563e-11
+      ],
+      "rateBits": 0.20936665725374723,
+      "distortion": 0.10324584596685073,
+      "cost": 0.08320739262038572,
+      "objectiveNats": -0.42967186831755066,
+      "gapNats": 2.945460542136402e-11,
+      "iterations": 12,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 24712
+    },
+    {
+      "id": 50,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.4336613175369355,
+        0.048589640662064115,
+        0.5177490418010003
+      ],
+      "rateBits": 0.1450458991704812,
+      "distortion": 0.272635847000154,
+      "cost": 1.1878925268568616,
+      "objectiveNats": -1.4120835020923574,
+      "gapNats": 9.941980572136799e-11,
+      "iterations": 2072,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 50,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.4336613175369355,
+        0.048589640662064115,
+        0.5177490418010003
+      ],
+      "rateBits": 0.1450458991704812,
+      "distortion": 0.272635847000154,
+      "cost": 1.1878925268568616,
+      "objectiveNats": -1.4120835020923574,
+      "gapNats": 9.941980572136799e-11,
+      "iterations": 2072,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 51,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9166160389648377,
+        2.615017986669406e-10,
+        0.08338396077366045
+      ],
+      "rateBits": 0.13230067588636557,
+      "distortion": 0.21927787649133001,
+      "cost": 0.42510825707756794,
+      "objectiveNats": -1.6362360011155652,
+      "gapNats": 7.665157397696021e-11,
+      "iterations": 69,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 2832
+    },
+    {
+      "id": 51,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9166160389657878,
+        2.615017986343731e-10,
+        0.08338396077271044
+      ],
+      "rateBits": 0.13230067588513264,
+      "distortion": 0.21927787649133004,
+      "cost": 0.4251082570760827,
+      "objectiveNats": -1.6362360011164199,
+      "gapNats": 7.75057795721068e-11,
+      "iterations": 69,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 20454
+    },
+    {
+      "id": 52,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.3676828011451526,
+        0.3960057967680753,
+        0.23631140208677198
+      ],
+      "rateBits": 0.16764459500343973,
+      "distortion": 0.21634379872026072,
+      "cost": 1.0356254419764275,
+      "objectiveNats": -0.47649198272358884,
+      "gapNats": 9.591361038729929e-11,
+      "iterations": 118,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 4838
+    },
+    {
+      "id": 52,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.36768280114602025,
+        0.396005796767677,
+        0.23631140208630283
+      ],
+      "rateBits": 0.16764459500326492,
+      "distortion": 0.21634379872024284,
+      "cost": 1.0356254419751965,
+      "objectiveNats": -0.47649198272366106,
+      "gapNats": 9.598788430764671e-11,
+      "iterations": 118,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 13991
+    },
+    {
+      "id": 53,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.1523548687711159,
+        0.8476451312288841,
+        1.0475781288760538e-21
+      ],
+      "rateBits": 0.13105444738857894,
+      "distortion": 0.15080427938112173,
+      "cost": 0.5351786929771891,
+      "objectiveNats": -0.5050545018814926,
+      "gapNats": 9.498757336245944e-11,
+      "iterations": 86,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 41
+    },
+    {
+      "id": 53,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.1523548687711159,
+        0.8476451312288841,
+        1.0475781288685731e-21
+      ],
+      "rateBits": 0.13105444738857894,
+      "distortion": 0.15080427938112173,
+      "cost": 0.5351786929771891,
+      "objectiveNats": -0.5050545018814926,
+      "gapNats": 9.498757336245944e-11,
+      "iterations": 86,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 217
+    },
+    {
+      "id": 54,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.7136626452171813,
+        1.247261733508411e-09,
+        0.28633735353555684
+      ],
+      "rateBits": 0.006316113033380188,
+      "distortion": 0.32154943362430377,
+      "cost": 0.6261958529703047,
+      "objectiveNats": -2.1282810059517168,
+      "gapNats": 9.568834613560284e-11,
+      "iterations": 236,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 9678
+    },
+    {
+      "id": 54,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.7136626452179755,
+        1.247261733482462e-09,
+        0.286337353534763
+      ],
+      "rateBits": 0.006316113033369384,
+      "distortion": 0.32154943362439825,
+      "cost": 0.6261958529690391,
+      "objectiveNats": -2.128281005952351,
+      "gapNats": 9.632206143805888e-11,
+      "iterations": 236,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 25657
+    },
+    {
+      "id": 55,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.29022104922437986,
+        0.19402723654582654,
+        0.5157517142297936
+      ],
+      "rateBits": 0.2934522352797071,
+      "distortion": 0.12343691957320532,
+      "cost": 0.46483169711690764,
+      "objectiveNats": -1.456992100688183,
+      "gapNats": 9.985212656715703e-11,
+      "iterations": 3501,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 55,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.29022104922437986,
+        0.19402723654582654,
+        0.5157517142297936
+      ],
+      "rateBits": 0.2934522352797071,
+      "distortion": 0.12343691957320532,
+      "cost": 0.46483169711690764,
+      "objectiveNats": -1.456992100688183,
+      "gapNats": 9.985212656715703e-11,
+      "iterations": 3501,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 56,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.45994509982852616,
+        0.5400548997437985,
+        4.276754245549614e-10
+      ],
+      "rateBits": 0.32589045461045457,
+      "distortion": 0.08740772143447388,
+      "cost": 0.7819326556559416,
+      "objectiveNats": -0.6933400429561796,
+      "gapNats": 9.82454118059195e-11,
+      "iterations": 179,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 56,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.45994509982852616,
+        0.5400548997437985,
+        4.276754245549614e-10
+      ],
+      "rateBits": 0.32589045461045457,
+      "distortion": 0.08740772143447388,
+      "cost": 0.7819326556559416,
+      "objectiveNats": -0.6933400429561796,
+      "gapNats": 9.82454118059195e-11,
+      "iterations": 179,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 57,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9713650809456827,
+        0.02863491678896143,
+        2.2653558998737177e-09
+      ],
+      "rateBits": 0.031775546118216716,
+      "distortion": 0.3212958734493041,
+      "cost": 0.3823958832958151,
+      "objectiveNats": -4.2367464691589305,
+      "gapNats": 9.842082704381028e-11,
+      "iterations": 269,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 11301
+    },
+    {
+      "id": 57,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9713650809483935,
+        0.028634916786250637,
+        2.2653558904661016e-09
+      ],
+      "rateBits": 0.03177554611540655,
+      "distortion": 0.3212958734492463,
+      "cost": 0.382395883294962,
+      "objectiveNats": -4.236746469160112,
+      "gapNats": 9.960121616359174e-11,
+      "iterations": 269,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1566798
+    },
+    {
+      "id": 58,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.19839186586200894,
+        0.8016081328502199,
+        1.2877711053345042e-09
+      ],
+      "rateBits": 0.15617922566986042,
+      "distortion": 0.14160939338909487,
+      "cost": 0.5283559911498518,
+      "objectiveNats": -0.08317340791181758,
+      "gapNats": 9.943378065369046e-11,
+      "iterations": 604,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 58,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.19839186586200894,
+        0.8016081328502199,
+        1.2877711053345042e-09
+      ],
+      "rateBits": 0.15617922566986042,
+      "distortion": 0.14160939338909487,
+      "cost": 0.5283559911498518,
+      "objectiveNats": -0.08317340791181758,
+      "gapNats": 9.943378065369046e-11,
+      "iterations": 604,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 59,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.944793362928741,
+        2.410228061478502e-28,
+        0.05520663707125893
+      ],
+      "rateBits": 0.11970506907331403,
+      "distortion": 0.12996205329074875,
+      "cost": 0.07163250802133994,
+      "objectiveNats": -1.269185252837319,
+      "gapNats": 7.747447128281237e-11,
+      "iterations": 53,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 59,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.944793362928741,
+        2.410228061478502e-28,
+        0.05520663707125893
+      ],
+      "rateBits": 0.11970506907331403,
+      "distortion": 0.12996205329074875,
+      "cost": 0.07163250802133994,
+      "objectiveNats": -1.269185252837319,
+      "gapNats": 7.747447128281237e-11,
+      "iterations": 53,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 60,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5415278977986584,
+        0.45847209300443814,
+        9.196903551830079e-09
+      ],
+      "rateBits": 0.3013543641623476,
+      "distortion": 0.07215260277316432,
+      "cost": 0.286555355186394,
+      "objectiveNats": -0.06027266895187822,
+      "gapNats": 9.949638335449151e-11,
+      "iterations": 3242,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 60,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5415278977986584,
+        0.45847209300443814,
+        9.196903551830079e-09
+      ],
+      "rateBits": 0.3013543641623476,
+      "distortion": 0.07215260277316432,
+      "cost": 0.286555355186394,
+      "objectiveNats": -0.06027266895187822,
+      "gapNats": 9.949638335449151e-11,
+      "iterations": 3242,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 61,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.329419600724249,
+        9.86945786018219e-11,
+        0.6705803991770565
+      ],
+      "rateBits": 0.20993415220892558,
+      "distortion": 0.15004247253443387,
+      "cost": 1.3327446285309503,
+      "objectiveNats": -1.6861432065447106,
+      "gapNats": 6.969047561256048e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1301
+    },
+    {
+      "id": 61,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.3294196007250115,
+        9.869457860037097e-11,
+        0.6705803991762938
+      ],
+      "rateBits": 0.209934152209094,
+      "distortion": 0.15004247253452035,
+      "cost": 1.3327446285299644,
+      "objectiveNats": -1.6861432065456499,
+      "gapNats": 7.062972429139336e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 3256
+    },
+    {
+      "id": 62,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        3.2493128254255412e-12,
+        0.9999999999637685,
+        3.29820624803463e-11
+      ],
+      "rateBits": 1.718045303342053e-11,
+      "distortion": 0.07308894574022705,
+      "cost": 1.061663750862469,
+      "objectiveNats": -0.9132274609262159,
+      "gapNats": 5.058797825086003e-11,
+      "iterations": 17,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 62,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        3.2493128254255412e-12,
+        0.9999999999637685,
+        3.29820624803463e-11
+      ],
+      "rateBits": 1.718045303342053e-11,
+      "distortion": 0.07308894574022705,
+      "cost": 1.061663750862469,
+      "objectiveNats": -0.9132274609262159,
+      "gapNats": 5.058797825086003e-11,
+      "iterations": 17,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 63,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9789701917521942,
+        1.6117080033339085e-10,
+        0.021029808086635043
+      ],
+      "rateBits": 0.036892252024006776,
+      "distortion": 0.009801181157970348,
+      "cost": 0.4695342139691903,
+      "objectiveNats": -0.11374099021573157,
+      "gapNats": 6.854582179638413e-11,
+      "iterations": 46,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1932
+    },
+    {
+      "id": 63,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9789701917531812,
+        1.611708003063312e-10,
+        0.02102980808564802
+      ],
+      "rateBits": 0.03689225202235721,
+      "distortion": 0.009801181157970348,
+      "cost": 0.4695342139678359,
+      "objectiveNats": -0.11374099021687498,
+      "gapNats": 6.968922661165777e-11,
+      "iterations": 46,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 53698
+    },
+    {
+      "id": 64,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.11397639685237315,
+        0.886023603097791,
+        4.983585954346241e-11
+      ],
+      "rateBits": 0.0745036133946352,
+      "distortion": 0.21696732493010992,
+      "cost": 1.3165097050656318,
+      "objectiveNats": -1.1197783350417452,
+      "gapNats": 5.2205573197738886e-11,
+      "iterations": 22,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 820
+    },
+    {
+      "id": 64,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.11397639685359927,
+        0.8860236030965649,
+        4.9835859541185694e-11
+      ],
+      "rateBits": 0.07450361339527226,
+      "distortion": 0.2169673249302886,
+      "cost": 1.3165097050642847,
+      "objectiveNats": -1.119778335042268,
+      "gapNats": 5.272871028694226e-11,
+      "iterations": 22,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 8054
+    },
+    {
+      "id": 65,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9504109007615311,
+        1.3196366671632676e-10,
+        0.04958909910650519
+      ],
+      "rateBits": 0.1042520308770969,
+      "distortion": 0.0529234648862444,
+      "cost": 0.922886982527841,
+      "objectiveNats": -0.17108960597150086,
+      "gapNats": 8.40432723414608e-11,
+      "iterations": 33,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1387
+    },
+    {
+      "id": 65,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9504109007624535,
+        1.3196366670427174e-10,
+        0.049589099105582776
+      ],
+      "rateBits": 0.10425203087530469,
+      "distortion": 0.0529234648862444,
+      "cost": 0.9228869825275137,
+      "objectiveNats": -0.17108960597274311,
+      "gapNats": 8.52853343502602e-11,
+      "iterations": 33,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 17270
+    },
+    {
+      "id": 66,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.1233189668006947,
+        0.15507126092109957,
+        0.7216097722782058
+      ],
+      "rateBits": 0.2868846849639506,
+      "distortion": 0.14121612207838238,
+      "cost": 0.971097151304362,
+      "objectiveNats": -0.6262091829119606,
+      "gapNats": 8.991796196511359e-11,
+      "iterations": 70,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 2378
+    },
+    {
+      "id": 66,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.12331896680159311,
+        0.15507126092111734,
+        0.7216097722772896
+      ],
+      "rateBits": 0.28688468496405006,
+      "distortion": 0.14121612207841022,
+      "cost": 0.9710971513033819,
+      "objectiveNats": -0.6262091829120543,
+      "gapNats": 8.999900824591123e-11,
+      "iterations": 70,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 7250
+    },
+    {
+      "id": 67,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5081091737854352,
+        4.921107717006247e-10,
+        0.491890825722454
+      ],
+      "rateBits": 0.3938363555710563,
+      "distortion": 0.10943256410092872,
+      "cost": 1.3389177931865837,
+      "objectiveNats": -0.5147315362143174,
+      "gapNats": 9.350276108932576e-11,
+      "iterations": 170,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 656
+    },
+    {
+      "id": 67,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5081091737854352,
+        4.921107716993065e-10,
+        0.491890825722454
+      ],
+      "rateBits": 0.3938363555710563,
+      "distortion": 0.10943256410092872,
+      "cost": 1.3389177931865837,
+      "objectiveNats": -0.5147315362143174,
+      "gapNats": 9.350276108932576e-11,
+      "iterations": 170,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1669
+    },
+    {
+      "id": 68,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5028794034082958,
+        0.49712059601868713,
+        5.730168961938401e-10
+      ],
+      "rateBits": 0.24806199499667206,
+      "distortion": 0.09053411159020804,
+      "cost": 0.300724428625023,
+      "objectiveNats": -0.6972331642671898,
+      "gapNats": 9.459888428153818e-11,
+      "iterations": 197,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 68,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5028794034082958,
+        0.49712059601868713,
+        5.730168961938401e-10
+      ],
+      "rateBits": 0.24806199499667206,
+      "distortion": 0.09053411159020804,
+      "cost": 0.300724428625023,
+      "objectiveNats": -0.6972331642671898,
+      "gapNats": 9.459888428153818e-11,
+      "iterations": 197,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 69,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9999999998936455,
+        3.665463539383734e-14,
+        1.063178995849607e-10
+      ],
+      "rateBits": 9.760070966373614e-11,
+      "distortion": 0.06511284856241761,
+      "cost": 0.45025885700347135,
+      "objectiveNats": -0.2819266396488308,
+      "gapNats": 6.981859534960222e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 42
+    },
+    {
+      "id": 69,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.9999999998936455,
+        3.66546353935769e-14,
+        1.0631789958417542e-10
+      ],
+      "rateBits": 9.760070966301525e-11,
+      "distortion": 0.06511284856241761,
+      "cost": 0.45025885700347135,
+      "objectiveNats": -0.2819266396488308,
+      "gapNats": 6.981859534960222e-11,
+      "iterations": 31,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 269
+    },
+    {
+      "id": 70,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.22664382281594475,
+        0.773356177095391,
+        8.866402214182847e-11
+      ],
+      "rateBits": 0.30784178639748777,
+      "distortion": 0.2652719981935995,
+      "cost": 1.4971358047304897,
+      "objectiveNats": -2.9041540071285366,
+      "gapNats": 9.694156588579972e-11,
+      "iterations": 104,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 70,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.22664382281594475,
+        0.773356177095391,
+        8.866402214182847e-11
+      ],
+      "rateBits": 0.30784178639748777,
+      "distortion": 0.2652719981935995,
+      "cost": 1.4971358047304897,
+      "objectiveNats": -2.9041540071285366,
+      "gapNats": 9.694156588579972e-11,
+      "iterations": 104,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 71,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5196571529004046,
+        1.714346374779369e-09,
+        0.48034284538524924
+      ],
+      "rateBits": 0.16202329558559345,
+      "distortion": 0.25346437029491486,
+      "cost": 1.5076978376874237,
+      "objectiveNats": -3.3615718950885056,
+      "gapNats": 9.64988089435792e-11,
+      "iterations": 425,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 71,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5196571529004046,
+        1.714346374779369e-09,
+        0.48034284538524924
+      ],
+      "rateBits": 0.16202329558559345,
+      "distortion": 0.25346437029491486,
+      "cost": 1.5076978376874237,
+      "objectiveNats": -3.3615718950885056,
+      "gapNats": 9.64988089435792e-11,
+      "iterations": 425,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 72,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.9734659864754078,
+        0.026534013340330835,
+        1.8426145827526735e-10
+      ],
+      "rateBits": 0.005866018647485264,
+      "distortion": 0.38325741557406107,
+      "cost": 0.7731344310925318,
+      "objectiveNats": -3.4667343647068183,
+      "gapNats": 8.19366796633858e-11,
+      "iterations": 42,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 1725
+    },
+    {
+      "id": 72,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.973465986476406,
+        0.026534013339332762,
+        1.8426145826659157e-10
+      ],
+      "rateBits": 0.0058660186472698295,
+      "distortion": 0.38325741557414467,
+      "cost": 0.7731344310913698,
+      "objectiveNats": -3.466734364707725,
+      "gapNats": 8.284350982989963e-11,
+      "iterations": 42,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 36115
+    },
+    {
+      "id": 73,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.5143185798040238,
+        0.48568141885192195,
+        1.3440541593153433e-09
+      ],
+      "rateBits": 0.4393190551840895,
+      "distortion": 0.1056510827669452,
+      "cost": 0.23116815960259604,
+      "objectiveNats": 0.08841623082945199,
+      "gapNats": 9.547812540589007e-11,
+      "iterations": 362,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 73,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.5143185798040238,
+        0.48568141885192195,
+        1.3440541593153433e-09
+      ],
+      "rateBits": 0.4393190551840895,
+      "distortion": 0.1056510827669452,
+      "cost": 0.23116815960259604,
+      "objectiveNats": 0.08841623082945199,
+      "gapNats": 9.547812540589007e-11,
+      "iterations": 362,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 74,
+      "strategy": "bisection",
+      "status": "converged",
+      "p": [
+        0.3175663750643605,
+        0.39551203338688895,
+        0.2869215915487507
+      ],
+      "rateBits": 0.18134602692087945,
+      "distortion": 0.32731916216420975,
+      "cost": 0.48567441952171275,
+      "objectiveNats": 0.010091109825032085,
+      "gapNats": 9.554888824592211e-11,
+      "iterations": 230,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    },
+    {
+      "id": 74,
+      "strategy": "projected-gradient",
+      "status": "converged",
+      "p": [
+        0.3175663750643605,
+        0.39551203338688895,
+        0.2869215915487507
+      ],
+      "rateBits": 0.18134602692087945,
+      "distortion": 0.32731916216420975,
+      "cost": 0.48567441952171275,
+      "objectiveNats": 0.010091109825032085,
+      "gapNats": 9.554888824592211e-11,
+      "iterations": 230,
+      "fallbackIterations": 0,
+      "totalInnerIterations": 0
+    }
+  ]
+}

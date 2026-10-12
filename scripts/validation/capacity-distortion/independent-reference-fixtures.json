@@ -1,0 +1,1294 @@
+{
+  "source": "https://arxiv.org/pdf/1805.05713v1",
+  "units": {
+    "rate": "bits/channel use",
+    "mu": "natural-log objective penalty"
+  },
+  "method": "Direct mutual-information objective and independent SciPy constrained optimizer; no BA code",
+  "binary_penalized": [
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.09999999999999999,
+      "distortion": 0.05,
+      "cost": 0.0,
+      "penalized_nats": 0.06931471805599453,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 0.0,
+      "analytic_p0": 0.5,
+      "analytic_p_error": 0.0,
+      "independent_scalar_p0": 0.49999999240344145,
+      "scalar_analytic_p_error": 7.596558548872423e-09
+    },
+    {
+      "p": [
+        0.43782349774305834,
+        0.5621765022569416
+      ],
+      "rate_bits": 0.09888163921563169,
+      "distortion": 0.04378234977430584,
+      "cost": 0.0,
+      "penalized_nats": 0.05759394198788437,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 0.25,
+      "analytic_p0": 0.43782349911420193,
+      "analytic_p_error": 1.371143587558521e-09,
+      "independent_scalar_p0": 0.4378234990934359,
+      "scalar_analytic_p_error": 2.0766055541798778e-11
+    },
+    {
+      "p": [
+        0.26894141606978395,
+        0.7310585839302159
+      ],
+      "rate_bits": 0.08399415303365837,
+      "distortion": 0.026894141606978395,
+      "cost": 0.0,
+      "penalized_nats": 0.03132616875182248,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 1.0,
+      "analytic_p0": 0.2689414213699951,
+      "analytic_p_error": 5.30021115885404e-09,
+      "independent_scalar_p0": 0.2689414253161496,
+      "scalar_analytic_p_error": 3.946154514267164e-09
+    },
+    {
+      "p": [
+        0.11920291586933797,
+        0.880797084130662
+      ],
+      "rate_bits": 0.0527065323249992,
+      "distortion": 0.011920291586933798,
+      "cost": 0.0,
+      "penalized_nats": 0.012692801104297217,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 2.0,
+      "analytic_p0": 0.11920292202211755,
+      "analytic_p_error": 6.15277957749516e-09,
+      "independent_scalar_p0": 0.11920292080243022,
+      "scalar_analytic_p_error": 1.21968732336164e-09
+    },
+    {
+      "p": [
+        0.000335342631389015,
+        0.999664657368611
+      ],
+      "rate_bits": 0.00043542663211668423,
+      "distortion": 3.35342631389015e-05,
+      "cost": 0.0,
+      "penalized_nats": 3.354063728118023e-05,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 8.0,
+      "analytic_p0": 0.0003353501304664781,
+      "analytic_p_error": 7.499077463114703e-09,
+      "independent_scalar_p0": 0.0003353501311332465,
+      "scalar_analytic_p_error": 6.667683983066497e-13
+    },
+    {
+      "p": [
+        5.551115123125783e-17,
+        1.0
+      ],
+      "rate_bits": 2.9976021664879233e-16,
+      "distortion": 5.551115123125783e-18,
+      "cost": 0.0,
+      "penalized_nats": 9.675564655163311e-17,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.1,
+      "mu": 20.0,
+      "analytic_p0": 2.0611536181902037e-09,
+      "analytic_p_error": 2.0611535626790525e-09,
+      "independent_scalar_p0": 2.060797156611909e-09,
+      "scalar_analytic_p_error": 3.564615782946632e-13
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.39999999999999997,
+      "distortion": 0.2,
+      "cost": 0.0,
+      "penalized_nats": 0.2772588722239781,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.0,
+      "analytic_p0": 0.5,
+      "analytic_p_error": 0.0,
+      "independent_scalar_p0": 0.49999999240344145,
+      "scalar_analytic_p_error": 7.596558548872423e-09
+    },
+    {
+      "p": [
+        0.4378235009844657,
+        0.5621764990155342
+      ],
+      "rate_bits": 0.39552655733016295,
+      "distortion": 0.1751294003937863,
+      "cost": 0.0,
+      "penalized_nats": 0.23037576795153744,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.25,
+      "analytic_p0": 0.43782349911420193,
+      "analytic_p_error": 1.870263777181691e-09,
+      "independent_scalar_p0": 0.4378234990934359,
+      "scalar_analytic_p_error": 2.0766055541798778e-11
+    },
+    {
+      "p": [
+        0.26894141918685494,
+        0.731058580813145
+      ],
+      "rate_bits": 0.33597661393342554,
+      "distortion": 0.10757656767474198,
+      "cost": 0.0,
+      "penalized_nats": 0.12530467500728915,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 1.0,
+      "analytic_p0": 0.2689414213699951,
+      "analytic_p_error": 2.183140168643405e-09,
+      "independent_scalar_p0": 0.2689414253161496,
+      "scalar_analytic_p_error": 3.946154514267164e-09
+    },
+    {
+      "p": [
+        0.11920291600003984,
+        0.8807970839999602
+      ],
+      "rate_bits": 0.21082612945084722,
+      "distortion": 0.047681166400015934,
+      "cost": 0.0,
+      "penalized_nats": 0.050771204417188937,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 2.0,
+      "analytic_p0": 0.11920292202211755,
+      "analytic_p_error": 6.022077711498319e-09,
+      "independent_scalar_p0": 0.11920292080243022,
+      "scalar_analytic_p_error": 1.21968732336164e-09
+    },
+    {
+      "p": [
+        0.00033534129712310207,
+        0.9996646587028769
+      ],
+      "rate_bits": 0.0017417003686438514,
+      "distortion": 0.00013413651884924084,
+      "cost": 0.0,
+      "penalized_nats": 0.00013416254911177618,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 8.0,
+      "analytic_p0": 0.0003353501304664781,
+      "analytic_p_error": 8.8333433760396e-09,
+      "independent_scalar_p0": 0.0003353501311332465,
+      "scalar_analytic_p_error": 6.667683983066497e-13
+    },
+    {
+      "p": [
+        1.4266365866433262e-13,
+        0.9999999999998573
+      ],
+      "rate_bits": 2.517515115260701e-12,
+      "distortion": 5.706546346573305e-14,
+      "cost": 0.0,
+      "penalized_nats": 6.036992348453396e-13,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 20.0,
+      "analytic_p0": 2.0611536181902037e-09,
+      "analytic_p_error": 2.0610109545315394e-09,
+      "independent_scalar_p0": 2.060797156611909e-09,
+      "scalar_analytic_p_error": 3.564615782946632e-13
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.5,
+      "distortion": 0.25,
+      "cost": 0.0,
+      "penalized_nats": 0.34657359027997264,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 0.0,
+      "analytic_p0": 0.5,
+      "analytic_p_error": 0.0,
+      "independent_scalar_p0": 0.49999999240344173,
+      "scalar_analytic_p_error": 7.596558271316667e-09
+    },
+    {
+      "p": [
+        0.4378234981598587,
+        0.5621765018401412
+      ],
+      "rate_bits": 0.4944081961533229,
+      "distortion": 0.21891174907992936,
+      "cost": 0.0,
+      "penalized_nats": 0.28796970993942184,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 0.25,
+      "analytic_p0": 0.43782349911420193,
+      "analytic_p_error": 9.543432155645348e-10,
+      "independent_scalar_p0": 0.43782349909351714,
+      "scalar_analytic_p_error": 2.0684787216396217e-11
+    },
+    {
+      "p": [
+        0.26894141785560155,
+        0.7310585821443986
+      ],
+      "rate_bits": 0.4199707664564855,
+      "distortion": 0.13447070892780078,
+      "cost": 0.0,
+      "penalized_nats": 0.1566308437591114,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 1.0,
+      "analytic_p0": 0.2689414213699951,
+      "analytic_p_error": 3.5143935539494464e-09,
+      "independent_scalar_p0": 0.26894142532362275,
+      "scalar_analytic_p_error": 3.953627647490521e-09
+    },
+    {
+      "p": [
+        0.11920291606058017,
+        0.8807970839394198
+      ],
+      "rate_bits": 0.26353266190090036,
+      "distortion": 0.059601458030290086,
+      "cost": 0.0,
+      "penalized_nats": 0.0634640055214862,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 2.0,
+      "analytic_p0": 0.11920292202211755,
+      "analytic_p_error": 5.9615373748656e-09,
+      "independent_scalar_p0": 0.11920292080614975,
+      "scalar_analytic_p_error": 1.2159677986733897e-09
+    },
+    {
+      "p": [
+        0.0003353412970857805,
+        0.9996646587029142
+      ],
+      "rate_bits": 0.0021771254605894705,
+      "distortion": 0.00016767064854289026,
+      "cost": 0.0,
+      "penalized_nats": 0.00016770318638974148,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 8.0,
+      "analytic_p0": 0.0003353501304664781,
+      "analytic_p_error": 8.833380697585193e-09,
+      "independent_scalar_p0": 0.00033535017020666934,
+      "scalar_analytic_p_error": 3.974019122674269e-11
+    },
+    {
+      "p": [
+        6.228351168147128e-14,
+        0.9999999999999377
+      ],
+      "rate_bits": 1.4111391420977834e-12,
+      "distortion": 3.114175584073564e-14,
+      "cost": 0.0,
+      "penalized_nats": 3.552920009081457e-13,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.5,
+      "mu": 20.0,
+      "analytic_p0": 2.0611536181902037e-09,
+      "analytic_p_error": 2.0610913346785223e-09,
+      "independent_scalar_p0": 2.060797156489172e-09,
+      "scalar_analytic_p_error": 3.564617010317225e-13
+    }
+  ],
+  "binary_active_cost_extension": [
+    {
+      "p": [
+        0.6999999999999997,
+        0.3000000000000002
+      ],
+      "rate_bits": 0.3525163596922772,
+      "distortion": 0.2799999999999999,
+      "cost": 0.3000000000000002,
+      "penalized_nats": 0.24434572082195746,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.0,
+      "B": 0.3,
+      "analytic_p0": 0.7,
+      "certificate": {
+        "lambda_nats": 0.338919144154881,
+        "upper_nats": 0.24434572082195738,
+        "lower_nats": 0.24434572082195746,
+        "gap_nats": -8.326672684688674e-17
+      }
+    },
+    {
+      "p": [
+        0.7000000000000001,
+        0.30000000000000004
+      ],
+      "rate_bits": 0.35251635969227707,
+      "distortion": 0.28,
+      "cost": 0.30000000000000004,
+      "penalized_nats": -0.03565427917804265,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 1.0,
+      "B": 0.3,
+      "analytic_p0": 0.7,
+      "certificate": {
+        "lambda_nats": 0.7389191441548815,
+        "upper_nats": -0.03565427917804265,
+        "lower_nats": -0.03565427917804265,
+        "gap_nats": 0.0
+      }
+    },
+    {
+      "p": [
+        0.699999999999983,
+        0.30000000000001703
+      ],
+      "rate_bits": 0.3525163596922854,
+      "distortion": 0.2799999999999932,
+      "cost": 0.30000000000001703,
+      "penalized_nats": -0.8756542791780096,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 4.0,
+      "B": 0.3,
+      "analytic_p0": 0.7,
+      "certificate": {
+        "lambda_nats": 1.9389191441548492,
+        "upper_nats": -0.8756542791780426,
+        "lower_nats": -0.8756542791780096,
+        "gap_nats": -3.297362383136715e-14
+      }
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.39999999999999997,
+      "distortion": 0.2,
+      "cost": 0.5,
+      "penalized_nats": 0.2772588722239781,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.0,
+      "B": 0.5,
+      "analytic_p0": 0.5,
+      "certificate": {
+        "lambda_nats": 0.0,
+        "upper_nats": 0.2772588722239781,
+        "lower_nats": 0.2772588722239781,
+        "gap_nats": 0.0
+      }
+    },
+    {
+      "p": [
+        0.4999999999999999,
+        0.5
+      ],
+      "rate_bits": 0.40000000000000024,
+      "distortion": 0.19999999999999996,
+      "cost": 0.5,
+      "penalized_nats": 0.07725887222397831,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 1.0,
+      "B": 0.5,
+      "analytic_p0": 0.5,
+      "certificate": {
+        "lambda_nats": 0.3999999999999999,
+        "upper_nats": 0.07725887222397826,
+        "lower_nats": 0.07725887222397831,
+        "gap_nats": -5.551115123125783e-17
+      }
+    },
+    {
+      "p": [
+        0.49999999999998807,
+        0.500000000000012
+      ],
+      "rate_bits": 0.4000000000000001,
+      "distortion": 0.19999999999999524,
+      "cost": 0.500000000000012,
+      "penalized_nats": -0.5227411277760028,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 4.0,
+      "B": 0.5,
+      "analytic_p0": 0.5,
+      "certificate": {
+        "lambda_nats": 1.599999999999981,
+        "upper_nats": -0.5227411277760219,
+        "lower_nats": -0.5227411277760028,
+        "gap_nats": -1.9095836023552692e-14
+      }
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.39999999999999997,
+      "distortion": 0.2,
+      "cost": 0.5,
+      "penalized_nats": 0.2772588722239781,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.0,
+      "B": 0.7,
+      "analytic_p0": 0.5,
+      "certificate": {
+        "lambda_nats": 0.0,
+        "upper_nats": 0.2772588722239781,
+        "lower_nats": 0.2772588722239781,
+        "gap_nats": 0.0
+      }
+    },
+    {
+      "p": [
+        0.30000000000000004,
+        0.7
+      ],
+      "rate_bits": 0.35251635969227707,
+      "distortion": 0.12000000000000002,
+      "cost": 0.7,
+      "penalized_nats": 0.12434572082195736,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 1.0,
+      "B": 0.7,
+      "analytic_p0": 0.30000000000000004,
+      "certificate": {
+        "lambda_nats": 0.0610808558451186,
+        "upper_nats": 0.12434572082195738,
+        "lower_nats": 0.12434572082195736,
+        "gap_nats": 2.7755575615628914e-17
+      }
+    },
+    {
+      "p": [
+        0.2999999999999864,
+        0.7000000000000137
+      ],
+      "rate_bits": 0.3525163596922704,
+      "distortion": 0.11999999999999456,
+      "cost": 0.7000000000000137,
+      "penalized_nats": -0.23565427917802545,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 4.0,
+      "B": 0.7,
+      "analytic_p0": 0.30000000000000004,
+      "certificate": {
+        "lambda_nats": 1.2610808558450928,
+        "upper_nats": -0.2356542791780427,
+        "lower_nats": -0.23565427917802545,
+        "gap_nats": -1.7263968032921184e-14
+      }
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.39999999999999997,
+      "distortion": 0.2,
+      "cost": 0.5,
+      "penalized_nats": 0.2772588722239781,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 0.0,
+      "B": 1.0,
+      "analytic_p0": 0.5,
+      "certificate": {
+        "lambda_nats": 0.0,
+        "upper_nats": 0.2772588722239781,
+        "lower_nats": 0.2772588722239781,
+        "gap_nats": 0.0
+      }
+    },
+    {
+      "p": [
+        0.26894141918685494,
+        0.731058580813145
+      ],
+      "rate_bits": 0.33597661393342554,
+      "distortion": 0.10757656767474198,
+      "cost": 0.731058580813145,
+      "penalized_nats": 0.12530467500728915,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 1.0,
+      "B": 1.0,
+      "analytic_p0": 0.2689414213699951,
+      "certificate": {
+        "lambda_nats": 0.0,
+        "upper_nats": 0.12530467825430136,
+        "lower_nats": 0.12530467500728915,
+        "gap_nats": 3.2470122146577296e-09
+      }
+    },
+    {
+      "p": [
+        0.0179861675145295,
+        0.9820138324854706
+      ],
+      "rate_bits": 0.05199161188427285,
+      "distortion": 0.0071944670058118,
+      "cost": 0.9820138324854706,
+      "penalized_nats": 0.007259971167103467,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "q": 0.4,
+      "mu": 4.0,
+      "B": 1.0,
+      "analytic_p0": 0.01798620996209156,
+      "certificate": {
+        "lambda_nats": 0.0,
+        "upper_nats": 0.0072609151706075625,
+        "lower_nats": 0.007259971167103467,
+        "gap_nats": 9.440035040955697e-07
+      }
+    }
+  ],
+  "fig2_budget_points": [
+    {
+      "p": [
+        1.129498705552215e-15,
+        0.9999999999999989
+      ],
+      "rate_bits": 2.3073992883886166e-14,
+      "distortion": 4.51799482220886e-16,
+      "cost": 0.0,
+      "penalized_nats": 1.5993673111725936e-14,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.0,
+      "analytic_rate_bits": 0.0,
+      "separation_rate_bits": 0.0
+    },
+    {
+      "p": [
+        0.06250000040515635,
+        0.9374999995948435
+      ],
+      "rate_bits": 0.1349160272799665,
+      "distortion": 0.025000000162062542,
+      "cost": 0.0,
+      "penalized_nats": 0.09351666392145744,
+      "success": false,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.025,
+      "analytic_rate_bits": 0.13491602664680555,
+      "separation_rate_bits": 0.025
+    },
+    {
+      "p": [
+        0.12500000000000003,
+        0.875
+      ],
+      "rate_bits": 0.2174257772798386,
+      "distortion": 0.05000000000000002,
+      "cost": 0.0,
+      "penalized_nats": 0.15070806450257473,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.05,
+      "analytic_rate_bits": 0.21742577727983858,
+      "separation_rate_bits": 0.05
+    },
+    {
+      "p": [
+        0.24999999999999997,
+        0.75
+      ],
+      "rate_bits": 0.32451124978365314,
+      "distortion": 0.09999999999999999,
+      "cost": 0.0,
+      "penalized_nats": 0.22493405784752335,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.1,
+      "analytic_rate_bits": 0.32451124978365314,
+      "separation_rate_bits": 0.1
+    },
+    {
+      "p": [
+        0.375,
+        0.6249999999999999
+      ],
+      "rate_bits": 0.38177360116998627,
+      "distortion": 0.15000000000000002,
+      "cost": 0.0,
+      "penalized_nats": 0.264625295263193,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.15,
+      "analytic_rate_bits": 0.381773601169986,
+      "separation_rate_bits": 0.15
+    },
+    {
+      "p": [
+        0.4999999991418869,
+        0.500000000858113
+      ],
+      "rate_bits": 0.4000000000000001,
+      "distortion": 0.19999999965675477,
+      "cost": 0.0,
+      "penalized_nats": 0.27725887222397816,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.2,
+      "analytic_rate_bits": 0.4,
+      "separation_rate_bits": 0.2
+    },
+    {
+      "p": [
+        0.5000000009700907,
+        0.4999999990299094
+      ],
+      "rate_bits": 0.4000000000000001,
+      "distortion": 0.20000000038803628,
+      "cost": 0.0,
+      "penalized_nats": 0.27725887222397816,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.3,
+      "analytic_rate_bits": 0.4,
+      "separation_rate_bits": 0.3
+    },
+    {
+      "p": [
+        0.5,
+        0.5
+      ],
+      "rate_bits": 0.39999999999999997,
+      "distortion": 0.2,
+      "cost": 0.0,
+      "penalized_nats": 0.2772588722239781,
+      "success": true,
+      "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+      "budget_D": 0.4,
+      "analytic_rate_bits": 0.4,
+      "separation_rate_bits": 0.4
+    }
+  ],
+  "asymmetric_ternary_extension": {
+    "ps": [
+      0.65,
+      0.35
+    ],
+    "wy_sxy": [
+      [
+        [
+          0.9,
+          0.1
+        ],
+        [
+          0.45,
+          0.55
+        ],
+        [
+          0.15,
+          0.85
+        ]
+      ],
+      [
+        [
+          0.7,
+          0.3
+        ],
+        [
+          0.2,
+          0.8
+        ],
+        [
+          0.05,
+          0.95
+        ]
+      ]
+    ],
+    "vz_sxz": [
+      [
+        [
+          0.6,
+          0.4
+        ],
+        [
+          0.8,
+          0.2
+        ],
+        [
+          0.95,
+          0.05
+        ]
+      ],
+      [
+        [
+          0.55,
+          0.45
+        ],
+        [
+          0.25,
+          0.75
+        ],
+        [
+          0.05,
+          0.95
+        ]
+      ]
+    ],
+    "joint_construction": "W_yz_given_xs=wy_sxy * vz_sxz (conditionally independent fixture)",
+    "loss_sh": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "cost_b": [
+      0,
+      1,
+      2
+    ],
+    "budget_B": 0.9,
+    "bayes_c": [
+      0.35,
+      0.2175,
+      0.05
+    ],
+    "estimator_xz": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "solutions": [
+      {
+        "p": [
+          0.5499999999999999,
+          0.0,
+          0.45
+        ],
+        "rate_bits": 0.4231635648858064,
+        "distortion": 0.21499999999999997,
+        "cost": 0.9,
+        "penalized_nats": 0.2933146319162922,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.0,
+        "certificate": {
+          "lambda_nats": 0.059112734270471146,
+          "upper_nats": 0.29331463191629226,
+          "lower_nats": 0.2933146319162922,
+          "gap_nats": 5.551115123125783e-17
+        }
+      },
+      {
+        "p": [
+          0.55,
+          0.0,
+          0.45
+        ],
+        "rate_bits": 0.4231635648858064,
+        "distortion": 0.215,
+        "cost": 0.9,
+        "penalized_nats": 0.1428146319162922,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.7,
+        "certificate": {
+          "lambda_nats": 0.16411273427047113,
+          "upper_nats": 0.14281463191629232,
+          "lower_nats": 0.1428146319162922,
+          "gap_nats": 1.1102230246251565e-16
+        }
+      },
+      {
+        "p": [
+          0.55,
+          0.0,
+          0.45
+        ],
+        "rate_bits": 0.4231635648858064,
+        "distortion": 0.215,
+        "cost": 0.9,
+        "penalized_nats": -0.5666853680837078,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 4.0,
+        "certificate": {
+          "lambda_nats": 0.659112734270471,
+          "upper_nats": -0.5666853680837076,
+          "lower_nats": -0.5666853680837078,
+          "gap_nats": 2.220446049250313e-16
+        }
+      },
+      {
+        "p": [
+          0.55,
+          0.0,
+          0.45
+        ],
+        "rate_bits": 0.4231635648858064,
+        "distortion": 0.215,
+        "cost": 0.9,
+        "penalized_nats": -2.286685368083708,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 12.0,
+        "certificate": {
+          "lambda_nats": 1.8591127342704707,
+          "upper_nats": -2.286685368083707,
+          "lower_nats": -2.286685368083708,
+          "gap_nats": 8.881784197001252e-16
+        }
+      }
+    ]
+  },
+  "three_output_extension": {
+    "ps": [
+      0.65,
+      0.35
+    ],
+    "wy_sxy": [
+      [
+        [
+          0.85,
+          0.1,
+          0.05
+        ],
+        [
+          0.15,
+          0.7,
+          0.15
+        ],
+        [
+          0.05,
+          0.1,
+          0.85
+        ]
+      ],
+      [
+        [
+          0.7,
+          0.25,
+          0.05
+        ],
+        [
+          0.05,
+          0.75,
+          0.2
+        ],
+        [
+          0.1,
+          0.15,
+          0.75
+        ]
+      ]
+    ],
+    "vz_sxz": [
+      [
+        [
+          0.6,
+          0.4
+        ],
+        [
+          0.8,
+          0.2
+        ],
+        [
+          0.95,
+          0.05
+        ]
+      ],
+      [
+        [
+          0.55,
+          0.45
+        ],
+        [
+          0.25,
+          0.75
+        ],
+        [
+          0.05,
+          0.95
+        ]
+      ]
+    ],
+    "loss_sh": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "cost_b": [
+      0,
+      1,
+      2
+    ],
+    "bayes_c": [
+      0.35,
+      0.2175,
+      0.05
+    ],
+    "solutions": [
+      {
+        "p": [
+          0.4328769342224575,
+          0.23424613155508503,
+          0.3328769342224575
+        ],
+        "rate_bits": 0.6423078718112164,
+        "distortion": 0.21909930730221397,
+        "cost": 0.9,
+        "penalized_nats": 0.44521389039740344,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.0,
+        "B": 0.9,
+        "certificate": {
+          "lambda_nats": 0.06794550423810813,
+          "upper_nats": 0.4452138903974034,
+          "lower_nats": 0.44521389039740344,
+          "gap_nats": -5.551115123125783e-17
+        }
+      },
+      {
+        "p": [
+          0.4363226052337702,
+          0.22735478953245958,
+          0.3363226052337702
+        ],
+        "rate_bits": 0.6422470785777207,
+        "distortion": 0.21897870881681805,
+        "cost": 0.9,
+        "penalized_nats": 0.29188665556723603,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.7,
+        "B": 0.9,
+        "certificate": {
+          "lambda_nats": 0.17264142841185676,
+          "upper_nats": 0.2918866555672361,
+          "lower_nats": 0.29188665556723603,
+          "gap_nats": 5.551115123125783e-17
+        }
+      },
+      {
+        "p": [
+          0.45209244802471105,
+          0.1958151039505781,
+          0.35209244802471096
+        ],
+        "rate_bits": 0.6403867593836029,
+        "distortion": 0.21842676431913516,
+        "cost": 0.9,
+        "penalized_nats": -0.42982478054187623,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 4.0,
+        "B": 0.9,
+        "certificate": {
+          "lambda_nats": 0.6662266775642969,
+          "upper_nats": -0.429824780541876,
+          "lower_nats": -0.42982478054187623,
+          "gap_nats": 2.220446049250313e-16
+        }
+      },
+      {
+        "p": [
+          0.48696541794191484,
+          0.12606916411617033,
+          0.3869654179419148
+        ],
+        "rate_bits": 0.6264619758602898,
+        "distortion": 0.21720621037203297,
+        "cost": 0.8999999999999999,
+        "penalized_nats": -2.1722441721688233,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 12.0,
+        "B": 0.9,
+        "certificate": {
+          "lambda_nats": 1.8629372848837926,
+          "upper_nats": -2.1722441721688224,
+          "lower_nats": -2.1722441721688233,
+          "gap_nats": 8.881784197001252e-16
+        }
+      },
+      {
+        "p": [
+          0.38864989627721463,
+          0.2350952099568943,
+          0.37625489376589105
+        ],
+        "rate_bits": 0.6465933801920745,
+        "distortion": 0.20597341655094417,
+        "cost": 0.9876049974886765,
+        "penalized_nats": 0.44818437844886116,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.0,
+        "B": 1.6,
+        "certificate": {
+          "lambda_nats": 0.0,
+          "upper_nats": 0.44818437844886116,
+          "lower_nats": 0.44818437844886116,
+          "gap_nats": 0.0
+        }
+      },
+      {
+        "p": [
+          0.3254838415185367,
+          0.22445167111529207,
+          0.4500644873661712
+        ],
+        "rate_bits": 0.6361017175161018,
+        "distortion": 0.18524080736737245,
+        "cost": 1.1245806458476344,
+        "penalized_nats": 0.311243546888464,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.7,
+        "B": 1.6,
+        "certificate": {
+          "lambda_nats": 4.51174161919532e-09,
+          "upper_nats": 0.3112435508316539,
+          "lower_nats": 0.311243546888464,
+          "gap_nats": 3.943189885724507e-09
+        }
+      },
+      {
+        "p": [
+          0.13101176135351483,
+          0.13797647729297036,
+          0.7310117613535149
+        ],
+        "rate_bits": 0.43026312831301716,
+        "distortion": 0.11241458835262699,
+        "cost": 1.6,
+        "penalized_nats": -0.15142267912143814,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 4.0,
+        "B": 1.6,
+        "certificate": {
+          "lambda_nats": 0.10908233856670757,
+          "upper_nats": -0.15142267912143814,
+          "lower_nats": -0.15142267912143814,
+          "gap_nats": 0.0
+        }
+      },
+      {
+        "p": [
+          0.15844637194337108,
+          0.0831072561132579,
+          0.7584463719433711
+        ],
+        "rate_bits": 0.41928273678614103,
+        "distortion": 0.11145437698198203,
+        "cost": 1.6,
+        "penalized_nats": -1.046827876923013,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 12.0,
+        "B": 1.6,
+        "certificate": {
+          "lambda_nats": 1.333339340975249,
+          "upper_nats": -1.0468278769230128,
+          "lower_nats": -1.046827876923013,
+          "gap_nats": 2.220446049250313e-16
+        }
+      },
+      {
+        "p": [
+          0.38864989627721475,
+          0.23509520995689423,
+          0.37625489376589105
+        ],
+        "rate_bits": 0.6465933801920742,
+        "distortion": 0.2059734165509442,
+        "cost": 0.9876049974886764,
+        "penalized_nats": 0.44818437844886105,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.0,
+        "B": 2.0,
+        "certificate": {
+          "lambda_nats": 0.0,
+          "upper_nats": 0.4481843784488611,
+          "lower_nats": 0.44818437844886105,
+          "gap_nats": 5.551115123125783e-17
+        }
+      },
+      {
+        "p": [
+          0.3254838415185367,
+          0.22445167111529207,
+          0.4500644873661712
+        ],
+        "rate_bits": 0.6361017175161018,
+        "distortion": 0.18524080736737245,
+        "cost": 1.1245806458476344,
+        "penalized_nats": 0.311243546888464,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 0.7,
+        "B": 2.0,
+        "certificate": {
+          "lambda_nats": 0.0,
+          "upper_nats": 0.31124355263635056,
+          "lower_nats": 0.311243546888464,
+          "gap_nats": 5.747886555607096e-09
+        }
+      },
+      {
+        "p": [
+          0.08839145093380149,
+          0.11426900518405483,
+          0.7973395438821438
+        ],
+        "rate_bits": 0.3423080125812865,
+        "distortion": 0.09565749364846964,
+        "cost": 1.7089480929483425,
+        "penalized_nats": -0.14536014079008153,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 4.0,
+        "B": 2.0,
+        "certificate": {
+          "lambda_nats": 0.0,
+          "upper_nats": -0.14536014079008153,
+          "lower_nats": -0.14536014079008153,
+          "gap_nats": 0.0
+        }
+      },
+      {
+        "p": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "rate_bits": 0.0,
+        "distortion": 0.05,
+        "cost": 2.0,
+        "penalized_nats": -0.6000000000000001,
+        "success": true,
+        "optimizer": "SLSQP multiple starts; generic positive channels refined by independent KKT root solve",
+        "mu": 12.0,
+        "B": 2.0,
+        "certificate": {
+          "lambda_nats": 0.0,
+          "upper_nats": -0.6000000000000001,
+          "lower_nats": -0.6000000000000001,
+          "gap_nats": 0.0
+        }
+      }
+    ]
+  },
+  "gaussian_separate_gate": {
+    "power_linear": 10.0,
+    "paper_reported_gaussian_capacity_bits": 1.213,
+    "literal_model_gaussian_capacity_bits": 1.252699474402693,
+    "adaptive_quadrature_reported_error": 4.765971219742413e-13,
+    "gaussian_input_distortion": 0.31325218028522156,
+    "minimum_distortion": 0.09090909090909091,
+    "paper_reported_2pam_capacity_bits": 0.733,
+    "two_pam_gauss_hermite_convergence": [
+      {
+        "nodes_per_axis": 40,
+        "rate_bits": 0.7362807216568243
+      },
+      {
+        "nodes_per_axis": 80,
+        "rate_bits": 0.7322840953588822
+      },
+      {
+        "nodes_per_axis": 160,
+        "rate_bits": 0.7318398529795871
+      },
+      {
+        "nodes_per_axis": 320,
+        "rate_bits": 0.7317990528419893
+      },
+      {
+        "nodes_per_axis": 640,
+        "rate_bits": 0.7317964864898738
+      },
+      {
+        "nodes_per_axis": 1280,
+        "rate_bits": 0.731796390762186
+      }
+    ],
+    "two_pam_independent_nested_adaptive_quadrature": {
+      "rate_bits": 0.7317963889329944,
+      "outer_reported_error": 8.539019331888113e-12,
+      "inner_absolute_tolerance": 2e-11,
+      "normal_integration_limit": 12,
+      "note": "Independent of Gauss-Hermite refinement; standard-normal tails truncated at 12 sigma"
+    }
+  }
+}
