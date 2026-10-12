@@ -2,6 +2,7 @@
 // Reverse only this reviewed selection and its three generator hooks. Historical
 // hashes still cover every other field and byte; no baseline is refreshed here.
 const a=require('node:assert/strict');
+const {withoutPilotContinuation}=require('./pilot-continuation-preservation.cjs');
 const {withoutNetworkProgression}=require('./network-context-preservation.cjs');
 const progression={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
 const progressions=[progression,
@@ -277,6 +278,9 @@ const buildLinkValidationHooks={
  ],
 };
 function withoutBuildLinkValidation(file,source){
+ // Remove the exact pilot-only shell addition before reversing deferred hooks.
+ // No other file receives this normalization; all historical digests stay fixed.
+ if(file==='scripts/generate-site.cjs')source=withoutPilotContinuation(source);
  const hooks=buildLinkValidationHooks[file];if(!hooks)return source;
  let previous=-1;
  for(const [index,{after}]of hooks.entries()){

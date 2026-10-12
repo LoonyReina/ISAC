@@ -40,7 +40,20 @@ if(page.prerequisites.length)text+=`<p class="site-prereq">需要时回看：${p
 if(page.case){const c=caseFor(page.case);text+=`<nav class="site-topic-nav" aria-label="本主题学习路线">${link(unitFor(c.unit).href,'① 预测与实验')}${link(c.paper,'② 原文与证据')}${link(c.next,'③ 边界与下一问')}${link(notebookHref(c.unit),'④ 记录一次研究')}</nav>`;}
 if(page.path==='theory.html')text+='<nav class="site-topic-nav" aria-label="理论桥梁目录"><a href="#pathway">任务与先修</a><a href="#shared-model">共同观测</a><a href="#crb-mechanism">标量 CRB</a><a href="#estimator-crb">实际估计器</a><a href="#rate-crb-bridge">速率桥梁</a><a href="reading.html#case-crb">原文与证据</a></nav>';
 return text+'</div>';}
-function next(page){const c=page.case&&caseFor(page.case),href=page.next==='practice.html#notebook'&&c?notebookHref(c.unit):page.next;return `<aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p>${link(href,page.nextLabel+' →')}</aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · ${link('index.html','学习地图')} · ${link('reading.html#reading','原文与证据')}</footer>`;}
+function pilotReadingContinuation(page){
+ if(page.path!=='pilot-design.html')return '';
+ const one=(items,label)=>{if(items.length!==1)throw new Error('Invalid pilot reading continuation: '+label);return items[0];};
+ const selection=one(registry.knowledgeMap.progressions.filter(p=>p.nodeId==='known-pilots'),'selection');
+ if(selection.unitId!=='pilot')throw new Error('Invalid pilot reading continuation: unit');
+ const node=one(registry.knowledgeMap.nodes.filter(n=>n.id===selection.nodeId),'node'),unit=one(registry.units.filter(u=>u.id===selection.unitId),'unit');
+ const guide=one(researchGuides.filter(g=>g.id===selection.guideId),'guide'),newer=one(researchGuides.filter(g=>g.id===selection.nextGuideId),'next guide');
+ if(!node.unitRefs.includes(unit.id)||unit.href!==page.path+'#experiment'||!guide.prerequisites.some(p=>p.href===unit.href))throw new Error('Invalid pilot reading continuation: existing prerequisite');
+ const relation=one((newer.contextTrail?.links||[]).filter(e=>e.guideId===guide.id),'source relationship');
+ if(relation.relationType!=='problem-link')throw new Error('Invalid pilot reading continuation: problem link');
+ const guideHref=learningEntries.unitEntry({href:'reading.html#guide-'+guide.id}),newerHref=learningEntries.unitEntry({href:'reading.html#guide-'+newer.id});
+ return `<p>沿刚才的问题继续</p><h3>刚才的导频值是已知的；如果参考符号本身出错呢？</h3>${link(guideHref,esc(guide.title)+' →')}<div class="small">本页把所选导频值视为可靠已知；接下来的导读改问：解调得到的参考符号若有误，怎样避免把错误残差解释成目标？这是前置机制与原文的阅读关联，不表示本页实现了论文算法。</div><p>继续对读：${link(newerHref,esc(newer.title))}</p><div class="small"><strong>本站按问题关联（非引用关系）：</strong>${esc(relation.verificationNote)}</div><div class="small"><strong>尚待检验的下一问：</strong>${esc(newer.nextQuestion)}</div>`;
+}
+function next(page){const c=page.case&&caseFor(page.case),href=page.next==='practice.html#notebook'&&c?notebookHref(c.unit):page.next;const continuation=pilotReadingContinuation(page);return `<aside class="site-next" aria-label="下一步">${continuation||'<p>完成当前问题之后</p>'}${continuation?'<p>也可先记录这次观察：'+link(href,esc(page.nextLabel)+' →')+'</p>':link(href,page.nextLabel+' →')}</aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · ${link('index.html','学习地图')} · ${link('reading.html#reading','原文与证据')}</footer>`;}
 function region(key,html){return `<!-- SITE:${key}:START -->\n${html}\n<!-- SITE:${key}:END -->`;}
 function updateRegion(html,key,value){const re=new RegExp(`<!-- SITE:${key}:START -->[\\s\\S]*?<!-- SITE:${key}:END -->`);if(!re.test(html))throw new Error(`Missing ${key} marker`);return html.replace(re,region(key,value));}
 function document(page,body,{scripts='',styles='',legacy=false}={}){return `<!doctype html>
