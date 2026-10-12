@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "/workspace/shared/isac-paper-execution/joint-beamforming-browser-prototype/results/js-benchmark/trial-00-gamma-12-sdr.json",
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.2-prototype",
+          "method": "sdr",
+          "status": "converged",
+          "objective": 0.31369914326415105,
+          "primalInf": 2.1282154597651592e-10,
+          "stationarityInf": 6.779095063080831e-10,
+          "minimumCovarianceEigenvalue": -5.001930529922204e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.3136991384036523,
+            "reportedLowerBound": 0.313699138402709,
+            "dualConeMaxEigenvalues": [
+              -1.000165008139558e-12,
+              -1.0002023235959133e-12,
+              -1.0004301443993478e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 4.860498725722806e-09
+          },
+          "sinrLinear": [
+            18.54275328126619,
+            16.858648025943932
+          ],
+          "relativeSinrShortfall": 0.0,
+          "factorCovarianceFro": 5.060096267578864e-10,
+          "factorDiagonalMaxError": 1.430827678561286e-10,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior."
+    },
+    {
+      "file": "/workspace/shared/isac-paper-execution/joint-beamforming-browser-prototype/results/js-benchmark/infeasible-trial-06-zf.json",
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.2-prototype",
+          "method": "zf",
+          "status": "infeasible_certificate",
+          "objective": 1.4845557569145715,
+          "primalInf": 0.0005241522857735575,
+          "stationarityInf": 2.368832100252405e-06,
+          "minimumCovarianceEigenvalue": -0.0006958377858953913,
+          "optimizationCertificate": {
+            "independentLowerBound": 2.1808156244059997,
+            "reportedLowerBound": 2.1808156244058474,
+            "dualConeMaxEigenvalues": [
+              -6.009124306017018e-10
+            ],
+            "dualLowerInequalityMax": -26.095228500503037,
+            "independentApproximatePrimalGap": -0.6962598674914282
+          },
+          "infeasibilityCertificate": {
+            "independentLowerBound": 0.0007637341143821889,
+            "reportedLowerBound": 0.0007637341142658634,
+            "dualConeMaxEigenvalues": [
+              -9.998929916427285e-13
+            ],
+            "dualLowerInequalityMax": -0.0425588406399058,
+            "positiveSeparator": true
+          },
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior."
+    },
+    {
+      "file": "/workspace/shared/isac-paper-execution/joint-beamforming-browser-prototype/results/js-radar/m10.json",
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior."
+    }
+  ]
+}

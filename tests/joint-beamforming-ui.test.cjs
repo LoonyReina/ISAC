@@ -1,6 +1,8 @@
 // Dependency-free DOM execution. This does not certify a real browser, layout, or keyboard.
-const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),C=require('../joint-beamforming-core.js');
-const html=fs.readFileSync(require.resolve('../joint-beamforming.html'),'utf8'),script=fs.readFileSync(require.resolve('../joint-beamforming.js'),'utf8'),css=fs.readFileSync(require.resolve('../joint-beamforming.css'),'utf8');
+const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),C=require(require('node:fs').existsSync(require('node:path').resolve(__dirname,'../joint-beamforming-core.js'))?'../joint-beamforming-core.js':'../labs/joint-beamforming/joint-beamforming-core.js');
+const path=require('node:path'),root=path.resolve(__dirname,'..'),loc=(flat,source)=>fs.existsSync(path.join(root,flat))?path.join(root,flat):path.join(root,source);
+const html=fs.readFileSync(loc('joint-beamforming.html','content/pages/joint-beamforming.html'),'utf8'),script=fs.readFileSync(loc('joint-beamforming.js','labs/joint-beamforming/joint-beamforming.js'),'utf8'),css=fs.readFileSync(loc('joint-beamforming.css','labs/joint-beamforming/joint-beamforming.css'),'utf8');
+const analytic=html.slice(html.indexOf('<section class="chapter" id="analytic-intuition">'),html.indexOf('<section class="chapter" id="paper">'));
 function setup(width=600){class E{constructor(){this.children=[];this.attrs={};this.events={};this.clientWidth=width;this.value='';this.textContent='';}setAttribute(k,v){this.attrs[k]=String(v);}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}addEventListener(t,f){this.events[t]=f;}fire(t){a.ok(this.events[t]);this.events[t]({target:this});}}
  const els={},events={};for(const [,id]of html.matchAll(/\bid="([^"]+)"/g))els[id]=new E();for(const [id,value]of [['jb-recipe','A'],['jb-eta','0.8'],['jb-noise','0.01'],['jb-qos','12']])els[id].value=value;
  vm.runInNewContext(script,{window:{JointBeamformingCore:C,addEventListener:(t,f)=>events[t]=f},document:{getElementById:id=>{a.ok(els[id],id);return els[id];},createElement:()=>new E(),createElementNS:()=>new E()}});return {els,events};}
@@ -36,7 +38,7 @@ test('controls, plots, live status and static fallback have accessible labels wi
  a.match(html,/id="jb-status" role="status" aria-live="polite"/);a.match(html,/<noscript>/);a.match(html,/type="button" id="jb-reset"/);a.match(html,/id="jb-eta"[^>]*min="0" max="1" step="0.01"/);a.ok(!/setInterval|requestAnimationFrame|Math.random|fetch\(/.test(script));
 });
 test('the physical signal flow and plot-reading guide precede the first model equation',()=>{
- const model=html.match(/<section class="chapter" id="model">([\s\S]*?)<\/section>/)[1];
+ const model=html.match(/<section class="chapter" id="analytic-model">([\s\S]*?)<\/section>/)[1];
  const intro=model.match(/<div class="jb-model-intro">([\s\S]*?)<\/div>/);
  a.ok(intro);a.ok(model.indexOf(intro[0])<model.indexOf('<div class="equation">'));
  a.match(intro[1],/用户数据和雷达符号先进入发射机/);a.match(intro[1],/预编码给每根天线分配复数权重/);a.match(intro[1],/八根天线把这些信号叠加发出/);
@@ -45,7 +47,7 @@ test('the physical signal flow and plot-reading guide precede the first model eq
  a.doesNotMatch(intro[1],/<(?:svg|canvas|script|input|select)\b/);
 });
 test('six symbol definitions use a closed native disclosure with scoped visible focus styles',()=>{
- const model=html.match(/<section class="chapter" id="model">([\s\S]*?)<\/section>/)[1];
+ const model=html.match(/<section class="chapter" id="analytic-model">([\s\S]*?)<\/section>/)[1];
  const glossary=model.match(/<details([^>]*\bclass="jb-glossary"[^>]*)>([\s\S]*?)<\/details>/);
  a.ok(glossary);a.doesNotMatch(glossary[1],/\b(?:open|hidden|role|tabindex)\b/);
  a.match(glossary[2],/^\s*<summary>读公式前：这几个符号在做什么<\/summary>/);
@@ -64,7 +66,7 @@ test('six symbol definitions use a closed native disclosure with scoped visible 
  a.match(html,/href="joint-beamforming\.css\?v=signal-flow-v1"/);
 });
 test('explanatory additions preserve scientific equations, section anchors, controls and computed-output targets',()=>{
- const equations=Array.from(html.matchAll(/<div class="equation">([\s\S]*?)<\/div>/g),m=>m[1]);
+ const equations=Array.from(analytic.matchAll(/<div class="equation">([\s\S]*?)<\/div>/g),m=>m[1]);
  a.deepEqual(equations,[
   'x[n]=Wc c[n]+Wr s[n]；R=E[xxᴴ]=WcWcᴴ+WrWrᴴ<br>E[ccᴴ]=I，E[ssᴴ]=I，E[scᴴ]=0；Rₘₘ=Pₜ/M=1/8',
   'y(θ)=a(θ)ᴴx；aₘ(θ)=exp(iπm sinθ)，m=0,…,7<br>P(θ)=aᴴRa；Pc(θ₁,θ₂)=E[y(θ₁)* y(θ₂)]=a(θ₂)ᴴRa(θ₁)',
@@ -73,11 +75,11 @@ test('explanatory additions preserve scientific equations, section anchors, cont
   'A：Wc=[(u₋−i u₊)/√3，u₀/√3]，Wr=0<br>B：Wc=[u₋/√3，u₀/√3]，Wr=[u₊/√3，0,…,0]<br>C：Wc=[h/√3，u₀/√3]，Wr=[q/√3，0,…,0]',
   'A：γ₁=(√η+√(1−η))²/(3σ²)<br>B：γ₁=η/(1−η+3σ²)<br>C：γ₁=1/(3σ²)；三者 γ₂=1/(3σ²)'
  ]);
- a.deepEqual(Array.from(html.matchAll(/\bid="([^"]+)"/g),m=>m[1]),['site-main','intuition','model','experiment','jb-recipe','jb-eta-value','jb-eta','jb-noise','jb-qos','jb-reset','jb-status','jb-story',...charts,'jb-metrics','jb-invariants','jb-bound','jb-matrices','solution','paper','limits','reproduce']);
+ a.deepEqual(Array.from(analytic.matchAll(/\bid="([^"]+)"/g),m=>m[1]),['analytic-intuition','analytic-model','analytic-experiment','jb-recipe','jb-eta-value','jb-eta','jb-noise','jb-qos','jb-reset','jb-status','jb-story',...charts,'jb-metrics','jb-invariants','jb-bound','jb-matrices','analytic-solution','analytic-paper','analytic-limits','analytic-reproduce']);
  for(const id of charts)a.match(html,new RegExp(`<svg id="${id}"[^>]*><\\/svg>`));
  a.match(html,/<tbody id="jb-metrics"><\/tbody>/);a.match(html,/<pre id="jb-matrices"><\/pre>/);
  a.match(html,/<select id="jb-recipe"><option value="A">/);a.match(html,/id="jb-eta"[^>]*value="0\.8"/);
  a.match(html,/<select id="jb-noise">[^]*?<option value="0\.01" selected>/);a.match(html,/<select id="jb-qos">[^]*?<option value="12" selected>/);
- a.deepEqual(Array.from(html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),m=>m[1]),['joint-beamforming-core.js','joint-beamforming.js']);
- a.match(html,/三者都不是数值优化器输出/);a.match(html,/本站不运行 SDR/);a.match(html,/没有实现算法2或原文最优 ZF/);
+ a.deepEqual(Array.from(html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),m=>m[1]).slice(0,2),['joint-beamforming-core.js','joint-beamforming.js']);
+ a.match(html,/三者都不是数值优化器输出/);a.match(html,/本先修例不运行 SDR/);a.match(html,/本先修例没有实现算法2或原文最优 ZF/);
 });

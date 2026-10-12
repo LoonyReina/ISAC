@@ -1,0 +1,8282 @@
+{
+  "scope": "Original M10/K2 selected-experiment slice, 32 paired trials, original grid/objective; full paper not reproduced",
+  "primary_attempt_count": 704,
+  "primary_counts": {
+    "sdr": {
+      "accepted": 244,
+      "numerical_rejection": 104,
+      "solver_infeasible": 4
+    },
+    "zf": {
+      "accepted": 347,
+      "solver_infeasible": 5
+    }
+  },
+  "refinement_attempt_count": 135,
+  "final_counts": {
+    "sdr": {
+      "accepted": 347,
+      "solver_infeasible": 4,
+      "phase_one_infeasible": 1
+    },
+    "zf": {
+      "accepted": 347,
+      "solver_infeasible": 5
+    }
+  },
+  "summary_by_gamma": [
+    {
+      "gamma_db": 4,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3136991550299971,
+            "mc_standard_error": 2.043059920901969e-09,
+            "bootstrap95": [
+              0.31369915050282743,
+              0.3136991581404161
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 2.787643270728114e-14,
+            "mc_standard_error": 5.670055922154494e-15,
+            "bootstrap95": [
+              2.056666024371694e-14,
+              4.0744574619689295e-14
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 4.801826809315312,
+            "mc_standard_error": 0.06228554818657515,
+            "bootstrap95": [
+              4.679544951988641,
+              4.9248513550719535
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 4.115786908702665,
+            "mc_standard_error": 0.03354216229200358,
+            "bootstrap95": [
+              4.056655982686748,
+              4.1842365878736185
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 15.759561412454724,
+            "mc_standard_error": 1.213910243476483,
+            "bootstrap95": [
+              13.430243312532264,
+              18.162210781919754
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3164822931246323,
+            "mc_standard_error": 0.0006537992434694738,
+            "bootstrap95": [
+              0.31533456133460824,
+              0.3178927809729543
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009262545833007441,
+            "mc_standard_error": 0.0003393213868207253,
+            "bootstrap95": [
+              0.0004165764672141138,
+              0.0016885335213845587
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.192157153683517,
+            "mc_standard_error": 0.45245102524854613,
+            "bootstrap95": [
+              16.29311717121708,
+              18.055338392875985
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.496180307519424,
+            "mc_standard_error": 0.22475415271416083,
+            "bootstrap95": [
+              12.055084086253466,
+              12.919140991701726
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.870990125914434e-30,
+            "mc_standard_error": 3.8540143163547584e-31,
+            "bootstrap95": [
+              3.1815186111122375e-30,
+              4.666772864333394e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0027831380946351514,
+        "mc_standard_error": 0.0006537989873355015,
+        "bootstrap95": [
+          0.001657770523936864,
+          0.004159239542206994
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0009262545832728676,
+        "mc_standard_error": 0.00033932138682130476,
+        "bootstrap95": [
+          0.0004207933261127522,
+          0.001707405353558875
+        ]
+      }
+    },
+    {
+      "gamma_db": 6,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31369914946405664,
+            "mc_standard_error": 2.699070244371333e-09,
+            "bootstrap95": [
+              0.3136991439481267,
+              0.3136991540087024
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 3.10183129068217e-14,
+            "mc_standard_error": 6.308418488411799e-15,
+            "bootstrap95": [
+              2.1975490153521965e-14,
+              4.549124961636744e-14
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 6.909527689499188,
+            "mc_standard_error": 0.10545089797727814,
+            "bootstrap95": [
+              6.710479409144168,
+              7.107655616099342
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 5.312788135615232,
+            "mc_standard_error": 0.0637008882991875,
+            "bootstrap95": [
+              5.1904508212180644,
+              5.440335766941821
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 8.497955542249809,
+            "mc_standard_error": 0.8190138278733368,
+            "bootstrap95": [
+              6.978603491495226,
+              10.151398870059653
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31648229088068514,
+            "mc_standard_error": 0.000653799107981284,
+            "bootstrap95": [
+              0.31536624059457236,
+              0.31788418253815864
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009262540848921839,
+            "mc_standard_error": 0.0003393213256912547,
+            "bootstrap95": [
+              0.0004222910009304279,
+              0.0016861450170850732
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.19215271127012,
+            "mc_standard_error": 0.4524517766196816,
+            "bootstrap95": [
+              16.29530116326179,
+              18.049758501163694
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.49619020003824,
+            "mc_standard_error": 0.22475359319598387,
+            "bootstrap95": [
+              12.054029408277216,
+              12.934049127667205
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 4.1594782477392685e-30,
+            "mc_standard_error": 6.018950660478699e-31,
+            "bootstrap95": [
+              3.1138447377183133e-30,
+              5.416394768496075e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0027831414166285106,
+        "mc_standard_error": 0.0006537987932369945,
+        "bootstrap95": [
+          0.001672307397607644,
+          0.0042099776969398775
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0009262540848611657,
+        "mc_standard_error": 0.0003393213256918497,
+        "bootstrap95": [
+          0.0004151855814947771,
+          0.001659816469895707
+        ]
+      }
+    },
+    {
+      "gamma_db": 8,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3137004142782424,
+            "mc_standard_error": 1.2676254306042052e-06,
+            "bootstrap95": [
+              0.3136991414519839,
+              0.31370295293242195
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 1.1183512652100702e-07,
+            "mc_standard_error": 1.1182691446813697e-07,
+            "bootstrap95": [
+              4.7818127462597654e-14,
+              3.354973679517393e-07
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 8.84634346545733,
+            "mc_standard_error": 0.15063192892178945,
+            "bootstrap95": [
+              8.571462147826642,
+              9.160019965577362
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 6.472252724563486,
+            "mc_standard_error": 0.11013707983495638,
+            "bootstrap95": [
+              6.276531504955797,
+              6.697885507135482
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.8148147804953796,
+            "mc_standard_error": 0.5077603128282389,
+            "bootstrap95": [
+              2.8761400786893168,
+              4.844290118861091
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31648229361625335,
+            "mc_standard_error": 0.0006537995793764428,
+            "bootstrap95": [
+              0.3153615616696692,
+              0.3178231396175851
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009262495518514796,
+            "mc_standard_error": 0.0003393175068204461,
+            "bootstrap95": [
+              0.00041724731656640925,
+              0.001715440093078422
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.192148631784736,
+            "mc_standard_error": 0.45245248398489435,
+            "bootstrap95": [
+              16.295221373822557,
+              18.047352764346396
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.49617661671854,
+            "mc_standard_error": 0.22475456831703294,
+            "bootstrap95": [
+              12.06040049234871,
+              12.923599482153648
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.475965158041162e-30,
+            "mc_standard_error": 5.256760043837794e-31,
+            "bootstrap95": [
+              2.558674135115872e-30,
+              4.5637884175152616e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0027818793380109032,
+        "mc_standard_error": 0.0006533605117571469,
+        "bootstrap95": [
+          0.0016602693958537394,
+          0.004156504525763614
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0009261377167249585,
+        "mc_standard_error": 0.0003392916939264111,
+        "bootstrap95": [
+          0.0004335999521349972,
+          0.0017083097648555715
+        ]
+      }
+    },
+    {
+      "gamma_db": 10,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3137435594839455,
+            "mc_standard_error": 2.408419322005639e-05,
+            "bootstrap95": [
+              0.313707097151936,
+              0.3137979418425765
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 6.131077046231734e-06,
+            "mc_standard_error": 2.895266302225775e-06,
+            "bootstrap95": [
+              1.2544158019981481e-06,
+              1.222579119616212e-05
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 10.617637143342591,
+            "mc_standard_error": 0.14299427963749176,
+            "bootstrap95": [
+              10.366987194887836,
+              10.910009754216608
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 7.466088227291429,
+            "mc_standard_error": 0.11641455432411482,
+            "bootstrap95": [
+              7.256584178007149,
+              7.701944070116997
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 1.388576970517812,
+            "mc_standard_error": 0.29484497000880266,
+            "bootstrap95": [
+              0.8477364801158306,
+              1.9868722050476195
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3164822926451917,
+            "mc_standard_error": 0.0006538001014558412,
+            "bootstrap95": [
+              0.3153657134211744,
+              0.3179451566278134
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009262527149830153,
+            "mc_standard_error": 0.0003393178674100716,
+            "bootstrap95": [
+              0.00041790949336562835,
+              0.001693840852749224
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.192157608587436,
+            "mc_standard_error": 0.45245045644958126,
+            "bootstrap95": [
+              16.263884612915692,
+              18.033935643160437
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.496192683578165,
+            "mc_standard_error": 0.22475315662741657,
+            "bootstrap95": [
+              12.044773850423947,
+              12.918078275581905
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.788961073697746e-30,
+            "mc_standard_error": 6.361978975082378e-31,
+            "bootstrap95": [
+              2.676079229958541e-30,
+              5.1223105030146206e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.00273873316124614,
+        "mc_standard_error": 0.0006405341269606666,
+        "bootstrap95": [
+          0.0016378104333849902,
+          0.0041013050527437065
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0009201216379367836,
+        "mc_standard_error": 0.0003375764787324245,
+        "bootstrap95": [
+          0.00040727391227842364,
+          0.0016618403918198335
+        ]
+      }
+    },
+    {
+      "gamma_db": 12,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3139036503176591,
+            "mc_standard_error": 7.71075655524607e-05,
+            "bootstrap95": [
+              0.31377194278966,
+              0.31406793746077016
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 3.52832596912262e-05,
+            "mc_standard_error": 1.507907188267367e-05,
+            "bootstrap95": [
+              1.075887920200416e-05,
+              6.766462563193106e-05
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 12.332519147515603,
+            "mc_standard_error": 0.11303778377261321,
+            "bootstrap95": [
+              12.140185505203924,
+              12.57078485323722
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 8.449015533447307,
+            "mc_standard_error": 0.08766246814906628,
+            "bootstrap95": [
+              8.29072372636163,
+              8.627035365051528
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 0.552183266913621,
+            "mc_standard_error": 0.150010535026438,
+            "bootstrap95": [
+              0.29009641874853365,
+              0.8690660025408479
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31648711273009844,
+            "mc_standard_error": 0.0006536597767209944,
+            "bootstrap95": [
+              0.3153780168467503,
+              0.3178840854477966
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009249687704427609,
+            "mc_standard_error": 0.0003393284883816336,
+            "bootstrap95": [
+              0.00040954445608015327,
+              0.0016913917829415029
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.246328098036827,
+            "mc_standard_error": 0.42829409833827603,
+            "bootstrap95": [
+              16.431526944459186,
+              18.054317337044335
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.508612813204927,
+            "mc_standard_error": 0.22141783788411165,
+            "bootstrap95": [
+              12.065644215874254,
+              12.921141846516202
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.667115549119719e-30,
+            "mc_standard_error": 4.2366347338034035e-31,
+            "bootstrap95": [
+              2.9135287426269007e-30,
+              4.54109843880882e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.002583462412439364,
+        "mc_standard_error": 0.000595236508641847,
+        "bootstrap95": [
+          0.0015653067185810695,
+          0.003887997501530278
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0008896855107515348,
+        "mc_standard_error": 0.0003262124318154504,
+        "bootstrap95": [
+          0.00040326779954557803,
+          0.0016353745690039034
+        ]
+      }
+    },
+    {
+      "gamma_db": 14,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31422437812720233,
+            "mc_standard_error": 0.00015792192914618354,
+            "bootstrap95": [
+              0.3139504734381683,
+              0.31454956563771164
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.00011031352807925666,
+            "mc_standard_error": 4.472582166658146e-05,
+            "bootstrap95": [
+              3.7866063231889796e-05,
+              0.00020654944209295924
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 14.057174423044273,
+            "mc_standard_error": 0.03342461734717246,
+            "bootstrap95": [
+              14.00890232359297,
+              14.133536709026671
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 9.479769374424452,
+            "mc_standard_error": 0.0253271947103215,
+            "bootstrap95": [
+              9.437222642774092,
+              9.534274905268518
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 0.17530829245465335,
+            "mc_standard_error": 0.05869738468492747,
+            "bootstrap95": [
+              0.07424139572327187,
+              0.30526685340338344
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3165151117708351,
+            "mc_standard_error": 0.0006531072250484826,
+            "bootstrap95": [
+              0.3153991258949602,
+              0.3179161060993357
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009341283457172422,
+            "mc_standard_error": 0.0003393051207076138,
+            "bootstrap95": [
+              0.00040796554459517434,
+              0.0017158807006898919
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.35737024889645,
+            "mc_standard_error": 0.39232080595872515,
+            "bootstrap95": [
+              16.611213330459336,
+              18.125861041389296
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.534579450298654,
+            "mc_standard_error": 0.21499626923885373,
+            "bootstrap95": [
+              12.108450835471963,
+              12.951549015350663
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 4.1593228289193765e-30,
+            "mc_standard_error": 6.502537069392949e-31,
+            "bootstrap95": [
+              3.03607646759511e-30,
+              5.4942062513239775e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0022907336436327596,
+        "mc_standard_error": 0.0005178228375159186,
+        "bootstrap95": [
+          0.0014088768989737508,
+          0.0033564932973388214
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0008238148176379854,
+        "mc_standard_error": 0.0002983155150725478,
+        "bootstrap95": [
+          0.0003661582498093477,
+          0.0014661703040457822
+        ]
+      }
+    },
+    {
+      "gamma_db": 16,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31475612339000314,
+            "mc_standard_error": 0.0002702177388659929,
+            "bootstrap95": [
+              0.3142873880553517,
+              0.3153070872299524
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0002661328266783976,
+            "mc_standard_error": 9.903780341344564e-05,
+            "bootstrap95": [
+              0.00010576497657382433,
+              0.0004835451002337079
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 16.00776223970203,
+            "mc_standard_error": 0.007416161870938782,
+            "bootstrap95": [
+              15.999990411247945,
+              16.02294212085919
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 10.71084326278525,
+            "mc_standard_error": 0.006467424533700032,
+            "bootstrap95": [
+              10.701748772947507,
+              10.725487576107646
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 0.03346990769473675,
+            "mc_standard_error": 0.02665710624213112,
+            "bootstrap95": [
+              0.00017498798537093912,
+              0.09119842653009856
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3166293343517399,
+            "mc_standard_error": 0.0006546492193160386,
+            "bootstrap95": [
+              0.31548919759982685,
+              0.31798315215216166
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0009817805454657629,
+            "mc_standard_error": 0.00034110893952579924,
+            "bootstrap95": [
+              0.00046570686643520297,
+              0.001725784258047749
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.775917467662183,
+            "mc_standard_error": 0.29787962601660245,
+            "bootstrap95": [
+              17.216367401629533,
+              18.36203381719484
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.646172095785719,
+            "mc_standard_error": 0.18909228678138854,
+            "bootstrap95": [
+              12.277592514010802,
+              13.009474970372434
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 4.212045827890013e-30,
+            "mc_standard_error": 6.919278710776851e-31,
+            "bootstrap95": [
+              3.0232718296041304e-30,
+              5.669126304360778e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0018732109617367234,
+        "mc_standard_error": 0.0004170811815966406,
+        "bootstrap95": [
+          0.001136831810191653,
+          0.0027466478113437184
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0007156477187873652,
+        "mc_standard_error": 0.00025198851471142233,
+        "bootstrap95": [
+          0.000326831332547507,
+          0.001274196518117509
+        ]
+      }
+    },
+    {
+      "gamma_db": 18,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.31617677084107143,
+            "mc_standard_error": 0.0004930236017924559,
+            "bootstrap95": [
+              0.31529321593324244,
+              0.31716750160194285
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0007174848529073569,
+            "mc_standard_error": 0.0002184041535452839,
+            "bootstrap95": [
+              0.0003472226767546182,
+              0.0011627637017149709
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 17.999987310952008,
+            "mc_standard_error": 3.7216482220720917e-06,
+            "bootstrap95": [
+              17.99997967585197,
+              17.99999400498022
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.005842157270092,
+            "mc_standard_error": 0.0015344153818621711,
+            "bootstrap95": [
+              12.004305241520164,
+              12.008912614299316
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 0.0023630550885953075,
+            "mc_standard_error": 0.0023471556951371606,
+            "bootstrap95": [
+              9.287089087982577e-06,
+              0.007062213710314487
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.3175255811890655,
+            "mc_standard_error": 0.0006921241988695402,
+            "bootstrap95": [
+              0.31627357083618823,
+              0.31899687902170654
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.0012846334212430538,
+            "mc_standard_error": 0.00036757160319262364,
+            "bootstrap95": [
+              0.0006774134299832528,
+              0.0020952668567328606
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 18.603614113897798,
+            "mc_standard_error": 0.17996246161865395,
+            "bootstrap95": [
+              18.29183274087822,
+              18.994391728759354
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 12.937576102976891,
+            "mc_standard_error": 0.14054256500463713,
+            "bootstrap95": [
+              12.666281404561856,
+              13.216591196701351
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 3.591689442805542e-30,
+            "mc_standard_error": 4.2373660437322726e-31,
+            "bootstrap95": [
+              2.832313770722639e-30,
+              4.446788091362246e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0013488103479940353,
+        "mc_standard_error": 0.0002987149532525315,
+        "bootstrap95": [
+          0.000832121624542275,
+          0.001990194307700447
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0005671485683356969,
+        "mc_standard_error": 0.00018965476185883273,
+        "bootstrap95": [
+          0.00026954625667228175,
+          0.0009939606622750548
+        ]
+      }
+    },
+    {
+      "gamma_db": 20,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.32243785720594054,
+            "mc_standard_error": 0.0018934859781730403,
+            "bootstrap95": [
+              0.31916439838613286,
+              0.3264204796689229
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.003843968718102373,
+            "mc_standard_error": 0.001094590767578406,
+            "bootstrap95": [
+              0.0018963407832424855,
+              0.006146178418329596
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 19.999979389731642,
+            "mc_standard_error": 4.84336125087985e-06,
+            "bootstrap95": [
+              19.999969590824136,
+              19.999988339428548
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 13.316415150280278,
+            "mc_standard_error": 1.668666746130061e-06,
+            "bootstrap95": [
+              13.31641179509883,
+              13.316418151818416
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 8.869079924836168e-06,
+            "mc_standard_error": 4.88787516915311e-06,
+            "bootstrap95": [
+              2.4455037685329208e-06,
+              1.964096244357499e-05
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.32328905614905096,
+            "mc_standard_error": 0.0019099174860838012,
+            "bootstrap95": [
+              0.31996090625138845,
+              0.3271204807131967
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.004293569097141093,
+            "mc_standard_error": 0.0011157561012970442,
+            "bootstrap95": [
+              0.0022629907017833466,
+              0.006566178840752795
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 20.109672197275636,
+            "mc_standard_error": 0.07628878014874681,
+            "bootstrap95": [
+              20.000000328377233,
+              20.27432946525684
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 13.597193709281427,
+            "mc_standard_error": 0.07815146658384019,
+            "bootstrap95": [
+              13.453966178407324,
+              13.762474988243014
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 4.387088652635989e-30,
+            "mc_standard_error": 5.549005086869299e-31,
+            "bootstrap95": [
+              3.3703680737653204e-30,
+              5.523475268343185e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.0008511989431104622,
+        "mc_standard_error": 0.00019221717688523945,
+        "bootstrap95": [
+          0.0005134743684835392,
+          0.0012394293430308353
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.00044960037903872036,
+        "mc_standard_error": 0.00012869851669777762,
+        "bootstrap95": [
+          0.00023736867463808287,
+          0.0007219322561070913
+        ]
+      }
+    },
+    {
+      "gamma_db": 22,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.36629975725014585,
+            "mc_standard_error": 0.014506336908884853,
+            "bootstrap95": [
+              0.3408516150495638,
+              0.3955982308433476
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.046835458021904364,
+            "mc_standard_error": 0.01626944485586203,
+            "bootstrap95": [
+              0.01888156161826849,
+              0.08193942668395
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 21.999985037949727,
+            "mc_standard_error": 2.714102677108047e-06,
+            "bootstrap95": [
+              21.999979637830737,
+              21.999990180450077
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 14.634625458926301,
+            "mc_standard_error": 1.3295452703031694e-06,
+            "bootstrap95": [
+              14.634622724286762,
+              14.634627883785916
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 1.827390961550435e-06,
+            "mc_standard_error": 6.93721530461412e-07,
+            "bootstrap95": [
+              6.196127923393534e-07,
+              3.3157476258609515e-06
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "accepted": 32
+          },
+          "accepted_fraction": 1.0,
+          "accepted_fraction_wilson95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "paired_objective": {
+            "n": 32,
+            "mean": 0.36706335472125834,
+            "mc_standard_error": 0.014622601064316725,
+            "bootstrap95": [
+              0.3423721200272043,
+              0.3972229978455669
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 32,
+            "mean": 0.04747600231620844,
+            "mc_standard_error": 0.01637801144010978,
+            "bootstrap95": [
+              0.019691274437946448,
+              0.08137685491455661
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 32,
+            "mean": 22.000000318323377,
+            "mc_standard_error": 1.2609536892056e-07,
+            "bootstrap95": [
+              22.00000010198328,
+              22.000000581876286
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 32,
+            "mean": 14.6637207744458,
+            "mc_standard_error": 0.01589755099901078,
+            "bootstrap95": [
+              14.636120991858954,
+              14.69654834088302
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 32,
+            "mean": 5.390068380026058e-30,
+            "mc_standard_error": 6.87083175132339e-31,
+            "bootstrap95": [
+              4.1347066935618306e-30,
+              6.776469746592292e-30
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 32,
+      "paired_zf_minus_sdr_objective": {
+        "n": 32,
+        "mean": 0.000763597471112527,
+        "mc_standard_error": 0.00016627078760609904,
+        "bootstrap95": [
+          0.0004806627988541524,
+          0.0011243541917024752
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 32,
+        "mean": 0.0006405442943040717,
+        "mc_standard_error": 0.00015754253860913244,
+        "bootstrap95": [
+          0.00037321881194404914,
+          0.0009782021395586449
+        ]
+      }
+    },
+    {
+      "gamma_db": 24,
+      "methods": {
+        "sdr": {
+          "status_counts": {
+            "solver_infeasible": 4,
+            "accepted": 27,
+            "phase_one_infeasible": 1
+          },
+          "accepted_fraction": 0.84375,
+          "accepted_fraction_wilson95": [
+            0.682458504024696,
+            0.9313557971749429
+          ],
+          "paired_objective": {
+            "n": 27,
+            "mean": 0.4723488609223986,
+            "mc_standard_error": 0.028026789982584323,
+            "bootstrap95": [
+              0.42123661477750446,
+              0.5285972079424248
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 27,
+            "mean": 0.1622003048705745,
+            "mc_standard_error": 0.031393297265997544,
+            "bootstrap95": [
+              0.10543461126197533,
+              0.22532219383821186
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 27,
+            "mean": 23.99998379783797,
+            "mc_standard_error": 3.860559798340344e-06,
+            "bootstrap95": [
+              23.99997585746596,
+              23.999990524182273
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 27,
+            "mean": 15.95671185439772,
+            "mc_standard_error": 1.617428786540296e-06,
+            "bootstrap95": [
+              15.956708610226919,
+              15.956714657388533
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 27,
+            "mean": 1.6101401445682623e-06,
+            "mc_standard_error": 7.418627421923713e-07,
+            "bootstrap95": [
+              4.1077709890545444e-07,
+              3.2402200201360798e-06
+            ]
+          }
+        },
+        "zf": {
+          "status_counts": {
+            "solver_infeasible": 5,
+            "accepted": 27
+          },
+          "accepted_fraction": 0.84375,
+          "accepted_fraction_wilson95": [
+            0.682458504024696,
+            0.9313557971749429
+          ],
+          "paired_objective": {
+            "n": 27,
+            "mean": 0.4735386017601926,
+            "mc_standard_error": 0.028277521740695446,
+            "bootstrap95": [
+              0.4217733481259355,
+              0.531251451382145
+            ]
+          },
+          "paired_eq46_mse": {
+            "n": 27,
+            "mean": 0.16343223564528783,
+            "mc_standard_error": 0.031637060117557785,
+            "bootstrap95": [
+              0.10633090584312513,
+              0.22645654008873178
+            ]
+          },
+          "paired_min_sinr_db": {
+            "n": 27,
+            "mean": 24.00000004866963,
+            "mc_standard_error": 4.553273560555875e-08,
+            "bootstrap95": [
+              23.99999999821191,
+              24.00000014306451
+            ]
+          },
+          "paired_sum_rate": {
+            "n": 27,
+            "mean": 15.956719048254383,
+            "mc_standard_error": 4.5639279602822094e-08,
+            "bootstrap95": [
+              15.956718998834862,
+              15.956719141845483
+            ]
+          },
+          "paired_radar_interference_to_noise": {
+            "n": 27,
+            "mean": 8.72941018124352e-30,
+            "mc_standard_error": 1.0547828035259024e-30,
+            "bootstrap95": [
+              6.799762410424559e-30,
+              1.0836909085002838e-29
+            ]
+          }
+        }
+      },
+      "paired_accepted_trials": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_accepted_count": 27,
+      "paired_zf_minus_sdr_objective": {
+        "n": 27,
+        "mean": 0.0011897408377939235,
+        "mc_standard_error": 0.00032988276638146587,
+        "bootstrap95": [
+          0.0006248576371977224,
+          0.001884399194115668
+        ]
+      },
+      "paired_zf_minus_sdr_eq46_mse": {
+        "n": 27,
+        "mean": 0.0012319307747133124,
+        "mc_standard_error": 0.0003282105327748078,
+        "bootstrap95": [
+          0.0006648823123107972,
+          0.0019138389184736738
+        ]
+      }
+    }
+  ],
+  "accepted_residual_extrema": {
+    "direct_objective_abs_error": 5.10702591327572e-15,
+    "diagonal_max_error": 2.1192879480491644e-07,
+    "minimum_covariance_eigenvalue": -1.7398827280443503e-06,
+    "factor_covariance_fro": 1.7471429849680098e-06,
+    "factor_diagonal_max_error": 4.851803145078382e-07,
+    "relative_recovered_sinr_shortfall": 1.9989552346053025e-05,
+    "stationarity_max": 0.0001897668972616937,
+    "dual_min_psd_eigenvalue": -6.785231062869148e-07,
+    "complementarity_max_abs": 7.821723104103083e-06,
+    "zf_max_radar_power": 3.8599550574691885e-31,
+    "zf_max_interuser_power": 6.686040610048849e-12
+  },
+  "ordering_checks": {
+    "maximum_objective_monotonicity_drop": 1.2708856683696368e-07,
+    "maximum_sdr_minus_zf_objective": -9.346374514385136e-06,
+    "ordering_tolerance": 5e-05,
+    "monotonicity_violations": [],
+    "dominance_violations": []
+  },
+  "primary_timings": {
+    "sdr": {
+      "n": 352,
+      "median_seconds": 0.26287866399798077,
+      "p95_seconds": 4.673540737699293,
+      "worst_seconds": 27.59017400999801,
+      "total_seconds": 453.20628242195744
+    },
+    "zf": {
+      "n": 352,
+      "median_seconds": 0.03399026250008319,
+      "p95_seconds": 0.11149313384921697,
+      "worst_seconds": 0.2757620929987752,
+      "total_seconds": 15.421414563021244
+    }
+  },
+  "refinement_timings": {
+    "n": 135,
+    "median_seconds": 1.1367461560002994,
+    "p95_seconds": 4.501717212700167,
+    "worst_seconds": 46.785540488999686,
+    "total_seconds": 236.97299392399873
+  },
+  "bootstrap": {
+    "resamples": 5000,
+    "seed": 2026101299,
+    "interval": "percentile 95%, conditional on paired accepted channels at each Gamma",
+    "caveat": "Finite sample of 32; denominators vary at infeasible/failed thresholds. Intervals do not remove selection bias or reproduce 1000-trial source curves."
+  },
+  "selection_records": [
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 0,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 1,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 2,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 3,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 4,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 5,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "phase_one_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "solver_error",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 6,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 7,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 8,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 9,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 10,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 11,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 12,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 13,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 14,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 15,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 16,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 17,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 18,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 19,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 20,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 21,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 22,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "solver_infeasible",
+      "selected_refinement_attempt": 2,
+      "status": "infeasible",
+      "gate_failures": [
+        "no_solution"
+      ]
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 23,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 24,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 25,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 26,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 27,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 28,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 29,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 2,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 30,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "sdr",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": 1,
+      "status": "optimal_inaccurate",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 4,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 6,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 8,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 10,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 12,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 14,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 16,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 18,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 20,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 22,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    },
+    {
+      "trial": 31,
+      "kind": "zf",
+      "gamma_db": 24,
+      "state": "accepted",
+      "selected_refinement_attempt": null,
+      "status": "optimal",
+      "gate_failures": []
+    }
+  ]
+}

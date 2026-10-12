@@ -1,0 +1,663 @@
+[
+  {
+    "name": "valid_radar",
+    "expected_pass": true,
+    "actual_pass": true,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "valid_sdr",
+    "expected_pass": true,
+    "actual_pass": true,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "sdr",
+          "status": "converged",
+          "objective": 0.31369914326415105,
+          "primalInf": 2.1282154597651592e-10,
+          "stationarityInf": 6.779095063080831e-10,
+          "minimumCovarianceEigenvalue": -5.001930529922204e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.3136991384036523,
+            "reportedLowerBound": 0.313699138402709,
+            "dualConeMaxEigenvalues": [
+              -1.000165008139558e-12,
+              -1.0002023235959133e-12,
+              -1.0004301443993478e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 4.860498725722806e-09
+          },
+          "sinrLinear": [
+            18.54275328126619,
+            16.858648025943932
+          ],
+          "relativeSinrShortfall": 0.0,
+          "factorCovarianceFro": 5.060096267578864e-10,
+          "factorDiagonalMaxError": 1.430827678561286e-10,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "valid_zf",
+    "expected_pass": true,
+    "actual_pass": true,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": true,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "zf",
+          "status": "converged",
+          "objective": 0.31381560290123267,
+          "primalInf": 1.9950252561073967e-10,
+          "stationarityInf": 8.856460074861683e-10,
+          "minimumCovarianceEigenvalue": -1.6243677203604037e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.3138156010057872,
+            "reportedLowerBound": 0.3138156010047824,
+            "dualConeMaxEigenvalues": [
+              -1.0004645039503013e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.89544546724818e-09
+          },
+          "sinrLinear": [
+            39.902881545014985,
+            32.1624049169605
+          ],
+          "relativeSinrShortfall": 0.0,
+          "factorCovarianceFro": 1.7611442002875005e-10,
+          "factorDiagonalMaxError": 5.816219728060901e-11,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "mixed_envelope_silently_skips_missing_H",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$.results[0]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        },
+        {
+          "location": "$.results[1]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: 'H'"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "trusts_unvalidated_loose_tolerance",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: setting tolerance bound"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "broadcasts_mismatched_matrix_shapes",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "issues": [
+            "Incomplete/invalid exported evidence: Real/imaginary shape mismatch"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "accepts_w_with_wrong_projection_but_same_ATdual",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": "Changed w by A-transpose nullspace vector; z no longer equals projection_C(w).",
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: cone-projection state mismatch"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "accepts_non_ZF_rotated_communication_factors",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": {
+      "HWc_offdiag_max": 0.031571205324584226,
+      "min_sinr_db": 14.72702259861282
+    },
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "zf",
+          "status": "converged",
+          "objective": 0.31381560290123267,
+          "primalInf": 1.9950252561073967e-10,
+          "stationarityInf": 8.856460074861683e-10,
+          "minimumCovarianceEigenvalue": -1.6243677203604037e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.3138156010057872,
+            "reportedLowerBound": 0.3138156010047824,
+            "dualConeMaxEigenvalues": [
+              -1.0004645039503013e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.89544546724818e-09
+          },
+          "issues": [
+            "Incomplete/invalid exported evidence: Eq42 diagonal/positive-phase recovery"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "accepts_nonPSD_SDR_remainder_and_forged_cone_state",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": {
+      "remainder_min_eigenvalue": -0.986695872929826
+    },
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "sdr",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: cone-projection state mismatch"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "valid_result_wrapper_with_method_status",
+    "expected_pass": true,
+    "actual_pass": true,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": true,
+      "records": [
+        {
+          "location": "$.methods[0].result",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "sdr",
+          "status": "converged",
+          "objective": 0.31369914326415105,
+          "primalInf": 2.1282154597651592e-10,
+          "stationarityInf": 6.779095063080831e-10,
+          "minimumCovarianceEigenvalue": -5.001930529922204e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.3136991384036523,
+            "reportedLowerBound": 0.313699138402709,
+            "dualConeMaxEigenvalues": [
+              -1.000165008139558e-12,
+              -1.0002023235959133e-12,
+              -1.0004301443993478e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 4.860498725722806e-09
+          },
+          "sinrLinear": [
+            18.54275328126619,
+            16.858648025943932
+          ],
+          "relativeSinrShortfall": 0.0,
+          "factorCovarianceFro": 5.060096267578864e-10,
+          "factorDiagonalMaxError": 1.430827678561286e-10,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "mixed_attempted_missing_result",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$.results[0]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        },
+        {
+          "location": "$.other.result",
+          "version": null,
+          "method": null,
+          "status": null,
+          "issues": [
+            "Incomplete/invalid exported evidence: 'M'"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "mixed_attempted_scalar_result",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$.results[0]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        },
+        {
+          "location": "$.other.result",
+          "version": null,
+          "method": null,
+          "status": null,
+          "issues": [
+            "Incomplete/invalid exported evidence: 'M'"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "mixed_attempted_list_result",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$.results[0]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        },
+        {
+          "location": "$.other.result",
+          "version": null,
+          "method": null,
+          "status": null,
+          "issues": [
+            "Incomplete/invalid exported evidence: 'M'"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "valid_with_unattempted_null_slot",
+    "expected_pass": true,
+    "actual_pass": true,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": true,
+      "records": [
+        {
+          "location": "$.results[0]",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "extra_operator_penalty_component",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "issues": [
+            "Incomplete/invalid exported evidence: optimizationCertificate invalid operator penalty vector"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "radar_invented_effective_communication_matrix",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "issues": [
+            "Incomplete/invalid exported evidence: radar channel products must be empty"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "raw_result_hidden_by_unattempted_wrapper_flags",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$.valid",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "objective": 0.3136991433685702,
+          "primalInf": 5.301615240566049e-10,
+          "stationarityInf": 5.30161477219071e-10,
+          "minimumCovarianceEigenvalue": -3.2001409318100957e-10,
+          "optimizationCertificate": {
+            "independentLowerBound": 0.31369914213498606,
+            "reportedLowerBound": 0.3136991421348492,
+            "dualConeMaxEigenvalues": [
+              -1.000123679807805e-12
+            ],
+            "dualLowerInequalityMax": 0.0,
+            "independentApproximatePrimalGap": 1.2335841237387513e-09
+          },
+          "factorCovarianceFro": 4.1153873874021207e-10,
+          "factorDiagonalMaxError": 8.042158605725547e-11,
+          "issues": [],
+          "passed": true
+        },
+        {
+          "location": "$.hidden",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: 'H'"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  },
+  {
+    "name": "oversized_dimension_fails_before_setup",
+    "expected_pass": false,
+    "actual_pass": false,
+    "caught_as_expected": true,
+    "detail": null,
+    "audit": {
+      "passed": false,
+      "records": [
+        {
+          "location": "$",
+          "version": "joint-covariance-drs-v0.3-prototype",
+          "method": "radar",
+          "status": "converged",
+          "issues": [
+            "Incomplete/invalid exported evidence: unsupported dimensions/method"
+          ],
+          "passed": false
+        }
+      ],
+      "notice": "passed means evidence-consistency audit passed, not optimizer convergence; capped/cancelled outcomes retain their unsuccessful state. Audits supplied numerical result evidence, not actual browser interaction, code delivery identity, envelope provenance or UI stale-state behavior. Missing attempted numerical results fail; unattempted null slots are not treated as solved."
+    }
+  }
+]

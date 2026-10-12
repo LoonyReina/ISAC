@@ -1,0 +1,491 @@
+{
+  "passed": true,
+  "fixtureCount": 67,
+  "mutationCount": 21,
+  "checks": [
+    {
+      "file": "results/js-benchmark/infeasible-trial-00-sdr.json",
+      "passed": true,
+      "status": "iteration_limit"
+    },
+    {
+      "file": "results/js-benchmark/infeasible-trial-00-zf.json",
+      "passed": true,
+      "status": "infeasible_certificate"
+    },
+    {
+      "file": "results/js-benchmark/infeasible-trial-06-sdr.json",
+      "passed": true,
+      "status": "iteration_limit"
+    },
+    {
+      "file": "results/js-benchmark/infeasible-trial-06-zf.json",
+      "passed": true,
+      "status": "infeasible_certificate"
+    },
+    {
+      "file": "results/js-benchmark/one-iteration-limit.json",
+      "passed": true,
+      "status": "iteration_limit"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m4-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m4-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m5-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m5-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m6-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m6-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m7-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m7-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m8-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m8-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m9-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/reduced-m9-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-12-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-12-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-18-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-18-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-22-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-22-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-4-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-00-gamma-4-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-12-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-12-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-18-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-18-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-22-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-22-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-4-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-02-gamma-4-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-12-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-12-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-18-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-18-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-22-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-22-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-4-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-06-gamma-4-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-12-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-12-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-18-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-18-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-22-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-22-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-4-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/trial-31-gamma-4-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/unaccelerated-default.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-benchmark/zero-channel-sdr.json",
+      "passed": true,
+      "status": "infeasible_bound"
+    },
+    {
+      "file": "results/js-extra/identical-real-users-sdr.json",
+      "passed": true,
+      "status": "infeasible_certificate"
+    },
+    {
+      "file": "results/js-extra/identical-real-users-zf.json",
+      "passed": true,
+      "status": "infeasible_certificate"
+    },
+    {
+      "file": "results/js-extra/orthogonal-coordinate-users-sdr.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-extra/orthogonal-coordinate-users-zf.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m10.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m4.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m5.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m6.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m7.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m8.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/m9.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-radar/zero-H-Gamma24.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-ui-budgets/trial-00-gamma-12-sdr-1000.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-ui-budgets/trial-00-gamma-12-zf-1000.json",
+      "passed": true,
+      "status": "converged"
+    },
+    {
+      "file": "results/js-ui-budgets/trial-31-gamma-22-sdr-1000.json",
+      "passed": true,
+      "status": "iteration_limit"
+    },
+    {
+      "file": "results/js-ui-budgets/trial-31-gamma-22-zf-1000.json",
+      "passed": true,
+      "status": "converged"
+    }
+  ],
+  "mutations": [
+    {
+      "name": "objective altered",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: reported objective"
+      ]
+    },
+    {
+      "name": "H changed without rerun",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: reported primal residual"
+      ]
+    },
+    {
+      "name": "user SINR fabricated",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: reported user 0 sinr"
+      ]
+    },
+    {
+      "name": "factor altered",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: reported factor covariance error"
+      ]
+    },
+    {
+      "name": "final x altered",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: R/finalState mismatch"
+      ]
+    },
+    {
+      "name": "final z altered",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: cone-projection state mismatch"
+      ]
+    },
+    {
+      "name": "final state removed",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: 'finalState'"
+      ]
+    },
+    {
+      "name": "gate removed",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: 'physicalGate'"
+      ]
+    },
+    {
+      "name": "false gate",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: missing/false accepted physical gate"
+      ]
+    },
+    {
+      "name": "lower bound overstated",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: optimizationCertificate lower bound overstated"
+      ]
+    },
+    {
+      "name": "dual sign/values altered",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: optimizationCertificate dual cone sign"
+      ]
+    },
+    {
+      "name": "certificate removed",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: missing infeasibility certificate"
+      ]
+    },
+    {
+      "name": "invalid certificate asserted",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: invalid numerical infeasibility claim"
+      ]
+    },
+    {
+      "name": "radar SINR invented",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: radar reports invented communication metrics"
+      ]
+    },
+    {
+      "name": "radar communications flag wrong",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: wrong communication flag"
+      ]
+    },
+    {
+      "name": "radar communications flag missing",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: missing communication flag"
+      ]
+    },
+    {
+      "name": "oversized M immediately rejected",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: unsupported dimensions/method"
+      ]
+    },
+    {
+      "name": "loose tolerance rejected",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: setting tolerance bound"
+      ]
+    },
+    {
+      "name": "empty Wc shapes disagree",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: Real/imaginary shape mismatch"
+      ]
+    },
+    {
+      "name": "extra operator penalty",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: optimizationCertificate invalid operator penalty vector"
+      ]
+    },
+    {
+      "name": "radar invented Fc",
+      "rejected": true,
+      "issues": [
+        "Incomplete/invalid exported evidence: radar channel products must be empty"
+      ]
+    }
+  ]
+}

@@ -9,13 +9,13 @@ const article=(html,id='optimal_waveform')=>{const m=html.match(new RegExp('<art
 
 test('the canonical waveform catalog route visibly identifies its bounded live algorithm before disclosures',()=>{
  const before=JSON.stringify(data),registryBefore=JSON.stringify(r),html=render(),part=article(html);
- a.deepEqual(selected(data).executionStatus,{status:'validated-algorithm-core',scope:'严格协方差分支'});
+ a.deepEqual(selected(data).executionStatus,{status:'validated-algorithm-core',scope:'严格协方差与§IV等能量加权分支'});
  const source=r.cases.find(c=>c.id==='case-waveform'),unit=r.units.find(u=>u.id===source.unit);
  a.equal(source.unit,'waveform-design');a.equal(unit.href,'waveform-design.html#experiment');
  a.ok(part.includes('href="'+(source.learningEntry||unit.href)+'">进入教学案例 →</a>'));
- a.match(part,/严格协方差分支：算法核心已数值验证；非完整论文复现/);
+ a.match(part,/严格协方差与§IV等能量加权分支：算法核心已数值验证；非完整论文复现/);
  a.ok(part.indexOf('算法核心已数值验证')<part.indexOf('<details'));
- a.match(article(read('reading.html')),/严格协方差分支：算法核心已数值验证/);
+ a.match(article(read('reading.html')),/严格协方差与§IV等能量加权分支：算法核心已数值验证/);
  a.equal(JSON.stringify(data),before);a.equal(JSON.stringify(r),registryBefore);
 });
 

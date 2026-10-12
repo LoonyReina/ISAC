@@ -1,0 +1,128 @@
+{
+  "kind": "zf",
+  "gamma_db": 24.0,
+  "gamma_linear": 251.18864315095797,
+  "solver": "SCS",
+  "settings": {
+    "eps": 2e-07,
+    "max_iters": 100000,
+    "acceleration_lookback": 10
+  },
+  "warm_start": false,
+  "warnings": [],
+  "status": "infeasible",
+  "elapsed_seconds": 0.0819587939986377,
+  "solve_seconds": 0.076909879,
+  "iterations": 550,
+  "solver_info": {
+    "status_val": -2.0,
+    "iter": 550.0,
+    "scale_updates": 5.0,
+    "scale": 2.518458170326295,
+    "pobj": null,
+    "dobj": null,
+    "res_pri": null,
+    "res_dual": null,
+    "gap": null,
+    "res_infeas": 2.5488438724040574e-11,
+    "res_unbdd_a": null,
+    "res_unbdd_p": null,
+    "comp_slack": 1.0374449340879822e-48,
+    "solve_time": 76.909879,
+    "setup_time": 3.111543,
+    "lin_sys_time": 13.848550000000001,
+    "cone_time": 58.418061000000016,
+    "accel_time": 0.9055790000000008,
+    "rejected_accel_steps": 5.0,
+    "accepted_accel_steps": 0.0,
+    "status": "infeasible",
+    "lin_sys_solver": "sparse-direct-mkl-pardiso",
+    "aa_stats": {
+      "iter": 10,
+      "n_accept": 5,
+      "n_reject_lapack": 0,
+      "n_reject_rank0": 0,
+      "n_reject_nonfinite": 0,
+      "n_reject_weight_cap": 0,
+      "n_safeguard_reject": 5,
+      "last_rank": 10,
+      "last_aa_norm": 59.72378293694713,
+      "last_regularization": 1.7028271128360761e-12
+    }
+  },
+  "solution_available": false,
+  "trial": 6,
+  "seed": 2026101207,
+  "H": {
+    "real": [
+      [
+        -0.06366437375118313,
+        -1.0786066234286973,
+        1.3375867462046407,
+        0.15984731794634882,
+        0.04886877608485382,
+        0.7600306181036988,
+        0.15890189520727044,
+        -0.5964724663000162,
+        0.6294957008806368,
+        -0.8305845464686553
+      ],
+      [
+        0.7272876063471212,
+        -0.9014646826950403,
+        -1.0430948288266293,
+        0.228446894307842,
+        -0.15658289762867153,
+        -0.06582178518389506,
+        -0.9984812185138231,
+        1.3459947341230363,
+        -0.964731313062246,
+        0.028843093004466056
+      ]
+    ],
+    "imag": [
+      [
+        0.34757550336347964,
+        -0.11802972214992316,
+        0.31300919081422507,
+        0.164903921200426,
+        0.5509905504486942,
+        1.0075491367577578,
+        -0.22766335299717713,
+        0.6572930138476077,
+        -0.36862038033689865,
+        -0.07251789862341632
+      ],
+      [
+        0.07838786786288565,
+        0.7737830279528912,
+        -0.1978186602320003,
+        -0.25788907412779266,
+        -0.16114337146875085,
+        0.34674154028088555,
+        0.6771884650332309,
+        0.9545845411022842,
+        -0.06013474645402137,
+        0.5660683586216122
+      ]
+    ]
+  },
+  "H_sha256": "ad9e7203fe600427631eec380caee7b632204d8ba8fd5a9e308cdb103a9123c7",
+  "config": {
+    "antennas": 10,
+    "total_power": 1.0,
+    "noise": 0.01,
+    "target_degrees": [
+      -40.0,
+      0.0,
+      40.0
+    ],
+    "beam_width_degrees": 10.0,
+    "grid_step_degrees": 0.1,
+    "cross_weight": 1.0
+  },
+  "accepted": false,
+  "gate_failures": [
+    "no_solution"
+  ]
+}

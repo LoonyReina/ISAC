@@ -1,0 +1,26 @@
+{
+  "status": "ACCEPTED-PYTHON-ALGORITHM; OPEN-PUBLISHED-FIGURE-MISMATCH",
+  "candidateSHA256": "5871d0a8ae481a723f662c120e87e24f8ef8534ebc5d88c8a63ce9bea987e880",
+  "sourcePDFSHA256": "e79052feb8fd898002a71c9b1f20fd75cb757159b6e92071e97812e85b62d798",
+  "primaryFreshCases": 146,
+  "fullPrimalSDPComparisons": 36,
+  "nearHardHighPrecisionCases": 10,
+  "secondaryFreshCases": 56,
+  "secondarySLSQPRuns": 78,
+  "nullspaceRivals": 2160,
+  "authorStoredOutputAudits": 275,
+  "experimentMetricBlocks": 1280,
+  "fixedIssues": [
+    "zero-quadratic-scaling-overflow",
+    "maximum-energy-output-roundoff-cap"
+  ],
+  "openFindings": [
+    "Published Fig3 rho=.1 omni dashed-blue curve differs at10/12dB by approximately0.48/0.76bps/Hz; no full-figure reproduction claim",
+    "Full directional/detection experiments and SectionV remain outside this gate"
+  ],
+  "notReviewed": [
+    "JavaScript implementation",
+    "live UI",
+    "publication"
+  ]
+}

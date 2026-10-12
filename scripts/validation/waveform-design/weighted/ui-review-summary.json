@@ -1,0 +1,27 @@
+{
+  "status": "ACCEPTED-NON-BROWSER-WORKER-AND-CONTROLLER-INTEGRATION",
+  "blockingFindings": 0,
+  "weightedCoreSHA256": "70f720a7f67f95b139f31171370d86e9e348bf9a91b4a0d0c38717a66cf5a6a3",
+  "strictCoreSHA256": "a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6",
+  "modelSHA256": "b282e2cd303f1a49e7bdf51b184e68b5f65e05177f599f990b570bc743bd04eb",
+  "workerSHA256": "24f909ddac2a9bc719d4fbac59544c981ae9b5a571eec205781fe1ed9885a597",
+  "controllerSHA256": "4721fd15d7ff66621706c3146b71fbaad16568cc582128bfea5b8728dbc9bd7f",
+  "workerChecks": 33,
+  "freshWorkerInputs": 26,
+  "freshWeightedSolves": 107,
+  "independentControllerChecks": 40,
+  "existingFocusedTests": 94,
+  "existingFocusedPassed": 94,
+  "maxCoefficientNormalizedObjectiveDifference": 7.997986850156624e-15,
+  "maxWeightedRelativeEnergyResidual": 1.1409306492582448e-13,
+  "maxStrictRelativeCovarianceResidual": 2.3948679367547073e-15,
+  "maxIndependentScaledStationarityResidual": 2.8980758327940143e-15,
+  "notReviewed": [
+    "Rendered browser interaction/layout/accessibility",
+    "Browser network resources and downloads",
+    "Combined full-site reproducible build",
+    "Deployment",
+    "Original weighted Fig.3 reproduction"
+  ],
+  "originalWeightedFigureMismatch": "UNRESOLVED"
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "checkerSha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722",
+  "scope": "independent exported numerical evidence consistency; no browser/code-delivery provenance claim",
+  "cancelledWorkerPayload": "Frozen worker cancellation omits finalState; preserve unchanged as partial evidence. Checker correctly reports incomplete full-state numerical audit.",
+  "files": [
+    {
+      "path": "CHECKER-TESTS.json",
+      "bytes": 12305,
+      "sha256": "f99ec8c405c57f3bd7d21038ec5f34129884499e6d05c3bf8a027f0f00721a2c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3632,
+      "sha256": "cb408977fe842f3697cf39600bf101e9772398e55c257014fc5cc58ee970d771"
+    },
+    {
+      "path": "check_export.py",
+      "bytes": 15302,
+      "sha256": "f9fec5ec833a024549fe5451c24fa28c9f1e8544983960d602ca6f940fd67722"
+    },
+    {
+      "path": "independent-review/EXPORT-CHECKER-REVIEW-MANIFEST.json",
+      "bytes": 2759,
+      "sha256": "61e035ab500131d79c7a998c32cd4fd54da241b879fcefe43b16fc2b83b346c5"
+    },
+    {
+      "path": "independent-review/EXPORT-CHECKER-REVIEW.md",
+      "bytes": 6632,
+      "sha256": "27be29a34150dd805f623833990ba8398b57d3c7e1fa28d31bb1eca867fc8aa4"
+    },
+    {
+      "path": "independent-review/audit_export_checker_fixtures.py",
+      "bytes": 2056,
+      "sha256": "40c0866b02244dcabb8ff17477e6e510c7d71d9b3761d6b73182662af893c5e4"
+    },
+    {
+      "path": "independent-review/export_checker_final_fixture_audit.json",
+      "bytes": 17225,
+      "sha256": "3e980002bd91b4f79a22aa1cbe3f00900e5f9f33085f832378e468a3f6df446d"
+    },
+    {
+      "path": "independent-review/export_checker_final_mutation_audit.json",
+      "bytes": 27056,
+      "sha256": "a147697ac4366c19f7f347bc1ddbacff6f0a3a15f059462afd89dfd02221201f"
+    },
+    {
+      "path": "independent-review/test_export_checker_mutations.py",
+      "bytes": 5137,
+      "sha256": "ceaf28f6bfd3525ef85f227670b63a916d18084bd2785a91b0d1a505cc5ec64d"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 13,
+      "sha256": "7bd6b8946940b79948c548c8048e545684b91c8edc9444d8dfc0c8f76a97c0a7"
+    },
+    {
+      "path": "smoke-audit.json",
+      "bytes": 4328,
+      "sha256": "1e76f5f454fca2b8d0d6f054bdf465bbeab4bfec3c70c8ea509b76783621a0b9"
+    },
+    {
+      "path": "test_checker.py",
+      "bytes": 3903,
+      "sha256": "b20dba859a94c5d57a06080ba939f6c22baaa24b33c9d46a9b3e5495c49dc574"
+    }
+  ]
+}

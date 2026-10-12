@@ -7,6 +7,9 @@
  const CORE_SHA256='a844089a501bec61002fe8562f54314c04bc4f27b622033c3995052770b050c6';
  const SOURCE={url:'https://arxiv.org/pdf/1711.05220v1',version:'2017-11-14 v1',equations:'Section III Eqs.(8)-(15)',pdfSha256:'e79052feb8fd898002a71c9b1f20fd75cb757159b6e92071e97812e85b62d798'};
  const LIMITS={N:16,K:8,L:64};
+ const WEIGHTED_CORE_SHA256='70f720a7f67f95b139f31171370d86e9e348bf9a91b4a0d0c38717a66cf5a6a3';
+ const WEIGHTED_SOURCE={...SOURCE,equations:'Section IV Eqs.(16)-(25)',scope:'Source regular eigensecular solve; explicitly added hard-case completion and radar-closest secondary convention; published Fig.3 weighted slice does not match'};
+ const RHO_GRID=Object.freeze([0,.01,.05,.1,.25,.5,.75,.9,.99,1]);
  function integer(v,name,min,max){if(!Number.isInteger(v)||v<min||v>max)throw new Error(`${name} 必须是 ${min}–${max} 之间的整数`);return v;}
  function number(v,name,min,max){if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)throw new Error(`${name} 必须在 ${min}–${max} 之间`);return v;}
  function rng(seed){let state=seed>>>0;return ()=>{state=(Math.imul(1664525,state)+1013904223)>>>0;return (state+.5)/4294967296;};}
@@ -42,6 +45,38 @@
    totalComputeMs:(typeof performance!=='undefined'?performance.now():Date.now())-start,
    scope:'Strict-covariance MUI optimum only; DFT reference is a matched teaching baseline; not whole-paper reproduction'};finiteTree(result);return result;
  }
+ function weightedSettings(value){
+  if(!value||typeof value!=='object'||Array.isArray(value))throw new Error('请设置加权参数');
+  for(const key of Object.keys(value))if(!['rho','tieBreak','sweep'].includes(key))throw new Error('未知的加权参数');
+  const rho=number(value.rho,'通信误差权重 ρ',0,1),tieBreak=value.tieBreak===undefined?'radar-closest':value.tieBreak;
+  if(!['canonical','radar-closest'].includes(tieBreak))throw new Error('请选择有效的端点补齐规则');
+  if(value.sweep!==undefined&&typeof value.sweep!=='boolean')throw new Error('扫描开关必须为布尔值');
+  return {rho,tieBreak,sweep:value.sweep===true};
+ }
+ function canonicalRequest(input,options=null){return JSON.stringify({inputs:{H:input.H,S:input.S,R:input.R},weighted:options===null?null:weightedSettings(options)});}
+ function solveWeighted(input,options,progress){
+  const request=weightedSettings(options),result=solve(input),{H,S,R}=result.inputs,Pt=R.reduce((v,row,i)=>v+row[i][0],0),X0=result.optimal.X;
+  const start=typeof performance!=='undefined'?performance.now():Date.now();
+  result.schemaVersion=2;
+  result.weighted={status:'pending',request,source:WEIGHTED_SOURCE,coreSha256:WEIGHTED_CORE_SHA256,referenceProvenance:'Fresh Section III strict optimum for these exact H/S/R; not the DFT baseline',referenceCoreSha256:CORE_SHA256,Pt,requiredEnergy:S[0].length*Pt};
+  try{
+   const W=typeof module!=='undefined'&&module.exports?require('./weighted-core.js'):root.WeightedWaveformCore;
+   if(!W||W.VERSION!=='weighted-eq16-real-jacobi-secular-v0.2')throw new Error('已审核的加权求解资源未能载入；严格分支仍可单独使用');
+   const grid=request.sweep?Array.from(RHO_GRID):[],rhos=Array.from(new Set([...grid,request.rho])),points=[];
+   for(const rho of rhos){
+    const solution=W.solve(H,S,X0,rho,Pt,{tieBreak:request.tieBreak});
+    if(solution.status!=='certified')throw new Error('加权核心没有返回已通过检查的结果');
+    const evaluated=evaluate(H,S,R,solution.X,0),distance=stableNorm(Matrix.diff(solution.X,X0))**2;
+    const scale=Math.max(1,solution.certificate.objectiveCertificateScale,solution.metrics.mui,distance),tolerance=2e-9*scale;
+    if(Math.abs(evaluated.error-solution.metrics.mui)>tolerance||Math.abs(distance-solution.metrics.radarWaveformDistance)>tolerance)throw new Error('加权返回矩阵与独立重算指标不一致');
+    if(solution.metrics.weightedObjective>rho*result.optimal.metrics.objective+tolerance)throw new Error('加权结果未通过同能量 X₀ 候选检查');
+    const point={rho,solution,evaluated,distance};finiteTree(point);points.push(point);
+    if(typeof progress==='function')progress({completed:points.length,total:rhos.length,rho});
+   }
+   result.weighted={...result.weighted,status:'certified',selected:points.find(p=>p.rho===request.rho),sweep:grid.map(rho=>points.find(p=>p.rho===rho)),solvedPointCount:points.length,totalComputeMs:(typeof performance!=='undefined'?performance.now():Date.now())-start,scope:'Energy equality only; covariance and spatial power are diagnostics. Objective certificate is not near-hard waveform-accuracy or whole-figure reproduction evidence.'};
+  }catch(error){result.weighted={...result.weighted,status:'failed',error:friendlyError(error),totalComputeMs:(typeof performance!=='undefined'?performance.now():Date.now())-start};}
+  finiteTree(result);return result;
+ }
  function rateMetric(input,X,snrDb){number(snrDb,'SNR',-10,30);const {H,S,R}=input,Pt=R.reduce((s,row,i)=>s+row[i][0],0),N0=Pt/10**(snrDb/10),Y=Matrix.product(H,X);
   // Scale the denominator, then evaluate log1p(exp(logRatio)) without
   // materializing either e+N0 or an overflowing signal-to-noise ratio.
@@ -51,9 +86,9 @@
   const result={snrDb,noisePower:N0,users:rows,sumLogRate:rows.reduce((s,r)=>s+r.logRate,0),label:'论文式(4)–(5)的有限块高斯对数诊断，不是 QPSK 互信息或实测吞吐'};finiteTree(result);return result;
  }
  function friendlyError(error){const message=error&&error.message?error.message:String(error);const translations=[
-  [/L >= N/,'满秩目标协方差要求 L≥N，请增加快拍数或减少天线数'],[/not Hermitian/,'R 必须是 Hermitian 矩阵：对角线为实数，Rᵢⱼ=共轭(Rⱼᵢ)'],[/positive definite/,'R 必须严格正定；奇异或不定协方差不属于本页分支'],[/ill-conditioned/,'R 的条件数超出本实现范围；没有自动加对角加载'],[/floating-point|nonfinite|overflowed/,'输入或结果超出浮点表示范围，请调整尺度'],[/same K rows/,'H 与 S 的用户数 K 必须相同'],[/N by N/,'R 的形状必须为 N×N，与 H 的列数一致'],[/finite \[real,imaginary\]/,'每个复数必须写成有限数值对 [实部, 虚部]'],[/rectangular/,'矩阵每一行的长度必须相同'],[/did not converge|certificate checks/,'数值分解或约束证书未通过；本次结果不显示为成功']];
+  [/input magnitude limit|Block energy outside numerical contract/,'加权分支超出本实现数值范围：复数幅度≤10⁶，块能量须在10⁻¹²至10¹²之间；严格分支仍可单独使用'],[/L >= N/,'满秩目标协方差要求 L≥N，请增加快拍数或减少天线数'],[/not Hermitian/,'R 必须是 Hermitian 矩阵：对角线为实数，Rᵢⱼ=共轭(Rⱼᵢ)'],[/positive definite/,'R 必须严格正定；奇异或不定协方差不属于本页分支'],[/ill-conditioned/,'R 的条件数超出本实现范围；没有自动加对角加载'],[/floating-point|nonfinite|overflowed/,'输入或结果超出浮点表示范围，请调整尺度'],[/same K rows/,'H 与 S 的用户数 K 必须相同'],[/N by N/,'R 的形状必须为 N×N，与 H 的列数一致'],[/finite \[real,imaginary\]/,'每个复数必须写成有限数值对 [实部, 虚部]'],[/rectangular/,'矩阵每一行的长度必须相同'],[/did not converge|certificate checks/,'数值分解或约束证书未通过；本次结果不显示为成功']];
   for(const [pattern,label]of translations)if(pattern.test(message))return label;return message;
  }
- const api=Object.freeze({VERSION,CORE_SHA256,SOURCE,LIMITS,generated,inputBounds,canonicalInputs,solve,rateMetric,friendlyError});
+ const api=Object.freeze({VERSION,CORE_SHA256,SOURCE,LIMITS,generated,inputBounds,canonicalInputs,solve,rateMetric,friendlyError,WEIGHTED_CORE_SHA256,WEIGHTED_SOURCE,RHO_GRID,weightedSettings,canonicalRequest,solveWeighted});
  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.WaveformLiveModel=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -16,7 +16,7 @@ test('actual bibliography case is active and resolves only to the registered wav
  assert.equal(c.id,'case-waveform');assert.equal(unit.id,'waveform-design');
  const article=read('reading.html').match(/<article class="influence-card" id="paper-optimal_waveform"[\s\S]*?<\/article>/)[0];
  assert.ok(article.includes(`href="${c.learningEntry||unit.href}"`));assert.ok(!article.includes('教学案例准备中'));
- assert.match(article,/严格协方差分支：算法核心已数值验证；非完整论文复现/);assert.ok(!('paperComparison' in card));
+ assert.match(article,/严格协方差与§IV等能量加权分支：算法核心已数值验证；非完整论文复现/);assert.ok(!('paperComparison' in card));
  for(const page of ['index.html','reading.html','experiments.html','waveform-design.html'])assert.ok(read(page).includes('site.css?v=knowledge-map-v1'));
  assert.ok(read('index.html').includes('knowledge-map.js?v=knowledge-map-v3'));
 });

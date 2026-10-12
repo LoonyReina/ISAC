@@ -24,7 +24,7 @@
       "doi": "https://doi.org/10.1109/tsp.2018.2847648",
       "identitySource": "https://arxiv.org/abs/1711.05220",
       "mechanism": "同一发射波形兼顾多用户通信与雷达方向图，研究多用户干扰、加权权衡和恒模约束下的设计。",
-      "evidenceBoundary": "理论与数值仿真；本站已数值验证固定 v1 §III 式(8)–(15)的严格协方差分支。全局最优仅针对确定性总 MUI；高斯对数速率为二级诊断，不等于 QPSK 互信息、BER 或吞吐。其余分支与完整原图仍待复现。",
+      "evidenceBoundary": "理论与数值仿真；本站已独立数值验证固定v1 §III严格协方差及§IV等能量加权算法。两阶段约束不同，高斯对数速率只是诊断；原图3加权曲线仍非匹配，常模与完整原图仍开放。新增加权托管浏览器验收待完成。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -64,7 +64,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先用当前 H、S、R 运行严格分支，检查协方差、全局下界与逐用户误差，再回原文区分方向性协方差设计、加权权衡和常模分支；现场全向参数切片不等于完整图3–4。",
+      "readingPlan": "先用新H/S/R求严格解X₀，再在同输入和总能量下改变ρ，明确协方差等式已放松；核对能量和目标证书后比较MUI与波形距离。读原图3非匹配、端点多解和常模缺口，不能把离线曲线当现场计算。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -80,7 +80,7 @@
       "caseId": "case-waveform",
       "executionStatus": {
         "status": "validated-algorithm-core",
-        "scope": "严格协方差分支"
+        "scope": "严格协方差与§IV等能量加权分支"
       }
     },
     {
@@ -92,7 +92,7 @@
       "doi": "https://doi.org/10.1109/tsp.2020.3004739",
       "identitySource": "https://arxiv.org/abs/1912.03420",
       "mechanism": "把独立雷达波形与通信符号加权叠加，在用户SINR约束下设计雷达发射方向图；原文研究紧半定松弛与低复杂度零迫方案。",
-      "evidenceBoundary": "理论与仿真；更大自由度不代表任意约束下都能同时提升两种性能。",
+      "evidenceBoundary": "理论与仿真；本站实际求解有界M=10/K=2雷达独立、SDR与优化型ZF并恢复因子，已有独立数值核验及32配对信道离线切片。1000信道、K=4/6、SSP、雷达接收机与真实浏览器门仍开放。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -132,7 +132,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先比较三个同资源解析构造，再对照固定 v2 的流协方差、SINR 约束、紧 SDR 和优化型 ZF；本站未运行原文优化器或复现原图。",
+      "readingPlan": "先辨认H、Γ、每天线功率与三类流，再实际运行同模型雷达独立、SDR和优化型ZF，查看恢复因子与残差。原八阵元解析构造另作先修；iteration_limit只表示未解决，不是不可行证明。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -149,7 +149,11 @@
       ],
       "groupId": "joint-design",
       "shortTitle": "联合发射波束成形",
-      "caseId": "case-joint-beamforming"
+      "caseId": "case-joint-beamforming",
+      "executionStatus": {
+        "status": "validated-algorithm-core",
+        "scope": "有界雷达独立/SDR/优化型ZF协方差核心"
+      }
     },
     {
       "id": "mu_mimo",

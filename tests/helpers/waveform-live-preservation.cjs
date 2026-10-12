@@ -181,8 +181,8 @@ const additions={
   ]
 };
 function reverse(target,changes){for(const item of changes){let parent=target;for(const key of item.path.slice(0,-1)){a.ok(parent&&typeof parent==='object');parent=parent[key];}const key=item.path.at(-1);a.ok(Object.hasOwn(parent,key),'reviewed waveform field present');a.deepEqual(parent[key],item.after,'exact reviewed waveform '+item.path.join('.'));if(item.added)delete parent[key];else parent[key]=structuredClone(item.before);}}
-function withoutWaveformLiveRegistry(registry){const prior=structuredClone(registry),matches=prior.cases.filter(c=>c.id===additions.caseId);a.equal(matches.length,1,'one waveform case');reverse(matches[0],additions.registryChanges);return prior;}
-function withoutWaveformLiveCatalog(data){const prior=structuredClone(data),matches=prior.cards.filter(c=>c.id===additions.catalogId);a.equal(matches.length,1,'one waveform catalog card');reverse(matches[0],additions.catalogChanges);return prior;}
+function withoutWaveformLiveRegistry(registry){const prior=require('./combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(registry),matches=prior.cases.filter(c=>c.id===additions.caseId);a.equal(matches.length,1,'one waveform case');reverse(matches[0],additions.registryChanges);return prior;}
+function withoutWaveformLiveCatalog(data){const prior=require('./combined-paper-solvers-preservation.cjs').withoutCombinedCatalog(data),matches=prior.cards.filter(c=>c.id===additions.catalogId);a.equal(matches.length,1,'one waveform catalog card');reverse(matches[0],additions.catalogChanges);return prior;}
 function withoutWaveformLiveRenderer(source){let last=-1;for(const h of additions.rendererHooks){a.equal(source.split(h.after).length,2,'exact waveform execution renderer hook');const at=source.indexOf(h.after);a.ok(at>last,'waveform renderer hook order');last=at;}for(const h of additions.rendererHooks)source=source.replace(h.after,()=>h.before);return source;}
 const priorCatalogSource=data=>JSON.stringify(withoutWaveformLiveCatalog(data),null,2)+'\n';
 module.exports={additions,withoutWaveformLiveRegistry,withoutWaveformLiveCatalog,withoutWaveformLiveRenderer,priorCatalogSource};
