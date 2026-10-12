@@ -1,0 +1,70 @@
+{
+  "review_scope": "Independent source/numerical/core gate only; no site changes or publication",
+  "findings": [
+    {
+      "id": "AR-CORE-001",
+      "severity": "blocker before numerical core acceptance",
+      "discovered_hash": "06ce5a23dfbc71094a18c1335ba4685ac5a060d16875ff09e278d4f0a6451df0",
+      "issue": "Unbounded eigTol accepts an inaccurate cone projection and permits false convergence",
+      "reproduce": "fresh-inputs.json case fresh_analytic_atom_4x4, settings eigTol=1 (also 10)",
+      "observed": {
+        "status": "converged",
+        "iterations": 199,
+        "objective": 4.7463999450142715,
+        "reference_objective": 0.3699241263153502,
+        "eigenResidual": 61.62077536035568
+      },
+      "fix_hash": "ad113658c4af6a90b663bc9020a314666e12c5f35e9b3924cfe4cf9149972163",
+      "fix": "Fix eigTol at validated 1e-12 and require projection residual below a convergence-scaled accuracy limit",
+      "status": "resolved; independent final-hash numerical, guard and worker regression checks pass",
+      "verified_final_hash": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14"
+    },
+    {
+      "id": "AR-CORE-002",
+      "severity": "blocker before numerical core acceptance",
+      "discovered_hash": "ad113658c4af6a90b663bc9020a314666e12c5f35e9b3924cfe4cf9149972163",
+      "issue": "Finite huge inputs overflow squared norms; Infinity <= Infinity allows false convergence",
+      "input": {
+        "M": 1,
+        "N": 1,
+        "r": {
+          "re": [
+            1e+160
+          ],
+          "im": [
+            0
+          ]
+        },
+        "s": {
+          "re": [
+            1
+          ],
+          "im": [
+            0
+          ]
+        },
+        "lambda": 0.49,
+        "mu": 0.12
+      },
+      "settings": {
+        "fixedError": true,
+        "maxIter": 1
+      },
+      "observed": {
+        "status": "converged",
+        "iterations": 1,
+        "objective": "Infinity",
+        "primal": "Infinity",
+        "dual": 0,
+        "eigenResidual": "Infinity",
+        "primalTolerance": "Infinity",
+        "dualTolerance": "Infinity",
+        "projectionAccuracyLimit": "Infinity",
+        "projectionAccurate": true
+      },
+      "status": "resolved; independent final-hash numerical, guard and worker regression checks pass",
+      "verified_final_hash": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+      "fix": "Reject nonfinite eigensolver scales/convergence diagnostics and unresolved regularizer scales; set numerical_failure terminal state on iteration errors"
+    }
+  ]
+}

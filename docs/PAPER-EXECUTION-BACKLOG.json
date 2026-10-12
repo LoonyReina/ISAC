@@ -13,7 +13,7 @@
     },
     "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record.",
     "fullPaperReproductionsEstablished": 0,
-    "liveTargetLatencyMeasurementsEstablished": 2,
+    "liveTargetLatencyMeasurementsEstablished": 3,
     "additionalCitationAuditStatus": "not-started"
   },
   "trackingContract": {
@@ -90,12 +90,9 @@
     "unknownPolicy": "Absent source PDF hashes remain null; no guess. Preserve fixed edition and locators, and resolve missing source/data/code/licence/training details before accepting the dependent claim."
   },
   "sequence": {
-    "current": "tradeoffs-feedback-capacity-distortion-2018",
-    "next": "nearfield-mechanism-aware-mapping-2026",
+    "current": "ofdm-passive-atomic-errors-2017",
+    "next": "joint_beamforming",
     "then": [
-      "optimal_waveform",
-      "ofdm-passive-atomic-errors-2017",
-      "joint_beamforming",
       "crb"
     ],
     "dataAndWeightAccessInParallel": [
@@ -113,7 +110,25 @@
       "nearfield-mechanism-aware-mapping-2026",
       "ofdm_full_duplex"
     ],
-    "remainingOrder": "Re-rank remaining work after source/reference and dependency readiness; all records remain open."
+    "remainingOrder": "Re-rank remaining work after source/reference and dependency readiness; all records remain open.",
+    "meaning": "Current and next identify the active bounded implementation/reference slice, not whole-paper completion. Every paper retains its independent unfinished coverage gates.",
+    "deliveredBoundedSlices": [
+      "tradeoffs-feedback-capacity-distortion-2018",
+      "nearfield-mechanism-aware-mapping-2026",
+      "optimal_waveform"
+    ],
+    "activeStages": [
+      {
+        "paperId": "ofdm-passive-atomic-errors-2017",
+        "stage": "site-integration",
+        "status": "in-progress"
+      },
+      {
+        "paperId": "joint_beamforming",
+        "stage": "independent-numerical-reference",
+        "status": "in-progress"
+      }
+    ]
   },
   "acceptanceContract": "docs/PAPER-EXECUTION-ACCEPTANCE.md",
   "verificationCommand": "node --test tests/paper-execution-backlog.test.cjs",
@@ -2036,8 +2051,8 @@
         },
         "paperIdentity": "arxiv:1610.04218",
         "fixedSourceIdentity": "arxiv:1610.04218v2",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "f0441c1053085d83356e40d200fe83c442c33d5d403c39d2bc89745f8ac2a722",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Le Zheng、Xiaodong Wang",
           "publicationUrl": "https://doi.org/10.1109/TSP.2017.2659650"
@@ -2054,12 +2069,16 @@
           "ADMM含闭式变量更新、PSD投影和对偶更新；对偶谱搜索参数，随后LS估计增益"
         ],
         "locators": "v2 §III式(20)、(26)–(32)；§IV式(37)/(43)–(50)/表I；§V图6–8",
-        "clarification": "连续优化仍有对偶谱搜索网格，不能承诺无限分辨率"
+        "clarification": "General 2-D atomic-norm/finite-SDP equality requires extra decomposition conditions. The live solver implements Eq27 with independently derived corrections to apparent printed update inconsistencies; source algorithm intent and authors’ unavailable code are distinguished."
       },
       "minimalFaithfulTarget": {
-        "description": "完整实现Table I的CS-ANL1，首先16×16原文图8规模，与独立SDP同问题交叉验证；再复现64×16图6/7。实时控件必须重新求解，不只是改错误示意",
+        "description": "Actual Eq27 finite two-level-Toeplitz SDP/ADMM on fresh 4×4 complex observations, independently checked against a convex solver; original 16×16 single-case numerical agreement is separately offline, with source detector and full figures still open.",
         "liveControls": [
-          "BER/错误模式、目标间隔/功率、杂波密度、SNR、λ/μ/ρ、迭代停止精度、种子"
+          "two-path normalized separation0.04–0.34",
+          "reference symbol error count0–8/16 (not BER)",
+          "nominal SNR10–40dB and uint32seed",
+          "lambda/mu multipliers0.5–2; common iteration cap500/2000/6000/10000",
+          "actual history replay, sampled dual-grid threshold and truth-only evaluation"
         ],
         "independentValidation": [
           "独立通用SDP和自写ADMM目标/可行性一致",
@@ -2092,23 +2111,66 @@
           "只解调不FEC译码；被动几何不能单站cτ/2",
           "ADMM PSD矩阵维数NM+1：64×16时为1025，图8为257"
         ],
-        "unresolved": [],
+        "unresolved": [
+          "原文完整检测、参数读取/增益重估及MUSIC模型阶数协议",
+          "图8两个场景×11个BER×100次试验及漏检/虚警分母",
+          "M=16,N=64的图6–7",
+          "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
+          "实际托管浏览器与目标桌面时延验收"
+        ],
         "details": {
-          "auditedGuideLimits": [
-            "已知接收格、解调符号估计及OFDM时频参数；未知各路径时延、多普勒、复增益和错误残差。原文只解调、不做前向纠错（FEC）译码，假设路径和错误均稀疏、符号内相位变化可忽略，噪声为复高斯。",
-            "连续域建模不等于无限分辨率：近邻杂波仍可能不可分；表I第5步读取对偶谱参数时仍搜索网格，不能把搜索格距当作物理分辨率。",
-            "谱图设置为320 kHz、64子载波、16符号、4.8 ms；图8为节省计算把子载波减为16并改了路径功率，且只计正确识别的目标。条件RMSE不能替代漏检与虚警评价。",
-            "这是被动多径参数估计；换成位置和运动速度需要传播几何，不能直接套用单站往返公式。符号内载波间干扰（ICI）、密集错误或未建模路径需另验；本站没有实现该SDP、ADMM或论文曲线。"
-          ]
-        }
+          "preImplementationGuideSnapshot": {
+            "capturedOn": "2026-10-12",
+            "baselineCommit": "405cd4abf535cd2bc77e7dc73d397052f26b3509",
+            "scope": "Historical pre-implementation reading-guide snapshot; not the current algorithm coverage status",
+            "limits": [
+              "已知接收格、解调符号估计及OFDM时频参数；未知各路径时延、多普勒、复增益和错误残差。原文只解调、不做前向纠错（FEC）译码，假设路径和错误均稀疏、符号内相位变化可忽略，噪声为复高斯。",
+              "连续域建模不等于无限分辨率：近邻杂波仍可能不可分；表I第5步读取对偶谱参数时仍搜索网格，不能把搜索格距当作物理分辨率。",
+              "谱图设置为320 kHz、64子载波、16符号、4.8 ms；图8为节省计算把子载波减为16并改了路径功率，且只计正确识别的目标。条件RMSE不能替代漏检与虚警评价。",
+              "这是被动多径参数估计；换成位置和运动速度需要传播几何，不能直接套用单站往返公式。符号内载波间干扰（ICI）、密集错误或未建模路径需另验；本站没有实现该SDP、ADMM或论文曲线。"
+            ]
+          }
+        },
+        "gates": [
+          {
+            "id": "finite-eq27-4x4",
+            "status": "numerically-validated",
+            "scope": "Fresh two-path Eq6 observations; same-input CS-ANL1/CS-AN; independent SCS and PSD checks"
+          },
+          {
+            "id": "source-size-16x16-single-case",
+            "status": "offline-numerical-agreement",
+            "scope": "One disclosed input; initial300s timeout, continued596.449s total; paired CS-AN still timed out at450s"
+          },
+          {
+            "id": "paper-figure-8",
+            "status": "pending",
+            "scope": "Two scenarios ×11 BER values ×100 trials; source detector and missed/false-positive denominators remain unresolved"
+          }
+        ]
       },
       "implementation": {
-        "classification": "guide-only-with-related-prerequisite-labs",
-        "live": null,
-        "offline": null,
+        "classification": "bounded-live-finite-sdp-with-original-size-offline-numerical-gate",
+        "live": {
+          "href": "atomic-ofdm-receiver.html#experiment",
+          "core": "labs/ofdm-reference/atomic-receiver-core.js",
+          "scope": "4×4实际Eq27有限Toeplitz SDP/ADMM；原观测算子；同输入CS-ANL1/CS-AN；真实状态历史与声明的truth-free候选探索"
+        },
+        "offline": {
+          "scope": "16×16原图8尺寸单个声明种子/场景/BER的独立SCS与ADMM同问题一致性；保留首次超时和e=0未收敛；不是Fig8统计复现",
+          "evidence": "scripts/validation/ofdm-reference/atomic-receiver/NUMERICAL-GATE-REPORT.md"
+        },
         "details": {
           "guideTraceKind": "qualitative-reading-trace",
-          "actualArtifacts": [
+          "omissions": [
+            "原文完整检测、参数读取/增益重估及MUSIC模型阶数协议",
+            "图8两个场景×11个BER×100次试验及漏检/虚警分母",
+            "M=16,N=64的图6–7",
+            "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
+            "实际托管浏览器与目标桌面时延验收"
+          ],
+          "validatorScope": "Independent finite-SDP core, simulator/postprocessor and actual history/Worker/UI gates; real-browser acceptance is pending. Existing prerequisite labs remain separate.",
+          "historicalPrerequisiteArtifacts": [
             {
               "path": "labs/ofdm-reference/offgrid-range-core.js",
               "exists": true,
@@ -2125,38 +2187,56 @@
               "role": "独立有限网格测距参考，不验证本文SDP/ADMM"
             }
           ],
-          "omissions": [
-            "二维连续原子范数及Toeplitz提升",
-            "ℓ1错误更新/PSD投影/对偶变量",
-            "对偶谱找参和多目标",
-            "原图及论文成功识别筛选"
-          ],
-          "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+          "actualArtifacts": [
+            {
+              "path": "labs/ofdm-reference/atomic-receiver-core.js",
+              "exists": true,
+              "role": "audited finite Eq27 SDP"
+            },
+            {
+              "path": "labs/ofdm-reference/atomic-receiver-model.js",
+              "exists": true,
+              "role": "fresh observations and truth-free sampled candidate extraction"
+            },
+            {
+              "path": "labs/ofdm-reference/atomic-receiver-worker.js",
+              "exists": true,
+              "role": "actual-state iteration history"
+            },
+            {
+              "path": "labs/ofdm-reference/atomic-receiver.js",
+              "exists": true,
+              "role": "paired Worker teaching and atomic export"
+            }
+          ]
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
-        "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
+        "fullPaper": "partial",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "guide-only-with-related-prerequisite-labs",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed1610.04218v2 hashed; Eq27 audited against independent convex solution, with explicit conjugation/index/joint-block corrections; Yang/Xie/Stoica1505.02510v3 supplies conditional decomposition context.",
+        "algorithm": "Genuine4×4 finite Toeplitz SDP/ADMM; exact audited core3d5656fe…d568d14. No optimization dictionary grid, no use of truth/seed/path count in receiver.",
+        "independentValidation": "Independent SCS/NumPy references and finite-range/projection negative cases. Additional 19 model, 16 history/Worker and 17 UI review suites passed. Current owned test suite 86 cases; see docs/ATOMIC-RECEIVER-VALIDATION.md.",
+        "selectedExperiment": "Original-size 16×16 single-case numerical agreement is offline only. First 300 s timeout retained, same-state continuation 596.449 s total; CS-AN 450 s remains unfinished. Full Fig8 statistical reproduction not established.",
+        "fullPaper": "Partial finite Eq27 algorithm only; original detector/gain re-estimation, full BER/clutter studies and source approximation stress tests remain open.",
+        "uiLearning": "Fresh paired computation, actual state replay, candidate threshold exploration, retained failures and complete JSON implemented and VM-tested; deployed browser/layout/download pending.",
+        "latency": "No actual browser latency measured. Worker runtime begins after initialization and excludes loading, final extra snapshot diagnostics, transport, render and download; original-size cloud times are offline evidence."
       },
       "missingImplementation": [
-        "二维连续原子范数及Toeplitz提升",
-        "ℓ1错误更新/PSD投影/对偶变量",
-        "对偶谱找参和多目标",
-        "原图及论文成功识别筛选"
+        "原文完整检测、参数读取/增益重估及MUSIC模型阶数协议",
+        "图8两个场景×11个BER×100次试验及漏检/虚警分母",
+        "M=16,N=64的图6–7",
+        "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
+        "实际托管浏览器与目标桌面时延验收"
       ],
       "dependencies": [
         "独立凸SDP参考求解器及复PSD线性代数",
@@ -2165,8 +2245,9 @@
         "区分优化容差、对偶搜索格距和物理分辨率"
       ],
       "blockers": [
-        "本站没有SDP/ADMM/原子范数模块",
-        "原规模PSD代价与作者基线/阈值尚未完整复现"
+        "Full original figure/detection/model-order protocol and statistical settings unresolved",
+        "General2-D atomic-norm equality is conditional, not certified by a sampled dual grid",
+        "Actual hosted desktop interaction, downloaded bytes and latency acceptance pending"
       ],
       "realtime": {
         "status": "not-measured",
@@ -2182,7 +2263,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "真实ADMM适合小尺寸逐迭代展示；1025维PSD特征分解每迭代成本高，原尺寸浏览器实时未测。先独立SDP→ADMM一致性，后再讨论WebAssembly/GPU",
+          "assessment": "Actual 4×4 live Worker implementation is locally verified; original 16×16 solves take hundreds of seconds offline. Real browser responsiveness remains a separate measured gate.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -2197,7 +2278,20 @@
         }
       },
       "evidence": {
-        "auxiliaryPrimarySources": []
+        "auxiliaryPrimarySources": [
+          {
+            "url": "https://arxiv.org/pdf/1505.02510v3",
+            "role": "Conditional multilevel Toeplitz Vandermonde decomposition; theorem1 andIV-C; not an additional completed paper"
+          }
+        ],
+        "numericalMilestone": {
+          "coreSha256": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+          "documentation": "docs/ATOMIC-RECEIVER-VALIDATION.md",
+          "independentModelSuites": 19,
+          "independentHistoryWorkerSuites": 16,
+          "independentUiSuites": 17,
+          "wholePaperReproduced": false
+        }
       },
       "details": {}
     },
@@ -3786,16 +3880,16 @@
         "fullPaper": "not-reproduced",
         "liveExecution": "partial-core",
         "uiLearning": "partial",
-        "latency": "not-measured"
+        "latency": "measured"
       },
       "stageEvidence": {
         "source": "2026-10-12 fixedv1 strict branch and paper experiment settings independently audited; original source/version/frozen earlier audit remain recorded.",
         "algorithm": "Actual fresh-input strict-covariance Cholesky/complex Jacobi SVD, complete null-space directions and global objective certificate. Weighted tradeoff and constant-modulus branches remain open.",
         "selectedExperiment": "256paired disclosed-seed omnidirectional source-parameter trials N16,K4,L20,Pt1,iidCN(0,1)H,unitQPSK. A declared parameter slice only; full original Figs3–4, direction design and averaging/ZF conventions remain open.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "Node worst679.5ms belongs to an identified numerical audit environment, not browser control-to-result timing. Actual browser measurements remain open.",
+        "latency": "Worker-response elapsed only: prepared inputs through validated Worker response, excluding input generation/parsing, rendering/paint and download. First default 342.8 ms; five later same-input samples 28.9/28.5/41.9/33.3/30.8 ms. Not Run-to-display latency or a stable p95 benchmark.",
         "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md.",
-        "uiLearning": "29focused tests and16independent Worker/UI review cases passed before site integration; deployed layout/keyboard/download and actualbrowser latency pending."
+        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial."
       },
       "missingImplementation": [
         "Weighted tradeoff and constant-modulus branch-and-bound",
@@ -3811,23 +3905,73 @@
       "blockers": [
         "Weighted tradeoff and constant-modulus branch-and-bound absent",
         "Original directional designer and complete paper figures open",
-        "Deployed browser/latency acceptance pending"
+        "Actual in-flight browser cancellation/reset overlap, narrow viewport and Run-to-painted-result benchmark remain open"
       ],
       "realtime": {
-        "status": "not-measured",
-        "measuredLatencyMs": null,
+        "status": "measured",
+        "measuredLatencyMs": 342.8,
         "benchmark": {
-          "device": null,
-          "browser": null,
-          "sampleCount": null,
+          "device": "Cloud desktop browser, viewport 1180 CSS px, scrollWidth 1165; CPU and OS not recorded",
+          "browser": "Chrome; version not recorded",
+          "measurementType": "individual-worker-response-samples",
+          "measurementBoundary": "Prepared inputs through validated Worker response; excludes input generation/parsing, rendering/paint and download",
+          "sampleCount": 8,
           "medianMs": null,
           "p95Ms": null,
-          "worstMs": null
+          "worstMs": null,
+          "samples": [
+            {
+              "configuration": "first default N4/K2/L8",
+              "resourceState": "first measured run; cache state not recorded",
+              "workerResponseMs": 342.8
+            },
+            {
+              "configuration": "subsequent same default N4/K2/L8",
+              "resourceState": "same-input subsequent run",
+              "workerResponseMs": 28.9
+            },
+            {
+              "configuration": "subsequent same default N4/K2/L8",
+              "resourceState": "same-input subsequent run",
+              "workerResponseMs": 28.5
+            },
+            {
+              "configuration": "subsequent same default N4/K2/L8",
+              "resourceState": "same-input subsequent run",
+              "workerResponseMs": 41.9
+            },
+            {
+              "configuration": "subsequent same default N4/K2/L8",
+              "resourceState": "same-input subsequent run",
+              "workerResponseMs": 33.3
+            },
+            {
+              "configuration": "subsequent same default N4/K2/L8",
+              "resourceState": "same-input subsequent run",
+              "workerResponseMs": 30.8
+            },
+            {
+              "configuration": "source-size N16/K4/L20",
+              "resourceState": "single subsequent sample",
+              "workerResponseMs": 71.2
+            },
+            {
+              "configuration": "UI maximum N16/K8/L64",
+              "resourceState": "single subsequent sample",
+              "workerResponseMs": 145.9
+            }
+          ],
+          "summaryStatus": "No pooled quantiles across configurations. Five subsequent same-default samples have descriptive median 30.8 ms and maximum 41.9 ms; insufficient for a robust p95.",
+          "evidence": "docs/WAVEFORM-LIVE-BROWSER-VALIDATION.md"
         },
         "details": {
-          "minimal": "Small complex SVD is a credible interactive candidate; use a worker and benchmark actual supported dimensions. No measured browser solve latency exists.",
-          "full": "Trust-region branch may be interactive after profiling. Constant-modulus global branch-and-bound can have exponential worst-case cost; a cancellable job with live incumbent and certified gap is needed, with no instant-completion promise.",
-          "latencyMs": null
+          "sameDefaultSubset": {
+            "sampleCount": 5,
+            "medianWorkerResponseMs": 30.8,
+            "maximumWorkerResponseMs": 41.9,
+            "status": "descriptive small sample only; no p95 estimate"
+          },
+          "assessment": "Bounded deployed functionality and actual downloaded-record replay passed. Precise in-flight cancellation/reset overlap, narrow viewport and Run-to-painted-result measurement remain open."
         }
       },
       "priority": {
@@ -3910,6 +4054,14 @@
             "sha256": "01aac839b3790c43b9d3163f97c861400954203f354ab5c8b73e7077587c069d"
           }
         ]
+      },
+      "liveValidation": {
+        "evidence": "docs/WAVEFORM-LIVE-BROWSER-VALIDATION.md",
+        "sourceCommit": "961ba88dd8e827518465e7e656626e1feab9f95d",
+        "deploymentRun": "38249748136",
+        "inputSha256": "1ea45be3ef0573f08eb85828d0da98aeb5c95f7be57f2a009447c3c90b07a600",
+        "downloadReplayMaximumXDifference": 0,
+        "status": "deployed-smoke-passed-with-open-interruption-and-rendering-gates"
       }
     },
     {

@@ -1,0 +1,77 @@
+{
+  "scope": "Seven evidence-only portability replacements; no runtime, page, controller, model, worker or core change",
+  "priorOwnedManifestSha256": "4c623c224d3f9842a187a8f493b132ef3ebeaf6c89b1d7c70d859dfa96c79449",
+  "files": [
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/INDEPENDENT-MODEL-HISTORY-REVIEW.md",
+      "beforeSha256": "6b382f7e69e21878edad30835e183f66fa92b2c4e437841a5690bc595c1e5285",
+      "sha256": "9f19bdf6210a783f3d36a14a3be39247f68f5802eb04d937bd12156ef47017f6",
+      "bytes": 10925
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/check_model.cjs",
+      "beforeSha256": "6bdb8172ea27d2c4b5d61197e43fe97b1d35a83e0b53ea717c11b290bf03159b",
+      "sha256": "db7b9098e4c007a79ac76cde6ff85059e3d586f12ff9cc542b86a9c1d2dafed5",
+      "bytes": 19635
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/check_worker.cjs",
+      "beforeSha256": "72c1f7ca0a1907ed4ce595cdc99e2fadbdc14534c2bcc5d6166d38eaa9a29922",
+      "sha256": "4e68eb3c133089a34a88a95e0d2badd6dd9c6a123051079159b729feec327543",
+      "bytes": 11744
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/ui/check_ui.cjs",
+      "beforeSha256": "2a0f9f0ac9a77320f43761aae383bf5d880a024b0dd06331969e69e452268490",
+      "sha256": "0a8c10247a2f4ce551f12126bbd5e8324ba5c67eae6f9ee24d00268f553c687d",
+      "bytes": 17206
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/ui/harness.cjs",
+      "beforeSha256": "f3ddbcfeb0e83d6683356390d7c0fd788f4ad6afb6eb0f3da0ecabb9a2bc707a",
+      "sha256": "4627ffd3774e4888778ecbaa4e9ff9cd825e6a256827d4e0d621df817da7c9ab",
+      "bytes": 6380
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/ui/run_authored_tests.cjs",
+      "beforeSha256": "560396b1dcb8ac9c8a67e3d48d1398695c6ceec0256183770dc31d0ce5058c45",
+      "sha256": "939fe52a68d9898dd4ef9a1abe48b85e9949d2f72e0709f5b792938e11144adf",
+      "bytes": 1848
+    },
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/worker-node-adapter.cjs",
+      "beforeSha256": "1ab386cc7bb193dabae2045e026d41550574030256487ac615608430f913e302",
+      "sha256": "3d58b16e24b04aa3218e25ba919ae94087f81a343c04e0280f29805b5d1f1f7e",
+      "bytes": 1128
+    }
+  ],
+  "unchangedOriginalOwnedFiles": 39,
+  "historicalReviewFreezesPreserved": true,
+  "verification": {
+    "allPassed": true,
+    "defaultRootFromUnrelatedWorkingDirectory": "/tmp",
+    "canonical": {
+      "modelSuites": 19,
+      "historyWorkerSuites": 16,
+      "independentUiSuites": 17,
+      "authoredUiTests": 37
+    },
+    "flat": {
+      "modelSuites": 19,
+      "historyWorkerSuites": 16,
+      "independentUiSuites": 17,
+      "authoredUiTests": 37
+    },
+    "explicitCliRoot": "check_model.cjs passed for both canonical and flat roots",
+    "browserValidated": false
+  },
+  "independentDeltaReview": "Original independent reviewer compared all seven files with untouched originals and approved only root resolution, canonical/flat lookup, helper export and report portability wording; no assertions, tolerances, RNG, replay, faults or expected values weakened.",
+  "integrationFormatting": [
+    {
+      "path": "scripts/validation/ofdm-reference/atomic-receiver/lesson-review/ui/authored-runner.log",
+      "beforeSha256": "9d3b322a01d56a3a41f4ac43e445bb44f7460921cdcf471896b501a21623aa58",
+      "sha256": "eb8237fb4eb7237f7f7fa19493da0e98bd58a2c54e64e2494c9f930a54502844",
+      "change": "Removed one empty EOF line from captured output for repository whitespace checks; all test cases, values and historical freeze identities unchanged"
+    }
+  ]
+}

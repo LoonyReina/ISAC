@@ -1,0 +1,25 @@
+PASS ready identifies exact core and history wrapper versions
+PASS malformed messages, stale core version and invalid inputs fail without a solve
+PASS all preset histories exactly replay independently one solver step at a time
+PASS nonmultiple record interval yields only actual sampled and terminal states
+PASS history decimation preserves real states, first and final, without interpolation
+PASS duplicate and older solve IDs cannot restart or supersede jobs
+PASS active cancellation produces one requested terminal and no stale result
+PASS valid supersession cancels old job and prevents its final result
+PASS stale cancel, invalid superseding input and wrong version preserve active solve
+PASS invalid requests do not consume accepted-ID sequence
+PASS PSD numerical failure emits error and cannot appear as converged or max_iter
+PASS overflow fails rather than false convergence
+PASS fresh valid solve succeeds after numerical failures
+PASS paired fixed-e-zero Worker histories for all five presets replay exactly
+PASS all Worker messages carry history wrapper version and relevant core version
+PASS reviewed files unchanged during Worker tests
+{
+  "allPassed": true,
+  "checks": 16,
+  "hashes": {
+    "core": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+    "model": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+    "worker": "233a726566f920819c009bb16a9bcd4fbbe472faa8eecfd8504cda7a21551bef"
+  }
+}
