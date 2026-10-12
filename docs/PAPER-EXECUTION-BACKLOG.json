@@ -90,11 +90,9 @@
     "unknownPolicy": "Absent source PDF hashes remain null; no guess. Preserve fixed edition and locators, and resolve missing source/data/code/licence/training details before accepting the dependent claim."
   },
   "sequence": {
-    "current": "ofdm-passive-atomic-errors-2017",
-    "next": "joint_beamforming",
-    "then": [
-      "crb"
-    ],
+    "current": "joint_beamforming",
+    "next": "crb",
+    "then": [],
     "dataAndWeightAccessInParallel": [
       "deepsense",
       "radar_prediction",
@@ -115,18 +113,20 @@
     "deliveredBoundedSlices": [
       "tradeoffs-feedback-capacity-distortion-2018",
       "nearfield-mechanism-aware-mapping-2026",
-      "optimal_waveform"
+      "optimal_waveform",
+      "ofdm-passive-atomic-errors-2017"
     ],
     "activeStages": [
-      {
-        "paperId": "ofdm-passive-atomic-errors-2017",
-        "stage": "site-integration",
-        "status": "in-progress"
-      },
       {
         "paperId": "joint_beamforming",
         "stage": "independent-numerical-reference",
         "status": "in-progress"
+      },
+      {
+        "paperId": "optimal_waveform",
+        "stage": "independent-numerical-reference",
+        "status": "in-progress",
+        "branch": "Section IV weighted waveform of fixed1711.05220v1; validation pending, separate from delivered strict-covariance core"
       }
     ]
   },
@@ -2116,7 +2116,7 @@
           "图8两个场景×11个BER×100次试验及漏检/虚警分母",
           "M=16,N=64的图6–7",
           "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
-          "实际托管浏览器与目标桌面时延验收"
+          "重复、具名设备的Run-to-painted-result性能基准及窄视口验收"
         ],
         "details": {
           "preImplementationGuideSnapshot": {
@@ -2167,9 +2167,9 @@
             "图8两个场景×11个BER×100次试验及漏检/虚警分母",
             "M=16,N=64的图6–7",
             "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
-            "实际托管浏览器与目标桌面时延验收"
+            "重复、具名设备的Run-to-painted-result性能基准及窄视口验收"
           ],
-          "validatorScope": "Independent finite-SDP core, simulator/postprocessor and actual history/Worker/UI gates; real-browser acceptance is pending. Existing prerequisite labs remain separate.",
+          "validatorScope": "Independent finite-SDP core, simulator/postprocessor and actual history/Worker/UI gates; deployed 1180px desktop interaction and exact downloaded-record replay passed on 2026-10-12. Repeated performance and narrow-viewport checks remain open. Existing prerequisite labs remain separate.",
           "historicalPrerequisiteArtifacts": [
             {
               "path": "labs/ofdm-reference/offgrid-range-core.js",
@@ -2219,7 +2219,7 @@
         "selectedExperiment": "partial",
         "fullPaper": "partial",
         "liveExecution": "partial-core",
-        "uiLearning": "partial",
+        "uiLearning": "accepted",
         "latency": "not-measured"
       },
       "stageEvidence": {
@@ -2228,15 +2228,15 @@
         "independentValidation": "Independent SCS/NumPy references and finite-range/projection negative cases. Additional 19 model, 16 history/Worker and 17 UI review suites passed. Current owned test suite 86 cases; see docs/ATOMIC-RECEIVER-VALIDATION.md.",
         "selectedExperiment": "Original-size 16×16 single-case numerical agreement is offline only. First 300 s timeout retained, same-state continuation 596.449 s total; CS-AN 450 s remains unfinished. Full Fig8 statistical reproduction not established.",
         "fullPaper": "Partial finite Eq27 algorithm only; original detector/gain re-estimation, full BER/clutter studies and source approximation stress tests remain open.",
-        "uiLearning": "Fresh paired computation, actual state replay, candidate threshold exploration, retained failures and complete JSON implemented and VM-tested; deployed browser/layout/download pending.",
-        "latency": "No actual browser latency measured. Worker runtime begins after initialization and excludes loading, final extra snapshot diagnostics, transport, render and download; original-size cloud times are offline evidence."
+        "uiLearning": "2026-10-12 deployed main3e9263a / PR75: actual desktop history, threshold exploration, reference-only observation reuse, retained failures, in-flight cancellation/reset/replacement, keyboard/navigation and exact downloaded-record replay passed. See docs/ATOMIC-RECEIVER-VALIDATION.md#deployed-desktop-acceptance-2026-10-12.",
+        "latency": "Displayed default core runtime intervals of approximately1.06/1.96s were observed in Chrome; they exclude initialization/loading/final transport/render and are not control-to-result latency. No repeated named-device Run-to-painted-result benchmark is established."
       },
       "missingImplementation": [
         "原文完整检测、参数读取/增益重估及MUSIC模型阶数协议",
         "图8两个场景×11个BER×100次试验及漏检/虚警分母",
         "M=16,N=64的图6–7",
         "适用的二维分解/等价性证书尚未验证；不声称一般情形无条件等价",
-        "实际托管浏览器与目标桌面时延验收"
+        "重复、具名设备的Run-to-painted-result性能基准及窄视口验收"
       ],
       "dependencies": [
         "独立凸SDP参考求解器及复PSD线性代数",
@@ -2247,7 +2247,7 @@
       "blockers": [
         "Full original figure/detection/model-order protocol and statistical settings unresolved",
         "General2-D atomic-norm equality is conditional, not certified by a sampled dual grid",
-        "Actual hosted desktop interaction, downloaded bytes and latency acceptance pending"
+        "Repeated named-device Run-to-painted-result performance benchmark and narrow-viewport acceptance remain open"
       ],
       "realtime": {
         "status": "not-measured",
@@ -2263,7 +2263,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "Actual 4×4 live Worker implementation is locally verified; original 16×16 solves take hundreds of seconds offline. Real browser responsiveness remains a separate measured gate.",
+          "assessment": "Actual4×4 deployed desktop interaction and downloaded-record replay passed. Only the displayed, scoped core runtime intervals were recorded; end-to-end latency and repeated performance remain unmeasured. Original16×16 cloud solve times remain offline evidence.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -2291,6 +2291,75 @@
           "independentHistoryWorkerSuites": 16,
           "independentUiSuites": 17,
           "wholePaperReproduced": false
+        },
+        "browserAcceptance": {
+          "verifiedOn": "2026-10-12",
+          "intervalUtc": {
+            "start": "13:09:56",
+            "end": "13:15:08"
+          },
+          "commit": "3e9263a70c6f067520a6c0b1b0cd93dc96b6b007",
+          "pullRequest": 75,
+          "deploymentRun": 38253153897,
+          "documentation": "docs/ATOMIC-RECEIVER-VALIDATION.md#deployed-desktop-acceptance-2026-10-12",
+          "browser": "Cloud Chrome; version and CPU unrecorded",
+          "viewportCssPx": 1180,
+          "documentScrollWidth": 1165,
+          "scope": "Bounded4×4 desktop interaction, actual in-flight cancellation/reset/replacement and downloaded-record replay",
+          "defaultReplay": {
+            "anl1": {
+              "status": "converged",
+              "iterations": 504,
+              "recordIterations": 504,
+              "zMaxDiff": 0,
+              "eMaxDiff": 0,
+              "objective": 1.0116013539948374,
+              "recordObjective": 1.0116013539948374
+            },
+            "an": {
+              "status": "converged",
+              "iterations": 950,
+              "recordIterations": 950,
+              "zMaxDiff": 0,
+              "eMaxDiff": 0,
+              "objective": 1.0622598968223653,
+              "recordObjective": 1.0622598968223653
+            }
+          },
+          "resourceHashes": {
+            "atomic-receiver-core.js": {
+              "sha256": "3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14",
+              "match": true
+            },
+            "atomic-receiver-model.js": {
+              "sha256": "69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96",
+              "match": true
+            },
+            "atomic-receiver-worker.js": {
+              "sha256": "233a726566f920819c009bb16a9bcd4fbbe472faa8eecfd8504cda7a21551bef",
+              "match": true
+            },
+            "atomic-receiver.js": {
+              "sha256": "b01de3d5ec1668469630a0b013b7ce1328fcb102504e4213db3bb1c6d93ae3ef",
+              "match": true
+            },
+            "atomic-receiver.css": {
+              "sha256": "f19f6679205699ebd6a0276e3cfbacc6a7e5afc56cc5d31bf4fa387edac83421",
+              "match": true
+            }
+          },
+          "displayedCoreIntervals": {
+            "measurementBoundary": "runtimeMs starts after core initialization and is sampled early in the final snapshot; includes task waits; excludes input generation, Worker loading, later final diagnostics, final-result transport, rendering and download",
+            "anl1ApproxSeconds": 1.06,
+            "anApproxSeconds": 1.96,
+            "runToDisplayMeasured": false,
+            "repeatedBenchmarkEstablished": false
+          },
+          "remaining": [
+            "Repeated named-device Run-to-painted-result performance benchmark",
+            "Narrow-viewport acceptance",
+            "Full source figures, detector and model stress tests remain separate paper gates"
+          ]
         }
       },
       "details": {}

@@ -1,6 +1,6 @@
 # Atomic passive-OFDM receiver: bounded teaching validation
 
-Validation date: 2026-10-12. Canonical lesson: `atomic-ofdm-receiver.html`. This record covers the owned lesson, model, numerical core, history worker and tests. Navigation/manifest integration, aggregate build and hosted-browser acceptance are separate release gates.
+Validation date: 2026-10-12. Canonical lesson: `atomic-ofdm-receiver.html`. This record covers the owned lesson, model, numerical core, history worker and tests. Navigation/manifest integration and the final 1285-test aggregate passed for PR75. The dated deployed-desktop acceptance below is a separate gate from the numerical/VM checks.
 
 ## Accepted numerical scope
 
@@ -62,10 +62,50 @@ The combined run before the final timing-caption-only clarification passed **85/
 
 Independent model/history review additionally reconstructs the random streams without reusing the generator, checks 65,536 noise samples, 324 observation-reuse combinations, all 4,096 dual-grid cells, periodic maxima, 411 association fixtures and all five real-core presets. Sixteen independent actual-worker suites compare every retained state to one-step replay, including non-divisor recording and decimation.
 
-Independent UI review found and resolved real range-input value clamping, malformed nonzero initialization and late completed-worker version-event defects; all negative regressions remain. No headless/browser tool was used. VM tests cannot certify CSS layout, actual browser module/network loading, accessibility-tree behavior, a physical device, browser scheduling or desktop latency. Hosted-browser interaction acceptance remains required after authorized integration/deployment.
+Independent UI review found and resolved real range-input value clamping, malformed nonzero initialization and late completed-worker version-event defects; all negative regressions remain. No headless/browser tool was used. VM tests cannot certify CSS layout, actual browser module/network loading, accessibility-tree behavior, a physical device, browser scheduling or desktop latency. The later deployed-desktop gate below supplies bounded browser evidence; these VM checks remain distinct from that evidence.
 
 ## Offline source-size evidence and open paper work
 
 Original M=N=16, rho=0.05: the first 300 s ADMM timeout remains, followed by same-state continuation to 20,170 iterations / 596.449 s total. Independent SCS took 149.153 s / 1,150 iterations. Objective agreement 1.304×10⁻⁷ is separate from the conservative finite-SDP numerical bound gap 0.00216709. The paired original-size CS-AN run timed out at 450 s. These are cloud offline measurements, not browser controls or a complete performance comparison.
 
 The source's full Fig. 8 BER sweep, detector/model-order thresholds, seeds and Figs. 6–7 remain open. The teaching observation excludes direct path, clutter, actual demodulation/FEC and time-domain intrablock Doppler/ICI. The source endpoint `fD*Tbar=0.312`, `fD/Delta_f=0.208` makes this approximation boundary material. A future time-domain stress test is a separate extension.
+
+## Deployed desktop acceptance, 2026-10-12
+
+Verified 13:09:56–13:15:08 UTC at the canonical [live lesson](https://loonyreina.github.io/ISAC/atomic-ofdm-receiver.html#experiment), deployed from [PR75](https://github.com/LoonyReina/ISAC/pull/75), main `3e9263a70c6f067520a6c0b1b0cd93dc96b6b007`, tree `00774b68517ee12a03b25b4b276e4b36d9d5e6d5`. PR verification `38252664344` and main build/deployment `38253153897` succeeded. Cloud Chrome desktop viewport was 1180 CSS px, document scrollWidth 1165; browser version and CPU were not recorded.
+
+### Served resources and actual downloaded computation
+
+All five served resources matched the reviewed source bytes:
+
+| Resource | SHA-256 |
+|---|---|
+| atomic-receiver-core.js | 3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14 |
+| atomic-receiver-model.js | 69e4047b5c4cbe13663a881c7b34b460600c099f3ddea352e3eb4733b4086a96 |
+| atomic-receiver-worker.js | 233a726566f920819c009bb16a9bcd4fbbe472faa8eecfd8504cda7a21551bef |
+| atomic-receiver.js | b01de3d5ec1668469630a0b013b7ce1328fcb102504e4213db3bb1c6d93ae3ef |
+| atomic-receiver.css | f19f6679205699ebd6a0276e3cfbacc6a7e5afc56cc5d31bf4fa387edac83421 |
+
+The actual default JSON download was parsed and re-solved with the Node core. Both methods reproduced z and e with maximum entry difference 0, identical objectives and identical iteration counts:
+
+| Method | Iterations | Objective | Candidates | Matched / missed / extra | Error TP / FP / FN |
+|---|---:|---:|---:|---|---|
+| CS-ANL1 | 504 | 1.0116013539948374 | 9 | 2 / 0 / 7 | 2 / 1 / 0 |
+| CS-AN, e=0 | 950 | 1.0622598968223653 | 15 | 1 / 1 / 14 | 0 / 0 / 2 |
+
+These are single-observation outcomes under the stated sampled-grid threshold and matching gate, not detection probabilities or a physical resolution certificate. No browser downloads or private machine paths are included in this report.
+
+### Observed teaching and interrupted flows
+
+- Actual history slider ends at 12/12, iteration 504. Home returns to initialization 0, Next shows actual iteration 50, switching method ends at 20/20, iteration 950. Cell 15 corresponds to m=3, n=3
+- Threshold 1.010 produces zero candidates and two misses; restoring 0.995 restores nine candidates under the same run 1. Blank threshold disables export. Parameter edits invalidate prior results and disable export
+- Changing reference-error count from 2 to 0 preserves exactly the same received r and changes the reference symbols. The two methods finish in 368/366 iterations with three candidates and two matches each. New seed 20261013 changes r; keyboard Enter starts a fresh run
+- The iteration-limit preset leaves both methods at 500 iterations, explicitly unconverged. The dense-error preset retains its 558-iteration CS-ANL1 result, 13 candidates, two matches, 11 extras, and error TP/FP/FN=1/1/7
+- Actual in-flight Cancel was observed after 124 iterations, with export disabled. Actual in-flight Reset was observed after 108 iterations. Editing inputs during computation and starting the new configuration produced the current result without stale overwrite. Invalid mu=0 neither solves nor exports
+- All four magnitude panels and dual plots were visually readable at this desktop width, without global horizontal overflow. The visible guide execution link, canonical lesson, notebook topic `atomic-ofdm-receiver`, and browser Back worked. No site-origin console errors were observed
+
+### Timing boundary and remaining gates
+
+The displayed default core intervals were approximately **1.06 s / 1.96 s** for CS-ANL1 / CS-AN. Their implementation boundary is the `runtimeMs` boundary described above: after core initialization through the early part of final snapshot construction, including task waits. They exclude Worker loading, final-result transport, rendering and download. They are neither Run-to-display measurements nor a repeated desktop performance benchmark; no percentiles or cross-configuration aggregate are reported.
+
+This closes the bounded deployed-desktop interaction and downloaded-record replay gate. A repeated, named-device Run-to-painted-result benchmark and narrow-viewport certification remain open. Full Fig.8/BER studies, the original detector, time-domain ICI/model stress tests, and applicable 2-D decomposition/equivalence certificates also remain open. This check does not establish full-paper reproduction.
