@@ -133,3 +133,13 @@ test('mixed main/worker algorithm versions are rejected and ordinary static chec
  const block=html.slice(html.indexOf('<!-- CAPACITY-DISTORTION:START -->'),html.indexOf('<!-- CAPACITY-DISTORTION:END -->'));
  const normal=block.replace(/<noscript>[\s\S]*?<\/noscript>/g,'');a.ok(normal.includes('id="cd-static-checkpoints"'));a.ok(normal.includes('I=0.4 bit/使用，D=0.2'));a.ok(normal.includes('本节论文模型'));a.doesNotMatch(script,/精确数值间隙/);a.match(script,/报告的数值间隙为 0/);
 });
+
+// A zero-valued neutral cost vector reaches the minimum-cost boundary without
+// removing any feasible input symbol. Do not infer reduction from the flag alone.
+test('minimum-cost wording distinguishes the neutral all-symbol boundary from an actual support restriction',()=>{
+ const neutral=setup();const full=neutral.complete();a.equal(full.selected.exactCostBoundary,true);a.deepEqual(full.selected.support,[0,1]);
+ a.match(neutral.els['cd-status'].textContent,/全部输入符号均为最低成本；支持未缩减/);a.match(neutral.els['cd-pmf-note'].textContent,/初始支持保留全部输入符号/);
+ for(const id of ['cd-status','cd-pmf-note'])a.doesNotMatch(neutral.els[id].textContent,/支持已缩减|初始支持已限制/);
+ const restricted=setup();extension(restricted,0);restricted.change('cd-noise',0);const limited=restricted.complete();a.deepEqual(limited.selected.support,[0]);
+ a.match(restricted.els['cd-status'].textContent,/精确最低成本支持已缩减（1\/2 个符号）/);a.match(restricted.els['cd-pmf-note'].textContent,/初始支持已限制在最低成本符号/);
+});

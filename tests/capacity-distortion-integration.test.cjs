@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
-const tags='<link rel="stylesheet" href="capacity-distortion.css?v=finite-ba-v1"><script defer src="capacity-distortion-core.js?v=finite-ba-v1"></script><script defer src="experiment-record.js?v=record-preview-v1"></script><script defer src="capacity-distortion.js?v=finite-ba-v1"></script>';
+const tags='<link rel="stylesheet" href="capacity-distortion.css?v=finite-ba-v1"><script defer src="capacity-distortion-core.js?v=finite-ba-v1"></script><script defer src="experiment-record.js?v=record-preview-v1"></script><script defer src="capacity-distortion.js?v=finite-ba-v2"></script>';
 function originalTheory(html){
  for(const marker of ['<!-- CAPACITY-DISTORTION:START -->','<!-- CAPACITY-DISTORTION:END -->'])a.equal(html.split(marker).length,2,'one exact lesson block boundary');
  a.equal(html.split(tags).length,2,'one scoped asset bundle');a.equal(html.split('五个可复算实验').length,2,'one updated local experiment count');

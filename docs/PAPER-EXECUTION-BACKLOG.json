@@ -13,7 +13,7 @@
     },
     "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record.",
     "fullPaperReproductionsEstablished": 0,
-    "liveTargetLatencyMeasurementsEstablished": 0,
+    "liveTargetLatencyMeasurementsEstablished": 1,
     "additionalCitationAuditStatus": "not-started"
   },
   "trackingContract": {
@@ -2578,8 +2578,11 @@
         ]
       },
       "implementation": {
-        "classification": "implemented and independently validated general finite-alphabet modified BA; binary Fig.2 reproduced; live UI integration in progress",
-        "live": null,
+        "classification": "implemented and independently validated finite-alphabet modified BA; binary Fig.2 reproduced; bounded desktop execution and learning flow verified",
+        "live": {
+          "href": "theory.html#capacity-distortion",
+          "scope": "Actual finite-alphabet optimization on current inputs; selected paper binary model plus labelled finite-channel extensions. Gaussian Fig.3 remains open."
+        },
         "offline": null,
         "details": {
           "guideTraceKind": "qualitative-reading-trace",
@@ -2617,22 +2620,22 @@
         "independentValidation": "passed",
         "selectedExperiment": "reproduced",
         "fullPaper": "partial",
-        "liveExecution": "partial-core",
-        "uiLearning": "partial",
-        "latency": "not-measured"
+        "liveExecution": "validated",
+        "uiLearning": "accepted",
+        "latency": "measured"
       },
       "stageEvidence": {
         "source": "Fixed PDF and algorithm equations independently audited on 2026-10-12; min/max inconsistency and inactive cost handling resolved for implementation.",
         "algorithm": "General finite-alphabet modified BA implemented and independently validated at core SHA-256 a48f0da1ceecec77381b0b598d266155c7cbf72022412e53c3bd7034fb2299a1. This status covers the finite-alphabet core, not the continuous Gaussian experiment.",
         "selectedExperiment": "Binary Fig.2 reproduced with 49 actual BA solves: maximum rate error 2.591e-9 bits/use, distortion error 9.819e-11, and every-iteration error 1.11e-16. Gaussian Fig.3 remains separately unresolved.",
-        "fullPaper": "Partial: validated general finite-alphabet core and binary Fig.2 only. Continuous Gaussian Fig.3 and the complete live teaching acceptance remain open.",
-        "latency": "No measured browser control-to-result latency for the faithful target core.",
+        "fullPaper": "Partial: validated general finite-alphabet core, binary Fig.2 and bounded desktop lesson only. Continuous Gaussian Fig.3 and broader paper coverage remain open.",
+        "latency": "Three labelled desktop smoke observations on deployed commit 958e54d: cold binary 373.5 ms, warm binary 39.1 ms, ternary 392.9 ms including input debounce; no pooled median/p95 or repeatable hardware benchmark.",
         "independentValidation": "Passed 18 core tests and 150 independent random SLSQP comparisons, with analytic binary, active-cost and generic-channel checks.",
-        "liveExecution": "Live UI integration is in progress; fresh-input browser acceptance and control-to-result latency have not been established."
+        "liveExecution": "Deployed desktop fresh-input solving, boundary/failure states, replay, cancellation/reset, navigation and actual JSON download/re-solve verified on 2026-10-12; see docs/CAPACITY-DISTORTION-BROWSER-VALIDATION.md."
       },
       "missingImplementation": [
         "Gaussian Fig.3 input/output/state refinement and documented discrepancy",
-        "Validated live core and measured desktop latency"
+        "Repeated fixed-configuration desktop latency/memory benchmark with hardware and browser version recorded"
       ],
       "dependencies": [
         "Implement source Eqs.(22)–(25), robust Bayes-risk preprocessing and consistent natural-log penalties",
@@ -2640,24 +2643,50 @@
         "Record feasibility, certified objective gap, iteration counts and limits; separately audit Gaussian quantization and quadrature"
       ],
       "blockers": [
-        "Complete live integration, fresh-input browser checks, failure/stale/cancellation behavior and measured desktop latency",
-        "Gaussian Fig.3: source omits discretization settings; printed Gaussian-input endpoint 1.213 differs from literal-model quadrature 1.252699474402693 bits/use at P=10"
+        "Gaussian Fig.3: source omits discretization settings; printed Gaussian-input endpoint 1.213 differs from literal-model quadrature 1.252699474402693 bits/use at P=10",
+        "Three desktop timing observations are smoke evidence; repeatable benchmark distribution remains open"
       ],
       "realtime": {
-        "status": "not-measured",
-        "measuredLatencyMs": null,
+        "status": "measured",
+        "measuredLatencyMs": 373.5,
         "benchmark": {
-          "device": null,
-          "browser": null,
-          "sampleCount": null,
+          "device": "Desktop browser, viewport width 1180 CSS px; CPU and operating system not recorded",
+          "browser": "Chrome; version not recorded",
+          "measurementType": "individual-smoke-samples",
+          "sampleCount": 3,
           "medianMs": null,
           "p95Ms": null,
-          "worstMs": null
+          "worstMs": null,
+          "samples": [
+            {
+              "configuration": "default binary",
+              "resourceState": "cold worker resources",
+              "controlToResultMs": 373.5,
+              "workerMs": null,
+              "includesInputDebounce": false
+            },
+            {
+              "configuration": "default binary",
+              "resourceState": "warm resources",
+              "controlToResultMs": 39.1,
+              "workerMs": null,
+              "includesInputDebounce": false
+            },
+            {
+              "configuration": "ternary extension",
+              "resourceState": "resource cache state not recorded",
+              "controlToResultMs": 392.9,
+              "workerMs": 132.5,
+              "includesInputDebounce": true
+            }
+          ],
+          "summaryStatus": "No pooled quantiles: different model/cache/input conditions",
+          "evidence": "docs/CAPACITY-DISTORTION-BROWSER-VALIDATION.md"
         },
         "details": {
-          "measuredBrowserLatencyMs": null,
-          "measuredThisAudit": false,
-          "assessment": "本子集最适合浏览器真实重算的首项：小字母表只需概率运算/迭代，不需大型训练或硬件；实际p95/最坏更新时延仍未测",
+          "measuredBrowserLatencyMs": 373.5,
+          "measuredThisAudit": true,
+          "assessment": "Actual bounded desktop solving and individual timing observations verified; measuredLatencyMs is the first cold binary sample, not an average or guarantee. Repeated homogeneous p50/p95 benchmarking remains open.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -2673,7 +2702,7 @@
       },
       "evidence": {
         "auxiliaryPrimarySources": [],
-        "currentAudit": "2026-10-12 fixed-PDF source audit, general finite-alphabet implementation and independent validation complete; binary Fig.2 reproduced. Actual Worker-based teaching UI passes 26 core/worker/DOM behavior tests; deployed desktop interaction/latency acceptance and Gaussian Fig.3 remain open.",
+        "currentAudit": "2026-10-12 finite-alphabet core and binary Fig.2 validated; deployed desktop controls, failures, cancellation/reset, guide navigation and actual downloaded JSON re-solve passed. Three labelled timing observations are recorded, not a percentile benchmark. Gaussian Fig.3 and full-paper coverage remain open.",
         "numericalMilestone": {
           "corePath": "labs/capacity-distortion/capacity-distortion-core.js",
           "coreSha256": "a48f0da1ceecec77381b0b598d266155c7cbf72022412e53c3bd7034fb2299a1",
@@ -2694,9 +2723,18 @@
         },
         "uiMilestone": {
           "publicHref": "theory.html#capacity-distortion",
-          "behaviorTestsPassed": 26,
+          "behaviorTestsPassed": 27,
           "testPath": "tests/capacity-distortion-ui.test.cjs",
-          "scope": "Actual fresh-input solver, cancellation/stale-result isolation, stored-iterate inspection and computed JSON export verified in a Node VM harness; browser layout, downloaded bytes and end-to-end desktop latency pending."
+          "scope": "Actual fresh-input solver, cancellation/stale-result isolation, stored-iterate inspection and computed JSON export verified in Node VM tests and the dated deployed desktop check; broader repeated latency benchmarking remains open."
+        },
+        "browserMilestone": {
+          "date": "2026-10-12",
+          "sourceCommit": "958e54d94928bd51378619587b4706dc9f371a40",
+          "pullRequest": 71,
+          "deploymentRun": "38240404641",
+          "report": "docs/CAPACITY-DISTORTION-BROWSER-VALIDATION.md",
+          "downloadReplay": "Actual ternary JSON re-solved with exact p/I/D equality",
+          "scope": "Bounded lesson desktop smoke; no whole-paper or percentile claim"
         }
       },
       "details": {
@@ -2712,6 +2750,11 @@
           "genericThreeOutputCertificateGapNats": "<5.8e-9",
           "scope": "Independent reference only; these are not implementation-test results"
         }
+      },
+      "liveValidation": {
+        "evidence": "docs/CAPACITY-DISTORTION-BROWSER-VALIDATION.md",
+        "sourceCommit": "958e54d94928bd51378619587b4706dc9f371a40",
+        "scope": "Finite-alphabet lesson and checked presets; Gaussian Fig.3 and repeated fixed-configuration benchmark pending"
       }
     },
     {
