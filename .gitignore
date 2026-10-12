@@ -9,3 +9,6 @@
 *.key
 .DS_Store
 node_modules/
+
+# Reproducible compatibility-build output; source mapping lives in build/
+/dist/
