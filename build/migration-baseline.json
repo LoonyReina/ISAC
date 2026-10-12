@@ -1,0 +1,1846 @@
+{
+  "schemaVersion": 1,
+  "baselineRevision": "2c9ef008c3e1d9d3f723ac54e8e55236ee7adb36",
+  "entries": [
+    {
+      "compatibility": ".gitignore",
+      "public": null,
+      "sha256": "ea4151a8ea58e7d3d44cfd1f1645638d008495f33ee7979ab0887755406faa00"
+    },
+    {
+      "compatibility": ".nojekyll",
+      "public": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "compatibility": "AGENTS.md",
+      "public": "AGENTS.md",
+      "sha256": "8fa28e94bf2a8c9a60545f3974c7c3a33c2b4dc41e973c4f18433a228584d486"
+    },
+    {
+      "compatibility": "README.md",
+      "public": "README.md",
+      "sha256": "f46db27a7edd8d6d4f1ab6731eafc4b47d7bb7f2eaa07f0dfea40305fdd24681"
+    },
+    {
+      "compatibility": "catalog.js",
+      "public": "catalog.js",
+      "sha256": "51d548d6b887ffcf65898069c33fe7485ceb79aaf48049a19e5244147e1510de"
+    },
+    {
+      "compatibility": "course-core.js",
+      "public": "course-core.js",
+      "sha256": "f558792aa5b68e4e1bdafac9f8db75029f5e38dbe8215d2e6d2d028e83fc4319"
+    },
+    {
+      "compatibility": "course-ui.js",
+      "public": "course-ui.js",
+      "sha256": "1d44683fda1d0ccd4012062ccbe01979944b364cc65f8a780277d02f25727198"
+    },
+    {
+      "compatibility": "course.css",
+      "public": "course.css",
+      "sha256": "296edfa4800354b060eb74be7a90ced43bcb4ed775083bcd1cafe92ecbcf8ae4"
+    },
+    {
+      "compatibility": "course.js",
+      "public": "course.js",
+      "sha256": "0a398f09a8f307ab6befae6cd789e07368ec5f6f03bd7b26f1b83f0a51e0d753"
+    },
+    {
+      "compatibility": "crb-beamforming-core.js",
+      "public": "crb-beamforming-core.js",
+      "sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8"
+    },
+    {
+      "compatibility": "crb-beamforming.css",
+      "public": "crb-beamforming.css",
+      "sha256": "58a2d9abec5792a862a1acae7b77632ade4909e2f14d71526b9e74c55c9abdf7"
+    },
+    {
+      "compatibility": "crb-beamforming.html",
+      "public": "crb-beamforming.html",
+      "sha256": "b95e47748b744b3ad37060653f515a1eb01bcb543243b99ac6b9b849d73a6244"
+    },
+    {
+      "compatibility": "crb-beamforming.js",
+      "public": "crb-beamforming.js",
+      "sha256": "e2fa2f03938197eab129935d6f1c16263eaac8f170ebd4bdf638634d0f146e6d"
+    },
+    {
+      "compatibility": "data/crb-beamforming-actual-validation.json",
+      "public": "data/crb-beamforming-actual-validation.json",
+      "sha256": "068c5529c6bbb56c16b89d723956fb0b71e7571b054d4e42af11132a0feeaeb5"
+    },
+    {
+      "compatibility": "data/crb-beamforming-highprecision-validation.json",
+      "public": "data/crb-beamforming-highprecision-validation.json",
+      "sha256": "a49aa3abc2fd800c81ee0cdf7c45d72a50132d87aca56420e5744a69c80c354e"
+    },
+    {
+      "compatibility": "data/crb-beamforming-independent.json",
+      "public": "data/crb-beamforming-independent.json",
+      "sha256": "ea5e5d8471be5428b1949cf4b3cba23446fc641afb25f254307e457202f53c85"
+    },
+    {
+      "compatibility": "data/crb-beamforming-sources.json",
+      "public": "data/crb-beamforming-sources.json",
+      "sha256": "923a5a6907cf5736ab642ce96a9891dee39760e96723f7bbdc706a3b1fa1d241"
+    },
+    {
+      "compatibility": "data/crb-beamforming-validation.json",
+      "public": "data/crb-beamforming-validation.json",
+      "sha256": "68026d3f99ab81efc52e0695d215a50afdfd46bfbcec63336bf1647f7c6dad48"
+    },
+    {
+      "compatibility": "data/distributed-detection-sources.json",
+      "public": "data/distributed-detection-sources.json",
+      "sha256": "3c7eef6aafd5bbde9d53f3eda80c9316277771d9877f90dfd41820c4f9cd32f1"
+    },
+    {
+      "compatibility": "data/golay-radar-sources.json",
+      "public": "data/golay-radar-sources.json",
+      "sha256": "dcbf944c952360754f9d89270c4930efb02964d9eb459b173b588ebabc8f7706"
+    },
+    {
+      "compatibility": "data/golay-radar-validation.json",
+      "public": "data/golay-radar-validation.json",
+      "sha256": "f13b738b52b94a58984ef85f55678b629947bac8635530de6df143cca8226b1f"
+    },
+    {
+      "compatibility": "data/joint-beamforming-validation.json",
+      "public": "data/joint-beamforming-validation.json",
+      "sha256": "6e1c1a954f826f8908b0cf7b9dd2a7205459baf716ca090797cbb4de3be9bf13"
+    },
+    {
+      "compatibility": "data/multipath-channel-sources.json",
+      "public": "data/multipath-channel-sources.json",
+      "sha256": "d949c07448ba663499ee7f2b9cee66dea9ee5959242e50d8d4eddf73f2e6eceb"
+    },
+    {
+      "compatibility": "data/ofdm-interpolation-sources.json",
+      "public": "data/ofdm-interpolation-sources.json",
+      "sha256": "07030bef799b54d32f63adae84a58a94add970cc087c1336f233e24819bc92ea"
+    },
+    {
+      "compatibility": "data/ofdm-interpolation-validation.json",
+      "public": "data/ofdm-interpolation-validation.json",
+      "sha256": "62fae4407402ddb27de73c02db9f0da049e98bcf1340ed6ebc1493d0517fe61f"
+    },
+    {
+      "compatibility": "data/perceptive-clutter-reference-fixtures.json",
+      "public": "data/perceptive-clutter-reference-fixtures.json",
+      "sha256": "20209d6830b2327392898c999ebf2ab55384d710413771e520c1490dc9eebfd0"
+    },
+    {
+      "compatibility": "data/perceptive-clutter-sources.json",
+      "public": "data/perceptive-clutter-sources.json",
+      "sha256": "cc285a0ecfe5f21d8ca77fb0277fc05ca6996afdf994028d7755b3aa14592f64"
+    },
+    {
+      "compatibility": "data/perceptive-clutter-validation.json",
+      "public": "data/perceptive-clutter-validation.json",
+      "sha256": "9b011b4d0f5ddde00f7a81a8212e69aae9e1e61cadeeaf0970a15c9fb9b9e9ac"
+    },
+    {
+      "compatibility": "data/radar-beam-decision-sources.json",
+      "public": "data/radar-beam-decision-sources.json",
+      "sha256": "a31c003ca28500472dd094bf5208fdede1af943bdb6787ca20b74d71b8a3b95e"
+    },
+    {
+      "compatibility": "data/radar-beam-decision-validation.json",
+      "public": "data/radar-beam-decision-validation.json",
+      "sha256": "17a95b94c9f62a0e4aa37b613b4d52d35780705a4def27313da03fc512453fd6"
+    },
+    {
+      "compatibility": "data/shared-array-fixtures.json",
+      "public": "data/shared-array-fixtures.json",
+      "sha256": "721c18adb6b491000b9641d460d1e945eddf3d9c1a6601bad82705e0420d0130"
+    },
+    {
+      "compatibility": "data/shared-array-sources.json",
+      "public": "data/shared-array-sources.json",
+      "sha256": "1d90d4b0dd41339a11f523b528c96279bcd36b4385922299b5111e4ed4975402"
+    },
+    {
+      "compatibility": "data/waveform-states.json",
+      "public": "data/waveform-states.json",
+      "sha256": "87c87d4140c58dc28dfc70c4a52f990731f8ac245e675e40f396dba05995c504"
+    },
+    {
+      "compatibility": "data/waveform-validation.json",
+      "public": "data/waveform-validation.json",
+      "sha256": "a45d83dde85b94f6da5a13c85255e761b4d501a80c72d045ef9c2cbf848de505"
+    },
+    {
+      "compatibility": "distributed-detection-core.js",
+      "public": "distributed-detection-core.js",
+      "sha256": "955846d7e7361ad5b2d9f6ab8690d3a6579dc58d0d2634f523ab4b3ba63170c7"
+    },
+    {
+      "compatibility": "distributed-detection.css",
+      "public": "distributed-detection.css",
+      "sha256": "b0577587dbbe9ba87957359eb1b5229bb2a577af66095fbe510179dfb42a06fd"
+    },
+    {
+      "compatibility": "distributed-detection.html",
+      "public": "distributed-detection.html",
+      "sha256": "cad3eeb9af50aad06bf4c23bfb1761b940a070007c22477127d54b1b3b1af5f9"
+    },
+    {
+      "compatibility": "distributed-detection.js",
+      "public": "distributed-detection.js",
+      "sha256": "2ffb6175cd1a50c613dc27103e0c68dc971b79c74c727547ae34753f126e69db"
+    },
+    {
+      "compatibility": "docs/COURSE-VALIDATION.md",
+      "public": "docs/COURSE-VALIDATION.md",
+      "sha256": "97c251480f9bd84ef5e9d062376a6a01cbb8f75b74f779322700aba994831552"
+    },
+    {
+      "compatibility": "docs/CRB-BEAMFORMING-VALIDATION.md",
+      "public": "docs/CRB-BEAMFORMING-VALIDATION.md",
+      "sha256": "143a789fff53ce644d4f7ddf7303707e4ad467265bb13472c1f4681a5045d16a"
+    },
+    {
+      "compatibility": "docs/DISTRIBUTED-DETECTION-VALIDATION.md",
+      "public": "docs/DISTRIBUTED-DETECTION-VALIDATION.md",
+      "sha256": "015218fe84ec9bd55a244a314c5fa21a707b616609422c07fc14d58ff2dbea9a"
+    },
+    {
+      "compatibility": "docs/FOUNDATION-LEARNING-FLOW-VALIDATION.md",
+      "public": "docs/FOUNDATION-LEARNING-FLOW-VALIDATION.md",
+      "sha256": "b0af4daa90ea8fe9cbee7b650f01018b31835ed7ec3862f8bf64f3730159cab6"
+    },
+    {
+      "compatibility": "docs/FRAMEWORK-VALIDATION.md",
+      "public": "docs/FRAMEWORK-VALIDATION.md",
+      "sha256": "4dca9d15f36166bc50b4f171816a67096dd302e937d333da958151de94c87e8a"
+    },
+    {
+      "compatibility": "docs/FRONTIER-OCTOBER-VALIDATION.md",
+      "public": "docs/FRONTIER-OCTOBER-VALIDATION.md",
+      "sha256": "df59e0cf1ee4b08efb03a68f72b1861b45268919ea186fe2fdb1f37d687c9415"
+    },
+    {
+      "compatibility": "docs/GOLAY-RADAR-VALIDATION.md",
+      "public": "docs/GOLAY-RADAR-VALIDATION.md",
+      "sha256": "e60183551aa188f4a3303dc89c82dba180d6c367c4bd3d000aa9ef156a88f7b8"
+    },
+    {
+      "compatibility": "docs/GUIDED-NOTEBOOK-SHA256.txt",
+      "public": "docs/GUIDED-NOTEBOOK-SHA256.txt",
+      "sha256": "cf87d56f60090b6f1ad57c0aa55dfea5d778c1af307dc565d14636813bfcfcf5"
+    },
+    {
+      "compatibility": "docs/GUIDED-NOTEBOOK-VALIDATION.md",
+      "public": "docs/GUIDED-NOTEBOOK-VALIDATION.md",
+      "sha256": "41badf6c158d318a1f9082b50615fcaeb4c8b02dc46f8d8bb2213851a1f03f85"
+    },
+    {
+      "compatibility": "docs/IQ-PATH-VALIDATION.md",
+      "public": "docs/IQ-PATH-VALIDATION.md",
+      "sha256": "3715dce6f45dd24de35adf321fcd77c3362790685eab7564b5e3e3809af84c8f"
+    },
+    {
+      "compatibility": "docs/JOINT-BEAMFORMING-VALIDATION.md",
+      "public": "docs/JOINT-BEAMFORMING-VALIDATION.md",
+      "sha256": "c3a0d6170b0ab1559ce161ffa104148daa6b3c5c94f59bc0922125952d73c2de"
+    },
+    {
+      "compatibility": "docs/KNOWLEDGE-MAP-VALIDATION.md",
+      "public": "docs/KNOWLEDGE-MAP-VALIDATION.md",
+      "sha256": "811f5ca37c179da3feda94eceb11b918f270fcbd4d14bfd9d8b6c9b0a95f3c75"
+    },
+    {
+      "compatibility": "docs/LEARNING-PATH-VALIDATION.md",
+      "public": "docs/LEARNING-PATH-VALIDATION.md",
+      "sha256": "118b5db114e27f2a909c384e4eb2e5f0b0268cb9f042142b078c791b5d058776"
+    },
+    {
+      "compatibility": "docs/MULTIPATH-CHANNEL-INDEPENDENT.md",
+      "public": "docs/MULTIPATH-CHANNEL-INDEPENDENT.md",
+      "sha256": "206982538b8dfef40f955c33959691731a26a1f4b7d15759c731c61eada446eb"
+    },
+    {
+      "compatibility": "docs/MULTIPATH-CHANNEL-VALIDATION.md",
+      "public": "docs/MULTIPATH-CHANNEL-VALIDATION.md",
+      "sha256": "7446a1844f0cdb2cb74a889705b90498f45a9f6f8abdaf4707b2d203188e49a5"
+    },
+    {
+      "compatibility": "docs/NEAR-FIELD-VALIDATION.md",
+      "public": "docs/NEAR-FIELD-VALIDATION.md",
+      "sha256": "1c752a5550c8cc9c4dfd4e78a462d00c4d52a5ee9dec9649d4ec8fe16590a6a4"
+    },
+    {
+      "compatibility": "docs/NETWORK-VALIDATION.md",
+      "public": "docs/NETWORK-VALIDATION.md",
+      "sha256": "2b00c0abc6a74637405e222fda294cb4721ddc6eab54ec75fc42ffdaacd69c6b"
+    },
+    {
+      "compatibility": "docs/OFDM-INTERPOLATION-VALIDATION.md",
+      "public": "docs/OFDM-INTERPOLATION-VALIDATION.md",
+      "sha256": "90973dbc83ff6f7547b54960503956cd1ee8fed149ea351770688e6ce9be15bf"
+    },
+    {
+      "compatibility": "docs/OFFGRID-RANGE-CHANGED-FILES.sha256",
+      "public": "docs/OFFGRID-RANGE-CHANGED-FILES.sha256",
+      "sha256": "c9d863be34a4faad4e9152b7816ce8aa32a70966d255058060ec24e5fae988d0"
+    },
+    {
+      "compatibility": "docs/OFFGRID-RANGE-VALIDATION.md",
+      "public": "docs/OFFGRID-RANGE-VALIDATION.md",
+      "sha256": "a967e0857a44318f1a685a1d133b70a9ec0c0fc53591f640af13d92acd2b02a6"
+    },
+    {
+      "compatibility": "docs/PAPER-COMPARISON-SHA256.txt",
+      "public": "docs/PAPER-COMPARISON-SHA256.txt",
+      "sha256": "09f6bd96a797f6d73b9244e998a6c09ab049234ae14bd14cbb7eaadc302f41be"
+    },
+    {
+      "compatibility": "docs/PAPER-COMPARISON-VALIDATION.md",
+      "public": "docs/PAPER-COMPARISON-VALIDATION.md",
+      "sha256": "cc2e842b937d03b18354a92251d3a3520ea41a710c1262034dd1273f11f462f6"
+    },
+    {
+      "compatibility": "docs/PERCEPTIVE-CLUTTER-VALIDATION.md",
+      "public": "docs/PERCEPTIVE-CLUTTER-VALIDATION.md",
+      "sha256": "c2882219bb79deae02c64caf9cfe678dbbdf1bd2f60841578e4bcd3598019e21"
+    },
+    {
+      "compatibility": "docs/PILOT-VALIDATION.md",
+      "public": "docs/PILOT-VALIDATION.md",
+      "sha256": "689fc1cc66f23add95a98586073bd82f8dcc093570eec189e7a03e396fc0c4d9"
+    },
+    {
+      "compatibility": "docs/RADAR-BEAM-DECISION-VALIDATION.md",
+      "public": "docs/RADAR-BEAM-DECISION-VALIDATION.md",
+      "sha256": "56765e170a3cbe2eb9f730e3ccd6e528ba24d06546455d8c92ea800d3bd26a90"
+    },
+    {
+      "compatibility": "docs/RATE-BRIDGE-VALIDATION.md",
+      "public": "docs/RATE-BRIDGE-VALIDATION.md",
+      "sha256": "28f3d02e77fbdb6c305b231d41001a44263e7146a5008ece745f9b289b6d2c5d"
+    },
+    {
+      "compatibility": "docs/READING-MAP.md",
+      "public": "docs/READING-MAP.md",
+      "sha256": "d5140f2a9fe408e2342ee3c44ad93ded2cd79a09dcce94f22fa8c21307a0932d"
+    },
+    {
+      "compatibility": "docs/RESEARCH-NAVIGATION-VALIDATION.md",
+      "public": "docs/RESEARCH-NAVIGATION-VALIDATION.md",
+      "sha256": "08f2afa7f77afc8eba0da3e9f7224da47797eee4cc745f552bf56eb410fe6ede"
+    },
+    {
+      "compatibility": "docs/RESEARCH-RELEASE-VALIDATION.md",
+      "public": "docs/RESEARCH-RELEASE-VALIDATION.md",
+      "sha256": "dc664f915e88739b23677075851054e91a29778c6984b20123f70678cc55892d"
+    },
+    {
+      "compatibility": "docs/SBFD-VALIDATION.md",
+      "public": "docs/SBFD-VALIDATION.md",
+      "sha256": "5f7354fb18b58d7c6d436a98ab03776951bba72d9bfd34bfe245b83291019f18"
+    },
+    {
+      "compatibility": "docs/SHARED-ARRAY-VALIDATION.md",
+      "public": "docs/SHARED-ARRAY-VALIDATION.md",
+      "sha256": "def4be147cef989e0fe328631625ad481993dc8382e385e15ab1528d98b300b7"
+    },
+    {
+      "compatibility": "docs/SITE-ARCHITECTURE.md",
+      "public": "docs/SITE-ARCHITECTURE.md",
+      "sha256": "8d930ada8eaf8ab7ad119b99698663cfbcb64ebcbdf35ee9b33eb3fac5f2b1fb"
+    },
+    {
+      "compatibility": "docs/THEORY-VALIDATION.md",
+      "public": "docs/THEORY-VALIDATION.md",
+      "sha256": "4fd8fa840d9f4db0bdaea62cc3a0a526a6e8b13ccf2c21e1a3cb698b504ae83e"
+    },
+    {
+      "compatibility": "docs/VALIDATION.md",
+      "public": "docs/VALIDATION.md",
+      "sha256": "012675aca4dd7f72ecd6cda3b427fa36876d943aafab722d76c0af7b2a04ddaa"
+    },
+    {
+      "compatibility": "docs/VELOCITY-MATCHING.md",
+      "public": "docs/VELOCITY-MATCHING.md",
+      "sha256": "c85488810f2322b0e3e5b1acb7c7a24e246d48cff80c65fb3b2bb5e075cdf89a"
+    },
+    {
+      "compatibility": "docs/WAVEFORM-VALIDATION.md",
+      "public": "docs/WAVEFORM-VALIDATION.md",
+      "sha256": "9955763edcd3813e0aa461238d55cdd074b191fb5679a61a2f517b8f930ca4b4"
+    },
+    {
+      "compatibility": "estimator-core.js",
+      "public": "estimator-core.js",
+      "sha256": "a92a22b8e01f5daaaf202a02f2156df3e38dd44f7f570a2e062e0127e1cc49a6"
+    },
+    {
+      "compatibility": "estimator.css",
+      "public": "estimator.css",
+      "sha256": "a0097e0efdfc3b68b3ac2e0d61814bc991fcb54643201f8f908fb3f2498ccafa"
+    },
+    {
+      "compatibility": "estimator.js",
+      "public": "estimator.js",
+      "sha256": "747d21aad4abd0541c39fd8c1b3220293a10b53ffd6d736a63093c117e021523"
+    },
+    {
+      "compatibility": "experiment-record.js",
+      "public": "experiment-record.js",
+      "sha256": "cb9f4bc1c330db98d013922287ae4625f5b9d788b74860d86fe22eec40f6bb8f"
+    },
+    {
+      "compatibility": "experiments.html",
+      "public": "experiments.html",
+      "sha256": "a37e4dbdecfda9e70630dc56a617bc88fa75b2b3b23c8e1f89054e61b6c548b0"
+    },
+    {
+      "compatibility": "foundations.html",
+      "public": "foundations.html",
+      "sha256": "c3450db32092ec6956e437123ef2a976eb20d97922c23e2edf5b8317878f5c19"
+    },
+    {
+      "compatibility": "golay-radar-core.js",
+      "public": "golay-radar-core.js",
+      "sha256": "7bb174df7ec5bdaa1bbad3a9631f086fdb947c8d648dcb6e1b19bcc5a0aea7c3"
+    },
+    {
+      "compatibility": "golay-radar.css",
+      "public": "golay-radar.css",
+      "sha256": "9a571a89464e08bcb228cd54f730df816baeef40ddc3ae1c596a938efe5b5dce"
+    },
+    {
+      "compatibility": "golay-radar.html",
+      "public": "golay-radar.html",
+      "sha256": "b35163fdd40353b9c079ba3e03696d6b81a21ce117e867a020688b25eab5ea5c"
+    },
+    {
+      "compatibility": "golay-radar.js",
+      "public": "golay-radar.js",
+      "sha256": "feeee43f95b97dfb381d1018a66ed75436fd4c15a871f236b90af6fbaca26a44"
+    },
+    {
+      "compatibility": "index.html",
+      "public": "index.html",
+      "sha256": "dbd0748cefe154f7ca182dfa6521f62047bbc24359411a9f2f07f7ddf78fabf0"
+    },
+    {
+      "compatibility": "intuition-core.js",
+      "public": "intuition-core.js",
+      "sha256": "a1a50f59f9254f716cdd147fa16bc14edadeddc18f55f489f00a30a8c1afeec8"
+    },
+    {
+      "compatibility": "intuition.css",
+      "public": "intuition.css",
+      "sha256": "79d6e736841c0bc46b71ff9550498e47b00c36e6d0c504a68c45a23bd98c440f"
+    },
+    {
+      "compatibility": "intuition.js",
+      "public": "intuition.js",
+      "sha256": "475a891dc3aa766af3e94bcb3d6b783f955cea3cfcd5d19f8a96d32c2518e731"
+    },
+    {
+      "compatibility": "joint-beamforming-core.js",
+      "public": "joint-beamforming-core.js",
+      "sha256": "1e09b1aa8908b649cad38142f9b035dce355dedf2ffd177d4b2ccbd510ef8882"
+    },
+    {
+      "compatibility": "joint-beamforming.css",
+      "public": "joint-beamforming.css",
+      "sha256": "bcef77746a090fac04fdcd6e82fd1d8d22d01f8c4df8f1abdcc039af03e9ffc5"
+    },
+    {
+      "compatibility": "joint-beamforming.html",
+      "public": "joint-beamforming.html",
+      "sha256": "a94579090afc49ffd5bcb56882f6d2f04cb84b143ed4abe570a98e30925c2d1a"
+    },
+    {
+      "compatibility": "joint-beamforming.js",
+      "public": "joint-beamforming.js",
+      "sha256": "e0200afb9beb6d80e273ccc5f4c37d8d37d35a22f2d32827212abd77e18c9890"
+    },
+    {
+      "compatibility": "knowledge-map.css",
+      "public": "knowledge-map.css",
+      "sha256": "6ec7680923d53762552d5f045f2f3873914a40b711ba0fb26112e7624144249d"
+    },
+    {
+      "compatibility": "knowledge-map.js",
+      "public": "knowledge-map.js",
+      "sha256": "84c5c9c1558b02750e508c6cd7c3d8ba6b5532bd2bbcbb3cb517513bde5cc25d"
+    },
+    {
+      "compatibility": "lab-core.js",
+      "public": "lab-core.js",
+      "sha256": "eb61d524abf3238310d84190bee27f2af179135aceb77b20a660edb2118e4ef5"
+    },
+    {
+      "compatibility": "learn.css",
+      "public": "learn.css",
+      "sha256": "a2db00c2e93e9c5afe83662e44cfc50210ae997ec912d1d5e203151508130479"
+    },
+    {
+      "compatibility": "learn.html",
+      "public": "learn.html",
+      "sha256": "997176867e8a352e1e8e2a210f2a6ade804ae23547cd08b76e7643d5b81afc56"
+    },
+    {
+      "compatibility": "learn.js",
+      "public": "learn.js",
+      "sha256": "2e0d91431b713b3fdcbb0eac9ec3337dd80d0ddfff3f746c20de279a48bc4eb2"
+    },
+    {
+      "compatibility": "legacy-routes.js",
+      "public": "legacy-routes.js",
+      "sha256": "b76f3b3f4eb988207c3611623bb27c2f4c5fe24ce4b4a8048953e816b421b5ed"
+    },
+    {
+      "compatibility": "multipath-channel-core.js",
+      "public": "multipath-channel-core.js",
+      "sha256": "414f00f2bcad736281881edd643308fa622887ccf4227aa2e227fe24119816a8"
+    },
+    {
+      "compatibility": "multipath-channel.css",
+      "public": "multipath-channel.css",
+      "sha256": "f12e10463d5a4856047ca9f4c4930e3b7f4d5d7e812d091f8392ce3818a7496d"
+    },
+    {
+      "compatibility": "multipath-channel.html",
+      "public": "multipath-channel.html",
+      "sha256": "c0b4b582c62aa6db9c82968605990dc8912efd546b45d3979320c82201db44cd"
+    },
+    {
+      "compatibility": "multipath-channel.js",
+      "public": "multipath-channel.js",
+      "sha256": "f67b0b9a7ca812467677ea66d68d05afe7faad007373f1cb23b91d13b01e9cca"
+    },
+    {
+      "compatibility": "near-field-core.js",
+      "public": "near-field-core.js",
+      "sha256": "cb4424211d1c3649915c5e65c22d88b6cfa73e9a7e55d16f23111e8eedc85f69"
+    },
+    {
+      "compatibility": "near-field.css",
+      "public": "near-field.css",
+      "sha256": "04935d9c7882f19ad3721cf66f6294fc274db315851029f47217c668ae9ac01e"
+    },
+    {
+      "compatibility": "near-field.html",
+      "public": "near-field.html",
+      "sha256": "426b626ee4af76b7ef6de6024831e8d97de5c5366de6ad428691a4d0d72c55a8"
+    },
+    {
+      "compatibility": "near-field.js",
+      "public": "near-field.js",
+      "sha256": "194dc5066cc86867144c437131c007844af5afdc7e894e03bc5bdee12e1d3ca5"
+    },
+    {
+      "compatibility": "network-clock.html",
+      "public": "network-clock.html",
+      "sha256": "6f1fb6d3804570eabe4d3de93d8a011c68ba3314a3d2f39d542b0bd4c8974387"
+    },
+    {
+      "compatibility": "network-core.js",
+      "public": "network-core.js",
+      "sha256": "680235150e5ea28e7372804d0eacc0c41b9e4bd6193feba0e2b0d123936cf007"
+    },
+    {
+      "compatibility": "network.css",
+      "public": "network.css",
+      "sha256": "35e8bbf6eb74b5149c91dba18dee51ccc26dfc294b9ee59f852dce0f947988ce"
+    },
+    {
+      "compatibility": "network.js",
+      "public": "network.js",
+      "sha256": "9236444f8ebd49210f8aeabdbfe69c471cbf396ae61f1261a4a56123c260edb7"
+    },
+    {
+      "compatibility": "notebook.css",
+      "public": "notebook.css",
+      "sha256": "c92e286caa3f4646a73851b5c140581e1918889f7afaefbb3dfbe32dc4e76237"
+    },
+    {
+      "compatibility": "notebook.js",
+      "public": "notebook.js",
+      "sha256": "ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9"
+    },
+    {
+      "compatibility": "ofdm-interpolation-core.js",
+      "public": "ofdm-interpolation-core.js",
+      "sha256": "b5ae3998fe556db64738a0c8e585463f95267e6c315d58faf4532486d3ce32b8"
+    },
+    {
+      "compatibility": "ofdm-interpolation.css",
+      "public": "ofdm-interpolation.css",
+      "sha256": "cc49195e2acb44fe64908879403b99d4aff9d6d4de62f7be284e8f6d8c828ed6"
+    },
+    {
+      "compatibility": "ofdm-interpolation.html",
+      "public": "ofdm-interpolation.html",
+      "sha256": "95b719718c5c573fecb7716811197371e298fffff30a8facea1b5ec6ecd9afd6"
+    },
+    {
+      "compatibility": "ofdm-interpolation.js",
+      "public": "ofdm-interpolation.js",
+      "sha256": "d8df22d64de263eea3480216246240037cae381cd4ffb2a61cce39555230590a"
+    },
+    {
+      "compatibility": "offgrid-range-core.js",
+      "public": "offgrid-range-core.js",
+      "sha256": "ae47307d87ea1295aba99f9bf4d284332d26a6454d9a0b37520c252eae9b17ab"
+    },
+    {
+      "compatibility": "offgrid-range.css",
+      "public": "offgrid-range.css",
+      "sha256": "8b86fc87f00dedd2bc1b4acaaae3068cf50b756cdff645c17e2566a2d4ea57d6"
+    },
+    {
+      "compatibility": "offgrid-range.html",
+      "public": "offgrid-range.html",
+      "sha256": "d9d95e9f3ce05bcb953ac1b7d461096417b092761534b2c4666b340b3bf7c42a"
+    },
+    {
+      "compatibility": "offgrid-range.js",
+      "public": "offgrid-range.js",
+      "sha256": "5499c80ebe0a638a7e5935a2022baf0800c55b13b506ebe4f0bc9dc27d6bd286"
+    },
+    {
+      "compatibility": "overview.html",
+      "public": "overview.html",
+      "sha256": "02ebf450c9cfe948fad4ca47570b9d15b2f4e50b9b4b78a993bdbacc5811fc35"
+    },
+    {
+      "compatibility": "paper-comparison.css",
+      "public": "paper-comparison.css",
+      "sha256": "5d96503922c84eff82f4342540f38ef8d892367029dc92af1da2de107c88cf93"
+    },
+    {
+      "compatibility": "paper-comparison.js",
+      "public": "paper-comparison.js",
+      "sha256": "00f7234ee070ec45e43fab079255a3009bed6b52e899d13980b55aa6155e10e4"
+    },
+    {
+      "compatibility": "perceptive-clutter-core.js",
+      "public": "perceptive-clutter-core.js",
+      "sha256": "298a998abbdc1aface1916cdc74ee2abef1213977337d5c2b41a82b907f02924"
+    },
+    {
+      "compatibility": "perceptive-clutter.css",
+      "public": "perceptive-clutter.css",
+      "sha256": "915e5c061f9a5939df82a6ba4daf99557e0ab6a0e0295e57f5e809b49a6a34a4"
+    },
+    {
+      "compatibility": "perceptive-clutter.html",
+      "public": "perceptive-clutter.html",
+      "sha256": "275ea99550fdd1d7c9f3ebc010e7b9f8963d50e88fd6ffc674abf9f4705829f9"
+    },
+    {
+      "compatibility": "perceptive-clutter.js",
+      "public": "perceptive-clutter.js",
+      "sha256": "260f406f193b76e006363324a665d908cfd41c527e87d227a82093518bdf0745"
+    },
+    {
+      "compatibility": "pilot-core.js",
+      "public": "pilot-core.js",
+      "sha256": "085890ff8a5ab6e4fffc0d602c69d627e822ef97212d63d263c9d861309b63f0"
+    },
+    {
+      "compatibility": "pilot-design.html",
+      "public": "pilot-design.html",
+      "sha256": "0cd8dc4b4829807f519706be69ace0f09dd37f9dfe0b177073b6d4440e90b661"
+    },
+    {
+      "compatibility": "pilot.css",
+      "public": "pilot.css",
+      "sha256": "249dcb666701f1e122199d50dd0143a9f8a0061d9c95e8cb94ffbad8df4593a4"
+    },
+    {
+      "compatibility": "pilot.js",
+      "public": "pilot.js",
+      "sha256": "514ec836134b5d992b84686224a263f5b41b15e437e157c542ea817120fc2243"
+    },
+    {
+      "compatibility": "practice.html",
+      "public": "practice.html",
+      "sha256": "8aa367056849e04042a78e9e739a49d8f00a8c34e76cbd31347ab6d3a15b9e71"
+    },
+    {
+      "compatibility": "radar-beam-decision-core.js",
+      "public": "radar-beam-decision-core.js",
+      "sha256": "e563509a99a5ed93a6dd0dd9df81a9366e4c7d3d7ec895ddc3bc9d98927eb358"
+    },
+    {
+      "compatibility": "radar-beam-decision.css",
+      "public": "radar-beam-decision.css",
+      "sha256": "4d8835cf37fb627246d2dcba478855f302774c603163ce23b8d9faf7262335c2"
+    },
+    {
+      "compatibility": "radar-beam-decision.html",
+      "public": "radar-beam-decision.html",
+      "sha256": "35d500b82be6bf6f5a16c1e23027e58b47518d710c290594107968c719b1db39"
+    },
+    {
+      "compatibility": "radar-beam-decision.js",
+      "public": "radar-beam-decision.js",
+      "sha256": "f3f5e53453c395c0c252191a203ff76037ca77c8c7041c723d4aa36fefb50b6e"
+    },
+    {
+      "compatibility": "reading.html",
+      "public": "reading.html",
+      "sha256": "a148a9fa1aaa44767a8b790088f1c80418300567f019995aa07346afa4522a6f"
+    },
+    {
+      "compatibility": "reference-uncertainty-core.js",
+      "public": "reference-uncertainty-core.js",
+      "sha256": "fffc85f8ea37b2cf365ce05464bcffcbe1337ba67150dd8bf1e690ce805c4551"
+    },
+    {
+      "compatibility": "reference-uncertainty-record.js",
+      "public": "reference-uncertainty-record.js",
+      "sha256": "43f70469c54f55be0f6b8e38344df41b8115d33ff4205e34f13b23ec34730eee"
+    },
+    {
+      "compatibility": "reference-uncertainty.css",
+      "public": "reference-uncertainty.css",
+      "sha256": "63e05e77ca87c67dcb90c3a2e351ac6c5788af8747fe02f2724dad3953cf3f8c"
+    },
+    {
+      "compatibility": "reference-uncertainty.html",
+      "public": "reference-uncertainty.html",
+      "sha256": "13984179f9ea76c7150a25de72d598550125776e26a21e0226f8f99d04d09ef2"
+    },
+    {
+      "compatibility": "reference-uncertainty.js",
+      "public": "reference-uncertainty.js",
+      "sha256": "fd2c838f3b75a825db4536756977d2cbc4b0a588833e6d6bfbd70c57dcc5067a"
+    },
+    {
+      "compatibility": "reflection-aperture-core.js",
+      "public": "reflection-aperture-core.js",
+      "sha256": "f94ee1c993ced184f49bd0783c9448af8cc6b5c49ea1f14279bd5e588f40b6c5"
+    },
+    {
+      "compatibility": "reflection-aperture.css",
+      "public": "reflection-aperture.css",
+      "sha256": "b1c1d8ad11b30feb8b7cd1770668d915a8b023d4e53bb6f4ba6c9a9d2b31d78f"
+    },
+    {
+      "compatibility": "reflection-aperture.js",
+      "public": "reflection-aperture.js",
+      "sha256": "8a99a24e618bdc27bf7b9f921f890ac5c0661821ea5fb2bbc4e27223d6b95dfb"
+    },
+    {
+      "compatibility": "research-directory.css",
+      "public": "research-directory.css",
+      "sha256": "a8ef04ec90f7405296c4e4697a5cc28f2167d6b206ac32dd0a5b4c875c6ab956"
+    },
+    {
+      "compatibility": "research-guides.css",
+      "public": "research-guides.css",
+      "sha256": "5aa1e37a5f6e0d03c4c0a90f0d8ea44674b50f81a5f618650eb2cbb2be8c54f2"
+    },
+    {
+      "compatibility": "research-guides.js",
+      "public": "research-guides.js",
+      "sha256": "67bd79cf79a670ad9ffa12d3ad13084c1ffb8f4e5b4cf2e538fae51904e2d890"
+    },
+    {
+      "compatibility": "research.css",
+      "public": "research.css",
+      "sha256": "c3e518d0fec92bb75c511fd4e873d675bf8ca1a992de89af30ee22f6423be174"
+    },
+    {
+      "compatibility": "research.html",
+      "public": "research.html",
+      "sha256": "6db3add9673ea2883a82ad72496f6e34ad851b06e510482666bf59b867405c01"
+    },
+    {
+      "compatibility": "resolution.html",
+      "public": "resolution.html",
+      "sha256": "65bd2464ebf5989b571d8fe64ef99afa278403e91396cf6fb3f90dec0a7d646a"
+    },
+    {
+      "compatibility": "resolution.js",
+      "public": "resolution.js",
+      "sha256": "c82a7205822a0393e4d4c2887d6c0fde77c8c498df963dff3b919e83bd933067"
+    },
+    {
+      "compatibility": "sandbox.html",
+      "public": "sandbox.html",
+      "sha256": "9f828641e2997c55157cdc14501efd21878a10e638937a6085ff865ef9918865"
+    },
+    {
+      "compatibility": "sbfd-core.js",
+      "public": "sbfd-core.js",
+      "sha256": "9f1bfd377468e6b6547302b7723d6334fe1609341b287816a1ae5d12aeb9f681"
+    },
+    {
+      "compatibility": "sbfd-resource.html",
+      "public": "sbfd-resource.html",
+      "sha256": "3313bd91d9bd81e71a3c81036993fe884a5badd5b9792cea49b9b2741c8c9bb8"
+    },
+    {
+      "compatibility": "sbfd.css",
+      "public": "sbfd.css",
+      "sha256": "0ac848c5fe5e328e7aefac9b5ce039a99acbc4190f5f0172872201c265730d92"
+    },
+    {
+      "compatibility": "sbfd.js",
+      "public": "sbfd.js",
+      "sha256": "60d25060212e81c1eb355c5fa067ebcbdbf68858c5c15408f90fabf9a0e839d5"
+    },
+    {
+      "compatibility": "scene-guide.css",
+      "public": "scene-guide.css",
+      "sha256": "eff55753de26201b40667a63669b582f810c8f55f5b049260c68ef6bfcb798d2"
+    },
+    {
+      "compatibility": "scene-guide.js",
+      "public": "scene-guide.js",
+      "sha256": "3ace91212d4ac819ce6bb7fe6b3755eb546bd5893366a35e051564793f223d0c"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-independent/VALIDATION_REPORT.md",
+      "public": "scripts/distributed-detection-independent/VALIDATION_REPORT.md",
+      "sha256": "6bc49e73509490966ace714ad39d9411e133c63f2b0878975e4426f7e183038e"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-independent/audit-results.json",
+      "public": "scripts/distributed-detection-independent/audit-results.json",
+      "sha256": "b80a3dd53d64c1cfd7d37672325d9ce53785ebe1a31909c0e41483fc3a3e4e4d"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-independent/audit_reference.py",
+      "public": "scripts/distributed-detection-independent/audit_reference.py",
+      "sha256": "8b6f85bb47ad8185db7d20612c6bc0e8e802d2297757eda0bc0c3424fe41ff21"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-independent/high-precision-fixtures.json",
+      "public": "scripts/distributed-detection-independent/high-precision-fixtures.json",
+      "sha256": "27f9a9a924653b8c897fa3fd7a77d4bf44f659eb42e092155b9c4f51e58580dd"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-independent/oracle.py",
+      "public": "scripts/distributed-detection-independent/oracle.py",
+      "sha256": "aa718ad59abc6dc3646773d5df67f72bf0a4cfdebbb8b59306461a5e25ac4963"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/README.md",
+      "public": "scripts/distributed-detection-js-independent/README.md",
+      "sha256": "be5b56afb056ddbb126507cfd8a3f6d72ca19162f8ef6ee82c8c7be153e2e031"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/SHA256SUMS",
+      "public": "scripts/distributed-detection-js-independent/SHA256SUMS",
+      "sha256": "7079b03621dff6c47bf784c72f428b137fc458a779577f9c338513778bdb7db5"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/VALIDATION_REPORT.md",
+      "public": "scripts/distributed-detection-js-independent/VALIDATION_REPORT.md",
+      "sha256": "f5d1ac1b57030ae4f729d929bd932544b267c320491d19d903ca257df9030ae9"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/actual-js-results.json",
+      "public": "scripts/distributed-detection-js-independent/actual-js-results.json",
+      "sha256": "60eb4aab6852c942a167e98a7ba05ebbf6aa0eed5b1ff3628311bdf91a9b93af"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/audit-input.json",
+      "public": "scripts/distributed-detection-js-independent/audit-input.json",
+      "sha256": "ef678907e6ff55ff94bc88ae72cc93183fd5fb773fea8a4070df830e6937c31c"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/audit-results.json",
+      "public": "scripts/distributed-detection-js-independent/audit-results.json",
+      "sha256": "90a15b154caaadb2104d27ff4eb47e5aad3d5f795ce817fe3e2c342d1b5781b6"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/audit_js.py",
+      "public": "scripts/distributed-detection-js-independent/audit_js.py",
+      "sha256": "117830dc5a22cac60d58c09b98c1a8540bb4447b50fd1e92c012f3fe3c1f0fee"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/high-precision-fixtures.json",
+      "public": "scripts/distributed-detection-js-independent/high-precision-fixtures.json",
+      "sha256": "27f9a9a924653b8c897fa3fd7a77d4bf44f659eb42e092155b9c4f51e58580dd"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/oracle.py",
+      "public": "scripts/distributed-detection-js-independent/oracle.py",
+      "sha256": "aa718ad59abc6dc3646773d5df67f72bf0a4cfdebbb8b59306461a5e25ac4963"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-js-independent/run_core.cjs",
+      "public": "scripts/distributed-detection-js-independent/run_core.cjs",
+      "sha256": "11d2acda1a29fc75d4af09d00ba5580b46442f5dcb64e6c94f01fbfde1942f29"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/README.md",
+      "public": "scripts/distributed-detection-reference/README.md",
+      "sha256": "0488374fd37389001a8f4c7cdd9330d7a17c21b6dbe1423d304e8ec80a66add3"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/SOURCE_BOUNDARIES.md",
+      "public": "scripts/distributed-detection-reference/SOURCE_BOUNDARIES.md",
+      "sha256": "ed41debef6b0596166d669f36cd44aae6bd2cf58b1c29ca5fbfb0da622db6c3d"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/detection_reference.py",
+      "public": "scripts/distributed-detection-reference/detection_reference.py",
+      "sha256": "4c3594b498431ba33f638b5c3be9811691e48231396a903dcbc1e906fcde2f0b"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/fixtures.json",
+      "public": "scripts/distributed-detection-reference/fixtures.json",
+      "sha256": "ba1752d7ac61587d1c22ae5c42686afd7b7d384e1639f68f18049b2cfaf008fa"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/generate_fixtures.py",
+      "public": "scripts/distributed-detection-reference/generate_fixtures.py",
+      "sha256": "ec34f1e25935ef37d285b03aa0412482a20123733b6c8ee4c69ba208846695ac"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/monte_carlo_report.json",
+      "public": "scripts/distributed-detection-reference/monte_carlo_report.json",
+      "sha256": "91034ffc573907e82c397de17866b5458657303eb4561853055263ec3e05644c"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/run_monte_carlo.py",
+      "public": "scripts/distributed-detection-reference/run_monte_carlo.py",
+      "sha256": "12909864a66b35344651b10899007557cc9173117b4c33492ec7f67e6ff1b0a6"
+    },
+    {
+      "compatibility": "scripts/distributed-detection-reference/test_detection_reference.py",
+      "public": "scripts/distributed-detection-reference/test_detection_reference.py",
+      "sha256": "9466daae00e128ee233dafc498fff1f046f0822abf028d805c5ac1ecf15427e8"
+    },
+    {
+      "compatibility": "scripts/generate-site.cjs",
+      "public": "scripts/generate-site.cjs",
+      "sha256": "9d36cef2452143e58eba8a7b0586c5971856cda8c6c82676c248fe2753e5c310"
+    },
+    {
+      "compatibility": "scripts/generate-waveform.py",
+      "public": "scripts/generate-waveform.py",
+      "sha256": "9288a16205e7dcd2a6b64a2350735e85bfc20c339fd2a30bf3047599eba4f50e"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/README.md",
+      "public": "scripts/guided-notebook-independent/README.md",
+      "sha256": "60f1ebf6ba96d4d7c2150906d033b1cbca2f5c08067da1dc120394a7d1262877"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/REPORT.md",
+      "public": "scripts/guided-notebook-independent/REPORT.md",
+      "sha256": "30bf9bfddd50e68a46fb75021406be264c3e99e60957a8e2a7567a20d2c5cd9b"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/export-safety.test.cjs",
+      "public": "scripts/guided-notebook-independent/export-safety.test.cjs",
+      "sha256": "fb448cffc4e78df4e9e639bf1535c8399cdabdff718273352b691f532e705f6b"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/metadata-safety.test.cjs",
+      "public": "scripts/guided-notebook-independent/metadata-safety.test.cjs",
+      "sha256": "0ed470974c41881bcc1ba72d4e3df431a121ec9f4bfb50eecdb1a06c18611747"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/source-sha256.txt",
+      "public": "scripts/guided-notebook-independent/source-sha256.txt",
+      "sha256": "f3706d88230cf3ba0c06fe5520b54e35d864cd1d0a306a8c0033029433bbf881"
+    },
+    {
+      "compatibility": "scripts/guided-notebook-independent/test-results.txt",
+      "public": "scripts/guided-notebook-independent/test-results.txt",
+      "sha256": "ad2bb5ed7778389578e16a5933b30704b5863519941df93d38641a84e9566af5"
+    },
+    {
+      "compatibility": "scripts/knowledge-map.cjs",
+      "public": "scripts/knowledge-map.cjs",
+      "sha256": "8b6439699aa3c1daa2cb96295005f18f7c62758ca5f13970d7885535018a2b7f"
+    },
+    {
+      "compatibility": "scripts/learning-entry.cjs",
+      "public": "scripts/learning-entry.cjs",
+      "sha256": "f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-independent/audit-js-results.json",
+      "public": "scripts/multipath-channel-independent/audit-js-results.json",
+      "sha256": "980fa87817e94a610cc31efc4ef42b73aa83f544b74adb3d73a9fe7e1b84e450"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-independent/audit-js.py",
+      "public": "scripts/multipath-channel-independent/audit-js.py",
+      "sha256": "7e4b6cbde97fa3d3f38e0c95a027f4070ab6c15f310ff13ef7479dc45f95ddb8"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/PORT.zh-CN.md",
+      "public": "scripts/multipath-channel-reference/PORT.zh-CN.md",
+      "sha256": "dfe9a9bad3d81ef8905767ea200b524ad110dc4877cb98d8a89af7e38427437f"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/README.zh-CN.md",
+      "public": "scripts/multipath-channel-reference/README.zh-CN.md",
+      "sha256": "f39593e272113cec3f23178438fdfa2564c107032a11821bcca66560dfe297c7"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/fixtures.json",
+      "public": "scripts/multipath-channel-reference/fixtures.json",
+      "sha256": "a5ce244eeceebd0e89463ac5d41cd2158b85f60ed973fab8b6d145b2e0c8585f"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/generate_fixtures.py",
+      "public": "scripts/multipath-channel-reference/generate_fixtures.py",
+      "sha256": "7dc54cb89ccd3dad5cf97ef371308cc046af180a0e5e7de3361966b0db5ce337"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/reference.py",
+      "public": "scripts/multipath-channel-reference/reference.py",
+      "sha256": "b6f457769d20ee437f7ed0e8011e12b5948e2077df889024d3964649720bbc50"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/resource-ledger.json",
+      "public": "scripts/multipath-channel-reference/resource-ledger.json",
+      "sha256": "001ddef55a97976b00d9ae416082f5fe1b8d294f433e5c0871f5a57c43f10957"
+    },
+    {
+      "compatibility": "scripts/multipath-channel-reference/test_reference.py",
+      "public": "scripts/multipath-channel-reference/test_reference.py",
+      "sha256": "6c8fc1cd9a5510abde4188e394b61af2d708708c42c648ddf409a84a678dc37c"
+    },
+    {
+      "compatibility": "scripts/notebook-topics.cjs",
+      "public": "scripts/notebook-topics.cjs",
+      "sha256": "d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/README.md",
+      "public": "scripts/offgrid-range-reference/README.md",
+      "sha256": "326036a5b6dcfe5449afe4f23e2e042f014afb0e5057420868304f39f1b3b912"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/actual-core-audit.json",
+      "public": "scripts/offgrid-range-reference/actual-core-audit.json",
+      "sha256": "878426c9a3f1aad15654b95a786884a9b2886eb3ed8ee3c73a86d2de9467b944"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/audit_actual_core.cjs",
+      "public": "scripts/offgrid-range-reference/audit_actual_core.cjs",
+      "sha256": "52f910a130ea0d5962a312d1a19dd15acea4bc67bd5e0bbe26e12290eb60f543"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/fixtures/high-snr-offgrid.json",
+      "public": "scripts/offgrid-range-reference/fixtures/high-snr-offgrid.json",
+      "sha256": "df388084a62c2d9818b8ad0c35fa97c442795d2fb98aeb9ea52113d1ddd27198"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/fixtures/low-snr-counterexample.json",
+      "public": "scripts/offgrid-range-reference/fixtures/low-snr-counterexample.json",
+      "sha256": "bf1a54e84d0ea5dc9b26c0abd4751f29c7e800c0065b960048ebc4cf018ea4a9"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/fixtures/noise-free-offgrid.json",
+      "public": "scripts/offgrid-range-reference/fixtures/noise-free-offgrid.json",
+      "sha256": "25c656234f0f8f759eebcec6c11f70f4f6e6ef13646e8607d43a63fd7d970525"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/fixtures/rng-port-fixtures.json",
+      "public": "scripts/offgrid-range-reference/fixtures/rng-port-fixtures.json",
+      "sha256": "2855745b8da8a93556bbe636fbe4ff15acaaa0bb49f434ec56261ebf4ce58204"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/fixtures/summary.json",
+      "public": "scripts/offgrid-range-reference/fixtures/summary.json",
+      "sha256": "c5f27801d8e4ba44b677de2b5c6131088778b7ba7ad7371df624fed3029ab8d1"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/port-verification.json",
+      "public": "scripts/offgrid-range-reference/port-verification.json",
+      "sha256": "98efda4162d05ea1badd61defc1491c0facf619c4e1ceea190565864818cfbd8"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/probe.py",
+      "public": "scripts/offgrid-range-reference/probe.py",
+      "sha256": "435fbd8b1a82de9843ccfd5b6cea0389367ac87da7aa87e47288c47453e5d065"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/probe_initial.py",
+      "public": "scripts/offgrid-range-reference/probe_initial.py",
+      "sha256": "dbc7af3084d2fe66b2e99fee850aebca0898dd8b5b63f0ac325c93e6d0f4642a"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/probe_initial_results.txt",
+      "public": "scripts/offgrid-range-reference/probe_initial_results.txt",
+      "sha256": "7e5ea1211adf9d107da0df30a59b9afd901774360617d3ceba330da80799e950"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/probe_low_snr_results.txt",
+      "public": "scripts/offgrid-range-reference/probe_low_snr_results.txt",
+      "sha256": "64824c0eae51890c4525c0e6a7be46f109c8d72ddf0debbe8e6ec16001c1ff08"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/reference-output.txt",
+      "public": "scripts/offgrid-range-reference/reference-output.txt",
+      "sha256": "c5f27801d8e4ba44b677de2b5c6131088778b7ba7ad7371df624fed3029ab8d1"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/reference.py",
+      "public": "scripts/offgrid-range-reference/reference.py",
+      "sha256": "7e857683f4c59258becb3d8675ef6fc3fafb1af0fe8d026e4c2c1fa2eeac72c9"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/verification.json",
+      "public": "scripts/offgrid-range-reference/verification.json",
+      "sha256": "dd0ac16f838d55e8d3621ce52a2f4213a241593bb0b0f070bcf5d77eeeb9dfda"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/verify_port.cjs",
+      "public": "scripts/offgrid-range-reference/verify_port.cjs",
+      "sha256": "f70a47b58948dd124c534c80fe4c8e91f5e0b3a4911b3adf7ba9b713efb4a4c7"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-reference/verify_reference.py",
+      "public": "scripts/offgrid-range-reference/verify_reference.py",
+      "sha256": "69e38548f29aa831115dc4813337c4b90225d5fe51780e3c8865587017855634"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-validation/core-audit-output.json",
+      "public": "scripts/offgrid-range-validation/core-audit-output.json",
+      "sha256": "878426c9a3f1aad15654b95a786884a9b2886eb3ed8ee3c73a86d2de9467b944"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-validation/full-tests.txt",
+      "public": "scripts/offgrid-range-validation/full-tests.txt",
+      "sha256": "f070b29d395f287b068e9f21f1c31674f5b0f3d42c5f9556e68e4b19251d59bf"
+    },
+    {
+      "compatibility": "scripts/offgrid-range-validation/notebook-tests.txt",
+      "public": "scripts/offgrid-range-validation/notebook-tests.txt",
+      "sha256": "41b203e332e675bc01de52dbd150dbd0bae8d27c52c9cf3099e625ea34ae8ab1"
+    },
+    {
+      "compatibility": "scripts/paper-comparison-groups.cjs",
+      "public": "scripts/paper-comparison-groups.cjs",
+      "sha256": "4daf7dbda44577d3ac007214874ec579eccfe95dc10bcf666baf7fdddbde76ed"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/README.md",
+      "public": "scripts/perceptive-clutter-independent/README.md",
+      "sha256": "6f79053eb4fc2079f1db6d6a0a75216ed1a9ce159dd7522bffdaf7ef02018902"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/explicit-clutter-fixture.json",
+      "public": "scripts/perceptive-clutter-independent/explicit-clutter-fixture.json",
+      "sha256": "0677463329b0fe711d93cd3da6a4a188bb79f62d33966777e7ce14ff7e5e661f"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/independent-js-noise-results.json",
+      "public": "scripts/perceptive-clutter-independent/independent-js-noise-results.json",
+      "sha256": "9639af4a0ad3b6056004989998a3d19c09e23b159fc141cb4f2f1b204bc7d1fe"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/independent-js-results.json",
+      "public": "scripts/perceptive-clutter-independent/independent-js-results.json",
+      "sha256": "fa0075df0fbce270d01c9c837323e999e513dbe8439ff94aa0d8affca5131bb9"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/js_bridge.cjs",
+      "public": "scripts/perceptive-clutter-independent/js_bridge.cjs",
+      "sha256": "b607f5971dd8d186ef8f0c1d3e618cffe4f3f5f462af98cd8a4641147c57cb57"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/manifest.json",
+      "public": "scripts/perceptive-clutter-independent/manifest.json",
+      "sha256": "35091ce11243d2c4a798350d575319bbfc9b524fd2420095ce25c803a07ec01f"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/noise-run.log",
+      "public": "scripts/perceptive-clutter-independent/noise-run.log",
+      "sha256": "9639af4a0ad3b6056004989998a3d19c09e23b159fc141cb4f2f1b204bc7d1fe"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/numerical-run.log",
+      "public": "scripts/perceptive-clutter-independent/numerical-run.log",
+      "sha256": "fa0075df0fbce270d01c9c837323e999e513dbe8439ff94aa0d8affca5131bb9"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/validate_perceptive_clutter.py",
+      "public": "scripts/perceptive-clutter-independent/validate_perceptive_clutter.py",
+      "sha256": "3e9953a9f6135657128e7b46a15b28d023ffb856125b9314e65c42cbdecb504a"
+    },
+    {
+      "compatibility": "scripts/perceptive-clutter-independent/validate_perceptive_clutter_noise.cjs",
+      "public": "scripts/perceptive-clutter-independent/validate_perceptive_clutter_noise.cjs",
+      "sha256": "a64ab236de1b0f6b6f540dfc9ad3c84acfbd1a0e570ca3cfdc13aa9aee4688c4"
+    },
+    {
+      "compatibility": "scripts/render-research-directory.cjs",
+      "public": "scripts/render-research-directory.cjs",
+      "sha256": "8d1f7f2925e88430def0c9159c7ec06f818f35cb6ea9c089ff5a1f877a1219c9"
+    },
+    {
+      "compatibility": "scripts/research-guides.cjs",
+      "public": "scripts/research-guides.cjs",
+      "sha256": "54f29acc3441f7cca0e97a5fb293d798bb3958576de190c004331cc8020a536a"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/README.md",
+      "public": "scripts/shared-array-independent-audit/README.md",
+      "sha256": "ddd0e9c929736014bcba5cede1a7e6013eb07d9ef080acb96c3da5b4eab7d4e7"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/actual-content-results.json",
+      "public": "scripts/shared-array-independent-audit/actual-content-results.json",
+      "sha256": "ce113b9d1ad060e5e757f49e43aa99234f9d9cf71dd87ca6b15c9a6f3c3d3d60"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/actual-guard-results.json",
+      "public": "scripts/shared-array-independent-audit/actual-guard-results.json",
+      "sha256": "df00c6e12eb21cf1a6d59eb0b8daa0f6d9b840fb58e2ff960729c13ace553420"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/actual-js-inputs.json",
+      "public": "scripts/shared-array-independent-audit/actual-js-inputs.json",
+      "sha256": "d247c0bc86617fb5ea7dd1659406041a29d339b038d1b1998387200960b1eef1"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/actual-js-results.json",
+      "public": "scripts/shared-array-independent-audit/actual-js-results.json",
+      "sha256": "ae80610a8c6d1b07f58c55dc25b2de4e8d85fb4e0d72d02ff1fbbe90bcc34382"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/actual_js_adapter.mjs",
+      "public": "scripts/shared-array-independent-audit/actual_js_adapter.mjs",
+      "sha256": "88f15220ecfa1fea3d012c3e72a9a87d059fd8161d6c8d4730bf10f912fbe458"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/audit_actual_content.py",
+      "public": "scripts/shared-array-independent-audit/audit_actual_content.py",
+      "sha256": "5525ee610df9588ebc1f89021404878ee920669e2d7b269446678054ed410454"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/audit_actual_guards.cjs",
+      "public": "scripts/shared-array-independent-audit/audit_actual_guards.cjs",
+      "sha256": "6ab73f6e842dfe47878f3630a2676b2b46a9b75cb02db3bf7c114a5e5bda7981"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/audit_actual_js.py",
+      "public": "scripts/shared-array-independent-audit/audit_actual_js.py",
+      "sha256": "97918386e755f253f5aea03e31fe8458c0952887cbf850f91859324f6067fd70"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/prepare_actual_js_inputs.py",
+      "public": "scripts/shared-array-independent-audit/prepare_actual_js_inputs.py",
+      "sha256": "a5e9cd1a62dd8b9fa2414cf10c0cc69868b0c701e2cf16c19b1b67a84e1de0b0"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/run_actual_js.mjs",
+      "public": "scripts/shared-array-independent-audit/run_actual_js.mjs",
+      "sha256": "5856acdb0807aef8dfd550e36bae8ddab25978342983461feda008c5dc9361a3"
+    },
+    {
+      "compatibility": "scripts/shared-array-independent-audit/validation-summary.json",
+      "public": "scripts/shared-array-independent-audit/validation-summary.json",
+      "sha256": "ab670b0ba2b97397f0e9e1e461fe9f2fdd46a6710cf6d78d7b72f8c4c92d4dee"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/README.md",
+      "public": "scripts/shared-array-reference/README.md",
+      "sha256": "ceddce447edaefd23bb86ff1939997f3daeb463470ee8bee4f981688fa27064a"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/manifest.json",
+      "public": "scripts/shared-array-reference/manifest.json",
+      "sha256": "e1f941904e779b3510f147cda323539d6d2682af64f3c6249dcfeefde51b9a96"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/reference.py",
+      "public": "scripts/shared-array-reference/reference.py",
+      "sha256": "e0262cd4bad47c58752c34f63978fbc70fec02ef5c6a23a83d8c75cdeac9ea2b"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/source-audit.md",
+      "public": "scripts/shared-array-reference/source-audit.md",
+      "sha256": "168e9a81d00a0a9f4a3e1e1961774edfc945cb70798de4b2d123c9646236e471"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/sources.json",
+      "public": "scripts/shared-array-reference/sources.json",
+      "sha256": "1d90d4b0dd41339a11f523b528c96279bcd36b4385922299b5111e4ed4975402"
+    },
+    {
+      "compatibility": "scripts/shared-array-reference/test_reference.py",
+      "public": "scripts/shared-array-reference/test_reference.py",
+      "sha256": "8fa40e5d75a9b346d4c85fc34d9884daeb3bd1e22d21e82dd3e0f537f7650c79"
+    },
+    {
+      "compatibility": "scripts/validate-crb-beamforming-actual.py",
+      "public": "scripts/validate-crb-beamforming-actual.py",
+      "sha256": "cce0b37de8f77db5b7f2429a5cd079e65ea9ffd7de1cdcc2db3cc50c06f2cd59"
+    },
+    {
+      "compatibility": "scripts/validate-crb-beamforming-highprecision.py",
+      "public": "scripts/validate-crb-beamforming-highprecision.py",
+      "sha256": "143f42f01da2d77ea98fe1c2992259d356b2beaed2e4d6174706f359d0bbedec"
+    },
+    {
+      "compatibility": "scripts/validate-crb-beamforming-independent.py",
+      "public": "scripts/validate-crb-beamforming-independent.py",
+      "sha256": "c9bca007f9e2fbb25398a91bdc0ff770a3b1db3af57525612b70c5a8e49dacca"
+    },
+    {
+      "compatibility": "scripts/validate-crb-beamforming.py",
+      "public": "scripts/validate-crb-beamforming.py",
+      "sha256": "9a163522ca0c677ec656599279b0630e7f381b38b9d5007a6769984084d7f592"
+    },
+    {
+      "compatibility": "scripts/validate-golay-radar.py",
+      "public": "scripts/validate-golay-radar.py",
+      "sha256": "29ca2c82fc023d3cfd693eba6e9c639a301906bd674374f95ffcb62ae95d03ae"
+    },
+    {
+      "compatibility": "scripts/validate-joint-beamforming.py",
+      "public": "scripts/validate-joint-beamforming.py",
+      "sha256": "95d1495b843e5b80a00421998505b409349c4be99edded974e3a8b9fedc868cb"
+    },
+    {
+      "compatibility": "scripts/validate-ofdm-interpolation.py",
+      "public": "scripts/validate-ofdm-interpolation.py",
+      "sha256": "cf4a420d702a4c13e133ea457d9989cc90a5e312daf9497489695df37d1c826c"
+    },
+    {
+      "compatibility": "scripts/validate-perceptive-clutter.py",
+      "public": "scripts/validate-perceptive-clutter.py",
+      "sha256": "53f3c341604c8cdb194288d7ba6fe7982d10e5433a70c6004160c5124537c573"
+    },
+    {
+      "compatibility": "scripts/validate-radar-beam-decision.py",
+      "public": "scripts/validate-radar-beam-decision.py",
+      "sha256": "ad661e7d27a27941cd967fdb23c087b11ca1a050e43042d1a76515093b0ab80f"
+    },
+    {
+      "compatibility": "scripts/validate-shared-array.cjs",
+      "public": "scripts/validate-shared-array.cjs",
+      "sha256": "98579f31a89c03ee15f736b72d3f145075df33b7f4c219da2b77e4c323819b23"
+    },
+    {
+      "compatibility": "shared-array-core.js",
+      "public": "shared-array-core.js",
+      "sha256": "4642fbf9f2f054052119f6944bc2c6f20a4f16390167c8017b7887bfa5fd0bd6"
+    },
+    {
+      "compatibility": "shared-array.css",
+      "public": "shared-array.css",
+      "sha256": "6c75403159b56e486d80726cc10acfaa58d80e5b00869ccf3c0e90bbaec7ded9"
+    },
+    {
+      "compatibility": "shared-array.html",
+      "public": "shared-array.html",
+      "sha256": "e3c635d921425db3cc0f4fc27b8514b50cf5759cc85ed4f10bbc033501c2e7fa"
+    },
+    {
+      "compatibility": "shared-array.js",
+      "public": "shared-array.js",
+      "sha256": "0a58755ba98b1ccbb00c7a7f6f73df0be4cdc21e2c47c60a57f235ab6d38c01f"
+    },
+    {
+      "compatibility": "site.css",
+      "public": "site.css",
+      "sha256": "067c79d7b8df4a537ae07bd6aa8307bd453770e14f70cf3b0a052953b491b496"
+    },
+    {
+      "compatibility": "site/content-branches.html",
+      "public": "site/content-branches.html",
+      "sha256": "6f17cab4e1894b819e5d66b264257533477a0f303ac32220fc5ddfa833e93ba5"
+    },
+    {
+      "compatibility": "site/content-frontiers.html",
+      "public": "site/content-frontiers.html",
+      "sha256": "9b891e6120f4fbf65f818d756c65576841fde229b89008cfb69ad60a4929fc5c"
+    },
+    {
+      "compatibility": "site/content-practice.html",
+      "public": "site/content-practice.html",
+      "sha256": "929eead2f18ac5b489d848068e8b7474c422adc806ff8ed1b039c5ae63e3cbd8"
+    },
+    {
+      "compatibility": "site/content-reading.html",
+      "public": "site/content-reading.html",
+      "sha256": "600364787f83622748bbba70a4fc2fdb69e55f5c14a18acc962e5acdf65934b9"
+    },
+    {
+      "compatibility": "site/content-resolution.html",
+      "public": "site/content-resolution.html",
+      "sha256": "4a0a7cc1cb82afffd0e722ffd777de3c7c36696d28f406859e66232c8f632ac0"
+    },
+    {
+      "compatibility": "site/content-scene-guide.html",
+      "public": "site/content-scene-guide.html",
+      "sha256": "748946754c463433855707bb984736a22795b33b062faabe8dcd3642efc1ff19"
+    },
+    {
+      "compatibility": "site/registry.json",
+      "public": "site/registry.json",
+      "sha256": "b8414c17f5251f1ea940c62c69e6e8f93327b964e972b3f7c3e89bef14ce7f07"
+    },
+    {
+      "compatibility": "site/research-directory.json",
+      "public": "site/research-directory.json",
+      "sha256": "95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9"
+    },
+    {
+      "compatibility": "site/research-guides.json",
+      "public": "site/research-guides.json",
+      "sha256": "2efa9da2d082feef267dc0f4b88a3fed5b2150702f4599fe414534ab2dc390e8"
+    },
+    {
+      "compatibility": "tests/course.test.cjs",
+      "public": "tests/course.test.cjs",
+      "sha256": "597646d7a830b3abcd48376c372dcbca2c11deefb8d22c7c8e66a07fed02deff"
+    },
+    {
+      "compatibility": "tests/crb-beamforming-ui.test.cjs",
+      "public": "tests/crb-beamforming-ui.test.cjs",
+      "sha256": "6b93db2cdbcc95cce6e34db6a38fe6fe655ccf9bbb69a612ecc790e4ec54a885"
+    },
+    {
+      "compatibility": "tests/crb-beamforming.test.cjs",
+      "public": "tests/crb-beamforming.test.cjs",
+      "sha256": "4e3241cd80a8af51d85aca5418312cccf6e01e24f3882492591233d3c2016d53"
+    },
+    {
+      "compatibility": "tests/distributed-detection-core.test.cjs",
+      "public": "tests/distributed-detection-core.test.cjs",
+      "sha256": "f9a803631c79d79979258997ce4eeb4532200e03c61f5152165241ac1798e720"
+    },
+    {
+      "compatibility": "tests/distributed-detection-formatting.test.cjs",
+      "public": "tests/distributed-detection-formatting.test.cjs",
+      "sha256": "767d430d58681bb7ec25057ff7f73398bf3b63c516c560440eb155b5ca09ea1a"
+    },
+    {
+      "compatibility": "tests/distributed-detection-integration.test.cjs",
+      "public": "tests/distributed-detection-integration.test.cjs",
+      "sha256": "a2b5dba8febbf3ed49bc6548b8ea6a1b33ba8ea8e1c793810fe286bd8b77c3d9"
+    },
+    {
+      "compatibility": "tests/distributed-detection-ui.test.cjs",
+      "public": "tests/distributed-detection-ui.test.cjs",
+      "sha256": "3e2d4dd8b9267646ba7af096cf84b762719454b28b478351c39c7267d9097d53"
+    },
+    {
+      "compatibility": "tests/estimator-ui.test.cjs",
+      "public": "tests/estimator-ui.test.cjs",
+      "sha256": "19744e956d7d0e9adf8e1cbac46b547ce37ecdca505a718c75a14bf6049bec38"
+    },
+    {
+      "compatibility": "tests/estimator.test.cjs",
+      "public": "tests/estimator.test.cjs",
+      "sha256": "72cd04428301062a3b466c8320507b868db47a2496bb887bc788309e4771e956"
+    },
+    {
+      "compatibility": "tests/experiment-record.test.cjs",
+      "public": "tests/experiment-record.test.cjs",
+      "sha256": "34e99138c8ed7d0d51d86aaf8ce977a3aee1c9acca773d35b02cc022c060ac66"
+    },
+    {
+      "compatibility": "tests/foundation-learning-flow.test.cjs",
+      "public": "tests/foundation-learning-flow.test.cjs",
+      "sha256": "c59e24ace48aaafe8175e63b45ca89f326047b73102607d053ffab596d61a960"
+    },
+    {
+      "compatibility": "tests/framework-polish.test.cjs",
+      "public": "tests/framework-polish.test.cjs",
+      "sha256": "e331a0fdc61712df69b93ba3d520a13d1f2124c22d2a931f91a67b508d0956f8"
+    },
+    {
+      "compatibility": "tests/framework-supplements.test.cjs",
+      "public": "tests/framework-supplements.test.cjs",
+      "sha256": "20e23bced738f36609df3055d753bafa2604f28ef04a3ee4ee80019102a13bc4"
+    },
+    {
+      "compatibility": "tests/frontier-evidence.test.cjs",
+      "public": "tests/frontier-evidence.test.cjs",
+      "sha256": "7994c8db569e3e55d8c890c107b0e939a3d2ebd1472fc45ab5fb5c4af4e1ea5b"
+    },
+    {
+      "compatibility": "tests/generator-learning-entry.test.cjs",
+      "public": "tests/generator-learning-entry.test.cjs",
+      "sha256": "40602f525bf7dc2dc6f0e3e61affe2d9a66c81e68712d378ddffbe73199302e1"
+    },
+    {
+      "compatibility": "tests/golay-radar-integration.test.cjs",
+      "public": "tests/golay-radar-integration.test.cjs",
+      "sha256": "4de9eb0a65a7a44c4e2c8dc013bfd4ba5f1a280a3f4aab4517dc318112c64051"
+    },
+    {
+      "compatibility": "tests/golay-radar-ui.test.cjs",
+      "public": "tests/golay-radar-ui.test.cjs",
+      "sha256": "e8b129fdb14275327955c239d0811745215cc7a45bf557774ee973d2e21ac971"
+    },
+    {
+      "compatibility": "tests/golay-radar.test.cjs",
+      "public": "tests/golay-radar.test.cjs",
+      "sha256": "22fc558a95807823ba697ea648b6ccd6f25545298c3c180a7ccff1772d5d59fd"
+    },
+    {
+      "compatibility": "tests/helpers/frontier-trace-preservation.cjs",
+      "public": "tests/helpers/frontier-trace-preservation.cjs",
+      "sha256": "3c648e9c522e9e4b72c146270cb7eb7b067843f61ba7b7d5ea45f17118e82402"
+    },
+    {
+      "compatibility": "tests/helpers/map-progression-preservation.cjs",
+      "public": "tests/helpers/map-progression-preservation.cjs",
+      "sha256": "4de8eefc44951fe661670088f8f8b008213de51dfe49855b5dadcd5a3632abfc"
+    },
+    {
+      "compatibility": "tests/helpers/network-context-preservation.cjs",
+      "public": "tests/helpers/network-context-preservation.cjs",
+      "sha256": "8f46a50a3df1e807556a59b8fa6fa061853dce0c4e0c110becb7400243c5b689"
+    },
+    {
+      "compatibility": "tests/helpers/reference-uncertainty-registry.cjs",
+      "public": "tests/helpers/reference-uncertainty-registry.cjs",
+      "sha256": "1d59c299dff97902f30b058198eba19453590d7acd0d04b05f3c76fb109b095e"
+    },
+    {
+      "compatibility": "tests/helpers/research-guide-trace-preservation.cjs",
+      "public": "tests/helpers/research-guide-trace-preservation.cjs",
+      "sha256": "1d8d984cc461e50e796490276ceb6aaf572373819df565c56a2b4e646a9005e0"
+    },
+    {
+      "compatibility": "tests/helpers/spatial-frontier-preservation.cjs",
+      "public": "tests/helpers/spatial-frontier-preservation.cjs",
+      "sha256": "b01b475d910c6476d41db5b4815fe4777b6b58a4d27681d88d44a38161a2b1d3"
+    },
+    {
+      "compatibility": "tests/intuition.test.cjs",
+      "public": "tests/intuition.test.cjs",
+      "sha256": "aebbf55c4b3e6e99f926f917b788560e798704558cccd8d1d58c1bc5184b9d12"
+    },
+    {
+      "compatibility": "tests/joint-beamforming-ui.test.cjs",
+      "public": "tests/joint-beamforming-ui.test.cjs",
+      "sha256": "100fbfe9dea9f4b4e6035ce115b48a1dd8c756b1558ed27b271f7970d0294cb0"
+    },
+    {
+      "compatibility": "tests/joint-beamforming.test.cjs",
+      "public": "tests/joint-beamforming.test.cjs",
+      "sha256": "ab561d5c61581727f93da978f943a9f6a8adf3e25b7f68e97d9f8c24b16dd600"
+    },
+    {
+      "compatibility": "tests/knowledge-map.test.cjs",
+      "public": "tests/knowledge-map.test.cjs",
+      "sha256": "5904138b92ded756fd9ab3d3b170caca4359b91fce97a908d5ebd07c0912090a"
+    },
+    {
+      "compatibility": "tests/lab-core.test.cjs",
+      "public": "tests/lab-core.test.cjs",
+      "sha256": "7513ff233785b54aba21fb79e64b52e50f40004cacedafa3b202c3b650b704ab"
+    },
+    {
+      "compatibility": "tests/learning-entry.test.cjs",
+      "public": "tests/learning-entry.test.cjs",
+      "sha256": "c6076c7a9642f7be5bb38b95a85618d282b90da19304231970f06c6f652e3620"
+    },
+    {
+      "compatibility": "tests/map-progression-preservation.test.cjs",
+      "public": "tests/map-progression-preservation.test.cjs",
+      "sha256": "b7050de6738e3eef1099cf6c192761a375e0ac502cb00065a9bad8ee9768e94a"
+    },
+    {
+      "compatibility": "tests/multipath-channel-integration.test.cjs",
+      "public": "tests/multipath-channel-integration.test.cjs",
+      "sha256": "af41524e6a800ca12aeae5b16cee0d449402efe24ce41ada434e22e5d30ada5d"
+    },
+    {
+      "compatibility": "tests/multipath-channel-ui.test.cjs",
+      "public": "tests/multipath-channel-ui.test.cjs",
+      "sha256": "d60c5f86ef8932ef135792ade793ed4dacd5b4c4906062277691dc6fc05cb47e"
+    },
+    {
+      "compatibility": "tests/multipath-channel.test.cjs",
+      "public": "tests/multipath-channel.test.cjs",
+      "sha256": "46ebfff01561bfcc90af24c9fbdad59e79a97b7d884c276740b4a60371cceaa2"
+    },
+    {
+      "compatibility": "tests/near-field-ui.test.cjs",
+      "public": "tests/near-field-ui.test.cjs",
+      "sha256": "68a7cdf3096212d6303a07cbe5459fa645ab7f899135aa50ce607ae54a4b32c2"
+    },
+    {
+      "compatibility": "tests/near-field.test.cjs",
+      "public": "tests/near-field.test.cjs",
+      "sha256": "4bbcfdd9dbda5f96dd5fdb4ffe148fc5921c0773ca44f1f38e6bbc3bcb6b0313"
+    },
+    {
+      "compatibility": "tests/network-ui.test.cjs",
+      "public": "tests/network-ui.test.cjs",
+      "sha256": "cddd2933e12b8b29c2a7de6e922ac645f5bf23524c149f63de0f6e31438c4c81"
+    },
+    {
+      "compatibility": "tests/network.test.cjs",
+      "public": "tests/network.test.cjs",
+      "sha256": "9a89dc949bd42f7006124d9c0007a4185e4ba091d811596a2fc84312e5fa6831"
+    },
+    {
+      "compatibility": "tests/notebook-topics.test.cjs",
+      "public": "tests/notebook-topics.test.cjs",
+      "sha256": "6361c81f890fafab95dc660c696fe1d05710184d625bd6c0eab80707a98347a2"
+    },
+    {
+      "compatibility": "tests/notebook.test.cjs",
+      "public": "tests/notebook.test.cjs",
+      "sha256": "dd14df8d780e287c2ca58e76b363c55a31dad39a4e6a6c9941268de2a541d65a"
+    },
+    {
+      "compatibility": "tests/ofdm-interpolation-integration.test.cjs",
+      "public": "tests/ofdm-interpolation-integration.test.cjs",
+      "sha256": "caba3fe5009d98ae3b2af4a863f512d8edb8528fc3b90c3b6fb20225d680d821"
+    },
+    {
+      "compatibility": "tests/ofdm-interpolation-ui.test.cjs",
+      "public": "tests/ofdm-interpolation-ui.test.cjs",
+      "sha256": "4ece07a941361b972638d3c101dcfdf96bd7ff5d99b4cd9c559ff284aad15472"
+    },
+    {
+      "compatibility": "tests/ofdm-interpolation.test.cjs",
+      "public": "tests/ofdm-interpolation.test.cjs",
+      "sha256": "d46e3ca83832a51415ef0282eae71f33ac0d19fb535a850e6eb24f7b8c194839"
+    },
+    {
+      "compatibility": "tests/offgrid-range-core.test.cjs",
+      "public": "tests/offgrid-range-core.test.cjs",
+      "sha256": "e2e2aa8523bd325e741d6aec0362c2ffa132a6fb2515be4c1c0924c6b9bd0099"
+    },
+    {
+      "compatibility": "tests/offgrid-range-integration.test.cjs",
+      "public": "tests/offgrid-range-integration.test.cjs",
+      "sha256": "50a4c1e9e038e570b3161f92c8e8406160a189864538cdb53bfd3ed91e169207"
+    },
+    {
+      "compatibility": "tests/offgrid-range-ui.test.cjs",
+      "public": "tests/offgrid-range-ui.test.cjs",
+      "sha256": "981ed4921f89506b369e50397b7cbb393352788d0f14c2bff250a4d539c7cc21"
+    },
+    {
+      "compatibility": "tests/paper-comparison-ui.test.cjs",
+      "public": "tests/paper-comparison-ui.test.cjs",
+      "sha256": "0f48f3d087005eb2419235832feeb10ec38e794d86741b9a6c46b3299d2af336"
+    },
+    {
+      "compatibility": "tests/paper-comparison.test.cjs",
+      "public": "tests/paper-comparison.test.cjs",
+      "sha256": "dd48c2f13d84814be75fb4b54435ab2e02c0dfc27f47192de97106acc3e838c2"
+    },
+    {
+      "compatibility": "tests/perceptive-clutter-integration.test.cjs",
+      "public": "tests/perceptive-clutter-integration.test.cjs",
+      "sha256": "61d7f6520d16ded5d3903b757d07aa8bb8af10225b9e46ee29f54b2262bb2a17"
+    },
+    {
+      "compatibility": "tests/perceptive-clutter-ui.test.cjs",
+      "public": "tests/perceptive-clutter-ui.test.cjs",
+      "sha256": "e3e305284211acb6e7b84fad6214c5dc2b487312cf1b34b6bd774120f51ae845"
+    },
+    {
+      "compatibility": "tests/perceptive-clutter.test.cjs",
+      "public": "tests/perceptive-clutter.test.cjs",
+      "sha256": "410d1f091accb752574d27c0b61657cf432ddf3a1bb5f52e9fa80a85946801f5"
+    },
+    {
+      "compatibility": "tests/pilot-ui.test.cjs",
+      "public": "tests/pilot-ui.test.cjs",
+      "sha256": "20888c5df9dd2381aedde29d1b6a40cc827c188f32f874d4b72bd7c4e50079ad"
+    },
+    {
+      "compatibility": "tests/pilot.test.cjs",
+      "public": "tests/pilot.test.cjs",
+      "sha256": "398b9b6c1feabe1b941a7c663e54dc83780eef0734dbe496bb32154316cd25ce"
+    },
+    {
+      "compatibility": "tests/radar-beam-decision-integration.test.cjs",
+      "public": "tests/radar-beam-decision-integration.test.cjs",
+      "sha256": "b587a32ee8f983d83b9add688ce604a95bd25fadafab43c04ffdc9b661a2a331"
+    },
+    {
+      "compatibility": "tests/radar-beam-decision-ui.test.cjs",
+      "public": "tests/radar-beam-decision-ui.test.cjs",
+      "sha256": "b282f4f8c06c702035ac95598bc2656ef01835892ec1f2353a0e50ca491e2bc6"
+    },
+    {
+      "compatibility": "tests/radar-beam-decision.test.cjs",
+      "public": "tests/radar-beam-decision.test.cjs",
+      "sha256": "e115008649d45c6ef87f47d078a4f3bdb81cac88d1dad55ac319645c374f3fe7"
+    },
+    {
+      "compatibility": "tests/rate-bridge.test.cjs",
+      "public": "tests/rate-bridge.test.cjs",
+      "sha256": "f0334a53e4ee7575e603a4b7e7133da9a406714ae0a810a6c5ba92c3eb1ef864"
+    },
+    {
+      "compatibility": "tests/reference-uncertainty-core.test.cjs",
+      "public": "tests/reference-uncertainty-core.test.cjs",
+      "sha256": "a3ba0e0f84b4bcda6fdc513d1a7383162787d0e5bdb13fdb4ccbe3475a5d3cf8"
+    },
+    {
+      "compatibility": "tests/reference-uncertainty-integration.test.cjs",
+      "public": "tests/reference-uncertainty-integration.test.cjs",
+      "sha256": "7137f4b59a12b3f774c68eb12c0eb24501a3836f6ad517d0dd9f39bdd60d6dfb"
+    },
+    {
+      "compatibility": "tests/reference-uncertainty-record.test.cjs",
+      "public": "tests/reference-uncertainty-record.test.cjs",
+      "sha256": "51f7b3b59769ee04e40c7e5040451dce9ab65871c91aec18670f8feaebc3e012"
+    },
+    {
+      "compatibility": "tests/reference-uncertainty-ui.test.cjs",
+      "public": "tests/reference-uncertainty-ui.test.cjs",
+      "sha256": "7120eca68b6f1de99bbff2bc6e81ae7d5db5391a3717147327701ee8462991b5"
+    },
+    {
+      "compatibility": "tests/reflection-aperture-core.test.cjs",
+      "public": "tests/reflection-aperture-core.test.cjs",
+      "sha256": "006420fe9d338a82a33ea8374183b02f2a32d84f772aa35fec94f645749da10f"
+    },
+    {
+      "compatibility": "tests/reflection-aperture-reading.test.cjs",
+      "public": "tests/reflection-aperture-reading.test.cjs",
+      "sha256": "b3a7c5bf5613b110dcc20e74870666404842a09604ca51f1dae8db9855d6d6b7"
+    },
+    {
+      "compatibility": "tests/reflection-aperture-ui.test.cjs",
+      "public": "tests/reflection-aperture-ui.test.cjs",
+      "sha256": "113ea7ef22e18e3f3ac6726e8ea2b56053d6fd3c0af141d03bda5389764c0ce1"
+    },
+    {
+      "compatibility": "tests/research-directory.test.cjs",
+      "public": "tests/research-directory.test.cjs",
+      "sha256": "15d8073d76693bd2b29f92ee9a9d6f55e360d0cc611973333178a4474df8daf5"
+    },
+    {
+      "compatibility": "tests/research-guides.test.cjs",
+      "public": "tests/research-guides.test.cjs",
+      "sha256": "b8eed66c85a6459aa205ed7c83e15a5f64f9bce27fb32fa278be6342c9c1e3ab"
+    },
+    {
+      "compatibility": "tests/research-integration.test.cjs",
+      "public": "tests/research-integration.test.cjs",
+      "sha256": "31a9a442a65883f9d127d2bc2a734fe9528d73c5930717b7045099cf9f8dd814"
+    },
+    {
+      "compatibility": "tests/research-navigation.test.cjs",
+      "public": "tests/research-navigation.test.cjs",
+      "sha256": "0a435ad5b86539f35fdaa6a445f96669ab342e6ebe973e16e2570a6262115cf2"
+    },
+    {
+      "compatibility": "tests/sbfd-ui.test.cjs",
+      "public": "tests/sbfd-ui.test.cjs",
+      "sha256": "657569cd39c0ad6ed7832978f89df17bcc9a6a6bd6e1df23aff83b6c27877cec"
+    },
+    {
+      "compatibility": "tests/sbfd.test.cjs",
+      "public": "tests/sbfd.test.cjs",
+      "sha256": "09951f0a77c72d269d5ff90eb7db82c3b63adb4dd4c77bc6b25df06455f1bf61"
+    },
+    {
+      "compatibility": "tests/scene-guide.test.cjs",
+      "public": "tests/scene-guide.test.cjs",
+      "sha256": "5e71ee80ca0a36db28db744615f85efc8ada54fe513a8f85c4e17f2c62d7f914"
+    },
+    {
+      "compatibility": "tests/shared-array-core.test.cjs",
+      "public": "tests/shared-array-core.test.cjs",
+      "sha256": "75009826e594df1ee543a93a4007d6eef216ecd4938db087c9e883faaaf7369c"
+    },
+    {
+      "compatibility": "tests/shared-array-integration.test.cjs",
+      "public": "tests/shared-array-integration.test.cjs",
+      "sha256": "8bf802d8f86924e83bacbc2436547835ac7a0dfc53c6b9f83df22513e09c3532"
+    },
+    {
+      "compatibility": "tests/shared-array-ui.test.cjs",
+      "public": "tests/shared-array-ui.test.cjs",
+      "sha256": "d81fcf01be22ac3b63f8043c82fa4c337c5621ccb37a3ea8e140b194852ecdaa"
+    },
+    {
+      "compatibility": "tests/theory-ui.test.cjs",
+      "public": "tests/theory-ui.test.cjs",
+      "sha256": "d1ba36ac02be4a931633874fbcab15873b8fddbe861565d1e99c80ae2b1cc9f2"
+    },
+    {
+      "compatibility": "tests/theory.test.cjs",
+      "public": "tests/theory.test.cjs",
+      "sha256": "72cf13a2ee99da9a8496c162d04a17ca6ad463b7bcc9abd5eedd9f14799d3660"
+    },
+    {
+      "compatibility": "tests/velocity.test.cjs",
+      "public": "tests/velocity.test.cjs",
+      "sha256": "21f9b55883d0e8ff7f6254a5b1f95a068052e64bcb902144ff61e0b6881ad801"
+    },
+    {
+      "compatibility": "tests/waveform-ui.test.cjs",
+      "public": "tests/waveform-ui.test.cjs",
+      "sha256": "01aac839b3790c43b9d3163f97c861400954203f354ab5c8b73e7077587c069d"
+    },
+    {
+      "compatibility": "tests/waveform.test.cjs",
+      "public": "tests/waveform.test.cjs",
+      "sha256": "8814439626777ac871fdc3999172b3511c4ed8772dc719387983e073747d79d8"
+    },
+    {
+      "compatibility": "theory-core.js",
+      "public": "theory-core.js",
+      "sha256": "13e34a75bba3af6ca659ac5729b339d8e898bb251af3f5ea8157447d3bd9eed8"
+    },
+    {
+      "compatibility": "theory.css",
+      "public": "theory.css",
+      "sha256": "7189094dc6f78437b32762d6fa3d805cb917dfdfc495c5e697a9d43e9e7aafb7"
+    },
+    {
+      "compatibility": "theory.html",
+      "public": "theory.html",
+      "sha256": "2a4a08c66d256e5118a5c37cd8b25539e240501e0336ec573d3c542fb9720b1c"
+    },
+    {
+      "compatibility": "theory.js",
+      "public": "theory.js",
+      "sha256": "458136f7380f05b7bb4a973de1d334c3ce9e12d313fa037667083a4ca4b33484"
+    },
+    {
+      "compatibility": "velocity-bridge.js",
+      "public": "velocity-bridge.js",
+      "sha256": "b83704a45aad91389ad232828bd0186606488adf2f5f47096614a71f967bd43c"
+    },
+    {
+      "compatibility": "velocity-core.js",
+      "public": "velocity-core.js",
+      "sha256": "f3d3e0af536b0620ed34055035d174b4de8054fba18d535fa4a5225bcb8af42c"
+    },
+    {
+      "compatibility": "waveform-core.js",
+      "public": "waveform-core.js",
+      "sha256": "55abf9bda20cbe84bb63ae833b65b25e91137dac10832e31850f97f6fa6258a8"
+    },
+    {
+      "compatibility": "waveform-design.html",
+      "public": "waveform-design.html",
+      "sha256": "1db4bfe62cb6ab908fce7486329a728fd6dd91829ae35260a98843d89924f812"
+    },
+    {
+      "compatibility": "waveform.css",
+      "public": "waveform.css",
+      "sha256": "8c533e0b0b7687ddf8957dc36f3582e15566bbbb37a65a144000be364f874e3b"
+    },
+    {
+      "compatibility": "waveform.js",
+      "public": "waveform.js",
+      "sha256": "e86cb3d5eb2987436eb5fbb92e079d5b3213155d5cbca01d223709d42a257ab2"
+    }
+  ]
+}

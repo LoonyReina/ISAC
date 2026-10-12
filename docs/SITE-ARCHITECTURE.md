@@ -21,7 +21,7 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 
 ## 内容注册表
 
-`site/registry.json` 是共享框架的唯一来源：
+`content/data/registry.json` 是共享框架的唯一来源；其兼容/公开路径仍为 `site/registry.json`：
 
 - `stages`：稳定的四阶段顺序、标签、入口与学习产出
 - `pages`：页面角色、所属阶段、先修、同题内容与一个推荐下一步
@@ -35,17 +35,47 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 
 每个方向只有一张简洁问题卡。六层材料默认收起，已有与尚缺项一起说明；没有实际资源时不生成实验按钮。原文链接仅是入口，完整对照需要版本、章节/图/式、观测/未知量、保留/省略条件、论文/本站证据类别、指标与资源预算。未知字段留空并标注待核对。前置实验不等于该方向专项实现，研究计划不等于已验证复现。
 
+## 源码归属与公开路径
+
+源码目录用于维护，`dist/` 才是静态站点根目录。页面和脚本在源码中搬迁，不改变线上 27 个 HTML 页面、已有资源、锚点、query/hash 行为或证据下载 URL。`build/compatibility-manifest.json` 是明确的逐文件映射，不按目录通配符发布：`source` 是当前输入，`compatibility` 是原生成器/测试使用的暂存路径，`public` 是公开路径（null 表示不发布），`owner` 表示归属。本次迁移落实了前一阶段清单中 `plannedSource` 的目录规划；当前版本 2 清单由 `source` 指示实际源码位置，不再包含 `plannedSource` 字段。迁移冻结信息只用于独立审计，不限制之后正常内容编辑。
+
+| 职责 | 当前源码 | 保留的暂存/公开路径示例 |
+|---|---|---|
+| 手写科学页面 | `content/pages/` | `foundations.html`、`theory.html`、各专题 HTML |
+| 手写门户片段 | `content/fragments/` | `site/content-*.html` |
+| 注册表与阅读数据 | `content/data/` | `site/registry.json`、`site/research-guides.json`、`site/research-directory.json` |
+| 课程与站点共享样式 | `shared/styles/` | `course.css`、`site.css` |
+| 通用实验记录 | `shared/records/` | `experiment-record.js` |
+| 基础讲义、地图、阅读、筛选、草稿功能 | `features/` 下各功能目录 | `course*.js`、`intuition*`、`velocity*`、`knowledge-map*`、`research-*`、`catalog.js`、`notebook*` 等原路径 |
+| 专题模型、界面与局部样式 | `labs/` 下各领域目录 | 各核心/控制器/样式的原根目录路径 |
+| 科学证据数据 | `assets/data/` | `data/` |
+| 站点生成器与解析器 | `scripts/site/` | `scripts/generate-site.cjs`、`scripts/knowledge-map.cjs`、`scripts/learning-entry.cjs` 等 |
+| 独立参考、审计和验证包 | `scripts/validation/` 下各领域目录 | 原 `scripts/` 文件与包路径 |
+| 数值、结构、界面回归 | `tests/` | `tests/` |
+| 科学文档与历史验证记录 | `docs/` | `docs/` |
+
+多径与反射孔径共同归属 `labs/channel-geometry/`；离格测距与参考不确定性共同归属 `labs/ofdm-reference/`。独立验证材料也按领域归属。不要把所有 JavaScript 合并到大目录，或为搬迁改动模型、DOM ID、接口及相对发布链接。
+
+迁移基线共有 368 个暂存文件，其中 367 个公开文件包含既有 `scripts/`、`tests/`、`site/`、`docs/` 和 `data/` 地址。未被页面链接的既有证据也不能悄悄丢失。兼容用的旧 `.gitignore` 不发布，工作区 `.gitignore` 继续排除 `dist/`。新增构建工具不会自动出现在发布产物中；后续增减公开文件须显式审核清单。
+
 ## 静态生成与手写边界
 
-运行 `node scripts/generate-site.cjs`，提交生成产物；运行 `--check` 在内存重算并比较，发现漂移即失败。无第三方包、无网络、无时间戳、无线上构建。
+唯一日常入口是 `node scripts/build-compatibility.cjs --test --reproducible`。它将当前权威源码按清单放入临时旧布局，在那里运行 `scripts/site/` 中生成器的兼容副本、生成新鲜度检查、波形数值检查和原回归，再输出保留旧 URL 的 `dist/`。生成期间不访问网络、不加入时间戳、不回写源码。不要直接在源码根目录运行搬迁后的旧生成器或旧测试。
 
-- index、experiments、reading、practice、resolution 与三张兼容页整体生成
-- 研究脉络、前沿、书目、实践和补充响应正文维护在 `site/content-*.html`
-- foundations、theory、四个专题、sandbox 保留手写科学正文；生成器只覆盖 `SITE:HEADER`、`SITE:CONTEXT`、`SITE:NEXT` 三个成对区域
+- index、experiments、reading、practice、resolution 与 learn、overview、research 三张兼容页整体生成，共八张页面
+- 研究脉络、前沿、书目、实践和补充响应正文维护在 `content/fragments/content-*.html`
+- `content/pages/` 下的 foundations、theory、各专题、sandbox 保留手写科学正文；生成器只覆盖 `SITE:HEADER`、`SITE:CONTEXT`、`SITE:NEXT` 三个成对区域
 - 各模型核心与 UI 脚本不参加框架生成，不挪动其控件 ID、加载顺序或全局协作接口
-- 不直接编辑生成的 legacy-routes.js，它由 `legacy` 生成
+- `legacy-routes.js` 由注册表的 `legacy` 生成，发布 URL 保持原根路径
+- `dist/` 是产物，不是编辑入口；提交权威源码和显式映射，不手改或提交 `dist/`
 
-`course-ui.js` 同时初始化 OFDM、CFAR、阵列、几何、打印和进度。其余两个扩展依赖统一输入/播放循环与 `window.ISACCourseReady` / `window.ISACCourseUI`。因此保留原 00–13 章完整 DOM；没有绑定控件的原 14、15、17 章移到 reading，原 16 章内容融入 practice。理论页 research-method 内包含真实 CRB 与速率实验，不能连同七问文字整体删除。
+### 临时生成种子
+
+八张整体生成页面与 `legacy-routes.js` 临时保存在 `build/compatibility-seeds/`。当前生成器在重建目标页面之前先校验部分链接与锚点，需要这些启动文件。它们不是第二套正文来源；不能手工修改，也不能从此前的 `dist/` 回填。需要改变生成页面时编辑注册表、片段或生成器，遵循构建说明检查生成结果。若先校验的目标因变化而不再满足条件，不得靠手改种子绕过校验。
+
+种子退出需要单独审核的“先渲染、再校验链接”生成器重构，或等价的权威源码/注册表目标解析。纯目录搬迁不同时实施该生成语义变化。
+
+`features/foundations/course-ui.js` 同时初始化 OFDM、CFAR、阵列、几何、打印和进度。其余两个扩展依赖统一输入/播放循环与 `window.ISACCourseReady` / `window.ISACCourseUI`。因此保留原 00–13 章完整 DOM；没有绑定控件的原 14、15、17 章移到 reading，原 16 章内容融入 practice。理论页 research-method 内包含真实 CRB 与速率实验，不能连同七问文字整体删除。
 
 ## 旧 URL 映射
 
@@ -72,16 +102,41 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 
 1. 先选既有方向；只有新的观测对象/研究问题确实跨出现有范围时才增加方向
 2. 写一个初学者能预测的现象，声明输入、已知/未知、单位、几何与资源
-3. 建立纯模型与数值测试，再把真实输出接到可访问的原生控件/图表/数字替代
+3. 在相应 `labs/` 或 `features/` 归属中建立纯模型与数值测试，再把真实输出接到可访问的原生控件/图表/数字替代；手写页面放在 `content/pages/`
 4. 在 `units` 注册机制；在 `pages` 指定阶段、先修、同题实验/原文/边界与下一步
 5. 在 `cases` 填经核对的来源与对照字段；不确定部分明确留待核对
 6. 在方向的相应层引用同一资源，不复制实现，不把通用计划标成已复现
-7. 生成并运行全量测试；检查手机/桌面、键盘、禁用 JS、返回键与打印
+7. 在兼容清单中显式登记新增源码、暂存和公开路径；运行构建器测试及 `node scripts/build-compatibility.cjs --test --reproducible`，再用 `--check` 核对产物；检查手机/桌面、键盘、禁用 JS、返回键与打印
 8. 若改过旧 URL，补 `legacy` 映射，绝不悄悄删除他人书签
 
 ## 回归与发布
 
-导航测试检查所有根 HTML 本地路径/fragment、唯一 ID、无 JS 链接、共享导航/当前位置、注册表引用、生成一致性与旧路由行为。数值测试保留，静态断言从旧入口迁移到当前语义归属。PR 中区分真正执行过的测试与待执行浏览器/上线检查。部署仍是 GitHub Pages 的 main 根目录与 .nojekyll。
+构建/科学验证的规范环境为 Node.js 24、Python 3.12、NumPy 2.3.5、SciPy 1.17.0；没有新增 JavaScript 包依赖。网页运行仍是独立 HTML/CSS/JS，不要求访问构建工具、服务或 SPA 路由。
+
+```sh
+node --test tests/compatibility-build.test.cjs
+node scripts/build-compatibility.cjs --test --reproducible
+node scripts/build-compatibility.cjs --check
+python3 -m http.server 8000 --directory dist
+```
+
+构建器测试在源码根目录执行；既有 956 项数值、结构、集成与模拟 DOM 回归由 `--test` 在旧布局暂存区运行，不能以源码根目录的 `node --test tests/*.test.cjs` 替代。`--reproducible` 独立暂存、生成并比较完整产物。波形生成器使用检查模式重新计算约束，保留既有规范 JSON；不得因 BLAS/SVD 表示差异顺手重写科学数据。
+
+导航检查针对发布布局的根 HTML 本地路径/fragment、唯一 ID、无 JS 链接、共享导航/当前位置、注册表引用、生成一致性与旧路由行为。`--check` 从当前源码重新生成并逐项核对现有 `dist/` 的文件集合和字节；它只判断产物是否新鲜，不要求内容与迁移前永远相同。PR 中明确区分实际运行的检查与待执行的浏览器/上线检查。
+
+### 一次迁移审计与正常内容编辑分开
+
+`node scripts/build-compatibility.cjs --audit-migration` 单独核对冻结的迁移前文件/散列清单和完整公开树，仅允许已审核的三份当前维护文档 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 的精确差异。它不允许科学正文、脚本、模型、数据、测试或历史验证记录借整理目录发生变化。这是迁移证据，不是正常作者构建的前置条件；后续内容编辑由当前源码、显式映射和针对性回归约束，不靠更新冻结基线放行。
+
+### Actions 发布
+
+`.github/workflows/pages.yml` 对 PR 和 `main` 执行构建验证；PR 只运行只读构建任务，`main` 的 push 或手动工作流才上传已验证的 `dist/` 并部署。发布产物保留 `.nojekyll`。Pages 应使用 GitHub Actions，不再选择 `main` 分支根目录作为发布源。
+
+删除旧根目录页面/资源入口的迁移发布之前，先核实仓库 Pages 的 Actions 设置和工作流部署成功。合并后确认对应提交的构建、上传与部署结果，并另做真实线上资源和交互检查；CI 成功不代表浏览器、键盘、打印、无 JavaScript 或辅助技术验收已完成。完整构建契约见源码 `build/README.md`。
+
+## 历史架构与验收记录
+
+以下带日期的章节按原文保留，记录当时的设计、源码路径、命令、计数、提交与验证范围。旧 `site/`、根脚本和 `scripts/` 路径继续作为兼容/公开路径存在；当前源码归属见上表。历史命令及通过数量不能当作源码搬迁后的运行指南，也不代表本次迁移或新部署已经通过。`docs/*-VALIDATION.md` 等历史报告同样保持原文与原日期。
 
 ## 阅读页场景引导（2026-10-10）
 

@@ -2,14 +2,25 @@
 
 ## 页面与代码
 
-- `index.html` 是唯一四阶段学习地图；`foundations.html` 保留原 00–13 章连续基础与全部原绑定控件，配套 `course.css`、`course.js`、`course-ui.js`、`course-core.js` 与直觉/速度扩展。
-- `experiments.html` 注册机制实验；`reading.html` 组织八个研究方向、六层深度、主题原文与原 14/15/17 章；`practice.html` 承接研究工作流和原 16 章任务。
-- `site/registry.json` 是共享导航、主题、研究方向、证据槽与兼容路线的单一来源。科学正文手写；只允许生成器改写 `SITE:HEADER/CONTEXT/NEXT` 标记区域。生成门户正文源在 `site/content-*.html`，不要直接编辑生成门户。
+- `index.html` 是唯一四阶段学习地图；`foundations.html` 保留原 00–13 章连续基础与全部原绑定控件。这些名称指发布 URL；手写页面源在 `content/pages/`，基础讲义脚本在 `features/foundations/`，共享样式在 `shared/styles/`。
+- `experiments.html` 注册机制实验；`reading.html` 组织八个研究方向、六层深度、主题原文与原 14/15/17 章；`practice.html` 承接研究工作流和原 16 章任务。页面 URL、锚点、资源 URL 与脚本加载顺序不随源码目录移动。
+- `content/data/registry.json` 是共享导航、主题、研究方向、证据槽与兼容路线的单一来源；研究指南和影响证据目录同属 `content/data/`。科学正文手写；生成器只改写手写页面中的 `SITE:HEADER/CONTEXT/NEXT` 标记区域。生成门户的手写正文源在 `content/fragments/content-*.html`，不要直接编辑生成门户。
+- 跨页面功能放在 `features/`，专题数值核心、界面和样式放在 `labs/`；通用记录/下载支持放在 `shared/records/`，既有证据数据放在 `assets/data/`。多径与反射孔径共同归属 `labs/channel-geometry/`；离格测距与参考不确定性共同归属 `labs/ofdm-reference/`。不要仅按文件后缀重新堆成大目录。
+- 站点生成器与解析器源在 `scripts/site/`；独立参考、审计和验证包按专题归属 `scripts/validation/`。`tests/` 保留原回归。历史验证报告、日志、来源快照与数值证据保持原文和日期，搬迁路径不表示重新验证。
 - 新增主题先注册方向、先修、模型、实验、原文证据与下一问；横向增方向，纵向补六层。available/proposed、前置实验/专项机制、研究计划/已验证复现必须分清，未实现内容不得生成假按钮。
 - 原文对照需版本、章节/图/式、观测与未知量、保留/省略条件、论文与本站证据类型、指标和资源预算；未知字段标待核对，不从链接推断完整复现。
 - `sandbox.html`、`resolution.html` 仅为按需补充实验，不能成为平行首页。`learn.html`、`overview.html`、`research.html` 与旧首页锚点保留明确兼容映射及无 JS 对应链接。
-- 无第三方构建依赖：`node scripts/generate-site.cjs` 更新静态产物；`node scripts/generate-site.cjs --check` 验证新鲜度；`node --test tests/*.test.cjs` 跑全部数值与结构回归。根目录 `python3 -m http.server 8000` 可预览。
-- Pages 使用 `main` 根目录与 `.nojekyll`。提交生成 HTML/JS；线上无需构建。从最新 `main` 创建分支，通过 PR 审核合并。架构迁移与接入清单见 `docs/SITE-ARCHITECTURE.md`。
+
+## 构建、迁移与发布
+
+- `build/compatibility-manifest.json` 显式列出源码 → 旧布局暂存路径 → 公开路径及归属。更改源码目录不能顺带改 URL；不得用广泛复制通配符替代发布清单。已有文档、数据、脚本、测试与可下载证据的公开路径均需保留。
+- 从当前权威源码运行 `node scripts/build-compatibility.cjs --test --reproducible`。构建器在隔离的旧路径布局中执行生成、新鲜度/依赖检查和既有 956 项回归，并独立重建比较产物；不回写源码。构建器自身测试用 `node --test tests/compatibility-build.test.cjs`。
+- `node scripts/build-compatibility.cjs --check` 验证现有 `dist/` 是否与当前源码的新构建完全一致，不是冻结旧内容的门禁。搬迁后不要直接在源码根目录运行 `node --test tests/*.test.cjs` 或旧路径生成器；它们仍依赖旧布局，由构建器负责暂存后调用。
+- 构建/科学验证使用 Node.js 24、Python 3.12、NumPy 2.3.5、SciPy 1.17.0；没有新增 JavaScript 包依赖。浏览器中的网站保持独立静态运行，不依赖这些构建工具。预览用 `python3 -m http.server 8000 --directory dist`。
+- 八张整体生成页面和 `legacy-routes.js` 临时保存在 `build/compatibility-seeds/`，仅为兼容生成器当前先校验目标、再生成的顺序。不要手改种子、不要用旧 `dist/` 回填；权威正文仍来自注册表、片段和生成器。移除种子需要另外审核“先渲染、再校验链接”的重构，不能在本次纯目录迁移中顺便改生成语义。
+- `--audit-migration` 是独立的迁移核验：对照冻结的迁移前清单，仅允许已审核的 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 三份当前维护文档的精确差异。不要将其加入日常内容编辑的冻结门禁，也不要重写旧散列以消除审计失败。
+- GitHub Pages 由 `.github/workflows/pages.yml` 验证、构建并发布 `dist/`，保留 `.nojekyll`；不从 `main` 源码根目录发布。PR 只验证，`main` 的 push 或手动工作流才部署。发布旧根入口删除之前先确认 Pages 已切换 GitHub Actions，并核实工作流成功。
+- 提交权威源码、构建配置和映射，不提交/手改 `dist/`。从最新 `main` 创建分支，通过 PR 审核合并。接入清单见 `docs/SITE-ARCHITECTURE.md`，构建细节见 `build/README.md`。
 
 ## 教学顺序
 
@@ -24,7 +35,7 @@
 
 - 所有公式标单位、符号、几何和近似。单站 `R=c*tau/2`；一般低速窄带 `f_D=-(dL/dt)/lambda`。双站不能统一写成 `2v/lambda`。
 - 区分声学精确多普勒与电磁近似；区分射频载频、复基带与子载波偏移。
-- `course-core.js` 的 cfg 是参数来源；Tr 为稀疏观察片段的起始间隔，不等于 Tu+CP。核对 CP、符号内多普勒、距离迁移、别名范围。
+- `features/foundations/course-core.js` 的 cfg 是参数来源；Tr 为稀疏观察片段的起始间隔，不等于 Tu+CP。核对 CP、符号内多普勒、距离迁移、别名范围。
 - 相位展开的教学真值不等于接收机已恢复整圈；未知初相位和幅度必须保留解释。
 - 做速度变换前保留复数。相位图、功率图和最大匹配峰不能混成实际空间图或通过检测的目标。
 - 分开分辨率、格距、精度、不模糊范围、检出率、虚警率和 CRB。
@@ -48,4 +59,4 @@
 - 每个新增公式要指向同页的物理对象、数值或交互图，讲清坐标、单位、符号与图中的哪一步对应；不把装饰性图画当作解释。
 - I/Q 图区分真实 RF 瞬时电压、两路基带系数、复向量与归一化功率；说明硬件架构并非一定是两颗 ADC。
 - 路径相位图先用有限位移数波长，再讲导数；区分射频时钟、片段内快时间与观察间慢时间。显示累计圈数时标明它来自已知真值，而不是自动解模糊。
-- `intuition-core.js` 负责新增纯模型；`intuition.js` 通过原 `course.js` 统一输入/播放循环连接图像。全部数值测试用 `node --test tests/*.test.cjs`。
+- `features/foundations/intuition-core.js` 负责新增纯模型；同目录的 `intuition.js` 通过原 `course.js` 统一输入/播放循环连接图像。全部数值回归通过 `node scripts/build-compatibility.cjs --test --reproducible` 在旧路径暂存布局中执行。
