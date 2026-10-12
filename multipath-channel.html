@@ -11,6 +11,9 @@
 <script defer src="multipath-channel-core.js?v=multipath-channel-v1"></script>
 <script defer src="experiment-record.js?v=record-preview-v1"></script>
 <script defer src="multipath-channel.js?v=multipath-channel-v2-axis-label"></script>
+<link rel="stylesheet" href="reflection-aperture.css?v=reflection-aperture-v1">
+<script defer src="reflection-aperture-core.js?v=reflection-aperture-v1"></script>
+<script defer src="reflection-aperture.js?v=reflection-aperture-v1"></script>
 </head>
 <body>
 <!-- SITE:HEADER:START -->
@@ -29,6 +32,41 @@
 <figure class="mc-figure"><figcaption id="mc-geometry-caption"><strong>传播几何。</strong>蓝色直达；橙色反射；灰虚线为镜像构造。幅度被设为零的路线改画灰点线，仅表示几何路线。T、P 是实际设备，Q 是反射点。</figcaption><svg id="mc-geometry" role="img" aria-labelledby="mc-geometry-caption" viewBox="0 0 620 430" height="430" preserveAspectRatio="xMidYMid meet"></svg></figure><p class="mc-result" id="mc-paths">等待当前几何计算。</p><p class="mc-predict"><strong>先猜：</strong>两条路就一定出现两个匹配峰吗？把 h 设成 1 m，再往下看。</p></section>
 
 <section class="mc-section" id="model"><p class="mc-step">02 / 先手算一个默认场景</p><h2>多走 2.16 m，晚到约 7.21 ns</h2><p>下面固定用默认 h=4 m 手算，不随上方控件改变。镜像构造把 T→Q→P 展成 T′→P，Q=(2,0) m。</p><div class="mc-handcalc"><article><h3>蓝色：直接到达</h3><p>L₀ = √[6²+(4−2)²]<br>= 6.3246 m</p><p>τ₀ = L₀/c ≈ 21.0964 ns</p></article><article><h3>橙色：先碰墙</h3><p>L₁ = √[6²+(4+2)²]<br>= 8.4853 m</p><p>τ₁ = L₁/c ≈ 28.3039 ns</p></article></div><p>两路差 2.1607 m，超额时延约 7.2074 ns。这里 c=299792458 m/s；“纳秒”是十亿分之一秒。<strong>这是单向传播，所以 L=cτ，没有除以 2。</strong>单站被动雷达的往返模型需要另外构造。</p><p>迟到不只意味着曲线向右移。载波沿每条路累计相位，墙面又可以引入反射相位；因此两路相遇时可能相长，也可能相消。未知复增益意味着接收机不能直接读出载波传播的完整圈数。</p></section>
+
+<!-- APERTURE:START -->
+<section class="mc-section ra-section" id="aperture-geometry" aria-labelledby="ra-title">
+<p class="mc-step">02B / 把一个接收位置展开成五个空间样本</p>
+<h2 id="ra-title">同一面墙，为什么每个阵元碰到的点不同？</h2>
+<p>先比较两种<strong>指定好的物理几何</strong>：所有路径经过同一个固定点 S，或分别在同一光滑平面上发生镜面反射。这里没有用于拟合的观测，也没有接收机在识别物体。</p>
+<p>发射端 T=(0,2) m，固定点 S=(2,0) m，平面 y=0；五个接收样本 Rₙ=(x꜀+uₙ,4) m，uₙ 依次为 −D/2、−D/4、0、D/4、D/2。五个位置不代表五路同时工作的射频链。D=0 时它们重合，不增加独立空间约束。</p>
+<div class="ra-controls">
+<label for="ra-center">接收中心 x꜀（m）<input id="ra-center" type="range" min="2" max="8" step="0.1" value="6"><output id="ra-center-value" for="ra-center">6.0 m</output></label>
+<label for="ra-aperture">孔径 D（m）<input id="ra-aperture" type="range" min="0" max="4" step="0.1" value="2"><output id="ra-aperture-value" for="ra-aperture">2.0 m</output></label>
+<div class="ra-preset"><button id="ra-wall" type="button" aria-pressed="false">只保留短墙段 [1.8,2.2] m</button><button id="ra-reset" type="button">恢复图解默认值</button><p class="mc-small" id="ra-wall-note">当前墙段：x∈[−2,10] m。此控件只改本节指定的面片范围。</p></div>
+</div>
+<div class="ra-prediction"><label for="ra-prediction">先判断：移动接收位置，交互点会跟着走吗？<select id="ra-prediction"><option value="unsure">还不确定，先看构造</option><option value="fixed">两个交互点都固定</option><option value="different">固定点不动，平面交互点会动</option><option value="moving">两个交互点都会动</option></select></label><button id="ra-reveal" type="button">揭示两种几何</button></div>
+<p id="ra-status" class="mc-status" role="status" aria-live="polite"></p>
+<p id="ra-awaiting" class="mc-small">选择预测后揭示，也可直接揭示。下方保留可展开的默认手算；本节不改变页面原有信道观测、接收机或 JSON 记录。</p>
+<div id="ra-results" hidden>
+<p id="ra-prediction-feedback" class="mc-predict"></p>
+<p class="mc-small">两图横纵轴都是米，使用同一固定坐标范围、等比例尺度。蓝色实线经过 S；橙色实线经过 Qₙ；灰虚线是镜像计算构造。粗线只强调选中样本，<strong>不表示功率、幅度或路径强弱</strong>。</p>
+<div class="ra-samples" role="group" aria-label="选择接收位置"><span>解释样本：</span><button type="button" id="ra-sample-0" aria-pressed="false">R₁</button><button type="button" id="ra-sample-1" aria-pressed="false">R₂</button><button type="button" id="ra-sample-2" aria-pressed="true">R₃ · 中心</button><button type="button" id="ra-sample-3" aria-pressed="false">R₄</button><button type="button" id="ra-sample-4" aria-pressed="false">R₅</button></div>
+<div class="ra-panels">
+<figure><figcaption id="ra-point-caption"><strong>固定点 S</strong> · 共享同一交互点</figcaption><svg id="ra-point" role="img" aria-labelledby="ra-point-caption" viewBox="0 0 560 360" preserveAspectRatio="xMidYMid meet"></svg><p id="ra-point-readout" class="ra-readout"></p></figure>
+<figure><figcaption id="ra-plane-caption"><strong>光滑平面</strong> · 共享同一法向</figcaption><svg id="ra-plane" role="img" aria-labelledby="ra-plane-caption" viewBox="0 0 560 360" preserveAspectRatio="xMidYMid meet"></svg><p id="ra-plane-readout" class="ra-readout"></p></figure>
+</div>
+<p id="ra-comparison" class="mc-result"></p>
+<div class="ra-table-wrap"><table><caption>同一次已知几何计算：五个位置全部列出。τ=L/c 是几何传播时间，不是仪器观测到的时延。</caption><thead><tr><th scope="col">样本 / Rₓ（m）</th><th scope="col">固定点 L（m）/ τ（ns）</th><th scope="col">Qₓ（m）</th><th scope="col">面片状态</th><th scope="col">平面 L（m）/ τ（ns）</th></tr></thead><tbody id="ra-table"></tbody></table></div>
+<p class="mc-small">“边缘极限”仅列数学构造的路长，不能据此断言边缘反射幅度；“面片外”不画物理反射路径、不给该面片的传播时间，也不把 Q 移到端点。短墙只体现有限支撑，不是完整遮挡模型；固定点模型仍保留 S。表中小数为显示舍入；面片状态由未舍入坐标判断，显示成端点不等于精确落在端点。</p>
+<p class="mc-predict"><strong>再判断：</strong>默认中心样本的 S=Q₃、两种路长相同。只凭一个位置上路长相同，足以认定同一种物体吗？</p>
+<details id="ra-explain" class="mc-disclosure"><summary>展开解释：相同路长说明了什么？</summary><div><p>不够。默认 x꜀=6 m 时，中心接收点对应 Q₃=(2,0)=S，所以路长相同；D&gt;0 时，其他位置的指定点路径与平面路径一般不同。这只是在对照给定的 S 和平面，不能证明对任意未知点、未知表面都能唯一判别。</p><p>对固定发射端，一次无限平面反射在接收侧的路长等于到镜像源 T′ 的距离。因此看到球面曲率也不能唯一认定真实物理平面。T′ 是计算构造，不是真实发射机。</p></div></details>
+</div>
+<div class="ra-ledger"><h3>信息账本：这里只有已知几何</h3><dl><dt>已给定</dt><dd>T、五个 Rₙ、固定点 S、墙面法向/位置/范围、传播速度 c=299792458 m/s</dd><dt>计算得到</dt><dd>镜像 T′、交互点 Qₙ、几何路长 L 和单向传播时间 τ=L/c</dd><dt>观测 / 估计</dt><dd>观测：无；估计：无。没有从接收数据恢复墙或点</dd><dt>未指定</dt><dd>载频、带宽、采样时钟、复幅度、噪声、发送能量、射频链数量、似然或推断预算</dd></dl><p>这是二维、单次反射、均匀传播、理想光滑面的射线几何；忽略材料、极化、衍射、粗糙度、路径损耗和相干干涉。本节没有 GC-SAGE 或信道测量，也不属于原有双路径接收机的计算记录。</p></div>
+<details class="mc-disclosure" id="ra-static"><summary>默认手算与公式 · 无需运行脚本</summary><div><p>以下固定 x꜀=6 m、D=2 m、完整墙段，不随控件变化。T′=(0,−2)，Qₙ=(Rₓ/3,0)，L平面=√(Rₓ²+36)，L固定点=√8+√[(Rₓ−2)²+16]。τ=L/c：这是单向 T→交互点→Rx 路径，不能套用单站往返的距离换算。</p><div class="ra-table-wrap"><table><caption>默认五样本，坐标/路长以米计，时间以纳秒计</caption><thead><tr><th>Rₓ</th><th>Qₓ</th><th>L固定点</th><th>L平面</th><th>τ平面</th></tr></thead><tbody><tr><td>5.0</td><td>1.666667</td><td>7.828427</td><td>7.810250</td><td>26.052189</td></tr><tr><td>5.5</td><td>1.833333</td><td>8.143500</td><td>8.139410</td><td>27.150150</td></tr><tr><td>6.0</td><td>2.000000</td><td>8.485281</td><td>8.485281</td><td>28.303852</td></tr><tr><td>6.5</td><td>2.166667</td><td>8.849224</td><td>8.845903</td><td>29.506756</td></tr><tr><td>7.0</td><td>2.333333</td><td>9.231551</td><td>9.219544</td><td>30.753090</td></tr></tbody></table></div><p>一般平面 n·x=b（n 为单位法向），令 dT=n·T−b，dR=n·R−b；两者非零且同号时，T′=T−2dT n，t=dT/(dT+dR)，Q=T′+t(R−T′)。严格位于有限墙段内部才采用光滑面镜面路径；端点单列为边缘极限。下方原信道实验使用自己的单接收点几何，不受本节控件影响。</p></div></details>
+<noscript><p>JavaScript 未运行。上面的“默认手算与公式”保留五个位置的全部数值和构造；交互图不声称已运行。</p></noscript>
+<p class="mc-small">研究连接：<a href="reading.html#guide-nearfield-mechanism-aware-mapping-2026">2026 近场机制感知环境映射导读</a>；固定原文 <a href="https://arxiv.org/html/2605.01162v1">arXiv:2605.01162v1，§II-C 式(6)–(10)、图2</a>。这是本站独立教学图解。这里把墙和点的位置都告诉了你；论文要从阵元–频率复信道解释未知环境，还必须处理幅度、可见性和路径数。此处 L/c 也不能当作既有近场相对相位实验新增的接收信息。</p>
+</section>
+<!-- APERTURE:END -->
 
 <section class="mc-section" id="observation"><p class="mc-step">03 / 接收机真正拿到的是复数</p><h2>先加 I 和 Q，再谈功率</h2><p>同一次固定发送含 128 个已知导频 Xₖ。每个频点收到一个复数 Yₖ：实部 I 与虚部 Q 是两路基带系数，可画成箭头。下图取<strong>基带偏移为 0 MHz 的那一格（k=0）</strong>，不是时间零点或无载波。</p><div class="mc-equation">Yₖ = 直达复数贡献 + 反射复数贡献</div><p>接收机只看见绿色总箭头 Yₖ。两条分量来自生成器，只在解释层展开。它们的 I 分别相加、Q 分别相加；功率是相加后的 I²+Q²，不能直接把两路功率相加。</p><label class="mc-check" for="mc-truth"><input id="mc-truth" type="checkbox">展开生成器真值：复数分量、真实路长与分量响应</label><figure class="mc-figure"><figcaption id="mc-iq-caption"><strong>一个实际复数观测。</strong>横轴 I、纵轴 Q，等比例；归一化幅度，不是房间坐标。勾选后蓝、橙分量首尾相接到绿色总和。</figcaption><svg id="mc-iq" role="img" aria-labelledby="mc-iq-caption" viewBox="0 0 620 290" height="290"></svg></figure><p id="mc-sample" class="mc-result">等待复数样本。</p><p class="mc-small">这是当前场景实际计算的 Y，不是用真实时延直接画出的答案。接收机也不知道墙的反射系数、h 或两条路径的标签。</p></section>
 

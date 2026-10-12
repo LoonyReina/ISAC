@@ -2630,6 +2630,10 @@
         {
           "href": "shared-array.html#objects",
           "label": "区分物理阵元、虚拟采样位置与孔径"
+        },
+        {
+          "href": "multipath-channel.html#aperture-geometry",
+          "label": "独立教学图解：固定点与反射平面的五位置对照"
         }
       ],
       "notebookTopicId": "near-field",
@@ -2721,7 +2725,8 @@
               }
             ],
             "explanation": "基线已处理多跳和部分遮挡；混合模型增加反射面几何。空间非平稳性表示同一路径沿孔径的响应会变；部分可见不只是统一降低信噪比。这里没有运行 GC-SAGE。",
-            "sourceLocator": "§III开头、§III-A2/B，式(18)–(23)；§IV-A2–3，Fig. 4"
+            "sourceLocator": "§III开头、§III-A2/B，式(18)–(23)；§IV-A2–3，Fig. 4",
+            "lessonHref": "multipath-channel.html#aperture-geometry"
           },
           {
             "id": "evidence",
