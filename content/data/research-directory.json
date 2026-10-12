@@ -222,8 +222,8 @@
       "publicationLabel": "2022期刊；2021在线发表",
       "doi": "https://doi.org/10.1109/tsp.2021.3135692",
       "identitySource": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming_0.pdf",
-      "mechanism": "原文以点目标和扩展目标估计的 CRB 为设计指标，在通信约束下优化通感波束；本站先实现单通信流、总功率预算的单用户 SNR 闭式特例。",
-      "evidenceBoundary": "CRB 是模型下的估计方差下界，开方显示角度标准差下界，不能当作实际 RMSE。本站实现单用户点目标闭式特例；可选双流实验是另换信道的独立构造，非多用户 SDR 或完整论文复现。与本站高斯信道 CRB–rate 案例不是同一篇论文。",
+      "mechanism": "原文在通信 SINR 与总功率预算下优化点目标和扩展目标 CRB；本站当前实际运行新 H 输入的有界多用户点目标式(33)，原单用户 SNR 闭式定理另栏。",
+      "evidenceBoundary": "CRB 是模型下的估计方差下界，开方为角度标准差下界，不能当实际 RMSE。有界点目标核心已独立数值验收，真实托管浏览器验收仍开放；原尺寸、扩展目标、ML 的离线切片分别记录，不是完整论文复现。与本站高斯信道 CRB–rate 案例不是同一篇论文。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -263,7 +263,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先用单用户闭式最优解观察平坦区、取舍区与可证明不可行区，再核对期刊版式(7)、(19)–(29)和未知复反射系数。可选同方向图双流实验为本站独立构造，不是原文 SDR 或原图复现。",
+      "readingPlan": "先固定 H 与资源，实际运行式(33)并核对逐用户 SINR、恢复波束、Fisher 信息和对偶间隙；再看独立 K1 闭式定理。分开接受、未解决和有证据不可行，最后查原尺寸/扩展目标/ML 离线边界。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -280,7 +280,11 @@
       ],
       "groupId": "joint-design",
       "shortTitle": "CRB 波束优化",
-      "caseId": "case-crb-beamforming"
+      "caseId": "case-crb-beamforming",
+      "executionStatus": {
+        "status": "validated-algorithm-core",
+        "scope": "有界多用户点目标式(33)：独立数值门槛已通过，托管浏览器验收开放"
+      }
     },
     {
       "id": "80211ad",

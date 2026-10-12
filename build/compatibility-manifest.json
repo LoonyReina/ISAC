@@ -245,6 +245,11 @@
       "id": "validators/nearfield-gc-sage",
       "directory": "scripts/validation/nearfield-gc-sage",
       "description": "Reduced one-bounce GC-SAGE independent references, common observations and numerical evidence"
+    },
+    {
+      "id": "validators/crb-export-checker",
+      "directory": "scripts/validation/crb-export-checker",
+      "description": "Optional independent NumPy replay of bounded CRB export state and certificates"
     }
   ],
   "entries": [
@@ -4873,6 +4878,230 @@
       "compatibility": "data/waveform-weighted-browser-20261012.json",
       "public": "data/waveform-weighted-browser-20261012.json",
       "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-multiuser-kernel-evidence.json",
+      "compatibility": "data/crb-multiuser-kernel-evidence.json",
+      "public": "data/crb-multiuser-kernel-evidence.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "docs/CRB-MULTIUSER-KERNEL-VALIDATION.md",
+      "compatibility": "docs/CRB-MULTIUSER-KERNEL-VALIDATION.md",
+      "public": "docs/CRB-MULTIUSER-KERNEL-VALIDATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-point-kernel-v0.4-manifest.json",
+      "compatibility": "data/crb-point-kernel-v0.4-manifest.json",
+      "public": "data/crb-point-kernel-v0.4-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-point-kernel-v0.4.zip",
+      "compatibility": "data/crb-point-kernel-v0.4.zip",
+      "public": "data/crb-point-kernel-v0.4.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-beamforming-reference-v1.zip",
+      "compatibility": "data/crb-beamforming-reference-v1.zip",
+      "public": "data/crb-beamforming-reference-v1.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-beamforming-reference-v1-manifest.json",
+      "compatibility": "data/crb-beamforming-reference-v1-manifest.json",
+      "public": "data/crb-beamforming-reference-v1-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/multiuser/hermitian.js",
+      "compatibility": "crb-multiuser/hermitian.js",
+      "public": "crb-multiuser/hermitian.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/multiuser/linalg.js",
+      "compatibility": "crb-multiuser/linalg.js",
+      "public": "crb-multiuser/linalg.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/multiuser/core.js",
+      "compatibility": "crb-multiuser/core.js",
+      "public": "crb-multiuser/core.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/multiuser/worker.js",
+      "compatibility": "crb-multiuser/worker.js",
+      "public": "crb-multiuser/worker.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/crb-multiuser-data.js",
+      "compatibility": "crb-multiuser-data.js",
+      "public": "crb-multiuser-data.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/crb-multiuser-model.js",
+      "compatibility": "crb-multiuser-model.js",
+      "public": "crb-multiuser-model.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/crb-multiuser.js",
+      "compatibility": "crb-multiuser.js",
+      "public": "crb-multiuser.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/crb-multiuser.css",
+      "compatibility": "crb-multiuser.css",
+      "public": "crb-multiuser.css",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-multiuser-model.test.cjs",
+      "compatibility": "tests/crb-multiuser-model.test.cjs",
+      "public": "tests/crb-multiuser-model.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-multiuser-ui.test.cjs",
+      "compatibility": "tests/crb-multiuser-ui.test.cjs",
+      "public": "tests/crb-multiuser-ui.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-multiuser-worker.test.cjs",
+      "compatibility": "tests/crb-multiuser-worker.test.cjs",
+      "public": "tests/crb-multiuser-worker.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-point-integration.test.cjs",
+      "compatibility": "tests/crb-point-integration.test.cjs",
+      "public": "tests/crb-point-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/crb-point-preservation.cjs",
+      "compatibility": "tests/helpers/crb-point-preservation.cjs",
+      "public": "tests/helpers/crb-point-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/waveform-weighted-post-fix-browser-20261012.json",
+      "compatibility": "data/waveform-weighted-post-fix-browser-20261012.json",
+      "public": "data/waveform-weighted-post-fix-browser-20261012.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/waveform-weighted-post-fix-reimport-20261012.json",
+      "compatibility": "data/waveform-weighted-post-fix-reimport-20261012.json",
+      "public": "data/waveform-weighted-post-fix-reimport-20261012.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/crb-export-checker/check_export.py",
+      "compatibility": "validation/crb-export-checker/check_export.py",
+      "public": "validation/crb-export-checker/check_export.py",
+      "owner": "validators/crb-export-checker",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/crb-export-checker/requirements.txt",
+      "compatibility": "validation/crb-export-checker/requirements.txt",
+      "public": "validation/crb-export-checker/requirements.txt",
+      "owner": "validators/crb-export-checker",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/crb-export-checker/README.md",
+      "compatibility": "validation/crb-export-checker/README.md",
+      "public": "validation/crb-export-checker/README.md",
+      "owner": "validators/crb-export-checker",
+      "role": "source"
+    },
+    {
+      "source": "docs/CRB-MULTIUSER-EXPORT-VALIDATION.md",
+      "compatibility": "docs/CRB-MULTIUSER-EXPORT-VALIDATION.md",
+      "public": "docs/CRB-MULTIUSER-EXPORT-VALIDATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "docs/CRB-EXPORT-CHECKER-REVIEW.md",
+      "compatibility": "docs/CRB-EXPORT-CHECKER-REVIEW.md",
+      "public": "docs/CRB-EXPORT-CHECKER-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-export-checker-tests.json",
+      "compatibility": "data/crb-export-checker-tests.json",
+      "public": "data/crb-export-checker-tests.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-export-checker-node-integration-replay.json",
+      "compatibility": "data/crb-export-checker-node-integration-replay.json",
+      "public": "data/crb-export-checker-node-integration-replay.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-export-checker-v1-manifest.json",
+      "compatibility": "data/crb-export-checker-v1-manifest.json",
+      "public": "data/crb-export-checker-v1-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-beamforming-export-checker-v1.zip",
+      "compatibility": "data/crb-beamforming-export-checker-v1.zip",
+      "public": "data/crb-beamforming-export-checker-v1.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-multiuser-live-review.json",
+      "compatibility": "data/crb-multiuser-live-review.json",
+      "public": "data/crb-multiuser-live-review.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
+      "compatibility": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
+      "public": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
+      "owner": "content/documentation",
       "role": "source"
     }
   ]

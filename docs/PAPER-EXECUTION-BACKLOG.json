@@ -90,7 +90,7 @@
     "unknownPolicy": "Absent source PDF hashes remain null; no guess. Preserve fixed edition and locators, and resolve missing source/data/code/licence/training details before accepting the dependent claim."
   },
   "sequence": {
-    "current": "joint_beamforming",
+    "current": "crb",
     "next": "crb",
     "then": [],
     "dataAndWeightAccessInParallel": [
@@ -109,7 +109,7 @@
       "ofdm_full_duplex"
     ],
     "remainingOrder": "Re-rank remaining work after source/reference and dependency readiness; all records remain open.",
-    "meaning": "Current and next identify the active bounded implementation/reference slice, not whole-paper completion. Every paper retains its independent unfinished coverage gates.",
+    "meaning": "Current and next identify the active bounded implementation/reference slice, not whole-paper completion. Every paper retains its independent unfinished coverage gates. The current and next IDs both remain crb until its first hosted point-lesson gate is resolved; no later paper order is inferred.",
     "deliveredBoundedSlices": [
       "tradeoffs-feedback-capacity-distortion-2018",
       "nearfield-mechanism-aware-mapping-2026",
@@ -128,13 +128,13 @@
         "paperId": "optimal_waveform",
         "stage": "browser-validation",
         "status": "pending",
-        "branch": "Section IV pre-fix hosted numerical flows and5download audits passed; small display/import fixes pending post-fix hosted-browser acceptance"
+        "branch": "Section IV post-fix default ticks/local error/reset and actual4.79MB full-record reimport with11fresh solves passed; in-flight cancellation,narrow/other-browser and painted-result timing open"
       },
       {
         "paperId": "crb",
-        "stage": "independent-numerical-reference",
-        "status": "in-progress",
-        "branch": "Multiuser CRB beamforming numerical work active; no new implementation or validation result claimed by this release"
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Bounded Eq33 point core and teaching integration prepared; actual deployed-browser acceptance pending; original-size/extended/ML references are offline only"
       }
     ]
   },
@@ -3885,7 +3885,7 @@
         "details": {}
       },
       "implementation": {
-        "classification": "fresh-input strict-covariance and Section IV weighted equality-energy cores independently validated; new weighted hosted-browser acceptance and remaining paper branches open",
+        "classification": "fresh-input strict-covariance and Section IV weighted equality-energy cores independently validated; bounded weighted post-fix desktop/full-record reimport accepted; remaining browser and paper branches open",
         "live": {
           "href": "waveform-design.html#experiment",
           "scope": "Actual complex Cholesky/Jacobi SVD with full rank-deficient completion; recomputed same-covariance DFT reference, signed bound gap, matrices and cost ledger. Old27states remain separately labelled offline. Section IV reuses the fresh strict X0, solves actual eigensystem/secular or explicit endpoint completion, and supports a paired same-input rho sweep; covariance equality is relaxed but block energy is equal."
@@ -3955,8 +3955,9 @@
             "constraint": "||X||_F²=L tr(R); XXᴴ/L=R is not imposed",
             "reference": "Exact current strict solution X0, not the DFT teaching baseline",
             "endpoints": "canonicalCompletion and explicit radarClosestTieBreak secondary convention; both primary optima retained",
-            "browserAccepted": false,
-            "browserLatencyMs": null
+            "browserAccepted": "bounded-desktop-post-fix",
+            "browserLatencyMs": null,
+            "browserEvidence": "assets/data/waveform-weighted-post-fix-browser-20261012.json"
           }
         }
       },
@@ -3978,23 +3979,23 @@
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
         "latency": "Worker-response elapsed only: prepared inputs through validated Worker response, excluding input generation/parsing, rendering/paint and download. First default 342.8 ms; five later same-input samples 28.9/28.5/41.9/33.3/30.8 ms. Not Run-to-display latency or a stable p95 benchmark. All listed observations concern the earlier strict-only deployed release; no weighted browser latency is established.",
         "independentValidation": "Strict core passed450independent checks;19fixed+328fresh author cross-checks. Max relative covariance9.825e-15 and normalized objective gap7.45e-13. Whole-paper coverage remains partial. See docs/WAVEFORM-LIVE-VALIDATION.md. Section IV Python v3 and JS v0.2 independently accepted, including fresh lifted SDP/SLSQP and boundary/malformed inputs; evidence in docs/WAVEFORM-WEIGHTED-VALIDATION.md. Teaching Node Worker/DOM checks are prepublication evidence, not browser verification. Independent integration review:33Worker checks (26fresh inputs/107weighted points),40non-rendering controller checks,94/94focused regressions; actual Node Worker threads, not browser execution.",
-        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial. The new weighted layer still requires its own hosted-browser acceptance; prior strict-only evidence is not transferred to it. On ec7a5c3 the weighted default/sweep/source endpoints/max-domain browser computations passed and5actual downloads passed fresh production replay plus1965independent Python checks. Collapsed default x-axis ticks and an oversized full-export reimport cap were found; fixes require a separate post-fix browser check. Actual in-flight weighted cancellation was not established."
+        "uiLearning": "2026-10-12 deployed main 961ba88 desktop smoke: fresh default/source-size/zero-H/manual-input, all matrix views, diagnostic-only SNR, invalid-input/recovery, download replay and navigation passed. Actual in-flight cancellation/reset overlap and narrow viewport were not established; UI acceptance remains partial. The subsequent weighted layer required its own hosted-browser acceptance; prior strict-only evidence was not transferred to it. On ec7a5c3 the weighted default/sweep/source endpoints/max-domain browser computations passed and5actual downloads passed fresh production replay plus1965independent Python checks. Collapsed default x-axis ticks and an oversized full-export reimport cap were found; the fixes required a separate post-fix browser check. Actual in-flight weighted cancellation was not established. Post-fix main872ac32 was actually checked2026-10-12,15:20:15–15:30:24UTC: default axis ticks and local error/reset/Enter passed; the complete4,793,548-byte record was pasted into the browser and freshly recomputed as11points. Its new browser download exactly matched H/S/R,X0,all11X/metrics/certificates. Actual in-flight cancellation,narrow/other-browser and painted-result latency remain open."
       },
       "missingImplementation": [
         "Constant-modulus/similarity-constrained branch-and-bound",
         "Original three-direction reference-covariance designer, full figures and unresolved Fig.3 weighted mismatch/ZF/averaging conventions",
-        "New weighted hosted-browser/download/interruption/narrow acceptance and repeated painted-result latency benchmark"
+        "Actual in-flight weighted interruption,narrow/other-browser acceptance and repeated painted-result latency benchmark"
       ],
       "dependencies": [
         "Original directional covariance, ZF receiver/normalization and averaging settings",
         "Independent constant-modulus reference and bound-gap certification; a local optimum must not be called global",
         "Resolve source-exact Fig.3 discrepancy without fitting undocumented parameters",
-        "Actual supported-browser checks for the new weighted layer and repeated timing"
+        "Actual in-flight weighted cancellation,narrow/other-browser QA and repeated painted-result timing"
       ],
       "blockers": [
         "Original Fig.3 weighted curve remains nonmatching",
         "Constant-modulus branch, original directional designer and full paper figures remain open",
-        "Small weighted display/import repair awaits post-fix hosted-browser acceptance; actual in-flight cancellation, narrow/other-browser and painted-result benchmark remain open"
+        "Bounded post-fix desktop rendering and full-record reimport passed; actual in-flight cancellation,narrow/other-browser and painted-result benchmark remain open"
       ],
       "realtime": {
         "status": "measured",
@@ -4174,16 +4175,26 @@
           "branch": "Section IV weighted equality-energy",
           "numerical": "passed-selected-core",
           "selectedExperiment": "source-parameter-slice-nonmatching-Fig3",
-          "browser": "pre-fix-desktop-numerical-flows-passed; post-fix-hosted-acceptance-pending",
+          "browser": "post-fix-bounded-desktop-rendering-and-full-record-reimport-passed; in-flight-cancel/narrow/paint-open",
           "latency": "not-measured",
           "evidence": "docs/WAVEFORM-WEIGHTED-LIVE-VALIDATION.md",
           "downloadAudit": {
             "records": 5,
-            "uniqueWeightedSolves": 24,
+            "uniqueWeightedSolves": 23,
             "independentPythonChecks": 1965,
             "productionWaveformsAndCertificatesReplayExactly": true,
             "maximumObjectiveDifferenceRelativeToCertificateScale": 1.4819614306462935e-15,
-            "scope": "Pre-fix deployed ec7a5c3 downloads; does not certify subsequent UI fix or oversized browser reimport"
+            "scope": "Pre-fix deployed ec7a5c3 downloads; does not certify subsequent UI fix or oversized browser reimport",
+            "recordedSolvesAcrossFiveExports": 24,
+            "deduplication": "Exact H/S/R/rho/tie equality; default rho.1 repeats in same-input sweep"
+          },
+          "postFixEvidence": "docs/WAVEFORM-WEIGHTED-BROWSER-VALIDATION.md#post-fix-hosted-desktop-acceptance-2026-10-12",
+          "postFixRecordReplay": {
+            "sourceCommit": "872ac32f4b0340307b23c731d3e8cfff289c915b",
+            "fullImportedBytes": 4793548,
+            "freshWeightedPoints": 11,
+            "newBrowserDownloadExact": true,
+            "evidence": "data/waveform-weighted-post-fix-reimport-20261012.json"
           }
         },
         {
@@ -4866,10 +4877,10 @@
         "url": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf",
         "fixedVersion": "IEEE TSP 70，240–253（2022）；2021-12-15 在线发表，2022-01-11 当前版本；DOI 10.1109/TSP.2021.3135692。公式编号均指此期刊版，不混用 arXiv v1。",
         "locators": {
-          "summary": "期刊 pp.241–242 §II-A/B 式(1)–(9)：观测、未知复系数与点目标 CRB；pp.243–244 §III-A/B 式(19)–(29)、引理1/定理1：单用户最优解；pp.248–249 附录 A/B：张成空间与约束证明。式(10)–(18)扩展目标、式(30)–(33)及定理2多用户 SDR 仅作未实现边界。",
-          "section": "§II-A/B、§III-A/B、附录 A/B",
-          "figure": "未复现原文图；本站曲线使用独立合成参数",
-          "equation": "主实现式(7)、(19)–(29)；背景式(1)–(9)；未实现式(10)–(18)、(30)–(33)"
+          "summary": "期刊 pp.241–242 §II-A/B 式(1)–(9)：观测、未知复系数与点目标 CRB；p.244 §III-C 式(30)–(33)、定理2：多用户 SDR 与恢复条件。原单用户 pp.243–244 §III-A/B 式(19)–(29)、引理1/定理1与 pp.248–249 附录 A/B 单独保留；扩展目标与 ML 只作离线参考，不属于当前浏览器核心。",
+          "section": "§II-A/B、§III-A/B/C、附录 A/B",
+          "figure": "原尺寸参数单例与离线实验切片分别记录；未复现完整原图",
+          "equation": "当前多用户式(7)、(30)–(33)；原单用户式(19)–(29)另栏；扩展目标式(10)–(18)、(46)–(49)仅离线参考"
         },
         "paperIdentity": "title:cramerraoboundoptimizationforjointradarcommunicationbeamforming",
         "fixedSourceIdentity": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf",
@@ -4879,7 +4890,8 @@
           "doi": "https://doi.org/10.1109/tsp.2021.3135692",
           "frozenAuditNote": "2026-10-10 独立下载并检查作者机构托管的已发表期刊版与单用户定理范围；该次 PDF 的 SHA-256 为 3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d。独立数值实现与完整实参数 Fisher 复核见本页；未复现原图或整篇论文。",
           "sourceManifest": "assets/data/crb-beamforming-sources.json",
-          "supplementalPrimaryReadings": []
+          "supplementalPrimaryReadings": [],
+          "pointCoreAudit": "2026-10-12 fixed published source; Eq7/Eq30–33 and Theorem2 point target. Numerical rank and floating residual tolerances remain explicit."
         }
       },
       "contribution": {
@@ -4900,7 +4912,7 @@
         ]
       },
       "minimalFaithfulTarget": {
-        "description": "Generalize the actual single-user theorem to editable complex h, angle and array/budget parameters, validate against independent SDP, then implement point-target multiuser Eq.(33) with recovered beams. Keep special-case and complete-paper progress distinct.",
+        "description": "Execute actual point-target Eq33 on fresh complex K2 H, Nt4/6/8 with Nr=Nt+4; show physical SINRs, unknown-alpha Fisher bound, PSD/rank recovery and residual-adjusted dual gap. Keep old K1 theorem separate, and original-size/extended/ML evidence explicitly offline.",
         "scope": "First executable milestone only; not sufficient to mark the entire paper reproduced",
         "acceptance": [
           "Algorithm executes from new inputs, with source equations and version documented",
@@ -4933,92 +4945,147 @@
           "K4/Gamma15dB for Figs.3–4; tradeoffs include K6/12"
         ],
         "unresolved": [
-          "Exact random seeds/trial counts/fine ML grid and all solver tolerances need recording",
-          "Paper extended-target eigenvector baseline drops infeasible cases; reproduction must report both that conditional statistic and the failure count"
+          "Full original figures and point-target beampattern baselines remain absent; declared source-sized trials are not exact published curve matches",
+          "Paper supplies no exact channel seeds/Monte Carlo count; the new seeds, exhaustive ML grid and solver tolerances are declared in the offline archive",
+          "Extended eigen-baseline feasibility-conditioned statistics retain all16attempts:6feasible,4infeasible,6unavailable; never discard failures"
         ],
-        "details": {}
+        "details": {
+          "offlineSlice": {
+            "pointAccepted": 3,
+            "pointAttempted": 3,
+            "extendedAccepted": 10,
+            "extendedAttempted": 16,
+            "pointMlChannels": 1,
+            "pointMlTrialsPerCondition": 256,
+            "pointMlLowSnrExample": {
+              "radarSnrDb": -20,
+              "rootCrbDegrees": 1.2892828,
+              "rmseDegrees": 30.584058,
+              "outliersAbove5Degrees": 150,
+              "trials": 256
+            },
+            "extendedResponseMlTrials": 1024,
+            "notCurrentUiInput": true,
+            "fullPaperReproduction": false
+          },
+          "currentLiveTeachingResources": {
+            "summary": "当前多用户教学：Nt4/6/8、Nr=Nt+4、K2、L30、P1000mW、通信/雷达噪声各1mW、α=1仅作评估真值且对估计器未知，θ0或23度。H可编辑，固定H的Γ0–20dB比较；0dB=线性1。旧单用户Nt=8、Nr=12、L=64、P=1及h=u独立双流构造单独保留。",
+            "bandwidth": "窄带归一化模型，未指定 RF 载频或物理带宽",
+            "energy": "总平均功率1000mW、L30个快拍；没有物理采样周期，不能直接给出焦耳",
+            "duration": "30个复快拍；物理持续时间未指定",
+            "aperture": "中心化λ/2 ULA；发射(Nt−1)λ/2，接收(Nr−1)λ/2",
+            "priorKnowledge": "已知H、X、阵列和噪声；θ、复α未知，无参数先验",
+            "other": [
+              "Nt变化会改变孔径；不能声称跨Nt为同孔径优势",
+              "原尺寸Nt16/Nr20/K4/Γ15dB只作独立离线单例",
+              "浮点容差验收不是精确全局最优证明；不保证任意输入都收敛"
+            ]
+          }
+        }
       },
       "implementation": {
-        "classification": "live faithful single-user special-case optimizer plus independent companion",
-        "live": "solve/main recompute the exact piecewise point-target single-user solution. information forms unknown-reflectivity-adjusted Fisher information. Companion two-stream same-beampattern comparison is a separate constructed example.",
-        "offline": null,
+        "classification": "fresh-input bounded multiuser point-target Eq33 core independently validated; teaching integration prepared; actual hosted-browser gate open",
+        "live": {
+          "href": "crb-beamforming.html#experiment",
+          "scope": "Fresh/editable complex H; PSD-cone Douglas–Rachford with guarded Anderson acceleration, principal-eigenpair recovery, actual SINRs and unknown-alpha Fisher information; explicit run/cancel, same-H three-threshold solve and export/input-only reimport. No live extended solver or ML receiver."
+        },
+        "offline": "Original-size Python/CVXPY reference separately covers 3/3 point and 10/16 extended accepted attempts with all failures retained; bounded point-angle and extended-response ML experiments are offline, not UI or full-figure reproduction.",
         "details": {
-          "entryPoints": [
-            "CrbBeamformingCore.solve(rho,q)",
-            "CrbBeamformingCore.main(...)",
-            "CrbBeamformingCore.information(factors,options)",
-            "CrbBeamformingCore.frontier(rho)"
-          ],
-          "fixedDimensions": "Nt8,Nr12,L64,Pt1; special normalized two-mode h; theta0; scalar rho/Gamma controls",
-          "files": [
-            "labs/crb-beamforming/crb-beamforming-core.js",
-            "labs/crb-beamforming/crb-beamforming.js"
-          ],
-          "historicalValidation": "555 main and44 companion fixtures; independent real Fisher checks; actual-JS NumPy audit3848 assertions; 230-digit audit376 checks. These do not establish missing optimizer/ML experiments.",
-          "evidenceFiles": [
-            "scripts/validation/crb-beamforming/validate-crb-beamforming.py",
-            "scripts/validation/crb-beamforming/validate-crb-beamforming-independent.py",
-            "scripts/validation/crb-beamforming/validate-crb-beamforming-actual.py",
-            "scripts/validation/crb-beamforming/validate-crb-beamforming-highprecision.py",
-            "assets/data/crb-beamforming-validation.json",
-            "assets/data/crb-beamforming-independent.json",
-            "assets/data/crb-beamforming-actual-validation.json",
-            "assets/data/crb-beamforming-highprecision-validation.json",
-            "assets/data/crb-beamforming-sources.json",
-            "docs/CRB-BEAMFORMING-VALIDATION.md",
-            "tests/crb-beamforming.test.cjs",
-            "tests/crb-beamforming-ui.test.cjs"
-          ],
-          "freshSmoke": {
-            "id": "crb",
-            "file": "labs/crb-beamforming/crb-beamforming-core.js",
-            "sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8",
-            "passed": true,
-            "result": {
-              "status": "regular",
-              "regime": "tradeoff",
-              "g": 0.8524180021245387,
-              "rootCrbDeg": 0.5162124280642781,
-              "onlineOptimization": "single-user theorem only"
-            }
+          "pointCore": {
+            "version": "crb-point-drs-v0.4-feasibility",
+            "file": "labs/crb-beamforming/multiuser/core.js",
+            "sha256": "208f4d91db12d5c24d8bff921a1f31806cea846cb3f1a3a6101f7520f2e335c1",
+            "teachingScope": "Nt4/6/8,Nr=Nt+4,K2,L30,P1000mW,communication/radar noise1mW,alpha1; Gamma0–20dB",
+            "acceptance": "status=converged AND physicalGate.passed; floating tolerance-qualified result, not exact proof",
+            "browserAccepted": false,
+            "browserLatencyMs": null,
+            "numericScaleLimit": "Broader raw kernel accepts extreme binary64 scales outside validated experiments; lesson fixed alpha1/noise1 excludes them, independent checker fails closed. No arbitrary-scale guarantee."
           },
-          "fullRegressionRerun": false,
-          "newBrowserCheck": false
+          "historicalSingleUser": {
+            "classification": "live faithful single-user special-case optimizer plus independent companion",
+            "live": "solve/main recompute the exact piecewise point-target single-user solution. information forms unknown-reflectivity-adjusted Fisher information. Companion two-stream same-beampattern comparison is a separate constructed example.",
+            "offline": null,
+            "details": {
+              "entryPoints": [
+                "CrbBeamformingCore.solve(rho,q)",
+                "CrbBeamformingCore.main(...)",
+                "CrbBeamformingCore.information(factors,options)",
+                "CrbBeamformingCore.frontier(rho)"
+              ],
+              "fixedDimensions": "Nt8,Nr12,L64,Pt1; special normalized two-mode h; theta0; scalar rho/Gamma controls",
+              "files": [
+                "labs/crb-beamforming/crb-beamforming-core.js",
+                "labs/crb-beamforming/crb-beamforming.js"
+              ],
+              "historicalValidation": "555 main and44 companion fixtures; independent real Fisher checks; actual-JS NumPy audit3848 assertions; 230-digit audit376 checks. These do not establish missing optimizer/ML experiments.",
+              "evidenceFiles": [
+                "scripts/validation/crb-beamforming/validate-crb-beamforming.py",
+                "scripts/validation/crb-beamforming/validate-crb-beamforming-independent.py",
+                "scripts/validation/crb-beamforming/validate-crb-beamforming-actual.py",
+                "scripts/validation/crb-beamforming/validate-crb-beamforming-highprecision.py",
+                "assets/data/crb-beamforming-validation.json",
+                "assets/data/crb-beamforming-independent.json",
+                "assets/data/crb-beamforming-actual-validation.json",
+                "assets/data/crb-beamforming-highprecision-validation.json",
+                "assets/data/crb-beamforming-sources.json",
+                "docs/CRB-BEAMFORMING-VALIDATION.md",
+                "tests/crb-beamforming.test.cjs",
+                "tests/crb-beamforming-ui.test.cjs"
+              ],
+              "freshSmoke": {
+                "id": "crb",
+                "file": "labs/crb-beamforming/crb-beamforming-core.js",
+                "sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8",
+                "passed": true,
+                "result": {
+                  "status": "regular",
+                  "regime": "tradeoff",
+                  "g": 0.8524180021245387,
+                  "rootCrbDeg": 0.5162124280642781,
+                  "onlineOptimization": "single-user theorem only"
+                }
+              },
+              "fullRegressionRerun": false,
+              "newBrowserCheck": false
+            }
+          }
         }
       },
       "stages": {
-        "source": "audited-partial",
+        "source": "audited-for-selected-core",
         "modelFidelity": "partial",
         "algorithm": "partial-live",
         "independentValidation": "partial",
-        "selectedExperiment": "pending",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
         "liveExecution": "partial-core",
-        "uiLearning": "pending",
+        "uiLearning": "in-progress",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "live faithful single-user special-case optimizer plus independent companion",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Fixed published journal Eq7/Eq30–33 and Theorem2 audited; PDF hash and older K1 audit retained. Extended/ML source locators are separately documented in the optional offline reference archive.",
+        "algorithm": "Genuine new-input point-target Eq33 PSD-cone optimization/recovery in an immutable independently checked v0.4 core. Nt4/6/8,K2 teaching scope; K1 theorem remains separately scoped.",
+        "selectedExperiment": "A declared original-size offline slice has3/3 point and10/16 extended accepted source-parameter attempts. The6 extended failures split into3 power-budget-infeasible and3 feasible-but-numerically-rejected outcomes; none are removed. Offline single-channel256-trial point-angle ML and1024-trial extended-response ML are separate from the live point core, not full original figures.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No actual-browser control-to-result measurements. Recorded reduced Node25.3–730.2ms and original-size single Node5.67s are offline execution samples, not browser latency or a realtime guarantee.",
+        "independentValidation": "Point kernel:194 independent assertions,32 executions,3 fresh CVXPY oracle comparisons;12/12 reduced and1/1 source-size accepted; same-H five thresholds passed;14 Worker lifecycle checks. Source-size Python point/extended/ML reference has its own independent evidence and retained failures. Independent wrapper review passes16groups/427checks;10actual Node exports include5accepted,3complete unaccepted and2audit-incomplete cancellations. Separate checker78owner/320independent assertions passed; counts overlap and are not summed as experiments.",
+        "uiLearning": "Bounded Node Worker/controlled-DOM review passed62owner tests and16independent groups/427checks. Actual deployed-browser Run/Cancel/reset/download/reimport,narrow-screen and accessibility/paint checks remain pending. The watchdog was controlled-scheduler tested,not browser-timed."
       },
       "missingImplementation": [
-        "No general multiuser point-target SDR",
-        "No extended-target solver/recovery",
-        "No paper-parameter reproduction or actual ML angle/noise experiments"
+        "Hosted-browser point teaching acceptance, actual in-flight interruption and fresh downloaded-input replay",
+        "Browser extended-target Eq46–49 and dedicated inverse/auxiliary-interference checks",
+        "Original point beampattern baselines, broader source-size stability, full figures and full Monte Carlo study",
+        "Repeated fixed-configuration browser timing and painted-result latency"
       ],
       "dependencies": [
-        "General complex Hermitian PSD/Schur-complement solver",
-        "Unknown-reflectivity Fisher reference and singularity handling",
-        "Rank condition/recovery checks",
-        "Seeded raw-echo generator and truth-blind ML receiver",
-        "Baselines linked to the two prior beamforming papers"
+        "Actual deployed point lesson and downloadable export replay against independent complex arithmetic",
+        "Stronger source-size/high-SINR numerical refinement with all failed attempts preserved",
+        "Exact source baselines and declared channel/noise Monte Carlo protocol"
       ],
       "blockers": [
-        "No general multiuser point-target SDR",
-        "No extended-target solver/recovery"
+        "Actual hosted-browser acceptance and input-to-painted-result latency are pending",
+        "Extended-target browser solver and full source experiments/baselines remain open",
+        "Source-size offline results and Node wall times cannot stand in for browser evidence"
       ],
       "realtime": {
         "status": "not-measured",
@@ -5032,9 +5099,8 @@
           "worstMs": null
         },
         "details": {
-          "minimal": "Existing closed form is already live; general single-user input and small SDP are feasible candidates but browser latency has not been measured.",
-          "full": "Repeated noisy ML search and multiuser/extended sweeps need cancellable batch jobs. CRB output must never be relabeled as measured RMSE.",
-          "latencyMs": null
+          "assessment": "No measured browser latency; source-size and reduced Node timings are separately recorded in the frozen numerical evidence.",
+          "measuredLatencyMs": null
         }
       },
       "priority": {
@@ -5046,7 +5112,18 @@
           "startDataAccessInParallel": false
         }
       },
-      "evidence": {},
+      "evidence": {
+        "pointKernel": "assets/data/crb-multiuser-kernel-evidence.json",
+        "pointValidation": "docs/CRB-MULTIUSER-KERNEL-VALIDATION.md",
+        "pointArchive": "assets/data/crb-point-kernel-v0.4.zip",
+        "offlineReference": "assets/data/crb-beamforming-reference-v1.zip",
+        "offlineReferenceManifest": "assets/data/crb-beamforming-reference-v1-manifest.json",
+        "historicalEvidenceRetained": true,
+        "liveReview": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
+        "independentExportChecker": "docs/CRB-MULTIUSER-EXPORT-VALIDATION.md",
+        "exportCheckerDownload": "assets/data/crb-beamforming-export-checker-v1.zip",
+        "nodeExportReplay": "assets/data/crb-export-checker-node-integration-replay.json"
+      },
       "details": {
         "existingRegistryComparison": {
           "comparisonLink": "crb-beamforming.html#paper",
@@ -5140,7 +5217,48 @@
             "sha256": "6b93db2cdbcc95cce6e34db6a38fe6fe655ccf9bbb69a612ecc790e4ec54a885"
           }
         ]
-      }
+      },
+      "branchGates": [
+        {
+          "branch": "bounded multiuser point-target Eq33",
+          "algorithm": "implemented-bounded-core",
+          "numerical": "passed-selected-core",
+          "browser": "hosted-acceptance-pending",
+          "latency": "not-measured",
+          "evidence": "docs/CRB-MULTIUSER-KERNEL-VALIDATION.md"
+        },
+        {
+          "branch": "original-size point source-parameter slice",
+          "execution": "offline-only",
+          "accepted": 3,
+          "attempted": 3,
+          "fullFigure": "not-reproduced",
+          "evidence": "data/crb-beamforming-reference-v1.zip"
+        },
+        {
+          "branch": "extended-target Eq46–49",
+          "execution": "offline-only; browser-port-not-implemented",
+          "accepted": 10,
+          "attempted": 16,
+          "powerBudgetInfeasible": 3,
+          "feasibleButNumericallyRejected": 3,
+          "evidence": "data/crb-beamforming-reference-v1.zip"
+        },
+        {
+          "branch": "actual ML experiments",
+          "execution": "offline-only",
+          "pointChannels": 1,
+          "pointTrialsPerCondition": 256,
+          "extendedTrials": 1024,
+          "sourceBaselines": "not-implemented",
+          "evidence": "data/crb-beamforming-reference-v1.zip"
+        },
+        {
+          "branch": "single-user theorem",
+          "execution": "preserved-separate-closed-form",
+          "scope": "K1 is not eligible for the multiuser Theorem2 rank premise"
+        }
+      ]
     },
     {
       "id": "80211ad",

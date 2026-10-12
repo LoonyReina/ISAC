@@ -586,5 +586,5 @@ const changes={
 };
 const collection=(data,key)=>key.split('.').reduce((v,k)=>v[k],data);
 function reverse(data,entries){const prior=structuredClone(data);for(const entry of entries){const matches=collection(prior,entry.collection).filter(x=>x[entry.idKey]===entry.id);a.equal(matches.length,1,'one exact solver metadata record');for(const ch of entry.changes){let parent=matches[0];for(const k of ch.path.slice(0,-1))parent=parent[k];const k=ch.path.at(-1);a.ok(Object.hasOwn(parent,k),'reviewed solver metadata present');a.deepEqual(parent[k],ch.after,'exact solver metadata '+entry.id+'.'+ch.path.join('.'));if(ch.added)delete parent[k];else parent[k]=structuredClone(ch.before);}}return prior;}
-const withoutCombinedRegistry=r=>reverse(r,changes.registry),withoutCombinedCatalog=d=>reverse(d,changes.catalog);
+const withoutCombinedRegistry=r=>reverse(require('./crb-point-preservation.cjs').withoutCrbPointRegistry(r),changes.registry),withoutCombinedCatalog=d=>reverse(require('./crb-point-preservation.cjs').withoutCrbPointCatalog(d),changes.catalog);
 module.exports={changes,collection,withoutCombinedRegistry,withoutCombinedCatalog};

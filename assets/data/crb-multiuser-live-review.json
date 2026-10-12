@@ -1,0 +1,37 @@
+{
+  "verdict": "pass-bounded-node-worker-controlled-dom-review",
+  "blockingIssues": [],
+  "ownerFocusedTests": {
+    "passed": 62,
+    "failed": 0
+  },
+  "independentReview": {
+    "groupsPassed": 16,
+    "groupsFailed": 0,
+    "explicitChecks": 427
+  },
+  "frozenOwnedFiles": 12,
+  "approvedRuntimeFiles": 4,
+  "preservedK1Files": 3,
+  "preservedOriginalIds": 56,
+  "preservedEquationBlocks": 11,
+  "actualWorkerExports": 10,
+  "acceptedPhysicalExports": 5,
+  "completeUnacceptedNumericalExports": 3,
+  "auditIncompleteCancellationExports": 2,
+  "poisonedDiagnosticExportsRejected": 6,
+  "checkerSha256": "06a73ea4825613dfe6af32ffe5a8e6dac12b9d22ef0556c7e8de49f541a4c66f",
+  "browserExecuted": false,
+  "headlessExecuted": false,
+  "browserAcceptance": "open",
+  "aggregateBuild": "owned-by-integration-not-certified-here",
+  "sourceChanged": false,
+  "publicationPerformed": false,
+  "date": "2026-10-12",
+  "sourceCommit": "872ac32f4b0340307b23c731d3e8cfff289c915b",
+  "independentFrozenSummarySha256": "fa0990d2d0657297e4c2497e96f14d4544f1ec7004baca053da5d2f56ec62a9c",
+  "independentFrozenReportSha256": "6dede3f2d4403fb3c8c12133e2f29204a59aa64e3bbc9e85c4e438a2145edba8",
+  "evidence": "data/crb-export-checker-node-integration-replay.json",
+  "rawCertificateParsingIsNotIndependentAuthentication": true,
+  "fixedDomainExcludesSubnormalAlphaNoise": true
+}
