@@ -2,7 +2,7 @@
 // Additive registry/navigation contracts, separate from numerical and browser validation.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {unit,page,hooks,withoutReferenceUncertainty,withoutReferencePrerequisite,prerequisiteHook}=require('./helpers/reference-uncertainty-registry.cjs');
-const {withoutMapProgressions,withoutMapProgressionGenerator}=require('./helpers/map-progression-preservation.cjs');
+const {withoutMapProgressions,withoutMapProgressionGenerator,withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const {priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs');
@@ -96,8 +96,8 @@ test('native notebook projection and generated portals expose the mechanism with
  a.ok(home.includes('<strong>28</strong> 个机制实验'));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.match(reading,/15 个已有主题/);a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.equal(hash(read('scripts/learning-entry.cjs')),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
- a.equal(hash(read('scripts/notebook-topics.cjs')),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');
+ a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
+ a.equal(hash(withoutBuildLinkValidation('scripts/notebook-topics.cjs',read('scripts/notebook-topics.cjs'))),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');
  a.equal(hash(read('notebook.js')),'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9');
 });
 
@@ -108,7 +108,7 @@ test('the reused off-grid numerical core and its existing UI remain byte-identic
 
 
 test('generator changes only by the exact new prerequisite title, with old behavior still guarded',()=>{
- const generator=read('scripts/generate-site.cjs'),preserved=withoutReferencePrerequisite(withoutMapProgressionGenerator(generator));
+ const generator=withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs')),preserved=withoutReferencePrerequisite(withoutMapProgressionGenerator(generator));
  const expected='613b820c80dcac00fe18c4ae5b6a63c1eb044105245e69be5628767fa9c53479';
  a.equal(hash(preserved),expected);
  a.throws(()=>withoutReferencePrerequisite(generator.replace('离格测距的观测与模型','changed title')));

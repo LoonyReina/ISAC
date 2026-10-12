@@ -41,11 +41,11 @@ function validateVisualTrace(trace,card,local){
  }
  if(!object(trace.checkpoint,['prompt','answer','sourceLocator'])||!['prompt','answer','sourceLocator'].every(k=>prose(trace.checkpoint[k])))throw new Error('Invalid visual trace checkpoint');
 }
-function buildResearchGuides(data,registry){
+function buildResearchGuides(data,registry,validationContext){
  if(!data||data.schemaVersion!==1||!Array.isArray(data.cards))throw new Error('Invalid research guide data');
  const seen=new Set(),directions=new Map(registry.directions.map(d=>[d.id,d]));
  const cards=new Map(data.cards.map(c=>[c.id,c]));
- const local=createLearningEntryResolver({units:[],cases:[]});
+ const local=createLearningEntryResolver({units:[],cases:[]},validationContext);
  return data.cards.map(card=>{
   if(!id(card.id)||seen.has(card.id)||!directions.has(card.directionId))throw new Error('Invalid research guide identity');
   seen.add(card.id);

@@ -3,8 +3,8 @@
 const {createLearningEntryResolver}=require('./learning-entry.cjs');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const link=(href,label)=>`<a href="${esc(href)}">${esc(label)}</a>`;
-function renderResearchDirectory(data, registry, exists){
- const learningEntries=createLearningEntryResolver(registry);
+function renderResearchDirectory(data, registry, exists, validationContext){
+ const learningEntries=createLearningEntryResolver(registry,validationContext);
  function activeUnit(card){
   const c=registry.cases.find(c=>c.id===card.caseId);
   const unit=c&&registry.units.find(u=>u.id===c.unit);

@@ -4,14 +4,15 @@
 // pages are generated; handwritten bodies and numerical bundles are never rebuilt.
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),registry=JSON.parse(fs.readFileSync(path.join(root,'site/registry.json'),'utf8'));
-const check=process.argv.includes('--check'), changed=[];
+const check=process.argv.includes('--check'), changed=[],outputs=new Map();
 const {renderResearchDirectory}=require(path.join(__dirname,'render-research-directory.cjs'));
 const {buildResearchGuides,renderResearchGuides,renderGuideDirectionLink}=require(path.join(__dirname,'research-guides.cjs'));
 const {renderComparisonGroups}=require(path.join(__dirname,'paper-comparison-groups.cjs'));
-const {createLearningEntryResolver}=require(path.join(__dirname,'learning-entry.cjs'));
-const learningEntries=createLearningEntryResolver(registry);
+const {createLearningEntryResolver,createBuildLinkValidationContext}=require(path.join(__dirname,'learning-entry.cjs'));
+const linkValidation=createBuildLinkValidationContext();
+const learningEntries=createLearningEntryResolver(registry,linkValidation);
 const {buildNotebookTopics,notebookHref,renderNotebookOptions,renderNotebookData}=require(path.join(__dirname,'notebook-topics.cjs'));
-const notebookTopics=buildNotebookTopics(registry);
+const notebookTopics=buildNotebookTopics(registry,linkValidation);
 const siteStylesheet='site.css?v=knowledge-map-v1';
 const sentence=text=>{const clean=String(text).trim().replace(/。+$/u,'。');return /[。.!?！？]$/u.test(clean)?clean:clean+'。';};
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
@@ -29,7 +30,9 @@ const prerequisiteTitles={
  'waveform-design.html#model':'发射块与波形设计约束'
 };
 function prerequisiteLink(href){const title=registry.units.find(u=>u.href===href)?.title||prerequisiteTitles[href];if(!title)throw new Error('Missing prerequisite subject: '+href);return link(href,esc(title));}
-function emit(file,text){text=text.trimEnd()+'\n';if(!fs.existsSync(path.join(root,file))||read(file)!==text){changed.push(file);if(!check)fs.writeFileSync(path.join(root,file),text);}}
+// Rendering stages bytes from handwritten sources. Generated-only outputs are
+// never inputs; no output is written before complete link/duplicate-ID validation.
+function emit(file,text){if(outputs.has(file))throw new Error('Duplicate generated output: '+file);outputs.set(file,text.trimEnd()+'\n');}
 function header(page){return `<a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html"${page.path==='index.html'?' aria-current="page"':''}>ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航">${registry.stages.map(s=>link(s.href,`<span>${s.step}</span> ${s.label}`,page.stage===s.id?` aria-current="${page.path===s.href?'page':'location'}"`:'')).join('')}</nav>${page.path==='foundations.html'?'<button id="print-book" type="button" title="打印或另存为 PDF">打印讲义</button><div id="progress" aria-hidden="true"></div>':''}</header>`;}
 function context(page){const stage=registry.stages.find(s=>s.id===page.stage);let text=`<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置">${link('index.html','学习地图')}${stage?' <span aria-hidden="true">/</span> '+(stage.href===page.path?`<span aria-current="page">${stage.label}</span>`:link(stage.href,stage.label)+' <span aria-hidden="true">/</span> <span aria-current="page">'+page.title+'</span>'):''}</nav><p class="site-role">${page.role}</p>`;
@@ -47,10 +50,10 @@ ${body}
 ${region('NEXT',next(page))}</main></body></html>`;}
 function cover(eyebrow,title,description){return `<div class="cover"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p>${description}</p></div>`;}
 function fallback(file){const routes=registry.legacy[file];return `<section class="site-legacy" aria-label="旧书签兼容"><details><summary>从旧书签来到这里？查看对应内容</summary><p>启用 JavaScript 时，已知旧锚点会直接转到新位置；不用 JavaScript 也可使用下面的链接。</p><ul>${Object.entries(routes).filter(([id])=>id).map(([id,target])=>`<li>${link(target,esc(id)+' → 对应内容',` id="${esc(id)}"`)}</li>`).join('')}</ul></details></section>`;}
-const researchGuides=buildResearchGuides(JSON.parse(read(registry.researchGuidesFile)),registry);
+const researchGuides=buildResearchGuides(JSON.parse(read(registry.researchGuidesFile)),registry,linkValidation);
 const home=pageFor('index.html');
 let homeBody=`<div class="home-hero"><p class="eyebrow">INTEGRATED SENSING &amp; COMMUNICATION</p><h1>先看全局，<br>再沿一个问题深入。</h1><p>从通信与雷达基础，到共同观测、联合设计与研究证据。把抽象概念接到一个可操作、可检验的问题上。</p><div class="hero-actions">${link('foundations.html#start','从第一束回波开始 →',' class="hero-primary"')}${link('#knowledge-map','探索知识地图 ↓',' class="hero-secondary"')}</div><p class="hero-index"><span><strong>${registry.knowledgeMap.nodes.length}</strong> 个核心概念</span><span><strong>${registry.directions.length}</strong> 个研究方向</span><span><strong>${registry.units.length}</strong> 个机制实验</span></p></div>`;
-homeBody+=require(path.join(__dirname,'knowledge-map.cjs'))(registry,researchGuides);
+homeBody+=require(path.join(__dirname,'knowledge-map.cjs'))(registry,researchGuides,linkValidation);
 homeBody+=`<section class="site-section" id="curriculum"><h2>四个阶段，一条清楚的路线</h2><div class="stage-grid">${registry.stages.map(s=>`<article class="stage-card"><p class="eyebrow">${s.step} / ${s.label}</p><h3>${s.outcome}</h3><p>${s.description}</p>${link(s.href,s.next+' →')}</article>`).join('')}</div></section><section class="site-section" id="choose-start"><h2>已有基础？从当前问题接上</h2><div class="site-paths"><p>不确定通信与感知的已知、未知？<br>${link('theory.html','看共同观测的理论桥梁 →')}</p><p>已经有一篇论文或一个疑问？<br>${link('reading.html#directions','按研究方向找到已有讲解 →')}</p></div><p class="small">每个实验都先预测，再改变一个量，最后解释图与模型。研究材料保留原核对日期与固定版本；目录重构不代表新检索或新增复现。</p></section>`+fallback('index.html');
 emit('index.html',document(home,homeBody,{legacy:true,styles:'<link rel="stylesheet" href="knowledge-map.css?v=map-progression-v1">',scripts:'<script defer src="knowledge-map.js?v=knowledge-map-v3"></script>'}));
 function experimentCard(u){const topic=registry.cases.find(c=>c.unit===u.id);return `<article class="experiment-card" id="unit-${u.id}" data-search="${esc(u.title+' '+u.question)}"><p class="eyebrow">${u.group==='research'?'研究机制':'基础机制'}</p><h3>${link(learningEntries.unitEntry(u),u.title)}</h3><p>${u.question}</p><p class="small"><strong>动手：</strong>${u.action}</p><p class="small">先修：${u.prerequisites.map(prerequisiteLink).join(' · ')}</p><p class="small">研究方向：${link('reading.html#direction-'+u.primaryDirectionId,registry.directions.find(d=>d.id===u.primaryDirectionId).title.split('：')[0])}</p><p class="experiment-action">先预测 → 改一个量 → 观察与解释</p>${link(u.href,'进入实验 →')}${topic?' · '+link('reading.html#'+topic.id,'原文与证据'):''}</article>`;}
@@ -76,8 +79,8 @@ reading+=`<nav class="study-links" aria-label="论文阅读目录"><a href="#dir
 reading+=`<section class="site-section" id="foundations"><h2 id="foundations-title">先接上必需的基础</h2><p>${link('foundations.html#start','连续基础讲义')} · ${link('theory.html#pathway','通信与感知的已知、未知')} · ${link('practice.html#research-method','把问题写成可复核计划')}</p><p>不必先读完所有内容；每个主题会指出当前需要的基础。</p></section>`;
 reading+=`<section class="site-section" id="directions"><h2>研究方向地图</h2><p>方向可以横向增加；每个方向沿“直觉问题 → 观测模型 → 互动实验 → 原文对照 → 边界与复现”逐层深入。下面只列已有内容，未实现的层次明确标出。</p>${sceneGuide()}<div class="direction-grid">${registry.directions.map(directionCard).join('')}</div></section>`;
 reading+=renderResearchGuides(researchGuides);
-reading+=renderComparisonGroups(registry);
-reading+=renderResearchDirectory(researchDirectory,registry,file=>fs.existsSync(path.join(root,file)));
+reading+=renderComparisonGroups(registry,linkValidation);
+reading+=renderResearchDirectory(researchDirectory,registry,file=>registry.pages.some(page=>page.path===file),linkValidation);
 reading+=`<section class="site-section" id="cases"><h2 id="cases-title">${registry.cases.length} 个已有主题：从机制走回原文</h2><p>这些案例是可独立选择的主题，不是难度排名或技术演进顺序。下一问是待检验的问题，不是本站已经得到的结论。</p><nav class="research-jumps" aria-label="已有主题">${registry.cases.map(c=>link('#'+c.id,c.title)).join('')}</nav><div class="research-cases">${registry.cases.map(readingCard).join('')}</div></section>`;
 reading+='<section class="site-section" id="evidence"><h2 id="evidence-title">从证据看结论能走多远</h2><ol><li>保留论文版本、章节、图号/公式和资源预算，先核对作者研究的对象。</li><li>明确本站实验保留和省略了什么；独立机制演示不能替代论文完整算法与原型。</li><li>理论界、仿真、硬件实测、标准愿景各自回答不同问题；同时记录失败条件。</li></ol><p><a href="docs/READING-MAP.md">查看逐项来源与核对范围</a> · <a href="theory.html#evidence-map">查看理论页的证据示例</a></p></section>';
 reading+=read('site/content-branches.html')+read('site/content-frontiers.html')+read('site/content-reading.html');
@@ -96,4 +99,6 @@ for(const page of registry.pages.filter(p=>!['index.html','experiments.html','re
 for(const file of ['research.html','learn.html','overview.html']){const target=registry.legacy[file][''];const page={path:file,title:'内容已整合到新学习路线',stage:'',role:'旧书签兼容入口',prerequisites:[],next:target,nextLabel:'前往对应内容'};emit(file,document(page,cover('旧链接仍然可用','内容已有新的位置','原有讲解与实验已按基础、机制、阅读和实践整合。使用下面的链接继续；已知旧锚点会保留对应位置。')+`<p class="site-primary">${link(target,'继续到新位置 →')}</p>`+fallback(file),{legacy:true}));}
 const routesJSON=JSON.stringify(registry.legacy,null,2);
 emit('legacy-routes.js',`/* Generated by scripts/generate-site.cjs. Known routes only; no user-controlled redirect. */\n(()=>{'use strict';const routes=${routesJSON};function redirect(){const file=location.pathname.split('/').pop()||'index.html';const table=routes[file];if(!table)return;let hash;try{hash=decodeURIComponent(location.hash.slice(1));}catch{return;}const target=table[hash];if(!target)return;const url=new URL(target,location.href);url.search=location.search;if(url.href!==location.href)location.replace(url.href);}window.addEventListener('hashchange',redirect);redirect();})();`);
+linkValidation.validateOutputs(outputs);
+for(const [file,text]of outputs)if(!fs.existsSync(path.join(root,file))||read(file)!==text){changed.push(file);if(!check)fs.writeFileSync(path.join(root,file),text);}
 if(changed.length){console.log((check?'Out of date: ':'Generated: ')+changed.join(', '));if(check)process.exitCode=1;}else console.log('Generated site is current.');

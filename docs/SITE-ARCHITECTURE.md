@@ -37,7 +37,7 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 
 ## 源码归属与公开路径
 
-源码目录用于维护，`dist/` 才是静态站点根目录。页面和脚本在源码中搬迁，不改变线上 27 个 HTML 页面、已有资源、锚点、query/hash 行为或证据下载 URL。`build/compatibility-manifest.json` 是明确的逐文件映射，不按目录通配符发布：`source` 是当前输入，`compatibility` 是原生成器/测试使用的暂存路径，`public` 是公开路径（null 表示不发布），`owner` 表示归属。本次迁移落实了前一阶段清单中 `plannedSource` 的目录规划；当前版本 2 清单由 `source` 指示实际源码位置，不再包含 `plannedSource` 字段。迁移冻结信息只用于独立审计，不限制之后正常内容编辑。
+源码目录用于维护，`dist/` 才是静态站点根目录。页面和脚本在源码中搬迁，不改变线上 27 个 HTML 页面、已有资源、锚点、query/hash 行为或证据下载 URL。`build/compatibility-manifest.json` 是明确的逐文件映射，不按目录通配符发布：`source` 是当前输入（生成产物为 null），`compatibility` 是生成器/测试使用的暂存路径，`public` 是公开路径（null 表示不发布），`owner` 表示归属，`role` 区分权威源码、生成产物和历史元数据。本次迁移落实了前一阶段清单中 `plannedSource` 的目录规划；当前版本 2 清单不再包含 `plannedSource` 字段，九个生成产物以 `role: "generated"`、`source: null` 保留各自的暂存和公开路径。迁移冻结信息只用于独立审计，不限制之后正常内容编辑。
 
 | 职责 | 当前源码 | 保留的暂存/公开路径示例 |
 |---|---|---|
@@ -69,11 +69,11 @@ CRB 是五个既有研究案例之一，留在 theory 中。随机能量 CRB →
 - `legacy-routes.js` 由注册表的 `legacy` 生成，发布 URL 保持原根路径
 - `dist/` 是产物，不是编辑入口；提交权威源码和显式映射，不手改或提交 `dist/`
 
-### 临时生成种子
+### 无生成种子的完整页面校验
 
-八张整体生成页面与 `legacy-routes.js` 临时保存在 `build/compatibility-seeds/`。当前生成器在重建目标页面之前先校验部分链接与锚点，需要这些启动文件。它们不是第二套正文来源；不能手工修改，也不能从此前的 `dist/` 回填。需要改变生成页面时编辑注册表、片段或生成器，遵循构建说明检查生成结果。若先校验的目标因变化而不再满足条件，不得靠手改种子绕过校验。
+八张整体生成页面与 `legacy-routes.js` 不再存放启动副本；干净检出仅凭权威源码即可构建，不读取旧 `dist/`。构建器只暂存有 `source` 的输入；生成器将八张页面、手写页共享壳与兼容路由先在内存中渲染完成，再针对完整页面集强制检查本地页面链接、锚点和重复 ID。校验失败即停止，未通过前不写入任何生成结果；全部通过后才写入暂存区；资源存在性由构建器在发布前继续核验，通过后才输出公开产物。生成器内部使用的渲染阶段解析不取消最终目标校验；独立调用的教学入口解析器仍立即拒绝不存在的页面、锚点及无效的跨规范页面入口。
 
-种子退出需要单独审核的“先渲染、再校验链接”生成器重构，或等价的权威源码/注册表目标解析。纯目录搬迁不同时实施该生成语义变化。
+新增研究指南时编辑 `content/data/research-guides.json` 及必要的注册表引用；新增生成页面锚点时编辑相应 `content/fragments/content-*.html` 或权威生成输入，然后运行正常构建与回归。新生成的目标会在同一次构建的完整页面集中解析，无须手改种子、复制旧产物或重置历史散列。`build/compatibility-seeds/project.gitignore` 仅为迁移审计保留不发布的历史元数据，不属于这九个生成产物，也不用于引导页面生成。
 
 `features/foundations/course-ui.js` 同时初始化 OFDM、CFAR、阵列、几何、打印和进度。其余两个扩展依赖统一输入/播放循环与 `window.ISACCourseReady` / `window.ISACCourseUI`。因此保留原 00–13 章完整 DOM；没有绑定控件的原 14、15、17 章移到 reading，原 16 章内容融入 practice。理论页 research-method 内包含真实 CRB 与速率实验，不能连同七问文字整体删除。
 
@@ -120,13 +120,15 @@ node scripts/build-compatibility.cjs --check
 python3 -m http.server 8000 --directory dist
 ```
 
-构建器测试在源码根目录执行；既有 956 项数值、结构、集成与模拟 DOM 回归由 `--test` 在旧布局暂存区运行，不能以源码根目录的 `node --test tests/*.test.cjs` 替代。`--reproducible` 独立暂存、生成并比较完整产物。波形生成器使用检查模式重新计算约束，保留既有规范 JSON；不得因 BLAS/SVD 表示差异顺手重写科学数据。
+构建器测试在源码根目录执行；原有 956 项数值、结构、集成与模拟 DOM 回归及新增的生成顺序、完整页面校验回归由 `--test` 在旧布局暂存区运行，不能以源码根目录的 `node --test tests/*.test.cjs` 替代。`--reproducible` 独立暂存、生成并比较完整产物。波形生成器使用检查模式重新计算约束，保留既有规范 JSON；不得因 BLAS/SVD 表示差异顺手重写科学数据。
 
 导航检查针对发布布局的根 HTML 本地路径/fragment、唯一 ID、无 JS 链接、共享导航/当前位置、注册表引用、生成一致性与旧路由行为。`--check` 从当前源码重新生成并逐项核对现有 `dist/` 的文件集合和字节；它只判断产物是否新鲜，不要求内容与迁移前永远相同。PR 中明确区分实际运行的检查与待执行的浏览器/上线检查。
 
 ### 一次迁移审计与正常内容编辑分开
 
-`node scripts/build-compatibility.cjs --audit-migration` 单独核对冻结的迁移前文件/散列清单和完整公开树，仅允许已审核的三份当前维护文档 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 的精确差异。它不允许科学正文、脚本、模型、数据、测试或历史验证记录借整理目录发生变化。这是迁移证据，不是正常作者构建的前置条件；后续内容编辑由当前源码、显式映射和针对性回归约束，不靠更新冻结基线放行。
+`node scripts/build-compatibility.cjs --audit-migration` 可选地核对冻结的迁移前文件/散列清单和完整公开树。`build/migration-maintainer-deltas.json` 只记录三份当前维护文档 `README.md`、`AGENTS.md`、`docs/SITE-ARCHITECTURE.md` 的精确差异；`build/migration-build-deltas.json` 另行逐文件记录此次生成顺序重构必需的生成器、辅助程序和测试源码差异。两者都以明确路径及前后散列核对，不允许目录或通配符豁免。
+
+此次重构保留全部 367 个公开路径，27 张 HTML、运行时资源、模型、科学数据及历史验证记录保持字节不变；公开发布的生成器、辅助程序和测试源码必须如实包含已审核的实现变化。这是历史迁移证据，不是正常作者构建的前置条件；后续指南、锚点或其他内容编辑由当前源码、显式映射和针对性回归约束，不靠更新冻结基线放行。
 
 ### Actions 发布
 

@@ -4,6 +4,7 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildResearchGuides,renderResearchGuides}=require('../scripts/research-guides.cjs');
 const {spatialGuideId,spatialGuideHash,aperturePrerequisite,withoutApertureTeachingLinks,withoutSpatialFrontier}=require('./helpers/spatial-frontier-preservation.cjs');
+const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
@@ -69,6 +70,6 @@ test('existing model, export, guide runtime and canonical registry/resolvers sta
   'research-guides.js':'67bd79cf79a670ad9ffa12d3ad13084c1ffb8f4e5b4cf2e538fae51904e2d890',
   'site/registry.json':'b8414c17f5251f1ea940c62c69e6e8f93327b964e972b3f7c3e89bef14ce7f07'
  };
- for(const [file,digest]of Object.entries(expected))a.equal(hash(read(file)),digest,file);
+ for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,read(file))),digest,file);
  a.deepEqual([data.cards.length,registry.units.length,registry.cases.length,registry.knowledgeMap.nodes.length],[20,28,15,32]);
 });

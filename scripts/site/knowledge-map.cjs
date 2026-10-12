@@ -1,10 +1,10 @@
 'use strict';
 // The map is an editorial overlay. All existing science/evidence resolves from the registry.
 const {createLearningEntryResolver}=require('./learning-entry.cjs');
-module.exports=function renderMap(r,researchGuides){
+module.exports=function renderMap(r,researchGuides,validationContext){
  const k=r.knowledgeMap, esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
  const link=(h,t)=>`<a href="${esc(h)}">${esc(t)}</a>`, unit=id=>r.units.find(u=>u.id===id), direction=id=>r.directions.find(d=>d.id===id), caseFor=id=>r.cases.find(c=>c.id===id);
- const learningEntries=createLearningEntryResolver(r);
+ const learningEntries=createLearningEntryResolver(r,validationContext);
  const caseEntries=new Map(r.cases.map(c=>[c.id,learningEntries.caseEntry(c)]));
  // Search only registered unit titles. Bibliography metadata and proposed items stay out.
  const lessonIndex=`<template id="map-lesson-search">${r.units.map(u=>`<a data-map-unit="${esc(u.id)}" href="${esc(learningEntries.unitEntry(u))}">${esc(u.title)}</a>`).join('')}</template>`;
@@ -19,7 +19,7 @@ module.exports=function renderMap(r,researchGuides){
  // Select existing joins; a progression never adds a graph/citation edge.
  const progressions=new Map(),selections=k.progressions===undefined?[]:k.progressions;
  if(!Array.isArray(selections)||selections.length&&(!Array.isArray(researchGuides)||new Set(researchGuides.map(g=>g.id)).size!==researchGuides.length))throw new Error('Invalid knowledge-map progression guide data');
- const guides=new Map((researchGuides||[]).map(g=>[g.id,g])),local=createLearningEntryResolver({units:[],cases:[]});
+ const guides=new Map((researchGuides||[]).map(g=>[g.id,g])),local=createLearningEntryResolver({units:[],cases:[]},validationContext);
  for(const selection of selections){
   const fields=['nodeId','unitId','guideId','nextGuideId'];
   if(!selection||typeof selection!=='object'||Array.isArray(selection)||Object.keys(selection).length!==fields.length||!fields.every(f=>typeof selection[f]==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(selection[f])&&selection[f].length<=64)||Object.keys(selection).some(f=>!fields.includes(f)))throw new Error('Invalid knowledge-map progression selection');
