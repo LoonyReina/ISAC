@@ -222,3 +222,45 @@ test('async file reads are size-checked first and late resolution/rejection cann
   }finally{await c.close();}
  });
 });
+
+// Real zero-noise endfire computation, not a manually substituted Infinity.
+test('optional ratio overflow preserves raw replay, ambiguity and lifecycle',{timeout:180000},async t=>{
+ const {importJson,exportJson}=await import('../runtime/src/replay.mjs');
+ const c=new ResearchController();let noisy,full,record,raw;
+ assert(edit(c,'design',{range:22,rate0:6}));assert(edit(c,'scene',{seed:424242}));
+ try{
+  await t.test('ordinary noisy records retain finite numeric diagnostics and byte-exact raw arrays',async()=>{
+   assert.equal((await c.action('solve')).status,'observation_ready');assert.equal((await c.action('receive')).status,'ok');
+   noisy=c.export('full');const parsed=JSON.parse(noisy);assert.equal(typeof parsed.outputs.receiver.noiseMedianEigenvalueRatio,'number');
+   const decoded=importJson(noisy);for(const k of Object.keys(decoded.bundle.raw))sameBytes(decoded.bundle.raw[k].data,c.experiment.bundle().raw[k].data,k);
+   assert.equal(decoded.trust.outputs,'historical_unverified');
+  });
+  await t.test('real noiseless endfire full export uses one reasoned tag and retains poor localization',async()=>{
+   assert(edit(c,'scene',{truthX:20,truthY:0,noiseVariance:0,betaPhase:.1}));assert.notEqual((await c.action('regenerate')).status,'error');
+   const result=await c.action('receive');assert.equal(result.status,'ok');assert.equal(result.estimateAmbiguity,'multiple_grid_maxima');assert(result.gridMaxima.tieCount>1);assert.equal(result.noiseMedianEigenvalueRatio,Infinity);
+   record=c.experiment.bundle();raw=record.raw;full=c.export('full');const tag=JSON.parse(full).outputs.receiver.noiseMedianEigenvalueRatio;
+   assert.deepEqual(tag,{diagnosticEncoding:'nearfield-positive-overflow-v1',value:'+Infinity',reason:'principal_over_clamped_median_overflows_f64'});
+   const decoded=importJson(full);assert.equal(decoded.bundle.outputs.receiver.noiseMedianEigenvalueRatio,Infinity);assert.deepEqual(decoded.bundle.outputs.evaluation,record.outputs.evaluation);assert.deepEqual(decoded.bundle.outputs.receiver.estimate,record.outputs.receiver.estimate);for(const k of Object.keys(raw))sameBytes(decoded.bundle.raw[k].data,raw[k].data,k);
+   assert.equal(c.export('full'),full,'repeat export is deterministic and leaves current output intact');
+  });
+  await t.test('nested historical exports reimport unverified and raw-only replay recovers the same ambiguity',async()=>{
+   for(let i=0;i<3;i++){assert.equal(c.importText(full).status,'imported');assert.equal(c.experiment.trust.optimizer,'historical_unverified');assert.equal(c.experiment.trust.receiver,'historical_unverified');assert.equal(c.experiment.receiverOutput,null);full=c.export('full');assert.equal(importJson(full).bundle.outputs.historical.receiver.noiseMedianEigenvalueRatio,Infinity);}
+   const result=await c.action('receive');assert.equal(result.estimateAmbiguity,'multiple_grid_maxima');assert.deepEqual(result.estimate,record.outputs.receiver.estimate);assert.equal(result.noiseMedianEigenvalueRatio,Infinity);assert.equal(c.experiment.trust.optimizer,'historical_unverified');
+   for(const k of Object.keys(raw))sameBytes(c.experiment.bundle().raw[k].data,raw[k].data,k);c.export('full');
+   assert(edit(c,'receiver',{maximaLimit:4}));assert.equal(c.experiment.receiverOutput,null);c.export('full');c.reset();assert.throws(()=>c.export('full'),/unavailable/);
+  });
+  await t.test('forged tags, path aliases and unsupported nonfinite outputs or raw inputs are rejected',()=>{
+   const good=JSON.parse(exportJson(record)),tag=good.outputs.receiver.noiseMedianEigenvalueRatio;
+   const reject=mutate=>{const x=structuredClone(good);mutate(x);assert.throws(()=>importJson(JSON.stringify(x)));};
+   reject(x=>x.raw.Y.data.data[0]=tag);reject(x=>x.spec.scene.noiseVariance=tag);reject(x=>x.outputs.solver.extra=tag);
+   reject(x=>x.outputs.receiver.noiseMedianEigenvalueRatio.reason='not_a_reason');reject(x=>x.outputs.receiver.noiseMedianEigenvalueRatio.value='-Infinity');reject(x=>x.outputs.receiver.noiseMedianEigenvalueRatio.extra=true);
+   reject(x=>x.outputs.receiver.diagnostics.eigenvaluesNormalized.data[32]=1);reject(x=>x.outputs.receiver.diagnostics.eigenvaluesNormalized.data.pop());
+   reject(x=>{x.outputs['historical.receiver']={noiseMedianEigenvalueRatio:tag,diagnostics:x.outputs.receiver.diagnostics};});
+   for(const value of [NaN,-Infinity]){const x=structuredClone(record);x.outputs.receiver.noiseMedianEigenvalueRatio=value;assert.throws(()=>exportJson(x));}
+   for(const value of [NaN,Infinity,-Infinity]){const x=structuredClone(record);x.raw.Y.data[0]=value;assert.throws(()=>exportJson(x));}
+   const x=structuredClone(record);x.outputs.receiver.unreviewed=Infinity;assert.throws(()=>exportJson(x));
+   const y=structuredClone(record);y.outputs.receiver.noiseMedianEigenvalueRatio=tag;assert.throws(()=>exportJson(y));
+   assert.throws(()=>importJson(exportJson(record).replace('"noiseVariance":0','"noiseVariance":1e999')));
+  });
+ }finally{await c.close();}
+});

@@ -16,9 +16,11 @@ test('enumerated near-field registry, guides and backlog changes reverse to inde
  const unrelated=structuredClone(r);unrelated.legacy.unreviewed='visible';a.equal(P.withoutNearfieldRegistry(unrelated).legacy.unreviewed,'visible');
  for(const [key,file,fn]of [['readingMap','docs/READING-MAP.md',P.withoutNearfieldReadingMap],['plan','docs/PAPER-EXECUTION-PLAN.md',P.withoutNearfieldPlan]]){const text=bytes(file).toString();a.equal(sha(fn(text)),base[key]);a.throws(()=>fn(text+'unreviewed'));}
 });
-test('all22 frozen runtime/metadata entries and legacy implementation bytes remain immutable',()=>{
+test('21 runtime entries remain immutable and the exact codec boundary delta restores the historical 22nd identity',()=>{
  a.equal(Object.keys(e.runtimeFreeze.runtimeFiles).length,22);
- for(const [f,digest]of Object.entries(e.runtimeFreeze.runtimeFiles))a.equal(sha(bytes(e.runtimePublicRoot+f)),digest,f);
+ const patch=json('labs/near-field/research/IMPLEMENTATION-FREEZE.json').runtimeBoundaryPatch;
+ a.equal(patch.path,'src/replay.mjs');a.equal(patch.historicalSha256,e.runtimeFreeze.runtimeFiles[patch.path]);
+ for(const [f,digest]of Object.entries(e.runtimeFreeze.runtimeFiles)){let data=bytes(e.runtimePublicRoot+f);if(f===patch.path){a.equal(sha(data),patch.currentSha256);let text=data.toString();for(const d of [...patch.replacements].reverse()){a.equal(text.split(d.after).length,2);text=text.replace(d.after,d.before);}data=Buffer.from(text);}a.equal(sha(data),digest,f);}
  for(const f of e.legacyFiles){const content=bytes(f.source,f.public);a.equal(content.length,f.bytes);a.equal(sha(content),f.sha256,f.source);}
  a.equal(e.legacyFiles.length,3);
  const html=bytes('content/pages/near-field.html','near-field.html').toString(),ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);a.equal(ids.length,new Set(ids).size);

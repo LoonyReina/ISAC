@@ -9,8 +9,8 @@ test('owned near-field controller, view, page, freeze, recovery and browser-bran
  const env={...process.env};delete env.NODE_TEST_CONTEXT;
  const result=cp.spawnSync(process.execPath,['--test','--test-reporter=tap',...required.map(f=>path.join(dir,f))],{encoding:'utf8',timeout:230000,maxBuffer:16*1024*1024,env});if(result.error)throw result.error;a.equal(result.status,0,result.stdout+'\n'+result.stderr);
  const summary=name=>Number([...result.stdout.matchAll(new RegExp('^# '+name+' (\\d+)$','gm'))].at(-1)?.[1]);
- a.equal(summary('tests'),71,'reviewed owned test/subtest count');a.equal(summary('pass'),71);
+ a.equal(summary('tests'),77,'reviewed owned test/subtest count');a.equal(summary('pass'),77);
  for(const key of ['fail','cancelled','skipped','todo'])a.equal(summary(key),0,'no lost owned coverage: '+key);
  a.match(result.stdout,/Node VM browser branch: UMD load order and browser-message wrappers solve\/receive; NOT browser validation/);
- t.diagnostic('Owned near-field child suite: 71/71 passed, no failures/cancellations/skips; exact six suites including actual Node Workers, recovery regression and Node VM browser-specific UMD/message branch');
+ t.diagnostic('Owned near-field child suite: 77/77 passed, no failures/cancellations/skips; exact six suites including actual Node Workers, recovery regression and Node VM browser-specific UMD/message branch');
 });

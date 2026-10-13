@@ -161,3 +161,7 @@ test('receiver failure is visible without fabricated spectrum and audit singular
   assert.match(d.get('evaluation').textContent, /没有可评估/); assert.match(d.get('audit').textContent, /singular_interest/);
   assert.match(d.get('audit').textContent, /名义设计点/); assert.match(d.get('audit').textContent, /仿真真值点/);
 });
+test('overflow ratio explanation keeps Infinity, multiple maxima and localization uncertainty visible',()=>{
+ const e=experiment();e.receiverOutput=receiver();e.receiverOutput.noiseMedianEigenvalueRatio=Infinity;
+ const d=dom();renderResearch(d.root,snapshot(e));assert.match(d.get('eigen').textContent,/Infinity/);assert.match(d.get('eigen').textContent,/带原因/);assert.match(d.get('eigen').textContent,/不是检测成功或定位正确/);
+});
