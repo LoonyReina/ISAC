@@ -11,7 +11,7 @@ const root = path.resolve(__dirname, '..');
 const page = 'content/pages/dual-array-positioning.html';
 function read(file) {
   const names = file === page ? [file, 'dual-array-positioning.html'] : [file];
-  for (const name of names) if (fs.existsSync(path.join(root, name))) return fs.readFileSync(path.join(root, name));
+  for (const name of names) if (fs.existsSync(path.join(root, name))) return require('./helpers/dual-array-record-portability-preservation.cjs').maybeWithoutFile(file, fs.readFileSync(path.join(root, name)));
   throw Error('Missing current runtime source: ' + file);
 }
 const deltaBytes = read('tests/helpers/dual-array-current-runtime-delta.json');

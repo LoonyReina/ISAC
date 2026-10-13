@@ -194,7 +194,8 @@ test('Timer repair exact inverse accepts only the pinned current client and reco
 test('Timer repair leaves the complete historical functional inventory and scientific suite unchanged', () => {
   const fs = require('node:fs'), path = require('node:path');
   const {correction, sha, withoutClient} = require('./helpers/dual-array-browser-timer-preservation.cjs');
-  const root = path.join(__dirname, '..'), read = file => fs.readFileSync(path.join(root, file));
+  const provenance = require('./helpers/dual-array-record-leaf-preservation.cjs');
+  const root = path.join(__dirname, '..'), read = file => provenance.maybeWithoutFile(file, fs.readFileSync(path.join(root, file)));
   const frozen = read('labs/dual-array/FUNCTIONAL-FREEZE.json');
   assert.equal(sha(frozen), '183fae1a6f7b536d582595440763a7f57a1aed8b0dcd23e31bbd5a2c4897fbd6');
   const files = JSON.parse(frozen).files;

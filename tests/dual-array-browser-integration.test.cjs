@@ -1,12 +1,13 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const root=path.resolve(__dirname,'..'),F=require('./helpers/dual-array-browser-integration-preservation.cjs'),read=f=>fs.readFileSync(path.join(root,f));
+const records=require('./helpers/dual-array-record-portability-preservation.cjs'),priorRead=f=>records.maybeWithoutFile(f,read(f));
 const names=s=>[...s.matchAll(/^(?:for \(const type of \['error', 'messageerror'\]\) )?(?:test|lifecycle)\((?:'([^']+)'|`([^`]+)`)/gm)].flatMap(m=>m[1]?[m[1]]:['error','messageerror'].map(type=>m[2].replace('${type}',type)));
 test('Browser integration pins all three reviewed leaves and preserves every maintenance source endpoint',()=>{
  a.deepEqual(F.delta.acceptedCommits,['a73e62c0cef6b6a993957c6e9537569037015fb6','2d1b7a4bac8224a739ccbe6bda1cd8ca27662db4','33f0ad091da8c1cb163837dd10eec5b71e37e6bf']);
- for(const row of F.delta.acceptedFiles)a.ok(F.identity(read(row.path),row),'reviewed source '+row.path);
- for(const row of F.delta.changedFiles){const current=read(row.path),prior=F.withoutFile(row.path,current);a.ok(F.identity(prior,row.before));a.deepEqual(F.maybeWithoutFile(row.path,prior),prior);for(const bad of [prior,current.subarray(1),Buffer.concat([current,Buffer.from('unreviewed')])])a.throws(()=>F.withoutFile(row.path,bad));for(const key of ['before','after'])for(const field of ['bytes','sha256']){const bad=structuredClone(row);bad[key][field]=field==='bytes'?0:'0'.repeat(64);a.throws(()=>F.reverseFile(row.path,current,[bad]));}const bad=structuredClone(row);bad.beforeBase64='eA==';a.throws(()=>F.reverseFile(row.path,current,[bad]));a.throws(()=>F.reverseFile(row.path,current,[row,row]));}
- for(const row of F.delta.priorTests){const current=read(row.path),old=F.maybeWithoutFile(row.path,current);a.ok(F.identity(old,row),'all prior test source identities '+row.path);}
+ for(const row of F.delta.acceptedFiles)a.ok(F.identity(priorRead(row.path),row),'reviewed source '+row.path);
+ for(const row of F.delta.changedFiles){const current=priorRead(row.path),prior=F.withoutFile(row.path,current);a.ok(F.identity(prior,row.before));a.deepEqual(F.maybeWithoutFile(row.path,prior),prior);for(const bad of [prior,current.subarray(1),Buffer.concat([current,Buffer.from('unreviewed')])])a.throws(()=>F.withoutFile(row.path,bad));for(const key of ['before','after'])for(const field of ['bytes','sha256']){const bad=structuredClone(row);bad[key][field]=field==='bytes'?0:'0'.repeat(64);a.throws(()=>F.reverseFile(row.path,current,[bad]));}const bad=structuredClone(row);bad.beforeBase64='eA==';a.throws(()=>F.reverseFile(row.path,current,[bad]));a.throws(()=>F.reverseFile(row.path,current,[row,row]));}
+ for(const row of F.delta.priorTests){const current=priorRead(row.path),old=F.maybeWithoutFile(row.path,current);a.ok(F.identity(old,row),'all prior test source identities '+row.path);}
 });
 test('Browser integration current profiles accept only repaired client and readable CSS with unchanged runtime edges',()=>{
  const P=require('../scripts/build/module-dependencies.cjs'),D=require('./helpers/dual-array-integration-delta.json');
@@ -29,7 +30,7 @@ test('Browser timer fixture keeps repaired execution and restores only display a
  const Q=require('./helpers/dual-array-browser-timer-fixture.cjs'),snapshot=Q.prepare(root),fixture=Q.createFixture(root);t.after(fixture.cleanup);
  a.equal(F.sha(snapshot.get(F.timer.correction.path)),F.timer.correction.after.sha256);a.deepEqual(snapshot.get('tests/dual-array-browser-timers.test.cjs'),read('tests/dual-array-browser-timers.test.cjs'));
  const currentDisplay=Q.prepare(root,'display');a.deepEqual(currentDisplay.get(Q.spec.page),read(Q.spec.page));a.deepEqual(currentDisplay.get(F.display.corrections[0].path),read(F.display.corrections[0].path));
- a.equal(snapshot.size,25);for(const row of Q.spec.files){const file=path.join(fixture.directory,row.path);a.ok(F.identity(fs.readFileSync(file),row.output));a.equal(fs.lstatSync(file).nlink,1);}
+ a.equal(snapshot.size,27);for(const row of Q.spec.files){const file=path.join(fixture.directory,row.path);a.ok(F.identity(fs.readFileSync(file),row.output));a.equal(fs.lstatSync(file).nlink,1);}
  const neighbor=fs.mkdtempSync(path.join(os.tmpdir(),'isac-dual-array-timer-neighbor-'));t.after(()=>fs.rmSync(neighbor,{recursive:true,force:true}));fs.writeFileSync(path.join(neighbor,'sentinel'),'keep');fixture.cleanup();a.equal(fs.existsSync(fixture.directory),false);fixture.cleanup();a.equal(fs.readFileSync(path.join(neighbor,'sentinel'),'utf8'),'keep');
  for(const row of Q.spec.files){const current=read(row.path);if(row.path===Q.spec.page)a.equal(F.sha(F.display.normalizePage(current.toString())),row.currentNormalizedSha256);else a.ok(F.identity(current,row.input),'source remained unchanged '+row.path);}
 });

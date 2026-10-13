@@ -1,5 +1,5 @@
 import test from 'node:test';
-import repair from '../../../../tests/helpers/dual-array-current-runtime-preservation.cjs';
+import repair from '../../../../tests/helpers/dual-array-record-runtime-preservation.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
