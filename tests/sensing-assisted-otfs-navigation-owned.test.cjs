@@ -1,0 +1,4 @@
+'use strict';
+const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+const root=path.resolve(__dirname,'..'),N=require('./helpers/sensing-assisted-otfs-navigation-preservation.cjs'),read=p=>fs.readFileSync(path.join(root,p));
+test('navigation release requires all eleven exact mounted Worker cases with no missing skipped or renamed coverage',{timeout:240000},()=>{const G=require('./helpers/networked-sync-portable.cjs'),owned=require('./helpers/sensing-assisted-otfs-navigation-owned.json'),bytes=read(owned.file);a.equal(owned.names.length,11);a.equal(bytes.length,owned.bytes);a.equal(N.sha(bytes),owned.sha256);G.assertTap(G.run(['--test','--test-reporter=tap',path.join(root,owned.file)],{cwd:os.tmpdir()}),owned.names);});

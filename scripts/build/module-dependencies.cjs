@@ -41,7 +41,7 @@ const reviewedProfiles=new Map([
 [
   "labs/otfs-sensing-assisted/lesson/lesson.mjs",
   {
-    "sha256": "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3",
+    "sha256": "c36424aac31011d7ff1b80d2a84964d29b91a1ef28c15c02eb1454eb77c81431",
     "runtimePolicy": "no-runtime-loads",
     "sourceLiterals": [],
     "edgeKind": "reviewed-sensing-otfs-module",
@@ -785,7 +785,7 @@ const sensingOtfsPublicFiles=new Map([
   ],
   [
     "labs/otfs-sensing-assisted/lesson/lesson.mjs",
-    "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3"
+    "c36424aac31011d7ff1b80d2a84964d29b91a1ef28c15c02eb1454eb77c81431"
   ],
   [
     "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
