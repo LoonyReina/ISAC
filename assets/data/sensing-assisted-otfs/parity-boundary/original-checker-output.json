@@ -1,0 +1,18 @@
+{
+  "numericalParity": false,
+  "sourceAuthenticity": "not-verified",
+  "realBrowserVerification": "not-run",
+  "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "numericValuesCompared": 24702,
+  "maximumAbsoluteError": 1.915134717478395e-13,
+  "receiverRecords": 10,
+  "retainedFailures": [],
+  "categoricalDifferences": [],
+  "unverifiedFailures": [],
+  "recordSha256": "da5942c27a0b7420501b73be6e2c1de369860933d405df2a333e790762b10e2e",
+  "payloadSha256": "e0f53d5963c1d298adadf8a8abbbf91195b1c26898983f2a1e31bbf64a6cb3d6",
+  "runId": "sensing-otfs-mv6jak56-5",
+  "operation": "run",
+  "terminalStatus": "complete",
+  "error": "ValueError: frame[2].literal_operational.probabilities[212]: np.float64(0.1531922429515374) != 0.15319224296154643, delta=1.000902138947879e-11"
+}

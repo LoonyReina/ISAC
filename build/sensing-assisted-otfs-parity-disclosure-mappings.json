@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "scope": "Separate proposed OTFS static disclosure/evidence layer. The integrator must append exactly these entries and add a strict inverse before historical preservation checks.",
+  "baselineTree": "806bead153aafad6b43d00e52432abf3802283a5",
+  "baselineManifestSha256": "b373d5d7f64b3a9d8a87b0d96ff31af58ebf98fde60f2e25933c2910f8d0e3cb",
+  "addedEntries": [
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "tests/sensing-assisted-otfs-parity-boundary.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-parity-boundary.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/sensing-assisted-otfs-parity-disclosure-mappings.json",
+      "compatibility": "build/sensing-assisted-otfs-parity-disclosure-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    }
+  ]
+}

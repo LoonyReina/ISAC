@@ -54,6 +54,7 @@ test('both catalogs follow a changed learningEntry instead of hard-coding a ques
 
 test('prerequisite links name their subjects consistently in cards and shared page context',()=>{
  const render=generator(),subjects={
+  'perceptive-clutter.html#question':'递归背景的复数相减先修',
   'network-clock.html#model':'标量互易时延与时钟先修',
   'near-field.html#experiment':'近场一程无噪声曲率先修',
   'offgrid-range.html#model':'离格测距的观测与模型',

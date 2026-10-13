@@ -1674,6 +1674,95 @@
         },
         "verificationNote": "固定 PDF SHA-256 57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98；源式合同与核绑定见 assets/data/sensing-assisted-otfs/CONTRACT.md、SOURCE-BINDING.json。七生产核/Worker文件沿用已接受v3。当前教学独立复核见 assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md、PUBLIC-REVIEW.json、PUBLIC-BINDING.json；接受提交14665b68a1333e9d6c7f914143567a676edf0421，活动冻结LESSON-FREEZE-V2.1.json SHA-256 f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9。原ACCEPTANCE/LESSON-FREEZE及中间v2原文保留，原v1与中间v2均未获教学接受；不发布论文全文。"
       }
+    },
+    {
+      "id": "case-perceptive-bsbl",
+      "title": "知道发出的符号，怎样找出几条路径？",
+      "fields": {
+        "先修": "<a href=\"perceptive-clutter.html#question\">单系数递归背景</a>；<a href=\"foundations.html#ofdm\">OFDM 复数观测</a>；<a href=\"foundations.html#array\">阵元相位</a>；<a href=\"offgrid-range.html#model\">候选延迟与未知复增益</a>。先修中的背景递归不等于已接入本课矩阵接收链。",
+        "问题": "已知通信符号与同一份复数接收矩阵，怎样先找少数延迟块，再从块内相位估计发射端与方向？",
+        "交互机制": "生成一个实际 Y，沿 Y→W→γ→后验 X→路径参数逐格读数；在同一观测上对照主法、single-log、row-SBL、OMP 与特权 LS，回看真实动作、改变一个场景并保存完整原生记录。",
+        "证据类型": "固定 UTS 接收稿与 arXiv v1 原文；独立原创建模、稠密数值审查、冻结 JS v2、实际 Node module-Worker 与教学适配。480 次离线统计另列；真实浏览器与部署另验。",
+        "结论边界": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。",
+        "下一研究问题": "若把跨快照稳定背景接入多径恢复，怎样保留复数相干性和正确变换后的噪声协方差？当前单系数先修与直接 block-MMV 尚未拼成矩阵杂波接收机。"
+      },
+      "unit": "perceptive-bsbl",
+      "learningEntry": "perceptive-bsbl.html#question",
+      "paper": "perceptive-bsbl.html#source",
+      "next": "perceptive-bsbl.html#boundary",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceId": "case-perceptive-bsbl-paper",
+        "sourceTitle": "Framework for a Perceptive Mobile Network Using Joint Communication and Radar Sensing",
+        "sourceUrl": "https://opus.lib.uts.edu.au/bitstream/10453/137860/4/Framework%20for%20a%20Perceptive%20Mobile%20Network.pdf",
+        "version": "UTS 机构接收稿，15 个物理 PDF 页（含 1 页版权封面）；对读 arXiv:1901.05558v1，2019-01-16，14 页。2020 卷56期3，pp.1926–1941；2019 在线发表/预印本，DOI 10.1109/TAES.2019.2939611。不为接收稿虚构版本号。",
+        "supportingSources": [
+          {
+            "url": "https://arxiv.org/pdf/1901.05558v1",
+            "version": "arXiv:1901.05558v1；2019-01-16",
+            "locator": "固定 v1 对读；不将 HTML 式号或两版链路预算混用"
+          },
+          {
+            "url": "https://arxiv.org/abs/1309.7843v2",
+            "version": "arXiv:1309.7843v2",
+            "locator": "BSBL-FM 谱系对读；不分发、执行或逐行翻译未许可作者代码"
+          }
+        ],
+        "comparisonLink": "perceptive-bsbl.html#source",
+        "researchQuestion": "原文提出直接/间接感知与复背景预处理框架；本课只问：在已知符号的单场景直接观测中，块稀疏恢复、后验和相邻相位提取分别提供什么证据？",
+        "observationsAndUnknowns": "Y[n,m] 是多路径、多发射流叠加的 proper-complex 噪声观测；W 只由已知符号、子载波与候选延迟构造，Y=WX+Z。实用方法只读 W、Y、σ²、块大小和选项；真延迟、路径数、发射端、角度和复增益隔离在生成器/评价器。已知延迟 LS 单列为额外得到真支撑的特权诊断。",
+        "locator": {
+          "summary": "UTS 接收稿式(1)–(4)/(9)直接观测，式(11)–(13)延迟块结构，§IV-A/B 式(16)/(18)参数提取，§VII-A/图4结构。proper-complex 多列因子、trace/d 提案和稠密下降检验是本站明确推导的解释。",
+          "section": "§III、§IV-A/B、§VII-A；§VI 单系数递归保留在先修课",
+          "figure": "图4只对照结构；固定缩小场景、SNR 配对及压力实验不是原图数值复现",
+          "equation": "(1)–(4)、(9)、(11)–(13)、(16)、(18)；t=0 不解决原文时间多普勒符号冲突"
+        },
+        "paperEvidenceType": "感知移动网络框架、稀疏参数恢复与杂波机制的理论/数值仿真；非商用网络端到端部署",
+        "siteArtifactType": "有界直接已知符号 block-MMV 原创数值实现、独立 Python 稠密 oracle、冻结 JS v2 与实际 Node module-Worker/教学适配；真实浏览器及部署验收分开",
+        "retainedAssumptions": [
+          "单个 t=0 快照；已知通信 QPSK 符号和固定正噪声方差，I/Q 方差各为 σ²/2；不逐项除以某一发射流的符号",
+          "每延迟块含 K·MT 列；Γ=blockdiag(γq I)，独立列是工作恢复先验，不是阵列列在物理上独立",
+          "主目标 J=R logdet C+tr(YᴴC⁻¹Y)，R 为接收列数；Cholesky 解方程，不显式形成 C 的逆",
+          "γ′=max(0,Re tr[A]/d) 仅是协方差平稳候选向 γI 的投影；完整证据重算下降才接收，无改进提案不是收敛或驻点证书",
+          "literal-source-inspired single-log 以 R_eff=1 构造提案及自身目标，单列两条目标轨迹，不冒称作者初始化/归一化/停止细节已复刻",
+          "负号转向 exp(−jπm sinφ)，普通转置外积；相邻相关提取带负号，功率除 MT·M，总传播路径长度为 cτ",
+          "五法使用同一 W/Y/已知 σ²；row-SBL 为单行块、OMP 不知道真路径数、特权 LS 得到真延迟支撑；动作预算不相同"
+        ],
+        "omittedMechanisms": [
+          "间接信道剥离/SBL、矩阵杂波接收链、多快照多普勒与速度；原单系数背景课没有自动接入当前 Y",
+          "同延迟同发射端多路径分离、连续离格反演、校准 Pfa/总体检出率或角度置信区间",
+          "原论文尺寸、图4/图11/12、RCS/路径损耗链路预算、作者随机几何/种子/剪枝停止细节及整篇框架",
+          "真实浏览器 Worker/CSP/布局/键盘/生命周期/下载重导入、内存及完整控制到绘制时延；Node 检查不能替代"
+        ],
+        "metrics": [
+          "真实复数 Y/W/X、γ、声明目标与 proper-MMV 目标的全部已接受动作、最终拟合残差及局部后验块",
+          "阈值前块 NMSE 与阈值后 delay-user 支撑分开；离格没有虚构的精确网格 X/NMSE",
+          "总路径长度 cτ、AoA/AoD 与归一化子块功率；全部选中估计、漏检与虚假都保留",
+          "固定 0.51 格延迟门配对，不用真发射端/角度配对；同延迟任意对应不进入无歧义角度/关联误差",
+          "现场一次场景只有计数/误差；冻结 480 次原 Python 研究另列，不把离线统计当作当前控件结果或总体几何保证",
+          "工作先验 Σqq 是系数条件协方差，不是实测阵列协方差或路径角度置信区间；γ=0 的收缩不证明路径不存在"
+        ],
+        "resourceBudget": {
+          "summary": "默认 N=64、B=20 MHz、K=2、MT=2、M=4、Np=32、g=2；W 为 64×128、Y 为 64×4，单个 t=0。本站固定缩小场景，不是原论文资源规模。",
+          "bandwidth": "B=20 MHz；格距 25 ns、名义尺度 1/B=50 ns；g=2 只加密候选，未增加带宽",
+          "energy": "四路 QPSK 各 |s|²=1/4、每子载波合计 1；噪声 σ²=E|Z|²。归一化幅度/功率，不声称 RF 瓦特、焦耳或原 RCS 链路预算",
+          "duration": "单个 t=0；默认有效符号 3.2 μs、CP 0.8 μs、总符号 4 μs，末格 775 ns；导入其他配置不能沿用默认 CP 保证",
+          "aperture": "每端 2 发射元、4 接收元，半波长 ULA；声明半平面 [−90°,90°] 与端射模糊，没有定位地图",
+          "priorKnowledge": "实用方法已知符号、字典和正 σ²，不知道真支撑/路径数/发射端/角度；特权 LS 额外得到真延迟，离格时只有最近格",
+          "other": [
+            "主法/single-log 各最多 120 动作，row-SBL 300、OMP 12 块；共享 750M 工作单位/20s 整包预算并另列有界后验收尾；工作单位不是 FLOP",
+            "离线 440 个 SNR 配对试验+10 个结构示例+30 个压力试验=480 次、五法 2400 记录；42 个校准样本分开，物理几何固定",
+            "OMP 相对门限 0.20 接近默认弱径真功率比 0.2025；迁移到 JS 的启发式门限未重校准 Pfa，不能只凭支撑分数宣布优越"
+          ]
+        },
+        "unknowns": [
+          "原式(1)最终 Hermitian 记法与式(16)角度正号冲突，式(18)相邻相关缺少阵列归一化；本站解释不是作者勘误",
+          "SMV 谱系未确定此独立列 MMV 的 R 因子；主法补 R 与 single-log 诊断分开，不保证受限标量坐标极小或全局最优",
+          "弱径漏检、离格分裂及同延迟同端不可分；同延迟不同端可有两个子块，一个 γ 块不等于一路物理路径",
+          "作者完整随机场景、归一化、种子、剪枝/停止和原尺寸图设置未恢复；真实浏览器与线上验收仍是独立门"
+        ],
+        "verificationNote": "2026-10-13 沿用冻结来源与数值证据，不宣称本次重新下载原文。UTS SHA-256 a51c363bbb6b6a646a1de1ff20054722db60ad7ec2a303421d570ae5b8d82172；JS v2 manifest 7efb99af1382fe39adc8348e168d66b29f9d1ca13d232f076827e2f1e6e3d6fc。离线独立审计重算 83,793 个动作，v2 独立审查 59,900 检查/56 案例/3,594 动作；这些不是浏览器或整篇复现认证。来源合同、历史/当前执行身份与原始不利结果均保留。"
+      }
     }
   ],
   "legacy": {
@@ -2514,6 +2603,21 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "先分清支持与随机增益，再生成一帧并在同一 y 上运行四模式；改错一格或能量方案，核对真实概率、摘要、失败和完整记录。"
+    },
+    {
+      "id": "perceptive-bsbl",
+      "title": "知道发出的符号，怎样找出几条路径？",
+      "href": "perceptive-bsbl.html#run",
+      "question": "已知通信符号与同一份复数接收矩阵，怎样先找少数延迟块，再从块内相位估计发射端与方向？",
+      "prerequisites": [
+        "perceptive-clutter.html#question",
+        "foundations.html#ofdm",
+        "foundations.html#array",
+        "offgrid-range.html#model"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "先读一格复数 Y，再生成单场景；用同一观测核对投影提案、证据下降与后验相位，保留弱径/离格/同延迟失败和全部记录。"
     }
   ],
   "pages": [
@@ -2950,6 +3054,21 @@
       "case": "case-otfs-sensing-assisted",
       "next": "reading.html#guide-otfs-sensing-assisted-2021",
       "nextLabel": "回到同一固定v2导读，核对条件接收、原式问题与未实现预测链"
+    },
+    {
+      "path": "perceptive-bsbl.html",
+      "title": "知道发出的符号，怎样找出几条路径？",
+      "stage": "experiments",
+      "role": "有界直接恢复 · 单场景 block-MMV、投影提案与证据下降；真实浏览器待验收",
+      "prerequisites": [
+        "perceptive-clutter.html#question",
+        "foundations.html#ofdm",
+        "foundations.html#array",
+        "offgrid-range.html#model"
+      ],
+      "case": "case-perceptive-bsbl",
+      "next": "reading.html#paper-perceptive",
+      "nextLabel": "回到同一 Perceptive 论文，核对直接恢复与背景先修的不同边界"
     }
   ],
   "schemaVersion": 1,
@@ -3369,7 +3488,7 @@
       "id": "receiver",
       "title": "检测与估计：怎样从样本找到目标？",
       "question": "有一个峰，为什么还不能立刻说找到目标、测准了位置？",
-      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。 新增固定小规模ICI-aware多目标接收；原尺寸曲线与校准Pfa仍待核验。",
+      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。 新增固定小规模ICI-aware多目标接收；原尺寸曲线与校准Pfa仍待核验。 同一 Perceptive 论文新增单场景直接 block-MMV；证据下降、参数提取与门限计数分开。",
       "prerequisites": [
         "matched",
         "doppler",
@@ -3379,7 +3498,8 @@
       "primaryCaseIds": [
         "case-perceptive-clutter",
         "case-ofdm-ici-receiver",
-        "case-80211ad-receiver"
+        "case-80211ad-receiver",
+        "case-perceptive-bsbl"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -3438,6 +3558,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "从已知符号与复数总和，找少数延迟块",
+              "href": "perceptive-bsbl.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ]
         },
@@ -3499,6 +3627,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "实际 Y、延迟字典 W 与块内复数未知量",
+              "href": "perceptive-bsbl.html#observation",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ]
         },
@@ -3576,6 +3712,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "同一 Y：投影 MMV、单-log 与三种基线",
+              "href": "perceptive-bsbl.html#run",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ],
           "coverage": "direction-specific"
@@ -3638,6 +3782,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "固定 Perceptive 原文、符号修正与提案边界",
+              "href": "perceptive-bsbl.html#source",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ],
           "comparisonStatus": "partial",
@@ -3695,6 +3847,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "弱径、离格与同延迟同端为什么失败？",
+              "href": "perceptive-bsbl.html#stress",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ]
         },
@@ -3765,12 +3925,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+            },
+            {
+              "label": "下载原生全记录，分开自洽核对与新运行",
+              "href": "perceptive-bsbl.html#records",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "单个 t=0 快照、正的已知噪声方差、相关性关闭的块先验。主法是 proper-complex MMV 模型一致的 trace/d 投影提案与稠密证据下降验收，不保证坐标最优、驻点或全局最优；single-log 是独立诊断。弱径漏检、离格分裂、同延迟同端不可分、启发式门限与全部失败保留；没有多普勒、矩阵杂波链或整篇复现。"
             }
           ]
         }
       ],
       "nextExtension": "在现有离格单目标有限网格比较之外，检验连续参数估计、模型失配与低 SNR 门限效应；不能把一个经探索选取的有限反例当作普遍排序。",
-      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。 已有N64/M16有限网格MUSIC/APES/GLRT-OMP/CFAR有界实现，不表示整篇论文或浏览器已验收。",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。 已有N64/M16有限网格MUSIC/APES/GLRT-OMP/CFAR有界实现，不表示整篇论文或浏览器已验收。 已有已知符号 Y/W 的单场景直接 block-MMV 投影提案、后验与延迟/角度提取；single-log 诊断独立，t=0 没有多普勒，也未接入矩阵杂波链。",
       "scenePositions": [
         "interpret"
       ]
@@ -5583,7 +5751,8 @@
           "golay-radar",
           "ofdm-interpolation",
           "multipath-channel",
-          "offgrid-range"
+          "offgrid-range",
+          "perceptive-bsbl"
         ],
         "entryUnitRef": "ofdm"
       },
@@ -5614,7 +5783,8 @@
         "boundary": "远场方向模型与近场波前曲率模型须区分",
         "unitRefs": [
           "array",
-          "near-field"
+          "near-field",
+          "perceptive-bsbl"
         ],
         "entryUnitRef": "array"
       },
@@ -5643,7 +5813,8 @@
         "unitRefs": [
           "shared",
           "estimator-crb",
-          "offgrid-range"
+          "offgrid-range",
+          "perceptive-bsbl"
         ],
         "entryUnitRef": "shared"
       },

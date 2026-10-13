@@ -1,0 +1,10 @@
+'use strict';
+// Exact leaf inverse for independently reviewed static OTFS disclosure; numerical code is unchanged.
+const a=require('node:assert/strict'),crypto=require('node:crypto'),delta=require('./otfs-parity-disclosure-delta.json');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const normalize=s=>['HEADER','CONTEXT','NEXT'].reduce((v,k)=>v.replace(new RegExp('<!-- SITE:'+k+':START -->[\\s\\S]*?<!-- SITE:'+k+':END -->'),'<!-- SITE:'+k+' -->'),s).replace(/\n$/,'');
+function reverseFile(file,bytes,records){const rows=records.filter(r=>r.path===file||r.compatibility===file);a.ok(rows.length<=1,'unique disclosure inverse path');if(!rows.length)return bytes;const r=rows[0];a.equal(bytes.length,r.after.bytes,'exact disclosure current size');a.equal(sha(bytes),r.after.sha256,'exact disclosure current identity');const prior=Buffer.from(r.beforeBase64,'base64');a.equal(prior.length,r.before.bytes,'exact disclosure prior size');a.equal(sha(prior),r.before.sha256,'exact disclosure prior identity');return prior;}
+const withoutIntegration=(file,bytes)=>reverseFile(file,bytes,delta.integrationFiles);
+function withoutPage(file,bytes){const rows=delta.functionalFiles.filter(r=>r.path===file||r.compatibility===file);a.ok(rows.length<=1,'unique disclosure page inverse');if(!rows.length)return bytes;const r=rows[0];a.equal(sha(normalize(bytes.toString())),r.afterNormalizedSha256,'exact disclosed handwritten body');const prior=Buffer.from(r.beforeBase64,'base64');a.equal(prior.length,r.before.bytes);a.equal(sha(prior),r.before.sha256);a.equal(sha(normalize(prior.toString())),r.beforeNormalizedSha256);return prior;}
+function withoutMappings(input){const out=structuredClone(input);for(const entry of delta.addedEntries){const ii=out.entries.flatMap((x,i)=>x.source===entry.source?[i]:[]);a.equal(ii.length,1,'one disclosure mapping');a.deepEqual(out.entries[ii[0]],entry,'exact disclosure mapping');out.entries.splice(ii[0],1);}a.equal(sha(JSON.stringify(out,null,2)+'\n'),delta.priorManifestSha256,'exact pre-disclosure manifest');return out;}
+module.exports={sha,normalize,delta,reverseFile,withoutIntegration,withoutPage,withoutMappings};

@@ -64,7 +64,7 @@
     {
       "id": "labs/capacity-distortion",
       "directory": "labs/capacity-distortion",
-      "description": "Finite-alphabet capacity\u2013distortion optimizer and its teaching interface"
+      "description": "Finite-alphabet capacity–distortion optimizer and its teaching interface"
     },
     {
       "id": "labs/channel-geometry",
@@ -305,6 +305,16 @@
       "id": "validators/sensing-assisted-otfs",
       "directory": "scripts/validation/sensing-assisted-otfs",
       "description": "Source-only frozen prototype validation and explicitly downloadable independent reference"
+    },
+    {
+      "id": "labs/perceptive-bsbl",
+      "directory": "labs/perceptive-bsbl",
+      "description": "Direct known-symbol Perceptive block-MMV teaching runtime and read-only lesson"
+    },
+    {
+      "id": "validators/perceptive-bsbl",
+      "directory": "scripts/validation/perceptive-bsbl",
+      "description": "Original frozen reference and independent portable download audit"
     }
   ],
   "entries": [
@@ -10797,6 +10807,573 @@
     {
       "source": "build/sensing-assisted-otfs-navigation-mappings.json",
       "compatibility": "build/sensing-assisted-otfs-navigation-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "compatibility": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "public": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/API.md",
+      "compatibility": "assets/data/perceptive-bsbl/API.md",
+      "public": "assets/data/perceptive-bsbl/API.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "compatibility": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "public": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "compatibility": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "public": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "compatibility": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "public": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "compatibility": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "public": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/REPORT.md",
+      "compatibility": "assets/data/perceptive-bsbl/REPORT.md",
+      "public": "assets/data/perceptive-bsbl/REPORT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "compatibility": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "public": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "compatibility": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "public": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "compatibility": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "public": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/calibration.json",
+      "compatibility": "assets/data/perceptive-bsbl/calibration.json",
+      "public": "assets/data/perceptive-bsbl/calibration.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "compatibility": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "public": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/summary.json",
+      "compatibility": "assets/data/perceptive-bsbl/summary.json",
+      "public": "assets/data/perceptive-bsbl/summary.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/perceptive-bsbl.html",
+      "compatibility": "perceptive-bsbl.html",
+      "public": "perceptive-bsbl.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/OWNED-TESTS.json",
+      "compatibility": "labs/perceptive-bsbl/OWNED-TESTS.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/README.md",
+      "compatibility": "labs/perceptive-bsbl/README.md",
+      "public": "labs/perceptive-bsbl/README.md",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/check-worker.mjs",
+      "compatibility": "labs/perceptive-bsbl/check-worker.mjs",
+      "public": "labs/perceptive-bsbl/check-worker.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/fixtures/v1-accepted-cap.json",
+      "compatibility": "labs/perceptive-bsbl/fixtures/v1-accepted-cap.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/lesson.css",
+      "compatibility": "labs/perceptive-bsbl/lesson.css",
+      "public": "labs/perceptive-bsbl/lesson.css",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/lesson.mjs",
+      "compatibility": "labs/perceptive-bsbl/lesson.mjs",
+      "public": "labs/perceptive-bsbl/lesson.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/plots.mjs",
+      "compatibility": "labs/perceptive-bsbl/plots.mjs",
+      "public": "labs/perceptive-bsbl/plots.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "public": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "public": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "public": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/client.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/client.mjs",
+      "public": "labs/perceptive-bsbl/runtime/client.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "public": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "public": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/model.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/model.mjs",
+      "public": "labs/perceptive-bsbl/runtime/model.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/record.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/record.mjs",
+      "public": "labs/perceptive-bsbl/runtime/record.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "public": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "public": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "public": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "public": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/session.mjs",
+      "compatibility": "labs/perceptive-bsbl/session.mjs",
+      "public": "labs/perceptive-bsbl/session.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/dom-harness.cjs",
+      "compatibility": "labs/perceptive-bsbl/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/export-records.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/export-records.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/mounted-helpers.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/mounted-helpers.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/mounted.test.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/mounted.test.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/view.test.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/view.test.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/view.mjs",
+      "compatibility": "labs/perceptive-bsbl/view.mjs",
+      "public": "labs/perceptive-bsbl/view.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "compatibility": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "public": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/check-download.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/check-download.py",
+      "public": "scripts/validation/perceptive-bsbl/check-download.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "public": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "public": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "public": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "tests/perceptive-bsbl-owned.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/perceptive-bsbl-session.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-session.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/PUBLIC-ASSETS.json",
+      "compatibility": "labs/perceptive-bsbl/PUBLIC-ASSETS.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE.json",
+      "compatibility": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "build/perceptive-bsbl-mappings.json",
+      "compatibility": "build/perceptive-bsbl-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-preservation.cjs",
+      "compatibility": "tests/helpers/perceptive-bsbl-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-runtime-delta.json",
+      "compatibility": "tests/helpers/perceptive-bsbl-runtime-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-integration-delta.json",
+      "compatibility": "tests/helpers/perceptive-bsbl-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-metadata-baseline.json",
+      "compatibility": "tests/helpers/perceptive-bsbl-metadata-baseline.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-owned-suites.json",
+      "compatibility": "tests/helpers/perceptive-bsbl-owned-suites.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/perceptive-bsbl-integration.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/perceptive-bsbl-integration-owned.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-integration-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/OWNED-TESTS-V2.json",
+      "compatibility": "labs/perceptive-bsbl/OWNED-TESTS-V2.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/REPAIR-V2.md",
+      "compatibility": "labs/perceptive-bsbl/REPAIR-V2.md",
+      "public": "labs/perceptive-bsbl/REPAIR-V2.md",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/reset-repair.test.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/reset-repair.test.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/PUBLIC-ASSETS-V2.json",
+      "compatibility": "labs/perceptive-bsbl/PUBLIC-ASSETS-V2.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE-V2.json",
+      "compatibility": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE-V2.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-repair-preservation.cjs",
+      "compatibility": "tests/helpers/perceptive-bsbl-repair-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-bsbl-repair-delta.json",
+      "compatibility": "tests/helpers/perceptive-bsbl-repair-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/MANIFEST.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/PRECOMPUTED.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/REPORT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/accepted-control.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/check-boundary.py",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-original.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/original-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/rerun-checker-output.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "tests/sensing-assisted-otfs-parity-boundary.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-parity-boundary.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/sensing-assisted-otfs-parity-disclosure-mappings.json",
+      "compatibility": "build/sensing-assisted-otfs-parity-disclosure-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-original-self-check.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "compatibility": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "public": "assets/data/sensing-assisted-otfs/parity-boundary/native-rerun-self-check.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-parity-disclosure-preservation.cjs",
+      "compatibility": "tests/helpers/otfs-parity-disclosure-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-parity-disclosure-delta.json",
+      "compatibility": "tests/helpers/otfs-parity-disclosure-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-parity-disclosure-integration.test.cjs",
+      "compatibility": "tests/otfs-parity-disclosure-integration.test.cjs",
       "public": null,
       "owner": "validators/regression",
       "role": "source"

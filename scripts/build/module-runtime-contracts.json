@@ -690,6 +690,154 @@
       ],
       "runtimePolicy": "reviewed-sensing-otfs-runtime",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/check-worker.mjs",
+      "sha256": "7f39df950ee2008c70f25811968dc83eeee1a6473fc427c66ea3600323e728c4",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const { parentPort } = await import('node:worker_threads');"
+        }
+      ],
+      "runtimePolicy": "reviewed-perceptive-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/lesson.mjs",
+      "sha256": "2c227befd0eecaff551a7fa63cf2b9e1cf1fabd06707669213be5cd97a157a57",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/plots.mjs",
+      "sha256": "dc5dffb8d1270303e528c3e2b14c91f7cd5596b543ba9c4a088081a6d3b97a93",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "sha256": "603f29be21da5753485d38db4187d81c2de9b699f956c119c71262a4da6e9491",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "sha256": "fe5e5191d70c276b54e98a32d717ded791137441629e820e5c434bbeb9cceaa8",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "sha256": "5ca5af74bf146c41f08f9e39f27f7fcba381d2093955365d42a7265ae40e2f78",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/client.mjs",
+      "sha256": "e801bb6cdc43d3f41f67b0e44a4a9cfa231afec8ef81d7131e519d4d8ebb0746",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new globalThis.Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        },
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {Worker}=await import('node:worker_threads');"
+        }
+      ],
+      "runtimePolicy": "reviewed-perceptive-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "sha256": "23c73626e904de547abe59108dc90a3dcb92c0ebbaf63a981fdf394c12cfb63a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "sha256": "6ad9250411da235c381d7e97008de9f7d5045ff575c1c1d5d6c95d2914a89bc3",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/model.mjs",
+      "sha256": "7dcda312eac442c68f1698b42d9cbcf30264a6ccf47039698d006b31bde8bc33",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/record.mjs",
+      "sha256": "594bf95306ded22352b047a5ddea7c9be070516b45bc431be129f213d4c8c5f5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "sha256": "e780a1bfa10871b711762243550e6cf27e7e1925f6e4cd5e3e7493a118516dda",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "sha256": "c3ed85625e2065063ea9805a83027c9f601dcbdbd237a7ae7b25050e7c33c212",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "sha256": "5abd5230f86ecf0b701fff5a77e7bbee1bdc8e2bdfd95f096b8df698aef34977",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "sha256": "96614b7de0a5983f67ece8b13704f1ffcfe3c4b7609b0c17edc7f215ae9f6402",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {parentPort}=await import('node:worker_threads');"
+        }
+      ],
+      "runtimePolicy": "reviewed-perceptive-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/session.mjs",
+      "sha256": "9cc64f36e9ad71b62ac8ccf5b00026b9787477b0f72e1a9d0396572716b8394a",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./check-worker.mjs",
+          "literal": "new globalThis.Worker(new URL('./check-worker.mjs', import.meta.url), { type: 'module' })"
+        }
+      ],
+      "runtimePolicy": "reviewed-perceptive-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/perceptive-bsbl/view.mjs",
+      "sha256": "35f3b882ffb87a61d6476ea31f830c1b82576abccb261c6dd3ba32c392581592",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

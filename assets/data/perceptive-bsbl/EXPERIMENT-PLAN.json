@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "frozen_before_validation_or_main_results": true,
+  "date_utc": "2026-10-13",
+  "scope": "Bounded normalized-gain direct t=0 experiment. No exact Figure4 coordinate or original-scale claim.",
+  "main_scene": [{"q":4,"user":0,"aoa":-28,"aod":18,"gain_magnitude":1,"gain_phase":0.31},{"q":11,"user":1,"aoa":12,"aod":-36,"gain_magnitude":0.7,"gain_phase":-0.83},{"q":23,"user":0,"aoa":41,"aod":29,"gain_magnitude":0.45,"gain_phase":1.23}],
+  "snr_db": [-5,0,5,10,15,20],
+  "snr_definition": "||Yclean||_F^2/(N*M*sigma2)",
+  "methods": ["mmv_fm_projected","single_log_fm_projected","row_sbl_fm","block_omp","privileged_delay_support_ls"],
+  "fairness": "Identical W,Y,sigma2 and dimensions for every method. Practical methods receive no true support, angles, association or path count. Oracle receives true occupied DELAY blocks only, explicitly privileged. No common LS refit.",
+  "fm_max_actions": 120,
+  "row_max_actions": 300,
+  "fm_relative_tolerance": 1e-7,
+  "stopping_scale": "max(1, quadratic evidence term, N*R_effective), invariant to joint amplitude/noise scaling",
+  "omp_max_blocks": 12,
+  "omp_noise_discrepancy_factor": 1.15,
+  "validation": {
+    "noise_only_trials": 24,
+    "noise_symbol_seed_base": 300000,
+    "noise_draw_seed_base": 310000,
+    "noise_variance": 1,
+    "absolute_threshold": "For each method separately, 95th empirical quantile of maximum recovered (delay,user) block power on noise-only observations; scale by actual sigma2. A heuristic, not a calibrated Pfa claim.",
+    "relative_threshold_candidates": [0.02,0.05,0.08,0.12,0.20],
+    "signal_trials": 18,
+    "signal_snr_db_cycle": [-5,5,15],
+    "signal_seed_base": 320000,
+    "noise_seed_base": 330000,
+    "selection": "Maximize pooled exact-(q,user) F1 per method on validation only; ties prefer larger threshold. Freeze before main experiments. Oracle calibration uses its privileged fixed delays."
+  },
+  "illustration": {"trials":10,"snr_db":10,"symbol_seed_base":400000,"noise_seed_base":410000},
+  "paired_main": {
+    "symbol_seed_base":500000,
+    "noise_seed_base":510000,
+    "pairing": "Same scene, symbols and unit-noise draw for all SNRs and all methods for each trial index; SNR only scales noise",
+    "minimum_trials_per_snr":40,
+    "maximum_trials_per_snr":80,
+    "check_batch":20,
+    "precision_target": "Wilson 95% descriptive interval half-width <=0.12 for exact delay-user support recovery probability for EACH practical method, independently at each SNR; else continue to maximum",
+    "inference_caveat": "Intervals are descriptive under this precision-based stopping design, not time-uniform confidence sequences. Fixed scene; trial uncertainty covers symbols/noise, not scene distribution. No universal ranking claim."
+  },
+  "stress": {
+    "snr_db":20,
+    "trials_each":5,
+    "symbol_seed_base":600000,
+    "noise_seed_base":610000,
+    "scenarios": ["single_path","weak_path_0.08_amplitude","adjacent_bins_10_11","same_delay_different_users","same_delay_same_user_unsupported","offgrid_0.35_bins"]
+  },
+  "matching": "Hungarian on absolute delay-bin difference, gate <=0.51 bins; user and angles excluded from matching. Tiny deterministic index tie break. Exact (q,user) support metrics also reported separately. Same-delay user ambiguities explicitly reported; matching user accuracy is not identifiability proof.",
+  "metrics": ["complex_block_nmse_on_grid","clean_observation_nmse","exact_support_missed_spurious_counts","delay_gated_matches_misses_spurious","association_accuracy_on_delay_matches","sine_coordinate_angle_errors","angle_errors_deg","delay_and_total_path_length_errors","actions","objective_change","stop","warnings","wall_seconds"],
+  "intervals": "Wilson descriptive intervals on trial-level exact-support proportion; seeded 2000-resample paired bootstrap CI for trial mean block-NMSE difference versus block OMP. Every capped or failed solve retained.",
+  "resource_limits": {"blas_threads":1,"max_saved_artifact_mb":150,"minimum_free_mb_before_trial":180,"max_wall_seconds":1800},
+  "failure_policy": "Record every exception/cap/unsupported case. No outcome-based seed deletion or required baseline win. Resource stop leaves explicit partial plan status. Mathematical repairs require separate version and rerun affected data."
+}
