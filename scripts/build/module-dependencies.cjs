@@ -158,7 +158,7 @@ const reviewedProfiles=new Map([
  [
    "labs/gaussian-tradeoff/lesson/lesson.mjs",
    {
-     "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb",
+     "sha256": "af1dfaca2790fe654ad95265c3923a54eaf076a6c718800152dc103e482eba57",
      "runtimePolicy": "no-runtime-loads",
      "sourceLiterals": [],
      "edgeKind": "reviewed-gaussian-module",

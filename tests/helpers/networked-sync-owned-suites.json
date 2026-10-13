@@ -25,6 +25,8 @@
     "test-worker.cjs": [
       "actual Node Worker: fresh kernel result, raw/history export, validated import and fresh held recomputation",
       "actual Node Worker: cooperative cancellation suppresses stale completion and preserves previously held raw data",
+      "actual Node Worker: FIFO-delayed pre-cancel progress is legal, post-ack progress or completion is not",
+      "actual Worker client: cancellation rejects real completion already queued by delayed transport",
       "Node Worker transport with deterministic kernel fixture: burst supersession serializes and emits one terminal per accepted id",
       "Node Worker: malformed, changed generation metadata, and hash-invalid imports never cancel accepted work",
       "Node Worker: release cancels execution, invalidates held id, consumes control id, then recovers",
@@ -119,6 +121,7 @@
     "read-only slices use the declared C-order, and method comparison normalizes each direction separately",
     "summary trace never substitutes final factors for unavailable selected-substep fit or residual",
     "ambiguity display reverses both plotted factor columns and phase labels without mutating actual result",
-    "page controls are labeled, stages are progressive, and scientific/runtime limits stay explicit"
+    "page controls are labeled, stages are progressive, and scientific/runtime limits stay explicit",
+    "record notice expires after imported recompute and lifecycle reset"
   ]
 }

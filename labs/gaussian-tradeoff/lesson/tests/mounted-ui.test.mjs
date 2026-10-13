@@ -2,6 +2,7 @@
  * Does not exercise actual browser module loading, layout or accessibility.
  */
 import test from 'node:test';
+import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {mounted,freshRun,configureFresh,setFields,freshQ,fileOf,gate,onProgress,page,pauseDigest} from './test-support.mjs';
 import {audit,canonical,sha256,assertFrozen} from './record-audit.mjs';
@@ -108,4 +109,32 @@ test('late restart termination cannot revive or relabel a hidden suspended page'
 });
 test('cold-start pending actual Worker factory keeps Cancel available and cancellation wins',timing,async t=>{
  const entered=gate(),release=gate(),h=await mounted(t,{async beforeCreateWorker(){entered.resolve();await release.promise;}});t.after(()=>release.resolve());await configureFresh(h,{blocks:2});const running=h.get('gt-run').fire('click');await entered.promise;assert.equal(h.app.controller.busy,true);assert.equal(h.get('gt-cancel').disabled,false,'Cancel must remain available before Worker readiness');await h.get('gt-cancel').fire('click');assert.equal(h.app.controller.busy,false);assert.equal(h.get('gt-cancel').disabled,true);release.resolve();await running;assert.equal(h.app.controller.state,'cancelled');assert.equal(h.app.controller.result,null);assert.equal(h.get('gt-export-raw').disabled,true);await h.get('gt-restart').fire('click');await freshRun(h,{blocks:2,seed:901});assert.equal(h.app.controller.result.input.seed,901);
+});
+
+test('record notice expires after imported recompute and lifecycle reset', {timeout:30000}, async t=>{
+ const h=await mounted(t); await freshRun(h);
+ await h.get('gt-export-raw').fire('click');
+ const exported=h.get('gt-record-status').textContent;
+ await freshRun(h); const exportAfterRun=h.get('gt-record-status').textContent;
+ h.get('gt-import').files=[fileOf(h.downloads[0].text)];await h.get('gt-import').fire('change');
+ const imported=h.get('gt-record-status').textContent;
+ await h.get('gt-replay').fire('click');
+ assert.equal(h.app.controller.state,'complete');
+ const after=h.get('gt-record-status').textContent;
+ assert.match(exported,/已生成|已导出|已下载/);assert.doesNotMatch(exportAfterRun,/已导出|已下载/);assert.match(imported,/请应用|只导入|仍为历史/);
+ assert.doesNotMatch(after,/请应用|只导入|仍为历史/);
+ await h.get('gt-reset').fire('click');assert.doesNotMatch(h.get('gt-record-status').textContent,/已导出|已下载|请应用|只导入|仍为历史/);
+});
+
+test('selected stage explicitly retains a high-contrast palette on hover',()=>{
+ const css=fs.readFileSync(new URL('../lesson.css',import.meta.url),'utf8');
+ // Explicit selected + hover specificity (0,3,1) beats generic hover (0,2,1).
+ // Static palette/cascade contract only; this does not claim browser or full accessibility QA.
+ const selected=css.match(/\.gt-stages button\[aria-pressed=true\],\.gt-stages button\[aria-pressed=true\]:hover\{([^}]+)\}/);
+ assert.ok(selected,'selected hover must explicitly own its background and foreground');
+ assert.match(selected[1],/background:#174d68/);assert.match(selected[1],/color:#fff/);
+ const linear=v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;};
+ const luminance=.2126*linear(0x17)+.7152*linear(0x4d)+.0722*linear(0x68);
+ assert.ok(1.05/(luminance+.05)>=4.5,'normal-size white text meets 4.5:1 against selected background');
+ assert.match(css,/:focus-visible\{outline:3px solid #d55e22;outline-offset:3px\}/);
 });
