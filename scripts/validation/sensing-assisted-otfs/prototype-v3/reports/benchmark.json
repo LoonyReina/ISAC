@@ -1,0 +1,50 @@
+{
+  "runtime": "v24.19.0",
+  "platform": "linux",
+  "architecture": "x64",
+  "results": [
+    {
+      "label": "main-one-frame-all-modes",
+      "syncMs": 90.520167,
+      "actualNodeWorkerMs": 276.727794,
+      "frames": 1,
+      "records": 4,
+      "totalIterations": 160,
+      "exportBytes": 97481,
+      "allFinite": true
+    },
+    {
+      "label": "maximum-grid-frame-normalization-mode-cap",
+      "syncMs": 234.59128499999997,
+      "actualNodeWorkerMs": 986.448783,
+      "frames": 4,
+      "records": 16,
+      "totalIterations": 640,
+      "exportBytes": 441406,
+      "allFinite": true
+    },
+    {
+      "label": "rectangular-mismatch-complex-pilot",
+      "syncMs": 30.96198400000003,
+      "actualNodeWorkerMs": 251.84399699999994,
+      "frames": 1,
+      "records": 4,
+      "totalIterations": 160,
+      "exportBytes": 82237,
+      "allFinite": true
+    }
+  ],
+  "limits": {
+    "shape": [
+      16,
+      16
+    ],
+    "paths": 3,
+    "independentFrames": 2,
+    "normalizations": 2,
+    "modes": 4,
+    "iterationsPerReceiver": 40,
+    "wallMs": 30000
+  },
+  "interpretation": "Measured once in this Node cloud runtime. Includes Worker scheduling yields but excludes startup. Neither timings nor browser latency claims; a real browser gate remains open. Maximum supported work is 16 receiver records/640 flooding iterations, not 5760 cached archive records."
+}

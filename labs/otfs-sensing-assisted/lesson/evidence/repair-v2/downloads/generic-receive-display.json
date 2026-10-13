@@ -1,0 +1,38 @@
+{
+  "runId": "sensing-otfs-mv6cdig2-3",
+  "importedUntrusted": true,
+  "recordStatus": "complete",
+  "notice": "核对已结束；来源仍未认证，独立 Python 与真实浏览器是另两层验证",
+  "renderError": null,
+  "owner": "当前查看 sensing-otfs-mv6cdig2-3；通用原始 y 接收记录（无固定精确参照）；输入来自提交快照",
+  "result": "通用接收记录 sensing-otfs-mv6cdig2-3：忽略增益不确定度；消息变化满足阈值；正确性另看评估；实际 2 轮。完整科学输入与固定反例不同，固定精确参照不适用，不计算其概率差或KL。没有评估真值，因此不报告BER。以下为 2×4 帧的第 0 行；可换行查看全部数字。格(k,l)原始 y最终 P−最终 P+判决0,00.3000000 + 0.3000000j已知导频不适用1 + 0j0,10.3000000 + 0.3000000j0.0007460288338366990.99925397116616331 + 0j0,20.3000000 + 0.3000000j0.0007460288338366990.99925397116616331 + 0j0,30.3000000 + 0.3000000j0.0007460288338366990.99925397116616331 + 0j",
+  "gains": "路径原始 y 重估 â本模式 v10.3000000 + 0.3000000j0",
+  "cell": "",
+  "errors": "",
+  "checks": {
+    "integrity": {
+      "status": "passed",
+      "detail": "Exact UTF-8 byte counts and SHA-256 match both preserved codec texts; this is not proof of authorship"
+    },
+    "structure": {
+      "status": "passed",
+      "detail": "Strict root/schema/dtype/shape/finite-value/mask/pilot/energy/probability/status/count checks passed"
+    },
+    "selfConsistency": {
+      "status": "passed",
+      "detail": "Every saved scientific field matches a genuine deterministic run/prefix; incomplete work is not invented"
+    },
+    "sameImplementationReplay": {
+      "status": "passed",
+      "detail": "Frozen same-implementation recomputation matched all retained raw and decoder fields (1 execution boundaries inspected); this is not independent correctness evidence"
+    },
+    "independentNumericalReplay": {
+      "status": "not-run",
+      "detail": "Run the independent Python production-record oracle separately; it has not run in this browser"
+    },
+    "sourceAuthenticity": {
+      "status": "not-run",
+      "detail": "Not verified: declared source/runtime hashes and internal checks do not authenticate the file author or runtime source"
+    }
+  }
+}

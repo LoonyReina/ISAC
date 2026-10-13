@@ -1,0 +1,79 @@
+{
+  "allPassed": true,
+  "total": 8,
+  "counterexample": {
+    "input": {
+      "shape": [
+        1,
+        2
+      ],
+      "support": [
+        [
+          0,
+          0
+        ]
+      ],
+      "y": [
+        1,
+        0,
+        1000000000000,
+        0
+      ],
+      "pilotIndex": [
+        0,
+        0
+      ],
+      "pilot": [
+        1,
+        0
+      ],
+      "Es": 1e-12,
+      "N0": 1e-12,
+      "priorPowers": [
+        1
+      ],
+      "mode": "ignored_uncertainty",
+      "maxIterations": 40
+    },
+    "stableAnalyticBpskLlr": 4000000000000000000,
+    "stablePositiveProbability": 1,
+    "oldDistancePositiveProbability": 0.5,
+    "oldDistanceStatus": "converged",
+    "resolution": "Explicit NUMERICAL_CONDITIONING rejection; no modified decoded probabilities"
+  },
+  "guard": "Compare normalized distance probability to algebraically equivalent equal-variance BPSK LLR only as a Float64 resolution check. Reject if absolute probability discrepancy exceeds 1e-9. Not a general proof of numerical conditioning.",
+  "checks": [
+    {
+      "name": "public practical receiver rejects unresolved P1 likelihood",
+      "pass": true
+    },
+    {
+      "name": "core rejects unresolved moment_repaired likelihood",
+      "pass": true
+    },
+    {
+      "name": "core rejects unresolved ignored_uncertainty likelihood",
+      "pass": true
+    },
+    {
+      "name": "core rejects unresolved literal_operational likelihood",
+      "pass": true
+    },
+    {
+      "name": "actual Worker reports explicit conditioning error, not convergence",
+      "pass": true
+    },
+    {
+      "name": "Worker remains usable after numeric rejection",
+      "pass": true
+    },
+    {
+      "name": "zero/weak effective gain 0 remains legal",
+      "pass": true
+    },
+    {
+      "name": "zero/weak effective gain 1e-30 remains legal",
+      "pass": true
+    }
+  ]
+}

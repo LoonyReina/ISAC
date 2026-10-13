@@ -1,0 +1,180 @@
+20 kernel/codec tests passed
+{
+  "allPassed": true,
+  "fixtureCount": 113,
+  "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "receiverSha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd",
+  "fixtureSha256": "52821943a46575131e592e21e27ec38f2a13f7a8de1621857ddb0dec56e38018",
+  "maximumFullOutputAbsoluteError": 3.941291737419306e-15,
+  "maximumIndependentScalarProbabilityError": 6.328271240363392e-15,
+  "numericValuesCompared": 37559,
+  "categoricalRoundoffPolicy": {
+    "halfTieTolerance": 3e-12,
+    "rule": "Different data argmax decisions are allowed only when both reference and JS positive marginals lie within 3e-12 of 0.5. Decision-change differences require complete per-iteration trace verification and must be wholly explained by such ties. Raw decisions/probabilities are preserved. All other categorical fields match exactly."
+  },
+  "tieSensitiveCaseCount": 2,
+  "tieSensitiveCategoricalDifferences": 4,
+  "retainedCounterexample": {
+    "maximumMarginalGap": 0.4999130751997302,
+    "status": "converged",
+    "iterations": 27
+  },
+  "runtimeExport": {
+    "file": "reports/oracle-runtime-nonfixture.json",
+    "seed": 1653648323,
+    "sha256": "186e14e3b2ebe7133ae64a4e08ed67282af00c70ac4b5afc463010c5da20f987",
+    "runCount": 4,
+    "pythonVerification": "Run generate_oracles.py --verify-runtime against this exact export"
+  },
+  "scope": "Node kernel tests only; full-output reference parity and separate independent scalar probabilities are distinct evidence layers"
+}
+{
+  "all_passed": true,
+  "schema": "sensing-assisted-otfs-runtime-independent-check-v1",
+  "input_file": "oracle-runtime-nonfixture.json",
+  "input_sha256": "186e14e3b2ebe7133ae64a4e08ed67282af00c70ac4b5afc463010c5da20f987",
+  "reference_sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "receiver_sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd",
+  "nonfixture_observation_verified": true,
+  "seed": 1653648323,
+  "runs": [
+    {
+      "id": "runtime_1653648323_moment_repaired",
+      "full_output_parity": {
+        "maximum_absolute_error": 8.881784197001252e-16,
+        "numeric_values_compared": 457
+      },
+      "independent_scalar_maximum_probability_error": 5.551115123125783e-16,
+      "independent_raw_frame_maximum_error": 0.0,
+      "independent_gain_estimate_maximum_error": 2.7755575615628914e-17,
+      "independent_gain_variance_maximum_error": 0.0,
+      "status": "iteration_cap",
+      "iterations": 40,
+      "pass_": true
+    },
+    {
+      "id": "runtime_1653648323_ignored_uncertainty",
+      "full_output_parity": {
+        "maximum_absolute_error": 8.326672684688674e-16,
+        "numeric_values_compared": 457
+      },
+      "independent_scalar_maximum_probability_error": 6.106226635438361e-16,
+      "independent_raw_frame_maximum_error": 0.0,
+      "independent_gain_estimate_maximum_error": 2.7755575615628914e-17,
+      "independent_gain_variance_maximum_error": 0.0,
+      "status": "iteration_cap",
+      "iterations": 40,
+      "pass_": true
+    },
+    {
+      "id": "runtime_1653648323_literal_operational",
+      "full_output_parity": {
+        "maximum_absolute_error": 5.273559366969494e-16,
+        "numeric_values_compared": 457
+      },
+      "independent_scalar_maximum_probability_error": 3.885780586188048e-16,
+      "independent_raw_frame_maximum_error": 0.0,
+      "independent_gain_estimate_maximum_error": 2.7755575615628914e-17,
+      "independent_gain_variance_maximum_error": 0.0,
+      "status": "iteration_cap",
+      "iterations": 40,
+      "pass_": true
+    },
+    {
+      "id": "runtime_1653648323_supplied_perfect_csi",
+      "full_output_parity": {
+        "maximum_absolute_error": 3.3306690738754696e-16,
+        "numeric_values_compared": 457
+      },
+      "independent_scalar_maximum_probability_error": 2.220446049250313e-16,
+      "independent_raw_frame_maximum_error": 0.0,
+      "independent_gain_estimate_maximum_error": 0.0,
+      "independent_gain_variance_maximum_error": 0.0,
+      "status": "iteration_cap",
+      "iterations": 40,
+      "pass_": true
+    }
+  ],
+  "limitations": "The full-output reference comparison and separate scalar probabilities validate the port, not exact posterior inference."
+}
+PASS actual ES module Worker computation matches synchronous full output
+PASS finite/typed validation, duplicate ids, malformed requests preserve valid active run
+PASS cancel after completed first mode retains raw inputs and finished results; export hashes replay
+PASS new valid run supersedes prior run, exactly one terminal per accepted id
+PASS release cancels work and clears held data rather than restoring partial data
+PASS receiver request accepts only raw observation and declared support/prior metadata
+PASS client cancel/restart retains completed partial records and rejects reused ids
+PASS client transport failure settles pending work and restart recovers
+PASS client suppresses queued complete after cancellation, preserving queued result as partial
+PASS invalid newer submission does not discard a valid queued older completion
+10 actual-thread lifecycle tests passed
+6 deferred-completion evidence/fencing regressions passed
+3 all-zero-population actual-Worker exact export round trips passed
+8 numerical-conditioning regressions passed
+{"seed":2486652731,"sha256":"335c423d7499caf498e01242b8091b4997b344ff73e2d4fd5a35095f0a12b705","bytes":403062,"records":16}
+{
+  "allPassed": true,
+  "signedZeroCodecPythonCheck": true,
+  "exportSha256": "335c423d7499caf498e01242b8091b4997b344ff73e2d4fd5a35095f0a12b705",
+  "seed": 2486652731,
+  "independentFrameDraws": 2,
+  "fullReceiverRecords": 16,
+  "maxAbsoluteErrors": {
+    "rawY": 8.881784197001252e-16,
+    "gainDraw": 0.0,
+    "noiseDraw": 8.777083671441753e-17,
+    "estimatedGains": 2.482534153247273e-16,
+    "probabilities": 2.070565940925917e-14
+  },
+  "scope": "Python independently regenerates Mulberry32/Box-Muller draws, raw x/y/noise, estimates/variances/energy/denominators; all decoder probabilities/decisions/status/history versus pinned accepted reference. Actual Node module Worker export, not a browser engine."
+}
+{
+  "runtime": "v24.19.0",
+  "platform": "linux",
+  "architecture": "x64",
+  "results": [
+    {
+      "label": "main-one-frame-all-modes",
+      "syncMs": 90.520167,
+      "actualNodeWorkerMs": 276.727794,
+      "frames": 1,
+      "records": 4,
+      "totalIterations": 160,
+      "exportBytes": 97481,
+      "allFinite": true
+    },
+    {
+      "label": "maximum-grid-frame-normalization-mode-cap",
+      "syncMs": 234.59128499999997,
+      "actualNodeWorkerMs": 986.448783,
+      "frames": 4,
+      "records": 16,
+      "totalIterations": 640,
+      "exportBytes": 441406,
+      "allFinite": true
+    },
+    {
+      "label": "rectangular-mismatch-complex-pilot",
+      "syncMs": 30.96198400000003,
+      "actualNodeWorkerMs": 251.84399699999994,
+      "frames": 1,
+      "records": 4,
+      "totalIterations": 160,
+      "exportBytes": 82237,
+      "allFinite": true
+    }
+  ],
+  "limits": {
+    "shape": [
+      16,
+      16
+    ],
+    "paths": 3,
+    "independentFrames": 2,
+    "normalizations": 2,
+    "modes": 4,
+    "iterationsPerReceiver": 40,
+    "wallMs": 30000
+  },
+  "interpretation": "Measured once in this Node cloud runtime. Includes Worker scheduling yields but excludes startup. Neither timings nor browser latency claims; a real browser gate remains open. Maximum supported work is 16 receiver records/640 flooding iterations, not 5760 cached archive records."
+}

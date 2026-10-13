@@ -1,0 +1,831 @@
+{
+  "all_passed": true,
+  "fixture_count": 113,
+  "frame_count": 7,
+  "reference_sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "fixture_sha256": "52821943a46575131e592e21e27ec38f2a13f7a8de1621857ddb0dec56e38018",
+  "independent_scalar_maximum_probability_error": 9.2148511043888e-15,
+  "independent_scalar_comparisons": [
+    {
+      "id": "small_complex_nonunit__moment_repaired__1",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__moment_repaired__2",
+      "max_absolute_probability_error": 1.3877787807814457e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__moment_repaired__5",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__moment_repaired__40",
+      "max_absolute_probability_error": 6.245004513516506e-17,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__ignored_uncertainty__1",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__ignored_uncertainty__2",
+      "max_absolute_probability_error": 2.498001805406602e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__ignored_uncertainty__5",
+      "max_absolute_probability_error": 1.474514954580286e-17,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__ignored_uncertainty__40",
+      "max_absolute_probability_error": 1.734723475976807e-16,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__literal_operational__1",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__literal_operational__2",
+      "max_absolute_probability_error": 2.498001805406602e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__literal_operational__5",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__literal_operational__40",
+      "max_absolute_probability_error": 1.0408340855860843e-17,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 2.4936649967166602e-18,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "small_complex_nonunit__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 1.4992648602523627e-24,
+      "iterations": 37,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__moment_repaired__1",
+      "max_absolute_probability_error": 5.551115123125783e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__moment_repaired__2",
+      "max_absolute_probability_error": 4.996003610813204e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__moment_repaired__5",
+      "max_absolute_probability_error": 5.551115123125783e-17,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__moment_repaired__40",
+      "max_absolute_probability_error": 9.75781955236954e-19,
+      "iterations": 37,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__ignored_uncertainty__1",
+      "max_absolute_probability_error": 5.551115123125783e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__ignored_uncertainty__2",
+      "max_absolute_probability_error": 3.608224830031759e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__ignored_uncertainty__5",
+      "max_absolute_probability_error": 3.469446951953614e-17,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__ignored_uncertainty__40",
+      "max_absolute_probability_error": 1.951563910473908e-18,
+      "iterations": 35,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__literal_operational__1",
+      "max_absolute_probability_error": 6.328271240363392e-15,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__literal_operational__2",
+      "max_absolute_probability_error": 9.2148511043888e-15,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__literal_operational__5",
+      "max_absolute_probability_error": 1.7763568394002505e-15,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__literal_operational__40",
+      "max_absolute_probability_error": 2.6645352591003757e-15,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 4.996003610813204e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 4.7704895589362195e-18,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "main16_equal_frame_energy__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 9.486769009248164e-19,
+      "iterations": 36,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__moment_repaired__1",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__moment_repaired__2",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__moment_repaired__5",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__moment_repaired__40",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__ignored_uncertainty__1",
+      "max_absolute_probability_error": 3.885780586188048e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__ignored_uncertainty__2",
+      "max_absolute_probability_error": 7.771561172376096e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__ignored_uncertainty__5",
+      "max_absolute_probability_error": 1.1102230246251565e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__ignored_uncertainty__40",
+      "max_absolute_probability_error": 2.0816681711721685e-17,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__literal_operational__1",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__literal_operational__2",
+      "max_absolute_probability_error": 2.7755575615628914e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__literal_operational__5",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__literal_operational__40",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 1.4907779871675686e-19,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 3.7269449679189215e-20,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 2.329340604949326e-20,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "signed_one_bin_mismatch__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 5.293955920339377e-22,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__moment_repaired__1",
+      "max_absolute_probability_error": 2.3379557628480423e-89,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__moment_repaired__2",
+      "max_absolute_probability_error": 2.3379557628480423e-89,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__moment_repaired__5",
+      "max_absolute_probability_error": 2.3379557628480423e-89,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__moment_repaired__40",
+      "max_absolute_probability_error": 2.3379557628480423e-89,
+      "iterations": 2,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__ignored_uncertainty__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__ignored_uncertainty__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__ignored_uncertainty__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__ignored_uncertainty__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__literal_operational__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__literal_operational__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__literal_operational__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__literal_operational__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "single_path_one_row__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__moment_repaired__1",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__moment_repaired__2",
+      "max_absolute_probability_error": 5.551115123125783e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__moment_repaired__5",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__moment_repaired__40",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 32,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__ignored_uncertainty__1",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__ignored_uncertainty__2",
+      "max_absolute_probability_error": 2.498001805406602e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__ignored_uncertainty__5",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__ignored_uncertainty__40",
+      "max_absolute_probability_error": 4.440892098500626e-16,
+      "iterations": 33,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__literal_operational__1",
+      "max_absolute_probability_error": 3.885780586188048e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__literal_operational__2",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__literal_operational__5",
+      "max_absolute_probability_error": 4.718447854656915e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__literal_operational__40",
+      "max_absolute_probability_error": 7.494005416219807e-16,
+      "iterations": 33,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 2.498001805406602e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "zero_and_weak_estimated_gains__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 40,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__moment_repaired__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__moment_repaired__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__moment_repaired__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__moment_repaired__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__ignored_uncertainty__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__ignored_uncertainty__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__ignored_uncertainty__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__ignored_uncertainty__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__literal_operational__1",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__literal_operational__2",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__literal_operational__5",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__literal_operational__40",
+      "max_absolute_probability_error": 0.0,
+      "iterations": 1,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 2.636779683484747e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 2.949029909160572e-17,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 1.1180834903756764e-19,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "all_zero_estimated_gains__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 3.958668161717608e-44,
+      "iterations": 35,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__moment_repaired__1",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__moment_repaired__2",
+      "max_absolute_probability_error": 2.220446049250313e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__moment_repaired__5",
+      "max_absolute_probability_error": 3.8963515573697816e-20,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__moment_repaired__40",
+      "max_absolute_probability_error": 4.911384887033602e-25,
+      "iterations": 27,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__ignored_uncertainty__1",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__ignored_uncertainty__2",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__ignored_uncertainty__5",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__ignored_uncertainty__40",
+      "max_absolute_probability_error": 3.3306690738754696e-16,
+      "iterations": 26,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__literal_operational__1",
+      "max_absolute_probability_error": 1.1102230246251565e-16,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__literal_operational__2",
+      "max_absolute_probability_error": 8.326672684688674e-17,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__literal_operational__5",
+      "max_absolute_probability_error": 5.251604272976662e-20,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__literal_operational__40",
+      "max_absolute_probability_error": 1.9387045606711586e-25,
+      "iterations": 26,
+      "status": "converged",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__supplied_perfect_csi__1",
+      "max_absolute_probability_error": 4.85722573273506e-17,
+      "iterations": 1,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__supplied_perfect_csi__2",
+      "max_absolute_probability_error": 1.5612511283791264e-17,
+      "iterations": 2,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__supplied_perfect_csi__5",
+      "max_absolute_probability_error": 9.926167350636332e-22,
+      "iterations": 5,
+      "status": "iteration_cap",
+      "pass_": true
+    },
+    {
+      "id": "retained_exact_posterior_discrepancy__supplied_perfect_csi__40",
+      "max_absolute_probability_error": 8.135128085091684e-30,
+      "iterations": 26,
+      "status": "converged",
+      "pass_": true
+    }
+  ],
+  "independent_source_checks": {
+    "known_gain_exact_posterior": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "integrated_gain_exact_posterior": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "conditional_covariance": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "conditional_pseudocovariance": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "error_data_cross_covariance": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "exact_local_factor_mixture": {
+      "maximum_absolute_error": 0.0,
+      "pass_": true
+    },
+    "single_path_supplied_csi_matches_exhaustive_physical_posterior": {
+      "maximum_absolute_error": 2.685674347202419e-141,
+      "pass_": true
+    }
+  },
+  "retained_discrepancy": {
+    "maximum_marginal_gap": 0.4999130751997302,
+    "mean_bernoulli_kl": 0.14459629492352066,
+    "status": "converged",
+    "iterations": 27
+  },
+  "separation": "Full-output port parity is distinct from independent scalar and exact mathematical checks."
+}

@@ -3,6 +3,7 @@
 const a=require('node:assert/strict'),crypto=require('node:crypto');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 function withoutMultitargetFile(file,bytes){
+ bytes=require('./sensing-assisted-otfs-build-preservation.cjs').withoutLegacyFile(file,bytes);
  const rec=require('./nearfield-multitarget-legacy-hooks.json').files.find(x=>x.path===file||x.compatibility===file);
  if(!rec)return bytes;
  a.equal(bytes.length,rec.after.bytes,'exact multi-target adapter size '+file);
@@ -16,6 +17,7 @@ function withoutMultitargetFile(file,bytes){
  a.equal(value.length,rec.before.bytes);a.equal(sha(value),rec.before.sha256);return value;
 }
 function withoutMultitargetModuleParser(source){
+ source=require('./sensing-assisted-otfs-build-preservation.cjs').withoutModuleParser(source);
  if(!source.includes('const multitargetPublicFiles='))return source;
  source=withoutUiProgressParser(source);
  const d=require('./nearfield-multitarget-runtime-delta.json');
@@ -23,12 +25,14 @@ function withoutMultitargetModuleParser(source){
  return source;
 }
 function withoutMultitargetModuleContracts(input){
+ input=require('./sensing-assisted-otfs-build-preservation.cjs').withoutContracts(input);
  const d=require('./nearfield-multitarget-runtime-delta.json');
  if(!input.modules.some(x=>x.public.startsWith('labs/nearfield-multitarget/')))return structuredClone(input);
  const out=withoutUiProgressContracts(input);
  a.deepEqual(out.modules.slice(d.priorModuleProfileCount),d.moduleProfiles,'exact multi-target appended module profiles');out.modules.splice(d.priorModuleProfileCount);return out;
 }
 function withoutMultitargetMappings(input){
+ input=require('./sensing-assisted-otfs-build-preservation.cjs').withoutMappings(input);
  const out=structuredClone(input),d=require('../../build/nearfield-multitarget-mappings.json');
  for(const [key,records,identity]of [['entries',d.addedEntries,'source'],['owners',d.addedOwners,'id']])for(const rec of records){const indices=out[key].flatMap((x,i)=>x[identity]===rec[identity]?[i]:[]);a.equal(indices.length,1,'one exact multi-target '+identity);a.deepEqual(out[key][indices[0]],rec);out[key].splice(indices[0],1);}return out;
 }

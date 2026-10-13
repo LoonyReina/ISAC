@@ -1,0 +1,25 @@
+{
+  "allPassed": true,
+  "codec": "sensing-otfs-finite-typed-json-v2",
+  "total": 3,
+  "checks": [
+    {
+      "seed": 0,
+      "pass": true,
+      "negativeZeros": 2,
+      "roundTripExact": true
+    },
+    {
+      "seed": 1,
+      "pass": true,
+      "negativeZeros": 2,
+      "roundTripExact": true
+    },
+    {
+      "seed": 918273,
+      "pass": true,
+      "negativeZeros": 2,
+      "roundTripExact": true
+    }
+  ]
+}

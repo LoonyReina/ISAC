@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "name": "coherent circular impulse retains complex effective phase and signed support",
+      "pass": true
+    },
+    {
+      "name": "zero uncertainty repaired equals ignored exactly",
+      "pass": true
+    },
+    {
+      "name": "complex known pilot correctly masked and returned",
+      "pass": true
+    },
+    {
+      "name": "P1 pilot uncertainty uses noise only",
+      "pass": true
+    },
+    {
+      "name": "gain estimation uses observed raw pilot arrivals and complex division",
+      "pass": true
+    },
+    {
+      "name": "zero and weak gains remain finite without division by gains",
+      "pass": true
+    },
+    {
+      "name": "reject fractional/duplicate modulo supports and out of range pilot",
+      "pass": true
+    },
+    {
+      "name": "reject nonfinite powers, zero pilot, invalid iteration inputs, truth fields",
+      "pass": true
+    },
+    {
+      "name": "strict input vectors reject holes, wrong dtype, shared buffer and accessors",
+      "pass": true
+    },
+    {
+      "name": "practical receiver rejects current truth and estimated gain injection",
+      "pass": true
+    },
+    {
+      "name": "fresh same-seed draws replay; changed seed/data/gains/noise differ",
+      "pass": true
+    },
+    {
+      "name": "source/equal-frame energy ledger and raw y rebuilding",
+      "pass": true
+    },
+    {
+      "name": "full result keeps caps in denominators; all four same-y records reproducible",
+      "pass": true
+    },
+    {
+      "name": "support mismatch remains wrong; extra-CSI output independent of predicted support",
+      "pass": true
+    },
+    {
+      "name": "nonfixture configurable rectangular shape phase power path count",
+      "pass": true
+    },
+    {
+      "name": "frame/path/grid/iteration/message caps enforced",
+      "pass": true
+    },
+    {
+      "name": "finite typed codec is lossless including full histories/raw fields",
+      "pass": true
+    },
+    {
+      "name": "signed zero round-trips exactly in scalar and Float64Array raw evidence",
+      "pass": true
+    },
+    {
+      "name": "signed-zero tag schema rejects extras, invalid tokens, and lossy integer conversion",
+      "pass": true
+    },
+    {
+      "name": "SHA-256 evidence export deterministic",
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "total": 20
+}

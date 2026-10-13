@@ -1,0 +1,23 @@
+{
+  "decision": "not-accepted-requires-lesson-repair",
+  "reviewedCommit": "3c25b52619582f757a6c1fc7b445322cf7e7e8c7",
+  "blockingFindings": [
+    "L01-unbound-exact-reference-for-general-receive",
+    "L02-stale-reset-overwrites-newer-selection",
+    "L03-rejected-submission-orphans-surviving-owner",
+    "L04-raw-only-failure-render-crash"
+  ],
+  "providedLessonTestsPassed": 47,
+  "independentProductionDownloads": 5,
+  "independentFullReceiverRecords": 41,
+  "numericValuesCompared": 21161,
+  "maximumAbsoluteError": 5.3734794391857577e-14,
+  "exactCategoricalParity": true,
+  "frozenRuntimeUnchanged": true,
+  "all125AddedFilesAudited": true,
+  "browserVerified": false,
+  "wholeSiteBuild": "not-run",
+  "publication": "not-run",
+  "frozenWorktreeClean": true,
+  "report": "REVIEW.md"
+}

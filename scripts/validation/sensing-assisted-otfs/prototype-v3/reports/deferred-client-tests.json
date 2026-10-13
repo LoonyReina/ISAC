@@ -1,0 +1,49 @@
+{
+  "allPassed": true,
+  "transport": "Actual Node module Worker; newer transport selectively held",
+  "checks": [
+    {
+      "action": "cancel",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    },
+    {
+      "action": "supersede",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    },
+    {
+      "action": "release",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    },
+    {
+      "action": "dispose",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    },
+    {
+      "action": "transport_failure",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    },
+    {
+      "action": "restart",
+      "pass": true,
+      "retainedRecords": 4,
+      "retainedStatus": "complete",
+      "oldResultNotNotifiedAsCurrent": true
+    }
+  ],
+  "total": 6
+}

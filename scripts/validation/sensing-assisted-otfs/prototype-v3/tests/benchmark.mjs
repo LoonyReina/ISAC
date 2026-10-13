@@ -1,0 +1,10 @@
+import {Worker} from 'node:worker_threads';
+import fs from 'node:fs';
+import {performance} from 'node:perf_hooks';
+import {runExperiment} from '../js/evaluation.js';
+import {encode} from '../js/codec.js';
+import {SensingOtfsClient} from '../worker/client.js';
+const configs=[{label:'main-one-frame-all-modes',config:{seed:1223344}},{label:'maximum-grid-frame-normalization-mode-cap',config:{seed:99887766,frames:2,normalizations:['source_per_data','equal_total_frame'],maxIterations:40,tolerance:0}},{label:'rectangular-mismatch-complex-pilot',config:{shape:[13,15],physicalSupport:[[0,0],[3,-4],[-6,8]],predictedSupport:[[0,0],[3,-4],[-5,8]],pilotIndex:[6,7],pilotPhase:1.13,pilotPowerRatio:37,N0:.027,seed:478322,maxIterations:40,tolerance:0}}];
+const results=[];
+for(const {label,config} of configs){const start=performance.now(),a=runExperiment(config),syncMs=performance.now()-start;const client=new SensingOtfsClient(new Worker(new URL('../worker/receiver-worker.js',import.meta.url),{type:'module'}));await client.ready;const t=performance.now(),event=await client.run(config).result,workerMs=performance.now()-t;await client.dispose();const text=encode(event.result);results.push({label,syncMs,actualNodeWorkerMs:workerMs,frames:a.frames.length,records:a.summary.receiverRecords,totalIterations:a.frames.flatMap(f=>f.records).reduce((s,r)=>s+r.iterations,0),exportBytes:Buffer.byteLength(text),allFinite:true});}
+const report={runtime:process.version,platform:process.platform,architecture:process.arch,results,limits:{shape:[16,16],paths:3,independentFrames:2,normalizations:2,modes:4,iterationsPerReceiver:40,wallMs:30000},interpretation:'Measured once in this Node cloud runtime. Includes Worker scheduling yields but excludes startup. Neither timings nor browser latency claims; a real browser gate remains open. Maximum supported work is 16 receiver records/640 flooding iterations, not 5760 cached archive records.'};fs.writeFileSync(new URL('../reports/benchmark.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

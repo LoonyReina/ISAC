@@ -1,0 +1,918 @@
+{
+  "schema": "sensing-otfs-lesson-public-assets-v1",
+  "page": {
+    "source": "content/pages/otfs-sensing-assisted.html",
+    "public": "otfs-sensing-assisted.html"
+  },
+  "same_paper_id": "otfs-sensing-assisted-2021",
+  "preserved_guide": "reading.html#guide-otfs-sensing-assisted-2021",
+  "preserved_2020_lesson": "otfs-receiver.html",
+  "runtime_modified": false,
+  "runtime_manifest_sha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+  "startup": [
+    "course.css",
+    "site.css",
+    "labs/otfs-sensing-assisted/lesson/lesson.css",
+    "labs/otfs-sensing-assisted/lesson/lesson.mjs"
+  ],
+  "on_explicit_run": [
+    "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js"
+  ],
+  "anchors": [
+    "intuition",
+    "model",
+    "gain-estimation",
+    "experiment",
+    "iterations",
+    "message-graph",
+    "exact-counterexample",
+    "paper",
+    "reference-results",
+    "limits",
+    "reproduce"
+  ],
+  "owned_suites": [
+    "record.test.mjs",
+    "session.test.mjs",
+    "adapter.test.mjs",
+    "mounted.test.mjs",
+    "contract.test.mjs"
+  ],
+  "mappings": [
+    {
+      "source": "assets/data/sensing-assisted-otfs/CONTRACT.md",
+      "legacy": "assets/data/sensing-assisted-otfs/CONTRACT.md",
+      "public": "assets/data/sensing-assisted-otfs/CONTRACT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md",
+      "legacy": "assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md",
+      "public": "assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/RESULT.json",
+      "legacy": "assets/data/sensing-assisted-otfs/RESULT.json",
+      "public": "assets/data/sensing-assisted-otfs/RESULT.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/RESULTS.md",
+      "legacy": "assets/data/sensing-assisted-otfs/RESULTS.md",
+      "public": "assets/data/sensing-assisted-otfs/RESULTS.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/REVIEW.md",
+      "legacy": "assets/data/sensing-assisted-otfs/REVIEW.md",
+      "public": "assets/data/sensing-assisted-otfs/REVIEW.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/SOURCE-AUDIT.md",
+      "legacy": "assets/data/sensing-assisted-otfs/SOURCE-AUDIT.md",
+      "public": "assets/data/sensing-assisted-otfs/SOURCE-AUDIT.md",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json",
+      "legacy": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json",
+      "public": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/independent-fixtures.json",
+      "legacy": "assets/data/sensing-assisted-otfs/independent-fixtures.json",
+      "public": "assets/data/sensing-assisted-otfs/independent-fixtures.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/sensing-assisted-otfs/offline-summary.json",
+      "legacy": "assets/data/sensing-assisted-otfs/offline-summary.json",
+      "public": "assets/data/sensing-assisted-otfs/offline-summary.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/otfs-sensing-assisted.html",
+      "legacy": "otfs-sensing-assisted.html",
+      "public": "otfs-sensing-assisted.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+      "public": "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE.json",
+      "public": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS.json",
+      "public": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/README.md",
+      "legacy": "labs/otfs-sensing-assisted/lesson/README.md",
+      "public": "labs/otfs-sensing-assisted/lesson/README.md",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/INDEPENDENT-SUMMARY.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/INDEPENDENT-SUMMARY.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/INDEPENDENT-SUMMARY.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/MANIFEST.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/MANIFEST.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/MANIFEST.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/lesson-tests.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/lesson-tests.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/lesson-tests.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/prototype-rerun.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/prototype-rerun.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/prototype-rerun.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/lesson.css",
+      "legacy": "labs/otfs-sensing-assisted/lesson/lesson.css",
+      "public": "labs/otfs-sensing-assisted/lesson/lesson.css",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/record.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/record.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/record.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/session.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/session.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/session.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/adapter.test.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/adapter.test.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/adapter.test.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/contract.test.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/contract.test.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/contract.test.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/dom-harness.cjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/dom-harness.cjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/dom-harness.cjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/export-records.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/export-records.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/export-records.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/mounted.test.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/mounted.test.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/mounted.test.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/node-client.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/node-client.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/node-client.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/record.test.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/record.test.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/record.test.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/session.test.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/session.test.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/session.test.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tests/verify-production-downloads.py",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tests/verify-production-downloads.py",
+      "public": "labs/otfs-sensing-assisted/lesson/tests/verify-production-downloads.py",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+      "legacy": "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+      "public": "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/MANIFEST.json",
+      "legacy": "labs/otfs-sensing-assisted/runtime/MANIFEST.json",
+      "public": "labs/otfs-sensing-assisted/runtime/MANIFEST.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/README.md",
+      "legacy": "labs/otfs-sensing-assisted/runtime/README.md",
+      "public": "labs/otfs-sensing-assisted/runtime/README.md",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/RUNTIME-MANIFEST.json",
+      "legacy": "labs/otfs-sensing-assisted/runtime/RUNTIME-MANIFEST.json",
+      "public": "labs/otfs-sensing-assisted/runtime/RUNTIME-MANIFEST.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/js/codec.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/js/codec.js",
+      "public": "labs/otfs-sensing-assisted/runtime/js/codec.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+      "public": "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+      "public": "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/js/validation.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/js/validation.js",
+      "public": "labs/otfs-sensing-assisted/runtime/js/validation.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/package.json",
+      "legacy": "labs/otfs-sensing-assisted/runtime/package.json",
+      "public": "labs/otfs-sensing-assisted/runtime/package.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/worker/client.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/worker/client.js",
+      "public": "labs/otfs-sensing-assisted/runtime/worker/client.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+      "public": "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+      "legacy": "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+      "public": "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/DEVELOPMENT-FIXES.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/DEVELOPMENT-FIXES.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/DEVELOPMENT-FIXES.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/MANIFEST.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/MANIFEST.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/MANIFEST.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/README.md",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/README.md",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/README.md",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/RUNTIME-MANIFEST.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/RUNTIME-MANIFEST.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/RUNTIME-MANIFEST.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/full-output-oracles.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/full-output-oracles.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/full-output-oracles.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/independent-source-fixtures.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/independent-source-fixtures.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/independent-source-fixtures.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/harness.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/harness.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/harness.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/index.html",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/index.html",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/index.html",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/codec.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/codec.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/codec.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/evaluation.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/evaluation.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/evaluation.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/receiver.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/receiver.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/receiver.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/validation.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/validation.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/validation.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/package.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/package.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/package.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/CONTRACT.md",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/CONTRACT.md",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/CONTRACT.md",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/PROVENANCE.md",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/PROVENANCE.md",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/PROVENANCE.md",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/REFERENCE-MANIFEST.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/REFERENCE-MANIFEST.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/REFERENCE-MANIFEST.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/RESULTS.md",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/RESULTS.md",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/RESULTS.md",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/audit_oracle.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/audit_oracle.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/audit_oracle.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/review_reference.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/review_reference.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/review_reference.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/reference.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/reference.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/reference.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/interim-oracle-edit-syntax.log",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/interim-oracle-edit-syntax.log",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/interim-oracle-edit-syntax.log",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-deferred-client-independent-results.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-deferred-client-independent-results.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-deferred-client-independent-results.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-numerical-conditioning-independent-results.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-numerical-conditioning-independent-results.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-numerical-conditioning-independent-results.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-independent-failure.log",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-independent-failure.log",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-independent-failure.log",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-own-reproduction.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-own-reproduction.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-own-reproduction.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-export.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-export.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-export.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-python-verification.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-python-verification.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-python-verification.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/benchmark.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/benchmark.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/benchmark.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/conditioning-tests.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/conditioning-tests.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/conditioning-tests.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/deferred-client-tests.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/deferred-client-tests.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/deferred-client-tests.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/full-regression.log",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/full-regression.log",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/full-regression.log",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/kernel-tests.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/kernel-tests.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/kernel-tests.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-README.md",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-README.md",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-README.md",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-artifact-integrity.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-artifact-integrity.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-artifact-integrity.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-generation.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-generation.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-generation.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-js-verification.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-js-verification.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-js-verification.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-nonfixture.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-nonfixture.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-nonfixture.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-verification.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-verification.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-verification.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-tie-diagnostic.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-tie-diagnostic.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-tie-diagnostic.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/signed-zero-worker-tests.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/signed-zero-worker-tests.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/signed-zero-worker-tests.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/worker-tests.json",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/worker-tests.json",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/worker-tests.json",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/run_all.sh",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/run_all.sh",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/run_all.sh",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/benchmark.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/benchmark.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/benchmark.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/export-worker.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/export-worker.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/export-worker.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/freeze_artifact.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/freeze_artifact.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/freeze_artifact.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/generate_oracles.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/generate_oracles.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/generate_oracles.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-conditioning.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-conditioning.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-conditioning.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-deferred-client.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-deferred-client.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-deferred-client.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-kernel.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-kernel.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-kernel.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-signed-zero-worker.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-signed-zero-worker.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-signed-zero-worker.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-worker.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-worker.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-worker.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_experiment.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_experiment.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_experiment.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_manifest.py",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_manifest.py",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_manifest.py",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_oracles.mjs",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_oracles.mjs",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_oracles.mjs",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/client.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/client.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/client.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/protocol.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/protocol.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/protocol.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/receiver-worker.js",
+      "legacy": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/receiver-worker.js",
+      "public": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/receiver-worker.js",
+      "owner": "validation/sensing-assisted-otfs",
+      "role": "source"
+    }
+  ]
+}

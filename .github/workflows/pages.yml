@@ -38,8 +38,10 @@ jobs:
       - name: Install canonical scientific validation dependencies
         run: |
           python -m pip install --disable-pip-version-check --only-binary=:all: numpy==2.3.5 scipy==1.17.0
-      - name: Test the compatibility builder
-        run: node --test tests/compatibility-build.test.cjs
+      - name: Test source-only dependency preservation and the compatibility builder
+        run: |
+          node --test tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
+          node --test tests/compatibility-build.test.cjs
       - name: Run full legacy tests and independently reproduce the public artifact
         run: node scripts/build-compatibility.cjs --test --reproducible
       - name: Recheck exact output and unchanged tracked sources

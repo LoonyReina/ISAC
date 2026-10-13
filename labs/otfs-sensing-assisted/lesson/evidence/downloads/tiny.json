@@ -1,0 +1,49 @@
+{
+  "schema": "sensing-assisted-otfs-lesson-record-v1",
+  "canonicalPaperId": "otfs-sensing-assisted-2021",
+  "runtimePaperId": "paperotfs-sensing-assisted-2021",
+  "provenance": {
+    "source": "https://arxiv.org/pdf/2105.03125v2",
+    "sourceVersion": "2105.03125v2",
+    "sourcePdfSha256": "57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98",
+    "runtimeVersion": "v3",
+    "manifestSha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6",
+    "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+    "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+  },
+  "runId": "sensing-otfs-mv6bhfww-3",
+  "parentRunId": null,
+  "operation": "receive",
+  "status": "complete",
+  "reason": null,
+  "startedAt": "2026-10-13T06:45:49.136Z",
+  "durationMs": 35.37949800000001,
+  "execution": {
+    "environment": "module-compatible runtime; execution environment not authenticated",
+    "durationBasis": "caller elapsed monotonic milliseconds including worker scheduling and transport"
+  },
+  "input": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"shape\":[3,3],\"support\":[[0,0],[1,0],[2,0]],\"y\":{\"$typed\":\"Float64Array\",\"values\":[-1.0376580344942983,0.14549900398011126,2.330998007960223,4.367168990713073,0.6156620185738529,0.3801630145937415,1.4286560424545212,-0.671161022553964,-5.132159030514186,0.4954990039801109,0.6456620185738529,0.4301630145937415,0.25466401061363025,0.9958250331675942,1.4998369854062583,-1.1929940238806676,0.5456620185738528,0.5501630145937415]},\"pilotIndex\":[0,1],\"pilot\":[3,4],\"Es\":0.7,\"N0\":0.13,\"priorPowers\":[0.8,0.4,0.2],\"mode\":\"moment_repaired\",\"maxIterations\":40,\"damping\":0.5,\"tolerance\":1e-7}}",
+    "sha256": "f117531c2a9136d7fcade80c9685bf62df259ede8792d403045fc92017445d18",
+    "bytes": 639
+  },
+  "payload": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"probabilities\":{\"$typed\":\"Float64Array\",\"values\":[0.9999999999657263,3.4273737530239265e-11,0.5,0.5,4.2888848797838874e-14,0.9999999999999571,1.635951669060577e-15,0.9999999999999984,0.5000000000000001,0.4999999999999999,4.989118528150652e-16,0.9999999999999996,1.4325451445574478e-10,0.9999999998567455,0.4999999999999999,0.5000000000000001,6.674035672996456e-14,0.9999999999999332]},\"probabilitiesValidMask\":{\"$typed\":\"Uint8Array\",\"values\":[1,0,1,1,1,1,1,1,1]},\"knownPilotFlatIndex\":1,\"knownPilotValue\":[3,4],\"decisions\":{\"$typed\":\"Float64Array\",\"values\":[-0.8366600265340756,0,3,4,0.8366600265340756,0,0.8366600265340756,0,-0.8366600265340756,0,0.8366600265340756,0,0.8366600265340756,0,0.8366600265340756,0,0.8366600265340756,0]},\"status\":\"converged\",\"iterations\":27,\"history\":[{\"iteration\":1,\"maxMessageChange\":0.24979538766095777,\"maxMarginalChange\":0.4998143875340838,\"decisionChanges\":6,\"meanEntropyBits\":0.46763382933506026,\"pluginResidualMse\":0.06073153298522416},{\"iteration\":2,\"maxMessageChange\":0.13371618726921342,\"maxMarginalChange\":0.11296885847030869,\"decisionChanges\":0,\"meanEntropyBits\":0.3430140626319524,\"pluginResidualMse\":0.04992824802938562},{\"iteration\":3,\"maxMessageChange\":0.10329925942673035,\"maxMarginalChange\":0.04185093862449207,\"decisionChanges\":0,\"meanEntropyBits\":0.2697975371158971,\"pluginResidualMse\":0.04940776413807382},{\"iteration\":4,\"maxMessageChange\":0.1130971318024267,\"maxMarginalChange\":0.007031341210548298,\"decisionChanges\":0,\"meanEntropyBits\":0.25163284606247543,\"pluginResidualMse\":0.04942132402531029},{\"iteration\":5,\"maxMessageChange\":0.10414343241772306,\"maxMarginalChange\":0.000429164823212433,\"decisionChanges\":0,\"meanEntropyBits\":0.2500541094043197,\"pluginResidualMse\":0.049422299507364514},{\"iteration\":6,\"maxMessageChange\":0.08335384483079405,\"maxMarginalChange\":0.000010841308259150219,\"decisionChanges\":0,\"meanEntropyBits\":0.2500012121935867,\"pluginResidualMse\":0.049422401720139855},{\"iteration\":7,\"maxMessageChange\":0.05299885885247107,\"maxMarginalChange\":1.9270110585001277e-7,\"decisionChanges\":0,\"meanEntropyBits\":0.25000003655613634,\"pluginResidualMse\":0.049422408347500585},{\"iteration\":8,\"maxMessageChange\":0.02846369686829664,\"maxMarginalChange\":3.545321715739149e-9,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000432915065,\"pluginResidualMse\":0.049422408894984726},{\"iteration\":9,\"maxMessageChange\":0.014440719993260267,\"maxMarginalChange\":3.3326588954500147e-10,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000176812187,\"pluginResidualMse\":0.04942240898527279},{\"iteration\":10,\"maxMessageChange\":0.007244522780787244,\"maxMarginalChange\":9.951817148134978e-11,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000116527704,\"pluginResidualMse\":0.04942240901058592},{\"iteration\":11,\"maxMessageChange\":0.003626504313651857,\"maxMarginalChange\":3.811646479621502e-11,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000094634545,\"pluginResidualMse\":0.04942240902002154},{\"iteration\":12,\"maxMessageChange\":0.001814380182293629,\"maxMarginalChange\":1.6644241540575422e-11,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000008523107,\"pluginResidualMse\":0.04942240902408966},{\"iteration\":13,\"maxMessageChange\":0.0009075886546684183,\"maxMarginalChange\":7.773181973996574e-12,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000080868195,\"pluginResidualMse\":0.04942240902597785},{\"iteration\":14,\"maxMessageChange\":0.0004539604693289956,\"maxMarginalChange\":3.7558844923069046e-12,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000078766277,\"pluginResidualMse\":0.04942240902688739},{\"iteration\":15,\"maxMessageChange\":0.00022705593174516904,\"maxMarginalChange\":1.8460788453467103e-12,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000077734524,\"pluginResidualMse\":0.04942240902733383},{\"iteration\":16,\"maxMessageChange\":0.00011356408129006349,\"maxMarginalChange\":9.15191912378359e-13,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007722334,\"pluginResidualMse\":0.04942240902755499},{\"iteration\":17,\"maxMessageChange\":0.00005679968044094253,\"maxMarginalChange\":4.556632714579052e-13,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007696888,\"pluginResidualMse\":0.049422409027665044},{\"iteration\":18,\"maxMessageChange\":0.00002840855857388913,\"maxMarginalChange\":2.2737367544323206e-13,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000076841933,\"pluginResidualMse\":0.049422409027719966},{\"iteration\":19,\"maxMessageChange\":0.000014208613970430676,\"maxMarginalChange\":1.1368683772161603e-13,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007677851,\"pluginResidualMse\":0.04942240902774743},{\"iteration\":20,\"maxMessageChange\":0.000007106468581347129,\"maxMarginalChange\":5.675561706576894e-14,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000076746826,\"pluginResidualMse\":0.04942240902776111},{\"iteration\":21,\"maxMessageChange\":0.000003554313833118758,\"maxMarginalChange\":2.842170943040401e-14,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000076730977,\"pluginResidualMse\":0.04942240902776797},{\"iteration\":22,\"maxMessageChange\":0.0000017776964634080686,\"maxMarginalChange\":1.4210854715202004e-14,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000076723056,\"pluginResidualMse\":0.049422409027771404},{\"iteration\":23,\"maxMessageChange\":8.891179938963489e-7,\"maxMarginalChange\":7.105427357601002e-15,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007671909,\"pluginResidualMse\":0.04942240902777313},{\"iteration\":24,\"maxMessageChange\":4.4469389737441095e-7,\"maxMarginalChange\":3.552713678800501e-15,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007671711,\"pluginResidualMse\":0.04942240902777398},{\"iteration\":25,\"maxMessageChange\":2.2241441499648573e-7,\"maxMarginalChange\":1.7763568394002505e-15,\"decisionChanges\":0,\"meanEntropyBits\":0.25000000076716117,\"pluginResidualMse\":0.04942240902777442},{\"iteration\":26,\"maxMessageChange\":1.1124095025215534e-7,\"maxMarginalChange\":8.881784197001252e-16,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007671563,\"pluginResidualMse\":0.04942240902777461},{\"iteration\":27,\"maxMessageChange\":5.56373517257569e-8,\"maxMarginalChange\":4.440892098500626e-16,\"decisionChanges\":0,\"meanEntropyBits\":0.2500000007671538,\"pluginResidualMse\":0.04942240902777473}],\"dataMask\":{\"$typed\":\"Uint8Array\",\"values\":[1,0,1,1,1,1,1,1,1]},\"gainVariance\":{\"$typed\":\"Float64Array\",\"values\":[0.022000000000000002,0.0332,0.0388]},\"estimatedGains\":{\"$typed\":\"Float64Array\",\"values\":[0.9784667994693185,0.15110059761193312,-0.5365792430248846,0.8806053253598831,-0.010898605572155802,-0.3831332005306814]},\"receiverInputPolicy\":\"raw y + predicted support/pilot/statistical powers only\"}}",
+    "sha256": "c31b6d31f6eb0dafeea9a5eb6eaca386c4bf25361879c5da896f02efccc4ba50",
+    "bytes": 6564
+  },
+  "counts": {
+    "requestedFrames": 0,
+    "storedFrames": 0,
+    "completedFrames": 0,
+    "requestedReceiverRecords": 1,
+    "completedReceiverRecords": 1,
+    "unfinished": []
+  },
+  "verificationPolicy": {
+    "sourceAuthenticity": "not-verified",
+    "independentNumericalReplay": "not-run",
+    "history": "untrusted imported history until explicit same-implementation replay",
+    "halfTies": "No probability snapping or deletion. Independent cross-language categorical disagreements require per-iteration half-tie localization; all other fields remain strict."
+  }
+}

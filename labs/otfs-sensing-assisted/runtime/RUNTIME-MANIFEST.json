@@ -1,0 +1,57 @@
+{
+  "schema": "sensing-otfs-browser-runtime-manifest-v1",
+  "version": "v3",
+  "supersedesManifestSha256": "48f70dd4e0a4b80853ce8a69d1351bf67fc9a1ba29b930d063e87b4738f9b283",
+  "frozenAtUtc": "2026-10-13T06:19:26.889481+00:00",
+  "source": "https://arxiv.org/pdf/2105.03125v2",
+  "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "referenceManifestSha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a",
+  "scope": "Bounded fresh coherent effective-gain integer-support interpreted receiver. Actual Node Worker accepted; browser and website gates open.",
+  "files": [
+    {
+      "path": "js/codec.js",
+      "bytes": 3231,
+      "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+    },
+    {
+      "path": "js/evaluation.js",
+      "bytes": 11361,
+      "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+    },
+    {
+      "path": "js/receiver.js",
+      "bytes": 9914,
+      "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+    },
+    {
+      "path": "js/validation.js",
+      "bytes": 5592,
+      "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+    },
+    {
+      "path": "worker/client.js",
+      "bytes": 11554,
+      "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+    },
+    {
+      "path": "worker/protocol.js",
+      "bytes": 1359,
+      "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+    },
+    {
+      "path": "worker/receiver-worker.js",
+      "bytes": 4632,
+      "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+    },
+    {
+      "path": "index.html",
+      "bytes": 3846,
+      "sha256": "28c23e37b2a6a88e1fed378a326bc0ed0a518904251ca5415c43342f646e0d24"
+    },
+    {
+      "path": "harness.js",
+      "bytes": 3687,
+      "sha256": "edb9d40d48fd3651ab7fe236826faefbacaf76bdcf813271b366d8f125be58c2"
+    }
+  ]
+}

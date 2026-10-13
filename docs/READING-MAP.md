@@ -553,3 +553,17 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - 原 FFBF 降低最低速率并移除同方向目标对约束，不能当等 QoS 第三方案。Fig.5、检测/定位统计、完整论文与真实浏览器 Worker/下载/取消/布局/完整绘制延迟验收仍开放
 
 [最新独立接受绑定](../labs/nearfield-multitarget/runtime/FINAL-BINDING.json) 只更新其明确数值范围；历史 runtime README 与审查阶段原文不重写。[教学层说明](../labs/nearfield-multitarget/lesson/README.md) 和 [教学冻结](../labs/nearfield-multitarget/lesson/LESSON-FREEZE.json) 分开约束页面派生与源算法。PDF/论文全文不随站点分发，预设不查表，运行不依赖数值 fixture。
+
+
+## 感知辅助 OTFS：声明支持下的条件上行接收（2026-10-13）
+
+固定 [arXiv:2105.03125v2](https://arxiv.org/pdf/2105.03125v2)（2021-05-11）继续使用 `otfs-sensing-assisted-2021`。原 [2021 导读](../reading.html#guide-otfs-sensing-assisted-2021) 接到唯一 [条件上行接收课](../otfs-sensing-assisted.html#intuition)，并接入 waveforms 六层、机制实验和既有导频/互助概念节点。35 个主论文身份与零整篇复现不变。[2020 完美 CSI OTFS 课](../otfs-receiver.html#experiment) 保留独立，不能把两篇声明算子或两种消息传递自动视为等价。
+
+- §II 式(19)、§III-D1 式(39)–(42)和 §III-D2 式(45)–(59) 对应整数双循环格、有效复增益、污染导频估计与四模式 SPA。支持由外部声明，未运行回波、车辆状态预测或真实合并；导频替代一格数据，默认 16×16 为 255 数据位、1 导频、0 保护格
+- 原式19的维度/坐标、42的干扰功率、52的目标均值索引、57的外层 Es/重复目标方差和58/59归一化问题逐项保留。literal_operational 只修可执行归一化，不能说是作者代码；moment_repaired 是独立、对角、proper-complex 高斯误差替代模型，忽略跨路径协方差、伪协方差和同帧依赖。固定tiny离线精确后验反例保留约0.499913概率差，收敛不等于正确后验
+- 每帧每能量条件的四模式完全同 y；repaired/ignored 仅改变是否计入 v，supplied-CSI 明示额外真支持/增益仍非精确 MAP。错一格支持原样进入实用估计与图，不从真值修正
+- source_per_data 的 Es=1、Ep=100、帧能量355；equal_total_frame 的 Es=256/355、Ep=100Es、帧能量256。两者固定同 N0，共用随机原语但 x/y 不同。无保护格接收基线，不主张吞吐优势；源尺寸精确 inclusive 矩形525格=524保护+1导频，表II的480=8KL须另列
+- 现场仅1–2独立帧，无性能置信区间。离线120独立帧复用12条件、5760接收记录、每条件30600位、2000次配对帧bootstrap独立标记；保留4228个cap和1532个converged，不把1440条件/帧当独立信道抽样
+- 冻结v3七生产核/Worker文件与独立数值接受保持不变；当前教学v2.1经独立Node功能复核接受，60/60回归（原47+新增13）、18项独立边界与9种非法行草稿通过。5份新生产下载含41条独立标量复算输出、21161个数值，最大误差9.72e−15；另3份边界下载核查2条接收输出及1份真实仅原始帧。原v1的47项测试和7份下载/37条输出、约2.38e−14只作历史证据，原v1及中间v2拒绝记录保留。最终概率、真实摘要与局部邻接分开；真实浏览器、全站构建、部署与完整绘制延迟另验
+
+[源式合同](../assets/data/sensing-assisted-otfs/CONTRACT.md)、[逐式对照](../assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md) 与 [核独立绑定](../assets/data/sensing-assisted-otfs/SOURCE-BINDING.json) 保留原科学版本。[当前教学v2.1独立复核](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md)、[结构化结论](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.json) 和 [复核绑定](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-BINDING.json) 接受提交 `14665b68a1333e9d6c7f914143567a676edf0421`，活动 [v2.1冻结](../labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json) SHA-256 为 `f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9`。四项原缺陷与中间版非法行索引已逐项修复复测；原ACCEPTANCE、v1/v2冻结及其待验收/拒绝阶段原文不重写，不能作为当前独立接受结论。固定PDF SHA-256 为 `57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98`；不发布论文全文。图9/11/12、感知预测链、保护格/OFDM基线、实际脉冲/分数参数、下行和整篇复现继续开放。

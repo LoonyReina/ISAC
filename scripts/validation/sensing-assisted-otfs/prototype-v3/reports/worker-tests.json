@@ -1,0 +1,47 @@
+{
+  "allPassed": true,
+  "total": 10,
+  "transport": "node:worker_threads actual ES module Worker, no browser engine",
+  "checks": [
+    {
+      "name": "actual ES module Worker computation matches synchronous full output",
+      "pass": true
+    },
+    {
+      "name": "finite/typed validation, duplicate ids, malformed requests preserve valid active run",
+      "pass": true
+    },
+    {
+      "name": "cancel after completed first mode retains raw inputs and finished results; export hashes replay",
+      "pass": true
+    },
+    {
+      "name": "new valid run supersedes prior run, exactly one terminal per accepted id",
+      "pass": true
+    },
+    {
+      "name": "release cancels work and clears held data rather than restoring partial data",
+      "pass": true
+    },
+    {
+      "name": "receiver request accepts only raw observation and declared support/prior metadata",
+      "pass": true
+    },
+    {
+      "name": "client cancel/restart retains completed partial records and rejects reused ids",
+      "pass": true
+    },
+    {
+      "name": "client transport failure settles pending work and restart recovers",
+      "pass": true
+    },
+    {
+      "name": "client suppresses queued complete after cancellation, preserving queued result as partial",
+      "pass": true
+    },
+    {
+      "name": "invalid newer submission does not discard a valid queued older completion",
+      "pass": true
+    }
+  ]
+}

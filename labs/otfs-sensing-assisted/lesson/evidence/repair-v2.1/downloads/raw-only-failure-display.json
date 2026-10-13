@@ -1,0 +1,38 @@
+{
+  "runId": "sensing-otfs-mv6ciqwf-5",
+  "importedUntrusted": true,
+  "recordStatus": "error",
+  "notice": "核对已结束；来源仍未认证，独立 Python 与真实浏览器是另两层验证",
+  "renderError": null,
+  "owner": "当前查看 sensing-otfs-mv6ciqwf-5；新随机帧；输入来自提交快照",
+  "result": "当前未选择固定反例或通用接收记录。此按钮会对固定原始 y 重新执行近似接收；精确后验仅作为输入完全一致时的离线参照。",
+  "gains": "已保存原始 x/y/noise 和能量账本；增益估计尚未生成或在输入数值边界失败，没有 â/v 或接收判决可显示。失败原因见本次状态与完整记录。",
+  "cell": "(0,0) 原始 y=-0.3361026 + 0.1190660j；发射 x=-0.001000000 + 0j（评估真值）；数据格；尚无接收概率、判决或错误结论。",
+  "errors": "尚无完成的接收记录；缺失判决不能当作0错误，也不补入分母。",
+  "checks": {
+    "integrity": {
+      "status": "passed",
+      "detail": "Exact UTF-8 byte counts and SHA-256 match both preserved codec texts; this is not proof of authorship"
+    },
+    "structure": {
+      "status": "passed",
+      "detail": "Strict root/schema/dtype/shape/finite-value/mask/pilot/energy/probability/status/count checks passed"
+    },
+    "selfConsistency": {
+      "status": "passed",
+      "detail": "Every saved scientific field matches a genuine deterministic run/prefix; incomplete work is not invented"
+    },
+    "sameImplementationReplay": {
+      "status": "passed",
+      "detail": "Frozen same-implementation recomputation matched all retained raw and decoder fields (1 execution boundaries inspected); this is not independent correctness evidence"
+    },
+    "independentNumericalReplay": {
+      "status": "not-run",
+      "detail": "Run the independent Python production-record oracle separately; it has not run in this browser"
+    },
+    "sourceAuthenticity": {
+      "status": "not-run",
+      "detail": "Not verified: declared source/runtime hashes and internal checks do not authenticate the file author or runtime source"
+    }
+  }
+}

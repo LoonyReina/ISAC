@@ -1,0 +1,1520 @@
+{
+  "configuration_sha256": "48fdf39bf1e6898a033da22be3326ff9d1d54afcf3ff0e30adfabf1a19ca2fb5",
+  "reference_sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "total_wall_seconds": 101.17128554999363,
+  "conditions": [
+    {
+      "condition": "source_per_data__declared_correct__7db",
+      "normalization": "source_per_data",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 7.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.19952623149688797,
+      "gain_NMSE_ratio_of_sums": 0.026387211479528876,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.02441946738937314,
+        0.02867578063363816
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.0012745098039215687,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.00196078431372549,
+        -0.0006209150326797386
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 816,
+          "bits": 30600,
+          "BER": 0.02666666666666667,
+          "BER_frame_bootstrap_CI95": [
+            0.020098039215686276,
+            0.03388970588235293
+          ],
+          "frame_errors": 92,
+          "frames": 120,
+          "FER": 0.7666666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.6807225107199395,
+            0.8390083119035372
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 248.2,
+          "status_counts": {
+            "iteration_cap": 104,
+            "converged": 16
+          },
+          "mean_iterations": 39.2,
+          "mean_posterior_entropy_bits": 0.08218614062089082,
+          "elapsed_seconds_sum": 2.3790754569199635
+        },
+        "ignored_uncertainty": {
+          "errors": 855,
+          "bits": 30600,
+          "BER": 0.027941176470588233,
+          "BER_frame_bootstrap_CI95": [
+            0.021241830065359475,
+            0.035196895424836595
+          ],
+          "frame_errors": 100,
+          "frames": 120,
+          "FER": 0.8333333333333334,
+          "FER_ClopperPearson_CI95": [
+            0.7543999619226814,
+            0.8951214980233372
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 247.875,
+          "status_counts": {
+            "iteration_cap": 106,
+            "converged": 14
+          },
+          "mean_iterations": 39.333333333333336,
+          "mean_posterior_entropy_bits": 0.07139910036658867,
+          "elapsed_seconds_sum": 2.3998064920451725
+        },
+        "literal_operational": {
+          "errors": 2044,
+          "bits": 30600,
+          "BER": 0.06679738562091503,
+          "BER_frame_bootstrap_CI95": [
+            0.057515522875816995,
+            0.07692973856209148
+          ],
+          "frame_errors": 115,
+          "frames": 120,
+          "FER": 0.9583333333333334,
+          "FER_ClopperPearson_CI95": [
+            0.9054412000240628,
+            0.9863346158832105
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 237.96666666666667,
+          "status_counts": {
+            "iteration_cap": 109,
+            "converged": 11
+          },
+          "mean_iterations": 39.425,
+          "mean_posterior_entropy_bits": 0.12468776134340824,
+          "elapsed_seconds_sum": 2.585970639018342
+        },
+        "supplied_perfect_csi": {
+          "errors": 592,
+          "bits": 30600,
+          "BER": 0.01934640522875817,
+          "BER_frame_bootstrap_CI95": [
+            0.013724673202614378,
+            0.02562254901960783
+          ],
+          "frame_errors": 76,
+          "frames": 120,
+          "FER": 0.6333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.5405001010775285,
+            0.7194175923349626
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 250.06666666666666,
+          "status_counts": {
+            "iteration_cap": 89,
+            "converged": 31
+          },
+          "mean_iterations": 38.541666666666664,
+          "mean_posterior_entropy_bits": 0.06162233383174799,
+          "elapsed_seconds_sum": 2.3397741089429474
+        }
+      }
+    },
+    {
+      "condition": "source_per_data__declared_correct__11db",
+      "normalization": "source_per_data",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 11.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.07943282347242814,
+      "gain_NMSE_ratio_of_sums": 0.02271360409354344,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.021293976544742462,
+        0.024229946725900266
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.0021895424836601307,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0029411764705882357,
+        -0.0014705882352941174
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 179,
+          "bits": 30600,
+          "BER": 0.00584967320261438,
+          "BER_frame_bootstrap_CI95": [
+            0.0036266339869281045,
+            0.008530228758169929
+          ],
+          "frame_errors": 44,
+          "frames": 120,
+          "FER": 0.36666666666666664,
+          "FER_ClopperPearson_CI95": [
+            0.2805824076650374,
+            0.45949989892247145
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 253.50833333333333,
+          "status_counts": {
+            "iteration_cap": 84,
+            "converged": 36
+          },
+          "mean_iterations": 38.625,
+          "mean_posterior_entropy_bits": 0.019730757674258543,
+          "elapsed_seconds_sum": 1.9265419899165863
+        },
+        "ignored_uncertainty": {
+          "errors": 246,
+          "bits": 30600,
+          "BER": 0.00803921568627451,
+          "BER_frame_bootstrap_CI95": [
+            0.005652777777777777,
+            0.010981209150326791
+          ],
+          "frame_errors": 68,
+          "frames": 120,
+          "FER": 0.5666666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.4731335432342428,
+            0.6568305082938808
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 252.95,
+          "status_counts": {
+            "iteration_cap": 90,
+            "converged": 30
+          },
+          "mean_iterations": 38.69166666666667,
+          "mean_posterior_entropy_bits": 0.014129709240949695,
+          "elapsed_seconds_sum": 1.9697939790348755
+        },
+        "literal_operational": {
+          "errors": 1526,
+          "bits": 30600,
+          "BER": 0.04986928104575163,
+          "BER_frame_bootstrap_CI95": [
+            0.04189379084967321,
+            0.05882598039215685
+          ],
+          "frame_errors": 110,
+          "frames": 120,
+          "FER": 0.9166666666666666,
+          "FER_ClopperPearson_CI95": [
+            0.8520845706626649,
+            0.9593138711319835
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 242.28333333333333,
+          "status_counts": {
+            "iteration_cap": 101,
+            "converged": 19
+          },
+          "mean_iterations": 39.225,
+          "mean_posterior_entropy_bits": 0.05846372903100671,
+          "elapsed_seconds_sum": 2.138158035973902
+        },
+        "supplied_perfect_csi": {
+          "errors": 109,
+          "bits": 30600,
+          "BER": 0.003562091503267974,
+          "BER_frame_bootstrap_CI95": [
+            0.0019934640522875817,
+            0.005555555555555555
+          ],
+          "frame_errors": 26,
+          "frames": 120,
+          "FER": 0.21666666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.14668149429210206,
+            0.30112851306566935
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.09166666666667,
+          "status_counts": {
+            "iteration_cap": 69,
+            "converged": 51
+          },
+          "mean_iterations": 36.49166666666667,
+          "mean_posterior_entropy_bits": 0.010411567602067644,
+          "elapsed_seconds_sum": 1.821920525850146
+        }
+      }
+    },
+    {
+      "condition": "source_per_data__declared_correct__15db",
+      "normalization": "source_per_data",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 15.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.03162277660168379,
+      "gain_NMSE_ratio_of_sums": 0.0212783918372087,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.020022608122377175,
+        0.022542056082871586
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.001568627450980392,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0022875816993464053,
+        -0.0009150326797385621
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 57,
+          "bits": 30600,
+          "BER": 0.0018627450980392155,
+          "BER_frame_bootstrap_CI95": [
+            0.000980392156862745,
+            0.00303921568627451
+          ],
+          "frame_errors": 26,
+          "frames": 120,
+          "FER": 0.21666666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.14668149429210206,
+            0.30112851306566935
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.525,
+          "status_counts": {
+            "converged": 61,
+            "iteration_cap": 59
+          },
+          "mean_iterations": 37.425,
+          "mean_posterior_entropy_bits": 0.0043459149124885224,
+          "elapsed_seconds_sum": 1.926570014009485
+        },
+        "ignored_uncertainty": {
+          "errors": 105,
+          "bits": 30600,
+          "BER": 0.003431372549019608,
+          "BER_frame_bootstrap_CI95": [
+            0.002320261437908497,
+            0.005098039215686274
+          ],
+          "frame_errors": 53,
+          "frames": 120,
+          "FER": 0.44166666666666665,
+          "FER_ClopperPearson_CI95": [
+            0.3511081106041759,
+            0.5351730036835876
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.125,
+          "status_counts": {
+            "converged": 49,
+            "iteration_cap": 71
+          },
+          "mean_iterations": 37.608333333333334,
+          "mean_posterior_entropy_bits": 0.0019182219099298794,
+          "elapsed_seconds_sum": 1.9810235119075514
+        },
+        "literal_operational": {
+          "errors": 1327,
+          "bits": 30600,
+          "BER": 0.04336601307189542,
+          "BER_frame_bootstrap_CI95": [
+            0.03571895424836601,
+            0.051830065359477116
+          ],
+          "frame_errors": 107,
+          "frames": 120,
+          "FER": 0.8916666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.8218725616110573,
+            0.941041693770915
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 243.94166666666666,
+          "status_counts": {
+            "iteration_cap": 98,
+            "converged": 22
+          },
+          "mean_iterations": 38.925,
+          "mean_posterior_entropy_bits": 0.03479833128671482,
+          "elapsed_seconds_sum": 2.1787923630763544
+        },
+        "supplied_perfect_csi": {
+          "errors": 11,
+          "bits": 30600,
+          "BER": 0.0003594771241830065,
+          "BER_frame_bootstrap_CI95": [
+            9.80392156862745e-05,
+            0.000718954248366013
+          ],
+          "frame_errors": 6,
+          "frames": 120,
+          "FER": 0.05,
+          "FER_ClopperPearson_CI95": [
+            0.018567586782669152,
+            0.10565385451871234
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.90833333333333,
+          "status_counts": {
+            "converged": 79,
+            "iteration_cap": 41
+          },
+          "mean_iterations": 33.75,
+          "mean_posterior_entropy_bits": 0.0008256705361740398,
+          "elapsed_seconds_sum": 1.7254652170522604
+        }
+      }
+    },
+    {
+      "condition": "source_per_data__one_bin_predicted_mismatch__7db",
+      "normalization": "source_per_data",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 7.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.19952623149688797,
+      "gain_NMSE_ratio_of_sums": 0.11809103895375583,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.10057026711001796,
+        0.13823446064789577
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.0006209150326797386,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.00130718954248366,
+        6.5359477124183e-05
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 1609,
+          "bits": 30600,
+          "BER": 0.052581699346405227,
+          "BER_frame_bootstrap_CI95": [
+            0.041632352941176475,
+            0.0653316993464052
+          ],
+          "frame_errors": 109,
+          "frames": 120,
+          "FER": 0.9083333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.8419014588041667,
+            0.9533477303447515
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 241.59166666666667,
+          "status_counts": {
+            "iteration_cap": 94,
+            "converged": 26
+          },
+          "mean_iterations": 38.416666666666664,
+          "mean_posterior_entropy_bits": 0.11441939175720067,
+          "elapsed_seconds_sum": 1.92874244399718
+        },
+        "ignored_uncertainty": {
+          "errors": 1628,
+          "bits": 30600,
+          "BER": 0.05320261437908496,
+          "BER_frame_bootstrap_CI95": [
+            0.042351307189542484,
+            0.0659485294117647
+          ],
+          "frame_errors": 112,
+          "frames": 120,
+          "FER": 0.9333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.872863251760787,
+            0.9707808156862036
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 241.43333333333334,
+          "status_counts": {
+            "iteration_cap": 97,
+            "converged": 23
+          },
+          "mean_iterations": 38.61666666666667,
+          "mean_posterior_entropy_bits": 0.10113165913059795,
+          "elapsed_seconds_sum": 1.9486707940814085
+        },
+        "literal_operational": {
+          "errors": 2278,
+          "bits": 30600,
+          "BER": 0.07444444444444445,
+          "BER_frame_bootstrap_CI95": [
+            0.06235212418300653,
+            0.08709477124183003
+          ],
+          "frame_errors": 115,
+          "frames": 120,
+          "FER": 0.9583333333333334,
+          "FER_ClopperPearson_CI95": [
+            0.9054412000240628,
+            0.9863346158832105
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 236.01666666666665,
+          "status_counts": {
+            "iteration_cap": 102,
+            "converged": 18
+          },
+          "mean_iterations": 38.833333333333336,
+          "mean_posterior_entropy_bits": 0.1406556686278853,
+          "elapsed_seconds_sum": 2.1402297750028083
+        },
+        "supplied_perfect_csi": {
+          "errors": 592,
+          "bits": 30600,
+          "BER": 0.01934640522875817,
+          "BER_frame_bootstrap_CI95": [
+            0.013724673202614378,
+            0.02562254901960783
+          ],
+          "frame_errors": 76,
+          "frames": 120,
+          "FER": 0.6333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.5405001010775285,
+            0.7194175923349626
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 250.06666666666666,
+          "status_counts": {
+            "iteration_cap": 89,
+            "converged": 31
+          },
+          "mean_iterations": 38.541666666666664,
+          "mean_posterior_entropy_bits": 0.06162233383174799,
+          "elapsed_seconds_sum": 1.9462421519419877
+        }
+      }
+    },
+    {
+      "condition": "source_per_data__one_bin_predicted_mismatch__11db",
+      "normalization": "source_per_data",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 11.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.07943282347242814,
+      "gain_NMSE_ratio_of_sums": 0.11416584359110557,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.09701814532489701,
+        0.13365749608176447
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.0018627450980392155,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.002875816993464052,
+        -0.0009150326797385621
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 863,
+          "bits": 30600,
+          "BER": 0.028202614379084962,
+          "BER_frame_bootstrap_CI95": [
+            0.01996650326797385,
+            0.038660130718954244
+          ],
+          "frame_errors": 98,
+          "frames": 120,
+          "FER": 0.8166666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.7356934288317283,
+            0.8813935784431961
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 247.80833333333334,
+          "status_counts": {
+            "iteration_cap": 97,
+            "converged": 23
+          },
+          "mean_iterations": 38.86666666666667,
+          "mean_posterior_entropy_bits": 0.04409008628738077,
+          "elapsed_seconds_sum": 2.0503255030344008
+        },
+        "ignored_uncertainty": {
+          "errors": 920,
+          "bits": 30600,
+          "BER": 0.03006535947712418,
+          "BER_frame_bootstrap_CI95": [
+            0.021861928104575164,
+            0.040687091503267964
+          ],
+          "frame_errors": 100,
+          "frames": 120,
+          "FER": 0.8333333333333334,
+          "FER_ClopperPearson_CI95": [
+            0.7543999619226814,
+            0.8951214980233372
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 247.33333333333334,
+          "status_counts": {
+            "iteration_cap": 101,
+            "converged": 19
+          },
+          "mean_iterations": 38.983333333333334,
+          "mean_posterior_entropy_bits": 0.03348848219294927,
+          "elapsed_seconds_sum": 2.0837815369741293
+        },
+        "literal_operational": {
+          "errors": 1725,
+          "bits": 30600,
+          "BER": 0.05637254901960785,
+          "BER_frame_bootstrap_CI95": [
+            0.04565032679738562,
+            0.06787581699346405
+          ],
+          "frame_errors": 108,
+          "frames": 120,
+          "FER": 0.9,
+          "FER_ClopperPearson_CI95": [
+            0.8318347872973342,
+            0.9472522136099402
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 240.625,
+          "status_counts": {
+            "iteration_cap": 104,
+            "converged": 16
+          },
+          "mean_iterations": 39.266666666666666,
+          "mean_posterior_entropy_bits": 0.0702530709270617,
+          "elapsed_seconds_sum": 2.2696998971077846
+        },
+        "supplied_perfect_csi": {
+          "errors": 109,
+          "bits": 30600,
+          "BER": 0.003562091503267974,
+          "BER_frame_bootstrap_CI95": [
+            0.0019934640522875817,
+            0.005555555555555555
+          ],
+          "frame_errors": 26,
+          "frames": 120,
+          "FER": 0.21666666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.14668149429210206,
+            0.30112851306566935
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.09166666666667,
+          "status_counts": {
+            "iteration_cap": 69,
+            "converged": 51
+          },
+          "mean_iterations": 36.49166666666667,
+          "mean_posterior_entropy_bits": 0.010411567602067644,
+          "elapsed_seconds_sum": 1.9564495139929932
+        }
+      }
+    },
+    {
+      "condition": "source_per_data__one_bin_predicted_mismatch__15db",
+      "normalization": "source_per_data",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 15.0,
+      "data_symbol_energy": 1.0,
+      "pilot_energy": 100.0,
+      "total_frame_energy": 355.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.03162277660168379,
+      "gain_NMSE_ratio_of_sums": 0.11257741933093382,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.09572508310078624,
+        0.13195257943042663
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.0024836601307189543,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0034967320261437905,
+        -0.0015359477124183007
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 562,
+          "bits": 30600,
+          "BER": 0.018366013071895417,
+          "BER_frame_bootstrap_CI95": [
+            0.011535130718954248,
+            0.02745179738562091
+          ],
+          "frame_errors": 88,
+          "frames": 120,
+          "FER": 0.7333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.6448859874929813,
+            0.8099109272179073
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 250.31666666666666,
+          "status_counts": {
+            "iteration_cap": 93,
+            "converged": 27
+          },
+          "mean_iterations": 38.86666666666667,
+          "mean_posterior_entropy_bits": 0.019714110763985666,
+          "elapsed_seconds_sum": 2.12680949109199
+        },
+        "ignored_uncertainty": {
+          "errors": 638,
+          "bits": 30600,
+          "BER": 0.02084967320261438,
+          "BER_frame_bootstrap_CI95": [
+            0.013823529411764705,
+            0.030033496732026137
+          ],
+          "frame_errors": 90,
+          "frames": 120,
+          "FER": 0.75,
+          "FER_ClopperPearson_CI95": [
+            0.662730783708004,
+            0.8245353809699434
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 249.68333333333334,
+          "status_counts": {
+            "iteration_cap": 94,
+            "converged": 26
+          },
+          "mean_iterations": 38.78333333333333,
+          "mean_posterior_entropy_bits": 0.010036835965219305,
+          "elapsed_seconds_sum": 2.139067110896576
+        },
+        "literal_operational": {
+          "errors": 1438,
+          "bits": 30600,
+          "BER": 0.046993464052287576,
+          "BER_frame_bootstrap_CI95": [
+            0.03712418300653595,
+            0.05790931372549019
+          ],
+          "frame_errors": 107,
+          "frames": 120,
+          "FER": 0.8916666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.8218725616110573,
+            0.941041693770915
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 243.01666666666668,
+          "status_counts": {
+            "iteration_cap": 105,
+            "converged": 15
+          },
+          "mean_iterations": 39.4,
+          "mean_posterior_entropy_bits": 0.04609976478575573,
+          "elapsed_seconds_sum": 2.3518337319546845
+        },
+        "supplied_perfect_csi": {
+          "errors": 11,
+          "bits": 30600,
+          "BER": 0.0003594771241830065,
+          "BER_frame_bootstrap_CI95": [
+            9.80392156862745e-05,
+            0.000718954248366013
+          ],
+          "frame_errors": 6,
+          "frames": 120,
+          "FER": 0.05,
+          "FER_ClopperPearson_CI95": [
+            0.018567586782669152,
+            0.10565385451871234
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.90833333333333,
+          "status_counts": {
+            "converged": 79,
+            "iteration_cap": 41
+          },
+          "mean_iterations": 33.75,
+          "mean_posterior_entropy_bits": 0.0008256705361740398,
+          "elapsed_seconds_sum": 1.8654553789820056
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__declared_correct__7db",
+      "normalization": "equal_total_frame",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 7.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.19952623149688797,
+      "gain_NMSE_ratio_of_sums": 0.02876641390833186,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.02646106991697281,
+        0.03144270969086651
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.0009477124183006536,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0015359477124183007,
+        -0.0003913398692810502
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 1200,
+          "bits": 30600,
+          "BER": 0.039215686274509796,
+          "BER_frame_bootstrap_CI95": [
+            0.031044934640522874,
+            0.04807516339869279
+          ],
+          "frame_errors": 103,
+          "frames": 120,
+          "FER": 0.8583333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.7828931017566235,
+            0.9152552705054843
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 245.0,
+          "status_counts": {
+            "iteration_cap": 99,
+            "converged": 21
+          },
+          "mean_iterations": 39.05,
+          "mean_posterior_entropy_bits": 0.1269858868113341,
+          "elapsed_seconds_sum": 1.9504053770069731
+        },
+        "ignored_uncertainty": {
+          "errors": 1229,
+          "bits": 30600,
+          "BER": 0.04016339869281046,
+          "BER_frame_bootstrap_CI95": [
+            0.03195833333333333,
+            0.04928104575163398
+          ],
+          "frame_errors": 106,
+          "frames": 120,
+          "FER": 0.8833333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.8120049096131917,
+            0.9347278494900573
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 244.75833333333333,
+          "status_counts": {
+            "iteration_cap": 104,
+            "converged": 16
+          },
+          "mean_iterations": 39.21666666666667,
+          "mean_posterior_entropy_bits": 0.11455354506440892,
+          "elapsed_seconds_sum": 1.9663031290110666
+        },
+        "literal_operational": {
+          "errors": 2387,
+          "bits": 30600,
+          "BER": 0.07800653594771242,
+          "BER_frame_bootstrap_CI95": [
+            0.06839460784313724,
+            0.08813807189542482
+          ],
+          "frame_errors": 118,
+          "frames": 120,
+          "FER": 0.9833333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.9410907805329731,
+            0.9979751776623069
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 235.10833333333335,
+          "status_counts": {
+            "iteration_cap": 101,
+            "converged": 19
+          },
+          "mean_iterations": 39.34166666666667,
+          "mean_posterior_entropy_bits": 0.1565453674386335,
+          "elapsed_seconds_sum": 2.1580483490251936
+        },
+        "supplied_perfect_csi": {
+          "errors": 980,
+          "bits": 30600,
+          "BER": 0.03202614379084967,
+          "BER_frame_bootstrap_CI95": [
+            0.024444444444444446,
+            0.04013235294117646
+          ],
+          "frame_errors": 91,
+          "frames": 120,
+          "FER": 0.7583333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.6717076791269851,
+            0.8317914398019389
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 246.83333333333334,
+          "status_counts": {
+            "iteration_cap": 98,
+            "converged": 22
+          },
+          "mean_iterations": 38.475,
+          "mean_posterior_entropy_bits": 0.10280478970925276,
+          "elapsed_seconds_sum": 1.9348982580268057
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__declared_correct__11db",
+      "normalization": "equal_total_frame",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 11.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.07943282347242814,
+      "gain_NMSE_ratio_of_sums": 0.023647655348512972,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.02211886306346779,
+        0.02537500619906676
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.0016993464052287581,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0023856209150326796,
+        -0.001045751633986928
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 321,
+          "bits": 30600,
+          "BER": 0.010490196078431373,
+          "BER_frame_bootstrap_CI95": [
+            0.006830065359477124,
+            0.01460866013071895
+          ],
+          "frame_errors": 58,
+          "frames": 120,
+          "FER": 0.48333333333333334,
+          "FER_ClopperPearson_CI95": [
+            0.39117225621934054,
+            0.5763363451672925
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 252.325,
+          "status_counts": {
+            "iteration_cap": 91,
+            "converged": 29
+          },
+          "mean_iterations": 38.875,
+          "mean_posterior_entropy_bits": 0.03360857360199394,
+          "elapsed_seconds_sum": 1.9544629711017478
+        },
+        "ignored_uncertainty": {
+          "errors": 373,
+          "bits": 30600,
+          "BER": 0.01218954248366013,
+          "BER_frame_bootstrap_CI95": [
+            0.008562091503267973,
+            0.016437908496732025
+          ],
+          "frame_errors": 76,
+          "frames": 120,
+          "FER": 0.6333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.5405001010775285,
+            0.7194175923349626
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 251.89166666666668,
+          "status_counts": {
+            "iteration_cap": 96,
+            "converged": 24
+          },
+          "mean_iterations": 38.93333333333333,
+          "mean_posterior_entropy_bits": 0.026320761202364113,
+          "elapsed_seconds_sum": 1.961908713929006
+        },
+        "literal_operational": {
+          "errors": 1627,
+          "bits": 30600,
+          "BER": 0.05316993464052288,
+          "BER_frame_bootstrap_CI95": [
+            0.04477124183006535,
+            0.062321078431372544
+          ],
+          "frame_errors": 110,
+          "frames": 120,
+          "FER": 0.9166666666666666,
+          "FER_ClopperPearson_CI95": [
+            0.8520845706626649,
+            0.9593138711319835
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 241.44166666666666,
+          "status_counts": {
+            "iteration_cap": 104,
+            "converged": 16
+          },
+          "mean_iterations": 39.19166666666667,
+          "mean_posterior_entropy_bits": 0.06924177772935666,
+          "elapsed_seconds_sum": 2.1658667919255095
+        },
+        "supplied_perfect_csi": {
+          "errors": 211,
+          "bits": 30600,
+          "BER": 0.006895424836601307,
+          "BER_frame_bootstrap_CI95": [
+            0.004052287581699347,
+            0.010196078431372548
+          ],
+          "frame_errors": 34,
+          "frames": 120,
+          "FER": 0.2833333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.2048556678635227,
+            0.37282053842171126
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 253.24166666666667,
+          "status_counts": {
+            "iteration_cap": 75,
+            "converged": 45
+          },
+          "mean_iterations": 37.333333333333336,
+          "mean_posterior_entropy_bits": 0.020269121949469945,
+          "elapsed_seconds_sum": 1.9055494620552054
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__declared_correct__15db",
+      "normalization": "equal_total_frame",
+      "support_condition": "declared_correct",
+      "nominal_snr_db": 15.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.03162277660168379,
+      "gain_NMSE_ratio_of_sums": 0.02164196220904805,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.020339475550345654,
+        0.022983427882983506
+      ],
+      "gain_NMSE_warning": null,
+      "paired_repaired_minus_ignored_BER": -0.0017973856209150328,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0024836601307189543,
+        -0.0012091503267973856
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 84,
+          "bits": 30600,
+          "BER": 0.0027450980392156863,
+          "BER_frame_bootstrap_CI95": [
+            0.001568627450980392,
+            0.004313725490196078
+          ],
+          "frame_errors": 36,
+          "frames": 120,
+          "FER": 0.3,
+          "FER_ClopperPearson_CI95": [
+            0.21975649924052335,
+            0.3903961094221384
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.3,
+          "status_counts": {
+            "converged": 54,
+            "iteration_cap": 66
+          },
+          "mean_iterations": 37.958333333333336,
+          "mean_posterior_entropy_bits": 0.007371347026918014,
+          "elapsed_seconds_sum": 1.8991820190276485
+        },
+        "ignored_uncertainty": {
+          "errors": 139,
+          "bits": 30600,
+          "BER": 0.004542483660130719,
+          "BER_frame_bootstrap_CI95": [
+            0.003137254901960784,
+            0.006405228758169934
+          ],
+          "frame_errors": 59,
+          "frames": 120,
+          "FER": 0.49166666666666664,
+          "FER_ClopperPearson_CI95": [
+            0.39925858253840957,
+            0.5844957086346798
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 253.84166666666667,
+          "status_counts": {
+            "converged": 44,
+            "iteration_cap": 76
+          },
+          "mean_iterations": 37.916666666666664,
+          "mean_posterior_entropy_bits": 0.0040853356962959175,
+          "elapsed_seconds_sum": 1.9557889340358088
+        },
+        "literal_operational": {
+          "errors": 1319,
+          "bits": 30600,
+          "BER": 0.04310457516339869,
+          "BER_frame_bootstrap_CI95": [
+            0.035555555555555556,
+            0.051668300653594755
+          ],
+          "frame_errors": 108,
+          "frames": 120,
+          "FER": 0.9,
+          "FER_ClopperPearson_CI95": [
+            0.8318347872973342,
+            0.9472522136099402
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 244.00833333333333,
+          "status_counts": {
+            "iteration_cap": 95,
+            "converged": 25
+          },
+          "mean_iterations": 38.85,
+          "mean_posterior_entropy_bits": 0.037605608625208016,
+          "elapsed_seconds_sum": 2.1649774188990705
+        },
+        "supplied_perfect_csi": {
+          "errors": 24,
+          "bits": 30600,
+          "BER": 0.000784313725490196,
+          "BER_frame_bootstrap_CI95": [
+            0.000326797385620915,
+            0.0013398692810457516
+          ],
+          "frame_errors": 10,
+          "frames": 120,
+          "FER": 0.08333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.04068612886801647,
+            0.14791542933733515
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.8,
+          "status_counts": {
+            "converged": 72,
+            "iteration_cap": 48
+          },
+          "mean_iterations": 34.525,
+          "mean_posterior_entropy_bits": 0.0021373959180698266,
+          "elapsed_seconds_sum": 1.7163479559967527
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__one_bin_predicted_mismatch__7db",
+      "normalization": "equal_total_frame",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 7.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.19952623149688797,
+      "gain_NMSE_ratio_of_sums": 0.12059514012436327,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.10283751359722186,
+        0.14097873930607102
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.0006209150326797386,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0013398692810457516,
+        3.26797385620915e-05
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 2059,
+          "bits": 30600,
+          "BER": 0.0672875816993464,
+          "BER_frame_bootstrap_CI95": [
+            0.055098039215686276,
+            0.08130800653594772
+          ],
+          "frame_errors": 114,
+          "frames": 120,
+          "FER": 0.95,
+          "FER_ClopperPearson_CI95": [
+            0.8943461454812877,
+            0.9814324132173309
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 237.84166666666667,
+          "status_counts": {
+            "iteration_cap": 83,
+            "converged": 37
+          },
+          "mean_iterations": 37.93333333333333,
+          "mean_posterior_entropy_bits": 0.15964046533662785,
+          "elapsed_seconds_sum": 1.8714560538937803
+        },
+        "ignored_uncertainty": {
+          "errors": 2078,
+          "bits": 30600,
+          "BER": 0.06790849673202613,
+          "BER_frame_bootstrap_CI95": [
+            0.055816993464052285,
+            0.08170261437908495
+          ],
+          "frame_errors": 113,
+          "frames": 120,
+          "FER": 0.9416666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.8835016203543854,
+            0.9762279762094809
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 237.68333333333334,
+          "status_counts": {
+            "iteration_cap": 90,
+            "converged": 30
+          },
+          "mean_iterations": 38.175,
+          "mean_posterior_entropy_bits": 0.14515128009836478,
+          "elapsed_seconds_sum": 1.8576755399262765
+        },
+        "literal_operational": {
+          "errors": 2634,
+          "bits": 30600,
+          "BER": 0.08607843137254902,
+          "BER_frame_bootstrap_CI95": [
+            0.07336356209150326,
+            0.09950980392156863
+          ],
+          "frame_errors": 117,
+          "frames": 120,
+          "FER": 0.975,
+          "FER_ClopperPearson_CI95": [
+            0.928676805843095,
+            0.9948144250416786
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 233.05,
+          "status_counts": {
+            "iteration_cap": 94,
+            "converged": 26
+          },
+          "mean_iterations": 38.50833333333333,
+          "mean_posterior_entropy_bits": 0.17630785192813098,
+          "elapsed_seconds_sum": 2.0685506250010803
+        },
+        "supplied_perfect_csi": {
+          "errors": 980,
+          "bits": 30600,
+          "BER": 0.03202614379084967,
+          "BER_frame_bootstrap_CI95": [
+            0.024444444444444446,
+            0.04013235294117646
+          ],
+          "frame_errors": 91,
+          "frames": 120,
+          "FER": 0.7583333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.6717076791269851,
+            0.8317914398019389
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 246.83333333333334,
+          "status_counts": {
+            "iteration_cap": 98,
+            "converged": 22
+          },
+          "mean_iterations": 38.475,
+          "mean_posterior_entropy_bits": 0.10280478970925276,
+          "elapsed_seconds_sum": 1.9059508259379072
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__one_bin_predicted_mismatch__11db",
+      "normalization": "equal_total_frame",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 11.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.07943282347242814,
+      "gain_NMSE_ratio_of_sums": 0.11517514803958205,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.09788163012246437,
+        0.13469984950424602
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.001568627450980392,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.002352941176470588,
+        -0.000784313725490196
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 1052,
+          "bits": 30600,
+          "BER": 0.034379084967320256,
+          "BER_frame_bootstrap_CI95": [
+            0.025488562091503266,
+            0.04520016339869279
+          ],
+          "frame_errors": 101,
+          "frames": 120,
+          "FER": 0.8416666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.7638364439717876,
+            0.9018977052594082
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 246.23333333333332,
+          "status_counts": {
+            "iteration_cap": 95,
+            "converged": 25
+          },
+          "mean_iterations": 38.68333333333333,
+          "mean_posterior_entropy_bits": 0.06163275724333162,
+          "elapsed_seconds_sum": 1.8087228309595957
+        },
+        "ignored_uncertainty": {
+          "errors": 1100,
+          "bits": 30600,
+          "BER": 0.035947712418300644,
+          "BER_frame_bootstrap_CI95": [
+            0.026895424836601303,
+            0.046994281045751624
+          ],
+          "frame_errors": 101,
+          "frames": 120,
+          "FER": 0.8416666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.7638364439717876,
+            0.9018977052594082
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 245.83333333333334,
+          "status_counts": {
+            "iteration_cap": 98,
+            "converged": 22
+          },
+          "mean_iterations": 38.88333333333333,
+          "mean_posterior_entropy_bits": 0.05030989360530767,
+          "elapsed_seconds_sum": 1.822812726997654
+        },
+        "literal_operational": {
+          "errors": 1840,
+          "bits": 30600,
+          "BER": 0.06013071895424836,
+          "BER_frame_bootstrap_CI95": [
+            0.048821078431372546,
+            0.07183006535947713
+          ],
+          "frame_errors": 108,
+          "frames": 120,
+          "FER": 0.9,
+          "FER_ClopperPearson_CI95": [
+            0.8318347872973342,
+            0.9472522136099402
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 239.66666666666666,
+          "status_counts": {
+            "iteration_cap": 98,
+            "converged": 22
+          },
+          "mean_iterations": 39.05833333333333,
+          "mean_posterior_entropy_bits": 0.0834058783819439,
+          "elapsed_seconds_sum": 2.0011354239541106
+        },
+        "supplied_perfect_csi": {
+          "errors": 211,
+          "bits": 30600,
+          "BER": 0.006895424836601307,
+          "BER_frame_bootstrap_CI95": [
+            0.004052287581699347,
+            0.010196078431372548
+          ],
+          "frame_errors": 34,
+          "frames": 120,
+          "FER": 0.2833333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.2048556678635227,
+            0.37282053842171126
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 253.24166666666667,
+          "status_counts": {
+            "iteration_cap": 75,
+            "converged": 45
+          },
+          "mean_iterations": 37.333333333333336,
+          "mean_posterior_entropy_bits": 0.020269121949469945,
+          "elapsed_seconds_sum": 1.761657310911687
+        }
+      }
+    },
+    {
+      "condition": "equal_total_frame__one_bin_predicted_mismatch__15db",
+      "normalization": "equal_total_frame",
+      "support_condition": "one_bin_predicted_mismatch",
+      "nominal_snr_db": 15.0,
+      "data_symbol_energy": 0.7211267605633803,
+      "pilot_energy": 72.11267605633803,
+      "total_frame_energy": 256.0,
+      "data_count": 255,
+      "pilot_count": 1,
+      "guard_count": 0,
+      "N0": 0.03162277660168379,
+      "gain_NMSE_ratio_of_sums": 0.112987056948369,
+      "gain_NMSE_CI95_ratio_of_sums": [
+        0.09615675717416629,
+        0.13244065093872162
+      ],
+      "gain_NMSE_warning": "under mismatch, includes assigned missing/wrong-support bias",
+      "paired_repaired_minus_ignored_BER": -0.0017320261437908495,
+      "paired_delta_frame_bootstrap_CI95": [
+        -0.0027459150326797385,
+        -0.0006862745098039216
+      ],
+      "receivers": {
+        "moment_repaired": {
+          "errors": 654,
+          "bits": 30600,
+          "BER": 0.02137254901960784,
+          "BER_frame_bootstrap_CI95": [
+            0.014019607843137253,
+            0.03078431372549019
+          ],
+          "frame_errors": 90,
+          "frames": 120,
+          "FER": 0.75,
+          "FER_ClopperPearson_CI95": [
+            0.662730783708004,
+            0.8245353809699434
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 249.55,
+          "status_counts": {
+            "iteration_cap": 93,
+            "converged": 27
+          },
+          "mean_iterations": 38.891666666666666,
+          "mean_posterior_entropy_bits": 0.025487451695176352,
+          "elapsed_seconds_sum": 1.8307374460418941
+        },
+        "ignored_uncertainty": {
+          "errors": 707,
+          "bits": 30600,
+          "BER": 0.023104575163398693,
+          "BER_frame_bootstrap_CI95": [
+            0.015751633986928103,
+            0.03261601307189542
+          ],
+          "frame_errors": 90,
+          "frames": 120,
+          "FER": 0.75,
+          "FER_ClopperPearson_CI95": [
+            0.662730783708004,
+            0.8245353809699434
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 249.10833333333332,
+          "status_counts": {
+            "iteration_cap": 94,
+            "converged": 26
+          },
+          "mean_iterations": 38.93333333333333,
+          "mean_posterior_entropy_bits": 0.01615332834103016,
+          "elapsed_seconds_sum": 1.847215597066679
+        },
+        "literal_operational": {
+          "errors": 1479,
+          "bits": 30600,
+          "BER": 0.048333333333333325,
+          "BER_frame_bootstrap_CI95": [
+            0.038267156862745094,
+            0.05931535947712417
+          ],
+          "frame_errors": 107,
+          "frames": 120,
+          "FER": 0.8916666666666667,
+          "FER_ClopperPearson_CI95": [
+            0.8218725616110573,
+            0.941041693770915
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 242.675,
+          "status_counts": {
+            "iteration_cap": 102,
+            "converged": 18
+          },
+          "mean_iterations": 39.21666666666667,
+          "mean_posterior_entropy_bits": 0.04943981180071973,
+          "elapsed_seconds_sum": 2.032727868092479
+        },
+        "supplied_perfect_csi": {
+          "errors": 24,
+          "bits": 30600,
+          "BER": 0.000784313725490196,
+          "BER_frame_bootstrap_CI95": [
+            0.000326797385620915,
+            0.0013398692810457516
+          ],
+          "frame_errors": 10,
+          "frames": 120,
+          "FER": 0.08333333333333333,
+          "FER_ClopperPearson_CI95": [
+            0.04068612886801647,
+            0.14791542933733515
+          ],
+          "zero_error_one_sided_95_upper_frame_bound": null,
+          "mean_correct_payload_bits_per_frame": 254.8,
+          "status_counts": {
+            "converged": 72,
+            "iteration_cap": 48
+          },
+          "mean_iterations": 34.525,
+          "mean_posterior_entropy_bits": 0.0021373959180698266,
+          "elapsed_seconds_sum": 1.6395381131005706
+        }
+      }
+    }
+  ],
+  "precision_limits": "120 shared independent frame draws; 12 conditions are not independent replicates. No multiple-comparison correction; CIs are per-condition descriptive, not universal improvement evidence. Failure frames retained conservatively. Cap frames decoded and counted."
+}

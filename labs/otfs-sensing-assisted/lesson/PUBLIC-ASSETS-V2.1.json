@@ -1,0 +1,309 @@
+{
+  "schema": "sensing-otfs-lesson-public-assets-v2.1",
+  "preservedBaseManifests": [
+    "PUBLIC-ASSETS.json",
+    "PUBLIC-ASSETS-V2.json"
+  ],
+  "samePaperId": "otfs-sensing-assisted-2021",
+  "runtimeModified": false,
+  "supersedingFiles": [
+    "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+    "labs/otfs-sensing-assisted/lesson/tests/boundary-v2.test.mjs"
+  ],
+  "newMappings": [
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json",
+      "public": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS-V2.1.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS-V2.1.json",
+      "public": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS-V2.1.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS-V2.1.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS-V2.1.json",
+      "public": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS-V2.1.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/REPAIR-V2.1.md",
+      "legacy": "labs/otfs-sensing-assisted/lesson/REPAIR-V2.1.md",
+      "public": "labs/otfs-sensing-assisted/lesson/REPAIR-V2.1.md",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/before/FRACTIONAL-ROW-REPRO.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/before/FRACTIONAL-ROW-REPRO.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/before/FRACTIONAL-ROW-REPRO.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/boundary-downloads.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/boundary-downloads.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/boundary-downloads.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/download-check.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/download-check.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/download-check.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/BOUNDARY-MANIFEST.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/BOUNDARY-MANIFEST.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/BOUNDARY-MANIFEST.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/INDEPENDENT-SUMMARY.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/INDEPENDENT-SUMMARY.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/INDEPENDENT-SUMMARY.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/MANIFEST.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/MANIFEST.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/MANIFEST.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-display.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-display.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-display.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-display.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-display.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-display.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-display.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-display.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-display.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-independent.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-independent.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-independent.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-teaching.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-teaching.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-teaching.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero.json",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero.json",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero.json",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/lesson-tests.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/lesson-tests.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/lesson-tests.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/production-downloads.log",
+      "legacy": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/production-downloads.log",
+      "public": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/production-downloads.log",
+      "owner": "labs/otfs-sensing-assisted",
+      "role": "source"
+    }
+  ]
+}

@@ -27,6 +27,157 @@ function fields(x,expected,label){if(!x||typeof x!=='object'||Array.isArray(x)||
 const factory="export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}";
 const solverLoop="for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])await import(`../vendor/solver/${name}.js`)";
 const reviewedProfiles=new Map([
+ // Exact source-bound sensing-assisted OTFS ESM, including seven .js modules.
+[
+  "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+  {
+    "sha256": "d32b392228318a872193076556bdba8979c0185f361e8a4a427182a129507af6",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+  {
+    "sha256": "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+  {
+    "sha256": "3558bfafaef4ba90231e2c4be3a7d47c8401d659363c3f596a62ee368f7a1194",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/lesson/record.mjs",
+  {
+    "sha256": "9114d8f9e7d891db68cde4d867d2ca73d8d662bc23a1e27c5b8795b16226f28b",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/lesson/session.mjs",
+  {
+    "sha256": "1cf1ff661c504a5443110b88c158076521f5e07e72c5e1c5a2b5e05f879a3879",
+    "runtimePolicy": "reviewed-factory-endpoints",
+    "sourceLiterals": [
+      "this.workerFactory=workerFactory??(url=>new Worker(url,{type:'module'}))"
+    ],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "../runtime/worker/receiver-worker.js",
+        "literal": "new URL('../runtime/worker/receiver-worker.js',import.meta.url)"
+      }
+    ]
+  }
+],
+[
+  "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+  {
+    "sha256": "62e15ebfe822951ad9a4df49b5ef07c037ad34eab33f32a7f2b5cf74d60bf472",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/js/codec.js",
+  {
+    "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b",
+    "runtimePolicy": "reviewed-sensing-otfs-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": [
+      {
+        "kind": "node-builtin",
+        "url": "node:crypto",
+        "literal": "globalThis.crypto?.subtle??(await import('node:crypto')).webcrypto.subtle"
+      }
+    ]
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+  {
+    "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+  {
+    "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/js/validation.js",
+  {
+    "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/worker/client.js",
+  {
+    "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+  {
+    "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+  {
+    "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5",
+    "runtimePolicy": "reviewed-sensing-otfs-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-sensing-otfs-module",
+    "runtimeEdges": [
+      {
+        "kind": "node-builtin",
+        "url": "node:worker_threads",
+        "literal": "const port=node?(await import('node:worker_threads')).parentPort:null;"
+      }
+    ]
+  }
+],
  // Exact source-bound multi-target lesson and audited v2 solver.
 [
   "labs/nearfield-multitarget/lesson/adapter.mjs",
@@ -619,8 +770,108 @@ const multitargetPublicFiles=new Map([
     "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106"
   ]
 ]);
+const sensingOtfsPublicFiles=new Map([
+  [
+    "labs/otfs-sensing-assisted/lesson/README.md",
+    "0f8894528611e86db462f6a1a20bed567445aa02e150749806e19d25ecf40892"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+    "d32b392228318a872193076556bdba8979c0185f361e8a4a427182a129507af6"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/lesson.css",
+    "7a464c20a0d6dc9876cd83f0c1a8f9f11c033802a5a39d866554aae99e5266d5"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+    "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+    "3558bfafaef4ba90231e2c4be3a7d47c8401d659363c3f596a62ee368f7a1194"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/record.mjs",
+    "9114d8f9e7d891db68cde4d867d2ca73d8d662bc23a1e27c5b8795b16226f28b"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/session.mjs",
+    "1cf1ff661c504a5443110b88c158076521f5e07e72c5e1c5a2b5e05f879a3879"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+    "c0315b3722073dddfede9ccdaecdae3629e40710983d4d88310313fa257ef321"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+    "62e15ebfe822951ad9a4df49b5ef07c037ad34eab33f32a7f2b5cf74d60bf472"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/js/codec.js",
+    "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+    "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+    "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/js/validation.js",
+    "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/package.json",
+    "cb1f28255cca749d4608c19ed02d0898d93133a250c58c1cb396cf3b68ec8975"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/worker/client.js",
+    "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+    "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+  ],
+  [
+    "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+    "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+    "dd1f7235bab149c1fb160ece6270e40b62a0c6f0c9ddd6afbe1f14a80e01f620"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json",
+    "f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.json",
+    "479ede7c7c61dbc08497f71693c812068802f7cb5bd135599ab41cfb20300125"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/REPAIR-V2.1.md",
+    "4d5bc09986d0827121c35620d614b506924bbd6c5ee5edc08003a348d384995e"
+  ],
+  [
+    "labs/otfs-sensing-assisted/lesson/REPAIR-V2.md",
+    "bfecfd34716426d28be52184cd3b8dc808a58156a06e2bbcd2ba655f28811963"
+  ]
+]);
+const sensingOtfsJsModules=new Set([
+  "labs/otfs-sensing-assisted/runtime/js/codec.js",
+  "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+  "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+  "labs/otfs-sensing-assisted/runtime/js/validation.js",
+  "labs/otfs-sensing-assisted/runtime/worker/client.js",
+  "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+  "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js"
+]);
+const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
-const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime']);
+const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);
  if(c.runtimeEdges.length!==profile.runtimeEdges.length)throw Error('Reviewed runtime endpoint set mismatch: '+file);
@@ -637,7 +888,7 @@ function moduleDependencies(modules,contract,identities){
  const declared=new Map(),actual=new Map();
  for(const c of contract.modules){
   fields(c,['public','sha256','runtimeEdges','runtimePolicy','unverifiedInputs'],'module contract entry');
-  if(typeof c.public!=='string'||!c.public.endsWith('.mjs')||declared.has(c.public)||!/^[a-f0-9]{64}$/.test(c.sha256)||!Array.isArray(c.runtimeEdges))throw Error('Invalid or duplicate module contract entry');
+  if(typeof c.public!=='string'||!isModuleFile(c.public)||declared.has(c.public)||!/^[a-f0-9]{64}$/.test(c.sha256)||!Array.isArray(c.runtimeEdges))throw Error('Invalid or duplicate module contract entry');
   const hasRuntimeEdges=c.runtimePolicy==='literal-workers'||reviewedPolicies.has(c.runtimePolicy);
   if(!['literal-workers','no-runtime-loads','command-line-inputs-unverified',...reviewedPolicies].includes(c.runtimePolicy)||!Array.isArray(c.unverifiedInputs)||c.unverifiedInputs.some(x=>typeof x!=='string'||!x)||(hasRuntimeEdges!==(c.runtimeEdges.length>0))||((c.runtimePolicy==='command-line-inputs-unverified')!==(c.unverifiedInputs.length>0)))throw Error('Invalid module runtime boundary');
   const expectedPath=reviewedHashPaths.get(c.sha256);
@@ -654,6 +905,7 @@ function moduleDependencies(modules,contract,identities){
   if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');
   if(identity.file.startsWith('labs/cellfree-maprt/')&&cellfreePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Cell-Free public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);
+  if(identity.file.startsWith('labs/otfs-sensing-assisted/')&&sensingOtfsPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed sensing-assisted OTFS public path or hash: '+identity.file);
   const expectedPath=reviewedHashPaths.get(identity.sha256);
   if(expectedPath&&identity.file!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+identity.file);
   seenIdentities.set(identity.file,identity.sha256);
@@ -672,4 +924,4 @@ function moduleDependencies(modules,contract,identities){
  for(const {file,specifiers}of staticModuleDependencies(modules))for(const url of specifiers)edges.push({from:file,url,kind:'static-module'});
  return edges;
 }
-module.exports={staticModuleDependencies,moduleDependencies};
+module.exports={staticModuleDependencies,moduleDependencies,isModuleFile};
