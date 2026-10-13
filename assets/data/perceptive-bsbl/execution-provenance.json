@@ -1,0 +1,10 @@
+{
+  "recorded_at": "retrospectively after complete independent audit; original runner did not create a run-start record",
+  "retrospective": true,
+  "execution_core_file": "reference-executed-v1.py",
+  "execution_core_sha256": "c650d3c2fccae4a5138fbbc710261a8aafda9b8d8aabb90d917395422841aed7",
+  "execution_runner_file": "experiments-executed-v1.py",
+  "execution_runner_sha256": "d10e1c40bec52e94f2ec851289271e4017f89d3da45170cc34317edcf5e09a7d",
+  "plan_sha256": "08b71d148def86b195a75fee41b1fb7089ee8ab964bb678c18909d0cd7dab679",
+  "evidence": "Execution core hash and runner hash independently bound by INDEPENDENT-ACCEPTANCE.md; exact executed files preserved. Existing numerical/runtime outputs left untouched."
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "sensing-otfs-parity-boundary-evidence-v1",
+  "scientificParityGate": "FAILED_UNCHANGED",
+  "evidenceKind": "precomputed native records and prior offline diagnostic summary; expected-rejection regression is separately runnable",
+  "sourceDeployment": {
+    "commit": "14a6e1851630935e89c58de9ac200acf9b844738",
+    "tree": "806bead153aafad6b43d00e52432abf3802283a5",
+    "pullRequest": "https://github.com/LoonyReina/ISAC/pull/90"
+  },
+  "immutableDependencies": [
+    {
+      "file": "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+      "sha256": "c0315b3722073dddfede9ccdaecdae3629e40710983d4d88310313fa257ef321"
+    },
+    {
+      "file": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/reference.py",
+      "sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+    }
+  ],
+  "files": [
+    {
+      "file": "PRECOMPUTED.json",
+      "bytes": 20669,
+      "sha256": "38f6339fdfe65a30d780e87c9d29ebfc5e0c3f80974902f36ae1a5c89b567932"
+    },
+    {
+      "file": "REPORT.md",
+      "bytes": 8898,
+      "sha256": "5dd68d705f04b9b99a018476ea0a37b511ccec28577d413e5ce05bd91509544c"
+    },
+    {
+      "file": "accepted-checker-output.json",
+      "bytes": 1013,
+      "sha256": "d80b5d8dac11b8636b71bb72f65beb8a7d00e7705b7361b98e448ad435907619"
+    },
+    {
+      "file": "accepted-control.json",
+      "bytes": 457615,
+      "sha256": "f51707c85e0b98f12a40a81091f35b9705670e6f639b501f35774b9abd6628d0"
+    },
+    {
+      "file": "check-boundary.py",
+      "bytes": 13104,
+      "sha256": "b0bfc01c1d9b572ecc535fa6072d5737571e104a50730eb72b5b0234cefff2c8"
+    },
+    {
+      "file": "native-original-self-check.json",
+      "bytes": 2889,
+      "sha256": "1f4c07007431f1f9b8110f632aa01251253e5d2191d7d99eeccaf75cca3ac25f"
+    },
+    {
+      "file": "native-original.json",
+      "bytes": 431403,
+      "sha256": "da5942c27a0b7420501b73be6e2c1de369860933d405df2a333e790762b10e2e"
+    },
+    {
+      "file": "native-rerun-self-check.json",
+      "bytes": 3046,
+      "sha256": "90326d1f6a9156596d2528d078856167c3aaf8c20c6408d83127d0c587afa855"
+    },
+    {
+      "file": "native-rerun.json",
+      "bytes": 431425,
+      "sha256": "34c3334b56543638ce26fb8befb0fef13cb1b410056a5f377da039f60561e4f4"
+    },
+    {
+      "file": "original-checker-output.json",
+      "bytes": 817,
+      "sha256": "323814a2c27a052fa6e6a31a80cfe5e714821436338a7d13925e67e3a8bf0ee3"
+    },
+    {
+      "file": "rerun-checker-output.json",
+      "bytes": 818,
+      "sha256": "8b86be5c058f7b4ee76b038f820019ec61a8465ebf1705191f331570696b08f8"
+    }
+  ]
+}

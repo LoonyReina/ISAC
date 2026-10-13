@@ -230,7 +230,7 @@ test('DOM disclosure toggles and native links add no history; restored templates
 
 test('estimation starts with common observations and retains the scoped advanced LS route',()=>{
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='estimation'),advanced=registry.units.find(u=>u.id==='estimator-crb');
- a.equal(n.entryUnitRef,'shared');a.deepEqual(n.unitRefs,['shared','estimator-crb','offgrid-range']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
+ a.equal(n.entryUnitRef,'shared');a.deepEqual(require('./helpers/perceptive-bsbl-preservation.cjs').withoutRegistry(registry).knowledgeMap.nodes.find(x=>x.id===n.id).unitRefs,['shared','estimator-crb','offgrid-range']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
  const h=template(render(registry),n.id),beginner=parse(h).querySelector('.map-beginner');a.equal(beginner.querySelector('a').attrs.href,'theory.html#shared-model');a.ok(h.includes('href="'+advanced.href+'"'));
  const d=registry.directions.find(d=>d.id==='receiver'),item=d.levels.find(l=>l.id==='experiment').items.find(i=>i.href===advanced.href);
  a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(registry).directions.find(x=>x.id===d.id).coverage,/离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(registry).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);

@@ -400,7 +400,7 @@ test('all nine metrics, endorsements and social snapshots are deeply equal and o
  const shared=preserved.cards.find(c=>c.id==='mu_mimo');shared.caseId=null;shared.readingPlan='计划深读：同一阵列预算下的分离与共享；本站交互尚未实现。';
  // Every other card field, directory field, timestamp, title, source URL and influence claim stays byte-equivalent after JSON parsing.
  a.equal(hash(preserved),'1a98b4a214b9be08e69a0a8087d6117018887e34bee20a04657bf10d656398ca');
- const actual=data.cards.find(c=>c.id==='perceptive');a.equal(actual.caseId,c.id);a.equal(actual.groupId,'signals-networks');
+ const actual=require('./helpers/perceptive-bsbl-preservation.cjs').withoutCatalog(data).cards.find(c=>c.id==='perceptive');a.equal(actual.caseId,c.id);a.equal(actual.groupId,'signals-networks');
  a.match(actual.readingPlan,/独立单系数机制/);a.match(actual.readingPlan,/没有实现完整网络组织、稀疏多径恢复或论文图11\/12/);
  a.equal(data.cards.length,9);a.equal(new Set(data.cards.map(c=>c.doi)).size,9);a.equal(data.cards.filter(c=>c.caseId).length,8);a.equal(data.cards.filter(c=>!c.caseId).length,1);
  a.equal(actual.metrics.snapshotDate,'2026-10-10');a.equal(actual.metrics.openAlex.comparable,false);a.equal(actual.metrics.openAlex.count,1);a.equal(actual.metrics.openAlex.alternateRecord.count,295);a.equal(actual.metrics.semanticScholar.count,295);
@@ -440,7 +440,7 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
 });
 
 test('the perceptive paper card is usable while the unavailable DeepSense card and the split-record warning remain honest',()=>{
- const html=read('reading.html'),card=article(html,'paper-perceptive');a.ok(card.includes('href="'+c.learningEntry+'"'));a.match(card,/独立机制模型，非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
+ const html=read('reading.html'),card=article(html,'paper-perceptive');a.ok(card.includes('href="perceptive-bsbl.html#question"'));a.match(card,/算法核心已数值验证；非完整论文复现/);a.doesNotMatch(card,/教学案例准备中|深度交互尚未实现/);
  a.match(html,/深度交互已接入：8 \/ 9 篇/);a.equal((html.match(/class="influence-card"/g)||[]).length,9);
  a.match(card,/DOI 拆分记录，不可比/);a.match(card,/仓储记录 295 次/);a.match(card,/未逐条去重，不能相加/);a.match(card,/排除OpenAlex引用排名/);a.match(card,/记录拆分，未给出可比计数/);
  const pending=data.cards.filter(c=>!c.caseId);a.deepEqual(pending.map(c=>c.id),['deepsense']);

@@ -1,0 +1,31 @@
+{
+  "schema": "perceptive-bsbl-reference-freeze-v1",
+  "date_utc": "2026-10-13",
+  "status": "independently-accepted-bounded-offline-reference",
+  "core_sha256": "2a78defdf9f01ad7af14e7cd16b48d20b89137292abf471d12eaeacf604c5c70",
+  "execution_core_sha256": "c650d3c2fccae4a5138fbbc710261a8aafda9b8d8aabb90d917395422841aed7",
+  "runner_sha256": "5b077b957d3f690cb02bf5d464e530dc3026d36bbbf70d351b76edbb6246ad48",
+  "execution_runner_sha256": "d10e1c40bec52e94f2ec851289271e4017f89d3da45170cc34317edcf5e09a7d",
+  "plan_sha256": "08b71d148def86b195a75fee41b1fb7089ee8ab964bb678c18909d0cd7dab679",
+  "report_sha256": "bf49cbe2035a858400eff562f3859ba5de87079ccee834f88fb659da3ec200a3",
+  "independent_acceptance_sha256": "921f20bee47211c14507e9604cb42cc18cc5c8511ec385a66bdc9de52349759b",
+  "raw_fixture_count": 522,
+  "quantitative_method_record_count": 2400,
+  "independently_verified_accepted_actions": 83793,
+  "external_source_code_executed": false,
+  "external_source_payloads_included": false,
+  "remote_writes": false,
+  "browser_or_site_work": false,
+  "classification": "Justified model-consistent projected-FM interpretation + separately labelled single-log diagnostic + new bounded experiments",
+  "next_gates_unpassed": [
+    "browser port parity",
+    "live recomputation and imported-record replay",
+    "browser lifecycle",
+    "whole-site integration",
+    "deployment",
+    "Doppler",
+    "indirect channel recovery",
+    "matrix clutter",
+    "source-sized figures"
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "schema": "perceptive-bsbl-lesson-proposed-assets-v1",
+  "baseCommit": "dbb4ea052f179f6fe11afeccd0102c27422ed1d9",
+  "baseTree": "806bead153aafad6b43d00e52432abf3802283a5",
+  "paperId": "perceptive",
+  "registrationStatus": "separate integration required; this file does not change authoritative compatibility manifest",
+  "ownersToAdd": [
+    {
+      "id": "labs/perceptive-bsbl",
+      "directory": "labs/perceptive-bsbl",
+      "description": "Direct known-symbol Perceptive block-MMV teaching runtime and read-only lesson"
+    },
+    {
+      "id": "validators/perceptive-bsbl",
+      "directory": "scripts/validation/perceptive-bsbl",
+      "description": "Original frozen reference and independent portable download audit"
+    }
+  ],
+  "entries": [
+    {
+      "source": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "compatibility": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "public": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "1f8f6736ae81e1a39754223d90bf4e7d355764cf51c812572f6f195d64607629",
+      "bytes": 7845
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/API.md",
+      "compatibility": "assets/data/perceptive-bsbl/API.md",
+      "public": "assets/data/perceptive-bsbl/API.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "da138321c196a10f31b8d538c1f0471125a47329286bb5af04f87ca44aecaf99",
+      "bytes": 10174
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "compatibility": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "public": "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "08b71d148def86b195a75fee41b1fb7089ee8ab964bb678c18909d0cd7dab679",
+      "bytes": 4302
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "compatibility": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "public": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "921f20bee47211c14507e9604cb42cc18cc5c8511ec385a66bdc9de52349759b",
+      "bytes": 9699
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "compatibility": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "public": "assets/data/perceptive-bsbl/MANIFEST.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "7efb99af1382fe39adc8348e168d66b29f9d1ca13d232f076827e2f1e6e3d6fc",
+      "bytes": 16059
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "compatibility": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "public": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "ab28c2183d48194ad5576145a1d161662961eeb8fcfc275fd1551a15100e9bf4",
+      "bytes": 6564
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/REPORT.md",
+      "compatibility": "assets/data/perceptive-bsbl/REPORT.md",
+      "public": "assets/data/perceptive-bsbl/REPORT.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "bf49cbe2035a858400eff562f3859ba5de87079ccee834f88fb659da3ec200a3",
+      "bytes": 11763
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "compatibility": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "public": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "4ee990001696b08decce4b738f9bcf18b56dec25b187557ae50a188de8028d18",
+      "bytes": 8883
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "compatibility": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "public": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "5e28aa329ed305835b72bc62211803631cb41562ab33c3463add3108382d8965",
+      "bytes": 2985
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "compatibility": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "public": "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "a4544489ade22efaf8c24da5b2a4ebdf8773bed9d38434700f2b70080d0940ab",
+      "bytes": 29298
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/calibration.json",
+      "compatibility": "assets/data/perceptive-bsbl/calibration.json",
+      "public": "assets/data/perceptive-bsbl/calibration.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "bde43a8f8f1a6a57c94db79c98ed47ee51e5f66d6cf4095ebc51e652338f47ad",
+      "bytes": 26103
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "compatibility": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "public": "assets/data/perceptive-bsbl/execution-provenance.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "5c7cb3f77d943e3199d49c2c04340bafe9ea66e50f937326dce9d9af7606cc44",
+      "bytes": 721
+    },
+    {
+      "source": "assets/data/perceptive-bsbl/summary.json",
+      "compatibility": "assets/data/perceptive-bsbl/summary.json",
+      "public": "assets/data/perceptive-bsbl/summary.json",
+      "owner": "content/evidence-data",
+      "role": "source",
+      "sha256": "e1d90bd33a79cfef33bf29c53bee4112c1e12a877f0f008a6f204325eac46777",
+      "bytes": 68564
+    },
+    {
+      "source": "content/pages/perceptive-bsbl.html",
+      "compatibility": "perceptive-bsbl.html",
+      "public": "perceptive-bsbl.html",
+      "owner": "content/pages",
+      "role": "source",
+      "sha256": "170347477f883efa48370cbdc840f1e83a32c7356b17d7aab014a588f977c7d3",
+      "bytes": 29706
+    },
+    {
+      "source": "labs/perceptive-bsbl/OWNED-TESTS.json",
+      "compatibility": "labs/perceptive-bsbl/OWNED-TESTS.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "206fe59788315e5ab3de96deeb9bd76a2dd169535ad8f96ddbbfe5bbb1a090c6",
+      "bytes": 2349
+    },
+    {
+      "source": "labs/perceptive-bsbl/README.md",
+      "compatibility": "labs/perceptive-bsbl/README.md",
+      "public": "labs/perceptive-bsbl/README.md",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "3c9bdcf40dde3dd7a19a4414886f861a23f7397f58f31e57fbde910f9b9ad9f2",
+      "bytes": 5203
+    },
+    {
+      "source": "labs/perceptive-bsbl/check-worker.mjs",
+      "compatibility": "labs/perceptive-bsbl/check-worker.mjs",
+      "public": "labs/perceptive-bsbl/check-worker.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "7f39df950ee2008c70f25811968dc83eeee1a6473fc427c66ea3600323e728c4",
+      "bytes": 1822
+    },
+    {
+      "source": "labs/perceptive-bsbl/fixtures/v1-accepted-cap.json",
+      "compatibility": "labs/perceptive-bsbl/fixtures/v1-accepted-cap.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "5189ddbc7eeb876cf581474d10502e64a8c9c962d7923bd36987bd3d0dd49d28",
+      "bytes": 397863
+    },
+    {
+      "source": "labs/perceptive-bsbl/lesson.css",
+      "compatibility": "labs/perceptive-bsbl/lesson.css",
+      "public": "labs/perceptive-bsbl/lesson.css",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "88eb3b03c73cc35a3419387b64275f02db8728af6c46b57a6e410f8b46e04ecb",
+      "bytes": 4427
+    },
+    {
+      "source": "labs/perceptive-bsbl/lesson.mjs",
+      "compatibility": "labs/perceptive-bsbl/lesson.mjs",
+      "public": "labs/perceptive-bsbl/lesson.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "18de3f3d9ec7f740192661f87d73f1347019dcded5370804fbf4ced7c0619056",
+      "bytes": 29072
+    },
+    {
+      "source": "labs/perceptive-bsbl/plots.mjs",
+      "compatibility": "labs/perceptive-bsbl/plots.mjs",
+      "public": "labs/perceptive-bsbl/plots.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "dc5dffb8d1270303e528c3e2b14c91f7cd5596b543ba9c4a088081a6d3b97a93",
+      "bytes": 4661
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "public": "labs/perceptive-bsbl/runtime/budget.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "603f29be21da5753485d38db4187d81c2de9b699f956c119c71262a4da6e9491",
+      "bytes": 1103
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "public": "labs/perceptive-bsbl/runtime/build-info.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "fe5e5191d70c276b54e98a32d717ded791137441629e820e5c434bbeb9cceaa8",
+      "bytes": 1794
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "public": "labs/perceptive-bsbl/runtime/check-record.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "5ca5af74bf146c41f08f9e39f27f7fcba381d2093955365d42a7265ae40e2f78",
+      "bytes": 11565
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/client.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/client.mjs",
+      "public": "labs/perceptive-bsbl/runtime/client.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "e801bb6cdc43d3f41f67b0e44a4a9cfa231afec8ef81d7131e519d4d8ebb0746",
+      "bytes": 4813
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "public": "labs/perceptive-bsbl/runtime/complex.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "23c73626e904de547abe59108dc90a3dcb92c0ebbaf63a981fdf394c12cfb63a",
+      "bytes": 7310
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "public": "labs/perceptive-bsbl/runtime/evaluation.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "6ad9250411da235c381d7e97008de9f7d5045ff575c1c1d5d6c95d2914a89bc3",
+      "bytes": 6527
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/model.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/model.mjs",
+      "public": "labs/perceptive-bsbl/runtime/model.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "7dcda312eac442c68f1698b42d9cbcf30264a6ccf47039698d006b31bde8bc33",
+      "bytes": 6515
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/record.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/record.mjs",
+      "public": "labs/perceptive-bsbl/runtime/record.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "594bf95306ded22352b047a5ddea7c9be070516b45bc431be129f213d4c8c5f5",
+      "bytes": 3164
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "public": "labs/perceptive-bsbl/runtime/runner.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "e780a1bfa10871b711762243550e6cf27e7e1925f6e4cd5e3e7493a118516dda",
+      "bytes": 5125
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "public": "labs/perceptive-bsbl/runtime/schema.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "c3ed85625e2065063ea9805a83027c9f601dcbdbd237a7ae7b25050e7c33c212",
+      "bytes": 21939
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "public": "labs/perceptive-bsbl/runtime/solver.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "5abd5230f86ecf0b701fff5a77e7bbee1bdc8e2bdfd95f096b8df698aef34977",
+      "bytes": 11614
+    },
+    {
+      "source": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "compatibility": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "public": "labs/perceptive-bsbl/runtime/worker.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "96614b7de0a5983f67ece8b13704f1ffcfe3c4b7609b0c17edc7f215ae9f6402",
+      "bytes": 1240
+    },
+    {
+      "source": "labs/perceptive-bsbl/session.mjs",
+      "compatibility": "labs/perceptive-bsbl/session.mjs",
+      "public": "labs/perceptive-bsbl/session.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "9cc64f36e9ad71b62ac8ccf5b00026b9787477b0f72e1a9d0396572716b8394a",
+      "bytes": 14165
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/dom-harness.cjs",
+      "compatibility": "labs/perceptive-bsbl/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d",
+      "bytes": 7379
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/export-records.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/export-records.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "57d3de4f86edc25900ef9ec99849b60b720fc7d1b3566b541a8e20d659047e5a",
+      "bytes": 3415
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/mounted-helpers.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/mounted-helpers.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "f0cd12085a485cdbda3d3b3726280091fb760ad673b444b18372155e5c026835",
+      "bytes": 2077
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/mounted.test.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/mounted.test.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "0a99ad7bd22b12bf635814cc61b0a353e413208dcefcbf6a5e3c9faccb1879b5",
+      "bytes": 9978
+    },
+    {
+      "source": "labs/perceptive-bsbl/tests/view.test.mjs",
+      "compatibility": "labs/perceptive-bsbl/tests/view.test.mjs",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "39934940c91b3caac320fd6a33e3ead2a16eee774a030d3f1d2058e49cebbb4c",
+      "bytes": 3429
+    },
+    {
+      "source": "labs/perceptive-bsbl/view.mjs",
+      "compatibility": "labs/perceptive-bsbl/view.mjs",
+      "public": "labs/perceptive-bsbl/view.mjs",
+      "owner": "labs/perceptive-bsbl",
+      "role": "source",
+      "sha256": "35f3b882ffb87a61d6476ea31f830c1b82576abccb261c6dd3ba32c392581592",
+      "bytes": 6376
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "compatibility": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "public": "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source",
+      "sha256": "307d0e0b3fb21a3c359b7da8863361fef8cb9a787acd5f1b20d183a5bf8989d5",
+      "bytes": 1598
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/check-download.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/check-download.py",
+      "public": "scripts/validation/perceptive-bsbl/check-download.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source",
+      "sha256": "7582e6a32316c396f58eb22c17a4a032b3312ca009fb8578c81c83fbd4b4c2e6",
+      "bytes": 18839
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "public": "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source",
+      "sha256": "75e4b9bb86aacda343739c52a0810edcd38f5e6818c115abfd8a37916d3dcdf8",
+      "bytes": 1486
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "public": "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source",
+      "sha256": "2745e67d3c2f064fea819cabe20673180713f74139c0101a2a18973a7e7cb4ac",
+      "bytes": 7744
+    },
+    {
+      "source": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "compatibility": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "public": "scripts/validation/perceptive-bsbl/oracle/reference.py",
+      "owner": "validators/perceptive-bsbl",
+      "role": "source",
+      "sha256": "2a78defdf9f01ad7af14e7cd16b48d20b89137292abf471d12eaeacf604c5c70",
+      "bytes": 13951
+    },
+    {
+      "source": "tests/perceptive-bsbl-owned.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source",
+      "sha256": "3c9242ccdc573a0cb2d5a80fdb7a2f74b886a0f16df59568c179278466afa699",
+      "bytes": 3265
+    },
+    {
+      "source": "tests/perceptive-bsbl-session.test.cjs",
+      "compatibility": "tests/perceptive-bsbl-session.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source",
+      "sha256": "ecba87dea4703a59b94fff9399731827d5de4d2e0b5bf69da5f4da50028fe1ec",
+      "bytes": 18930
+    }
+  ],
+  "metadataMappings": [
+    {
+      "source": "labs/perceptive-bsbl/PUBLIC-ASSETS.json",
+      "compatibility": "labs/perceptive-bsbl/PUBLIC-ASSETS.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    },
+    {
+      "source": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE.json",
+      "compatibility": "labs/perceptive-bsbl/FUNCTIONAL-FREEZE.json",
+      "public": null,
+      "owner": "labs/perceptive-bsbl",
+      "role": "source"
+    }
+  ]
+}

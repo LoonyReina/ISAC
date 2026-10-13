@@ -6174,17 +6174,19 @@
       "title": "Framework for a Perceptive Mobile Network Using Joint Communication and Radar Sensing",
       "category": "catalog",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-13",
       "canonicalReferences": {
         "guideIds": [],
         "catalogIds": [
           "perceptive"
         ],
         "caseIds": [
-          "case-perceptive-clutter"
+          "case-perceptive-clutter",
+          "case-perceptive-bsbl"
         ],
         "sourceIds": [
-          "perceptive"
+          "perceptive",
+          "case-perceptive-bsbl-paper"
         ]
       },
       "paperType": "sparse-estimation-framework",
@@ -6207,7 +6209,14 @@
           "sourceManifest": "assets/data/perceptive-clutter-sources.json",
           "supplementalPrimaryReadings": [
             "https://arxiv.org/html/1901.05558v1"
-          ]
+          ],
+          "directRecoverySourceContract": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+          "directRecoveryLocators": {
+            "summary": "UTS 接收稿式(1)–(4)/(9)直接观测，式(11)–(13)延迟块结构，§IV-A/B 式(16)/(18)参数提取，§VII-A/图4结构。proper-complex 多列因子、trace/d 提案和稠密下降检验是本站明确推导的解释。",
+            "section": "§III、§IV-A/B、§VII-A；§VI 单系数递归保留在先修课",
+            "figure": "图4只对照结构；固定缩小场景、SNR 配对及压力实验不是原图数值复现",
+            "equation": "(1)–(4)、(9)、(11)–(13)、(16)、(18)；t=0 不解决原文时间多普勒符号冲突"
+          }
         }
       },
       "contribution": {
@@ -6263,12 +6272,21 @@
           "DDCE is not actually implemented by the source indirect simulations; they inject channel-reconstruction error, so do not invent a source DDCE implementation",
           "Audited recursion phase/figure-duration discrepancies require explicit convention choices"
         ],
-        "details": {}
+        "details": {
+          "boundedDirectRecovery": {
+            "lesson": "perceptive-bsbl.html#question",
+            "sourceScope": "UTS accepted §§III–IV direct known-symbol model and §VII-A/Fig.4 structure; no literal Fig.4 numerical reproduction",
+            "configuration": "N64, B20MHz, K2, MT2, M4, Np32, g2, one t=0 snapshot; actual Y and W; independent-column working prior, fixed known positive noise, correlation off",
+            "offline": "440 paired SNR + 10 illustration + 30 stress = 480 trials, 2400 five-method records; 42 calibration fixtures separate; fixed geometry, varying symbols/noise",
+            "methods": "proper-MMV trace-projected FM primary; separately named R_eff=1 single-log diagnostic; row-SBL; truth-count-blind block OMP; privileged delay-support LS",
+            "limits": "Weak misses, off-grid splits, same-delay same-user inseparability, all caps/failures and threshold-transfer caveats retained. No Doppler, matrix clutter integration, population geometry claim or universal ranking."
+          }
+        }
       },
       "implementation": {
-        "classification": "live faithful scalar recursion kernel, without the paper recovery chain",
-        "live": "filter performs causal complex exponential background learning and before/after-update subtraction; simulate adds one complex static coefficient, one dynamic tone and noise. Analytical transfer and output covariance are evaluated.",
-        "offline": null,
+        "classification": "bounded-direct-known-symbol-block-MMV-proposal-and-descent; retained-live-scalar-background-prerequisite; browser-not-accepted",
+        "live": "perceptive-bsbl.html#run: fresh single-scene W/Y, actual five-method sparse recovery, full accepted histories, final posterior blocks, delay/angle extraction and truth-separated evaluation. Existing scalar recursive-background lesson remains separate and unchanged.",
+        "offline": "Independently accepted bounded original Python reference and 480-trial/2400-record study; every one of 83,793 accepted FM actions independently recomputed. Source structure and justified interpretation only, not literal Fig.4 or full-framework reproduction.",
         "details": {
           "entryPoints": [
             "PerceptiveClutterCore.filter(input,alpha,order)",
@@ -6304,41 +6322,59 @@
             }
           },
           "fullRegressionRerun": false,
-          "newBrowserCheck": false
+          "newBrowserCheck": false,
+          "directRecovery": {
+            "lesson": "perceptive-bsbl.html#question",
+            "prerequisite": "perceptive-clutter.html#question",
+            "runtimeManifestSha256": "7efb99af1382fe39adc8348e168d66b29f9d1ca13d232f076827e2f1e6e3d6fc",
+            "runtimeExecutableCount": 12,
+            "referenceManifestSha256": "3d3111ab69078ca4c224aacc4661b1c17ab3a6afae281839b53671e9d78b79ab",
+            "independentOracleSha256": "2745e67d3c2f064fea819cabe20673180713f74139c0101a2a18973a7e7cb4ac",
+            "algorithmBoundary": "Model-consistent proper-complex independent-column MMV, correlation-off trace/d covariance proposal with dense declared-evidence descent. No improving projected candidate is not coordinate stationarity/global convergence. Literal-source-inspired single-log is distinct and may increase proper-MMV evidence.",
+            "truthBoundary": "Practical methods receive W,Y,known positive sigma² and options only; known-delay LS explicitly receives privileged support. Same-delay arbitrary truth assignments are excluded from unambiguous physical errors.",
+            "recordBoundary": "Native immutable full JSON, raw imported self-consistency checks and same-request v2 fresh execution are distinct. Historical executed identities retained; hashes do not authenticate authorship/history. Partial, failed, cancelled or work-limited checks remain incomplete.",
+            "browserAccepted": false,
+            "fullPaper": false
+          }
         }
       },
       "stages": {
-        "source": "audited-partial",
+        "source": "audited-for-selected-core",
         "modelFidelity": "partial",
         "algorithm": "partial-live",
         "independentValidation": "partial",
-        "selectedExperiment": "pending",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
         "liveExecution": "partial-core",
-        "uiLearning": "pending",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "live faithful scalar recursion kernel, without the paper recovery chain",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Frozen UTS accepted-manuscript identity and direct-model source contract audited for the bounded core; source sign/power normalization and omitted MMV-factor ambiguities disclosed. Original scalar §VI locators and their earlier evidence remain intact.",
+        "algorithm": "Actual direct W/Y block-MMV trace-projected proposals and dense descent, posterior and angle/delay extraction are independently checked; R_eff=1 single-log remains a diagnostic, not proper-MMV optimization or a literal author-code clone. Scalar clutter remains a separate prerequisite.",
+        "selectedExperiment": "Bounded fixed-geometry SNR/illustration/stress study is independently accepted, with weak/off-grid/same-delay failures and single-log caps kept. It is an extension around Fig.4 structure, not the original-size figure, original link budget or geometry population.",
+        "fullPaper": "No full-paper reproduction. Indirect channel stripping/SBL, time-separated Doppler, matrix clutter recovery, source-sized figures and same-delay same-user separation remain open; the original minimum target is retained and not declared complete.",
+        "latency": "No measured browser control-to-painted-result latency. Frozen v2 primary 258–281 ms and five-method 1442–2890 ms are Node profile observations across three default seeds, not browser measurements or population guarantees.",
+        "independentValidation": "Offline audit independently recomputed 83,793 accepted actions across 480 trials; frozen JS v2 review passed 59,900 checks/56 cases/3,594 actions and separate record/lifecycle probes. Lesson uses the unchanged 12-module runtime and Node module-Worker harness; this does not close real-browser or public-deployment gates.",
+        "uiLearning": "New single-scene Y→W→gamma→posterior→parameter lesson with actual Node module Workers and controlled-DOM numeric alternatives; native downloads preserve complete evidence. Browser rendering, CSP, lifecycle, keyboard and assistive-technology acceptance remain separate."
       },
       "missingImplementation": [
-        "No communication stripping/MMV observations",
-        "No BSBL-FM or SBL recovery",
-        "No angle/delay/Doppler estimator or original framework experiments"
+        "Indirect refined-channel stripping/SBL and explicit reconstruction-error input",
+        "Time-separated Doppler/velocity and matrix recursive clutter connected to sparse recovery",
+        "Same-delay same-transmitter path separation; original-size Fig.4/11/12 and faithful source link-budget/random-scene experiments",
+        "Real-browser Worker/CSP/lifecycle/layout/keyboard/download/reimport/memory and control-to-painted-result acceptance"
       ],
       "dependencies": [
-        "Frozen source edition including link budget",
-        "Complex linear algebra and BSBL-FM/SBL reference implementation",
-        "Raw known-symbol/MMV generator and independent parameter/association evaluator",
-        "Explicit refined-channel error input consistent with the paper experiment"
+        "Preserve frozen UTS edition and explicit sign/normalization/MMV conventions; recover missing source scene and link-budget settings before original-figure claims",
+        "Retain independent dense-oracle evidence and same-Y truth-separated evaluation for every changed numerical path",
+        "Source-consistent indirect refined-channel error model and transformed clutter-noise covariance for remaining branches",
+        "Actual target browser/device and deployed-byte checks, distinct from numerical/Node evidence"
       ],
       "blockers": [
-        "No communication stripping/MMV observations",
-        "No BSBL-FM or SBL recovery"
+        "Indirect stripping/SBL, Doppler and integrated matrix-clutter receiver are not implemented",
+        "Source Fig.4 settings and full original experiments remain unrecovered; projected proposal descent is not coordinate/global optimality",
+        "Weak-path misses, off-grid splitting and same-delay same-user inseparability limit physical recovery claims",
+        "Actual-browser lifecycle/layout/accessibility/download and complete painted-result latency remain unaccepted"
       ],
       "realtime": {
         "status": "not-measured",
@@ -6352,8 +6388,8 @@
           "worstMs": null
         },
         "details": {
-          "minimal": "The recursion is cheap; SBL/BSBL iterations and matrix inversions dominate the missing chain. Small bounded cases are plausible but latency and convergence under supported grids are unknown.",
-          "full": "Source-size multipath trials require profiling and progressive execution; changing grid/hyperparameters must actually rerun recovery rather than move truth markers.",
+          "minimal": "The bounded direct recovery executes fresh inputs under explicit shared work/wall budgets; Node profile observations are recorded separately and cannot close browser response-time or rendering gates.",
+          "full": "Source-sized trials and complete recovery/clutter/Doppler branches remain future work. Real-browser control-to-painted-result, lifecycle, repeated-run and memory checks remain pending; current live inputs genuinely recompute W/Y and recovery.",
           "latencyMs": null
         }
       },
@@ -6366,7 +6402,22 @@
           "startDataAccessInParallel": false
         }
       },
-      "evidence": {},
+      "evidence": {
+        "currentAudit": "2026-10-13: register the existing perceptive identity with the new bounded direct-recovery lesson. Source/reference/JS v2 and historical scalar evidence retain their scopes; no new source retrieval, original-figure, browser or deployment acceptance is inferred.",
+        "existingRunnable": [
+          "perceptive-clutter.html#experiment: retained scalar-background prerequisite",
+          "perceptive-bsbl.html#run: actual single-scene direct recovery"
+        ],
+        "sourceContract": "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+        "sourceLinksAndHashes": "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+        "referenceAcceptance": "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+        "runtimeAcceptance": "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+        "historicalRepairDelta": "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+        "executionProvenance": "assets/data/perceptive-bsbl/execution-provenance.json",
+        "lessonBoundary": "labs/perceptive-bsbl/README.md",
+        "downloadChecker": "scripts/validation/perceptive-bsbl/check-download.py",
+        "offlineSummary": "assets/data/perceptive-bsbl/summary.json"
+      },
       "details": {
         "existingRegistryComparison": {
           "comparisonLink": "perceptive-clutter.html#source",

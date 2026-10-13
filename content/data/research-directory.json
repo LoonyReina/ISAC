@@ -413,7 +413,7 @@
       "doi": "https://doi.org/10.1109/taes.2019.2939611",
       "identitySource": "https://arxiv.org/abs/1901.05558",
       "mechanism": "提出复用通信信号的感知移动网络框架，讨论上下行感知、参数提取与递归杂波抑制。",
-      "evidenceBoundary": "系统框架与算法研究；不等于商用网络已完成端到端部署。",
+      "evidenceBoundary": "原文为系统框架与算法理论/仿真；本站沿用 scalar 背景先修，并新增数值独立核验的单场景直接 block-MMV 解释。投影提案不保证坐标/全局最优；离线统计、Node Worker、真实浏览器和部署证据分开，不等于原图、商用网络或整篇复现。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -453,7 +453,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先从独立单系数机制手算复数背景，再比较同一输入里的冷启动、慢目标与相关噪声；回到固定 PDF §VI 式(30)–(32)逐项核对。没有实现完整网络组织、稀疏多径恢复或论文图11/12。",
+      "readingPlan": "先从原单系数递归背景课手算复数更新，再沿新的直接恢复课读取 Y、W、γ、后验 X 和路径参数；对照 UTS 接收稿式(1)–(4)/(9)、(11)–(13)、(16)/(18)与图4结构。主法为模型一致的 MMV 投影提案/证据下降；single-log 独立诊断，t=0 不估多普勒。背景与恢复尚未拼成矩阵链，原图与完整框架仍待研究。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -466,7 +466,11 @@
       ],
       "groupId": "signals-networks",
       "shortTitle": "感知移动网络框架",
-      "caseId": "case-perceptive-clutter"
+      "caseId": "case-perceptive-bsbl",
+      "executionStatus": {
+        "status": "validated-algorithm-core",
+        "scope": "有界直接 MMV 投影提案与证据下降（非原作者代码逐行复刻）"
+      }
     },
     {
       "id": "deepsense",

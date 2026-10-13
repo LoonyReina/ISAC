@@ -42,10 +42,10 @@ test('unimplemented papers render no local action, and each mechanism requires a
  const absent={...registry,cases:registry.cases.filter(c=>!data.cards.some(card=>card.caseId===c.id))};const pending=render(absent);
  a.match(getCard('optimal_waveform',pending),/教学案例准备中/);
  for(const c of data.cards){const card=getCard(c.id,pending);a.ok(!/href="(?!https:)/.test(card),c.id);}
- for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html'],['case-golay-radar','80211ad','golay-radar.html'],['case-ofdm-interpolation','ofdm_full_duplex','ofdm-interpolation.html'],['case-radar-beam-decision','radar_prediction','radar-beam-decision.html'],['case-perceptive-clutter','perceptive','perceptive-clutter.html'],['case-shared-array','mu_mimo','shared-array.html']]){
+ for(const [caseId,paperId,file]of [['case-waveform','optimal_waveform','waveform-design.html'],['case-joint-beamforming','joint_beamforming','joint-beamforming.html'],['case-crb-beamforming','crb','crb-beamforming.html'],['case-golay-radar','80211ad','golay-radar.html'],['case-ofdm-interpolation','ofdm_full_duplex','ofdm-interpolation.html'],['case-radar-beam-decision','radar_prediction','radar-beam-decision.html'],['case-perceptive-bsbl','perceptive','perceptive-bsbl.html'],['case-shared-array','mu_mimo','shared-array.html']]){
   a.match(getCard(paperId,pending),/教学案例准备中/);
-  const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#experiment`}],pages:[...registry.pages,{path:file}]};
-  a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#experiment"`));
+  const integrated={...absent,cases:[...absent.cases,{id:caseId,unit:'test-unit'}],units:[...registry.units,{id:'test-unit',href:`${file}#${paperId==='perceptive'?'run':'experiment'}`}],pages:[...registry.pages,{path:file}]};
+  a.ok(getCard(paperId,render(integrated,()=>true)).includes(`href="${file}#${paperId==='perceptive'?'run':'experiment'}"`));
   a.ok(!getCard(paperId,render(integrated,()=>false)).includes(`href="${file}`));
   a.ok(!getCard(paperId,render({...integrated,pages:[]},()=>true)).includes(`href="${file}`));
  }

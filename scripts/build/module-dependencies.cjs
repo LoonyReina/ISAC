@@ -27,6 +27,208 @@ function fields(x,expected,label){if(!x||typeof x!=='object'||Array.isArray(x)||
 const factory="export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}";
 const solverLoop="for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])await import(`../vendor/solver/${name}.js`)";
 const reviewedProfiles=new Map([
+ // Exact source-bound Perceptive direct block-MMV lesson and v2 solver.
+[
+  "labs/perceptive-bsbl/check-worker.mjs",
+  {
+    "sha256": "7f39df950ee2008c70f25811968dc83eeee1a6473fc427c66ea3600323e728c4",
+    "runtimePolicy": "reviewed-perceptive-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": [
+      {
+        "kind": "node-builtin",
+        "url": "node:worker_threads",
+        "literal": "const { parentPort } = await import('node:worker_threads');"
+      }
+    ]
+  }
+],
+[
+  "labs/perceptive-bsbl/lesson.mjs",
+  {
+    "sha256": "2c227befd0eecaff551a7fa63cf2b9e1cf1fabd06707669213be5cd97a157a57",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/plots.mjs",
+  {
+    "sha256": "dc5dffb8d1270303e528c3e2b14c91f7cd5596b543ba9c4a088081a6d3b97a93",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/budget.mjs",
+  {
+    "sha256": "603f29be21da5753485d38db4187d81c2de9b699f956c119c71262a4da6e9491",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/build-info.mjs",
+  {
+    "sha256": "fe5e5191d70c276b54e98a32d717ded791137441629e820e5c434bbeb9cceaa8",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/check-record.mjs",
+  {
+    "sha256": "5ca5af74bf146c41f08f9e39f27f7fcba381d2093955365d42a7265ae40e2f78",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/client.mjs",
+  {
+    "sha256": "e801bb6cdc43d3f41f67b0e44a4a9cfa231afec8ef81d7131e519d4d8ebb0746",
+    "runtimePolicy": "reviewed-perceptive-runtime",
+    "sourceLiterals": [
+      "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+    ],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "./worker.mjs",
+        "literal": "new globalThis.Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+      },
+      {
+        "kind": "node-builtin",
+        "url": "node:worker_threads",
+        "literal": "const {Worker}=await import('node:worker_threads');"
+      }
+    ]
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/complex.mjs",
+  {
+    "sha256": "23c73626e904de547abe59108dc90a3dcb92c0ebbaf63a981fdf394c12cfb63a",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/evaluation.mjs",
+  {
+    "sha256": "6ad9250411da235c381d7e97008de9f7d5045ff575c1c1d5d6c95d2914a89bc3",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/model.mjs",
+  {
+    "sha256": "7dcda312eac442c68f1698b42d9cbcf30264a6ccf47039698d006b31bde8bc33",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/record.mjs",
+  {
+    "sha256": "594bf95306ded22352b047a5ddea7c9be070516b45bc431be129f213d4c8c5f5",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/runner.mjs",
+  {
+    "sha256": "e780a1bfa10871b711762243550e6cf27e7e1925f6e4cd5e3e7493a118516dda",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/schema.mjs",
+  {
+    "sha256": "c3ed85625e2065063ea9805a83027c9f601dcbdbd237a7ae7b25050e7c33c212",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/solver.mjs",
+  {
+    "sha256": "5abd5230f86ecf0b701fff5a77e7bbee1bdc8e2bdfd95f096b8df698aef34977",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/perceptive-bsbl/runtime/worker.mjs",
+  {
+    "sha256": "96614b7de0a5983f67ece8b13704f1ffcfe3c4b7609b0c17edc7f215ae9f6402",
+    "runtimePolicy": "reviewed-perceptive-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": [
+      {
+        "kind": "node-builtin",
+        "url": "node:worker_threads",
+        "literal": "const {parentPort}=await import('node:worker_threads');"
+      }
+    ]
+  }
+],
+[
+  "labs/perceptive-bsbl/session.mjs",
+  {
+    "sha256": "9cc64f36e9ad71b62ac8ccf5b00026b9787477b0f72e1a9d0396572716b8394a",
+    "runtimePolicy": "reviewed-perceptive-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "./check-worker.mjs",
+        "literal": "new globalThis.Worker(new URL('./check-worker.mjs', import.meta.url), { type: 'module' })"
+      }
+    ]
+  }
+],
+[
+  "labs/perceptive-bsbl/view.mjs",
+  {
+    "sha256": "35f3b882ffb87a61d6476ea31f830c1b82576abccb261c6dd3ba32c392581592",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-perceptive-module",
+    "runtimeEdges": []
+  }
+],
  // Exact source-bound sensing-assisted OTFS ESM, including seven .js modules.
 [
   "labs/otfs-sensing-assisted/lesson/adapter.mjs",
@@ -770,6 +972,157 @@ const multitargetPublicFiles=new Map([
     "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106"
   ]
 ]);
+const perceptivePublicFiles=new Map([
+  ["labs/perceptive-bsbl/REPAIR-V2.md", "7f26551d8a4e13932eb259934445599cee742aa0f3fdd58bcb9cf4186a795f00"],
+  [
+    "assets/data/perceptive-bsbl/ACCEPTANCE-V2.md",
+    "1f8f6736ae81e1a39754223d90bf4e7d355764cf51c812572f6f195d64607629"
+  ],
+  [
+    "assets/data/perceptive-bsbl/API.md",
+    "da138321c196a10f31b8d538c1f0471125a47329286bb5af04f87ca44aecaf99"
+  ],
+  [
+    "assets/data/perceptive-bsbl/EXPERIMENT-PLAN.json",
+    "08b71d148def86b195a75fee41b1fb7089ee8ab964bb678c18909d0cd7dab679"
+  ],
+  [
+    "assets/data/perceptive-bsbl/INDEPENDENT-ACCEPTANCE.md",
+    "921f20bee47211c14507e9604cb42cc18cc5c8511ec385a66bdc9de52349759b"
+  ],
+  [
+    "assets/data/perceptive-bsbl/MANIFEST.json",
+    "7efb99af1382fe39adc8348e168d66b29f9d1ca13d232f076827e2f1e6e3d6fc"
+  ],
+  [
+    "assets/data/perceptive-bsbl/REPAIR-DELTA.md",
+    "ab28c2183d48194ad5576145a1d161662961eeb8fcfc275fd1551a15100e9bf4"
+  ],
+  [
+    "assets/data/perceptive-bsbl/REPORT.md",
+    "bf49cbe2035a858400eff562f3859ba5de87079ccee834f88fb659da3ec200a3"
+  ],
+  [
+    "assets/data/perceptive-bsbl/SOURCE-CONTRACT.md",
+    "4ee990001696b08decce4b738f9bcf18b56dec25b187557ae50a188de8028d18"
+  ],
+  [
+    "assets/data/perceptive-bsbl/SOURCE-LINKS-HASHES.json",
+    "5e28aa329ed305835b72bc62211803631cb41562ab33c3463add3108382d8965"
+  ],
+  [
+    "assets/data/perceptive-bsbl/ambiguity-aware-metrics.json",
+    "a4544489ade22efaf8c24da5b2a4ebdf8773bed9d38434700f2b70080d0940ab"
+  ],
+  [
+    "assets/data/perceptive-bsbl/calibration.json",
+    "bde43a8f8f1a6a57c94db79c98ed47ee51e5f66d6cf4095ebc51e652338f47ad"
+  ],
+  [
+    "assets/data/perceptive-bsbl/execution-provenance.json",
+    "5c7cb3f77d943e3199d49c2c04340bafe9ea66e50f937326dce9d9af7606cc44"
+  ],
+  [
+    "assets/data/perceptive-bsbl/summary.json",
+    "e1d90bd33a79cfef33bf29c53bee4112c1e12a877f0f008a6f204325eac46777"
+  ],
+  [
+    "labs/perceptive-bsbl/README.md",
+    "3c9bdcf40dde3dd7a19a4414886f861a23f7397f58f31e57fbde910f9b9ad9f2"
+  ],
+  [
+    "labs/perceptive-bsbl/check-worker.mjs",
+    "7f39df950ee2008c70f25811968dc83eeee1a6473fc427c66ea3600323e728c4"
+  ],
+  [
+    "labs/perceptive-bsbl/lesson.css",
+    "88eb3b03c73cc35a3419387b64275f02db8728af6c46b57a6e410f8b46e04ecb"
+  ],
+  [
+    "labs/perceptive-bsbl/lesson.mjs",
+    "2c227befd0eecaff551a7fa63cf2b9e1cf1fabd06707669213be5cd97a157a57"
+  ],
+  [
+    "labs/perceptive-bsbl/plots.mjs",
+    "dc5dffb8d1270303e528c3e2b14c91f7cd5596b543ba9c4a088081a6d3b97a93"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/budget.mjs",
+    "603f29be21da5753485d38db4187d81c2de9b699f956c119c71262a4da6e9491"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/build-info.mjs",
+    "fe5e5191d70c276b54e98a32d717ded791137441629e820e5c434bbeb9cceaa8"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/check-record.mjs",
+    "5ca5af74bf146c41f08f9e39f27f7fcba381d2093955365d42a7265ae40e2f78"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/client.mjs",
+    "e801bb6cdc43d3f41f67b0e44a4a9cfa231afec8ef81d7131e519d4d8ebb0746"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/complex.mjs",
+    "23c73626e904de547abe59108dc90a3dcb92c0ebbaf63a981fdf394c12cfb63a"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/evaluation.mjs",
+    "6ad9250411da235c381d7e97008de9f7d5045ff575c1c1d5d6c95d2914a89bc3"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/model.mjs",
+    "7dcda312eac442c68f1698b42d9cbcf30264a6ccf47039698d006b31bde8bc33"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/record.mjs",
+    "594bf95306ded22352b047a5ddea7c9be070516b45bc431be129f213d4c8c5f5"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/runner.mjs",
+    "e780a1bfa10871b711762243550e6cf27e7e1925f6e4cd5e3e7493a118516dda"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/schema.mjs",
+    "c3ed85625e2065063ea9805a83027c9f601dcbdbd237a7ae7b25050e7c33c212"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/solver.mjs",
+    "5abd5230f86ecf0b701fff5a77e7bbee1bdc8e2bdfd95f096b8df698aef34977"
+  ],
+  [
+    "labs/perceptive-bsbl/runtime/worker.mjs",
+    "96614b7de0a5983f67ece8b13704f1ffcfe3c4b7609b0c17edc7f215ae9f6402"
+  ],
+  [
+    "labs/perceptive-bsbl/session.mjs",
+    "9cc64f36e9ad71b62ac8ccf5b00026b9787477b0f72e1a9d0396572716b8394a"
+  ],
+  [
+    "labs/perceptive-bsbl/view.mjs",
+    "35f3b882ffb87a61d6476ea31f830c1b82576abccb261c6dd3ba32c392581592"
+  ],
+  [
+    "scripts/validation/perceptive-bsbl/AUDIT-ADAPTATION.md",
+    "307d0e0b3fb21a3c359b7da8863361fef8cb9a787acd5f1b20d183a5bf8989d5"
+  ],
+  [
+    "scripts/validation/perceptive-bsbl/check-download.py",
+    "7582e6a32316c396f58eb22c17a4a032b3312ca009fb8578c81c83fbd4b4c2e6"
+  ],
+  [
+    "scripts/validation/perceptive-bsbl/oracle/REFERENCE-FREEZE.json",
+    "75e4b9bb86aacda343739c52a0810edcd38f5e6818c115abfd8a37916d3dcdf8"
+  ],
+  [
+    "scripts/validation/perceptive-bsbl/oracle/dense_oracle.py",
+    "2745e67d3c2f064fea819cabe20673180713f74139c0101a2a18973a7e7cb4ac"
+  ],
+  [
+    "scripts/validation/perceptive-bsbl/oracle/reference.py",
+    "2a78defdf9f01ad7af14e7cd16b48d20b89137292abf471d12eaeacf604c5c70"
+  ]
+]);
 const sensingOtfsPublicFiles=new Map([
   [
     "labs/otfs-sensing-assisted/lesson/README.md",
@@ -871,7 +1224,7 @@ const sensingOtfsJsModules=new Set([
 ]);
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
-const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime']);
+const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);
  if(c.runtimeEdges.length!==profile.runtimeEdges.length)throw Error('Reviewed runtime endpoint set mismatch: '+file);
@@ -905,6 +1258,7 @@ function moduleDependencies(modules,contract,identities){
   if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');
   if(identity.file.startsWith('labs/cellfree-maprt/')&&cellfreePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Cell-Free public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);
+  if(['labs/perceptive-bsbl/','assets/data/perceptive-bsbl/','scripts/validation/perceptive-bsbl/'].some(prefix=>identity.file.startsWith(prefix))&&perceptivePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Perceptive public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/otfs-sensing-assisted/')&&sensingOtfsPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed sensing-assisted OTFS public path or hash: '+identity.file);
   const expectedPath=reviewedHashPaths.get(identity.sha256);
   if(expectedPath&&identity.file!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+identity.file);
