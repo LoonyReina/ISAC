@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "d8aeca02aefa77c4c40b1151798c852b6ab5d089",
+  "baselineManifestSha256": "69be45a4208875048c010cf5e504b926d1f75d492706e9789b3261b33d8a8ea6",
+  "addedOwners": [
+    {
+      "id": "labs/gaussian-tradeoff",
+      "directory": "labs/gaussian-tradeoff",
+      "description": "Bayesian complex-matrix Gaussian ISAC covariance, waveform and posterior lesson"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "assets/data/gaussian-tradeoff-evidence-map.json",
+      "compatibility": "data/gaussian-tradeoff-evidence-map.json",
+      "public": "data/gaussian-tradeoff-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/gaussian-tradeoff-js-v0.1-full-evidence.zip",
+      "compatibility": "data/gaussian-tradeoff-js-v0.1-full-evidence.zip",
+      "public": "data/gaussian-tradeoff-js-v0.1-full-evidence.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/gaussian-tradeoff-js-v0.1-runtime.zip",
+      "compatibility": "data/gaussian-tradeoff-js-v0.1-runtime.zip",
+      "public": "data/gaussian-tradeoff-js-v0.1-runtime.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/gaussian-tradeoff-reference-frozen-v1.tar.gz",
+      "compatibility": "data/gaussian-tradeoff-reference-frozen-v1.tar.gz",
+      "public": "data/gaussian-tradeoff-reference-frozen-v1.tar.gz",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/gaussian-tradeoff.html",
+      "compatibility": "gaussian-tradeoff.html",
+      "public": "gaussian-tradeoff.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md",
+      "public": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "public": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json",
+      "public": "labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/README.md",
+      "compatibility": "labs/gaussian-tradeoff/lesson/README.md",
+      "public": "labs/gaussian-tradeoff/lesson/README.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "compatibility": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "public": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/LESSON-QA.md",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/LESSON-QA.md",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/PORTABLE-VERIFICATION.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/PORTABLE-VERIFICATION.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/TEST-INVENTORY.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/TEST-INVENTORY.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.sha256",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.sha256",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.zip",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.zip",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-41.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-41.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-44.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-44.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-final.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-final.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-reexport-manifest.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/portable-reexport-manifest.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-reexports.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/portable-reexports.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-replay-report.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/portable-replay-report.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-replay.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/portable-replay.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-tests.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/portable-tests.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/LESSON-QA.md",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/LESSON-QA.md",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.sha256",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.sha256",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.zip",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.zip",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/controller-tests-final.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/controller-tests-final.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-final.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-final.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-first.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-first.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-check.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-check.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-report.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-report.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-EXPORT-MANIFEST.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-REPLAY-REPORT.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-replay.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-replay.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/LESSON-QA.md",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/LESSON-QA.md",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/lesson-tests-final.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/lesson-tests-final.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-EXPORT-MANIFEST.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-REPLAY-REPORT.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-replay.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-replay.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-EXPORT-MANIFEST.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-REPLAY-REPORT.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-replay.log",
+      "compatibility": "labs/gaussian-tradeoff/lesson/reports/ui-replay.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/README.md",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/README.md",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/controller.test.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/controller.test.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/export-ui-records.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/export-ui-records.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/record-audit.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/record-audit.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/replay-ui-records.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/replay-ui-records.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/test-support.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/tests/test-support.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "compatibility": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/ARTIFACT-MANIFEST.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/ARTIFACT-MANIFEST.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/ATTRIBUTION.md",
+      "compatibility": "labs/gaussian-tradeoff/runtime/ATTRIBUTION.md",
+      "public": "labs/gaussian-tradeoff/runtime/ATTRIBUTION.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json",
+      "public": "labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/HANDOFF.md",
+      "compatibility": "labs/gaussian-tradeoff/runtime/HANDOFF.md",
+      "public": "labs/gaussian-tradeoff/runtime/HANDOFF.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md",
+      "compatibility": "labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md",
+      "public": "labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md",
+      "compatibility": "labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md",
+      "public": "labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/README.md",
+      "compatibility": "labs/gaussian-tradeoff/runtime/README.md",
+      "public": "labs/gaussian-tradeoff/runtime/README.md",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json",
+      "public": "labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/codec.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/codec.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/codec.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/kernel.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/kernel.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/kernel.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/math.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/math.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/math.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/oracle/build_fresh_reference_cases.py",
+      "compatibility": "labs/gaussian-tradeoff/runtime/oracle/build_fresh_reference_cases.py",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/oracle/finite-integrals.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/oracle/finite-integrals.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/oracle/fresh_reference_cases.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/oracle/fresh_reference_cases.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/oracle/reference/core.py",
+      "compatibility": "labs/gaussian-tradeoff/runtime/oracle/reference/core.py",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/oracle/reviewer-stress-inputs.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/oracle/reviewer-stress-inputs.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/presets.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/presets.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/presets.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/benchmark.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/benchmark.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/full-regression.log",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/full-regression.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/integrals.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/integrals.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/live-direct-oracle.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/live-direct-oracle.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/live-evidence.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/live-evidence.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/numerics.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/numerics.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/protocol-codec-tests.log",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/protocol-codec-tests.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/protocol-source-sha256.txt",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/protocol-source-sha256.txt",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/protocol-tests.log",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/protocol-tests.log",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/reports/stress.json",
+      "compatibility": "labs/gaussian-tradeoff/runtime/reports/stress.json",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/run_all.sh",
+      "compatibility": "labs/gaussian-tradeoff/runtime/run_all.sh",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/runtime.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/runtime.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/runtime.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/benchmark.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/benchmark.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/codec.test.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/codec.test.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/export-live-evidence.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/export-live-evidence.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/package_artifact.py",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/package_artifact.py",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/protocol-fixture-kernel.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/protocol-fixture-kernel.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/protocol-fixture-worker.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/protocol-fixture-worker.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/protocol.test.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/protocol.test.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/test-integrals.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/test-integrals.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/test-numerics.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/test-numerics.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/test-stress.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/test-stress.mjs",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/tests/verify-live-evidence.py",
+      "compatibility": "labs/gaussian-tradeoff/runtime/tests/verify-live-evidence.py",
+      "public": null,
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/vendor/linalg.js",
+      "compatibility": "labs/gaussian-tradeoff/runtime/vendor/linalg.js",
+      "public": "labs/gaussian-tradeoff/runtime/vendor/linalg.js",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/runtime/worker.mjs",
+      "compatibility": "labs/gaussian-tradeoff/runtime/worker.mjs",
+      "public": "labs/gaussian-tradeoff/runtime/worker.mjs",
+      "owner": "labs/gaussian-tradeoff",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PROTOCOL-REVIEW.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PROTOCOL-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PROTOCOL-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/MATHEMATICS.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/MATHEMATICS.md",
+      "public": "scripts/validation/gaussian-tradeoff/MATHEMATICS.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/SOURCE-AUDIT.md",
+      "compatibility": "scripts/validation/gaussian-tradeoff/SOURCE-AUDIT.md",
+      "public": "scripts/validation/gaussian-tradeoff/SOURCE-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/gaussian-tradeoff-integration.test.cjs",
+      "compatibility": "tests/gaussian-tradeoff-integration.test.cjs",
+      "public": "tests/gaussian-tradeoff-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/gaussian-tradeoff-owned.test.cjs",
+      "compatibility": "tests/gaussian-tradeoff-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-baseline.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-baseline.json",
+      "public": "tests/helpers/gaussian-tradeoff-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-changes.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-changes.json",
+      "public": "tests/helpers/gaussian-tradeoff-changes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-legacy-hooks.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-legacy-hooks.json",
+      "public": "tests/helpers/gaussian-tradeoff-legacy-hooks.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-owned-suites.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-owned-suites.json",
+      "public": "tests/helpers/gaussian-tradeoff-owned-suites.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-preservation.cjs",
+      "compatibility": "tests/helpers/gaussian-tradeoff-preservation.cjs",
+      "public": "tests/helpers/gaussian-tradeoff-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-runtime-delta.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-runtime-delta.json",
+      "public": "tests/helpers/gaussian-tradeoff-runtime-delta.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/gaussian-tradeoff-suffixes.json",
+      "compatibility": "tests/helpers/gaussian-tradeoff-suffixes.json",
+      "public": "tests/helpers/gaussian-tradeoff-suffixes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

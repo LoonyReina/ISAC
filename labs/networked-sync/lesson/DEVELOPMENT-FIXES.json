@@ -1,0 +1,63 @@
+{
+  "schema": "networked-sync-lesson-development-fixes-v1",
+  "changes": [
+    {
+      "issue": "Suspended work attempt changed suspension state; asynchronous restart could outlive later reset",
+      "fix": "Preserve suspension; capture restart lifecycle epoch before awaiting termination and check before creating a Worker",
+      "verification": "Actual Node Worker tests"
+    },
+    {
+      "issue": "Old file reads and failures could replace newer work or selected-file status",
+      "fix": "Independent file/lifecycle tickets; successful validated run/process invalidates old file reads; UI clears only current selection in guarded finally",
+      "verification": "Concurrent mounted input tests including failed and repeated file selection"
+    },
+    {
+      "issue": "Idle transport death did not notify the lesson through the frozen client",
+      "fix": "Non-numerical lesson observer for error/messageerror/Node exit; immediate result/held/export invalidation and observer cleanup",
+      "verification": "Actual idle and active Worker death tests"
+    },
+    {
+      "issue": "Nonfinite/no-output chart values could draw false zero markers",
+      "fix": "Filter paired coordinates before drawing both paths and markers; retain failures in status tables",
+      "verification": "Read-only view tests"
+    },
+    {
+      "issue": "Typed-array string mapping could show NaN; typed x mapping could silently drop a curve",
+      "fix": "Array.from before mapping formatted strings or point objects; retain exact source numerical arrays",
+      "verification": "All-stage actual-array inspector tests"
+    },
+    {
+      "issue": "Ambiguity view phase labels and per-direction residual normalization could mismatch plotted data",
+      "fix": "Map labels to transformed permutation and normalize each direction by its own actual tensor norm",
+      "verification": "Independent view calculations"
+    },
+    {
+      "issue": "Display cache could leave charts empty after an export or rejected replacement returned to the same result",
+      "fix": "Key drawing on both result reference and execution state; restore charts after temporary pending states",
+      "verification": "Mounted export and rejection regressions"
+    },
+    {
+      "issue": "View selectors could show out-of-range indices; summary traces could fall back to final factors for an unavailable substep",
+      "fix": "Synchronize displayed indices to tensor and actual trace bounds; explicitly withhold unavailable substep fit/residual pictures",
+      "verification": "Mounted original-to-compact and actual-summary regressions"
+    },
+    {
+      "issue": "Unscoped resource examples could be mistaken for a general UI budget",
+      "fix": "Label earlier13MB/300MiB direct-kernel case; additionally disclose observed25,071,627-byte history and680.4MiB Node process RSS actualUI/Worker case",
+      "verification": "Independent reviewer resource receipt; no browser claim"
+    },
+    {
+      "issue": "A slow reset termination continuation could overwrite newer draft controls",
+      "fix": "Reset controls synchronously before awaiting old Worker termination",
+      "verification": "Mounted delayed-termination regression"
+    },
+    {
+      "issue": "Source generator velocity parameter could be misread as conventional coordinate derivative",
+      "fix": "Declare actual positive source velocity-to-Doppler map, and physical negative-sign conversion under exp(+j2pi nu t); leave frozen runtime unchanged",
+      "verification": "Independent source-equation review"
+    }
+  ],
+  "runtime_modified": false,
+  "algorithm_rewrite": false,
+  "actual_browser_verified": false
+}

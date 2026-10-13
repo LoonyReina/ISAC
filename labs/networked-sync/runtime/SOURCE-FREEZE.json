@@ -1,0 +1,45 @@
+{
+  "schema": "networked-sync-js-source-freeze-v1",
+  "date_utc": "2026-10-12",
+  "runtime": [
+    {
+      "path": "js/codec.js",
+      "bytes": 13507,
+      "sha256": "ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5"
+    },
+    {
+      "path": "js/linalg.js",
+      "bytes": 26681,
+      "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+    },
+    {
+      "path": "js/receiver.js",
+      "bytes": 32169,
+      "sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98"
+    },
+    {
+      "path": "js/sha256.js",
+      "bytes": 3150,
+      "sha256": "9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6"
+    },
+    {
+      "path": "worker/client.js",
+      "bytes": 12749,
+      "sha256": "2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb"
+    },
+    {
+      "path": "worker/protocol.js",
+      "bytes": 4672,
+      "sha256": "7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38"
+    },
+    {
+      "path": "worker/receiver-worker.js",
+      "bytes": 8760,
+      "sha256": "e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534"
+    }
+  ],
+  "accepted_python_sha256": "88a161d7d7d55ad4a2e703b0afb590c69644b0c61eaf370c2f6f519fc650f10e",
+  "reference_freeze_sha256": "94f0c92acb978981a0fe5d4891fe95acb5d8ce557f5b92ca6a84dc9d2637e3ab",
+  "reference_independent_review_freeze_sha256": "5a67ab96fb867c6a1412c7d4cb7a6982184d880fa328572b13621318ba32ddd1",
+  "claim": "Fresh source-derived JS numerical kernel and actual Node Worker; browser branch VM only; no UI/repository/publishing/full-paper claim"
+}

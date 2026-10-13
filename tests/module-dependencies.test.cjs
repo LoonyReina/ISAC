@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
-const {staticModuleDependencies:parse,moduleDependencies:edges}=require('../scripts/build/module-dependencies.cjs');
+const {staticModuleDependencies:parse,moduleDependencies}=require('../scripts/build/module-dependencies.cjs');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex'),entry=(file,source,runtimeEdges=[])=>({public:file,sha256:sha(source),runtimeEdges,runtimePolicy:runtimeEdges.length?'literal-workers':'no-runtime-loads',unverifiedInputs:[]}),contract=modules=>({schemaVersion:1,modules});
+const edges=(modules,contract)=>moduleDependencies(modules,contract,modules.map(({file,source})=>({file,sha256:sha(source)})));
 test('Node parse-only API authoritatively recognizes static imports/reexports and does not execute source',()=>{
  const marker='/tmp/isac-module-parse-must-not-execute-'+process.pid;const source=`import fs from 'node:fs';import {'}' as x} from './a.mjs';export{x as '}'};export*from './b.mjs';fs.writeFileSync('${marker}','executed');throw Error('never execute');const t=\`x\${await import('./dynamic.mjs')}\`;`;
  const r=parse([{file:'example.mjs',source}]);a.deepEqual(r,[{file:'example.mjs',specifiers:['node:fs','./a.mjs','./b.mjs']}]);a.equal(fs.existsSync(marker),false);

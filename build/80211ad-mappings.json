@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "eae97d26beffbc65d55f290a49e11d82cf157bd1",
+  "baselineManifestSha256": "80a14251579829b2b9db799b356a6d0132a0b778a9ae761eedcc77ba3633ab7f",
+  "addedOwners": [
+    {
+      "id": "labs/80211ad",
+      "directory": "labs/80211ad",
+      "description": "Frozen source-derived 802.11ad STF/CEF receiver, classic Worker and progressive lesson"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "assets/data/80211ad-evidence-map.json",
+      "compatibility": "data/80211ad-evidence-map.json",
+      "public": "data/80211ad-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.parts.json",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.parts.json",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.parts.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part01",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part01",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part02",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part02",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part03",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part03",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part03",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part04",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part04",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part04",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part05",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part05",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part05",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part06",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part06",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part06",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-full-evidence.zip.part07",
+      "compatibility": "data/80211ad-kernel-v0.1-full-evidence.zip.part07",
+      "public": "data/80211ad-kernel-v0.1-full-evidence.zip.part07",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-kernel-v0.1-runtime.zip",
+      "compatibility": "data/80211ad-kernel-v0.1-runtime.zip",
+      "public": "data/80211ad-kernel-v0.1-runtime.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.parts.json",
+      "compatibility": "data/80211ad-reference-v1.parts.json",
+      "public": "data/80211ad-reference-v1.parts.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part01",
+      "compatibility": "data/80211ad-reference-v1.zip.part01",
+      "public": "data/80211ad-reference-v1.zip.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part02",
+      "compatibility": "data/80211ad-reference-v1.zip.part02",
+      "public": "data/80211ad-reference-v1.zip.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part03",
+      "compatibility": "data/80211ad-reference-v1.zip.part03",
+      "public": "data/80211ad-reference-v1.zip.part03",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part04",
+      "compatibility": "data/80211ad-reference-v1.zip.part04",
+      "public": "data/80211ad-reference-v1.zip.part04",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part05",
+      "compatibility": "data/80211ad-reference-v1.zip.part05",
+      "public": "data/80211ad-reference-v1.zip.part05",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part06",
+      "compatibility": "data/80211ad-reference-v1.zip.part06",
+      "public": "data/80211ad-reference-v1.zip.part06",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part07",
+      "compatibility": "data/80211ad-reference-v1.zip.part07",
+      "public": "data/80211ad-reference-v1.zip.part07",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/80211ad-reference-v1.zip.part08",
+      "compatibility": "data/80211ad-reference-v1.zip.part08",
+      "public": "data/80211ad-reference-v1.zip.part08",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/reassemble-80211ad-evidence.py",
+      "compatibility": "data/reassemble-80211ad-evidence.py",
+      "public": "data/reassemble-80211ad-evidence.py",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/80211ad-receiver.html",
+      "compatibility": "80211ad-receiver.html",
+      "public": "80211ad-receiver.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "docs/80211AD-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/80211AD-SOURCE-EVIDENCE.md",
+      "public": "docs/80211AD-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/80211ad/lesson/DEVELOPMENT-FIXES.json",
+      "public": "labs/80211ad/lesson/DEVELOPMENT-FIXES.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/LESSON-FREEZE.json",
+      "compatibility": "labs/80211ad/lesson/LESSON-FREEZE.json",
+      "public": "labs/80211ad/lesson/LESSON-FREEZE.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/80211ad/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/80211ad/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/README.md",
+      "compatibility": "labs/80211ad/lesson/README.md",
+      "public": "labs/80211ad/lesson/README.md",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/controller.js",
+      "compatibility": "labs/80211ad/lesson/controller.js",
+      "public": "labs/80211ad/lesson/controller.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/lesson.css",
+      "compatibility": "labs/80211ad/lesson/lesson.css",
+      "public": "labs/80211ad/lesson/lesson.css",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/lesson.js",
+      "compatibility": "labs/80211ad/lesson/lesson.js",
+      "public": "labs/80211ad/lesson/lesson.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/reports/author-tests.txt",
+      "compatibility": "labs/80211ad/lesson/reports/author-tests.txt",
+      "public": null,
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/stages.js",
+      "compatibility": "labs/80211ad/lesson/stages.js",
+      "public": "labs/80211ad/lesson/stages.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/80211ad/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/tests/export-ui-records.cjs",
+      "compatibility": "labs/80211ad/lesson/tests/export-ui-records.cjs",
+      "public": null,
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/lesson/tests/lesson.test.cjs",
+      "compatibility": "labs/80211ad/lesson/tests/lesson.test.cjs",
+      "public": null,
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/80211ad/runtime/DEVELOPMENT-FIXES.json",
+      "public": "labs/80211ad/runtime/DEVELOPMENT-FIXES.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/FORMAT.md",
+      "compatibility": "labs/80211ad/runtime/FORMAT.md",
+      "public": "labs/80211ad/runtime/FORMAT.md",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/HANDOFF.md",
+      "compatibility": "labs/80211ad/runtime/HANDOFF.md",
+      "public": "labs/80211ad/runtime/HANDOFF.md",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/README.md",
+      "compatibility": "labs/80211ad/runtime/README.md",
+      "public": "labs/80211ad/runtime/README.md",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/RUNTIME-MANIFEST.json",
+      "compatibility": "labs/80211ad/runtime/RUNTIME-MANIFEST.json",
+      "public": "labs/80211ad/runtime/RUNTIME-MANIFEST.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/SOURCE-FREEZE.json",
+      "compatibility": "labs/80211ad/runtime/SOURCE-FREEZE.json",
+      "public": "labs/80211ad/runtime/SOURCE-FREEZE.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/js/evaluation.js",
+      "compatibility": "labs/80211ad/runtime/js/evaluation.js",
+      "public": "labs/80211ad/runtime/js/evaluation.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/js/receiver.js",
+      "compatibility": "labs/80211ad/runtime/js/receiver.js",
+      "public": "labs/80211ad/runtime/js/receiver.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/js/sha256.js",
+      "compatibility": "labs/80211ad/runtime/js/sha256.js",
+      "public": "labs/80211ad/runtime/js/sha256.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/package.json",
+      "compatibility": "labs/80211ad/runtime/package.json",
+      "public": "labs/80211ad/runtime/package.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/run_all.sh",
+      "compatibility": "labs/80211ad/runtime/run_all.sh",
+      "public": "labs/80211ad/runtime/run_all.sh",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/tests/benchmark.cjs",
+      "compatibility": "labs/80211ad/runtime/tests/benchmark.cjs",
+      "public": "labs/80211ad/runtime/tests/benchmark.cjs",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/tests/test-kernel.cjs",
+      "compatibility": "labs/80211ad/runtime/tests/test-kernel.cjs",
+      "public": "labs/80211ad/runtime/tests/test-kernel.cjs",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/tests/test-worker.cjs",
+      "compatibility": "labs/80211ad/runtime/tests/test-worker.cjs",
+      "public": "labs/80211ad/runtime/tests/test-worker.cjs",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/tests/verify_manifest.py",
+      "compatibility": "labs/80211ad/runtime/tests/verify_manifest.py",
+      "public": "labs/80211ad/runtime/tests/verify_manifest.py",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json",
+      "compatibility": "labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json",
+      "public": "labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/README.md",
+      "compatibility": "labs/80211ad/runtime/worker/README.md",
+      "public": "labs/80211ad/runtime/worker/README.md",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/TEST-REPORT.txt",
+      "compatibility": "labs/80211ad/runtime/worker/TEST-REPORT.txt",
+      "public": "labs/80211ad/runtime/worker/TEST-REPORT.txt",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/WORKER-FREEZE.json",
+      "compatibility": "labs/80211ad/runtime/worker/WORKER-FREEZE.json",
+      "public": "labs/80211ad/runtime/worker/WORKER-FREEZE.json",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/benchmark-boundary.cjs",
+      "compatibility": "labs/80211ad/runtime/worker/benchmark-boundary.cjs",
+      "public": "labs/80211ad/runtime/worker/benchmark-boundary.cjs",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/client.js",
+      "compatibility": "labs/80211ad/runtime/worker/client.js",
+      "public": "labs/80211ad/runtime/worker/client.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/protocol.js",
+      "compatibility": "labs/80211ad/runtime/worker/protocol.js",
+      "public": "labs/80211ad/runtime/worker/protocol.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "labs/80211ad/runtime/worker/receiver-worker.js",
+      "compatibility": "labs/80211ad/runtime/worker/receiver-worker.js",
+      "public": "labs/80211ad/runtime/worker/receiver-worker.js",
+      "owner": "labs/80211ad",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/INDEPENDENT-LESSON-REVIEW.md",
+      "compatibility": "scripts/validation/80211ad/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/80211ad/INDEPENDENT-LESSON-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "compatibility": "scripts/validation/80211ad/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/80211ad/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/INDEPENDENT-PORT-REVIEW.md",
+      "compatibility": "scripts/validation/80211ad/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/80211ad/INDEPENDENT-PORT-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/SEQUENCE-AUDIT.md",
+      "compatibility": "scripts/validation/80211ad/SEQUENCE-AUDIT.md",
+      "public": "scripts/validation/80211ad/SEQUENCE-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/SOURCE-AUDIT.md",
+      "compatibility": "scripts/validation/80211ad/SOURCE-AUDIT.md",
+      "public": "scripts/validation/80211ad/SOURCE-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/80211ad-integration.test.cjs",
+      "compatibility": "tests/80211ad-integration.test.cjs",
+      "public": "tests/80211ad-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/80211ad-owned.test.cjs",
+      "compatibility": "tests/80211ad-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/80211ad-baseline.json",
+      "compatibility": "tests/helpers/80211ad-baseline.json",
+      "public": "tests/helpers/80211ad-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/80211ad-changes.json",
+      "compatibility": "tests/helpers/80211ad-changes.json",
+      "public": "tests/helpers/80211ad-changes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/80211ad-preservation.cjs",
+      "compatibility": "tests/helpers/80211ad-preservation.cjs",
+      "public": "tests/helpers/80211ad-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/80211ad-suffixes.json",
+      "compatibility": "tests/helpers/80211ad-suffixes.json",
+      "public": "tests/helpers/80211ad-suffixes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-REVIEW.md",
+      "compatibility": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-REVIEW.md",
+      "public": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-RECEIPT.json",
+      "compatibility": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-RECEIPT.json",
+      "public": "scripts/validation/80211ad/INDEPENDENT-RUNTIME-CONTRACT-RECEIPT.json",
+      "owner": "content/documentation",
+      "role": "source"
+    }
+  ]
+}

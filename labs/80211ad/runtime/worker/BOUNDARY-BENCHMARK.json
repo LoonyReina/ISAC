@@ -1,0 +1,28 @@
+{
+  "environment": "actual Node worker_threads; no real-browser execution",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "fixture": "58 frames, zero signal, no noise; full-size typed/raw arrays",
+  "complex_samples": 1974842,
+  "scalar_sample_elements": 3949684,
+  "generation_ms": 31.880402999999987,
+  "full_export_with_hash_and_transport_ms": 1548.08584,
+  "cancel_after_last_export_hash_progress_ms": 150.97190100000034,
+  "parent_postMessage_plain_import_ms": 160.93958199999997,
+  "release_ack_after_plain_import_postMessage_ms": 946.911991,
+  "import_result": "cancelled before committing held state",
+  "source_sha256": {
+    "receiver-worker.js": "0e422167dbb93a92e459405362cf67a8b0fa8dac26629d8bfe92c06fc4dc902b",
+    "protocol.js": "41a7b0bd3a28a1acd4051a47ca6e42bf2100a2afc381f27e1bd35846be1b6458",
+    "benchmark-boundary.cjs": "0e7c1e92e726357affe38ca22afa5109d01acf8cb79fb004eb41cb3ae6629ef3",
+    "../js/receiver.js": "fb44f41a9fce21f7bbcdf9558e2c87df5750dab4c5560d1b5c595ad0b4125090",
+    "../js/sha256.js": "9b620ba2e4decf0014a5e6ce30b3e17c99b3d1df103e0d6a6ef4c40c65f96342"
+  },
+  "limits": [
+    "postMessage initial structured clone cannot be cancelled by Worker code",
+    "plain-array input preflight and normalization are synchronous and bounded by dimensions",
+    "export JSON-safe array construction and outgoing structured clone are synchronous",
+    "timings are this Node host only; no browser latency, heap, GC or speed guarantee"
+  ]
+}

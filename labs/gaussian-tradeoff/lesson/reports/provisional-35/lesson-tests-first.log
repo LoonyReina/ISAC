@@ -1,0 +1,103 @@
+✖ lesson numerical runtime remains byte-identical to the seven reviewed source files (2.561532ms)
+✔ actual Worker computes arbitrary continuous weights and fresh complex H/Q with immutable records (186.405022ms)
+✔ held posterior inputs contain exactly X/Y/noise/prior and preserve selected sample identity (144.057343ms)
+✔ raw/history imports preserve provenance and require actual Worker fresh replay (428.872078ms)
+✔ invalid model and corrupt record preserve current result and in-flight accepted work (253.911654ms)
+✔ accepted replacement supersedes active actual work and presents only newest input (176.882863ms)
+✔ actual computation cancel clears current exports and restarts safely (235.581213ms)
+✔ actual computation stop clears current exports and restarts safely (249.872839ms)
+✔ actual computation reset clears current exports and restarts safely (247.014117ms)
+✔ actual Worker death rejects work and explicit restart permits fresh output (260.036337ms)
+✔ stale asynchronous file read is fenced by fresh run, newer import, and reset (186.265177ms)
+✔ suspension invalidates actual work until explicit restart (241.584784ms)
+✔ finite Wishart and sphere cases run actual integrals with explicit model boundaries (261.830711ms)
+✔ every positive covariance mode is retained: short T reports unrealizable Stiefel (91.300781ms)
+✔ mounted controls execute continuous κ and a fresh complex H, with exact actual UI downloads (196.907519ms)
+✔ display-only Gaussian/Stiefel, matrix, components, truth and stages never regenerate observations (285.774998ms)
+✔ mounted arbitrary Q is a true input with exact power budget and retained complex orientation (140.283337ms)
+✔ shape/model edits change actual arrays, κ stays continuous, and short blocks do not fabricate Stiefel (169.636115ms)
+✔ held X/Y processing uses selected law and only changes posterior assumptions (157.624457ms)
+✔ mounted finite Wishart/sphere controls run integrals, display diagnostics and export the actual operation (266.611465ms)
+✔ downloaded raw/history imports do not execute until explicit fresh replay (393.280391ms)
+✔ invalid input or hash-corrupt import preserves previous result, plot, and export identity (157.495341ms)
+✔ mounted cancel during actual Worker work cannot restore stale results (240.508018ms)
+✔ mounted stop during actual Worker work cannot restore stale results (251.397703ms)
+✔ mounted reset during actual Worker work cannot restore stale results (247.672881ms)
+✔ mounted actual Worker death clears exports; restart supports fresh work (239.312517ms)
+✔ mounted valid newer click supersedes an actual run and no old input is presented (191.712442ms)
+✖ stale file reads cannot overwrite newer run, reset, import, draft or file selection (198.187485ms)
+✔ late old import termination cannot overwrite a newer Run or its draft (277.374891ms)
+✔ mounted pagehide suspends computation and does not replay stale results on pageshow (244.719151ms)
+✔ static page has unique IDs, labeled inputs, progressive stages and explicit scope (0.954291ms)
+✔ late reset termination cannot overwrite controls or output from a newer Run (260.957263ms)
+✔ failed current file read supports same-file retry and obsolete read failures stay silent (132.219052ms)
+✔ invalid newer mounted run and corrupt import cannot cancel accepted actual work (309.296509ms)
+✖ raw import and reset remove previously revealed truth rather than leaving stale scores (130.882835ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 32
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4582.022986
+
+✖ failing tests:
+
+test at labs/gaussian-tradeoff/lesson/tests/controller.test.mjs:11:1
+✖ lesson numerical runtime remains byte-identical to the seven reviewed source files (2.561532ms)
+  AssertionError [ERR_ASSERTION]: kernel.mjs
+  + actual - expected
+  
+  + '0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310'
+  - 'd67ec02e4fe0e867cf8752a727cbb55250ad904b63ba1eca8662e445efa52bf0'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/b60d384cd8e0/isac-gaussian-tradeoff-live/labs/gaussian-tradeoff/lesson/tests/controller.test.mjs:11:164)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310',
+    expected: 'd67ec02e4fe0e867cf8752a727cbb55250ad904b63ba1eca8662e445efa52bf0',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs:59:1
+✖ stale file reads cannot overwrite newer run, reset, import, draft or file selection (198.187485ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - 'new-choice.json'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/b60d384cd8e0/isac-gaussian-tradeoff-live/labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs:61:739)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'new-choice.json',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs:87:1
+✖ raw import and reset remove previously revealed truth rather than leaving stale scores (130.882835ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/b60d384cd8e0/isac-gaussian-tradeoff-live/labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs:88:318)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

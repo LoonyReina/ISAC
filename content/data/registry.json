@@ -1173,6 +1173,286 @@
         },
         "verificationNote": "源文件与算法冻结摘要、数值审查和公开映射见 docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md；不发布论文PDF或私有提取文本"
       }
+    },
+    {
+      "id": "case-ofdm-ici-receiver",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "fields": {
+        "先修": "<a href=\"foundations.html#ofdm\">符号内与跨符号复相位</a>；<a href=\"foundations.html#cfar\">谱峰、检测与虚警</a>；<a href=\"offgrid-range.html#trials\">检测条件误差</a>",
+        "问题": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+        "交互机制": "从实际复数X/Y依次运行MUSIC角度初筛、有限CFO网格APES、GLRT-OMP联合重拟合、延迟–Doppler CFAR和原文混叠区规则；并排比较同观测的已知X-FFT。",
+        "证据类型": "<a href=\"https://arxiv.org/pdf/2103.15694v1\">固定 arXiv:2103.15694v1</a>；独立Python参考和逐阶段JavaScript/Node Worker数值证据，实际浏览器另行验收。",
+        "结论边界": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+        "下一研究问题": "先保留同CFO、分数时延、角度端点、假峰和漏检，再检验有限支撑失配与名义门限何时失效？"
+      },
+      "unit": "ofdm-ici-receiver",
+      "paper": "ofdm-ici-receiver.html#paper",
+      "next": "ofdm-ici-receiver.html#limits",
+      "learningEntry": "ofdm-ici-receiver.html#intuition",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?",
+        "sourceUrl": "https://arxiv.org/pdf/2103.15694v1",
+        "version": "arXiv:2103.15694v1，2021-03-29，14页固定预印本；本卡按该PDF编号。期刊记录为IEEE JSTSP 15(6), 1393–1408, 2021；2026-10-11核查全文。",
+        "paperEvidenceType": "模型、算法推导与数值仿真",
+        "siteArtifactType": "源算法的有界有限网格重算；Python/Node证据与浏览器/原图门分开",
+        "metrics": [
+          "全部检出、匹配、虚检与漏检；未检出不记零误差",
+          "原文式 V/(V+参考目标命中) 与常规 V/(V+全部命中) 分列；均不是单元Pfa",
+          "检测成功条件下的角度/距离/物理速度误差，和各自样本数",
+          "逐角度CFO剖面、接受/拒绝记录、联合重拟合与停止原因",
+          "相同实际Y/X/角度候选的已知X-FFT；另列人工无ICI观测"
+        ],
+        "unknowns": [
+          "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+          "名义Pfa未校准；同CFO与离格配对存在混合结果，不能承诺ICI始终有益"
+        ],
+        "comparisonLink": "ofdm-ici-receiver.html#paper",
+        "sourceId": "case-ofdm-ici-receiver-paper",
+        "locator": {
+          "summary": "§II-B–D，式(5)–(13)；§III-A，引理1、式(16)–(19)；§III-C，式(34)–(36)；§IV，算法2–3；§V，表I–II、图7–10及式(66)",
+          "section": "§II–IV；§V",
+          "figure": "图7–10：原始曲线尚未复现",
+          "equation": "式(5)–(13)、(16)–(19)、(34)–(36)、(49)、(65)–(66)；算法1–3"
+        },
+        "retainedAssumptions": [
+          "已知发射符号X；单数据流、远场单站点目标、完全收发隔离、CP覆盖时延",
+          "实际复数Y与相同X/角度候选用于APES和普通FFT；未知参数不输入接收机",
+          "有限角度/CFO网格、MDL阶数、L/Pmax、CFAR窗与关联规则明确记录",
+          "普通FFT去除已知X；人工去ICI与接收增益归一化单独标注"
+        ],
+        "omittedMechanisms": [
+          "连续角度/CFO细化及原始2048×64完整收敛OMP",
+          "原图7–10 Monte Carlo曲线、经验校准Pfa、通信与实测性能",
+          "实际浏览器交互/无障碍/取消/内存/绘制完成延迟认证"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定N64/M16/NT8/NR8/L12，Pmax1–4；目标、种子、QPSK/16QAM与声明搜索网格可变；完整输入和每次停止原因随结果保存。原文N2048/M64，不能等同规模或资源。",
+          "bandwidth": "B=50MHz；名义格距与分辨率分开",
+          "energy": "发射QPSK/16QAM与复增益/噪声随记录声明；不补偿方法间接收能量",
+          "duration": "N64/M16的有界样本预算；不能沿用原始2048×64驻留与精度",
+          "aperture": "8发8收、远场阵列；接收增益归一化分开",
+          "priorKnowledge": "接收机仅X/Y/config；目标真值供生成与事后评估",
+          "other": [
+            "Python和Node用时不是浏览器用时",
+            "可选离线存档不是启动负载；不分发论文PDF或私有提取文本"
+          ]
+        },
+        "verificationNote": "固定源/core、独立数值、真实失败和存档字节见 docs/OFDM-ICI-SOURCE-EVIDENCE.md；有限网格held结果不替换为连续细化4/1/1结果"
+      }
+    },
+    {
+      "id": "case-80211ad-receiver",
+      "title": "802.11ad：从真实前导样本找帧、测距与测速",
+      "fields": {
+        "先修": "<a href=\"golay-radar.html#experiment\">孤立Golay对先修</a>；<a href=\"foundations.html#matched\">复数相关</a>；<a href=\"foundations.html#doppler\">多普勒与相位</a>",
+        "问题": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+        "交互机制": "分开生成观测与持有样本处理：实际STF捕获、分数相位/CFO、STF/CEF相关、Moose、逐帧信道和慢时间DFT；按阶段查看同一份样本。",
+        "证据类型": "固定arXiv:1702.05833v1；独立Python、JavaScript及实际Node Worker数值证据，真实浏览器验收另列。",
+        "结论边界": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。",
+        "下一研究问题": "低SCNR拒绝、首帧抵消、接受的频偏混叠和有限CPI旁瓣怎样改变可相信的估计？"
+      },
+      "unit": "80211ad-receiver",
+      "paper": "80211ad-receiver.html#paper",
+      "next": "80211ad-receiver.html#limits",
+      "learningEntry": "80211ad-receiver.html#question",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+        "sourceUrl": "https://arxiv.org/abs/1702.05833v1",
+        "version": "arXiv:1702.05833v1，2017-02-20；期刊 IEEE TVT 67(4)，3012–3027，2018-04，DOI 10.1109/TVT.2017.2774762。章节、图与式号只采用固定 v1，不混用未检查的期刊 PDF。",
+        "sourceId": "case-80211ad-receiver-paper",
+        "comparisonLink": "80211ad-receiver.html#paper",
+        "researchQuestion": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+        "observationsAndUnknowns": "接收机只见实际复数样本、已知前导、帧间隔、噪声方差和声明处理策略；未知时延、反射系数、速度和振荡器频偏。目标真值不进入同步、相关、Moose或DFT。",
+        "locator": {
+          "summary": "固定v1 §II-A图1–2；§IV-A式(14)–(19)；§IV-B式(21)–(27)；§IV-C、Remark3与图13–14。图8/10仅缩减带偏差实验，不等于原曲线复现。",
+          "section": "§II-A；§III；§IV-A/B/C；§V",
+          "figure": "图1–2结构；图8/10缩减设置；图13–14有界同记录重算",
+          "equation": "式(14)–(19)、(21)、(23)–(28)；Remark3"
+        },
+        "paperEvidenceType": "理论分析与数值仿真，不是道路实测",
+        "siteArtifactType": "独立验证的有界源算法、真实样本重算与Node Worker证据；浏览器和完整论文门仍开放",
+        "retainedAssumptions": [
+          "已知源支持的Ga/Gb次序和3328芯片前导；实际复数波形先生成再处理",
+          "单站R=cτ/2，正速度朝向雷达，fD=2v/λ；恒定时延与复增益的stop-and-hop",
+          "8×物理模式与有限RC/RRC支持明确；同一观测上的STF/CEF和单帧/多帧对比",
+          "每次保留接受/拒绝、所有图候选、未检出和条件误差分母"
+        ],
+        "omittedMechanisms": [
+          "完整通信PHY、载荷、MAC、阵列校准、射频/道路实测、自干扰和距离迁移",
+          "原文每点10000次Monte Carlo与全部原曲线；理想下界达到性没有证明",
+          "源10000-bin图超出运行时256-bin上限；两者候选分别28和29",
+          "实际浏览器绘制、无障碍、导入/下载与内存/延迟验收"
+        ],
+        "metrics": [
+          "真实STF相关门、相位能量和CEF复数分量及提取坐标",
+          "单帧/多帧Moose及主值区间；多目标全局Moose标作混合诊断",
+          "全部地图候选、命中/漏检/额外候选；噪声H0族错误上界不控制信号旁瓣",
+          "所有试验与仅接受试验误差/RMSE分别报告；失败不记零误差"
+        ],
+        "unknowns": [
+          "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。",
+          "源理想同步/iid噪声下界不等于当前有色噪声/估计同步接收机误差；未知振荡器与Doppler不可分离"
+        ],
+        "resourceBudget": {
+          "summary": "源芯片率1.76Gchip/s、60GHz、3328芯片完整前导；运行时最多64帧、约2M复样本、256 Doppler bins与262144地图单元，实际可用组合受联合上限约束。",
+          "bandwidth": "芯片率1.76Gchip/s与2.16GHz信道宽度分开；有限脉冲近似明确",
+          "energy": "STF2048与CEF1024不同积累长度；同原始样本并不意味着处理积分能量相同",
+          "duration": "每帧起点间隔和总CPI明确；零填充只细化格点，不提升有限CPI分辨率",
+          "aperture": "单站标量、显式复增益；不复现原8×2阵列方向性",
+          "priorKnowledge": "前导与配置已知；真值不进入接收机，离线评分单独执行",
+          "other": [
+            "同步和频偏可失败或混叠；接受不保证正确",
+            "已知有限RRC滤波噪声方差用于H0阈值；可选离线存档不是启动负载"
+          ]
+        },
+        "verificationNote": "独立Python58文件冻结、18作者/19互补/23独立检查、1216试验/11fixture和JS22文件冻结见docs/80211AD-SOURCE-EVIDENCE.md。"
+      }
+    },
+    {
+      "id": "case-networked-sync",
+      "title": "网络同步：从复数张量分开目标与时钟",
+      "fields": {
+        "先修": "<a href=\"network-clock.html#model\">标量时钟先修</a>；<a href=\"foundations.html#ofdm\">复数OFDM观测</a>；<a href=\"foundations.html#geometry\">双站路径几何</a>",
+        "问题": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+        "交互机制": "两向含噪张量先独立生成，再固定同一观测运行平滑CP、SCPD、ESPRIT和ALS；查看实际因子、LS列、投影格点与候选、排列得分和时钟/CFO输出。",
+        "证据类型": "固定arXiv:2607.18680v1理论与仿真；独立Python参考、JavaScript及实际Node Worker核验。真实浏览器验收单独开放。",
+        "结论边界": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。",
+        "下一研究问题": "低SNR、近碰撞、主值混叠和初始化怎样让数值停止与几何通过同时伴随错误时钟？"
+      },
+      "unit": "networked-sync",
+      "paper": "networked-sync.html#paper",
+      "next": "networked-sync.html#limits",
+      "learningEntry": "networked-sync.html#question",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+        "sourceUrl": "https://arxiv.org/html/2607.18680v1",
+        "version": "v1，2026-07-21",
+        "sourceId": "case-networked-sync-paper",
+        "comparisonLink": "networked-sync.html#paper",
+        "researchQuestion": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+        "observationsAndUnknowns": "两向接收天线×子载波×符号复数张量和已知导频；已知秩L、资源与算法设置，未知复增益、角度、路径延迟/Doppler、时钟offset与CFO。生成真值只供独立评估，不进入接收机和关联。",
+        "locator": {
+          "summary": "固定v1 §II式(1)–(5)、§III-A式(7)–(11)、§IV-A式(16)–(27)与算法1；§VI图2–10与表I仅源对照，不称原曲线复现。",
+          "section": "§II、§III-A、§IV-A、§VI",
+          "figure": "图2–10、表I：缩减Monte Carlo对照，不复现原图",
+          "equation": "式(1)–(5)、(7)–(11)、(16)–(27)；算法1"
+        },
+        "paperEvidenceType": "理论、可辨识/界分析和数值仿真；不是实网测量",
+        "siteArtifactType": "原尺寸有界源算法参考、鲜生成/持有观测重算及Node Worker教学集成；实际浏览器、原图和整篇复现仍开放",
+        "retainedAssumptions": [
+          "两向互易可分离MIMO-OFDM复数观测、已知非零导频和已知秩1–3",
+          "普通发射转置、相反offset/CFO符号；明确radian/sample、C序展开与UΣVᴴ约定",
+          "三轴4×8×5平滑初始化、实际SVD模式LS与Vandermonde连续投影",
+          "所有方法使用同一pilot-divided Y；SCPD和ALS共用同一初始化，计时包含初始化"
+        ],
+        "omittedMechanisms": [
+          "原作者CP-VDM/SOE-MP代码、全部原图和每对500次、共3000站对试验的原Monte Carlo设置",
+          "算法2/完整网络时钟循环一致性、跟踪、检测器、CRB达到性",
+          "时域ICI/ISI、RF硬件、实际浏览器运行和端到端绘制延迟",
+          "没有全局最优、残差单调或所有弱路径参数一致性保证"
+        ],
+        "metrics": [
+          "每个真实A/B/C更新残差、实际LS列与投影相关功率格点/候选",
+          "时钟偏差s、CFO Hz、路径延迟s、源约定Doppler Hz和角度rad",
+          "源几何成功率、全部有效解误差与成功条件RMSE分开；失败不设零",
+          "保留近碰撞相位差3.2003e-4 rad超过8e-5 rad门槛的失败"
+        ],
+        "unknowns": [
+          "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。",
+          "源cycle/radian及展开记号存在歧义，采用声明的操作约定，不推断未发表作者实现",
+          "低SNR几何通过率37/72与9/72是本站参考切片；没有证实与源曲线差距的单一原因"
+        ],
+        "resourceBudget": {
+          "summary": "默认6×12×8，可选原尺寸M=10、N=36、K=20，已知秩1–3；最多20轮、projection oversampling8/16/32，配置联合预算受严格上限约束。",
+          "bandwidth": "10MHz、28GHz默认；相位单位rad/sample，不混作cycle/sample",
+          "energy": "同一观测、导频和源SNR约定；同一随机场景/单位噪声下重生成SNR变化",
+          "duration": "Ts=1.5/Δf；声明可分离观测，不等同时间域ICI/ISI仿真",
+          "aperture": "10阵元、半波长间距；三轴4×8×5平滑",
+          "priorKnowledge": "已知秩L与导频；真值和误差评估隔离",
+          "other": [
+            "独立参考432对试验与4722子步离线验证",
+            "源尺寸Hankel160×3248复数、8,314,880字节；完整历史有额外内存开销",
+            "仅Node测量，不是浏览器性能；ZIP仅手动可选下载"
+          ]
+        },
+        "verificationNote": "固定PDF摘要e8da91552c32d61dd40cbc3c0224c7b654df04e9a4c3e85c0781d58f66853f02；七文件JS冻结2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b。范围与保留失败见docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md。"
+      }
+    },
+    {
+      "id": "case-gaussian-tradeoff",
+      "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+      "fields": {
+        "先修": "<a href=\"theory.html#crb-mechanism\">标量随机能量与CRB</a>；<a href=\"waveform-design.html#model\">复数发射块与协方差</a>；<a href=\"foundations.html#limits\">区分误差、下界和可达率</a>",
+        "问题": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+        "交互机制": "从实际复信道和连续κ求解协方差整形，生成不归一化Gaussian块与可实现的Stiefel块；查看X、R、Y、后验、完整实Fisher矩阵和KKT间隙，再分别核对有限Wishart/MP与秩一球面MI。",
+        "证据类型": "固定arXiv:2204.06938v8理论与数值研究；独立Python参考、JavaScript和实际Node Worker审查。教学例、图4有限积分、图10双功率解释的离线审计分别标明；真实浏览器验收仍开放。",
+        "结论边界": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。",
+        "下一研究问题": "块长小于协方差秩、深衰落关闭模式或先验变弱时，哪些误差来自未激励方向？外界、平均误差和可实现信号对为什么不能连成已认证的完整区域？"
+      },
+      "unit": "gaussian-tradeoff",
+      "paper": "gaussian-tradeoff.html#paper",
+      "next": "gaussian-tradeoff.html#limits",
+      "learningEntry": "gaussian-tradeoff.html#question",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
+        "sourceUrl": "https://arxiv.org/html/2204.06938v8",
+        "version": "v8，2023-06-07；首稿 2022",
+        "sourceId": "case-gaussian-tradeoff-paper",
+        "comparisonLink": "gaussian-tradeoff.html#paper",
+        "researchQuestion": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+        "observationsAndUnknowns": "通信Yc=HcX+Zc，感知Ys=HsX+Zs；设计已知Hc、功率、块长和噪声/先验，感知估计器只接收实际X、Ys及模型方差。Hs为未知完整复响应矩阵，真值只进入生成和事后MSE，不进入估计器或优化器。",
+        "locator": {
+          "summary": "固定v8 §II式(2)–(7)、(11)，§IV式(41)–(57)，§V-B式(92)–(103)、(109)–(112)；图4为有限Wishart对照，图10为双功率解释的有界审计。直接实似然、式(48)/(95)为操作依据，不逐字执行冲突式(93)–(94)/(109)。",
+          "section": "§II、§IV、§V-B",
+          "figure": "图4；图10参数/归一化审计；不声称逐坐标复现原曲线或图11",
+          "equation": "(2)–(7)、(11)、(41)–(57)、(92)–(103)、(109)–(112)"
+        },
+        "paperEvidenceType": "理论、界与数值仿真；非硬件或实测数据",
+        "siteArtifactType": "有界复矩阵Bayesian数值核心、真实Node Worker与教学接入；独立源参考、数值积分及可选离线证据，不是完整分布优化或浏览器认证",
+        "retainedAssumptions": [
+          "复离散块模型；感知端准确知道实际X，通信端把X视为未知数据；设计知道瞬时Hc",
+          "独立各向同性iid proper-complex Gaussian感知先验与噪声；不是任意先验协方差",
+          "相同Hc、T、先验、噪声及期望迹tr(Q)=M·PT；Gaussian块能量波动且不逐块归一化",
+          "Stiefel只有rank(Q)≤T时可实现，正的小特征模态保留；proper先验的未激励方向保留误差",
+          "式(48)有限κ使用真实协方差整形及完整矩阵支持超平面证书；通信端点单独使用water filling"
+        ],
+        "omittedMechanisms": [
+          "任意p(X)的精确泛函最优化、完整CRB–rate区域和已认证可达凸包",
+          "一般MIMO有限SNR Stiefel互信息；高SNR渐近式不能替代它，不能把Gaussian logdet赋给Stiefel",
+          "原作者随机样本、图10逐点数值、图11零空间补全和全部原图",
+          "非线性角度/幅度参数、任意先验、有限码长译码、CSI获取开销、硬件和真实浏览器验收"
+        ],
+        "metrics": [
+          "Gaussian输入互信息：bit/每复信道使用；协方差外界不是一般联合可达点",
+          "条件Bayes误差：复系数平方误差之和；标归一化时除以M·Ns",
+          "Gaussian/Stiefel有限块均值、SE、样本数和真值仅供评估的经验MSE",
+          "完整复矩阵梯度、PSD/功率残差和支持超平面全局间隙；浮点诊断非区间证明",
+          "有限Wishart积分、MP近似及单独秩一球面有限SNR MI；积分误差/质量/尾概率为诊断"
+        ],
+        "unknowns": [
+          "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。",
+          "式(109)正号、式(93)–(94)坐标与proper先验因子、Pt/PT功率解释保留冲突；不得靠原图外观选定。",
+          "源未给定种子、权重网格、积分或求解容差与逐点数值；所用设置为独立参考选择。"
+        ],
+        "resourceBudget": {
+          "summary": "教学例M=4、Nc=3、Ns=2、T=8、PT=1、通信/感知噪声方差0.7/1、先验方差1.3；不是图10。图10单信道预设M=Nc=Ns=4、T=16，24dB保留总功率与每天线两种解释。",
+          "bandwidth": "复离散模型，未指定RF带宽或载频，不换算bit/s",
+          "energy": "每块期望能量T·M·PT；Gaussian不强制逐块恒能量，Stiefel样本协方差固定",
+          "duration": "T个复信道使用；B是独立块数，不能合成TB长度的单次估计",
+          "aperture": "只定义复信道矩阵维数，不引入物理阵列孔径或角度单位",
+          "priorKnowledge": "瞬时Hc、实际X、噪声与各向同性proper先验已知；Hs未知，真值隔离",
+          "other": [
+            "有界运行M/Nc/Ns≤6、T≤32、B≤512、权重数≤16；联合工作量及数值条件门独立约束",
+            "图4离线39积分点；图10离线9216协方差求解、2359296波形评估，共用随机数，不是同数量独立试验",
+            "Node性能和模块VM加载不是浏览器延迟；证据包只供手动可选下载"
+          ]
+        },
+        "verificationNote": "PDF SHA-256 8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342；七文件运行冻结ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113；独立审查与源冲突见docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md。"
+      }
     }
   ],
   "legacy": {
@@ -1915,6 +2195,62 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "先分清两个独立缩减实验的已知量，再实际搜索单路径有限网格，或在同一通信观测上运行零剪枝 MP-G 与完整 LMMSE，回看真实候选和迭代。"
+    },
+    {
+      "id": "ofdm-ici-receiver",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "href": "ofdm-ici-receiver.html#experiment",
+      "question": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "foundations.html#cfar",
+        "offgrid-range.html#experiment"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "生成或导入实际复数观测，经Worker从头重算有限网格接收机；同时检查CFO谱、所有检出、漏检、虚检与停止原因。"
+    },
+    {
+      "id": "80211ad-receiver",
+      "title": "802.11ad：从真实前导样本找帧、测距与测速",
+      "href": "80211ad-receiver.html#experiment",
+      "question": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+      "prerequisites": [
+        "golay-radar.html#experiment",
+        "foundations.html#matched",
+        "foundations.html#doppler"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "实际生成或导入复数观测，持有同一份样本逐步检查STF/CEF、Moose与慢时间DFT；保留失败、混叠和所有候选。"
+    },
+    {
+      "id": "networked-sync",
+      "title": "网络同步：从复数张量分开目标与时钟",
+      "href": "networked-sync.html#experiment",
+      "question": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+      "prerequisites": [
+        "network-clock.html#model",
+        "foundations.html#ofdm",
+        "foundations.html#geometry"
+      ],
+      "group": "research",
+      "primaryDirectionId": "networks",
+      "action": "生成或导入两向复数观测，实际运行结构CP与同观测基线；查看平滑、LS、连续投影、关联和每步残差，再单独揭示真值误差。"
+    },
+    {
+      "id": "gaussian-tradeoff",
+      "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+      "href": "gaussian-tradeoff.html#experiment",
+      "question": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+      "prerequisites": [
+        "theory.html#crb-mechanism",
+        "waveform-design.html#model",
+        "foundations.html#limits"
+      ],
+      "group": "research",
+      "primaryDirectionId": "tradeoffs",
+      "action": "固定同一复信道、资源与随机样本，实际求解矩阵协方差整形，检查后验、Fisher和证书；分开读外界、有限块均值、Wishart与单独秩一MI。"
     }
   ],
   "pages": [
@@ -2254,6 +2590,61 @@
       ],
       "next": "reading.html#guide-otfs-joint-estimation-2020",
       "nextLabel": "回到固定 v1：哪些算法已实现，哪些原图和物理对应仍开放？"
+    },
+    {
+      "path": "ofdm-ici-receiver.html",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "stage": "experiments",
+      "role": "有界论文算法 · 有限网格ICI-aware接收、同观测FFT与失败记录",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "foundations.html#cfar",
+        "offgrid-range.html#experiment"
+      ],
+      "next": "reading.html#guide-ofdm-ici-aware-receiver-2021",
+      "nextLabel": "回到固定v1：核对算法、分母和未完成的原图"
+    },
+    {
+      "path": "80211ad-receiver.html",
+      "title": "802.11ad：从真实前导样本找帧、测距与测速",
+      "stage": "experiments",
+      "case": "case-80211ad-receiver",
+      "role": "有界源算法 · 实际802.11ad前导接收与失败诊断",
+      "prerequisites": [
+        "golay-radar.html#experiment",
+        "foundations.html#matched",
+        "foundations.html#doppler"
+      ],
+      "next": "reading.html#paper-80211ad",
+      "nextLabel": "回到同一篇固定原文：区分孤立Golay先修、实际接收机和未完成原图"
+    },
+    {
+      "path": "networked-sync.html",
+      "title": "从两块复数观测中，分开目标、时钟与频偏",
+      "stage": "experiments",
+      "role": "源算法有界实现 · 互易复数张量、结构CP与独立误差评估",
+      "prerequisites": [
+        "network-clock.html#model",
+        "foundations.html#ofdm",
+        "foundations.html#geometry"
+      ],
+      "case": "case-networked-sync",
+      "next": "reading.html#direction-networks",
+      "nextLabel": "对照多站协作的原文、失败与资源预算"
+    },
+    {
+      "path": "gaussian-tradeoff.html",
+      "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+      "stage": "experiments",
+      "role": "有界源模型 · 复矩阵Bayesian后验、协方差整形与输入分布",
+      "prerequisites": [
+        "theory.html#crb-mechanism",
+        "waveform-design.html#model",
+        "foundations.html#limits"
+      ],
+      "case": "case-gaussian-tradeoff",
+      "next": "reading.html#direction-tradeoffs",
+      "nextLabel": "对照通感权衡的原文、统计与未实现边界"
     }
   ],
   "schemaVersion": 1,
@@ -2624,7 +3015,7 @@
       "id": "receiver",
       "title": "检测与估计：怎样从样本找到目标？",
       "question": "有一个峰，为什么还不能立刻说找到目标、测准了位置？",
-      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。",
+      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。 新增固定小规模ICI-aware多目标接收；原尺寸曲线与校准Pfa仍待核验。",
       "prerequisites": [
         "matched",
         "doppler",
@@ -2632,7 +3023,9 @@
         "limits"
       ],
       "primaryCaseIds": [
-        "case-perceptive-clutter"
+        "case-perceptive-clutter",
+        "case-ofdm-ici-receiver",
+        "case-80211ad-receiver"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -2675,6 +3068,22 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "知道发射数据，为什么高速回波仍会失配？",
+              "href": "ofdm-ici-receiver.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "从样本中找帧，再测距和测速",
+              "href": "80211ad-receiver.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ]
         },
@@ -2720,6 +3129,22 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "同一X/Y里的符号内频偏、角度与时延",
+              "href": "ofdm-ici-receiver.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "真实3328芯片、脉冲、未知量与观测",
+              "href": "80211ad-receiver.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ]
         },
@@ -2781,6 +3206,22 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "从实际样本重算MUSIC/APES/GLRT-OMP/CFAR",
+              "href": "ofdm-ici-receiver.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "同一份观测逐步运行STF/CEF与Moose/DFT",
+              "href": "80211ad-receiver.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ],
           "coverage": "direction-specific"
@@ -2827,6 +3268,22 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "固定v1：逐阶段算法与统计分母对照",
+              "href": "ofdm-ici-receiver.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "固定v1：源结构、估计器和明确偏差",
+              "href": "80211ad-receiver.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ],
           "comparisonStatus": "partial",
@@ -2868,6 +3325,22 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "保留假峰、漏检、混叠区失败和预算上限",
+              "href": "ofdm-ici-receiver.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "拒绝、混叠、混合目标与条件RMSE",
+              "href": "80211ad-receiver.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ]
         },
@@ -2922,12 +3395,28 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "保存实际输入与结果，下载源自由数值证据",
+              "href": "ofdm-ici-receiver.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+            },
+            {
+              "label": "保存真实输入、处理策略、哈希与失败",
+              "href": "80211ad-receiver.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
             }
           ]
         }
       ],
       "nextExtension": "在现有离格单目标有限网格比较之外，检验连续参数估计、模型失配与低 SNR 门限效应；不能把一个经探索选取的有限反例当作普遍排序。",
-      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。 已有N64/M16有限网格MUSIC/APES/GLRT-OMP/CFAR有界实现，不表示整篇论文或浏览器已验收。",
       "scenePositions": [
         "interpret"
       ]
@@ -2945,7 +3434,8 @@
         "case-crb",
         "case-sbfd",
         "case-crb-beamforming",
-        "case-shared-array"
+        "case-shared-array",
+        "case-gaussian-tradeoff"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -2979,6 +3469,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "相同平均协方差，误差为什么还会不同？",
+              "href": "gaussian-tradeoff.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ]
         },
@@ -3007,6 +3505,14 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "复数X、Y、未知响应矩阵与proper先验",
+              "href": "gaussian-tradeoff.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ]
         },
@@ -3064,6 +3570,14 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "实际求解协方差、生成波形并检查后验",
+              "href": "gaussian-tradeoff.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ],
           "coverage": "direction-specific"
@@ -3114,6 +3628,14 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "固定v8：式(48)/(95)、图4与图10审计",
+              "href": "gaussian-tradeoff.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ],
           "comparisonStatus": "partial",
@@ -3159,6 +3681,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "外界、Monte Carlo和渐近率各能说明什么",
+              "href": "gaussian-tradeoff.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ]
         },
@@ -3190,6 +3720,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "独立解析配方与实现核验，不表示原文优化算法、原图或整篇论文已复现"
+            },
+            {
+              "label": "从原始输入重算并核对矩阵证书和统计",
+              "href": "gaussian-tradeoff.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
             }
           ]
         }
@@ -3550,7 +4088,8 @@
       ],
       "primaryCaseIds": [
         "case-clock",
-        "case-distributed-detection"
+        "case-distributed-detection",
+        "case-networked-sync"
       ],
       "relatedDirectionIds": [
         "spatial",
@@ -3576,6 +4115,14 @@
               "kind": "lesson",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "两向复数样本，怎样分开目标与时钟？",
+              "href": "networked-sync.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ]
         },
@@ -3604,6 +4151,14 @@
               "kind": "model",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "张量、导频、相反时频偏差与未知因子",
+              "href": "networked-sync.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ]
         },
@@ -3632,6 +4187,14 @@
               "kind": "interactive",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "同一观测逐步运行结构CP和实际基线",
+              "href": "networked-sync.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ],
           "coverage": "direction-specific"
@@ -3661,6 +4224,14 @@
               "kind": "paper-guide",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "固定v1：算法1与声明的实现差异",
+              "href": "networked-sync.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ],
           "comparisonStatus": "partial",
@@ -3685,6 +4256,14 @@
               "kind": "limits",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "几何通过、残差停止和错误时钟",
+              "href": "networked-sync.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ]
         },
@@ -3707,6 +4286,14 @@
               "kind": "reproduction-plan",
               "scope": "direction-specific",
               "status": "available"
+            },
+            {
+              "label": "导出原始观测、重算与保留全部失败",
+              "href": "networked-sync.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
             }
           ]
         }

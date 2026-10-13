@@ -147,6 +147,29 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Local source-derived digital SDR/finite-X/noisy-MUSIC lesson; independent numerical and Node chain evidence accepted, actual browser and publication gated separately"
+      },
+      {
+        "paperId": "ofdm-ici-aware-receiver-2021",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local bounded finite-grid ICI receiver; exact source/Node numerical evidence, actual browser and publication gated separately"
+      },
+      {
+        "paperId": "80211ad",
+        "stage": "browser-validation",
+        "status": "pending"
+      },
+      {
+        "paperId": "supplement-case-clock",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local source-derived reciprocal CP lesson and actual Node Worker evidence; actual browser and publication gated separately"
+      },
+      {
+        "paperId": "supplement-case-crb",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local bounded Gaussian matrix lesson and independently reviewed numerical/Node Worker core; actual browser, paint timing and publication gated separately"
       }
     ]
   },
@@ -1921,8 +1944,12 @@
           "ofdm-ici-aware-receiver-2021"
         ],
         "catalogIds": [],
-        "caseIds": [],
-        "sourceIds": []
+        "caseIds": [
+          "case-ofdm-ici-receiver"
+        ],
+        "sourceIds": [
+          "case-ofdm-ici-receiver-paper"
+        ]
       },
       "paperType": "estimation-and-detection-algorithm",
       "source": {
@@ -1933,8 +1960,8 @@
         },
         "paperIdentity": "arxiv:2103.15694",
         "fixedSourceIdentity": "arxiv:2103.15694v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Musa Furkan Keskin、Henk Wymeersch、Visa Koivunen",
           "publicationUrl": "https://doi.org/10.1109/JSTSP.2021.3109431"
@@ -1995,75 +2022,99 @@
             "观测是阵列×符号内采样×符号的复数据，发射符号已知，角度、时延、多普勒和复增益未知；采用单站远场点目标、单数据流、完全收发隔离、循环前缀（CP）覆盖时延及可忽略宽带时变效应的模型。",
             "多重信号分类（MUSIC）初筛依赖式(16)–(18)的符号统计、足够样本和目标分离近似，并需设置信号子空间阶数；同角度多目标扩展还要求稀疏场景，不能推广为任意密集目标保证。",
             "图8的FDR不是单元虚警概率；式(66)的RMSE只统计检测成功的事件。图7–10要联读，且FFT与所提方法的检出关联分别使用模糊与解模糊坐标。",
-            "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。结果不证明ICI始终有益，也不意味着突破任意物理分辨率；本站未实现APES、GLRT-OMP或原文曲线。"
-          ]
+            "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+          ],
+          "boundedCurrentLesson": {
+            "N": 64,
+            "M": 16,
+            "NT": 8,
+            "NR": 8,
+            "L": 12,
+            "Pmax": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "finiteGridOnly": true,
+            "truthBlind": true,
+            "held": {
+              "hits": 4,
+              "falseDetections": 3,
+              "misses": 1,
+              "capRetained": true
+            },
+            "allOnesDownstreamParityClaimed": false,
+            "nominalPfaCalibrated": false,
+            "sameCfoOffgridOutcome": "mixed; retain favorable and unfavorable controls"
+          }
         }
       },
       "implementation": {
-        "classification": "guide-only-with-related-prerequisite-labs",
-        "live": null,
-        "offline": null,
+        "classification": "bounded-source-derived-finite-grid-receiver; browser-and-original-curves-open",
+        "live": "ofdm-ici-receiver.html#experiment",
+        "offline": "data/ofdm-ici-reference-v1.zip",
         "details": {
-          "guideTraceKind": "qualitative-reading-trace",
+          "browserAccepted": false,
+          "kernelSha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe",
+          "referenceCoreSha256": "fee9e4a55707fe251f73bf343d0ac0142607d6c827cfd4e8bd0c974bba439cdb",
           "actualArtifacts": [
             {
-              "path": "features/foundations/course-core.js",
+              "path": "labs/ofdm-ici/runtime/js/ici-kernel.js",
               "exists": true,
-              "role": "基础OFDM FFT/匹配教学，不是ICI-aware APES接收器"
+              "role": "actual source-derived finite-grid numerical receiver"
             },
             {
-              "path": "labs/ofdm-reference/offgrid-range-core.js",
+              "path": "labs/ofdm-ici/runtime/worker/ici-worker.js",
               "exists": true,
-              "role": "单静态目标、两有限网格profile-LS，无ICI/GLRT/OMP"
+              "role": "actual asynchronous Worker/client execution"
             },
             {
-              "path": "docs/OFFGRID-RANGE-VALIDATION.md",
+              "path": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
               "exists": true,
-              "role": "独立测距机制的验证不覆盖本文"
+              "role": "distinct Python, JavaScript, browser, source-curve gates"
             }
           ],
           "omissions": [
-            "符号内ICI生成与已知调制数据矩阵",
-            "MUSIC初筛/APES/CFO联合估计",
-            "GLRT-OMP干扰消除/CFAR多目标",
-            "原关联标准/条件RMSE/图7–10"
-          ],
-          "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+            "continuous refinement",
+            "original-size converged OMP and Figures7–10",
+            "empirical Pfa calibration",
+            "actual browser certification"
+          ]
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "guide-only-with-related-prerequisite-labs",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed v1 source audit and numerical operator checks; source PDF hash recorded, source text/PDF not redistributed.",
+        "algorithm": "Actual finite-grid MUSIC/APES/GLRT-OMP/joint refits/CFAR and literal alias-zone rule from accepted X/Y/config; frozen JavaScript core.",
+        "selectedExperiment": "Bounded held finite-grid4 hits/3 false/1 miss and cap; original Figures7–10 not reproduced.",
+        "fullPaper": "Not reproduced; independent bounded mathematics does not establish original favorable curves.",
+        "latency": "Node-only timings and Worker/VM tests, not actual browser measurement.",
+        "independentValidation": "Python reference independently accepted; separate frozen JavaScript port review passed356/356 stage arrays across8 fresh runs and2219 scalar checks, with all6 exact runtime hashes verified. Neither transfers to browser or full-paper acceptance."
       },
       "missingImplementation": [
-        "符号内ICI生成与已知调制数据矩阵",
-        "MUSIC初筛/APES/CFO联合估计",
-        "GLRT-OMP干扰消除/CFAR多目标",
-        "原关联标准/条件RMSE/图7–10"
+        "Original-size fully converged multi-CFO OMP and original Figures7–10 Monte Carlo curves",
+        "Calibrated achieved Pfa, communications/field/hardware claims",
+        "Actual browser rendering, keyboard, cancellation, memory and painted-result latency acceptance"
       ],
       "dependencies": [
-        "高质量复矩阵线性代数/特征分解/FFT",
-        "按原文GLRT统计量和门限/噪声估计建立独立参考",
-        "固定子空间阶数、候选网格、目标关联规则",
-        "完整2048×64×8尺寸和多轮搜索基准"
+        "Frozen source/JavaScript/Python identities and exact input/output stage contracts",
+        "Actual browser and device acceptance",
+        "Full-size compute budget and independent original-curve experiment design"
       ],
       "blockers": [
-        "无APES/GLRT-OMP实际核心或独立fixtures",
-        "论文全尺寸计算预算、门限关联细节须完整落实"
+        "Original curves and empirical false-alarm calibration remain open",
+        "Browser/device and publication acceptance remain open"
       ],
       "realtime": {
         "status": "not-measured",
@@ -2079,7 +2130,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "缩小规模但保持完整ICI-aware算法可交互原理验证；论文全尺寸的角度/CFO搜索和多轮矩阵求解很重，未测不能承诺实时。需异步worker/WebGPU或服务端评估",
+          "assessment": "Actual bounded Worker kernel with Node-only measured runtime; no actual browser performance promise.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -2094,9 +2145,22 @@
         }
       },
       "evidence": {
-        "auxiliaryPrimarySources": []
+        "auxiliaryPrimarySources": [],
+        "sourceEvidenceDocument": "docs/OFDM-ICI-SOURCE-EVIDENCE.md"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "heldFiniteGridHits": 4,
+          "heldFiniteGridFalseDetections": 3,
+          "heldFiniteGridMisses": 1,
+          "capRetained": true,
+          "continuousHeldOutcomeSubstituted": false,
+          "nominalPfaCalibrated": false,
+          "sameCfoAlwaysImproves": false,
+          "originalCurvesReproduced": false,
+          "nodeIsBrowser": false
+        }
+      }
     },
     {
       "id": "ofdm-passive-atomic-errors-2017",
@@ -2942,7 +3006,7 @@
           "coreTestsPassed": 18,
           "independentRandomSlsqpComparisons": 150,
           "binaryFigure2ActualBaSolves": 49,
-          "maximumRateErrorBitsPerUse": 2.591e-09,
+          "maximumRateErrorBitsPerUse": 2.591e-9,
           "maximumDistortionError": 9.819e-11,
           "maximumEveryIterationError": 1.11e-16,
           "sourceAudit": "docs/CAPACITY-DISTORTION-SOURCE-AUDIT.md",
@@ -5334,10 +5398,12 @@
           "80211ad"
         ],
         "caseIds": [
-          "case-golay-radar"
+          "case-golay-radar",
+          "case-80211ad-receiver"
         ],
         "sourceIds": [
-          "80211ad"
+          "80211ad",
+          "case-80211ad-receiver-paper"
         ]
       },
       "paperType": "standard-waveform-estimation",
@@ -5352,15 +5418,17 @@
         },
         "paperIdentity": "arxiv:1702.05833",
         "fixedSourceIdentity": "arxiv:1702.05833v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "c16755b358bfe4152fea3bba5bc54c05370a0d8491aa481a73816bb12447e8b8",
+        "hashStatus": "recorded",
         "details": {
           "doi": "https://doi.org/10.1109/tvt.2017.2774762",
           "frozenAuditNote": "2026-10-11 采用已核对的固定 v1 原文与独立模型记录；原文块结构、本站孤立互补对及其边界分开。影响力计数沿用 2026-10-10 快照，本次不刷新。",
           "sourceManifest": "assets/data/golay-radar-sources.json",
           "supplementalPrimaryReadings": [
             "https://arxiv.org/html/1702.05833v1"
-          ]
+          ],
+          "receiverSourceAudit": "scripts/validation/80211ad/SOURCE-AUDIT.md",
+          "sequenceAudit": "scripts/validation/80211ad/SEQUENCE-AUDIT.md"
         }
       },
       "contribution": {
@@ -5414,15 +5482,36 @@
           "CPI/frame count/payload budget must be explicit"
         ],
         "unresolved": [
-          "Normative standard chip ordering/rotations and pulse-shaping parameters must be verified before standard-compliance claims",
-          "Audited v1 has a Doppler-sign inconsistency and printed rate-unit issue; document conventions rather than silently porting ambiguous expressions"
+          "Original per-point10000-trial curves and missing source synchronizer settings remain unreproduced; receiver choices are explicit",
+          "Finite RC signal and separately normalized finite RRC noise are an explicit mismatch; ideal bounds are comparators",
+          "Oscillator versus Doppler is inseparable; accepted aliases, global mixed-target Moose, fractional/phase bias and first-frame cancellation remain",
+          "Real browser rendering/lifecycle/download/latency and full PHY/range migration/array/throughput gates remain open"
         ],
-        "details": {}
+        "details": {
+          "referenceTrials": 1216,
+          "referenceFixtures": 11,
+          "ownerTests": 18,
+          "complementaryChecks": 19,
+          "independentReferenceChecks": 23,
+          "independentPortNumericComparisons": 7105533,
+          "independentFreshScenes": 13,
+          "heldPolicyBranches": 4,
+          "noiseRecords": 96,
+          "historicalMap": {
+            "nfft": 10000,
+            "candidates": 28
+          },
+          "boundedSameRecordMap": {
+            "nfft": 256,
+            "candidates": 29
+          },
+          "truthOnlyForEvaluation": true
+        }
       },
       "implementation": {
-        "classification": "live independent chip-rate complementary-pair mechanism",
-        "live": "golay recursively generates an independent pair; observe synthesizes integer-delay echoes with samplewise Doppler/noise and correlates fixed windows. AA versus AB shares energy, guards and observations. No original STF/CEF receiver runs.",
-        "offline": null,
+        "classification": "bounded source-derived STF/CEF receiver and held-observation Worker; isolated Golay remains prerequisite",
+        "live": "Actual3328-chip source-supported preamble, fractional-delay finite RC waveform and finite RRC-colored noise; actual STF acquisition/fractional timing/CFO, STF/CEF correlations, Moose, per-frame channel and slow-time DFT. Source8x supported. Truth is isolated. Browser acceptance remains open.",
+        "offline": "Accepted Python selected-algorithm reference:58 frozen files,18 owner tests,19 complementary checks,23 independent checks,1216 replayed trial rows and11 fixtures. Selected Fig8/10 deviations and every unfavorable result retained.",
         "details": {
           "entryPoints": [
             "GolayRadarCore.golay(n)",
@@ -5459,41 +5548,48 @@
             }
           },
           "fullRegressionRerun": false,
-          "newBrowserCheck": false
+          "newBrowserCheck": false,
+          "runtimeFreeze": "b84547a2bdad7da400238c267d2a6d089b33af8f2474d8f733f18c85d9a9b430",
+          "runtimeFreezeEntries": 22,
+          "referenceFreeze": "70191a5acbb6ab90d1da3791aaee86d557b8605884cac8251fb834acda4a3024",
+          "receiverLesson": "80211ad-receiver.html#question",
+          "browserAccepted": false,
+          "fullPaperReproduced": false,
+          "standardCompliance": false,
+          "historicalPrerequisiteRetained": true
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "live independent chip-rate complementary-pair mechanism",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Fixed35-page arXiv v1 PDF hash and independent source/sequence audits retained; normative PHY conformance not established.",
+        "algorithm": "Actual source-derived bounded STF/CEF/Moose/channel/DFT runtime independently checked at the exact22-file freeze; old Golay is a separate prerequisite.",
+        "selectedExperiment": "1216 reduced main/stress trials and11 fixtures replayed; no original10000-trial curve reproduction. Historical10000-bin/28-candidate map and bounded256-bin/29-candidate replay remain distinct.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "Node-only numerical/transport timings; no actual browser control-to-painted-result measurement."
       },
       "missingImplementation": [
-        "Independent pair replaces standard frame",
-        "No synchronization/fractional delay/pulse shaping",
-        "No source detection, velocity receiver, Monte Carlo or data-rate experiment"
+        "Original full figure curves and per-point10000-trial statistics",
+        "Complete PHY/payload/MAC/arrays/self-interference/range-migration/communication-rate experiment",
+        "Actual hosted-browser acceptance, memory and painted-result timing"
       ],
       "dependencies": [
-        "Verified standard preamble/rotation tables or an independently validated normative generator",
-        "Fractional-delay/RRC model with fixed sample support",
-        "Truth-blind synchronization/CEF receiver and known-noise detection calibration",
-        "Seeded Monte Carlo with failed detections and conditional RMSE labeled"
+        "Accepted reference and runtime hashes must remain exact and independent reports retained",
+        "Optional source-free evidence archives remain offline-only; no startup fetch",
+        "Real browser review must use the frozen lesson and measure full transport/render boundary separately"
       ],
       "blockers": [
-        "Independent pair replaces standard frame",
-        "No synchronization/fractional delay/pulse shaping"
+        "Actual browser acceptance is pending; no deploy or publication authorized",
+        "Full source-curve and PHY coverage remains incomplete"
       ],
       "realtime": {
         "status": "not-measured",
@@ -5521,7 +5617,14 @@
           "startDataAccessInParallel": false
         }
       },
-      "evidence": {},
+      "evidence": {
+        "boundedReceiver": {
+          "summary": "docs/80211AD-SOURCE-EVIDENCE.md",
+          "data": "data/80211ad-evidence-map.json",
+          "independentNumerical": "scripts/validation/80211ad/INDEPENDENT-NUMERICAL-REVIEW.md",
+          "independentPort": "scripts/validation/80211ad/INDEPENDENT-PORT-REVIEW.md"
+        }
+      },
       "details": {
         "existingRegistryComparison": {
           "comparisonLink": "golay-radar.html#paper",
@@ -6630,10 +6733,12 @@
         "guideIds": [],
         "catalogIds": [],
         "caseIds": [
-          "case-crb"
+          "case-crb",
+          "case-gaussian-tradeoff"
         ],
         "sourceIds": [
-          "case-crb-paper"
+          "case-crb-paper",
+          "case-gaussian-tradeoff-paper"
         ]
       },
       "paperType": "theory-and-optimization",
@@ -6641,47 +6746,66 @@
         "url": "https://arxiv.org/html/2204.06938v8",
         "fixedVersion": "v8，2023-06-07；首稿 2022",
         "locators": {
-          "summary": "主论文 v8 §II-A–B；配套教程 v2（2023-10-17）§IV-B 式(19)–(22)，速率桥接见 §IV-A–C。仅借用已知输入与先条件再平均的组织方式；本站有限样本 LS 等号为独立经典推导",
-          "section": null,
-          "figure": null,
-          "equation": null
+          "summary": "固定v8 §II式(2)–(7)、(11)，§IV式(41)–(57)，§V-B式(92)–(103)、(109)–(112)；图4为有限Wishart对照，图10为双功率解释的有界审计。直接实似然、式(48)/(95)为操作依据，不逐字执行冲突式(93)–(94)/(109)。",
+          "section": "§II、§IV、§V-B",
+          "figure": "图4；图10参数/归一化审计；不声称逐坐标复现原曲线或图11",
+          "equation": "(2)–(7)、(11)、(41)–(57)、(92)–(103)、(109)–(112)"
         },
         "paperIdentity": "arxiv:2204.06938",
         "fixedSourceIdentity": "arxiv:2204.06938v8",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
-        "details": {}
+        "pdfSha256": "8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342",
+        "hashStatus": "recorded",
+        "details": {
+          "audit": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md",
+          "operationalConventions": {
+            "objective": "Source (48) sensing-minus-rate, not the printed plus-rate sign in (109)",
+            "fisher": "Direct real proper-complex likelihood and prior factor2; printed (93)–(94) coordinate conflict retained, (95) trace independently checked",
+            "power": "Both TableII 24dB total-Pt and per-antenna-PT interpretations retained; no figure-fitted normalization",
+            "sampleCovariance": "R=XX^H/T; Gaussian blocks remain unnormalized",
+            "scope": "Isotropic iid proper-complex sensing prior, not arbitrary prior covariance"
+          }
+        }
       },
       "contribution": {
         "types": [
           "theory",
           "algorithm"
         ],
-        "summary": "Compute the paper complex-vector CRB–rate region, including the specified sensing prior and input-distribution optimization."
+        "summary": "Bounded Bayesian complex-matrix response specialization of source (48)/(95): covariance shaping, Gaussian rate/error, finite Wishart and separately rank-one sphere MI; arbitrary input-distribution optimum remains open."
       },
       "minimalFaithfulTarget": {
-        "description": "Implement a source-audited low-dimensional instance of the actual vector/Bayesian region; compare against independent convex/numerical bounds before UI."
+        "description": "Run fresh bounded complex-matrix covariance shaping and truth-blind posterior estimation with full-matrix certificates; retain the separate real-scalar prerequisite, exact source conflicts, finite-sample statistics and unimplemented full-region gates."
       },
       "experiment": {
         "targets": [
-          "Paper Gaussian/fading numerical setting; figure/parameter audit still required"
+          "Figure4: 39 finite isotropic complex-Wishart integral points with explicit MP approximation comparison",
+          "Figure10: bounded two-power-convention configuration audit, 9216 shaping solves and2359296 waveform evaluations; not digitized source-curve reproduction",
+          "Separate teaching M4/Nc3/Ns2/T8 example and rank-one sphere finite-SNR MI; neither is Figure10 or Figure11"
         ],
         "baselines": [
-          "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+          "Same H, Q, expected power, T, prior and noises: unnormalized Gaussian versus realizable fixed-covariance random Stiefel waveforms",
+          "Finite-dimensional Wishart integration versus explicitly approximate MP; rank-one sphere MI versus Gaussian-input upper comparison",
+          "Covariance outer pair and deterministic zero-data-rate sensing endpoint remain distinct from jointly achieved pairs; no full-MIMO finite-SNR Stiefel-rate substitution"
         ],
         "metrics": [
-          "Fisher 信息 J",
-          "平均条件 CRB，增益平方",
-          "互信息，bit/每实信道使用",
-          "条件与联合平均 MSE、经验偏差，增益平方/增益",
-          "实际条件 CRB 的均值与有限试验经验 MSE 分开"
+          "Gaussian输入互信息：bit/每复信道使用；协方差外界不是一般联合可达点",
+          "条件Bayes误差：复系数平方误差之和；标归一化时除以M·Ns",
+          "Gaussian/Stiefel有限块均值、SE、样本数和真值仅供评估的经验MSE",
+          "完整复矩阵梯度、PSD/功率残差和支持超平面全局间隙；浮点诊断非区间证明",
+          "有限Wishart积分、MP近似及单独秩一球面有限SNR MI；积分误差/质量/尾概率为诊断"
         ],
         "resources": [
-          "Existing independent teaching budget, not the target paper configuration: 本站固定 P=1、感知噪声方差=1、实标量维度和 LS 估计器；θ=1 仅作评估真值，估计器只接收 x、y。T 为每次估计的实观测数，B 为独立评估试验数，不合并成 TB 样本估计。BPSK 每块能量 T；Gaussian 期望块能量 T、不逐块归一化；固定块模式的实现能量可以不同，不用于宣称赢家。无峰值约束、先验、连续带宽或物理孔径模型。"
+          "教学例M=4、Nc=3、Ns=2、T=8、PT=1、通信/感知噪声方差0.7/1、先验方差1.3；不是图10。图10单信道预设M=Nc=Ns=4、T=16，24dB保留总功率与每天线两种解释。",
+          "Offline Figure4: M=Ns in2/4/6,T=4M,Q=I,sensing noise1,prior precision.01–100,16384 blocks per M reused across13 prior points.",
+          "Offline Figure10: two power conventions×two seeds×256 channels×nine weights×256 waveform blocks;512 unique fading channels and131072 independent base waveform draws, not2359296 independent trials."
         ],
-        "unresolved": [],
+        "unresolved": [
+          "Unspecified author seeds, source ordinates, weight grid and solver/integration settings; no exact Figure10 plot match",
+          "Printed Eq109 sign, Eq93–94 coordinates/prior and Pt/PT notation retained rather than silently corrected",
+          "General-MIMO finite-SNR Stiefel MI, arbitrary p(X) region, Figure11 completion and browser acceptance remain open"
+        ],
         "details": {
-          "metricScope": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+          "metricScope": "Complex-matrix Bayesian source specialization replaces the target-paper metric inventory. Original real-scalar prerequisite budget remains in existingTeachingResourceBudget and its unchanged case; the separate new teaching matrix is not a source figure.",
           "existingTeachingResourceBudget": {
             "summary": "本站固定 P=1、感知噪声方差=1、实标量维度和 LS 估计器；θ=1 仅作评估真值，估计器只接收 x、y。T 为每次估计的实观测数，B 为独立评估试验数，不合并成 TB 样本估计。BPSK 每块能量 T；Gaussian 期望块能量 T、不逐块归一化；固定块模式的实现能量可以不同，不用于宣称赢家。无峰值约束、先验、连续带宽或物理孔径模型。",
             "bandwidth": null,
@@ -6690,45 +6814,65 @@
             "aperture": null,
             "priorKnowledge": null,
             "other": []
+          },
+          "boundedGaussianTradeoff": {
+            "figure4FiniteIntegralPoints": 39,
+            "covarianceSolves": 9216,
+            "waveformEvaluations": 2359296,
+            "uniqueFadingChannels": 512,
+            "independentBaseWaveformDraws": 131072,
+            "teachingIsSourceFigure": false,
+            "gaussianBlockEnergyNormalized": false,
+            "fullMimoFiniteSnrStiefelMiImplemented": false,
+            "covarianceOuterPairJointlyAchieved": false,
+            "intervals": "Pointwise approximate Monte Carlo intervals; common draws correlate weights; quadrature diagnostics are not rigorous entropy intervals"
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "独立实标量经典推导与 LS=ML 误差模拟；两个互信息–平均条件 CRB 解析工作点，不是整篇论文复现",
-        "offline": null,
-        "details": {}
+        "classification": "bounded-source-derived-bayesian-complex-matrix-core; operational-source-conflicts-retained; browser-not-accepted",
+        "live": "gaussian-tradeoff.html#experiment: fresh source48 shaping, actual X/R/Y/posterior and real BFIM, finite Wishart/MP and separate rank-one sphere MI; exact Node Worker review, actual browser pending",
+        "offline": "Independently replayed reference archive235619c80cc0ebf8551138a1ef241adefacddb0f15a79ca973718fb5ccd5481c:39 Figure4 points,9216 covariance solves and2359296 waveform evaluations; not full paper",
+        "details": {
+          "runtimeFreeze": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+          "runtimeFreezeEntries": 7,
+          "referenceCore": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2",
+          "independentPortReviewSha256": "167fc761ff93b4f89b5bc7e59e2f3392e325c133306c96cf9614ac161c4f7a57",
+          "browserAccepted": false,
+          "fullPaper": false,
+          "lesson": "gaussian-tradeoff.html#question"
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed2204.06938v8 PDF audited and hash recorded. Direct real likelihood, proper prior factor2, source48 objective and source95 trace are operational; printed coordinate/sign and power-notation conflicts retained.",
+        "algorithm": "Seven exact-byte source-derived JS/Worker runtime files independently reviewed. Fresh complex-matrix shaping and posterior, finite Wishart, MP and rank-one sphere integration; continuous finiteκ is not endpoint water filling.",
+        "selectedExperiment": "All39 Figure4 finite integrals and offline9216 shaping solves/2359296 waveform evaluations independently checked. Figure10 is a two-power-convention bounded audit; separate teaching example is not a source figure.",
+        "fullPaper": "Zero full-paper reproductions. General p(X), full-MIMO finite-SNR Stiefel MI, Figure11 null-space completion, original curves and full coverage remain open.",
+        "latency": "Actual Node Worker and browser-module-branch VM evidence only; no actual browser control-to-painted-result latency, browser measurements remain null."
       },
       "missingImplementation": [
-        "原文复向量模型、先验信息、最优 CRB–rate 区域",
-        "衰落算例及论文图的数值复现",
-        "论文一般模型的估计器性能、非线性距离/角度、导频和编码开销、硬件失真"
+        "General input-distribution optimization, certified full achieved region, general-MIMO finite-SNR Stiefel MI and Figure11 null-space completion",
+        "Original source-curve coordinates and complete figure/experiment coverage",
+        "Actual browser lifecycle, accessibility, navigation/download, memory and painted-result latency; finite coding, CSI acquisition and hardware"
       ],
       "dependencies": [
         "Finite-dimensional matrix/Fisher reference",
         "Exact theorem and prior-information audit"
       ],
       "blockers": [
-        "原文复向量模型、先验信息、最优 CRB–rate 区域",
-        "衰落算例及论文图的数值复现"
+        "Actual browser and publication gates remain open; independent Node/VM results do not close them",
+        "Source sign/coordinate/prior and Pt/PT conflicts remain declared; full-region and full-paper claims are unsupported"
       ],
       "realtime": {
         "status": "not-measured",
@@ -6752,10 +6896,23 @@
         "inventoryAssessment": 3
       },
       "evidence": {
-        "currentRunnable": "独立实标量经典推导与 LS=ML 误差模拟；两个互信息–平均条件 CRB 解析工作点，不是整篇论文复现",
-        "fixedSourceAudit": "原文对照沿用已记录的固定版本与核对范围；新增 LS 部分依据明确实标量模型独立推导，不作为原文的新结论或完整复现"
+        "currentRunnable": "gaussian-tradeoff.html#experiment",
+        "fixedSourceAudit": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md",
+        "independentNumericalReview": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+        "independentPortReview": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "gaussianPowerIsPerBlock": false,
+          "outerPairIsJointlyAchieved": false,
+          "stiefelRankMayExceedT": false,
+          "positiveModesMayBeDeleted": false,
+          "importedHistoryIsFresh": false,
+          "monteCarloIsExactExpectation": false,
+          "numericalCertificateIsIntervalProof": false,
+          "browserAccepted": false
+        }
+      }
     },
     {
       "id": "supplement-case-pilot",
@@ -6901,10 +7058,12 @@
         "guideIds": [],
         "catalogIds": [],
         "caseIds": [
-          "case-clock"
+          "case-clock",
+          "case-networked-sync"
         ],
         "sourceIds": [
-          "case-clock-paper"
+          "case-clock-paper",
+          "case-networked-sync-paper"
         ]
       },
       "paperType": "estimation-algorithm",
@@ -6919,9 +7078,12 @@
         },
         "paperIdentity": "arxiv:2607.18680",
         "fixedSourceIdentity": "arxiv:2607.18680v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
-        "details": {}
+        "pdfSha256": "e8da91552c32d61dd40cbc3c0224c7b654df04e9a4c3e85c0781d58f66853f02",
+        "hashStatus": "recorded",
+        "details": {
+          "operationalConventions": "radian/sample, C-order tensor/unfolding, ordinary transmit steering transpose, standard UΣVᴴ; source ambiguities retained",
+          "audit": "scripts/validation/networked-sync/SOURCE-AUDIT.md"
+        }
       },
       "contribution": {
         "types": [
@@ -6937,19 +7099,22 @@
           "v1 Fig2–10 with failed trials counted separately from conditional RMSE"
         ],
         "baselines": [
-          "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+          "Same actual pilot-divided Y: three-axis smoothed CP, SCPD, ESPRIT, unstructured ALS; SCPD/ALS exact same initializer; initialization-inclusive timing"
         ],
         "metrics": [
-          "本站一次确定性试验的路径/位置误差",
-          "原文成功试验条件下的 RMSE",
-          "原文成功率，表I仅对应图2–3"
+          "Offset error s and CFO error Hz remain explicit even when source geometry passes",
+          "All solved errors and source-success-conditioned RMSE with denominators",
+          "All starts and substep residual increases; numerical failures, aliases, association ties and clipping retained"
         ],
         "resources": [
-          "Existing independent teaching budget, not the target paper configuration: 原文 §VI 记录 M=10、N=36、K=20、R=20 与 CP-VDM 初始化。本站为等权路径最小二乘，不建立 SNR 到时延方差的映射，不等同原文参数预算。"
+          "Original10×36×20 two-link tensors, known ranks1–3; declared bounded continuous projection and20-sweep cap"
         ],
-        "unresolved": [],
+        "unresolved": [
+          "Exact author CP-VDM/SOE-MP, full curves and all source settings are not reproduced",
+          "Golden-section versus SciPy bounded refinement is a declared port adaptation"
+        ],
         "details": {
-          "metricScope": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+          "metricScope": "Bounded source-derived numerical reference and fresh local receiver; source geometry filter differs from clock correctness and added gross-error diagnostic",
           "existingTeachingResourceBudget": {
             "summary": "原文 §VI 记录 M=10、N=36、K=20、R=20 与 CP-VDM 初始化。本站为等权路径最小二乘，不建立 SNR 到时延方差的映射，不等同原文参数预算。",
             "bandwidth": null,
@@ -6958,37 +7123,68 @@
             "aperture": null,
             "priorKnowledge": null,
             "other": []
+          },
+          "boundedNetworkedSync": {
+            "shape": [
+              10,
+              36,
+              20
+            ],
+            "ranks": [
+              1,
+              2,
+              3
+            ],
+            "referencePairTrials": 432,
+            "referenceSubsteps": 4722,
+            "lowSnrGeometrySuccess": {
+              "denominator": 72,
+              "rank1": 37,
+              "rank2": 9
+            },
+            "nearCollision": {
+              "measuredPhaseDifferenceRad": 0.00032003,
+              "thresholdRad": 0.00008,
+              "passed": false
+            },
+            "allCasesPhaseParityPassed": false
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "已关联单目标标量时延机制演示；忽略偏差、oracle 与标量互易三种教学对照",
-        "offline": null,
-        "details": {}
+        "classification": "source-derived-bounded-fresh-core-and-local-lesson; browser-gate-open",
+        "live": "两向实际复数观测上的平滑CP、SCPD、ESPRIT和ALS；原标量时钟机制独立保留为先修",
+        "offline": "432对原尺寸缩减Monte Carlo切片与4722真实子步重构；不复现原曲线",
+        "details": {
+          "runtimeFreeze": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b",
+          "runtimeFreezeEntries": 7,
+          "browserAccepted": false,
+          "fullPaper": false,
+          "lesson": "networked-sync.html#question"
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "固定2607.18680v1 PDF audited; source unit/unfolding ambiguities handled operationally, not identified as author implementation.",
+        "algorithm": "Seven exact-byte source-derived JS files independently reviewed; direct SVD LS and FFT-bracketed golden-section projection. Severe near-collision tight phase parity failure retained.",
+        "selectedExperiment": "432 original-dimension pair trials, 4722 factor substeps independently replayed; low-SNR geometry counts37/72 and9/72 are not source curves.",
+        "fullPaper": "Zero full-paper reproductions. Original curves, author code, Algorithm2, full network and hardware remain open.",
+        "latency": "Local Node evidence only, not browser control-to-painted-result timing; browser latency null."
       },
       "missingImplementation": [
-        "互易 MIMO-OFDM 复数观测、CFO、多径和多目标分离",
-        "结构 CP/Vandermonde 求解及算法基线",
-        "幅相信道、检测、关联、跟踪与硬件实测"
+        "Full source curves and exact author baselines",
+        "Actual browser, accessibility, download/navigation and latency acceptance",
+        "Algorithm2, full-network cycle consistency, tracking, time-domain ICI/ISI and hardware"
       ],
       "dependencies": [
         "Tensor/complex linear algebra",
@@ -6996,8 +7192,8 @@
         "Association/identifiability audit"
       ],
       "blockers": [
-        "互易 MIMO-OFDM 复数观测、CFO、多径和多目标分离",
-        "结构 CP/Vandermonde 求解及算法基线"
+        "Actual browser integration and release gates remain open",
+        "Original-source curve and severe weak-path phase-parity boundaries retained"
       ],
       "realtime": {
         "status": "not-measured",
@@ -7021,10 +7217,20 @@
         "inventoryAssessment": 5
       },
       "evidence": {
-        "currentRunnable": "已关联单目标标量时延机制演示；忽略偏差、oracle 与标量互易三种教学对照",
-        "fixedSourceAudit": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+        "currentRunnable": "networked-sync.html#experiment",
+        "fixedSourceAudit": "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md",
+        "independentPortReview": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "geometryIsClockCorrectness": false,
+          "stoppingIsGlobalConvergence": false,
+          "projectionMonotone": false,
+          "allCasesPhaseParityPassed": false,
+          "importedHistoryIsFresh": false,
+          "browserAccepted": false
+        }
+      }
     },
     {
       "id": "supplement-case-near-field",

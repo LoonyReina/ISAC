@@ -1,0 +1,109 @@
+{
+  "schema": "networked-sync-lesson-freeze-v1",
+  "frozen_at_utc": "2026-10-12T22:48:57.934675+00:00",
+  "scope": "New source-derived reciprocal tensor lesson, exact runtime API, additive prerequisite link; no registry/build/remote/publishing changes",
+  "accepted_base_tree": "24f2b07f97db0511da9f5f1c294225ffac1b982f",
+  "runtime_source_freeze_sha256": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b",
+  "runtime_modified": false,
+  "files": [
+    {
+      "path": "content/pages/networked-sync.html",
+      "bytes": 18849,
+      "sha256": "f4adc9f3bde7e25187a81e15930c8137a93da8e7a5e9d4264703c76cde8a5780"
+    },
+    {
+      "path": "content/pages/network-clock.html",
+      "bytes": 19564,
+      "sha256": "26b7f05b34c84536355c21fcfc448ceb86c878d80d64fadb704ca61467f0366d"
+    },
+    {
+      "path": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "bytes": 3659,
+      "sha256": "dd8e2feeab4e848d04b09785ebda7cb3da20bfcb8bb799d879636f8d9448d184"
+    },
+    {
+      "path": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1834,
+      "sha256": "f4a0936192bcd65782b9d3a232609f25b86162702c7891feeaadc26b93962728"
+    },
+    {
+      "path": "labs/networked-sync/lesson/README.md",
+      "bytes": 5799,
+      "sha256": "aafd10ba931e41b816051e558ff129aa5cad5801f7d8278ecf716d4cc0aaf9d4"
+    },
+    {
+      "path": "labs/networked-sync/lesson/controller.js",
+      "bytes": 7262,
+      "sha256": "d8c6de52ac728c68eb0609ac8ca35155e49db9d53af6801238ed0b0a19b6f32b"
+    },
+    {
+      "path": "labs/networked-sync/lesson/lesson.css",
+      "bytes": 3222,
+      "sha256": "252bc12f962179427f57aabd73f8d743543e0016f523b02a632f54ffe0359d4e"
+    },
+    {
+      "path": "labs/networked-sync/lesson/lesson.js",
+      "bytes": 26534,
+      "sha256": "34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552"
+    },
+    {
+      "path": "labs/networked-sync/lesson/reports/author-test-receipt.json",
+      "bytes": 1771,
+      "sha256": "e091e16913355532077f24ca9e2699a56271b65638a82525ae623d744f148d84"
+    },
+    {
+      "path": "labs/networked-sync/lesson/reports/author-tests.txt",
+      "bytes": 5122,
+      "sha256": "b3a637174e7b0b917572979cc8d208f9b584dae292a80b92457962afbe8eebe4"
+    },
+    {
+      "path": "labs/networked-sync/lesson/stages.js",
+      "bytes": 8052,
+      "sha256": "72fc52e078f2ede43bb0870ea9a6def1f39c20b672c73fb59d22d578b51da995"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+      "bytes": 6948,
+      "sha256": "b568a2a7fa8bb4669c6c930ada6a4c8465a4424a00ac048971e6044e6da2160a"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+      "bytes": 7630,
+      "sha256": "fefc208da0fbe118a9f70b91c6857a5332acbc79a51fbe9aaf35f18f087c46b0"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+      "bytes": 38805,
+      "sha256": "9d3a62aad61af4ea8f7f068d0d2e191aaed51898938ada71d68873b3c61c6dd2"
+    }
+  ],
+  "prerequisite_preservation": {
+    "path": "content/pages/network-clock.html",
+    "baseline_sha256": "6f1fb6d3804570eabe4d3de93d8a011c68ba3314a3d2f39d542b0bd4c8974387",
+    "inverse_remove_exact": "<p class=\"networked-sync-continuation\">继续到<a href=\"networked-sync.html#experiment\">互易张量与结构化 CP 接收机</a>：从两向原始复数据实际计算初始化、A/B/C 投影、路径关联与时钟/CFO；本页仍保留已关联标量时延的先修模型。</p>\n",
+    "inverse_verified": true
+  },
+  "verification": {
+    "owner_tests_passed": 49,
+    "owner_test_command": "node --test labs/networked-sync/lesson/tests/lesson.test.cjs",
+    "owner_source_stable": true,
+    "actual_node_worker": true,
+    "mounted_lightweight_dom": true,
+    "actual_browser": false,
+    "browser_resource_bounds": false,
+    "independent_review": "Final exact-byte lesson review pending; source runtime separately reviewed"
+  },
+  "ui_exports": {
+    "manifest_name": "UI-EXPORT-MANIFEST.json",
+    "manifest_sha256": "f586c5249a5ca909c7f0e374944b6be4c163a25e3a301f67b56327f2ec3a4ec6",
+    "cases": 9,
+    "files": 18,
+    "total_bytes": 32916864,
+    "module_bytes_match_current": true,
+    "source_unchanged_during_export": true
+  },
+  "source_curve_reproduction": false,
+  "full_paper_reproduction": false,
+  "published": false,
+  "supersedes_lesson_freeze_sha256": "f382c23ece69436f8bec5dd5365705769fbd9b567cc6024f5f9c8fb43864cd7b"
+}

@@ -1,0 +1,47 @@
+✔ the six runtime files match both the declared source freeze and independently pinned bytes (2.802053ms)
+✔ actual Node Worker computes scene, recomputes on held Y, and treats truth as evaluation only (380.825031ms)
+✔ raw import triggers a fresh Node Worker computation with verified sample hashes and no imported truth (589.16326ms)
+✔ raw import rejects output smuggling, malformed shapes, nonfinite values, null pilots and bad config (139.323649ms)
+✔ UTF-8 import and record budgets are measured in bytes, including misleading file sizes (25.743003ms)
+✔ controlled supersession ignores old progress and queued completion while newest run owns state (2.985981ms)
+✔ cancel suppresses a queued completion and permits a new run on the same worker (1.941613ms)
+✔ reset invalidates old observation, exported results, progress and queued completion (2.542882ms)
+✔ edits invalidate queued results and scene dirtiness cannot be downgraded by receiver edits (1.89956ms)
+✔ late file read cannot resurrect state after reset (10.35216ms)
+✔ late file read cannot resurrect state after cancel (7.869739ms)
+✔ late file read cannot resurrect state after edit (8.268191ms)
+✔ latest import wins, and a newer run also invalidates an in-flight file read (20.414852ms)
+✔ import cancels an active run, and its queued result cannot overwrite imported observation (12.524792ms)
+✔ a dead Worker (error) is replaced and a fresh run can complete (1.107503ms)
+✔ a dead Worker (exit) is replaced and a fresh run can complete (0.891988ms)
+✔ actual Node Worker supersession and cancellation during CFO work never complete stale jobs (253.322576ms)
+✔ CFAR inspection agrees with actual frozen threshold/count/detection arrays at every retained cell (9.03479ms)
+✔ CFAR view preserves slow-time wrapping, range clipping and duplicate-free wide windows (4.691087ms)
+✔ actual Node Worker reset during CFO work clears results and can compute again (256.327996ms)
+✔ actual Worker time cap is an error, leaves no fresh completion, and a valid import recovers (212.348654ms)
+✔ actual Worker verifies the paired ICI-free hash independently and refuses altered counterfactual data (84.902019ms)
+✔ disposing a controller during a run suppresses completion and removes Worker listeners (1.242767ms)
+✔ CFAR strict local maximum rule retains tied peaks as nondetections (0.791847ms)
+✔ lesson page has unique anchors, seven explicit stages, labeled controls and local deferred runtime order (0.801401ms)
+✔ page and lesson preserve scientific limitations and do not upload, auto-run, or load saved startup results (0.666116ms)
+✔ production UI mounts without precomputed output and renders every stage from actual Node Worker arrays (24.48313ms)
+✔ production UI labels retained results stale, recomputes on held Y, generates scene edits and resets cleanly (13.645565ms)
+✔ production UI imports raw values and custom grid, withholds absent counterfactual/truth, and exports honest records (195.495231ms)
+✔ production UI shows actual CFAR details without a canvas context (6.372637ms)
+✔ production UI survives delayed import/reset, queued cancellation and restored page lifecycle (18.913845ms)
+✔ production UI renders no-angle/no-detection results across all stages without invented maps or zero errors (107.486249ms)
+✔ production mounted UI completes an actual Node Worker round-trip from imported X/Y to rendered CFAR (190.505062ms)
+✔ an invalid replacement run explicitly cancels the prior owned job before validation and recovers (1.157439ms)
+✔ lesson fixed transmit beam is enforced on import and direct run without changing the frozen kernel (6.998894ms)
+✔ imported held observations run independently of an invalid unused simulation draft (14.147784ms)
+✔ raw export preserves signed-zero sample bytes and hashes across an actual Worker round trip (263.778965ms)
+✔ signed-zero record serialization preserves arbitrary strings and has no replacement-marker collisions (0.449279ms)
+✔ record serialization reads immutable typed arrays directly without a deep K.toJSON clone (0.239913ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2986.885017

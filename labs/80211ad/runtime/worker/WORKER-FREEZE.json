@@ -1,0 +1,23 @@
+{
+  "schema": "80211ad-worker-freeze-v1",
+  "scope": "Worker boundary, optional client, protocol, docs, tests and Node-only boundary measurements",
+  "test_command": "node --test tests/test-worker.cjs",
+  "tests_passed": 18,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "real_browser_run": false,
+  "files": {
+    "worker/protocol.js": "41a7b0bd3a28a1acd4051a47ca6e42bf2100a2afc381f27e1bd35846be1b6458",
+    "worker/receiver-worker.js": "0e422167dbb93a92e459405362cf67a8b0fa8dac26629d8bfe92c06fc4dc902b",
+    "worker/client.js": "866a92a3408351ded4f48020be1d3f5dd1f050846287be4e3a57320fa56f44e5",
+    "worker/README.md": "df4c44f9bdd77e283a5e5175972e25da4d967c9fcce6d1ebce08a703653cfba2",
+    "worker/benchmark-boundary.cjs": "0e7c1e92e726357affe38ca22afa5109d01acf8cb79fb004eb41cb3ae6629ef3",
+    "worker/BOUNDARY-BENCHMARK.json": "58b10eb943ab81cc6dbbba2987b411ef02311a05f6750c95201a1a1143eede22",
+    "worker/TEST-REPORT.txt": "535c3b1dc9c6f2ffdbba1399fea461af12808d765cb471fc4930854929a33312",
+    "tests/test-worker.cjs": "7ad070579d09a297008a9850abe573607759e8a7c913e84463884521aa9d742e"
+  },
+  "kernel_dependencies": {
+    "js/receiver.js": "fb44f41a9fce21f7bbcdf9558e2c87df5750dab4c5560d1b5c595ad0b4125090",
+    "js/sha256.js": "9b620ba2e4decf0014a5e6ce30b3e17c99b3d1df103e0d6a6ef4c40c65f96342"
+  }
+}

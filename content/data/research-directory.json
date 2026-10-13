@@ -295,7 +295,7 @@
       "doi": "https://doi.org/10.1109/tvt.2017.2774762",
       "identitySource": "https://arxiv.org/abs/1702.05833",
       "mechanism": "利用IEEE 802.11ad单载波帧前导中的Golay互补序列，研究单帧与多帧目标检测、距离和速度估计。",
-      "evidenceBoundary": "原文这里核实的是分析与仿真；不能把指标直接表述为道路实测结果。",
+      "evidenceBoundary": "原文是理论与仿真，不能表述为道路实测。孤立Golay先修与新的有界STF/CEF接收机分别记录；后者已独立数值核验，不代表完整论文、标准PHY或真实浏览器验收。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -330,7 +330,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先用独立 Golay 对理解训练序列相关与复用，再对照固定 arXiv v1 的 STF/CEF 边界和单帧/多帧问题；本站不复现完整标准帧或论文性能。",
+      "readingPlan": "先用原孤立Golay对理解互补相关，再从其原文栏进入实际3328芯片STF/CEF接收机：持有同一份复观测检查同步、相关、Moose和DFT。独立数值验证仅覆盖有界源算法；原图、PHY和浏览器门仍开放。",
       "links": [
         {
           "label": "原文与身份来源",

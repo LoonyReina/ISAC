@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "policy": "Retain discovered defects and original failing reproductions; no post-hoc numerical tolerance tuning",
+  "fixes": [
+    {
+      "id": "oracle-oneframe-null-option",
+      "kind": "test-harness",
+      "symptom": "Initial harness sent nfft:null rather than omitting the unavailable choice",
+      "fix": "Omit null nfft in M1 fixture processing",
+      "retained_evidence": "tests/reports/initial-null-option-harness-failure.json"
+    },
+    {
+      "id": "declared-filter-contract",
+      "kind": "runtime-input-validation",
+      "symptom": "An arbitrary unit-norm supplied filter passed validation while metadata promised finite RRC noise",
+      "fix": "Require every supplied filter tap to match the declared normalized finite RRC grid within absolute1e-12, in addition unitnorm check",
+      "independent_evidence": "80211ad-port-review/hostile-review"
+    },
+    {
+      "id": "signal-progress-bound",
+      "kind": "runtime-progress",
+      "symptom": "Wrong index formula could report done greater than total for multi-frame synthesis",
+      "fix": "Use target-major/frame/sample bounded progress",
+      "independent_evidence": "80211ad-port-review/hostile-review"
+    },
+    {
+      "id": "complex-input-power-envelope",
+      "kind": "runtime-input-consistency",
+      "symptom": "Valid complex real/imag components1e8 imply power2e16, above old1e16 map validation ceiling",
+      "fix": "Raise finite map-input ceiling to1e20; not detector clipping or normalization change",
+      "independent_evidence": "80211ad-port-review/hostile-review"
+    },
+    {
+      "id": "evaluation-overflow-domain",
+      "kind": "truth-only-evaluation",
+      "symptom": "Extreme finite external truth/errors overflowed squared error and mean into Infinity",
+      "fix": "Bound truth, estimates and errors to declared runtime evaluation domain, reject before arithmetic",
+      "independent_evidence": "80211ad-port-review/hostile-review/evaluation-evidence.json"
+    },
+    {
+      "id": "unicode-metadata-codec-domain",
+      "kind": "portable-roundtrip",
+      "symptom": "Non-ASCII provenance text was accepted by observation validation but rejected by ASCII JSON parser",
+      "fix": "Restrict admitted provenance model/rng strings to ASCII before export; every supported metadata string now matches portable codec domain",
+      "independent_evidence": "80211ad-port-review/hostile-review"
+    },
+    {
+      "id": "evaluation-required-values",
+      "kind": "truth-only-evaluation",
+      "symptom": "Malformed helper results could coerce required null estimates to zero or copy nonfinite resource fields",
+      "fix": "Require finite bounded non-null single-frame/range/pooled estimates; only multi-frame can be explicitly null; comparison quantities finite and bounded",
+      "independent_evidence": "80211ad-port-review/hostile-review"
+    }
+  ],
+  "nonblocking_limit": [
+    {
+      "id": "rrc-near-pole-helper",
+      "note": "Arbitrary off-grid scalar RRC values extremely close to the analytic pole can suffer cancellation; actual receiver only evaluates validated2/4/8x grids with exact singular branches"
+    }
+  ]
+}

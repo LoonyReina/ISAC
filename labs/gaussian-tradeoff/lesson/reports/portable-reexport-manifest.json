@@ -1,0 +1,1061 @@
+{
+  "schema": "gaussian-tradeoff-mounted-ui-exports-v1",
+  "createdAtUtc": "2026-10-12T23:58:09.792Z",
+  "node": "v24.19.0",
+  "execution": "production mounted DOM controls and download callbacks; actual Node worker_threads; no browser",
+  "sourceFilesAtModuleLoad": [
+    {
+      "path": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "bytes": 7406,
+      "sha256": "0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "bytes": 4860,
+      "sha256": "aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "bytes": 22817,
+      "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "bytes": 3947,
+      "sha256": "08d1bca2d37fc7603103ec2d096647058b9d96b18b947365b8ac0e3ed5c3444a"
+    },
+    {
+      "path": "content/pages/gaussian-tradeoff.html",
+      "bytes": 22543,
+      "sha256": "109df43838495394b7020f8b9de640ab9677a4bf9cd135254b2a9d21b57e5447"
+    }
+  ],
+  "frozenRuntimeHashes": {
+    "codec.mjs": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+    "runtime.mjs": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+    "worker.mjs": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+    "kernel.mjs": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+    "math.mjs": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+    "presets.mjs": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+    "vendor/linalg.js": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+  },
+  "cases": [
+    {
+      "name": "fresh-complex-continuous",
+      "files": [
+        "fresh-complex-continuous-raw.json",
+        "fresh-complex-continuous-history.json"
+      ],
+      "initialMountedRunElapsedMs": 138.652778,
+      "operation": "tradeoff",
+      "inputHash": "d3e45a9d18314493ea2a7097930eb428dcffab2f3920d37c7d99ee10f51be0e9",
+      "resultHash": "83c3288066789bd952966ac034ddcde06c4015710ff2c31831f205e39cb0dd83",
+      "input": {
+        "operation": "tradeoff",
+        "label": "Editable instructional complex matrix; not a source figure",
+        "model": {
+          "m": 2,
+          "ns": 2,
+          "t": 4,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "H": {
+          "re": [
+            [
+              0.91,
+              0.27
+            ],
+            [
+              -0.18,
+              0.68
+            ]
+          ],
+          "im": [
+            [
+              0.19,
+              -0.31
+            ],
+            [
+              0.44,
+              0.12
+            ]
+          ]
+        },
+        "kappas": [
+          0,
+          0.1,
+          1,
+          3.14159,
+          100,
+          "communication-only"
+        ],
+        "selectedIndex": 3,
+        "blocks": 8,
+        "seed": 826123
+      },
+      "summary": {
+        "selectedKappa": 3.14159,
+        "shape": {
+          "m": 2,
+          "ns": 2,
+          "t": 4,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "stiefel": "available",
+        "firstSampleHash": {
+          "gaussian": "dce82bba814e7dcee0a09f58b7ffea8487eb5b2b04daacbad4c6d3cdcfe66fdd",
+          "stiefel": "3d614fea4a08376984c96d7e4958c2a63dd8d41cb289f3817894e89eb24318a3"
+        }
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 44167168,
+        "observedHighWaterRssBytes": 83173376,
+        "observedRiseBytes": 39006208,
+        "processCumulativeMaxRssKiB": 81456
+      },
+      "nodeElapsedMs": 289.58329200000003,
+      "workerRuns": [
+        {
+          "id": "gaussian-1-mv5wx6z7-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-2-mv5wx73n-1",
+          "operation": "tradeoff"
+        }
+      ]
+    },
+    {
+      "name": "fresh-complex-custom-q",
+      "files": [
+        "fresh-complex-custom-q-raw.json",
+        "fresh-complex-custom-q-history.json"
+      ],
+      "initialMountedRunElapsedMs": 137.441349,
+      "operation": "tradeoff",
+      "inputHash": "d7bbb0a3699348ebb640fba308fb9be9a73f981440a7b26c37ad3b30e06900f6",
+      "resultHash": "4f5d23b5e7888a56c634bc91791d94c927a0effebd742b37b74146750cc137f7",
+      "input": {
+        "operation": "tradeoff",
+        "covariance": {
+          "re": [
+            [
+              1.25,
+              0.16
+            ],
+            [
+              0.16,
+              0.75
+            ]
+          ],
+          "im": [
+            [
+              0,
+              0.21
+            ],
+            [
+              -0.21,
+              0
+            ]
+          ]
+        },
+        "label": "Editable instructional complex matrix; not a source figure",
+        "model": {
+          "m": 2,
+          "ns": 2,
+          "t": 4,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "H": {
+          "re": [
+            [
+              0.91,
+              0.27
+            ],
+            [
+              -0.18,
+              0.68
+            ]
+          ],
+          "im": [
+            [
+              0.19,
+              -0.31
+            ],
+            [
+              0.44,
+              0.12
+            ]
+          ]
+        },
+        "kappas": [
+          0,
+          0.1,
+          1,
+          0.0037,
+          100,
+          "communication-only"
+        ],
+        "selectedIndex": 6,
+        "blocks": 8,
+        "seed": 826123
+      },
+      "summary": {
+        "selectedKappa": "custom covariance",
+        "shape": {
+          "m": 2,
+          "ns": 2,
+          "t": 4,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "stiefel": "available",
+        "firstSampleHash": {
+          "gaussian": "55f3a1f493348b8dc881c09c6e48de3009b788b9a6aa02f24ad0c04498944d78",
+          "stiefel": "aa1159cb56d677ed30a2ef5752bbd95642cf7ac6b299b4c690c091caba6780d0"
+        }
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 76976128,
+        "observedHighWaterRssBytes": 95649792,
+        "observedRiseBytes": 18673664,
+        "processCumulativeMaxRssKiB": 93408
+      },
+      "nodeElapsedMs": 284.059617,
+      "workerRuns": [
+        {
+          "id": "gaussian-3-mv5wx77b-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-4-mv5wx7bo-1",
+          "operation": "tradeoff"
+        }
+      ]
+    },
+    {
+      "name": "reshaped-three-port",
+      "files": [
+        "reshaped-three-port-raw.json",
+        "reshaped-three-port-history.json"
+      ],
+      "initialMountedRunElapsedMs": 84.11988799999995,
+      "operation": "tradeoff",
+      "inputHash": "c2eba6f7b20b463558e0d31377463778b8c272e5003d9120707151c751b0b040",
+      "resultHash": "2e6c06618e36df0ec30c67341ae76db0accd41adee8b536bfc6e459f6ee434df",
+      "input": {
+        "operation": "tradeoff",
+        "label": "Editable instructional complex matrix; not a source figure",
+        "model": {
+          "m": 3,
+          "ns": 1,
+          "t": 5,
+          "powerPerAntenna": 1.7,
+          "sensingNoise": 0.5,
+          "communicationNoise": 0.8,
+          "priorVariance": 2.3
+        },
+        "H": {
+          "re": [
+            [
+              0.7,
+              0.2,
+              -0.1
+            ]
+          ],
+          "im": [
+            [
+              0.1,
+              -0.3,
+              0.4
+            ]
+          ]
+        },
+        "kappas": [
+          42.125
+        ],
+        "selectedIndex": 0,
+        "blocks": 8,
+        "seed": 826123
+      },
+      "summary": {
+        "selectedKappa": 42.125,
+        "shape": {
+          "m": 3,
+          "ns": 1,
+          "t": 5,
+          "powerPerAntenna": 1.7,
+          "sensingNoise": 0.5,
+          "communicationNoise": 0.8,
+          "priorVariance": 2.3
+        },
+        "stiefel": "available",
+        "firstSampleHash": {
+          "gaussian": "a79dd8d83fb952c563286cdce36ff0b87a290f6a584dc50c007c87adfd0a04a9",
+          "stiefel": "04a6c5f6cc54bfcb25c62dd429d2b357789ac3dbbe30e8a1a791765ca84a056f"
+        }
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 87330816,
+        "observedHighWaterRssBytes": 94121984,
+        "observedRiseBytes": 6791168,
+        "processCumulativeMaxRssKiB": 93408
+      },
+      "nodeElapsedMs": 181.35169099999996,
+      "workerRuns": [
+        {
+          "id": "gaussian-5-mv5wx7fa-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-6-mv5wx7hy-1",
+          "operation": "tradeoff"
+        }
+      ]
+    },
+    {
+      "name": "short-block-unrealizable-stiefel",
+      "files": [
+        "short-block-unrealizable-stiefel-raw.json",
+        "short-block-unrealizable-stiefel-history.json"
+      ],
+      "initialMountedRunElapsedMs": 69.36313900000005,
+      "operation": "tradeoff",
+      "inputHash": "05c69864005d6b78b642a9904bf4a078736d5a8932c6cba52ba1d1dd42478b6f",
+      "resultHash": "b83bfb67fc156f08bf153acfefb886e010385d092f7bdeb21fcec3db8bc7450b",
+      "input": {
+        "operation": "tradeoff",
+        "label": "Editable instructional complex matrix; not a source figure",
+        "model": {
+          "m": 2,
+          "ns": 2,
+          "t": 1,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "H": {
+          "re": [
+            [
+              0.91,
+              0.27
+            ],
+            [
+              -0.18,
+              0.68
+            ]
+          ],
+          "im": [
+            [
+              0.19,
+              -0.31
+            ],
+            [
+              0.44,
+              0.12
+            ]
+          ]
+        },
+        "kappas": [
+          0
+        ],
+        "selectedIndex": 0,
+        "blocks": 8,
+        "seed": 826123
+      },
+      "summary": {
+        "selectedKappa": 0,
+        "shape": {
+          "m": 2,
+          "ns": 2,
+          "t": 1,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "stiefel": "unrealizable",
+        "firstSampleHash": {
+          "gaussian": "38f801c0bf58f88470611498ad243f64d2fb6281eb65f9073c2668d298cb3c0e",
+          "stiefel": null
+        }
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 87814144,
+        "observedHighWaterRssBytes": 94232576,
+        "observedRiseBytes": 6418432,
+        "processCumulativeMaxRssKiB": 93408
+      },
+      "nodeElapsedMs": 147.453713,
+      "workerRuns": [
+        {
+          "id": "gaussian-7-mv5wx7kf-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-8-mv5wx7mj-1",
+          "operation": "tradeoff"
+        }
+      ]
+    },
+    {
+      "name": "held-posterior-gaussian",
+      "files": [
+        "held-posterior-gaussian-raw.json",
+        "held-posterior-gaussian-history.json"
+      ],
+      "initialMountedRunElapsedMs": 141.53164700000013,
+      "operation": "posterior",
+      "inputHash": "8300e369f1b1f25be834b16cfc9256a85283bc6c74466891ed80c11a4a1e4f2a",
+      "resultHash": "8369b0351eb2496817b9cd92bfc49d84062d1504a6209598f7705d2c4ecf4389",
+      "input": {
+        "operation": "posterior",
+        "X": {
+          "re": [
+            [
+              -0.8006150446613238,
+              -0.680142622185594,
+              -0.47295367857563486,
+              0.5510731736864799
+            ],
+            [
+              -0.8653910658229237,
+              1.2538050781221204,
+              -1.3094954579618103,
+              0.6297484411834021
+            ]
+          ],
+          "im": [
+            [
+              -0.3737126040048747,
+              0.0216817942834725,
+              0.8380868861724878,
+              0.5137697612661335
+            ],
+            [
+              -0.7438288945839167,
+              -0.5992843064025856,
+              0.8170964990586933,
+              0.07731873718312497
+            ]
+          ]
+        },
+        "Y": {
+          "re": [
+            [
+              1.2826161002508676,
+              -1.4766266263441552,
+              2.0636330252540995,
+              -0.6307680893396652
+            ],
+            [
+              0.6546105058891574,
+              -4.142337780364923,
+              2.7894524758593677,
+              0.13485187910165514
+            ]
+          ],
+          "im": [
+            [
+              0.6118894351621962,
+              0.8341688320909917,
+              -0.2897815615931144,
+              -1.7150151066357617
+            ],
+            [
+              2.498592341279817,
+              2.679286868323928,
+              1.0325855731943978,
+              0.2450315699861429
+            ]
+          ]
+        },
+        "sensingNoise": 0.42,
+        "priorVariance": 2.2
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 87797760,
+        "observedHighWaterRssBytes": 95461376,
+        "observedRiseBytes": 7663616,
+        "processCumulativeMaxRssKiB": 93884
+      },
+      "nodeElapsedMs": 209.52599500000008,
+      "workerRuns": [
+        {
+          "id": "gaussian-9-mv5wx7on-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-9-mv5wx7on-2",
+          "operation": "posterior"
+        },
+        {
+          "id": "gaussian-10-mv5wx7sq-1",
+          "operation": "posterior"
+        }
+      ]
+    },
+    {
+      "name": "held-posterior-stiefel",
+      "files": [
+        "held-posterior-stiefel-raw.json",
+        "held-posterior-stiefel-history.json"
+      ],
+      "initialMountedRunElapsedMs": 133.879365,
+      "operation": "posterior",
+      "inputHash": "1ae05ee5cf1e9086f4ee4191fa4b30e5118877339b9f642bc040b5a28ca278fb",
+      "resultHash": "4b3538de2abbd0e9ba6d65c376e51676e8024b31ca791ec2a68abbec1883bdff",
+      "input": {
+        "operation": "posterior",
+        "X": {
+          "re": [
+            [
+              0.4522336435407266,
+              -0.41094121036551684,
+              1.4884126997768607,
+              0.048028297597309644
+            ],
+            [
+              0.30677751479878557,
+              0.20701874043102603,
+              -0.4745078095935287,
+              -1.3690528907661628
+            ]
+          ],
+          "im": [
+            [
+              0.7428208288471088,
+              0.20628081258179878,
+              -0.5777527217016241,
+              0.9509426619970207
+            ],
+            [
+              0.9967936627509021,
+              0.5290660523718717,
+              0.16582932417212015,
+              0.19765555801353019
+            ]
+          ]
+        },
+        "Y": {
+          "re": [
+            [
+              0.29676644154002807,
+              -0.8253763496795296,
+              0.46396382749888165,
+              0.9540191807940483
+            ],
+            [
+              2.894213440256598,
+              -1.3932134921036419,
+              2.010065422976263,
+              3.171800359412937
+            ]
+          ],
+          "im": [
+            [
+              -1.2346911013322663,
+              0.014872532423544749,
+              0.2973652248119765,
+              -1.7994917519990343
+            ],
+            [
+              -0.8682859892201746,
+              1.2942088160139147,
+              -2.987678452965899,
+              2.2496338503745426
+            ]
+          ]
+        },
+        "sensingNoise": 0.42,
+        "priorVariance": 2.2
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 89440256,
+        "observedHighWaterRssBytes": 101838848,
+        "observedRiseBytes": 12398592,
+        "processCumulativeMaxRssKiB": 100024
+      },
+      "nodeElapsedMs": 210.101134,
+      "workerRuns": [
+        {
+          "id": "gaussian-11-mv5wx7uk-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-11-mv5wx7uk-2",
+          "operation": "posterior"
+        },
+        {
+          "id": "gaussian-12-mv5wx7yh-1",
+          "operation": "posterior"
+        }
+      ]
+    },
+    {
+      "name": "finite-wishart-structural-zeros",
+      "files": [
+        "finite-wishart-structural-zeros-raw.json",
+        "finite-wishart-structural-zeros-history.json"
+      ],
+      "initialMountedRunElapsedMs": 182.31266499999992,
+      "operation": "wishart",
+      "inputHash": "80946de7fb58f7f97eff189094dba2ad9394cb235692286a12ce2d605e51dc8b",
+      "resultHash": "2f58560b63a383bc50600daee94767ad9117599a0aebda1ad5456e9280802d4e",
+      "input": {
+        "operation": "wishart",
+        "m": 4,
+        "t": 2,
+        "ns": 2,
+        "q": 0.9,
+        "sensingNoise": 0.7,
+        "priorVariance": 1.6
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 95600640,
+        "observedHighWaterRssBytes": 101502976,
+        "observedRiseBytes": 5902336,
+        "processCumulativeMaxRssKiB": 100024
+      },
+      "nodeElapsedMs": 368.6841099999999,
+      "workerRuns": [
+        {
+          "id": "gaussian-13-mv5wx80h-1",
+          "operation": "wishart"
+        },
+        {
+          "id": "gaussian-14-mv5wx85n-1",
+          "operation": "wishart"
+        }
+      ]
+    },
+    {
+      "name": "finite-rank-one-sphere",
+      "files": [
+        "finite-rank-one-sphere-raw.json",
+        "finite-rank-one-sphere-history.json"
+      ],
+      "initialMountedRunElapsedMs": 113.30811199999994,
+      "operation": "sphere",
+      "inputHash": "993e535e66b6d832e5ada014610f94fa6b367cc832f8a063a47e519e7733f186",
+      "resultHash": "8a418e14ecee30d92455e9f0f1c7da59ee2cec3fc0706fb7c475f67291f1c4d9",
+      "input": {
+        "operation": "sphere",
+        "t": 3,
+        "snr": 3.14159
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 95735808,
+        "observedHighWaterRssBytes": 104005632,
+        "observedRiseBytes": 8269824,
+        "processCumulativeMaxRssKiB": 101568
+      },
+      "nodeElapsedMs": 233.53461399999992,
+      "workerRuns": [
+        {
+          "id": "gaussian-15-mv5wx8au-1",
+          "operation": "sphere"
+        },
+        {
+          "id": "gaussian-16-mv5wx8e3-1",
+          "operation": "sphere"
+        }
+      ]
+    },
+    {
+      "name": "maximum-ui-dimensions-blocks",
+      "files": [
+        "maximum-ui-dimensions-blocks-raw.json",
+        "maximum-ui-dimensions-blocks-history.json"
+      ],
+      "initialMountedRunElapsedMs": 1572.358072,
+      "operation": "tradeoff",
+      "inputHash": "c23807bc3033777144237fa2b2d359b2b94a9019da30e052c8be4a711965f34c",
+      "resultHash": "0fa0f949ecbaa3fea9c0165c2cf26846c99d32f90655b2dfe604e76e137f7b5e",
+      "input": {
+        "operation": "tradeoff",
+        "label": "Editable instructional complex matrix; not a source figure",
+        "model": {
+          "m": 6,
+          "ns": 6,
+          "t": 32,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "H": {
+          "re": [
+            [
+              0.8,
+              -0.024749812415011136,
+              -0.016341090521590298,
+              0.007091554636580656,
+              0.024004257166259153,
+              0.018847556358582616
+            ],
+            [
+              -0.016341090521590298,
+              0.88,
+              -0.003637500845215339,
+              -0.020976788226911312,
+              0.021096348968312306,
+              0.0034184304551958403
+            ],
+            [
+              0.024004257166259153,
+              -0.022778256547116925,
+              0.9600000000000001,
+              -0.018992197821470533,
+              0.016507917706102004,
+              -0.01369323150560671
+            ],
+            [
+              -0.003637500845215339,
+              0.021096348968312306,
+              -0.023941487008084617,
+              1.04,
+              0.010604475183424925,
+              -0.024065146657839168
+            ],
+            [
+              -0.020976788226911312,
+              -0.018992197821470533,
+              0.0102020515453348,
+              0.02478007029658684,
+              1.12,
+              -0.02259230512728767
+            ],
+            [
+              0.021096348968312306,
+              0.016507917706102004,
+              0.010604475183424925,
+              0.0038562862471896013,
+              -0.003199092240685117,
+              1.2000000000000002
+            ]
+          ],
+          "im": [
+            [
+              0.06365081987779772,
+              -0.05297617467155498,
+              -0.019559084873924812,
+              0.06925507726363674,
+              -0.038081477762255886,
+              -0.03756010426003045
+            ],
+            [
+              0.009878400564190705,
+              -0.019559084873924812,
+              0.028848293966922966,
+              -0.03756010426003045,
+              0.04552014881099818,
+              -0.05256910727401733
+            ],
+            [
+              -0.05297617467155498,
+              0.06925507726363674,
+              -0.03756010426003045,
+              -0.020153232166554572,
+              0.06390616755093394,
+              -0.06339048534046367
+            ],
+            [
+              -0.0671246992264197,
+              -0.038081477762255886,
+              0.04552014881099818,
+              0.06390616755093394,
+              -0.009264622506844114,
+              -0.06916221368650033
+            ],
+            [
+              -0.019559084873924812,
+              -0.03756010426003045,
+              -0.05256910727401733,
+              -0.06339048534046367,
+              -0.06916221368650033,
+              -0.06942451974101811
+            ],
+            [
+              0.04598906191031524,
+              0.06934251489864093,
+              0.05856589469752393,
+              0.018963405181550836,
+              -0.029972786864730573,
+              -0.06415650835409437
+            ]
+          ]
+        },
+        "kappas": [
+          0,
+          0.1,
+          1,
+          3.14159,
+          100,
+          "communication-only"
+        ],
+        "selectedIndex": 3,
+        "blocks": 512,
+        "seed": 826123
+      },
+      "summary": {
+        "selectedKappa": 3.14159,
+        "shape": {
+          "m": 6,
+          "ns": 6,
+          "t": 32,
+          "powerPerAntenna": 1,
+          "sensingNoise": 0.73,
+          "communicationNoise": 1.1,
+          "priorVariance": 1.4
+        },
+        "stiefel": "available",
+        "firstSampleHash": {
+          "gaussian": "a2ea5d6d08bb59c3d3e7fb872fbca472e0d54e85264e28623cefee2d62984822",
+          "stiefel": "febbb27c54e3bf58382c1e6bea1a5cf7175fe08e6a9b2f37480d7b93a908ca36"
+        }
+      },
+      "mountedImportReplayBitwiseEqual": true,
+      "status": "complete",
+      "nodeMemory": {
+        "scope": "whole Node process including Worker threads, sampled every 10 ms during case; no browser claim",
+        "rssStartBytes": 99409920,
+        "observedHighWaterRssBytes": 223055872,
+        "observedRiseBytes": 123645952,
+        "processCumulativeMaxRssKiB": 217828
+      },
+      "nodeElapsedMs": 3513.0010060000004,
+      "workerRuns": [
+        {
+          "id": "gaussian-17-mv5wx8hg-1",
+          "operation": "tradeoff"
+        },
+        {
+          "id": "gaussian-18-mv5wx9w0-1",
+          "operation": "tradeoff"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "case": "fresh-complex-continuous",
+      "mode": "raw",
+      "path": "fresh-complex-continuous-raw.json",
+      "downloadName": "gaussian-isac-raw-d3e45a9d1831.json",
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6",
+      "inputHash": "d3e45a9d18314493ea2a7097930eb428dcffab2f3920d37c7d99ee10f51be0e9",
+      "resultHash": null
+    },
+    {
+      "case": "fresh-complex-continuous",
+      "mode": "history",
+      "path": "fresh-complex-continuous-history.json",
+      "downloadName": "gaussian-isac-history-d3e45a9d1831.json",
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237",
+      "inputHash": "d3e45a9d18314493ea2a7097930eb428dcffab2f3920d37c7d99ee10f51be0e9",
+      "resultHash": "83c3288066789bd952966ac034ddcde06c4015710ff2c31831f205e39cb0dd83"
+    },
+    {
+      "case": "fresh-complex-custom-q",
+      "mode": "raw",
+      "path": "fresh-complex-custom-q-raw.json",
+      "downloadName": "gaussian-isac-raw-d7bbb0a36993.json",
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e",
+      "inputHash": "d7bbb0a3699348ebb640fba308fb9be9a73f981440a7b26c37ad3b30e06900f6",
+      "resultHash": null
+    },
+    {
+      "case": "fresh-complex-custom-q",
+      "mode": "history",
+      "path": "fresh-complex-custom-q-history.json",
+      "downloadName": "gaussian-isac-history-d7bbb0a36993.json",
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d",
+      "inputHash": "d7bbb0a3699348ebb640fba308fb9be9a73f981440a7b26c37ad3b30e06900f6",
+      "resultHash": "4f5d23b5e7888a56c634bc91791d94c927a0effebd742b37b74146750cc137f7"
+    },
+    {
+      "case": "reshaped-three-port",
+      "mode": "raw",
+      "path": "reshaped-three-port-raw.json",
+      "downloadName": "gaussian-isac-raw-c2eba6f7b20b.json",
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9",
+      "inputHash": "c2eba6f7b20b463558e0d31377463778b8c272e5003d9120707151c751b0b040",
+      "resultHash": null
+    },
+    {
+      "case": "reshaped-three-port",
+      "mode": "history",
+      "path": "reshaped-three-port-history.json",
+      "downloadName": "gaussian-isac-history-c2eba6f7b20b.json",
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805",
+      "inputHash": "c2eba6f7b20b463558e0d31377463778b8c272e5003d9120707151c751b0b040",
+      "resultHash": "2e6c06618e36df0ec30c67341ae76db0accd41adee8b536bfc6e459f6ee434df"
+    },
+    {
+      "case": "short-block-unrealizable-stiefel",
+      "mode": "raw",
+      "path": "short-block-unrealizable-stiefel-raw.json",
+      "downloadName": "gaussian-isac-raw-05c69864005d.json",
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b",
+      "inputHash": "05c69864005d6b78b642a9904bf4a078736d5a8932c6cba52ba1d1dd42478b6f",
+      "resultHash": null
+    },
+    {
+      "case": "short-block-unrealizable-stiefel",
+      "mode": "history",
+      "path": "short-block-unrealizable-stiefel-history.json",
+      "downloadName": "gaussian-isac-history-05c69864005d.json",
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da",
+      "inputHash": "05c69864005d6b78b642a9904bf4a078736d5a8932c6cba52ba1d1dd42478b6f",
+      "resultHash": "b83bfb67fc156f08bf153acfefb886e010385d092f7bdeb21fcec3db8bc7450b"
+    },
+    {
+      "case": "held-posterior-gaussian",
+      "mode": "raw",
+      "path": "held-posterior-gaussian-raw.json",
+      "downloadName": "gaussian-isac-raw-8300e369f1b1.json",
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc",
+      "inputHash": "8300e369f1b1f25be834b16cfc9256a85283bc6c74466891ed80c11a4a1e4f2a",
+      "resultHash": null
+    },
+    {
+      "case": "held-posterior-gaussian",
+      "mode": "history",
+      "path": "held-posterior-gaussian-history.json",
+      "downloadName": "gaussian-isac-history-8300e369f1b1.json",
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73",
+      "inputHash": "8300e369f1b1f25be834b16cfc9256a85283bc6c74466891ed80c11a4a1e4f2a",
+      "resultHash": "8369b0351eb2496817b9cd92bfc49d84062d1504a6209598f7705d2c4ecf4389"
+    },
+    {
+      "case": "held-posterior-stiefel",
+      "mode": "raw",
+      "path": "held-posterior-stiefel-raw.json",
+      "downloadName": "gaussian-isac-raw-1ae05ee5cf1e.json",
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797",
+      "inputHash": "1ae05ee5cf1e9086f4ee4191fa4b30e5118877339b9f642bc040b5a28ca278fb",
+      "resultHash": null
+    },
+    {
+      "case": "held-posterior-stiefel",
+      "mode": "history",
+      "path": "held-posterior-stiefel-history.json",
+      "downloadName": "gaussian-isac-history-1ae05ee5cf1e.json",
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a",
+      "inputHash": "1ae05ee5cf1e9086f4ee4191fa4b30e5118877339b9f642bc040b5a28ca278fb",
+      "resultHash": "4b3538de2abbd0e9ba6d65c376e51676e8024b31ca791ec2a68abbec1883bdff"
+    },
+    {
+      "case": "finite-wishart-structural-zeros",
+      "mode": "raw",
+      "path": "finite-wishart-structural-zeros-raw.json",
+      "downloadName": "gaussian-isac-raw-80946de7fb58.json",
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3",
+      "inputHash": "80946de7fb58f7f97eff189094dba2ad9394cb235692286a12ce2d605e51dc8b",
+      "resultHash": null
+    },
+    {
+      "case": "finite-wishart-structural-zeros",
+      "mode": "history",
+      "path": "finite-wishart-structural-zeros-history.json",
+      "downloadName": "gaussian-isac-history-80946de7fb58.json",
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3",
+      "inputHash": "80946de7fb58f7f97eff189094dba2ad9394cb235692286a12ce2d605e51dc8b",
+      "resultHash": "2f58560b63a383bc50600daee94767ad9117599a0aebda1ad5456e9280802d4e"
+    },
+    {
+      "case": "finite-rank-one-sphere",
+      "mode": "raw",
+      "path": "finite-rank-one-sphere-raw.json",
+      "downloadName": "gaussian-isac-raw-993e535e66b6.json",
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096",
+      "inputHash": "993e535e66b6d832e5ada014610f94fa6b367cc832f8a063a47e519e7733f186",
+      "resultHash": null
+    },
+    {
+      "case": "finite-rank-one-sphere",
+      "mode": "history",
+      "path": "finite-rank-one-sphere-history.json",
+      "downloadName": "gaussian-isac-history-993e535e66b6.json",
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e",
+      "inputHash": "993e535e66b6d832e5ada014610f94fa6b367cc832f8a063a47e519e7733f186",
+      "resultHash": "8a418e14ecee30d92455e9f0f1c7da59ee2cec3fc0706fb7c475f67291f1c4d9"
+    },
+    {
+      "case": "maximum-ui-dimensions-blocks",
+      "mode": "raw",
+      "path": "maximum-ui-dimensions-blocks-raw.json",
+      "downloadName": "gaussian-isac-raw-c23807bc3033.json",
+      "bytes": 3394,
+      "sha256": "7d0b7568d071fe0e04ac53e3981e5a675e471bff4c817fb22be520f24b5c3b14",
+      "inputHash": "c23807bc3033777144237fa2b2d359b2b94a9019da30e052c8be4a711965f34c",
+      "resultHash": null
+    },
+    {
+      "case": "maximum-ui-dimensions-blocks",
+      "mode": "history",
+      "path": "maximum-ui-dimensions-blocks-history.json",
+      "downloadName": "gaussian-isac-history-c23807bc3033.json",
+      "bytes": 924197,
+      "sha256": "ded212d56fcefa555b862742fa1550c19e240e29a3c34dde28a5a434e340b039",
+      "inputHash": "c23807bc3033777144237fa2b2d359b2b94a9019da30e052c8be4a711965f34c",
+      "resultHash": "0fa0f949ecbaa3fea9c0165c2cf26846c99d32f90655b2dfe604e76e137f7b5e"
+    }
+  ],
+  "completedAtUtc": "2026-10-12T23:58:15.279Z",
+  "totalBytes": 1125782,
+  "sourceFilesUnchangedAfterModuleLoad": true
+}

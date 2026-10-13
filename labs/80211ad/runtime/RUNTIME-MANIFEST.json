@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "scope": "bounded-portable-runtime",
+  "source": {
+    "schema_version": 1,
+    "paper": {
+      "identity": "arXiv:1702.05833v1",
+      "url": "https://arxiv.org/abs/1702.05833v1",
+      "pdf_sha256": "c16755b358bfe4152fea3bba5bc54c05370a0d8491aa481a73816bb12447e8b8"
+    },
+    "accepted_reference": {
+      "freeze_id": "70191a5acbb6ab90d1da3791aaee86d557b8605884cac8251fb834acda4a3024",
+      "manifest_sha256": "133586b0a85f3d2324b75bbb70ef71f0e1c3404dbf70904e581022c72ec8bd6a",
+      "receiver_py_sha256": "3cb8d43eb79dc9ffd3a8beadbc2a6ead72a94fdf051f1bdaa96ce4f3b7ac8295",
+      "map_detection_py_sha256": "d25d6beb1876e68dd0574c14f2c3a8bda6f842f4524a686752b24c4aa232a1bb"
+    },
+    "first_party_helper_provenance": [
+      {
+        "runtime": "js/sha256.js",
+        "origin": "ofdm-ici-browser-prototype/js/sha256.js",
+        "origin_sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657",
+        "change": "SHA256 rounds/constants retained; incremental update and cooperative chunk scheduling added"
+      },
+      {
+        "runtime": "worker/receiver-worker.js",
+        "origin": "ofdm-ici-browser-prototype/worker/ici-worker.js",
+        "origin_sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc",
+        "change": "Scheduling/fencing idea adapted; strict observation lifecycle, protocol, codec and policy controls are new"
+      }
+    ],
+    "fft_implementation": "First-party radix2 Cooley-Tukey implementation independently checked against NumPy/SciPy and scalar sums; no third-party library code distributed",
+    "rng_contract": "mulberry32-open-uniform-box-muller-cos-sin-v1, independently reimplemented in Python",
+    "third_party_source_distributed": false,
+    "source_pdf_distributed": false,
+    "full_paper_reproduced": false,
+    "standard_compliance": false,
+    "browser_ui_implemented": false
+  },
+  "files": [
+    {
+      "path": "DEVELOPMENT-FIXES.json",
+      "bytes": 3170,
+      "sha256": "389fbf1126bf8db9626ed36658341224dbfb5f4ea96ffe5cefbbbd3cca9b9323"
+    },
+    {
+      "path": "FORMAT.md",
+      "bytes": 6675,
+      "sha256": "d6ca3c9ff8f39a725939169d6605b1119d4093cdf0ac6d341eca8e3d4579d3cd"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 5486,
+      "sha256": "a8f1415b7e997b374c7e5af1f6fba451b319bbfeee4bf520f40601266174beaf"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8126,
+      "sha256": "866e15025f3dba517a4aa12e27f62c17bb43a2c8b2486a80af65bfe8fd19adb7"
+    },
+    {
+      "path": "SOURCE-FREEZE.json",
+      "bytes": 1762,
+      "sha256": "b41ba87a7c48b57ca69fb103556144871052e2ada9c15ce768d4d3953502b8fb"
+    },
+    {
+      "path": "js/evaluation.js",
+      "bytes": 3431,
+      "sha256": "1171d1f19b8f330f0da12ed79e5247d2b129b4cf13f2af68113aeae4c54a0e1d"
+    },
+    {
+      "path": "js/receiver.js",
+      "bytes": 32619,
+      "sha256": "fb44f41a9fce21f7bbcdf9558e2c87df5750dab4c5560d1b5c595ad0b4125090"
+    },
+    {
+      "path": "js/sha256.js",
+      "bytes": 2824,
+      "sha256": "9b620ba2e4decf0014a5e6ce30b3e17c99b3d1df103e0d6a6ef4c40c65f96342"
+    },
+    {
+      "path": "package.json",
+      "bytes": 330,
+      "sha256": "b23bd16c6a3814b248932c6f74451d781034908e735bad0d31cc878287a230eb"
+    },
+    {
+      "path": "run_all.sh",
+      "bytes": 189,
+      "sha256": "11ae9fdc59454d5e3f425a3e1cc8cddcea8610de6da176e526e50909d045935a"
+    },
+    {
+      "path": "tests/benchmark.cjs",
+      "bytes": 2654,
+      "sha256": "6df6597d36bd1ead28269084d8e534d85cf95a9be5b932e12a85d596e15f14d0"
+    },
+    {
+      "path": "tests/test-kernel.cjs",
+      "bytes": 7645,
+      "sha256": "d66ceec96bd84de6602c88908914b4ab6d27c06c0b88b949b4b84078ef3fd607"
+    },
+    {
+      "path": "tests/test-worker.cjs",
+      "bytes": 30148,
+      "sha256": "7ad070579d09a297008a9850abe573607759e8a7c913e84463884521aa9d742e"
+    },
+    {
+      "path": "tests/verify_manifest.py",
+      "bytes": 1362,
+      "sha256": "105d2a7d18e7eafffdffec3d4d9e3cc1641a55ef54e8104e9c5a9f31c6966708"
+    },
+    {
+      "path": "worker/BOUNDARY-BENCHMARK.json",
+      "bytes": 1486,
+      "sha256": "58b10eb943ab81cc6dbbba2987b411ef02311a05f6750c95201a1a1143eede22"
+    },
+    {
+      "path": "worker/README.md",
+      "bytes": 10569,
+      "sha256": "df4c44f9bdd77e283a5e5175972e25da4d967c9fcce6d1ebce08a703653cfba2"
+    },
+    {
+      "path": "worker/TEST-REPORT.txt",
+      "bytes": 2203,
+      "sha256": "535c3b1dc9c6f2ffdbba1399fea461af12808d765cb471fc4930854929a33312"
+    },
+    {
+      "path": "worker/WORKER-FREEZE.json",
+      "bytes": 1309,
+      "sha256": "f26ce0d7787976a3321614479c827e35e38064b9b3a6261ada9f16da2eaf66b3"
+    },
+    {
+      "path": "worker/benchmark-boundary.cjs",
+      "bytes": 4626,
+      "sha256": "0e7c1e92e726357affe38ca22afa5109d01acf8cb79fb004eb41cb3ae6629ef3"
+    },
+    {
+      "path": "worker/client.js",
+      "bytes": 12179,
+      "sha256": "866a92a3408351ded4f48020be1d3f5dd1f050846287be4e3a57320fa56f44e5"
+    },
+    {
+      "path": "worker/protocol.js",
+      "bytes": 11347,
+      "sha256": "41a7b0bd3a28a1acd4051a47ca6e42bf2100a2afc381f27e1bd35846be1b6458"
+    },
+    {
+      "path": "worker/receiver-worker.js",
+      "bytes": 9460,
+      "sha256": "0e422167dbb93a92e459405362cf67a8b0fa8dac26629d8bfe92c06fc4dc902b"
+    }
+  ],
+  "freeze_id": "b84547a2bdad7da400238c267d2a6d089b33af8f2474d8f733f18c85d9a9b430",
+  "claims": {
+    "fresh_numerical_runtime": true,
+    "browser_rendering_tested": false,
+    "browser_performance_tested": false,
+    "full_paper_reproduced": false,
+    "standard_compliance": false
+  }
+}

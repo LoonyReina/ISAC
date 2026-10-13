@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "priorProfileCount": 17,
+  "profiles": [
+    {
+      "public": "labs/networked-sync/lesson/controller.js",
+      "sha256": "d8c6de52ac728c68eb0609ac8ca35155e49db9d53af6801238ed0b0a19b6f32b",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/lesson/lesson.js",
+      "sha256": "34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "resolutionFrom": "networked-sync.html",
+          "kind": "reviewed-networked-sync-worker",
+          "literal": "new Worker('labs/networked-sync/runtime/worker/receiver-worker.js')"
+        }
+      ]
+    },
+    {
+      "public": "labs/networked-sync/lesson/stages.js",
+      "sha256": "72fc52e078f2ede43bb0870ea9a6def1f39c20b672c73fb59d22d578b51da995",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/js/codec.js",
+      "sha256": "ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/js/linalg.js",
+      "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/js/receiver.js",
+      "sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/js/sha256.js",
+      "sha256": "9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/worker/client.js",
+      "sha256": "2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/worker/protocol.js",
+      "sha256": "7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/networked-sync/runtime/worker/receiver-worker.js",
+      "sha256": "e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "../js/sha256.js",
+          "resolutionFrom": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-networked-sync-importScripts",
+          "literal": "importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')"
+        },
+        {
+          "url": "../js/codec.js",
+          "resolutionFrom": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-networked-sync-importScripts",
+          "literal": "importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')"
+        },
+        {
+          "url": "./protocol.js",
+          "resolutionFrom": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-networked-sync-importScripts",
+          "literal": "importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')"
+        },
+        {
+          "url": "../js/linalg.js",
+          "resolutionFrom": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-networked-sync-importScripts",
+          "literal": "importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')"
+        },
+        {
+          "url": "../js/receiver.js",
+          "resolutionFrom": "labs/networked-sync/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-networked-sync-importScripts",
+          "literal": "importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')"
+        }
+      ]
+    }
+  ],
+  "auxiliaryFiles": [
+    "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+    "labs/networked-sync/lesson/LESSON-FREEZE.json",
+    "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+    "labs/networked-sync/lesson/README.md",
+    "labs/networked-sync/lesson/lesson.css",
+    "labs/networked-sync/runtime/DEVELOPMENT-FIXES.json",
+    "labs/networked-sync/runtime/HANDOFF.md",
+    "labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md",
+    "labs/networked-sync/runtime/README.md",
+    "labs/networked-sync/runtime/RELEASE-BOUNDARIES.json",
+    "labs/networked-sync/runtime/SOURCE-FREEZE.json",
+    "labs/networked-sync/runtime/worker/FORMAT.md",
+    "labs/networked-sync/runtime/worker/README.md"
+  ],
+  "parserChanges": [
+    {
+      "before": "\n];\nconst auxiliaryFiles=",
+      "after": ",\n  {\n    \"public\": \"labs/networked-sync/lesson/controller.js\",\n    \"sha256\": \"d8c6de52ac728c68eb0609ac8ca35155e49db9d53af6801238ed0b0a19b6f32b\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/lesson/lesson.js\",\n    \"sha256\": \"34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": [\n      {\n        \"url\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"resolutionFrom\": \"networked-sync.html\",\n        \"kind\": \"reviewed-networked-sync-worker\",\n        \"literal\": \"new Worker('labs/networked-sync/runtime/worker/receiver-worker.js')\"\n      }\n    ]\n  },\n  {\n    \"public\": \"labs/networked-sync/lesson/stages.js\",\n    \"sha256\": \"72fc52e078f2ede43bb0870ea9a6def1f39c20b672c73fb59d22d578b51da995\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/js/codec.js\",\n    \"sha256\": \"ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/js/linalg.js\",\n    \"sha256\": \"7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/js/receiver.js\",\n    \"sha256\": \"473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/js/sha256.js\",\n    \"sha256\": \"9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/worker/client.js\",\n    \"sha256\": \"2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/worker/protocol.js\",\n    \"sha256\": \"7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  },\n  {\n    \"public\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n    \"sha256\": \"e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": [\n      {\n        \"url\": \"../js/sha256.js\",\n        \"resolutionFrom\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"kind\": \"reviewed-networked-sync-importScripts\",\n        \"literal\": \"importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')\"\n      },\n      {\n        \"url\": \"../js/codec.js\",\n        \"resolutionFrom\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"kind\": \"reviewed-networked-sync-importScripts\",\n        \"literal\": \"importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')\"\n      },\n      {\n        \"url\": \"./protocol.js\",\n        \"resolutionFrom\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"kind\": \"reviewed-networked-sync-importScripts\",\n        \"literal\": \"importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')\"\n      },\n      {\n        \"url\": \"../js/linalg.js\",\n        \"resolutionFrom\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"kind\": \"reviewed-networked-sync-importScripts\",\n        \"literal\": \"importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')\"\n      },\n      {\n        \"url\": \"../js/receiver.js\",\n        \"resolutionFrom\": \"labs/networked-sync/runtime/worker/receiver-worker.js\",\n        \"kind\": \"reviewed-networked-sync-importScripts\",\n        \"literal\": \"importScripts('../js/sha256.js','../js/codec.js','./protocol.js','../js/linalg.js','../js/receiver.js')\"\n      }\n    ]\n  }\n];\nconst auxiliaryFiles="
+    },
+    {
+      "before": "const auxiliaryFiles=new Set([\"labs/ofdm-ici/README.md\", \"labs/ofdm-ici/lesson/PUBLIC-ASSETS.json\", \"labs/ofdm-ici/lesson/ici-lesson.css\", \"labs/ofdm-ici/runtime/FORMAT.md\", \"labs/ofdm-ici/runtime/HANDOFF.md\", \"labs/ofdm-ici/runtime/SOURCE-FREEZE.json\", \"labs/ofdm-ici/LESSON-FREEZE.json\", \"labs/80211ad/runtime/DEVELOPMENT-FIXES.json\", \"labs/80211ad/runtime/FORMAT.md\", \"labs/80211ad/runtime/HANDOFF.md\", \"labs/80211ad/runtime/README.md\", \"labs/80211ad/runtime/SOURCE-FREEZE.json\", \"labs/80211ad/runtime/package.json\", \"labs/80211ad/runtime/run_all.sh\", \"labs/80211ad/runtime/tests/benchmark.cjs\", \"labs/80211ad/runtime/tests/test-kernel.cjs\", \"labs/80211ad/runtime/tests/test-worker.cjs\", \"labs/80211ad/runtime/tests/verify_manifest.py\", \"labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json\", \"labs/80211ad/runtime/worker/README.md\", \"labs/80211ad/runtime/worker/TEST-REPORT.txt\", \"labs/80211ad/runtime/worker/WORKER-FREEZE.json\", \"labs/80211ad/runtime/worker/benchmark-boundary.cjs\", \"labs/80211ad/runtime/RUNTIME-MANIFEST.json\", \"labs/80211ad/lesson/DEVELOPMENT-FIXES.json\", \"labs/80211ad/lesson/PUBLIC-ASSETS.json\", \"labs/80211ad/lesson/README.md\", \"labs/80211ad/lesson/lesson.css\", \"labs/80211ad/lesson/LESSON-FREEZE.json\"]);",
+      "after": "const auxiliaryFiles=new Set([\"labs/ofdm-ici/README.md\",\"labs/ofdm-ici/lesson/PUBLIC-ASSETS.json\",\"labs/ofdm-ici/lesson/ici-lesson.css\",\"labs/ofdm-ici/runtime/FORMAT.md\",\"labs/ofdm-ici/runtime/HANDOFF.md\",\"labs/ofdm-ici/runtime/SOURCE-FREEZE.json\",\"labs/ofdm-ici/LESSON-FREEZE.json\",\"labs/80211ad/runtime/DEVELOPMENT-FIXES.json\",\"labs/80211ad/runtime/FORMAT.md\",\"labs/80211ad/runtime/HANDOFF.md\",\"labs/80211ad/runtime/README.md\",\"labs/80211ad/runtime/SOURCE-FREEZE.json\",\"labs/80211ad/runtime/package.json\",\"labs/80211ad/runtime/run_all.sh\",\"labs/80211ad/runtime/tests/benchmark.cjs\",\"labs/80211ad/runtime/tests/test-kernel.cjs\",\"labs/80211ad/runtime/tests/test-worker.cjs\",\"labs/80211ad/runtime/tests/verify_manifest.py\",\"labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json\",\"labs/80211ad/runtime/worker/README.md\",\"labs/80211ad/runtime/worker/TEST-REPORT.txt\",\"labs/80211ad/runtime/worker/WORKER-FREEZE.json\",\"labs/80211ad/runtime/worker/benchmark-boundary.cjs\",\"labs/80211ad/runtime/RUNTIME-MANIFEST.json\",\"labs/80211ad/lesson/DEVELOPMENT-FIXES.json\",\"labs/80211ad/lesson/PUBLIC-ASSETS.json\",\"labs/80211ad/lesson/README.md\",\"labs/80211ad/lesson/lesson.css\",\"labs/80211ad/lesson/LESSON-FREEZE.json\",\"labs/networked-sync/lesson/DEVELOPMENT-FIXES.json\",\"labs/networked-sync/lesson/LESSON-FREEZE.json\",\"labs/networked-sync/lesson/PUBLIC-ASSETS.json\",\"labs/networked-sync/lesson/README.md\",\"labs/networked-sync/lesson/lesson.css\",\"labs/networked-sync/runtime/DEVELOPMENT-FIXES.json\",\"labs/networked-sync/runtime/HANDOFF.md\",\"labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md\",\"labs/networked-sync/runtime/README.md\",\"labs/networked-sync/runtime/RELEASE-BOUNDARIES.json\",\"labs/networked-sync/runtime/SOURCE-FREEZE.json\",\"labs/networked-sync/runtime/worker/FORMAT.md\",\"labs/networked-sync/runtime/worker/README.md\"]);"
+    },
+    {
+      "before": "['labs/ofdm-ici/','labs/80211ad/']",
+      "after": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/']"
+    }
+  ],
+  "builderChanges": [
+    {
+      "before": "['labs/ofdm-ici/','labs/80211ad/']",
+      "after": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/']"
+    }
+  ]
+}

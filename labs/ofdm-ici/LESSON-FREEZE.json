@@ -1,0 +1,132 @@
+{
+  "schema_version": "ofdm-ici-lesson-freeze-v1",
+  "frozen_utc": "2026-10-12T20:15:06.232529+00:00",
+  "scope": "Owned source only; no shared integration files or browser gate",
+  "files": [
+    {
+      "path": "content/pages/ofdm-ici-receiver.html",
+      "bytes": 21351,
+      "sha256": "261da9521ffacdd71e212cac83894f9188ebf2d1a895f528cc70f9569fd90924"
+    },
+    {
+      "path": "labs/ofdm-ici/README.md",
+      "bytes": 6913,
+      "sha256": "b571683948453800092a6ebc62a562b551fb34003ae1d4084d008d568e16afa2"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1361,
+      "sha256": "de79868482eaf3f22a9408d6cf61abad79cdf1fa2a6f2ad15ba56a000e4e3837"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/ici-controller.js",
+      "bytes": 9500,
+      "sha256": "e4b41da1fc612e1c3f9cccdc3998384cf8349762c27b856d911444d0746e7cfb"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "bytes": 6829,
+      "sha256": "4313fa1ab5b9c5f6df2cc91b3cda872ab234a95712df0603185e68dcf3f87dc4"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "bytes": 38640,
+      "sha256": "1b51814832d69dcbce235594cf6812d8766f9017cbf90ebaf6f609cf9343fd0b"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+      "bytes": 52393,
+      "sha256": "dd8cbc99c4394d03a74efa4d900dee64c8f58d25d87769235d7e8ba07f325a1b"
+    },
+    {
+      "path": "labs/ofdm-ici/lesson/tests/verification.log",
+      "bytes": 4236,
+      "sha256": "89f3d7bb1e2fe8a34390e7b32f2d43c449e29803a69286f50087a682ffa903d6"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/FORMAT.md",
+      "bytes": 4751,
+      "sha256": "41feecc9f1bf6937920e7ba8b275c41b12cef3c84dcf6d123ea7dbccf09f26e8"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "bytes": 4897,
+      "sha256": "55875fcf770f5b331200d12e615436f6aa76f4ce8f89deb5ccaf5d1b98a74fa9"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "bytes": 1437,
+      "sha256": "bd0c593a999ff0e567a2b03847f67ecf8c2c74563713286827032271f11961e1"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "bytes": 7206,
+      "sha256": "bcf9be4cb478928e4744d3dea357e20b38f53b793f67a7a5f9e43c64255c51ac"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "bytes": 35957,
+      "sha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/js/linalg.js",
+      "bytes": 18255,
+      "sha256": "c7e21dadbac282314c504c5f1b73a4de18964c18ee1d06cc34eedcce1d81509a"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/js/sha256.js",
+      "bytes": 2476,
+      "sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "bytes": 7124,
+      "sha256": "1397e1f04bb674973fdebc29213c2531e8383b3aa3f959504761f65dcdf20b75"
+    },
+    {
+      "path": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "bytes": 8491,
+      "sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc"
+    }
+  ],
+  "focused_command": "node --test labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+  "focused_pass": 39,
+  "focused_fail": 0,
+  "actual_browser_tested": false,
+  "publication": false,
+  "runtime_exact_source_freeze": true,
+  "default_scene_node_smoke": {
+    "apes_hits_false_misses": [
+      4,
+      3,
+      1
+    ],
+    "known_x_fft_hits_false_misses": [
+      1,
+      1,
+      4
+    ],
+    "counterfactual_hits_false_misses": [
+      1,
+      1,
+      4
+    ],
+    "stops": [
+      "iteration_cap",
+      "threshold"
+    ],
+    "elapsed_ms_single_run": 2998.034584,
+    "raw_utf8_bytes": 659052,
+    "history_utf8_bytes": 9839124,
+    "x_sha256": "4ed7507b1368d086dc529e90eadb90170952a1741bd5177fc6a5565188554add",
+    "y_sha256": "4b97145c185acf5f374e18a5436ad9684600b490906e19c82a069477de85114c",
+    "note": "New Mulberry32-generated scene, not the held Python fixture; one Node measurement, no browser latency claim"
+  },
+  "corrections": [
+    "Cancel prior owned job before validation of a replacement run, including invalid replacement requests",
+    "Enforce declared lesson-fixed tx_angle_deg=-30 in input validation; no frozen numerical runtime changes",
+    "Held imported raw observations do not parse unused simulation draft fields",
+    "Preserve signed zero as -0.0 numeric JSON token for JS/Python SHA identity; preserve escaped strings, holes/nulls and object property semantics",
+    "Show large-history/default-size and post-allocation cap warning; serialize immutable typed arrays without a K.toJSON deep clone"
+  ]
+}

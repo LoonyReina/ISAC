@@ -1,0 +1,27 @@
+{
+  "schema": "gaussian-tradeoff-lesson-assets-v1",
+  "page": {"source":"content/pages/gaussian-tradeoff.html","public":"gaussian-tradeoff.html"},
+  "existing_page_addition": "content/pages/theory.html: one continuation paragraph immediately after the existing same-paper reading question; all original IDs and controls preserved",
+  "anchors": ["question","model","experiment","mechanism","finite","paper","limits","reproduce"],
+  "startup": ["course.css","theory.css","site.css","labs/gaussian-tradeoff/lesson/lesson.css","labs/gaussian-tradeoff/lesson/lesson.mjs"],
+  "static_module_edges": {
+    "labs/gaussian-tradeoff/lesson/lesson.mjs": ["./controller.mjs","./view.mjs","../runtime/presets.mjs"],
+    "labs/gaussian-tradeoff/lesson/controller.mjs": ["../runtime/runtime.mjs","../runtime/codec.mjs","../runtime/kernel.mjs"],
+    "labs/gaussian-tradeoff/lesson/view.mjs": []
+  },
+  "on_explicit_run_or_restart": ["labs/gaussian-tradeoff/runtime/worker.mjs"],
+  "runtime_source_freeze_sha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+  "runtime_modified": false,
+  "optional_evidence": ["labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json","labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md","labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md","labs/gaussian-tradeoff/lesson/README.md","docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md"],
+  "portable_owned_suites": ["labs/gaussian-tradeoff/lesson/tests/controller.test.mjs","labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs"],
+  "owned_suite_helpers": ["labs/gaussian-tradeoff/lesson/tests/test-support.mjs","labs/gaussian-tradeoff/lesson/tests/dom-harness.cjs","labs/gaussian-tradeoff/lesson/tests/record-audit.mjs"],
+  "optional_evidence_producer": "labs/gaussian-tradeoff/lesson/tests/export-ui-records.mjs",
+  "portable_replay": "labs/gaussian-tradeoff/lesson/tests/replay-ui-records.mjs",
+  "suite_writes_site_tree": false,
+  "export_producer_requires_explicit_new_output_directory": true,
+  "actual_node_worker_tested": true,
+  "actual_mounted_dom_tested": true,
+  "actual_browser_tested": false,
+  "actual_browser_performance_tested": false,
+  "shared_registry_manifests_generated_files_modified_by_author": false
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "archiveFile": "80211ad-reference-v1.zip",
+  "archiveBytes": 63798676,
+  "archiveSha256": "012a0f87d83ec24d96e9220119b1ff79c4d0b2a04f066aabca4a777e028e1eac",
+  "encoding": "raw binary chunks; concatenate in listed order; no recompression",
+  "parts": [
+    {
+      "order": 1,
+      "file": "80211ad-reference-v1.zip.part01",
+      "bytes": 9000000,
+      "sha256": "9ceebd90ed5974310ac916538df0e7c08cb2505711ea96a5d5d6cfa94f934992"
+    },
+    {
+      "order": 2,
+      "file": "80211ad-reference-v1.zip.part02",
+      "bytes": 9000000,
+      "sha256": "77ae4300a4001497f034ce1ddccbd4c04b695639eb2aa30d96fdede9e7e416d7"
+    },
+    {
+      "order": 3,
+      "file": "80211ad-reference-v1.zip.part03",
+      "bytes": 9000000,
+      "sha256": "bb967436a23673113f9032dbc6f6379627e202d547760c32813ac6268845c4ce"
+    },
+    {
+      "order": 4,
+      "file": "80211ad-reference-v1.zip.part04",
+      "bytes": 9000000,
+      "sha256": "0962cd7fff09197dcd4719910aadc09d661d6c0882805fc4278a7ebc82700d1e"
+    },
+    {
+      "order": 5,
+      "file": "80211ad-reference-v1.zip.part05",
+      "bytes": 9000000,
+      "sha256": "0b5556d24a21ecf63002ae44f151b9ff5e95b9af784618546dbe6e2ee4cb7a5c"
+    },
+    {
+      "order": 6,
+      "file": "80211ad-reference-v1.zip.part06",
+      "bytes": 9000000,
+      "sha256": "153d0611b943ca99b26af72c35acf40637caf3ac9c9de091ab555669ce72dfb9"
+    },
+    {
+      "order": 7,
+      "file": "80211ad-reference-v1.zip.part07",
+      "bytes": 9000000,
+      "sha256": "c87312246eea81a8d10b8fa59842345fc7756ebbf737ccbcf6e11cd53937af2d"
+    },
+    {
+      "order": 8,
+      "file": "80211ad-reference-v1.zip.part08",
+      "bytes": 798676,
+      "sha256": "0b405d73cb1787114fbd5228024b9c117f5f982fd42baf6b8383b76b3658fdc7"
+    }
+  ],
+  "ownerFreezeId": "70191a5acbb6ab90d1da3791aaee86d557b8605884cac8251fb834acda4a3024",
+  "ownerManifestSha256": "133586b0a85f3d2324b75bbb70ef71f0e1c3404dbf70904e581022c72ec8bd6a",
+  "ownerFileCount": 58,
+  "memberCount": 68,
+  "includedReviewFiles": [
+    "review/INDEPENDENT-REVIEW.md",
+    "review/independent-audit-output.txt",
+    "review/independent-audit-results.json",
+    "review/independent-test-output.txt",
+    "review/manifest-verification-output.txt",
+    "review/owner-test-output.txt",
+    "review/run_independent_audit.py",
+    "review/test_independent_oracles.py",
+    "review/test_map_oracles.py"
+  ],
+  "reviewFilesOutsideOwnerFreeze": true,
+  "note": "Exact first-party source-free evidence; adverse results and historical failures retained. Optional download only, never startup."
+}

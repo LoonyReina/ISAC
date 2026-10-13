@@ -1,0 +1,22 @@
+✔ lesson numerical runtime remains byte-identical to the seven reviewed source files (1.623599ms)
+✔ actual Worker computes arbitrary continuous weights and fresh complex H/Q with immutable records (174.622978ms)
+✔ held posterior inputs contain exactly X/Y/noise/prior and preserve selected sample identity (142.294907ms)
+✔ raw/history imports preserve provenance and require actual Worker fresh replay (390.923075ms)
+✔ invalid model and corrupt record preserve current result and in-flight accepted work (253.148606ms)
+✔ accepted replacement supersedes active actual work and presents only newest input (166.656307ms)
+✔ actual computation cancel clears current exports and restarts safely (222.994294ms)
+✔ actual computation stop clears current exports and restarts safely (229.407947ms)
+✔ actual computation reset clears current exports and restarts safely (228.51799ms)
+✔ actual Worker death rejects work and explicit restart permits fresh output (243.652828ms)
+✔ stale asynchronous file read is fenced by fresh run, newer import, and reset (185.546696ms)
+✔ suspension invalidates actual work until explicit restart (240.185323ms)
+✔ finite Wishart and sphere cases run actual integrals with explicit model boundaries (262.474057ms)
+✔ every positive covariance mode is retained: short T reports unrealizable Stiefel (92.040443ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2917.657772

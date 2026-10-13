@@ -1,0 +1,57 @@
+{
+  "schema": "80211ad-lesson-assets-v1",
+  "page": {
+    "source": "content/pages/80211ad-receiver.html",
+    "public": "80211ad-receiver.html"
+  },
+  "existing_page_addition": "content/pages/golay-radar.html: one continuation paragraph in #paper",
+  "anchors": [
+    "question",
+    "model",
+    "experiment",
+    "paper",
+    "limits",
+    "reproduce"
+  ],
+  "startup": [
+    "course.css",
+    "theory.css",
+    "site.css",
+    "labs/80211ad/lesson/lesson.css",
+    "labs/80211ad/runtime/js/sha256.js",
+    "labs/80211ad/runtime/js/receiver.js",
+    "labs/80211ad/runtime/js/evaluation.js",
+    "labs/80211ad/runtime/worker/client.js",
+    "labs/80211ad/lesson/controller.js",
+    "labs/80211ad/lesson/stages.js",
+    "labs/80211ad/lesson/lesson.js"
+  ],
+  "on_explicit_run": [
+    "labs/80211ad/runtime/worker/receiver-worker.js"
+  ],
+  "worker_relative_imports": [
+    "./protocol.js",
+    "../js/sha256.js",
+    "../js/receiver.js"
+  ],
+  "optional_evidence": [
+    "labs/80211ad/runtime/SOURCE-FREEZE.json",
+    "labs/80211ad/runtime/RUNTIME-MANIFEST.json",
+    "labs/80211ad/runtime/FORMAT.md",
+    "labs/80211ad/runtime/HANDOFF.md",
+    "docs/80211AD-SOURCE-EVIDENCE.md",
+    "data/80211ad-evidence-map.json",
+    "data/80211ad-kernel-v0.1-runtime.zip",
+    "data/80211ad-kernel-v0.1-full-evidence.parts.json",
+    "data/80211ad-reference-v1.parts.json",
+    "data/reassemble-80211ad-evidence.py"
+  ],
+  "portable_owned_suite": "labs/80211ad/lesson/tests/lesson.test.cjs",
+  "owned_suite_helper": "labs/80211ad/lesson/tests/dom-harness.cjs",
+  "optional_evidence_producer": "labs/80211ad/lesson/tests/export-ui-records.cjs",
+  "owned_suite_tests": 29,
+  "suite_writes_site_tree": false,
+  "export_producer_requires_explicit_output_directory": true,
+  "actual_browser_rendering_tested": false,
+  "actual_browser_performance_tested": false
+}
