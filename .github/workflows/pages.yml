@@ -40,7 +40,7 @@ jobs:
           python -m pip install --disable-pip-version-check --only-binary=:all: numpy==2.3.5 scipy==1.17.0
       - name: Test source-only dependency preservation and the compatibility builder
         run: |
-          node --test tests/perceptive-bsbl-responsive.test.cjs tests/perceptive-bsbl-responsive-integration.test.cjs tests/pilot-pattern-dependencies.test.cjs tests/perceptive-bsbl-dependencies.test.cjs tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
+          node --test tests/otfs-diagnostics-integration.test.cjs tests/otfs-portability-integration.test.cjs tests/perceptive-bsbl-responsive.test.cjs tests/perceptive-bsbl-responsive-integration.test.cjs tests/pilot-pattern-dependencies.test.cjs tests/perceptive-bsbl-dependencies.test.cjs tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
           node --test tests/compatibility-build.test.cjs
       - name: Run full legacy tests and independently reproduce the public artifact
         run: |
