@@ -46,7 +46,7 @@ test('exact registry inverse retains all old fields and rejects missing, moved o
 
 test('exact guide inverse removes only one executable, factual coverage sentence and exact gain-aware question',()=>{
  const before=JSON.stringify(data),prior=withoutGCSAGEGuide(data);a.equal(JSON.stringify(data),before);
- for(const c of require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(data).cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
+ for(const c of require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(data)).cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
  const expected=structuredClone(card(data));delete expected.executable;expected.limits[5]=additions.statusBefore;expected.question=additions.questionBefore;a.deepEqual(card(prior),expected);
  for(const change of [d=>delete card(d).executable,d=>{card(d).executable.coverage='algorithm-and-selected-figure';},d=>{card(d).executable.href='near-field.html#experiment';},d=>{card(d).limits[5]+=' complete';},d=>{card(d).question+=' changed';},d=>d.cards.push(structuredClone(card(d)))]){const d=structuredClone(data);change(d);a.throws(()=>withoutGCSAGEGuide(d));}
  const changed=structuredClone(data);card(changed).mechanism+=' unrelated';a.equal(card(withoutGCSAGEGuide(changed)).mechanism,card(changed).mechanism);

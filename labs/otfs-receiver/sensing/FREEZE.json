@@ -1,0 +1,154 @@
+{
+  "schema": "otfs-sensing-port-freeze-v1",
+  "date": "2026-10-12",
+  "status": "accepted-bounded-numerical-node-evidence-not-browser-ui",
+  "source": "arxiv:1910.01896v1",
+  "sourceURL": "https://arxiv.org/pdf/1910.01896v1",
+  "sourcePDFSha256": "7787286d004ea1014fea059dea88ad4320536a8afcef44dc89a482b0feaaabdc",
+  "acceptedPythonCoreSha256": "92b997201493a3187b5ddb37026672ef44e163131e422bdf8618f11b17aa235f",
+  "reviewedSourceManifest": "review/SOURCE-SHA256SUMS.txt",
+  "reviewedSourceManifestSha256": "479454a109641429c1a62bf2cb5308e4b3dfc85ad198b6e8db564bce31c48d63",
+  "sourceHashes": {
+    "src/browser-worker.mjs": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5",
+    "src/evidence.mjs": "565a546db239af2fe2a077b54b068a980444c49e6610ad424738c3bfff1a76a6",
+    "src/kernel.mjs": "dfb81ee33bb55f8f11cbfec234a058e9711ac8ce226f756b4d96cd6b435e880e",
+    "src/node-worker.mjs": "f7e2fd941ca3959f2d3259554bba36022c2972560c35bbf5e74b2cf147940a5d",
+    "src/operators.mjs": "1092109d0e5f28cfa5dbf0fca78f4474b72a19e80b98bac29b0151581f06ff19",
+    "src/protocol.mjs": "02d335ff4c9659645631e22d27f5d178735056dd5653c0c9299020c8c63c3e67",
+    "src/validation.mjs": "752935c5e77d4d898c51ce5105453c2d3b80742735642a5adb46ae51102e729b"
+  },
+  "review": "review/JUDGEMENT.md",
+  "reviewSummary": "review/REVIEW-SUMMARY.json",
+  "reviewCounts": {
+    "freshOperatorCases": 586,
+    "freshGridCases": 12,
+    "directProfiles": 8,
+    "independentlyReplayedGridCandidateRecords": 35432,
+    "numericComparisons": 398571
+  },
+  "scope": {
+    "task": "P=1 known-x radar sensing",
+    "models": [
+      "eq14_literal",
+      "exact_rect_finite"
+    ],
+    "method": "source-style-exhaustive-declared-grid",
+    "sourceGridNumericResolution": "unspecified by source; ours is declared",
+    "maximumN": 4,
+    "maximumM": 8,
+    "maximumD": 32,
+    "maximumGridAxis": 129,
+    "maximumCandidates": 16641,
+    "recommendedProfiledExample": {
+      "N": 4,
+      "M": 8,
+      "gridShape": [
+        65,
+        65
+      ],
+      "bounds": [
+        [
+          0.05,
+          3.8
+        ],
+        [
+          -1.4,
+          1.4
+        ]
+      ],
+      "browserCertified": false
+    },
+    "rawReceiverInputsOnly": true,
+    "truthForbiddenInReceiver": true,
+    "continuousRefinement": "unavailable",
+    "FIMlocalCRB": "unavailable",
+    "globalContinuumCertificate": false
+  },
+  "runtimeEvidence": {
+    "boundary": "actual Node Worker creation-to-terminal receipt; browser not measured",
+    "nodeVersion": "v24.19.0",
+    "aggregates": [
+      {
+        "model": "eq14_literal",
+        "shape": [
+          65,
+          65
+        ],
+        "candidateCount": 4225,
+        "repetitions": 3,
+        "medianRoundTripMs": 278.7057070000003,
+        "worstRoundTripMs": 280.4189029999998,
+        "maxProcessRssBytes": 211218432,
+        "maxOutputJSONBytes": 1766417
+      },
+      {
+        "model": "eq14_literal",
+        "shape": [
+          129,
+          129
+        ],
+        "candidateCount": 16641,
+        "repetitions": 3,
+        "medianRoundTripMs": 892.7860980000005,
+        "worstRoundTripMs": 893.2487610000003,
+        "maxProcessRssBytes": 317894656,
+        "maxOutputJSONBytes": 6951404
+      },
+      {
+        "model": "exact_rect_finite",
+        "shape": [
+          65,
+          65
+        ],
+        "candidateCount": 4225,
+        "repetitions": 3,
+        "medianRoundTripMs": 311.5036230000005,
+        "worstRoundTripMs": 335.96111500000006,
+        "maxProcessRssBytes": 311500800,
+        "maxOutputJSONBytes": 1766959
+      },
+      {
+        "model": "exact_rect_finite",
+        "shape": [
+          129,
+          129
+        ],
+        "candidateCount": 16641,
+        "repetitions": 3,
+        "medianRoundTripMs": 1036.9230709999993,
+        "worstRoundTripMs": 1133.9387320000005,
+        "maxProcessRssBytes": 320790528,
+        "maxOutputJSONBytes": 6953840
+      }
+    ],
+    "sharedEnvironment": true
+  },
+  "portableEvidence": {
+    "sameWriterReaderUTF8ByteCap": 16777216,
+    "largestMeasuredCompleteUTF8Bytes": 7142969,
+    "maxMeasuredRSSBytes": 169082880,
+    "rssIsNotPortableOrBrowserBound": true,
+    "replayScope": "numerical candidate prefix/selection/axes/counts; no authentication of timing/cancellation/provenance/truth",
+    "evidence": "results/evidence-size-memory.json"
+  },
+  "crossPort": {
+    "status": "passed",
+    "communicationKernelSha256": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7",
+    "sensingOperatorSha256": "1092109d0e5f28cfa5dbf0fca78f4474b72a19e80b98bac29b0151581f06ff19",
+    "caseCount": 72,
+    "maxError": 4.440892098500626e-16,
+    "representation": "JSON {re,im}, row-major channel matrix, vectors d=k+N*l, effective hprime",
+    "sharing": "No mutable shared runtime dependency; independently implemented operator actions are interoperable at these exact file hashes"
+  },
+  "openGates": [
+    "browser execution/performance/memory",
+    "UI/teaching-contract integration",
+    "actual downloaded-file recovery",
+    "continuous per-cell refinement",
+    "model-specific derivatives/FIM",
+    "multipath sensing",
+    "repeated-estimation statistics",
+    "full source radar figures and OFDM/FMCW comparisons",
+    "repository integration/publication/deployment"
+  ]
+}

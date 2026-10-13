@@ -250,6 +250,16 @@
       "id": "validators/crb-export-checker",
       "directory": "scripts/validation/crb-export-checker",
       "description": "Optional independent NumPy replay of bounded CRB export state and certificates"
+    },
+    {
+      "id": "labs/otfs-receiver",
+      "directory": "labs/otfs-receiver",
+      "description": "Bounded OTFS finite-grid sensing and MP-G/full LMMSE receiver lesson"
+    },
+    {
+      "id": "validators/module-dependencies",
+      "directory": "scripts/build",
+      "description": "Explicit source-aware JavaScript module and Worker dependency inspection"
     }
   ],
   "entries": [
@@ -5102,6 +5112,272 @@
       "compatibility": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
       "public": "docs/CRB-MULTIUSER-LIVE-VALIDATION.md",
       "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/otfs-receiver.html",
+      "compatibility": "otfs-receiver.html",
+      "public": "otfs-receiver.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/FREEZE.json",
+      "compatibility": "labs/otfs-receiver/communication/FREEZE.json",
+      "public": "otfs-receiver/communication/FREEZE.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/browser-worker.mjs",
+      "compatibility": "labs/otfs-receiver/communication/browser-worker.mjs",
+      "public": "otfs-receiver/communication/browser-worker.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/kernel.mjs",
+      "compatibility": "labs/otfs-receiver/communication/kernel.mjs",
+      "public": "otfs-receiver/communication/kernel.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/node-worker.mjs",
+      "compatibility": "labs/otfs-receiver/communication/node-worker.mjs",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/protocol.mjs",
+      "compatibility": "labs/otfs-receiver/communication/protocol.mjs",
+      "public": "otfs-receiver/communication/protocol.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/simulation.mjs",
+      "compatibility": "labs/otfs-receiver/communication/simulation.mjs",
+      "public": "otfs-receiver/communication/simulation.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-controller.mjs",
+      "compatibility": "labs/otfs-receiver/lesson-controller.mjs",
+      "public": "otfs-receiver/lesson-controller.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-evidence.mjs",
+      "compatibility": "labs/otfs-receiver/lesson-evidence.mjs",
+      "public": "otfs-receiver/lesson-evidence.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-model.mjs",
+      "compatibility": "labs/otfs-receiver/lesson-model.mjs",
+      "public": "otfs-receiver/lesson-model.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/otfs-receiver.css",
+      "compatibility": "labs/otfs-receiver/otfs-receiver.css",
+      "public": "otfs-receiver/otfs-receiver.css",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/otfs-receiver.mjs",
+      "compatibility": "labs/otfs-receiver/otfs-receiver.mjs",
+      "public": "otfs-receiver/otfs-receiver.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/FREEZE.json",
+      "compatibility": "labs/otfs-receiver/sensing/FREEZE.json",
+      "public": "otfs-receiver/sensing/FREEZE.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/browser-worker.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/browser-worker.mjs",
+      "public": "otfs-receiver/sensing/browser-worker.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/evidence.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/evidence.mjs",
+      "public": "otfs-receiver/sensing/evidence.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/kernel.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/kernel.mjs",
+      "public": "otfs-receiver/sensing/kernel.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/node-worker.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/node-worker.mjs",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/operators.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/operators.mjs",
+      "public": "otfs-receiver/sensing/operators.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/protocol.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/protocol.mjs",
+      "public": "otfs-receiver/sensing/protocol.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/validation.mjs",
+      "compatibility": "labs/otfs-receiver/sensing/validation.mjs",
+      "public": "otfs-receiver/sensing/validation.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-lesson-controller.test.cjs",
+      "compatibility": "tests/otfs-lesson-controller.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-lesson-independent.test.cjs",
+      "compatibility": "tests/otfs-lesson-independent.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-lesson-model.test.cjs",
+      "compatibility": "tests/otfs-lesson-model.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-lesson-page.test.cjs",
+      "compatibility": "tests/otfs-lesson-page.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-effectiveness-reference-v1.zip",
+      "compatibility": "data/otfs-effectiveness-reference-v1.zip",
+      "public": "data/otfs-effectiveness-reference-v1.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-effectiveness-reference-v1-manifest.json",
+      "compatibility": "data/otfs-effectiveness-reference-v1-manifest.json",
+      "public": "data/otfs-effectiveness-reference-v1-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-mpg-kernel-v0.2.0.zip",
+      "compatibility": "data/otfs-mpg-kernel-v0.2.0.zip",
+      "public": "data/otfs-mpg-kernel-v0.2.0.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-mpg-kernel-v0.2.0-manifest.json",
+      "compatibility": "data/otfs-mpg-kernel-v0.2.0-manifest.json",
+      "public": "data/otfs-mpg-kernel-v0.2.0-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-sensing-browser-prototype-v0.1.0.zip",
+      "compatibility": "data/otfs-sensing-browser-prototype-v0.1.0.zip",
+      "public": "data/otfs-sensing-browser-prototype-v0.1.0.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-sensing-browser-prototype-v0.1.0-manifest.json",
+      "compatibility": "data/otfs-sensing-browser-prototype-v0.1.0-manifest.json",
+      "public": "data/otfs-sensing-browser-prototype-v0.1.0-manifest.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-receiver-preservation.cjs",
+      "compatibility": "tests/helpers/otfs-receiver-preservation.cjs",
+      "public": "tests/helpers/otfs-receiver-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/otfs-receiver-integration.test.cjs",
+      "compatibility": "tests/otfs-receiver-integration.test.cjs",
+      "public": "tests/otfs-receiver-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md",
+      "public": "docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-receiver-evidence-map.json",
+      "compatibility": "data/otfs-receiver-evidence-map.json",
+      "public": "data/otfs-receiver-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/module-dependencies.cjs",
+      "compatibility": "scripts/build/module-dependencies.cjs",
+      "public": "scripts/build/module-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/module-runtime-contracts.json",
+      "compatibility": "scripts/build/module-runtime-contracts.json",
+      "public": "scripts/build/module-runtime-contracts.json",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "tests/module-dependencies.test.cjs",
+      "compatibility": "tests/module-dependencies.test.cjs",
+      "public": "tests/module-dependencies.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-staging-resources.cjs",
+      "compatibility": "tests/helpers/otfs-staging-resources.cjs",
+      "public": "tests/helpers/otfs-staging-resources.cjs",
+      "owner": "validators/regression",
       "role": "source"
     }
   ]

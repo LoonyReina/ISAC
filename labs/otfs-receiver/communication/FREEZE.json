@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "otfs-mpg-prototype-freeze-v1",
+  "kernelVersion": "0.2.0",
+  "frozenAt": "2026-10-12T16:53:45.927935+00:00",
+  "status": "accepted-bounded-numerical-node-prototype",
+  "sourceHashes": {
+    "src/kernel.mjs": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7",
+    "src/protocol.mjs": "d7242dbe37ed8a060f2b14471538cd0920149aeb0a05aa16064996dfc572be9a",
+    "src/node-worker.mjs": "f7e2fd941ca3959f2d3259554bba36022c2972560c35bbf5e74b2cf147940a5d",
+    "src/browser-worker.mjs": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5",
+    "src/simulation.mjs": "17fa68083040da01023d976acb42cd7ab69a9ba490844a02013b6e00c86f3940",
+    "reference/otfs_reference.py": "92b997201493a3187b5ddb37026672ef44e163131e422bdf8618f11b17aa235f"
+  },
+  "scope": {
+    "model": "eq14_literal-explicit-sampled-cyclic-convention",
+    "maxN": 3,
+    "maxM": 4,
+    "maxD": 12,
+    "paths": [
+      1,
+      2
+    ],
+    "constellations": [
+      4,
+      16
+    ],
+    "methods": [
+      "Gram-factor MP-G exact local sums on retained graph",
+      "full LMMSE effective-AWGN soft conversion"
+    ],
+    "maxIterations": 100,
+    "recommendedFirstLesson": {
+      "N": 3,
+      "M": 4,
+      "maxIterations": 30,
+      "damping": 1,
+      "edgeTolerance": 0
+    }
+  },
+  "verification": {
+    "ownerKernelWorkerTests": 26,
+    "ownerPythonCases": 48,
+    "owner80DigitCases": 12,
+    "independentValidRawReceivers": 103,
+    "independentOperatorCases": 58,
+    "independent100DigitLMMSECases": 31,
+    "independentWorkerChecks": 27,
+    "independentPruningBoundChecks": 14,
+    "nodeProfileRuns": 40,
+    "nodeDenseMaximumBudgetRuns": 5,
+    "nodeCancellationTimingRuns": 10,
+    "nodeZeroPruningLessonRuns": 12
+  },
+  "correction": "Frozen Python unchanged. Port removes absolute LMMSE variance floor, cancels common score analytically, stabilizes log normalization, and rejects sparse input arrays; see NUMERICAL-CORRECTION.md.",
+  "pruning": "PRUNING.md bound is for exact full-vs-retained distributions only, not loopy BP sensitivity. First lesson recommends edgeTolerance=0.",
+  "notApproved": [
+    "browser execution",
+    "browser worker adapter execution",
+    "desktop or UI timing",
+    "UI interaction",
+    "browser-download export replay",
+    "repository integration",
+    "publication",
+    "MP-Psi",
+    "sensing implementation",
+    "paper-size detectors",
+    "exact finite physical waveform equivalence"
+  ],
+  "review": "independent-review/JUDGEMENT.md",
+  "referenceFreezeSHA256": "9c0f5695b32dcb0d60af0b21515e30dd3e2cfb93533465840a011023c2c4b9b9",
+  "timingBoundary": "Actual Node workers in shared cloud environment; no browser/desktop latency claim."
+}

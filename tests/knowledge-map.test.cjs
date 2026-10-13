@@ -326,7 +326,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,registry.cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
@@ -442,7 +442,7 @@ test('direct-citation qualification stays visible and all three added ladders re
 
 test('the fifth geometry ladder uses only reviewed existing joins and preserves the first four rendered routes',()=>{
  const {progression,withoutNetworkProgression,withoutNetworkContext}=require('./helpers/network-context-preservation.cjs');
- a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render(),beforeSolverCoverage=render(require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(registry));
+ a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render(),beforeSolverCoverage=render(require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(registry),require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(guideData));
  // Preserve original rendered routes after reversing only separately guarded solver-coverage fields.
  for(const id of ['known-pilots','angle','echo','beam-design'])a.equal(template(beforeSolverCoverage,id),template(old,id),id);
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='geometry'),u=registry.units.find(u=>u.id==='geometry'),g=guideData.cards.find(c=>c.id===progression.guideId),next=guideData.cards.find(c=>c.id===progression.nextGuideId);

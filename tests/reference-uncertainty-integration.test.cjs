@@ -25,7 +25,7 @@ function region(html,key){
 }
 
 test('reference uncertainty adds one case-free mechanism and one page without inflating source evidence',()=>{
- a.deepEqual([withoutGCSAGERegistry(registry).units.length,registry.cases.length,withoutGCSAGERegistry(registry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
+ a.deepEqual([withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,withoutGCSAGERegistry(registry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
  a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(registry.pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
@@ -47,7 +47,7 @@ test('additive normalization rejects modified units, page contracts and exact di
   r=>r.pages.find(p=>p.path===page.path).next='practice.html#notebook',
   r=>r.pages.find(p=>p.path===page.path).case='case-pilot',
   r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='experiment').items.at(-1).note='论文复现',
-  r=>r.directions.find(d=>d.id==='waveforms').levels.find(l=>l.id==='experiment').items.at(-1).scope='direction-specific',
+  r=>r.directions.find(d=>d.id==='waveforms').levels.find(l=>l.id==='experiment').items.find(i=>i.href==='reference-uncertainty.html#experiment').scope='direction-specific',
   r=>r.directions.find(d=>d.id==='receiver').levels.find(l=>l.id==='experiment').items.push(structuredClone(hooks[0].item)),
   r=>r.units.unshift(r.units.pop())
  ];
@@ -95,7 +95,7 @@ test('native notebook projection and generated portals expose the mechanism with
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes(`<strong>${registry.units.length}</strong> 个机制实验`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.match(reading,/15 个已有主题/);a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
+ a.match(reading,/16 个已有主题/);a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(withoutBuildLinkValidation('scripts/notebook-topics.cjs',read('scripts/notebook-topics.cjs'))),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');

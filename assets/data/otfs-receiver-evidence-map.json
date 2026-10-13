@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "baseCommit": "821523bb7a57e5c6dade62ba88a96ec0c2630737",
+  "source": {
+    "id": "arxiv:1910.01896v1",
+    "url": "https://arxiv.org/pdf/1910.01896v1",
+    "pdfSha256": "7787286d004ea1014fea059dea88ad4320536a8afcef44dc89a482b0feaaabdc",
+    "pdfRedistributed": false
+  },
+  "archives": [
+    {
+      "public": "data/otfs-effectiveness-reference-v1.zip",
+      "bytes": 2240856,
+      "sha256": "6ede124f88b9deceb1a16cc8b4f60978ae052c317f28d022840786e6a5be520c",
+      "entries": 52,
+      "pdfRedistributed": false
+    },
+    {
+      "public": "data/otfs-mpg-kernel-v0.2.0.zip",
+      "bytes": 5582712,
+      "sha256": "140cc61c54373e2c2e8193d3fcdc5db02750e8982213cd59118607506870e663",
+      "entries": 92,
+      "pdfRedistributed": false
+    },
+    {
+      "public": "data/otfs-sensing-browser-prototype-v0.1.0.zip",
+      "bytes": 5097595,
+      "sha256": "ea9326449890efdaff94273731118d0772c65df2898d75cd7ab7f099a0c3d84c",
+      "entries": 78,
+      "pdfRedistributed": false
+    }
+  ],
+  "ownedFiles": [
+    {
+      "source": "content/pages/otfs-receiver.html",
+      "public": "otfs-receiver.html",
+      "bytes": 40787,
+      "sha256": "7394a7fe639b75af986bc119f99e4c51465e3f4beff00f4ba7d475e74f5a62ba"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/FREEZE.json",
+      "public": "otfs-receiver/communication/FREEZE.json",
+      "bytes": 2708,
+      "sha256": "ebc02954f0d80daa54ce3843c9c8d644d2ac4d55c07b8ffa040d18270075d475"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/browser-worker.mjs",
+      "public": "otfs-receiver/communication/browser-worker.mjs",
+      "bytes": 172,
+      "sha256": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/kernel.mjs",
+      "public": "otfs-receiver/communication/kernel.mjs",
+      "bytes": 17220,
+      "sha256": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/node-worker.mjs",
+      "public": null,
+      "bytes": 235,
+      "sha256": "f7e2fd941ca3959f2d3259554bba36022c2972560c35bbf5e74b2cf147940a5d"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/protocol.mjs",
+      "public": "otfs-receiver/communication/protocol.mjs",
+      "bytes": 4653,
+      "sha256": "d7242dbe37ed8a060f2b14471538cd0920149aeb0a05aa16064996dfc572be9a"
+    },
+    {
+      "source": "labs/otfs-receiver/communication/simulation.mjs",
+      "public": "otfs-receiver/communication/simulation.mjs",
+      "bytes": 3760,
+      "sha256": "17fa68083040da01023d976acb42cd7ab69a9ba490844a02013b6e00c86f3940"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-controller.mjs",
+      "public": "otfs-receiver/lesson-controller.mjs",
+      "bytes": 6128,
+      "sha256": "4710f24cc74cf71fa25f7f96d01d73a7fe82f31eadc1b5ef2ae5dc3a956ebc54"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-evidence.mjs",
+      "public": "otfs-receiver/lesson-evidence.mjs",
+      "bytes": 23273,
+      "sha256": "d2343aca672d8b469dbe7f8f7fdc6c22cf82bdae1978fec66d40a33df52b7416"
+    },
+    {
+      "source": "labs/otfs-receiver/lesson-model.mjs",
+      "public": "otfs-receiver/lesson-model.mjs",
+      "bytes": 9105,
+      "sha256": "816b82848d6edc02cd694a3a00dc815a93f437bb502339eba2744cfcf291d185"
+    },
+    {
+      "source": "labs/otfs-receiver/otfs-receiver.css",
+      "public": "otfs-receiver/otfs-receiver.css",
+      "bytes": 14246,
+      "sha256": "269442d5f43c9bb9709e5853166589867fe68df7804e77de96b20af697bfcd37"
+    },
+    {
+      "source": "labs/otfs-receiver/otfs-receiver.mjs",
+      "public": "otfs-receiver/otfs-receiver.mjs",
+      "bytes": 26770,
+      "sha256": "f1ef504ae17caa7a43387e49039738a4a6dc4992fadf41a1e8e7121d3e26761e"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/FREEZE.json",
+      "public": "otfs-receiver/sensing/FREEZE.json",
+      "bytes": 5297,
+      "sha256": "8a480a744105ecc4b06fb3f11926b633903adb21909bdde339e5cc3634c2d243"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/browser-worker.mjs",
+      "public": "otfs-receiver/sensing/browser-worker.mjs",
+      "bytes": 172,
+      "sha256": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/evidence.mjs",
+      "public": "otfs-receiver/sensing/evidence.mjs",
+      "bytes": 7642,
+      "sha256": "565a546db239af2fe2a077b54b068a980444c49e6610ad424738c3bfff1a76a6"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/kernel.mjs",
+      "public": "otfs-receiver/sensing/kernel.mjs",
+      "bytes": 7386,
+      "sha256": "dfb81ee33bb55f8f11cbfec234a058e9711ac8ce226f756b4d96cd6b435e880e"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/node-worker.mjs",
+      "public": null,
+      "bytes": 235,
+      "sha256": "f7e2fd941ca3959f2d3259554bba36022c2972560c35bbf5e74b2cf147940a5d"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/operators.mjs",
+      "public": "otfs-receiver/sensing/operators.mjs",
+      "bytes": 4761,
+      "sha256": "1092109d0e5f28cfa5dbf0fca78f4474b72a19e80b98bac29b0151581f06ff19"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/protocol.mjs",
+      "public": "otfs-receiver/sensing/protocol.mjs",
+      "bytes": 3899,
+      "sha256": "02d335ff4c9659645631e22d27f5d178735056dd5653c0c9299020c8c63c3e67"
+    },
+    {
+      "source": "labs/otfs-receiver/sensing/validation.mjs",
+      "public": "otfs-receiver/sensing/validation.mjs",
+      "bytes": 5015,
+      "sha256": "752935c5e77d4d898c51ce5105453c2d3b80742735642a5adb46ae51102e729b"
+    },
+    {
+      "source": "tests/otfs-lesson-controller.test.cjs",
+      "public": null,
+      "bytes": 6534,
+      "sha256": "6b3274056f3adb4a21dcfcb3999dd34438f0b1ca37481c9668cc98860e638760"
+    },
+    {
+      "source": "tests/otfs-lesson-independent.test.cjs",
+      "public": null,
+      "bytes": 26404,
+      "sha256": "b8e3a4dd7de1bfd6ae695d2927e566acdee775a291e995562fc62344b8cf19d4"
+    },
+    {
+      "source": "tests/otfs-lesson-model.test.cjs",
+      "public": null,
+      "bytes": 16166,
+      "sha256": "e79ba3c166288f77228960f010dc70ca9221b86ecf738bd9ad75e714da4e2674"
+    },
+    {
+      "source": "tests/otfs-lesson-page.test.cjs",
+      "public": null,
+      "bytes": 3892,
+      "sha256": "5ac39fc22cb8469acfaddc4c0a60388bfeb17954bddcedf9b131ef1daa3ee565"
+    }
+  ],
+  "localLessonTests": {
+    "total": 49,
+    "independent": 17,
+    "browserExecuted": false
+  },
+  "boundaries": {
+    "separateReducedExperiments": true,
+    "sensing": "P1 finite declared grid; no continuous refinement or FIM/local CRB",
+    "communication": "actual Gram MP-G and full LMMSE; perfect CSI; zero first-lesson Gram pruning",
+    "pythonReference": "unchanged frozen core",
+    "lmmsePort": "separate corrected stable soft conversion",
+    "physicalCrossModelEquivalence": "unproven; nominal operator residual only",
+    "browserAcceptance": "pending",
+    "fullPaper": "not-reproduced"
+  }
+}

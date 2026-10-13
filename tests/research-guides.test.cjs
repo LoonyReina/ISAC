@@ -1,3 +1,4 @@
+const {withoutOtfsRegistry,withoutOtfsHomeShell}=require('./helpers/otfs-receiver-preservation.cjs');
 const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Content, generator and simulated DOM regression. No browser or source refetch claim.
@@ -18,11 +19,11 @@ const previousTraceIds=new Set(['otfs-joint-estimation-2020','nearfield-multitar
 const reviewedTraceIds=new Set([...previousTraceIds,...remainingTraceIds]);
 const guideCores=cards=>withoutNetworkContext({cards}).cards.map(card=>{if(!reviewedTraceIds.has(card.id))return card;const {visualTrace,...core}=card;return core;});
 test('twenty guide-only resources extend all eight existing directions without inflating lessons or snapshots',()=>{
- a.deepEqual([registry.cases.length,withoutGCSAGERegistry(registry).units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,28,8,32]);
+ a.deepEqual([withoutOtfsRegistry(registry).cases.length,withoutGCSAGERegistry(registry).units.length,registry.directions.length,registry.knowledgeMap.nodes.length],[15,28,8,32]);
  a.equal(data.cards.length,20);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver','channels','channels','tradeoffs','tradeoffs','channels','waveforms','prototype','spatial']);
  const directory=JSON.parse(read(registry.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);
  for(const c of data.cards){a.ok(!registry.cases.some(x=>x.id===c.id));a.ok(!registry.units.some(x=>x.id===c.id));a.equal(c.caseId,undefined);}
- const html=read('reading.html');a.match(html,/20 篇问题式导读/);a.match(html,/15 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
+ const html=read('reading.html');a.match(html,/20 篇问题式导读/);a.match(html,/16 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
  a.ok(html.indexOf('id="directions"')<html.indexOf('id="research-guides"'));a.ok(html.indexOf('id="research-guides"')<html.indexOf('id="paper-comparisons"'));
  a.equal((html.match(/class="research-guide-card"/g)||[]).length,20);
 });
@@ -94,10 +95,10 @@ test('reading navigation and direction links resolve to the same generated guide
   if(href.startsWith('https:'))continue;
   const url=new URL(href,'https://example.test/ISAC/');a.equal(url.origin,'https://example.test');
   a.ok(read(path.basename(url.pathname)).includes(`id="${url.hash.slice(1)}"`),href);
-  if(url.search)a.ok(['practice.html?topic=near-field#notebook','practice.html?topic=sbfd#notebook'].includes(href));
+  if(url.search)a.ok(['practice.html?topic=near-field#notebook','practice.html?topic=sbfd#notebook','practice.html?topic=otfs-receiver#notebook'].includes(href));
  }
- a.match(render(),/已有机制的空白实验本/);a.doesNotMatch(render(),/topic=otfs|topic=nearfield-double/);
- for(const c of build())if(c.notebook)a.ok(['near-field','sbfd'].includes(c.notebook.id));
+ a.match(render(),/已有机制的空白实验本/);a.doesNotMatch(render(),/topic=otfs(?!-receiver)|topic=nearfield-double/);
+ for(const c of build())if(c.notebook)a.ok(['near-field','sbfd','otfs-receiver'].includes(c.notebook.id));
 });
 test('invalid identities, missing evidence and nonexistent routes fail at build time',()=>{
  const mutations=[d=>d.cards.push(structuredClone(d.cards[0])),d=>{d.cards[0].id='../escape';},d=>{d.cards[0].directionId='absent';},d=>{delete d.cards[0].question;},d=>{d.cards[0].limits=[];},d=>{d.cards[0].evidence.summary='';},d=>{d.cards[0].source.locator='';},d=>{d.cards[0].source.edition='';},d=>{d.cards[0].source.url='javascript:alert(1)';},d=>{d.cards[0].source.url='https://user:secret@example.test/paper';},d=>{d.cards[0].source.url='https://example.test/paper#fake';},d=>{d.cards[0].prerequisites[0].href='foundations.html#absent';},d=>{d.cards[0].prerequisites[0].href='https://evil.test/';},d=>{d.cards[0].notebookTopicId='unimplemented';},d=>{d.cards[0].readingSteps=[{label:'empty'}];}];
@@ -149,7 +150,7 @@ test('trace-only reading additions preserve the four map routes and unchanged re
  for(const [file,digest]of Object.entries(unchanged)){
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutNetworkProgression(registry),null,2)+'\n';
-  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);}
+  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);}
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
 });
@@ -185,7 +186,7 @@ test('trace science keeps receiver knowledge, model observations and experimente
  const prototype=cards['bistatic-ofdm-clock-measurement-2023'];a.equal(prototype.steps[0].blocks[1].label,'试验者设置');a.match(prototype.steps[0].explanation,/接收机仍要估计时延和多普勒/);a.match(prototype.steps[1].explanation,/残余时钟误差/);a.match(prototype.checkpoint.answer,/不能/);
 });
 test('four network and learning traces preserve the first three and separate resource, training and inference conditions',()=>{
- const originals=data.cards.filter(c=>initialTraceIds.has(c.id)).map(c=>[c.id,c.visualTrace]);
+ const originals=require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(data).cards.filter(c=>initialTraceIds.has(c.id)).map(c=>[c.id,c.visualTrace]);
  a.equal(crypto.createHash('sha256').update(JSON.stringify(originals)).digest('hex'),'b5ce53bd2d967e1ee86c98453fb9bd8a298dcf34ab3b672e82ef1f97445671d0');
  const added=data.cards.filter(c=>previousTraceIds.has(c.id)&&!initialTraceIds.has(c.id));
  a.deepEqual(added.map(c=>c.id),['networks-cooperative-clusters-2024','cellfree-vq-compression-2026','isac-net-model-driven-passive','multimodal-transformer-beam-generalization']);
@@ -456,7 +457,7 @@ test('one network context and five source fields preserve all nineteen prior car
  const network=d=>d.cards.find(c=>c.id==='cellfree-vq-compression-2026');
  for(const mutate of [d=>{network(d).question+=' changed';},d=>{network(d).visualTrace.title+=' changed';},d=>{d.cards[16].contextTrail.changedCondition+=' changed';},d=>{network(d).source.edition+=' changed';},d=>{network(d).source.unreviewed='extra';}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
  for(const mutate of [d=>{network(d).contextTrail.links[0].relationType='direct-citation';},d=>{network(d).contextTrail.changedCondition+=' changed';},d=>{network(d).source.publicationUrl='https://example.test/wrong';},d=>{delete network(d).source.checkedAt;},d=>{network(d).source.checkedAt='2026-10-12';}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/exact reviewed/);}
- a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,withoutGCSAGERegistry(registry).units.length,registry.cases.length],[20,20,5,28,15]);
+ a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,withoutGCSAGERegistry(registry).units.length,withoutOtfsRegistry(registry).cases.length],[20,20,5,28,15]);
  const immutable={
   'reference-uncertainty-record.js':'43f70469c54f55be0f6b8e38344df41b8115d33ff4205e34f13b23ec34730eee',
   'reference-uncertainty.js':'fd2c838f3b75a825db4536756977d2cbc4b0a588833e6d6bfbd70c57dcc5067a',
@@ -469,7 +470,7 @@ test('one network context and five source fields preserve all nineteen prior car
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
@@ -495,7 +496,7 @@ test('one frozen spatial frontier card preserves all nineteen existing complete 
  a.equal(data.cards.length,20);a.equal(data.cards.at(-1).id,spatialGuideId);a.equal(hash(data),baseline);a.equal(JSON.stringify(data),before);
  for(const mutate of [d=>{d.cards[0].question+=' changed';},d=>{d.cards[0].visualTrace.title+=' changed';},d=>{d.cards[5].contextTrail.changedCondition+=' changed';},d=>{d.cards[5].source.publicationStatus+=' changed';},d=>{d.cards[16].contextTrail.links[0].verificationNote+=' changed';},d=>{d.cards[0].extra='unreviewed';}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
  for(const mutate of [d=>{d.cards.at(-1).source.publicationStatus='Accepted';},d=>{d.cards.at(-1).visualTrace.steps[0].blocks[0].text='unreviewed';},d=>{d.cards.at(-1).contextTrail.links[0].relationType='direct-citation';},d=>{d.cards.push(structuredClone(d.cards.at(-1)));}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/exact reviewed spatial|only one reviewed|one GC-SAGE guide/);}
- a.deepEqual([data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,withoutGCSAGERegistry(registry).units.length,registry.cases.length,registry.knowledgeMap.progressions.length],[20,5,28,15,5]);
+ a.deepEqual([data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,withoutGCSAGERegistry(registry).units.length,withoutOtfsRegistry(registry).cases.length,registry.knowledgeMap.progressions.length],[20,5,28,15,5]);
  a.ok(registry.knowledgeMap.progressions.every(p=>p.guideId!==spatialGuideId&&p.nextGuideId!==spatialGuideId));
 });
 test('spatial mapping guide keeps measured sampling, limited inference, baseline conditions and submission status explicit',()=>{
@@ -526,7 +527,7 @@ test('three frontier traces preserve all twenty complete prior records, seventee
  const baseline='a0882017952882b3240c014c3ff59c255f9c7eee60c5e504a5a1a9265daf10ae',before=JSON.stringify(data);
  a.deepEqual(frontierTraceIds,['channels-sensing-communication-mapping-2026','zak-otfs-semiblind-offgrid-2026','sbfd-resource-synchronization-2026']);
  a.equal(hash(data),baseline);a.equal(JSON.stringify(data),before);
- a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.knowledgeMap.progressions.length,withoutGCSAGERegistry(registry).units.length,registry.cases.length],[20,20,5,5,28,15]);
+ a.deepEqual([data.cards.length,data.cards.filter(c=>c.visualTrace).length,data.cards.filter(c=>c.contextTrail).length,registry.knowledgeMap.progressions.length,withoutGCSAGERegistry(registry).units.length,withoutOtfsRegistry(registry).cases.length],[20,20,5,5,28,15]);
  for(const mutate of [d=>{d.cards[16].question+=' changed';},d=>{d.cards[17].source.edition+=' changed';},d=>{d.cards[18].contextTrail.oldQuestion+=' changed';},d=>{d.cards[0].visualTrace.title+=' changed';},d=>{d.cards.at(-1).prerequisites.pop();},d=>{d.cards.at(-1).visualTrace.steps[2].lessonHref='near-field.html#geometry';},d=>{d.cards[17].extra='unreviewed';},d=>{d.cards.push(d.cards.shift());}]){const d=structuredClone(data);mutate(d);a.notEqual(hash(d),baseline);}
  for(const mutate of [d=>{delete d.cards[16].visualTrace;},d=>{d.cards[17].visualTrace.title+=' changed';},d=>{d.cards[18].visualTrace.steps[0].sourceLocator='unverified';},d=>{d.cards[16].visualTrace=structuredClone(d.cards[0].visualTrace);},d=>{d.cards.push(structuredClone(d.cards[16]));}]){const d=structuredClone(data);mutate(d);a.throws(()=>hash(d),/reviewed frontier trace|one existing guide/);}
  const immutable={
@@ -543,7 +544,7 @@ test('three frontier traces preserve all twenty complete prior records, seventee
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(prior,registry.units.length),registry.units.length-1);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }

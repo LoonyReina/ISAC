@@ -503,3 +503,7 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - 三个处理器共享同一参数点的原始观测、波形、发射能量、时长、噪声和先验。两站星型单播、B块、每站每块L复样本：原始上行4LB、复匹配4B、能量2B个实标量；本地模板下行分别按每块4LB、本次一次4L、运行前有效缓存为本次0记账。缓存不表示历史免费；原始站为上传y无需另收完整s。L=16、B=10时，每块下发的双向总量为640/680/660，只更新一次为640/104/84，已缓存为640/40/20
 - 站端本地匹配需要s、E、σ²与尺度/相位约定；κ/q只需融合中心持有，不虚构不必要的先验广播。模型下行另外列每次标量与更新次数，默认0表示未估计。同步、包头、时间戳、可靠传输、计算、RF链、组播及链路并行另列；bits_per_real只是编码宽度换算，没有量化模拟，实数充分性不等于有限比特无损，也不是实际吞吐或时延证据
 - 不实现未知目标无关信道、完整阵列/多用户波束与功率优化、多目标关联、搜索图Pfa、定位、未知杂波、相位校准或硬件。纸面背景、冻结独立参考、本站JavaScript、静态/DOM、真实浏览器和线上部署是不同证据层，不互相冒充。九篇影响目录、八篇已接入状态与全部2026-10-10计量/学会/社交快照保持不变；不新增影响力论文卡
+
+## OTFS bounded receiver extension (2026-10-12)
+
+[On the Effectiveness of OTFS for Joint Radar and Communication, arXiv:1910.01896v1](https://arxiv.org/pdf/1910.01896v1), §III equations (12)–(16), §IV single-path likelihood/grid estimation and §V-A Gram MP-G. [The canonical receiver lesson](../otfs-receiver.html#intuition) executes two independent reduced experiments. [Source/evidence boundaries](OTFS-RECEIVER-SOURCE-EVIDENCE.md) distinguish finite-grid sensing, corrected full-LMMSE port, unchanged Python reference, zero Gram pruning, and pending browser/full-paper/physical-correspondence gates. The existing reading guide ID is retained.

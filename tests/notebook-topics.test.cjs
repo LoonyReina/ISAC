@@ -19,7 +19,7 @@ function generator(r=registry,template=read('site/content-practice.html')){
 
 test('all notebook topics are canonical projections of the single registry',()=>{
  const before=JSON.stringify(registry),topics=buildNotebookTopics(registry),entries=createLearningEntryResolver(registry);
- a.equal(withoutGCSAGERegistry(registry).units.length,28);a.equal(topics.length,registry.units.length);a.equal(registry.cases.length,15);
+ a.equal(withoutGCSAGERegistry(registry).units.length,28);a.equal(topics.length,registry.units.length);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,15);
  a.deepEqual(topics.map(topic=>topic.id),registry.units.map(unit=>unit.id));
  for(const [index,unit]of registry.units.entries()){
   const topic=topics[index],source=registry.cases.find(c=>c.unit===unit.id);

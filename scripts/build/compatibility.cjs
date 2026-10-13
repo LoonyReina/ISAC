@@ -3,6 +3,7 @@
 // Frozen migration fingerprints live in migration-audit.cjs, outside normal builds.
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),cp=require('node:child_process');
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+const {moduleDependencies}=require('./module-dependencies.cjs');
 const compare=(a,b)=>a.path<b.path?-1:a.path>b.path?1:0;
 function insist(ok,message){if(!ok)throw new Error(message);}
 function exactFields(value,fields,label){insist(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join(',')===[...fields].sort().join(','),'Invalid '+label+' fields');}
@@ -58,8 +59,11 @@ function checkDependencies(root,manifest){
   if(!name.includes('/')&&name.endsWith('.html'))for(const m of text.matchAll(/\b(href|src)\s*=\s*["']([^"']+)["']/g))local(name,m[2],m[1]);
   if(name.endsWith('.md')){const prose=text.replace(/```[\s\S]*?```/g,'').replace(/`[^`\n]*`/g,'');for(const m of prose.matchAll(/!?\[[^\]\n]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g))if(/^(?:https?:|#|\.{1,2}\/)|\.(?:md|json|txt|log|sha256|js|cjs|mjs|html|css|py|pdf)(?:[?#]|$)/i.test(m[1]))local(name,m[1],'documentation');}
   if(name.endsWith('.css'))for(const m of text.matchAll(/(?:url\(\s*["']?([^"')\s]+)|@import\s+["']([^"']+))/g))local(name,m[1]||m[2],'css');
+  // Preserve the historical .js literal fetch/require check as legacy behavior.
   if(name.endsWith('.js'))for(const m of text.matchAll(/\b(?:fetch|require(?:\.resolve)?)\(\s*['"]([^'"]+)['"]/g))if(m[1].startsWith('.')||m[1].includes('/'))local(name,m[1],'runtime');
  }
+ const modules=[...all.keys()].filter(name=>name.endsWith('.mjs')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
+ for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8'))))local(edge.from,edge.url,edge.kind);
  // This script constructs URLs from currentScript.src; the literal sequence is
  // checked before adding its dependencies, rather than guessed from filenames.
  const course=fs.readFileSync(path.join(root,'course.js'),'utf8');
