@@ -260,6 +260,11 @@
       "id": "validators/module-dependencies",
       "directory": "scripts/build",
       "description": "Explicit source-aware JavaScript module and Worker dependency inspection"
+    },
+    {
+      "id": "labs/ofdm-ici",
+      "directory": "labs/ofdm-ici",
+      "description": "Frozen bounded ICI-aware receiver, classic Worker and lesson interface"
     }
   ],
   "entries": [
@@ -5789,6 +5794,286 @@
     {
       "source": "tests/nearfield-research-owned.test.cjs",
       "compatibility": "tests/nearfield-research-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-evidence-map.json",
+      "compatibility": "data/ofdm-ici-evidence-map.json",
+      "public": "data/ofdm-ici-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-full-evidence.parts.json",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-full-evidence.parts.json",
+      "public": "data/ofdm-ici-kernel-v0.1-full-evidence.parts.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-full-evidence.zip.part01",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part01",
+      "public": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-full-evidence.zip.part02",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part02",
+      "public": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-full-evidence.zip.part03",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part03",
+      "public": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part03",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-full-evidence.zip.part04",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part04",
+      "public": "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part04",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-kernel-v0.1-runtime.zip",
+      "compatibility": "data/ofdm-ici-kernel-v0.1-runtime.zip",
+      "public": "data/ofdm-ici-kernel-v0.1-runtime.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/ofdm-ici-reference-v1.zip",
+      "compatibility": "data/ofdm-ici-reference-v1.zip",
+      "public": "data/ofdm-ici-reference-v1.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/reassemble-ofdm-ici-evidence.py",
+      "compatibility": "data/reassemble-ofdm-ici-evidence.py",
+      "public": "data/reassemble-ofdm-ici-evidence.py",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/ofdm-ici-receiver.html",
+      "compatibility": "ofdm-ici-receiver.html",
+      "public": "ofdm-ici-receiver.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
+      "public": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/LESSON-FREEZE.json",
+      "compatibility": "labs/ofdm-ici/LESSON-FREEZE.json",
+      "public": "labs/ofdm-ici/LESSON-FREEZE.json",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/README.md",
+      "compatibility": "labs/ofdm-ici/README.md",
+      "public": "labs/ofdm-ici/README.md",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-controller.js",
+      "compatibility": "labs/ofdm-ici/lesson/ici-controller.js",
+      "public": "labs/ofdm-ici/lesson/ici-controller.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "compatibility": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "public": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "compatibility": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "public": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+      "compatibility": "labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+      "public": null,
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/tests/verification.log",
+      "compatibility": "labs/ofdm-ici/lesson/tests/verification.log",
+      "public": null,
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/FORMAT.md",
+      "compatibility": "labs/ofdm-ici/runtime/FORMAT.md",
+      "public": "labs/ofdm-ici/runtime/FORMAT.md",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "compatibility": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "public": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "compatibility": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "public": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "compatibility": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "public": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "compatibility": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "public": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/linalg.js",
+      "compatibility": "labs/ofdm-ici/runtime/js/linalg.js",
+      "public": "labs/ofdm-ici/runtime/js/linalg.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/sha256.js",
+      "compatibility": "labs/ofdm-ici/runtime/js/sha256.js",
+      "public": "labs/ofdm-ici/runtime/js/sha256.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "compatibility": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "public": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "compatibility": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "public": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "owner": "labs/ofdm-ici",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/classic-dependencies.cjs",
+      "compatibility": "scripts/build/classic-dependencies.cjs",
+      "public": "scripts/build/classic-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/classic-runtime-contracts.json",
+      "compatibility": "scripts/build/classic-runtime-contracts.json",
+      "public": "scripts/build/classic-runtime-contracts.json",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/ofdm-ici/INDEPENDENT-LESSON-BOUNDARY-REVIEW.md",
+      "compatibility": "scripts/validation/ofdm-ici/INDEPENDENT-LESSON-BOUNDARY-REVIEW.md",
+      "public": "scripts/validation/ofdm-ici/INDEPENDENT-LESSON-BOUNDARY-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/ofdm-ici/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "compatibility": "scripts/validation/ofdm-ici/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/ofdm-ici/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/ofdm-ici/INDEPENDENT-PORT-REVIEW.md",
+      "compatibility": "scripts/validation/ofdm-ici/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/ofdm-ici/INDEPENDENT-PORT-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/classic-dependencies.test.cjs",
+      "compatibility": "tests/classic-dependencies.test.cjs",
+      "public": "tests/classic-dependencies.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/ofdm-ici-baseline.json",
+      "compatibility": "tests/helpers/ofdm-ici-baseline.json",
+      "public": "tests/helpers/ofdm-ici-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/ofdm-ici-changes.json",
+      "compatibility": "tests/helpers/ofdm-ici-changes.json",
+      "public": "tests/helpers/ofdm-ici-changes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/ofdm-ici-preservation.cjs",
+      "compatibility": "tests/helpers/ofdm-ici-preservation.cjs",
+      "public": "tests/helpers/ofdm-ici-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/ofdm-ici-suffixes.json",
+      "compatibility": "tests/helpers/ofdm-ici-suffixes.json",
+      "public": "tests/helpers/ofdm-ici-suffixes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/ofdm-ici-integration.test.cjs",
+      "compatibility": "tests/ofdm-ici-integration.test.cjs",
+      "public": "tests/ofdm-ici-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/ofdm-ici-owned.test.cjs",
+      "compatibility": "tests/ofdm-ici-owned.test.cjs",
       "public": null,
       "owner": "validators/regression",
       "role": "source"

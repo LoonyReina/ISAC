@@ -95,7 +95,7 @@ test('native notebook projection and generated portals expose the mechanism with
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes(`<strong>${registry.units.length}</strong> 个机制实验`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.match(reading,/16 个已有主题/);a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
+ a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(withoutBuildLinkValidation('scripts/notebook-topics.cjs',read('scripts/notebook-topics.cjs'))),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');

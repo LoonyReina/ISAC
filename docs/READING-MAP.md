@@ -511,3 +511,7 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 ## Near-field bounded research extension (2026-10-12)
 
 [Near-Field Integrated Sensing and Communications, exact v5](https://arxiv.org/html/2302.01153v5), Eqs(20)–(21), Appendix A MUSIC and Appendix B Fisher. The [same canonical page](../near-field.html#research-experiment) adds actual bounded SDR → finite 65×256 X → noisy Y → truth-blind MUSIC. Its old one-way noiseless #experiment remains a prerequisite. [Source/evidence boundaries](NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md) preserve declared assumptions, historical failures, exact source-free archive parts, and separate numerical, browser and full-paper gates.
+
+## OFDM ICI bounded receiver extension (2026-10-12)
+
+[MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?, arXiv:2103.15694v1](https://arxiv.org/pdf/2103.15694v1), §II–IV equations (5)–(13), (16)–(19), (34)–(36), Algorithms1–3, and §V equations (65)–(66). [The canonical ICI receiver lesson](../ofdm-ici-receiver.html#intuition) executes actual finite-grid MUSIC/APES/GLRT-OMP/CFAR from X/Y/config. [Source and evidence boundaries](OFDM-ICI-SOURCE-EVIDENCE.md) retain the held4-hit/3-false/1-miss cap and distinguish independently checked Python, frozen JavaScript/Node, unmeasured browser latency, uncalibrated nominal Pfa, and unreproduced original curves. The unique existing guide and paper identity remain unchanged.

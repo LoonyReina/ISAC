@@ -89,7 +89,7 @@ test('source guide, six anchors and generated portals use the shared shell and v
  for(const [,href]of guide.matchAll(/href="(https:[^"]+)"/g))a.ok(doc.includes(href),href);
  a.doesNotMatch(guide,/class="influence-card"|<button|<input|<canvas/);a.equal(article(read('reading.html'),'ref-MULTIPATH'),guide);
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);a.ok(read('index.html').includes(`href="${c.learningEntry}"`));
- a.ok(read('index.html').includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(read('reading.html').includes('16 个已有主题'));
+ a.ok(read('index.html').includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(read('reading.html').includes(r.cases.length+' 个已有主题'));
 });
 
 test('source manifest identifies fetched official HTML bytes without distributing paper text or mixing evidence',()=>{

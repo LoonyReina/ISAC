@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "scripts": [
+    {
+      "public": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "sha256": "bcf9be4cb478928e4744d3dea357e20b38f53b793f67a7a5f9e43c64255c51ac",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "sha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/runtime/js/linalg.js",
+      "sha256": "c7e21dadbac282314c504c5f1b73a4de18964c18ee1d06cc34eedcce1d81509a",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/runtime/js/sha256.js",
+      "sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "sha256": "1397e1f04bb674973fdebc29213c2531e8383b3aa3f959504761f65dcdf20b75",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "../js/linalg.js",
+          "resolutionFrom": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('../js/linalg.js', '../js/sha256.js', '../js/evaluate.js', '../js/ici-kernel.js')"
+        },
+        {
+          "url": "../js/sha256.js",
+          "resolutionFrom": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('../js/linalg.js', '../js/sha256.js', '../js/evaluate.js', '../js/ici-kernel.js')"
+        },
+        {
+          "url": "../js/evaluate.js",
+          "resolutionFrom": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('../js/linalg.js', '../js/sha256.js', '../js/evaluate.js', '../js/ici-kernel.js')"
+        },
+        {
+          "url": "../js/ici-kernel.js",
+          "resolutionFrom": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('../js/linalg.js', '../js/sha256.js', '../js/evaluate.js', '../js/ici-kernel.js')"
+        }
+      ]
+    },
+    {
+      "public": "labs/ofdm-ici/lesson/ici-controller.js",
+      "sha256": "e4b41da1fc612e1c3f9cccdc3998384cf8349762c27b856d911444d0746e7cfb",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+          "resolutionFrom": "ofdm-ici-receiver.html",
+          "kind": "reviewed-classic-worker",
+          "literal": "new Worker('labs/ofdm-ici/runtime/worker/ici-worker.js')"
+        }
+      ]
+    },
+    {
+      "public": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "sha256": "1b51814832d69dcbce235594cf6812d8766f9017cbf90ebaf6f609cf9343fd0b",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    }
+  ]
+}

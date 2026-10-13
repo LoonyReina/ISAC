@@ -147,6 +147,12 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Local source-derived digital SDR/finite-X/noisy-MUSIC lesson; independent numerical and Node chain evidence accepted, actual browser and publication gated separately"
+      },
+      {
+        "paperId": "ofdm-ici-aware-receiver-2021",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local bounded finite-grid ICI receiver; exact source/Node numerical evidence, actual browser and publication gated separately"
       }
     ]
   },
@@ -1921,8 +1927,12 @@
           "ofdm-ici-aware-receiver-2021"
         ],
         "catalogIds": [],
-        "caseIds": [],
-        "sourceIds": []
+        "caseIds": [
+          "case-ofdm-ici-receiver"
+        ],
+        "sourceIds": [
+          "case-ofdm-ici-receiver-paper"
+        ]
       },
       "paperType": "estimation-and-detection-algorithm",
       "source": {
@@ -1933,8 +1943,8 @@
         },
         "paperIdentity": "arxiv:2103.15694",
         "fixedSourceIdentity": "arxiv:2103.15694v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Musa Furkan Keskin、Henk Wymeersch、Visa Koivunen",
           "publicationUrl": "https://doi.org/10.1109/JSTSP.2021.3109431"
@@ -1995,75 +2005,99 @@
             "观测是阵列×符号内采样×符号的复数据，发射符号已知，角度、时延、多普勒和复增益未知；采用单站远场点目标、单数据流、完全收发隔离、循环前缀（CP）覆盖时延及可忽略宽带时变效应的模型。",
             "多重信号分类（MUSIC）初筛依赖式(16)–(18)的符号统计、足够样本和目标分离近似，并需设置信号子空间阶数；同角度多目标扩展还要求稀疏场景，不能推广为任意密集目标保证。",
             "图8的FDR不是单元虚警概率；式(66)的RMSE只统计检测成功的事件。图7–10要联读，且FFT与所提方法的检出关联分别使用模糊与解模糊坐标。",
-            "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。结果不证明ICI始终有益，也不意味着突破任意物理分辨率；本站未实现APES、GLRT-OMP或原文曲线。"
-          ]
+            "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+          ],
+          "boundedCurrentLesson": {
+            "N": 64,
+            "M": 16,
+            "NT": 8,
+            "NR": 8,
+            "L": 12,
+            "Pmax": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "finiteGridOnly": true,
+            "truthBlind": true,
+            "held": {
+              "hits": 4,
+              "falseDetections": 3,
+              "misses": 1,
+              "capRetained": true
+            },
+            "allOnesDownstreamParityClaimed": false,
+            "nominalPfaCalibrated": false,
+            "sameCfoOffgridOutcome": "mixed; retain favorable and unfavorable controls"
+          }
         }
       },
       "implementation": {
-        "classification": "guide-only-with-related-prerequisite-labs",
-        "live": null,
-        "offline": null,
+        "classification": "bounded-source-derived-finite-grid-receiver; browser-and-original-curves-open",
+        "live": "ofdm-ici-receiver.html#experiment",
+        "offline": "data/ofdm-ici-reference-v1.zip",
         "details": {
-          "guideTraceKind": "qualitative-reading-trace",
+          "browserAccepted": false,
+          "kernelSha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe",
+          "referenceCoreSha256": "fee9e4a55707fe251f73bf343d0ac0142607d6c827cfd4e8bd0c974bba439cdb",
           "actualArtifacts": [
             {
-              "path": "features/foundations/course-core.js",
+              "path": "labs/ofdm-ici/runtime/js/ici-kernel.js",
               "exists": true,
-              "role": "基础OFDM FFT/匹配教学，不是ICI-aware APES接收器"
+              "role": "actual source-derived finite-grid numerical receiver"
             },
             {
-              "path": "labs/ofdm-reference/offgrid-range-core.js",
+              "path": "labs/ofdm-ici/runtime/worker/ici-worker.js",
               "exists": true,
-              "role": "单静态目标、两有限网格profile-LS，无ICI/GLRT/OMP"
+              "role": "actual asynchronous Worker/client execution"
             },
             {
-              "path": "docs/OFFGRID-RANGE-VALIDATION.md",
+              "path": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
               "exists": true,
-              "role": "独立测距机制的验证不覆盖本文"
+              "role": "distinct Python, JavaScript, browser, source-curve gates"
             }
           ],
           "omissions": [
-            "符号内ICI生成与已知调制数据矩阵",
-            "MUSIC初筛/APES/CFO联合估计",
-            "GLRT-OMP干扰消除/CFAR多目标",
-            "原关联标准/条件RMSE/图7–10"
-          ],
-          "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+            "continuous refinement",
+            "original-size converged OMP and Figures7–10",
+            "empirical Pfa calibration",
+            "actual browser certification"
+          ]
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "guide-only-with-related-prerequisite-labs",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed v1 source audit and numerical operator checks; source PDF hash recorded, source text/PDF not redistributed.",
+        "algorithm": "Actual finite-grid MUSIC/APES/GLRT-OMP/joint refits/CFAR and literal alias-zone rule from accepted X/Y/config; frozen JavaScript core.",
+        "selectedExperiment": "Bounded held finite-grid4 hits/3 false/1 miss and cap; original Figures7–10 not reproduced.",
+        "fullPaper": "Not reproduced; independent bounded mathematics does not establish original favorable curves.",
+        "latency": "Node-only timings and Worker/VM tests, not actual browser measurement.",
+        "independentValidation": "Python reference independently accepted; separate frozen JavaScript port review passed356/356 stage arrays across8 fresh runs and2219 scalar checks, with all6 exact runtime hashes verified. Neither transfers to browser or full-paper acceptance."
       },
       "missingImplementation": [
-        "符号内ICI生成与已知调制数据矩阵",
-        "MUSIC初筛/APES/CFO联合估计",
-        "GLRT-OMP干扰消除/CFAR多目标",
-        "原关联标准/条件RMSE/图7–10"
+        "Original-size fully converged multi-CFO OMP and original Figures7–10 Monte Carlo curves",
+        "Calibrated achieved Pfa, communications/field/hardware claims",
+        "Actual browser rendering, keyboard, cancellation, memory and painted-result latency acceptance"
       ],
       "dependencies": [
-        "高质量复矩阵线性代数/特征分解/FFT",
-        "按原文GLRT统计量和门限/噪声估计建立独立参考",
-        "固定子空间阶数、候选网格、目标关联规则",
-        "完整2048×64×8尺寸和多轮搜索基准"
+        "Frozen source/JavaScript/Python identities and exact input/output stage contracts",
+        "Actual browser and device acceptance",
+        "Full-size compute budget and independent original-curve experiment design"
       ],
       "blockers": [
-        "无APES/GLRT-OMP实际核心或独立fixtures",
-        "论文全尺寸计算预算、门限关联细节须完整落实"
+        "Original curves and empirical false-alarm calibration remain open",
+        "Browser/device and publication acceptance remain open"
       ],
       "realtime": {
         "status": "not-measured",
@@ -2079,7 +2113,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "缩小规模但保持完整ICI-aware算法可交互原理验证；论文全尺寸的角度/CFO搜索和多轮矩阵求解很重，未测不能承诺实时。需异步worker/WebGPU或服务端评估",
+          "assessment": "Actual bounded Worker kernel with Node-only measured runtime; no actual browser performance promise.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -2094,9 +2128,22 @@
         }
       },
       "evidence": {
-        "auxiliaryPrimarySources": []
+        "auxiliaryPrimarySources": [],
+        "sourceEvidenceDocument": "docs/OFDM-ICI-SOURCE-EVIDENCE.md"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "heldFiniteGridHits": 4,
+          "heldFiniteGridFalseDetections": 3,
+          "heldFiniteGridMisses": 1,
+          "capRetained": true,
+          "continuousHeldOutcomeSubstituted": false,
+          "nominalPfaCalibrated": false,
+          "sameCfoAlwaysImproves": false,
+          "originalCurvesReproduced": false,
+          "nodeIsBrowser": false
+        }
+      }
     },
     {
       "id": "ofdm-passive-atomic-errors-2017",

@@ -1173,6 +1173,73 @@
         },
         "verificationNote": "源文件与算法冻结摘要、数值审查和公开映射见 docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md；不发布论文PDF或私有提取文本"
       }
+    },
+    {
+      "id": "case-ofdm-ici-receiver",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "fields": {
+        "先修": "<a href=\"foundations.html#ofdm\">符号内与跨符号复相位</a>；<a href=\"foundations.html#cfar\">谱峰、检测与虚警</a>；<a href=\"offgrid-range.html#trials\">检测条件误差</a>",
+        "问题": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+        "交互机制": "从实际复数X/Y依次运行MUSIC角度初筛、有限CFO网格APES、GLRT-OMP联合重拟合、延迟–Doppler CFAR和原文混叠区规则；并排比较同观测的已知X-FFT。",
+        "证据类型": "<a href=\"https://arxiv.org/pdf/2103.15694v1\">固定 arXiv:2103.15694v1</a>；独立Python参考和逐阶段JavaScript/Node Worker数值证据，实际浏览器另行验收。",
+        "结论边界": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+        "下一研究问题": "先保留同CFO、分数时延、角度端点、假峰和漏检，再检验有限支撑失配与名义门限何时失效？"
+      },
+      "unit": "ofdm-ici-receiver",
+      "paper": "ofdm-ici-receiver.html#paper",
+      "next": "ofdm-ici-receiver.html#limits",
+      "learningEntry": "ofdm-ici-receiver.html#intuition",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?",
+        "sourceUrl": "https://arxiv.org/pdf/2103.15694v1",
+        "version": "arXiv:2103.15694v1，2021-03-29，14页固定预印本；本卡按该PDF编号。期刊记录为IEEE JSTSP 15(6), 1393–1408, 2021；2026-10-11核查全文。",
+        "paperEvidenceType": "模型、算法推导与数值仿真",
+        "siteArtifactType": "源算法的有界有限网格重算；Python/Node证据与浏览器/原图门分开",
+        "metrics": [
+          "全部检出、匹配、虚检与漏检；未检出不记零误差",
+          "原文式 V/(V+参考目标命中) 与常规 V/(V+全部命中) 分列；均不是单元Pfa",
+          "检测成功条件下的角度/距离/物理速度误差，和各自样本数",
+          "逐角度CFO剖面、接受/拒绝记录、联合重拟合与停止原因",
+          "相同实际Y/X/角度候选的已知X-FFT；另列人工无ICI观测"
+        ],
+        "unknowns": [
+          "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+          "名义Pfa未校准；同CFO与离格配对存在混合结果，不能承诺ICI始终有益"
+        ],
+        "comparisonLink": "ofdm-ici-receiver.html#paper",
+        "sourceId": "case-ofdm-ici-receiver-paper",
+        "locator": {
+          "summary": "§II-B–D，式(5)–(13)；§III-A，引理1、式(16)–(19)；§III-C，式(34)–(36)；§IV，算法2–3；§V，表I–II、图7–10及式(66)",
+          "section": "§II–IV；§V",
+          "figure": "图7–10：原始曲线尚未复现",
+          "equation": "式(5)–(13)、(16)–(19)、(34)–(36)、(49)、(65)–(66)；算法1–3"
+        },
+        "retainedAssumptions": [
+          "已知发射符号X；单数据流、远场单站点目标、完全收发隔离、CP覆盖时延",
+          "实际复数Y与相同X/角度候选用于APES和普通FFT；未知参数不输入接收机",
+          "有限角度/CFO网格、MDL阶数、L/Pmax、CFAR窗与关联规则明确记录",
+          "普通FFT去除已知X；人工去ICI与接收增益归一化单独标注"
+        ],
+        "omittedMechanisms": [
+          "连续角度/CFO细化及原始2048×64完整收敛OMP",
+          "原图7–10 Monte Carlo曲线、经验校准Pfa、通信与实测性能",
+          "实际浏览器交互/无障碍/取消/内存/绘制完成延迟认证"
+        ],
+        "resourceBudget": {
+          "summary": "本站固定N64/M16/NT8/NR8/L12，Pmax1–4；目标、种子、QPSK/16QAM与声明搜索网格可变；完整输入和每次停止原因随结果保存。原文N2048/M64，不能等同规模或资源。",
+          "bandwidth": "B=50MHz；名义格距与分辨率分开",
+          "energy": "发射QPSK/16QAM与复增益/噪声随记录声明；不补偿方法间接收能量",
+          "duration": "N64/M16的有界样本预算；不能沿用原始2048×64驻留与精度",
+          "aperture": "8发8收、远场阵列；接收增益归一化分开",
+          "priorKnowledge": "接收机仅X/Y/config；目标真值供生成与事后评估",
+          "other": [
+            "Python和Node用时不是浏览器用时",
+            "可选离线存档不是启动负载；不分发论文PDF或私有提取文本"
+          ]
+        },
+        "verificationNote": "固定源/core、独立数值、真实失败和存档字节见 docs/OFDM-ICI-SOURCE-EVIDENCE.md；有限网格held结果不替换为连续细化4/1/1结果"
+      }
     }
   ],
   "legacy": {
@@ -1915,6 +1982,20 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "先分清两个独立缩减实验的已知量，再实际搜索单路径有限网格，或在同一通信观测上运行零剪枝 MP-G 与完整 LMMSE，回看真实候选和迭代。"
+    },
+    {
+      "id": "ofdm-ici-receiver",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "href": "ofdm-ici-receiver.html#experiment",
+      "question": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "foundations.html#cfar",
+        "offgrid-range.html#experiment"
+      ],
+      "group": "research",
+      "primaryDirectionId": "receiver",
+      "action": "生成或导入实际复数观测，经Worker从头重算有限网格接收机；同时检查CFO谱、所有检出、漏检、虚检与停止原因。"
     }
   ],
   "pages": [
@@ -2254,6 +2335,19 @@
       ],
       "next": "reading.html#guide-otfs-joint-estimation-2020",
       "nextLabel": "回到固定 v1：哪些算法已实现，哪些原图和物理对应仍开放？"
+    },
+    {
+      "path": "ofdm-ici-receiver.html",
+      "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+      "stage": "experiments",
+      "role": "有界论文算法 · 有限网格ICI-aware接收、同观测FFT与失败记录",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "foundations.html#cfar",
+        "offgrid-range.html#experiment"
+      ],
+      "next": "reading.html#guide-ofdm-ici-aware-receiver-2021",
+      "nextLabel": "回到固定v1：核对算法、分母和未完成的原图"
     }
   ],
   "schemaVersion": 1,
@@ -2624,7 +2718,7 @@
       "id": "receiver",
       "title": "检测与估计：怎样从样本找到目标？",
       "question": "有一个峰，为什么还不能立刻说找到目标、测准了位置？",
-      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。",
+      "scope": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。 新增固定小规模ICI-aware多目标接收；原尺寸曲线与校准Pfa仍待核验。",
       "prerequisites": [
         "matched",
         "doppler",
@@ -2632,7 +2726,8 @@
         "limits"
       ],
       "primaryCaseIds": [
-        "case-perceptive-clutter"
+        "case-perceptive-clutter",
+        "case-ofdm-ici-receiver"
       ],
       "relatedDirectionIds": [
         "waveforms",
@@ -2675,6 +2770,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "知道发射数据，为什么高速回波仍会失配？",
+              "href": "ofdm-ici-receiver.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ]
         },
@@ -2720,6 +2823,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "同一X/Y里的符号内频偏、角度与时延",
+              "href": "ofdm-ici-receiver.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ]
         },
@@ -2781,6 +2892,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "从实际样本重算MUSIC/APES/GLRT-OMP/CFAR",
+              "href": "ofdm-ici-receiver.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ],
           "coverage": "direction-specific"
@@ -2827,6 +2946,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "固定v1：逐阶段算法与统计分母对照",
+              "href": "ofdm-ici-receiver.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ],
           "comparisonStatus": "partial",
@@ -2868,6 +2995,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "保留假峰、漏检、混叠区失败和预算上限",
+              "href": "ofdm-ici-receiver.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ]
         },
@@ -2922,12 +3057,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际求解4×4有限二维Toeplitz SDP并估计稀疏错误；原尺寸16×16证据仅离线，不表示完整图8、原作者检测器或无条件二维原子范数等价已复现。"
+            },
+            {
+              "label": "保存实际输入与结果，下载源自由数值证据",
+              "href": "ofdm-ici-receiver.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
             }
           ]
         }
       ],
       "nextExtension": "在现有离格单目标有限网格比较之外，检验连续参数估计、模型失配与低 SNR 门限效应；不能把一个经探索选取的有限反例当作普遍排序。",
-      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。",
+      "coverage": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。 已有N64/M16有限网格MUSIC/APES/GLRT-OMP/CFAR有界实现，不表示整篇论文或浏览器已验收。",
       "scenePositions": [
         "interpret"
       ]

@@ -34,6 +34,8 @@ The fixed v1 PDF hash is `4520ae9d50e55abb1d634f3396d07dfa96315266e4b40c07e46e6a
 
 Every box remains open at whole-paper level. A row's status reports the strongest actual narrow evidence; full assumptions, locators, baselines, metrics, resources and missing work are in the matching JSON record.
 
+Historical readiness snapshot: the table below preserves earlier queue assessments. Its “Current status” and “Blocking dependency” columns may predate the dated bounded integrations below. Use [the current per-paper stage records](PAPER-EXECUTION-BACKLOG.json) together with those dated appendices for present readiness; an older “absent” entry does not override later scoped evidence. Every whole-paper checkbox remains open.
+
 | # | Fixed primary source | Minimal faithful next target | Current status | Blocking dependency |
 |---|---|---|---|---|
 | 1. ☐ | [On the Effectiveness of OTFS for Joint Radar and Communication](https://arxiv.org/pdf/1910.01896v1)<br>arxiv:1910.01896v1 | Finite-grid P1 + MP-G/full LMMSE, then continuous/multipath | Independent bounded numerical/Node kernels and local teaching integration | Actual browser; continuous/FIM; physical cross-model mapping; full figures |
@@ -115,3 +117,7 @@ The existing case/unit/source/backlog identities are preserved: case-near-field,
 The accepted isolated chain has 35 author groups, 235 independent physics checks on9 datasets and101 actual Node Worker/replay groups. That evidence establishes the bounded numerical chain, not actual-browser acceptance. The source case's18 factor columns are distinct from spatial rank≤7. T256, gain/users/noise realization, DFT realization and grid/refinement are explicit additions. Failures, caps, poor estimates, boundary hits, endfire ties and imported historical claims keep separate gates; no numerical completion label establishes detection or accuracy.
 
 [Exact source/evidence mapping](NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md) supplies the unchanged source-free chain and Python reference as raw archive parts, including historical failures. No runtime PDF/archive/Python dependency is introduced. Actual browser/CSP/keyboard/download/rendering/latency work remains pending, as do source figures, hybrid, exact cited optimized far-field comparison and full-paper reproduction. Current/next CRB sequencing and other papers' gates remain unchanged.
+
+## OFDM ICI bounded receiver integration (2026-10-12)
+
+The existing ofdm-ici-aware-receiver-2021 record now links the actual N64/M16/8TX/8RX/L12/Pmax1–4 finite-grid source-derived MUSIC/APES/GLRT-OMP/CFAR lesson. Preserve the held4 hits/3 false/1 miss and cap; do not substitute refined4/1/1. Known-X FFT shares actual X/Y and observed angles; synthetic ICI-free data are separate. Python reference acceptance and frozen JavaScript/Node parity do not establish original Figures7–10, calibrated Pfa or actual browser performance. Same-CFO/off-grid controls have mixed outcomes. Optional source-free archives are not startup dependencies. All35 primary papers retain open full-paper gates; current/next remain CRB. Browser and publication gates remain pending. See [source/evidence scope](OFDM-ICI-SOURCE-EVIDENCE.md).
