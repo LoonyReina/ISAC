@@ -38,13 +38,13 @@
     "scope": "Numerical/full-record/provenance audit of five actual hosted browser downloads; not post-fix browser certification",
     "deployedMainReportedByCoordinatingReviewer": "ec7a5c334a98faef1725be3bcc43a6c46af12d08",
     "records": 5,
-    "uniqueWeightedSolves": 24,
+    "uniqueWeightedSolves": 23,
     "allStrictAndWeightedWaveformsAndCertificatesExactProductionReplay": true,
     "maxProductionTreeRelativeDifference": 1.7763568394002505e-15,
     "independentPython": {
       "downloadedRecords": 5,
       "weightedLocations": 25,
-      "uniqueWeightedSolves": 24,
+      "uniqueWeightedSolves": 23,
       "checks": 1965,
       "failures": 0,
       "maxStrictCovarianceRelativeResidual": 2.150993941460135e-15,
@@ -55,7 +55,8 @@
       "maxOriginalKktRelativeResidual": 1.3628540852740174e-15,
       "maxScaledKktResidual": 1.6737870385641782e-15,
       "nearHardLocations": 0,
-      "maxUniqueWaveformRelativeDifference": 2.8415901970096065e-13
+      "maxUniqueWaveformRelativeDifference": 2.8415901970096065e-13,
+      "originalReportedUniqueWeightedSolves": 24
     },
     "issues": [
       "The 4,793,548-byte max-domain full export exceeds the audited controller 1 MiB reimport cap; reported for separate UI repair."
@@ -64,7 +65,10 @@
       "No near-hard regular downloaded cases; no arbitrary near-hard waveform-accuracy claim",
       "Canonical nonunique completions may differ across numerical bases; invariant checks used",
       "This auditor did not operate a browser or verify the subsequent UI deployment"
-    ]
+    ],
+    "originalReportedUniqueWeightedSolves": 24,
+    "recordedSolvesAcrossFiveExports": 24,
+    "deduplicationClarification": "2026-10-12 exact H/S/R/rho/tie deduplication:24 recorded solves across5exports;23 distinct input/weight/tie combinations because default rho=.1 repeats inside the same-input sweep. The25stored selected/sweep locations and raw records/hashes remain unchanged."
   },
   "records": [
     {

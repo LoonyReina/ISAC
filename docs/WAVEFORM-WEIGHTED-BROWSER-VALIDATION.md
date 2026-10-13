@@ -1,6 +1,6 @@
-# Weighted waveform: pre-fix deployed desktop evidence
+# Weighted waveform: dated deployed desktop evidence
 
-Verified 2026-10-12, 14:49:02–14:53:01 UTC, on [PR77](https://github.com/LoonyReina/ISAC/pull/77), main `ec7a5c334a98faef1725be3bcc43a6c46af12d08`. The canonical [weighted lesson](https://loonyreina.github.io/ISAC/waveform-design.html#weighted-experiment) was operated in dot cloud Chrome at viewport1180 CSS px, document scrollWidth1165. These observations identify the release before the following small display/import repair. Post-fix hosted-browser acceptance remains PENDING.
+Verified 2026-10-12, 14:49:02–14:53:01 UTC, on [PR77](https://github.com/LoonyReina/ISAC/pull/77), main `ec7a5c334a98faef1725be3bcc43a6c46af12d08`. The canonical [weighted lesson](https://loonyreina.github.io/ISAC/waveform-design.html#weighted-experiment) was operated in dot cloud Chrome at viewport1180 CSS px, document scrollWidth1165. These observations identify the release before the following small display/import repair. At this pre-fix snapshot, post-fix hosted-browser acceptance remained PENDING. The separate dated follow-up below closes only its bounded desktop rendering/import checks.
 
 ## What actually ran in the browser
 
@@ -10,7 +10,7 @@ At source-size rho=1, the canonical and radar-closest downloads had nearly equal
 
 ## Download replay and independent numerical evidence
 
-Five actual downloads contain24distinct weighted solves at25stored selected/sweep locations. An independent audit ran the exact production Worker in Node threads, starting only from top-level H/S/R and the current weighted request. It traced the freshly computed strict X0 object into every weighted call and ignored poisoned saved outputs. Strict/weighted waveforms and every certificate reproduced exactly; other deterministic numeric fields differed by at most1.776e−15 after unit-floor scaling.
+Five actual downloads contain24recorded solves across5exports, with23distinct input/weight/tie combinations at25stored selected/sweep locations. Exact H/S/R/rho/tie deduplication found that default rho=.1 repeats inside the same-input sweep; the earlier24-unique label is corrected here while raw records and hashes remain unchanged. An independent audit ran the exact production Worker in Node threads, starting only from top-level H/S/R and the current weighted request. It traced the freshly computed strict X0 object into every weighted call and ignored poisoned saved outputs. Strict/weighted waveforms and every certificate reproduced exactly; other deterministic numeric fields differed by at most1.776e−15 after unit-floor scaling.
 
 An independent NumPy/SciPy pass ran1965checks with zero failures. Maximum objective/reference difference was1.482e−15 of certificate scale, energy residual2.243e−13, original-complex KKT residual1.363e−15 and strict covariance residual2.151e−15. The strict waveform's independent SVD objective gap was2.842e−14 absolute. Its reported JS lower bound differed by up to5.451e−10 absolute on the maximum case, within the declared scale-aware tolerance.
 
@@ -32,8 +32,18 @@ The default tradeoff plot formatted all small x-axis values as0.0. Its numeric p
 
 The small follow-up is limited to adaptive tick labels, an explicit8MiB bounded text import, local error text and regression tests. It does not change either numerical core, the model or the Worker. Independent prepublication review passed29new checks, including the actual4,793,548-byte record to a fresh11-point Worker solve, exact8MiB/over-limit UTF-8 boundaries, poisoned-output rejection and44axis pairs. The prior40controller/race checks also passed. These are Node/controlled-DOM checks; a new hosted-browser verification is still required after deployment.
 
-## Gates still open
+## Open gates at the pre-fix snapshot
 
 The attempted weighted Cancel action arrived after the maximum sweep had already finished and the button was disabled. Actual in-flight browser cancellation was NOT verified. Narrow screens, other browsers, repeated timing and exact painted-result latency remain open, as does post-fix full-record browser reimport and plot/error presentation.
 
 The source-exact Fig.3 weighted curve remains nonmatching; no weight, energy or normalization is adjusted to fit the figure. Original directional design, ZF/averaging conventions, full figures and constant-modulus/similarity branches remain open. This evidence does not establish full-paper reproduction.
+
+## Post-fix hosted desktop acceptance: 2026-10-12
+
+Verified 15:20:15–15:30:24 UTC on main `872ac32f4b0340307b23c731d3e8cfff289c915b`, [PR78](https://github.com/LoonyReina/ISAC/pull/78), in dot cloud Chrome at viewport1180 CSS px and document scrollWidth1165. The published controller SHA-256 was `10e423c11cbffa1222ca05be5bd7c990a53564d9d3984f14d268b8f6408e25e0`.
+
+Fresh default computation displayed distinct x ticks0,0.0057,0.0113,0.0170,0.0227, checked in the DOM and screenshot. The full previous4,793,548-byte record (4,793,334characters) was pasted intact into the actual browser textarea. It generated a fresh11-point sweep from imported H/S/R at N16/K8/L64,rho=.37. The new actual browser download exactly matched inputs, request, strict X0 and all11weighted waveform arrays, metrics and certificates. This is actual full-record browser reimport evidence, separately dated from the pre-fix replay audit.
+
+Empty rho showed the Chinese error beside the weighted controls and disabled export. Reset and keyboard Enter restored and solved the default. No site-origin console errors were observed. See the [exact post-fix desktop record](../data/waveform-weighted-post-fix-browser-20261012.json) and [11-point download comparison](../data/waveform-weighted-post-fix-reimport-20261012.json).
+
+Actual in-flight weighted cancellation remains unverified; the earlier attempted click arrived after completion. Narrow/other-browser checks, repeated fixed-input performance and exact painted-result timing remain open. The source Fig.3 weighted mismatch and full-paper/constant-modulus gates remain unchanged. No measured weighted browser latency is inferred from this pass.

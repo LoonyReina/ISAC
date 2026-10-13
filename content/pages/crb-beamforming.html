@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="从一位通信用户、一个点目标出发，交互理解通信 SNR 约束下的精确 CRB 最优波束：平台、取舍与不可行，以及未知反射系数为何影响角度信息。">
+  <meta name="description" content="从单用户精确 CRB 特例走向双用户实际半正定优化，理解未知反射系数、SINR 与总功率约束，并检查恢复波束和同信道取舍。">
   <title>通信要求更高，雷达一定估得更差吗？ | ISAC</title>
   <link rel="stylesheet" href="course.css">
   <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
   <link rel="stylesheet" href="crb-beamforming.css">
+  <link rel="stylesheet" href="crb-multiuser.css">
   <script defer src="crb-beamforming-core.js"></script>
   <script defer src="crb-beamforming.js"></script>
+  <script defer src="crb-multiuser-data.js"></script>
+  <script defer src="crb-multiuser-model.js"></script>
+  <script defer src="crb-multiuser.js"></script>
 </head>
 <body class="crb-page">
 <!-- SITE:HEADER:START -->
@@ -24,14 +28,14 @@
 <section class="cover crb-cover" aria-labelledby="crb-title">
   <p class="eyebrow">从“照得亮”走向“估得准” / 2022 论文案例</p>
   <h1 id="crb-title">通信要求更高，<br>雷达一定估得<span class="crb-title-em">更差</span>吗？</h1>
-  <p class="crb-deck">同一副发射阵列，既给一位用户传数据，也照亮一个目标。只提高通信的最低要求，看看最好的角度估计下界，究竟何时才开始付出代价。</p>
-  <div class="cover-tags"><span>1 位用户 · 1 个点目标</span><span>固定功率与阵列</span><span>单用户闭式最优解</span></div>
-  <div class="crb-cover-bottom"><a class="crb-primary-link" href="#experiment">先调一次通信门槛 <span aria-hidden="true">↘</span></a><p>不用先学优化。先读懂对象，再看两条曲线。</p></div>
+  <p class="crb-deck">先用一位用户的精确特例读懂平台与取舍，再让两位用户共享阵列，实际重新优化波束。固定信道与资源，只提高通信要求，角度估计下界何时才开始付出代价？</p>
+  <div class="cover-tags"><span>一个点目标 · 未知反射系数</span><span>单用户精确特例</span><span>双用户实际式 (33) 求解</span></div>
+  <div class="crb-cover-bottom"><a class="crb-primary-link" href="#experiment">从单用户特例开始 <span aria-hidden="true">↘</span></a><a href="#multiuser-intuition">继续学双用户 →</a><p>先读懂信息与约束，再看真正运行的优化。</p></div>
 </section>
 
 <section class="chapter" id="intuition" aria-labelledby="crb-intuition-title">
-  <header class="chapter-head"><p class="eyebrow">01 / 把物理对象放在前面</p><h2 id="crb-intuition-title">一次发射，两处接收</h2></header>
-  <p>“波束”是发射天线各自使用的一组复数权重：决定每根天线发多大、相位是多少。本页只有<strong>一路通信符号</strong>，8 根天线把同一份符号按不同权重发出。雷达也用这份已知信号照射目标。</p>
+  <header class="chapter-head"><p class="eyebrow">01 / 单用户特例 · 把物理对象放在前面</p><h2 id="crb-intuition-title">一次发射，两处接收</h2></header>
+  <p>“波束”是发射天线各自使用的一组复数权重：决定每根天线发多大、相位是多少。这个单用户特例只有<strong>一路通信符号</strong>，8 根天线把同一份符号按不同权重发出。雷达也用这份已知信号照射目标。</p>
   <ol class="crb-object-strip" aria-label="实验中的三个物理对象">
     <li><span class="crb-object-number">01</span><h3>8 根发射天线</h3><p>调节空间权重。总平均功率固定为 1，不能靠多发能量改善结果。</p><span class="crb-object-tag">我们能设计什么</span></li>
     <li><span class="crb-object-number">02</span><h3>1 位通信用户</h3><p>接收数据与噪声。要求有用信号功率与噪声功率之比，至少达到指定门槛。</p><span class="crb-object-tag">通信要守住什么</span></li>
@@ -43,7 +47,7 @@
 </section>
 
 <section class="chapter crb-experiment-section" id="experiment" aria-labelledby="crb-experiment-title">
-  <header class="chapter-head"><p class="eyebrow">02 / 动手找到转折点</p><h2 id="crb-experiment-title">只调两个数，观察最优解如何变化</h2><p>每次调整都会重新计算当前模型的精确最优波束。先保持重合度 0.5，把通信门槛从低向高拖动。</p></header>
+  <header class="chapter-head"><p class="eyebrow">02 / 单用户特例 · 动手找到转折点</p><h2 id="crb-experiment-title">只调两个数，观察最优解如何变化</h2><p>每次调整都会重新计算当前模型的精确最优波束。先保持重合度 0.5，把通信门槛从低向高拖动。</p></header>
   <div class="crb-workbench">
     <div class="crb-controls">
       <div class="crb-control">
@@ -104,7 +108,7 @@
   <div id="nuisance"></div>
   <details class="crb-disclosure" id="crb-unknown-alpha"><summary>再问一步：反射系数未知，为什么要扣掉一部分角度信息？<span>先理解物理原因，再展开 Fisher 信息</span></summary><div class="crb-disclosure-body">
     <p>角度变化会让回波发生变化，但回波变了，不一定能完全归因于角度。一个未知的反射系数，也能改变整段回波的幅度和相位。估角度时，必须去掉这部分可以被“换一个反射系数”解释的变化。</p>
-    <p>本页的一路信号经过固定波束后，在目标处只留下一个复数系数。它随角度发生的局部变化，与未知反射系数混在一起；<strong>接收阵列各天线之间的相对相位变化仍然提供角度信息</strong>。因此不是“所有信息都被扣掉”。</p>
+    <p>这个单用户特例的一路信号经过固定波束后，在目标处只留下一个复数系数。它随角度发生的局部变化，与未知反射系数混在一起；<strong>接收阵列各天线之间的相对相位变化仍然提供角度信息</strong>。因此不是“所有信息都被扣掉”。</p>
     <figure class="crb-figure crb-information-figure"><figcaption><h3>对同一个当前波束，拆开三份信息</h3><p>横向三项依次是假设反射系数已知、因反射系数未知而损失、实际剩余的有效信息；纵轴为信息量（rad⁻²）。蓝灰、橙、青色分别对应这三项。信息纵轴固定为 0–16000。已知反射系数只是同一波束的假想参照，没有重新求另一种最优解。</p></figcaption><svg id="crb-information-chart" viewBox="0 0 680 320" role="img" aria-label="已知反射系数时的信息、未知反射系数导致的损失与有效角度信息"><title>未知反射系数的信息损失</title></svg></figure>
     <p id="crb-information" class="crb-resource-note">默认当前波束：已知系数的信息 13259.0321 rad⁻²，混淆损失 939.6663 rad⁻²，有效信息 12319.3658 rad⁻²。</p>
     <h3>观测中的每个符号是什么</h3>
@@ -113,7 +117,7 @@
     <p>估计的三个实参数是 θ、Re α、Im α。导数对<strong>弧度</strong>求取，并把已经选好的 X 和波束 w 固定；不能把“每个角度重新设计波束”的变化混进接收观测导数。ᴴ 表示共轭转置。</p>
     <div class="crb-equation">S₀ = tr(AᴴAR)，S₁ = tr(ȦᴴAR)，S₂ = tr(ȦᴴȦR)<br>c = 2|α|²L/σR²<br>J<sub>已知</sub> = cS₂，J<sub>损失</sub> = c|S₁|²/S₀<br>J<sub>有效</sub> = J<sub>已知</sub> − J<sub>损失</sub>，CRB<sub>θ</sub> = 1/J<sub>有效</sub></div>
     <p>这来自三参数实 Fisher 矩阵消去两个反射系数参数后的 Schur 补，对应期刊式 (7)。要求 S₀&gt;0 且有效信息为正；零照射时不能把 0/0 或伪逆值冒充常规 CRB。每个复噪声样本的功率是 σR²，其实部、虚部方差各为 σR²/2，因此公式有因子 2。</p>
-    <h3>为什么本页的照射强度与 CRB 恰好一致</h3>
+    <h3>为什么单用户特例的照射强度与 CRB 恰好一致</h3>
     <p>一路信号给出秩一协方差 R=wwᴴ。对于居中接收阵列，只要目标照射非零，发射端的导数项恰好全部被未知 α 吸收：</p>
     <div class="crb-equation">J<sub>有效</sub> = c‖ḃ‖² |aᴴw|²<br>CRB<sub>θ</sub> = σR² / (2|α|²L‖ḃ‖²|aᴴw|²)</div>
     <p>所以在这个<strong>特定单流模型</strong>中，把目标照得更亮，确实等价于把角度 CRB 变小。这不是对所有波形、接收模型或未知参数都成立的结论。下方可选实验会改变波形族，展示它的边界。</p>
@@ -122,7 +126,7 @@
   <details class="crb-disclosure" id="solution"><summary>想手算：为什么这条曲线是精确最优解？<span>两维空间、两段公式与一个可行性上界</span></summary><div class="crb-disclosure-body">
     <p>先构造两个正交、单位长度的空间模态。u 给各天线相同权重，指向正前方；v 的权重沿居中天线序号线性变化，左右反号。它们是权重向量，不是两个人所在的位置。</p>
     <div class="crb-equation">m = −3.5, −2.5, …, 3.5<br>u = (1, …, 1)ᵀ / √8，v = m / √42<br>h = ρu + √(1−ρ²)v，‖h‖ = 1</div>
-    <p>用户接收 yₗ=hᴴwsₗ+zₗ，单位符号功率下 SNR=|hᴴw|²/σC²。本页 Γ 是线性门槛，Γ=10<sup>ΓdB/10</sup>；“无最低要求”时 Γ=0。对固定总功率 P，Cauchy–Schwarz 不等式给出严格上界：</p>
+    <p>用户接收 yₗ=hᴴwsₗ+zₗ，单位符号功率下 SNR=|hᴴw|²/σC²。这个单用户特例的 Γ 是线性门槛，Γ=10<sup>ΓdB/10</sup>；“无最低要求”时 Γ=0。对固定总功率 P，Cauchy–Schwarz 不等式给出严格上界：</p>
     <div class="crb-equation">γ<sub>max</sub> = P‖h‖²/σC² = 100 = 20 dB<br>q = Γ/γ<sub>max</sub>；q ≤ 1 才可行</div>
     <p>只对 a 与 h 张成的空间内分配功率即可；垂直于这片空间的分量既不帮通信，也不帮目标照射。于是最大化目标照射可以精确化为两个系数的选择，不必扫描几条候选波束。</p>
     <div class="crb-equation">g = |aᴴw*|²/(NₜP)<br>q ≤ ρ²：g* = 1<br>ρ² &lt; q ≤ 1：g* = [ρ√q + √(1−ρ²)√(1−q)]²</div>
@@ -134,7 +138,7 @@
     <p>CRB₀ 是只有雷达目标时的最优方差下界，单位 rad²。开方后乘 180/π 才转成度；方差本身则乘 (180/π)²。上述全局最优性针对已声明的单用户、单流、点目标模型，对应期刊定理 1 的特例。</p>
   </div></details>
 
-  <details class="crb-disclosure" id="model"><summary>检查公平性：本页固定了哪些资源和假设？</summary><div class="crb-disclosure-body">
+  <details class="crb-disclosure" id="model"><summary>检查公平性：单用户特例固定了哪些资源和假设？</summary><div class="crb-disclosure-body">
     <p>以下均为本站<strong>合成、归一化教学参数</strong>，不是照搬原论文的仿真设置，也不是校准过的真实链路预算。</p>
     <ul class="crb-plain-list"><li>发射 Nₜ=8、接收 Nᵣ=12，均为居中半波长均匀线阵；孔径分别为 3.5λ、5.5λ；窄带、远场、单站点目标</li><li>设计与评估角 θ₀=0 rad（正前方）；单个目标的角度未知，延迟、多普勒及其他目标参数不在本实验中共同估计</li><li>L=64 个复数快照，总平均功率 P=1，总块能量 LP=64；不是每根天线等功率约束，也不是每根天线瞬时常模约束</li><li>通信信道精确已知、范数固定为 1；通信噪声 σC²=0.01；雷达每个复样本的噪声功率 σR²=100</li><li>真实 α=1+0i 只用来评估局部下界，估计器并不知道 α；所有比较保持它和噪声不变</li><li>主实验一路已知波形，示例样本块满足符号能量恰为 L，因而 R=XXᴴ/L=wwᴴ 精确成立；没有把有限随机块自动当成集合平均</li></ul>
     <p>对于任意 n 根天线，居中序号 m 从 −(n−1)/2 到 (n−1)/2。导向向量每项模为 1，并没有除以 √n：</p>
@@ -143,8 +147,127 @@
   </div></details>
 </section>
 
+<section class="chapter cm-lesson" id="multiuser-intuition" aria-labelledby="cm-intuition-title">
+  <header class="chapter-head"><p class="eyebrow">04 / 从一个用户走向两个用户</p><h2 id="cm-intuition-title">先问回波告诉了我们什么，再问怎样分配波束</h2><p>上方是可手算的单用户特例。下面保留一个点目标，换成两路数据、两个通信接收机，真正重新求解原文式 (33) 的协方差优化问题。</p></header>
+  <p>角度有一点变化，已知发射信号的回波也会改变。改变得越容易与噪声区分，局部角度信息就越多。但<strong>回波变了，也可能是反射幅度或相位变了</strong>；不能把两种解释都算作角度信息。</p>
+  <ol class="cm-information-steps" aria-label="从回波变化到角度下界的三步">
+    <li><span class="cm-step-number">1 / 先看全部变化</span><h3>假设反射系数已知</h3><p>固定这次发射信号，计算角度微变时，回波变化对噪声有多明显。</p><span class="cm-symbol">J<sub>已知</sub></span></li>
+    <li><span class="cm-step-number">2 / 去掉混淆</span><h3>反射系数其实未知</h3><p>扣去能够被一个共同复数 α 的幅度、相位变化解释的那部分信息。</p><span class="cm-symbol">− J<sub>损失</sub></span></li>
+    <li><span class="cm-step-number">3 / 留下可区分的变化</span><h3>有效信息决定下界</h3><p>在可辨识、满足正则条件的模型里，剩下的信息越多，角度方差下界越小。</p><span class="cm-symbol">CRB<sub>θ</sub> = 1 / J<sub>有效</sub></span></li>
+  </ol>
+  <div class="cm-note"><strong>这里展示的是理论精度边界。</strong>CRB 的单位为 rad²；先开平方，再乘 180/π，才得到以度表示的角度标准差下界。它不是接收机已经达到的 RMSE，也不是分辨率或检出率。下面的实验不生成带噪回波、不运行角度估计器。</div>
+
+  <h3 class="cm-subtitle">多一位用户，多了什么困难？</h3>
+  <p>用户 1 想接收第一路数据，第二路到达它的接收机时就是干扰；用户 2 的角色正好交换。雷达知道两路发射样本，可以共同利用它们的回波。这个点目标分支<strong>没有额外添加独立探测流</strong>。</p>
+  <div class="cm-flow" role="group" aria-label="两路数据共享阵列，分别到达两位用户和一个目标。这是信号关系，不是位置图。">
+    <div class="cm-flow-source"><span class="cm-stream cm-stream-one">数据 1 · 权重 w₁</span><span class="cm-stream cm-stream-two">数据 2 · 权重 w₂</span></div>
+    <span class="cm-flow-arrow" aria-hidden="true">→</span>
+    <div class="cm-flow-array"><strong>同一副发射阵列</strong><span>两路复数权重叠加发射</span></div>
+    <span class="cm-flow-arrow" aria-hidden="true">→</span>
+    <div class="cm-flow-destinations"><span>用户 1：数据 1 + 干扰 + 噪声</span><span>用户 2：数据 2 + 干扰 + 噪声</span><span>点目标 → 雷达接收阵列</span></div>
+  </div>
+  <p class="cm-small">这是信号关系示意，不是空间位置图。这里的 H 是一般复数信道，不能凭矩阵元素推断用户的角度、距离。两路符号不相关，也不意味着另一位用户的波束在接收端自动为零。</p>
+  <div class="cm-equation">SINR<sub>k</sub> = |h<sub>k</sub>ᴴw<sub>k</sub>|² / (Σ<sub>i≠k</sub>|h<sub>k</sub>ᴴw<sub>i</sub>|² + σ<sub>C</sub>²)<br>有用信号功率 /（其他数据流的干扰功率 + 噪声功率）</div>
+  <p>每位用户都必须达到最低 SINR，同时两路波束共用一个<strong>总平均发射功率预算</strong>。先固定信道和资源，再提高共同门槛，才能观察通信要求怎样限制感知设计；重新抽信道或增加天线是在改变实验条件。</p>
+</section>
+
+<section class="chapter cm-lesson" id="multiuser" aria-labelledby="cm-workbench-title">
+  <header class="chapter-head"><p class="eyebrow">05 / 两位用户，实际重新求解</p><h2 id="cm-workbench-title">在同一个信道里，提高两人的最低要求</h2><p>先按“重新求解”，再只改变共同 SINR 门槛。页面加载、拖动滑块和编辑信道都不会自动运行求解器。</p></header>
+  <div class="cm-workbench">
+    <div class="cm-controls" aria-label="双用户求解输入">
+      <div class="cm-control">
+        <label for="cm-gamma">两位用户共同的最低 SINR</label>
+        <div class="cm-number-unit"><input id="cm-gamma-number" type="number" min="0" max="20" step="0.5" value="10" aria-label="共同最低 SINR 数值，单位 dB" aria-describedby="cm-gamma-help"><span>dB</span></div>
+        <input id="cm-gamma" type="range" min="0" max="20" step="0.5" value="10" aria-describedby="cm-gamma-help" aria-label="共同最低 SINR 滑块，单位 dB">
+        <div class="cm-range-scale" aria-hidden="true"><span>0 dB</span><span>10 dB</span><span>20 dB</span></div>
+        <p class="cm-help" id="cm-gamma-help">0 dB 表示线性 SINR 至少为 1，仍然有要求。修改后，旧答案不再代表当前输入。</p>
+      </div>
+      <div class="cm-control-row">
+        <div class="cm-control"><label for="cm-nt">发射天线 Nₜ</label><select id="cm-nt" aria-describedby="cm-array-help"><option value="4" selected>4 根</option><option value="6">6 根</option><option value="8">8 根</option></select></div>
+        <div class="cm-control"><label for="cm-theta">名义设计方向 θ₀</label><select id="cm-theta" aria-describedby="cm-angle-help"><option value="0" selected>0° · 正前方</option><option value="23">23° · 斜向案例</option></select></div>
+      </div>
+      <p class="cm-help" id="cm-array-help">Nᵣ=Nₜ+4。改变 Nₜ 会改变孔径、重建信道并清空跨场景比较。</p>
+      <p class="cm-help" id="cm-angle-help">θ₀ 是设计时已知的关注方向。待估计的 θ 仍未知；这不表示接收机已经发现了目标。</p>
+      <div class="cm-seed-row"><div class="cm-control"><label for="cm-seed">信道生成种子</label><input id="cm-seed" type="number" min="0" max="4294967295" step="1" value="290102" aria-describedby="cm-channel-help"></div><button type="button" id="cm-fresh">重新抽取信道</button></div>
+      <p class="cm-help" id="cm-channel-help">默认 H 是已核验参考的原始输入；重新生成时使用独立复高斯振幅，不做信道归一化。保存的 H 才是复算依据。</p>
+      <p id="cm-channel-norms" class="cm-small">信道加载后显示每位用户的信道范数。</p>
+      <p class="cm-budget-prompt">比较门槛时：同一 H、同一阵列、同一总功率，只改变最低 SINR。</p>
+      <div class="cm-actions"><button type="button" id="cm-run" class="cm-primary">重新求解</button><button type="button" id="cm-cancel" disabled>停止计算</button><button type="button" id="cm-reset">恢复双用户默认</button></div>
+    </div>
+    <div class="cm-answer" aria-label="当前双用户结果">
+      <div class="cm-answer-heading"><span class="cm-kicker">当前输入的答案</span><p id="cm-current-label">尚无当前输入的验收结果</p></div>
+      <div class="cm-metrics">
+        <div class="cm-metric cm-metric-primary"><span>恢复波束的角度标准差下界</span><output id="cm-root-crb">—</output><small>√CRB · 单位 ° · 越小越好</small></div>
+        <div class="cm-metric"><span>已用总功率 / 预算</span><output id="cm-power">—</output><small>mW · 两路波束合计</small></div>
+        <div class="cm-metric"><span>相对对偶差距</span><output id="cm-gap">—</output><small>数值最优性检查，保留符号</small></div>
+      </div>
+      <p id="cm-state" class="cm-state" role="status" aria-live="polite" aria-atomic="true">准备就绪；尚未求解。按“重新求解”才会启动实际计算。</p>
+      <p id="cm-progress" class="cm-progress" aria-live="off">尚无迭代诊断。</p>
+      <p id="cm-error" class="cm-error" role="alert"></p>
+      <p class="cm-result-note">只有当前输入的恢复波束通过全部验收，才显示主要下界。迭代中的信息值不是最终答案；达到计算上限也不证明通信要求不可行。</p>
+    </div>
+  </div>
+  <p id="cm-ledger" class="cm-ledger">双用户资源：K=2，Nₜ=4，Nᵣ=8，L=30；总功率 1000 mW，通信与雷达每个复样本噪声功率均为 1 mW；α=1+0i，θ₀=0°。</p>
+  <noscript><p class="cm-note">双用户实验需要 JavaScript 才能读取输入并重新求解。这里不预填任何优化结果；上方单用户默认值、文字推导和原文对照仍可阅读。</p></noscript>
+
+  <details class="cm-disclosure"><summary>查看或编辑复数信道 H，保存与载入记录</summary><div class="cm-disclosure-body">
+    <p>H 有 2 行、Nₜ 列；第 k 行描述发射天线到用户 k 的复数振幅系数。每一格是<strong>实部与虚部组成的复振幅，不是功率</strong>。H 的行已经存储 h<sub>k</sub>ᴴ，使用时不能再共轭一次。</p>
+    <p class="cm-small">随机样本各分量的实部、虚部方差均为 1/2，因此 E|H<sub>k,m</sub>|²=1；具体一次抽样的范数不会被强行固定。默认原始 H 来自离线参考，其种子与浏览器生成器不保证生成相同矩阵。手动编辑 H 后，原始矩阵也优先于种子。自定义输入可能无法通过求解、秩条件或数值验收。</p>
+    <div id="cm-channel-editor" class="cm-channel-editor" tabindex="0" role="region" aria-label="两位用户的复数信道编辑器，可横向滚动"></div>
+    <div class="cm-record-actions"><button type="button" id="cm-export" disabled>导出最近一次运行记录</button><div class="cm-import-control"><label for="cm-import">从 JSON 记录载入输入</label><input id="cm-import" type="file" accept="application/json,.json" aria-describedby="cm-import-help"></div></div>
+    <p id="cm-import-help" class="cm-help">导入文件中的历史成功结果是<strong>未经本次验证的外部记录</strong>，不会成为当前成功结果。这里只载入校验通过的输入；仍须按“重新求解”。导出保留最近一次实际运行及它原来的 Γ、H 和运行编号，即使控件后来已改变。导入与导出的单个 JSON 记录上限为 2 MiB；文件只在本地读取。</p>
+  </div></details>
+
+  <div class="cm-figure-grid">
+    <figure class="cm-figure"><figcaption><span class="cm-kicker">A / 先核对通信</span><h3>两位用户都达标了吗？</h3><p>输入是当前通过验收的两路恢复波束。横轴为 SINR（dB），纵向两行分别是用户 1、用户 2；青色标记是实际值，橙色虚线是共同最低要求。标记越过门槛才有余量，最终验收使用未舍入数值。</p></figcaption><svg id="cm-sinr-chart" viewBox="0 0 600 280" role="img" aria-label="两位用户的实际 SINR 与共同最低 SINR 门槛，单位 dB"><title>当前恢复波束的通信约束检查</title><text x="300" y="140" text-anchor="middle">重新求解并通过验收后显示</text></svg></figure>
+    <figure class="cm-figure"><figcaption><span class="cm-kicker">B / 再解释雷达下界</span><h3>未知反射系数，扣掉了多少信息？</h3><p>横轴依次为“已知 α”“未知 α 损失”“有效信息”，纵轴是从零开始的角度信息（rad⁻²）。蓝灰、橙、青三色都来自<strong>同一组恢复波束</strong>；已知 α 只是对这组波束的假想评估，没有重新优化。</p></figcaption><svg id="cm-information-chart" viewBox="0 0 600 280" role="img" aria-label="同一恢复波束的已知反射系数信息、未知系数损失和有效角度信息，单位 rad 的负二次方"><title>从全部角度敏感度扣除未知反射系数的混淆</title><text x="300" y="140" text-anchor="middle">重新求解并通过验收后显示</text></svg></figure>
+  </div>
+  <div class="cm-table-wrap" tabindex="0" role="region" aria-label="每位用户的功率与 SINR 数值，可横向滚动"><table><caption>从恢复波束逐用户重算。相对约束余量 = 实际线性 SINR / 要求线性 SINR − 1，无量纲，保留正负号；验收使用声明容差。</caption><thead><tr><th scope="col">用户</th><th scope="col">有用功率 / mW</th><th scope="col">其他流干扰 / mW</th><th scope="col">噪声 / mW</th><th scope="col">要求 / dB</th><th scope="col">实际 / dB</th><th scope="col">相对约束余量</th></tr></thead><tbody id="cm-users"><tr><td colspan="7">尚无当前输入的验收结果。</td></tr></tbody></table></div>
+
+  <div class="cm-comparison-heading"><div><h3>同一个 H，重新求解三个门槛</h3><p>分别求解 Γ=0、10、20 dB；整个比较保持 H、阵列、角度、功率、噪声与 L 不变。</p></div><button type="button" id="cm-sweep">比较这一个信道的三个门槛</button></div>
+  <figure class="cm-figure cm-tradeoff-figure"><figcaption><span class="cm-kicker">C / 只比较一次实验里的要求变化</span><h3>要求提高，最好的下界如何变化？</h3><p>横轴为共同最低 SINR（dB），纵轴为角度标准差下界（°）。青色离散点各自来自一次新的、通过验收的实际求解；没有解出的点保留状态记录，不填值、不跨缺口连线。此处没有其他算法基线，也不用不同信道的结果拼成曲线。</p><p class="cm-small">精确最优下界不会因收紧约束而改善；若数值上出现微小下降，要结合求解容差与对偶差距解释。改变 Nₜ 或重新抽 H 后，需要重做比较。</p></figcaption><svg id="cm-tradeoff-chart" viewBox="0 0 900 280" role="img" aria-label="固定同一信道与资源的三个共同 SINR 门槛，与重新求解的角度标准差下界"><title>同一信道的三次实际求解</title><text x="450" y="140" text-anchor="middle">按“比较这一个信道的三个门槛”后显示</text></svg></figure>
+  <div class="cm-table-wrap" tabindex="0" role="region" aria-label="三个门槛的运行记录，包括未通过结果，可横向滚动"><table><caption>保留每个尝试的状态与运行编号；没有通过验收的尝试不提供主下界。</caption><thead><tr><th scope="col">要求 SINR / dB</th><th scope="col">状态</th><th scope="col">√CRB / °</th><th scope="col">总功率 / mW</th><th scope="col">运行编号</th></tr></thead><tbody id="cm-tradeoff-table"><tr><td colspan="5">尚未运行三门槛比较。</td></tr></tbody></table></div>
+  <details class="cm-disclosure"><summary>检查最近一次实际运行：验收、秩条件、矩阵与完整数值</summary><div class="cm-disclosure-body"><p>这里记录实际运行原来的输入与输出，不随后来编辑的控件改写。包含求解器实际返回的波束、协方差、信息分量、各用户功率、容差、秩条件与对偶检查。只有 Worker 返回记录时，才能保留取消或未完成运行的原始诊断；强制终止只记录界面状态，不伪造求解器结果。科学计数和显示舍入只用于阅读，复算以完整记录为准。</p><pre id="cm-details" tabindex="0" aria-label="最近一次实际双用户运行的诊断记录">尚未求解；没有可显示的优化矩阵或验收结果。</pre></div></details>
+</section>
+
+<section class="chapter cm-lesson" id="multiuser-method" aria-labelledby="cm-method-title">
+  <header class="chapter-head"><p class="eyebrow">06 / 看清真正运行的优化</p><h2 id="cm-method-title">先设计协方差，再恢复能发射的波束</h2><p>多用户没有沿用单用户的两段闭式公式。每次运行都把当前复数信道送入后台 Worker，求解原文式 (33)，再检查恢复后的实际波束。</p></header>
+  <ol class="cm-method-steps">
+    <li><strong>1 · 把波束写成协方差</strong><p>W<sub>k</sub>=w<sub>k</sub>w<sub>k</sub>ᴴ 表达第 k 路的空间功率与相关性；正半定表示任何测试方向的功率非负，并非每个矩阵元素都是正数。</p></li>
+    <li><strong>2 · 同时照顾信息和约束</strong><p>用一个 2×2 Schur 条件表达有效角度信息，把两位用户的 SINR 和总功率写进同一个半正定优化问题。</p></li>
+    <li><strong>3 · 恢复两路发射权重</strong><p>优化先放松秩一要求；只有秩条件、恢复残差与物理检查支持时，才能把协方差答案作为原波束问题的数值答案。</p></li>
+    <li><strong>4 · 从波束重新验算</strong><p>用恢复的 W<sub>c</sub> 重算每位用户 SINR、总功率与 CRB，并核对信息值到对偶上界的差距。仅“收敛”还不够。</p></li>
+  </ol>
+  <div class="cm-note"><strong>定理 2 有条件：rank(H[a, ȧ]) = 2。</strong>两列分别是通信信道所“看见”的目标方向响应及其角度变化，必须线性独立。两位用户本身不保证这一点。秩检查不通过，表示不能用这一定理保证松弛恢复；不等于证明通信要求不可行。单用户仍使用上方定理 1 的独立特例。</div>
+
+  <details class="cm-disclosure"><summary>展开公式：观测、未知 α 的消去与式 (33)</summary><div class="cm-disclosure-body">
+    <h3>固定设计，才对观测求角度导数</h3>
+    <p>两路数据组成 S，W<sub>c</sub> 的两列是 w₁、w₂，发射块 X=W<sub>c</sub>S。原文使用单位符号协方差的理想化；若构造有限块，只有明确满足 SSᴴ/L=I₂ 时，R=XXᴴ/L=Σ<sub>k</sub>w<sub>k</sub>w<sub>k</sub>ᴴ 才精确成立。有限个独立随机符号不会自动精确满足这个等式。本实验求设计协方差，不假装已经生成这样的接收样本。</p>
+    <div class="cm-equation">Y = αA(θ)X + Z，A(θ) = b(θ)a(θ)ᴴ<br>s₀ = tr(AᴴAR)，s₁ = tr(ȦᴴAR)，s₂ = tr(ȦᴴȦR)<br>c = 2|α|²L/σ<sub>R</sub>²<br>J<sub>已知</sub> = cs₂，J<sub>损失</sub> = c|s₁|²/s₀<br>J<sub>有效</sub> = c(s₂ − |s₁|²/s₀)，CRB<sub>θ</sub> = 1/J<sub>有效</sub></div>
+    <p>Y 为 Nᵣ×L 的复数回波；Z 的复样本噪声功率是 σ<sub>R</sub>²，实部和虚部方差各占一半，所以 c 中有因子 2。未知实参数为 (θ, Re α, Im α)。对三参数 Fisher 矩阵消去 α 的两项，即得到上述 Schur 补。这里的扣除是参数混淆的精确消去，不是人为加的惩罚项。</p>
+    <p>公式要求 s₀&gt;0 且有效信息为正；具体浮点计算还要通过数值可辨识性检查。准确的解析奇异与近奇异的保守拒绝须分开解释。ȧ、Ȧ 对<strong>弧度</strong>求导，保持这次设计的 X 固定，不能把“每个 θ 再优化一次波束”的变化算进观测导数。</p>
+    <h3>为什么这变成一个半正定问题</h3>
+    <p>令 Q<sub>k</sub>=h<sub>k</sub>h<sub>k</sub>ᴴ，R=Σ<sub>k</sub>W<sub>k</sub>，Γ=10<sup>ΓdB/10</sup>。物理尺度下，式 (33) 可写为最大化 t：</p>
+    <div class="cm-equation">最大化 t，使<br>⎡ s₂ − t &nbsp; s₁ ⎤<br>⎣ s₁* &nbsp; s₀ ⎦ ≽ 0，W<sub>k</sub> ≽ 0<br>tr(Q<sub>k</sub>W<sub>k</sub>) − ΓΣ<sub>i≠k</sub>tr(Q<sub>k</sub>W<sub>i</sub>) ≥ Γσ<sub>C</sub>²<br>Σ<sub>k</sub>tr(W<sub>k</sub>) ≤ P</div>
+    <p>当 s₀&gt;0 时，2×2 条件使 t 不超过 s₂−|s₁|²/s₀。放松的是原先 rank(W<sub>k</sub>)=1 的约束；并非换个变量名就自动解决了原问题。定理 2 还要求可行性与 rank(H[a,ȧ])=2。诊断记录给出两奇异值、相对阈值和每路秩一恢复残差。</p>
+    <p>程序内部采用归一化信息坐标以改善数值尺度。它的 normalizedInformation 不是前面单用户的 g，也不是“相对仅雷达最优值”；教学图使用物理 J<sub>有效</sub>（rad⁻²）。恢复信息与对偶上界必须在同一尺度比较，带符号差距和容差保留在记录中。</p>
+    <p>成功表示本次浮点结果在声明容差下通过检查，包含恢复后的 SINR、总功率、Fisher 信息与对偶差距。它不是区间算术证明，也不是作者的 CVX 软件。计算上限、秩条件拒绝、数值失败和有证据的不可行是不同状态。</p>
+  </div></details>
+
+  <details class="cm-disclosure"><summary>固定资源、阵列约定与“角度已知”的含义</summary><div class="cm-disclosure-body">
+    <ul class="cm-plain-list"><li>当前范围：K=2；Nₜ=4、6、8，Nᵣ=Nₜ+4；L=30；P=1000 mW；σ<sub>C</sub>²=σ<sub>R</sub>²=1 mW；α=1+0i；共同 Γ=0–20 dB；θ₀=0° 或 23°。</li><li>两阵列都是居中半波长均匀线阵，窄带、远场、一个点目标。Nₜ 改变时，发射与接收孔径都改变，不是免费增益。此处没有指定真实距离、带宽或快照时间间隔。</li><li>总功率约束允许天线之间不等功率，也不要求瞬时常模。L 个快照下，LP=30000 是按快照计的能量比例；未指定采样时间，不能直接称为焦耳。提高 L 而不降低 P 会增加总观测能量。</li><li>α=1+0i 是评估下界时声明的真实值，接收机仍把复 α 当未知量。θ₀ 是已知的局部设计方向，待估 θ 是未知参数；模拟真值与接收机搜索区间是另外两个概念，此处没有运行搜索。</li><li>一般复数 H 被精确已知；没有校准误差或信道估计误差模型。当前范围不保证每个自定义 H 都可行、满足定理条件或在计算预算内通过验收。</li></ul>
+    <div class="cm-equation">m = −(n−1)/2, …, (n−1)/2<br>a<sub>m</sub>(θ)=exp(iπm sinθ)，ȧ<sub>m</sub>(θ)=iπm cosθ·a<sub>m</sub>(θ)<br>‖a‖²=Nₜ，‖b‖²=Nᵣ</div>
+    <p>导向向量的每一项模为 1，没有除以 √n。导数单位为每弧度；同一实际输入的图、表和下界使用同一组恢复波束，不拿另一种预算的结果作算法优劣比较。</p>
+    <h3>当前只读的数值与资源边界</h3>
+    <p>一次只运行一个 Worker；每次求解最多 20000 次迭代、30 秒。三门槛比较逐次求解，也可停止。30 秒是防止长时间占用的资源上限，不是浏览器延迟承诺；达到上限表示尚未取得验收结果，不证明不可行。</p>
+    <p>迭代容差为 10⁻⁹；定理秩检查使用最小与最大奇异值之比 &gt;10⁻⁸；秩一恢复相对残差上限为 10⁻⁴。总功率相对容差为 2×10⁻⁶，SINR 相对容差为 2×10⁻⁵。对偶差距使用归一化信息尺度：上限为 max(10⁻⁷, 10⁻⁴|已恢复信息|)，下限为 −2×10⁻⁷；对应对偶平稳性残差上限为 10⁻⁹。完整原值、阈值与检查状态随实际运行记录导出，不能凭图上舍入后的相等判断达标。</p>
+  </div></details>
+
+  <aside class="cm-evidence-note" aria-labelledby="cm-evidence-title"><h3 id="cm-evidence-title">哪些已经有证据，哪些仍待完成？</h3><ul class="cm-plain-list"><li><strong>单用户：</strong>上方精确闭式特例和原有数值证据保留。它的归一化参数与双用户实验不同，不能直接比较角度数字。</li><li><strong>双用户：</strong>当前使用经过独立数值核验的点目标式 (33) JavaScript 求解器，在声明范围内按新输入计算；页面交互、真实浏览器布局与延迟仍需单独验收。</li><li><strong>原文规模的离线案例：</strong>Nₜ=16、Nᵣ=20、K=4、Γ=15 dB 的一个声明信道，已有约 5.674 秒的 Node 内核运行记录。它不是本页可选项，不是浏览器延迟，也不是原文图 3 的复现。</li><li><strong>接收机与扩展目标：</strong>已有独立核验的离线参考；本页不运行多用户噪声 ML、扩展目标优化或原文比较基线。离线结果不会随上方 H 改变，也不能被当作本次求解的实际误差。</li></ul><p><strong>可选离线提醒：小下界不保证低信噪比下的小误差。</strong>已核验参考使用一个固定原文规模信道，每个条件 256 次噪声试验；接收机作全视场搜索，在每个候选角度拟合未知 α。论文定义的雷达 SNR=|α|²LP/σ<sub>R</sub>²，不额外乘阵列增益。−20 dB 时，√CRB≈1.289°，实际 RMSE≈30.584°，150/256 次误差超过 5°；0 dB 时两者约为 0.12893°、0.12941°。这里保留了大误差，不只统计成功试验。这是固定信道的有限次离线证据，不随上方输入改变，也不构成普遍的算法排名或已达到下界的保证。</p><p>完整论文复现、原文 Monte Carlo 图表、既有方法基线、扩展目标的浏览器实现与真实浏览器性能，仍是明确的开放工作。</p></aside>
+</section>
+
 <section class="chapter crb-companion-wrapper" id="companion" aria-labelledby="crb-companion-title">
-  <header class="chapter-head"><p class="eyebrow">可选进阶 / 一个刻意构造的反例</p><h2 id="crb-companion-title">整条方向图一样，角度下界也一定一样？</h2><p>主实验里，“照得亮”与“下界小”恰好一致。现在增加独立探测流，看看只看功率图会漏掉什么。第一次阅读可以跳过。</p></header>
+  <header class="chapter-head"><p class="eyebrow">可选进阶 / 一个刻意构造的反例</p><h2 id="crb-companion-title">整条方向图一样，角度下界也一定一样？</h2><p>上方单用户特例里，“照得亮”与“下界小”恰好一致。现在增加独立探测流，看看只看功率图会漏掉什么。第一次阅读可以跳过。</p></header>
   <details class="crb-disclosure crb-companion" id="crb-companion-section"><summary>打开独立双流实验<span>同一方向图、同一通信 SINR，仍可有不同 CRB</span></summary><div class="crb-disclosure-body">
     <div class="crb-scope-note"><strong>这是本站独立构造的另一个信道场景。</strong><p>信道改为 h=u，偶、奇模态功率比例固定 p=0.5，总功率仍为 1。它允许一路数据和一路独立探测信号，不是主实验单流最优解的另一种画法，也不是原论文的多用户或扩展目标优化结果。</p></div>
     <p>把两种空间权重拆给两个已知、正交的时间波形，就能改变回波中“哪些变化可以被反射系数解释”。下面 κ 控制<strong>两个空间模态输出</strong>的相关程度；两路源波形本身始终正交，不是把它们变成相关源。</p>
@@ -159,24 +282,28 @@
 </section>
 
 <section class="chapter" id="paper" aria-labelledby="crb-paper-title">
-  <header class="chapter-head"><p class="eyebrow">04 / 回到原文</p><h2 id="crb-paper-title">论文优化的是估计下界，本站只落实一个明确特例</h2></header>
+  <header class="chapter-head"><p class="eyebrow">07 / 回到原文</p><h2 id="crb-paper-title">论文优化的是估计下界：从精确特例到有条件的多用户恢复</h2></header>
   <div class="crb-paper-citation"><span class="crb-paper-year">2022</span><div><h3><a href="https://doi.org/10.1109/TSP.2021.3135692">Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming</a></h3><p>Fan Liu · Ya-Feng Liu · Ang Li · Christos Masouros · Yonina C. Eldar<br>IEEE Transactions on Signal Processing, 70, 240–253</p><a href="https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf">阅读作者托管的已发表期刊 PDF ↗</a></div></div>
-  <p>这篇论文把雷达目标从方向图等间接指标推进到 CRB，并同时保留通信质量约束。主实验实现其中<strong>单用户点目标的闭式最优结果</strong>，让平台、取舍和不可行性都能直接计算；没有运行多用户 SDR，也没有复现整篇论文的算法与图表。</p>
-  <details class="crb-disclosure"><summary>原文对照：固定版本、章节、式号与本站保留范围</summary><div class="crb-disclosure-body"><p>以下页码是期刊印刷页码，统一对应上方已发表版本：首次发表 2021-12-15，当前版本日期 2022-01-11。2021 年 arXiv 稿标题末尾为 “Design”，不混用其式号。已核对 PDF 的 SHA-256 为 <code>3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d</code>；在线地址本身不是不可变存档。</p><ul class="crb-source-map"><li><strong>§II-A/B，pp. 241–242，式 (1)–(9)</strong><br>观测、信号块、未知复反射系数与点目标 CRB。本站保留已知发射样本、复高斯噪声和单角度局部模型。</li><li><strong>§III-B，pp. 243–244，式 (20)–(29)，引理 1 / 定理 1</strong><br>秩一 CRB、两维最优子空间与单用户最优波束。本站主实验在明确合成信道上落实这一特例。</li><li><strong>附录 A/B，pp. 248–249</strong><br>最优子空间与活跃约束的证明。上方两段公式给出同一机制，不以有限网格搜索冒充精确最优解。</li><li><strong>主实验没有覆盖</strong><br>多用户 SDR、扩展目标矩阵估计、原论文图表、Monte Carlo 估计器性能或硬件实测。双流对照是本站独立点目标构造，不归为论文定理或原图复现。</li></ul></div></details>
+  <p>这篇论文把雷达目标从方向图等间接指标推进到 CRB，并同时保留通信质量约束。上方单用户实验实现其中<strong>点目标的闭式最优特例</strong>；双用户续篇按新输入求解<strong>式 (33) 的半正定松弛</strong>，再验收恢复波束。数值通过的范围、离线参考与尚未完成的真实浏览器验收分开记录；这仍不是整篇论文算法与图表的复现。</p>
+  <details class="crb-disclosure"><summary>原文对照：固定版本、章节、式号与本站保留范围</summary><div class="crb-disclosure-body"><p>以下页码是期刊印刷页码，统一对应上方已发表版本：首次发表 2021-12-15，当前版本日期 2022-01-11。2021 年 arXiv 稿标题末尾为 “Design”，不混用其式号。已核对 PDF 的 SHA-256 为 <code>3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d</code>；在线地址本身不是不可变存档。</p><ul class="crb-source-map"><li><strong>§II-A/B，pp. 241–242，式 (1)–(9)</strong><br>观测、信号块、未知复反射系数与点目标 CRB。本站保留已知发射样本、复高斯噪声和单角度局部模型。</li><li><strong>§III-B，pp. 243–244，式 (20)–(29)，引理 1 / 定理 1</strong><br>秩一 CRB、两维最优子空间与单用户最优波束。本站主实验在明确合成信道上落实这一特例。</li><li><strong>附录 A/B，pp. 248–249</strong><br>最优子空间与活跃约束的证明。上方两段公式给出同一机制，不以有限网格搜索冒充精确最优解。</li><li><strong>§III-C，p. 244，式 (30)–(33)，定理 2；附录 C，pp. 249–251</strong><br>双用户续篇运行协方差半正定优化，检查 rank(H[a,ȧ])=2，并从恢复波束重算通信与感知指标；采用声明容差的数值验收，不把松弛收敛直接当作原波束最优性证明。</li><li><strong>§V，pp. 246–248，与当前范围边界</strong><br>双用户小阵列是明确教学变体，不是原论文图表。扩展目标与噪声 ML 仅有分开的离线参考，本页未运行对应接收机、原文比较基线或硬件实测。独立双流对照也不归为论文定理或原图复现。</li></ul></div></details>
 </section>
 
 <section class="chapter" id="limits" aria-labelledby="crb-limits-title">
-  <header class="chapter-head"><p class="eyebrow">05 / 带走结论，也带走边界</p><h2 id="crb-limits-title">好下界的前提，是说清楚已知什么、未知什么</h2></header>
+  <header class="chapter-head"><p class="eyebrow">08 / 带走结论，也带走边界</p><h2 id="crb-limits-title">好下界的前提，是说清楚已知什么、未知什么</h2></header>
   <p>这页最值得带走的，不是某个角度小数，而是三个判断：<strong>约束何时开始起作用；“要求不可行”与“估计模型奇异”怎样区分；方向图之外还需要哪些接收信息。</strong></p>
-  <p>这里只有一个点目标、一个用户、精确已知信道和固定局部观察方向。没有距离或多普勒估计、检出率、虚警率、分辨率、BER、射频非理想或实际 RMSE。若加入额外未知参数、改变波形是否已知、给反射系数先验，Fisher 信息必须重新推导。</p>
-  <div class="crb-next-question"><span>下一问</span><h3>两位用户都提出要求，平台和取舍还会这样简单吗？</h3><p>此时用户之间产生干扰，SNR 要改为 SINR，单用户两维闭式解也不再直接适用。可以先把新观测与约束写清，再进入多用户优化；本页没有把这一步做成假按钮。</p></div>
+  <p>本页始终只处理一个点目标、精确已知信道和固定局部观察方向；单用户闭式特例与双用户数值优化各有声明预算。交互计算没有距离或多普勒估计、检出率、虚警率、分辨率、BER、射频非理想或实际 RMSE。若加入额外未知参数、改变波形是否已知、给反射系数先验，Fisher 信息必须重新推导。</p>
+  <div class="crb-next-question"><span>下一问</span><h3>下界更小，接收机在噪声里就一定估得更准吗？</h3><p>不一定。CRB 描述局部可辨识模型的方差下界，实际估计还会受到低信噪比、搜索与大误差的影响。下一步应固定已验收的波束，生成明确的带噪观测，再独立运行不知道真实 θ 与 α 的接收机；这一步尚未接入本页。</p></div>
 </section>
 
 <section class="chapter crb-reproduce" id="reproduce" aria-labelledby="crb-reproduce-title">
-  <header class="chapter-head"><p class="eyebrow">06 / 让每个数字有出处</p><h2 id="crb-reproduce-title">从复数观测重算，再检查页面</h2></header>
-  <p><a href="docs/CRB-BEAMFORMING-VALIDATION.md">验证范围与实际记录</a>区分数学核验、代码测试、界面检查和部署状态；不把其中一种检查替代另一种。</p>
-  <ul class="crb-artifact-links"><li><a href="scripts/validate-crb-beamforming.py">独立 Python 核验脚本</a><span>从观测导数和三参数 Fisher 矩阵出发</span></li><li><a href="crb-beamforming-core.js">页面纯数值核心</a><span>最优波束、协方差、边界状态与图形数据</span></li><li><a href="tests/crb-beamforming.test.cjs">数值回归测试</a><span>默认值、可行性、奇异端点与双流构造</span></li><li><a href="tests/crb-beamforming-ui.test.cjs">界面与结构回归测试</a><span>控件、数值显示、无效状态与可访问入口</span></li></ul>
-  <p class="crb-small">本页是纯静态计算，不上传实验参数。记录一次实验时，请写下：固定资源、ρ、所需与实际 SNR、g、下界单位、当前状态，以及“这是理论下界”的解释。可以接着使用<a href="practice.html#notebook">研究记录模板</a>。</p>
+  <header class="chapter-head"><p class="eyebrow">09 / 让每个数字有出处</p><h2 id="crb-reproduce-title">从复数观测重算，再检查页面</h2></header>
+  <p><a href="docs/CRB-BEAMFORMING-VALIDATION.md">单用户验证范围与实际记录</a>区分数学核验、代码测试、界面检查和部署状态；不把其中一种检查替代另一种。</p>
+  <ul class="crb-artifact-links"><li><a href="scripts/validate-crb-beamforming.py">独立 Python 核验脚本</a><span>从观测导数和三参数 Fisher 矩阵出发</span></li><li><a href="crb-beamforming-core.js">单用户纯数值核心</a><span>最优波束、协方差、边界状态与图形数据</span></li><li><a href="tests/crb-beamforming.test.cjs">单用户数值回归测试</a><span>默认值、可行性、奇异端点与双流构造</span></li><li><a href="tests/crb-beamforming-ui.test.cjs">单用户界面与结构回归测试</a><span>控件、数值显示、无效状态与可访问入口</span></li></ul>
+  <h3>双用户计算与离线参考的独立证据</h3>
+  <p>先读<a href="docs/CRB-MULTIUSER-KERNEL-VALIDATION.md">多用户内核验证范围与开放门禁</a>。下列包按需下载，页面启动和求解不加载它们；源码、独立检查、失败记录与原始输入均保持可追溯。</p>
+  <ul class="crb-artifact-links"><li><a href="data/crb-point-kernel-v0.4.zip">v0.4 JavaScript 内核与独立验证包</a><span>含 API、194 项独立断言、同 H 扫参和真实 Worker 协议记录；不是浏览器验收</span></li><li><a href="data/crb-point-kernel-v0.4-manifest.json">JavaScript 包完整性清单</a><span>冻结文件与 SHA-256；数值核心保持原字节</span></li><li><a href="data/crb-beamforming-reference-v1.zip">离线 Python 点目标、扩展目标与 ML 参考包</a><span>含 NUMERICAL-REPORT、实际误差和全部失败分母；不会随本页输入变化</span></li><li><a href="data/crb-beamforming-reference-v1-manifest.json">Python 参考包完整性清单</a><span>单独的离线参考证据，不代表扩展目标已接入浏览器</span></li></ul>
+  <p>要独立检查下载的运行记录，可阅读<a href="docs/CRB-MULTIUSER-EXPORT-VALIDATION.md">导出记录的独立验收说明</a>，并按需下载<a href="data/crb-beamforming-export-checker-v1.zip">独立 Python 记录核验器</a>。它从原始输入、恢复波束与对偶状态重算证据，不据文件自述认定真实浏览器来源；缺少完整状态的取消记录仍属于未完成验收。</p>
+  <p class="crb-small">本页是纯静态计算，不上传实验参数。记录单用户实验时，请写下固定资源、ρ、所需与实际 SNR、g 与下界单位；双用户实验请导出实际运行记录，保留原始 H、每用户 SINR、总功率、恢复与证书检查、容差及状态。两者都要说明“这是理论下界”。可以接着使用<a href="practice.html#notebook">研究记录模板</a>。</p>
 </section>
 <!-- SITE:NEXT:START -->
 <aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html?topic=crb-beamforming#notebook">记录一次固定信道与总功率下的 CRB 检验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>

@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "id": "crb-multiuser-point-eq33-v04",
+  "title": "CRB 多用户点目标：实际求解器离线验收",
+  "asOfUtc": "2026-10-12",
+  "status": "bounded-offline-numerical-gate-passed",
+  "runtimeVersion": "crb-point-drs-v0.4-feasibility",
+  "source": {
+    "title": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
+    "edition": "IEEE TSP70 (2022),240–253",
+    "doi": "10.1109/TSP.2021.3135692",
+    "url": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf",
+    "pdfSha256": "3bb9519855b92a8cca870caf603efe0d05dc1d9369cadad0fb7de20750a61e6d",
+    "locators": [
+      "p242 Eq7",
+      "p244 Eqs30–33,Theorem2"
+    ],
+    "pdfRedistributed": false
+  },
+  "runtime": [
+    {
+      "path": "crb-multiuser/hermitian.js",
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+      "bytes": 3658
+    },
+    {
+      "path": "crb-multiuser/linalg.js",
+      "sha256": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+      "bytes": 3688
+    },
+    {
+      "path": "crb-multiuser/core.js",
+      "sha256": "208f4d91db12d5c24d8bff921a1f31806cea846cb3f1a3a6101f7520f2e335c1",
+      "bytes": 18012
+    },
+    {
+      "path": "crb-multiuser/worker.js",
+      "sha256": "cdf0412a332c79c6e7ff6d5340285b78a434838aa6c560c9b35762ec4775520b",
+      "bytes": 1469
+    }
+  ],
+  "actualAlgorithm": "Eq33 SDR via Douglas–Rachford PSD-cone iterations with guarded Anderson acceleration, principal-eigenpair recovery, actual per-user SINRs and unknown-alpha Fisher bound, live residual-adjusted dual upper-information check",
+  "noStoredAnswerEvaluation": true,
+  "recommendedInitialTeachingScope": {
+    "Nt": [
+      4,
+      6,
+      8
+    ],
+    "Nr": "Nt+4",
+    "K": 2,
+    "L": 30,
+    "powerMw": 1000,
+    "communicationNoiseMw": 1,
+    "radarNoiseMw": 1,
+    "alpha": {
+      "real": 1,
+      "imag": 0
+    },
+    "gammaDb": [
+      0,
+      20
+    ],
+    "thetaDegreesDefault": 0,
+    "H": "editable complex K×Nt, row h_k^H; same H for threshold comparisons"
+  },
+  "pointGate": {
+    "independentAssertions": 194,
+    "independentExecutions": 32,
+    "freshPythonOracleChecks": 3,
+    "routineAccepted": 12,
+    "routineAttempted": 12,
+    "originalSizeAccepted": 1,
+    "originalSizeAttempted": 1,
+    "savedAttempts": 17,
+    "uniqueInputs": 16,
+    "heldChannelAccepted": 5,
+    "heldChannelAttempted": 5,
+    "workerLifecycleAssertions": 14,
+    "rankDeficientProbeCount": 10000,
+    "rankFalsePositiveCount": 0,
+    "largestAcceptedRelativeInformationGap": 2.5996835609569198e-08,
+    "minimumAcceptedSinrRatio": 0.9999997628736926
+  },
+  "numericalTolerances": {
+    "theoremRelativeRankThreshold": 1e-08,
+    "relativeRankOneResidual": 0.0001,
+    "powerFractionUpper": 1.000002,
+    "sinrRatioLower": 0.99998,
+    "gapRule": "gap <= max(1e-7,1e-4*information), gap >= -2e-7",
+    "tStationarityResidual": 1e-09,
+    "finitePositiveCrbRequired": true,
+    "exactIntervalProof": false
+  },
+  "timing": {
+    "environment": "cloud Node24.19.0, single-run measurements; not browser input-to-result latency",
+    "reducedNodeWallMs": {
+      "min": 25.263301999999996,
+      "median": 57.8126065,
+      "max": 730.245666
+    },
+    "sourceSizeNt16Nr20K4Gamma15NodeMs": 5674.159269000001,
+    "workerNodeCancellationReplyMs": 4.072255000000013,
+    "actualBrowserMeasurements": null
+  },
+  "retainedFailures": {
+    "initialRho1Caps": [
+      {
+        "id": "nt4-k2-g20-theta0-seed290103",
+        "iterations": 20000,
+        "wallMs": 1252.920828
+      },
+      {
+        "id": "nt6-k2-g20-theta0-seed290107",
+        "iterations": 20000,
+        "wallMs": 2393.892642
+      },
+      {
+        "id": "nt8-k2-g20-theta0-seed290111",
+        "iterations": 20000,
+        "wallMs": 4793.833633
+      },
+      {
+        "id": "nt16-k4-g15-theta0-seed290113",
+        "iterations": 20000,
+        "wallMs": 80685.51002999999
+      }
+    ],
+    "currentStress": "exact duplicate and near-collinear channel infeasibility separators; zero channel individual-power bound; all remain nonaccepted",
+    "foundAndFixed": [
+      "finite alpha/product/CRB overflow or underflow could create zero/nonfinite apparent bound; now fails closed",
+      "subtractive Gram small eigenvalue could falsely claim rank premise; now reorthogonalized residual calculation"
+    ],
+    "historicalRecordsRemainInArchive": true
+  },
+  "heldChannel": {
+    "sameHAndResources": true,
+    "gammaDb": [
+      0,
+      5,
+      10,
+      15,
+      20
+    ],
+    "H_sha256": "1ee7bcfa231d03b6ddde9e3a05fc261b4adc330fe1c9e42a42a81ac0adf0520d",
+    "maxJsPythonInformationDifference": 2.910092771202244e-07,
+    "differentSeedFixturesAreNotAFrontier": true,
+    "monotoneWithin1eMinus7": true
+  },
+  "openGates": [
+    "actual-browser input-to-result latency and interruption QA",
+    "teaching UI and production integration",
+    "extended-target browser solver with Eq46–49 and dedicated inverse/auxiliary-interference checks",
+    "broader source-size stability",
+    "original paper baseline and full Monte Carlo replication"
+  ],
+  "extendedReferenceFailuresPreserved": {
+    "sourceAttempts": 16,
+    "accepted": 10,
+    "powerBudgetInfeasible": 3,
+    "feasibleButNumericallyRejected": 3,
+    "browserPortImplemented": false
+  },
+  "download": {
+    "path": "data/crb-point-kernel-v0.4.zip",
+    "sha256": "2ebbe91bb5dac5007cdd236bea4a00ac7b8cbeee09862c2a09549f39f58997e1",
+    "bytes": 1116412,
+    "optionalOnly": true,
+    "startupFetchAllowed": false
+  },
+  "artifactManifest": {
+    "path": "data/crb-point-kernel-v0.4-manifest.json",
+    "sha256": "87789d9b2624065ade89d566e786975bdb954f0f2f86733d9f61cf070c9271d8",
+    "optionalOnly": true,
+    "startupFetchAllowed": false
+  },
+  "offlinePointAndExtendedReferenceDownload": {
+    "path": "data/crb-beamforming-reference-v1.zip",
+    "sha256": "9541a85656523452aeba326d3f328893b032ecdd7f79a86d98e720f59e3c4e0d",
+    "bytes": 1889258,
+    "optionalOnly": true,
+    "startupFetchAllowed": false
+  }
+}

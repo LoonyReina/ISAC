@@ -1,0 +1,739 @@
+{
+  "passed": true,
+  "checks": 78,
+  "fixtures": "Fresh Node records; no browser claim",
+  "tests": [
+    {
+      "name": "fresh-nt4",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "fresh-nt6",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "fresh-nt8",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "one-iteration-cap",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "cancel-full",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "cancel-partial",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "incomplete numerical evidence: finalState absent (worker cancellation may be partial)"
+      ]
+    },
+    {
+      "name": "zero-channel-bound",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "duplicate-infeasible",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "rank-condition-rejected",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "invalid-crb-rejected",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "name": "tamper-H",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "theorem rank matrix mismatch"
+      ]
+    },
+    {
+      "name": "tamper-power",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "Wk/state consistency mismatch"
+      ]
+    },
+    {
+      "name": "tamper-angle",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "theorem rank matrix mismatch"
+      ]
+    },
+    {
+      "name": "tamper-alpha",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "radar crbRad2 mismatch"
+      ]
+    },
+    {
+      "name": "tamper-Gamma",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "cone projection Pi_C(w) mismatch"
+      ]
+    },
+    {
+      "name": "tamper-beam",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "recovered power mismatch"
+      ]
+    },
+    {
+      "name": "tamper-Wk",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "Wk/state consistency mismatch"
+      ]
+    },
+    {
+      "name": "tamper-relaxed-sum",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "covariance sum mismatch"
+      ]
+    },
+    {
+      "name": "tamper-primal-x",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "Wk/state consistency mismatch"
+      ]
+    },
+    {
+      "name": "tamper-projection-z",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "cone projection Pi_C(w) mismatch"
+      ]
+    },
+    {
+      "name": "tamper-dual-w",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "cone projection Pi_C(w) mismatch"
+      ]
+    },
+    {
+      "name": "tamper-rho",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "state rho mismatch"
+      ]
+    },
+    {
+      "name": "tamper-primal-residual",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "primal residual mismatch"
+      ]
+    },
+    {
+      "name": "tamper-stationarity",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "stationarity residual mismatch"
+      ]
+    },
+    {
+      "name": "tamper-t",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "epigraph t mismatch"
+      ]
+    },
+    {
+      "name": "tamper-cert-dual",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "certificate dual PSD signs"
+      ]
+    },
+    {
+      "name": "tamper-cert-bound",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "information bound mismatch"
+      ]
+    },
+    {
+      "name": "tamper-cert-support",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "dual support mismatch"
+      ]
+    },
+    {
+      "name": "tamper-cert-correction",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace correction mismatch"
+      ]
+    },
+    {
+      "name": "tamper-cert-eigen",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "nonconservative stationarity eigenvalue"
+      ]
+    },
+    {
+      "name": "tamper-cert-gap",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "recovered information gap mismatch"
+      ]
+    },
+    {
+      "name": "tamper-rank-ratio",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "theorem singular ratio mismatch"
+      ]
+    },
+    {
+      "name": "tamper-rank-residual",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "rank one recovery residual mismatch"
+      ]
+    },
+    {
+      "name": "tamper-user2",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "user 1 sinr mismatch"
+      ]
+    },
+    {
+      "name": "tamper-CRB",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "radar crbRad2 mismatch"
+      ]
+    },
+    {
+      "name": "tamper-normalized-info",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "radar normalizedInformation mismatch"
+      ]
+    },
+    {
+      "name": "missing-state",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "incomplete numerical evidence: finalState absent (worker cancellation may be partial)"
+      ]
+    },
+    {
+      "name": "missing-certificate",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "'certificate'"
+      ]
+    },
+    {
+      "name": "missing-user",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "all-user metrics count"
+      ]
+    },
+    {
+      "name": "missing-Wk",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "covariance block count"
+      ]
+    },
+    {
+      "name": "bool-Nt",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "Nt integer"
+      ]
+    },
+    {
+      "name": "string-beam",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "complex matrix shape/type"
+      ]
+    },
+    {
+      "name": "unknown-version",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unsupported kernel version"
+      ]
+    },
+    {
+      "name": "unknown-status",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unknown/nonterminal status"
+      ]
+    },
+    {
+      "name": "unsupported-Gamma",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "angle/Gamma domain"
+      ]
+    },
+    {
+      "name": "tamper-envelope-input",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "inputDigest mismatch"
+      ]
+    },
+    {
+      "name": "tamper-envelope-digest",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "inputDigest mismatch"
+      ]
+    },
+    {
+      "name": "tamper-envelope-scenario",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "scenarioDigest mismatch"
+      ]
+    },
+    {
+      "name": "tamper-envelope-options",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "envelope/result options mismatch"
+      ]
+    },
+    {
+      "name": "tamper-kernel-declaration",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "declared kernel identity mismatch"
+      ]
+    },
+    {
+      "name": "tamper-envelope-tolerance",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "frozen gate tolerance mismatch"
+      ]
+    },
+    {
+      "name": "tamper-trace-count",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "trace declaration"
+      ]
+    },
+    {
+      "name": "cap-promoted-to-converged",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "missing recovered state"
+      ]
+    },
+    {
+      "name": "cap-fake-pass",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unrecovered result has successful gate"
+      ]
+    },
+    {
+      "name": "cap-fake-infeasibility",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unproved infeasible status"
+      ]
+    },
+    {
+      "name": "separator-zero-dual",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unexplained stationarity eigenvalue correction"
+      ]
+    },
+    {
+      "name": "false-individual-bound",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "individual SINR bound mismatch"
+      ]
+    },
+    {
+      "name": "trace-string",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace must be a bounded row list"
+      ]
+    },
+    {
+      "name": "trace-impossible-iteration",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace iteration range/order"
+      ]
+    },
+    {
+      "name": "trace-false-last-residual",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "final trace primal mismatch"
+      ]
+    },
+    {
+      "name": "trace-boolean-iteration",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace iteration range/order"
+      ]
+    },
+    {
+      "name": "trace-negative-time",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace elapsedMs"
+      ]
+    },
+    {
+      "name": "converged-zero-iterations",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "trace iteration range/order"
+      ]
+    },
+    {
+      "name": "boolean-schema-version",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": true,
+      "issues": [
+        "unsupported record envelope"
+      ]
+    },
+    {
+      "name": "cap-relabeled-no-failure-reason",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "numerical failure needs diagnostic reason"
+      ]
+    },
+    {
+      "name": "cap-relabeled-no-recovery-reason",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unrecovered rejection requires recovery exception diagnostic"
+      ]
+    },
+    {
+      "name": "cap-empty-gate",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "unrecovered terminal gate failures"
+      ]
+    },
+    {
+      "name": "analytic-garbage-state",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "analytical bound has unexpected numerical state"
+      ]
+    },
+    {
+      "name": "subnormal-Fisher-fails-closed",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "accepted record uses unsupported subnormal Fisher scales"
+      ]
+    },
+    {
+      "name": "valid-tiny-normal-CRB",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "forged-negative-tiny-CRB",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "radar crbRad2 mismatch"
+      ]
+    },
+    {
+      "name": "cap-relabeled-cancelled",
+      "passed": true,
+      "expectedAudit": false,
+      "actualAudit": false,
+      "physicalAccepted": false,
+      "issues": [
+        "cannot cancel an already capped terminal solver"
+      ]
+    },
+    {
+      "name": "valid-global-phase-change",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "no-browser-inference",
+      "passed": true,
+      "expectedAudit": true,
+      "actualAudit": true,
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "name": "browser-provenance-remains-unestablished",
+      "passed": true
+    },
+    {
+      "name": "duplicate-json-key",
+      "passed": true
+    },
+    {
+      "name": "nonfinite-json",
+      "passed": true
+    },
+    {
+      "name": "unsafe-json-key",
+      "passed": true
+    }
+  ]
+}

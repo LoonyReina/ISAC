@@ -1,0 +1,151 @@
+{
+  "scope": "Frozen actual Node Worker/controller exports and poisoned historical imports; no browser provenance",
+  "checkerSha256": "06a73ea4825613dfe6af32ffe5a8e6dac12b9d22ef0556c7e8de49f541a4c66f",
+  "inputRosterSha256": "4dd35dcb96a8bd29c71f34198e5559934f7d1d5dc1587b13783392d8f149e2d9",
+  "results": [
+    {
+      "file": "actual-bound-record.json",
+      "sha256": "e1e63301ca92ba9fbf96a86f0b9b5cd55ff95fa24861ae1823aa13659a750aa7",
+      "passed": true,
+      "status": "infeasible_bound",
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "file": "actual-cancel-early-record.json",
+      "sha256": "46f53623fd55af99b2a61cb0566e3adcf2dfd8eebb0acd3267e786e35fa98b1a",
+      "passed": false,
+      "status": "cancelled",
+      "physicalAccepted": false,
+      "issues": [
+        "incomplete numerical evidence: finalState absent (worker cancellation may be partial)"
+      ]
+    },
+    {
+      "file": "actual-cancel-mid-record.json",
+      "sha256": "9ee19df76d86dc38e429259184540fa231e17265e3e0f5cb1c007efd32594517",
+      "passed": false,
+      "status": "cancelled",
+      "physicalAccepted": false,
+      "issues": [
+        "incomplete numerical evidence: finalState absent (worker cancellation may be partial)"
+      ]
+    },
+    {
+      "file": "actual-cap-record.json",
+      "sha256": "5e9d05905332029978c34fe217b69754cd9c446542b4aede88370709a8ef266c",
+      "passed": true,
+      "status": "iteration_limit",
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "file": "actual-rank-record.json",
+      "sha256": "1515911b72e0d662b0c0ef4eaa5f4917c1ba05d2edac8c1649fdfc0bae66ed11",
+      "passed": true,
+      "status": "rank_condition_not_met",
+      "physicalAccepted": false,
+      "issues": []
+    },
+    {
+      "file": "actual-worker-default-record.json",
+      "sha256": "c8c07aadeb6bd926a14641f23e8beea4cd3afa0acff074348b7f0ac151f035b4",
+      "passed": true,
+      "status": "converged",
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "file": "actual-worker-nt6-record.json",
+      "sha256": "deafea3678a7a4ae9aee316dcff9ae78fb22e6a5e93c48a983d5b6affa132b87",
+      "passed": true,
+      "status": "converged",
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "file": "actual-worker-nt8-record.json",
+      "sha256": "2bc259c396dc670da8c687b5f288febd6081a21bbe711bbd18133d5d64ba4756",
+      "passed": true,
+      "status": "converged",
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "file": "actual-worker-roundtrip-record.json",
+      "sha256": "75c0fb91b39b7699aeac459287d2d375d6dea18fe04294a6ecf5f7c0dbe46ddd",
+      "passed": true,
+      "status": "converged",
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "file": "actual-worker-sweep-last-record.json",
+      "sha256": "b036b84c73a19315971abfe312617a877ff0a89d89f98554a5260c70bbd7ac48",
+      "passed": true,
+      "status": "converged",
+      "physicalAccepted": true,
+      "issues": []
+    },
+    {
+      "file": "probe-certificateDual.json",
+      "sha256": "6b67c667a5710c01bf26c1c3eb1a71c3fce7f1c39df54bec36eb76b390592a0a",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "dual support mismatch"
+      ]
+    },
+    {
+      "file": "probe-finalState.json",
+      "sha256": "864d208df95fece3f2f2843e55a7dfeffd0a0a18efd6dc2be04c9dc0a4d41534",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "Wk/state consistency mismatch"
+      ]
+    },
+    {
+      "file": "probe-missingFinalState.json",
+      "sha256": "b40de5202cdf901f13e224cab649984e7f126e5ac38645873bad104f5b1f5f96",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "incomplete numerical evidence: finalState absent (worker cancellation may be partial)"
+      ]
+    },
+    {
+      "file": "probe-rankMatrix.json",
+      "sha256": "4e75fddf8793d82c6b9eb7a758a5799b39db62202c92dc3ea75d11efd5c020bd",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "theorem rank matrix mismatch"
+      ]
+    },
+    {
+      "file": "probe-rankSingularValues.json",
+      "sha256": "7c4f76073a102638d65e394eebcc5a8573d0f826516f87253b22611e02e3fc50",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "theorem singular values mismatch"
+      ]
+    },
+    {
+      "file": "probe-recoveryEigenvalue.json",
+      "sha256": "c28b5e8cef061603ba9d9b68461768ef7669118fda1144d83ba08b4714577807",
+      "passed": false,
+      "status": "converged",
+      "physicalAccepted": false,
+      "issues": [
+        "maximum covariance eigenvalue mismatch"
+      ]
+    }
+  ]
+}
