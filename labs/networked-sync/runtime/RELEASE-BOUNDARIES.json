@@ -1,0 +1,28 @@
+{
+  "version": "networked-sync-js-v0.1",
+  "owner_regression": "PASS",
+  "kernel_tests": 22,
+  "evaluation_oracles": 90,
+  "linalg_oracles": 145,
+  "linalg_contracts": 25,
+  "linalg_rank_stress": 500,
+  "codec_tests": 20,
+  "worker_tests": 21,
+  "fresh_receiver_oracle_checks": 11121,
+  "fresh_receiver_cases": 11,
+  "fresh_generated_pairs_independently_checked": 6,
+  "measured_node_resource_cases": 6,
+  "actual_node_worker": true,
+  "browser_loader_vm": true,
+  "actual_browser_verified": false,
+  "ui_integration_done": false,
+  "source_curve_reproduction": false,
+  "full_paper_reproduction": false,
+  "independent_port_review": "separate pending final exact-byte review",
+  "retained_parameter_exception": {
+    "near_collision_rank3": "tight Python phase parity criterion fails up to3.2003e-4rad on weak nuisance columns; structural/tensor identities pass; see NUMERICAL-VERIFICATION.md"
+  },
+  "receiver_sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98",
+  "linalg_sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+  "tests_update_reports": "Manifest pins delivered bytes; running verification suites intentionally rewrites diagnostics and requires a new freeze for changed reports"
+}

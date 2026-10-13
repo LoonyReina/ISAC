@@ -1,0 +1,578 @@
+{
+  "schema": "gaussian-tradeoff-lesson-freeze-v1",
+  "frozen_at_utc": "2026-10-12T23:59:28.344014+00:00",
+  "scope": "New canonical Gaussian matrix lesson, exact accepted runtime API, portable tests/evidence, one additive same-paper scalar prerequisite link; no shared registry/build/remote/publication changes",
+  "accepted_base_tree": "d8aeca02aefa77c4c40b1151798c852b6ab5d089",
+  "runtime_source_freeze_sha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+  "runtime_modified": false,
+  "runtime_files": {
+    "kernel.mjs": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+    "math.mjs": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+    "presets.mjs": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+    "runtime.mjs": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+    "worker.mjs": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+    "codec.mjs": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+    "vendor/linalg.js": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+  },
+  "files": [
+    {
+      "path": "content/pages/gaussian-tradeoff.html",
+      "bytes": 22543,
+      "sha256": "109df43838495394b7020f8b9de640ab9677a4bf9cd135254b2a9d21b57e5447"
+    },
+    {
+      "path": "content/pages/theory.html",
+      "bytes": 64534,
+      "sha256": "99126f6caaa6e09cf6454f3d9657add6e096c493ca3cedf9744a308e1eda43ab"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "bytes": 4443,
+      "sha256": "3397a7e514f12fc53239e3dc24d127257d0721c08fcabeac9e58e01c17ca986e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "bytes": 2213,
+      "sha256": "2b418e3be07a164ef1984f0fefe57f0599c1613f80bc974633113723866c6713"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/README.md",
+      "bytes": 4978,
+      "sha256": "1d2dcc42d67eba6b29dc7c20772d3cd857824774a1ef38f81f86d7f77f4e6137"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "bytes": 7406,
+      "sha256": "0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "bytes": 3947,
+      "sha256": "08d1bca2d37fc7603103ec2d096647058b9d96b18b947365b8ac0e3ed5c3444a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "bytes": 22817,
+      "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/LESSON-QA.md",
+      "bytes": 6325,
+      "sha256": "ac19412a08cb0a900ebc980ae84496b3aa22b7252d9bfeb014d2203f933758e8"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/PORTABLE-VERIFICATION.json",
+      "bytes": 472,
+      "sha256": "8c3c2d7a38c070bf938310dc5c7fff81ac1121090095f7d6ede68abb3f0b6e11"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/TEST-INVENTORY.json",
+      "bytes": 4051,
+      "sha256": "f15251bafa5001bd59e5ce773f92dd237a2163fd1b58de620b5b8275b8777e75"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.json",
+      "bytes": 279,
+      "sha256": "f52ddc33cb3310857cde5d39392d7000651624534ddc305c2cd2195eb8dcfac6"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.sha256",
+      "bytes": 91,
+      "sha256": "d356f791441319a479217cfcd8212b1fc01ed50be1bc231936f63c74f40b841e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.zip",
+      "bytes": 284622,
+      "sha256": "bc911703991d7c0bc1457793eff79aaf503b25735129d9b1c897312db955b7d9"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-41.log",
+      "bytes": 4177,
+      "sha256": "e722e429b29ead36b126a2dd9db1937b8c3f346ea2e8953e9059e9bf4767a088"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-44.log",
+      "bytes": 4461,
+      "sha256": "73b83d6dc250aae206322771cfbeea910df37c892bc9fe9ff6968a1d032e9fca"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-final.log",
+      "bytes": 4575,
+      "sha256": "9494d6c0bee978a8a9f2e8a1012df289f255d7d726d7a080db501b1aa96ea53a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/portable-reexport-manifest.json",
+      "bytes": 33256,
+      "sha256": "65e5363cdfa01718e7142eabf6bd40e10746a9d78c76beb50bd54127d1281804"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/portable-reexports.log",
+      "bytes": 1002,
+      "sha256": "3db007aeee7995ad4697ca872dd7a7b00952b0513f1bb6367772338099a032e6"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/portable-replay-report.json",
+      "bytes": 6253,
+      "sha256": "0207f973250b4e74d9e73a6765505bf5c1ae6144dccf8fef3f2e42659cc24a63"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/portable-replay.log",
+      "bytes": 5058,
+      "sha256": "09140ec49efd0be25bc43193ea96db5b1e474340fe0c4e535bf0d172aacfd38a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/portable-tests.log",
+      "bytes": 4575,
+      "sha256": "7689c1fb6218ced744a7df3f961dd53197e0b5a33f33746d7d44da224554d473"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/LESSON-QA.md",
+      "bytes": 4827,
+      "sha256": "20dae5bb7a35c6d2560637c7ebfdd55ae1f64ea19d65f730b70f5a07759d035b"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.sha256",
+      "bytes": 91,
+      "sha256": "d7861cb5a9a65603a8ce47838d4feb2823382b8de36ec70117c79967e83d3517"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.zip",
+      "bytes": 92045,
+      "sha256": "e8a35896e2a674d3f930e40bb7a73cad29bc1d542f8ff84c79ec28c7ed23a427"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/controller-tests-final.log",
+      "bytes": 1477,
+      "sha256": "ac7b60296ccd2b340cadb5ea767dbf98e41678eba1f50bd657cd099bf20e1b85"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-final.log",
+      "bytes": 3619,
+      "sha256": "1cf6f7adbf079d65fb1bf3942a762a2b55d3785f85b0d2a18d2187e66c523f40"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-first.log",
+      "bytes": 6304,
+      "sha256": "b3a4a02ee3ce298723d8a18fe3e3e875eb04b575762b4ad5f5af9aaec9a0b849"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-check.log",
+      "bytes": 4494,
+      "sha256": "2dbc356763db055b25df0a170ce41f57d51f7567f9aa4823bb218cdcd4f3ff8f"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-report.json",
+      "bytes": 5589,
+      "sha256": "0d78a50e356904f62836ae837ac71dbcf4b34fd1e8912d07d341a4a75364a1b9"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-EXPORT-MANIFEST.json",
+      "bytes": 24304,
+      "sha256": "e72251a8c6d2a45841d1bf193712ac92836412c0531c53f9980e920cc925e50a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-REPLAY-REPORT.json",
+      "bytes": 5589,
+      "sha256": "8fc741d0b1f420455335cf343d0ee8b5b6f5683d361514f2605d9483318a3311"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-history.json",
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-raw.json",
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-history.json",
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-history.json",
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-raw.json",
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-history.json",
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-raw.json",
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-history.json",
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-raw.json",
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-history.json",
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-raw.json",
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-history.json",
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-raw.json",
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports.log",
+      "bytes": 868,
+      "sha256": "acc149ca03caab4b74812c576cd480ea43ba9b0b6a02a744d046896658e74eee"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-replay.log",
+      "bytes": 4472,
+      "sha256": "623928ca22f66f7df9381a046cffffcc202fd830beabac7ce4d1ba75aa62f693"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/LESSON-QA.md",
+      "bytes": 5489,
+      "sha256": "219f8c2b2c5ff4da8b9837fedc5dd7d8e67b88bf6e1af20abb231b7867ca7573"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/lesson-tests-final.log",
+      "bytes": 4289,
+      "sha256": "5c8e73cb0b37c0b1c220918e6c86b8b7d77f988bad57fb6819824a47e82a7854"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-EXPORT-MANIFEST.json",
+      "bytes": 24288,
+      "sha256": "8435d6b4a9b5decac0bf23aea599ecabbbde76ed80effb4cc2b651f224bc3eee"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-REPLAY-REPORT.json",
+      "bytes": 5589,
+      "sha256": "6ee8f425f6b6e8f4469403e2bf34eaf7684565f6273a94019381ea9019250bfa"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-history.json",
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-raw.json",
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-history.json",
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-history.json",
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-raw.json",
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-history.json",
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-raw.json",
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-history.json",
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-raw.json",
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-history.json",
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-raw.json",
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-history.json",
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-raw.json",
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports.log",
+      "bytes": 880,
+      "sha256": "b459267880f12808963feff12c52b9b35d156126fc24ba5d385a1f772150cf87"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-replay.log",
+      "bytes": 4484,
+      "sha256": "e3d6dddf7aad1bd9748cdeffcd939fe1d858e0584c231783cbd527da273b6bee"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-EXPORT-MANIFEST.json",
+      "bytes": 33290,
+      "sha256": "8b261cd1054cf62288795c33c0d4f01248e23c988b44a8d210cbb99ea269c04a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-REPLAY-REPORT.json",
+      "bytes": 6253,
+      "sha256": "c9d4306a0f544e7d591d6e61981d257c5268558559ff0beccf6d454e0245c91d"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-history.json",
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-raw.json",
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-history.json",
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-history.json",
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-raw.json",
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-history.json",
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-raw.json",
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-history.json",
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-raw.json",
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-history.json",
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-raw.json",
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-history.json",
+      "bytes": 924197,
+      "sha256": "ded212d56fcefa555b862742fa1550c19e240e29a3c34dde28a5a434e340b039"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-raw.json",
+      "bytes": 3394,
+      "sha256": "7d0b7568d071fe0e04ac53e3981e5a675e471bff4c817fb22be520f24b5c3b14"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-history.json",
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-raw.json",
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-exports.log",
+      "bytes": 972,
+      "sha256": "a992c19534061117f2bca587daf27584bb881739d61069c1689f4ab10ec5691f"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/reports/ui-replay.log",
+      "bytes": 5032,
+      "sha256": "b1aeb0c66bac4e3362450bc53a2c06232f794ef1a98ca5786423cab1a25d2496"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/README.md",
+      "bytes": 2083,
+      "sha256": "07e162df6fcb73a2072a468819ef6a4bbb471ad42814cad103d87a33c9fa1c22"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/controller.test.mjs",
+      "bytes": 10687,
+      "sha256": "f7221e802a6c49491378c877dc97b2d83bc822ea4da5d544a43411b2a667a064"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/dom-harness.cjs",
+      "bytes": 6948,
+      "sha256": "b568a2a7fa8bb4669c6c930ada6a4c8465a4424a00ac048971e6044e6da2160a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/export-ui-records.mjs",
+      "bytes": 7510,
+      "sha256": "e13948fa9e6f27b9ebb818d99edc38ce103d23281e6fa3c50bc043322c7d2932"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs",
+      "bytes": 22296,
+      "sha256": "895735709bcc43739587e467f4895fcbbcc8da27891af8ad4892aaabd028be05"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/record-audit.mjs",
+      "bytes": 3496,
+      "sha256": "4f3edcbf24bb8decb4e4976c5d516b4ec9ded69e396a2bcb1dc2468e8cbc304e"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/replay-ui-records.mjs",
+      "bytes": 3161,
+      "sha256": "09322cdb1956e3b6afc98a5ce5854f15669b35b026e2a3111c2b9ea9070a2a6a"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/tests/test-support.mjs",
+      "bytes": 4900,
+      "sha256": "3b3140db1cf655547f024a87193ffc29fce78e0311fb0cd2aa0daa845fc16c54"
+    },
+    {
+      "path": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "bytes": 4860,
+      "sha256": "aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64"
+    }
+  ],
+  "prerequisite_preservation": {
+    "path": "content/pages/theory.html",
+    "baseline_sha256": "042126ad549895e5d70af5cf5c30c81a0d4416b4951c9870d70efc2192e6aafc",
+    "inverse_remove_exact": "<p><a href=\"gaussian-tradeoff.html#question\">继续同一篇 Gaussian 论文：从标量已知输入走到复矩阵协方差、后验估计与通感权衡 →</a>（保留上述实标量 LS 假设；新课使用 proper-complex prior 与每复使用速率。）</p>\n",
+    "inverse_verified": true
+  },
+  "verification": {
+    "owner_tests_passed": 45,
+    "owner_test_command": "node --test labs/gaussian-tradeoff/lesson/tests/controller.test.mjs labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs",
+    "test_inventory": "labs/gaussian-tradeoff/lesson/reports/TEST-INVENTORY.json",
+    "test_inventory_sha256": "f15251bafa5001bd59e5ce773f92dd237a2163fd1b58de620b5b8275b8777e75",
+    "actual_node_worker": true,
+    "mounted_dom": true,
+    "actual_browser": false,
+    "css_layout_or_screen_reader": false,
+    "browser_performance": false,
+    "remote_or_publish": false,
+    "fresh_ui_cases": 9,
+    "actual_raw_history_downloads": 18,
+    "download_total_bytes": 1125782,
+    "case_names": [
+      "fresh-complex-continuous",
+      "fresh-complex-custom-q",
+      "reshaped-three-port",
+      "short-block-unrealizable-stiefel",
+      "held-posterior-gaussian",
+      "held-posterior-stiefel",
+      "finite-wishart-structural-zeros",
+      "finite-rank-one-sphere",
+      "maximum-ui-dimensions-blocks"
+    ],
+    "raw_history_and_mounted_replay_bitwise_equal": true,
+    "portable_extracted_suite_passed": 45,
+    "portable_reexport_bitwise_equal_files": 18,
+    "owner_source_stable": true,
+    "independent_exact_freeze_review": "Requested separately; this owner freeze does not self-certify independent acceptance"
+  },
+  "portable_capsule": {
+    "archive": "UI-EVIDENCE-PORTABLE.zip",
+    "bytes": 284622,
+    "sha256": "bc911703991d7c0bc1457793eff79aaf503b25735129d9b1c897312db955b7d9",
+    "files": 47,
+    "execution": "portable Node mounted-DOM/actual-Worker tests and independent actual UI-download replay; not a browser"
+  }
+}

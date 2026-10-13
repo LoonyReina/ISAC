@@ -1,0 +1,26 @@
+✔ classic browser loader VM: separate generation/process/export; truth is absent from held snapshot (45.410468ms)
+✔ classic loader VM: cancelling generation invalidates held state and the Worker remains reusable (22.992608ms)
+✔ classic loader VM: cancellation retains raw observation; burst supersession serializes all kernels (24.578996ms)
+✔ classic loader VM: release cancels processing, rejects stale observation, and consumes control IDs (16.111796ms)
+✔ strict protocol: rejected malformed/oversized requests do not supersede a valid running job (9.566532ms)
+✔ strict import: truth, metadata extensions, malformed samples, and stale IDs are rejected (192.868431ms)
+✔ strict protocol standalone: typed views, shared buffers, sparse arrays, depth, and limits (1.275859ms)
+✔ actual Node worker_threads: prompt cancellation, supersession, raw-state preservation, wall deadline, and errors (125.643923ms)
+✔ Node and classic-loader VM: import failure is explicit and requests cannot hang (50.94895ms)
+✔ actual Node Worker client: cancellation, progress observer faults, release, termination, and restart (120.168975ms)
+✔ client independently suppresses queued cancelled/superseded results; release wins over queued completion (0.924187ms)
+✔ browser client UMD branch: event listeners detach and cancellation transport errors settle pending work (1.805699ms)
+✔ client causality: rejected newer requests preserve accepted work, including queued older completion (0.585745ms)
+✔ client causality: accepted newer requests suppress deferred completion; cancel/release settle it exactly once (0.470561ms)
+✔ actual Node client: invalid newer processing request cannot strand a valid active processing promise (61.496314ms)
+✔ client restart attaches an explicit new Worker before waiting on delayed old termination (60.723997ms)
+✔ actual Node Worker real numerical core: fresh generation, process, raw export/import, and superseded cancellation (867.114244ms)
+✔ classic browser loader VM with real core: smoke only, no browser/performance claim (203.954209ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1888.377056

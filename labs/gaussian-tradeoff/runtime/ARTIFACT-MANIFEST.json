@@ -1,0 +1,211 @@
+{
+  "schema": "gaussian-isac-js-artifact-manifest-v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "ATTRIBUTION.md",
+      "bytes": 1838,
+      "sha256": "faec70c2d1fe009939270847669661afc1cf6efcba2472732dcdaf814a27d6c9"
+    },
+    {
+      "path": "DEVELOPMENT-FIXES.json",
+      "bytes": 1726,
+      "sha256": "4085857b14c8decbe21670f605c5f1f770d780e0c25c5585894b3008eb05dc2c"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 3992,
+      "sha256": "2304525ccbc9fbdf1bf9f7c1a982ea8217ca228aec5bc0a1854a0d2c8629b673"
+    },
+    {
+      "path": "NUMERICAL-VERIFICATION.md",
+      "bytes": 4981,
+      "sha256": "d782dd5d17c208d03704457ba6586531aa6306417a605022fb3358623218135a"
+    },
+    {
+      "path": "PROTOCOL-HANDOFF.md",
+      "bytes": 9542,
+      "sha256": "0ea86d33027eb3294cf262116fc46668b3573239bf3a78f864d8dfe2eef1d597"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7403,
+      "sha256": "883378aad964e1ea64cad3325796f056beba8d938e83b120c5023765217c0d4c"
+    },
+    {
+      "path": "SOURCE-FREEZE.json",
+      "bytes": 1452,
+      "sha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113"
+    },
+    {
+      "path": "codec.mjs",
+      "bytes": 11474,
+      "sha256": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa"
+    },
+    {
+      "path": "kernel.mjs",
+      "bytes": 16632,
+      "sha256": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310"
+    },
+    {
+      "path": "math.mjs",
+      "bytes": 12853,
+      "sha256": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d"
+    },
+    {
+      "path": "oracle/build_fresh_reference_cases.py",
+      "bytes": 6013,
+      "sha256": "a1fa44196da8cfb5ffd1946209501fd4e079d9c36d771ee50ea2699ce2e4cd66"
+    },
+    {
+      "path": "oracle/finite-integrals.json",
+      "bytes": 39728,
+      "sha256": "31945644dae4059bb390246197c8b43ff6a17fc9a1f8045bc345cb18765d926c"
+    },
+    {
+      "path": "oracle/fresh_reference_cases.json",
+      "bytes": 148981,
+      "sha256": "fab99994ee9b816bf75abf5b50349beef861a88d6811581c7c2929b3821823dc"
+    },
+    {
+      "path": "oracle/reference/core.py",
+      "bytes": 15264,
+      "sha256": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2"
+    },
+    {
+      "path": "oracle/reviewer-stress-inputs.json",
+      "bytes": 107557,
+      "sha256": "0dc9693fba45d1c862da43ef7ac0e2e411bcbb75a42ae19f5a1e46d49d119a26"
+    },
+    {
+      "path": "presets.mjs",
+      "bytes": 3897,
+      "sha256": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae"
+    },
+    {
+      "path": "reports/benchmark.json",
+      "bytes": 2273,
+      "sha256": "56caf9f37bedfd51921b2da92a7497647949c4af7ef04c0afe70af57f4923039"
+    },
+    {
+      "path": "reports/full-regression.log",
+      "bytes": 6315,
+      "sha256": "7fe467f92082d934218fc8cb8aca277dc90f4ef4a0b4777e788376afa9ae8392"
+    },
+    {
+      "path": "reports/integrals.json",
+      "bytes": 10889,
+      "sha256": "b940eff26bea5e6e9c951fa33e7f8b02785f1a82fb03d3d28c76fba8e3aefb17"
+    },
+    {
+      "path": "reports/live-direct-oracle.json",
+      "bytes": 151,
+      "sha256": "8b1a322d9de65584fcc8dbb75984967074441debc4e409dc94da9f69ebe77730"
+    },
+    {
+      "path": "reports/live-evidence.json",
+      "bytes": 835520,
+      "sha256": "53c0db89f5e583900c470436594b97248e0eddc48ffbfae6099455d23ad73016"
+    },
+    {
+      "path": "reports/numerics.json",
+      "bytes": 262,
+      "sha256": "ba80f176e1f7d4fbe117e9cc22826868e8b3d3091a028c5c23137ceb8e31c8fb"
+    },
+    {
+      "path": "reports/protocol-codec-tests.log",
+      "bytes": 946,
+      "sha256": "968de7777504538955c2b056e0981d2ef39f44d2942de7ddc4fe3441bc3c0335"
+    },
+    {
+      "path": "reports/protocol-source-sha256.txt",
+      "bytes": 608,
+      "sha256": "8144c0c59c166d1cb371d445f3a110ad0955fa4d907ed12425e938b88f1cf6b4"
+    },
+    {
+      "path": "reports/protocol-tests.log",
+      "bytes": 4008,
+      "sha256": "58e09afb1ddbc49a9b33ef27ff9aeaa4ed164b7dc79fd8c8665b2f74aabc18e1"
+    },
+    {
+      "path": "reports/stress.json",
+      "bytes": 1184756,
+      "sha256": "37f41c4674b2bf1ee5823057af1db5c2c740c1a97b800090854088d94a309e02"
+    },
+    {
+      "path": "run_all.sh",
+      "bytes": 414,
+      "sha256": "01527b0975fa252c604a4a74ec490383004aa5330c981de364e9043a5585287d"
+    },
+    {
+      "path": "runtime.mjs",
+      "bytes": 20162,
+      "sha256": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758"
+    },
+    {
+      "path": "tests/benchmark.mjs",
+      "bytes": 1441,
+      "sha256": "7c4577f7bafe7897c98cefad062b228200d12d9b137079756654e501ab5f6b02"
+    },
+    {
+      "path": "tests/codec.test.mjs",
+      "bytes": 6217,
+      "sha256": "73b16c38f1ad61d9eb12d4251e3afc8df8be47ac288c91bb283c43910bf165dc"
+    },
+    {
+      "path": "tests/export-live-evidence.mjs",
+      "bytes": 557,
+      "sha256": "8b39e0b4f3418ccb7c96fe48c7bf567a950396d3a6f59fa8bd980eca6f39dd4b"
+    },
+    {
+      "path": "tests/package_artifact.py",
+      "bytes": 3344,
+      "sha256": "4626389c2964375e0adfbc2305e94a0810ab4deefd3b9b3917bcc380a66e02e2"
+    },
+    {
+      "path": "tests/protocol-fixture-kernel.mjs",
+      "bytes": 943,
+      "sha256": "afa6c9524029d60dd873f83a9dfcb1c65f4f543aa8384a9c012d251d8243b796"
+    },
+    {
+      "path": "tests/protocol-fixture-worker.mjs",
+      "bytes": 384,
+      "sha256": "70e02cdd24fb76dd4aa3cb36116d94ac9056b3624206610d62ed6b66153c015f"
+    },
+    {
+      "path": "tests/protocol.test.mjs",
+      "bytes": 23903,
+      "sha256": "84a71359d0c7f59966985eec0bcb7bbf481a0c0ea970d06202c0121fa4ddb95a"
+    },
+    {
+      "path": "tests/test-integrals.mjs",
+      "bytes": 1798,
+      "sha256": "aa43313675bc6ea1842b4275e1a1b13cbd2f0f6928669eb2fe79bb4038f85b9a"
+    },
+    {
+      "path": "tests/test-numerics.mjs",
+      "bytes": 4968,
+      "sha256": "8fcab845730d3011873ba786318ec7da6daa2ffd1d20c4b929014809f6bdff66"
+    },
+    {
+      "path": "tests/test-stress.mjs",
+      "bytes": 1725,
+      "sha256": "6c173c831707afa431adf751c81fd85ac046493e01d236b668dbbe891abd9223"
+    },
+    {
+      "path": "tests/verify-live-evidence.py",
+      "bytes": 3675,
+      "sha256": "c069d29152a59dbcf8caf97e3beb5dbe293e82ce9c06a1937a57e9c16f321204"
+    },
+    {
+      "path": "vendor/linalg.js",
+      "bytes": 26681,
+      "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+    },
+    {
+      "path": "worker.mjs",
+      "bytes": 939,
+      "sha256": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c"
+    }
+  ]
+}

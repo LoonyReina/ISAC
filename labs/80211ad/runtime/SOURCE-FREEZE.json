@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "identity": "arXiv:1702.05833v1",
+    "url": "https://arxiv.org/abs/1702.05833v1",
+    "pdf_sha256": "c16755b358bfe4152fea3bba5bc54c05370a0d8491aa481a73816bb12447e8b8"
+  },
+  "accepted_reference": {
+    "freeze_id": "70191a5acbb6ab90d1da3791aaee86d557b8605884cac8251fb834acda4a3024",
+    "manifest_sha256": "133586b0a85f3d2324b75bbb70ef71f0e1c3404dbf70904e581022c72ec8bd6a",
+    "receiver_py_sha256": "3cb8d43eb79dc9ffd3a8beadbc2a6ead72a94fdf051f1bdaa96ce4f3b7ac8295",
+    "map_detection_py_sha256": "d25d6beb1876e68dd0574c14f2c3a8bda6f842f4524a686752b24c4aa232a1bb"
+  },
+  "first_party_helper_provenance": [
+    {
+      "runtime": "js/sha256.js",
+      "origin": "ofdm-ici-browser-prototype/js/sha256.js",
+      "origin_sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657",
+      "change": "SHA256 rounds/constants retained; incremental update and cooperative chunk scheduling added"
+    },
+    {
+      "runtime": "worker/receiver-worker.js",
+      "origin": "ofdm-ici-browser-prototype/worker/ici-worker.js",
+      "origin_sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc",
+      "change": "Scheduling/fencing idea adapted; strict observation lifecycle, protocol, codec and policy controls are new"
+    }
+  ],
+  "fft_implementation": "First-party radix2 Cooley-Tukey implementation independently checked against NumPy/SciPy and scalar sums; no third-party library code distributed",
+  "rng_contract": "mulberry32-open-uniform-box-muller-cos-sin-v1, independently reimplemented in Python",
+  "third_party_source_distributed": false,
+  "source_pdf_distributed": false,
+  "full_paper_reproduced": false,
+  "standard_compliance": false,
+  "browser_ui_implemented": false
+}

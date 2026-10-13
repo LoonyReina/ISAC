@@ -1,0 +1,787 @@
+{
+  "registry": [
+    {
+      "path": [
+        "cases"
+      ],
+      "append": [
+        {
+          "id": "case-ofdm-ici-receiver",
+          "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+          "fields": {
+            "先修": "<a href=\"foundations.html#ofdm\">符号内与跨符号复相位</a>；<a href=\"foundations.html#cfar\">谱峰、检测与虚警</a>；<a href=\"offgrid-range.html#trials\">检测条件误差</a>",
+            "问题": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+            "交互机制": "从实际复数X/Y依次运行MUSIC角度初筛、有限CFO网格APES、GLRT-OMP联合重拟合、延迟–Doppler CFAR和原文混叠区规则；并排比较同观测的已知X-FFT。",
+            "证据类型": "<a href=\"https://arxiv.org/pdf/2103.15694v1\">固定 arXiv:2103.15694v1</a>；独立Python参考和逐阶段JavaScript/Node Worker数值证据，实际浏览器另行验收。",
+            "结论边界": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+            "下一研究问题": "先保留同CFO、分数时延、角度端点、假峰和漏检，再检验有限支撑失配与名义门限何时失效？"
+          },
+          "unit": "ofdm-ici-receiver",
+          "paper": "ofdm-ici-receiver.html#paper",
+          "next": "ofdm-ici-receiver.html#limits",
+          "learningEntry": "ofdm-ici-receiver.html#intuition",
+          "paperComparison": {
+            "comparisonStatus": "partial",
+            "sourceTitle": "MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?",
+            "sourceUrl": "https://arxiv.org/pdf/2103.15694v1",
+            "version": "arXiv:2103.15694v1，2021-03-29，14页固定预印本；本卡按该PDF编号。期刊记录为IEEE JSTSP 15(6), 1393–1408, 2021；2026-10-11核查全文。",
+            "paperEvidenceType": "模型、算法推导与数值仿真",
+            "siteArtifactType": "源算法的有界有限网格重算；Python/Node证据与浏览器/原图门分开",
+            "metrics": [
+              "全部检出、匹配、虚检与漏检；未检出不记零误差",
+              "原文式 V/(V+参考目标命中) 与常规 V/(V+全部命中) 分列；均不是单元Pfa",
+              "检测成功条件下的角度/距离/物理速度误差，和各自样本数",
+              "逐角度CFO剖面、接受/拒绝记录、联合重拟合与停止原因",
+              "相同实际Y/X/角度候选的已知X-FFT；另列人工无ICI观测"
+            ],
+            "unknowns": [
+              "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+              "名义Pfa未校准；同CFO与离格配对存在混合结果，不能承诺ICI始终有益"
+            ],
+            "comparisonLink": "ofdm-ici-receiver.html#paper",
+            "sourceId": "case-ofdm-ici-receiver-paper",
+            "locator": {
+              "summary": "§II-B–D，式(5)–(13)；§III-A，引理1、式(16)–(19)；§III-C，式(34)–(36)；§IV，算法2–3；§V，表I–II、图7–10及式(66)",
+              "section": "§II–IV；§V",
+              "figure": "图7–10：原始曲线尚未复现",
+              "equation": "式(5)–(13)、(16)–(19)、(34)–(36)、(49)、(65)–(66)；算法1–3"
+            },
+            "retainedAssumptions": [
+              "已知发射符号X；单数据流、远场单站点目标、完全收发隔离、CP覆盖时延",
+              "实际复数Y与相同X/角度候选用于APES和普通FFT；未知参数不输入接收机",
+              "有限角度/CFO网格、MDL阶数、L/Pmax、CFAR窗与关联规则明确记录",
+              "普通FFT去除已知X；人工去ICI与接收增益归一化单独标注"
+            ],
+            "omittedMechanisms": [
+              "连续角度/CFO细化及原始2048×64完整收敛OMP",
+              "原图7–10 Monte Carlo曲线、经验校准Pfa、通信与实测性能",
+              "实际浏览器交互/无障碍/取消/内存/绘制完成延迟认证"
+            ],
+            "resourceBudget": {
+              "summary": "本站固定N64/M16/NT8/NR8/L12，Pmax1–4；目标、种子、QPSK/16QAM与声明搜索网格可变；完整输入和每次停止原因随结果保存。原文N2048/M64，不能等同规模或资源。",
+              "bandwidth": "B=50MHz；名义格距与分辨率分开",
+              "energy": "发射QPSK/16QAM与复增益/噪声随记录声明；不补偿方法间接收能量",
+              "duration": "N64/M16的有界样本预算；不能沿用原始2048×64驻留与精度",
+              "aperture": "8发8收、远场阵列；接收增益归一化分开",
+              "priorKnowledge": "接收机仅X/Y/config；目标真值供生成与事后评估",
+              "other": [
+                "Python和Node用时不是浏览器用时",
+                "可选离线存档不是启动负载；不分发论文PDF或私有提取文本"
+              ]
+            },
+            "verificationNote": "固定源/core、独立数值、真实失败和存档字节见 docs/OFDM-ICI-SOURCE-EVIDENCE.md；有限网格held结果不替换为连续细化4/1/1结果"
+          }
+        }
+      ],
+      "lengthBefore": 16
+    },
+    {
+      "path": [
+        "units"
+      ],
+      "append": [
+        {
+          "id": "ofdm-ici-receiver",
+          "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+          "href": "ofdm-ici-receiver.html#experiment",
+          "question": "雷达端知道发出的数据，但高速目标破坏了子载波正交性。怎样同时检出弱目标、估角距速，并解开慢时间测速的模糊？",
+          "prerequisites": [
+            "foundations.html#ofdm",
+            "foundations.html#cfar",
+            "offgrid-range.html#experiment"
+          ],
+          "group": "research",
+          "primaryDirectionId": "receiver",
+          "action": "生成或导入实际复数观测，经Worker从头重算有限网格接收机；同时检查CFO谱、所有检出、漏检、虚检与停止原因。"
+        }
+      ],
+      "lengthBefore": 31
+    },
+    {
+      "path": [
+        "pages"
+      ],
+      "append": [
+        {
+          "path": "ofdm-ici-receiver.html",
+          "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
+          "stage": "experiments",
+          "role": "有界论文算法 · 有限网格ICI-aware接收、同观测FFT与失败记录",
+          "prerequisites": [
+            "foundations.html#ofdm",
+            "foundations.html#cfar",
+            "offgrid-range.html#experiment"
+          ],
+          "next": "reading.html#guide-ofdm-ici-aware-receiver-2021",
+          "nextLabel": "回到固定v1：核对算法、分母和未完成的原图"
+        }
+      ],
+      "lengthBefore": 27
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "scope"
+      ],
+      "before": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。",
+      "after": "复数预处理、匹配、检测、参数估计与跟踪；区分背景相减、检测门限、误差和虚警。 新增固定小规模ICI-aware多目标接收；原尺寸曲线与校准Pfa仍待核验。"
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "primaryCaseIds"
+      ],
+      "append": [
+        "case-ofdm-ici-receiver"
+      ],
+      "lengthBefore": 1
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        0,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "知道发射数据，为什么高速回波仍会失配？",
+          "href": "ofdm-ici-receiver.html#intuition",
+          "kind": "lesson",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 4
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        1,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "同一X/Y里的符号内频偏、角度与时延",
+          "href": "ofdm-ici-receiver.html#model",
+          "kind": "model",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        2,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "从实际样本重算MUSIC/APES/GLRT-OMP/CFAR",
+          "href": "ofdm-ici-receiver.html#experiment",
+          "kind": "interactive",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 7
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        3,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "固定v1：逐阶段算法与统计分母对照",
+          "href": "ofdm-ici-receiver.html#paper",
+          "kind": "paper-guide",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        4,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "保留假峰、漏检、混叠区失败和预算上限",
+          "href": "ofdm-ici-receiver.html#limits",
+          "kind": "limits",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 4
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        5,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "保存实际输入与结果，下载源自由数值证据",
+          "href": "ofdm-ici-receiver.html#reproduce",
+          "kind": "reproduction-plan",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+        }
+      ],
+      "lengthBefore": 6
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "coverage"
+      ],
+      "before": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。",
+      "after": "已有匹配、CFAR、实标量 LS/CRB、递归背景、离格单目标测距与4×4有限二维Toeplitz SDP/ADMM；完整检测、真实信道校准和多目标跟踪尚未实现。 已有N64/M16有限网格MUSIC/APES/GLRT-OMP/CFAR有界实现，不表示整篇论文或浏览器已验收。"
+    }
+  ],
+  "guides": [
+    {
+      "path": [
+        "cards",
+        10,
+        "evidence",
+        "kind"
+      ],
+      "before": "模型与算法推导＋数值仿真；本站仅导读，未新增实验",
+      "after": "模型与算法推导＋数值仿真；本站有有界有限网格数值重算，原图与浏览器门仍开放"
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "evidence",
+        "summary"
+      ],
+      "before": "表I采用60 GHz载频、50 MHz带宽、2048子载波、64符号和8发8收；图7–10在强目标遮蔽弱目标的设置中比较检出率、错误发现率（FDR）和条件均方根误差（RMSE），展示计入ICI的接收处理如何改善这些曲线。",
+      "after": "表I采用60 GHz载频、50 MHz带宽、2048子载波、64符号和8发8收；图7–10在强目标遮蔽弱目标的设置中比较检出率、错误发现率（FDR）和条件均方根误差（RMSE），展示计入ICI的接收处理如何改善这些曲线。 本站新增N64/M16/L12实际接收链；held有限网格4命中/3虚检/1漏检和上限停止均保留，不能用低条件误差掩盖失败。"
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "limits",
+        3
+      ],
+      "before": "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。结果不证明ICI始终有益，也不意味着突破任意物理分辨率；本站未实现APES、GLRT-OMP或原文曲线。",
+      "after": "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "prerequisites"
+      ],
+      "append": [
+        {
+          "href": "ofdm-ici-receiver.html#experiment",
+          "label": "运行有界接收机，并保留全部漏检/虚检/停止原因"
+        }
+      ],
+      "lengthBefore": 3
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "visualTrace",
+        "steps",
+        3,
+        "explanation"
+      ],
+      "before": "原文 FDR=V/(V+S)：V 为无法关联到已有目标的检出数，S 为跨试验参考目标检出数；不是无目标单元的虚警概率。式(66)只统计已检出目标；FFT 与所提方法的关联坐标口径不同。无 ICI 基线为合成观测；本站未运行接收算法。",
+      "after": "原文 FDR=V/(V+S)：V 为无法关联到已有目标的检出数，S 为跨试验参考目标检出数；不是无目标单元的虚警概率。式(66)只统计已检出目标；FFT 与所提方法的关联坐标口径不同。无 ICI 基线为合成观测；本站另有有界有限网格接收课；本定性阅读图本身没有运行算法，原图7–10仍未复现。"
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "notebookTopicId"
+      ],
+      "after": "ofdm-ici-receiver",
+      "added": true
+    },
+    {
+      "path": [
+        "cards",
+        10,
+        "executable"
+      ],
+      "after": {
+        "kind": "validated-paper-algorithm",
+        "coverage": "algorithm",
+        "href": "ofdm-ici-receiver.html#experiment",
+        "label": "进入有界ICI-aware接收实验",
+        "summary": "实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。",
+        "limitations": "独立Python和Node数值证据不等于实际浏览器认证；无连续细化、原始尺寸完整OMP、原图曲线或经验校准Pfa。",
+        "sourceLocators": [
+          "§II 式(5)–(13)：实际复观测",
+          "§III–IV 算法1–3：MUSIC/APES/GLRT-OMP",
+          "§III-C 式(34)–(36)：CFAR与混叠区规则",
+          "§V 式(65)–(66)、图7–10：统计口径与未复现曲线"
+        ]
+      },
+      "added": true
+    }
+  ],
+  "backlog": [
+    {
+      "path": [
+        "sequence",
+        "activeStages"
+      ],
+      "append": [
+        {
+          "paperId": "ofdm-ici-aware-receiver-2021",
+          "stage": "browser-validation",
+          "status": "pending",
+          "branch": "Local bounded finite-grid ICI receiver; exact source/Node numerical evidence, actual browser and publication gated separately"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "canonicalReferences",
+        "caseIds"
+      ],
+      "append": [
+        "case-ofdm-ici-receiver"
+      ],
+      "lengthBefore": 0
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "canonicalReferences",
+        "sourceIds"
+      ],
+      "append": [
+        "case-ofdm-ici-receiver-paper"
+      ],
+      "lengthBefore": 0
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "source",
+        "pdfSha256"
+      ],
+      "before": null,
+      "after": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "source",
+        "hashStatus"
+      ],
+      "before": "not-recorded",
+      "after": "recorded"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "experiment",
+        "details",
+        "auditedGuideLimits",
+        3
+      ],
+      "before": "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。结果不证明ICI始终有益，也不意味着突破任意物理分辨率；本站未实现APES、GLRT-OMP或原文曲线。",
+      "after": "无ICI曲线使用人为去掉ICI项的基准观测，不能当作现实硬件。实际运行 N=64、M=16、8发8收、L=12、Pmax=1–4 的有限网格 MUSIC/APES/GLRT-OMP/CFAR；真值只供事后评估。保留 held 4命中/3虚检/1漏检及预算上限；不是原图复现、校准检测器或浏览器性能认证。"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "experiment",
+        "details",
+        "boundedCurrentLesson"
+      ],
+      "after": {
+        "N": 64,
+        "M": 16,
+        "NT": 8,
+        "NR": 8,
+        "L": 12,
+        "Pmax": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "finiteGridOnly": true,
+        "truthBlind": true,
+        "held": {
+          "hits": 4,
+          "falseDetections": 3,
+          "misses": 1,
+          "capRetained": true
+        },
+        "allOnesDownstreamParityClaimed": false,
+        "nominalPfaCalibrated": false,
+        "sameCfoOffgridOutcome": "mixed; retain favorable and unfavorable controls"
+      },
+      "added": true
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "implementation",
+        "classification"
+      ],
+      "before": "guide-only-with-related-prerequisite-labs",
+      "after": "bounded-source-derived-finite-grid-receiver; browser-and-original-curves-open"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "implementation",
+        "live"
+      ],
+      "before": null,
+      "after": "ofdm-ici-receiver.html#experiment"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "implementation",
+        "offline"
+      ],
+      "before": null,
+      "after": "data/ofdm-ici-reference-v1.zip"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "implementation",
+        "details"
+      ],
+      "before": {
+        "guideTraceKind": "qualitative-reading-trace",
+        "actualArtifacts": [
+          {
+            "path": "features/foundations/course-core.js",
+            "exists": true,
+            "role": "基础OFDM FFT/匹配教学，不是ICI-aware APES接收器"
+          },
+          {
+            "path": "labs/ofdm-reference/offgrid-range-core.js",
+            "exists": true,
+            "role": "单静态目标、两有限网格profile-LS，无ICI/GLRT/OMP"
+          },
+          {
+            "path": "docs/OFFGRID-RANGE-VALIDATION.md",
+            "exists": true,
+            "role": "独立测距机制的验证不覆盖本文"
+          }
+        ],
+        "omissions": [
+          "符号内ICI生成与已知调制数据矩阵",
+          "MUSIC初筛/APES/CFO联合估计",
+          "GLRT-OMP干扰消除/CFAR多目标",
+          "原关联标准/条件RMSE/图7–10"
+        ],
+        "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+      },
+      "after": {
+        "browserAccepted": false,
+        "kernelSha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe",
+        "referenceCoreSha256": "fee9e4a55707fe251f73bf343d0ac0142607d6c827cfd4e8bd0c974bba439cdb",
+        "actualArtifacts": [
+          {
+            "path": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+            "exists": true,
+            "role": "actual source-derived finite-grid numerical receiver"
+          },
+          {
+            "path": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+            "exists": true,
+            "role": "actual asynchronous Worker/client execution"
+          },
+          {
+            "path": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
+            "exists": true,
+            "role": "distinct Python, JavaScript, browser, source-curve gates"
+          }
+        ],
+        "omissions": [
+          "continuous refinement",
+          "original-size converged OMP and Figures7–10",
+          "empirical Pfa calibration",
+          "actual browser certification"
+        ]
+      }
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "source"
+      ],
+      "before": "audited-partial",
+      "after": "audited-for-selected-core"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "modelFidelity"
+      ],
+      "before": "not-validated",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "algorithm"
+      ],
+      "before": "not-implemented",
+      "after": "partial-live"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "independentValidation"
+      ],
+      "before": "pending",
+      "after": "passed"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "selectedExperiment"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "liveExecution"
+      ],
+      "before": "prerequisite-only",
+      "after": "partial-core"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stages",
+        "uiLearning"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "source"
+      ],
+      "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+      "after": "Fixed v1 source audit and numerical operator checks; source PDF hash recorded, source text/PDF not redistributed."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "algorithm"
+      ],
+      "before": "guide-only-with-related-prerequisite-labs",
+      "after": "Actual finite-grid MUSIC/APES/GLRT-OMP/joint refits/CFAR and literal alias-zone rule from accepted X/Y/config; frozen JavaScript core."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "selectedExperiment"
+      ],
+      "before": "No independently reproduced named paper experiment established by this inventory.",
+      "after": "Bounded held finite-grid4 hits/3 false/1 miss and cap; original Figures7–10 not reproduced."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "fullPaper"
+      ],
+      "before": "No full-paper reproduction established; the minimal target is a first milestone only.",
+      "after": "Not reproduced; independent bounded mathematics does not establish original favorable curves."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "latency"
+      ],
+      "before": "No measured browser control-to-result latency for the faithful target core.",
+      "after": "Node-only timings and Worker/VM tests, not actual browser measurement."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "stageEvidence",
+        "independentValidation"
+      ],
+      "after": "Python reference independently accepted; separate frozen JavaScript port review passed356/356 stage arrays across8 fresh runs and2219 scalar checks, with all6 exact runtime hashes verified. Neither transfers to browser or full-paper acceptance.",
+      "added": true
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "missingImplementation"
+      ],
+      "before": [
+        "符号内ICI生成与已知调制数据矩阵",
+        "MUSIC初筛/APES/CFO联合估计",
+        "GLRT-OMP干扰消除/CFAR多目标",
+        "原关联标准/条件RMSE/图7–10"
+      ],
+      "after": [
+        "Original-size fully converged multi-CFO OMP and original Figures7–10 Monte Carlo curves",
+        "Calibrated achieved Pfa, communications/field/hardware claims",
+        "Actual browser rendering, keyboard, cancellation, memory and painted-result latency acceptance"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "dependencies"
+      ],
+      "before": [
+        "高质量复矩阵线性代数/特征分解/FFT",
+        "按原文GLRT统计量和门限/噪声估计建立独立参考",
+        "固定子空间阶数、候选网格、目标关联规则",
+        "完整2048×64×8尺寸和多轮搜索基准"
+      ],
+      "after": [
+        "Frozen source/JavaScript/Python identities and exact input/output stage contracts",
+        "Actual browser and device acceptance",
+        "Full-size compute budget and independent original-curve experiment design"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "blockers",
+        0
+      ],
+      "before": "无APES/GLRT-OMP实际核心或独立fixtures",
+      "after": "Original curves and empirical false-alarm calibration remain open"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "blockers",
+        1
+      ],
+      "before": "论文全尺寸计算预算、门限关联细节须完整落实",
+      "after": "Browser/device and publication acceptance remain open"
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "realtime",
+        "details",
+        "assessment"
+      ],
+      "before": "缩小规模但保持完整ICI-aware算法可交互原理验证；论文全尺寸的角度/CFO搜索和多轮矩阵求解很重，未测不能承诺实时。需异步worker/WebGPU或服务端评估",
+      "after": "Actual bounded Worker kernel with Node-only measured runtime; no actual browser performance promise."
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "evidence",
+        "sourceEvidenceDocument"
+      ],
+      "after": "docs/OFDM-ICI-SOURCE-EVIDENCE.md",
+      "added": true
+    },
+    {
+      "path": [
+        "papers",
+        10,
+        "details",
+        "failureGates"
+      ],
+      "after": {
+        "heldFiniteGridHits": 4,
+        "heldFiniteGridFalseDetections": 3,
+        "heldFiniteGridMisses": 1,
+        "capRetained": true,
+        "continuousHeldOutcomeSubstituted": false,
+        "nominalPfaCalibrated": false,
+        "sameCfoAlwaysImproves": false,
+        "originalCurvesReproduced": false,
+        "nodeIsBrowser": false
+      },
+      "added": true
+    }
+  ]
+}

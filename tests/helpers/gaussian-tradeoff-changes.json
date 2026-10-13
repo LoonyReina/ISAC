@@ -1,0 +1,824 @@
+{
+  "registry": [
+    {
+      "path": [
+        "cases"
+      ],
+      "lengthBefore": 19,
+      "append": [
+        {
+          "id": "case-gaussian-tradeoff",
+          "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+          "fields": {
+            "先修": "<a href=\"theory.html#crb-mechanism\">标量随机能量与CRB</a>；<a href=\"waveform-design.html#model\">复数发射块与协方差</a>；<a href=\"foundations.html#limits\">区分误差、下界和可达率</a>",
+            "问题": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+            "交互机制": "从实际复信道和连续κ求解协方差整形，生成不归一化Gaussian块与可实现的Stiefel块；查看X、R、Y、后验、完整实Fisher矩阵和KKT间隙，再分别核对有限Wishart/MP与秩一球面MI。",
+            "证据类型": "固定arXiv:2204.06938v8理论与数值研究；独立Python参考、JavaScript和实际Node Worker审查。教学例、图4有限积分、图10双功率解释的离线审计分别标明；真实浏览器验收仍开放。",
+            "结论边界": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。",
+            "下一研究问题": "块长小于协方差秩、深衰落关闭模式或先验变弱时，哪些误差来自未激励方向？外界、平均误差和可实现信号对为什么不能连成已认证的完整区域？"
+          },
+          "unit": "gaussian-tradeoff",
+          "paper": "gaussian-tradeoff.html#paper",
+          "next": "gaussian-tradeoff.html#limits",
+          "learningEntry": "gaussian-tradeoff.html#question",
+          "paperComparison": {
+            "comparisonStatus": "partial",
+            "sourceTitle": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
+            "sourceUrl": "https://arxiv.org/html/2204.06938v8",
+            "version": "v8，2023-06-07；首稿 2022",
+            "sourceId": "case-gaussian-tradeoff-paper",
+            "comparisonLink": "gaussian-tradeoff.html#paper",
+            "researchQuestion": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+            "observationsAndUnknowns": "通信Yc=HcX+Zc，感知Ys=HsX+Zs；设计已知Hc、功率、块长和噪声/先验，感知估计器只接收实际X、Ys及模型方差。Hs为未知完整复响应矩阵，真值只进入生成和事后MSE，不进入估计器或优化器。",
+            "locator": {
+              "summary": "固定v8 §II式(2)–(7)、(11)，§IV式(41)–(57)，§V-B式(92)–(103)、(109)–(112)；图4为有限Wishart对照，图10为双功率解释的有界审计。直接实似然、式(48)/(95)为操作依据，不逐字执行冲突式(93)–(94)/(109)。",
+              "section": "§II、§IV、§V-B",
+              "figure": "图4；图10参数/归一化审计；不声称逐坐标复现原曲线或图11",
+              "equation": "(2)–(7)、(11)、(41)–(57)、(92)–(103)、(109)–(112)"
+            },
+            "paperEvidenceType": "理论、界与数值仿真；非硬件或实测数据",
+            "siteArtifactType": "有界复矩阵Bayesian数值核心、真实Node Worker与教学接入；独立源参考、数值积分及可选离线证据，不是完整分布优化或浏览器认证",
+            "retainedAssumptions": [
+              "复离散块模型；感知端准确知道实际X，通信端把X视为未知数据；设计知道瞬时Hc",
+              "独立各向同性iid proper-complex Gaussian感知先验与噪声；不是任意先验协方差",
+              "相同Hc、T、先验、噪声及期望迹tr(Q)=M·PT；Gaussian块能量波动且不逐块归一化",
+              "Stiefel只有rank(Q)≤T时可实现，正的小特征模态保留；proper先验的未激励方向保留误差",
+              "式(48)有限κ使用真实协方差整形及完整矩阵支持超平面证书；通信端点单独使用water filling"
+            ],
+            "omittedMechanisms": [
+              "任意p(X)的精确泛函最优化、完整CRB–rate区域和已认证可达凸包",
+              "一般MIMO有限SNR Stiefel互信息；高SNR渐近式不能替代它，不能把Gaussian logdet赋给Stiefel",
+              "原作者随机样本、图10逐点数值、图11零空间补全和全部原图",
+              "非线性角度/幅度参数、任意先验、有限码长译码、CSI获取开销、硬件和真实浏览器验收"
+            ],
+            "metrics": [
+              "Gaussian输入互信息：bit/每复信道使用；协方差外界不是一般联合可达点",
+              "条件Bayes误差：复系数平方误差之和；标归一化时除以M·Ns",
+              "Gaussian/Stiefel有限块均值、SE、样本数和真值仅供评估的经验MSE",
+              "完整复矩阵梯度、PSD/功率残差和支持超平面全局间隙；浮点诊断非区间证明",
+              "有限Wishart积分、MP近似及单独秩一球面有限SNR MI；积分误差/质量/尾概率为诊断"
+            ],
+            "unknowns": [
+              "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。",
+              "式(109)正号、式(93)–(94)坐标与proper先验因子、Pt/PT功率解释保留冲突；不得靠原图外观选定。",
+              "源未给定种子、权重网格、积分或求解容差与逐点数值；所用设置为独立参考选择。"
+            ],
+            "resourceBudget": {
+              "summary": "教学例M=4、Nc=3、Ns=2、T=8、PT=1、通信/感知噪声方差0.7/1、先验方差1.3；不是图10。图10单信道预设M=Nc=Ns=4、T=16，24dB保留总功率与每天线两种解释。",
+              "bandwidth": "复离散模型，未指定RF带宽或载频，不换算bit/s",
+              "energy": "每块期望能量T·M·PT；Gaussian不强制逐块恒能量，Stiefel样本协方差固定",
+              "duration": "T个复信道使用；B是独立块数，不能合成TB长度的单次估计",
+              "aperture": "只定义复信道矩阵维数，不引入物理阵列孔径或角度单位",
+              "priorKnowledge": "瞬时Hc、实际X、噪声与各向同性proper先验已知；Hs未知，真值隔离",
+              "other": [
+                "有界运行M/Nc/Ns≤6、T≤32、B≤512、权重数≤16；联合工作量及数值条件门独立约束",
+                "图4离线39积分点；图10离线9216协方差求解、2359296波形评估，共用随机数，不是同数量独立试验",
+                "Node性能和模块VM加载不是浏览器延迟；证据包只供手动可选下载"
+              ]
+            },
+            "verificationNote": "PDF SHA-256 8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342；七文件运行冻结ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113；独立审查与源冲突见docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md。"
+          }
+        }
+      ]
+    },
+    {
+      "path": [
+        "units"
+      ],
+      "lengthBefore": 34,
+      "append": [
+        {
+          "id": "gaussian-tradeoff",
+          "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+          "href": "gaussian-tradeoff.html#experiment",
+          "question": "感知端知道每次发射的复数矩阵 X；同一平均协方差下，Gaussian 块与固定协方差 Stiefel 块的估计误差和通信信息为何不同？",
+          "prerequisites": [
+            "theory.html#crb-mechanism",
+            "waveform-design.html#model",
+            "foundations.html#limits"
+          ],
+          "group": "research",
+          "primaryDirectionId": "tradeoffs",
+          "action": "固定同一复信道、资源与随机样本，实际求解矩阵协方差整形，检查后验、Fisher和证书；分开读外界、有限块均值、Wishart与单独秩一MI。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "pages"
+      ],
+      "lengthBefore": 30,
+      "append": [
+        {
+          "path": "gaussian-tradeoff.html",
+          "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
+          "stage": "experiments",
+          "role": "有界源模型 · 复矩阵Bayesian后验、协方差整形与输入分布",
+          "prerequisites": [
+            "theory.html#crb-mechanism",
+            "waveform-design.html#model",
+            "foundations.html#limits"
+          ],
+          "case": "case-gaussian-tradeoff",
+          "next": "reading.html#direction-tradeoffs",
+          "nextLabel": "对照通感权衡的原文、统计与未实现边界"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "primaryCaseIds"
+      ],
+      "lengthBefore": 4,
+      "append": [
+        "case-gaussian-tradeoff"
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        0,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "相同平均协方差，误差为什么还会不同？",
+          "href": "gaussian-tradeoff.html#question",
+          "kind": "lesson",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        1,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "复数X、Y、未知响应矩阵与proper先验",
+          "href": "gaussian-tradeoff.html#model",
+          "kind": "model",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        2,
+        "items"
+      ],
+      "lengthBefore": 7,
+      "append": [
+        {
+          "label": "实际求解协方差、生成波形并检查后验",
+          "href": "gaussian-tradeoff.html#experiment",
+          "kind": "interactive",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        3,
+        "items"
+      ],
+      "lengthBefore": 6,
+      "append": [
+        {
+          "label": "固定v8：式(48)/(95)、图4与图10审计",
+          "href": "gaussian-tradeoff.html#paper",
+          "kind": "paper-guide",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        4,
+        "items"
+      ],
+      "lengthBefore": 5,
+      "append": [
+        {
+          "label": "外界、Monte Carlo和渐近率各能说明什么",
+          "href": "gaussian-tradeoff.html#limits",
+          "kind": "limits",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        2,
+        "levels",
+        5,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "从原始输入重算并核对矩阵证书和统计",
+          "href": "gaussian-tradeoff.html#reproduce",
+          "kind": "reproduction-plan",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定2204.06938v8的线性复矩阵、各向同性proper Gaussian先验；实际式(48)协方差整形、完整矩阵证书与后验估计。Gaussian互信息、有限块Monte Carlo、协方差外界、Wishart积分和MP近似分开。一般MIMO有限SNR Stiefel互信息未实现，真实浏览器和整篇复现未验收。"
+        }
+      ]
+    }
+  ],
+  "backlog": [
+    {
+      "path": [
+        "sequence",
+        "activeStages"
+      ],
+      "lengthBefore": 8,
+      "append": [
+        {
+          "paperId": "supplement-case-crb",
+          "stage": "browser-validation",
+          "status": "pending",
+          "branch": "Local bounded Gaussian matrix lesson and independently reviewed numerical/Node Worker core; actual browser, paint timing and publication gated separately"
+        }
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "canonicalReferences",
+        "caseIds"
+      ],
+      "lengthBefore": 1,
+      "append": [
+        "case-gaussian-tradeoff"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "canonicalReferences",
+        "sourceIds"
+      ],
+      "lengthBefore": 1,
+      "append": [
+        "case-gaussian-tradeoff-paper"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "source",
+        "pdfSha256"
+      ],
+      "before": null,
+      "after": "8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "source",
+        "hashStatus"
+      ],
+      "before": "not-recorded",
+      "after": "recorded"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "source",
+        "locators"
+      ],
+      "before": {
+        "summary": "主论文 v8 §II-A–B；配套教程 v2（2023-10-17）§IV-B 式(19)–(22)，速率桥接见 §IV-A–C。仅借用已知输入与先条件再平均的组织方式；本站有限样本 LS 等号为独立经典推导",
+        "section": null,
+        "figure": null,
+        "equation": null
+      },
+      "after": {
+        "summary": "固定v8 §II式(2)–(7)、(11)，§IV式(41)–(57)，§V-B式(92)–(103)、(109)–(112)；图4为有限Wishart对照，图10为双功率解释的有界审计。直接实似然、式(48)/(95)为操作依据，不逐字执行冲突式(93)–(94)/(109)。",
+        "section": "§II、§IV、§V-B",
+        "figure": "图4；图10参数/归一化审计；不声称逐坐标复现原曲线或图11",
+        "equation": "(2)–(7)、(11)、(41)–(57)、(92)–(103)、(109)–(112)"
+      }
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "source",
+        "details",
+        "audit"
+      ],
+      "added": true,
+      "after": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "source",
+        "details",
+        "operationalConventions"
+      ],
+      "added": true,
+      "after": {
+        "objective": "Source (48) sensing-minus-rate, not the printed plus-rate sign in (109)",
+        "fisher": "Direct real proper-complex likelihood and prior factor2; printed (93)–(94) coordinate conflict retained, (95) trace independently checked",
+        "power": "Both TableII 24dB total-Pt and per-antenna-PT interpretations retained; no figure-fitted normalization",
+        "sampleCovariance": "R=XX^H/T; Gaussian blocks remain unnormalized",
+        "scope": "Isotropic iid proper-complex sensing prior, not arbitrary prior covariance"
+      }
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "contribution",
+        "summary"
+      ],
+      "before": "Compute the paper complex-vector CRB–rate region, including the specified sensing prior and input-distribution optimization.",
+      "after": "Bounded Bayesian complex-matrix response specialization of source (48)/(95): covariance shaping, Gaussian rate/error, finite Wishart and separately rank-one sphere MI; arbitrary input-distribution optimum remains open."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "minimalFaithfulTarget",
+        "description"
+      ],
+      "before": "Implement a source-audited low-dimensional instance of the actual vector/Bayesian region; compare against independent convex/numerical bounds before UI.",
+      "after": "Run fresh bounded complex-matrix covariance shaping and truth-blind posterior estimation with full-matrix certificates; retain the separate real-scalar prerequisite, exact source conflicts, finite-sample statistics and unimplemented full-region gates."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "targets"
+      ],
+      "before": [
+        "Paper Gaussian/fading numerical setting; figure/parameter audit still required"
+      ],
+      "after": [
+        "Figure4: 39 finite isotropic complex-Wishart integral points with explicit MP approximation comparison",
+        "Figure10: bounded two-power-convention configuration audit, 9216 shaping solves and2359296 waveform evaluations; not digitized source-curve reproduction",
+        "Separate teaching M4/Nc3/Ns2/T8 example and rank-one sphere finite-SNR MI; neither is Figure10 or Figure11"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "baselines"
+      ],
+      "before": [
+        "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+      ],
+      "after": [
+        "Same H, Q, expected power, T, prior and noises: unnormalized Gaussian versus realizable fixed-covariance random Stiefel waveforms",
+        "Finite-dimensional Wishart integration versus explicitly approximate MP; rank-one sphere MI versus Gaussian-input upper comparison",
+        "Covariance outer pair and deterministic zero-data-rate sensing endpoint remain distinct from jointly achieved pairs; no full-MIMO finite-SNR Stiefel-rate substitution"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "metrics"
+      ],
+      "before": [
+        "Fisher 信息 J",
+        "平均条件 CRB，增益平方",
+        "互信息，bit/每实信道使用",
+        "条件与联合平均 MSE、经验偏差，增益平方/增益",
+        "实际条件 CRB 的均值与有限试验经验 MSE 分开"
+      ],
+      "after": [
+        "Gaussian输入互信息：bit/每复信道使用；协方差外界不是一般联合可达点",
+        "条件Bayes误差：复系数平方误差之和；标归一化时除以M·Ns",
+        "Gaussian/Stiefel有限块均值、SE、样本数和真值仅供评估的经验MSE",
+        "完整复矩阵梯度、PSD/功率残差和支持超平面全局间隙；浮点诊断非区间证明",
+        "有限Wishart积分、MP近似及单独秩一球面有限SNR MI；积分误差/质量/尾概率为诊断"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "resources"
+      ],
+      "before": [
+        "Existing independent teaching budget, not the target paper configuration: 本站固定 P=1、感知噪声方差=1、实标量维度和 LS 估计器；θ=1 仅作评估真值，估计器只接收 x、y。T 为每次估计的实观测数，B 为独立评估试验数，不合并成 TB 样本估计。BPSK 每块能量 T；Gaussian 期望块能量 T、不逐块归一化；固定块模式的实现能量可以不同，不用于宣称赢家。无峰值约束、先验、连续带宽或物理孔径模型。"
+      ],
+      "after": [
+        "教学例M=4、Nc=3、Ns=2、T=8、PT=1、通信/感知噪声方差0.7/1、先验方差1.3；不是图10。图10单信道预设M=Nc=Ns=4、T=16，24dB保留总功率与每天线两种解释。",
+        "Offline Figure4: M=Ns in2/4/6,T=4M,Q=I,sensing noise1,prior precision.01–100,16384 blocks per M reused across13 prior points.",
+        "Offline Figure10: two power conventions×two seeds×256 channels×nine weights×256 waveform blocks;512 unique fading channels and131072 independent base waveform draws, not2359296 independent trials."
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "unresolved"
+      ],
+      "lengthBefore": 0,
+      "append": [
+        "Unspecified author seeds, source ordinates, weight grid and solver/integration settings; no exact Figure10 plot match",
+        "Printed Eq109 sign, Eq93–94 coordinates/prior and Pt/PT notation retained rather than silently corrected",
+        "General-MIMO finite-SNR Stiefel MI, arbitrary p(X) region, Figure11 completion and browser acceptance remain open"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "details",
+        "metricScope"
+      ],
+      "before": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+      "after": "Complex-matrix Bayesian source specialization replaces the target-paper metric inventory. Original real-scalar prerequisite budget remains in existingTeachingResourceBudget and its unchanged case; the separate new teaching matrix is not a source figure."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "experiment",
+        "details",
+        "boundedGaussianTradeoff"
+      ],
+      "added": true,
+      "after": {
+        "figure4FiniteIntegralPoints": 39,
+        "covarianceSolves": 9216,
+        "waveformEvaluations": 2359296,
+        "uniqueFadingChannels": 512,
+        "independentBaseWaveformDraws": 131072,
+        "teachingIsSourceFigure": false,
+        "gaussianBlockEnergyNormalized": false,
+        "fullMimoFiniteSnrStiefelMiImplemented": false,
+        "covarianceOuterPairJointlyAchieved": false,
+        "intervals": "Pointwise approximate Monte Carlo intervals; common draws correlate weights; quadrature diagnostics are not rigorous entropy intervals"
+      }
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "classification"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "bounded-source-derived-bayesian-complex-matrix-core; operational-source-conflicts-retained; browser-not-accepted"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "live"
+      ],
+      "before": "独立实标量经典推导与 LS=ML 误差模拟；两个互信息–平均条件 CRB 解析工作点，不是整篇论文复现",
+      "after": "gaussian-tradeoff.html#experiment: fresh source48 shaping, actual X/R/Y/posterior and real BFIM, finite Wishart/MP and separate rank-one sphere MI; exact Node Worker review, actual browser pending"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "offline"
+      ],
+      "before": null,
+      "after": "Independently replayed reference archive235619c80cc0ebf8551138a1ef241adefacddb0f15a79ca973718fb5ccd5481c:39 Figure4 points,9216 covariance solves and2359296 waveform evaluations; not full paper"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "runtimeFreeze"
+      ],
+      "added": true,
+      "after": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "runtimeFreezeEntries"
+      ],
+      "added": true,
+      "after": 7
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "referenceCore"
+      ],
+      "added": true,
+      "after": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "independentPortReviewSha256"
+      ],
+      "added": true,
+      "after": "167fc761ff93b4f89b5bc7e59e2f3392e325c133306c96cf9614ac161c4f7a57"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "browserAccepted"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "fullPaper"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "implementation",
+        "details",
+        "lesson"
+      ],
+      "added": true,
+      "after": "gaussian-tradeoff.html#question"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "source"
+      ],
+      "before": "reopening-required",
+      "after": "audited-for-selected-core"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "modelFidelity"
+      ],
+      "before": "not-validated",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "algorithm"
+      ],
+      "before": "not-implemented",
+      "after": "partial-live"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "independentValidation"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "selectedExperiment"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "liveExecution"
+      ],
+      "before": "prerequisite-only",
+      "after": "partial-core"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stages",
+        "uiLearning"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stageEvidence",
+        "source"
+      ],
+      "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+      "after": "Fixed2204.06938v8 PDF audited and hash recorded. Direct real likelihood, proper prior factor2, source48 objective and source95 trace are operational; printed coordinate/sign and power-notation conflicts retained."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stageEvidence",
+        "algorithm"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "Seven exact-byte source-derived JS/Worker runtime files independently reviewed. Fresh complex-matrix shaping and posterior, finite Wishart, MP and rank-one sphere integration; continuous finiteκ is not endpoint water filling."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stageEvidence",
+        "selectedExperiment"
+      ],
+      "before": "No independently reproduced named paper experiment established by this inventory.",
+      "after": "All39 Figure4 finite integrals and offline9216 shaping solves/2359296 waveform evaluations independently checked. Figure10 is a two-power-convention bounded audit; separate teaching example is not a source figure."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stageEvidence",
+        "fullPaper"
+      ],
+      "before": "No full-paper reproduction established; the minimal target is a first milestone only.",
+      "after": "Zero full-paper reproductions. General p(X), full-MIMO finite-SNR Stiefel MI, Figure11 null-space completion, original curves and full coverage remain open."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "stageEvidence",
+        "latency"
+      ],
+      "before": "No measured browser control-to-result latency for the faithful target core.",
+      "after": "Actual Node Worker and browser-module-branch VM evidence only; no actual browser control-to-painted-result latency, browser measurements remain null."
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "missingImplementation"
+      ],
+      "before": [
+        "原文复向量模型、先验信息、最优 CRB–rate 区域",
+        "衰落算例及论文图的数值复现",
+        "论文一般模型的估计器性能、非线性距离/角度、导频和编码开销、硬件失真"
+      ],
+      "after": [
+        "General input-distribution optimization, certified full achieved region, general-MIMO finite-SNR Stiefel MI and Figure11 null-space completion",
+        "Original source-curve coordinates and complete figure/experiment coverage",
+        "Actual browser lifecycle, accessibility, navigation/download, memory and painted-result latency; finite coding, CSI acquisition and hardware"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "blockers"
+      ],
+      "before": [
+        "原文复向量模型、先验信息、最优 CRB–rate 区域",
+        "衰落算例及论文图的数值复现"
+      ],
+      "after": [
+        "Actual browser and publication gates remain open; independent Node/VM results do not close them",
+        "Source sign/coordinate/prior and Pt/PT conflicts remain declared; full-region and full-paper claims are unsupported"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "evidence",
+        "currentRunnable"
+      ],
+      "before": "独立实标量经典推导与 LS=ML 误差模拟；两个互信息–平均条件 CRB 解析工作点，不是整篇论文复现",
+      "after": "gaussian-tradeoff.html#experiment"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "evidence",
+        "fixedSourceAudit"
+      ],
+      "before": "原文对照沿用已记录的固定版本与核对范围；新增 LS 部分依据明确实标量模型独立推导，不作为原文的新结论或完整复现",
+      "after": "docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "evidence",
+        "independentNumericalReview"
+      ],
+      "added": true,
+      "after": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "evidence",
+        "independentPortReview"
+      ],
+      "added": true,
+      "after": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md"
+    },
+    {
+      "path": [
+        "papers",
+        29,
+        "details",
+        "failureGates"
+      ],
+      "added": true,
+      "after": {
+        "gaussianPowerIsPerBlock": false,
+        "outerPairIsJointlyAchieved": false,
+        "stiefelRankMayExceedT": false,
+        "positiveModesMayBeDeleted": false,
+        "importedHistoryIsFresh": false,
+        "monteCarloIsExactExpectation": false,
+        "numericalCertificateIsIntervalProof": false,
+        "browserAccepted": false
+      }
+    }
+  ]
+}

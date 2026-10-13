@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "24f2b07f97db0511da9f5f1c294225ffac1b982f",
+  "baselineManifestSha256": "d6cf3649755958fc36e9b3d35e36e7ccaac0435db6499425883e71bce3f0d475",
+  "addedOwners": [
+    {
+      "id": "labs/networked-sync",
+      "directory": "labs/networked-sync",
+      "description": "Reciprocal complex tensor synchronization runtime and progressive lesson"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "assets/data/networked-sync-evidence-map.json",
+      "compatibility": "data/networked-sync-evidence-map.json",
+      "public": "data/networked-sync-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/networked-sync-js-v0.1-full-evidence.zip",
+      "compatibility": "data/networked-sync-js-v0.1-full-evidence.zip",
+      "public": "data/networked-sync-js-v0.1-full-evidence.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/networked-sync-js-v0.1-runtime.zip",
+      "compatibility": "data/networked-sync-js-v0.1-runtime.zip",
+      "public": "data/networked-sync-js-v0.1-runtime.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/networked-sync-kernel-v0.1-sourcefree.zip",
+      "compatibility": "data/networked-sync-kernel-v0.1-sourcefree.zip",
+      "public": "data/networked-sync-kernel-v0.1-sourcefree.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/networked-sync.html",
+      "compatibility": "networked-sync.html",
+      "public": "networked-sync.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md",
+      "public": "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "public": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/LESSON-FREEZE.json",
+      "compatibility": "labs/networked-sync/lesson/LESSON-FREEZE.json",
+      "public": "labs/networked-sync/lesson/LESSON-FREEZE.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/README.md",
+      "compatibility": "labs/networked-sync/lesson/README.md",
+      "public": "labs/networked-sync/lesson/README.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/controller.js",
+      "compatibility": "labs/networked-sync/lesson/controller.js",
+      "public": "labs/networked-sync/lesson/controller.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/lesson.css",
+      "compatibility": "labs/networked-sync/lesson/lesson.css",
+      "public": "labs/networked-sync/lesson/lesson.css",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/lesson.js",
+      "compatibility": "labs/networked-sync/lesson/lesson.js",
+      "public": "labs/networked-sync/lesson/lesson.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/reports/author-test-receipt.json",
+      "compatibility": "labs/networked-sync/lesson/reports/author-test-receipt.json",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/reports/author-tests.txt",
+      "compatibility": "labs/networked-sync/lesson/reports/author-tests.txt",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/stages.js",
+      "compatibility": "labs/networked-sync/lesson/stages.js",
+      "public": "labs/networked-sync/lesson/stages.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+      "compatibility": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+      "compatibility": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/DEVELOPMENT-FIXES.json",
+      "compatibility": "labs/networked-sync/runtime/DEVELOPMENT-FIXES.json",
+      "public": "labs/networked-sync/runtime/DEVELOPMENT-FIXES.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/HANDOFF.md",
+      "compatibility": "labs/networked-sync/runtime/HANDOFF.md",
+      "public": "labs/networked-sync/runtime/HANDOFF.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md",
+      "compatibility": "labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md",
+      "public": "labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/README.md",
+      "compatibility": "labs/networked-sync/runtime/README.md",
+      "public": "labs/networked-sync/runtime/README.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/RELEASE-BOUNDARIES.json",
+      "compatibility": "labs/networked-sync/runtime/RELEASE-BOUNDARIES.json",
+      "public": "labs/networked-sync/runtime/RELEASE-BOUNDARIES.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/SOURCE-FREEZE.json",
+      "compatibility": "labs/networked-sync/runtime/SOURCE-FREEZE.json",
+      "public": "labs/networked-sync/runtime/SOURCE-FREEZE.json",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/js/codec.js",
+      "compatibility": "labs/networked-sync/runtime/js/codec.js",
+      "public": "labs/networked-sync/runtime/js/codec.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/js/linalg.js",
+      "compatibility": "labs/networked-sync/runtime/js/linalg.js",
+      "public": "labs/networked-sync/runtime/js/linalg.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/js/receiver.js",
+      "compatibility": "labs/networked-sync/runtime/js/receiver.js",
+      "public": "labs/networked-sync/runtime/js/receiver.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/js/sha256.js",
+      "compatibility": "labs/networked-sync/runtime/js/sha256.js",
+      "public": "labs/networked-sync/runtime/js/sha256.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/tests/test-codec.cjs",
+      "compatibility": "labs/networked-sync/runtime/tests/test-codec.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/tests/test-kernel.cjs",
+      "compatibility": "labs/networked-sync/runtime/tests/test-kernel.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/tests/test-worker.cjs",
+      "compatibility": "labs/networked-sync/runtime/tests/test-worker.cjs",
+      "public": null,
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/worker/FORMAT.md",
+      "compatibility": "labs/networked-sync/runtime/worker/FORMAT.md",
+      "public": "labs/networked-sync/runtime/worker/FORMAT.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/worker/README.md",
+      "compatibility": "labs/networked-sync/runtime/worker/README.md",
+      "public": "labs/networked-sync/runtime/worker/README.md",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/worker/client.js",
+      "compatibility": "labs/networked-sync/runtime/worker/client.js",
+      "public": "labs/networked-sync/runtime/worker/client.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/worker/protocol.js",
+      "compatibility": "labs/networked-sync/runtime/worker/protocol.js",
+      "public": "labs/networked-sync/runtime/worker/protocol.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "labs/networked-sync/runtime/worker/receiver-worker.js",
+      "compatibility": "labs/networked-sync/runtime/worker/receiver-worker.js",
+      "public": "labs/networked-sync/runtime/worker/receiver-worker.js",
+      "owner": "labs/networked-sync",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+      "compatibility": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "compatibility": "scripts/validation/networked-sync/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+      "compatibility": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+      "compatibility": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/REFERENCE-RESULTS.md",
+      "compatibility": "scripts/validation/networked-sync/REFERENCE-RESULTS.md",
+      "public": "scripts/validation/networked-sync/REFERENCE-RESULTS.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/SOURCE-AUDIT.md",
+      "compatibility": "scripts/validation/networked-sync/SOURCE-AUDIT.md",
+      "public": "scripts/validation/networked-sync/SOURCE-AUDIT.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/independent-port-numerical.json",
+      "compatibility": "scripts/validation/networked-sync/independent-port-numerical.json",
+      "public": "scripts/validation/networked-sync/independent-port-numerical.json",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/networked-sync/independent-reference-full-evidence.json",
+      "compatibility": "scripts/validation/networked-sync/independent-reference-full-evidence.json",
+      "public": "scripts/validation/networked-sync/independent-reference-full-evidence.json",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/networked-sync-integration.test.cjs",
+      "compatibility": "tests/networked-sync-integration.test.cjs",
+      "public": "tests/networked-sync-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/networked-sync-owned.test.cjs",
+      "compatibility": "tests/networked-sync-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-baseline.json",
+      "compatibility": "tests/helpers/networked-sync-baseline.json",
+      "public": "tests/helpers/networked-sync-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-changes.json",
+      "compatibility": "tests/helpers/networked-sync-changes.json",
+      "public": "tests/helpers/networked-sync-changes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-classic-delta.json",
+      "compatibility": "tests/helpers/networked-sync-classic-delta.json",
+      "public": "tests/helpers/networked-sync-classic-delta.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-owned-suites.json",
+      "compatibility": "tests/helpers/networked-sync-owned-suites.json",
+      "public": "tests/helpers/networked-sync-owned-suites.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-portable.cjs",
+      "compatibility": "tests/helpers/networked-sync-portable.cjs",
+      "public": "tests/helpers/networked-sync-portable.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-preservation.cjs",
+      "compatibility": "tests/helpers/networked-sync-preservation.cjs",
+      "public": "tests/helpers/networked-sync-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/networked-sync-suffixes.json",
+      "compatibility": "tests/helpers/networked-sync-suffixes.json",
+      "public": "tests/helpers/networked-sync-suffixes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

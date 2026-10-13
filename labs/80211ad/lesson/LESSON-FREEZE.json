@@ -1,0 +1,99 @@
+{
+  "schema": "80211ad-lesson-freeze-v1",
+  "created_at_utc": "2026-10-12T21:23:14.016792+00:00",
+  "freeze_id": "77b4347b33a549b57d6e7283efb579bbaaa00b41e2bae792049d4059952e98dd",
+  "files": [
+    {
+      "path": "content/pages/80211ad-receiver.html",
+      "bytes": 23989,
+      "sha256": "d0800e5f1b969fbba61b8eed0197298891e6a380f672caf2011bfc8e2664b6e2"
+    },
+    {
+      "path": "content/pages/golay-radar.html",
+      "bytes": 22355,
+      "sha256": "0d8aca6c69bc6eb97a06cf4ecf1ec6b6076860a60b5773b48c126bdc26337ea1"
+    },
+    {
+      "path": "labs/80211ad/lesson/DEVELOPMENT-FIXES.json",
+      "bytes": 2337,
+      "sha256": "945dae518d2513c58f2a63024ed8bbd0726715471c26277fb00df00d319faf61"
+    },
+    {
+      "path": "labs/80211ad/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1849,
+      "sha256": "a5c5e7aa8dd5a372419180891f8719bd5cbf7112e25fbff6b10cd55d39b2efbc"
+    },
+    {
+      "path": "labs/80211ad/lesson/README.md",
+      "bytes": 6369,
+      "sha256": "dc1a6c5e3adc188f9a19b27086cf4c244ec60e6fea9a43e6c5bef125e28fc32b"
+    },
+    {
+      "path": "labs/80211ad/lesson/controller.js",
+      "bytes": 9147,
+      "sha256": "1e295a1d12ed09b943fc0105987b4b1de8688129fe58087addd39e070e329c37"
+    },
+    {
+      "path": "labs/80211ad/lesson/lesson.css",
+      "bytes": 5908,
+      "sha256": "5b1c1a5a39538984fc6f69cde3cbc6ea280e4c06409d0ae615d31ccb55d3f03f"
+    },
+    {
+      "path": "labs/80211ad/lesson/lesson.js",
+      "bytes": 30797,
+      "sha256": "7a890a51bffa4ef51520ecf51c0aff720c12eb373e1194d1c7fa73eaa711a8eb"
+    },
+    {
+      "path": "labs/80211ad/lesson/reports/author-tests.txt",
+      "bytes": 3224,
+      "sha256": "a4b91e069b9b30f0862a50a9c731737c7ac04079f627ffad9413d3e55fe6dff5"
+    },
+    {
+      "path": "labs/80211ad/lesson/stages.js",
+      "bytes": 29048,
+      "sha256": "f24aa698e1321737011176c5366288d8b041f367726c2f79f51e6f39dc76f260"
+    },
+    {
+      "path": "labs/80211ad/lesson/tests/dom-harness.cjs",
+      "bytes": 6662,
+      "sha256": "4a2413920e2ffed2a4316e33ae509582b846ed752da8ce3c62fd46e6717a8561"
+    },
+    {
+      "path": "labs/80211ad/lesson/tests/export-ui-records.cjs",
+      "bytes": 3603,
+      "sha256": "a7f8cd7331bfc9ec270fa4487351633f4c03bb703b29893869b8b472748d8dc9"
+    },
+    {
+      "path": "labs/80211ad/lesson/tests/lesson.test.cjs",
+      "bytes": 25547,
+      "sha256": "20ce83c56c8ef947af25cc2132de507766a90b0a7778e1f8c6a824cf0336b838"
+    }
+  ],
+  "accepted_base_tree": "eae97d26beffbc65d55f290a49e11d82cf157bd1",
+  "runtime": {
+    "manifest": "labs/80211ad/runtime/RUNTIME-MANIFEST.json",
+    "freeze_id": "b84547a2bdad7da400238c267d2a6d089b33af8f2474d8f733f18c85d9a9b430",
+    "manifest_sha256": "6a7ceabfa149918d07fb6999fa1680edac77b98a32f08017b370968843d30260",
+    "copied_files": 23,
+    "modified_runtime_bytes": false
+  },
+  "author_verification": {
+    "suite": "labs/80211ad/lesson/tests/lesson.test.cjs",
+    "tests": 29,
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0,
+    "actual_node_workers": true,
+    "mounted_production_dom": true,
+    "real_browser": false
+  },
+  "independent_gate": "Separate reviewer receipt must match this exact freeze; author manifest does not replace independent acceptance",
+  "source_only_edit": "Golay page: exactly one additive continuation paragraph, all original runtime unchanged",
+  "out_of_scope": [
+    "shared registry/build/manifests",
+    "real browser",
+    "remote task",
+    "publication",
+    "full PHY/full-paper reproduction"
+  ]
+}

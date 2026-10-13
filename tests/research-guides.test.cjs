@@ -1,3 +1,4 @@
+const {withoutIciHomeShell}=require('./helpers/ofdm-ici-preservation.cjs');
 const {withoutOtfsRegistry,withoutOtfsHomeShell}=require('./helpers/otfs-receiver-preservation.cjs');
 const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
@@ -23,7 +24,7 @@ test('twenty guide-only resources extend all eight existing directions without i
  a.equal(data.cards.length,20);a.deepEqual(data.cards.map(c=>c.directionId),['waveforms','waveforms','spatial','spatial','networks','networks','prototype','prototype','learning','learning','receiver','receiver','channels','channels','tradeoffs','tradeoffs','channels','waveforms','prototype','spatial']);
  const directory=JSON.parse(read(registry.researchDirectoryFile));a.equal(directory.cards.length,9);a.equal(directory.cards.filter(c=>c.caseId).length,8);
  for(const c of data.cards){a.ok(!registry.cases.some(x=>x.id===c.id));a.ok(!registry.units.some(x=>x.id===c.id));a.equal(c.caseId,undefined);}
- const html=read('reading.html');a.match(html,/20 篇问题式导读/);a.match(html,/16 个已有主题/);a.match(html,/深度交互已接入：8 \/ 9 篇/);
+ const html=read('reading.html');a.match(html,/20 篇问题式导读/);a.ok(html.includes(registry.cases.length+' 个已有主题'));a.match(html,/深度交互已接入：8 \/ 9 篇/);
  a.ok(html.indexOf('id="directions"')<html.indexOf('id="research-guides"'));a.ok(html.indexOf('id="research-guides"')<html.indexOf('id="paper-comparisons"'));
  a.equal((html.match(/class="research-guide-card"/g)||[]).length,20);
 });
@@ -63,7 +64,7 @@ test('prototype guides preserve the prior six and distinguish measured hardware 
 });
 test('learning and receiver guides preserve the prior eight and keep metric, training and conditional-error boundaries',()=>{
  a.equal(crypto.createHash('sha256').update(JSON.stringify(guideCores(data.cards.slice(0,8)))).digest('hex'),'43655698eda60f21efad8e18e91741a744cea8c961454d0fe964da2c79eb731b');
- const cards=data.cards.slice(8,12),html=render();
+ const cards=require('./helpers/ofdm-ici-preservation.cjs').withoutIciGuides({cards:data.cards.slice(8,12)}).cards,html=render();
  a.deepEqual(cards.map(c=>c.id),['isac-net-model-driven-passive','multimodal-transformer-beam-generalization','ofdm-ici-aware-receiver-2021','ofdm-passive-atomic-errors-2017']);
  a.deepEqual(cards.map(c=>c.source.url),['https://arxiv.org/pdf/2307.15074v1','https://www.itu.int/dms_pub/itu-s/opb/jnl/S-JNL-VOL4.ISSUE3-2023-A33-PDF-E.pdf','https://arxiv.org/pdf/2103.15694v1','https://arxiv.org/pdf/1610.04218v2']);
  for(const phrase of ['两图的 Perfect 含义不同','95%训练、5%测试','0.7844不是78.44%','不能称为零样本泛化','同一地点的日夜采集','MAC/参数数不等于实测时延或能耗','FDR不是单元虚警概率','只统计检测成功的事件','人为去掉ICI项','表I第5步','只计正确识别的目标','前向纠错（FEC）'])a.ok(html.includes(phrase),phrase);
@@ -95,10 +96,10 @@ test('reading navigation and direction links resolve to the same generated guide
   if(href.startsWith('https:'))continue;
   const url=new URL(href,'https://example.test/ISAC/');a.equal(url.origin,'https://example.test');
   a.ok(read(path.basename(url.pathname)).includes(`id="${url.hash.slice(1)}"`),href);
-  if(url.search)a.ok(['practice.html?topic=near-field#notebook','practice.html?topic=sbfd#notebook','practice.html?topic=otfs-receiver#notebook'].includes(href));
+  if(url.search)a.ok(['practice.html?topic=near-field#notebook','practice.html?topic=sbfd#notebook','practice.html?topic=otfs-receiver#notebook','practice.html?topic=ofdm-ici-receiver#notebook'].includes(href));
  }
  a.match(render(),/已有机制的空白实验本/);a.doesNotMatch(render(),/topic=otfs(?!-receiver)|topic=nearfield-double/);
- for(const c of build())if(c.notebook)a.ok(['near-field','sbfd','otfs-receiver'].includes(c.notebook.id));
+ for(const c of build())if(c.notebook)a.ok(['near-field','sbfd','otfs-receiver','ofdm-ici-receiver'].includes(c.notebook.id));
 });
 test('invalid identities, missing evidence and nonexistent routes fail at build time',()=>{
  const mutations=[d=>d.cards.push(structuredClone(d.cards[0])),d=>{d.cards[0].id='../escape';},d=>{d.cards[0].directionId='absent';},d=>{delete d.cards[0].question;},d=>{d.cards[0].limits=[];},d=>{d.cards[0].evidence.summary='';},d=>{d.cards[0].source.locator='';},d=>{d.cards[0].source.edition='';},d=>{d.cards[0].source.url='javascript:alert(1)';},d=>{d.cards[0].source.url='https://user:secret@example.test/paper';},d=>{d.cards[0].source.url='https://example.test/paper#fake';},d=>{d.cards[0].prerequisites[0].href='foundations.html#absent';},d=>{d.cards[0].prerequisites[0].href='https://evil.test/';},d=>{d.cards[0].notebookTopicId='unimplemented';},d=>{d.cards[0].readingSteps=[{label:'empty'}];}];
@@ -150,7 +151,7 @@ test('trace-only reading additions preserve the four map routes and unchanged re
  for(const [file,digest]of Object.entries(unchanged)){
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutNetworkProgression(registry),null,2)+'\n';
-  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);}
+  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2),registry.units.length-3),registry.units.length-4),registry.units.length-5),registry.units.length-6);}
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
 });
@@ -470,7 +471,7 @@ test('one network context and five source fields preserve all nineteen prior car
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2),registry.units.length-3),registry.units.length-4),registry.units.length-5),registry.units.length-6);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
@@ -544,7 +545,7 @@ test('three frontier traces preserve all twenty complete prior records, seventee
   if(file==='index.html'){
    const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
-   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2);
+   prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(prior,registry.units.length),registry.units.length-1),registry.units.length-2),registry.units.length-3),registry.units.length-4),registry.units.length-5),registry.units.length-6);
   }
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }

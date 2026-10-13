@@ -44,11 +44,15 @@ function expectedRecords() {
     const matchingGuide = guides.find(g => normalizeTitle(g.source.title) === normalizeTitle(card.title) ||
       identity(g.source.url, g.source.title) === identity(card.identitySource, card.title));
     assert.equal(matchingGuide, undefined, `Guide/catalog duplicate needs merged coverage: ${card.id}`);
-    expected.set(card.id, {category:'catalog', guideIds:[], catalogIds:[card.id], caseIds:card.caseId ? [card.caseId] : [], card});
+    expected.set(card.id, {category:'catalog', guideIds:[], catalogIds:[card.id], caseIds:cases.filter(c => c.paperComparison && (c.id === card.caseId || samePaper({url:card.identitySource}, card.title, c.paperComparison))).map(c => c.id), card});
   }
   const claimedCases = new Set([...expected.values()].flatMap(r => r.caseIds));
   for (const item of cases) if (item.paperComparison && !claimedCases.has(item.id)) {
-    expected.set(`supplement-${item.id}`, {category:'case-only', guideIds:[], catalogIds:[], caseIds:[item.id], comparison:item.paperComparison});
+    // Multiple lessons may teach the same fixed paper. Keep its first canonical
+    // case-only identity and append evidence slots, never invent another paper.
+    const existing=[...expected.values()].find(e=>e.category==='case-only'&&identity(e.comparison.sourceUrl,e.comparison.sourceTitle)===identity(item.paperComparison.sourceUrl,item.paperComparison.sourceTitle));
+    if(existing)existing.caseIds.push(item.id);
+    else expected.set(`supplement-${item.id}`, {category:'case-only', guideIds:[], catalogIds:[], caseIds:[item.id], comparison:item.paperComparison});
   }
   return expected;
 }
@@ -169,6 +173,14 @@ function validate(data) {
       if(p.id==='supplement-case-near-field'&&p.implementation.details.runtimeFreezeEntries===22){
         const changes=require('./helpers/nearfield-research-changes.json').backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
         for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append,'exact reviewed near-field appended metadata');else assert.deepEqual(value,change.after,'exact reviewed near-field stage/resource metadata');}
+        assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
+      }else if(p.id==='supplement-case-clock'&&p.implementation.details.runtimeFreezeEntries===7){
+        const changes=require('./helpers/networked-sync-changes.json').backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
+        for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append);else assert.deepEqual(value,change.after,'exact reviewed networked-sync metadata');}
+        assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
+      }else if(p.id==='supplement-case-crb'&&p.implementation.details.runtimeFreezeEntries===7){
+        const changes=require('./helpers/gaussian-tradeoff-changes.json').backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
+        for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append);else assert.deepEqual(value,change.after,'exact reviewed Gaussian metadata');}
         assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
       }else assert.ok(p.experiment.resources.every(s => s.startsWith('Existing independent teaching budget')));
     }

@@ -1,0 +1,54 @@
+{
+  "schema": "networked-sync-lesson-assets-v1",
+  "page": {
+    "source": "content/pages/networked-sync.html",
+    "public": "networked-sync.html"
+  },
+  "existing_page_addition": "content/pages/network-clock.html: one p.networked-sync-continuation before existing #case scalar callout",
+  "anchors": [
+    "question",
+    "model",
+    "experiment",
+    "paper",
+    "limits",
+    "reproduce"
+  ],
+  "startup": [
+    "course.css",
+    "theory.css",
+    "site.css",
+    "labs/networked-sync/lesson/lesson.css",
+    "labs/networked-sync/runtime/js/sha256.js",
+    "labs/networked-sync/runtime/js/codec.js",
+    "labs/networked-sync/runtime/js/linalg.js",
+    "labs/networked-sync/runtime/js/receiver.js",
+    "labs/networked-sync/runtime/worker/client.js",
+    "labs/networked-sync/lesson/controller.js",
+    "labs/networked-sync/lesson/stages.js",
+    "labs/networked-sync/lesson/lesson.js"
+  ],
+  "on_explicit_run": [
+    "labs/networked-sync/runtime/worker/receiver-worker.js"
+  ],
+  "worker_relative_imports": [
+    "../js/sha256.js",
+    "../js/codec.js",
+    "./protocol.js",
+    "../js/linalg.js",
+    "../js/receiver.js"
+  ],
+  "optional_evidence": [
+    "labs/networked-sync/runtime/SOURCE-FREEZE.json",
+    "labs/networked-sync/runtime/worker/FORMAT.md",
+    "labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md",
+    "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md"
+  ],
+  "portable_owned_suite": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+  "owned_suite_helper": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+  "optional_evidence_producer": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+  "suite_writes_site_tree": false,
+  "export_producer_requires_explicit_output_directory": true,
+  "actual_node_worker_tested": true,
+  "actual_browser_tested": false,
+  "actual_browser_performance_tested": false
+}

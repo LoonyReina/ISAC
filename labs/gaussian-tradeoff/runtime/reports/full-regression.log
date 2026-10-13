@@ -1,0 +1,53 @@
+{"checks":2382,"maxScaledError":1.2406886074815357e-12,"cases":["complex-M1-Nc1-Ns2-T3","complex-M2-Nc2-Ns2-T5","complex-M3-Nc2-Ns2-T2","complex-M4-Nc3-Ns2-T8","complex-M6-Nc4-Ns1-T9"],"elapsedMs":263.91446099999996}
+{"cases":61,"maxFigure4Error":6.8833827526759706e-12,"maxSphereError":1.6134430597114502e-11,"elapsedMs":1977.1244920000001}
+{"cases":366,"maxRelativeGap":1.7261242851514648e-9,"source":"Independent reviewer boundary inputs copied with attribution; no certificate tolerance relaxation"}
+Wrote 3 fresh executions
+{"checks": 1986, "max_relative_error": 3.463205130291402e-15, "cases": ["teaching", "figure10-total", "figure10-per-antenna"]}
+✔ canonical tagged f64 exactly round-trips signed zero and finite extremes (6.740947ms)
+✔ canonical identity ignores insertion order, snapshots alias-free values (0.581778ms)
+✔ rejects sparse arrays, nonfinite values and unsupported primitives (0.274715ms)
+✔ rejects prototypes, typed arrays, accessors, symbols and nonenumerable fields without invoking getters (0.475868ms)
+✔ rejects cycles, dangerous keys and malformed Unicode (0.402207ms)
+✔ structural and conservative canonical resource budgets are enforced (656.780916ms)
+✔ parser rejects noncanonical, extra-tag, duplicate-key, forbidden and nonfinite encodings (0.545854ms)
+✔ raw and historical records are frozen, hash-checked, exact and explicitly historical (7.533724ms)
+✔ async hashes, exports and object imports snapshot before yielding (1.836282ms)
+✔ runtime validates candidates before queued/current supersession and assigns one terminal (16.410784ms)
+✔ runtime descriptor-first messages, duplicate ids, cancellation, session and wall limits (10.123373ms)
+✔ actual Node fixture Worker freezes output and preserves signed zero/history (79.128137ms)
+✔ actual Node candidate rejection preserves ongoing run; accepted replacement cancels it (159.644129ms)
+✔ actual Node cooperative cancellation after progress is terminal and does not emit stale success (93.770872ms)
+✔ actual Node rejects nonfinite output and survives numerical error (81.006978ms)
+✔ actual Node death rejects pending work and restart computes with a new generation (109.820408ms)
+✔ client holds an old queued completion until a newer invalid candidate is rejected (0.704493ms)
+✔ client suppresses deferred completion on valid supersession and cancellation (0.696361ms)
+✔ client accepted duplicate-id rejection and old-generation events cannot settle current work (0.481477ms)
+✔ client handles postMessage failure without stranding older deferred completion (0.408887ms)
+✔ client snapshot rejects getter inputs before transport and frozen callbacks cannot mutate history (0.459284ms)
+✔ restart epochs fence late factories and prevent resurrection after disposal (6.066599ms)
+✔ explicit replacement attaches before old asynchronous terminate resolves (0.314755ms)
+✔ actual production Node Worker runs numerical kernel and exact replayable record (150.972338ms)
+✔ actual production Node invalid candidate preserves a current real numerical run (148.213323ms)
+✔ actual production Node cancellation is observed within asynchronous checkpoints (65.173301ms)
+(node:49) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ browser self.onmessage branch in module VM validates, cancels, supersedes, and completes (not a real browser) (30.693055ms)
+✔ invalid raw candidate retains its safe request id and cannot supersede current work (30.018359ms)
+✔ oversized complete event falls back to terminal resource error rather than stranding its promise (389.089325ms)
+✔ browser-style client event listener branch handles completion, messageerror and detachment (1.190247ms)
+✔ runtime and client enforce 10,000-session caps without pending promises (126.749769ms)
+✔ production browser module VM loads full kernel and vendor path, and matches Node replay (not browser performance) (91.944296ms)
+✔ convenience factory validates options before allocation or getter execution and cleans failed construction (0.853228ms)
+✔ real numerical progress exposes finite completed counts as done (88.713497ms)
+✔ numeric error diagnostics survive immutable Worker events and managed-client rejection (4.157427ms)
+✔ malformed, accessor, inherited and resource-heavy diagnostics fall back to original code/message (24.944748ms)
+✔ actual production Node Worker retains inverse-condition failure diagnostics (55.313571ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1857.522711
+{"runtime":"v24.19.0","platform":"linux","environment":"actual Node worker_threads in shared cloud execution environment","browserMeasurement":false,"statisticalClaim":"single-run diagnostic observations, not latency guarantee or benchmark distribution","rows":[{"operation":"tradeoff","label":"Reviewed instructional DFT-basis matrix; not a source figure","dimensions":{"m":4,"ns":2,"t":8,"powerPerAntenna":1,"sensingNoise":0.7,"communicationNoise":1,"priorVariance":1.3},"blocks":64,"clientRoundTripMs":155.109525,"workerReportedMs":139.281704,"historyCanonicalBytes":142671,"rawCanonicalBytes":1884},{"operation":"tradeoff","label":"Single frozen Fig.10 configuration channel, seed 91021 index 0; not a fading expectation; 24 dB interpreted per antenna","dimensions":{"m":4,"ns":4,"t":16,"powerPerAntenna":251.18864315095797,"sensingNoise":1,"communicationNoise":1,"priorVariance":1},"blocks":512,"clientRoundTripMs":645.1115439999999,"workerReportedMs":620.848649,"historyCanonicalBytes":583795,"rawCanonicalBytes":2207},{"operation":"sphere","label":"","dimensions":{"m":null,"t":4},"blocks":null,"clientRoundTripMs":59.446836000000076,"workerReportedMs":57.583812999999964,"historyCanonicalBytes":3577,"rawCanonicalBytes":360},{"operation":"sphere","label":"","dimensions":{"m":null,"t":16},"blocks":null,"clientRoundTripMs":917.816713,"workerReportedMs":916.1313630000001,"historyCanonicalBytes":3577,"rawCanonicalBytes":360},{"operation":"wishart","label":"","dimensions":{"m":6,"t":24},"blocks":null,"clientRoundTripMs":223.3099689999999,"workerReportedMs":221.5397519999999,"historyCanonicalBytes":4094,"rawCanonicalBytes":527}]}

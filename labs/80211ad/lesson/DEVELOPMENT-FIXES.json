@@ -1,0 +1,36 @@
+{
+  "schema": "80211ad-lesson-development-fixes-v1",
+  "repairs": [
+    {
+      "finding": "Independent reviewer reproduced a stale asynchronous file handler resetting a newer nfft draft after the controller had already suppressed that old import",
+      "repair": "UI post-await import continuation now requires successful import, matching epoch and imported state; mounted regression verifies nfft=16 survives and is actually processed"
+    },
+    {
+      "finding": "Independent reviewer found CEF I/Q legend words using the earlier teal/ochre colors for purple/olive curves",
+      "repair": "Legend uses each actual series color and line style"
+    },
+    {
+      "finding": "Related review of reset found a possible post-termination form overwrite window",
+      "repair": "Reset restores form and view state synchronously, with no form mutation after awaiting old Worker termination"
+    },
+    {
+      "finding": "Final teaching alignment found generic draft descriptions suggesting unavailable Monte Carlo graphics and truth whole-turn overlays",
+      "repair": "Copy now describes actual single-record plots and states historical statistics separately; no unsupported controls or live Monte Carlo claims"
+    },
+    {
+      "finding": "Independent reviewer identified failed current file imports retaining the same file selection, preventing a normal change event on retry",
+      "repair": "Clear the input for the current epoch on either success or failure; leave newer selections untouched. Mounted failed-read retry and stale-selection regression added."
+    },
+    {
+      "finding": "Independent reviewer noted complex-plane screen angle distortion with independent x/y plot scales",
+      "repair": "Actual Moose sums now use equal pixels per physical unit, visible origin axes and real sum vectors; M1 null stays omitted"
+    },
+    {
+      "finding": "Independent reviewer computed sub-readable narrow-screen SVG text from proportional viewBox shrinkage",
+      "repair": "Keyboard-focusable horizontal-scroll figures and minimum 860px SVG width preserve 12–13px axis text; this is a static correction, not real-browser validation"
+    }
+  ],
+  "verification": "29 focused author tests; separate independent review and actual UI-export replay gates",
+  "runtime_bytes_changed": false,
+  "real_browser_run": false
+}

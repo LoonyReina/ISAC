@@ -1,0 +1,61 @@
+{
+  "scope": "Changes retained before first JavaScript freeze; none modifies the accepted Python reference",
+  "fixes": [
+    {
+      "issue": "Original-dimension gain design has 7200 rows; initial linalg cap4096 rejected it",
+      "resolution": "Matrix dimension cap8192, unchanged 1048576 element and192 Hermitian limits; fresh7200x3 contract plus original-dimension oracles pass"
+    },
+    {
+      "issue": "Compact generated ordinary scenes could cross principal delay phase at defaults",
+      "resolution": "Explicit original engineering geometric scaling by min(1,(N-1)/35); arbitrary allowed offsets still retain alias diagnostics; not source sampler"
+    },
+    {
+      "issue": "JSON copy of typed held arrays changed arrays into objects",
+      "resolution": "Explicit accepted-array snapshot before first await, tested against caller mutation; independent reviewer flagged same earlier bytes"
+    },
+    {
+      "issue": "Config membership test admitted Object.prototype names",
+      "resolution": "Own-key whitelist; Worker codec/protocol independently preflights hostile structures"
+    },
+    {
+      "issue": "Summary generator contained undefined unitNoise field",
+      "resolution": "Omit field entirely; finite JSON-friendly history regression"
+    },
+    {
+      "issue": "Absolute covariance floor would break uniform scale invariance",
+      "resolution": "Observed rank gate is relative to leading eigenvalue; zero and deficient cases explicitly fail"
+    },
+    {
+      "issue": "Independent review found asynchronous Worker restart can replace a newer worker or resurrect after disposal",
+      "resolution": "Lifecycle epoch fences factory completion against newer restart or disposal; three exact reviewer race repros pass on corrected bytes; final independent review tracked separately"
+    },
+    {
+      "issue": "Independent review found object record mutation can race async hashing",
+      "resolution": "Decode, identity and history encode snapshot all caller data before first await; three local mutation regressions and unchanged reviewer repro pass; final independent review tracked separately"
+    },
+    {
+      "issue": "Direct codec inspection could invoke Symbol.toStringTag getters or inherited array iterators after preflight",
+      "resolution": "Descriptor-first inspection and bounded indexed canonicalization; unchanged reviewer boundary12 and race3 repros pass locally; final independent review tracked separately"
+    },
+    {
+      "issue": "Direct receiver array-copy paths could invoke inherited iterators",
+      "resolution": "Validated config, held observation and projection columns use fixed indexed copies; hostile inheritediterator regression passes"
+    },
+    {
+      "issue": "Evaluation-only initial port matching used delay and one angle rather than the accepted full phase-normalized criterion",
+      "resolution": "Aligned label matching with accepted reference delay/Doppler/both-angle criterion; explicit permutation direction,90 independent NumPy cases all exact; no receiver or association change"
+    }
+  ],
+  "declared_numerical_changes": [
+    "Continuous golden-section replaces SciPy bounded scalar optimizer on same FFT brackets/objective",
+    "Explicit covariance-rank, full-rank-design and eigensystem-convergence safety failures",
+    "Unit-modulus pilots only",
+    "Original deterministic bounded scene sampler rather than source Monte Carlo sampler"
+  ],
+  "retained_stress_boundaries": [
+    {
+      "case": "Independent near-collision rank3, angular separation1e-6rad/delay1e-11s/noise0.001",
+      "outcome": "Weak ~1.5e-4 amplitude nuisance columns differ Python by2.9\u20133.1e-4rad while tensor relative difference<=3.6e-7; retained as parameter instability, not all-case phase parity"
+    }
+  ]
+}

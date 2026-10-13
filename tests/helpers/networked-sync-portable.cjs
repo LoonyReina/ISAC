@@ -1,0 +1,7 @@
+'use strict';
+const a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+function inventory(dir){const out=[];function walk(rel=''){for(const e of fs.readdirSync(path.join(dir,rel),{withFileTypes:true})){const f=rel?rel+'/'+e.name:e.name;if(e.isDirectory())walk(f);else{a.ok(e.isFile(),'only regular owned test files');out.push(f);}}}walk();return out.sort();}
+function assertInventory(dir,expected){a.deepEqual(inventory(dir),[...expected].sort(),'exact owned test inventory: every extension and nested file reviewed');}
+function assertTap(result,names){if(result.error)throw result.error;a.equal(result.status,0,result.stdout+'\n'+result.stderr);const summary=key=>Number([...result.stdout.matchAll(new RegExp('^# '+key+' (\\d+)$','gm'))].at(-1)?.[1]);a.equal(summary('tests'),names.length,'exact test and nested-subtest count');a.equal(summary('pass'),names.length);for(const key of ['fail','cancelled','skipped','todo'])a.equal(summary(key),0,'no coverage loss: '+key);a.deepEqual([...result.stdout.matchAll(/^# Subtest: (.+)$/gm)].map(x=>x[1]),names,'exact reviewed test names and order');a.equal(new Set(names).size,names.length,'unique names');}
+function run(args,options={}){const env={...process.env,OPENBLAS_NUM_THREADS:'1',OMP_NUM_THREADS:'1',MKL_NUM_THREADS:'1'};delete env.NODE_TEST_CONTEXT;return cp.spawnSync(process.execPath,args,{encoding:'utf8',timeout:230000,maxBuffer:24*1024*1024,...options,env});}
+module.exports={inventory,assertInventory,assertTap,run};

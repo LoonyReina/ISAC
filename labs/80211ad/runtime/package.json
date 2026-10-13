@@ -1,0 +1,1 @@
+{"name":"80211ad-source-derived-receiver-runtime","private":true,"version":"0.1.0","description":"Bounded source-derived fresh waveform receiver; no full PHY or browser UI claim","scripts":{"test":"node tests/test-kernel.cjs && node tests/verify_oracles.cjs && node tests/test-worker.cjs","benchmark":"node tests/benchmark.cjs"}}

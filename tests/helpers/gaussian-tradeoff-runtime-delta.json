@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "d8aeca02aefa77c4c40b1151798c852b6ab5d089",
+  "priorClassicProfileCount": 27,
+  "priorModuleProfileCount": 32,
+  "classicProfiles": [
+    {
+      "public": "labs/gaussian-tradeoff/runtime/vendor/linalg.js",
+      "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    }
+  ],
+  "moduleProfiles": [
+    {
+      "public": "labs/gaussian-tradeoff/runtime/codec.mjs",
+      "sha256": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:crypto",
+          "literal": "if(!subtle&&typeof process==='object'&&process.versions?.node)subtle=(await import('node:crypto')).webcrypto.subtle;"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/kernel.mjs",
+      "sha256": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/math.mjs",
+      "sha256": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/presets.mjs",
+      "sha256": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/runtime.mjs",
+      "sha256": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "if(typeof Worker==='function')return new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});"
+        },
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(new URL('./worker.mjs',import.meta.url),{type:'module'});"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/worker.mjs",
+      "sha256": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {parentPort}=await import('node:worker_threads');"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "sha256": "0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "sha256": "aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    }
+  ],
+  "auxiliaryFiles": [
+    "labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json",
+    "labs/gaussian-tradeoff/runtime/ATTRIBUTION.md",
+    "labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json",
+    "labs/gaussian-tradeoff/runtime/HANDOFF.md",
+    "labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md",
+    "labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md",
+    "labs/gaussian-tradeoff/runtime/README.md",
+    "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+    "labs/gaussian-tradeoff/lesson/README.md",
+    "labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json",
+    "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+    "labs/gaussian-tradeoff/lesson/lesson.css"
+  ],
+  "classicParserChanges": [
+    {
+      "before": "\n];\nconst auxiliaryFiles=",
+      "after": ",\n  {\n    \"public\": \"labs/gaussian-tradeoff/runtime/vendor/linalg.js\",\n    \"sha256\": \"7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc\",\n    \"runtimePolicy\": \"exact-frozen-classic\",\n    \"runtimeEdges\": []\n  }\n];\nconst auxiliaryFiles="
+    },
+    {
+      "before": "\"labs/networked-sync/runtime/worker/README.md\"]);",
+      "after": "\"labs/networked-sync/runtime/worker/README.md\",\"labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json\",\"labs/gaussian-tradeoff/runtime/ATTRIBUTION.md\",\"labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json\",\"labs/gaussian-tradeoff/runtime/HANDOFF.md\",\"labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md\",\"labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md\",\"labs/gaussian-tradeoff/runtime/README.md\",\"labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json\",\"labs/gaussian-tradeoff/lesson/README.md\",\"labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json\",\"labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json\",\"labs/gaussian-tradeoff/lesson/lesson.css\"]);\n// Module bytes are checked by the unified ESM gate; this is only namespace inventory.\nconst gaussianModuleFiles=new Set([\"labs/gaussian-tradeoff/runtime/codec.mjs\",\"labs/gaussian-tradeoff/runtime/kernel.mjs\",\"labs/gaussian-tradeoff/runtime/math.mjs\",\"labs/gaussian-tradeoff/runtime/presets.mjs\",\"labs/gaussian-tradeoff/runtime/runtime.mjs\",\"labs/gaussian-tradeoff/runtime/worker.mjs\",\"labs/gaussian-tradeoff/lesson/controller.mjs\",\"labs/gaussian-tradeoff/lesson/view.mjs\",\"labs/gaussian-tradeoff/lesson/lesson.mjs\"]);"
+    },
+    {
+      "before": "hashPaths=new Map(profiles.map(p=>[p.sha256,p.public]))",
+      "after": "hashPaths=new Map()"
+    },
+    {
+      "before": " if(!Array.isArray(identities))throw Error('Missing complete public identities');",
+      "after": " // Shared frozen bytes may appear only at their separately reviewed exact paths.\n for(const p of profiles){if(!hashPaths.has(p.sha256))hashPaths.set(p.sha256,new Set());hashPaths.get(p.sha256).add(p.public);}\n if(!Array.isArray(identities))throw Error('Missing complete public identities');"
+    },
+    {
+      "before": "if(bound&&bound!==x.file)",
+      "after": "if(bound&&!bound.has(x.file))"
+    },
+    {
+      "before": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/']",
+      "after": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/','labs/gaussian-tradeoff/']"
+    },
+    {
+      "before": "&&!expected.has(x.file)&&!auxiliaryFiles.has(x.file))",
+      "after": "&&!expected.has(x.file)&&!auxiliaryFiles.has(x.file)&&!gaussianModuleFiles.has(x.file))"
+    }
+  ],
+  "moduleParserChanges": [
+    {
+      "before": "\n]);\nconst reviewedHashPaths=",
+      "after": ",\n // Gaussian paths, complete source hashes and browser/Node fallback shapes were\n // reviewed together; none of these declarations is generic dynamic inference.\n // Only the default createWorkerClient endpoint is covered. Caller-injected\n // createWorker callbacks are external transports, not inferred dependencies.\n [\n   \"labs/gaussian-tradeoff/runtime/codec.mjs\",\n   {\n     \"sha256\": \"cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa\",\n     \"runtimePolicy\": \"reviewed-gaussian-runtime\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": [\n       {\n         \"kind\": \"node-builtin\",\n         \"url\": \"node:crypto\",\n         \"literal\": \"if(!subtle&&typeof process==='object'&&process.versions?.node)subtle=(await import('node:crypto')).webcrypto.subtle;\"\n       }\n     ]\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/runtime/kernel.mjs\",\n   {\n     \"sha256\": \"0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/runtime/math.mjs\",\n   {\n     \"sha256\": \"930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/runtime/presets.mjs\",\n   {\n     \"sha256\": \"9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/runtime/runtime.mjs\",\n   {\n     \"sha256\": \"94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758\",\n     \"runtimePolicy\": \"reviewed-gaussian-runtime\",\n     \"sourceLiterals\": [\n       \"const factory=ownedOptions.createWorker??(async()=>{\",\n       \"const worker=await factory();\"\n     ],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": [\n       {\n         \"kind\": \"worker\",\n         \"url\": \"./worker.mjs\",\n         \"literal\": \"if(typeof Worker==='function')return new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});\"\n       },\n       {\n         \"kind\": \"node-builtin\",\n         \"url\": \"node:worker_threads\",\n         \"literal\": \"const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(new URL('./worker.mjs',import.meta.url),{type:'module'});\"\n       }\n     ]\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/runtime/worker.mjs\",\n   {\n     \"sha256\": \"acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c\",\n     \"runtimePolicy\": \"reviewed-gaussian-runtime\",\n     \"sourceLiterals\": [\n       \"if(typeof self==='object'&&typeof self.postMessage==='function'){\",\n       \"}else if(typeof process==='object'&&process.versions?.node){\"\n     ],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": [\n       {\n         \"kind\": \"node-builtin\",\n         \"url\": \"node:worker_threads\",\n         \"literal\": \"const {parentPort}=await import('node:worker_threads');\"\n       }\n     ]\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/lesson/controller.mjs\",\n   {\n     \"sha256\": \"0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/lesson/view.mjs\",\n   {\n     \"sha256\": \"aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ],\n [\n   \"labs/gaussian-tradeoff/lesson/lesson.mjs\",\n   {\n     \"sha256\": \"31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb\",\n     \"runtimePolicy\": \"no-runtime-loads\",\n     \"sourceLiterals\": [],\n     \"edgeKind\": \"reviewed-gaussian-module\",\n     \"runtimeEdges\": []\n   }\n ]\n]);\nconst reviewedHashPaths="
+    },
+    {
+      "before": "const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports']);",
+      "after": "const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime']);"
+    },
+    {
+      "before": "kind:profile.edgeKind",
+      "after": "kind:e.kind==='node-builtin'?'reviewed-node-builtin':e.kind==='worker'?'reviewed-worker':profile.edgeKind"
+    },
+    {
+      "before": "function moduleDependencies(modules,contract){",
+      "after": "function moduleDependencies(modules,contract,identities){"
+    },
+    {
+      "before": " if(declared.size!==actual.size",
+      "after": " if(!Array.isArray(identities))throw Error('Missing complete public module identities');\n const seenIdentities=new Map();\n for(const identity of identities){\n  fields(identity,['file','sha256'],'public module identity');\n  if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');\n  const expectedPath=reviewedHashPaths.get(identity.sha256);\n  if(expectedPath&&identity.file!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+identity.file);\n  seenIdentities.set(identity.file,identity.sha256);\n }\n for(const {file,source}of modules)if(seenIdentities.get(file)!==sha(source))throw Error('Missing or changed public module identity: '+file);\n if(declared.size!==actual.size"
+    }
+  ],
+  "builderChanges": [
+    {
+      "before": "path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8'))))local(edge.from,edge.url,edge.kind);",
+      "after": "path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);"
+    },
+    {
+      "before": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/']",
+      "after": "['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/','labs/gaussian-tradeoff/']"
+    }
+  ]
+}
