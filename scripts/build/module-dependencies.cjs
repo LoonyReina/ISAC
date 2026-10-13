@@ -27,6 +27,96 @@ function fields(x,expected,label){if(!x||typeof x!=='object'||Array.isArray(x)||
 const factory="export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}";
 const solverLoop="for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])await import(`../vendor/solver/${name}.js`)";
 const reviewedProfiles=new Map([
+ // Exact immutable pilot-pattern v4 lesson and accepted raw-IQ receiver.
+[
+  "labs/pilot-pattern/lesson.mjs",
+  {
+    "sha256": "9a0665b92d157fd64c9569db5fc236f73b2735c3303f4ee088400149288c4246",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/runtime/core.mjs",
+  {
+    "sha256": "53591126e91fe7f1c838bc7cd58e57a1a50035de9b5a811206d3ce3c47c1c87f",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/runtime/processing.mjs",
+  {
+    "sha256": "48427712f64f00de71e5c3e44af9557ee577343159b50b47179a22c4e10fc7e7",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/runtime/protocol.mjs",
+  {
+    "sha256": "0d3fcc205699d7d36ad9d35556d9c8f105d0124d03dad27f29995dbbffa474d1",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/runtime/records.mjs",
+  {
+    "sha256": "1982bfa3c17a479c8fb9e26cd5fd270a792c677b4a2e2f301ae89b6ca78a7c28",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/runtime/worker.mjs",
+  {
+    "sha256": "b157c3560b5126417150bd5d7237389ed6c1b9c8c1867bdf7cbab942c705a2c2",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/pilot-pattern/session.mjs",
+  {
+    "sha256": "96a7bb28fb6bbb4a6cd4ab94e2910adb515486d6ff183cb53caab5658ffcc267",
+    "runtimePolicy": "reviewed-factory-endpoints",
+    "sourceLiterals": [
+      "workerFactory=url=>new Worker(url,{type:'module'})",
+      "workerFactory(new URL('./runtime/worker.mjs',import.meta.url))"
+    ],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "./runtime/worker.mjs",
+        "literal": "new URL('./runtime/worker.mjs',import.meta.url)"
+      }
+    ]
+  }
+],
+[
+  "labs/pilot-pattern/strict-json.mjs",
+  {
+    "sha256": "4d539f0a15a957649029bd8190d73d50425a202f2446270dc3285223f25fe359",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-pilot-pattern-module",
+    "runtimeEdges": []
+  }
+],
  // Exact source-bound Perceptive direct block-MMV lesson and v2 solver.
 [
   "labs/perceptive-bsbl/check-worker.mjs",
@@ -1123,6 +1213,9 @@ const perceptivePublicFiles=new Map([
     "2a78defdf9f01ad7af14e7cd16b48d20b89137292abf471d12eaeacf604c5c70"
   ]
 ]);
+// Independently reviewed narrow-grid CSS correction; scientific/runtime policies stay frozen.
+if(perceptivePublicFiles.get('labs/perceptive-bsbl/lesson.css')!=='88eb3b03c73cc35a3419387b64275f02db8728af6c46b57a6e410f8b46e04ecb')throw Error('Unexpected original Perceptive CSS policy');
+perceptivePublicFiles.set('labs/perceptive-bsbl/lesson.css','97fa3d71368ca3ba4c8e506aaf77f661558c1a5b4702f597657da81e51df210e');
 const sensingOtfsPublicFiles=new Map([
   [
     "labs/otfs-sensing-assisted/lesson/README.md",
@@ -1222,6 +1315,100 @@ const sensingOtfsJsModules=new Set([
   "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
   "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js"
 ]);
+const pilotPatternPublicFiles=new Map([
+  [
+    "labs/pilot-pattern/README.md",
+    "3f2a452aacb0c2e63546f9fbbf4aa206086c9d8b0ce9797a56f9dbbfb31cabda"
+  ],
+  [
+    "labs/pilot-pattern/lesson.css",
+    "b8f59d4ba8ecb30aba5739271c665f59b8f85fc1bd63f6b10b6a46659c5fec17"
+  ],
+  [
+    "labs/pilot-pattern/lesson.mjs",
+    "9a0665b92d157fd64c9569db5fc236f73b2735c3303f4ee088400149288c4246"
+  ],
+  [
+    "labs/pilot-pattern/runtime/core.mjs",
+    "53591126e91fe7f1c838bc7cd58e57a1a50035de9b5a811206d3ce3c47c1c87f"
+  ],
+  [
+    "labs/pilot-pattern/runtime/processing.mjs",
+    "48427712f64f00de71e5c3e44af9557ee577343159b50b47179a22c4e10fc7e7"
+  ],
+  [
+    "labs/pilot-pattern/runtime/protocol.mjs",
+    "0d3fcc205699d7d36ad9d35556d9c8f105d0124d03dad27f29995dbbffa474d1"
+  ],
+  [
+    "labs/pilot-pattern/runtime/records.mjs",
+    "1982bfa3c17a479c8fb9e26cd5fd270a792c677b4a2e2f301ae89b6ca78a7c28"
+  ],
+  [
+    "labs/pilot-pattern/runtime/worker.mjs",
+    "b157c3560b5126417150bd5d7237389ed6c1b9c8c1867bdf7cbab942c705a2c2"
+  ],
+  [
+    "labs/pilot-pattern/session.mjs",
+    "96a7bb28fb6bbb4a6cd4ab94e2910adb515486d6ff183cb53caab5658ffcc267"
+  ],
+  [
+    "labs/pilot-pattern/strict-json.mjs",
+    "4d539f0a15a957649029bd8190d73d50425a202f2446270dc3285223f25fe359"
+  ],
+  [
+    "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+    "08c3947e6e3d49b34b47035231d307c34a0a373bc5beb2532695ed426e7dbd80"
+  ],
+  [
+    "assets/data/pilot-pattern/CONTRACT.md",
+    "5f4d8b73aecf1856adfd973f356b5d4243e911ad881961c6a015c2cc715ba66c"
+  ],
+  [
+    "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+    "2bb507afd973ae56b6cf925c3b6b814698ac3c2887633579d8e5613c5871c0bb"
+  ],
+  [
+    "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+    "241dc5e9995619cf63f66b9a3e6f5d937ce86a390be3c00e48f6d63389308ba0"
+  ],
+  [
+    "assets/data/pilot-pattern/REPORT.md",
+    "1db33ae80bc14b4b7bfce9fb901a1209eadbbf5d177a5c3b74973e7b0055e386"
+  ],
+  [
+    "assets/data/pilot-pattern/offline-summary.json",
+    "4a8ba79b2139d95e802561f746f478fc4b62411f7ba941ebfc4316673e5cea8f"
+  ],
+  [
+    "labs/pilot-pattern/FUNCTIONAL-FREEZE-V1.json",
+    "b6495c2b7a3d6b235742a0fccdd6c486433c93d1a7489628a81bd10ce90513f0"
+  ],
+  [
+    "labs/pilot-pattern/FUNCTIONAL-FREEZE-V2.json",
+    "6c433bafbb83c6388e24e162f1b7bb685a4993e97512cc4bac5b0c58782cbedf"
+  ],
+  [
+    "labs/pilot-pattern/FUNCTIONAL-FREEZE-V3.json",
+    "f7eecaa8b3471936524c2bd1d7230508f7a2e92fc06094e4b4c184a3bcdfad9d"
+  ],
+  [
+    "labs/pilot-pattern/FUNCTIONAL-FREEZE-V4.json",
+    "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d"
+  ],
+  [
+    "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md",
+    "7f302ec2b5884e6f5c3ead0103d44f9a70e8963b56d39555952b9ad24b209cc2"
+  ],
+  [
+    "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json",
+    "3a347d9b02df3fcc5271fb02306b4a69e88d75bde74a63fb0ebd96347f23101a"
+  ],
+  [
+    "assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json",
+    "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d"
+  ]
+]);
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
 const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime']);
@@ -1256,6 +1443,7 @@ function moduleDependencies(modules,contract,identities){
  for(const identity of identities){
   fields(identity,['file','sha256'],'public module identity');
   if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');
+  if(['labs/pilot-pattern/','assets/data/pilot-pattern/'].some(prefix=>identity.file.startsWith(prefix))&&pilotPatternPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed pilot-pattern public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/cellfree-maprt/')&&cellfreePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Cell-Free public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);
   if(['labs/perceptive-bsbl/','assets/data/perceptive-bsbl/','scripts/validation/perceptive-bsbl/'].some(prefix=>identity.file.startsWith(prefix))&&perceptivePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Perceptive public path or hash: '+identity.file);

@@ -32,7 +32,7 @@ test('invalid and missing unit fallbacks are rejected before a direct lesson ent
   a.throws(()=>createLearningEntryResolver(r).unitEntry(u),/unit learning entry/);
   a.throws(()=>renderMap(r,researchGuides),/unit learning entry/);
  }
- const r=structuredClone(registry);r.units.find(u=>u.id==='pilot').href='pilot-design.html#missing-anchor';a.throws(()=>renderMap(r,researchGuides),/case unit entry/);
+ const r=structuredClone(registry),c=r.cases.find(c=>c.id==='case-pilot'),unit=r.units.find(u=>u.id===c.unit);delete c.learningEntry;unit.href=unit.href.split('#')[0]+'#missing-anchor';a.throws(()=>renderMap(r,researchGuides),/case unit entry/);
 });
 
 const {createBuildLinkValidationContext}=require('../scripts/learning-entry.cjs');

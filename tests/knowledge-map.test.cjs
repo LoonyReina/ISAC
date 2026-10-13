@@ -326,7 +326,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,guideData.cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,require('./helpers/pilot-pattern-preservation.cjs').maybeWithoutGuides(guideData).cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');

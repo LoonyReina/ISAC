@@ -7,7 +7,7 @@ const {buildResearchGuides,renderResearchGuides}=require('../scripts/research-gu
 const {spatialGuideId,spatialGuideHash,aperturePrerequisite,withoutApertureTeachingLinks,withoutSpatialFrontier}=require('./helpers/spatial-frontier-preservation.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
+const registry=JSON.parse(read('site/registry.json')),data=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile)));
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const spatial=d=>d.cards.find(c=>c.id===spatialGuideId),design=d=>spatial(d).visualTrace.steps.find(s=>s.id==='design');
 

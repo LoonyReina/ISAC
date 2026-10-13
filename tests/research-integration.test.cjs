@@ -3,7 +3,7 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json'));
 test('waveform map concept preserves separate pilot and strict-covariance models through canonical references',()=>{
- const node=registry.knowledgeMap.nodes.find(n=>n.id==='waveform-design');
+ const node=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(registry).knowledgeMap.nodes.find(n=>n.id==='waveform-design');
  assert.deepEqual(node.unitRefs,['pilot','waveform-design','golay-radar']);assert.equal(node.entryUnitRef,'pilot');
  assert.match(node.knownUnknown,/静止单径时延/);assert.match(node.knownUnknown,/H、目标符号 S 与协方差 R_d 已知/);
  assert.match(node.boundary,/无噪声确定性符号误差/);assert.match(node.boundary,/不保证相同延迟–多普勒性能/);

@@ -1,0 +1,213 @@
+{
+  "schema": "pilot-pattern-independent-functional-acceptance-v1",
+  "date_utc": "2026-10-13",
+  "status": "accepted_for_strict_site_integration_and_separate_browser_gate",
+  "paper_identity": "supplement-case-pilot",
+  "route": "pilot-patterns.html",
+  "prerequisite": "pilot-design.html",
+  "source_commit": "9cab398174e4fe14beb28dcca62b6e542968b2f4",
+  "source_tree": "41b8279de0b6a63bd6b84b8f59ff5240a2d315cc",
+  "source_manifest_sha256": "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d",
+  "accepted_port_manifest_sha256": "08c3947e6e3d49b34b47035231d307c34a0a373bc5beb2532695ed426e7dbd80",
+  "runtime_unchanged": true,
+  "owned_files_verified_before_and_after": true,
+  "files": [
+    {
+      "path": "content/pages/pilot-patterns.html",
+      "bytes": 24799,
+      "sha256": "2aa1b31f423338ae93ffca342847d78e2ed400685b090491b7e84f6d00a15737"
+    },
+    {
+      "path": "labs/pilot-pattern/INTEGRATION.md",
+      "bytes": 1482,
+      "sha256": "ad0c168fd2db0e16282b4b1dbe4cffdaeaceb9db56b37342cbd7955132899622"
+    },
+    {
+      "path": "labs/pilot-pattern/README.md",
+      "bytes": 5169,
+      "sha256": "3f2a452aacb0c2e63546f9fbbf4aa206086c9d8b0ce9797a56f9dbbfb31cabda"
+    },
+    {
+      "path": "labs/pilot-pattern/lesson.css",
+      "bytes": 4989,
+      "sha256": "b8f59d4ba8ecb30aba5739271c665f59b8f85fc1bd63f6b10b6a46659c5fec17"
+    },
+    {
+      "path": "labs/pilot-pattern/lesson.mjs",
+      "bytes": 30658,
+      "sha256": "9a0665b92d157fd64c9569db5fc236f73b2735c3303f4ee088400149288c4246"
+    },
+    {
+      "path": "labs/pilot-pattern/runtime/core.mjs",
+      "bytes": 11798,
+      "sha256": "53591126e91fe7f1c838bc7cd58e57a1a50035de9b5a811206d3ce3c47c1c87f"
+    },
+    {
+      "path": "labs/pilot-pattern/runtime/processing.mjs",
+      "bytes": 6984,
+      "sha256": "48427712f64f00de71e5c3e44af9557ee577343159b50b47179a22c4e10fc7e7"
+    },
+    {
+      "path": "labs/pilot-pattern/runtime/protocol.mjs",
+      "bytes": 5101,
+      "sha256": "0d3fcc205699d7d36ad9d35556d9c8f105d0124d03dad27f29995dbbffa474d1"
+    },
+    {
+      "path": "labs/pilot-pattern/runtime/records.mjs",
+      "bytes": 11486,
+      "sha256": "1982bfa3c17a479c8fb9e26cd5fd270a792c677b4a2e2f301ae89b6ca78a7c28"
+    },
+    {
+      "path": "labs/pilot-pattern/runtime/worker.mjs",
+      "bytes": 212,
+      "sha256": "b157c3560b5126417150bd5d7237389ed6c1b9c8c1867bdf7cbab942c705a2c2"
+    },
+    {
+      "path": "labs/pilot-pattern/session.mjs",
+      "bytes": 3618,
+      "sha256": "96a7bb28fb6bbb4a6cd4ab94e2910adb515486d6ff183cb53caab5658ffcc267"
+    },
+    {
+      "path": "labs/pilot-pattern/strict-json.mjs",
+      "bytes": 1570,
+      "sha256": "4d539f0a15a957649029bd8190d73d50425a202f2446270dc3285223f25fe359"
+    },
+    {
+      "path": "labs/pilot-pattern/tests/dom-harness.cjs",
+      "bytes": 7406,
+      "sha256": "44795b7639a49c8dcaa4d650103a709b58a4cb66eb6bf0459152d3f5399515f5"
+    },
+    {
+      "path": "labs/pilot-pattern/tests/lesson.test.mjs",
+      "bytes": 22507,
+      "sha256": "e3d954b69e828882b4bdb3c05cf81af95feaa8d1062591ac03870c13d7548247"
+    },
+    {
+      "path": "labs/pilot-pattern/tests/mounted.mjs",
+      "bytes": 1717,
+      "sha256": "8519327be7681a1cbef40422ba44b95b55cc741e33c064c073116d61cbeabca6"
+    },
+    {
+      "path": "labs/pilot-pattern/tests/node-worker.mjs",
+      "bytes": 269,
+      "sha256": "90f2d8a0651be6c780fb64ef0daaaf3aec43b7e80a01b8edb94fa8c58c964599"
+    },
+    {
+      "path": "labs/pilot-pattern/tests/replay_downloads.py",
+      "bytes": 5825,
+      "sha256": "49996bcc0ee4d4fd6b3f86b7a66920e73084c010f8fb80031737fa9c3be29bb0"
+    },
+    {
+      "path": "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+      "bytes": 4515,
+      "sha256": "08c3947e6e3d49b34b47035231d307c34a0a373bc5beb2532695ed426e7dbd80"
+    },
+    {
+      "path": "assets/data/pilot-pattern/CONTRACT.md",
+      "bytes": 12877,
+      "sha256": "5f4d8b73aecf1856adfd973f356b5d4243e911ad881961c6a015c2cc715ba66c"
+    },
+    {
+      "path": "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+      "bytes": 10101,
+      "sha256": "2bb507afd973ae56b6cf925c3b6b814698ac3c2887633579d8e5613c5871c0bb"
+    },
+    {
+      "path": "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+      "bytes": 6620,
+      "sha256": "241dc5e9995619cf63f66b9a3e6f5d937ce86a390be3c00e48f6d63389308ba0"
+    },
+    {
+      "path": "assets/data/pilot-pattern/REPORT.md",
+      "bytes": 10042,
+      "sha256": "1db33ae80bc14b4b7bfce9fb901a1209eadbbf5d177a5c3b74973e7b0055e386"
+    },
+    {
+      "path": "assets/data/pilot-pattern/offline-summary.json",
+      "bytes": 149517,
+      "sha256": "4a8ba79b2139d95e802561f746f478fc4b62411f7ba941ebfc4316673e5cea8f"
+    }
+  ],
+  "independent_results": {
+    "node_assertions": 473,
+    "node_cases": 19,
+    "numpy_assertions": 1511,
+    "production_blob_records": 13,
+    "maximum": {
+      "workerElapsedMs": 614.801477,
+      "bytes": 8423441,
+      "browserMeasurement": false
+    }
+  },
+  "verification_limits": [
+    "No actual browser, pixel/layout/accessibility, native-download or browser heap/paint measurement",
+    "No full site integration or aggregate build in this review",
+    "No deployment or original-figure / whole-paper reproduction acceptance",
+    "No blanket acceptance of all 59 original design specifications"
+  ],
+  "scope_adjustments": [
+    "Natural FFT relationship documented and inherited from accepted numerical gate; no live secondary FFT plot",
+    "No skipped-derotation or per-path/predecessor trace interface",
+    "No interactive 600-frame Monte Carlo"
+  ],
+  "report_sha256": "7f302ec2b5884e6f5c3ead0103d44f9a70e8963b56d39555952b9ad24b209cc2",
+  "final_evidence": [
+    {
+      "file": "MOUNTED-FINAL.json",
+      "sha256": "3b758ea6bf3ff6d3801c4e828af1b9a38589a50c848a5ee5eda82b7b2302643d"
+    },
+    {
+      "file": "LIFECYCLE-FINAL.json",
+      "sha256": "58a9439f1def0d67acf1f7f3e373ae22aefa8ae443d3d99bd63f507a52329a66"
+    },
+    {
+      "file": "LIMITS-FINAL.json",
+      "sha256": "f6ce5ead0bb09f13b3258956147407aa6ad1fd16e78d8a587fc7be861daaf455"
+    },
+    {
+      "file": "REPLAY-FINAL.json",
+      "sha256": "81289040c67015e66e83df92bfadbecf942f877ccc748b3c54ac4652fdc9bb11"
+    },
+    {
+      "file": "BINDING-BEFORE.json",
+      "sha256": "872a23af444c7e42e4f05a2a9801dc0fa6df3f22e756469129d5835518333246"
+    },
+    {
+      "file": "BINDING-AFTER.json",
+      "sha256": "21c1a711f29385267239873c645074d8ed61292aef7b8e6f03bf6cb84cbad688"
+    }
+  ],
+  "reviewer_scripts": [
+    {
+      "file": "harness.mjs",
+      "sha256": "b2157263889a75385ee5f9d308b81be01c410c6597679a0550612617b10d5ea5"
+    },
+    {
+      "file": "worker-bridge.mjs",
+      "sha256": "42b8bc939488822b19c62baecf3151105324399589bc08b64216191d47f4a7af"
+    },
+    {
+      "file": "mounted-audit.mjs",
+      "sha256": "4880cb6a95a58c4981e913b2f08be6c1d875ee200e872ecefb0bb15537099702"
+    },
+    {
+      "file": "lifecycle-audit.mjs",
+      "sha256": "616d4f4f22b2006cf2b9a8f5beafcca45835e5a26d94084cd9ce060bce8dfe20"
+    },
+    {
+      "file": "limits-audit.mjs",
+      "sha256": "45743a56293c761bb370f340f4a6fcdeff8328de4f5fd0a2e3c8ab114af63966"
+    },
+    {
+      "file": "replay_blobs.py",
+      "sha256": "f0c1698e440402f7c6f8d05692cfa6a57c2170fea4c047d3f3dab1226ab5b7ab"
+    },
+    {
+      "file": "verify_binding.py",
+      "sha256": "5b664824ee3df520ca30b4a4c917f50aa172fb79244bf0a2e09ed11d2dbbaeee"
+    }
+  ],
+  "targeted_browser_risks": [
+    "Verify the source-panel 64-character PDF SHA-256 wraps without page-level overflow at 320/390 px. No actual layout measurement was made."
+  ]
+}

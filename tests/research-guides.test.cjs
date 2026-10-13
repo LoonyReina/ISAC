@@ -4,7 +4,7 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Content, generator and simulated DOM regression. No browser or source refetch claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
-const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const root=path.resolve(__dirname,'..'),read=f=>{const value=fs.readFileSync(path.join(root,f),'utf8');return f==='reading.html'?require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage(f,value):value;};
 const registry=JSON.parse(read('site/registry.json')),data=require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(JSON.parse(read(registry.researchGuidesFile)));
 const legacyUnitCount=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).units.length-1;
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));

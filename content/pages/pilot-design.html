@@ -48,6 +48,8 @@
 <p><b>观测假设：</b>没有时钟偏差、载频偏差、频率选择性散射增益、噪声、多径、遮挡、符号内运动或距离迁移。相位斜率模型假定已正确同步并消除 ISI/ICI；这里不模拟 CP，不能把 150 m 周期当作真实系统的最大探测距离。双站应先解释路径长度/路径差，不能直接照搬单站的一半距离换算。</p>
 <p><b>向论文迈进一步：</b>单符号改偏移不会去模糊；跨符号交错需要把偏移与多普勒联合建模。若每符号增益相位都可任意独立变化，不能把频点简单拼接成一个相干宽带观测。论文的二维区域与此页静止切片必须分开核验。</p>
 <details><summary>可复算检查点与失败条件</summary><div><ol><li>默认 P={0,4,…,60}；K=16；τ=266.6667 ns。用 H[k] 代入 S：2.5、40、77.5、115 m 都应为 1，允许浮点误差 10⁻¹²。</li><li>梳状首零点偏离真峰 2.34375 m，全连续也是 2.34375 m；等数量连续块为 9.375 m。梳状与全连续主瓣尺度相同，不代表同 SNR，也不代表同不模糊范围。</li><li>令 r=1：在 R′=77.5 m，â 相对真值增益转过 +π/2，|â|²仍为 1。若代码把未知相位固定为 0，会错误消除这个别名。</li><li>网格不命中峰时，离散最大值可能小于 1；不要把采样漏峰当成消除模糊。多个理论同高峰不得自动宣判唯一目标。</li></ol></div></details>
+<h3 id="pilot-pattern-next">下一问：跨符号交错后，长延迟与噪声怎样一起变化？</h3>
+<p>继续<a href="pilot-patterns.html#question">同一论文的二维原始 I/Q 课</a>：对同一份接收样本比较额外丢弃与普通 CP，逐步读去旋转、短 FFT 和二维模糊。线性错列仍有倾斜别名；丢弃样本的噪声代价可能让低 SNR 更差。先看<a href="reading.html#guide-ofdm-reference-patterns-2024">问题式原文导读</a>。本页仍是单符号、无噪声的距离切片先修；新课的数值/Node接受不等于精确原图、整篇或真实浏览器认证。</p>
 <p class="sources">来源核对日期：2026-10-10。Zhang 等：上链 v3 PDF，§II（图样定义）、§III（二维模糊分析）、§V（2D FFT 的重复条件）。Braun 等：KIT 作者 PDF，2012，§II.C–D。没有逐式审核全部证明、附录或实测数据；此页的单径参数与测试是本站独立教学推导。</p>
 </section><footer>ISAC 交互讲义 · 研究案例 / 导频设计 · <a href="foundations.html">返回连续基础</a> · <a href="reading.html">研究阅读地图</a></footer><!-- SITE:NEXT:START -->
 <aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html?topic=pilot#notebook">把这个主题写成可复核的实验记录 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
