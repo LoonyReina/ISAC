@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "69fdbef17ac479047896f62e5449c5834efe2993",
+  "baselineTree": "f2fa411a3a991b9c9303c76d74113eb46f70cd85",
+  "baselineManifestSha256": "0b5ceb4a8ffe792c04530aff3ea591ab250130a8439c2623c1830836cad70055",
+  "addedEntries": [
+    {
+      "source": "tests/dual-array-browser-timers.test.cjs",
+      "compatibility": "tests/owned/dual-array-browser-timers.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-timer-preservation.cjs",
+      "compatibility": "tests/helpers/dual-array-browser-timer-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-timer-repair.json",
+      "compatibility": "tests/helpers/dual-array-browser-timer-repair.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-plot-readability.test.cjs",
+      "compatibility": "tests/owned/dual-array-plot-readability.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-plot-readability-preservation.cjs",
+      "compatibility": "tests/helpers/dual-array-plot-readability-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-plot-readability-freeze.json",
+      "compatibility": "tests/helpers/dual-array-plot-readability-freeze.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-current-runtime.test.cjs",
+      "compatibility": "tests/dual-array-current-runtime.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-current-runtime-preservation.cjs",
+      "compatibility": "tests/helpers/dual-array-current-runtime-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-current-runtime-delta.json",
+      "compatibility": "tests/helpers/dual-array-current-runtime-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-current-runtime-freeze.json",
+      "compatibility": "tests/helpers/dual-array-current-runtime-freeze.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-integration-preservation.cjs",
+      "compatibility": "tests/helpers/dual-array-browser-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-integration-delta.json",
+      "compatibility": "tests/helpers/dual-array-browser-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-timer-fixture.cjs",
+      "compatibility": "tests/helpers/dual-array-browser-timer-fixture.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-browser-timer-fixture.json",
+      "compatibility": "tests/helpers/dual-array-browser-timer-fixture.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-browser-timers-current.test.cjs",
+      "compatibility": "tests/dual-array-browser-timers-current.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/dual-array-browser-mappings.json",
+      "compatibility": "build/dual-array-browser-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-plot-readability-current.test.cjs",
+      "compatibility": "tests/dual-array-plot-readability-current.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

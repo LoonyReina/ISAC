@@ -2,7 +2,7 @@ import {LIMITS,assert,integer,validateRequest,snapshotJSON} from './records.mjs'
 const PROTOCOL='dual-array-worker-v1';
 /** One actual Worker per task. Cancellation kills computation, it does not merely ignore output. */
 export class WorkerClient {
-  constructor({workerFactory=()=>new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'}),onMessage=()=>{},onCallbackError=()=>{},setTimer=setTimeout,clearTimer=clearTimeout}={}){
+  constructor({workerFactory=()=>new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'}),onMessage=()=>{},onCallbackError=()=>{},setTimer=setTimeout.bind(globalThis),clearTimer=clearTimeout.bind(globalThis)}={}){
     assert(typeof workerFactory==='function'&&typeof onMessage==='function','client callbacks required');
     this.workerFactory=workerFactory;this.onMessage=onMessage;this.onCallbackError=onCallbackError;this.setTimer=setTimer;this.clearTimer=clearTimer;this._current=null;this._revision=0;this._readToken=0;this._disposed=false;this.lastCallbackError=null;
   }

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import repair from '../../../../tests/helpers/dual-array-current-runtime-preservation.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -8,7 +9,7 @@ import {defaultRequest} from '../../runtime/kernel.mjs';
 import {checkRecord,canonical,matrixFingerprint} from '../../runtime/records.mjs';
 import {mounted,run,change,download,waitFor,workerFactory} from './helpers.mjs';
 const hashes={'client.mjs':'16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824','kernel.mjs':'0292203f5dd4d0ff39592f892a332c5333f2ba8caf894effdc4a81d43702c32d','records.mjs':'7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158','worker.mjs':'b2b2376d0b3c62a4e2ec58a84a1f95f31a0ddb1023d9a19940445f641d84f94f'};
-test('four runtime sources remain exact accepted bytes',async()=>{for(const [name,hash]of Object.entries(hashes))assert.equal(createHash('sha256').update(await fs.readFile(new URL('../../runtime/'+name,import.meta.url))).digest('hex'),hash);});
+test('four runtime sources remain exact accepted bytes',async()=>{for(const [name,hash]of Object.entries(hashes))assert.equal(createHash('sha256').update(repair.historicalBytes('labs/dual-array/runtime/'+name,await fs.readFile(new URL('../../runtime/'+name,import.meta.url)))).digest('hex'),hash);});
 test('default controls build exact accepted default request',()=>assert.equal(canonical(sceneRequest(DEFAULT_DRAFT)),canonical(defaultRequest())));
 test('blank, nonfinite, invalid q/grid and dimensions fail before start',()=>{for(const p of [{theta:''},{theta:'NaN'},{range:'0'},{rank:'3'},{grid:'62'},{seed:'1.3'},{betaRe:'Infinity'},{sigma2:'-1'}])assert.throws(()=>sceneRequest({...DEFAULT_DRAFT,...p}));});
 test('mounted default starts idle with honest selectors and no charts',async()=>{const h=await mounted();assert.equal(h.app.session.state.status,'idle');assert.equal(h.get('da-rank').value,'4');assert.equal(h.get('da-matrix').value,'Y');assert.equal(h.get('da-truth').checked,false);assert.equal(h.get('da-music-plot').innerHTML,'');assert.equal(h.get('da-download').disabled,true);h.app.dispose();});

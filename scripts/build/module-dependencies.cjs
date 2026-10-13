@@ -1606,6 +1606,11 @@ const dualArrayPublicFiles=new Map([
     "eb7b204b0ea162f6dfb1c0d2ee1ea69a13f20571cbbb0c4c44363fc768741f21"
   ]
 ]);
+// Exact accepted browser repair overlay. Historical profile constants above remain frozen.
+if(reviewedProfiles.get('labs/dual-array/runtime/client.mjs').sha256!=='16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824'||dualArrayPublicFiles.get('labs/dual-array/runtime/client.mjs')!=='16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824'||dualArrayPublicFiles.get('labs/dual-array/lesson.css')!=='edf7126ca31eba6bdb657710cf735d84e755268aa8677650daa984c0e8804d81')throw Error('Unexpected prior dual-array browser identity');
+reviewedProfiles.set('labs/dual-array/runtime/client.mjs',{...reviewedProfiles.get('labs/dual-array/runtime/client.mjs'),sha256:'d78605231b69be6d7468cc4e08dbcd1c4483b091d543875071e40e672aa5017f'});
+dualArrayPublicFiles.set('labs/dual-array/runtime/client.mjs','d78605231b69be6d7468cc4e08dbcd1c4483b091d543875071e40e672aa5017f');
+dualArrayPublicFiles.set('labs/dual-array/lesson.css','a26465d08bea5d94ee331ab8e2ced8784ab85261018f21e151b870be4fb784d4');
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
 const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
