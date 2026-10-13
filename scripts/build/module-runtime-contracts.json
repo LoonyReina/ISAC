@@ -472,6 +472,115 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "sha256": "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/client.mjs",
+      "sha256": "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "../runtime/worker.mjs",
+          "literal": "new URL('../runtime/worker.mjs',import.meta.url)"
+        },
+        {
+          "kind": "worker",
+          "url": "./derived-worker.mjs",
+          "literal": "new URL('./derived-worker.mjs',import.meta.url)"
+        }
+      ],
+      "runtimePolicy": "reviewed-factory-endpoints",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "sha256": "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "sha256": "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "sha256": "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "sha256": "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "sha256": "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/session.mjs",
+      "sha256": "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "sha256": "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "sha256": "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/model.mjs",
+      "sha256": "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "sha256": "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "sha256": "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "sha256": "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

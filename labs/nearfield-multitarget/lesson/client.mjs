@@ -1,0 +1,9 @@
+// Two terminate-able module Workers: exact audited solver and bounded teaching/record work.
+export class WorkerClient {
+ constructor({onProgress=()=>{},workerFactory=url=>new Worker(url,{type:'module'})}={}){this.progress=onProgress;this.factory=workerFactory;this.serial=0;this.slots=new Map();this.closed=false;}
+ execute(kind,type,payload={}){if(this.closed)return Promise.reject(Error('会话已关闭'));if(this.slots.has(kind))return Promise.reject(Error('已有计算进行中'));const id=kind+'-'+(++this.serial),url=kind==='solve'?new URL('../runtime/worker.mjs',import.meta.url):new URL('./derived-worker.mjs',import.meta.url);let worker;try{worker=this.factory(url);}catch(e){return Promise.reject(e);}return new Promise((resolve,reject)=>{const slot={worker,id,reject};this.slots.set(kind,slot);const alive=()=>this.slots.get(kind)===slot;const finish=(value,error)=>{if(!alive())return;this.slots.delete(kind);worker.terminate();error?reject(error):resolve(value);};worker.onmessage=({data})=>{if(!alive()||data?.id!==id)return;if(data.type==='progress'){this.progress(data);return;}if(data.type==='error')finish(null,Error((data.status?data.status+': ':'')+(data.error||'Worker失败')));else if(data.type==='result'||data.type==='cancelled')finish(data);};worker.onerror=e=>finish(null,Error(e.message||'Worker执行失败'));worker.onmessageerror=()=>finish(null,Error('Worker消息无法解码'));try{worker.postMessage({id,type,...payload});}catch(e){finish(null,e);}});}
+ solve(s){return this.execute('solve','solve',{input:s.config,options:s.options,sample:s.sample,seed:s.seed});}
+ derive(type,payload){return this.execute('derive',type,payload);}
+ cancel(){for(const slot of this.slots.values()){slot.worker.terminate();slot.reject(Error('cancelled'));}this.slots.clear();this.serial++;}
+ destroy(){this.cancel();this.closed=true;}
+}

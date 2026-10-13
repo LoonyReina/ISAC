@@ -636,100 +636,129 @@
       "title": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
       "category": "guide",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-13",
       "canonicalReferences": {
         "guideIds": [
           "nearfield-multitarget-correlation"
         ],
         "catalogIds": [],
-        "caseIds": [],
-        "sourceIds": []
+        "caseIds": [
+          "case-nearfield-multitarget"
+        ],
+        "sourceIds": [
+          "case-nearfield-multitarget-paper"
+        ]
       },
       "paperType": "algorithm-and-optimization-study",
       "source": {
         "url": "https://arxiv.org/html/2506.07052v1",
-        "fixedVersion": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF",
+        "fixedVersion": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF，2026-10-13 对照独立数值接受绑定",
         "locators": {
-          "summary": "§II-A；§II-C 式(3)–(7)；§II-D 式(11)–(14)及增益/互相关定义；§III 式(15)–(18)；§IV-A 基线设置；§IV-C 式(19)、Fig. 5"
+          "summary": "§II-A/C 式(3)–(9)；§II-D 式(11)–(14)；§III 式(15)–(18)；§IV-A 源参数与放宽的 FFBF；§IV-C 式(19)、Fig.5 的接收失败边界"
         },
         "paperIdentity": "arxiv:2506.07052",
         "fixedSourceIdentity": "arxiv:2506.07052v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "315d7c2c7299f43d8ba838de78d45faf5b79ccb8e161474bbc0d27b0a3febaeb",
+        "hashStatus": "recorded",
         "details": {
-          "authors": "Hang Ruan、Homa Nikbakht、Ruizhi Zhang、Honglei Chen、Yonina C. Eldar"
+          "authors": "Hang Ruan、Homa Nikbakht、Ruizhi Zhang、Honglei Chen、Yonina C. Eldar",
+          "acceptanceBinding": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json"
         }
       },
       "contribution": {
         "types": [
           "algorithm"
         ],
-        "summary": "SDP maximizes worst weighted target illumination with pairwise correlation, user-rate and total-power constraints; rank-one communication recovery preserves overall covariance; evaluate Capon spectrum."
+        "summary": "Intended Eq.17 maximizes worst weighted target illumination using PSD covariances, pairwise complex-modulus correlation, user-rate and total-power constraints; Eq.18 recovery preserves total covariance and SINRs. Literal Eq.12 and Eq.19 receive/localization definitions remain unresolved."
       },
       "minimalFaithfulTarget": {
-        "description": "Solve the actual small-array SDP and perform stated rank-one recovery, then compute paper receive covariance and Capon spectrum for same-angle/different-range targets.",
+        "description": "Accepted bounded milestone: freshly solve intended Eq.17 and perform Eq.18 rank-one recovery, including original 10×10 optimization settings. Preserve literal Eq.12 zero echo and Eq.19 undefined ordinary inverse/index; a usable receive/Capon model and Fig.5 remain a separate unresolved target.",
         "acceptanceGate": "Source-exact algorithm implemented and independently numerically validated; selected paper experiment reproduced with declared parameters/baselines/resources; live inputs recompute outputs; UI explains iterations and failures. A reduced-size algorithm demonstration alone does not close full-paper coverage."
       },
       "experiment": {
         "targets": [
-          "Fig5 correlation-constrained versus unconstrained covariance designs; original far-field baseline shown with its relaxed constraints visibly recorded."
+          "Accepted intended Eq.17/18 optimization and recovery at bounded 6×6 and source 10×10 settings; original Fig.5 correlation/NCCS/relaxed-FFBF receive spectrum remains unreproduced."
         ],
         "baselines": [
-          "Near-field design without pairwise-correlation constraints",
-          "Far-field baseline with explicitly relaxed user rates/correlation restrictions"
+          "NCCS removes only the three pairwise correlation constraints; identical remaining parameters, budgets and acceptance gates",
+          "Original FFBF lowers r from17 to0.95 and removes same-direction correlation constraints; not implemented as an equal-QoS third method"
         ],
         "metrics": [
           "Weakest target illumination",
           "User rate/SINR",
           "Pairwise correlation",
-          "Normalized Capon spectrum",
-          "Constraint residual/rank/runtime"
+          "Literal Eq.12 zero echo and Eq.19 undefined ordinary inverse; no normalized Capon or localization metric claimed",
+          "Physical PSD/recovery/constraint residuals, primal/dual bounds/gap, full statuses and runtime budgets"
         ],
         "resources": [
           "Known user and target coordinates, unknown RCS",
-          "Same total covariance/power for recovery check",
+          "Eq.18 preserves total covariance/expected power; common cap and random draws do not imply equal finite-block energy",
           "Original relaxed FFBF is not an equal-constraint fairness result"
         ],
-        "unresolved": [],
-        "details": {}
+        "unresolved": [
+          "Eq.9 末项缺共轭，按 Eq.8/Eq.16 协方差代数采用 hᵀRₛh*；不声称知道作者程序",
+          "Eq.12 字面接收增益为零；朝向目标的接收约定仅作明确教学扩展的总回波能量，不替代原式",
+          "本构造 rank(R̂X)≤5<N，T=1000 或接收噪声均不能补足发射秩；不以伪逆、加载、改分子或替代空间谱掩盖 Eq.19",
+          "Original Fig.5, source FFBF, full-paper coverage and actual browser performance are not established"
+        ],
+        "details": {
+          "sourceOptimizationAccepted": true,
+          "literalReceiverAccepted": false,
+          "sourceFigureReproduced": false,
+          "teachingExtensions": [
+            "Equal-law Gaussian covariance sampling is not per-communication-stream synthesis",
+            "Same-current-Rx illumination slices are not localization spectra",
+            "Target-facing receive convention reports extension echo energy, not original Eq.12 success",
+            "Numerical record self-consistency does not authenticate history or re-solve optimization"
+          ]
+        }
       },
       "implementation": {
-        "classification": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "live": "Existing near-field matcher does not optimize transmit covariance or compute Capon",
-        "offline": null,
-        "details": {}
+        "classification": "bounded-intended-eq17-eq18-source-optimization; literal-eq12-eq19-receiver-unresolved; browser-not-accepted",
+        "live": "nearfield-multitarget.html#experiment: fresh exact spherical channels, actual two-mode PSD optimization, Eq.18 recovery, full physical residuals and floating-point dual certificates; same-data teaching derivations and optional complete X/N",
+        "offline": "Independent accepted reference manifest 61c52e8aeaab24674d205dd8a7572d0dbd419d2a1767a64e420facc1914e0f9b; final review accepts the intended numerical core including original-source 10×10 optimization and the repaired v2 Node Worker. Historical rejected worker and solver failures remain recorded.",
+        "details": {
+          "runtimeManifest": "eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44",
+          "runtimeExecutableCount": 6,
+          "independentBindingSha256": "f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e",
+          "lessonFreezeSha256": "3ea8557ab493cf2cb4806c9ed8d117a843c4626d3fbbc95818c5724da1bbacf0",
+          "browserAccepted": false,
+          "fullPaper": false,
+          "lesson": "nearfield-multitarget.html#question",
+          "prerequisite": "near-field.html#experiment"
+        }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed arxiv:2506.07052v1 PDF identity and source crosswalk are bound by the accepted reference; Eq.9 conjugation correction, literal Eq.12 direction, Eq.19 ordinary inverse/undefined index and precise array endpoint aperture are disclosed. Historical runtime README stages remain frozen and are superseded only within FINAL-BINDING numerical scope.",
+        "algorithm": "Fresh intended Eq.17 PSD optimization and Eq.18 recovery, floating-point full-space primal/dual checks and repaired v2 actual Node Worker are independently accepted, including original-source 10×10 settings. No weights or solutions are looked up; all failures and partial evidence remain terminal data.",
+        "selectedExperiment": "Bounded 6×6 and source 10×10 optimization parameters pass the accepted numerical gate. Teaching illumination, Gaussian samples and receive-direction extension are separately labeled. This is not Fig.5, a localization/detection study, the relaxed FFBF baseline or original-curve reproduction.",
+        "fullPaper": "Zero full-paper reproductions. Literal Eq.12 gives zero target echo, Eq.19 needs an undefined ordinary inverse for rank≤5<N and contains an undefined index. No pseudoinverse, loading, altered numerator or substitute Capon spectrum silently repairs it.",
+        "latency": "Actual Node Worker/controlled-DOM and numerical evidence are distinct from browser Worker/CSP/lifecycle/layout/accessibility/download/reimport/memory and complete control-to-painted-result timing; all browser measurements remain null."
       },
       "missingImplementation": [
-        "SDP optimizer",
-        "Recovery and PSD/constraint checks",
-        "Actual receive model/Capon processor"
+        "A justified receive convention and Eq.19 definition resolving ordinary-inverse/index issues; original Capon/localization, Fig.5 and detection/RMSE evidence",
+        "Original relaxed FFBF, per-stream transmission, automated sweep, robust position-uncertainty design and full-paper study",
+        "Actual served-browser Worker/CSP, layout/keyboard/download/import/cancellation/memory and complete painted-result latency acceptance"
       ],
       "dependencies": [
-        "Audited SDP numerical reference",
-        "Browser solver or validated structured solver; latency unresolved",
-        "Complex matrix kernels"
+        "Accepted fixed-source reference and independent full-physical-space intended Eq.17/18 checks; no runtime fixture dependency",
+        "Frozen six-module v2 runtime and separate lesson freeze; actual served-browser/device gate remains open",
+        "Preserve literal receive failures and separate all Gaussian/illumination/receive-direction teaching extensions from source acceptance"
       ],
       "blockers": [
-        "SDP optimizer",
-        "Recovery and PSD/constraint checks"
+        "Literal Eq.12 zero echo and Eq.19 structurally singular ordinary inverse/undefined index prevent claimed receive/localization reproduction",
+        "Actual browser/device and original Fig.5/full-paper acceptance remain open; floating-point certificates and Node checks cannot close them"
       ],
       "realtime": {
         "status": "not-measured",
@@ -743,7 +772,7 @@
           "worstMs": null
         },
         "details": {
-          "assessment": "Capon is small and live; faithful SDP is the main dependency. Do not replace optimization by hand-picked beams or stored solutions.",
+          "assessment": "The actual optimizer and full records are implemented with per-mode caps, but no browser control-to-painted-result timing is established. Solver caps exclude additional certification, sampling, decoding/encoding, matrix projection and drawing.",
           "measuredLatencyMs": null,
           "requirement": "Benchmark actual default and largest permitted domain in a desktop browser; report iteration cap, convergence/residual, cancellation and numerical failure rather than claiming unmeasured real time."
         }
@@ -754,13 +783,32 @@
         "inventoryAssessment": 4
       },
       "evidence": {
-        "paperEvidence": "优化推导＋数值空间谱；本站为原文导读",
+        "paperEvidence": "优化推导＋数值仿真；本站已有 bounded intended Eq.17/18 数值接受",
         "existingRunnable": [
-          "Existing near-field matcher does not optimize transmit covariance or compute Capon"
+          "nearfield-multitarget.html#experiment",
+          "near-field.html#experiment: retained spherical-wave prerequisite, not this paper optimizer"
         ],
-        "currentAudit": "2026-10-12: canonical records and current runtime sources read; fixed arXiv HTML reopened. Equation-by-equation implementation audit remains required."
+        "currentAudit": "2026-10-13: integrated the exact frozen lesson and FINAL-BINDING numerical acceptance for the same paper identity; no new source retrieval, browser acceptance or publication is inferred.",
+        "independentNumericalBinding": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+        "lessonBoundary": "labs/nearfield-multitarget/lesson/README.md",
+        "lessonFreeze": "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "intendedOptimizationAccepted": true,
+          "literalReceiveAccepted": false,
+          "ordinaryInverseDefined": false,
+          "usesPseudoinverseOrLoading": false,
+          "illuminationIsLocalization": false,
+          "recordReplayAuthenticatesOptimizer": false,
+          "gaussianSamplingIsPerStreamSynthesis": false,
+          "commonPowerCapMeansEqualFiniteEnergy": false,
+          "numericalFailureProvesPhysicalInfeasibility": false,
+          "nodeWorkerIsBrowserAcceptance": false,
+          "browserAccepted": false,
+          "fullPaperReproduced": false
+        }
+      }
     },
     {
       "id": "networks-cooperative-clusters-2024",

@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "paperId": "nearfield-multitarget-correlation",
+  "sourceIdentity": "arxiv:2506.07052v1",
+  "acceptedBaselineTree": "4ba6cb9ea8a568b1e4b21124b5e0d67648add8e2",
+  "functionalTree": "a1b0a85d62abfaf50f818d18136d89133ba29eac",
+  "ownedFreeze": {
+    "source": "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+    "sha256": "3ea8557ab493cf2cb4806c9ed8d117a843c4626d3fbbc95818c5724da1bbacf0"
+  },
+  "ownedFiles": [
+    {
+      "path": "content/pages/nearfield-multitarget.html",
+      "bytes": 23026,
+      "sha256": "9b6217b40de73a475d6d1f81fa537e53f7efc34360aadee0797a031aca3434a3"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+      "bytes": 12511,
+      "sha256": "f8e27615f9940c9113e6dbdd1ebda66bdec29a704a052722ecb8bc906ad26d1f"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/README.md",
+      "bytes": 4392,
+      "sha256": "dd78ec831389d923f3c513b1d6ac95b6a2b7caf685dc552b379606496eeb4267"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "bytes": 6734,
+      "sha256": "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/client.mjs",
+      "bytes": 1857,
+      "sha256": "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "bytes": 21193,
+      "sha256": "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "bytes": 1126,
+      "sha256": "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/lesson.css",
+      "bytes": 6142,
+      "sha256": "b3a5fb16e16e40626032f75eba9f841faf1572b40e3ede2f4c5ebf7412d69106"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "bytes": 25289,
+      "sha256": "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "bytes": 2438,
+      "sha256": "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "bytes": 18700,
+      "sha256": "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/session.mjs",
+      "bytes": 3760,
+      "sha256": "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/adapter-oracle.py",
+      "bytes": 3767,
+      "sha256": "294dc871559d893f97068c37e44d054d9835250c743830a5333395d829a8d8f7"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/adapter.test.mjs",
+      "bytes": 2548,
+      "sha256": "cc59aeda8bf1412980d70b4caa825a8a39e436a8be3e72bc44c860644a268ac3"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/codec.test.mjs",
+      "bytes": 8324,
+      "sha256": "00bbbf5732ba34dda695ec53f92eb04e56d0bca200576e5fe020412b414fd23d"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/contract.test.mjs",
+      "bytes": 3059,
+      "sha256": "d18c0abd74973c3cbe0a3d3ecdf5df95bcaffce5ff3d8efe37ffd835578c2314"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/dom-harness.cjs",
+      "bytes": 7379,
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/export-records.mjs",
+      "bytes": 2227,
+      "sha256": "580f387459882bbe0fd2c4461ca4ad22335034ea75a19d9b092fde27c2afeb4c"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/mounted.test.mjs",
+      "bytes": 8923,
+      "sha256": "466a5a2c29a1de6d5a1254c7697dd344faf56d7e82ec23a83a62081f169422e0"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/node-client.mjs",
+      "bytes": 480,
+      "sha256": "f5bb47cd61836aa060d7188654b58b84564708e2b52e626c802c18e4ba619978"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/record-oracle.py",
+      "bytes": 10281,
+      "sha256": "cb792b4956ee6be88514263c7cabc0772b2f44e0d43d516aa1363fb1627f1211"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/session.test.mjs",
+      "bytes": 4229,
+      "sha256": "a48ef456dc17642386f31d8e6e08c2f4469fc5cc1d7bda1f71911f133154582f"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/worker-node.mjs",
+      "bytes": 325,
+      "sha256": "c5aa0971b30224da3784b9996454c4963499b5d5e3886a95d95ae84c63e12dd7"
+    },
+    {
+      "path": "labs/nearfield-multitarget/lesson/tests/worker.test.mjs",
+      "bytes": 3451,
+      "sha256": "45660a248d6d51ca8052334133950d995ad29c714812ab76c0bb4b9120060d4d"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+      "bytes": 5086,
+      "sha256": "f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/MANIFEST.json",
+      "bytes": 4791,
+      "sha256": "eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+      "bytes": 5135,
+      "sha256": "d7d2071891bfaf56b4e16b7b59dba46672fab3dc10d233b385c40475ef199515"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/README.md",
+      "bytes": 11152,
+      "sha256": "0e45e172b622fc84c44a8826b3a2c4cb0f81fe529237d7397576193fca90a5d3"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "bytes": 4915,
+      "sha256": "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "bytes": 4301,
+      "sha256": "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/model.mjs",
+      "bytes": 1800,
+      "sha256": "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "bytes": 2544,
+      "sha256": "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "bytes": 5907,
+      "sha256": "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267"
+    },
+    {
+      "path": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "bytes": 5236,
+      "sha256": "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106"
+    }
+  ],
+  "ownedPage": {
+    "source": "content/pages/nearfield-multitarget.html",
+    "public": "nearfield-multitarget.html",
+    "generatedRegions": [
+      "HEADER",
+      "CONTEXT",
+      "NEXT"
+    ],
+    "handwrittenSha256": "72bf76fa8043eca85211f85b0c7e4f89f624df9e295078a4467ac78a02c0e08f"
+  },
+  "runtimeManifestSha256": "eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44",
+  "independentRuntimeBindingSha256": "f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e",
+  "boundaries": {
+    "fullPaperReproduced": false,
+    "fig5Reproduced": false,
+    "literalReceiverResolved": false,
+    "localizationImplemented": false,
+    "actualBrowserAccepted": false,
+    "latencyMeasured": false
+  },
+  "independentLessonReview": {
+    "report": "docs/NEARFIELD-MULTITARGET-LESSON-INDEPENDENT-REVIEW.md",
+    "reportSha256": "2dcce5356c1376454b2993aa09572fe156e94dda3638b2ce3f01760aec7aa67a",
+    "binding": "data/nearfield-multitarget-lesson-independent-binding.json",
+    "bindingSha256": "2b30be62ee3aa8fbc483fba28fe8e7ea502a789aa5e572471bd00bede53db8a3",
+    "focusedTests": 32,
+    "blockingDefects": [],
+    "actualBrowser": false
+  }
+}

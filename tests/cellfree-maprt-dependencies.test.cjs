@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'..'),D=require('../scripts/build/module-depen
 // The separate data table avoids a self-referential hash and never enters runtime
 // or compatibility mapping. Every current byte and reconstructed identity is exact.
 const teachingEntrySourceOnly=require('./helpers/cellfree-entry-source-only-inverses.json');
-function withoutTeachingEntrySourceOnly(file,bytes){const rec=teachingEntrySourceOnly.files.find(x=>x.path===file);if(!rec)return bytes;a.equal(bytes.length,rec.after.bytes);a.equal(sha(bytes),rec.after.sha256);let value=Buffer.from(bytes);for(const ch of [...rec.changes].reverse()){const before=Buffer.from(ch.beforeBase64,'base64'),after=Buffer.from(ch.afterBase64,'base64');a.deepEqual(value.subarray(ch.offsetAfter,ch.offsetAfter+after.length),after);value=Buffer.concat([value.subarray(0,ch.offsetAfter),before,value.subarray(ch.offsetAfter+after.length)]);}a.equal(sha(value),rec.before.sha256);a.equal(value.length,rec.before.bytes);return value;}
+function withoutTeachingEntrySourceOnly(file,bytes){const rec=teachingEntrySourceOnly.files.find(x=>x.path===file);if(!rec)return bytes;bytes=require('./helpers/nearfield-multitarget-build-preservation.cjs').withoutMultitargetFile(file,bytes);a.equal(bytes.length,rec.after.bytes);a.equal(sha(bytes),rec.after.sha256);let value=Buffer.from(bytes);for(const ch of [...rec.changes].reverse()){const before=Buffer.from(ch.beforeBase64,'base64'),after=Buffer.from(ch.afterBase64,'base64');a.deepEqual(value.subarray(ch.offsetAfter,ch.offsetAfter+after.length),after);value=Buffer.concat([value.subarray(0,ch.offsetAfter),before,value.subarray(ch.offsetAfter+after.length)]);}a.equal(sha(value),rec.before.sha256);a.equal(value.length,rec.before.bytes);return value;}
 const hostedUiSourceOnly=require('./helpers/hosted-ui-source-only-inverses.json');
 function withoutHostedUiSourceOnlyFile(file,bytes){
  bytes=withoutTeachingEntrySourceOnly(file,bytes);
@@ -23,6 +23,7 @@ function withoutHostedUiSourceOnlyFile(file,bytes){
  return value;
 }
 function beforeHostedUi(file,bytes){
+ const MT=require('./helpers/nearfield-multitarget-build-preservation.cjs');if(file==='build/compatibility-manifest.json')return Buffer.from(MT.priorMappingSource(JSON.parse(bytes)));if(file==='scripts/build/module-runtime-contracts.json')bytes=Buffer.from(JSON.stringify(MT.withoutMultitargetModuleContracts(JSON.parse(bytes)),null,2)+'\n');
  if(file==='scripts/build/module-runtime-contracts.json')return Buffer.from(JSON.stringify(P.withoutHostedUiContracts(JSON.parse(bytes),'module'),null,2)+'\n');
  return withoutHostedUiSourceOnlyFile(file,bytes);
 }

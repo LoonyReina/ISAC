@@ -540,3 +540,16 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - AP/SP 使用同一 y；跨分配只共用潜在抽样。校准与评估分离，点态二项区间与校准次序统计区间分开；不建立精确目标 Pfa、同时覆盖或 CFAR。九文件 JavaScript/实际 Node Worker 与教学分解检查不替代真实浏览器、键盘、下载和绘制时延验收
 
 [来源与数值证据边界](CELLFREE-MAPRT-SOURCE-EVIDENCE.md) 保留固定 PDF/参考/运行冻结、未恢复源参数、历史失败及可选源文件包。原文全文和私有代码不随站点分发，证据压缩包不是启动依赖。35 个主论文 ID、零整篇复现和 current/next CRB 顺序不变。
+
+
+## 近场多目标协方差：优化接受与接收失败分开（2026-10-13）
+
+固定 [arXiv:2506.07052v1](https://arxiv.org/html/2506.07052v1) 仍使用原身份 `nearfield-multitarget-correlation`。新增 [真实多目标协方差教学入口](../nearfield-multitarget.html#question) 接入 spatial 的六层与机制实验；[原近场曲率先修](../near-field.html#experiment) 保留。35 个主论文 ID 与零整篇复现不变，没有把旧先修改名为本文优化器。
+
+- 已接受的是 intended Eq.17 的实际 PSD 协方差优化和 Eq.18 秩一恢复，含 6×6 与源 10×10 优化参数；新输入重做 proposed/NCCS 两种求解，NCCS 只删除三对相关约束，保留同一通信和功率条件
+- 源权重用单位范数通道吸收，g、c、μ 单位 W，约束 c≤εμ；Eq.18 保留所有 PSD 残余、总协方差与用户 SINR。浮点原始/对偶界、失败和求解预算均保留；退化或未收敛不等于原物理 SDP 不可行
+- Eq.9 的共轭按 Eq.8/Eq.16 明确修正。literal Eq.12 接收半球朝向产生零回波、Y=N；本构造 rank(R̂X)≤5<N，使 Eq.19 所需普通逆未定义，另有未定义索引。增加快拍或接收噪声不能补发射秩；不暗加伪逆、加载、改分子或替代空间谱
+- 由当前 Rₓ 实算的照射切片、等价 Gaussian 协方差抽样、历史自洽核对与朝向目标的接收总能量属于明确教学扩展。它们不构成逐通信流合成、原 Capon 处理或位置估计；共同期望功率上限不等于相同有限块能量，W·symbol 无符号时长不能称 J
+- 原 FFBF 降低最低速率并移除同方向目标对约束，不能当等 QoS 第三方案。Fig.5、检测/定位统计、完整论文与真实浏览器 Worker/下载/取消/布局/完整绘制延迟验收仍开放
+
+[最新独立接受绑定](../labs/nearfield-multitarget/runtime/FINAL-BINDING.json) 只更新其明确数值范围；历史 runtime README 与审查阶段原文不重写。[教学层说明](../labs/nearfield-multitarget/lesson/README.md) 和 [教学冻结](../labs/nearfield-multitarget/lesson/LESSON-FREEZE.json) 分开约束页面派生与源算法。PDF/论文全文不随站点分发，预设不查表，运行不依赖数值 fixture。
