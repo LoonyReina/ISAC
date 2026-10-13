@@ -3,6 +3,10 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const M=require('../scripts/build/compatibility.cjs'),A=require('../scripts/build/migration-audit.cjs');
 const root=path.resolve(__dirname,'..'),manifest=JSON.parse(fs.readFileSync(path.join(root,'build/compatibility-manifest.json'),'utf8'));
 const baseline=JSON.parse(fs.readFileSync(path.join(root,'build/migration-baseline.json'),'utf8'));
+const nearfieldMappingChanges=JSON.parse(fs.readFileSync(path.join(root,'build/nearfield-research-mappings.json'),'utf8'));
+function withoutNearfieldMappings(input){const prior=structuredClone(input);for(const entry of nearfieldMappingChanges.addedEntries){const indices=prior.entries.flatMap((x,i)=>x.source===entry.source?[i]:[]);a.equal(indices.length,1,'one exact near-field source mapping');a.deepEqual(prior.entries[indices[0]],entry,'exact near-field public/staging mapping '+entry.source);prior.entries.splice(indices[0],1);}return prior;}
+test('near-field mapping additions preserve every accepted OTFS route and all existing ownership exactly',()=>{a.equal(nearfieldMappingChanges.schemaVersion,1);a.equal(nearfieldMappingChanges.acceptedBaselineTree,'ecb8bf58e45d487d30e07e7bdb24758ddb6c5acc');a.equal(M.sha(JSON.stringify(withoutNearfieldMappings(manifest),null,2)+'\n'),nearfieldMappingChanges.baselineManifestSha256);a.ok(nearfieldMappingChanges.addedEntries.length>30);for(const entry of nearfieldMappingChanges.addedEntries){a.equal(entry.role,'source');if(entry.source.includes('/research/tests/'))a.equal(entry.public,null);if(entry.source.startsWith('labs/near-field/research/runtime/'))a.equal(entry.public,entry.source);}const bad=structuredClone(manifest),entry=bad.entries.find(x=>x.source===nearfieldMappingChanges.addedEntries[0].source);entry.public='wrong-prefix/file';a.throws(()=>withoutNearfieldMappings(bad));});
+
 function temp(t){const p=fs.mkdtempSync(path.join(os.tmpdir(),'isac-build-test-'));t.after(()=>fs.rmSync(p,{recursive:true,force:true}));return p;}
 function changed(fn){const m=structuredClone(manifest);fn(m);return m;}
 function fixture(t){const p=temp(t);for(const e of manifest.entries.filter(e=>e.source!==null)){const dest=path.join(p,e.source);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join(root,e.source),dest);}return p;}
@@ -19,7 +23,7 @@ function auditFixture(){
 
 test('editable map explicitly owns legacy paths, declared generated outputs and directly linked evidence',()=>{
  a.equal(M.validateManifest(manifest,root),manifest);a.equal(manifest.schemaVersion,2);
- a.deepEqual(manifest.entries.filter(e=>e.public===null).map(e=>e.compatibility),['.gitignore','labs/otfs-receiver/communication/node-worker.mjs','labs/otfs-receiver/sensing/node-worker.mjs','tests/otfs-lesson-controller.test.cjs','tests/otfs-lesson-independent.test.cjs','tests/otfs-lesson-model.test.cjs','tests/otfs-lesson-page.test.cjs']);
+ a.deepEqual(withoutNearfieldMappings(manifest).entries.filter(e=>e.public===null).map(e=>e.compatibility),['.gitignore','labs/otfs-receiver/communication/node-worker.mjs','labs/otfs-receiver/sensing/node-worker.mjs','tests/otfs-lesson-controller.test.cjs','tests/otfs-lesson-independent.test.cjs','tests/otfs-lesson-model.test.cjs','tests/otfs-lesson-page.test.cjs']);
  a.equal(manifest.entries.filter(e=>e.role==='generated').length,9);a.ok(manifest.entries.filter(e=>e.role==='generated').every(e=>e.source===null));
  a.deepEqual(fs.readdirSync(path.join(root,'build/compatibility-seeds')),['project.gitignore']);
  for(const f of ['tests/crb-beamforming.test.cjs','tests/crb-beamforming-ui.test.cjs','tests/joint-beamforming.test.cjs','scripts/shared-array-reference/source-audit.md','scripts/generate-waveform.py','data/waveform-states.json'])a.ok(manifest.entries.some(e=>e.public===f),f);

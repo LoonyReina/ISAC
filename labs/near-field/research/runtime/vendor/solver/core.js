@@ -1,0 +1,7 @@
+/* Public pure-kernel entry. No runtime dependency on Python, fixtures or files. */
+(function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./optimizer.js'):root.NearfieldOptimizer,typeof module==='object'&&module.exports?require('./metrics.js'):root.NearfieldMetrics);if(typeof module==='object'&&module.exports)module.exports=api;else root.NearfieldCrbKernel=api;})(typeof self!=='undefined'?self:globalThis,function(O,Metrics){
+'use strict';const now=()=>typeof performance!=='undefined'?performance.now():Date.now();
+function createSolver(input,options={}){const started=now(),internal=O.createSolver(input,options);let cached=null;function result(){if(internal.status==='running')return {version:O.VERSION,status:'running',acceptance:'not_accepted',iterations:internal.result().iterations};if(!cached){cached=Metrics.assess(internal.model,internal.result(),internal.constraints);cached.totalKernelWithAssessmentMs=now()-started;cached.terminal=true;}return JSON.parse(JSON.stringify(cached));}return {step:count=>{if(cached)return {status:internal.status,iterations:cached.iterations,terminal:true};return internal.step(count);},result,cancel:()=>{internal.cancel();return result();},get status(){return internal.status;}};}
+function solve(input,options={}){const solver=createSolver(input,options);while(solver.status==='running')solver.step(1);return solver.result();}
+return {VERSION:O.VERSION,createSolver,solve};
+});

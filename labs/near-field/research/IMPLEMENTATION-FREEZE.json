@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate_for_independent_review",
+  "source": "arxiv:2302.01153v5",
+  "acceptedBaselineTree": "ecb8bf58e45d487d30e07e7bdb24758ddb6c5acc",
+  "sourceFiles": {
+    "content/pages/near-field.html": {
+      "bytes": 56900,
+      "sha256": "c5ad6c2a58255e9d8f1f712c3dd2702eef32aadcbce0ea2ef371c0c958625ca0"
+    },
+    "labs/near-field/research/BASELINE.json": {
+      "bytes": 570,
+      "sha256": "9f395c2ca3e27216f453aeb4024a67e4880ae1150035e40b7c1884712d716ef8"
+    },
+    "labs/near-field/research/README.md": {
+      "bytes": 5887,
+      "sha256": "7b836a3e732933603f3697aa876fcb1cf7d8d8fa976d5e89bb39deb3ed188897"
+    },
+    "labs/near-field/research/controller.mjs": {
+      "bytes": 14728,
+      "sha256": "d114c76490471281486827ddaee118049147a15c4c6fd1c6cf970f48120cb1fb"
+    },
+    "labs/near-field/research/defaults.mjs": {
+      "bytes": 13184,
+      "sha256": "e3a6fcca0041add3a4811b4fdf417c83f77c37d9cd2058c767d4a69f96ca8a6b"
+    },
+    "labs/near-field/research/entry.mjs": {
+      "bytes": 6074,
+      "sha256": "022920a9af1657d83f0fd1cba86bf66b8f8b9d31581e32c81bdda9dbec76b55f"
+    },
+    "labs/near-field/research/reports/author-tests.txt": {
+      "bytes": 7243,
+      "sha256": "dbe2727584a176c740149b4dcadb0c7a01e8a04de266a51bda2defeafb2bfb7e"
+    },
+    "labs/near-field/research/reports/node-cost.json": {
+      "bytes": 1508,
+      "sha256": "126f25052d0eacc66ff02c59d0112659c498a92259a1a93ea9bf651d0a4afc25"
+    },
+    "labs/near-field/research/research.css": {
+      "bytes": 16084,
+      "sha256": "47e7e6e5667d09d2376f6d1de4e6d3aff8daa19cab6c1d6411056d976c0fb142"
+    },
+    "labs/near-field/research/runtime/CHAIN-FREEZE.json": {
+      "bytes": 2449,
+      "sha256": "50671d38851d0e86a944dd0aaf462f209d05302bc2aad73b78cf02d320529123"
+    },
+    "labs/near-field/research/runtime/CONTRACT.json": {
+      "bytes": 2822,
+      "sha256": "b9ea2fd6c320517906b1cc40f2a9fe9a127c1caee477766ecfcdd0ee887a5b28"
+    },
+    "labs/near-field/research/runtime/MUSIC-FREEZE.json": {
+      "bytes": 260,
+      "sha256": "3493c308a9cb80fcc9f972d41438f56ab2e99e65a5efb13a932f7b208c0817d4"
+    },
+    "labs/near-field/research/runtime/SOLVER-FREEZE.json": {
+      "bytes": 1041,
+      "sha256": "1754d7e1a04e9ecd78aebc82c3157d7f6ea818107ffc3ea30d215664b509a90f"
+    },
+    "labs/near-field/research/runtime/fixtures/source-input.json": {
+      "bytes": 17830,
+      "sha256": "e8efb9769a544742a9ddfffcd61b30deadb30034a34fe1f9359da17f94c6bb74"
+    },
+    "labs/near-field/research/runtime/src/adapter.mjs": {
+      "bytes": 9199,
+      "sha256": "a882ee455d015c340b9444818224a8e9b51c86a95be79a100118eb2d97fc1799"
+    },
+    "labs/near-field/research/runtime/src/contract.mjs": {
+      "bytes": 5211,
+      "sha256": "4f14f868f6b5b730b993c9b7ccaa0815206b09e9a05a3a0dc11abc342926ad1e"
+    },
+    "labs/near-field/research/runtime/src/experiment.mjs": {
+      "bytes": 10332,
+      "sha256": "4600f18e8cd9ba74a92f499dedb3227a32c7b9d5d7431fa1b737b374b4272990"
+    },
+    "labs/near-field/research/runtime/src/physics.mjs": {
+      "bytes": 6191,
+      "sha256": "7a1a3abc7d3301bbf4f6c61d1881fa54a96e53becb8c1208881bdd3d81235588"
+    },
+    "labs/near-field/research/runtime/src/receiver-worker.mjs": {
+      "bytes": 2406,
+      "sha256": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27"
+    },
+    "labs/near-field/research/runtime/src/replay.mjs": {
+      "bytes": 5104,
+      "sha256": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4"
+    },
+    "labs/near-field/research/runtime/src/solver-loader.mjs": {
+      "bytes": 550,
+      "sha256": "7e734d0e81d4988bfcabf517673b1d6d12f7b9fb07a0c7b2ac70f32ee4fbd250"
+    },
+    "labs/near-field/research/runtime/src/solver-worker.mjs": {
+      "bytes": 3360,
+      "sha256": "00e425a74b2be201f39b99f6295bda39bd23fe3c3a7b2fe42b006b9586239abd"
+    },
+    "labs/near-field/research/runtime/src/worker-client.mjs": {
+      "bytes": 2125,
+      "sha256": "ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d"
+    },
+    "labs/near-field/research/runtime/vendor/music/generator.mjs": {
+      "bytes": 3440,
+      "sha256": "e083b6e981e307cc9b40efa11946a813d1e6ec3203194c2b3f5f47994bbb2406"
+    },
+    "labs/near-field/research/runtime/vendor/music/receiver.mjs": {
+      "bytes": 17794,
+      "sha256": "16e0df92c3221a56c51f430cb0f3afc29249f496c6bba9d09ffdf456f2a5f981"
+    },
+    "labs/near-field/research/runtime/vendor/music/worker.mjs": {
+      "bytes": 1451,
+      "sha256": "406463ea7e7c7893dad88912785fe81bf8cdd2f78ef54e8565782aac704733f3"
+    },
+    "labs/near-field/research/runtime/vendor/solver/core.js": {
+      "bytes": 1463,
+      "sha256": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de"
+    },
+    "labs/near-field/research/runtime/vendor/solver/hermitian.js": {
+      "bytes": 3658,
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a"
+    },
+    "labs/near-field/research/runtime/vendor/solver/linalg.js": {
+      "bytes": 3688,
+      "sha256": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d"
+    },
+    "labs/near-field/research/runtime/vendor/solver/metrics.js": {
+      "bytes": 9554,
+      "sha256": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a"
+    },
+    "labs/near-field/research/runtime/vendor/solver/model.js": {
+      "bytes": 6970,
+      "sha256": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4"
+    },
+    "labs/near-field/research/runtime/vendor/solver/numerics.js": {
+      "bytes": 3640,
+      "sha256": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782"
+    },
+    "labs/near-field/research/runtime/vendor/solver/optimizer.js": {
+      "bytes": 9506,
+      "sha256": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c"
+    },
+    "labs/near-field/research/runtime/vendor/solver/package.json": {
+      "bytes": 20,
+      "sha256": "dbf8353f77358bc12169b7bb7301e1978d5b503e002ee927229a8993672818fc"
+    },
+    "labs/near-field/research/tests/browser-branch-runner.mjs": {
+      "bytes": 3706,
+      "sha256": "70d4e0b6c542d40b8ff58309d3d30bc56939ffc7e2383fd4c293bc69a3d6bc38"
+    },
+    "labs/near-field/research/tests/browser-branch.test.mjs": {
+      "bytes": 770,
+      "sha256": "0c3e3a4c2af678db796f905b4640172e85bb37aba5bb03238518a58dc17ad77b"
+    },
+    "labs/near-field/research/tests/controller.test.mjs": {
+      "bytes": 29150,
+      "sha256": "032bef6c3f5485146c5e8c4e0f0606f993bbf0bbbd742515ad5afaf69c2f3489"
+    },
+    "labs/near-field/research/tests/fixtures/near-field-legacy.html": {
+      "bytes": 16623,
+      "sha256": "426b626ee4af76b7ef6de6024831e8d97de5c5366de6ad428691a4d0d72c55a8"
+    },
+    "labs/near-field/research/tests/freeze.test.mjs": {
+      "bytes": 2216,
+      "sha256": "4d2ff1fa70d9e7c5323fff31aa9e5dfa616262c07999d71eb36242dc84e46893"
+    },
+    "labs/near-field/research/tests/measure-node-cost.mjs": {
+      "bytes": 1740,
+      "sha256": "0bb544b0a009132dd266561384264e03d0034ef7eab8987bc07b523558a69b81"
+    },
+    "labs/near-field/research/tests/page.test.mjs": {
+      "bytes": 14124,
+      "sha256": "66092f0524f5a6e616a31c8c1b82d2616105bf2b85c3a0aef6a10a5ebaadfec1"
+    },
+    "labs/near-field/research/tests/recovery.test.mjs": {
+      "bytes": 3706,
+      "sha256": "9ba90ec2d9ea90aea3bd8f8655a011dbf66740b3fcff6885657ff5f6c6d41e25"
+    },
+    "labs/near-field/research/tests/view.test.mjs": {
+      "bytes": 15357,
+      "sha256": "318d5928ea03ed0b76f23d65bc187e36872afb30959bba29fcf211ff6adb64be"
+    },
+    "labs/near-field/research/view.mjs": {
+      "bytes": 42448,
+      "sha256": "08c85f3ac027cfb6dadff42d265d2e43e94e885bc34d7aa6acd14131d34786c1"
+    }
+  },
+  "browserExecuted": false,
+  "published": false,
+  "runtimeHashCount": 22,
+  "authorTestsPassed": 71,
+  "reviewRepair": "Single-flight Worker recovery; close/reset and repeated-close during recovery checked with actual Node Workers"
+}

@@ -1,0 +1,166 @@
+/* Additive research lesson. Legacy nf-* controls and charts keep their own CSS. */
+#nfr-app{--nfr-ink:#193844;--nfr-muted:#526879;--nfr-line:#cfdee1;--nfr-teal:#086d68;--nfr-wash:#eef7f5;min-width:0}
+#nfr-app .nfr-cover .nfr-scope{max-width:80ch;font-size:15px;line-height:1.9;color:var(--nfr-muted)}
+#nfr-app .nfr-level-nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:24px 0 4px}
+#nfr-app .nfr-level-nav a{display:block;border:1px solid var(--nfr-line);border-radius:8px;background:#fff;padding:12px 10px;text-decoration:none;font-size:14px;line-height:1.65;color:var(--nfr-ink)}
+#nfr-app .nfr-level-nav a:hover{background:var(--nfr-wash);border-color:var(--nfr-teal)}
+#nfr-app .nfr-level-nav span{display:block;color:var(--nfr-teal);font-size:12px;font-weight:750;letter-spacing:.08em}
+#nfr-app .nfr-chapter{min-width:0}
+#nfr-app .nfr-questions,#nfr-app .nfr-ledger,#nfr-app .nfr-boundaries{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+#nfr-app .nfr-questions article,#nfr-app .nfr-ledger article,#nfr-app .nfr-boundaries article{min-width:0;padding:19px;border:1px solid var(--nfr-line);border-radius:10px;background:#fff}
+#nfr-app .nfr-questions h3,#nfr-app .nfr-ledger h3,#nfr-app .nfr-boundaries h3{font-size:19px;margin:7px 0 12px}
+#nfr-app .nfr-questions p,#nfr-app .nfr-ledger p,#nfr-app .nfr-boundaries p{font-size:15px;margin:9px 0;line-height:1.85}
+#nfr-app .nfr-step-number{font-size:13px;font-weight:750;color:var(--nfr-teal);letter-spacing:.05em}
+#nfr-app .nfr-evidence-label{display:inline-block;max-width:100%;padding:2px 8px;border:1px solid #bdd6d1;border-radius:5px;background:#f1f8f6;color:#205f58;font-size:12px;font-weight:700;line-height:1.75;vertical-align:baseline}
+#nfr-app .nfr-callout{margin:26px 0;padding:20px 23px;border:1px solid #b9d6cf;border-left:4px solid var(--nfr-teal);border-radius:8px;background:var(--nfr-wash)}
+#nfr-app .nfr-callout>strong{font-size:18px}
+#nfr-app .nfr-callout p{margin:10px 0;font-size:16px}
+#nfr-app .nfr-callout p:last-child{margin-bottom:0}
+#nfr-app .nfr-warning{padding:12px 15px;border-left:4px solid #a05b17;background:#fff7e8;color:#614719;overflow-wrap:anywhere}
+#nfr-app .nfr-callout.nfr-warning{padding:20px 23px;border-color:#e1c798;border-left-color:#a05b17}
+#nfr-app .nfr-error{padding:12px 15px;border-left:4px solid #b64d39;background:#fff0ec;color:#792c20;overflow-wrap:anywhere}
+#nfr-app .nfr-prereq,#nfr-app .nfr-note{font-size:14px;line-height:1.9;color:var(--nfr-muted);overflow-wrap:anywhere}
+#nfr-app .nfr-prereq{padding:15px 18px;border:1px solid var(--nfr-line);border-radius:7px;background:#fff}
+#nfr-app .nfr-parameter-bridge,#nfr-app .nfr-formula-cards,#nfr-app .nfr-export-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:23px 0}
+#nfr-app .nfr-parameter-bridge article,#nfr-app .nfr-formula-cards article,#nfr-app .nfr-export-cards article{min-width:0;padding:20px;border:1px solid var(--nfr-line);border-radius:10px;background:#fff}
+#nfr-app .nfr-parameter-bridge h3,#nfr-app .nfr-formula-cards h3,#nfr-app .nfr-export-cards h3{font-size:19px;margin:8px 0 12px}
+#nfr-app .nfr-parameter-bridge p,#nfr-app .nfr-formula-cards p,#nfr-app .nfr-export-cards p{font-size:15px;margin:10px 0}
+#nfr-app .nfr-formula-cards .equation{margin:14px 0;font-size:17px;padding:13px 15px}
+#nfr-app .nfr-prerequisite{margin:28px 0 6px;border-color:#b9cdd3}
+#nfr-app .nfr-prerequisite>summary{color:var(--nfr-teal)}
+#nfr-app .nfr-legacy-scope{padding:13px 16px;background:#edf3f6;border-radius:6px;font-size:14px;color:var(--nfr-muted)}
+#nfr-app .nfr-prerequisite>div>.chapter{padding-top:30px;padding-bottom:32px}
+#nfr-app .nfr-prerequisite>div>.chapter:last-child{border-bottom:0}
+#nfr-app .nfr-dimension-chain{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+#nfr-app .nfr-dimension-chain>span{position:relative;flex:1 1 125px;border:1px solid #bdd4d4;border-radius:7px;background:#fff;padding:12px 9px;text-align:center;font-size:14px;line-height:1.8;font-variant-numeric:tabular-nums}
+#nfr-app .nfr-dimension-chain>span:not(:last-child)::after{content:'→';position:absolute;right:-8px;top:calc(50% - 15px);z-index:1;background:var(--paper,#f6f8fa);color:var(--nfr-teal);line-height:30px;font-weight:750}
+#nfr-app .nfr-process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:0;list-style:none;counter-reset:nfr-stage;margin:22px 0}
+#nfr-app .nfr-process li{counter-increment:nfr-stage;min-width:0;border:1px solid var(--nfr-line);border-top:3px solid var(--nfr-teal);border-radius:4px;background:#fff;padding:15px 12px;font-size:14px;line-height:1.7}
+#nfr-app .nfr-process b{display:block}
+#nfr-app .nfr-process b::before{content:counter(nfr-stage,decimal-leading-zero)' · ';font-variant-numeric:tabular-nums;color:var(--nfr-teal)}
+#nfr-app .nfr-process span{display:block;font-size:13px;color:var(--nfr-muted);margin-top:5px}
+#nfr-app .nfr-status{margin:24px 0 16px;padding:14px 17px;border:1px solid #b4d0c9;border-left:4px solid var(--nfr-teal);border-radius:6px;background:#eaf5f1;color:#204e46;font-size:15px;line-height:1.85;overflow-wrap:anywhere;min-height:57px}
+#nfr-app .nfr-workspace{display:grid;grid-template-columns:minmax(265px,320px) minmax(0,1fr);gap:20px;align-items:start;margin:20px 0 30px}
+#nfr-app .nfr-controls,#nfr-app .nfr-results{min-width:0}
+#nfr-app .nfr-controls{padding:0 13px 14px;border:1px solid var(--nfr-line);border-radius:10px;background:#f1f6f7}
+#nfr-app .nfr-controls fieldset{min-width:0;margin:20px 0;padding:14px 12px 15px;border:1px solid #bfd2d6;border-radius:8px;background:#fff}
+#nfr-app .nfr-controls legend{max-width:100%;padding:0 6px;color:var(--nfr-ink);font-size:14px;line-height:1.6;white-space:normal}
+#nfr-app .nfr-control-note{font-size:12px;color:var(--nfr-muted);line-height:1.9;margin:10px 0 13px;overflow-wrap:anywhere}
+#nfr-app .nfr-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 10px;margin:14px 0 16px}
+#nfr-app .nfr-controls label{display:block;min-width:0;font-size:12px;line-height:1.7;font-weight:600;overflow-wrap:anywhere}
+#nfr-app .nfr-controls input[type=number],#nfr-app .nfr-controls select,#nfr-app .nfr-controls textarea{display:block;width:100%;min-width:0;max-width:100%;min-height:44px;margin:5px 0 0;padding:8px;border:1px solid #aebfc8;border-radius:5px;background:#fff;color:var(--nfr-ink);font-size:14px;line-height:1.65;font-variant-numeric:tabular-nums}
+#nfr-app .nfr-controls textarea{resize:vertical;min-height:150px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.6;white-space:pre;overflow:auto}
+#nfr-app .nfr-controls .nfr-checkbox{display:flex;align-items:flex-start;gap:7px;min-height:44px;margin:15px 0;font-size:13px;font-weight:500;cursor:pointer}
+#nfr-app .nfr-checkbox input{flex:0 0 auto;width:18px;height:18px;margin:3px 0 0;accent-color:var(--nfr-teal)}
+#nfr-app .nfr-advanced{margin:17px 0;border:1px solid #d3dfe3;border-radius:6px;background:#f9fbfc}
+#nfr-app .nfr-advanced summary{padding:12px 10px;font-size:12px;line-height:1.8;color:#3a5b67}
+#nfr-app .nfr-advanced>div{padding:0 10px 12px}
+#nfr-app .nfr-advanced .nfr-input-grid{grid-template-columns:1fr}
+#nfr-app .nfr-controls button{width:100%;padding:10px 8px;font-size:13px;min-height:44px;white-space:normal}
+#nfr-app .nfr-primary{background:var(--nfr-teal);border-color:var(--nfr-teal);color:#fff}
+#nfr-app .nfr-primary:hover:not(:disabled){background:#075951;border-color:#075951}
+#nfr-app .nfr-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:15px 0}
+#nfr-app .nfr-controls>.nfr-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#nfr-app .nfr-actions button,#nfr-app .nfr-export-cards button{min-height:44px;font-size:14px}
+#nfr-app .nfr-actions a{font-size:14px;overflow-wrap:anywhere}
+#nfr-app button:disabled{opacity:.58;cursor:not-allowed}
+#nfr-app .nfr-result-card{min-width:0;margin:0 0 18px;padding:20px;border:1px solid var(--nfr-line);border-radius:11px;background:#fff;box-shadow:0 2px 8px #18394405}
+#nfr-app .nfr-result-card>h3{margin:0 0 12px;font-size:19px;color:var(--nfr-ink)}
+#nfr-app .nfr-plot-guide{font-size:13px;color:var(--nfr-muted);line-height:1.9;margin:10px 0 16px}
+#nfr-app .nfr-plot-caption{font-size:13px;color:var(--nfr-muted);line-height:1.8;margin:10px 0;overflow-wrap:anywhere}
+#nfr-app .nfr-view{min-width:0;max-width:100%;font-size:14px;overflow-wrap:anywhere}
+#nfr-app .nfr-empty{margin:12px 0 0;padding:19px 16px;border:1px dashed #bacfd4;border-radius:7px;background:#f5f9fa;color:#526b76;font-size:14px;line-height:1.9}
+#nfr-app .nfr-view>p{font-size:14px;line-height:1.85}
+#nfr-app .nfr-view h4{font-size:16px;margin:21px 0 8px}
+#nfr-app .nfr-view figure{margin:16px 0}
+#nfr-app .nfr-view svg,#nfr-app .nfr-view canvas{display:block;width:100%;height:auto;max-width:100%;margin:12px 0;border:1px solid #d9e5e8;border-radius:7px;background:#fcfefe}
+#nfr-app .nfr-view svg text{font-family:system-ui,-apple-system,'Noto Sans CJK SC','Microsoft YaHei',sans-serif}
+#nfr-app .nfr-view figcaption{font-size:13px;line-height:1.85;color:var(--nfr-muted);overflow-wrap:anywhere}
+#nfr-app .nfr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;min-width:0}
+#nfr-app .nfr-grid>*{min-width:0}
+#nfr-app .nfr-results .nfr-grid{grid-template-columns:1fr}
+#nfr-app .nfr-badge{display:inline-block;margin:3px 5px 3px 0;border:1px solid #b9cdcf;border-radius:5px;background:#eef5f5;padding:3px 8px;color:#2b575a;font-size:12px;line-height:1.6;white-space:normal;overflow-wrap:anywhere}
+#nfr-app .nfr-legend{display:flex;flex-wrap:wrap;gap:7px 18px;margin:12px 0;padding:10px 13px;border:1px solid #d5e1e4;border-radius:5px;background:#f7fafb;color:#314f5c;font-size:13px;line-height:1.8;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#nfr-app ul.nfr-legend{padding-left:28px}
+#nfr-app .nfr-status-list{padding-left:22px;font-size:14px;line-height:1.9}
+#nfr-app .nfr-status-list li{margin:7px 0;overflow-wrap:anywhere}
+#nfr-app .nfr-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;border:1px solid #d2dfe3;border-radius:7px;margin:15px 0;scrollbar-gutter:stable}
+#nfr-app .nfr-table-wrap table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.85;font-variant-numeric:tabular-nums}
+#nfr-app .nfr-table-wrap th,#nfr-app .nfr-table-wrap td{min-width:90px;padding:10px 12px;white-space:normal;overflow-wrap:anywhere;vertical-align:top}
+#nfr-app .nfr-table-wrap th{font-size:12px;background:#eef5f5;color:#294b56}
+#nfr-app .nfr-table-wrap tbody th{background:#f7fafb;font-weight:650}
+#nfr-app .nfr-table-wrap td:first-child{font-weight:500}
+#nfr-app .nfr-table-wrap caption{margin:0;padding:11px 12px;font-size:13px;line-height:1.7;color:#395964;caption-side:top}
+#nfr-app .nfr-view dl{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,1.3fr);gap:0;margin:14px 0;border-top:1px solid #d8e3e7;font-variant-numeric:tabular-nums}
+#nfr-app .nfr-view dt,#nfr-app .nfr-view dd{min-width:0;margin:0;padding:9px 8px;border-bottom:1px solid #d8e3e7;font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+#nfr-app .nfr-view dt{font-weight:650;background:#f4f8f9}
+#nfr-app .nfr-view pre{max-width:100%;overflow:auto;max-height:400px;margin:14px 0;padding:14px;border:1px solid #d3dfe5;border-radius:6px;background:#f5f8fa;color:#294758;font-size:12px;line-height:1.8;tab-size:2}
+#nfr-app .nfr-view code{white-space:normal}
+#nfr-app .nfr-experiments{padding-left:25px}
+#nfr-app .nfr-experiments li{padding:8px 0}
+#nfr-app .nfr-source-extension{margin-top:28px;padding-top:8px;border-top:2px solid #b7d4cf}
+#nfr-app .nfr-source-extension>h3{color:#245a55}
+#nfr-app .nfr-source-links{font-size:14px;line-height:2.2;overflow-wrap:anywhere}
+#nfr-app .nfr-historical{border-color:#d7c6a7;background:#fffdf8}
+#nfr-app .nfr-historical>summary{color:#77511c}
+#nfr-app .nfr-historical>div{font-size:15px}
+#nfr-app .nfr-import-panel{margin:25px 0;padding:20px;border:1px solid #c1d4d8;border-radius:9px;background:#f1f7f7}
+#nfr-app .nfr-import-panel h3{font-size:20px;margin:0 0 12px}
+#nfr-app .nfr-import-panel p,#nfr-app .nfr-import-panel li{font-size:15px}
+#nfr-app .nfr-import-panel li{padding:5px 0}
+#nfr-app .nfr-checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px 35px;padding-left:24px;font-size:15px}
+#nfr-app .nfr-checklist li{padding:7px 4px}
+#nfr-app :is(.nfr-level-nav,.nfr-controls,.nfr-actions,.nfr-export-cards,.nfr-view,.nfr-import-panel,.nfr-source-extension,.nfr-historical,.nfr-prerequisite) :focus-visible,#nfr-app .nfr-table-wrap:focus-visible{outline:3px solid #a75211;outline-offset:4px}
+#nfr-app .nfr-view [tabindex='0']{border-radius:4px}
+@media(min-width:1200px){#nfr-app .nfr-workspace{gap:24px}}
+@media(max-width:900px){
+  #nfr-app .nfr-workspace{grid-template-columns:1fr;gap:18px}
+  #nfr-app .nfr-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;padding:0 16px 16px}
+  #nfr-app .nfr-controls fieldset:first-child{grid-column:1/-1}
+  #nfr-app .nfr-controls fieldset{margin:16px 0}
+  #nfr-app .nfr-controls>.nfr-control-note{grid-column:1/-1}
+  #nfr-app .nfr-controls>.nfr-actions{grid-column:1/-1;margin-bottom:0}
+  #nfr-app .nfr-controls fieldset:first-child>.nfr-input-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #nfr-app .nfr-controls .nfr-advanced .nfr-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #nfr-app .nfr-results .nfr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  #nfr-app .nfr-level-nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #nfr-app .nfr-questions,#nfr-app .nfr-ledger,#nfr-app .nfr-boundaries{grid-template-columns:1fr;gap:12px}
+  #nfr-app .nfr-questions article,#nfr-app .nfr-ledger article,#nfr-app .nfr-boundaries article{padding:17px}
+  #nfr-app .nfr-parameter-bridge,#nfr-app .nfr-formula-cards,#nfr-app .nfr-export-cards{grid-template-columns:1fr;gap:12px}
+  #nfr-app .nfr-process{grid-template-columns:1fr 1fr}
+  #nfr-app .nfr-controls{display:block;padding:0 12px 14px}
+  #nfr-app .nfr-controls fieldset:first-child>.nfr-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #nfr-app .nfr-controls fieldset{padding:14px;margin:19px 0}
+  #nfr-app .nfr-controls>.nfr-actions{display:grid;grid-template-columns:1fr 1fr}
+  #nfr-app .nfr-result-card{padding:17px 14px}
+  #nfr-app .nfr-grid,#nfr-app .nfr-results .nfr-grid{grid-template-columns:1fr}
+  #nfr-app .nfr-checklist{grid-template-columns:1fr;gap:0}
+  #nfr-app .nfr-prerequisite>div{padding-left:12px;padding-right:12px}
+  #nfr-app .nfr-callout,#nfr-app .nfr-callout.nfr-warning{padding:17px}
+  #nfr-app .nfr-import-panel{padding:17px 14px}
+}
+@media(max-width:430px){
+  #nfr-app .nfr-level-nav{gap:6px}
+  #nfr-app .nfr-level-nav a{padding:10px 7px;font-size:12px}
+  #nfr-app .nfr-process{gap:7px}
+  #nfr-app .nfr-process li{padding:12px 9px}
+  #nfr-app .nfr-controls .nfr-advanced .nfr-input-grid{grid-template-columns:1fr}
+  #nfr-app .nfr-controls fieldset{padding:13px 10px}
+  #nfr-app .nfr-view dl{grid-template-columns:minmax(85px,1fr) minmax(0,1.1fr)}
+  #nfr-app .nfr-view dt,#nfr-app .nfr-view dd{padding:8px 6px;font-size:12px}
+  #nfr-app .nfr-table-wrap th,#nfr-app .nfr-table-wrap td{padding:9px;min-width:85px}
+  #nfr-app .nfr-actions{align-items:stretch}
+  #nfr-app .nfr-export-cards button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){#nfr-app *,#nfr-app *::before,#nfr-app *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{
+  #nfr-app .nfr-level-nav,#nfr-app .nfr-controls,#nfr-app .nfr-actions{display:none!important}
+  #nfr-app .nfr-workspace{display:block}
+  #nfr-app .nfr-result-card{box-shadow:none;break-inside:avoid}
+  #nfr-app .nfr-result-card svg{max-height:350px;object-fit:contain}
+  #nfr-app .nfr-prerequisite>div,#nfr-app .nfr-historical>div{display:block!important}
+  #nfr-app .nfr-table-wrap{overflow:visible}
+  #nfr-app .nfr-view pre{white-space:pre-wrap;max-height:none;overflow-wrap:anywhere}
+}

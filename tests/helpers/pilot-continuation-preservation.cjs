@@ -5,6 +5,7 @@ const extensionHash='b2ea05111ab2b48ff87db78f5f4fa980620b8ee33bc032d4055d8f8cefa
 const oldNext="function next(page){const c=page.case&&caseFor(page.case),href=page.next==='practice.html#notebook'&&c?notebookHref(c.unit):page.next;return `<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p>${link(href,page.nextLabel+' →')}</aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · ${link('index.html','学习地图')} · ${link('reading.html#reading','原文与证据')}</footer>`;}\n";
 const newNext="function next(page){const c=page.case&&caseFor(page.case),href=page.next==='practice.html#notebook'&&c?notebookHref(c.unit):page.next;const continuation=pilotReadingContinuation(page);return `<aside class=\"site-next\" aria-label=\"下一步\">${continuation||'<p>完成当前问题之后</p>'}${continuation?'<p>也可先记录这次观察：'+link(href,esc(page.nextLabel)+' →')+'</p>':link(href,page.nextLabel+' →')}</aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · ${link('index.html','学习地图')} · ${link('reading.html#reading','原文与证据')}</footer>`;}\n";
 function withoutPilotContinuation(source){
+ source=require('./nearfield-research-preservation.cjs').maybeWithoutNearfieldPrerequisiteTitle(source);
  const start='function pilotReadingContinuation(page){',following='function next(page){';
  a.equal(source.split(start).length,2,'one pilot continuation helper');
  a.equal(source.split(newNext).length,2,'one exact pilot-only next hook');

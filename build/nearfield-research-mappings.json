@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "ecb8bf58e45d487d30e07e7bdb24758ddb6c5acc",
+  "baselineManifestSha256": "4970c52371217ed95af7b62beb3485ef28af02dee3b7e92cddfe79c2deed237c",
+  "addedEntries": [
+    {
+      "source": "assets/data/nearfield-crb-reference-v1.parts.json",
+      "compatibility": "data/nearfield-crb-reference-v1.parts.json",
+      "public": "data/nearfield-crb-reference-v1.parts.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-crb-reference-v1.zip.part01",
+      "compatibility": "data/nearfield-crb-reference-v1.zip.part01",
+      "public": "data/nearfield-crb-reference-v1.zip.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-crb-reference-v1.zip.part02",
+      "compatibility": "data/nearfield-crb-reference-v1.zip.part02",
+      "public": "data/nearfield-crb-reference-v1.zip.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-live-chain-v1.parts.json",
+      "compatibility": "data/nearfield-live-chain-v1.parts.json",
+      "public": "data/nearfield-live-chain-v1.parts.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-live-chain-v1.zip.part01",
+      "compatibility": "data/nearfield-live-chain-v1.zip.part01",
+      "public": "data/nearfield-live-chain-v1.zip.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-live-chain-v1.zip.part02",
+      "compatibility": "data/nearfield-live-chain-v1.zip.part02",
+      "public": "data/nearfield-live-chain-v1.zip.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-research-evidence-map.json",
+      "compatibility": "data/nearfield-research-evidence-map.json",
+      "public": "data/nearfield-research-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/reassemble-nearfield-evidence.py",
+      "compatibility": "data/reassemble-nearfield-evidence.py",
+      "public": "data/reassemble-nearfield-evidence.py",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md",
+      "public": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/BASELINE.json",
+      "compatibility": "labs/near-field/research/BASELINE.json",
+      "public": "labs/near-field/research/BASELINE.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+      "compatibility": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+      "public": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/README.md",
+      "compatibility": "labs/near-field/research/README.md",
+      "public": "labs/near-field/research/README.md",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/controller.mjs",
+      "compatibility": "labs/near-field/research/controller.mjs",
+      "public": "labs/near-field/research/controller.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/defaults.mjs",
+      "compatibility": "labs/near-field/research/defaults.mjs",
+      "public": "labs/near-field/research/defaults.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/entry.mjs",
+      "compatibility": "labs/near-field/research/entry.mjs",
+      "public": "labs/near-field/research/entry.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/reports/author-tests.txt",
+      "compatibility": "labs/near-field/research/reports/author-tests.txt",
+      "public": "labs/near-field/research/reports/author-tests.txt",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/reports/node-cost.json",
+      "compatibility": "labs/near-field/research/reports/node-cost.json",
+      "public": "labs/near-field/research/reports/node-cost.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/research.css",
+      "compatibility": "labs/near-field/research/research.css",
+      "public": "labs/near-field/research/research.css",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+      "compatibility": "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+      "public": "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/CONTRACT.json",
+      "compatibility": "labs/near-field/research/runtime/CONTRACT.json",
+      "public": "labs/near-field/research/runtime/CONTRACT.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+      "compatibility": "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+      "public": "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+      "compatibility": "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+      "public": "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/fixtures/source-input.json",
+      "compatibility": "labs/near-field/research/runtime/fixtures/source-input.json",
+      "public": "labs/near-field/research/runtime/fixtures/source-input.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/adapter.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/adapter.mjs",
+      "public": "labs/near-field/research/runtime/src/adapter.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/contract.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/contract.mjs",
+      "public": "labs/near-field/research/runtime/src/contract.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/experiment.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/experiment.mjs",
+      "public": "labs/near-field/research/runtime/src/experiment.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/physics.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/physics.mjs",
+      "public": "labs/near-field/research/runtime/src/physics.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/receiver-worker.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/receiver-worker.mjs",
+      "public": "labs/near-field/research/runtime/src/receiver-worker.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/replay.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/replay.mjs",
+      "public": "labs/near-field/research/runtime/src/replay.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/solver-loader.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/solver-loader.mjs",
+      "public": "labs/near-field/research/runtime/src/solver-loader.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/solver-worker.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/solver-worker.mjs",
+      "public": "labs/near-field/research/runtime/src/solver-worker.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/worker-client.mjs",
+      "compatibility": "labs/near-field/research/runtime/src/worker-client.mjs",
+      "public": "labs/near-field/research/runtime/src/worker-client.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/generator.mjs",
+      "compatibility": "labs/near-field/research/runtime/vendor/music/generator.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/generator.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+      "compatibility": "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/worker.mjs",
+      "compatibility": "labs/near-field/research/runtime/vendor/music/worker.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/worker.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/core.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/core.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/core.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/linalg.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/linalg.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/linalg.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/metrics.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/metrics.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/metrics.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/model.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/model.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/model.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/numerics.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/numerics.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/numerics.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/package.json",
+      "compatibility": "labs/near-field/research/runtime/vendor/solver/package.json",
+      "public": "labs/near-field/research/runtime/vendor/solver/package.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/browser-branch-runner.mjs",
+      "compatibility": "labs/near-field/research/tests/browser-branch-runner.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/browser-branch.test.mjs",
+      "compatibility": "labs/near-field/research/tests/browser-branch.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/controller.test.mjs",
+      "compatibility": "labs/near-field/research/tests/controller.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/fixtures/near-field-legacy.html",
+      "compatibility": "labs/near-field/research/tests/fixtures/near-field-legacy.html",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/freeze.test.mjs",
+      "compatibility": "labs/near-field/research/tests/freeze.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/measure-node-cost.mjs",
+      "compatibility": "labs/near-field/research/tests/measure-node-cost.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/page.test.mjs",
+      "compatibility": "labs/near-field/research/tests/page.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/recovery.test.mjs",
+      "compatibility": "labs/near-field/research/tests/recovery.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tests/view.test.mjs",
+      "compatibility": "labs/near-field/research/tests/view.test.mjs",
+      "public": null,
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/view.mjs",
+      "compatibility": "labs/near-field/research/view.mjs",
+      "public": "labs/near-field/research/view.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-research-baseline.json",
+      "compatibility": "tests/helpers/nearfield-research-baseline.json",
+      "public": "tests/helpers/nearfield-research-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-research-changes.json",
+      "compatibility": "tests/helpers/nearfield-research-changes.json",
+      "public": "tests/helpers/nearfield-research-changes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-research-preservation.cjs",
+      "compatibility": "tests/helpers/nearfield-research-preservation.cjs",
+      "public": "tests/helpers/nearfield-research-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-research-suffixes.json",
+      "compatibility": "tests/helpers/nearfield-research-suffixes.json",
+      "public": "tests/helpers/nearfield-research-suffixes.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-research-integration.test.cjs",
+      "compatibility": "tests/nearfield-research-integration.test.cjs",
+      "public": "tests/nearfield-research-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-research-owned.test.cjs",
+      "compatibility": "tests/nearfield-research-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

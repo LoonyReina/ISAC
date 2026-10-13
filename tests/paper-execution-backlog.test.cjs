@@ -166,7 +166,11 @@ function validate(data) {
     }
     if (p.category === 'case-only') {
       assert.ok(nonempty(p.experiment.details.metricScope));
-      assert.ok(p.experiment.resources.every(s => s.startsWith('Existing independent teaching budget')));
+      if(p.id==='supplement-case-near-field'&&p.implementation.details.runtimeFreezeEntries===22){
+        const changes=require('./helpers/nearfield-research-changes.json').backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
+        for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append,'exact reviewed near-field appended metadata');else assert.deepEqual(value,change.after,'exact reviewed near-field stage/resource metadata');}
+        assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
+      }else assert.ok(p.experiment.resources.every(s => s.startsWith('Existing independent teaching budget')));
     }
   }
   const categoryCount = kind => [...expected.values()].filter(p => p.category === kind).length;

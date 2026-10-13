@@ -1,0 +1,24 @@
+{
+  "verdict": "pass_bounded_covariance_kernel_tolerance_qualified",
+  "reviewTimeUtc": "2026-10-12T18:02:45.345Z",
+  "kernelHashes": {
+    "core.js": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de",
+    "hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+    "linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+    "metrics.js": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a",
+    "model.js": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4",
+    "numerics.js": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782",
+    "optimizer.js": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c"
+  },
+  "independentAdversarialPassed": 23,
+  "independentAdversarialFailed": 0,
+  "newCases": 10,
+  "newIndependentOracleAcceptances": 9,
+  "foundDefects": [
+    {
+      "id": "seed-null-terminal-result",
+      "status": "fixed_and_independently_replayed"
+    }
+  ],
+  "report": "INDEPENDENT-REVIEW.md"
+}
