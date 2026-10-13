@@ -1,0 +1,826 @@
+{
+  "registry": [
+    {
+      "path": [
+        "cases"
+      ],
+      "append": [
+        {
+          "id": "case-80211ad-receiver",
+          "title": "802.11ad：从真实前导样本找帧、测距与测速",
+          "fields": {
+            "先修": "<a href=\"golay-radar.html#experiment\">孤立Golay对先修</a>；<a href=\"foundations.html#matched\">复数相关</a>；<a href=\"foundations.html#doppler\">多普勒与相位</a>",
+            "问题": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+            "交互机制": "分开生成观测与持有样本处理：实际STF捕获、分数相位/CFO、STF/CEF相关、Moose、逐帧信道和慢时间DFT；按阶段查看同一份样本。",
+            "证据类型": "固定arXiv:1702.05833v1；独立Python、JavaScript及实际Node Worker数值证据，真实浏览器验收另列。",
+            "结论边界": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。",
+            "下一研究问题": "低SCNR拒绝、首帧抵消、接受的频偏混叠和有限CPI旁瓣怎样改变可相信的估计？"
+          },
+          "unit": "80211ad-receiver",
+          "paper": "80211ad-receiver.html#paper",
+          "next": "80211ad-receiver.html#limits",
+          "learningEntry": "80211ad-receiver.html#question",
+          "paperComparison": {
+            "comparisonStatus": "partial",
+            "sourceTitle": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+            "sourceUrl": "https://arxiv.org/abs/1702.05833v1",
+            "version": "arXiv:1702.05833v1，2017-02-20；期刊 IEEE TVT 67(4)，3012–3027，2018-04，DOI 10.1109/TVT.2017.2774762。章节、图与式号只采用固定 v1，不混用未检查的期刊 PDF。",
+            "sourceId": "case-80211ad-receiver-paper",
+            "comparisonLink": "80211ad-receiver.html#paper",
+            "researchQuestion": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+            "observationsAndUnknowns": "接收机只见实际复数样本、已知前导、帧间隔、噪声方差和声明处理策略；未知时延、反射系数、速度和振荡器频偏。目标真值不进入同步、相关、Moose或DFT。",
+            "locator": {
+              "summary": "固定v1 §II-A图1–2；§IV-A式(14)–(19)；§IV-B式(21)–(27)；§IV-C、Remark3与图13–14。图8/10仅缩减带偏差实验，不等于原曲线复现。",
+              "section": "§II-A；§III；§IV-A/B/C；§V",
+              "figure": "图1–2结构；图8/10缩减设置；图13–14有界同记录重算",
+              "equation": "式(14)–(19)、(21)、(23)–(28)；Remark3"
+            },
+            "paperEvidenceType": "理论分析与数值仿真，不是道路实测",
+            "siteArtifactType": "独立验证的有界源算法、真实样本重算与Node Worker证据；浏览器和完整论文门仍开放",
+            "retainedAssumptions": [
+              "已知源支持的Ga/Gb次序和3328芯片前导；实际复数波形先生成再处理",
+              "单站R=cτ/2，正速度朝向雷达，fD=2v/λ；恒定时延与复增益的stop-and-hop",
+              "8×物理模式与有限RC/RRC支持明确；同一观测上的STF/CEF和单帧/多帧对比",
+              "每次保留接受/拒绝、所有图候选、未检出和条件误差分母"
+            ],
+            "omittedMechanisms": [
+              "完整通信PHY、载荷、MAC、阵列校准、射频/道路实测、自干扰和距离迁移",
+              "原文每点10000次Monte Carlo与全部原曲线；理想下界达到性没有证明",
+              "源10000-bin图超出运行时256-bin上限；两者候选分别28和29",
+              "实际浏览器绘制、无障碍、导入/下载与内存/延迟验收"
+            ],
+            "metrics": [
+              "真实STF相关门、相位能量和CEF复数分量及提取坐标",
+              "单帧/多帧Moose及主值区间；多目标全局Moose标作混合诊断",
+              "全部地图候选、命中/漏检/额外候选；噪声H0族错误上界不控制信号旁瓣",
+              "所有试验与仅接受试验误差/RMSE分别报告；失败不记零误差"
+            ],
+            "unknowns": [
+              "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。",
+              "源理想同步/iid噪声下界不等于当前有色噪声/估计同步接收机误差；未知振荡器与Doppler不可分离"
+            ],
+            "resourceBudget": {
+              "summary": "源芯片率1.76Gchip/s、60GHz、3328芯片完整前导；运行时最多64帧、约2M复样本、256 Doppler bins与262144地图单元，实际可用组合受联合上限约束。",
+              "bandwidth": "芯片率1.76Gchip/s与2.16GHz信道宽度分开；有限脉冲近似明确",
+              "energy": "STF2048与CEF1024不同积累长度；同原始样本并不意味着处理积分能量相同",
+              "duration": "每帧起点间隔和总CPI明确；零填充只细化格点，不提升有限CPI分辨率",
+              "aperture": "单站标量、显式复增益；不复现原8×2阵列方向性",
+              "priorKnowledge": "前导与配置已知；真值不进入接收机，离线评分单独执行",
+              "other": [
+                "同步和频偏可失败或混叠；接受不保证正确",
+                "已知有限RRC滤波噪声方差用于H0阈值；可选离线存档不是启动负载"
+              ]
+            },
+            "verificationNote": "独立Python58文件冻结、18作者/19互补/23独立检查、1216试验/11fixture和JS22文件冻结见docs/80211AD-SOURCE-EVIDENCE.md。"
+          }
+        }
+      ],
+      "lengthBefore": 17
+    },
+    {
+      "path": [
+        "units"
+      ],
+      "append": [
+        {
+          "id": "80211ad-receiver",
+          "title": "802.11ad：从真实前导样本找帧、测距与测速",
+          "href": "80211ad-receiver.html#experiment",
+          "question": "通信前导的复数样本里，接收机怎样先找到帧，再估距离与速度？失败、混合目标和混叠会留下什么？",
+          "prerequisites": [
+            "golay-radar.html#experiment",
+            "foundations.html#matched",
+            "foundations.html#doppler"
+          ],
+          "group": "research",
+          "primaryDirectionId": "receiver",
+          "action": "实际生成或导入复数观测，持有同一份样本逐步检查STF/CEF、Moose与慢时间DFT；保留失败、混叠和所有候选。"
+        }
+      ],
+      "lengthBefore": 32
+    },
+    {
+      "path": [
+        "pages"
+      ],
+      "append": [
+        {
+          "path": "80211ad-receiver.html",
+          "title": "802.11ad：从真实前导样本找帧、测距与测速",
+          "stage": "experiments",
+          "case": "case-80211ad-receiver",
+          "role": "有界源算法 · 实际802.11ad前导接收与失败诊断",
+          "prerequisites": [
+            "golay-radar.html#experiment",
+            "foundations.html#matched",
+            "foundations.html#doppler"
+          ],
+          "next": "reading.html#paper-80211ad",
+          "nextLabel": "回到同一篇固定原文：区分孤立Golay先修、实际接收机和未完成原图"
+        }
+      ],
+      "lengthBefore": 28
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "primaryCaseIds"
+      ],
+      "append": [
+        "case-80211ad-receiver"
+      ],
+      "lengthBefore": 2
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        0,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "从样本中找帧，再测距和测速",
+          "href": "80211ad-receiver.html#question",
+          "kind": "lesson",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        1,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "真实3328芯片、脉冲、未知量与观测",
+          "href": "80211ad-receiver.html#model",
+          "kind": "model",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 6
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        2,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "同一份观测逐步运行STF/CEF与Moose/DFT",
+          "href": "80211ad-receiver.html#experiment",
+          "kind": "interactive",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 8
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        3,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "固定v1：源结构、估计器和明确偏差",
+          "href": "80211ad-receiver.html#paper",
+          "kind": "paper-guide",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 6
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        4,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "拒绝、混叠、混合目标与条件RMSE",
+          "href": "80211ad-receiver.html#limits",
+          "kind": "limits",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        1,
+        "levels",
+        5,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "保存真实输入、处理策略、哈希与失败",
+          "href": "80211ad-receiver.html#reproduce",
+          "kind": "reproduction-plan",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际3328芯片STF/CEF与物理8×、π/2旋转；有限RC信号和独立归一化有限RRC噪声。有限网格和资源边界内重算，真值只供事后评估。不是完整PHY、原图复现或浏览器认证。"
+        }
+      ],
+      "lengthBefore": 7
+    }
+  ],
+  "catalog": [
+    {
+      "path": [
+        "cards",
+        4,
+        "evidenceBoundary"
+      ],
+      "before": "原文这里核实的是分析与仿真；不能把指标直接表述为道路实测结果。",
+      "after": "原文是理论与仿真，不能表述为道路实测。孤立Golay先修与新的有界STF/CEF接收机分别记录；后者已独立数值核验，不代表完整论文、标准PHY或真实浏览器验收。"
+    },
+    {
+      "path": [
+        "cards",
+        4,
+        "readingPlan"
+      ],
+      "before": "先用独立 Golay 对理解训练序列相关与复用，再对照固定 arXiv v1 的 STF/CEF 边界和单帧/多帧问题；本站不复现完整标准帧或论文性能。",
+      "after": "先用原孤立Golay对理解互补相关，再从其原文栏进入实际3328芯片STF/CEF接收机：持有同一份复观测检查同步、相关、Moose和DFT。独立数值验证仅覆盖有界源算法；原图、PHY和浏览器门仍开放。"
+    }
+  ],
+  "backlog": [
+    {
+      "path": [
+        "sequence",
+        "activeStages"
+      ],
+      "append": [
+        {
+          "paperId": "80211ad",
+          "stage": "browser-validation",
+          "status": "pending"
+        }
+      ],
+      "lengthBefore": 6
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "canonicalReferences",
+        "caseIds"
+      ],
+      "append": [
+        "case-80211ad-receiver"
+      ],
+      "lengthBefore": 1
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "canonicalReferences",
+        "sourceIds"
+      ],
+      "append": [
+        "case-80211ad-receiver-paper"
+      ],
+      "lengthBefore": 1
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "source",
+        "pdfSha256"
+      ],
+      "before": null,
+      "after": "c16755b358bfe4152fea3bba5bc54c05370a0d8491aa481a73816bb12447e8b8"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "source",
+        "hashStatus"
+      ],
+      "before": "not-recorded",
+      "after": "recorded"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "source",
+        "details",
+        "receiverSourceAudit"
+      ],
+      "added": true,
+      "after": "scripts/validation/80211ad/SOURCE-AUDIT.md"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "source",
+        "details",
+        "sequenceAudit"
+      ],
+      "added": true,
+      "after": "scripts/validation/80211ad/SEQUENCE-AUDIT.md"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "unresolved"
+      ],
+      "before": [
+        "Normative standard chip ordering/rotations and pulse-shaping parameters must be verified before standard-compliance claims",
+        "Audited v1 has a Doppler-sign inconsistency and printed rate-unit issue; document conventions rather than silently porting ambiguous expressions"
+      ],
+      "after": [
+        "Original per-point10000-trial curves and missing source synchronizer settings remain unreproduced; receiver choices are explicit",
+        "Finite RC signal and separately normalized finite RRC noise are an explicit mismatch; ideal bounds are comparators",
+        "Oscillator versus Doppler is inseparable; accepted aliases, global mixed-target Moose, fractional/phase bias and first-frame cancellation remain",
+        "Real browser rendering/lifecycle/download/latency and full PHY/range migration/array/throughput gates remain open"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "referenceTrials"
+      ],
+      "added": true,
+      "after": 1216
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "referenceFixtures"
+      ],
+      "added": true,
+      "after": 11
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "ownerTests"
+      ],
+      "added": true,
+      "after": 18
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "complementaryChecks"
+      ],
+      "added": true,
+      "after": 19
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "independentReferenceChecks"
+      ],
+      "added": true,
+      "after": 23
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "independentPortNumericComparisons"
+      ],
+      "added": true,
+      "after": 7105533
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "independentFreshScenes"
+      ],
+      "added": true,
+      "after": 13
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "heldPolicyBranches"
+      ],
+      "added": true,
+      "after": 4
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "noiseRecords"
+      ],
+      "added": true,
+      "after": 96
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "historicalMap"
+      ],
+      "added": true,
+      "after": {
+        "nfft": 10000,
+        "candidates": 28
+      }
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "boundedSameRecordMap"
+      ],
+      "added": true,
+      "after": {
+        "nfft": 256,
+        "candidates": 29
+      }
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "experiment",
+        "details",
+        "truthOnlyForEvaluation"
+      ],
+      "added": true,
+      "after": true
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "classification"
+      ],
+      "before": "live independent chip-rate complementary-pair mechanism",
+      "after": "bounded source-derived STF/CEF receiver and held-observation Worker; isolated Golay remains prerequisite"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "live"
+      ],
+      "before": "golay recursively generates an independent pair; observe synthesizes integer-delay echoes with samplewise Doppler/noise and correlates fixed windows. AA versus AB shares energy, guards and observations. No original STF/CEF receiver runs.",
+      "after": "Actual3328-chip source-supported preamble, fractional-delay finite RC waveform and finite RRC-colored noise; actual STF acquisition/fractional timing/CFO, STF/CEF correlations, Moose, per-frame channel and slow-time DFT. Source8x supported. Truth is isolated. Browser acceptance remains open."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "offline"
+      ],
+      "before": null,
+      "after": "Accepted Python selected-algorithm reference:58 frozen files,18 owner tests,19 complementary checks,23 independent checks,1216 replayed trial rows and11 fixtures. Selected Fig8/10 deviations and every unfavorable result retained."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "runtimeFreeze"
+      ],
+      "added": true,
+      "after": "b84547a2bdad7da400238c267d2a6d089b33af8f2474d8f733f18c85d9a9b430"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "runtimeFreezeEntries"
+      ],
+      "added": true,
+      "after": 22
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "referenceFreeze"
+      ],
+      "added": true,
+      "after": "70191a5acbb6ab90d1da3791aaee86d557b8605884cac8251fb834acda4a3024"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "receiverLesson"
+      ],
+      "added": true,
+      "after": "80211ad-receiver.html#question"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "browserAccepted"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "fullPaperReproduced"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "standardCompliance"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "implementation",
+        "details",
+        "historicalPrerequisiteRetained"
+      ],
+      "added": true,
+      "after": true
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "source"
+      ],
+      "before": "audited-partial",
+      "after": "audited-for-selected-core"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "modelFidelity"
+      ],
+      "before": "not-validated",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "algorithm"
+      ],
+      "before": "not-implemented",
+      "after": "partial-live"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "independentValidation"
+      ],
+      "before": "pending",
+      "after": "passed"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "selectedExperiment"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "liveExecution"
+      ],
+      "before": "prerequisite-only",
+      "after": "partial-core"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stages",
+        "uiLearning"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stageEvidence",
+        "source"
+      ],
+      "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+      "after": "Fixed35-page arXiv v1 PDF hash and independent source/sequence audits retained; normative PHY conformance not established."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stageEvidence",
+        "algorithm"
+      ],
+      "before": "live independent chip-rate complementary-pair mechanism",
+      "after": "Actual source-derived bounded STF/CEF/Moose/channel/DFT runtime independently checked at the exact22-file freeze; old Golay is a separate prerequisite."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stageEvidence",
+        "selectedExperiment"
+      ],
+      "before": "No independently reproduced named paper experiment established by this inventory.",
+      "after": "1216 reduced main/stress trials and11 fixtures replayed; no original10000-trial curve reproduction. Historical10000-bin/28-candidate map and bounded256-bin/29-candidate replay remain distinct."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "stageEvidence",
+        "latency"
+      ],
+      "before": "No measured browser control-to-result latency for the faithful target core.",
+      "after": "Node-only numerical/transport timings; no actual browser control-to-painted-result measurement."
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "missingImplementation",
+        0
+      ],
+      "before": "Independent pair replaces standard frame",
+      "after": "Original full figure curves and per-point10000-trial statistics"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "missingImplementation",
+        1
+      ],
+      "before": "No synchronization/fractional delay/pulse shaping",
+      "after": "Complete PHY/payload/MAC/arrays/self-interference/range-migration/communication-rate experiment"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "missingImplementation",
+        2
+      ],
+      "before": "No source detection, velocity receiver, Monte Carlo or data-rate experiment",
+      "after": "Actual hosted-browser acceptance, memory and painted-result timing"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "dependencies"
+      ],
+      "before": [
+        "Verified standard preamble/rotation tables or an independently validated normative generator",
+        "Fractional-delay/RRC model with fixed sample support",
+        "Truth-blind synchronization/CEF receiver and known-noise detection calibration",
+        "Seeded Monte Carlo with failed detections and conditional RMSE labeled"
+      ],
+      "after": [
+        "Accepted reference and runtime hashes must remain exact and independent reports retained",
+        "Optional source-free evidence archives remain offline-only; no startup fetch",
+        "Real browser review must use the frozen lesson and measure full transport/render boundary separately"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "blockers",
+        0
+      ],
+      "before": "Independent pair replaces standard frame",
+      "after": "Actual browser acceptance is pending; no deploy or publication authorized"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "blockers",
+        1
+      ],
+      "before": "No synchronization/fractional delay/pulse shaping",
+      "after": "Full source-curve and PHY coverage remains incomplete"
+    },
+    {
+      "path": [
+        "papers",
+        24,
+        "evidence",
+        "boundedReceiver"
+      ],
+      "added": true,
+      "after": {
+        "summary": "docs/80211AD-SOURCE-EVIDENCE.md",
+        "data": "data/80211ad-evidence-map.json",
+        "independentNumerical": "scripts/validation/80211ad/INDEPENDENT-NUMERICAL-REVIEW.md",
+        "independentPort": "scripts/validation/80211ad/INDEPENDENT-PORT-REVIEW.md"
+      }
+    }
+  ],
+  "guides": []
+}

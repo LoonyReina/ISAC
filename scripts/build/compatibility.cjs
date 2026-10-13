@@ -4,6 +4,7 @@
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto'),cp=require('node:child_process');
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const {moduleDependencies}=require('./module-dependencies.cjs');
+const {classicDependencies}=require('./classic-dependencies.cjs');
 const compare=(a,b)=>a.path<b.path?-1:a.path>b.path?1:0;
 function insist(ok,message){if(!ok)throw new Error(message);}
 function exactFields(value,fields,label){insist(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join(',')===[...fields].sort().join(','),'Invalid '+label+' fields');}
@@ -45,7 +46,7 @@ function assertPaths(root,expected){
  function visit(prefix=''){for(const name of fs.readdirSync(path.join(root,prefix))){const rel=prefix?prefix+'/'+name:name;if(fs.lstatSync(path.join(root,rel)).isDirectory()){insist(directories.has(rel),'Unexpected output directory: '+rel);visit(rel);}}}visit();
 }
 function checkDependencies(root,manifest){
- const all=new Map(manifest.entries.filter(e=>e.public!==null).map(e=>[e.public,e])),edges=[];
+ const all=new Map(manifest.entries.filter(e=>e.public!==null).map(e=>[e.public,e])),edges=[],identities=[];
  const local=(from,raw,kind)=>{
   if(!raw||/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(raw))return;
   insist(!raw.startsWith('/')&&!/[\u0000-\u0020\u007f\\]/.test(raw),'Invalid project-relative local URL: '+from+' → '+raw);
@@ -55,7 +56,7 @@ function checkDependencies(root,manifest){
   if(url.hash&&target.endsWith('.html')){let fragment;try{fragment=decodeURIComponent(url.hash.slice(1));}catch{throw Error('Invalid local fragment: '+raw);}const text=fs.readFileSync(path.join(root,target),'utf8');insist(text.includes('id="'+fragment+'"')||text.includes("id='"+fragment+"'"),'Missing public fragment: '+from+' → '+raw);}
   edges.push({from,to:target,kind});
  };
- for(const [name]of all){const text=fs.readFileSync(path.join(root,name),'utf8');
+ for(const [name]of all){const data=fs.readFileSync(path.join(root,name)),text=data.toString('utf8');identities.push({file:name,sha256:sha(data)});
   if(!name.includes('/')&&name.endsWith('.html'))for(const m of text.matchAll(/\b(href|src)\s*=\s*["']([^"']+)["']/g))local(name,m[2],m[1]);
   if(name.endsWith('.md')){const prose=text.replace(/```[\s\S]*?```/g,'').replace(/`[^`\n]*`/g,'');for(const m of prose.matchAll(/!?\[[^\]\n]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g))if(/^(?:https?:|#|\.{1,2}\/)|\.(?:md|json|txt|log|sha256|js|cjs|mjs|html|css|py|pdf)(?:[?#]|$)/i.test(m[1]))local(name,m[1],'documentation');}
   if(name.endsWith('.css'))for(const m of text.matchAll(/(?:url\(\s*["']?([^"')\s]+)|@import\s+["']([^"']+))/g))local(name,m[1]||m[2],'css');
@@ -63,7 +64,9 @@ function checkDependencies(root,manifest){
   if(name.endsWith('.js'))for(const m of text.matchAll(/\b(?:fetch|require(?:\.resolve)?)\(\s*['"]([^'"]+)['"]/g))if(m[1].startsWith('.')||m[1].includes('/'))local(name,m[1],'runtime');
  }
  const modules=[...all.keys()].filter(name=>name.endsWith('.mjs')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
- for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8'))))local(edge.from,edge.url,edge.kind);
+ for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
+ const classic=[...all.keys()].filter(name=>['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/','labs/gaussian-tradeoff/'].some(prefix=>name.startsWith(prefix))&&name.endsWith('.js')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
+ for(const edge of classicDependencies(classic,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/classic-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
  // This script constructs URLs from currentScript.src; the literal sequence is
  // checked before adding its dependencies, rather than guessed from filenames.
  const course=fs.readFileSync(path.join(root,'course.js'),'utf8');

@@ -1,0 +1,1391 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "baseCommit": "821523bb7a57e5c6dade62ba88a96ec0c2630737",
+  "scope": "Local source/evidence integration; archive bytes reverified; historical numerical receipts retained without claiming a new numerical or browser run",
+  "source": {
+    "paperIdentity": "arxiv:2607.18680",
+    "fixedSourceIdentity": "arxiv:2607.18680v1",
+    "id": "arxiv:2607.18680v1",
+    "url": "https://arxiv.org/html/2607.18680v1",
+    "title": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+    "authors": [
+      "Lin Chen",
+      "Yifan Liang",
+      "Hongbin Li"
+    ],
+    "versionDate": "2026-07-21",
+    "pdfSha256": "e8da91552c32d61dd40cbc3c0224c7b654df04e9a4c3e85c0781d58f66853f02",
+    "pdfRedistributed": false,
+    "paperTextRedistributed": false,
+    "sourceFigureRedistributed": false,
+    "restrictedThirdPartyCodeRedistributed": false
+  },
+  "identityPreservation": {
+    "primaryPaperIdentities": 35,
+    "fullPapersReproduced": 0,
+    "newPrimaryPaperIdentity": false,
+    "legacyPrerequisitePage": "network-clock.html",
+    "legacyScalarExperimentIsSeparate": true
+  },
+  "runtimeFreezeSha256": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b",
+  "runtimeFreeze": {
+    "schema": "networked-sync-js-source-freeze-v1",
+    "date_utc": "2026-10-12",
+    "runtime": [
+      {
+        "path": "js/codec.js",
+        "bytes": 13507,
+        "sha256": "ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5"
+      },
+      {
+        "path": "js/linalg.js",
+        "bytes": 26681,
+        "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+      },
+      {
+        "path": "js/receiver.js",
+        "bytes": 32169,
+        "sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98"
+      },
+      {
+        "path": "js/sha256.js",
+        "bytes": 3150,
+        "sha256": "9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6"
+      },
+      {
+        "path": "worker/client.js",
+        "bytes": 12749,
+        "sha256": "2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb"
+      },
+      {
+        "path": "worker/protocol.js",
+        "bytes": 4672,
+        "sha256": "7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38"
+      },
+      {
+        "path": "worker/receiver-worker.js",
+        "bytes": 8760,
+        "sha256": "e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534"
+      }
+    ],
+    "accepted_python_sha256": "88a161d7d7d55ad4a2e703b0afb590c69644b0c61eaf370c2f6f519fc650f10e",
+    "reference_freeze_sha256": "94f0c92acb978981a0fe5d4891fe95acb5d8ce557f5b92ca6a84dc9d2637e3ab",
+    "reference_independent_review_freeze_sha256": "5a67ab96fb867c6a1412c7d4cb7a6982184d880fa328572b13621318ba32ddd1",
+    "claim": "Fresh source-derived JS numerical kernel and actual Node Worker; browser branch VM only; no UI/repository/publishing/full-paper claim"
+  },
+  "artifactManifestSha256": "6cfb8514a1787ef6f007be39258870c423cc2887776ada7ec25b5b97f116af25",
+  "reference": {
+    "coreSha256": "88a161d7d7d55ad4a2e703b0afb590c69644b0c61eaf370c2f6f519fc650f10e",
+    "freezeSha256": "94f0c92acb978981a0fe5d4891fe95acb5d8ce557f5b92ca6a84dc9d2637e3ab",
+    "dimensions": [
+      10,
+      36,
+      20
+    ],
+    "knownRanks": [
+      1,
+      2
+    ],
+    "pairTrials": 432,
+    "independentSceneClusters": 24,
+    "pairTrialsPerRankSnr": 72,
+    "scenesPerRankSnr": 12,
+    "snrDb": [
+      -25,
+      -10,
+      5
+    ],
+    "ownerTests": 19,
+    "independentTests": 11,
+    "reviewCounts": {
+      "pair_trials": 432,
+      "observation_hashes": 2592,
+      "direct_observation_oracles": 864,
+      "solved_methods": 1296,
+      "failed_methods": 0,
+      "evaluations": 1296,
+      "initialization_reuse_checks": 864,
+      "timing_scope_checks": 1296,
+      "substep_factor_replays": 4722
+    },
+    "reviewMaxima": {
+      "direct_observation_relative_error": 4.613351385788074e-15,
+      "factor_residual_relative_error": 1.072262346099853e-15,
+      "stored_phase_abs_error": 3.1086244689504383e-15,
+      "parameter_abs_error": 4.729372449219227e-11,
+      "scene_geometry_abs_error": 0,
+      "substep_residual_relative_error": 2.98143116189347e-16
+    },
+    "sourceSnr": "reflection-coefficient energy divided by noise variance before beam/array gain; received SNR is separate",
+    "lowSnrScpdGeometrySuccess": [
+      {
+        "rank": 1,
+        "snrDb": -25,
+        "successes": 37,
+        "pairTrials": 72
+      },
+      {
+        "rank": 2,
+        "snrDb": -25,
+        "successes": 9,
+        "pairTrials": 72
+      }
+    ],
+    "notPublishedCurves": true,
+    "scpdStoppingTestsMet": 864,
+    "scpdLinks": 864,
+    "nonmonotoneFullSweeps": 64,
+    "nonmonotoneSubsteps": 283,
+    "rank2LowSnrGrossErrors": 72,
+    "rank2LowSnrGeometryPassingGrossErrors": 9
+  },
+  "portReview": {
+    "report": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+    "reportSha256": "70ae8839b1a60ba0112091bf2bccf53c561c113e18ed63eb0091378506222fc1",
+    "boundedImplementationAccepted": true,
+    "structuralAndOrdinaryCaseChecks": 15539,
+    "structuralAndOrdinaryCaseChecksPassed": true,
+    "allCasesPhaseParityPassed": false,
+    "counts": {
+      "structured_substeps": 246,
+      "unstructured_substeps": 312,
+      "projection_columns": 504,
+      "projection_grid_points": 116736,
+      "initializers": 20,
+      "esprit_links": 20
+    },
+    "originalDimensions": [
+      10,
+      36,
+      20
+    ],
+    "originalDimensionRanks": [
+      1,
+      2,
+      3
+    ],
+    "compactDimensions": [
+      6,
+      12,
+      8
+    ],
+    "compactRanks": [
+      1,
+      2,
+      3
+    ],
+    "conventionsAssertions": 100,
+    "evaluationAssertions": 378,
+    "materializedHankelShape": [
+      160,
+      3248
+    ],
+    "materializedHankelBytes": 8314880,
+    "nearCollisionFailure": {
+      "status": "failed-tight-phase-parity",
+      "rank": 3,
+      "method": "scpd",
+      "link": 1,
+      "phaseDifferenceRad": 0.00032002867021363457,
+      "fixedCriterionRad": 0.00008,
+      "weakComponentAmplitudeApprox": 0.00015,
+      "criterionRelaxed": false,
+      "inputChangedToPass": false,
+      "truthRepairUsed": false,
+      "allCasesPhaseParityPassed": false
+    },
+    "maxima": {
+      "70_digit_mode_max_abs": 1.4217791915866692e-15,
+      "numpy_mode_relative": 6.027577189449689e-16,
+      "complex_gauge_tensor": 2.4038676658420214e-16,
+      "complex_gauge_phase": 1.7763568394002505e-15,
+      "primitive_projection_column": 5.188694590913936e-16,
+      "primitive_projection_grid": 1.721176608516111e-14,
+      "70_digit_stationary_relative_gap": 5.51711641232359e-16,
+      "conditioned_ls_parity": 0.0000027717074561839616,
+      "70_digit_conditioned_ls": 1.762089968750978e-8,
+      "svd_rankdef_reconstruction": 3.1321643825762314e-16,
+      "pilot_division_relative": 1.2233189305604797e-16,
+      "compact-l1.scpd.final_residual_identity": 2.220446049250313e-16,
+      "phase_extraction_error": 4.440892098500626e-16,
+      "actual_unconstrained_ls_relative": 6.472006527193647e-11,
+      "untouched_axis_relative": 0,
+      "substep_residual_identity": 1.3830242596685762e-15,
+      "projection_input_identity": 0,
+      "projection_actual_factor_identity": 5.515156284573203e-16,
+      "full_grid_raw_power_relative": 2.4019154524481193e-14,
+      "peak_power_identity": 1.7151458811377688e-15,
+      "every_refined_candidate_power": 9.647760941992736e-14,
+      "normalization_tensor_identity": 4.0806518957258547e-16,
+      "python_phase_parity": 1.1285202461408517e-7,
+      "python_residual_parity": 1.566343861846888e-8,
+      "python_reconstructed_tensor_parity": 3.589128824220566e-7,
+      "shared_initializer_identity": 0,
+      "compact-l1.smooth.final_residual_identity": 5.551115123125783e-17,
+      "smoothing_covariance_relative": 1.6252292253692328e-15,
+      "smoothing_eigenpair_residual": 3.354966165657585e-15,
+      "smoothing_orthogonality": 3.989299945419966e-14,
+      "smoothing_shift_ls": 1.4401039611381578e-15,
+      "smoothing_general_eigenpair": 1.6685953335470726e-15,
+      "paired_subspace_identity": 1.1345296373135156e-16,
+      "smoothing_contraction_phase": 4.440892098500626e-16,
+      "compact-l1.esprit.final_residual_identity": 1.1102230246251565e-16,
+      "esprit_unfolding": 0,
+      "esprit_shift_ls": 2.1873275687841737e-15,
+      "esprit_ac_ls": 1.1258798384849572e-15,
+      "esprit_svd_input": 2.0632309319019425e-12,
+      "esprit_svd_best_rankone": 3.1308296002119344e-12,
+      "esprit_rightH_temporal_sign": 2.220446049250313e-16,
+      "compact-l1.als.final_residual_identity": 1.0408340855860843e-17,
+      "unstructured_update_identity": 0,
+      "python_pair_offset_normalized": 0.000008715642636428134,
+      "python_pair_cfo_normalized": 0.00004853838000362192,
+      "initializer_inclusive_timer": 0,
+      "compact-l2.scpd.final_residual_identity": 6.245004513516506e-17,
+      "compact-l2.smooth.final_residual_identity": 4.163336342344337e-17,
+      "compact-l2.esprit.final_residual_identity": 2.0816681711721685e-17,
+      "compact-l2.als.final_residual_identity": 4.163336342344337e-17,
+      "compact-l3.scpd.final_residual_identity": 1.3877787807814457e-16,
+      "compact-l3.smooth.final_residual_identity": 2.7755575615628914e-17,
+      "compact-l3.esprit.final_residual_identity": 5.551115123125783e-17,
+      "compact-l3.als.final_residual_identity": 5.551115123125783e-17,
+      "original-l1.scpd.final_residual_identity": 4.163336342344337e-17,
+      "original-l1.smooth.final_residual_identity": 2.0816681711721685e-17,
+      "original-l1.esprit.final_residual_identity": 3.469446951953614e-18,
+      "original-l1.als.final_residual_identity": 1.3877787807814457e-17,
+      "original-l2.scpd.final_residual_identity": 3.469446951953614e-17,
+      "actual_stage_70_digit_peak_gap": 1.0411180686987178e-16,
+      "original-l2.smooth.final_residual_identity": 2.0816681711721685e-17,
+      "original-l2.esprit.final_residual_identity": 1.249000902703301e-16,
+      "original-l2.als.final_residual_identity": 8.326672684688674e-17,
+      "original-l3.scpd.final_residual_identity": 8.326672684688674e-17,
+      "original-l3.smooth.final_residual_identity": 1.1102230246251565e-16,
+      "original-l3.esprit.final_residual_identity": 8.326672684688674e-17,
+      "original-l3.als.final_residual_identity": 9.020562075079397e-17,
+      "low-snr-l2.scpd.final_residual_identity": 2.220446049250313e-16,
+      "low-snr-l2.smooth.final_residual_identity": 4.440892098500626e-16,
+      "low-snr-l2.esprit.final_residual_identity": 3.3306690738754696e-16,
+      "low-snr-l2.als.final_residual_identity": 7.771561172376096e-16,
+      "phasewrap-l2.scpd.final_residual_identity": 1.734723475976807e-18,
+      "phasewrap-l2.smooth.final_residual_identity": 4.336808689942018e-18,
+      "phasewrap-l2.esprit.final_residual_identity": 1.0408340855860843e-17,
+      "phasewrap-l2.als.final_residual_identity": 4.336808689942018e-18,
+      "near-collision-l3.scpd.final_residual_identity": 1.0842021724855044e-19,
+      "near_collision_phase_parity": 0.00032002867021363457,
+      "near-collision-l3.smooth.final_residual_identity": 0,
+      "near-collision-l3.esprit.final_residual_identity": 2.168404344971009e-19,
+      "near-collision-l3.als.final_residual_identity": 1.0842021724855044e-19,
+      "tiny-l1.scpd.final_residual_identity": 3.308722450212111e-24,
+      "tiny-l1.smooth.final_residual_identity": 6.902532920683853e-31,
+      "tiny-l1.esprit.final_residual_identity": 1.9721522630525295e-31,
+      "tiny-l1.als.final_residual_identity": 6.902532920683853e-31,
+      "direct_physical_generator": 3.809741949515153e-15,
+      "source_snr_formula": 4.440892098500626e-16,
+      "start-0-True.final_residual_identity": 2.220446049250313e-16,
+      "start-0-False.final_residual_identity": 0,
+      "start-1-True.final_residual_identity": 3.3306690738754696e-16,
+      "start-1-False.final_residual_identity": 5.551115123125783e-17,
+      "start-2-True.final_residual_identity": 5.551115123125783e-17,
+      "start-2-False.final_residual_identity": 5.551115123125783e-17
+    },
+    "goldenSectionAdaptation": "Fresh continuous golden-section refinement within FFT local-maximum brackets differs from the accepted Python bounded optimizer; no runtime fixture lookup"
+  },
+  "workerReview": {
+    "report": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+    "actualNodeWorker": true,
+    "ownerCodecAndWorkerTests": 41,
+    "independentGroups": 28,
+    "sessionControlsCompleted": 10000,
+    "request10001Rejected": true,
+    "productionCapProbes": 5,
+    "largestMeasuredResultJsonBytes": 20333528,
+    "largestMeasuredConservativeBytes": 29943857,
+    "recordBudgetBytes": 67108864,
+    "wallLimitSeconds": 120,
+    "wallLimitIsCooperative": true,
+    "wallLimitExpirationActuallyRun": false,
+    "freshResultsPreflightedBeforeHoldSend": false,
+    "measurementsAreBrowserOrUniversalHeapGuarantees": false,
+    "actualBrowserVerified": false
+  },
+  "boundaries": {
+    "sourceDerivedSlice": true,
+    "fullPaperReproduction": false,
+    "sourceCurveReproduction": false,
+    "actualBrowserVerified": false,
+    "browserLoaderScope": "Node VM only in accepted kernel package; not actual browser evidence",
+    "sourceNotation": "Declared radians/sample, C-order unfolding, ordinary transmit transpose, standard U Sigma V^H and source Doppler sign; operational reconstruction, not identification of unpublished author code",
+    "initializer": "Three-axis 4x8x5 smoothed CP variant; not exact author CP-VDM benchmark",
+    "knownRankRequired": true,
+    "truthUsage": "Generation and post-hoc evaluation only; never estimation, association, stopping or branch repair; held data without truth has no error metrics",
+    "fairComparisons": "Smoothed CP, SCPD, ESPRIT-LS and unstructured ALS use the same actual pilot-divided tensors; SCPD/ALS share the exact initializer and include initialization in estimator timing",
+    "geometrySuccessCertifiesAccuracy": false,
+    "grossErrorDiagnosticExcludesClockOffset": true,
+    "wrongClockExample": {
+      "geometryPasses": true,
+      "offsetErrorSeconds": 0.00001,
+      "cfoErrorHz": 100000,
+      "timingOnlyGrossErrorFlag": false
+    },
+    "freshLowSnrGeometryPassingCfoErrorsHzApprox": {
+      "scpd": -3283,
+      "smoothed": -13763,
+      "als": -15874
+    },
+    "residualMonotonicityGuaranteed": false,
+    "globalOptimumGuaranteed": false,
+    "arbitraryScaleInvarianceEstablished": false,
+    "halfPeriodAliasesResolved": false,
+    "exactAuthorCpVdmImplemented": false,
+    "soeMpImplemented": false,
+    "networkCycleClockSolverImplemented": false,
+    "timeDomainIciIsiTested": false,
+    "trackingAdaptiveBeamsImplemented": false,
+    "crbAttainmentClaimed": false,
+    "rfHardwareClaimed": false,
+    "historicalPackagingPendingLabels": "Original package metadata retain packaging-time pending review statements; the separately copied final independent review establishes later bounded acceptance"
+  },
+  "archives": [
+    {
+      "name": "networked-sync-kernel-v0.1-sourcefree.zip",
+      "public": "data/networked-sync-kernel-v0.1-sourcefree.zip",
+      "publicWholeArchive": "data/networked-sync-kernel-v0.1-sourcefree.zip",
+      "bytes": 8368985,
+      "sha256": "0d801fd2dfa7da281772da48c33c5bd6f1e8c781a4004bbef4eac1f4c538f25a",
+      "archiveMemberCount": 35,
+      "uncompressedBytes": 20438911,
+      "startupDependency": false,
+      "optionalDownload": true,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "failuresRetained": true,
+      "verification": {
+        "expectedMemberList": "reference FREEZE.json files plus FREEZE.json",
+        "exactMemberSet": true,
+        "everyMemberMatchesAcceptedDiskBytes": true,
+        "allMemberSha256Checked": true,
+        "allMemberCrc32Checked": true,
+        "zipCrcPass": true,
+        "safePaths": true,
+        "noSymlinks": true,
+        "noEncryptedEntries": true,
+        "sourceFreeAllowlist": true,
+        "copiedArchiveByteIdentity": true
+      },
+      "members": [
+        {
+          "path": "networked-sync-reference/DEVELOPMENT_LOG.md",
+          "bytes": 2368,
+          "sha256": "3dfd9571709661089deaaeb318aae8dac314ec6d0d39ba3ad6077117e3a27171",
+          "crc32": "f0dc1539"
+        },
+        {
+          "path": "networked-sync-reference/FREEZE.json",
+          "bytes": 6466,
+          "sha256": "94f0c92acb978981a0fe5d4891fe95acb5d8ce557f5b92ca6a84dc9d2637e3ab",
+          "crc32": "4295d398"
+        },
+        {
+          "path": "networked-sync-reference/README.md",
+          "bytes": 12483,
+          "sha256": "d721f35a3e593a6953d1dad51d71358d42ee416223668e8d3f7508b0d4cdc20e",
+          "crc32": "20082636"
+        },
+        {
+          "path": "networked-sync-reference/RESULTS.md",
+          "bytes": 4410,
+          "sha256": "7117a86c901286cf379c381fe0df1e68a4a2eccf87e26c8144a945d9127ad7f7",
+          "crc32": "3fd92775"
+        },
+        {
+          "path": "networked-sync-reference/build_stage_example.py",
+          "bytes": 4424,
+          "sha256": "ee3bfa5ddc947c5946d700d3c37931421f352f320be142d0a065e4bdbf251810",
+          "crc32": "ed18b358"
+        },
+        {
+          "path": "networked-sync-reference/diagnostics/stress-probes.json",
+          "bytes": 763059,
+          "sha256": "61a17aaa0458600728a0e5df2984b07788d8b18adc7add3c74fbfbdf550ba9f9",
+          "crc32": "639a504f"
+        },
+        {
+          "path": "networked-sync-reference/diagnostics.log",
+          "bytes": 52,
+          "sha256": "3c015d088dbffdd2eb2c34ff53065e6eeffcbc28172e8c3f45f50e4e44bf8ed8",
+          "crc32": "b931a37f"
+        },
+        {
+          "path": "networked-sync-reference/evidence/diagnostic-summary.json",
+          "bytes": 7306,
+          "sha256": "7f460a5c0bf9bf0f3ab90b7b8f0b34fb1dfb8b92e3a355116a7825b6e6274975",
+          "crc32": "f976bd7e"
+        },
+        {
+          "path": "networked-sync-reference/evidence/experiment-config.json",
+          "bytes": 2622,
+          "sha256": "1b361dcd293e35e555e3de4cfe14d27833f2f19175704a3cf3b93cec1ba738f7",
+          "crc32": "e29b1e48"
+        },
+        {
+          "path": "networked-sync-reference/evidence/full-stage-example.json",
+          "bytes": 613144,
+          "sha256": "386956b8c2462c66bd12833eb157df1f67f0a6a2cd560d529c1fb2162f758612",
+          "crc32": "2c574afc"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L1-snr-10.npz",
+          "bytes": 225153,
+          "sha256": "dc7cc012672c213d52aecdf8b92ddce63e6f507e3c495b78dc823dc20d7962e2",
+          "crc32": "d0da2599"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L1-snr-25.npz",
+          "bytes": 223860,
+          "sha256": "30b10ef3f23edb37d3b20105e38c7383d16ed5f18c1bc1d2b5eddf8e0809f199",
+          "crc32": "e595aad9"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L1-snr5.npz",
+          "bytes": 222290,
+          "sha256": "4c3925afb10c05aa9e05e512aebed53d100d64262724ce0f8f06c6fd79187b14",
+          "crc32": "c8ee92c6"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L2-snr-10.npz",
+          "bytes": 225182,
+          "sha256": "5fd6a1aa8f68af6d1f3d4c65a30862585ab7b02c0d2479c5174c299e32a89fb7",
+          "crc32": "2d1dc19b"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L2-snr-25.npz",
+          "bytes": 223217,
+          "sha256": "761ad401d1b6921b7a17f861875bd3ed7dda39bf20808ee1b3e9b75c204a2dd8",
+          "crc32": "affa14ee"
+        },
+        {
+          "path": "networked-sync-reference/evidence/observations-L2-snr5.npz",
+          "bytes": 223198,
+          "sha256": "a0a10c823a40ec08356abcba8de59a95dc7b536541d7ebbd1351ad9f939d1d1d",
+          "crc32": "b55a3d8c"
+        },
+        {
+          "path": "networked-sync-reference/evidence/offline-timing.json",
+          "bytes": 1782,
+          "sha256": "e688c649759ca37eb3ac8b3107e9b27ffe65418a657540326bc26e5a9efc916d",
+          "crc32": "9f26f646"
+        },
+        {
+          "path": "networked-sync-reference/evidence/raw-trials.jsonl",
+          "bytes": 17537493,
+          "sha256": "94059c0e4e0121961ea8df8522f4c05c3b754da7528d1472fcf7fc0fe6d4154f",
+          "crc32": "74b338d4"
+        },
+        {
+          "path": "networked-sync-reference/evidence/summary.json",
+          "bytes": 13368,
+          "sha256": "cd66c76daf37ef1a79668665846a94b2cc9fa8ecafa906ea615e9158b17a49e2",
+          "crc32": "66b8732b"
+        },
+        {
+          "path": "networked-sync-reference/evidence/verification.json",
+          "bytes": 314,
+          "sha256": "f2351546839346553ce026cae8bbcc6ef2412c7daea54b0c384333b8fe20db25",
+          "crc32": "dd2ef4c2"
+        },
+        {
+          "path": "networked-sync-reference/experiment.log",
+          "bytes": 15780,
+          "sha256": "687eb29846356893385278be0a86be91c273fbc0d0f03075c685abf4fc14ee23",
+          "crc32": "62bf6ab6"
+        },
+        {
+          "path": "networked-sync-reference/freeze_artifact.py",
+          "bytes": 2382,
+          "sha256": "34c818ade8397ac6ba419fb53647f7995f4f08e6f95775d8939ffc0560504314",
+          "crc32": "e26e45a0"
+        },
+        {
+          "path": "networked-sync-reference/run_diagnostics.py",
+          "bytes": 2502,
+          "sha256": "97a45ca707c045ca9a44434bda75ee78e6ddf2a403098c1fa552e21f036e22e2",
+          "crc32": "6bf60159"
+        },
+        {
+          "path": "networked-sync-reference/run_experiment.py",
+          "bytes": 15817,
+          "sha256": "42d449a972f9a2e7a9556e72cbbe88b7a7e7c5f74017353b91a20989a87e79ab",
+          "crc32": "558d4052"
+        },
+        {
+          "path": "networked-sync-reference/source-audit/SOURCE_AUDIT.md",
+          "bytes": 18598,
+          "sha256": "39ae0287ed2bc7b17fd2a176e7e948989336fba7ef1801aa8ac53e9b6e627321",
+          "crc32": "0e634d16"
+        },
+        {
+          "path": "networked-sync-reference/source-audit/source_audit.json",
+          "bytes": 31656,
+          "sha256": "482fc0aad0d142d1bdf01b63867fa05cbab33c44e035b225e4bd78d9728d2978",
+          "crc32": "a27654df"
+        },
+        {
+          "path": "networked-sync-reference/stage-example.log",
+          "bytes": 101,
+          "sha256": "02c43cc87ea1a093e2f7b0f22ef14447f367b2086ebc11ea45dec17fc379e019",
+          "crc32": "08dd84d6"
+        },
+        {
+          "path": "networked-sync-reference/summarize_evidence.py",
+          "bytes": 4158,
+          "sha256": "2be4dd0766f9444eb46b419306ff329ea7e4dc8f4f0fa727888f8db44d46e9aa",
+          "crc32": "f8a67ea2"
+        },
+        {
+          "path": "networked-sync-reference/summary.log",
+          "bytes": 477,
+          "sha256": "eec4e4ed9df1ae9063087689b290895908ac2b325250c1a719a77509c8c37a75",
+          "crc32": "897cfd66"
+        },
+        {
+          "path": "networked-sync-reference/sync_core.py",
+          "bytes": 15066,
+          "sha256": "88a161d7d7d55ad4a2e703b0afb590c69644b0c61eaf370c2f6f519fc650f10e",
+          "crc32": "429277bc"
+        },
+        {
+          "path": "networked-sync-reference/test_sync_core.py",
+          "bytes": 8852,
+          "sha256": "0de38aa7154cf976d65c1059c47caced149f3a4f223de04879c0be99dbe91b9b",
+          "crc32": "5c858386"
+        },
+        {
+          "path": "networked-sync-reference/unit-tests-initial.log",
+          "bytes": 4483,
+          "sha256": "323a796b49601f73b00b02a8275526c8a260c5c45dc61157001b0200ec05a943",
+          "crc32": "266fa9fd"
+        },
+        {
+          "path": "networked-sync-reference/unit-tests.log",
+          "bytes": 2047,
+          "sha256": "07d5ddca58ea02f3f0090278f78c0ebc47094260f1d9d77a146dcbcb17f89ee6",
+          "crc32": "cdfec575"
+        },
+        {
+          "path": "networked-sync-reference/verification.log",
+          "bytes": 315,
+          "sha256": "7b19ecd9e04e4a5de240a3532bb077156034d91ce09abb24167af41d0e5ab3f4",
+          "crc32": "47608bfb"
+        },
+        {
+          "path": "networked-sync-reference/verify_evidence.py",
+          "bytes": 4486,
+          "sha256": "9747b600862543f1491ae9e03602aef72a932920ae098b68ca9cc93c129b90e7",
+          "crc32": "790c3a51"
+        }
+      ]
+    },
+    {
+      "name": "networked-sync-js-v0.1-runtime.zip",
+      "public": "data/networked-sync-js-v0.1-runtime.zip",
+      "publicWholeArchive": "data/networked-sync-js-v0.1-runtime.zip",
+      "bytes": 49243,
+      "sha256": "466520c86dfd7c45e0a14f82f4048267ca20e0fbaddf14de9e4ccd6eb9ac2e13",
+      "archiveMemberCount": 13,
+      "uncompressedBytes": 129876,
+      "startupDependency": false,
+      "optionalDownload": true,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "failuresRetained": true,
+      "verification": {
+        "expectedMemberList": "seven SOURCE-FREEZE.json runtime files plus exact six runtime packaging documents",
+        "exactMemberSet": true,
+        "everyMemberMatchesAcceptedDiskBytes": true,
+        "allMemberSha256Checked": true,
+        "allMemberCrc32Checked": true,
+        "zipCrcPass": true,
+        "safePaths": true,
+        "noSymlinks": true,
+        "noEncryptedEntries": true,
+        "sourceFreeAllowlist": true,
+        "copiedArchiveByteIdentity": true
+      },
+      "members": [
+        {
+          "path": "networked-sync-browser-prototype/HANDOFF.md",
+          "bytes": 4047,
+          "sha256": "8b0ecff3eb83fd307fcc30b5c71a1159e182e75ae0d6799010416ddcac9a8ae2",
+          "crc32": "37656122"
+        },
+        {
+          "path": "networked-sync-browser-prototype/README.md",
+          "bytes": 7697,
+          "sha256": "2c650ebad3f39860de3ad744f39b2f35772f6ddf066aa355ec35fa3812240421",
+          "crc32": "eebb47ef"
+        },
+        {
+          "path": "networked-sync-browser-prototype/SOURCE-FREEZE.json",
+          "bytes": 1614,
+          "sha256": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b",
+          "crc32": "dd9f0cd8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/codec.js",
+          "bytes": 13507,
+          "sha256": "ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5",
+          "crc32": "85ce6c2c"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/linalg.js",
+          "bytes": 26681,
+          "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+          "crc32": "c29647da"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/receiver.js",
+          "bytes": 32169,
+          "sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98",
+          "crc32": "72284157"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/sha256.js",
+          "bytes": 3150,
+          "sha256": "9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6",
+          "crc32": "b3c602c7"
+        },
+        {
+          "path": "networked-sync-browser-prototype/package.json",
+          "bytes": 278,
+          "sha256": "2c6c222b0ce7d8c9f7312f896fa9feeccd6eb9195ca7b58f058572601d67c1f8",
+          "crc32": "f95c0f6a"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/FORMAT.md",
+          "bytes": 6516,
+          "sha256": "493550853411f6aea559dc49f2a5c27173baa785bd0bb075b3296701cf015813",
+          "crc32": "31e865e5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/README.md",
+          "bytes": 8036,
+          "sha256": "26d0849543cde2c70d4d1534c055ac5ecf0d81744bf4e5f1dbca3c6f5606dad7",
+          "crc32": "9faa6eff"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/client.js",
+          "bytes": 12749,
+          "sha256": "2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb",
+          "crc32": "3cd04a49"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/protocol.js",
+          "bytes": 4672,
+          "sha256": "7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38",
+          "crc32": "210f592b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/receiver-worker.js",
+          "bytes": 8760,
+          "sha256": "e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534",
+          "crc32": "8bb88c9d"
+        }
+      ]
+    },
+    {
+      "name": "networked-sync-js-v0.1-full-evidence.zip",
+      "public": "data/networked-sync-js-v0.1-full-evidence.zip",
+      "publicWholeArchive": "data/networked-sync-js-v0.1-full-evidence.zip",
+      "bytes": 4267688,
+      "sha256": "75d8ed0e34c3b9f3a1d0881ce09ce012988fd56f342d5a25f7d3e42ed3cdbe91",
+      "archiveMemberCount": 73,
+      "uncompressedBytes": 11240405,
+      "startupDependency": false,
+      "optionalDownload": true,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "failuresRetained": true,
+      "verification": {
+        "expectedMemberList": "72 ARTIFACT-MANIFEST.json files plus ARTIFACT-MANIFEST.json",
+        "exactMemberSet": true,
+        "everyMemberMatchesAcceptedDiskBytes": true,
+        "allMemberSha256Checked": true,
+        "allMemberCrc32Checked": true,
+        "zipCrcPass": true,
+        "safePaths": true,
+        "noSymlinks": true,
+        "noEncryptedEntries": true,
+        "sourceFreeAllowlist": true,
+        "copiedArchiveByteIdentity": true
+      },
+      "members": [
+        {
+          "path": "networked-sync-browser-prototype/ARTIFACT-MANIFEST.json",
+          "bytes": 11684,
+          "sha256": "6cfb8514a1787ef6f007be39258870c423cc2887776ada7ec25b5b97f116af25",
+          "crc32": "de942ea9"
+        },
+        {
+          "path": "networked-sync-browser-prototype/DEVELOPMENT-FIXES.json",
+          "bytes": 3794,
+          "sha256": "86ad3bae99bc97b3a2ca23c44253f4f8bfbd1840bf7523e3387ff7d481ed8d5e",
+          "crc32": "596f7be1"
+        },
+        {
+          "path": "networked-sync-browser-prototype/HANDOFF.md",
+          "bytes": 4047,
+          "sha256": "8b0ecff3eb83fd307fcc30b5c71a1159e182e75ae0d6799010416ddcac9a8ae2",
+          "crc32": "37656122"
+        },
+        {
+          "path": "networked-sync-browser-prototype/NUMERICAL-VERIFICATION.md",
+          "bytes": 4880,
+          "sha256": "06a6a3e28570af5a649b639a22bc4735ce5da2455e12192cf446927ace531d4d",
+          "crc32": "af2b2885"
+        },
+        {
+          "path": "networked-sync-browser-prototype/README.md",
+          "bytes": 7697,
+          "sha256": "2c650ebad3f39860de3ad744f39b2f35772f6ddf066aa355ec35fa3812240421",
+          "crc32": "eebb47ef"
+        },
+        {
+          "path": "networked-sync-browser-prototype/RELEASE-BOUNDARIES.json",
+          "bytes": 1246,
+          "sha256": "9e35d61c0cbb4b079f37e36f682a282ba44b6c344627ca7ee05cbb76513c3522",
+          "crc32": "22b042a8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/SOURCE-FREEZE.json",
+          "bytes": 1614,
+          "sha256": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b",
+          "crc32": "dd9f0cd8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/codec.js",
+          "bytes": 13507,
+          "sha256": "ea32aa145a59794a21421ee7d900bc8d59566ddd734416aeb2d570bae333c1a5",
+          "crc32": "85ce6c2c"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/linalg.js",
+          "bytes": 26681,
+          "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+          "crc32": "c29647da"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/receiver.js",
+          "bytes": 32169,
+          "sha256": "473e7739d35a7dcde7807edb0627a9f0058a4d193518a6c8cfa6745a6218de98",
+          "crc32": "72284157"
+        },
+        {
+          "path": "networked-sync-browser-prototype/js/sha256.js",
+          "bytes": 3150,
+          "sha256": "9f1dfd6b3c81f5647db4a2f8259e8e4cc756d27183b1e0a9c43b586f361952e6",
+          "crc32": "b3c602c7"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l1.json",
+          "bytes": 183131,
+          "sha256": "46a377743c37d8b2b1525d70e5e9a0085a7cfb86d3169236ca205c74487fd918",
+          "crc32": "884251f8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l2-degenerate.json",
+          "bytes": 56874,
+          "sha256": "65dbf88ddef67dc9681dc0486b38444b74746baae2039e37faa656165860d1ac",
+          "crc32": "ac385885"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l2-near-collision.json",
+          "bytes": 617279,
+          "sha256": "097e84eb89cf0c9eb19cf627741951cdbf47f653e8faabc402e3070412d5dd24",
+          "crc32": "f35d2a6d"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l2-phasewrap.json",
+          "bytes": 312821,
+          "sha256": "df28b1ee2ecea13330b25f67114d891be599cbbb85dbc1fdb96a1e2d9defc9e8",
+          "crc32": "8db65876"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l2.json",
+          "bytes": 312574,
+          "sha256": "3d109582c6ef9b7727fb293b384707bf531646063a1c3c36af8aa572c66a02be",
+          "crc32": "9c20f85b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l3-low-snr.json",
+          "bytes": 1090915,
+          "sha256": "3cbb6cdae54573836bd894c29fa6380ef69f4b3638abc99f4811e36ff3ee840f",
+          "crc32": "7b6b9859"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/compact-l3.json",
+          "bytes": 450376,
+          "sha256": "fe6fdfaf1b7413118101a5574c7dc4eae702c2fb9025ba8ad4c49fae4c8f5042",
+          "crc32": "3f90b7db"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/js-generated-inputs.json",
+          "bytes": 1555893,
+          "sha256": "fe1c2e898c3318eb73f8e0287713236c87bda056acf49428a3088e513444e838",
+          "crc32": "0a0e2ed4"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/manifest.json",
+          "bytes": 3835,
+          "sha256": "0b64d04742815863a0fc4a849a3aa5b5d547ce37a06af5c0963a4d0498741222",
+          "crc32": "47244346"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/original-l1.json",
+          "bytes": 925593,
+          "sha256": "7c8ba29f6d249bc28a2b2301840732154ce30060fcf278364bf224262e063fbb",
+          "crc32": "5d6e55c1"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/original-l2-low-snr.json",
+          "bytes": 2076794,
+          "sha256": "a2232a98322e555a3ff4d1836be8592c8e563dd72bf6549d8eace8c7ae29eff7",
+          "crc32": "7f64258f"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/original-l2.json",
+          "bytes": 1043742,
+          "sha256": "91d771f04f6d7df8972e0c94f7723a7e5c92436f677ab5bee347b832a973d218",
+          "crc32": "9678749a"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/original-l3.json",
+          "bytes": 1499930,
+          "sha256": "784886aa596b917921d15030f1b4803917aea7cf1bf5ae1f53b31dc54b6c9b45",
+          "crc32": "99c0b135"
+        },
+        {
+          "path": "networked-sync-browser-prototype/oracle/primitives.json",
+          "bytes": 720563,
+          "sha256": "7e77c6970b2df49c066a8f737f8a5db5fa826d5e7d936d5a7565ed4f3c63669d",
+          "crc32": "42b3ddc6"
+        },
+        {
+          "path": "networked-sync-browser-prototype/package.json",
+          "bytes": 278,
+          "sha256": "2c6c222b0ce7d8c9f7312f896fa9feeccd6eb9195ca7b58f058572601d67c1f8",
+          "crc32": "f95c0f6a"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/audit-boundaries-after-fix.json",
+          "bytes": 2211,
+          "sha256": "7b8e42a458411e7ad5e955ee358573e951570369138b479a36d0569c8e108501",
+          "crc32": "e89f5f99"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/audit-races-after-fix.json",
+          "bytes": 932,
+          "sha256": "f4ba600d6fefd29bf0fcc1038dd7c389cc8b023584e885696221ba0f88e1a7b9",
+          "crc32": "c4b1b6a9"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/codec-tests.log",
+          "bytes": 2145,
+          "sha256": "4dfb92712df5bd96e1dff4cb469f65092c81e1cc1ffe45100e7105c390dd6426",
+          "crc32": "c756ee7f"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/evaluation-oracle.json",
+          "bytes": 203,
+          "sha256": "be69c0da8edb699869af2249de6f675571f99556c072590b8336046f17818996",
+          "crc32": "42b1d383"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/evaluation-oracle.log",
+          "bytes": 193,
+          "sha256": "50d6c91414830b22f86a28625d5c41c28696e6f1c20531929438a8db5aeab239",
+          "crc32": "5b94d770"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/full-regression.log",
+          "bytes": 9614,
+          "sha256": "fef1fa74ec6d501150c4e4516e394c165e1a680e1f05e50a8958b0c49001640b",
+          "crc32": "f60a855b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/kernel-tests.json",
+          "bytes": 2543,
+          "sha256": "025bbe1049d8e9c6099c9180113ee39791c92608141911c0150fcb755e6da349",
+          "crc32": "94aa39a8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/kernel-tests.log",
+          "bytes": 1474,
+          "sha256": "9defd739d069368192137f5d222b480fa32d695a59e07b0c37ed8db43ee35ef8",
+          "crc32": "d9d22cd0"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/linalg-contract.log",
+          "bytes": 2101,
+          "sha256": "4e985e53defbc724f20aaa9a0e95703d3b8719705b5d49458bc1c2e56c8cf611",
+          "crc32": "a7ad4402"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/linalg-oracle.log",
+          "bytes": 525,
+          "sha256": "c2c1fb08bfaa0966405d76a85db0ae655486d59206d1312c9d3ad71888cd5339",
+          "crc32": "0afe6c66"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/linalg-stress.log",
+          "bytes": 243,
+          "sha256": "10219ca810ceb90ada885eefb055241fb4caf9f4b16d99fbd9eca29212a2e3cc",
+          "crc32": "49cd94a5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-generation.log",
+          "bytes": 554,
+          "sha256": "c06e229cccb8ea433d8052f61277081b644b4ac58b1675dd0c6865e253b9ed1a",
+          "crc32": "30e972a1"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-js-generation-export.log",
+          "bytes": 63,
+          "sha256": "29390eb61d2e5652d25334fac2d898c32a0c51e6c46fba1a3100ac3a580ffea0",
+          "crc32": "de10ce0c"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-js-generation.json",
+          "bytes": 5926,
+          "sha256": "436b9e2b76cebd7a5b8bd92a03441f5818c10c9f3fc5bd0203334e16e3075d2e",
+          "crc32": "c4d2fea5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-js-generation.log",
+          "bytes": 5926,
+          "sha256": "436b9e2b76cebd7a5b8bd92a03441f5818c10c9f3fc5bd0203334e16e3075d2e",
+          "crc32": "c4d2fea5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-parity.json",
+          "bytes": 8662,
+          "sha256": "1661c1867e292b0b47a84dc390bdd01560b6a5fea22f2813b3f4d8dbbd65070c",
+          "crc32": "c6011ccd"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-parity.log",
+          "bytes": 616,
+          "sha256": "8796cf20fe3a2bb282008eed19ab3dda57c6952452eca11bfd6c5a5579866f84",
+          "crc32": "361054ff"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/oracle-parity.md",
+          "bytes": 6856,
+          "sha256": "aaf0ee5d0ff24627c22c0b64a248de96e38ac2d543a173e05ad97e65c192a2f1",
+          "crc32": "7e028558"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/resource-benchmark.json",
+          "bytes": 12616,
+          "sha256": "de38d1b68800458dbe22b57234e5371e66bf86f993fdd669cb6356630ea1494f",
+          "crc32": "e417d126"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/resource-benchmark.log",
+          "bytes": 260,
+          "sha256": "6e3fd3defa607704e6dd49244d1593a3de8709a0e78f76ec545e983e63d51171",
+          "crc32": "59874992"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/worker-codec-verification.json",
+          "bytes": 5270,
+          "sha256": "aee0707e30ddf3364ba7f1262830720a001c01134cabd11806831f7ff4a9dbe7",
+          "crc32": "26c2b64d"
+        },
+        {
+          "path": "networked-sync-browser-prototype/reports/worker-tests.log",
+          "bytes": 2500,
+          "sha256": "2a330a7e8b713a06815e5be10ab85ca1474f77df99285fe2c4e2bdc84eca95d6",
+          "crc32": "de2b0ca2"
+        },
+        {
+          "path": "networked-sync-browser-prototype/run_all.sh",
+          "bytes": 997,
+          "sha256": "71790f5e2ecbab5b21fe7a2dbbee5946a20c2f65dc10a2abbd28d248c90a2ec9",
+          "crc32": "c31e8f45"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/benchmark.cjs",
+          "bytes": 3023,
+          "sha256": "201c08926d0611c6fb5088029e3724dab44e4583602e6b5650b72a0d35fcfef1",
+          "crc32": "39202ea8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/generate-oracles.py",
+          "bytes": 18245,
+          "sha256": "315c58bde35dc30ec7d9f2e774c4202ee89fcb85200ccdba4e67135f464e42d9",
+          "crc32": "b77184f4"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_API.md",
+          "bytes": 4711,
+          "sha256": "b482fb3fb7f35fd72e777371ab76545bb49574f494b2a1868817eeec0a6284bb",
+          "crc32": "29e04c58"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_contract.cjs",
+          "bytes": 4952,
+          "sha256": "4f78a49729b3f3c3447d87348d9f36ab39878eed4fbb644e051f4ac506e741ca",
+          "crc32": "628cd770"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_contract_report.json",
+          "bytes": 2101,
+          "sha256": "4e985e53defbc724f20aaa9a0e95703d3b8719705b5d49458bc1c2e56c8cf611",
+          "crc32": "a7ad4402"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_oracle.py",
+          "bytes": 6612,
+          "sha256": "28fbdf7b20ebf67ea8296fae714b55cba3bfc393a126390cfebb5b6ebdfa9786",
+          "crc32": "c5ef1c65"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_oracle_report.json",
+          "bytes": 33634,
+          "sha256": "92bc0f6bcfc71d391d078559cfa026eba1bfac826f0f729eaa2cf58d7a3b3b2a",
+          "crc32": "5edccdd3"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_runner.cjs",
+          "bytes": 872,
+          "sha256": "4827e1e2901212e3aba00c4378594dac3385d2b51f09ac23cbe929b5694abce7",
+          "crc32": "f35fd58b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_stress.cjs",
+          "bytes": 1068,
+          "sha256": "b4576ce7d4380b0007ef43060ba0f358fb959c430631fe6dcab4916aee8f444a",
+          "crc32": "30b62eb7"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/linalg_stress_report.json",
+          "bytes": 243,
+          "sha256": "10219ca810ceb90ada885eefb055241fb4caf9f4b16d99fbd9eca29212a2e3cc",
+          "crc32": "49cd94a5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/package_artifact.py",
+          "bytes": 3351,
+          "sha256": "d5bb5eb4e57105559747fa90d4afc282a5697f07f16fb9288f1c68c106e2f6c0",
+          "crc32": "9dce6be8"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/reference/PROVENANCE.md",
+          "bytes": 1219,
+          "sha256": "e532a5b5cb54cb48c4660bc7546e0781784458d41f438364c8c8a8f4ff11d628",
+          "crc32": "468770e9"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/reference/sync_core.py",
+          "bytes": 15066,
+          "sha256": "88a161d7d7d55ad4a2e703b0afb590c69644b0c61eaf370c2f6f519fc650f10e",
+          "crc32": "429277bc"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/test-codec.cjs",
+          "bytes": 13600,
+          "sha256": "0f6e66b3cf0dfd557a125dce590a813d754dc6d25c90b437026717c6d21a0028",
+          "crc32": "bbf55177"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/test-kernel.cjs",
+          "bytes": 11683,
+          "sha256": "3a5048554f140dbda0ba4919c783b9d014ce559cc043ea68f979a37da4ca0c3b",
+          "crc32": "a7675f18"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/test-worker.cjs",
+          "bytes": 22699,
+          "sha256": "e2956d79eb27f22c7a5ad4901e1a046fdd8917188e7799512303ad4301f0050f",
+          "crc32": "ce1e22b1"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/verify-oracles.cjs",
+          "bytes": 19393,
+          "sha256": "1bb84ebb27127bd9753bc1b1b161a295c3b7cf11b7becabb04ea7e3cd6115a58",
+          "crc32": "b84eed71"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/verify_evaluation.py",
+          "bytes": 2908,
+          "sha256": "87cae69229d70a4d3ceba48e7290e76c7ca07cecb1b94fd74a25974010abea08",
+          "crc32": "a441866b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/tests/verify_manifest.py",
+          "bytes": 795,
+          "sha256": "414e78c2ddf2e06531a0b0d582138d5889e692a4ffed4683e2f98bb6e61f770f",
+          "crc32": "b8e82d73"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/FORMAT.md",
+          "bytes": 6516,
+          "sha256": "493550853411f6aea559dc49f2a5c27173baa785bd0bb075b3296701cf015813",
+          "crc32": "31e865e5"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/README.md",
+          "bytes": 8036,
+          "sha256": "26d0849543cde2c70d4d1534c055ac5ecf0d81744bf4e5f1dbca3c6f5606dad7",
+          "crc32": "9faa6eff"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/client.js",
+          "bytes": 12749,
+          "sha256": "2ec4be85c09f9abfa6a86da8995ed1b6c6c67bbd28518ca299f67db19dca19eb",
+          "crc32": "3cd04a49"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/protocol.js",
+          "bytes": 4672,
+          "sha256": "7a2eebeed3e169bf9339a75d87b317190d84ddf9ee9cedb07737039f64422a38",
+          "crc32": "210f592b"
+        },
+        {
+          "path": "networked-sync-browser-prototype/worker/receiver-worker.js",
+          "bytes": 8760,
+          "sha256": "e2f50711ef502d8ec6cb185a7e5d9f3cb00444512fe57c8d4de8bbfa12a5d534",
+          "crc32": "8bb88c9d"
+        }
+      ]
+    }
+  ],
+  "copiedEvidence": [
+    {
+      "source": "scripts/validation/networked-sync/SOURCE-AUDIT.md",
+      "public": "scripts/validation/networked-sync/SOURCE-AUDIT.md",
+      "bytes": 18598,
+      "sha256": "39ae0287ed2bc7b17fd2a176e7e948989336fba7ef1801aa8ac53e9b6e627321",
+      "scope": "source audit",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/REFERENCE-RESULTS.md",
+      "public": "scripts/validation/networked-sync/REFERENCE-RESULTS.md",
+      "bytes": 4410,
+      "sha256": "7117a86c901286cf379c381fe0df1e68a4a2eccf87e26c8144a945d9127ad7f7",
+      "scope": "bounded reference outcomes",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "bytes": 10480,
+      "sha256": "8748e48be3ec69d6c4b0701d795a57997d3595c16a6b37678833e74da5ade8e3",
+      "scope": "independent Python numerical review",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md",
+      "bytes": 16996,
+      "sha256": "70ae8839b1a60ba0112091bf2bccf53c561c113e18ed63eb0091378506222fc1",
+      "scope": "independent JavaScript numerical/transport review",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-WORKER-REVIEW.md",
+      "bytes": 7075,
+      "sha256": "e1c156a6020a7ee51cb67425170173e7c4bc145b1c74137b9ef8f03e33e04fd5",
+      "scope": "independent Worker/codec review",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/independent-port-numerical.json",
+      "public": "scripts/validation/networked-sync/independent-port-numerical.json",
+      "bytes": 34848,
+      "sha256": "f1ef102b9a6e532a488bd99070b9c4a1496139af9d30840159cc774c7bd46053",
+      "scope": "independent numerical receipt with retained phase failure",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/independent-reference-full-evidence.json",
+      "public": "scripts/validation/networked-sync/independent-reference-full-evidence.json",
+      "bytes": 15544,
+      "sha256": "78826c2d0d67dee8f3b2e19a585b01d7d8bb91d84f23987a8aa00e1a0529ae40",
+      "scope": "independent 432-trial receipt",
+      "copyMode": "unchanged historical report; copying does not rerun numerical review",
+      "startupDependency": false
+    },
+    {
+      "source": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+      "bytes": 14481,
+      "sha256": "f4bbb3b504ed7db3183eee4160b646651249ac6fde49b635f27511fc197d11f7",
+      "scope": "independent exact-byte lesson review; Node Worker and mounted controlled DOM, not browser acceptance",
+      "copyMode": "unchanged sealed independent report",
+      "startupDependency": false
+    }
+  ],
+  "localVerification": {
+    "archiveCount": 3,
+    "archiveMemberCount": 121,
+    "archiveBytes": 12685916,
+    "archiveSha256MatchesRequested": true,
+    "acceptedManifestEntriesVerified": {
+      "reference": 34,
+      "javascriptArtifact": 72,
+      "javascriptRuntime": 7
+    },
+    "allArchivesExactCopies": true,
+    "allArchivesOptionalNotStartupDependencies": true,
+    "sourceFreeScope": "Exact accepted manifest/disk allowlists, member hashes and CRCs, safe paths/no symlinks, forbidden paper/visual/extracted-text extensions and PDF/HTML signatures, plus accepted original-code provenance; not a generic content security certification",
+    "browserExecuted": false,
+    "remoteExecuted": false,
+    "published": false
+  },
+  "acceptedBaselineTree": "24f2b07f97db0511da9f5f1c294225ffac1b982f",
+  "runtimePublicRoot": "labs/networked-sync/runtime/",
+  "localIntegration": {
+    "browserAccepted": false,
+    "remoteActions": false,
+    "published": false,
+    "newPaperIdentity": false,
+    "priorClassicProfiles": 17,
+    "priorEsmProfiles": 32,
+    "legacyScalarPrerequisitePreserved": true,
+    "ownerLessonTests": 49,
+    "uiExportFiles": 18,
+    "uiExportBytes": 32916864,
+    "uiExportManifestSha256": "f586c5249a5ca909c7f0e374944b6be4c163a25e3a301f67b56327f2ec3a4ec6"
+  },
+  "ownedPage": {
+    "source": "content/pages/networked-sync.html",
+    "public": "networked-sync.html",
+    "generatedRegions": [
+      "HEADER",
+      "CONTEXT",
+      "NEXT"
+    ],
+    "handwrittenSha256": "5adc80c82edfdab43f5b998dc1aa78dbd96f87e93d04d39a5550e20c03980675"
+  },
+  "prerequisiteLink": {
+    "source": "content/pages/network-clock.html",
+    "public": "network-clock.html",
+    "addition": "<p class=\"networked-sync-continuation\">继续到<a href=\"networked-sync.html#experiment\">互易张量与结构化 CP 接收机</a>：从两向原始复数据实际计算初始化、A/B/C 投影、路径关联与时钟/CFO；本页仍保留已关联标量时延的先修模型。</p>\n",
+    "beforeSha256": "6f1fb6d3804570eabe4d3de93d8a011c68ba3314a3d2f39d542b0bd4c8974387",
+    "beforeHandwrittenSha256": "295c077bcdea87006fda84eaa03d2d09fa0fff0323b431be646d5a01b8f28f59"
+  },
+  "ownedFreeze": {
+    "source": "labs/networked-sync/lesson/LESSON-FREEZE.json",
+    "public": "labs/networked-sync/lesson/LESSON-FREEZE.json",
+    "sha256": "02fd81f54deb5c8a0ef03856565d5f042558a5d8913cc392a2c389275251f807"
+  },
+  "ownedFiles": [
+    {
+      "source": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "public": "labs/networked-sync/lesson/DEVELOPMENT-FIXES.json",
+      "bytes": 3659,
+      "sha256": "dd8e2feeab4e848d04b09785ebda7cb3da20bfcb8bb799d879636f8d9448d184"
+    },
+    {
+      "source": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/networked-sync/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1834,
+      "sha256": "f4a0936192bcd65782b9d3a232609f25b86162702c7891feeaadc26b93962728"
+    },
+    {
+      "source": "labs/networked-sync/lesson/README.md",
+      "public": "labs/networked-sync/lesson/README.md",
+      "bytes": 5799,
+      "sha256": "aafd10ba931e41b816051e558ff129aa5cad5801f7d8278ecf716d4cc0aaf9d4"
+    },
+    {
+      "source": "labs/networked-sync/lesson/controller.js",
+      "public": "labs/networked-sync/lesson/controller.js",
+      "bytes": 7262,
+      "sha256": "d8c6de52ac728c68eb0609ac8ca35155e49db9d53af6801238ed0b0a19b6f32b"
+    },
+    {
+      "source": "labs/networked-sync/lesson/lesson.css",
+      "public": "labs/networked-sync/lesson/lesson.css",
+      "bytes": 3222,
+      "sha256": "252bc12f962179427f57aabd73f8d743543e0016f523b02a632f54ffe0359d4e"
+    },
+    {
+      "source": "labs/networked-sync/lesson/lesson.js",
+      "public": "labs/networked-sync/lesson/lesson.js",
+      "bytes": 26534,
+      "sha256": "34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552"
+    },
+    {
+      "source": "labs/networked-sync/lesson/reports/author-test-receipt.json",
+      "public": null,
+      "bytes": 1771,
+      "sha256": "e091e16913355532077f24ca9e2699a56271b65638a82525ae623d744f148d84"
+    },
+    {
+      "source": "labs/networked-sync/lesson/reports/author-tests.txt",
+      "public": null,
+      "bytes": 5122,
+      "sha256": "b3a637174e7b0b917572979cc8d208f9b584dae292a80b92457962afbe8eebe4"
+    },
+    {
+      "source": "labs/networked-sync/lesson/stages.js",
+      "public": "labs/networked-sync/lesson/stages.js",
+      "bytes": 8052,
+      "sha256": "72fc52e078f2ede43bb0870ea9a6def1f39c20b672c73fb59d22d578b51da995"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "bytes": 6948,
+      "sha256": "b568a2a7fa8bb4669c6c930ada6a4c8465a4424a00ac048971e6044e6da2160a"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+      "public": null,
+      "bytes": 7630,
+      "sha256": "fefc208da0fbe118a9f70b91c6857a5332acbc79a51fbe9aaf35f18f087c46b0"
+    },
+    {
+      "source": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+      "public": null,
+      "bytes": 38805,
+      "sha256": "9d3a62aad61af4ea8f7f068d0d2e191aaed51898938ada71d68873b3c61c6dd2"
+    }
+  ],
+  "independentLessonReview": {
+    "report": "scripts/validation/networked-sync/INDEPENDENT-LESSON-REVIEW.md",
+    "sha256": "f4bbb3b504ed7db3183eee4160b646651249ac6fde49b635f27511fc197d11f7",
+    "reviewManifestSha256": "af405580aa5fda90ddb898359345576fcdca69caf08312405ea4f9205e21c0d0",
+    "freezeSha256": "02fd81f54deb5c8a0ef03856565d5f042558a5d8913cc392a2c389275251f807",
+    "ownerTests": 49,
+    "independentBoundaryGroups": 31,
+    "uiDataAssertions": 1960,
+    "pythonReplayChecks": 2245,
+    "allExportCasesPhaseParityPassed": false,
+    "sameDividedTensorCollisionPhaseDifferenceRad": 0.00032002867,
+    "phaseCriterionRad": 0.00008,
+    "actualBrowser": false,
+    "resource": {
+      "scope": "single exact-freeze original-shape rank3 full20-sweep oversampling32 Node UI/Worker/export probe",
+      "rawBytes": 568186,
+      "historyBytes": 25071659,
+      "approximateRssHighwaterMiB": 769.85,
+      "universalBound": false,
+      "browserMeasurement": false
+    }
+  }
+}

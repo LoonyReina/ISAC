@@ -64,7 +64,7 @@ test('only delay, estimation and resolution gain unit references; original conce
 });
 
 test('receiver gains five independent mechanism depths and two repeatable checks without fabricated paper evidence',()=>{
- const d=r.directions.find(d=>d.id==='receiver');a.equal(d.levels.length,6);a.deepEqual(d.primaryCaseIds,['case-perceptive-clutter']);
+ const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver');a.equal(d.levels.length,6);a.deepEqual(d.primaryCaseIds,['case-perceptive-clutter']);
  a.equal(d.levels[0].items[0].href,'foundations.html#matched');
  const expected=[['intuition','experiment'],['model','model'],['experiment','experiment'],['limits','limits'],['reproduction','trials'],['reproduction','record']];
  const added=d.levels.flatMap(l=>l.items.filter(i=>i.href?.startsWith(p.path+'#')).map(i=>[l.id,i.href.split('#')[1]]));a.deepEqual(added,expected);
@@ -106,7 +106,7 @@ test('generated portals expose the mechanism and accurate totals without adding 
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html');
  for(const [count,label]of [[r.units.length,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
- a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.match(reading,/16 个已有主题/);
+ a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);a.doesNotMatch(reading,/id="case-offgrid-range"/);
  const practice=read('practice.html'),topics=JSON.parse(practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1]);
  a.deepEqual(topics,buildNotebookTopics(r));a.ok(practice.includes('<option value="offgrid-range">离格目标与测距网格</option>'));

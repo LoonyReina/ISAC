@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://arxiv.org/pdf/2103.15694v1",
+    "paperIdentity": "arxiv:2103.15694",
+    "fixedSourceIdentity": "arxiv:2103.15694v1",
+    "pdfSha256": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5",
+    "pdfRedistributed": false
+  },
+  "canonical": {
+    "page": "ofdm-ici-receiver.html",
+    "guideId": "ofdm-ici-aware-receiver-2021",
+    "caseId": "case-ofdm-ici-receiver",
+    "unitId": "ofdm-ici-receiver"
+  },
+  "runtimePublicRoot": "labs/ofdm-ici/runtime/",
+  "runtimeFreeze": {
+    "schema_version": "ofdm-ici-source-freeze-v1",
+    "version": "0.1.0",
+    "created_utc": "2026-10-12T19:43:30.495227+00:00",
+    "source_arxiv": "https://arxiv.org/pdf/2103.15694v1",
+    "source_pdf_sha256": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5",
+    "reference_core_sha256": "fee9e4a55707fe251f73bf343d0ac0142607d6c827cfd4e8bd0c974bba439cdb",
+    "runtime_files": [
+      {
+        "path": "js/evaluate.js",
+        "bytes": 7206,
+        "sha256": "bcf9be4cb478928e4744d3dea357e20b38f53b793f67a7a5f9e43c64255c51ac"
+      },
+      {
+        "path": "js/ici-kernel.js",
+        "bytes": 35957,
+        "sha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe"
+      },
+      {
+        "path": "js/linalg.js",
+        "bytes": 18255,
+        "sha256": "c7e21dadbac282314c504c5f1b73a4de18964c18ee1d06cc34eedcce1d81509a"
+      },
+      {
+        "path": "js/sha256.js",
+        "bytes": 2476,
+        "sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657"
+      },
+      {
+        "path": "worker/ici-client.js",
+        "bytes": 7124,
+        "sha256": "1397e1f04bb674973fdebc29213c2531e8383b3aa3f959504761f65dcdf20b75"
+      },
+      {
+        "path": "worker/ici-worker.js",
+        "bytes": 8491,
+        "sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc"
+      }
+    ],
+    "no_ui": true,
+    "no_publication": true,
+    "independent_port_review": "separate review in progress; not inherited from Python review"
+  },
+  "archives": [
+    {
+      "name": "ofdm-ici-kernel-v0.1-runtime.zip",
+      "bytes": 39075,
+      "sha256": "18ab507c0ce1157fb8e101bd6ad36805541a5262b9db03f1aa533a99e15acd68",
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "failuresRetained": true,
+      "archiveMemberCount": 12,
+      "publicWholeArchive": "data/ofdm-ici-kernel-v0.1-runtime.zip"
+    },
+    {
+      "name": "ofdm-ici-reference-v1.zip",
+      "bytes": 8557623,
+      "sha256": "8862595eb704705a1bf4b2f65bb514e1a3fc83956f199fc503094d2522f4ebd0",
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "failuresRetained": true,
+      "archiveMemberCount": 69,
+      "publicWholeArchive": "data/ofdm-ici-reference-v1.zip"
+    },
+    {
+      "name": "ofdm-ici-kernel-v0.1-full-evidence.zip",
+      "bytes": 29312807,
+      "sha256": "04fa174b39fc4e04d396910ac75d77e3a42298abcf12b10172b183e723098412",
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "failuresRetained": true,
+      "archiveMemberCount": 67,
+      "manifest": "data/ofdm-ici-kernel-v0.1-full-evidence.parts.json",
+      "publicWholeArchive": null
+    }
+  ],
+  "reassembler": "data/reassemble-ofdm-ici-evidence.py",
+  "independentPortReview": {
+    "report": "scripts/validation/ofdm-ici/INDEPENDENT-PORT-REVIEW.md",
+    "sha256": "f9a948d8027005d86ca3ce13587978237af6c77dde30ec17aca5b8dd1e10c956",
+    "decision": "PASS bounded numerical port and checked Node Worker/client",
+    "freshRuns": 8,
+    "stageArrays": 356,
+    "uncheckedArrays": 0,
+    "scalarChecks": 2219
+  },
+  "heldFiniteGrid": {
+    "hits": 4,
+    "falseDetections": 3,
+    "misses": 1,
+    "capRetained": true
+  },
+  "boundaries": {
+    "browserExecuted": false,
+    "browserLatencyMeasured": false,
+    "published": false,
+    "fullPaperReproduced": false,
+    "sourceFiguresReproduced": false,
+    "nominalPfaCalibrated": false,
+    "continuousRefinement": false,
+    "truthUsedByReceiver": false,
+    "sameCfoAlwaysImproves": false,
+    "nodeIsBrowser": false,
+    "allOnesDownstreamParityClaimed": false
+  },
+  "ownedFiles": [
+    {
+      "source": "labs/ofdm-ici/README.md",
+      "public": "labs/ofdm-ici/README.md",
+      "bytes": 6913,
+      "sha256": "b571683948453800092a6ebc62a562b551fb34003ae1d4084d008d568e16afa2"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/ofdm-ici/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1361,
+      "sha256": "de79868482eaf3f22a9408d6cf61abad79cdf1fa2a6f2ad15ba56a000e4e3837"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-controller.js",
+      "public": "labs/ofdm-ici/lesson/ici-controller.js",
+      "bytes": 9500,
+      "sha256": "e4b41da1fc612e1c3f9cccdc3998384cf8349762c27b856d911444d0746e7cfb"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "public": "labs/ofdm-ici/lesson/ici-lesson.css",
+      "bytes": 6829,
+      "sha256": "4313fa1ab5b9c5f6df2cc91b3cda872ab234a95712df0603185e68dcf3f87dc4"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "public": "labs/ofdm-ici/lesson/ici-lesson.js",
+      "bytes": 38640,
+      "sha256": "1b51814832d69dcbce235594cf6812d8766f9017cbf90ebaf6f609cf9343fd0b"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+      "public": null,
+      "bytes": 52393,
+      "sha256": "dd8cbc99c4394d03a74efa4d900dee64c8f58d25d87769235d7e8ba07f325a1b"
+    },
+    {
+      "source": "labs/ofdm-ici/lesson/tests/verification.log",
+      "public": null,
+      "bytes": 4236,
+      "sha256": "89f3d7bb1e2fe8a34390e7b32f2d43c449e29803a69286f50087a682ffa903d6"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/FORMAT.md",
+      "public": "labs/ofdm-ici/runtime/FORMAT.md",
+      "bytes": 4751,
+      "sha256": "41feecc9f1bf6937920e7ba8b275c41b12cef3c84dcf6d123ea7dbccf09f26e8"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "public": "labs/ofdm-ici/runtime/HANDOFF.md",
+      "bytes": 4897,
+      "sha256": "55875fcf770f5b331200d12e615436f6aa76f4ce8f89deb5ccaf5d1b98a74fa9"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "public": "labs/ofdm-ici/runtime/SOURCE-FREEZE.json",
+      "bytes": 1437,
+      "sha256": "bd0c593a999ff0e567a2b03847f67ecf8c2c74563713286827032271f11961e1"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "public": "labs/ofdm-ici/runtime/js/evaluate.js",
+      "bytes": 7206,
+      "sha256": "bcf9be4cb478928e4744d3dea357e20b38f53b793f67a7a5f9e43c64255c51ac"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "public": "labs/ofdm-ici/runtime/js/ici-kernel.js",
+      "bytes": 35957,
+      "sha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/linalg.js",
+      "public": "labs/ofdm-ici/runtime/js/linalg.js",
+      "bytes": 18255,
+      "sha256": "c7e21dadbac282314c504c5f1b73a4de18964c18ee1d06cc34eedcce1d81509a"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/js/sha256.js",
+      "public": "labs/ofdm-ici/runtime/js/sha256.js",
+      "bytes": 2476,
+      "sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "public": "labs/ofdm-ici/runtime/worker/ici-client.js",
+      "bytes": 7124,
+      "sha256": "1397e1f04bb674973fdebc29213c2531e8383b3aa3f959504761f65dcdf20b75"
+    },
+    {
+      "source": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "public": "labs/ofdm-ici/runtime/worker/ici-worker.js",
+      "bytes": 8491,
+      "sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc"
+    }
+  ],
+  "localLessonTests": {
+    "browserExecuted": false,
+    "status": "independently-reviewed-node-and-controlled-dom",
+    "requiredFiles": [
+      "ici-lesson.test.cjs"
+    ],
+    "tests": 39,
+    "pass": 39,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "scope": "Actual Node Workers plus real production mount/event/render code in a controlled DOM; not browser layout/performance"
+  },
+  "ownedFreeze": {
+    "public": "labs/ofdm-ici/LESSON-FREEZE.json",
+    "bytes": 4664,
+    "sha256": "f06ed60ac5d084a3f841c99563f8bcfae55d1f74b2744cd89acbd3973578c171",
+    "files": 17
+  },
+  "ownedPage": {
+    "source": "content/pages/ofdm-ici-receiver.html",
+    "public": "ofdm-ici-receiver.html",
+    "sourceSha256": "261da9521ffacdd71e212cac83894f9188ebf2d1a895f528cc70f9569fd90924",
+    "handwrittenSha256": "e68933025d87af707e1031d4b156899f4746869cb2c26e65f00337f298286858",
+    "generatedRegions": [
+      "HEADER",
+      "CONTEXT",
+      "NEXT"
+    ]
+  },
+  "independentLessonReview": {
+    "report": "scripts/validation/ofdm-ici/INDEPENDENT-LESSON-BOUNDARY-REVIEW.md",
+    "sha256": "bcaaa5e3e2c5179023485807ee0b6bb2394337053915c8e14758cb4409b96000",
+    "ownedFreezeSha256": "f06ed60ac5d084a3f841c99563f8bcfae55d1f74b2744cd89acbd3973578c171",
+    "ownerTests": 39,
+    "independentTests": 16,
+    "pythonReplayedArrays": 202,
+    "maximalRawRerunArrays": 495,
+    "browserExecuted": false
+  }
+}

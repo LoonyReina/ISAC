@@ -1,0 +1,18 @@
+'use strict';
+// Optional evidence producer: explicitly writes only to the supplied output dir.
+// Production DOM handlers and real Node Workers; not a browser execution claim.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{Worker}=require('node:worker_threads'),assert=require('node:assert/strict');
+const lightDocument=require('./dom-harness.cjs'),V=require('../lesson.js');
+const out=process.argv[2];if(!out)throw Error('Pass an explicit output directory outside the site staging tree');
+const root=path.resolve(__dirname,'../../../..'),page=fs.existsSync(path.join(root,'content/pages/80211ad-receiver.html'))?path.join(root,'content/pages/80211ad-receiver.html'):path.join(root,'80211ad-receiver.html');
+const h=lightDocument(fs.readFileSync(page,'utf8')),files=[];let prefix='';
+const app=V.mount(h.document,{makeWorker:()=>new Worker(path.resolve(__dirname,'../../runtime/worker/receiver-worker.js')),download(text,name){const kind=name.includes('history')?'history':'raw',filename=prefix+'-'+kind+'.json';fs.writeFileSync(path.join(out,filename),text);files.push({path:filename,bytes:Buffer.byteLength(text),sha256:crypto.createHash('sha256').update(text).digest('hex'),observation_sha256:app.controller.completed.result.provenance.observation_sha256,metadata_sha256:app.controller.completed.result.provenance.observation_metadata_sha256,source:app.controller.completed.source,policy:app.controller.completed.policy});}});
+async function save(name){prefix=name;await h.get('ad-export-raw').fire('click');await h.get('ad-export-history').fire('click');}
+(async()=>{fs.mkdirSync(out,{recursive:true});try{
+ await h.get('ad-run').fire('click');assert.equal(app.controller.state,'complete');await save('default-source8');const first=app.controller.exportRaw();
+ h.get('ad-fractional_phase').checked=false;await h.get('ad-fractional_phase').fire('change');await h.get('ad-apply').fire('click');assert.equal(app.controller.state,'complete');await save('held-fixed-phase');
+ h.get('ad-range-1').value='47.12345';h.get('ad-velocity-1').value='-17.9';h.get('ad-real-1').value='.27';h.get('ad-imag-1').value='-.73';h.get('ad-seed').value='28971';await h.get('ad-seed').fire('change');await h.get('ad-run').fire('click');assert.equal(app.controller.state,'complete');await save('off-fixture-fresh');
+ h.get('ad-import').files=[{size:Buffer.byteLength(first),text:async()=>first}];await h.get('ad-import').fire('change');await h.get('ad-apply').fire('click');assert.equal(app.controller.state,'complete');await save('raw-import-recomputed');
+ const entryPaths=['controller.js','stages.js','lesson.js','lesson.css'];const source_files=entryPaths.map(p=>{const b=fs.readFileSync(path.resolve(__dirname,'..',p));return {path:'labs/80211ad/lesson/'+p,bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')};});const b=fs.readFileSync(page);source_files.push({path:'content/pages/80211ad-receiver.html',bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')});
+ fs.writeFileSync(path.join(out,'UI-EXPORT-MANIFEST.json'),JSON.stringify({schema:'80211ad-mounted-ui-exports-v1',created_at_utc:new Date().toISOString(),execution:'actual production DOM handlers in in-memory DOM; actual Node worker_threads; not a real browser',runtime_freeze:'b84547a2bdad7da400238c267d2a6d089b33af8f2474d8f733f18c85d9a9b430',source_files,files},null,2)+'\n');console.log(JSON.stringify({files:files.length,total_bytes:files.reduce((n,x)=>n+x.bytes,0),out}));
+ }finally{await app.controller.dispose();}})().catch(e=>{console.error(e);process.exitCode=1;});

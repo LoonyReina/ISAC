@@ -290,6 +290,92 @@
       "unverifiedInputs": [
         "User-supplied command-line adapter/core filesystem paths; dynamic import or require is outside the website runtime dependency guarantee"
       ]
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/codec.mjs",
+      "sha256": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:crypto",
+          "literal": "if(!subtle&&typeof process==='object'&&process.versions?.node)subtle=(await import('node:crypto')).webcrypto.subtle;"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/kernel.mjs",
+      "sha256": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/math.mjs",
+      "sha256": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/presets.mjs",
+      "sha256": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/runtime.mjs",
+      "sha256": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "if(typeof Worker==='function')return new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});"
+        },
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(new URL('./worker.mjs',import.meta.url),{type:'module'});"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/runtime/worker.mjs",
+      "sha256": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const {parentPort}=await import('node:worker_threads');"
+        }
+      ],
+      "runtimePolicy": "reviewed-gaussian-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "sha256": "0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "sha256": "aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

@@ -41,7 +41,7 @@ test('existing lessons, cases, pages, unrelated directions and legacy links matc
 });
 
 test('networks preserves its clock beginner route while adding six honest detection depths',()=>{
- const d=r.directions.find(d=>d.id==='networks');a.deepEqual(d.primaryCaseIds,['case-clock',c.id]);a.equal(d.levels.length,6);a.equal(d.levels[0].items[0].href,'foundations.html#geometry');
+ const d=require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(r).directions.find(d=>d.id==='networks');a.deepEqual(d.primaryCaseIds,['case-clock',c.id]);a.equal(d.levels.length,6);a.equal(d.levels[0].items[0].href,'foundations.html#geometry');
  a.match(d.title,/融合证据/);a.match(d.question,/位置估计与存在性判决/);a.match(d.coverage,/未实现完整 cell-free 网络或整篇论文复现/);
  for(const [level,anchor]of [['intuition','question'],['model','observation'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','paper'],['reproduction','practice']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href===p.path+'#'+anchor);a.equal(items.length,1);a.equal(items[0].scope,'direction-specific');a.equal(items[0].status,'available');resolve(items[0].href);
@@ -106,7 +106,7 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes('16 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
  a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));

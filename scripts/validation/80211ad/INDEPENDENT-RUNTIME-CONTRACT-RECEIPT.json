@@ -1,0 +1,159 @@
+{
+  "schema": "80211ad-classic-runtime-independent-review-v1",
+  "status": "PASS",
+  "reviewedAt": "2026-10-12T21:32:16.798Z",
+  "report": {
+    "path": "REVIEW.md",
+    "sha256": "a33c80cec6c178e472f1fa9bc631ba3d67267b509cb9864ffba9e713cd519831"
+  },
+  "lessonFreezeId": "77b4347b33a549b57d6e7283efb579bbaaa00b41e2bae792049d4059952e98dd",
+  "lessonManifestSha256": "24c721c5337653c79c8e403d1d56d717835e9f709db321fb3ed018c978aaa4cd",
+  "profileCount": 17,
+  "newProfiles": [
+    {
+      "public": "labs/80211ad/runtime/js/evaluation.js",
+      "sha256": "1171d1f19b8f330f0da12ed79e5247d2b129b4cf13f2af68113aeae4c54a0e1d",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/runtime/js/receiver.js",
+      "sha256": "fb44f41a9fce21f7bbcdf9558e2c87df5750dab4c5560d1b5c595ad0b4125090",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/runtime/js/sha256.js",
+      "sha256": "9b620ba2e4decf0014a5e6ce30b3e17c99b3d1df103e0d6a6ef4c40c65f96342",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/runtime/worker/client.js",
+      "sha256": "866a92a3408351ded4f48020be1d3f5dd1f050846287be4e3a57320fa56f44e5",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/runtime/worker/protocol.js",
+      "sha256": "41a7b0bd3a28a1acd4051a47ca6e42bf2100a2afc381f27e1bd35846be1b6458",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/runtime/worker/receiver-worker.js",
+      "sha256": "0e422167dbb93a92e459405362cf67a8b0fa8dac26629d8bfe92c06fc4dc902b",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "./protocol.js",
+          "resolutionFrom": "labs/80211ad/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('./protocol.js', '../js/sha256.js', '../js/receiver.js')"
+        },
+        {
+          "url": "../js/sha256.js",
+          "resolutionFrom": "labs/80211ad/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('./protocol.js', '../js/sha256.js', '../js/receiver.js')"
+        },
+        {
+          "url": "../js/receiver.js",
+          "resolutionFrom": "labs/80211ad/runtime/worker/receiver-worker.js",
+          "kind": "reviewed-classic-importScripts",
+          "literal": "importScripts('./protocol.js', '../js/sha256.js', '../js/receiver.js')"
+        }
+      ]
+    },
+    {
+      "public": "labs/80211ad/lesson/controller.js",
+      "sha256": "1e295a1d12ed09b943fc0105987b4b1de8688129fe58087addd39e070e329c37",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "labs/80211ad/runtime/worker/receiver-worker.js",
+          "resolutionFrom": "80211ad-receiver.html",
+          "kind": "reviewed-classic-worker",
+          "literal": "new Worker('labs/80211ad/runtime/worker/receiver-worker.js')"
+        }
+      ]
+    },
+    {
+      "public": "labs/80211ad/lesson/stages.js",
+      "sha256": "f24aa698e1321737011176c5366288d8b041f367726c2f79f51e6f39dc76f260",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/80211ad/lesson/lesson.js",
+      "sha256": "7a890a51bffa4ef51520ecf51c0aff720c12eb373e1194d1c7fa73eaa711a8eb",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    }
+  ],
+  "preservedIciProfiles": 8,
+  "preservedEsmProfiles": 32,
+  "checks": {
+    "independentFocused": {
+      "passed": 361,
+      "failed": 0
+    },
+    "groupedRegressions": {
+      "passed": 22,
+      "failed": 0
+    },
+    "positiveBuilds": 1,
+    "negativeBuilds": {
+      "passed": 25,
+      "failed": 0,
+      "absentDestinations": 22,
+      "preservedExistingDestinations": 3
+    }
+  },
+  "inputSnapshot": {
+    "files": 905,
+    "inventorySha256": "5899cce99aa76298d9d28150c99cf6bd36868e105251708d3526f22deb21c305"
+  },
+  "reviewedHashes": {
+    "scripts/build/classic-dependencies.cjs": "5cb9e98427d6ec52575e90f66f56d541158d80a656c08de65fb2267b0ab33c8e",
+    "scripts/build/classic-runtime-contracts.json": "6f8cde98198636e56d6abee00e9e93551b97d6438e1159905df27823e547b7a1",
+    "scripts/build/compatibility.cjs": "e989512e7cd48ef7cebd390906b500e2a1d32e4cc5f7f1a9cdbcd16b5167b11f",
+    "scripts/build/module-dependencies.cjs": "b6f25e6eede9505fd49b2a1f770d85b3c11d5c35ee88411a0c126b02f918b303",
+    "scripts/build/module-runtime-contracts.json": "5babd9eb79a7b95d51f4c91713948f12d201416b1f33a34ef90a6c16fac7649a",
+    "tests/classic-dependencies.test.cjs": "4c9efcf46c41e7889b75237e58b9e346e3ef2c5c7a7775e3591f8be0834ac032",
+    "tests/module-dependencies.test.cjs": "143c419faa3fa702b4a40b1e225f51db82b1bd94b93091c1d420cffe7a079a9b",
+    "build/compatibility-manifest.json": "c057f29d20da749b434996a40bf25050f09e3b4e7647fc35f54ee0dbdaf273d5",
+    "labs/80211ad/lesson/LESSON-FREEZE.json": "24c721c5337653c79c8e403d1d56d717835e9f709db321fb3ed018c978aaa4cd"
+  },
+  "cleanBuild": {
+    "compatibilityFiles": 898,
+    "publicFiles": 873,
+    "htmlPages": 32,
+    "dependencyEdges": 3350,
+    "compatibilityTreeSha256": "8d145bfcd727c92a83d7af3461966b617b8618a6ea7a02ea369678cffdd3ff80",
+    "publicTreeSha256": "5e4988aa716963937ce557b9ef0adfb133659182f0ddc8e0c55fbe8f3ad7bbf4",
+    "reproducible": false,
+    "migrationAudit": null,
+    "legacyTestsRun": false
+  },
+  "evidenceHashes": {
+    "focused-review.cjs": "0ed8236eaecaec27ff3285811bccc1002e22a256559c29fa20a007b3aa77c186",
+    "final-focused-results.json": "9cd7fcb06a4fe9f77aa313687615bd43662167cf220d42c1d15f54c8d387ff34",
+    "focused-final-regressions.log": "c721c4a61b50fb5db00191f4fe1dce0a64490743afcaf6f24f64c2377d4f21dc",
+    "full-build-negative-review.cjs": "55ba7b51f50fc92024a5288379a5a78031ef67e00c1ab3c3a22b5570586348b9",
+    "full-build-results.json": "61eeaf2fdbec67f70694fe26535b2c909d6c70c57e09eb70cd95e80c7543c699",
+    "final-public-dependency-edges.json": "8550947625f343187653fc657756dbe8026dfd23b5d1d9d6064114d3d600b682",
+    "final-baseline-preservation.json": "8f075e693ba675feb18dab88cd88628fc6cec16eb898fef111c2c3ff9146af84",
+    "final-lesson-freeze-verification.json": "9f1e6b9d31e5dccb804524cc1f72ed466c2c2158b50de803749a98c78fb90270",
+    "post-review-source-verification.json": "24aa60e7c7b048d0e18aa6966fbe887f6cb8abf822030beb4a8d42eb32a13438"
+  },
+  "limitations": {
+    "realBrowser": false,
+    "aggregateTests": false,
+    "reproducibleBuild": false,
+    "migrationAudit": false,
+    "remoteOrPublication": false,
+    "genericRuntimeDiscovery": false,
+    "filesystemModeInventory": false
+  }
+}

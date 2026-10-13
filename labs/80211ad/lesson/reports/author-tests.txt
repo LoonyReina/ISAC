@@ -1,0 +1,40 @@
+Command: node --test labs/80211ad/lesson/tests/lesson.test.cjs
+Scope: actual Node Workers; production mounted in-memory DOM; no real-browser claim
+
+✔ runtime exact 22-file accepted freeze and kernel bytes remain unchanged (2.463619ms)
+✔ actual Worker generation produces hash-bound outputs; held receiver policies never regenerate samples (1814.056142ms)
+✔ production raw export/import verifies two independently recomputed hashes and triggers fresh processing (792.446313ms)
+✔ raw transport retains signed-zero convention and rejects non-ASCII UTF-8 or escaped metadata (137.234733ms)
+✔ actual import detects samples corruption and cannot promote prior completion (664.068205ms)
+✔ actual import detects metadata corruption and cannot promote prior completion (680.524922ms)
+✔ unhashed bare input is explicitly structural-only, never authenticated (92.576288ms)
+✔ M1 keeps unavailable estimates and maps null; rejected acquisition retains actual diagnostics (263.505174ms)
+✔ source8 default and off-fixture scene run the actual waveform; no seed fixture lookup (1300.755214ms)
+✔ actual Worker supersession, cancellation during processing and reset suppress old completions (1649.381926ms)
+✔ async file read after cancel never resurrects imported state (0.498403ms)
+✔ async file read after reset never resurrects imported state (0.126721ms)
+✔ async file read after stopWorker never resurrects imported state (0.173692ms)
+✔ async file read after edit never resurrects imported state (0.129585ms)
+✔ newer file import and newer fresh run supersede older file reads (443.093083ms)
+✔ actual dead Worker errors are recoverable via raw import and fresh run (1143.199665ms)
+✔ invalid newer Worker request does not cancel accepted work or its final result (131.020943ms)
+✔ invalid scene/budget rejects explicitly; prior result remains noncurrent and recoverable (683.846342ms)
+✔ production UI mount and all thirteen views consume actual Worker arrays without new computations (459.293443ms)
+✔ UI downloads actual raw/history, reimports raw and separates imported observation from scene draft (855.083215ms)
+✔ UI held policy, scene changes, reset and keyboard-native navigation keep committed/draft states distinct (1007.949596ms)
+✔ UI supports absent canvas context with complete numeric inspector (440.425469ms)
+✔ candidate presentation paginates but retains every runtime candidate in records (39.9311ms)
+✔ page has unique IDs, labeled controls, progressive stages and preserved scientific limits (1.492596ms)
+✔ old Golay page is byte-identical except one additive continuation; runtime remains unchanged (0.748983ms)
+✔ mounted actual Worker cancellation, repeated run and hard-stop reset never present stale output as current (1580.086254ms)
+✔ mounted asynchronous import cannot overwrite reset or newer import (794.49099ms)
+✔ plot-specific views expose literal intermediate arrays and common I/Q then amplitude scales (2.064848ms)
+✔ mounted failed current file read clears selection for same-file retry without clearing a newer selection (111.848077ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15205.672822

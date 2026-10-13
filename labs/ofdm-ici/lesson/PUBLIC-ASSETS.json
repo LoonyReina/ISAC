@@ -1,0 +1,23 @@
+{
+  "schema_version": "ofdm-ici-lesson-assets-v1",
+  "page": {"source": "content/pages/ofdm-ici-receiver.html", "public": "ofdm-ici-receiver.html"},
+  "startup": [
+    "course.css", "theory.css", "site.css",
+    "labs/ofdm-ici/lesson/ici-lesson.css",
+    "labs/ofdm-ici/runtime/js/linalg.js", "labs/ofdm-ici/runtime/js/sha256.js",
+    "labs/ofdm-ici/runtime/js/evaluate.js", "labs/ofdm-ici/runtime/js/ici-kernel.js",
+    "labs/ofdm-ici/runtime/worker/ici-client.js",
+    "labs/ofdm-ici/lesson/ici-controller.js", "labs/ofdm-ici/lesson/ici-lesson.js"
+  ],
+  "on_explicit_run": ["labs/ofdm-ici/runtime/worker/ici-worker.js"],
+  "worker_relative_imports": ["../js/linalg.js", "../js/sha256.js", "../js/evaluate.js", "../js/ici-kernel.js"],
+  "optional_evidence": [
+    "docs/OFDM-ICI-SOURCE-EVIDENCE.md", "data/ofdm-ici-evidence-map.json",
+    "data/ofdm-ici-kernel-v0.1-runtime.zip", "data/ofdm-ici-reference-v1.zip",
+    "data/ofdm-ici-kernel-v0.1-full-evidence.parts.json", "data/reassemble-ofdm-ici-evidence.py",
+    "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part01", "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part02",
+    "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part03", "data/ofdm-ici-kernel-v0.1-full-evidence.zip.part04"
+  ],
+  "owned_test": "labs/ofdm-ici/lesson/tests/ici-lesson.test.cjs",
+  "actual_browser_gate": "not run by lesson owner"
+}

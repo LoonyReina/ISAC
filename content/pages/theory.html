@@ -107,6 +107,7 @@
 <p><a href="https://arxiv.org/html/2204.06938v8#S2">Xiong 等原研究 v8，§II-A–B</a>讨论感知端已知随机发射实现、条件信息矩阵逆的平均，并包含参数先验及高 SNR 可达性讨论；它是复向量 Bayesian 框架。<a href="https://arxiv.org/html/2310.09749v2#S4.SS2">作者教程 v2，§IV-B 式(19)–(22)</a>区分依赖估计器的 MSE 与条件界平均。这里保留已知随机输入这一角色，省略复向量、先验和完整区域优化。</p>
 <p>本站实标量无先验 LS 等号、卡方矩与 t/F 校验都是独立经典教学推导，不是论文完整区域/图的复现，也不是新 2026 结果。<a href="https://web.stanford.edu/class/stats203/lectures/lecture3/">Stanford STATS203 线性回归讲义</a>提供高斯 LS/ML、无偏与方差框架（原讲义含截距，非本节原式）；<a href="https://ocw.mit.edu/courses/6-432-stochastic-processes-detection-and-estimation-spring-2004/1bdddce863f648174c43f64a321e645a_rec6.pdf">MIT 6.432 recitation 6</a>提供 CRB/效率背景。</p>
 <p>读论文时追问：图中是某个估计器的 MSE、条件 CRB 的平均，还是含先验的 Bayesian CRB？它在什么条件下讨论可达性？<a href="reading.html#case-crb">回到同题证据对照 →</a></p>
+<p><a href="gaussian-tradeoff.html#question">继续同一篇 Gaussian 论文：从标量已知输入走到复矩阵协方差、后验估计与通感权衡 →</a>（保留上述实标量 LS 假设；新课使用 proper-complex prior 与每复使用速率。）</p>
 </details>
 <noscript><p>交互需要 JavaScript。默认固定块 T=8、种子=2026 的高斯能量约 7.210331434，条件解析 MSE≈0.138689880；BPSK E=8、条件解析 MSE=0.125。若改为重抽块，解析期望才是高斯 1/6、BPSK 1/8；静态文字没有假造模拟曲线。</p></noscript>
 </div>

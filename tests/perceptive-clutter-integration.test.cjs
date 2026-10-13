@@ -373,7 +373,7 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'receiver');
  a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'practice.html#notebook');
  a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
- const d=r.directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
+ const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
  for(const [level,anchor]of [['intuition','question'],['model','model'],['experiment','experiment'],['papers','source'],['limits','boundary'],['reproduction','validation']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href==='perceptive-clutter.html#'+anchor);
   a.equal(items.length,1);a.equal(items[0].status,'available');a.equal(items[0].scope,'direction-specific');resolve(items[0].href);
@@ -389,7 +389,7 @@ test('all original beginner entries and proposed work survive the narrowly scope
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(ref=>ref===u.id).length<=1);
  const pending=r.directions.flatMap(d=>d.levels.flatMap(l=>l.items.filter(i=>i.status==='proposed').map(item=>({direction:d.id,level:l.id,item}))));a.deepEqual(pending,originalProposedWork);
  for(const {item}of pending)a.ok(!item.href);
- a.deepEqual(r.directions.find(d=>d.id==='networks').primaryCaseIds,['case-clock','case-distributed-detection']);a.deepEqual(r.directions.find(d=>d.id==='channels').primaryCaseIds,['case-multipath-channel']);
+ a.deepEqual(require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(r).directions.find(d=>d.id==='networks').primaryCaseIds,['case-clock','case-distributed-detection']);a.deepEqual(r.directions.find(d=>d.id==='channels').primaryCaseIds,['case-multipath-channel']);
  for(const edge of r.knowledgeMap.edges.filter(e=>e.source==='background-subtraction'||e.target==='background-subtraction')){a.equal(edge.provenance,'editorial-pedagogic');a.equal(edge.scientificClaim,false);}
 });
 

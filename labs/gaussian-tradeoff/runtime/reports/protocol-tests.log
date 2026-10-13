@@ -1,0 +1,47 @@
+✔ canonical tagged f64 exactly round-trips signed zero and finite extremes (7.213541ms)
+✔ canonical identity ignores insertion order, snapshots alias-free values (0.813559ms)
+✔ rejects sparse arrays, nonfinite values and unsupported primitives (0.331761ms)
+✔ rejects prototypes, typed arrays, accessors, symbols and nonenumerable fields without invoking getters (0.449008ms)
+✔ rejects cycles, dangerous keys and malformed Unicode (0.353073ms)
+✔ structural and conservative canonical resource budgets are enforced (537.7063ms)
+✔ parser rejects noncanonical, extra-tag, duplicate-key, forbidden and nonfinite encodings (0.405732ms)
+✔ raw and historical records are frozen, hash-checked, exact and explicitly historical (6.74915ms)
+✔ async hashes, exports and object imports snapshot before yielding (1.25197ms)
+✔ runtime validates candidates before queued/current supersession and assigns one terminal (18.285428ms)
+✔ runtime descriptor-first messages, duplicate ids, cancellation, session and wall limits (7.790943ms)
+✔ actual Node fixture Worker freezes output and preserves signed zero/history (68.381253ms)
+✔ actual Node candidate rejection preserves ongoing run; accepted replacement cancels it (158.915082ms)
+✔ actual Node cooperative cancellation after progress is terminal and does not emit stale success (91.259294ms)
+✔ actual Node rejects nonfinite output and survives numerical error (66.725102ms)
+✔ actual Node death rejects pending work and restart computes with a new generation (109.246271ms)
+✔ client holds an old queued completion until a newer invalid candidate is rejected (0.649641ms)
+✔ client suppresses deferred completion on valid supersession and cancellation (0.540015ms)
+✔ client accepted duplicate-id rejection and old-generation events cannot settle current work (0.334105ms)
+✔ client handles postMessage failure without stranding older deferred completion (0.33149ms)
+✔ client snapshot rejects getter inputs before transport and frozen callbacks cannot mutate history (0.288786ms)
+✔ restart epochs fence late factories and prevent resurrection after disposal (6.481206ms)
+✔ explicit replacement attaches before old asynchronous terminate resolves (0.339693ms)
+✔ actual production Node Worker runs numerical kernel and exact replayable record (146.542191ms)
+✔ actual production Node invalid candidate preserves a current real numerical run (139.918331ms)
+✔ actual production Node cancellation is observed within asynchronous checkpoints (62.86248ms)
+(node:14) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ browser self.onmessage branch in module VM validates, cancels, supersedes, and completes (not a real browser) (28.127147ms)
+✔ invalid raw candidate retains its safe request id and cannot supersede current work (28.386127ms)
+✔ oversized complete event falls back to terminal resource error rather than stranding its promise (351.761624ms)
+✔ browser-style client event listener branch handles completion, messageerror and detachment (1.064447ms)
+✔ runtime and client enforce 10,000-session caps without pending promises (119.24033ms)
+✔ production browser module VM loads full kernel and vendor path, and matches Node replay (not browser performance) (93.03171ms)
+✔ convenience factory validates options before allocation or getter execution and cleans failed construction (1.003735ms)
+✔ real numerical progress exposes finite completed counts as done (86.875686ms)
+✔ numeric error diagnostics survive immutable Worker events and managed-client rejection (2.720158ms)
+✔ malformed, accessor, inherited and resource-heavy diagnostics fall back to original code/message (25.746282ms)
+✔ actual production Node Worker retains inverse-condition failure diagnostics (56.88442ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1767.43752

@@ -1,0 +1,11 @@
+{
+  "schema": "gaussian-isac-development-fixes-v1",
+  "fixes": [
+    {"issue":"Absolute water-level subtraction lost power feasibility at low SNR","discovery":"Owner deep-fade checks and independent reviewer boundary audit","fix":"Use stable inverse-gain differences (best-a)/a/best with a shifted water level; preserve all certificate thresholds","regression":"72 reviewer inputs across 360 covariance solves plus explicit zero/deep-fade cases"},
+    {"issue":"Linear dual-multiplier bisection lost root resolution across brackets near 1e30","discovery":"Independent reviewer extreme prior/noise/power audit","fix":"Positive logarithmic-multiplier bisection; full complex-matrix certificate unchanged","regression":"All 360 reviewer stress shapes pass without certificate relaxation"},
+    {"issue":"Forming I+signal before logdet erased tiny positive SNR rates","discovery":"Owner deep-fade check","fix":"Compute exact Gaussian expression as sum log1p of signal eigenvalues","regression":"Channels down to component scale 1e-154 preserve nonnegative finite MI and full-budget covariance"},
+    {"issue":"Worker factory option validation occurred after allocation","discovery":"Independent protocol review","fix":"Descriptor-first preflight before Worker allocation and failed-construction cleanup","regression":"Zero-getter and zero-allocation invalid-option tests"},
+    {"issue":"Oversized terminal encoding could strand a request","discovery":"Protocol author adversarial gate","fix":"Finite terminal resource error fallback","regression":"Oversized terminal-event test"}
+  ],
+  "policy":"Failures are preserved and diagnosed; no blanket success, stale-result reuse, numerical loading or weakened certificate fallback"
+}

@@ -1,0 +1,1262 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "identity": "arxiv:2204.06938v8",
+    "url": "https://arxiv.org/html/2204.06938v8",
+    "pdfSha256": "8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342",
+    "pdfRedistributed": false,
+    "paperTextRedistributed": false
+  },
+  "runtimeFreezeSha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+  "runtimeFreeze": {
+    "schema": "gaussian-isac-js-source-freeze-v1",
+    "release": "0.1",
+    "date": "2026-10-12",
+    "reference": {
+      "paper": "arxiv:2204.06938v8",
+      "pdf_sha256": "8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342",
+      "core_sha256": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2",
+      "manifest_sha256": "716560ac0ecb32689ad187b6866f7ead4e07fe76d21e4490991bde5c4110ddad",
+      "archive_sha256": "235619c80cc0ebf8551138a1ef241adefacddb0f15a79ca973718fb5ccd5481c"
+    },
+    "runtime_files": {
+      "kernel.mjs": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+      "math.mjs": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+      "presets.mjs": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+      "runtime.mjs": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+      "worker.mjs": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+      "codec.mjs": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+      "vendor/linalg.js": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+    },
+    "source_free": "No paper PDF, source figure image or author code is included; code is original first-party implementation",
+    "testing_boundary": "actual Node worker_threads plus browser-module-branch VM; no actual browser or UI validation",
+    "presets": "input matrices only, never table-driven result lookup"
+  },
+  "archives": [
+    {
+      "name": "gaussian-tradeoff-reference-frozen-v1.tar.gz",
+      "public": "data/gaussian-tradeoff-reference-frozen-v1.tar.gz",
+      "bytes": 3214140,
+      "sha256": "235619c80cc0ebf8551138a1ef241adefacddb0f15a79ca973718fb5ccd5481c",
+      "archiveMemberCount": 33,
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "members": [
+        {
+          "path": "gaussian-tradeoff-reference/HANDOFF.md",
+          "bytes": 7667,
+          "sha256": "96dd899d9ba7a75ee77de9891a7ae7c9b960b6ebe29a9b53f0cd0b57e53ac4ac"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/LIVE-PORT-SCOPE.md",
+          "bytes": 5803,
+          "sha256": "92b82a2b9a4d6edd533bb44ddbad2f3c621313bd2f9bd98c6b0c7a9b032ac8d5"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/MANIFEST.json",
+          "bytes": 5559,
+          "sha256": "716560ac0ecb32689ad187b6866f7ead4e07fe76d21e4490991bde5c4110ddad"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/MATHEMATICS.md",
+          "bytes": 7344,
+          "sha256": "e995937317160341e738efeebf3e44c5db59b22c709610a8fda966a5586e33e7"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/README.md",
+          "bytes": 3777,
+          "sha256": "7aaec37112122f40937042aeaf470b5426acbab3141e24bf322df626ca55ec91"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/SOURCE-AUDIT.md",
+          "bytes": 9858,
+          "sha256": "9b45ee3df32c2dea8e3326f0fb0e2c07a63c9455866fadb3b2620685cc426f37"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/core.py",
+          "bytes": 15264,
+          "sha256": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/estimator_check.json",
+          "bytes": 3472,
+          "sha256": "c2432888ec3fbd3dbb21590855fbb67140db3c682a4dfac593961d25bceb742c"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/estimator_raw.npz",
+          "bytes": 191835,
+          "sha256": "a2df6a725487a292fa3496ffa1aa29594569694eda5ebdb60d0804f9d3a4025b"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/figure4.json",
+          "bytes": 30343,
+          "sha256": "9be477bade47f67bf5cdc77c00419fc5540eda7fbe430dc47876866fd3e80af1"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/figure4_raw.npz",
+          "bytes": 1488112,
+          "sha256": "45d870e1429ac39542d76e18258947b3747a587845c6614d1c28357b4862560a"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/figure4_reference.png",
+          "bytes": 114253,
+          "sha256": "5c254439fa0ee7680e0b79a82cb57d1e58d033c48d6ace4cd40d5349083198f0"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/high_precision.json",
+          "bytes": 1387,
+          "sha256": "875ab0f9cdb07972b3f46a6085352061b5fab91d4be245d57e0da3c4de6cc9c2"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/high-precision.log",
+          "bytes": 1387,
+          "sha256": "875ab0f9cdb07972b3f46a6085352061b5fab91d4be245d57e0da3c4de6cc9c2"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/light-experiments.log",
+          "bytes": 255,
+          "sha256": "443fd6aeb6146ef596e1f376520eb0cf13693c17fbd0a8d54682bb58756466cb"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/plots.log",
+          "bytes": 43,
+          "sha256": "7446e4ec85c00da306a2bb99e70abbe2e2205b0fc423c6a01396362334ca727c"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/record-verification.log",
+          "bytes": 383,
+          "sha256": "d9f70172cdbe091a34e511df89185011878f5ec8c8042760400775f15c445e8c"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/region-256x256.log",
+          "bytes": 159,
+          "sha256": "84f7d762036985878d5966055da629e4bf0846573aa36838d9032530d8976e91"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/logs/tests.log",
+          "bytes": 1578,
+          "sha256": "b9d4a01e4a7d59690a941fa93daf7e4c611f30dbb92de5e89802f781dbafc15c"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/pilot/region-8x8-raw.npz",
+          "bytes": 54935,
+          "sha256": "c53e9b515b968c92c82d3b6c9053ec09317cf3cfa176986c1bdc75c3a70c684d"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/pilot/region-8x8.json",
+          "bytes": 66989,
+          "sha256": "d114020026810df66153820701c194500a0f71c569cadba1fe9f540b6e156fe1"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/pilot/region-8x8.png",
+          "bytes": 114031,
+          "sha256": "7ef7e46f256bb5c17151950f1fca6b12ff3da473cc2902fa6a9f5df9bd117a2f"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/record_verification.json",
+          "bytes": 383,
+          "sha256": "d9f70172cdbe091a34e511df89185011878f5ec8c8042760400775f15c445e8c"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/region.json",
+          "bytes": 72804,
+          "sha256": "1a039bb22f109b22b173f54b9f0a14c7a0ed22ad046a8130fb9d252a04eae0a4"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/region_raw.npz",
+          "bytes": 1120589,
+          "sha256": "a3658902f508652ecbdcd94874618cbb409beae344bfa72da8899c8f909f69cf"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/region_reference.png",
+          "bytes": 131615,
+          "sha256": "ae5d404a9337d33062e84b54fa1a55760cc26e2cd164e041d76b15090694308f"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/source_conflicts.json",
+          "bytes": 2766,
+          "sha256": "373f4210937d6e0f1a2fc87f3044896dd8b35b38b332ee3d7e20fcc9da156620"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/evidence/sphere_integration.json",
+          "bytes": 11164,
+          "sha256": "a7c04ad9ea9cfe854628321a0c1a9e38093e08c4c6246519532b0d07b61cbec5"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/high_precision_checks.py",
+          "bytes": 2050,
+          "sha256": "7745eacd1f60d60276055b766c6b9ee1d91b64948b9c42df3924f7053a7fd8bf"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/plot_evidence.py",
+          "bytes": 3490,
+          "sha256": "2c797d6954ef59cf53376b0a6b335c6618332b1ca26da649994f36744499b9de"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/run_reference.py",
+          "bytes": 14638,
+          "sha256": "8cd35d4223cba9cdc93bb29cd67d92435e948e6309bfe7af16364e129c99077b"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/test_core.py",
+          "bytes": 7435,
+          "sha256": "dbce7bb91e18ebb780b11dd861f247af240d5f6b95648e92c1935329a33b5d9d"
+        },
+        {
+          "path": "gaussian-tradeoff-reference/verify_records.py",
+          "bytes": 3411,
+          "sha256": "93e41b2564e7e837c6eee885151e57bf30fd94cbb666c8ebdbe172335d573dfb"
+        }
+      ]
+    },
+    {
+      "name": "gaussian-tradeoff-js-v0.1-runtime.zip",
+      "public": "data/gaussian-tradeoff-js-v0.1-runtime.zip",
+      "bytes": 48897,
+      "sha256": "41466405b1e72bb1bee681cf4c8ca0c9dfe638fc59dd7089a4698f8a2aedeaf4",
+      "archiveMemberCount": 14,
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "members": [
+        {
+          "path": "gaussian-tradeoff-js-v0.1/ATTRIBUTION.md",
+          "bytes": 1838,
+          "sha256": "faec70c2d1fe009939270847669661afc1cf6efcba2472732dcdaf814a27d6c9",
+          "crc32": "2210c7ee"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/DEVELOPMENT-FIXES.json",
+          "bytes": 1726,
+          "sha256": "4085857b14c8decbe21670f605c5f1f770d780e0c25c5585894b3008eb05dc2c",
+          "crc32": "65f37bed"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/HANDOFF.md",
+          "bytes": 3992,
+          "sha256": "2304525ccbc9fbdf1bf9f7c1a982ea8217ca228aec5bc0a1854a0d2c8629b673",
+          "crc32": "4a1047d1"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/NUMERICAL-VERIFICATION.md",
+          "bytes": 4981,
+          "sha256": "d782dd5d17c208d03704457ba6586531aa6306417a605022fb3358623218135a",
+          "crc32": "f1f4751c"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/PROTOCOL-HANDOFF.md",
+          "bytes": 9542,
+          "sha256": "0ea86d33027eb3294cf262116fc46668b3573239bf3a78f864d8dfe2eef1d597",
+          "crc32": "08e71ca3"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/README.md",
+          "bytes": 7403,
+          "sha256": "883378aad964e1ea64cad3325796f056beba8d938e83b120c5023765217c0d4c",
+          "crc32": "6ab11c5b"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/SOURCE-FREEZE.json",
+          "bytes": 1452,
+          "sha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+          "crc32": "20d19439"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/codec.mjs",
+          "bytes": 11474,
+          "sha256": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+          "crc32": "076399dd"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/kernel.mjs",
+          "bytes": 16632,
+          "sha256": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+          "crc32": "39099e82"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/math.mjs",
+          "bytes": 12853,
+          "sha256": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+          "crc32": "c8271ccc"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/presets.mjs",
+          "bytes": 3897,
+          "sha256": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+          "crc32": "4c991890"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/runtime.mjs",
+          "bytes": 20162,
+          "sha256": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+          "crc32": "61f88278"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/vendor/linalg.js",
+          "bytes": 26681,
+          "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+          "crc32": "c29647da"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/worker.mjs",
+          "bytes": 939,
+          "sha256": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+          "crc32": "06f83596"
+        }
+      ]
+    },
+    {
+      "name": "gaussian-tradeoff-js-v0.1-full-evidence.zip",
+      "public": "data/gaussian-tradeoff-js-v0.1-full-evidence.zip",
+      "bytes": 449666,
+      "sha256": "b5ec92cbb3745e418b08d3a13888bb528235a265a4e6cba5f697b74f5524e5bd",
+      "archiveMemberCount": 42,
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false,
+      "members": [
+        {
+          "path": "gaussian-tradeoff-js-v0.1/ARTIFACT-MANIFEST.json",
+          "bytes": 6540,
+          "sha256": "5c936503bb32472514199ed9da64e173bcfb71dfef9cb8195945387db9a573bf",
+          "crc32": "ef522d1f"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/ATTRIBUTION.md",
+          "bytes": 1838,
+          "sha256": "faec70c2d1fe009939270847669661afc1cf6efcba2472732dcdaf814a27d6c9",
+          "crc32": "2210c7ee"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/DEVELOPMENT-FIXES.json",
+          "bytes": 1726,
+          "sha256": "4085857b14c8decbe21670f605c5f1f770d780e0c25c5585894b3008eb05dc2c",
+          "crc32": "65f37bed"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/HANDOFF.md",
+          "bytes": 3992,
+          "sha256": "2304525ccbc9fbdf1bf9f7c1a982ea8217ca228aec5bc0a1854a0d2c8629b673",
+          "crc32": "4a1047d1"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/NUMERICAL-VERIFICATION.md",
+          "bytes": 4981,
+          "sha256": "d782dd5d17c208d03704457ba6586531aa6306417a605022fb3358623218135a",
+          "crc32": "f1f4751c"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/PROTOCOL-HANDOFF.md",
+          "bytes": 9542,
+          "sha256": "0ea86d33027eb3294cf262116fc46668b3573239bf3a78f864d8dfe2eef1d597",
+          "crc32": "08e71ca3"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/README.md",
+          "bytes": 7403,
+          "sha256": "883378aad964e1ea64cad3325796f056beba8d938e83b120c5023765217c0d4c",
+          "crc32": "6ab11c5b"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/SOURCE-FREEZE.json",
+          "bytes": 1452,
+          "sha256": "ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113",
+          "crc32": "20d19439"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/codec.mjs",
+          "bytes": 11474,
+          "sha256": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+          "crc32": "076399dd"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/kernel.mjs",
+          "bytes": 16632,
+          "sha256": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+          "crc32": "39099e82"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/math.mjs",
+          "bytes": 12853,
+          "sha256": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+          "crc32": "c8271ccc"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/oracle/build_fresh_reference_cases.py",
+          "bytes": 6013,
+          "sha256": "a1fa44196da8cfb5ffd1946209501fd4e079d9c36d771ee50ea2699ce2e4cd66",
+          "crc32": "d9c1b5c4"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/oracle/finite-integrals.json",
+          "bytes": 39728,
+          "sha256": "31945644dae4059bb390246197c8b43ff6a17fc9a1f8045bc345cb18765d926c",
+          "crc32": "492cc742"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/oracle/fresh_reference_cases.json",
+          "bytes": 148981,
+          "sha256": "fab99994ee9b816bf75abf5b50349beef861a88d6811581c7c2929b3821823dc",
+          "crc32": "e8e174a2"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/oracle/reference/core.py",
+          "bytes": 15264,
+          "sha256": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2",
+          "crc32": "525416dc"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/oracle/reviewer-stress-inputs.json",
+          "bytes": 107557,
+          "sha256": "0dc9693fba45d1c862da43ef7ac0e2e411bcbb75a42ae19f5a1e46d49d119a26",
+          "crc32": "2ffe92c4"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/presets.mjs",
+          "bytes": 3897,
+          "sha256": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+          "crc32": "4c991890"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/benchmark.json",
+          "bytes": 2273,
+          "sha256": "56caf9f37bedfd51921b2da92a7497647949c4af7ef04c0afe70af57f4923039",
+          "crc32": "a4542276"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/full-regression.log",
+          "bytes": 6315,
+          "sha256": "7fe467f92082d934218fc8cb8aca277dc90f4ef4a0b4777e788376afa9ae8392",
+          "crc32": "903ca3a0"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/integrals.json",
+          "bytes": 10889,
+          "sha256": "b940eff26bea5e6e9c951fa33e7f8b02785f1a82fb03d3d28c76fba8e3aefb17",
+          "crc32": "91771f4a"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/live-direct-oracle.json",
+          "bytes": 151,
+          "sha256": "8b1a322d9de65584fcc8dbb75984967074441debc4e409dc94da9f69ebe77730",
+          "crc32": "a4a2fb86"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/live-evidence.json",
+          "bytes": 835520,
+          "sha256": "53c0db89f5e583900c470436594b97248e0eddc48ffbfae6099455d23ad73016",
+          "crc32": "63e41f8c"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/numerics.json",
+          "bytes": 262,
+          "sha256": "ba80f176e1f7d4fbe117e9cc22826868e8b3d3091a028c5c23137ceb8e31c8fb",
+          "crc32": "756d2045"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/protocol-codec-tests.log",
+          "bytes": 946,
+          "sha256": "968de7777504538955c2b056e0981d2ef39f44d2942de7ddc4fe3441bc3c0335",
+          "crc32": "c37feb24"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/protocol-source-sha256.txt",
+          "bytes": 608,
+          "sha256": "8144c0c59c166d1cb371d445f3a110ad0955fa4d907ed12425e938b88f1cf6b4",
+          "crc32": "75f8b737"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/protocol-tests.log",
+          "bytes": 4008,
+          "sha256": "58e09afb1ddbc49a9b33ef27ff9aeaa4ed164b7dc79fd8c8665b2f74aabc18e1",
+          "crc32": "d2493e46"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/reports/stress.json",
+          "bytes": 1184756,
+          "sha256": "37f41c4674b2bf1ee5823057af1db5c2c740c1a97b800090854088d94a309e02",
+          "crc32": "16755880"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/run_all.sh",
+          "bytes": 414,
+          "sha256": "01527b0975fa252c604a4a74ec490383004aa5330c981de364e9043a5585287d",
+          "crc32": "048a2be5"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/runtime.mjs",
+          "bytes": 20162,
+          "sha256": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+          "crc32": "61f88278"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/benchmark.mjs",
+          "bytes": 1441,
+          "sha256": "7c4577f7bafe7897c98cefad062b228200d12d9b137079756654e501ab5f6b02",
+          "crc32": "6e18eae7"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/codec.test.mjs",
+          "bytes": 6217,
+          "sha256": "73b16c38f1ad61d9eb12d4251e3afc8df8be47ac288c91bb283c43910bf165dc",
+          "crc32": "9cbae12b"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/export-live-evidence.mjs",
+          "bytes": 557,
+          "sha256": "8b39e0b4f3418ccb7c96fe48c7bf567a950396d3a6f59fa8bd980eca6f39dd4b",
+          "crc32": "e3c81b96"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/package_artifact.py",
+          "bytes": 3344,
+          "sha256": "4626389c2964375e0adfbc2305e94a0810ab4deefd3b9b3917bcc380a66e02e2",
+          "crc32": "72397745"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/protocol-fixture-kernel.mjs",
+          "bytes": 943,
+          "sha256": "afa6c9524029d60dd873f83a9dfcb1c65f4f543aa8384a9c012d251d8243b796",
+          "crc32": "fdfb8b9c"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/protocol-fixture-worker.mjs",
+          "bytes": 384,
+          "sha256": "70e02cdd24fb76dd4aa3cb36116d94ac9056b3624206610d62ed6b66153c015f",
+          "crc32": "264fa877"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/protocol.test.mjs",
+          "bytes": 23903,
+          "sha256": "84a71359d0c7f59966985eec0bcb7bbf481a0c0ea970d06202c0121fa4ddb95a",
+          "crc32": "9d54ec2b"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/test-integrals.mjs",
+          "bytes": 1798,
+          "sha256": "aa43313675bc6ea1842b4275e1a1b13cbd2f0f6928669eb2fe79bb4038f85b9a",
+          "crc32": "cc7582d4"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/test-numerics.mjs",
+          "bytes": 4968,
+          "sha256": "8fcab845730d3011873ba786318ec7da6daa2ffd1d20c4b929014809f6bdff66",
+          "crc32": "95491b6d"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/test-stress.mjs",
+          "bytes": 1725,
+          "sha256": "6c173c831707afa431adf751c81fd85ac046493e01d236b668dbbe891abd9223",
+          "crc32": "8937b6ee"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/tests/verify-live-evidence.py",
+          "bytes": 3675,
+          "sha256": "c069d29152a59dbcf8caf97e3beb5dbe293e82ce9c06a1937a57e9c16f321204",
+          "crc32": "7f636c32"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/vendor/linalg.js",
+          "bytes": 26681,
+          "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
+          "crc32": "c29647da"
+        },
+        {
+          "path": "gaussian-tradeoff-js-v0.1/worker.mjs",
+          "bytes": 939,
+          "sha256": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+          "crc32": "06f83596"
+        }
+      ]
+    }
+  ],
+  "copiedEvidence": [
+    {
+      "source": "scripts/validation/gaussian-tradeoff/SOURCE-AUDIT.md",
+      "public": "scripts/validation/gaussian-tradeoff/SOURCE-AUDIT.md",
+      "bytes": 9858,
+      "sha256": "9b45ee3df32c2dea8e3326f0fb0e2c07a63c9455866fadb3b2620685cc426f37"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/MATHEMATICS.md",
+      "public": "scripts/validation/gaussian-tradeoff/MATHEMATICS.md",
+      "bytes": 7344,
+      "sha256": "e995937317160341e738efeebf3e44c5db59b22c709610a8fda966a5586e33e7"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "bytes": 15136,
+      "sha256": "561e29e27b487cda2486108f36aed0e6730033a95bb219058307d520c504f5cc"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PORT-REVIEW.md",
+      "bytes": 14811,
+      "sha256": "167fc761ff93b4f89b5bc7e59e2f3392e325c133306c96cf9614ac161c4f7a57"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PROTOCOL-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-PROTOCOL-REVIEW.md",
+      "bytes": 10876,
+      "sha256": "3f69e5733a2273f11ab109f06d0178f59fafdfa69a0db4769540cfb98edb0683"
+    },
+    {
+      "source": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+      "bytes": 12261,
+      "sha256": "6aad7a0ebeab3916dec8acbd5d0a5e66801a3d0196ec85844288c7c997f78cfb"
+    }
+  ],
+  "boundaries": {
+    "actualBrowser": false,
+    "fullPaper": false,
+    "generalFiniteSnrMimoStiefelMi": false,
+    "achievedCovarianceHull": false,
+    "sourceCurveReproduction": false
+  },
+  "ownedPage": {
+    "source": "content/pages/gaussian-tradeoff.html",
+    "public": "gaussian-tradeoff.html",
+    "handwrittenSha256": "f527d79e03cf86be5a0704ce76ef25c4b7475577e91e143786f09e4328f3b453",
+    "generatedRegions": [
+      "HEADER",
+      "CONTEXT",
+      "NEXT"
+    ]
+  },
+  "ownedFreeze": {
+    "source": "labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json",
+    "sha256": "c4d52b780e100daaed3fe7ba5259eb57135af076e40cdd00da3ae4e850d2e41f"
+  },
+  "ownedFiles": [
+    {
+      "source": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "public": "labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json",
+      "bytes": 4443,
+      "sha256": "3397a7e514f12fc53239e3dc24d127257d0721c08fcabeac9e58e01c17ca986e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json",
+      "bytes": 2213,
+      "sha256": "2b418e3be07a164ef1984f0fefe57f0599c1613f80bc974633113723866c6713"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/README.md",
+      "public": "labs/gaussian-tradeoff/lesson/README.md",
+      "bytes": 4978,
+      "sha256": "1d2dcc42d67eba6b29dc7c20772d3cd857824774a1ef38f81f86d7f77f4e6137"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/controller.mjs",
+      "bytes": 7406,
+      "sha256": "0ec5f2562224a61fc065a59da21d56532d51ba9eba0c26e0d4a7fb96a015ba03"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "public": "labs/gaussian-tradeoff/lesson/lesson.css",
+      "bytes": 3947,
+      "sha256": "08d1bca2d37fc7603103ec2d096647058b9d96b18b947365b8ac0e3ed5c3444a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/lesson.mjs",
+      "bytes": 22817,
+      "sha256": "31b7eda801a49ffb167af53c02faefaab43feb5b29aa84c66d068c33b5af2cfb"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/LESSON-QA.md",
+      "public": null,
+      "bytes": 6325,
+      "sha256": "ac19412a08cb0a900ebc980ae84496b3aa22b7252d9bfeb014d2203f933758e8"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/PORTABLE-VERIFICATION.json",
+      "public": null,
+      "bytes": 472,
+      "sha256": "8c3c2d7a38c070bf938310dc5c7fff81ac1121090095f7d6ede68abb3f0b6e11"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/TEST-INVENTORY.json",
+      "public": null,
+      "bytes": 4051,
+      "sha256": "f15251bafa5001bd59e5ce773f92dd237a2163fd1b58de620b5b8275b8777e75"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.json",
+      "public": null,
+      "bytes": 279,
+      "sha256": "f52ddc33cb3310857cde5d39392d7000651624534ddc305c2cd2195eb8dcfac6"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.sha256",
+      "public": null,
+      "bytes": 91,
+      "sha256": "d356f791441319a479217cfcd8212b1fc01ed50be1bc231936f63c74f40b841e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/UI-EVIDENCE-PORTABLE.zip",
+      "public": null,
+      "bytes": 284622,
+      "sha256": "bc911703991d7c0bc1457793eff79aaf503b25735129d9b1c897312db955b7d9"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-41.log",
+      "public": null,
+      "bytes": 4177,
+      "sha256": "e722e429b29ead36b126a2dd9db1937b8c3f346ea2e8953e9059e9bf4767a088"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-expanded-44.log",
+      "public": null,
+      "bytes": 4461,
+      "sha256": "73b83d6dc250aae206322771cfbeea910df37c892bc9fe9ff6968a1d032e9fca"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/lesson-tests-final.log",
+      "public": null,
+      "bytes": 4575,
+      "sha256": "9494d6c0bee978a8a9f2e8a1012df289f255d7d726d7a080db501b1aa96ea53a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-reexport-manifest.json",
+      "public": null,
+      "bytes": 33256,
+      "sha256": "65e5363cdfa01718e7142eabf6bd40e10746a9d78c76beb50bd54127d1281804"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-reexports.log",
+      "public": null,
+      "bytes": 1002,
+      "sha256": "3db007aeee7995ad4697ca872dd7a7b00952b0513f1bb6367772338099a032e6"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-replay-report.json",
+      "public": null,
+      "bytes": 6253,
+      "sha256": "0207f973250b4e74d9e73a6765505bf5c1ae6144dccf8fef3f2e42659cc24a63"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-replay.log",
+      "public": null,
+      "bytes": 5058,
+      "sha256": "09140ec49efd0be25bc43193ea96db5b1e474340fe0c4e535bf0d172aacfd38a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/portable-tests.log",
+      "public": null,
+      "bytes": 4575,
+      "sha256": "7689c1fb6218ced744a7df3f961dd53197e0b5a33f33746d7d44da224554d473"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/LESSON-QA.md",
+      "public": null,
+      "bytes": 4827,
+      "sha256": "20dae5bb7a35c6d2560637c7ebfdd55ae1f64ea19d65f730b70f5a07759d035b"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.sha256",
+      "public": null,
+      "bytes": 91,
+      "sha256": "d7861cb5a9a65603a8ce47838d4feb2823382b8de36ec70117c79967e83d3517"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/UI-EVIDENCE-PORTABLE.zip",
+      "public": null,
+      "bytes": 92045,
+      "sha256": "e8a35896e2a674d3f930e40bb7a73cad29bc1d542f8ff84c79ec28c7ed23a427"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/controller-tests-final.log",
+      "public": null,
+      "bytes": 1477,
+      "sha256": "ac7b60296ccd2b340cadb5ea767dbf98e41678eba1f50bd657cd099bf20e1b85"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-final.log",
+      "public": null,
+      "bytes": 3619,
+      "sha256": "1cf6f7adbf079d65fb1bf3942a762a2b55d3785f85b0d2a18d2187e66c523f40"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/lesson-tests-first.log",
+      "public": null,
+      "bytes": 6304,
+      "sha256": "b3a4a02ee3ce298723d8a18fe3e3e875eb04b575762b4ad5f5af9aaec9a0b849"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-check.log",
+      "public": null,
+      "bytes": 4494,
+      "sha256": "2dbc356763db055b25df0a170ce41f57d51f7567f9aa4823bb218cdcd4f3ff8f"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/portable-replay-report.json",
+      "public": null,
+      "bytes": 5589,
+      "sha256": "0d78a50e356904f62836ae837ac71dbcf4b34fd1e8912d07d341a4a75364a1b9"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "bytes": 24304,
+      "sha256": "e72251a8c6d2a45841d1bf193712ac92836412c0531c53f9980e920cc925e50a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "bytes": 5589,
+      "sha256": "8fc741d0b1f420455335cf343d0ee8b5b6f5683d361514f2605d9483318a3311"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-exports.log",
+      "public": null,
+      "bytes": 868,
+      "sha256": "acc149ca03caab4b74812c576cd480ea43ba9b0b6a02a744d046896658e74eee"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-35/ui-replay.log",
+      "public": null,
+      "bytes": 4472,
+      "sha256": "623928ca22f66f7df9381a046cffffcc202fd830beabac7ce4d1ba75aa62f693"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/LESSON-QA.md",
+      "public": null,
+      "bytes": 5489,
+      "sha256": "219f8c2b2c5ff4da8b9837fedc5dd7d8e67b88bf6e1af20abb231b7867ca7573"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/lesson-tests-final.log",
+      "public": null,
+      "bytes": 4289,
+      "sha256": "5c8e73cb0b37c0b1c220918e6c86b8b7d77f988bad57fb6819824a47e82a7854"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "bytes": 24288,
+      "sha256": "8435d6b4a9b5decac0bf23aea599ecabbbde76ed80effb4cc2b651f224bc3eee"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "bytes": 5589,
+      "sha256": "6ee8f425f6b6e8f4469403e2bf34eaf7684565f6273a94019381ea9019250bfa"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-exports.log",
+      "public": null,
+      "bytes": 880,
+      "sha256": "b459267880f12808963feff12c52b9b35d156126fc24ba5d385a1f772150cf87"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/provisional-42/ui-replay.log",
+      "public": null,
+      "bytes": 4484,
+      "sha256": "e3d6dddf7aad1bd9748cdeffcd939fe1d858e0584c231783cbd527da273b6bee"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-EXPORT-MANIFEST.json",
+      "public": null,
+      "bytes": 33290,
+      "sha256": "8b261cd1054cf62288795c33c0d4f01248e23c988b44a8d210cbb99ea269c04a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/UI-REPLAY-REPORT.json",
+      "public": null,
+      "bytes": 6253,
+      "sha256": "c9d4306a0f544e7d591d6e61981d257c5268558559ff0beccf6d454e0245c91d"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-history.json",
+      "public": null,
+      "bytes": 3577,
+      "sha256": "585d6c849bbe71d504f644becc2656761cc75dc76be86cce409f69aa7747a05e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-rank-one-sphere-raw.json",
+      "public": null,
+      "bytes": 360,
+      "sha256": "17a33aa39173e1d74d719b462380de73852c4cb1b9eead40f802c7f6a0428096"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-history.json",
+      "public": null,
+      "bytes": 4094,
+      "sha256": "29b3092e92f70f1840edcb576a1df96fdc35a1bbc7575464df9f12a6ab8aa9b3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/finite-wishart-structural-zeros-raw.json",
+      "public": null,
+      "bytes": 527,
+      "sha256": "0c84618c05986e89db4fcd6db810f4c6a8f15abd9fa6d1a7faae3ac7b0df66c3"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-history.json",
+      "public": null,
+      "bytes": 54413,
+      "sha256": "e01d6b75970099d12f36e123de3f86c3ec6cd71fe3bf802be85f226e22f33237"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-continuous-raw.json",
+      "public": null,
+      "bytes": 1378,
+      "sha256": "6228253b8acdfc0b78b799d5c87664af74569b468a3358ec26cec3557053fab6"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-history.json",
+      "public": null,
+      "bytes": 59665,
+      "sha256": "9679794e332b0da10a98261e53aaf174c6194ed6a71cff536aeb5aeb7a95843d"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/fresh-complex-custom-q-raw.json",
+      "public": null,
+      "bytes": 1732,
+      "sha256": "d3872a9ad9d16d65dda3107995b65f34621fd7d2d146dc7848b9c89a5dc9da6e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "153e630c1f045044bec3ffa56aaa88bd2eeb1d44cdb60cf187436b2387730d73"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-gaussian-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "a59440887c2ba8f7e60e5159b41874b946f6074537694d3483df40e49d7e17fc"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-history.json",
+      "public": null,
+      "bytes": 9883,
+      "sha256": "ebd2f273ad2c764ec50838aa802fff3ef42e92217a7102faf0f57c3a05779e3a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/held-posterior-stiefel-raw.json",
+      "public": null,
+      "bytes": 1554,
+      "sha256": "d59d6cab8fad288334ddef988b0de041e1e6867e0fe2811fdfa8295d96df1797"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-history.json",
+      "public": null,
+      "bytes": 924197,
+      "sha256": "ded212d56fcefa555b862742fa1550c19e240e29a3c34dde28a5a434e340b039"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/maximum-ui-dimensions-blocks-raw.json",
+      "public": null,
+      "bytes": 3394,
+      "sha256": "7d0b7568d071fe0e04ac53e3981e5a675e471bff4c817fb22be520f24b5c3b14"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-history.json",
+      "public": null,
+      "bytes": 30076,
+      "sha256": "1a1bd1a57395e4311cad6aa40af684381621ebe0ee6515d0229a6fcaabb6b805"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/reshaped-three-port-raw.json",
+      "public": null,
+      "bytes": 1142,
+      "sha256": "93ae158539ee41ab7e7e763c663ac2701366bffad44dce55523dbbb2e58b35f9"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-history.json",
+      "public": null,
+      "bytes": 17127,
+      "sha256": "84893127974b490a500bb5082f892c41f2b472ce0c326d0752aeda3431bba8da"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports/short-block-unrealizable-stiefel-raw.json",
+      "public": null,
+      "bytes": 1226,
+      "sha256": "7d7e3dc46d98bc251c145e5ae06c80880e1524193a7a3a71b7e1655ad360ba7b"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-exports.log",
+      "public": null,
+      "bytes": 972,
+      "sha256": "a992c19534061117f2bca587daf27584bb881739d61069c1689f4ab10ec5691f"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/reports/ui-replay.log",
+      "public": null,
+      "bytes": 5032,
+      "sha256": "b1aeb0c66bac4e3362450bc53a2c06232f794ef1a98ca5786423cab1a25d2496"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/README.md",
+      "public": null,
+      "bytes": 2083,
+      "sha256": "07e162df6fcb73a2072a468819ef6a4bbb471ad42814cad103d87a33c9fa1c22"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/controller.test.mjs",
+      "public": null,
+      "bytes": 10687,
+      "sha256": "f7221e802a6c49491378c877dc97b2d83bc822ea4da5d544a43411b2a667a064"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "bytes": 6948,
+      "sha256": "b568a2a7fa8bb4669c6c930ada6a4c8465a4424a00ac048971e6044e6da2160a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/export-ui-records.mjs",
+      "public": null,
+      "bytes": 7510,
+      "sha256": "e13948fa9e6f27b9ebb818d99edc38ce103d23281e6fa3c50bc043322c7d2932"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs",
+      "public": null,
+      "bytes": 22296,
+      "sha256": "895735709bcc43739587e467f4895fcbbcc8da27891af8ad4892aaabd028be05"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/record-audit.mjs",
+      "public": null,
+      "bytes": 3496,
+      "sha256": "4f3edcbf24bb8decb4e4976c5d516b4ec9ded69e396a2bcb1dc2468e8cbc304e"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/replay-ui-records.mjs",
+      "public": null,
+      "bytes": 3161,
+      "sha256": "09322cdb1956e3b6afc98a5ce5854f15669b35b026e2a3111c2b9ea9070a2a6a"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/tests/test-support.mjs",
+      "public": null,
+      "bytes": 4900,
+      "sha256": "3b3140db1cf655547f024a87193ffc29fce78e0311fb0cd2aa0daa845fc16c54"
+    },
+    {
+      "source": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "public": "labs/gaussian-tradeoff/lesson/view.mjs",
+      "bytes": 4860,
+      "sha256": "aa6f5749b16fd48cb3c2a0983b96cde7d343931e10cd028b0d33221160885d64"
+    }
+  ],
+  "independentLessonReview": {
+    "report": "scripts/validation/gaussian-tradeoff/INDEPENDENT-LESSON-REVIEW.md",
+    "sha256": "6aad7a0ebeab3916dec8acbd5d0a5e66801a3d0196ec85844288c7c997f78cfb",
+    "ownerTests": 45,
+    "independentLifecycle": 9,
+    "viewRecordChecks": 50,
+    "actualDownloads": 50,
+    "pythonChecks": 716,
+    "freshReplays": 50,
+    "runtimeTests": 37,
+    "actualBrowser": false
+  },
+  "prerequisiteLink": {
+    "source": "content/pages/theory.html",
+    "addition": "<p><a href=\"gaussian-tradeoff.html#question\">继续同一篇 Gaussian 论文：从标量已知输入走到复矩阵协方差、后验估计与通感权衡 →</a>（保留上述实标量 LS 假设；新课使用 proper-complex prior 与每复使用速率。）</p>\n",
+    "beforeSha256": "042126ad549895e5d70af5cf5c30c81a0d4416b4951c9870d70efc2192e6aafc",
+    "beforeHandwrittenSha256": "7ac045c31cf4a760d8b16624f07733b58f84d504d161fb11c3ef1b10cd4777ae"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "gaussian-tradeoff-lesson-development-fixes-v1",
+  "scope": "Lesson/controller/view only; frozen numerical runtime unchanged",
+  "findings": [
+    {
+      "id": "late-import-adoption",
+      "finding": "A verified import could adopt after delayed old transport termination and overwrite a newer run",
+      "fix": "Check both lifecycle epoch and action/file epoch after awaited termination",
+      "evidence": "Portable mounted delayed-termination regressions"
+    },
+    {
+      "id": "late-reset-form",
+      "finding": "Reset could restore default controls after a newer run started during old transport termination",
+      "fix": "Fence default restoration by lifecycle and action/file epochs",
+      "evidence": "Portable mounted reset/new-run regression"
+    },
+    {
+      "id": "late-restart-state",
+      "finding": "Restart awaited old termination before capturing ownership, so it could relabel a newer complete run idle or a hidden page dead",
+      "fix": "Capture clear epoch and action ticket before await; fence before/after ensure and rejection",
+      "evidence": "Independent delayed-termination audit and portable restart/run/pagehide regressions"
+    },
+    {
+      "id": "cold-start-cancel-control",
+      "finding": "A Worker factory/readiness wait had not yet entered pending requests and could leave the cancel control disabled",
+      "fix": "Track preparing submissions separately; cancellation clears preparing and pending state",
+      "evidence": "Portable delayed-factory mounted cancel regression"
+    },
+    {
+      "id": "stale-file-input-clear",
+      "finding": "A cancelled old read could clear a newer file selection",
+      "fix": "Clear only same-selection current successful adoption or current failed read; never clear a cancelled stale read",
+      "evidence": "Portable mounted stale-file-selection and same-file retry regressions"
+    },
+    {
+      "id": "stale-export-download",
+      "finding": "A delayed raw hash could finish after newer accepted data and deliver the old download",
+      "fix": "Fence export by captured lifecycle and exact result/imported identity; rejected candidates preserve the current result and export",
+      "evidence": "Independent lifecycle audit and portable delayed-digest regressions"
+    },
+    {
+      "id": "stale-import-error",
+      "finding": "A rejected delayed corrupt import could paint an obsolete error on a newer successful result",
+      "fix": "Stale import errors become cancelled terminals; UI action errors are fenced by lifecycle and action/file epochs",
+      "evidence": "Independent lifecycle audit and portable delayed-digest regressions"
+    },
+    {
+      "id": "pre-readiness-input-mutation",
+      "finding": "Controller could retain caller-owned input until Worker readiness",
+      "fix": "Validate and own bounded input synchronously before its first await",
+      "evidence": "Portable deferred-factory mutation regression"
+    },
+    {
+      "id": "untrusted-history-render",
+      "finding": "Codec integrity does not establish a valid numeric result structure",
+      "fix": "Do not render imported historical result bodies; explicit Worker replay is required",
+      "evidence": "Mounted import/replay provenance tests"
+    },
+    {
+      "id": "custom-covariance-label",
+      "finding": "Nonnumeric custom covariance label shared communication-endpoint KKT wording",
+      "fix": "Custom Q is inapplicable to optimizer KKT table; no fake gradient/certificate or channel-eigenbasis label",
+      "evidence": "Independent audit and portable custom-Q view test"
+    },
+    {
+      "id": "matrix-caption-ticks",
+      "finding": "Blanket not-power caption was wrong for covariance diagonals, and 72 real-BFIM row ticks would overlap",
+      "fix": "Explicit raw-component versus modulus-square caption with power diagonals; thin large-matrix index ticks while retaining all data",
+      "evidence": "Static SVG-geometry review; actual-browser rendering remains unrun"
+    },
+    {
+      "id": "provisional-runtime-test-pin",
+      "finding": "First test receipt compared accepted final kernel to a provisional earlier hash",
+      "fix": "Reconcile test pin with accepted SOURCE-FREEZE; no runtime byte edited",
+      "evidence": "Preserved provisional log and final seven-file exact hash check"
+    }
+  ],
+  "acceptance": "Use final test and independent review receipts; this change log alone is not acceptance"
+}

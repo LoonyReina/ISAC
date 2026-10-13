@@ -1,0 +1,17 @@
+✔ canonical tagged f64 exactly round-trips signed zero and finite extremes (6.863995ms)
+✔ canonical identity ignores insertion order, snapshots alias-free values (0.582719ms)
+✔ rejects sparse arrays, nonfinite values and unsupported primitives (0.263638ms)
+✔ rejects prototypes, typed arrays, accessors, symbols and nonenumerable fields without invoking getters (0.384591ms)
+✔ rejects cycles, dangerous keys and malformed Unicode (0.380574ms)
+✔ structural and conservative canonical resource budgets are enforced (516.977203ms)
+✔ parser rejects noncanonical, extra-tag, duplicate-key, forbidden and nonfinite encodings (0.477751ms)
+✔ raw and historical records are frozen, hash-checked, exact and explicitly historical (5.029263ms)
+✔ async hashes, exports and object imports snapshot before yielding (3.622164ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 620.159962

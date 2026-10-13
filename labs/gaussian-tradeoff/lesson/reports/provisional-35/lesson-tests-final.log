@@ -1,0 +1,43 @@
+✔ lesson numerical runtime remains byte-identical to the seven reviewed source files (2.714748ms)
+✔ actual Worker computes arbitrary continuous weights and fresh complex H/Q with immutable records (185.541535ms)
+✔ held posterior inputs contain exactly X/Y/noise/prior and preserve selected sample identity (150.836416ms)
+✔ raw/history imports preserve provenance and require actual Worker fresh replay (410.438553ms)
+✔ invalid model and corrupt record preserve current result and in-flight accepted work (250.23524ms)
+✔ accepted replacement supersedes active actual work and presents only newest input (168.10467ms)
+✔ actual computation cancel clears current exports and restarts safely (245.047611ms)
+✔ actual computation stop clears current exports and restarts safely (244.773126ms)
+✔ actual computation reset clears current exports and restarts safely (246.901278ms)
+✔ actual Worker death rejects work and explicit restart permits fresh output (244.629734ms)
+✔ stale asynchronous file read is fenced by fresh run, newer import, and reset (202.296952ms)
+✔ suspension invalidates actual work until explicit restart (231.944409ms)
+✔ finite Wishart and sphere cases run actual integrals with explicit model boundaries (272.520315ms)
+✔ every positive covariance mode is retained: short T reports unrealizable Stiefel (110.630875ms)
+✔ mounted controls execute continuous κ and a fresh complex H, with exact actual UI downloads (190.806814ms)
+✔ display-only Gaussian/Stiefel, matrix, components, truth and stages never regenerate observations (283.398225ms)
+✔ mounted arbitrary Q is a true input with exact power budget and retained complex orientation (131.042866ms)
+✔ shape/model edits change actual arrays, κ stays continuous, and short blocks do not fabricate Stiefel (189.25184ms)
+✔ held X/Y processing uses selected law and only changes posterior assumptions (158.998667ms)
+✔ mounted finite Wishart/sphere controls run integrals, display diagnostics and export the actual operation (265.960805ms)
+✔ downloaded raw/history imports do not execute until explicit fresh replay (407.920651ms)
+✔ invalid input or hash-corrupt import preserves previous result, plot, and export identity (142.734965ms)
+✔ mounted cancel during actual Worker work cannot restore stale results (249.941958ms)
+✔ mounted stop during actual Worker work cannot restore stale results (245.173851ms)
+✔ mounted reset during actual Worker work cannot restore stale results (240.571519ms)
+✔ mounted actual Worker death clears exports; restart supports fresh work (261.080148ms)
+✔ mounted valid newer click supersedes an actual run and no old input is presented (199.238471ms)
+✔ stale file reads cannot overwrite newer run, reset, import, draft or file selection (202.988214ms)
+✔ late old import termination cannot overwrite a newer Run or its draft (283.458124ms)
+✔ mounted pagehide suspends computation and does not replay stale results on pageshow (242.567238ms)
+✔ static page has unique IDs, labeled inputs, progressive stages and explicit scope (1.057436ms)
+✔ late reset termination cannot overwrite controls or output from a newer Run (248.961957ms)
+✔ failed current file read supports same-file retry and obsolete read failures stay silent (127.947626ms)
+✔ invalid newer mounted run and corrupt import cannot cancel accepted actual work (315.325725ms)
+✔ raw import and reset remove previously revealed truth rather than leaving stale scores (261.972826ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4754.484411

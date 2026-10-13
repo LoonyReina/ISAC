@@ -1,0 +1,51 @@
+{
+  "schema": "networked-sync-owned-tests-stable-source-v1",
+  "started_at_utc": "2026-10-12T22:48:08.449263+00:00",
+  "completed_at_utc": "2026-10-12T22:48:34.413246+00:00",
+  "command": "node --test labs/networked-sync/lesson/tests/lesson.test.cjs",
+  "exit_code": 0,
+  "source_files": [
+    {
+      "path": "content/pages/networked-sync.html",
+      "bytes": 18849,
+      "sha256": "f4adc9f3bde7e25187a81e15930c8137a93da8e7a5e9d4264703c76cde8a5780"
+    },
+    {
+      "path": "labs/networked-sync/lesson/controller.js",
+      "bytes": 7262,
+      "sha256": "d8c6de52ac728c68eb0609ac8ca35155e49db9d53af6801238ed0b0a19b6f32b"
+    },
+    {
+      "path": "labs/networked-sync/lesson/lesson.css",
+      "bytes": 3222,
+      "sha256": "252bc12f962179427f57aabd73f8d743543e0016f523b02a632f54ffe0359d4e"
+    },
+    {
+      "path": "labs/networked-sync/lesson/lesson.js",
+      "bytes": 26534,
+      "sha256": "34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552"
+    },
+    {
+      "path": "labs/networked-sync/lesson/stages.js",
+      "bytes": 8052,
+      "sha256": "72fc52e078f2ede43bb0870ea9a6def1f39c20b672c73fb59d22d578b51da995"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/dom-harness.cjs",
+      "bytes": 6948,
+      "sha256": "b568a2a7fa8bb4669c6c930ada6a4c8465a4424a00ac048971e6044e6da2160a"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/export-ui-records.cjs",
+      "bytes": 7630,
+      "sha256": "fefc208da0fbe118a9f70b91c6857a5332acbc79a51fbe9aaf35f18f087c46b0"
+    },
+    {
+      "path": "labs/networked-sync/lesson/tests/lesson.test.cjs",
+      "bytes": 38805,
+      "sha256": "9d3a62aad61af4ea8f7f068d0d2e191aaed51898938ada71d68873b3c61c6dd2"
+    }
+  ],
+  "source_files_unchanged": true,
+  "browser_tested": false
+}

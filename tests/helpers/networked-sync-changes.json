@@ -1,0 +1,757 @@
+{
+  "registry": [
+    {
+      "path": [
+        "cases"
+      ],
+      "lengthBefore": 18,
+      "append": [
+        {
+          "id": "case-networked-sync",
+          "title": "网络同步：从复数张量分开目标与时钟",
+          "fields": {
+            "先修": "<a href=\"network-clock.html#model\">标量时钟先修</a>；<a href=\"foundations.html#ofdm\">复数OFDM观测</a>；<a href=\"foundations.html#geometry\">双站路径几何</a>",
+            "问题": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+            "交互机制": "两向含噪张量先独立生成，再固定同一观测运行平滑CP、SCPD、ESPRIT和ALS；查看实际因子、LS列、投影格点与候选、排列得分和时钟/CFO输出。",
+            "证据类型": "固定arXiv:2607.18680v1理论与仿真；独立Python参考、JavaScript及实际Node Worker核验。真实浏览器验收单独开放。",
+            "结论边界": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。",
+            "下一研究问题": "低SNR、近碰撞、主值混叠和初始化怎样让数值停止与几何通过同时伴随错误时钟？"
+          },
+          "unit": "networked-sync",
+          "paper": "networked-sync.html#paper",
+          "next": "networked-sync.html#limits",
+          "learningEntry": "networked-sync.html#question",
+          "paperComparison": {
+            "comparisonStatus": "partial",
+            "sourceTitle": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+            "sourceUrl": "https://arxiv.org/html/2607.18680v1",
+            "version": "v1，2026-07-21",
+            "sourceId": "case-networked-sync-paper",
+            "comparisonLink": "networked-sync.html#paper",
+            "researchQuestion": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+            "observationsAndUnknowns": "两向接收天线×子载波×符号复数张量和已知导频；已知秩L、资源与算法设置，未知复增益、角度、路径延迟/Doppler、时钟offset与CFO。生成真值只供独立评估，不进入接收机和关联。",
+            "locator": {
+              "summary": "固定v1 §II式(1)–(5)、§III-A式(7)–(11)、§IV-A式(16)–(27)与算法1；§VI图2–10与表I仅源对照，不称原曲线复现。",
+              "section": "§II、§III-A、§IV-A、§VI",
+              "figure": "图2–10、表I：缩减Monte Carlo对照，不复现原图",
+              "equation": "式(1)–(5)、(7)–(11)、(16)–(27)；算法1"
+            },
+            "paperEvidenceType": "理论、可辨识/界分析和数值仿真；不是实网测量",
+            "siteArtifactType": "原尺寸有界源算法参考、鲜生成/持有观测重算及Node Worker教学集成；实际浏览器、原图和整篇复现仍开放",
+            "retainedAssumptions": [
+              "两向互易可分离MIMO-OFDM复数观测、已知非零导频和已知秩1–3",
+              "普通发射转置、相反offset/CFO符号；明确radian/sample、C序展开与UΣVᴴ约定",
+              "三轴4×8×5平滑初始化、实际SVD模式LS与Vandermonde连续投影",
+              "所有方法使用同一pilot-divided Y；SCPD和ALS共用同一初始化，计时包含初始化"
+            ],
+            "omittedMechanisms": [
+              "原作者CP-VDM/SOE-MP代码、全部原图和每对500次、共3000站对试验的原Monte Carlo设置",
+              "算法2/完整网络时钟循环一致性、跟踪、检测器、CRB达到性",
+              "时域ICI/ISI、RF硬件、实际浏览器运行和端到端绘制延迟",
+              "没有全局最优、残差单调或所有弱路径参数一致性保证"
+            ],
+            "metrics": [
+              "每个真实A/B/C更新残差、实际LS列与投影相关功率格点/候选",
+              "时钟偏差s、CFO Hz、路径延迟s、源约定Doppler Hz和角度rad",
+              "源几何成功率、全部有效解误差与成功条件RMSE分开；失败不设零",
+              "保留近碰撞相位差3.2003e-4 rad超过8e-5 rad门槛的失败"
+            ],
+            "unknowns": [
+              "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。",
+              "源cycle/radian及展开记号存在歧义，采用声明的操作约定，不推断未发表作者实现",
+              "低SNR几何通过率37/72与9/72是本站参考切片；没有证实与源曲线差距的单一原因"
+            ],
+            "resourceBudget": {
+              "summary": "默认6×12×8，可选原尺寸M=10、N=36、K=20，已知秩1–3；最多20轮、projection oversampling8/16/32，配置联合预算受严格上限约束。",
+              "bandwidth": "10MHz、28GHz默认；相位单位rad/sample，不混作cycle/sample",
+              "energy": "同一观测、导频和源SNR约定；同一随机场景/单位噪声下重生成SNR变化",
+              "duration": "Ts=1.5/Δf；声明可分离观测，不等同时间域ICI/ISI仿真",
+              "aperture": "10阵元、半波长间距；三轴4×8×5平滑",
+              "priorKnowledge": "已知秩L与导频；真值和误差评估隔离",
+              "other": [
+                "独立参考432对试验与4722子步离线验证",
+                "源尺寸Hankel160×3248复数、8,314,880字节；完整历史有额外内存开销",
+                "仅Node测量，不是浏览器性能；ZIP仅手动可选下载"
+              ]
+            },
+            "verificationNote": "固定PDF摘要e8da91552c32d61dd40cbc3c0224c7b654df04e9a4c3e85c0781d58f66853f02；七文件JS冻结2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b。范围与保留失败见docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md。"
+          }
+        }
+      ]
+    },
+    {
+      "path": [
+        "units"
+      ],
+      "lengthBefore": 33,
+      "append": [
+        {
+          "id": "networked-sync",
+          "title": "网络同步：从复数张量分开目标与时钟",
+          "href": "networked-sync.html#experiment",
+          "question": "两端都收到含噪复数样本，怎样把目标参数、时钟偏差和频偏分开？",
+          "prerequisites": [
+            "network-clock.html#model",
+            "foundations.html#ofdm",
+            "foundations.html#geometry"
+          ],
+          "group": "research",
+          "primaryDirectionId": "networks",
+          "action": "生成或导入两向复数观测，实际运行结构CP与同观测基线；查看平滑、LS、连续投影、关联和每步残差，再单独揭示真值误差。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "pages"
+      ],
+      "lengthBefore": 29,
+      "append": [
+        {
+          "path": "networked-sync.html",
+          "title": "从两块复数观测中，分开目标、时钟与频偏",
+          "stage": "experiments",
+          "role": "源算法有界实现 · 互易复数张量、结构CP与独立误差评估",
+          "prerequisites": [
+            "network-clock.html#model",
+            "foundations.html#ofdm",
+            "foundations.html#geometry"
+          ],
+          "case": "case-networked-sync",
+          "next": "reading.html#direction-networks",
+          "nextLabel": "对照多站协作的原文、失败与资源预算"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "primaryCaseIds"
+      ],
+      "lengthBefore": 2,
+      "append": [
+        "case-networked-sync"
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        0,
+        "items"
+      ],
+      "lengthBefore": 2,
+      "append": [
+        {
+          "label": "两向复数样本，怎样分开目标与时钟？",
+          "href": "networked-sync.html#question",
+          "kind": "lesson",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        1,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "张量、导频、相反时频偏差与未知因子",
+          "href": "networked-sync.html#model",
+          "kind": "model",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        2,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "同一观测逐步运行结构CP和实际基线",
+          "href": "networked-sync.html#experiment",
+          "kind": "interactive",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        3,
+        "items"
+      ],
+      "lengthBefore": 3,
+      "append": [
+        {
+          "label": "固定v1：算法1与声明的实现差异",
+          "href": "networked-sync.html#paper",
+          "kind": "paper-guide",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        4,
+        "items"
+      ],
+      "lengthBefore": 2,
+      "append": [
+        {
+          "label": "几何通过、残差停止和错误时钟",
+          "href": "networked-sync.html#limits",
+          "kind": "limits",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    },
+    {
+      "path": [
+        "directions",
+        4,
+        "levels",
+        5,
+        "items"
+      ],
+      "lengthBefore": 2,
+      "append": [
+        {
+          "label": "导出原始观测、重算与保留全部失败",
+          "href": "networked-sync.html#reproduce",
+          "kind": "reproduction-plan",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+        }
+      ]
+    }
+  ],
+  "backlog": [
+    {
+      "path": [
+        "sequence",
+        "activeStages"
+      ],
+      "lengthBefore": 7,
+      "append": [
+        {
+          "paperId": "supplement-case-clock",
+          "stage": "browser-validation",
+          "status": "pending",
+          "branch": "Local source-derived reciprocal CP lesson and actual Node Worker evidence; actual browser and publication gated separately"
+        }
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "canonicalReferences",
+        "caseIds"
+      ],
+      "lengthBefore": 1,
+      "append": [
+        "case-networked-sync"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "canonicalReferences",
+        "sourceIds"
+      ],
+      "lengthBefore": 1,
+      "append": [
+        "case-networked-sync-paper"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "source",
+        "pdfSha256"
+      ],
+      "before": null,
+      "after": "e8da91552c32d61dd40cbc3c0224c7b654df04e9a4c3e85c0781d58f66853f02"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "source",
+        "hashStatus"
+      ],
+      "before": "not-recorded",
+      "after": "recorded"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "source",
+        "details",
+        "operationalConventions"
+      ],
+      "added": true,
+      "after": "radian/sample, C-order tensor/unfolding, ordinary transmit steering transpose, standard UΣVᴴ; source ambiguities retained"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "source",
+        "details",
+        "audit"
+      ],
+      "added": true,
+      "after": "scripts/validation/networked-sync/SOURCE-AUDIT.md"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "baselines",
+        0
+      ],
+      "before": "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model.",
+      "after": "Same actual pilot-divided Y: three-axis smoothed CP, SCPD, ESPRIT, unstructured ALS; SCPD/ALS exact same initializer; initialization-inclusive timing"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "metrics",
+        0
+      ],
+      "before": "本站一次确定性试验的路径/位置误差",
+      "after": "Offset error s and CFO error Hz remain explicit even when source geometry passes"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "metrics",
+        1
+      ],
+      "before": "原文成功试验条件下的 RMSE",
+      "after": "All solved errors and source-success-conditioned RMSE with denominators"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "metrics",
+        2
+      ],
+      "before": "原文成功率，表I仅对应图2–3",
+      "after": "All starts and substep residual increases; numerical failures, aliases, association ties and clipping retained"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "resources",
+        0
+      ],
+      "before": "Existing independent teaching budget, not the target paper configuration: 原文 §VI 记录 M=10、N=36、K=20、R=20 与 CP-VDM 初始化。本站为等权路径最小二乘，不建立 SNR 到时延方差的映射，不等同原文参数预算。",
+      "after": "Original10×36×20 two-link tensors, known ranks1–3; declared bounded continuous projection and20-sweep cap"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "unresolved"
+      ],
+      "lengthBefore": 0,
+      "append": [
+        "Exact author CP-VDM/SOE-MP, full curves and all source settings are not reproduced",
+        "Golden-section versus SciPy bounded refinement is a declared port adaptation"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "details",
+        "metricScope"
+      ],
+      "before": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+      "after": "Bounded source-derived numerical reference and fresh local receiver; source geometry filter differs from clock correctness and added gross-error diagnostic"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "experiment",
+        "details",
+        "boundedNetworkedSync"
+      ],
+      "added": true,
+      "after": {
+        "shape": [
+          10,
+          36,
+          20
+        ],
+        "ranks": [
+          1,
+          2,
+          3
+        ],
+        "referencePairTrials": 432,
+        "referenceSubsteps": 4722,
+        "lowSnrGeometrySuccess": {
+          "denominator": 72,
+          "rank1": 37,
+          "rank2": 9
+        },
+        "nearCollision": {
+          "measuredPhaseDifferenceRad": 0.00032003,
+          "thresholdRad": 0.00008,
+          "passed": false
+        },
+        "allCasesPhaseParityPassed": false
+      }
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "classification"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "source-derived-bounded-fresh-core-and-local-lesson; browser-gate-open"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "live"
+      ],
+      "before": "已关联单目标标量时延机制演示；忽略偏差、oracle 与标量互易三种教学对照",
+      "after": "两向实际复数观测上的平滑CP、SCPD、ESPRIT和ALS；原标量时钟机制独立保留为先修"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "offline"
+      ],
+      "before": null,
+      "after": "432对原尺寸缩减Monte Carlo切片与4722真实子步重构；不复现原曲线"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "details",
+        "runtimeFreeze"
+      ],
+      "added": true,
+      "after": "2e74d10363e2d2feac9a06ec0c061c9d8059345023a3274c530a30f02728018b"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "details",
+        "runtimeFreezeEntries"
+      ],
+      "added": true,
+      "after": 7
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "details",
+        "browserAccepted"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "details",
+        "fullPaper"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "implementation",
+        "details",
+        "lesson"
+      ],
+      "added": true,
+      "after": "networked-sync.html#question"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "source"
+      ],
+      "before": "reopening-required",
+      "after": "audited-for-selected-core"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "modelFidelity"
+      ],
+      "before": "not-validated",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "algorithm"
+      ],
+      "before": "not-implemented",
+      "after": "partial-live"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "independentValidation"
+      ],
+      "before": "pending",
+      "after": "passed"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "selectedExperiment"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "liveExecution"
+      ],
+      "before": "prerequisite-only",
+      "after": "partial-core"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stages",
+        "uiLearning"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stageEvidence",
+        "source"
+      ],
+      "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+      "after": "固定2607.18680v1 PDF audited; source unit/unfolding ambiguities handled operationally, not identified as author implementation."
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stageEvidence",
+        "algorithm"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "Seven exact-byte source-derived JS files independently reviewed; direct SVD LS and FFT-bracketed golden-section projection. Severe near-collision tight phase parity failure retained."
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stageEvidence",
+        "selectedExperiment"
+      ],
+      "before": "No independently reproduced named paper experiment established by this inventory.",
+      "after": "432 original-dimension pair trials, 4722 factor substeps independently replayed; low-SNR geometry counts37/72 and9/72 are not source curves."
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stageEvidence",
+        "fullPaper"
+      ],
+      "before": "No full-paper reproduction established; the minimal target is a first milestone only.",
+      "after": "Zero full-paper reproductions. Original curves, author code, Algorithm2, full network and hardware remain open."
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "stageEvidence",
+        "latency"
+      ],
+      "before": "No measured browser control-to-result latency for the faithful target core.",
+      "after": "Local Node evidence only, not browser control-to-painted-result timing; browser latency null."
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "missingImplementation",
+        0
+      ],
+      "before": "互易 MIMO-OFDM 复数观测、CFO、多径和多目标分离",
+      "after": "Full source curves and exact author baselines"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "missingImplementation",
+        1
+      ],
+      "before": "结构 CP/Vandermonde 求解及算法基线",
+      "after": "Actual browser, accessibility, download/navigation and latency acceptance"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "missingImplementation",
+        2
+      ],
+      "before": "幅相信道、检测、关联、跟踪与硬件实测",
+      "after": "Algorithm2, full-network cycle consistency, tracking, time-domain ICI/ISI and hardware"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "blockers",
+        0
+      ],
+      "before": "互易 MIMO-OFDM 复数观测、CFO、多径和多目标分离",
+      "after": "Actual browser integration and release gates remain open"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "blockers",
+        1
+      ],
+      "before": "结构 CP/Vandermonde 求解及算法基线",
+      "after": "Original-source curve and severe weak-path phase-parity boundaries retained"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "evidence",
+        "currentRunnable"
+      ],
+      "before": "已关联单目标标量时延机制演示；忽略偏差、oracle 与标量互易三种教学对照",
+      "after": "networked-sync.html#experiment"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "evidence",
+        "fixedSourceAudit"
+      ],
+      "before": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文",
+      "after": "docs/NETWORKED-SYNC-SOURCE-EVIDENCE.md"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "evidence",
+        "independentPortReview"
+      ],
+      "added": true,
+      "after": "scripts/validation/networked-sync/INDEPENDENT-PORT-REVIEW.md"
+    },
+    {
+      "path": [
+        "papers",
+        31,
+        "details",
+        "failureGates"
+      ],
+      "added": true,
+      "after": {
+        "geometryIsClockCorrectness": false,
+        "stoppingIsGlobalConvergence": false,
+        "projectionMonotone": false,
+        "allCasesPhaseParityPassed": false,
+        "importedHistoryIsFresh": false,
+        "browserAccepted": false
+      }
+    }
+  ]
+}

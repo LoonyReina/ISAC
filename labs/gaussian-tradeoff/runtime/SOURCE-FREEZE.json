@@ -1,0 +1,24 @@
+{
+  "schema": "gaussian-isac-js-source-freeze-v1",
+  "release": "0.1",
+  "date": "2026-10-12",
+  "reference": {
+    "paper": "arxiv:2204.06938v8",
+    "pdf_sha256": "8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342",
+    "core_sha256": "b06e329b927cda7adb1e2d38b320a1f2ca1bee287ebe8dec50d6de86fe176bb2",
+    "manifest_sha256": "716560ac0ecb32689ad187b6866f7ead4e07fe76d21e4490991bde5c4110ddad",
+    "archive_sha256": "235619c80cc0ebf8551138a1ef241adefacddb0f15a79ca973718fb5ccd5481c"
+  },
+  "runtime_files": {
+    "kernel.mjs": "0f2dc07dc891593cfe2190d09d395a6be4b7343a43c52f45dd6b1b9a6d176310",
+    "math.mjs": "930bedc07777ea6c078bc742dbc4b64938cf963b8f44c35902f80967f47fd79d",
+    "presets.mjs": "9a9633235b4a86aa8c084c915394d9ef004c1ca5062a8507c44ff016e22851ae",
+    "runtime.mjs": "94352d73c3921f7a83b6313ccdf31d2f0aa3e311c5de342f9cf18f002e1b6758",
+    "worker.mjs": "acd716f63099a6e3e773c29e51b23d5ff8f8babbfb442830bdcf55559bb9727c",
+    "codec.mjs": "cd210349a1755aba09af3c8bcf0ebb046a935ca8acd3f1839a56b8a9c4f033aa",
+    "vendor/linalg.js": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc"
+  },
+  "source_free": "No paper PDF, source figure image or author code is included; code is original first-party implementation",
+  "testing_boundary": "actual Node worker_threads plus browser-module-branch VM; no actual browser or UI validation",
+  "presets": "input matrices only, never table-driven result lookup"
+}

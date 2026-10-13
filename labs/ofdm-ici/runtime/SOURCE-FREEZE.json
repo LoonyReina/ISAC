@@ -1,0 +1,43 @@
+{
+  "schema_version": "ofdm-ici-source-freeze-v1",
+  "version": "0.1.0",
+  "created_utc": "2026-10-12T19:43:30.495227+00:00",
+  "source_arxiv": "https://arxiv.org/pdf/2103.15694v1",
+  "source_pdf_sha256": "ec454aa4e6e270f780ee28772b37ebc8f213203f9bf121bbf82a53cdc97dd5b5",
+  "reference_core_sha256": "fee9e4a55707fe251f73bf343d0ac0142607d6c827cfd4e8bd0c974bba439cdb",
+  "runtime_files": [
+    {
+      "path": "js/evaluate.js",
+      "bytes": 7206,
+      "sha256": "bcf9be4cb478928e4744d3dea357e20b38f53b793f67a7a5f9e43c64255c51ac"
+    },
+    {
+      "path": "js/ici-kernel.js",
+      "bytes": 35957,
+      "sha256": "3c9e13e8bbd478802c4292999c7633b4e35dba7f2b7a861e7413dce43ac5ddbe"
+    },
+    {
+      "path": "js/linalg.js",
+      "bytes": 18255,
+      "sha256": "c7e21dadbac282314c504c5f1b73a4de18964c18ee1d06cc34eedcce1d81509a"
+    },
+    {
+      "path": "js/sha256.js",
+      "bytes": 2476,
+      "sha256": "11ed1580ff4e1f5c627389c242079fc72595fd69bbf101c43c662aa61c01d657"
+    },
+    {
+      "path": "worker/ici-client.js",
+      "bytes": 7124,
+      "sha256": "1397e1f04bb674973fdebc29213c2531e8383b3aa3f959504761f65dcdf20b75"
+    },
+    {
+      "path": "worker/ici-worker.js",
+      "bytes": 8491,
+      "sha256": "864131d8d1d91658397a3ca7cd2f1e8cb55ab847a90c7d6c6ef6271d6e66f9fc"
+    }
+  ],
+  "no_ui": true,
+  "no_publication": true,
+  "independent_port_review": "separate review in progress; not inherited from Python review"
+}
