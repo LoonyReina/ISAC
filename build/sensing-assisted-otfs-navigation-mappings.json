@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "a736b7b15b282a8ba2b6b9a5748afbaec6faa7bc",
+  "baselineManifestSha256": "3c5e7cfe004f1da14631dc3c9e411b2f86db88a3953a613d49f545bf8ede1281",
+  "addedEntries": [
+    {
+      "source": "tests/sensing-assisted-otfs-navigation.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-navigation.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/sensing-assisted-otfs-navigation-owned.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-navigation-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/sensing-assisted-otfs-navigation-preservation.cjs",
+      "compatibility": "tests/helpers/sensing-assisted-otfs-navigation-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/sensing-assisted-otfs-navigation-delta.json",
+      "compatibility": "tests/helpers/sensing-assisted-otfs-navigation-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/sensing-assisted-otfs-navigation-integration-delta.json",
+      "compatibility": "tests/helpers/sensing-assisted-otfs-navigation-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/sensing-assisted-otfs-navigation-owned.json",
+      "compatibility": "tests/helpers/sensing-assisted-otfs-navigation-owned.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/sensing-assisted-otfs-navigation-mappings.json",
+      "compatibility": "build/sensing-assisted-otfs-navigation-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

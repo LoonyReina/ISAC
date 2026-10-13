@@ -43,7 +43,15 @@ export function mount(doc=globalThis.document,{workerFactory,urlApi=globalThis.U
  listen(el('receive-row'),'input',()=>{const draft=el('receive-row').value,v=Number(draft),N=session.source?.input?.shape?.[0];if(draft.trim()===''||!Number.isInteger(v)||v<0||v>=N){session.error='接收行号需为当前帧内的整数；保留上次有效行';session.emit();return;}receiveRow=v;session.error=null;render();});
  const extrinsic=()=>{const x=extrinsicExample(Number(el('exclude').value));el('extrinsic').textContent=`独立乘积例（非当前轨迹）：未归一化 [${x.product.map(exact)}] → P=[${x.probabilities.map(exact)}]`};listen(el('exclude'),'change',extrinsic);extrinsic();
  el('offline-summary').innerHTML=table(['offline-reference条件','总能量','修复/忽略错误数','paired ΔBER','逐条件95%区间','四模式cap数'],offlineRows.map(x=>[x.condition,fmt(x.energy),`${x.receivers.moment_repaired.errors}/${x.receivers.ignored_uncertainty.errors}（分母30600）`,fmt(x.delta),x.CI95.map(fmt).join(' … '),Object.entries(x.receivers).map(([k,v])=>`${k}: ${v.status_counts.iteration_cap??0}`).join('; ')]));
- const win=doc.defaultView;const suspend=async e=>{clearUrls();await session.suspend(e.type);};if(win){listen(win,'pagehide',suspend);listen(win,'popstate',suspend);listen(win,'pageshow',()=>{session.error=null;session.emit();});}
+ const win=doc.defaultView;
+ const documentLocation=()=>{try{const url=new URL(win.location.href);url.hash='';return url.href;}catch{return null;}},mountedLocation=documentLocation();
+ const suspend=async e=>{clearUrls();await session.suspend(e.type);};
+ // Fragment links and their Back/Forward entries also dispatch popstate.
+ // Only the mounted document URL (including query, excluding fragment) is safe.
+ // Real departures always retain the unconditional pagehide fence, even when
+ // BFCache later restores this same URL. pageshow never restarts computation.
+ const historyNavigation=e=>{if(!mountedLocation||documentLocation()!==mountedLocation)return suspend(e);};
+ if(win){listen(win,'pagehide',suspend);listen(win,'popstate',historyNavigation);listen(win,'pageshow',()=>{session.error=null;session.emit();});}
  fill(defaults());render();return {session,get source(){return session.source;},run,fill,render,download,async destroy(){destroyed=true;clearUrls();listeners.forEach(f=>f());await session.destroy();}};
 }
 if(typeof document!=='undefined'&&document.getElementById('so-form'))mount(document);

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "file": "tests/sensing-assisted-otfs-navigation.test.cjs",
+  "bytes": 12570,
+  "sha256": "a935b9d13b6d5125ae9121c4beb5b6c7f5511d1f9562fe27b6206becc7badee1",
+  "names": [
+    "navigation: six-step anchors preserve an active real 16-receiver run",
+    "navigation: fragment Back and Forward preserve the submitted owner and complete normally",
+    "navigation: completed selection, notice, verification and download survive anchors",
+    "navigation: pagehide persisted=true cancels at unchanged URL and return needs explicit run",
+    "navigation: pagehide persisted=false cancels at unchanged URL and return needs explicit run",
+    "navigation: non-fragment history departure cancels /ISAC/reading.html",
+    "navigation: non-fragment history departure cancels /ISAC/otfs-sensing-assisted.html?other=1",
+    "navigation: missing, malformed or unreadable location fails closed on popstate",
+    "navigation: anchor traversal keeps a pending import valid without taking background run ownership",
+    "navigation: reset still fences pending import and old Worker callbacks after hash traversal",
+    "navigation: delayed old departure cannot overwrite explicit restart or accept a stale import"
+  ],
+  "sourceOnlyGates": {
+    "tests/sensing-assisted-otfs-navigation-integration.test.cjs": [
+      "navigation release restores the exact accepted manifest and explicitly stages all new build-only sources",
+      "navigation release exact source inverses validate both endpoints and reject modified omitted or historical bytes",
+      "navigation release restores original v2 and v2.1 lesson identities in strict inverse order",
+      "navigation release binds the active lesson profile without changing any prior module or public identity",
+      "navigation release retains the Gaussian standalone builder inverse and exact prior OTFS builder bytes"
+    ],
+    "tests/sensing-assisted-otfs-dependencies.test.cjs": [
+      "sensing-assisted OTFS exactly classifies all 125 functional files and preserves the entire accepted public map",
+      "sensing-assisted OTFS binds 13 modules including seven exact js ESM sources and the lazy Worker edge",
+      "sensing-assisted OTFS source path policy endpoint and jointly spoofed profiles fail closed",
+      "sensing-assisted OTFS namespace rejects arbitrary extensions and every changed public auxiliary byte",
+      "sensing-assisted OTFS inverse layers verify both ends and preserve prior parser builder contracts and adapters",
+      "sensing-assisted OTFS repair additions are explicitly staged and exact chained file inverses reject unreviewed bytes",
+      "sensing-assisted OTFS standalone oracle repair changes only main CLI path selection and preserves frozen numerical validation"
+    ]
+  }
+}
