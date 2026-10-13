@@ -6,7 +6,7 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const registry=JSON.parse(read('site/registry.json')),data=require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(JSON.parse(read(registry.researchGuidesFile)));
-const legacyUnitCount=registry.units.length-1;
+const legacyUnitCount=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).units.length-1;
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
 const {remainingTraceIds,withoutRemainingTraces,priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
@@ -90,7 +90,7 @@ test('reading navigation and direction links resolve to the same generated guide
   a.ok(card.includes(`href="#research-guides-${id}"`));a.ok(card.includes(data.cards.filter(c=>c.directionId===id).length+' 篇问题式原文导读'));a.match(card,data.cards.some(c=>c.directionId===id&&c.executable)?/算法覆盖以卡片标注为准/:/不增加实验覆盖/);
  }
  a.equal(M.renderGuideDirectionLink([],registry.directions[0].id),'');
- a.match(registry.directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);
+ a.match(require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).directions.find(d=>d.id==='waveforms').scope,/完整 OTFS 收发机实验仍待实现/);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
  for(const [,href]of render().matchAll(/href="([^"]+)"/g)){
   if(href.startsWith('#')){a.ok(ids.includes(href.slice(1)),href);continue;}

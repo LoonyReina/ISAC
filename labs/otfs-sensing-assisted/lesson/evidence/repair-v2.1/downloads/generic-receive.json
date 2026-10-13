@@ -1,0 +1,49 @@
+{
+  "schema": "sensing-assisted-otfs-lesson-record-v1",
+  "canonicalPaperId": "otfs-sensing-assisted-2021",
+  "runtimePaperId": "paperotfs-sensing-assisted-2021",
+  "provenance": {
+    "source": "https://arxiv.org/pdf/2105.03125v2",
+    "sourceVersion": "2105.03125v2",
+    "sourcePdfSha256": "57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98",
+    "runtimeVersion": "v3",
+    "manifestSha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6",
+    "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+    "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+  },
+  "runId": "sensing-otfs-mv6ciquh-3",
+  "parentRunId": null,
+  "operation": "receive",
+  "status": "complete",
+  "reason": null,
+  "startedAt": "2026-10-13T07:14:49.577Z",
+  "durationMs": 60.86801700000001,
+  "execution": {
+    "environment": "module-compatible runtime; execution environment not authenticated",
+    "durationBasis": "caller elapsed monotonic milliseconds including worker scheduling and transport"
+  },
+  "input": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"shape\":[2,4],\"support\":[[0,0]],\"y\":{\"$typed\":\"Float64Array\",\"values\":[0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3]},\"pilotIndex\":[0,0],\"pilot\":[1,0],\"Es\":1,\"N0\":0.1,\"priorPowers\":[1],\"mode\":\"ignored_uncertainty\",\"maxIterations\":4,\"damping\":0.5,\"tolerance\":1e-7}}",
+    "sha256": "8dacd9d72d5f8fdb5c00df0a89cf4f29c35aaff0a8ce82952ec36dbba385b11d",
+    "bytes": 337
+  },
+  "payload": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"probabilities\":{\"$typed\":\"Float64Array\",\"values\":[0.5,0.5,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633,0.000746028833836699,0.9992539711661633]},\"probabilitiesValidMask\":{\"$typed\":\"Uint8Array\",\"values\":[0,1,1,1,1,1,1,1]},\"knownPilotFlatIndex\":0,\"knownPilotValue\":[1,0],\"decisions\":{\"$typed\":\"Float64Array\",\"values\":[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]},\"status\":\"converged\",\"iterations\":2,\"history\":[{\"iteration\":1,\"maxMessageChange\":0,\"maxMarginalChange\":0.4992539711661633,\"decisionChanges\":7,\"meanEntropyBits\":0.008825996883533164,\"pluginResidualMse\":3.5063218317691515e-7},{\"iteration\":2,\"maxMessageChange\":0,\"maxMarginalChange\":0,\"decisionChanges\":0,\"meanEntropyBits\":0.008825996883533164,\"pluginResidualMse\":3.5063218317691515e-7}],\"dataMask\":{\"$typed\":\"Uint8Array\",\"values\":[0,1,1,1,1,1,1,1]},\"gainVariance\":{\"$typed\":\"Float64Array\",\"values\":[0]},\"estimatedGains\":{\"$typed\":\"Float64Array\",\"values\":[0.3,0.3]},\"receiverInputPolicy\":\"raw y + predicted support/pilot/statistical powers only\"}}",
+    "sha256": "444af980c77787f8dc869bb612fed3301d897178bb39e91b794b4ff2323b02a7",
+    "bytes": 1244
+  },
+  "counts": {
+    "requestedFrames": 0,
+    "storedFrames": 0,
+    "completedFrames": 0,
+    "requestedReceiverRecords": 1,
+    "completedReceiverRecords": 1,
+    "unfinished": []
+  },
+  "verificationPolicy": {
+    "sourceAuthenticity": "not-verified",
+    "independentNumericalReplay": "not-run",
+    "history": "untrusted imported history until explicit same-implementation replay",
+    "halfTies": "No probability snapping or deletion. Independent cross-language categorical disagreements require per-iteration half-tie localization; all other fields remain strict."
+  }
+}

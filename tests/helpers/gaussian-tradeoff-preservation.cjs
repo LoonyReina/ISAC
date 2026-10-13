@@ -15,7 +15,7 @@ function inverseText(s,records){for(const ch of [...records].reverse()){a.equal(
 const delta=()=>require('./gaussian-tradeoff-runtime-delta.json');
 function withoutGaussianClassicParser(s){return inverseText(B.withoutHostedUiParser(s,'classic'),delta().classicParserChanges);}
 function withoutGaussianModuleParser(s){return inverseText(B.maybeWithoutCellfreeModuleParser(B.withoutHostedUiParser(s,'module')),delta().moduleParserChanges);}
-function withoutGaussianBuilder(s){return inverseText(s,delta().builderChanges);}
+function withoutGaussianBuilder(s){return inverseText(require('./sensing-assisted-otfs-build-preservation.cjs').withoutBuilder(s),delta().builderChanges);}
 function withoutGaussianClassicContracts(c){const d=delta(),out=B.withoutHostedUiContracts(c,'classic');a.deepEqual(out.scripts.slice(d.priorClassicProfileCount),d.classicProfiles,'exact appended Gaussian classic contracts');out.scripts.splice(d.priorClassicProfileCount);return out;}
 function withoutGaussianModuleContracts(c){const d=delta(),out=withoutNearfieldExportContracts(B.maybeWithoutCellfreeModuleContracts(B.withoutHostedUiContracts(c,'module')));a.deepEqual(out.modules.slice(d.priorModuleProfileCount),d.moduleProfiles,'exact appended Gaussian module contracts');out.modules.splice(d.priorModuleProfileCount);return out;}
 const maybeWithoutGaussianClassicParser=s=>s.includes('labs/gaussian-tradeoff/')?withoutGaussianClassicParser(s):s,maybeWithoutGaussianBuilder=s=>s.includes('labs/gaussian-tradeoff/')?withoutGaussianBuilder(s):s,maybeWithoutGaussianClassicContracts=c=>c.scripts.some(x=>x.public.startsWith('labs/gaussian-tradeoff/'))?withoutGaussianClassicContracts(c):structuredClone(c);

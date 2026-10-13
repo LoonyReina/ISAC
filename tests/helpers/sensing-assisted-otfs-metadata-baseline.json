@@ -1,0 +1,1385 @@
+{
+  "schemaVersion": 1,
+  "baselineTree": "c1efadcba84d177fb9812607498ebaa4a7124178",
+  "changes": {
+    "registry": [
+      {
+        "path": [
+          "cases"
+        ],
+        "append": [
+          {
+            "id": "case-otfs-sensing-assisted",
+            "title": "知道路径位置，为什么还要估增益？",
+            "fields": {
+              "先修": "<a href=\"foundations.html#ofdm\">OFDM 与复数格子</a>；<a href=\"pilot-design.html#experiment\">已知导频与资源</a>；<a href=\"otfs-receiver.html#experiment\">2020 OTFS：完美 CSI 的独立接收课</a>",
+              "问题": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+              "交互机制": "声明预测支持，现场生成 BPSK 小帧和原始 y，从污染导频估有效增益，在同一 y 上运行矩修复、忽略不确定度、字面诊断与额外真 CSI 四模式；查看最终概率、真实逐轮摘要、能量账本和完整运行记录。",
+              "证据类型": "固定 v2 的模型与仿真；冻结v3数值核的独立 Python/标量与实际 Node Worker 接受保留。教学v2.1经独立复核，60项Node回归、18项独立边界及9种非法行草稿通过；41条新标量输出最大误差9.72e−15，另核查2条通用接收输出与1份仅原始帧。原47项测试与7份下载/37条接收证据仅作v1历史，不代表原v1教学层被接受。1–2帧现场与120帧离线分开，浏览器/全站构建/部署未由此验收。",
+              "结论边界": "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。",
+              "下一研究问题": "正确支持下的平均二阶矩为什么仍非精确后验？若支持错一格、固定总帧能量或恢复保护格，怎样分别核对信息条件、掩码和接收统计？"
+            },
+            "unit": "otfs-sensing-assisted",
+            "learningEntry": "otfs-sensing-assisted.html#intuition",
+            "paper": "otfs-sensing-assisted.html#paper",
+            "next": "otfs-sensing-assisted.html#limits",
+            "paperComparison": {
+              "comparisonStatus": "partial",
+              "sourceTitle": "Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks",
+              "sourceUrl": "https://arxiv.org/pdf/2105.03125v2",
+              "version": "arXiv:2105.03125v2，2021-05-11，13页预印本；本卡按该 PDF 编号。后续发表于 IEEE JSTSP 15(6), 1515–1528, 2021。",
+              "sourceId": "case-otfs-sensing-assisted-paper",
+              "comparisonLink": "otfs-sensing-assisted.html#paper",
+              "researchQuestion": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+              "observationsAndUnknowns": "观测为同一上行复数 y；实用接收机只知声明支持、导频位置/复值、Es/N0、总体路径功率 λ 和迭代设置，随机有效增益与 BPSK 数据未知。物理支持/增益/数据只用于生成与评估，supplied_perfect_csi 明示额外真值。",
+              "locator": {
+                "summary": "固定 v2 §II 式(19)；§III-D1 式(39)–(42)；§III-D2 式(45)–(59)；§IV 图9、11–12、表II。原式问题与项目解释逐项分开。",
+                "section": "§II；§III-D1/D2；§IV",
+                "figure": "图9、11–12未复现；表II保护格数需与精确 inclusive 计数区分",
+                "equation": "式(19)、(39)–(42)、(45)–(59)，尤其42/52/57与58/59归一化"
+              },
+              "paperEvidenceType": "系统模型、算法推导与数值仿真；非硬件实测",
+              "siteArtifactType": "真实小帧条件上行、有效增益估计与四模式SPA；冻结v3数值核接受及教学v2.1独立Node功能复核接受，浏览器/全站构建/部署开放，非原图或整篇复现",
+              "retainedAssumptions": [
+                "整数、双坐标循环支持；y[r]=Σ aₚx[r−sₚ]+n[r]，E|n|²=N0；有效 a 吸收合并尺度与路径相位，无路径分别全局去相位",
+                "一个已知复导频替代一格数据，其余为等概 BPSK；无保护格，随机有效增益按声明 λ 独立 CN 抽样，不逐实现归一化",
+                "实用方差 vₚ=(EsΣⱼ≠ₚλⱼ+N0)/Ep；正确支持下仅为先验平均二阶矩，不是本帧后验方差",
+                "四模式在每帧每能量条件共用相同 raw y；repaired/ignored 共用估计、支持、初始化、阻尼和停止，只有 v 是否置零不同",
+                "literal_operational 保留式42/52/57的标量、目标均值索引与外层Es问题，只修可执行归一化；supplied-CSI 额外真支持/增益仍不等于精确 MAP",
+                "迭代 cap、数值失败与 partial 原样保留；最终概率与真实逐轮摘要不冒充完整逐边历史"
+              ],
+              "omittedMechanisms": [
+                "回波处理、车辆状态预测、实际接收合并、分数时延/多普勒、实际脉冲、编码和下行",
+                "独立误差替代模型忽略跨路径协方差、BPSK伪协方差及同帧证据依赖；并未执行精确物理未知增益后验接收",
+                "保护格接收机、阈值扫描、OFDM/MMSE基线、源尺寸原图及吞吐优势证明",
+                "真实浏览器 Worker/CSP、取消/恢复、宽窄屏/键盘/辅助技术、下载导入与完整绘制延迟验收"
+              ],
+              "metrics": [
+                "污染导频到达格、复增益估计、接收端二阶矩与事后 gain NMSE；错支持 NMSE 含模型失配",
+                "最终完整概率、有效掩码、判决、错误位置和数据位分母；同 y 的 paired 错误计数",
+                "真实逐轮消息/概率最大变化、判决变化、熵和代入估计信道的残差；收敛、cap、failure 分开",
+                "1–2帧现场计数不提供性能CI；离线120独立帧复用12条件、5760记录、每条件30600位和2000次配对帧bootstrap另列",
+                "固定tiny物理后验离线枚举与本核近似对照：收敛仍可有约0.499913概率差，不是普通误码率"
+              ],
+              "unknowns": [
+                "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。",
+                "源未完整固定路径功率律、SNR参考面、取整、阻尼/调度/停止或Monte Carlo数；本站选择明确记录，不推断作者程序",
+                "精确保护矩形为(4K+1)(2L+1)：源尺寸525格含524保护+1导频，表II的480=8KL并非精确inclusive保护数；只有脚注，没有运行基线"
+              ],
+              "resourceBudget": {
+                "summary": "现场 N/M 各1–16、2≤NM≤256、P1–3、1–2独立帧、1–2能量方案、四模式、最多40轮；每请求最多16条接收记录/640次flooding、30s墙钟限制。默认16×16含255数据位与1导频，ρ=100。",
+                "bandwidth": null,
+                "energy": "source_per_data: Es=1、Ep=100、总能量355；equal_total_frame: Es=256/355、Ep=100Es、总能量256。两者 N0=10^(−SNR/10) 不变，原语共用但 x/y 不同。",
+                "duration": null,
+                "aperture": null,
+                "priorKnowledge": "声明预测支持和总体 λ 非现场真值；仅supplied-CSI获物理支持与有效增益。未给NT/MΔf，坐标只称bin，不换算距离/速度。",
+                "other": [
+                  "30s预算不等于设备延迟承诺；实际浏览器时间未测量",
+                  "120独立帧离线统计不等于现场新运行或1440独立信道抽样",
+                  "2020完美CSI的MP-G/完整LMMSE课保持独立，不假定两篇声明算子物理等价"
+                ]
+              },
+              "verificationNote": "固定 PDF SHA-256 57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98；源式合同与核绑定见 assets/data/sensing-assisted-otfs/CONTRACT.md、SOURCE-BINDING.json。七生产核/Worker文件沿用已接受v3。当前教学独立复核见 assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md、PUBLIC-REVIEW.json、PUBLIC-BINDING.json；接受提交14665b68a1333e9d6c7f914143567a676edf0421，活动冻结LESSON-FREEZE-V2.1.json SHA-256 f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9。原ACCEPTANCE/LESSON-FREEZE及中间v2原文保留，原v1与中间v2均未获教学接受；不发布论文全文。"
+            }
+          }
+        ],
+        "lengthBefore": 22
+      },
+      {
+        "path": [
+          "units"
+        ],
+        "append": [
+          {
+            "id": "otfs-sensing-assisted",
+            "title": "知道路径位置，为什么还要估增益？",
+            "href": "otfs-sensing-assisted.html#experiment",
+            "question": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+            "prerequisites": [
+              "foundations.html#ofdm",
+              "pilot-design.html#experiment",
+              "otfs-receiver.html#experiment"
+            ],
+            "group": "research",
+            "primaryDirectionId": "waveforms",
+            "action": "先分清支持与随机增益，再生成一帧并在同一 y 上运行四模式；改错一格或能量方案，核对真实概率、摘要、失败和完整记录。"
+          }
+        ],
+        "lengthBefore": 37
+      },
+      {
+        "path": [
+          "pages"
+        ],
+        "append": [
+          {
+            "path": "otfs-sensing-assisted.html",
+            "title": "知道路径位置，为什么还要估增益？",
+            "stage": "experiments",
+            "role": "有界条件上行 · 声明支持、污染导频估增益与四模式近似SPA；浏览器待验收",
+            "prerequisites": [
+              "foundations.html#ofdm",
+              "pilot-design.html#experiment",
+              "otfs-receiver.html#experiment"
+            ],
+            "case": "case-otfs-sensing-assisted",
+            "next": "reading.html#guide-otfs-sensing-assisted-2021",
+            "nextLabel": "回到同一固定v2导读，核对条件接收、原式问题与未实现预测链"
+          }
+        ],
+        "lengthBefore": 33
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "scope"
+        ],
+        "before": "发射信号、调制坐标、导频歧义、训练序列复用、严格协方差与等能量加权波形优化；OTFS 已有有界单路径有限网格感知与 MP-G/完整 LMMSE；完整 OTFS 收发机实验仍待实现。",
+        "after": "发射信号、调制坐标、导频歧义、训练序列复用、严格协方差与等能量加权波形优化；2020 OTFS 有界有限网格感知与完美CSI通信、2021 OTFS 声明支持下的条件增益估计/四模式SPA分开。完整预测链、原尺寸与整篇复现仍开放。"
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "primaryCaseIds"
+        ],
+        "append": [
+          "case-otfs-sensing-assisted"
+        ],
+        "lengthBefore": 4
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          0,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "支持已知，为什么随机增益仍未知？",
+            "href": "otfs-sensing-assisted.html#intuition",
+            "kind": "lesson",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 4
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          1,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "原始y、污染导频与对角误差替代模型",
+            "href": "otfs-sensing-assisted.html#model",
+            "kind": "model",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 6
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          2,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "同y四模式：改支持与总帧能量后重算",
+            "href": "otfs-sensing-assisted.html#experiment",
+            "kind": "interactive",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 5
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          3,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "固定v2原式问题与矩修复解释逐项核对",
+            "href": "otfs-sensing-assisted.html#paper",
+            "kind": "paper-guide",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 7
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          4,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "收敛不等于精确后验：保留tiny反例与缺失预测链",
+            "href": "otfs-sensing-assisted.html#limits",
+            "kind": "limits",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 4
+      },
+      {
+        "path": [
+          "directions",
+          0,
+          "levels",
+          5,
+          "items"
+        ],
+        "append": [
+          {
+            "label": "完整记录、分层核查与1–2帧/离线120帧分开",
+            "href": "otfs-sensing-assisted.html#reproduce",
+            "kind": "reproduction-plan",
+            "scope": "direction-specific",
+            "status": "available",
+            "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
+          }
+        ],
+        "lengthBefore": 5
+      },
+      {
+        "path": [
+          "knowledgeMap",
+          "nodes",
+          10,
+          "boundary"
+        ],
+        "before": "归一化峰高不是等总能量或等 SNR",
+        "after": "归一化峰高不是等总能量或等 SNR；条件OTFS课虽给定支持，仍需从污染导频估增益；1–2帧计数不构成性能置信区间"
+      },
+      {
+        "path": [
+          "knowledgeMap",
+          "nodes",
+          10,
+          "unitRefs"
+        ],
+        "append": [
+          "otfs-sensing-assisted"
+        ],
+        "lengthBefore": 3
+      },
+      {
+        "path": [
+          "knowledgeMap",
+          "nodes",
+          24,
+          "boundary"
+        ],
+        "before": "共享设备资源的集成收益与任务互助收益分别计量；已有独立合成感知辅助波束候选机制，未实现在线闭环或端到端收益验证",
+        "after": "共享设备资源的集成收益与任务互助收益分别计量；已有独立合成感知辅助波束候选机制，未实现在线闭环或端到端收益验证；2021 OTFS条件课只接收外部声明支持，没有运行感知预测器或端到端互助链"
+      },
+      {
+        "path": [
+          "knowledgeMap",
+          "nodes",
+          24,
+          "unitRefs"
+        ],
+        "append": [
+          "otfs-sensing-assisted"
+        ],
+        "lengthBefore": 1
+      }
+    ],
+    "guides": [
+      {
+        "path": [
+          "cards",
+          1,
+          "evidence",
+          "kind"
+        ],
+        "before": "系统模型＋算法推导＋数值仿真；本站仅导读，未新增实验",
+        "after": "系统模型＋算法推导＋原文仿真；本站冻结v3核数值/Node接受与教学v2.1独立Node功能接受，浏览器开放"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "evidence",
+          "summary"
+        ],
+        "before": "图9比较预测波束的接收 SNR；图11显示省去保护格仍有信道估计误差，保留保护格的基线可有更低 NMSE。图12中，计入估计不确定度的检测优于忽略它的版本，并接近所设完美 CSI 基线。",
+        "after": "图9比较预测波束的接收 SNR；图11显示省去保护格仍有信道估计误差，保留保护格的基线可有更低 NMSE。图12中，计入估计不确定度的检测优于忽略它的版本，并接近所设完美 CSI 基线。 本站另有声明支持下的四模式真实小帧接收；120独立帧离线参考与1–2帧现场计数分开，不复现这些原图。"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "limits",
+          2
+        ],
+        "before": "结果依赖车辆/散射路径与预测模型的对应关系。转弯、遮挡、未建模散射体、分数参数和预测失配需要另验；本站没有实现该 OTFS 收发机或复现曲线。",
+        "after": "结果依赖车辆/散射路径与预测模型的对应关系。转弯、遮挡、未建模散射体、分数参数和预测失配需要另验；本站只接收外部声明支持，没有实现车辆预测器或完整感知辅助收发链。"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "limits"
+        ],
+        "append": [
+          "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。",
+          "原文式42的干扰功率、式52的目标均值索引、式57的外层Es/重复目标方差与58/59归一化逐项保留；literal_operational只修归一化以运行，moment_repaired是项目明确解释，不声称知道作者实现。",
+          "四模式每帧每能量条件共享raw y，supplied-CSI额外获真值；source/equal-frame分别355/256能量、同N0且y不同。无保护格接收基线，不用去保护格推导吞吐胜负；现场1–2帧无性能CI。"
+        ],
+        "lengthBefore": 3
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "source",
+          "locator"
+        ],
+        "before": "§II-D，式(16)；§III-B/C，式(29)–(34)；§III-D1，图3–4、式(39)–(42)；§III-D2，式(57)；§IV，图9、11–12及表II",
+        "after": "§II，式(19)；§II-D，式(16)；§III-B/C，式(29)–(34)；§III-D1，图3–4、式(39)–(42)；§III-D2，式(45)–(59)；§IV，图9、11–12及表II"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "visualTrace",
+          "steps",
+          0,
+          "explanation"
+        ],
+        "before": "先从回波估车辆状态，再预测下一时刻的路径；本帧观测与下一帧预测不能画成同一个已知真值。下行波束与预补偿也依赖这些预测。",
+        "after": "先从回波估车辆状态，再预测下一时刻的路径；本帧观测与下一帧预测不能画成同一个已知真值。下行波束与预补偿也依赖这些预测。 本站条件上行课从外部声明支持开始，不运行前面的回波与状态预测。"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "visualTrace",
+          "steps",
+          2,
+          "explanation"
+        ],
+        "before": "保护格原本隔开导频与数据；拿掉后会引入互扰，因此省开销与处理不确定度必须一起读。不能把预测当完美 CSI。",
+        "after": "保护格原本隔开导频与数据；拿掉后会引入互扰，因此省开销与处理不确定度必须一起读。不能把预测当完美 CSI。 本站以同y四模式对照明确区分矩修复替代模型、忽略不确定度、字面诊断与额外真CSI。"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "visualTrace",
+          "steps",
+          3,
+          "explanation"
+        ],
+        "before": "图11采用导频功率比数据高20 dB的设置，保留保护格的基线仍可有更低 NMSE。图12支持在所设条件下计入估计不确定度的价值；本站未运行该收发机。",
+        "after": "图11采用导频功率比数据高20 dB的设置，保留保护格的基线仍可有更低NMSE。原图12与本站条件小帧证据分开：冻结v3核和修复后教学v2.1分别获独立数值/Node功能接受，原v1与中间v2拒绝记录保留；未复现原图。固定tiny反例说明矩修复收敛不等于精确物理后验，真实浏览器、全站构建与部署另验。"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "notebookTopicId"
+        ],
+        "added": true,
+        "after": "otfs-sensing-assisted"
+      },
+      {
+        "path": [
+          "cards",
+          1,
+          "executable"
+        ],
+        "added": true,
+        "after": {
+          "kind": "validated-paper-algorithm",
+          "coverage": "algorithm",
+          "href": "otfs-sensing-assisted.html#experiment",
+          "label": "实际运行：声明支持下估增益与同y四模式SPA",
+          "summary": "生成新BPSK小帧和原始y，从污染导频估有效增益，运行moment_repaired、ignored_uncertainty、literal_operational与额外真CSI，保留完整概率、真实摘要、partial/失败和能量账本。当前教学v2.1通过60项Node回归、18项独立边界和9种非法行草稿；独立标量复算41条新输出，另核查2条通用输出及1份仅原始帧。原v1的47项测试及7份下载/37条输出保留为历史，原教学版未获独立接受。",
+          "limitations": "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。 1–2帧现场无CI；120独立帧离线参考及固定tiny精确后验单列。2020课的完美CSI MP-G/完整LMMSE与本课的声明算子保持独立。",
+          "sourceLocators": [
+            "v2 §II 式(19)：整数双循环支持与有效增益声明",
+            "v2 §III-D1 式(39)–(42)：保留导频、污染增益估计与先验平均二阶矩",
+            "v2 §III-D2 式(45)–(59)：图连接、原式42/52/57问题与规范化；项目矩修复解释",
+            "v2 §IV 图9、11–12、表II：原尺寸、预测链及保护格基线未复现"
+          ]
+        }
+      }
+    ],
+    "backlog": [
+      {
+        "path": [
+          "sequence",
+          "activeStages"
+        ],
+        "append": [
+          {
+            "paperId": "otfs-sensing-assisted-2021",
+            "stage": "browser-validation",
+            "status": "pending",
+            "branch": "Local conditional-uplink lesson: frozen v3 numerical/Node core and repaired v2.1 bounded Node teaching independently accepted;60 regressions,18 boundary cases,9 invalid drafts and fresh scalar replay. Actual browser/build/publication remain separate; no predictor, guarded baseline, source figures or full paper."
+          }
+        ],
+        "lengthBefore": 10
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "updatedOn"
+        ],
+        "before": "2026-10-12",
+        "after": "2026-10-13"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "canonicalReferences",
+          "caseIds"
+        ],
+        "append": [
+          "case-otfs-sensing-assisted"
+        ],
+        "lengthBefore": 0
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "canonicalReferences",
+          "sourceIds"
+        ],
+        "append": [
+          "case-otfs-sensing-assisted-paper"
+        ],
+        "lengthBefore": 0
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "source",
+          "locators",
+          "summary"
+        ],
+        "before": "§II-D，式(16)；§III-B/C，式(29)–(34)；§III-D1，图3–4、式(39)–(42)；§III-D2，式(57)；§IV，图9、11–12及表II",
+        "after": "§II，式(19)；§II-D，式(16)；§III-B/C，式(29)–(34)；§III-D1，图3–4、式(39)–(42)；§III-D2，式(45)–(59)；§IV，图9、11–12及表II"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "source",
+          "pdfSha256"
+        ],
+        "before": null,
+        "after": "57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "source",
+          "hashStatus"
+        ],
+        "before": "not-recorded",
+        "after": "recorded"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "source",
+          "details",
+          "independentBinding"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "experiment",
+          "unresolved"
+        ],
+        "append": [
+          "Original Fig9/11/12 and source dimensions remain unreproduced; the declared conditional receiver experiment is separate.",
+          "Sensing-derived support, physical combining and guarded pilot threshold baseline are not implemented.",
+          "Printed Eq19/42/52/57/58/59 inconsistencies require explicit interpretation; no author-code equivalence claim."
+        ],
+        "lengthBefore": 0
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "experiment",
+          "details",
+          "acceptedBoundedReference"
+        ],
+        "added": true,
+        "after": {
+          "frames": 120,
+          "conditions": 12,
+          "receiverRecords": 5760,
+          "bitsPerCondition": 30600,
+          "uniqueFrameDraws": 120,
+          "iterationCapRecords": 4228,
+          "convergedRecords": 1532,
+          "pairedBootstrapResamples": 2000,
+          "scope": "Same 120 independent channel/data/noise draws reused across 12 conditions; pointwise descriptive frame-bootstrap intervals, not 1440 independent draws or original figures."
+        }
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "experiment",
+          "details",
+          "liveBudget"
+        ],
+        "added": true,
+        "after": {
+          "gridMaximum": [
+            16,
+            16
+          ],
+          "pathMaximum": 3,
+          "independentFramesMaximum": 2,
+          "normalizationsMaximum": 2,
+          "modes": 4,
+          "receiverRecordsMaximum": 16,
+          "iterationsMaximum": 40,
+          "wallLimitSeconds": 30,
+          "performanceConfidenceIntervals": false
+        }
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "experiment",
+          "details",
+          "energy"
+        ],
+        "added": true,
+        "after": "Default source Es=1/Ep=100: frame energy355; equal-total-frame Es=256/355/Ep=100Es: energy256. N0 stays fixed. Normalizations share random primitives, not y; all four modes within frame+normalization share y."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "classification"
+        ],
+        "before": "qualitative-guide-and-trace; paper-core-not-implemented",
+        "after": "bounded-interpreted-conditional-uplink; moment-repaired-diagonal-surrogate; frozen-v3-kernel-accepted; v2.1-node-functional-lesson-accepted; browser-not-accepted"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "live"
+        ],
+        "before": "No paper-matched OTFS runtime; existing reference-uncertainty is an independent single-echo OFDM exercise",
+        "after": "otfs-sensing-assisted.html#experiment: fresh BPSK x/effective gains/noise/raw y, pilot-arrival gain estimation and same-y four-mode SPA; actual final probabilities, iteration summaries, energy and complete owned records. Declared predicted support is input, not computed by a vehicle predictor."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "offline"
+        ],
+        "before": null,
+        "after": "Accepted independent Python reference and 5760-record finite sweep; 120 unique independent frames across12 conditions. Fixed tiny unknown-gain posterior and retained approx0.499913 marginal discrepancy; no original figure reproduction."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lesson"
+        ],
+        "added": true,
+        "after": "otfs-sensing-assisted.html#intuition"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "runtimeManifest"
+        ],
+        "added": true,
+        "after": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "artifactManifest"
+        ],
+        "added": true,
+        "after": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "referenceCodeSha256"
+        ],
+        "added": true,
+        "after": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "runtimeExecutableCount"
+        ],
+        "added": true,
+        "after": 7
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "sourceContract"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/CONTRACT.md"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "independentReview"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/REVIEW.md"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "sourceBinding"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonAcceptance"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonFreeze"
+        ],
+        "added": true,
+        "after": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "passedLessonTests"
+        ],
+        "added": true,
+        "after": 60
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "actualProductionDownloads"
+        ],
+        "added": true,
+        "after": 5
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "independentReceiverRecords"
+        ],
+        "added": true,
+        "after": 41
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "independentMaximumAbsoluteError"
+        ],
+        "added": true,
+        "after": 9.71445146547012e-15
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "browserAccepted"
+        ],
+        "added": true,
+        "after": false
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "fullPaper"
+        ],
+        "added": true,
+        "after": false
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "prior2020Lesson"
+        ],
+        "added": true,
+        "after": "otfs-receiver.html#experiment"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "prior2020Relationship"
+        ],
+        "added": true,
+        "after": "Separate perfect-CSI MP-G/full-LMMSE communication and finite-grid sensing lesson; operators are not assumed physically equivalent."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "historicalLessonEvidence"
+        ],
+        "added": true,
+        "after": [
+          {
+            "version": "v1",
+            "commit": "3c25b52619582f757a6c1fc7b445322cf7e7e8c7",
+            "status": "rejected-functional-lesson; prior numerical evidence retained",
+            "acceptance": "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+            "freeze": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE.json",
+            "passedLessonTests": 47,
+            "actualProductionDownloads": 7,
+            "independentReceiverRecords": 37,
+            "independentMaximumAbsoluteError": 2.375877272697835e-14,
+            "scope": "Historical author Node/mounted-download/Python evidence did not establish independent functional-lesson acceptance."
+          },
+          {
+            "version": "v2",
+            "commit": "b6190325c215b99397e22bb65519fb04f36e6dd0",
+            "status": "intermediate-rejected-generic-row-follow-on",
+            "freeze": "labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.json",
+            "scope": "Four original repairs passed their review, but the generic-row follow-on defect still blocked this version."
+          }
+        ]
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonVersion"
+        ],
+        "added": true,
+        "after": "v2.1"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonAcceptedCommit"
+        ],
+        "added": true,
+        "after": "14665b68a1333e9d6c7f914143567a676edf0421"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonAcceptedTree"
+        ],
+        "added": true,
+        "after": "74cd5f426fe4b1283c85c0126b0d862584630561"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonFreezeSha256"
+        ],
+        "added": true,
+        "after": "f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonIndependentReview"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "lessonIndependentBinding"
+        ],
+        "added": true,
+        "after": "assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-BINDING.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "activeTestInventory"
+        ],
+        "added": true,
+        "after": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS-V2.1.json"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "skippedLessonTests"
+        ],
+        "added": true,
+        "after": 0
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "implementation",
+          "details",
+          "independentLessonChecks"
+        ],
+        "added": true,
+        "after": {
+          "scope": "Accepted bounded Node/module-Worker/light-DOM functional lesson and Python full-output checks; not browser/site-build/publication acceptance.",
+          "originalTests": 47,
+          "addedBoundaryTests": 13,
+          "independentBoundaryCasesPassed": 18,
+          "invalidRowDraftsPassed": 9,
+          "numericValuesCompared": 21161,
+          "exactCategoricalParity": true,
+          "additionalBoundaryProductionDownloads": 3,
+          "additionalPythonReceiverRecords": 2,
+          "additionalRawOnlyFrames": 1,
+          "closedFindings": [
+            "L01",
+            "L02",
+            "L03",
+            "L04",
+            "L01-generic-row-follow-on"
+          ],
+          "runtimeChanged": false,
+          "scientificSourcesChanged": false,
+          "wholeSiteBuild": "not-run",
+          "publication": "not-run"
+        }
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "source"
+        ],
+        "before": "audited-partial",
+        "after": "audited-for-selected-core"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "modelFidelity"
+        ],
+        "before": "not-validated",
+        "after": "partial"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "algorithm"
+        ],
+        "before": "not-implemented",
+        "after": "partial-live"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "independentValidation"
+        ],
+        "before": "pending",
+        "after": "partial"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "selectedExperiment"
+        ],
+        "before": "pending",
+        "after": "partial"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "liveExecution"
+        ],
+        "before": "prerequisite-only",
+        "after": "partial-core"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stages",
+          "uiLearning"
+        ],
+        "before": "pending",
+        "after": "partial"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "source"
+        ],
+        "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+        "after": "Fixed2105.03125v2 PDF SHA and equation crosswalk bound independently. Effective scale/phase, Eq19 dimension/index corrections, Eq42 powers, Eq52 target-mean index, exact outer-Es Eq57 and Eq58/59 normalization defects are explicit."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "algorithm"
+        ],
+        "before": "qualitative-guide-and-trace; paper-core-not-implemented",
+        "after": "Accepted frozen v3 seven-file production kernel/Worker computes pilot gain estimates and four same-y modes; literal diagnostic preserves42/52/57 with operational normalization only. Truth reaches only the explicitly supplied-CSI branch. No sensing predictor or guarded receiver."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "selectedExperiment"
+        ],
+        "before": "No independently reproduced named paper experiment established by this inventory.",
+        "after": "120 independent frames reused across12 conditions,5760 receiver records,30600 bits/condition;4228 capped and1532 converged retained. Paired frame bootstrap2000 resamples is offline only. Live1–2 frames report paired counts without CI. Original Fig9/11/12 not reproduced."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "fullPaper"
+        ],
+        "before": "No full-paper reproduction established; the minimal target is a first milestone only.",
+        "after": "Original full-chain minimum target remains open: source-derived state prediction, full OTFS/combining/pulse settings, guard baseline, source figures and downlink missing. Bounded interpreted receiver acceptance is not whole-paper completion."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "latency"
+        ],
+        "before": "No measured browser control-to-result latency for the faithful target core.",
+        "after": "No browser control-to-painted-result measurements. Offline Python and actual Node times are scoped evidence only; browser/device/sample count/quantiles remain null."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "modelFidelity"
+        ],
+        "added": true,
+        "after": "Coherent effective-gain integer circular-support BPSK conditional model accepted. Declared population-power second moments do not establish independent/proper errors, same-frame evidence independence, or exact unknown-gain posterior. Wrong support remains wrong."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "independentValidation"
+        ],
+        "added": true,
+        "after": "Frozen v3 kernel Python/independent scalar and actual Node Worker acceptance,113 full-output fixtures and half-tie policy stay unchanged. Current lessonv2.1 commit14665b68a1333e9d6c7f914143567a676edf0421 is independently accepted within Node/module-Worker/light-DOM scope:60/60 regressions(original47+13),18 independent boundary cases and9 invalid row drafts pass. Five fresh production downloads yield41 independently scalar-replayed receivers/21161 numbers within9.72e-15 with exact categories; three additional boundary downloads independently verify2 more receiver outputs and1 raw-only frame. Original v1 47 tests,7 downloads/37 outputs within2.38e-14 remain historical evidence, not v1 lesson acceptance."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "liveExecution"
+        ],
+        "added": true,
+        "after": "Fresh runtime receives only declared inputs and generates current results. Teachingv2.1 independently repairs generic-record misuse of the fixed posterior, stale async reset selection, running-job ownership after failed submission, raw-only failure rendering and invalid row draft indexing. Current records, same-y pairs, signed zeros and partial evidence are retained; actual browser, site-build and deployment remain separate gates."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "stageEvidence",
+          "uiLearning"
+        ],
+        "added": true,
+        "after": "Current v2.1 bounded Node functional teaching is independently accepted after60 regressions and dedicated boundary checks. It supplies gain explanation, final probability/error grid, actual iteration summaries, local adjacency, fixed-fixture-only exact comparison and complete records. Original v1 and intermediatev2 rejection histories are preserved; uiLearning remains partial because measured browser layout/accessibility/lifecycle and full-site gates are still open."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "missingImplementation",
+          0
+        ],
+        "before": "Vehicle state predictor",
+        "after": "Echo-derived vehicle state estimator and motion predictor; downlink beams/precompensation"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "missingImplementation",
+          1
+        ],
+        "before": "OTFS frame and gain-error model",
+        "after": "Physical receive combining, practical pulses and fractional delay/Doppler"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "missingImplementation",
+          2
+        ],
+        "before": "Uncertainty-aware MP updates",
+        "after": "Guarded pilot estimation/detection with full candidate threshold scan, retained false alarms/misses and exact masks"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "missingImplementation",
+          3
+        ],
+        "before": "Monte Carlo/reference cases",
+        "after": "Source-size Fig9/11/12, OFDM/MMSE, coding and full-paper coverage"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "missingImplementation"
+        ],
+        "append": [
+          "Real-browser Worker/CSP/lifecycle/layout/keyboard/download/reimport/partial recovery and measured painted-result timing"
+        ],
+        "lengthBefore": 4
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "dependencies",
+          0
+        ],
+        "before": "OTFS channel operator from Gaudio task, with edition-specific differences checked",
+        "after": "Source-specific declared effective-gain operator; do not inherit physical equivalence from the separate2020 perfect-CSI lesson"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "dependencies",
+          1
+        ],
+        "before": "Independent detector implementation and seed fixtures",
+        "after": "Future predictor/guarded/fractional models require new contracts and independent evidence; frozen v3 reference stays unchanged"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "blockers",
+          0
+        ],
+        "before": "Vehicle state predictor",
+        "after": "Real-browser acceptance and complete painted-result timing remain open"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "blockers",
+          1
+        ],
+        "before": "OTFS frame and gain-error model",
+        "after": "Whole-chain minimum target still lacks vehicle state predictor, physical receive chain and source figures"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "realtime",
+          "details",
+          "assessment"
+        ],
+        "before": "Bounded small-frame inference plausible; repeated Monte Carlo and realistic frame dimensions require worker batching and measured latency.",
+        "after": "Bounded live implementation caps1–2 frames and16 receiver records, with30s wall guard; actual Node Worker timing is not browser performance. Original-size Monte Carlo remains offline."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "realtime",
+          "details",
+          "requirement"
+        ],
+        "before": "Benchmark actual default and largest permitted domain in a desktop browser; report iteration cap, convergence/residual, cancellation and numerical failure rather than claiming unmeasured real time.",
+        "after": "Benchmark actual browser default and largest allowed domains, cold/warm samples and cancel/recovery; preserve cap/failure/partial outcomes and report complete control-to-painted-result timing."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "evidence",
+          "paperEvidence"
+        ],
+        "before": "系统模型＋算法推导＋数值仿真；本站仅导读，未新增实验",
+        "after": "系统模型＋算法推导＋原文仿真；本站冻结v3核数值/Node接受与教学v2.1独立Node功能接受，浏览器开放"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "evidence",
+          "existingRunnable",
+          0
+        ],
+        "before": "No paper-matched OTFS runtime; existing reference-uncertainty is an independent single-echo OFDM exercise",
+        "after": "otfs-sensing-assisted.html#experiment"
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "evidence",
+          "existingRunnable"
+        ],
+        "append": [
+          "assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.json",
+          "assets/data/sensing-assisted-otfs/CONTRACT.md",
+          "assets/data/sensing-assisted-otfs/REVIEW.md"
+        ],
+        "lengthBefore": 1
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "evidence",
+          "currentAudit"
+        ],
+        "before": "2026-10-12: canonical records and current runtime sources read; fixed arXiv HTML reopened. Equation-by-equation implementation audit remains required.",
+        "after": "2026-10-13: fixed-source/frozen-v3 kernel evidence unchanged. Independent public v2.1 supplement accepts commit14665b68a1333e9d6c7f914143567a676edf0421/tree74cd5f426fe4b1283c85c0126b0d862584630561 and active freeze f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9 only for bounded Node functional teaching. It supersedes pending author-freeze text without rewriting original/intermediate rejections or47-test historical evidence. Browser, whole-site build and publication not verified by this supplement."
+      },
+      {
+        "path": [
+          "papers",
+          1,
+          "details",
+          "failureGates"
+        ],
+        "added": true,
+        "after": {
+          "conditionalReceiverNumericallyAccepted": true,
+          "sensingPredictorImplemented": false,
+          "momentRepairedIsExactPhysicalPosterior": false,
+          "literalDiagnosticIsAuthorCode": false,
+          "suppliedCsiHasExtraInformation": true,
+          "sameYAcrossNormalizations": false,
+          "guardedReceiverImplemented": false,
+          "livePerformanceConfidenceIntervals": false,
+          "browserAccepted": false,
+          "fullPaperReproduced": false,
+          "functionalLessonV21NodeAccepted": true,
+          "originalLessonV1Accepted": false,
+          "intermediateLessonV2Accepted": false
+        }
+      }
+    ]
+  },
+  "suffixes": {
+    "readingMap": "\n\n## 感知辅助 OTFS：声明支持下的条件上行接收（2026-10-13）\n\n固定 [arXiv:2105.03125v2](https://arxiv.org/pdf/2105.03125v2)（2021-05-11）继续使用 `otfs-sensing-assisted-2021`。原 [2021 导读](../reading.html#guide-otfs-sensing-assisted-2021) 接到唯一 [条件上行接收课](../otfs-sensing-assisted.html#intuition)，并接入 waveforms 六层、机制实验和既有导频/互助概念节点。35 个主论文身份与零整篇复现不变。[2020 完美 CSI OTFS 课](../otfs-receiver.html#experiment) 保留独立，不能把两篇声明算子或两种消息传递自动视为等价。\n\n- §II 式(19)、§III-D1 式(39)–(42)和 §III-D2 式(45)–(59) 对应整数双循环格、有效复增益、污染导频估计与四模式 SPA。支持由外部声明，未运行回波、车辆状态预测或真实合并；导频替代一格数据，默认 16×16 为 255 数据位、1 导频、0 保护格\n- 原式19的维度/坐标、42的干扰功率、52的目标均值索引、57的外层 Es/重复目标方差和58/59归一化问题逐项保留。literal_operational 只修可执行归一化，不能说是作者代码；moment_repaired 是独立、对角、proper-complex 高斯误差替代模型，忽略跨路径协方差、伪协方差和同帧依赖。固定tiny离线精确后验反例保留约0.499913概率差，收敛不等于正确后验\n- 每帧每能量条件的四模式完全同 y；repaired/ignored 仅改变是否计入 v，supplied-CSI 明示额外真支持/增益仍非精确 MAP。错一格支持原样进入实用估计与图，不从真值修正\n- source_per_data 的 Es=1、Ep=100、帧能量355；equal_total_frame 的 Es=256/355、Ep=100Es、帧能量256。两者固定同 N0，共用随机原语但 x/y 不同。无保护格接收基线，不主张吞吐优势；源尺寸精确 inclusive 矩形525格=524保护+1导频，表II的480=8KL须另列\n- 现场仅1–2独立帧，无性能置信区间。离线120独立帧复用12条件、5760接收记录、每条件30600位、2000次配对帧bootstrap独立标记；保留4228个cap和1532个converged，不把1440条件/帧当独立信道抽样\n- 冻结v3七生产核/Worker文件与独立数值接受保持不变；当前教学v2.1经独立Node功能复核接受，60/60回归（原47+新增13）、18项独立边界与9种非法行草稿通过。5份新生产下载含41条独立标量复算输出、21161个数值，最大误差9.72e−15；另3份边界下载核查2条接收输出及1份真实仅原始帧。原v1的47项测试和7份下载/37条输出、约2.38e−14只作历史证据，原v1及中间v2拒绝记录保留。最终概率、真实摘要与局部邻接分开；真实浏览器、全站构建、部署与完整绘制延迟另验\n\n[源式合同](../assets/data/sensing-assisted-otfs/CONTRACT.md)、[逐式对照](../assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md) 与 [核独立绑定](../assets/data/sensing-assisted-otfs/SOURCE-BINDING.json) 保留原科学版本。[当前教学v2.1独立复核](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md)、[结构化结论](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.json) 和 [复核绑定](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-BINDING.json) 接受提交 `14665b68a1333e9d6c7f914143567a676edf0421`，活动 [v2.1冻结](../labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json) SHA-256 为 `f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9`。四项原缺陷与中间版非法行索引已逐项修复复测；原ACCEPTANCE、v1/v2冻结及其待验收/拒绝阶段原文不重写，不能作为当前独立接受结论。固定PDF SHA-256 为 `57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98`；不发布论文全文。图9/11/12、感知预测链、保护格/OFDM基线、实际脉冲/分数参数、下行和整篇复现继续开放。\n",
+    "plan": "\n\n## Sensing-assisted OTFS conditional uplink lesson integration (2026-10-13)\n\nThe existing `otfs-sensing-assisted-2021` identity and [2021 guide](../reading.html#guide-otfs-sensing-assisted-2021) now lead to one [conditional uplink lesson](../otfs-sensing-assisted.html#intuition). The historical row 2 is superseded only within this bounded scope by its same-identity JSON record; the original minimum target, including source-specified state prediction, is retained and remains unfinished. There are still 35 canonical primary papers, zero whole-paper reproductions and unchanged current/next CRB sequencing. The [2020 perfect-CSI MP-G/full-LMMSE lesson](../otfs-receiver.html#experiment) remains distinct; physical equivalence of the two declared operators is not assumed.\n\nFresh runs generate BPSK data, one known complex pilot, effective gains, noise and raw y; estimate gains at declared pilot-arrival cells; then execute four same-y SPA modes. Predicted support is external input, not a recovered vehicle state. The fixed arXiv:2105.03125v2 [equation contract](../assets/data/sensing-assisted-otfs/CONTRACT.md) distinguishes the printed Eq19 dimension/index, Eq42 powers, Eq52 target-mean index, exact outer-Es Eq57 and Eq58/59 normalization issues. The literal operational diagnostic retains42/52/57 and repairs only normalization. Moment repair is an independent diagonal proper-complex Gaussian error surrogate, not the exact physical unknown-gain posterior or author code. Shared-contamination covariance, pseudo-covariance and same-frame dependence remain limitations; a retained tiny exact-posterior counterexample differs by about0.499913 even after convergence. Supplied-CSI receives extra truth and still uses approximate messages.\n\nDefault16×16 has255 data bits and one pilot. Source-style Es=1/Ep=100 has frame energy355; equal-total-frame Es=256/355/Ep=100Es has energy256 with unchanged N0. Normalizations share random primitives, not y. Wrong support stays wrong in the practical receiver; all four modes within each frame/normalization use identical raw y. There is no guarded receiver or throughput superiority claim. The exact source-sized inclusive protected rectangle has524 guards plus one pilot, distinct from TableII's480=8KL count.\n\nLive1–2-frame outputs are counts without performance intervals. The independent offline experiment retains120 unique channel/data/noise frames across12 conditions,5760 receiver records and30600 bits per condition, with2000 paired-frame bootstrap resamples. It is not1440 independent channel draws or source Fig9/11/12. All4228 iteration caps and1532 convergence outcomes remain in the denominator. Final probability displays and actual per-iteration summaries do not invent unavailable full per-edge histories.\n\n[Independent v3 source binding](../assets/data/sensing-assisted-otfs/SOURCE-BINDING.json) still governs the unchanged seven-file numerical kernel/Node Worker gate. Original v1 evidence of47 teaching tests and seven production downloads containing37 receivers within2.38e−14 remains historical; the original functional lesson was independently rejected, and intermediatev2 retained a generic-row blocker. Neither old ACCEPTANCE nor its freeze is current independent acceptance. The [current v2.1 independent review](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md), [structured decision](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.json) and [binding](../assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-BINDING.json) accept commit `14665b68a1333e9d6c7f914143567a676edf0421`, tree `74cd5f426fe4b1283c85c0126b0d862584630561`. Active [LESSON-FREEZE-V2.1.json](../labs/otfs-sensing-assisted/lesson/LESSON-FREEZE-V2.1.json) SHA-256 is `f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9`. All60 regressions(original47+13),18 independent boundary cases and9 invalid row drafts pass. Five fresh production downloads contain41 scalar-replayed receiver outputs/21161 numbers within9.72e−15 with exact categories; three additional boundary downloads verify2 receiver outputs and1 genuine raw-only frame. Fixed-reference misuse, asynchronous reset/ownership, raw-only rendering and rejected row-draft indexing are individually repaired. This is bounded Node/module-Worker/light-DOM functional acceptance only. Frozen source/reference, original rejection evidence, intermediate freeze and author-stage pending text remain unchanged. Source PDF SHA-256 is57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98; the PDF/full text is not distributed.\n\nActual browser Worker/CSP, cancellation/replacement/recovery, layout, keyboard/assistive technology, download/reimport/memory and complete control-to-painted-result timing remain open; Node timings are not browser latency. Future predictor, receive combining, fractional/practical-pulse, guarded-threshold, OFDM/MMSE, coding, downlink and original-size studies require their own source contracts and independent evidence. This local integration does not establish publication or whole-paper completion.\n"
+  },
+  "serializerReplacements": {
+    "registry": [],
+    "guides": [],
+    "backlog": [
+      {
+        "serialized": "          \"maximumRateErrorBitsPerUse\": 2.591e-9,\n",
+        "original": "          \"maximumRateErrorBitsPerUse\": 2.591e-09,\n"
+      },
+      {
+        "serialized": "              \"thresholdRad\": 0.00008,\n",
+        "original": "              \"thresholdRad\": 8e-05,\n"
+      }
+    ]
+  },
+  "registry": "4bf1c703dde52b3d4a7faa345108b84e8dc35d6f72a4a967856726caec25eff5",
+  "guides": "9546ffe21764c18193ad03bf528de64b12861d3f66ed84aa80b9158e1cec01a5",
+  "backlog": "a714bef301f71dd8bf83067c89349359ea87d1b48beebabba3f9bbfe6448749a",
+  "readingMap": "bedffee2333c541560a8ddade3092ef46597819575291d51d09401f6279c3e4e",
+  "plan": "0be9d115658c9c5bfe1f2dd2cf7e29030a405c1d96554162dedfee1428e5676d",
+  "priorPaperIds": [
+    "otfs-joint-estimation-2020",
+    "otfs-sensing-assisted-2021",
+    "nearfield-double-array-ispac",
+    "nearfield-multitarget-correlation",
+    "networks-cooperative-clusters-2024",
+    "cellfree-vq-compression-2026",
+    "bistatic-ofdm-clock-measurement-2023",
+    "mimo-ofdm-realtime-testbed-2023",
+    "isac-net-model-driven-passive",
+    "multimodal-transformer-beam-generalization",
+    "ofdm-ici-aware-receiver-2021",
+    "ofdm-passive-atomic-errors-2017",
+    "channels-shared-clusters-2024",
+    "channels-target-environment-coupling-2025",
+    "tradeoffs-feedback-capacity-distortion-2018",
+    "tradeoffs-causal-state-communication-2013",
+    "channels-sensing-communication-mapping-2026",
+    "zak-otfs-semiblind-offgrid-2026",
+    "sbfd-resource-synchronization-2026",
+    "nearfield-mechanism-aware-mapping-2026",
+    "optimal_waveform",
+    "joint_beamforming",
+    "mu_mimo",
+    "crb",
+    "80211ad",
+    "ofdm_full_duplex",
+    "perceptive",
+    "deepsense",
+    "radar_prediction",
+    "supplement-case-crb",
+    "supplement-case-pilot",
+    "supplement-case-clock",
+    "supplement-case-near-field",
+    "supplement-case-multipath-channel",
+    "supplement-case-distributed-detection"
+  ],
+  "catalog": "7eac44091e74cc418ebb073d4c9fcc0883fccfc1024f2f0e371fcabb8fabbe95"
+}

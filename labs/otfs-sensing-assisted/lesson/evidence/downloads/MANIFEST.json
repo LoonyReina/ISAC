@@ -1,0 +1,77 @@
+{
+  "schema": "sensing-otfs-production-download-evidence-v1",
+  "browser": false,
+  "delivery": "production mount -> actual Node Worker -> production download click -> Blob.text() -> persisted file",
+  "records": [
+    {
+      "name": "default",
+      "file": "default.json",
+      "sha256": "ba8b872b5ed1eaa5836b039a7aeabd77a283268d08d21c42e9b7866c953df720",
+      "bytes": 97642,
+      "elapsedMs": 360.21058700000003,
+      "independentFrames": 1,
+      "receiverRecords": 4,
+      "status": "complete"
+    },
+    {
+      "name": "nonfixture",
+      "file": "nonfixture.json",
+      "sha256": "c6eb4827dc5d4a0c457212aed7e1782da465d477935448ed788c21edc6c9dabd",
+      "bytes": 36113,
+      "elapsedMs": 132.79832199999998,
+      "independentFrames": 1,
+      "receiverRecords": 4,
+      "status": "complete"
+    },
+    {
+      "name": "tiny",
+      "file": "tiny.json",
+      "sha256": "fadf8b52d91f7d4c5903e9248b7c87e01ac01457891d565865139ec6ff486e8f",
+      "bytes": 9572,
+      "elapsedMs": 43.01332500000001,
+      "independentFrames": 0,
+      "receiverRecords": 1,
+      "status": "complete"
+    },
+    {
+      "name": "mismatch",
+      "file": "mismatch.json",
+      "sha256": "be7f9a05d8438666951f8c5d8410bcc2fef9a8ad4f69f0b738064025235674cf",
+      "bytes": 100517,
+      "elapsedMs": 265.354333,
+      "independentFrames": 1,
+      "receiverRecords": 4,
+      "status": "complete"
+    },
+    {
+      "name": "energy",
+      "file": "energy.json",
+      "sha256": "c2eab979857c24c732db86c41e55620da3f169fbdf3ac95fdcc5d20653a443e5",
+      "bytes": 454204,
+      "elapsedMs": 981.526485,
+      "independentFrames": 2,
+      "receiverRecords": 16,
+      "status": "complete"
+    },
+    {
+      "name": "cap",
+      "file": "cap.json",
+      "sha256": "9045e6ef143f9cd232a95c8b1c3b42d2c6091c89bf4fbfbf6646ceed27c779d7",
+      "bytes": 82661,
+      "elapsedMs": 33.93264900000008,
+      "independentFrames": 1,
+      "receiverRecords": 4,
+      "status": "complete"
+    },
+    {
+      "name": "zero",
+      "file": "zero.json",
+      "sha256": "bbe37affa5239924682e111bf265953f75d49c2ce5abfe4fcdd24959898834d1",
+      "bytes": 85553,
+      "elapsedMs": 120.70754000000011,
+      "independentFrames": 1,
+      "receiverRecords": 4,
+      "status": "complete"
+    }
+  ]
+}

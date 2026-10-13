@@ -1600,6 +1600,80 @@
         },
         "verificationNote": "固定 PDF SHA-256 315d7c2c7299f43d8ba838de78d45faf5b79ccb8e161474bbc0d27b0a3febaeb；最新独立接受范围见 labs/nearfield-multitarget/runtime/FINAL-BINDING.json。历史 runtime README 的候选阶段原文不重写；教学冻结见 labs/nearfield-multitarget/lesson/LESSON-FREEZE.json。不发布论文全文。"
       }
+    },
+    {
+      "id": "case-otfs-sensing-assisted",
+      "title": "知道路径位置，为什么还要估增益？",
+      "fields": {
+        "先修": "<a href=\"foundations.html#ofdm\">OFDM 与复数格子</a>；<a href=\"pilot-design.html#experiment\">已知导频与资源</a>；<a href=\"otfs-receiver.html#experiment\">2020 OTFS：完美 CSI 的独立接收课</a>",
+        "问题": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+        "交互机制": "声明预测支持，现场生成 BPSK 小帧和原始 y，从污染导频估有效增益，在同一 y 上运行矩修复、忽略不确定度、字面诊断与额外真 CSI 四模式；查看最终概率、真实逐轮摘要、能量账本和完整运行记录。",
+        "证据类型": "固定 v2 的模型与仿真；冻结v3数值核的独立 Python/标量与实际 Node Worker 接受保留。教学v2.1经独立复核，60项Node回归、18项独立边界及9种非法行草稿通过；41条新标量输出最大误差9.72e−15，另核查2条通用接收输出与1份仅原始帧。原47项测试与7份下载/37条接收证据仅作v1历史，不代表原v1教学层被接受。1–2帧现场与120帧离线分开，浏览器/全站构建/部署未由此验收。",
+        "结论边界": "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。",
+        "下一研究问题": "正确支持下的平均二阶矩为什么仍非精确后验？若支持错一格、固定总帧能量或恢复保护格，怎样分别核对信息条件、掩码和接收统计？"
+      },
+      "unit": "otfs-sensing-assisted",
+      "learningEntry": "otfs-sensing-assisted.html#intuition",
+      "paper": "otfs-sensing-assisted.html#paper",
+      "next": "otfs-sensing-assisted.html#limits",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks",
+        "sourceUrl": "https://arxiv.org/pdf/2105.03125v2",
+        "version": "arXiv:2105.03125v2，2021-05-11，13页预印本；本卡按该 PDF 编号。后续发表于 IEEE JSTSP 15(6), 1515–1528, 2021。",
+        "sourceId": "case-otfs-sensing-assisted-paper",
+        "comparisonLink": "otfs-sensing-assisted.html#paper",
+        "researchQuestion": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+        "observationsAndUnknowns": "观测为同一上行复数 y；实用接收机只知声明支持、导频位置/复值、Es/N0、总体路径功率 λ 和迭代设置，随机有效增益与 BPSK 数据未知。物理支持/增益/数据只用于生成与评估，supplied_perfect_csi 明示额外真值。",
+        "locator": {
+          "summary": "固定 v2 §II 式(19)；§III-D1 式(39)–(42)；§III-D2 式(45)–(59)；§IV 图9、11–12、表II。原式问题与项目解释逐项分开。",
+          "section": "§II；§III-D1/D2；§IV",
+          "figure": "图9、11–12未复现；表II保护格数需与精确 inclusive 计数区分",
+          "equation": "式(19)、(39)–(42)、(45)–(59)，尤其42/52/57与58/59归一化"
+        },
+        "paperEvidenceType": "系统模型、算法推导与数值仿真；非硬件实测",
+        "siteArtifactType": "真实小帧条件上行、有效增益估计与四模式SPA；冻结v3数值核接受及教学v2.1独立Node功能复核接受，浏览器/全站构建/部署开放，非原图或整篇复现",
+        "retainedAssumptions": [
+          "整数、双坐标循环支持；y[r]=Σ aₚx[r−sₚ]+n[r]，E|n|²=N0；有效 a 吸收合并尺度与路径相位，无路径分别全局去相位",
+          "一个已知复导频替代一格数据，其余为等概 BPSK；无保护格，随机有效增益按声明 λ 独立 CN 抽样，不逐实现归一化",
+          "实用方差 vₚ=(EsΣⱼ≠ₚλⱼ+N0)/Ep；正确支持下仅为先验平均二阶矩，不是本帧后验方差",
+          "四模式在每帧每能量条件共用相同 raw y；repaired/ignored 共用估计、支持、初始化、阻尼和停止，只有 v 是否置零不同",
+          "literal_operational 保留式42/52/57的标量、目标均值索引与外层Es问题，只修可执行归一化；supplied-CSI 额外真支持/增益仍不等于精确 MAP",
+          "迭代 cap、数值失败与 partial 原样保留；最终概率与真实逐轮摘要不冒充完整逐边历史"
+        ],
+        "omittedMechanisms": [
+          "回波处理、车辆状态预测、实际接收合并、分数时延/多普勒、实际脉冲、编码和下行",
+          "独立误差替代模型忽略跨路径协方差、BPSK伪协方差及同帧证据依赖；并未执行精确物理未知增益后验接收",
+          "保护格接收机、阈值扫描、OFDM/MMSE基线、源尺寸原图及吞吐优势证明",
+          "真实浏览器 Worker/CSP、取消/恢复、宽窄屏/键盘/辅助技术、下载导入与完整绘制延迟验收"
+        ],
+        "metrics": [
+          "污染导频到达格、复增益估计、接收端二阶矩与事后 gain NMSE；错支持 NMSE 含模型失配",
+          "最终完整概率、有效掩码、判决、错误位置和数据位分母；同 y 的 paired 错误计数",
+          "真实逐轮消息/概率最大变化、判决变化、熵和代入估计信道的残差；收敛、cap、failure 分开",
+          "1–2帧现场计数不提供性能CI；离线120独立帧复用12条件、5760记录、每条件30600位和2000次配对帧bootstrap另列",
+          "固定tiny物理后验离线枚举与本核近似对照：收敛仍可有约0.499913概率差，不是普通误码率"
+        ],
+        "unknowns": [
+          "仅固定 arXiv:2105.03125v2 的有界条件上行解释：支持由外部声明，没有回波处理或车辆预测器。moment_repaired 是独立、对角、proper-complex 高斯增益误差替代模型，不是精确物理后验。无保护格接收基线、原尺寸图9/11/12、下行或整篇复现；实际浏览器与绘制时延待验收。",
+          "源未完整固定路径功率律、SNR参考面、取整、阻尼/调度/停止或Monte Carlo数；本站选择明确记录，不推断作者程序",
+          "精确保护矩形为(4K+1)(2L+1)：源尺寸525格含524保护+1导频，表II的480=8KL并非精确inclusive保护数；只有脚注，没有运行基线"
+        ],
+        "resourceBudget": {
+          "summary": "现场 N/M 各1–16、2≤NM≤256、P1–3、1–2独立帧、1–2能量方案、四模式、最多40轮；每请求最多16条接收记录/640次flooding、30s墙钟限制。默认16×16含255数据位与1导频，ρ=100。",
+          "bandwidth": null,
+          "energy": "source_per_data: Es=1、Ep=100、总能量355；equal_total_frame: Es=256/355、Ep=100Es、总能量256。两者 N0=10^(−SNR/10) 不变，原语共用但 x/y 不同。",
+          "duration": null,
+          "aperture": null,
+          "priorKnowledge": "声明预测支持和总体 λ 非现场真值；仅supplied-CSI获物理支持与有效增益。未给NT/MΔf，坐标只称bin，不换算距离/速度。",
+          "other": [
+            "30s预算不等于设备延迟承诺；实际浏览器时间未测量",
+            "120独立帧离线统计不等于现场新运行或1440独立信道抽样",
+            "2020完美CSI的MP-G/完整LMMSE课保持独立，不假定两篇声明算子物理等价"
+          ]
+        },
+        "verificationNote": "固定 PDF SHA-256 57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98；源式合同与核绑定见 assets/data/sensing-assisted-otfs/CONTRACT.md、SOURCE-BINDING.json。七生产核/Worker文件沿用已接受v3。当前教学独立复核见 assets/data/sensing-assisted-otfs/lesson-review/PUBLIC-REVIEW.md、PUBLIC-REVIEW.json、PUBLIC-BINDING.json；接受提交14665b68a1333e9d6c7f914143567a676edf0421，活动冻结LESSON-FREEZE-V2.1.json SHA-256 f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9。原ACCEPTANCE/LESSON-FREEZE及中间v2原文保留，原v1与中间v2均未获教学接受；不发布论文全文。"
+      }
     }
   ],
   "legacy": {
@@ -2426,6 +2500,20 @@
       "group": "research",
       "primaryDirectionId": "spatial",
       "action": "先预测 ε、速率或功率的作用，再实际重算两种协方差；核对恢复不变量、上下界与失败，导出完整当前记录。"
+    },
+    {
+      "id": "otfs-sensing-assisted",
+      "title": "知道路径位置，为什么还要估增益？",
+      "href": "otfs-sensing-assisted.html#experiment",
+      "question": "预测支持已经给定时，污染导频怎样估随机复增益，同一份上行观测上的不确定度处理又改变了什么？",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "pilot-design.html#experiment",
+        "otfs-receiver.html#experiment"
+      ],
+      "group": "research",
+      "primaryDirectionId": "waveforms",
+      "action": "先分清支持与随机增益，再生成一帧并在同一 y 上运行四模式；改错一格或能量方案，核对真实概率、摘要、失败和完整记录。"
     }
   ],
   "pages": [
@@ -2848,6 +2936,20 @@
       "case": "case-nearfield-multitarget",
       "next": "reading.html#guide-nearfield-multitarget-correlation",
       "nextLabel": "回到同一固定论文，核对优化接受与接收失败边界"
+    },
+    {
+      "path": "otfs-sensing-assisted.html",
+      "title": "知道路径位置，为什么还要估增益？",
+      "stage": "experiments",
+      "role": "有界条件上行 · 声明支持、污染导频估增益与四模式近似SPA；浏览器待验收",
+      "prerequisites": [
+        "foundations.html#ofdm",
+        "pilot-design.html#experiment",
+        "otfs-receiver.html#experiment"
+      ],
+      "case": "case-otfs-sensing-assisted",
+      "next": "reading.html#guide-otfs-sensing-assisted-2021",
+      "nextLabel": "回到同一固定v2导读，核对条件接收、原式问题与未实现预测链"
     }
   ],
   "schemaVersion": 1,
@@ -2918,7 +3020,7 @@
       "id": "waveforms",
       "title": "波形与导频：发什么、留哪些已知格子？",
       "question": "同一帧既传数据又探测目标，哪些频率和符号必须已知？",
-      "scope": "发射信号、调制坐标、导频歧义、训练序列复用、严格协方差与等能量加权波形优化；OTFS 已有有界单路径有限网格感知与 MP-G/完整 LMMSE；完整 OTFS 收发机实验仍待实现。",
+      "scope": "发射信号、调制坐标、导频歧义、训练序列复用、严格协方差与等能量加权波形优化；2020 OTFS 有界有限网格感知与完美CSI通信、2021 OTFS 声明支持下的条件增益估计/四模式SPA分开。完整预测链、原尺寸与整篇复现仍开放。",
       "prerequisites": [
         "iq",
         "ofdm-basics",
@@ -2928,7 +3030,8 @@
         "case-pilot",
         "case-waveform",
         "case-golay-radar",
-        "case-otfs-receiver"
+        "case-otfs-receiver",
+        "case-otfs-sensing-assisted"
       ],
       "relatedDirectionIds": [
         "tradeoffs",
@@ -2969,6 +3072,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "支持已知，为什么随机增益仍未知？",
+              "href": "otfs-sensing-assisted.html#intuition",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ]
         },
@@ -3019,6 +3130,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "原始y、污染导频与对角误差替代模型",
+              "href": "otfs-sensing-assisted.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ]
         },
@@ -3063,6 +3182,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "同y四模式：改支持与总帧能量后重算",
+              "href": "otfs-sensing-assisted.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ],
           "coverage": "direction-specific"
@@ -3121,6 +3248,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "固定v2原式问题与矩修复解释逐项核对",
+              "href": "otfs-sensing-assisted.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ],
           "comparisonStatus": "partial",
@@ -3160,6 +3295,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "收敛不等于精确后验：保留tiny反例与缺失预测链",
+              "href": "otfs-sensing-assisted.html#limits",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ]
         },
@@ -3204,6 +3347,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行两个独立缩减实验；数值与Node核验不代表完整原图、物理跨模型等价或浏览器验收。"
+            },
+            {
+              "label": "完整记录、分层核查与1–2帧/离线120帧分开",
+              "href": "otfs-sensing-assisted.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "有界条件上行的独立数值/Node证据；不含感知预测器、原图或整篇复现，真实浏览器与绘制时延待验收。"
             }
           ]
         }
@@ -5409,11 +5560,12 @@
         "label": "已知输入与导频",
         "question": "哪些发射格子已知，留下哪些歧义？",
         "knownUnknown": "已知选中的导频或训练序列；未知延迟与复增益",
-        "boundary": "归一化峰高不是等总能量或等 SNR",
+        "boundary": "归一化峰高不是等总能量或等 SNR；条件OTFS课虽给定支持，仍需从污染导频估增益；1–2帧计数不构成性能置信区间",
         "unitRefs": [
           "pilot",
           "golay-radar",
-          "ofdm-interpolation"
+          "ofdm-interpolation",
+          "otfs-sensing-assisted"
         ],
         "entryUnitRef": "pilot"
       },
@@ -5619,9 +5771,10 @@
         "href": "theory.html#evolution",
         "question": "感知结果怎样帮助波束选择，通信网络又怎样帮助感知？",
         "knownUnknown": "感知输出可辅助通信决策；通信网络可提供同步、节点协作与信息融合条件",
-        "boundary": "共享设备资源的集成收益与任务互助收益分别计量；已有独立合成感知辅助波束候选机制，未实现在线闭环或端到端收益验证",
+        "boundary": "共享设备资源的集成收益与任务互助收益分别计量；已有独立合成感知辅助波束候选机制，未实现在线闭环或端到端收益验证；2021 OTFS条件课只接收外部声明支持，没有运行感知预测器或端到端互助链",
         "unitRefs": [
-          "radar-beam-decision"
+          "radar-beam-decision",
+          "otfs-sensing-assisted"
         ]
       },
       {

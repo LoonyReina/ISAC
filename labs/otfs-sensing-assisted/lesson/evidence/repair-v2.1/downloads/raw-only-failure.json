@@ -1,0 +1,70 @@
+{
+  "schema": "sensing-assisted-otfs-lesson-record-v1",
+  "canonicalPaperId": "otfs-sensing-assisted-2021",
+  "runtimePaperId": "paperotfs-sensing-assisted-2021",
+  "provenance": {
+    "source": "https://arxiv.org/pdf/2105.03125v2",
+    "sourceVersion": "2105.03125v2",
+    "sourcePdfSha256": "57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98",
+    "runtimeVersion": "v3",
+    "manifestSha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6",
+    "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+    "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+  },
+  "runId": "sensing-otfs-mv6ciqwf-5",
+  "parentRunId": null,
+  "operation": "run",
+  "status": "error",
+  "reason": "INVALID_INPUT",
+  "startedAt": "2026-10-13T07:14:49.647Z",
+  "durationMs": 53.80463199999997,
+  "execution": {
+    "environment": "module-compatible runtime; execution environment not authenticated",
+    "durationBasis": "caller elapsed monotonic milliseconds including worker scheduling and transport"
+  },
+  "input": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"shape\":[5,7],\"physicalSupport\":[[0,0],[1,2],[3,4]],\"predictedSupport\":[[0,0],[1,2],[3,4]],\"priorPowers\":[0.6,0.3,0.1],\"pilotIndex\":[2,3],\"pilotPowerRatio\":0.000001,\"pilotPhase\":0.1,\"dataEnergy\":0.000001,\"N0\":0.07943282347242814,\"normalizations\":[\"source_per_data\"],\"seed\":672921,\"frames\":1,\"modes\":[\"moment_repaired\",\"ignored_uncertainty\",\"literal_operational\",\"supplied_perfect_csi\"],\"maxIterations\":1,\"damping\":0.5,\"tolerance\":1e-7}}",
+    "sha256": "4e7211d418d6c9e9de1555406adf0f94f6f12bd4fcea109c9ec278765ef7fce6",
+    "bytes": 490
+  },
+  "payload": {
+    "text": "{\"codec\":\"sensing-otfs-finite-typed-json-v2\",\"value\":{\"schema\":\"sensing-assisted-otfs-live-v1\",\"configuration\":{\"shape\":[5,7],\"physicalSupport\":[[0,0],[1,2],[3,4]],\"predictedSupport\":[[0,0],[1,2],[3,4]],\"priorPowers\":[0.6,0.3,0.1],\"pilotIndex\":[2,3],\"pilotPowerRatio\":0.000001,\"pilotPhase\":0.1,\"dataEnergy\":0.000001,\"N0\":0.07943282347242814,\"normalizations\":[\"source_per_data\"],\"seed\":672921,\"frames\":1,\"modes\":[\"moment_repaired\",\"ignored_uncertainty\",\"literal_operational\",\"supplied_perfect_csi\"],\"maxIterations\":1,\"damping\":0.5,\"tolerance\":1e-7},\"notices\":{\"source\":\"https://arxiv.org/pdf/2105.03125v2\",\"sourceVersion\":\"2105.03125v2\",\"paperId\":\"paperotfs-sensing-assisted-2021\",\"model\":\"coherent effective-gain integer circular-support uplink; independent proper-complex Gaussian population gains\",\"interpretation\":\"moment-repaired is a project interpretation; literal-operational preserves Eq.42/52/57 defects and repairs normalization only\",\"uncertainty\":\"diagonal independent proper-Gaussian surrogate; same-frame estimates depend on y and data, ignore cross-covariance and pseudo-covariance, and may double-use evidence\",\"counterexample\":\"A converged estimated-gain surrogate differs from the exact tiny physical posterior by 0.499913 in one marginal\",\"oracle\":\"supplied-perfect-CSI receives true physical support and effective gains; still uses approximate Gaussian messages\",\"scope\":\"fresh bounded single/paired frames; no reproduction of original figures, sensing predictor, fractional support, guarded/OFDM comparison, or whole paper\",\"guardedBaseline\":\"not included; original guard/source count discrepancy remains outside this runtime\",\"browserEvidence\":\"Module-compatible implementation; actual-browser acceptance is a separate gate\"},\"rng\":\"Mulberry32-open-uniform-BoxMuller-v1; independent fresh frame primitives; no per-realization gain normalization\",\"frames\":[{\"frame\":0,\"normalization\":\"source_per_data\",\"Es\":0.000001,\"Ep\":1e-12,\"N0\":0.07943282347242814,\"pilot\":[9.950041652780256e-7,9.983341664682815e-8],\"x\":{\"$typed\":\"Float64Array\",\"values\":[-0.001,0,0.001,0,0.001,0,0.001,0,-0.001,0,-0.001,0,0.001,0,-0.001,0,-0.001,0,-0.001,0,-0.001,0,0.001,0,0.001,0,-0.001,0,0.001,0,0.001,0,-0.001,0,9.950041652780256e-7,9.983341664682815e-8,0.001,0,0.001,0,0.001,0,-0.001,0,0.001,0,-0.001,0,0.001,0,-0.001,0,-0.001,0,0.001,0,-0.001,0,-0.001,0,0.001,0,0.001,0,-0.001,0,-0.001,0,-0.001,0]},\"y\":{\"$typed\":\"Float64Array\",\"values\":[-0.3361025735215656,0.11906595072829966,0.13628192491542235,0.07646574304330664,0.11181452858405189,-0.09011479708254784,-0.15480355368878404,0.08165155407593515,-0.07205889849315741,0.21105866274111734,-0.3157184819439697,-0.31448760760443617,-0.17686777116387045,0.2114568532470641,0.42085858732514464,0.02731002007496233,-0.32719454785959035,-0.22849068448133653,0.14604481116576593,0.07072317901740022,-0.03836321439313703,0.27372097642167914,-0.34021301659682696,-0.015247662512099296,0.1478334404791489,0.034652999477823423,0.16925741780971632,0.06701985952050857,0.059767119253547905,0.041151731336580843,0.31801484078952535,0.7024900199102849,0.10762983774867664,0.5345286053379548,-0.0523698613782097,0.3900465894216353,0.09770795085685018,0.3234227297928302,-0.03425417246149734,0.09384439387246711,0.014844330728002094,0.16977692248504586,-0.11485790800353916,-0.15537945959972405,-0.13747788013465126,-0.12511332274298653,-0.16869352512218383,0.04045198960139594,0.3229019304099242,-0.2001782203771348,0.08811694384969779,0.27150844520020034,0.12420016068657766,-0.19025033206569536,-0.14874172778278547,0.05719939777324306,0.028832846022506506,0.09125802777031877,-0.02643251377249853,0.3109354857472262,0.096060143220426,0.18517843818145893,-0.15798969153665124,0.008659132752597725,-0.024870812399047308,-0.2469863273765549,-0.23583706784874328,0.14872238503339852,0.06851993600110846,-0.26205217441704437]},\"noise\":{\"$typed\":\"Float64Array\",\"values\":[-0.33768228429968605,0.1193882802024625,0.13708770550440338,0.0753493833512651,0.11262030917303292,-0.09123115677458937,-0.153997773099803,0.08053519438389362,-0.072442693428728,0.21257621466064514,-0.31610227687954023,-0.3129700556849084,-0.17648397622829987,0.2099393013275363,0.4194896794611834,0.027832725004764816,-0.3280003284485714,-0.227374324789295,0.1442539176483942,0.07084469171971644,-0.03874700932870761,0.27523852834120693,-0.3388441087328657,-0.015770367441901783,0.14962433399652061,0.0345314867755072,0.1674665242923446,0.06714137222282479,0.06155801277091962,0.04103021863426462,0.3183986357250959,0.7009724679907571,0.10583894423130492,0.534650118040271,-0.053072246940365185,0.38934786292825574,0.09809174579242076,0.3219051778733024,-0.03387037752592676,0.09232684195293932,0.01663522424537381,0.16965540978272964,-0.11524170293910975,-0.15386190768019625,-0.13610897227069,-0.12563602767278903,-0.16949930571116487,0.04156834929343747,0.3246928239272959,-0.20029973307945104,0.08632605033232607,0.27162995790251654,0.12332424972305824,-0.1892296595289862,-0.14695083426541375,0.057077885070926836,0.02704195250513479,0.091379540472635,-0.026816308708069114,0.312453037666754,0.09686592380940703,0.1840620784894174,-0.15662078367268997,0.008136427822795238,-0.02666170591641902,-0.24686481467423868,-0.23664284843772432,0.14983874472544004,0.06672904248373675,-0.2619306617147282]},\"trueGainsEvaluationOnly\":{\"$typed\":\"Float64Array\",\"values\":[-1.0873442264711484,0.8195323109220078,-0.4925564641953358,-0.4974234948626536,-0.21099282670523087,-0.20059611374313221]},\"dataSignsEvaluationOnly\":{\"$typed\":\"Int8Array\",\"values\":[-1,1,1,1,-1,-1,1,-1,-1,-1,-1,1,1,-1,1,1,-1,1,1,1,1,-1,1,-1,1,-1,-1,1,-1,-1,1,1,-1,-1,-1]},\"energyLedger\":{\"cellCount\":35,\"pilotCount\":1,\"dataCount\":34,\"guardCount\":0,\"dataEnergy\":0.000034,\"pilotEnergy\":1e-12,\"totalFrameEnergy\":0.000034000001,\"referenceBudget\":0.000035,\"noiseVariance\":0.07943282347242814,\"noiseReferenceUnchanged\":true},\"records\":[],\"status\":\"partial\"}],\"status\":\"failed\",\"summary\":null}}",
+    "sha256": "d0f3ebb6a3fc0ce1df75737712173bf9590ca8796e1475620a738c9506446485",
+    "bytes": 5954
+  },
+  "counts": {
+    "requestedFrames": 1,
+    "storedFrames": 1,
+    "completedFrames": 0,
+    "requestedReceiverRecords": 4,
+    "completedReceiverRecords": 0,
+    "unfinished": [
+      {
+        "frame": 0,
+        "normalization": "source_per_data",
+        "mode": "moment_repaired"
+      },
+      {
+        "frame": 0,
+        "normalization": "source_per_data",
+        "mode": "ignored_uncertainty"
+      },
+      {
+        "frame": 0,
+        "normalization": "source_per_data",
+        "mode": "literal_operational"
+      },
+      {
+        "frame": 0,
+        "normalization": "source_per_data",
+        "mode": "supplied_perfect_csi"
+      }
+    ]
+  },
+  "verificationPolicy": {
+    "sourceAuthenticity": "not-verified",
+    "independentNumericalReplay": "not-run",
+    "history": "untrusted imported history until explicit same-implementation replay",
+    "halfTies": "No probability snapping or deletion. Independent cross-language categorical disagreements require per-iteration half-tie localization; all other fields remain strict."
+  }
+}

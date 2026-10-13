@@ -1,0 +1,10 @@
+{
+  "name": "sensing-assisted-otfs-browser-prototype",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "sh run_all.sh",
+    "benchmark": "node tests/benchmark.mjs"
+  }
+}

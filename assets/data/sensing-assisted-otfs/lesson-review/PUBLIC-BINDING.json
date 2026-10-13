@@ -1,0 +1,27 @@
+{
+  "schema": "sensing-otfs-independent-public-review-binding-v1",
+  "acceptedCommit": "14665b68a1333e9d6c7f914143567a676edf0421",
+  "acceptedTree": "74cd5f426fe4b1283c85c0126b0d862584630561",
+  "acceptedFreezeSha256": "f7ab9392d1767cf8a6367b72874312e2624153e167f587b96b4eed3b5f13b8e9",
+  "reviewArtifacts": [
+    {
+      "file": "PUBLIC-REVIEW.md",
+      "bytes": 1837,
+      "sha256": "fddeb43a22e0c10b5cd22c684c02468b16cdd72850a61587ea0606af53084e5d"
+    },
+    {
+      "file": "PUBLIC-REVIEW.json",
+      "bytes": 1374,
+      "sha256": "262a2dadfd9fe0a426da44c9eae4324a78cfce84b79459fd334af111a65033bf"
+    }
+  ],
+  "evidenceDigests": {
+    "BINDING-AUDIT.json": "414a07f8eaa27e5c26bead5555cb7def62f2070dc61a5d88d151f4e88102c538",
+    "BOUNDARY-RECHECK.json": "bb3aeb1cde60e6a5638cda7a9bb329b6fe42152142be44a6a6cd979cf1c354f3",
+    "ROW-SELECTOR-RECHECK.json": "09316bb17442be1b5ac95bef526a49327ab60c21aa941dc51b3c98e7e0aff885",
+    "INDEPENDENT-FRESH-RESULT.json": "9cdd8995f0fec1fbb295c47d9c30b47ce6b0afd262bcf9930e226867044bee98",
+    "FRESH-MANIFEST.json": "1b6a94bc9daf3a442b3b471d8b36a8440cf142972f995b1a451e58bff9020d0a",
+    "lesson-tests-final.log": "afa04aa722725fabc29ab1556edb7ea7bdcc835cad38936734836c32b5dc3a84"
+  },
+  "verificationScope": "Independent Node/module-Worker/light-DOM and Python full-output checks; browser/site-build/publication not verified"
+}

@@ -581,6 +581,115 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+      "sha256": "d32b392228318a872193076556bdba8979c0185f361e8a4a427182a129507af6",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "sha256": "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+      "sha256": "3558bfafaef4ba90231e2c4be3a7d47c8401d659363c3f596a62ee368f7a1194",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/record.mjs",
+      "sha256": "9114d8f9e7d891db68cde4d867d2ca73d8d662bc23a1e27c5b8795b16226f28b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/session.mjs",
+      "sha256": "1cf1ff661c504a5443110b88c158076521f5e07e72c5e1c5a2b5e05f879a3879",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "../runtime/worker/receiver-worker.js",
+          "literal": "new URL('../runtime/worker/receiver-worker.js',import.meta.url)"
+        }
+      ],
+      "runtimePolicy": "reviewed-factory-endpoints",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+      "sha256": "62e15ebfe822951ad9a4df49b5ef07c037ad34eab33f32a7f2b5cf74d60bf472",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/js/codec.js",
+      "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:crypto",
+          "literal": "globalThis.crypto?.subtle??(await import('node:crypto')).webcrypto.subtle"
+        }
+      ],
+      "runtimePolicy": "reviewed-sensing-otfs-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+      "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+      "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/js/validation.js",
+      "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/worker/client.js",
+      "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+      "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+      "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "const port=node?(await import('node:worker_threads')).parentPort:null;"
+        }
+      ],
+      "runtimePolicy": "reviewed-sensing-otfs-runtime",
+      "unverifiedInputs": []
     }
   ]
 }

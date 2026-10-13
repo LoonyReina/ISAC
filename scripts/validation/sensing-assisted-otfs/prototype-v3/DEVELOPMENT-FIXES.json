@@ -1,0 +1,36 @@
+{
+  "schema": "sensing-otfs-port-development-fixes-v1",
+  "items": [
+    {
+      "issue": "Near-half probabilities crossed argmax sign under Python versus JavaScript libm/reduction order",
+      "resolution": "Keep raw algorithm/output; prove and label only half-tie-dependent categorical discrepancies using complete per-iteration traces; do not snap results",
+      "evidence": "reports/oracle-tie-diagnostic.json"
+    },
+    {
+      "issue": "Release cancellation initially restored a partial result into retained Worker state",
+      "resolution": "Release-specific cancellation retains partial in terminal event but never restores held state; actual-thread regression passes",
+      "evidence": "reports/worker-tests.json"
+    },
+    {
+      "issue": "Intermediate Python oracle edit had an unmatched parenthesis during a concurrent regression attempt",
+      "resolution": "Correct syntax and rerun full regression after fixture worker is stable",
+      "evidence": "rejected-attempts/interim-oracle-edit-syntax.log"
+    },
+    {
+      "issue": "Independent review reproduced dropped completed payloads when older completion was deferred behind an unacknowledged newer request and then cancelled or superseded",
+      "resolution": "v2 preserves terminal result, deferred result, or latest partial per request; includes analogous release/dispose/failure/restart paths; stale evidence never notifies current UI or overwrites current partial cache",
+      "evidence": "reports/deferred-client-tests.json",
+      "rejectedVersionManifestSha256": "79c139b070143491597eb5bdc5c3186d6ae2b0a5567bc8b549b4002636697c82"
+    },
+    {
+      "issue": "Independent actual-Worker all-zero-population export lost negative-zero signs through JSON.stringify",
+      "resolution": "v3 codec v2 encodes strict signed-zero tags for scalars and Float64Array elements; Python decoder supports the same representation; three actual-Worker exact round trips pass",
+      "evidence": "reports/signed-zero-worker-tests.json"
+    },
+    {
+      "issue": "Extreme finite P1 likelihood collapsed distinct residual distances, yielding wrong .5 probability and converged status despite analytic LLR4e18",
+      "resolution": "v3 rejects numerically unresolved local BPSK likelihoods with NUMERICAL_CONDITIONING via an algebraically equivalent LLR used only as a resolution check; no decoded probability rewrite; zero/weak gains remain supported",
+      "evidence": "reports/conditioning-tests.json"
+    }
+  ]
+}

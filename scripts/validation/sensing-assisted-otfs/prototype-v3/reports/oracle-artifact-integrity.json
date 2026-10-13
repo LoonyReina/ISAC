@@ -1,0 +1,50 @@
+{
+  "scope": "Stable oracle inputs and verifier sources only; runtime report hashes are bound inside the individual reports. Python caches are excluded.",
+  "referencePinnedAndUnmodified": true,
+  "files": {
+    "fixtures/independent-source-fixtures.json": {
+      "sha256": "435bb73f5237389f12b47b26f622804daad03be805c05b5493739b837a3a1ace",
+      "bytes": 15879
+    },
+    "fixtures/full-output-oracles.json": {
+      "sha256": "52821943a46575131e592e21e27ec38f2a13f7a8de1621857ddb0dec56e38018",
+      "bytes": 4747824
+    },
+    "reference-copy/reference.py": {
+      "sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+      "bytes": 12334
+    },
+    "reference-copy/RESULTS.md": {
+      "sha256": "b5dd3b62c39e52467d96301bef7470d9a1f140159768258124c99de191d180d5",
+      "bytes": 5797
+    },
+    "reference-copy/PROVENANCE.md": {
+      "sha256": "53417c49ee4d712d2a3b8d6eed1e6155824fe95f9ec917f18e88c46a83b95d80",
+      "bytes": 3766
+    },
+    "reference-copy/REFERENCE-MANIFEST.json": {
+      "sha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a",
+      "bytes": 11765
+    },
+    "reference-copy/CONTRACT.md": {
+      "sha256": "81d010454d62c1c0896baf166515605dc6eb9ef9941110038e67841f9c095bcd",
+      "bytes": 11659
+    },
+    "reference-copy/independent-audit/review_reference.py": {
+      "sha256": "b29781d5d2a644c0c08069278f1a7bf34ffccc19061aaf30165abfc6af0ce1ed",
+      "bytes": 5427
+    },
+    "reference-copy/independent-audit/audit_oracle.py": {
+      "sha256": "f611e447b08f700e6572a7f1c32284fa7204286396e1e4d02d4c70fb1223b995",
+      "bytes": 13129
+    },
+    "tests/generate_oracles.py": {
+      "sha256": "96f948c7cc1b726d7f66c0b9e92d9585079b7b975bc66912263bd33c0c51dbe1",
+      "bytes": 24483
+    },
+    "tests/verify_oracles.mjs": {
+      "sha256": "fcb9276fcc1311a777c4a45d7a23c1b977cee162347f4f3d80fe8fb2dfb0a179",
+      "bytes": 18390
+    }
+  }
+}

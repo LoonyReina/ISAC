@@ -1,0 +1,111 @@
+{
+  "input": {
+    "shape": [
+      5,
+      7
+    ],
+    "physicalSupport": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        -2,
+        4
+      ]
+    ],
+    "predictedSupport": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        -2,
+        4
+      ]
+    ],
+    "priorPowers": [
+      0.6,
+      0.3,
+      0.1
+    ],
+    "pilotIndex": [
+      2,
+      3
+    ],
+    "pilotPowerRatio": 0.000001,
+    "pilotPhase": 0.1,
+    "dataEnergy": 0.000001,
+    "N0": 0.07943282347242814,
+    "normalizations": [
+      "source_per_data"
+    ],
+    "seed": 672921,
+    "frames": 1,
+    "modes": [
+      "moment_repaired",
+      "ignored_uncertainty",
+      "literal_operational",
+      "supplied_perfect_csi"
+    ],
+    "maxIterations": 1,
+    "damping": 0.5,
+    "tolerance": 1e-7
+  },
+  "resultStatus": "error",
+  "reason": "INVALID_INPUT",
+  "frameKeys": [
+    "frame",
+    "normalization",
+    "Es",
+    "Ep",
+    "N0",
+    "pilot",
+    "x",
+    "y",
+    "noise",
+    "trueGainsEvaluationOnly",
+    "dataSignsEvaluationOnly",
+    "energyLedger",
+    "records",
+    "status"
+  ],
+  "checks": {
+    "integrity": {
+      "status": "passed",
+      "detail": "Exact UTF-8 byte counts and SHA-256 match both preserved codec texts; this is not proof of authorship"
+    },
+    "structure": {
+      "status": "passed",
+      "detail": "Strict root/schema/dtype/shape/finite-value/mask/pilot/energy/probability/status/count checks passed"
+    },
+    "selfConsistency": {
+      "status": "passed",
+      "detail": "Every saved scientific field matches a genuine deterministic run/prefix; incomplete work is not invented"
+    },
+    "sameImplementationReplay": {
+      "status": "passed",
+      "detail": "Frozen same-implementation recomputation matched all retained raw and decoder fields (1 execution boundaries inspected); this is not independent correctness evidence"
+    },
+    "independentNumericalReplay": {
+      "status": "not-run",
+      "detail": "Run the independent Python production-record oracle separately; it has not run in this browser"
+    },
+    "sourceAuthenticity": {
+      "status": "not-run",
+      "detail": "Not verified: declared source/runtime hashes and internal checks do not authenticate the file author or runtime source"
+    }
+  },
+  "mountedError": "Cannot read properties of undefined (reading '0')",
+  "mountedSourceRunId": "sensing-otfs-mv6bqxqb-1",
+  "notice": "本次状态：error；已完成部分保留，缺失模式不补零",
+  "error": "Pilot energy must be in [1e-12,1e12]"
+}

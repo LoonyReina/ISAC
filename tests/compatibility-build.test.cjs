@@ -226,7 +226,7 @@ test('the reviewed build-source exception record has exact independent bytes',()
 
 // Source-hash contracts are intentionally reviewed separately from legacy .js scans.
 test('every published ESM source has one exact reviewed contract and both Worker endpoints remain mapped',()=>{
- const c=JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),modules=manifest.entries.filter(e=>e.public?.endsWith('.mjs'));
+ const c=JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),modules=manifest.entries.filter(e=>e.public&&require('../scripts/build/module-dependencies.cjs').isModuleFile(e.public));
  a.deepEqual(c.modules.map(x=>x.public).sort(),modules.map(x=>x.public).sort());
  for(const record of c.modules){const mapping=modules.find(e=>e.public===record.public);a.equal(M.sha(fs.readFileSync(path.join(root,mapping.source))),record.sha256);}
  const ui=c.modules.find(x=>x.public==='otfs-receiver/otfs-receiver.mjs');a.equal(ui.runtimePolicy,'literal-workers');a.deepEqual(ui.runtimeEdges.map(e=>e.url),['./sensing/browser-worker.mjs','./communication/browser-worker.mjs']);

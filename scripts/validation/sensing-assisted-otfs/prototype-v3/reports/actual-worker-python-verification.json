@@ -1,0 +1,194 @@
+{
+  "allPassed": true,
+  "signedZeroCodecPythonCheck": true,
+  "exportSha256": "335c423d7499caf498e01242b8091b4997b344ff73e2d4fd5a35095f0a12b705",
+  "seed": 2486652731,
+  "independentFrameDraws": 2,
+  "fullReceiverRecords": 16,
+  "maxAbsoluteErrors": {
+    "rawY": 8.881784197001252e-16,
+    "gainDraw": 0.0,
+    "noiseDraw": 8.777083671441753e-17,
+    "estimatedGains": 2.482534153247273e-16,
+    "probabilities": 2.070565940925917e-14
+  },
+  "records": [
+    {
+      "frame": 0,
+      "normalization": "source_per_data",
+      "mode": "moment_repaired",
+      "status": "iteration_cap",
+      "errors": 2,
+      "fullOutputParity": {
+        "maximum_absolute_error": 2.6645352591003757e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "source_per_data",
+      "mode": "ignored_uncertainty",
+      "status": "iteration_cap",
+      "errors": 2,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.199040866595169e-14,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "source_per_data",
+      "mode": "literal_operational",
+      "status": "iteration_cap",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.892930256985892e-14,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "source_per_data",
+      "mode": "supplied_perfect_csi",
+      "status": "converged",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 3.3306690738754696e-16,
+        "numeric_values_compared": 1405
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "equal_total_frame",
+      "mode": "moment_repaired",
+      "status": "iteration_cap",
+      "errors": 1,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.609823385706477e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "equal_total_frame",
+      "mode": "ignored_uncertainty",
+      "status": "iteration_cap",
+      "errors": 2,
+      "fullOutputParity": {
+        "maximum_absolute_error": 6.328271240363392e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "equal_total_frame",
+      "mode": "literal_operational",
+      "status": "iteration_cap",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 8.049116928532385e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 0,
+      "normalization": "equal_total_frame",
+      "mode": "supplied_perfect_csi",
+      "status": "converged",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.5543122344752192e-15,
+        "numeric_values_compared": 1399
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "source_per_data",
+      "mode": "moment_repaired",
+      "status": "iteration_cap",
+      "errors": 1,
+      "fullOutputParity": {
+        "maximum_absolute_error": 2.220446049250313e-16,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "source_per_data",
+      "mode": "ignored_uncertainty",
+      "status": "iteration_cap",
+      "errors": 3,
+      "fullOutputParity": {
+        "maximum_absolute_error": 2.070565940925917e-14,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "source_per_data",
+      "mode": "literal_operational",
+      "status": "iteration_cap",
+      "errors": 17,
+      "fullOutputParity": {
+        "maximum_absolute_error": 6.661338147750939e-16,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "source_per_data",
+      "mode": "supplied_perfect_csi",
+      "status": "converged",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.1102230246251565e-16,
+        "numeric_values_compared": 1381
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "equal_total_frame",
+      "mode": "moment_repaired",
+      "status": "iteration_cap",
+      "errors": 1,
+      "fullOutputParity": {
+        "maximum_absolute_error": 8.881784197001252e-16,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "equal_total_frame",
+      "mode": "ignored_uncertainty",
+      "status": "iteration_cap",
+      "errors": 3,
+      "fullOutputParity": {
+        "maximum_absolute_error": 9.658940314238862e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "equal_total_frame",
+      "mode": "literal_operational",
+      "status": "iteration_cap",
+      "errors": 17,
+      "fullOutputParity": {
+        "maximum_absolute_error": 1.096345236817342e-15,
+        "numeric_values_compared": 1417
+      }
+    },
+    {
+      "frame": 1,
+      "normalization": "equal_total_frame",
+      "mode": "supplied_perfect_csi",
+      "status": "converged",
+      "errors": 0,
+      "fullOutputParity": {
+        "maximum_absolute_error": 4.440892098500626e-16,
+        "numeric_values_compared": 1393
+      }
+    }
+  ],
+  "scope": "Python independently regenerates Mulberry32/Box-Muller draws, raw x/y/noise, estimates/variances/energy/denominators; all decoder probabilities/decisions/status/history versus pinned accepted reference. Actual Node module Worker export, not a browser engine."
+}

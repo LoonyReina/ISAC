@@ -238,8 +238,8 @@ test('estimation starts with common observations and retains the scoped advanced
 });
 
 test('mutual assistance preserves its native theory entry and links only the bounded synthetic mechanism',()=>{
- const k=registry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,['radar-beam-decision']);a.equal(n.entryUnitRef,undefined);resolve(n.href);
- const h=template(render(registry),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/任务互助收益/);a.match(h,/已有独立合成感知辅助波束候选机制/);a.match(h,/未实现在线闭环或端到端收益验证/);a.doesNotMatch(h,/尚无独立专项实验/);
+ const legacyRegistry=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry),k=legacyRegistry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,['radar-beam-decision']);a.equal(n.entryUnitRef,undefined);resolve(n.href);
+ const h=template(render(legacyRegistry,require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(guideData)),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/任务互助收益/);a.match(h,/已有独立合成感知辅助波束候选机制/);a.match(h,/未实现在线闭环或端到端收益验证/);a.doesNotMatch(h,/尚无独立专项实验/);
  const beginner=tree.querySelector('.map-beginner');a.deepEqual(beginner.querySelectorAll('a').map(l=>l.attrs.href),['theory.html#evolution','radar-beam-decision.html#experiment']);
  const choices=tree.querySelector('.map-case-paths').querySelectorAll('a');a.equal(choices.length,1);a.equal(choices[0].attrs.href,'radar-beam-decision.html#mechanism');resolve(choices[0].attrs.href);
  const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
@@ -409,7 +409,7 @@ test('three additional source-backed selections preserve the first route and all
  const before=withoutGCSAGERegistry(registry);before.knowledgeMap.progressions.splice(1);
  const hash=v=>require('node:crypto').createHash('sha256').update(v).digest('hex');
  a.equal(hash(JSON.stringify(before)),'2a8a834a37e7bd94a77a87b645b201dfc81a2f798bfa04eff92dcbd02bc2d5c7');
- const first=template(render(),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';
+ const first=template(render(require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry),require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(guideData)),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';
  a.equal(first.split(correction).length,2);
  // Preserve first-release markup except the separately reviewed attribution correction.
  const normalize=h=>h.replace(correction,'代表性原文将这个实验列为先修');

@@ -1,0 +1,327 @@
+{
+  "schema": "sensing-otfs-lesson-repair-freeze-v2.1",
+  "frozenAtUtc": "2026-10-13T07:14:50.113902+00:00",
+  "previousLessonCommit": "b6190325c215b99397e22bb65519fb04f36e6dd0",
+  "previousLessonFreezeSha256": "479ede7c7c61dbc08497f71693c812068802f7cb5bd135599ab41cfb20300125",
+  "originalLessonCommit": "3c25b52619582f757a6c1fc7b445322cf7e7e8c7",
+  "runtimeModified": false,
+  "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+  "fixedReviewFinding": "Rejected fractional/NaN/out-of-range generic-view row was still used to index evidence",
+  "authorTests": {
+    "original": 47,
+    "v2Boundary": 12,
+    "new": 1,
+    "passed": 60,
+    "skipped": 0,
+    "standardProductionDownloads": 7,
+    "standardFullReceivers": 37,
+    "boundaryProductionDownloads": 3,
+    "boundaryFullReceivers": 2,
+    "rawOnlyFramesRetained": 1
+  },
+  "independentReacceptance": "pending",
+  "browserVerified": false,
+  "changes": [
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS-V2.1.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 6098,
+      "sha256": "dd2bb9d11b2cb8f7105a2189e793806c666393b3d002fce171eae7bf6308451e"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS-V2.1.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 16610,
+      "sha256": "a2dd574b73530f8f087565d4786bb192ab62af6530537b61b2245f88f32c4be6"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/REPAIR-V2.1.md",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2041,
+      "sha256": "4d5bc09986d0827121c35620d614b506924bbd6c5ee5edc08003a348d384995e"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/before/FRACTIONAL-ROW-REPRO.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1416,
+      "sha256": "33e65173d44cb71f69fd43febf87aaf58d7c766f462e7e1fee4732ccc6e66814"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/boundary-downloads.log",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 946,
+      "sha256": "751e72c231cc2904dcc77f3057961955c28363a97a2ebb25d7595a35b4c4c8c6"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/download-check.log",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 381,
+      "sha256": "18641f11cb586bd657c74e3cda1f14b7954af49fd0a832393d63bd3356fdf4a2"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/BOUNDARY-MANIFEST.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 946,
+      "sha256": "751e72c231cc2904dcc77f3057961955c28363a97a2ebb25d7595a35b4c4c8c6"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/INDEPENDENT-SUMMARY.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 381,
+      "sha256": "18641f11cb586bd657c74e3cda1f14b7954af49fd0a832393d63bd3356fdf4a2"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/MANIFEST.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2276,
+      "sha256": "dd008fb1716f5a861f9c5106d871e60e333a042dda627d403ae871c242c3bed4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1012,
+      "sha256": "a2816bba2fc7688c8907dd62956d8e1e302cea9609cc25e8200a5582a2ed68c8"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1189,
+      "sha256": "13f47038d691d97c85e4d4cacc66f36956cfcf1f1af8aacb0428a86e9d909db7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/cap.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 82661,
+      "sha256": "ae3d930b24a7bd6d0174bd67ade8ef6813c202f18d0b3b4c8eca69c806960a80"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1013,
+      "sha256": "4c718e51c3cb0b1e1eb85b4fb3e0fb33ddd43ee67e31b65764bf227f6d539e73"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1189,
+      "sha256": "13f47038d691d97c85e4d4cacc66f36956cfcf1f1af8aacb0428a86e9d909db7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/default.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 97642,
+      "sha256": "d01f57db0e2c58ab7350cce37a82d0f8fd95f80964e4932754bb3deb1fe64b3a"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1015,
+      "sha256": "b7c65cdfee3a1b2d34d311f92f3c971a5b34c2ab846f8dd2a0f14bf02a2375db"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 4846,
+      "sha256": "0eff49420749dd6d64b4a87bc3b074c1bca519864165372b2ca96ee00578ffcf"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/energy.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 454197,
+      "sha256": "a66e6d3fc072e23a071efb609248f75165f776679cedc57cc5b860b6a980a7e3"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-display.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2303,
+      "sha256": "8cbbb279882a990b5b4b1b0c5f88d392860cba57150d1be76aa80e3b9dd5ab79"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1015,
+      "sha256": "09f7fafa6d74c0f6f3bf7a502eae904919793dadb4ce67e8eaee166bc13410da"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/generic-receive.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 3650,
+      "sha256": "74f6b6168e137decdf9198497db64222cabcf1c6c5fb73742d0a0bd7c7c38b97"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1012,
+      "sha256": "6a95ed6b953e96b959601f5bd940f8d77be287c74e7892f33cd7bafd3af1d876"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1192,
+      "sha256": "8700924f29d77d23572ac91074780f4882a6f0f172b7cdf59e9d0f55d056df9b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/mismatch.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 100517,
+      "sha256": "b0c30b2c5f75e3c9c3bd813a4445d31a1679284f0c33618883e11fac95b43a5f"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-display.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2341,
+      "sha256": "9ee71edf563a1fb2ca2f687b63ed0a2bb2e363495c548134ec9aad2553a56be1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1015,
+      "sha256": "392b335fad03c1b1ff083d3404ec4a1196d5e0457d981c0d7df9d56943dda814"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/modified-receive.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 10974,
+      "sha256": "8d639faee8cf538d95046e8e21cfd4962f102322108bab77fa41be3e3a984560"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1013,
+      "sha256": "04cd307005c6a117884479746eacc98b33f5fc8ae851249db1723e83ad78dc36"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1277,
+      "sha256": "81d7dee8891ba10c3955e9bd32dd8c40aec3e793332dcaad73f314634f9a43b7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/nonfixture.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 36112,
+      "sha256": "ee7d6764e83f160f1da144a4d50aab38be7ca1e678d6e133c61770a8930a20b2"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-display.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2137,
+      "sha256": "6a5b3be741a227d74a3a1e1d5d2f691cd1f04fd15fdeed5a967a0477b545137b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1008,
+      "sha256": "42a92746c3e61537b789a449bb1ddc02c6733852ccca5340de8cdd3234affd7b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/raw-only-failure.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 9104,
+      "sha256": "7fe21a1335fde96687be455476a393c3a1f46af8ad321462e14282b0e1d52016"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1015,
+      "sha256": "8e1be7ab2efbc52b81ee0323bb5182b25169b3ce107bfe8448c4fdc7bd9a6c0e"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1104,
+      "sha256": "952b5ad9259fc6509d85df68f702eca15670b195401266ef3dd7aa8853f397a1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/tiny.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 9564,
+      "sha256": "40299c8341a3bc5d2f13ace981bf21d4d0f201b56ff43150b6c7b0c7a0cc9a3b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-independent.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1012,
+      "sha256": "e04691f02c5e2730934253af4fa5b921536195dc8a91e831d3c9b7df0a9baa81"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero-teaching.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 1107,
+      "sha256": "114af5b033c7b7b21791f4c8677df4e8b8f06035d17e3001904c91c42918612d"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/downloads/zero.json",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 85552,
+      "sha256": "366e79d0f67bcaedacafea2dad5d876c552b399732dae44c822e41a70224be6c"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/lesson-tests.log",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 6095,
+      "sha256": "7b5a72189a435d86406a8de8159c5d89e8fd36a43cd9ef2844235c5a560f861f"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/repair-v2.1/production-downloads.log",
+      "change": "added",
+      "beforeSha256": null,
+      "bytes": 2276,
+      "sha256": "dd008fb1716f5a861f9c5106d871e60e333a042dda627d403ae871c242c3bed4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "change": "modified",
+      "beforeSha256": "41c64bcc46d823b8001c91761fbba0438b345080eb14f63594f09346ecb4281f",
+      "bytes": 23826,
+      "sha256": "0c4908e6e26b4aa5f913c2c8a9fd9140bffa55362437d8fbf88817cc2fe0b1d3"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/boundary-v2.test.mjs",
+      "change": "modified",
+      "beforeSha256": "d76ec3a409b2fc1570c4c93372cfa2e4b70e6eb156f15fe8a9f2bd4c071c321f",
+      "bytes": 9970,
+      "sha256": "3cf4bfe80620cd59af0e1f0cee6fb3af73f75dcd8951e69da2a8c427a19c0074"
+    }
+  ]
+}

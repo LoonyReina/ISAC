@@ -1,0 +1,639 @@
+{
+  "schema": "sensing-otfs-lesson-freeze-v1",
+  "frozen_at_utc": "2026-10-13T06:47:03.345806+00:00",
+  "accepted_base_commit": "1b2b63b24159694b3674cd339bd0e12f44499118",
+  "accepted_base_tree": "ee2387f21a253bc2d963653b57320e26435dd0f3",
+  "runtime_modified": false,
+  "runtime_manifest_sha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+  "scope": "New files only; functional lesson, production Worker download and independent Python evidence. No global registry/build/old-page/remote/browser changes.",
+  "tests": {
+    "lesson": 47,
+    "skipped": 0,
+    "productionDownloads": 7,
+    "independentReceiverRecords": 37,
+    "browserVerified": false,
+    "siteIntegrationVerified": false
+  },
+  "files": [
+    {
+      "path": "assets/data/sensing-assisted-otfs/CONTRACT.md",
+      "bytes": 11659,
+      "sha256": "81d010454d62c1c0896baf166515605dc6eb9ef9941110038e67841f9c095bcd"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/EQUATION-CROSSWALK.md",
+      "bytes": 18319,
+      "sha256": "b3475e0eaa77706e2e2b1f9f7539124ca9c9cc6226adedddfaf9b69f467b20a2"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/RESULT.json",
+      "bytes": 897,
+      "sha256": "87c3a3fc7477abbcb169302002d7c1c0bf76ac259ab10cb1941899386223fee9"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/RESULTS.md",
+      "bytes": 5797,
+      "sha256": "b5dd3b62c39e52467d96301bef7470d9a1f140159768258124c99de191d180d5"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/REVIEW.md",
+      "bytes": 12898,
+      "sha256": "ecbf11edef5f5ed92c6e4f42f7c7949655b9dbe1ab2ea7a59e3fdd9ef81aeab6"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/SOURCE-AUDIT.md",
+      "bytes": 4926,
+      "sha256": "04b1db45cf6ceebba3d2581a849eaa233ef90f7a18251834288bff3a5a966cce"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/SOURCE-BINDING.json",
+      "bytes": 4964,
+      "sha256": "75d8caee693f1e00bb33416d91ca849afb2b7d8768f808a78e42eb97f3202eab"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/independent-fixtures.json",
+      "bytes": 15879,
+      "sha256": "435bb73f5237389f12b47b26f622804daad03be805c05b5493739b837a3a1ace"
+    },
+    {
+      "path": "assets/data/sensing-assisted-otfs/offline-summary.json",
+      "bytes": 51317,
+      "sha256": "bb538afcbf0ca9f8df6a1a0610de1eb8396c6d60bffe8332b6c8163574d21356"
+    },
+    {
+      "path": "content/pages/otfs-sensing-assisted.html",
+      "bytes": 21339,
+      "sha256": "6bb3f063435b4d69ab2b0980f745976fc68bae4f78bd9654eb236b55ae93fa6d"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/ACCEPTANCE.json",
+      "bytes": 2665,
+      "sha256": "dd1f7235bab149c1fb160ece6270e40b62a0c6f0c9ddd6afbe1f14a80e01f620"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/OWNED-TESTS.json",
+      "bytes": 4470,
+      "sha256": "ab9eda11f4865b2c1b38967089a7a10b610acdea96efb9e4ac9de2337960f677"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/PUBLIC-ASSETS.json",
+      "bytes": 44997,
+      "sha256": "5716bd7fa7afffb8e4e8c170f983eae66c47dbb7a0c68d3198193ea3c0d5cca4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/README.md",
+      "bytes": 5519,
+      "sha256": "0f8894528611e86db462f6a1a20bed567445aa02e150749806e19d25ecf40892"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/adapter.mjs",
+      "bytes": 7093,
+      "sha256": "73a662ec2904ccf7d274f1d2c9223243a6bdbdcf1d0762f47745fa92f687f2c9"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/INDEPENDENT-SUMMARY.json",
+      "bytes": 381,
+      "sha256": "18641f11cb586bd657c74e3cda1f14b7954af49fd0a832393d63bd3356fdf4a2"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/MANIFEST.json",
+      "bytes": 2276,
+      "sha256": "493a05f526d7a5c0e485efa4a0bb8da1f34f28a6e261d9198f6c41e88407a6fb"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-independent.json",
+      "bytes": 1012,
+      "sha256": "e65c97d9caf9a44c9a42f34ab327cec036d48dd1df718135d38597cfee213004"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap-teaching.json",
+      "bytes": 1189,
+      "sha256": "13f47038d691d97c85e4d4cacc66f36956cfcf1f1af8aacb0428a86e9d909db7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/cap.json",
+      "bytes": 82661,
+      "sha256": "9045e6ef143f9cd232a95c8b1c3b42d2c6091c89bf4fbfbf6646ceed27c779d7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-independent.json",
+      "bytes": 1013,
+      "sha256": "d142fdbf49ab80ad70da5c7ede172f1ce93612b1aaa779e03aee5a0b7a1f9d84"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default-teaching.json",
+      "bytes": 1189,
+      "sha256": "13f47038d691d97c85e4d4cacc66f36956cfcf1f1af8aacb0428a86e9d909db7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/default.json",
+      "bytes": 97642,
+      "sha256": "ba8b872b5ed1eaa5836b039a7aeabd77a283268d08d21c42e9b7866c953df720"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-independent.json",
+      "bytes": 1015,
+      "sha256": "2811e31d7e12a9262631a4ef8a48286e5ee0f6954f989802a33c327015e2c0ed"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy-teaching.json",
+      "bytes": 4846,
+      "sha256": "0eff49420749dd6d64b4a87bc3b074c1bca519864165372b2ca96ee00578ffcf"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/energy.json",
+      "bytes": 454204,
+      "sha256": "c2eab979857c24c732db86c41e55620da3f169fbdf3ac95fdcc5d20653a443e5"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-independent.json",
+      "bytes": 1012,
+      "sha256": "213e13faf40d65d8508f1964d746d6d3a9415d116f72a77dea6f0a123efb86de"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch-teaching.json",
+      "bytes": 1192,
+      "sha256": "8700924f29d77d23572ac91074780f4882a6f0f172b7cdf59e9d0f55d056df9b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/mismatch.json",
+      "bytes": 100517,
+      "sha256": "be7f9a05d8438666951f8c5d8410bcc2fef9a8ad4f69f0b738064025235674cf"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-independent.json",
+      "bytes": 1013,
+      "sha256": "1bf3db4f60dc16cbdd62fb66e2aca2bbe279027b6a655df0ac9ebcc5de67563e"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture-teaching.json",
+      "bytes": 1277,
+      "sha256": "81d7dee8891ba10c3955e9bd32dd8c40aec3e793332dcaad73f314634f9a43b7"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/nonfixture.json",
+      "bytes": 36113,
+      "sha256": "c6eb4827dc5d4a0c457212aed7e1782da465d477935448ed788c21edc6c9dabd"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-independent.json",
+      "bytes": 1015,
+      "sha256": "a7149bd7a7256d9f1badd5f5810c434a58da9c2f486278c0512af50b8aa614c1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny-teaching.json",
+      "bytes": 1104,
+      "sha256": "952b5ad9259fc6509d85df68f702eca15670b195401266ef3dd7aa8853f397a1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/tiny.json",
+      "bytes": 9572,
+      "sha256": "fadf8b52d91f7d4c5903e9248b7c87e01ac01457891d565865139ec6ff486e8f"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-independent.json",
+      "bytes": 1012,
+      "sha256": "b96ad81f911b355d12e3da1126d144a2eeeee249fa57692d037762e1bc0dce25"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero-teaching.json",
+      "bytes": 1107,
+      "sha256": "114af5b033c7b7b21791f4c8677df4e8b8f06035d17e3001904c91c42918612d"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/downloads/zero.json",
+      "bytes": 85553,
+      "sha256": "bbe37affa5239924682e111bf265953f75d49c2ce5abfe4fcdd24959898834d1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/lesson-tests.log",
+      "bytes": 4781,
+      "sha256": "b5c581e8079ab5e9f83bc58ad0affda56e26a5c75b1c466808ff996e8e7b628b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/evidence/prototype-rerun.log",
+      "bytes": 7606,
+      "sha256": "ad0f10e83fd269a26f016c8b33e883fb7e447fc3ceb48abfb1920571452ce2dd"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/lesson.css",
+      "bytes": 4491,
+      "sha256": "7a464c20a0d6dc9876cd83f0c1a8f9f11c033802a5a39d866554aae99e5266d5"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/lesson.mjs",
+      "bytes": 20730,
+      "sha256": "97c5034c479a81c4ea29222b377790eabe5d036f117b88d9ed457de3b0803270"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/offline-reference.mjs",
+      "bytes": 7084,
+      "sha256": "3558bfafaef4ba90231e2c4be3a7d47c8401d659363c3f596a62ee368f7a1194"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/record.mjs",
+      "bytes": 22482,
+      "sha256": "9114d8f9e7d891db68cde4d867d2ca73d8d662bc23a1e27c5b8795b16226f28b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/session.mjs",
+      "bytes": 7114,
+      "sha256": "316e8940f153e871e03725cc0eaa8e96bbd5e7dbc86ad0465b283fd15d2d3718"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/adapter.test.mjs",
+      "bytes": 4381,
+      "sha256": "a64cde039225654b5abfa126d727695a23a6f9f318e96d51b4cb868d1f7df4b2"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/contract.test.mjs",
+      "bytes": 3347,
+      "sha256": "d541a2650bc5af226f10e99ab0b5d55fc6f449e07a4322457326fb9925a66338"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/dom-harness.cjs",
+      "bytes": 7379,
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/export-records.mjs",
+      "bytes": 2849,
+      "sha256": "34351a6f0a81db9be029db683170c5c9be4f092fcb068ccb3e71a9d8cf91aac4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/mounted.test.mjs",
+      "bytes": 7401,
+      "sha256": "6038dda9c9d4dcf3078859498f642e69806d0eaa9fcf291b6fef3bd46c959cc5"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/node-client.mjs",
+      "bytes": 121,
+      "sha256": "290f0f77e71f961580c6634c6a6aebd252c7d8ae03dea4b817014d8da2468986"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/record-oracle.py",
+      "bytes": 34326,
+      "sha256": "b75d48d5940e7b944c9e3102e7221640952840612e1784e184b1d94de3d080e4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/record.test.mjs",
+      "bytes": 10995,
+      "sha256": "059a2e7ee42fb670f5874398d54337ad18efd7100f416b4bf3dbe0bd578f1512"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/session.test.mjs",
+      "bytes": 4337,
+      "sha256": "a095e4bf75305609ac57054333b5d331af3bfecaa9609420c77dc3e68901d343"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tests/verify-production-downloads.py",
+      "bytes": 3340,
+      "sha256": "5a751709222ae282c1e9d5c386d94f65d70ab8d1a940fd85011b39b0bea0b060"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/lesson/tiny-reference.mjs",
+      "bytes": 1016,
+      "sha256": "62e15ebfe822951ad9a4df49b5ef07c037ad34eab33f32a7f2b5cf74d60bf472"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/MANIFEST.json",
+      "bytes": 10579,
+      "sha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/README.md",
+      "bytes": 14815,
+      "sha256": "81299bf96e8e25cb537c4261c2b3056c06c1e572170982c802fef0bcc618a83a"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/RUNTIME-MANIFEST.json",
+      "bytes": 1986,
+      "sha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/js/codec.js",
+      "bytes": 3231,
+      "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/js/evaluation.js",
+      "bytes": 11361,
+      "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/js/receiver.js",
+      "bytes": 9914,
+      "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/js/validation.js",
+      "bytes": 5592,
+      "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/package.json",
+      "bytes": 210,
+      "sha256": "cb1f28255cca749d4608c19ed02d0898d93133a250c58c1cb396cf3b68ec8975"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/worker/client.js",
+      "bytes": 11554,
+      "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/worker/protocol.js",
+      "bytes": 1359,
+      "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+    },
+    {
+      "path": "labs/otfs-sensing-assisted/runtime/worker/receiver-worker.js",
+      "bytes": 4632,
+      "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/DEVELOPMENT-FIXES.json",
+      "bytes": 2485,
+      "sha256": "848b8b401b269e3d58907303246305e698c78a99967dedaed94d53e2b376791d"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/MANIFEST.json",
+      "bytes": 10579,
+      "sha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/README.md",
+      "bytes": 14815,
+      "sha256": "81299bf96e8e25cb537c4261c2b3056c06c1e572170982c802fef0bcc618a83a"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/RUNTIME-MANIFEST.json",
+      "bytes": 1986,
+      "sha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/full-output-oracles.json",
+      "bytes": 4747824,
+      "sha256": "52821943a46575131e592e21e27ec38f2a13f7a8de1621857ddb0dec56e38018"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/fixtures/independent-source-fixtures.json",
+      "bytes": 15879,
+      "sha256": "435bb73f5237389f12b47b26f622804daad03be805c05b5493739b837a3a1ace"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/harness.js",
+      "bytes": 3687,
+      "sha256": "edb9d40d48fd3651ab7fe236826faefbacaf76bdcf813271b366d8f125be58c2"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/index.html",
+      "bytes": 3846,
+      "sha256": "28c23e37b2a6a88e1fed378a326bc0ed0a518904251ca5415c43342f646e0d24"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/codec.js",
+      "bytes": 3231,
+      "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/evaluation.js",
+      "bytes": 11361,
+      "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/receiver.js",
+      "bytes": 9914,
+      "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/js/validation.js",
+      "bytes": 5592,
+      "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/package.json",
+      "bytes": 210,
+      "sha256": "cb1f28255cca749d4608c19ed02d0898d93133a250c58c1cb396cf3b68ec8975"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/CONTRACT.md",
+      "bytes": 11659,
+      "sha256": "81d010454d62c1c0896baf166515605dc6eb9ef9941110038e67841f9c095bcd"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/PROVENANCE.md",
+      "bytes": 3766,
+      "sha256": "53417c49ee4d712d2a3b8d6eed1e6155824fe95f9ec917f18e88c46a83b95d80"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/REFERENCE-MANIFEST.json",
+      "bytes": 11765,
+      "sha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/RESULTS.md",
+      "bytes": 5797,
+      "sha256": "b5dd3b62c39e52467d96301bef7470d9a1f140159768258124c99de191d180d5"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/audit_oracle.py",
+      "bytes": 13129,
+      "sha256": "f611e447b08f700e6572a7f1c32284fa7204286396e1e4d02d4c70fb1223b995"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/independent-audit/review_reference.py",
+      "bytes": 5427,
+      "sha256": "b29781d5d2a644c0c08069278f1a7bf34ffccc19061aaf30165abfc6af0ce1ed"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reference-copy/reference.py",
+      "bytes": 12334,
+      "sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/interim-oracle-edit-syntax.log",
+      "bytes": 1878,
+      "sha256": "1f5f5d0bf353cf422a4926ceec168a0be8eb397dbe9c813f8b715783ac7beb26"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-deferred-client-independent-results.json",
+      "bytes": 502,
+      "sha256": "27c4ff227b2ccf20d0f49520109643eafe642576be5776c2f5e806bb16ead453"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-numerical-conditioning-independent-results.json",
+      "bytes": 930,
+      "sha256": "4599d3889ef65d0863dffd27ef17244d79f2819edf9a944984c8d7723895a1f7"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-independent-failure.log",
+      "bytes": 52961,
+      "sha256": "f3c831c6ce2d8e310251b0678ac0ad493844392c24a45b4f61b0d5289db451bd"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/rejected-attempts/v1-signed-zero-own-reproduction.json",
+      "bytes": 421,
+      "sha256": "1e1fc9c3750c7e6c3b73e1cacdee9df03bc49262667a9fc58e899f5eca5c22bd"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-export.json",
+      "bytes": 412609,
+      "sha256": "c6d2be30a01280cf553d570462a3fc2221497870e3cfe85bac32574d187e56cc"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/actual-worker-python-verification.json",
+      "bytes": 5449,
+      "sha256": "dab7161fee0cd8993ff5f4954f1d05bd6bb6262e63a299b9d106e1e6030dfc67"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/benchmark.json",
+      "bytes": 1382,
+      "sha256": "405b4e680a0ed4b61832e49b6c0f1da707e63e8ba8ee5719a866d934ba618fe8"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/conditioning-tests.json",
+      "bytes": 1865,
+      "sha256": "d635d061a50a39fd68466d0f4d6ca2f55a8f8bb5f02d779cc62ae1bbb48de2cb"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/deferred-client-tests.json",
+      "bytes": 1153,
+      "sha256": "a2a00b27b675aedff48da09f30df90bd2ee7ea4b18124bf5d49633f2040fd657"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/full-regression.log",
+      "bytes": 7569,
+      "sha256": "b19fae2b50a471ed24278f3934a3c5d67bac5a1bb281d26e02fc7bd4f0b7dbd1"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/kernel-tests.json",
+      "bytes": 2318,
+      "sha256": "6e691d004b119571839d257f462634afc7762fbee2c2ffe3314ae8fce0195b8b"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-README.md",
+      "bytes": 3188,
+      "sha256": "398d87be60e4159eb14826cd0f45e4b6c717f7d0d3860e792af41115a8c60cf6"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-artifact-integrity.json",
+      "bytes": 1921,
+      "sha256": "d7c57e9885567e928ac03a81d8bb919ed28b58ef7dd3d6b3553d21c668e54c40"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-generation.json",
+      "bytes": 25263,
+      "sha256": "30b834a5a0a510f02a8c6bd0dc56cb6d1d8c6415168b449af7455234a7448521"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-js-verification.json",
+      "bytes": 47435,
+      "sha256": "3f1f7f2e5ab0ab780993564016b87534e9571676f788070b99e17637aaa07390"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-nonfixture.json",
+      "bytes": 85064,
+      "sha256": "186e14e3b2ebe7133ae64a4e08ed67282af00c70ac4b5afc463010c5da20f987"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-runtime-verification.json",
+      "bytes": 2739,
+      "sha256": "5044e2d8d5e79eb943eb75e0271459bc7057fa23873fc0c53f687b1790868918"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/oracle-tie-diagnostic.json",
+      "bytes": 42406,
+      "sha256": "4fcd01151e045755d47d0dedbb0a0d952854f6f5324d0fbc8127b1993308a2c8"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/signed-zero-worker-tests.json",
+      "bytes": 424,
+      "sha256": "eb0246ee3fb086a6e058e2bbc305951c7524a6a34e270fc8c6a22b510d8111f3"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/reports/worker-tests.json",
+      "bytes": 1419,
+      "sha256": "8c5312fc5094a64fd47f57e8538d1b01f0ead7d3e60857fce338177b65371b5b"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/run_all.sh",
+      "bytes": 473,
+      "sha256": "93d1c0ce2f88ce6f9ba2e1e7532933612d5718377a88410875e7fbe6d09f9ef1"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/benchmark.mjs",
+      "bytes": 2081,
+      "sha256": "511b59ba302d3f47fe3c6bbe40e2fa42b37fbc93a9bd418e5f7f11eebdf6a071"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/export-worker.mjs",
+      "bytes": 1172,
+      "sha256": "3d667660fa0ee793f950426ff0805bbbb5ad3ef292a2bd1e9cf17106ed38785a"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/freeze_artifact.py",
+      "bytes": 3013,
+      "sha256": "a4922576e7cb52f65dc25eb52d77aaa513ef2176f2e719712613f2010dd24e3d"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/generate_oracles.py",
+      "bytes": 24483,
+      "sha256": "96f948c7cc1b726d7f66c0b9e92d9585079b7b975bc66912263bd33c0c51dbe1"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-conditioning.mjs",
+      "bytes": 2556,
+      "sha256": "4e15c8c899a3881476a873efd6dde959427daee7f72b6efcbbdabc95c16c86fd"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-deferred-client.mjs",
+      "bytes": 3906,
+      "sha256": "f82609ff981255373d615c07bb3147f80e2336166451d9dc417fac2a90c3d631"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-kernel.mjs",
+      "bytes": 8278,
+      "sha256": "2f6ea0c7914390c61ef870de94ed5530b38e0451b5b20f8a56f08eab759ae276"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-signed-zero-worker.mjs",
+      "bytes": 1602,
+      "sha256": "020fb1c4fdd212e60b24b412c70754aebf814ef68a1c906729f5fb925ad22c89"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/test-worker.mjs",
+      "bytes": 9181,
+      "sha256": "e65522d7ec594de1e7d5d8221b2bbf2ca5381392926809729eb973ae371a4ec6"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_experiment.py",
+      "bytes": 5897,
+      "sha256": "43bb749d461c01d1c80282cd6fa74c0ed2ffb542eb34bfbbaa365f27c4bbeab1"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_manifest.py",
+      "bytes": 493,
+      "sha256": "cf8bdca426baf2ad2f2e91af9d383b669a300e4a2f43b8b9adb5c7e33900d01a"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/tests/verify_oracles.mjs",
+      "bytes": 18390,
+      "sha256": "fcb9276fcc1311a777c4a45d7a23c1b977cee162347f4f3d80fe8fb2dfb0a179"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/client.js",
+      "bytes": 11554,
+      "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/protocol.js",
+      "bytes": 1359,
+      "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+    },
+    {
+      "path": "scripts/validation/sensing-assisted-otfs/prototype-v3/worker/receiver-worker.js",
+      "bytes": 4632,
+      "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+    }
+  ]
+}

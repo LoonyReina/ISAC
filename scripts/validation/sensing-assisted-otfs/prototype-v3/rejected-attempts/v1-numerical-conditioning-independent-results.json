@@ -1,0 +1,45 @@
+{
+  "input": {
+    "shape": [
+      1,
+      2
+    ],
+    "support": [
+      [
+        0,
+        0
+      ]
+    ],
+    "y": [
+      1,
+      0,
+      1000000000000,
+      0
+    ],
+    "pilotIndex": [
+      0,
+      0
+    ],
+    "pilot": [
+      1,
+      0
+    ],
+    "Es": 1e-12,
+    "N0": 1e-12,
+    "priorPowers": [
+      1
+    ],
+    "mode": "ignored_uncertainty",
+    "maxIterations": 3,
+    "damping": 0.5,
+    "tolerance": 1e-7
+  },
+  "actualPositiveProbability": 0.5,
+  "actualDecision": -0.000001,
+  "status": "converged",
+  "iterations": 1,
+  "analyticLogPositiveOverNegative": 4000000000000000000,
+  "analyticPositiveProbability": 1,
+  "absoluteProbabilityError": 0.5,
+  "scope": "Within declared input safety envelope. No gain uncertainty, one path, exact scalar Gaussian likelihood. Distances y±a*sqrt(Es) collapse to equal floats before norm2. This is numerical cancellation, not a near-.5 physical posterior tie."
+}

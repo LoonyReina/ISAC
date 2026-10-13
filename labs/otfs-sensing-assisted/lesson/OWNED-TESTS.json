@@ -1,0 +1,63 @@
+{
+  "schema": "sensing-otfs-owned-tests-v1",
+  "count": 47,
+  "suites": {
+    "record.test.mjs": [
+      "complete envelope retains codec, full record identity and separate evidence layers",
+      "strict envelope rejects unknown and dangerous metadata, IDs, dates, counts and provenance",
+      "byte hashes are integrity only and corrupt bytes or limits fail before display",
+      "all scientific field families reject mutation even after attacker recomputes SHA",
+      "a self-consistent but fabricated raw frame is rejected by PRNG/full replay",
+      "every genuine raw/receiver/frame boundary can retain a cancelled prefix",
+      "complete evidence kept under superseded terminal retains all mode records",
+      "raw practical tiny receive roundtrips typed y without truth or metrics",
+      "signed zero raw evidence and input survive exact codec roundtrip and snapshots detach",
+      "zero-result terminal records claim no computed evidence",
+      "Python production-download oracle independently checks fresh run, tiny and mutation"
+    ],
+    "session.test.mjs": [
+      "actual Worker same config runs fresh IDs with equal raw numerical outputs",
+      "local invalid submission does not cancel accepted long request",
+      "valid A to B supersession keeps older evidence without replacing selected newer owner",
+      "cancel after actual first receiver retains raw partial and completed count without invented pairing",
+      "editing draft preserves submitted configuration and final result identity",
+      "history selection remains pinned while newer Worker finishes",
+      "reset and suspend fence late callbacks yet retain completed historical evidence",
+      "file preflight rejects oversize before read and delayed import cannot replace reset",
+      "import is untrusted, complete check remains unauthenticated, rerun gets new ID",
+      "Worker unavailable and transport failure show recoverable states with no fake result"
+    ],
+    "adapter.test.mjs": [
+      "canonical default realizes four modes and pilot is excluded from final probability display",
+      "actual gain arrivals equal independent scalar complex division",
+      "graph observation and variable edges match independent signed modulo scalar loops",
+      "extrinsic independent product includes prior and excludes only destination",
+      "fixed tiny example recomputes approximate posterior and retains offline exact gap",
+      "same seed mismatch keeps actual y and supplied CSI while changing estimates and graph",
+      "energy normalizations preserve random primitive pairing but change x and y with unchanged N0",
+      "one-round caps and all-zero gain retain counts and undefined NMSE",
+      "controls reject duplicate modulo, fractional, zero pilot, unknown and excessive budgets",
+      "bounded preview reports omission and never substitutes for full raw arrays"
+    ],
+    "mounted.test.mjs": [
+      "mounted default actual Worker has four modes, real traces, ledger, grid and full production Blob",
+      "view selectors never rerun and selected pilot is known rather than probability half-tie",
+      "fresh controls change raw y and preset is fill-only with exact mismatch and energy budgets",
+      "fixed tiny actual receive recomputes estimates and truthful offline-reference comparison",
+      "history A production download stays pinned while B is running and finishing",
+      "import/check/rerun flow keeps original raw text and history provenance separated",
+      "delayed file, reset, pagehide and Back fence ownership and return permits explicit restart",
+      "invalid edit rejects without stopping current valid run and keeps submitted ownership",
+      "canvas unavailable still supplies all digital alternatives and numerical traces",
+      "new-frame button rejects fractional seed instead of silently truncating",
+      "download creation failure is truthful and retains complete selected record for retry"
+    ],
+    "contract.test.mjs": [
+      "all seven production kernel/Worker modules remain exact frozen v3 bytes",
+      "canonical lesson preserves identity/source and all six learning anchors with explicit boundaries",
+      "fixed tiny data is exactly extracted from independent fixture with no hidden live oracle",
+      "aggregate counts retain two-frame caps and only completed same-y pairs without intervals",
+      "evaluation-only contamination scalar terms exactly reconstruct each selected arrival y"
+    ]
+  }
+}

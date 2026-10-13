@@ -1,0 +1,310 @@
+{
+  "schema": "sensing-otfs-browser-artifact-manifest-v1",
+  "version": "v3",
+  "supersedesManifestSha256": "48f70dd4e0a4b80853ce8a69d1351bf67fc9a1ba29b930d063e87b4738f9b283",
+  "frozenAtUtc": "2026-10-13T06:19:26.889481+00:00",
+  "source": "https://arxiv.org/pdf/2105.03125v2",
+  "referenceSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "referenceManifestSha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a",
+  "scope": "Bounded fresh coherent effective-gain integer-support interpreted receiver. Actual Node Worker accepted; browser and website gates open.",
+  "sourceReferenceFilesReverified": 62,
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41"
+  },
+  "acceptance": {
+    "kernelCodecChecks": 20,
+    "fullOutputFixtures": 113,
+    "independentScalarOracle": true,
+    "actualNodeWorkerLifecycleChecks": 16,
+    "signedZeroActualWorkerChecks": 3,
+    "conditioningChecks": 8,
+    "freshActualWorkerFullOutputRecords": 16,
+    "halfTieCategoricalDifferencePolicy": "Explicit limited allowance requiring near-half probabilities in both implementations and full per-iteration trace proof; no output snapping",
+    "browserVerified": false,
+    "siteChanged": false,
+    "sourceFigureReproduction": false
+  },
+  "files": [
+    {
+      "path": "DEVELOPMENT-FIXES.json",
+      "bytes": 2485,
+      "sha256": "848b8b401b269e3d58907303246305e698c78a99967dedaed94d53e2b376791d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 14815,
+      "sha256": "81299bf96e8e25cb537c4261c2b3056c06c1e572170982c802fef0bcc618a83a"
+    },
+    {
+      "path": "RUNTIME-MANIFEST.json",
+      "bytes": 1986,
+      "sha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e"
+    },
+    {
+      "path": "fixtures/full-output-oracles.json",
+      "bytes": 4747824,
+      "sha256": "52821943a46575131e592e21e27ec38f2a13f7a8de1621857ddb0dec56e38018"
+    },
+    {
+      "path": "fixtures/independent-source-fixtures.json",
+      "bytes": 15879,
+      "sha256": "435bb73f5237389f12b47b26f622804daad03be805c05b5493739b837a3a1ace"
+    },
+    {
+      "path": "harness.js",
+      "bytes": 3687,
+      "sha256": "edb9d40d48fd3651ab7fe236826faefbacaf76bdcf813271b366d8f125be58c2"
+    },
+    {
+      "path": "index.html",
+      "bytes": 3846,
+      "sha256": "28c23e37b2a6a88e1fed378a326bc0ed0a518904251ca5415c43342f646e0d24"
+    },
+    {
+      "path": "js/codec.js",
+      "bytes": 3231,
+      "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+    },
+    {
+      "path": "js/evaluation.js",
+      "bytes": 11361,
+      "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+    },
+    {
+      "path": "js/receiver.js",
+      "bytes": 9914,
+      "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+    },
+    {
+      "path": "js/validation.js",
+      "bytes": 5592,
+      "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+    },
+    {
+      "path": "package.json",
+      "bytes": 210,
+      "sha256": "cb1f28255cca749d4608c19ed02d0898d93133a250c58c1cb396cf3b68ec8975"
+    },
+    {
+      "path": "reference-copy/CONTRACT.md",
+      "bytes": 11659,
+      "sha256": "81d010454d62c1c0896baf166515605dc6eb9ef9941110038e67841f9c095bcd"
+    },
+    {
+      "path": "reference-copy/PROVENANCE.md",
+      "bytes": 3766,
+      "sha256": "53417c49ee4d712d2a3b8d6eed1e6155824fe95f9ec917f18e88c46a83b95d80"
+    },
+    {
+      "path": "reference-copy/REFERENCE-MANIFEST.json",
+      "bytes": 11765,
+      "sha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a"
+    },
+    {
+      "path": "reference-copy/RESULTS.md",
+      "bytes": 5797,
+      "sha256": "b5dd3b62c39e52467d96301bef7470d9a1f140159768258124c99de191d180d5"
+    },
+    {
+      "path": "reference-copy/independent-audit/audit_oracle.py",
+      "bytes": 13129,
+      "sha256": "f611e447b08f700e6572a7f1c32284fa7204286396e1e4d02d4c70fb1223b995"
+    },
+    {
+      "path": "reference-copy/independent-audit/review_reference.py",
+      "bytes": 5427,
+      "sha256": "b29781d5d2a644c0c08069278f1a7bf34ffccc19061aaf30165abfc6af0ce1ed"
+    },
+    {
+      "path": "reference-copy/reference.py",
+      "bytes": 12334,
+      "sha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce"
+    },
+    {
+      "path": "rejected-attempts/interim-oracle-edit-syntax.log",
+      "bytes": 1878,
+      "sha256": "1f5f5d0bf353cf422a4926ceec168a0be8eb397dbe9c813f8b715783ac7beb26"
+    },
+    {
+      "path": "rejected-attempts/v1-deferred-client-independent-results.json",
+      "bytes": 502,
+      "sha256": "27c4ff227b2ccf20d0f49520109643eafe642576be5776c2f5e806bb16ead453"
+    },
+    {
+      "path": "rejected-attempts/v1-numerical-conditioning-independent-results.json",
+      "bytes": 930,
+      "sha256": "4599d3889ef65d0863dffd27ef17244d79f2819edf9a944984c8d7723895a1f7"
+    },
+    {
+      "path": "rejected-attempts/v1-signed-zero-independent-failure.log",
+      "bytes": 52961,
+      "sha256": "f3c831c6ce2d8e310251b0678ac0ad493844392c24a45b4f61b0d5289db451bd"
+    },
+    {
+      "path": "rejected-attempts/v1-signed-zero-own-reproduction.json",
+      "bytes": 421,
+      "sha256": "1e1fc9c3750c7e6c3b73e1cacdee9df03bc49262667a9fc58e899f5eca5c22bd"
+    },
+    {
+      "path": "reports/actual-worker-export.json",
+      "bytes": 412609,
+      "sha256": "c6d2be30a01280cf553d570462a3fc2221497870e3cfe85bac32574d187e56cc"
+    },
+    {
+      "path": "reports/actual-worker-python-verification.json",
+      "bytes": 5449,
+      "sha256": "dab7161fee0cd8993ff5f4954f1d05bd6bb6262e63a299b9d106e1e6030dfc67"
+    },
+    {
+      "path": "reports/benchmark.json",
+      "bytes": 1382,
+      "sha256": "405b4e680a0ed4b61832e49b6c0f1da707e63e8ba8ee5719a866d934ba618fe8"
+    },
+    {
+      "path": "reports/conditioning-tests.json",
+      "bytes": 1865,
+      "sha256": "d635d061a50a39fd68466d0f4d6ca2f55a8f8bb5f02d779cc62ae1bbb48de2cb"
+    },
+    {
+      "path": "reports/deferred-client-tests.json",
+      "bytes": 1153,
+      "sha256": "a2a00b27b675aedff48da09f30df90bd2ee7ea4b18124bf5d49633f2040fd657"
+    },
+    {
+      "path": "reports/full-regression.log",
+      "bytes": 7569,
+      "sha256": "b19fae2b50a471ed24278f3934a3c5d67bac5a1bb281d26e02fc7bd4f0b7dbd1"
+    },
+    {
+      "path": "reports/kernel-tests.json",
+      "bytes": 2318,
+      "sha256": "6e691d004b119571839d257f462634afc7762fbee2c2ffe3314ae8fce0195b8b"
+    },
+    {
+      "path": "reports/oracle-README.md",
+      "bytes": 3188,
+      "sha256": "398d87be60e4159eb14826cd0f45e4b6c717f7d0d3860e792af41115a8c60cf6"
+    },
+    {
+      "path": "reports/oracle-artifact-integrity.json",
+      "bytes": 1921,
+      "sha256": "d7c57e9885567e928ac03a81d8bb919ed28b58ef7dd3d6b3553d21c668e54c40"
+    },
+    {
+      "path": "reports/oracle-generation.json",
+      "bytes": 25263,
+      "sha256": "30b834a5a0a510f02a8c6bd0dc56cb6d1d8c6415168b449af7455234a7448521"
+    },
+    {
+      "path": "reports/oracle-js-verification.json",
+      "bytes": 47435,
+      "sha256": "3f1f7f2e5ab0ab780993564016b87534e9571676f788070b99e17637aaa07390"
+    },
+    {
+      "path": "reports/oracle-runtime-nonfixture.json",
+      "bytes": 85064,
+      "sha256": "186e14e3b2ebe7133ae64a4e08ed67282af00c70ac4b5afc463010c5da20f987"
+    },
+    {
+      "path": "reports/oracle-runtime-verification.json",
+      "bytes": 2739,
+      "sha256": "5044e2d8d5e79eb943eb75e0271459bc7057fa23873fc0c53f687b1790868918"
+    },
+    {
+      "path": "reports/oracle-tie-diagnostic.json",
+      "bytes": 42406,
+      "sha256": "4fcd01151e045755d47d0dedbb0a0d952854f6f5324d0fbc8127b1993308a2c8"
+    },
+    {
+      "path": "reports/signed-zero-worker-tests.json",
+      "bytes": 424,
+      "sha256": "eb0246ee3fb086a6e058e2bbc305951c7524a6a34e270fc8c6a22b510d8111f3"
+    },
+    {
+      "path": "reports/worker-tests.json",
+      "bytes": 1419,
+      "sha256": "8c5312fc5094a64fd47f57e8538d1b01f0ead7d3e60857fce338177b65371b5b"
+    },
+    {
+      "path": "run_all.sh",
+      "bytes": 473,
+      "sha256": "93d1c0ce2f88ce6f9ba2e1e7532933612d5718377a88410875e7fbe6d09f9ef1"
+    },
+    {
+      "path": "tests/benchmark.mjs",
+      "bytes": 2081,
+      "sha256": "511b59ba302d3f47fe3c6bbe40e2fa42b37fbc93a9bd418e5f7f11eebdf6a071"
+    },
+    {
+      "path": "tests/export-worker.mjs",
+      "bytes": 1172,
+      "sha256": "3d667660fa0ee793f950426ff0805bbbb5ad3ef292a2bd1e9cf17106ed38785a"
+    },
+    {
+      "path": "tests/freeze_artifact.py",
+      "bytes": 3013,
+      "sha256": "a4922576e7cb52f65dc25eb52d77aaa513ef2176f2e719712613f2010dd24e3d"
+    },
+    {
+      "path": "tests/generate_oracles.py",
+      "bytes": 24483,
+      "sha256": "96f948c7cc1b726d7f66c0b9e92d9585079b7b975bc66912263bd33c0c51dbe1"
+    },
+    {
+      "path": "tests/test-conditioning.mjs",
+      "bytes": 2556,
+      "sha256": "4e15c8c899a3881476a873efd6dde959427daee7f72b6efcbbdabc95c16c86fd"
+    },
+    {
+      "path": "tests/test-deferred-client.mjs",
+      "bytes": 3906,
+      "sha256": "f82609ff981255373d615c07bb3147f80e2336166451d9dc417fac2a90c3d631"
+    },
+    {
+      "path": "tests/test-kernel.mjs",
+      "bytes": 8278,
+      "sha256": "2f6ea0c7914390c61ef870de94ed5530b38e0451b5b20f8a56f08eab759ae276"
+    },
+    {
+      "path": "tests/test-signed-zero-worker.mjs",
+      "bytes": 1602,
+      "sha256": "020fb1c4fdd212e60b24b412c70754aebf814ef68a1c906729f5fb925ad22c89"
+    },
+    {
+      "path": "tests/test-worker.mjs",
+      "bytes": 9181,
+      "sha256": "e65522d7ec594de1e7d5d8221b2bbf2ca5381392926809729eb973ae371a4ec6"
+    },
+    {
+      "path": "tests/verify_experiment.py",
+      "bytes": 5897,
+      "sha256": "43bb749d461c01d1c80282cd6fa74c0ed2ffb542eb34bfbbaa365f27c4bbeab1"
+    },
+    {
+      "path": "tests/verify_manifest.py",
+      "bytes": 493,
+      "sha256": "cf8bdca426baf2ad2f2e91af9d383b669a300e4a2f43b8b9adb5c7e33900d01a"
+    },
+    {
+      "path": "tests/verify_oracles.mjs",
+      "bytes": 18390,
+      "sha256": "fcb9276fcc1311a777c4a45d7a23c1b977cee162347f4f3d80fe8fb2dfb0a179"
+    },
+    {
+      "path": "worker/client.js",
+      "bytes": 11554,
+      "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+    },
+    {
+      "path": "worker/protocol.js",
+      "bytes": 1359,
+      "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+    },
+    {
+      "path": "worker/receiver-worker.js",
+      "bytes": 4632,
+      "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+    }
+  ]
+}

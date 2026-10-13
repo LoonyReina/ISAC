@@ -1,0 +1,47 @@
+[
+  {
+    "case": "stale reset continuation clears newer selection",
+    "newId": "sensing-otfs-mv6bpvp8-2",
+    "afterReset": {
+      "selected": null,
+      "activeId": "sensing-otfs-mv6bpvp8-2",
+      "state": "running",
+      "notice": "尚未运行；历史仍可查看或下载"
+    },
+    "afterNewCompletion": {
+      "selected": null,
+      "state": "complete",
+      "newEntryStatus": "complete"
+    }
+  },
+  {
+    "case": "failed B submission loses still-active A ownership",
+    "aId": "sensing-otfs-mv6bpvrl-1",
+    "bStatus": "error",
+    "orphan": {
+      "active": null,
+      "busy": false,
+      "state": "error",
+      "clientCurrent": "sensing-otfs-mv6bpvrl-1",
+      "pendingIds": [
+        "sensing-otfs-mv6bpvrl-1"
+      ],
+      "selected": "sensing-otfs-mv6bpvt9-2"
+    },
+    "afterCancelAndACompletion": {
+      "aStatus": "complete",
+      "state": "error",
+      "notice": "本次状态：error；已完成部分保留，缺失模式不补零"
+    }
+  },
+  {
+    "case": "schema-accepted raw-only frame import crashes render and changes selection",
+    "importError": "Cannot read properties of undefined (reading '0')",
+    "selected": "import-2",
+    "priorId": "sensing-otfs-mv6bpw0p-1",
+    "notice": "导入被拒绝；当前运行/所选记录未被替换",
+    "error": "Cannot read properties of undefined (reading '0')",
+    "parseStructure": "passed",
+    "replay": "failed"
+  }
+]

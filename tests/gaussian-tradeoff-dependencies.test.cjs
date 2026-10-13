@@ -23,7 +23,7 @@ test('Gaussian extension preserves every prior 27 classic and 32 ESM row and exa
  a.equal(sha(JSON.stringify({schemaVersion:1,scripts:B.withoutHostedUiContracts(classic,'classic').scripts.slice(0,27)},null,2)+'\n'),baseline.classicContracts);
  a.equal(sha(JSON.stringify({schemaVersion:1,modules:require('./helpers/gaussian-tradeoff-preservation.cjs').withoutNearfieldExportContracts(B.withoutHostedUiContracts(modules,'module')).modules.slice(0,32)},null,2)+'\n'),baseline.esmContracts);
  for(const [file,key,hash]of [['classic-dependencies.cjs','classicParserChanges','classicParser'],['module-dependencies.cjs','moduleParserChanges','esmParser'],['compatibility.cjs','builderChanges','builder']]){
-  const current=read('scripts/build/'+file),source=file==='compatibility.cjs'?current:B.withoutHostedUiParser(current,file.startsWith('classic')?'classic':'module');a.equal(sha(inverse(source,delta[key])),baseline[hash]);
+  const current=read('scripts/build/'+file),source=file==='compatibility.cjs'?require('./helpers/sensing-assisted-otfs-build-preservation.cjs').withoutBuilder(current):B.withoutHostedUiParser(current,file.startsWith('classic')?'classic':'module');a.equal(sha(inverse(source,delta[key])),baseline[hash]);
   const damaged=source.replace(delta[key][0].after,delta[key][0].after+'\n/* unreviewed */');a.notEqual(sha(inverse(damaged,delta[key])),baseline[hash]);
  }
 });

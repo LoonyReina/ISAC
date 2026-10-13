@@ -1,0 +1,33 @@
+{
+  "schema": "sensing-otfs-lesson-boundary-v2-production-downloads",
+  "browser": false,
+  "records": [
+    {
+      "name": "modified-receive",
+      "file": "modified-receive.json",
+      "bytes": 10974,
+      "sha256": "8d639faee8cf538d95046e8e21cfd4962f102322108bab77fa41be3e3a984560",
+      "status": "complete",
+      "renderError": null,
+      "selfConsistency": "passed"
+    },
+    {
+      "name": "generic-receive",
+      "file": "generic-receive.json",
+      "bytes": 3650,
+      "sha256": "74f6b6168e137decdf9198497db64222cabcf1c6c5fb73742d0a0bd7c7c38b97",
+      "status": "complete",
+      "renderError": null,
+      "selfConsistency": "passed"
+    },
+    {
+      "name": "raw-only-failure",
+      "file": "raw-only-failure.json",
+      "bytes": 9104,
+      "sha256": "7fe21a1335fde96687be455476a393c3a1f46af8ad321462e14282b0e1d52016",
+      "status": "error",
+      "renderError": null,
+      "selfConsistency": "passed"
+    }
+  ]
+}

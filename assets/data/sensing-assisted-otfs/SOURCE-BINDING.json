@@ -1,0 +1,130 @@
+{
+  "schema": "sensing-assisted-otfs-port-independent-source-binding-v1",
+  "auditDateUtc": "2026-10-13",
+  "acceptedVersion": "v3",
+  "sourceUrl": "https://arxiv.org/pdf/2105.03125v2",
+  "sourcePdfSha256": "57e8c349ee32452bd53d42625da4295c6e4014ca1c2e52bb17584fea40ce1f98",
+  "sourceEquation57ImageSha256": "e4e38d14bba97ce9f6d528293df5897175a1dc7aef6b3b828ef3daf8c96cc14b",
+  "referenceCodeSha256": "c83ba035ee49d8011c2b3b8f5f0260b7e95fd2fb562781f03e63a1ea7407ddce",
+  "artifacts": {
+    "frozenV1": {
+      "directory": "sensing-assisted-otfs-browser-prototype",
+      "manifestSha256": "79c139b070143491597eb5bdc5c3186d6ae2b0a5567bc8b549b4002636697c82",
+      "verifiedFiles": 46,
+      "runtimeManifestSha256": "bfbf71e20e911a1ae2cf53a644f14fbdce76d94c867cc5f702cc593462599355",
+      "runtimeFiles": [
+        {
+          "path": "js/codec.js",
+          "bytes": 2956,
+          "sha256": "2d111c968c80d17587b01b2acb3588928574605a040d3402dcfc1c5f2651a5d5"
+        },
+        {
+          "path": "js/evaluation.js",
+          "bytes": 11322,
+          "sha256": "3284bc5c9962f5495f6c596b171f09485d0354628bbd55e507d37af508071d85"
+        },
+        {
+          "path": "js/receiver.js",
+          "bytes": 9312,
+          "sha256": "2a332739438340894f5e61e7491637cbc4fe186796806180c48b76d134153ecd"
+        },
+        {
+          "path": "js/validation.js",
+          "bytes": 5592,
+          "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+        },
+        {
+          "path": "worker/client.js",
+          "bytes": 11271,
+          "sha256": "eafb7fde4caa820aedecff74822f97509272d0623634c349154d1c4083468431"
+        },
+        {
+          "path": "worker/protocol.js",
+          "bytes": 1359,
+          "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+        },
+        {
+          "path": "worker/receiver-worker.js",
+          "bytes": 4632,
+          "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+        },
+        {
+          "path": "index.html",
+          "bytes": 3846,
+          "sha256": "28c23e37b2a6a88e1fed378a326bc0ed0a518904251ca5415c43342f646e0d24"
+        },
+        {
+          "path": "harness.js",
+          "bytes": 3687,
+          "sha256": "edb9d40d48fd3651ab7fe236826faefbacaf76bdcf813271b366d8f125be58c2"
+        }
+      ]
+    },
+    "acceptedV3": {
+      "directory": "sensing-assisted-otfs-browser-prototype-v3",
+      "manifestSha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6",
+      "verifiedFiles": 56,
+      "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+      "runtimeFiles": [
+        {
+          "path": "js/codec.js",
+          "bytes": 3231,
+          "sha256": "a69320e0884407594f76bc5d2779f84e9b6e21ce7700f221f355f648962d2e4b"
+        },
+        {
+          "path": "js/evaluation.js",
+          "bytes": 11361,
+          "sha256": "52e8b5575f2bb6c76df8186a790bdca446c6cd44e6094ba42e43027d773ed017"
+        },
+        {
+          "path": "js/receiver.js",
+          "bytes": 9914,
+          "sha256": "1569d209f3cd6b3f7c2cd93e3d2e0340b569ff2967838f4370b02463e76fadcd"
+        },
+        {
+          "path": "js/validation.js",
+          "bytes": 5592,
+          "sha256": "63a012ba71bde644d67beb835e68d15951c0fd5f004b31f1ef7ecf6e7520f1ea"
+        },
+        {
+          "path": "worker/client.js",
+          "bytes": 11554,
+          "sha256": "e7f37c75dea265d4c091f3710fe539129fee174ca4950dd85994948ab51958f4"
+        },
+        {
+          "path": "worker/protocol.js",
+          "bytes": 1359,
+          "sha256": "4201112be861f495f611b34a5db2dbee144fe62ab7d0f093bb25e72be7b5b0c1"
+        },
+        {
+          "path": "worker/receiver-worker.js",
+          "bytes": 4632,
+          "sha256": "9805fb429d6056b17ab53a3f74dbb768a5deb6d34ed789fe1b056c7322d372a5"
+        },
+        {
+          "path": "index.html",
+          "bytes": 3846,
+          "sha256": "28c23e37b2a6a88e1fed378a326bc0ed0a518904251ca5415c43342f646e0d24"
+        },
+        {
+          "path": "harness.js",
+          "bytes": 3687,
+          "sha256": "edb9d40d48fd3651ab7fe236826faefbacaf76bdcf813271b366d8f125be58c2"
+        }
+      ],
+      "allNineReviewedRuntimeFilesMatchFinalFreeze": true
+    },
+    "pinnedReference": {
+      "directory": "sensing-assisted-otfs-reference",
+      "manifestSha256": "7108881a6de2402f519ca7e6ccb806b83196db9fdcb14fb330e023b21b5bdc1a",
+      "verifiedFiles": 62
+    }
+  },
+  "sourceAuditFiles": {
+    "EQUATION-CROSSWALK.md": "b3475e0eaa77706e2e2b1f9f7539124ca9c9cc6226adedddfaf9b69f467b20a2",
+    "audit_oracle.py": "f611e447b08f700e6572a7f1c32284fa7204286396e1e4d02d4c70fb1223b995",
+    "review_reference.py": "b29781d5d2a644c0c08069278f1a7bf34ffccc19061aaf30165abfc6af0ce1ed"
+  },
+  "runtime": "3.12.14",
+  "scope": "Independent numerical and actual Node Worker audit only; no browser, Codex, repository, deployment, or website action"
+}

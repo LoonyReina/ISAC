@@ -1,0 +1,21 @@
+{
+  "acceptedVersion": "v3",
+  "acceptedScope": "bounded interpreted numerical core and actual Node module Worker; browser and lesson/deployment gates open",
+  "manifestSha256": "352370b7ba1046e748b6d4e0ec6cde296ccf37d060da56a2ca079249ef491de6",
+  "runtimeManifestSha256": "5a51d315a6f33b352149cc388bcb72edda1a22876cacd89a375b5b1337127a7e",
+  "originalDefectsResolved": [
+    "deferred-completion evidence loss",
+    "IEEE signed-zero codec loss",
+    "unresolved extreme scalar likelihood falsely converged"
+  ],
+  "freshWorkerFullRecords": 112,
+  "perturbedRawObservationCases": 7,
+  "independentScalarMaximumProbabilityError": 3.1086244689504383e-15,
+  "strictSchemaRejections": 61,
+  "fixtureMutationRejections": 7,
+  "additionalGuardCodecChecks": 16,
+  "exactPhysicalPosteriorGap": 0.4999130751997302,
+  "unresolvedWithinAuditedGate": [],
+  "browserVerified": false,
+  "siteChanged": false
+}
