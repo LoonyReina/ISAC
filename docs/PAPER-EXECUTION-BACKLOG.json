@@ -6,12 +6,12 @@
   "scope": {
     "description": "One execution record per enumerated primary paper: all canonical guide and influence-catalog papers plus case-only primary sources. Auxiliary tutorials/surveys and secondary motivation citations are a separate future audit and are not counted as completed.",
     "counts": {
-      "guide": 20,
+      "guide": 21,
       "catalog": 9,
-      "caseOnly": 6,
+      "caseOnly": 5,
       "uniquePrimaryPapers": 35
     },
-    "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record.",
+    "derivation": "Canonical guide IDs and catalog IDs; add each registry case primary paper not already identified by a guide or catalog case mapping/title. The SBFD guide and case share one record. The pilot-pattern guide now references the existing supplement-case-pilot record; guide coverage changes its category without renaming the canonical paper or adding a source.",
     "fullPaperReproductionsEstablished": 0,
     "liveTargetLatencyMeasurementsEstablished": 4,
     "additionalCitationAuditStatus": "not-started"
@@ -7159,11 +7159,13 @@
     {
       "id": "supplement-case-pilot",
       "title": "OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing",
-      "category": "case-only",
+      "category": "guide",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-13",
       "canonicalReferences": {
-        "guideIds": [],
+        "guideIds": [
+          "ofdm-reference-patterns-2024"
+        ],
         "catalogIds": [],
         "caseIds": [
           "case-pilot"
@@ -7175,18 +7177,22 @@
       "paperType": "reference-pattern-design",
       "source": {
         "url": "https://arxiv.org/pdf/2401.09643v3",
-        "fixedVersion": "v3，2024-11-13",
+        "fixedVersion": "arXiv:2401.09643v3，2024-11-13，16页；固定版本的标准分辨率处理与模糊判据，沿用2026-10-13来源/独立数值审查",
         "locators": {
-          "summary": "§II、§III、§V；式(16)–(19)、图10",
-          "section": null,
-          "figure": null,
-          "equation": null
+          "summary": "v3 pp.6–9 式(9)–(15)、(18)–(28)；Fig.10的别名关系与Fig.23(a–c)结构；不声称精确原图",
+          "section": "§III–V；p.13 Table I 的综合图案分支保留为未解决",
+          "figure": "Fig.10关系/原生及统一长度对照；Fig.23(a–c)结构的本站固定场景，非作者完整设置",
+          "equation": "(9)–(15)短窗接收/复数格；(18)–(28)二维别名，包含零坐标与公共复增益"
         },
         "paperIdentity": "arxiv:2401.09643",
         "fixedSourceIdentity": "arxiv:2401.09643v3",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
-        "details": {}
+        "pdfSha256": "c10f53d9e16777c9811100efb3124ff274a57759ca318d76c45aff293620a058",
+        "hashStatus": "recorded",
+        "details": {
+          "sourceContract": "assets/data/pilot-pattern/CONTRACT.md",
+          "historicalFixedVersion": "v3，2024-11-13",
+          "interpretationBoundary": "Standard-resolution Eq9–15 and finite exact-alias diagnostic only; disclosed remap/phase/mask/grid/dimension/zero-coordinate discrepancies are project interpretations, not author errata. Table I existence language remains unresolved."
+        }
       },
       "contribution": {
         "types": [
@@ -7199,22 +7205,34 @@
       },
       "experiment": {
         "targets": [
-          "v3 Eq16–19 and Fig10; recheck exact transmitted patterns and resource budgets"
+          "Fig.10 alias relationships and bounded Fig.23(a–c)-structure scene with project-declared N/CP/pilots/scene/windows; no exact source-figure reproduction",
+          "Fixed-scene paired 0/10/20 dB complex-cell NMSE and retained model-failure experiments"
         ],
         "baselines": [
-          "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+          "Same raw D y: ell5 extended guard versus ell0 ordinary CP; correlated time noise retained",
+          "A versus D patterns: same geometry, full-frame energy and standardized noise draw, different transmitted/received observations"
         ],
         "metrics": [
-          "归一化距离匹配功率",
-          "别名/重复峰位置",
-          "峰形与距离歧义"
+          "保留/去旋转样本、短FFT选格与复数H/Z、绝对及(MK)²归一功率、复数格NMSE",
+          "单steering-vector精确二维别名与近同高候选组大小；固定最多8候选及抑制/阈值规则不变成检测认证",
+          "全部选中/匹配/遗漏/虚假候选与条件误差，真值仅评价；零参考能量NMSE为未定义",
+          "噪声方差σt²/(L|X|²)、恢复相对方差N/L和真实保留能量；跨ell噪声相关，离线以帧配对",
+          "固定四路径0/10/20 dB各200帧的配对NMSE及近似95%区间；当前单次运行与600帧冻结统计分开"
         ],
         "resources": [
-          "Existing independent teaching budget, not the target paper configuration: 每个选中导频取单位发射能量：全连续为 64，梳状与等数量连续块为 64/q。按 K² 归一化使真峰为1只比较形状，不构成等总能量或等噪声性能对照。"
+          "本站Fig.23(a–c)结构场景：N96/Ncp12/S6/M24/J1/Δf15kHz，四路径；ell5保留16点、保护界92点。包含前/间隔符号和CP的完整帧按实测能量归一，不是作者原尺寸/设置。",
+          "默认完整帧2700单位能量/2700样本；D有用感知能量1937.412、保留322.902。等全帧能量不等于等每RE功率；不是RF瓦特或焦耳",
+          "分配频带NΔf=1.44MHz；每符号占用导频端点跨度1.35MHz，384个感知RE；零填充只细化坐标",
+          "采样0.694444μs、首末RS间隔1.725ms、含前符号全帧1.875ms；J>1间隔载荷须实际计入"
         ],
-        "unresolved": [],
+        "unresolved": [
+          "连续Delay-and-Sum AF、IAA/MUSIC、任意不规则时间图案、综合图案和Table II精确开销",
+          "Fig.10/Fig.23的作者完整数值设置与Fig.23(d–f)，实测RF、原文全部证明及整篇复现",
+          "校准Pfa/检测概率、任意场景或高连续多普勒的有效性保证；有限网格候选不是唯一目标认证",
+          "现场600帧Monte Carlo、实际浏览器Worker/CSP/布局/键盘/生命周期/下载重导入、内存与完整控制到绘制时延"
+        ],
         "details": {
-          "metricScope": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+          "metricScope": "Current metrics belong to the declared bounded interpreted 2D experiment. Original single-symbol resource budget below is historical prerequisite evidence, not the new paired-study configuration.",
           "existingTeachingResourceBudget": {
             "summary": "每个选中导频取单位发射能量：全连续为 64，梳状与等数量连续块为 64/q。按 K² 归一化使真峰为1只比较形状，不构成等总能量或等噪声性能对照。",
             "bandwidth": null,
@@ -7223,45 +7241,69 @@
             "aperture": null,
             "priorKnowledge": null,
             "other": []
+          },
+          "boundedTwoDimensional": {
+            "lesson": "pilot-patterns.html#question",
+            "configuration": "N96/Ncp12/S6/M24/J1/df15kHz; delays3/20/36/72 samples, Dopplers0/-400/400/800Hz; ell5 retains16 samples with guard92. Choices are project-owned.",
+            "offline": "600 paired fixed-scene noise frames, 200 each at0/10/20dB, 1800 receiver outputs; all noise vectors/failures retained. Extended NMSE is worse at0/10dB and better at20dB.",
+            "currentExecution": "One generated or imported raw observation at a time; changed patterns regenerate y. No live600-frame Monte Carlo.",
+            "ambiguity": "Linear D retains tilted aliases. Near-tie multiplicities and all finite-grid candidates remain visible; candidate cap/threshold is not calibrated detection."
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "静止单径、单符号、无噪声的距离切片机制演示",
-        "offline": null,
-        "details": {}
+        "classification": "bounded-interpreted-standard-resolution-2D-core; independently-accepted-Node-functional-lesson; browser-not-accepted",
+        "live": "pilot-patterns.html#question: actual raw-IQ generation/import, discard/derotation/shortFFT/remap/H/Z, same-y ell/ell0 comparison, full native records and separate truth evaluation. Original pilot-design range-slice remains a prerequisite.",
+        "offline": "Accepted independent NumPy reference and frozen600-frame/1800-output paired study; declared Fig.10 relationships and Fig.23(a–c) structure, with all source discrepancies, model failures and low-SNR disadvantages retained.",
+        "details": {
+          "lesson": "pilot-patterns.html#question",
+          "prerequisite": "pilot-design.html#experiment",
+          "guideId": "ofdm-reference-patterns-2024",
+          "acceptedSourceCommit": "9cab398174e4fe14beb28dcca62b6e542968b2f4",
+          "acceptedSourceTree": "41b8279de0b6a63bd6b84b8f59ff5240a2d315cc",
+          "sourceManifestSha256": "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d",
+          "portManifestSha256": "08c3947e6e3d49b34b47035231d307c34a0a373bc5beb2532695ed426e7dbd80",
+          "browserAccepted": false,
+          "fullPaper": false,
+          "recordBoundary": "Self-consistency and raw receiver replay do not authenticate source/history; raw-only reprocessing creates a new record and does not certify rejected full records. Receiver never reads truth."
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "verified",
+        "algorithm": "implemented",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed v3 PDF hash/source contract and independent audit cover the bounded standard-resolution chain and finite exact-alias diagnostic. Literal defects and project interpretations remain explicit; no complete proof audit or author erratum claim.",
+        "algorithm": "Actual finite linear CP-OFDM raw-IQ receiver, known-mask derotation/shortFFT/bin mapping, restored complex cells and coherent2D sums; same-y receiver comparison and truth isolation independently checked.",
+        "selectedExperiment": "Declared Fig.10 relationships, Fig.23(a–c)-structure and fixed-scene600-frame noise study accepted within bounds; worse0/10dB and better20dB outcomes, tilted aliases and false candidates retained. Exact original figures remain unreproduced.",
+        "fullPaper": "No whole-paper reproduction: IAA/MUSIC, continuous Delay-and-Sum AF, irregular/synthesized branches, Table I/II questions, exact original figures and measuredRF remain open.",
+        "latency": "No actual browser control-to-painted-result measurement. Node worker intervals are distinct and no browser timing, device or quantile is populated.",
+        "independentValidation": "Dated2026-10-13 source/functional acceptance verifies473 Node assertions and1511 NumPy checks across13 production Blob records; unchanged accepted runtime. Node/controlled DOM and bytes are not real-browser/native-download validation.",
+        "liveExecution": "Actual fresh-input production moduleWorker chain and controlled-DOM interactions run inNode. Real browser Worker/CSP/rendering/lifecycle/native-download acceptance is a separate pending gate.",
+        "uiLearning": "Question-led rawIQ→discard→derotation→shortFFT→complex cells→2D ambiguity with numerical alternatives, paired results and immutable complete records; accepted boundedNode interaction scope, not real-browser/accessibility approval."
       },
       "missingImplementation": [
-        "原文完整二维延迟–多普勒图样与算法",
-        "跨符号运动及相干组合",
-        "噪声、SNR 收益和实测结果"
+        "连续Delay-and-Sum AF、IAA/MUSIC、任意不规则时间图案、综合图案和Table II精确开销",
+        "Fig.10/Fig.23的作者完整数值设置与Fig.23(d–f)，实测RF、原文全部证明及整篇复现",
+        "校准Pfa/检测概率、任意场景或高连续多普勒的有效性保证；有限网格候选不是唯一目标认证",
+        "现场600帧Monte Carlo、实际浏览器Worker/CSP/布局/键盘/生命周期/下载重导入、内存与完整控制到绘制时延"
       ],
       "dependencies": [
-        "Primary algorithm/pattern audit",
-        "Complex 2D observation and ambiguity reference"
+        "Keep fixed v3 source and all disclosed interpretations; recover missing author settings before any exact-figure claim",
+        "Preserve raw-y receiver truth isolation, accepted numerical identity, all adverse results and frame-level paired-noise accounting",
+        "Actual browser/device/CSP/lifecycle/layout/keyboard/native-download/reimport and full control-to-paint measurements remain separate gates"
       ],
       "blockers": [
-        "原文完整二维延迟–多普勒图样与算法",
-        "跨符号运动及相干组合"
+        "Exact source figures, IAA/MUSIC and continuous/irregular/synthesized branches remain incomplete",
+        "Tilted aliases and finite-grid candidates cannot certify unique detections; continuous Doppler/off-mask payload/beyond-guard mismatches retain failures",
+        "No real-browser functional acceptance, native-download review, heap or painted-result latency; source/Node acceptance does not establish deployment"
       ],
       "realtime": {
         "status": "not-measured",
@@ -7275,7 +7317,7 @@
           "worstMs": null
         },
         "details": {
-          "assessment": "Reduced faithful core is a candidate; numerical reference and desktop profiling required before claiming realtime.",
+          "assessment": "Bounded production moduleWorker genuinely recomputes actual raw inputs in Node. Real-browser measurements and repeated control-to-painted-result profiling remain pending.",
           "measuredLatencyMs": null
         }
       },
@@ -7285,10 +7327,20 @@
         "inventoryAssessment": 3
       },
       "evidence": {
-        "currentRunnable": "静止单径、单符号、无噪声的距离切片机制演示",
-        "fixedSourceAudit": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+        "currentRunnable": "pilot-patterns.html#question: actual bounded2D raw-IQ lesson; pilot-design.html#experiment remains the original range-slice prerequisite",
+        "fixedSourceAudit": "2026-10-13 inherited fixed v3/source contract and independent audit; PDF hash recorded, source defects and all scope limits retained",
+        "sourceContract": "assets/data/pilot-pattern/CONTRACT.md",
+        "offlineReport": "assets/data/pilot-pattern/REPORT.md",
+        "offlineSummary": "assets/data/pilot-pattern/offline-summary.json",
+        "portAcceptance": "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+        "currentFunctionalAcceptance": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md",
+        "currentFunctionalDecision": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json",
+        "currentSourceBinding": "assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json",
+        "historicalBoundary": "Earlier CONTRACT/PORT documents and FUNCTIONAL-FREEZE-V1..V4 retain their dated pending/status text. Only the separate current functional acceptance states the later scoped result; no browser or publication result is inferred."
       },
-      "details": {}
+      "details": {
+        "identityContinuity": "Existing supplement-case-pilot/case-pilot/case-pilot-paper identities retained. Adding guide ofdm-reference-patterns-2024 changes coverage category from case-only to guide; it does not add a36th paper or a catalog entry."
+      }
     },
     {
       "id": "supplement-case-clock",

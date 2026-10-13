@@ -11,7 +11,7 @@ const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const registry=JSON.parse(read('site/registry.json'));
-const researchGuides=buildResearchGuides(JSON.parse(read(registry.researchGuidesFile)),registry);
+const researchGuides=buildResearchGuides(require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile))),registry);
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const baseline='c759bdb61a8ae539569b5ed526bf169793dace46510a381a998ffbd9264b56ae';
 function resolve(href){
@@ -29,7 +29,7 @@ test('reference uncertainty adds one case-free mechanism and one page without in
  a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(registry.pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
- const guides=JSON.parse(read(registry.researchGuidesFile));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
+ const guides=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile)));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
  a.equal(hash(priorGuideSource(guides)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(registry.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
 });
@@ -95,7 +95,7 @@ test('native notebook projection and generated portals expose the mechanism with
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes(`<strong>${registry.units.length}</strong> 个机制实验`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(reading,/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
+ a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage('reading.html',reading),/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(withoutBuildLinkValidation('scripts/notebook-topics.cjs',read('scripts/notebook-topics.cjs'))),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');

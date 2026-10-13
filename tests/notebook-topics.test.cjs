@@ -105,7 +105,7 @@ test('practice generation fills both placeholders and includes notebook assets o
 test('each case page receives its unit query in context and only eligible next links',()=>{
  const before=JSON.stringify(registry),render=generator();
  for(const page of registry.pages.filter(page=>page.case)){
-  const source=registry.cases.find(c=>c.id===page.case),href=notebookHref(source.unit),html=render.output(page.path);
+  const source=page.path==='pilot-design.html'?{unit:'pilot',paper:'pilot-design.html#case',next:'pilot-design.html#reproduce'}:registry.cases.find(c=>c.id===page.case),href=notebookHref(source.unit),html=render.output(page.path);
   const context=html.match(/<!-- SITE:CONTEXT:START -->([\s\S]*?)<!-- SITE:CONTEXT:END -->/)[1];
   hasLink(context,href,'④ 记录一次研究');
   hasLink(context,source.paper,'② 原文与证据');hasLink(context,source.next,'③ 边界与下一问');
@@ -114,7 +114,7 @@ test('each case page receives its unit query in context and only eligible next l
  }
  a.equal(JSON.stringify(registry),before);
  const eligible={case:'case-pilot',next:'practice.html#notebook',nextLabel:'记录'};
- hasLink(render.next(eligible),notebookHref('pilot'),'记录 →');
+ hasLink(render.next(eligible),notebookHref('pilot-pattern'),'记录 →');
  for(const page of [{...eligible,case:undefined},{...eligible,case:'unknown-case'},{...eligible,next:'practice.html'},{...eligible,next:'practice.html#research-method'},{...eligible,next:'practice.html?view=1#notebook'},{...eligible,next:'reading.html#case-pilot'}])hasLink(render.next(page),page.next,'记录 →');
  const theory=registry.pages.find(page=>page.path==='theory.html');
  hasLink(render.next(theory),theory.next,theory.nextLabel+' →');

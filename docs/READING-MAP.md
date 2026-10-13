@@ -581,3 +581,16 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - receiver方向六层接入 `#question` → `#observation` → `#run` → `#source` → `#stress` → `#records`；知识图谱只为原延迟、角度、估计概念追加进阶实验，原entryUnitRef与五条入门progressions保持不变。实践页自动获得新主题。真实浏览器Worker/CSP/交互/键盘/布局/下载重导入/内存/绘制时延和上线字节另验；[教学边界](../labs/perceptive-bsbl/README.md)不把Node或离线数值接受转成这些门。间接恢复、矩阵杂波、多普勒、原尺寸实验与整篇复现仍开放
 
 教学适配的 L01/L02 修正另见 [Perceptive v2 修正记录](../labs/perceptive-bsbl/REPAIR-V2.md)：重叠重置的会话所有权与默认控件一致性独立列明，原始失败证据和原冻结不改写；实际浏览器与部署仍须另验。
+
+## 二维导频：从单符号切片继续到真实 I/Q（2026-10-13）
+
+- 保留唯一 `supplement-case-pilot` / `case-pilot` / `case-pilot-paper`，新增 `pilot-pattern` 单元与 [二维I/Q课](../pilot-patterns.html#question)，并接入 [问题式导读](../reading.html#guide-ofdm-reference-patterns-2024)。原 [pilot-design单符号切片](../pilot-design.html#experiment)与全部旧锚点保留，只插入下一问。现为35篇独立论文、21篇导读、24案例、40单元、36注册页；没有新增影响目录论文。旧快照数量按原日期保留
+- 固定 [arXiv:2401.09643v3](https://arxiv.org/pdf/2401.09643v3)，2024-11-13，16页；PDF SHA-256 `c10f53d9e16777c9811100efb3124ff274a57759ca318d76c45aff293620a058`。沿用冻结来源审查，不宣称本次重新下载。pp.6–9式(9)–(15)/(18)–(28)连接标准分辨率链路与精确别名；Fig.10关系、Fig.23(a–c)结构不等于作者原图数值
+- [科学合同](../assets/data/pilot-pattern/CONTRACT.md)逐项保留一般ell的S−1/S−ell映射、Eq13缺j、Eq14接收非零掩膜、Eq15的J>1自然网格、F₀原点、Eq21的N/N/S、零坐标别名与prime-S线性D矛盾。解释有独立推导与反例，不能称作者勘误；Table I分支未解决
+- 接收机从真实有限线性CP-OFDM raw y出发，只用已知非零导频/掩膜、采样/符号网格和用户ell。未知前/间隔符号、真路径数/延迟/多普勒/增益隔离；额外丢弃→去旋转→短FFT→选格/恢复→复数H→二维相干Z均保留。仅D的ell/ell0共用同一y，A/D不同图案必须重生成，不能以相同seed冒充同一观测
+- 默认N96/Ncp12/S6/M24/J1/Δf15kHz，ell5保留16点、保护界92点，恢复噪声方差提高6倍。全帧2700单位能量计入CP、前/间隔符号；等帧能量不等每RE功率。图画延迟/多普勒，不擅自换成单站距离/速度；零填充只细化坐标
+- 线性错列仍保留倾斜二维别名；包含κ₂=0、公共复增益与F₀。K=1或M≤2不给二维唯一性证书。候选最多8个、近同高组排序/门限/抑制为本站规则；A最强族有六个近同高别名，不可用候选上限制造唯一检测。虚假、遗漏与条件误差全部保留
+- [冻结研究报告](../assets/data/pilot-pattern/REPORT.md)与[逐帧摘要](../assets/data/pilot-pattern/offline-summary.json)包含固定场景0/10/20dB各200帧，共600帧/1800输出。extended在0/10dB更差、20dB更好；帧级近似配对区间不代表场景总体或检出概率。现场只算一次生成/导入的输入，不自动重跑600帧；continuous、多余载荷与超保护界失败不隐藏，分数延迟仅验证声明矩形CP脉冲
+- [当前独立功能接受](../assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md)、[结构化结论](../assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json)与[源绑定](../assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json)对应commit `9cab398174e4fe14beb28dcca62b6e542968b2f4`、tree `41b8279de0b6a63bd6b84b8f59ff5240a2d315cc`、manifest `18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d`。473项Node断言、1511项独立NumPy核查与13份生产Blob记录接受有界功能/来源范围；旧合同pending和四次历史freeze不重写，当前dated接受另外列明
+- waveforms六层依次追加 `#question`、`#raw-iq`、`#same-y`、`#source`、`#failure`、`#records`；known-pilots、ambiguity、delay、doppler、waveform-design只追加进阶单元；waveform-design因此保留原case-pilot入口，原entryUnitRef、32概念和五条progressions保持。导读从原先修接到新可执行课，没有虚构跨论文引用关系
+- 真正浏览器Worker/CSP、生命周期、布局、键盘/辅助技术、原生下载/重导入、内存和完整控制到绘制时延仍待验收。Node/Blob结果不代替浏览器或上线。没有精确Fig.10/Fig.23、IAA/MUSIC、连续Delay-and-Sum AF、任意不规则/综合图案、校准检测、实测RF或整篇复现

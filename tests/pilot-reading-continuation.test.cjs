@@ -35,17 +35,18 @@ test('titles, proposed next question and relationship note are source-derived an
 });
 
 test('exact next-only generator normalization retains prior hash and rejects unrelated or relocated edits',()=>{
+ const source=require('./helpers/nearfield-research-preservation.cjs').maybeWithoutNearfieldPrerequisiteTitle(generator);
  // Current publication baseline 6dffedc includes the approved deferred validation.
- const original='2e93164c68fc94dc605db5c51a647fee4011ef48e06fa9fa4ca11b0308f15f27';a.equal(hash(withoutPilotContinuation(generator)),original);
- for(const mutate of [s=>s.replace('本页把所选导频值视为可靠已知','changed scientific boundary'),s=>s.replace("page.path!=='pilot-design.html'","page.path!=='shared-array.html'"),s=>s.replace(helper,''),s=>s+helper,s=>s.replace(newNext,''),s=>s+newNext,s=>s.replace(newNext,'')+newNext,s=>s.replace(helper,'')+helper,s=>s.replace("page.nextLabel+' →'","'changed generic next label'"),s=>s.replace("link('reading.html#reading','原文与证据')","link('reading.html#reading','changed footer')")]){const changed=mutate(generator);a.notEqual(changed,generator);a.throws(()=>withoutPilotContinuation(changed));}
- const unrelated=generator.replace('const notebookTopics=buildNotebookTopics(registry,linkValidation);','const notebookTopics=[];');a.notEqual(hash(withoutPilotContinuation(unrelated)),original);
+ const original='2e93164c68fc94dc605db5c51a647fee4011ef48e06fa9fa4ca11b0308f15f27';a.equal(hash(withoutPilotContinuation(source)),original);
+ for(const mutate of [s=>s.replace('本页把所选导频值视为可靠已知','changed scientific boundary'),s=>s.replace("page.path!=='pilot-design.html'","page.path!=='shared-array.html'"),s=>s.replace(helper,''),s=>s+helper,s=>s.replace(newNext,''),s=>s+newNext,s=>s.replace(newNext,'')+newNext,s=>s.replace(helper,'')+helper,s=>s.replace("page.nextLabel+' →'","'changed generic next label'"),s=>s.replace("link('reading.html#reading','原文与证据')","link('reading.html#reading','changed footer')")]){const changed=mutate(source);a.notEqual(changed,source);a.throws(()=>withoutPilotContinuation(changed));}
+ const unrelated=source.replace('const notebookTopics=buildNotebookTopics(registry,linkValidation);','const notebookTopics=[];');a.notEqual(hash(withoutPilotContinuation(unrelated)),original);
 });
 
 test('pilot scientific body and source prose are unchanged outside its generated NEXT',()=>{
  // Fingerprints were obtained from HEAD 6dffedc source bytes via git show and
  // the compatibility manifest, then one clean seedless generator invocation.
  const strip=s=>{a.equal(s.split('<!-- SITE:NEXT:START -->').length,2);a.equal(s.split('<!-- SITE:NEXT:END -->').length,2);return s.replace(/<!-- SITE:NEXT:START -->[\s\S]*?<!-- SITE:NEXT:END -->/,'<!-- NEXT omitted -->');};
- const body=strip(read('pilot-design.html'));a.equal(hash(body),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');a.notEqual(hash(strip(read('pilot-design.html').replace('已知非零导频 X[k]','changed assumption'))),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');
+ const historical=require('./helpers/pilot-pattern-preservation.cjs').withoutPage(read('pilot-design.html')),body=strip(historical);a.equal(hash(body),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');a.notEqual(hash(strip(historical.replace('已知非零导频 X[k]','changed assumption'))),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');
 });
 
 test('the continuation leaves the generic NEXT rendering unchanged on every other current page',()=>{

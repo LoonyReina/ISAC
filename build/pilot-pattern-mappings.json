@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "948fef056d03827826f6b2802674da2145b7773c",
+  "baselineTree": "e3b59c17729321e2576589f999f654d8771c0508",
+  "baselineManifestSha256": "a589c8a2ab75ab44520530f63478b485c327dc16f20986a49a41ec954b3e15e6",
+  "functionalCommit": "9cab398174e4fe14beb28dcca62b6e542968b2f4",
+  "functionalTree": "41b8279de0b6a63bd6b84b8f59ff5240a2d315cc",
+  "functionalFreezeSha256": "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d",
+  "independentAcceptanceSha256": "3a347d9b02df3fcc5271fb02306b4a69e88d75bde74a63fb0ebd96347f23101a",
+  "functionalFiles": [
+    "content/pages/pilot-patterns.html",
+    "labs/pilot-pattern/INTEGRATION.md",
+    "labs/pilot-pattern/README.md",
+    "labs/pilot-pattern/lesson.css",
+    "labs/pilot-pattern/lesson.mjs",
+    "labs/pilot-pattern/runtime/core.mjs",
+    "labs/pilot-pattern/runtime/processing.mjs",
+    "labs/pilot-pattern/runtime/protocol.mjs",
+    "labs/pilot-pattern/runtime/records.mjs",
+    "labs/pilot-pattern/runtime/worker.mjs",
+    "labs/pilot-pattern/session.mjs",
+    "labs/pilot-pattern/strict-json.mjs",
+    "labs/pilot-pattern/tests/dom-harness.cjs",
+    "labs/pilot-pattern/tests/lesson.test.mjs",
+    "labs/pilot-pattern/tests/mounted.mjs",
+    "labs/pilot-pattern/tests/node-worker.mjs",
+    "labs/pilot-pattern/tests/replay_downloads.py",
+    "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+    "assets/data/pilot-pattern/CONTRACT.md",
+    "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+    "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+    "assets/data/pilot-pattern/REPORT.md",
+    "assets/data/pilot-pattern/offline-summary.json"
+  ],
+  "classification": {
+    "public": [
+      "content/pages/pilot-patterns.html",
+      "labs/pilot-pattern/README.md",
+      "labs/pilot-pattern/lesson.css",
+      "labs/pilot-pattern/lesson.mjs",
+      "labs/pilot-pattern/runtime/core.mjs",
+      "labs/pilot-pattern/runtime/processing.mjs",
+      "labs/pilot-pattern/runtime/protocol.mjs",
+      "labs/pilot-pattern/runtime/records.mjs",
+      "labs/pilot-pattern/runtime/worker.mjs",
+      "labs/pilot-pattern/session.mjs",
+      "labs/pilot-pattern/strict-json.mjs",
+      "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+      "assets/data/pilot-pattern/CONTRACT.md",
+      "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+      "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+      "assets/data/pilot-pattern/REPORT.md",
+      "assets/data/pilot-pattern/offline-summary.json"
+    ],
+    "buildOnly": [
+      "labs/pilot-pattern/INTEGRATION.md",
+      "labs/pilot-pattern/tests/dom-harness.cjs",
+      "labs/pilot-pattern/tests/lesson.test.mjs",
+      "labs/pilot-pattern/tests/mounted.mjs",
+      "labs/pilot-pattern/tests/node-worker.mjs",
+      "labs/pilot-pattern/tests/replay_downloads.py"
+    ]
+  },
+  "addedOwners": [
+    {
+      "id": "labs/pilot-pattern",
+      "directory": "labs/pilot-pattern",
+      "description": "Source-bound two-dimensional OFDM reference-pattern raw-IQ processing and bounded teaching interface"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "content/pages/pilot-patterns.html",
+      "compatibility": "pilot-patterns.html",
+      "public": "pilot-patterns.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/INTEGRATION.md",
+      "compatibility": "labs/pilot-pattern/INTEGRATION.md",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/README.md",
+      "compatibility": "labs/pilot-pattern/README.md",
+      "public": "labs/pilot-pattern/README.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/lesson.css",
+      "compatibility": "labs/pilot-pattern/lesson.css",
+      "public": "labs/pilot-pattern/lesson.css",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/lesson.mjs",
+      "compatibility": "labs/pilot-pattern/lesson.mjs",
+      "public": "labs/pilot-pattern/lesson.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/core.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/core.mjs",
+      "public": "labs/pilot-pattern/runtime/core.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/processing.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/processing.mjs",
+      "public": "labs/pilot-pattern/runtime/processing.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/protocol.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/protocol.mjs",
+      "public": "labs/pilot-pattern/runtime/protocol.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/records.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/records.mjs",
+      "public": "labs/pilot-pattern/runtime/records.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/worker.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/worker.mjs",
+      "public": "labs/pilot-pattern/runtime/worker.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/session.mjs",
+      "compatibility": "labs/pilot-pattern/session.mjs",
+      "public": "labs/pilot-pattern/session.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/strict-json.mjs",
+      "compatibility": "labs/pilot-pattern/strict-json.mjs",
+      "public": "labs/pilot-pattern/strict-json.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/tests/dom-harness.cjs",
+      "compatibility": "labs/pilot-pattern/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/tests/lesson.test.mjs",
+      "compatibility": "labs/pilot-pattern/tests/lesson.test.mjs",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/tests/mounted.mjs",
+      "compatibility": "labs/pilot-pattern/tests/mounted.mjs",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/tests/node-worker.mjs",
+      "compatibility": "labs/pilot-pattern/tests/node-worker.mjs",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/tests/replay_downloads.py",
+      "compatibility": "labs/pilot-pattern/tests/replay_downloads.py",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+      "compatibility": "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+      "public": "assets/data/pilot-pattern/ACCEPTED-PORT-MANIFEST.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/CONTRACT.md",
+      "compatibility": "assets/data/pilot-pattern/CONTRACT.md",
+      "public": "assets/data/pilot-pattern/CONTRACT.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+      "compatibility": "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+      "public": "assets/data/pilot-pattern/PORT-ACCEPTANCE.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+      "compatibility": "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+      "public": "assets/data/pilot-pattern/PORT-PROTOCOL.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/REPORT.md",
+      "compatibility": "assets/data/pilot-pattern/REPORT.md",
+      "public": "assets/data/pilot-pattern/REPORT.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/offline-summary.json",
+      "compatibility": "assets/data/pilot-pattern/offline-summary.json",
+      "public": "assets/data/pilot-pattern/offline-summary.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V1.json",
+      "compatibility": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V1.json",
+      "public": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V1.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V2.json",
+      "compatibility": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V2.json",
+      "public": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V2.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V3.json",
+      "compatibility": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V3.json",
+      "public": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V3.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V4.json",
+      "compatibility": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V4.json",
+      "public": "labs/pilot-pattern/FUNCTIONAL-FREEZE-V4.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md",
+      "compatibility": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md",
+      "public": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json",
+      "compatibility": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json",
+      "public": "assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json",
+      "compatibility": "assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json",
+      "public": "assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/pilot-pattern-preservation.cjs",
+      "compatibility": "tests/helpers/pilot-pattern-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/pilot-pattern-integration-delta.json",
+      "compatibility": "tests/helpers/pilot-pattern-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/pilot-pattern-metadata-baseline.json",
+      "compatibility": "tests/helpers/pilot-pattern-metadata-baseline.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/pilot-pattern-owned-suites.json",
+      "compatibility": "tests/helpers/pilot-pattern-owned-suites.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/pilot-pattern-integration.test.cjs",
+      "compatibility": "tests/pilot-pattern-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/pilot-pattern-owned.test.cjs",
+      "compatibility": "tests/pilot-pattern-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/pilot-pattern-mappings.json",
+      "compatibility": "build/pilot-pattern-mappings.json",
+      "public": null,
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    }
+  ]
+}

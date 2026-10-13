@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
-const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
+const r=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(JSON.parse(read('site/registry.json'))),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-golay-radar'),u=r.units.find(u=>u.id==='golay-radar'),p=r.pages.find(p=>p.path==='golay-radar.html');
 function resolve(href){const [file,hash]=href.split('#');a.ok(fs.existsSync(path.join(root,file)),href);if(hash)a.ok(read(file).includes(`id="${hash}"`),href);}
 

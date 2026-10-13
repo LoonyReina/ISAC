@@ -3124,6 +3124,74 @@
           "§III-B，式(19)–(23)、算法2"
         ]
       }
+    },
+    {
+      "id": "ofdm-reference-patterns-2024",
+      "directionId": "waveforms",
+      "title": "二维导频：多丢样本，何时有益、何时吃亏？",
+      "question": "对同一份含前后符号与多条回波的原始 I/Q，为什么额外丢弃能降低长延迟污染，却可能让低 SNR 的估计更差？",
+      "mechanism": "原单符号课只看到一个距离切片。现在从真实CP-OFDM I/Q留下一段更干净但更短的样本，去旋转、短FFT、重映射并恢复复数格，再跨频率/符号相干求和；错列移动二维别名，丢弃同时减少信号与噪声平均次数。",
+      "innovation": "原文把跨符号参考图案、标准分辨率延迟–多普勒处理和无歧义区域条件连接起来。本课实际执行受限解释性链路，并把原式缺陷、本站修正、图案歧义和接收窗口代价逐项分开。",
+      "evidence": {
+        "kind": "原文理论/仿真＋本站独立数值/Node功能复核；浏览器未验收",
+        "summary": "沿用同一case-pilot论文身份，未增加一篇独立论文。冻结固定四路径研究有0/10/20 dB各200帧；extended在0/10 dB的复数格NMSE更差、20 dB更好。原始600帧/1800输出与实际界面单次运行分开；有界Node复核473断言、独立NumPy1511核查/13份生产Blob记录不代替真实浏览器。"
+      },
+      "limits": [
+        "有界标准分辨率解释性核心；线性错列仍有倾斜别名与近同高候选。默认留16/96点，噪声方差增加6倍；冻结0/10 dB更差、20 dB更好。600帧为固定场景离线证据，现场只重算一次输入；不是精确Fig.10/Fig.23、IAA/MUSIC、校准检测、整篇复现或真实浏览器/绘制时延认证。",
+        "接收机只读raw y、已知非零导频/掩膜和声明网格，不读取真延迟、多普勒、路径数或未知前/间隔载荷。ell由用户选；D的ell/ell0比较共享同一y，A/D不同图案并非同一观测。",
+        "标准模型要求零外掩膜、声明保护界和符号内恒定多普勒；continuous、off-mask payload、超保护界失败保留。分数延迟只验证声明的有限矩形CP脉冲，不是实测RF。",
+        "源remap的S−1/S−ell、Eq13缺j、Eq14接收非零掩膜、J>1时Eq15自然网格、F₀与N/N/S及零坐标/prime-S D文字冲突均为本站公开解释，不是作者勘误；Table I分支未解决。",
+        "有限候选上限、近同高组内排序和门限是本站规则；A最强族有六个近同高别名，固定候选数不能制造唯一性。K=1、M≤2不授予二维唯一性证书；零填充不提高物理分辨率。"
+      ],
+      "nextQuestion": "固定带宽、完整帧能量、已知格数与时间孔径后，能否共同设计图案和保留窗口，使保护、二维歧义与噪声代价更均衡？先保留不利SNR结果，再扩展连续多普勒与实际脉冲。",
+      "source": {
+        "title": "OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing",
+        "authors": "Zhang 等（沿用固定v3案例署名）",
+        "edition": "arXiv:2401.09643v3，2024-11-13，16页；固定版本的标准分辨率处理与模糊判据，沿用2026-10-13来源/独立数值审查",
+        "url": "https://arxiv.org/pdf/2401.09643v3",
+        "locator": "pp.6–9 式(9)–(15)、(18)–(28)；Fig.10关系与Fig.23(a–c)结构，具体场景/资源为本站选择；p.13 Table I未解决"
+      },
+      "prerequisites": [
+        {
+          "href": "pilot-design.html#experiment",
+          "label": "先看单符号梳状距离切片与未知复增益"
+        },
+        {
+          "href": "foundations.html#ofdm",
+          "label": "沿七步OFDM先保留复数，再读二维匹配"
+        }
+      ],
+      "notebookTopicId": "pilot-pattern",
+      "readingSteps": [
+        {
+          "label": "先问丢弃的是什么",
+          "locator": "pp.6–7，式(9)–(15)",
+          "purpose": "把未知前符号污染、可保留区间与短FFT噪声方差接回实际I/Q，不从理想H直接起步。"
+        },
+        {
+          "label": "再找二维同高候选",
+          "locator": "pp.7–9，式(18)–(28)、Fig.10",
+          "purpose": "去掉公共复增益后检查零坐标和倾斜别名；区别本征歧义、格点采样和候选策略。"
+        },
+        {
+          "label": "最后核对代价与证据",
+          "locator": "Fig.23(a–c)结构；本站CONTRACT/REPORT及dated lesson-review接受",
+          "purpose": "区分原图设置缺口、固定场景600帧与现场单次结果；保留0/10 dB退化和20 dB改善，不给浏览器或检测证书。"
+        }
+      ],
+      "executable": {
+        "kind": "validated-paper-algorithm",
+        "coverage": "algorithm",
+        "href": "pilot-patterns.html#question",
+        "label": "从实际I/Q运行二维导频课",
+        "summary": "实际生成或导入raw y，执行额外丢弃、去旋转、短FFT、选格/恢复与二维相干求和；同一y保留普通CP对照、全部候选和近同高组。源式修正为明确声明的解释。",
+        "limitations": "有界标准分辨率解释性核心；线性错列仍有倾斜别名与近同高候选。默认留16/96点，噪声方差增加6倍；冻结0/10 dB更差、20 dB更好。600帧为固定场景离线证据，现场只重算一次输入；不是精确Fig.10/Fig.23、IAA/MUSIC、校准检测、整篇复现或真实浏览器/绘制时延认证。",
+        "sourceLocators": [
+          "v3 pp.6–7，式(9)–(15)：标准分辨率短窗接收，源式缺陷另列",
+          "v3 pp.7–9，式(18)–(28)：包含零坐标与倾斜精确别名",
+          "Fig.10关系与Fig.23(a–c)结构；不复刻作者缺失设置或完整原图"
+        ]
+      }
     }
   ]
 }

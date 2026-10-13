@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "version": "pilot-pattern-browser-0.1.0",
+  "paper_id": "supplement-case-pilot",
+  "status": "author-tested; independent port gate pending",
+  "scope": "source-free bounded JavaScript kernel, strict semantic records and browser module Worker protocol; Node-tested only",
+  "source_assets_included": false,
+  "files": [
+    {
+      "path": "ACCEPTED-REFERENCE-CONTRACT.md",
+      "bytes": 12877,
+      "sha256": "5f4d8b73aecf1856adfd973f356b5d4243e911ad881961c6a015c2cc715ba66c"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 6620,
+      "sha256": "241dc5e9995619cf63f66b9a3e6f5d937ce86a390be3c00e48f6d63389308ba0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7407,
+      "sha256": "a76f04ff1841bd8727445ed42e07c60bf192f2cdcd9c1d1ca5ddcec8b00443b3"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 6755,
+      "sha256": "431e7ae2a55fe28e5bd27894713f1f1f1bb828801638ccfebc2daa1b81392d34"
+    },
+    {
+      "path": "package.json",
+      "bytes": 249,
+      "sha256": "f0dc49955aabf63972343395e45bf7c25d031794e57621dd66668212363208f8"
+    },
+    {
+      "path": "results/author-kernel.json",
+      "bytes": 12881,
+      "sha256": "008f713374ded86b63360c04c0ce1280a2c70ea7e6c7e1aa45845d18140656d0"
+    },
+    {
+      "path": "results/author-protocol.json",
+      "bytes": 2061,
+      "sha256": "8d926fb8673663bab644b96fe3890c3c24999f4f55fa11bab44b9c20e7f5aadb"
+    },
+    {
+      "path": "results/node-profile.json",
+      "bytes": 1836,
+      "sha256": "98083fb3293637baec8cfc58f85177dd6b3035b59992621ab802ce772729015e"
+    },
+    {
+      "path": "results/rejected-attempt-01/MANIFEST.json",
+      "bytes": 3634,
+      "sha256": "9de685f11c5e9d9117266e678f7e89c4cee782af8ce21757a0c7f6bb1702bebd"
+    },
+    {
+      "path": "results/rejected-attempt-01/REASON.md",
+      "bytes": 586,
+      "sha256": "253795604641cb5150aaacc2cc35ed34c2e1d12c4ca52b12517e87caffe2c95e"
+    },
+    {
+      "path": "results/rejected-attempt-01/author-protocol.json",
+      "bytes": 1883,
+      "sha256": "bd8ad67bf83a199df486ae384604e5027ee96258161e6f833af33c9029763ae9"
+    },
+    {
+      "path": "results/rejected-attempt-01/protocol.mjs",
+      "bytes": 4502,
+      "sha256": "e9c0c985b0c3d4d7916d157cf8b2654e1fb4adee87a53a97dac9d352c5acc2ae"
+    },
+    {
+      "path": "results/rejected-attempt-01/records.mjs",
+      "bytes": 10354,
+      "sha256": "328c56aacedc5d2169734a45b0cd139abd3272070c94b4030659ac9f74e82b4a"
+    },
+    {
+      "path": "src/core.mjs",
+      "bytes": 11798,
+      "sha256": "53591126e91fe7f1c838bc7cd58e57a1a50035de9b5a811206d3ce3c47c1c87f"
+    },
+    {
+      "path": "src/processing.mjs",
+      "bytes": 6984,
+      "sha256": "48427712f64f00de71e5c3e44af9557ee577343159b50b47179a22c4e10fc7e7"
+    },
+    {
+      "path": "src/protocol.mjs",
+      "bytes": 5101,
+      "sha256": "0d3fcc205699d7d36ad9d35556d9c8f105d0124d03dad27f29995dbbffa474d1"
+    },
+    {
+      "path": "src/records.mjs",
+      "bytes": 11486,
+      "sha256": "1982bfa3c17a479c8fb9e26cd5fd270a792c677b4a2e2f301ae89b6ca78a7c28"
+    },
+    {
+      "path": "src/worker.mjs",
+      "bytes": 212,
+      "sha256": "b157c3560b5126417150bd5d7237389ed6c1b9c8c1867bdf7cbab942c705a2c2"
+    },
+    {
+      "path": "tests/export_reference_fixtures.py",
+      "bytes": 18985,
+      "sha256": "6b5cc09e9923052a652596f0676ac05f9588d4e22a8e4573a575abbf0a19c772"
+    },
+    {
+      "path": "tests/make-manifest.mjs",
+      "bytes": 1223,
+      "sha256": "38870dd45b78b22cc231f1a80c00bf1081ecf6820db6ee13d1e2d7213520caad"
+    },
+    {
+      "path": "tests/node-worker.mjs",
+      "bytes": 208,
+      "sha256": "3eeef2ab3c28934f7261b374060b51ad2f328ca32fec68712d3adaf9f2197d61"
+    },
+    {
+      "path": "tests/profile.mjs",
+      "bytes": 2668,
+      "sha256": "2f276d07452ad552471b115e10bd719f6b6810094699feb657393379aa81cc51"
+    },
+    {
+      "path": "tests/reference-fixtures.json",
+      "bytes": 1924071,
+      "sha256": "7cc276bf5e155183a3687e4a779221a367e6b5966e43a5512864d48d8b70496a"
+    },
+    {
+      "path": "tests/test-kernel.mjs",
+      "bytes": 10066,
+      "sha256": "f4e750ddd89bc8baea67f95ddf5e86beefff9a821add6f447bd03d7ce0ac1810"
+    },
+    {
+      "path": "tests/test-protocol.mjs",
+      "bytes": 7835,
+      "sha256": "166c3a5aa35312b62a5550f976bada75ac91e46b8ba6fab88c602bc901841dc0"
+    },
+    {
+      "path": "tests/verify-manifest.mjs",
+      "bytes": 582,
+      "sha256": "39932c63dcc3c0ccf26634046a82848c52f4b1ea5d1f4a79cfd4924fb713bb67"
+    }
+  ],
+  "total_bytes": 2072864
+}
