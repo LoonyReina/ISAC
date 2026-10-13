@@ -179,7 +179,7 @@ const reviewedProfiles=new Map([
 [
   "labs/cellfree-maprt/lesson/lesson.mjs",
   {
-    "sha256": "53a28855eb8e99e989ff751535fb9703160c008bdd063ba2cca627435963e4e7",
+    "sha256": "6e686fc26494728db434fd797f745e2b1bcdd51e7fbc9d822bd4c4fe3f58a451",
     "runtimePolicy": "reviewed-cellfree-runtime",
     "sourceLiterals": [
       "fetch=globalThis.fetch"
@@ -323,11 +323,11 @@ const cellfreePublicFiles=new Map([
   ],
   [
     "labs/cellfree-maprt/lesson/lesson.css",
-    "d1865ab0b08c734fffb5d62e7b35f81d0854f41d3aef7baa06e1b56530e46c98"
+    "512c77535e786bcfd3fae9e94e33763f6432a5d8a4063d3cc76420c49410dd53"
   ],
   [
     "labs/cellfree-maprt/lesson/lesson.mjs",
-    "53a28855eb8e99e989ff751535fb9703160c008bdd063ba2cca627435963e4e7"
+    "6e686fc26494728db434fd797f745e2b1bcdd51e7fbc9d822bd4c4fe3f58a451"
   ],
   [
     "labs/cellfree-maprt/lesson/reference-summary.json",
