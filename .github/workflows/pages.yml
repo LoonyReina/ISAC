@@ -43,7 +43,18 @@ jobs:
           node --test tests/perceptive-bsbl-dependencies.test.cjs tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
           node --test tests/compatibility-build.test.cjs
       - name: Run full legacy tests and independently reproduce the public artifact
-        run: node scripts/build-compatibility.cjs --test --reproducible
+        run: |
+          # Preserve the full child-test failure report; Node's uncaught-error
+          # printer can truncate a large exception when stderr is a CI pipe.
+          node -e '
+            try {
+              process.argv[1] = require.resolve("./scripts/build-compatibility.cjs");
+              require("./scripts/build-compatibility.cjs");
+            } catch (error) {
+              process.exitCode = 1;
+              process.stderr.write(String(error?.stack ?? error) + "\n");
+            }
+          ' -- scripts/build-compatibility.cjs --test --reproducible
       - name: Recheck exact output and unchanged tracked sources
         run: |
           node scripts/build-compatibility.cjs --check
