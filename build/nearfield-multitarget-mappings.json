@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "4ba6cb9ea8a568b1e4b21124b5e0d67648add8e2",
+  "baselineManifestSha256": "e665ede41919df1219b854236beeddf97b0869eb738a167533cae125d23f9b3b",
+  "addedOwners": [
+    {
+      "id": "labs/nearfield-multitarget",
+      "directory": "labs/nearfield-multitarget",
+      "description": "Source-bound multi-target covariance optimization, rank-one recovery and honest receiver-boundary lesson"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "content/pages/nearfield-multitarget.html",
+      "compatibility": "nearfield-multitarget.html",
+      "public": "nearfield-multitarget.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+      "compatibility": "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+      "public": "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/README.md",
+      "compatibility": "labs/nearfield-multitarget/lesson/README.md",
+      "public": "labs/nearfield-multitarget/lesson/README.md",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "public": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/client.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/client.mjs",
+      "public": "labs/nearfield-multitarget/lesson/client.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "public": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "public": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/lesson.css",
+      "compatibility": "labs/nearfield-multitarget/lesson/lesson.css",
+      "public": "labs/nearfield-multitarget/lesson/lesson.css",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "public": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "public": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "public": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/session.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/session.mjs",
+      "public": "labs/nearfield-multitarget/lesson/session.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/adapter-oracle.py",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/adapter-oracle.py",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/adapter.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/adapter.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/codec.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/codec.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/contract.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/contract.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/export-records.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/export-records.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/mounted.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/mounted.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/node-client.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/node-client.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/record-oracle.py",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/record-oracle.py",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/session.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/session.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/worker-node.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/worker-node.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/lesson/tests/worker.test.mjs",
+      "compatibility": "labs/nearfield-multitarget/lesson/tests/worker.test.mjs",
+      "public": null,
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+      "compatibility": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+      "public": "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/MANIFEST.json",
+      "compatibility": "labs/nearfield-multitarget/runtime/MANIFEST.json",
+      "public": "labs/nearfield-multitarget/runtime/MANIFEST.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+      "compatibility": "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+      "public": "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/README.md",
+      "compatibility": "labs/nearfield-multitarget/runtime/README.md",
+      "public": "labs/nearfield-multitarget/runtime/README.md",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "public": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "public": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/model.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/model.mjs",
+      "public": "labs/nearfield-multitarget/runtime/model.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "public": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "public": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "compatibility": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "public": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-multitarget-owned.test.cjs",
+      "compatibility": "tests/nearfield-multitarget-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/nearfield-multitarget-integration.test.cjs",
+      "compatibility": "tests/nearfield-multitarget-integration.test.cjs",
+      "public": "tests/nearfield-multitarget-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-preservation.cjs",
+      "compatibility": "tests/helpers/nearfield-multitarget-preservation.cjs",
+      "public": "tests/helpers/nearfield-multitarget-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-build-preservation.cjs",
+      "compatibility": "tests/helpers/nearfield-multitarget-build-preservation.cjs",
+      "public": "tests/helpers/nearfield-multitarget-build-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-metadata-baseline.json",
+      "compatibility": "tests/helpers/nearfield-multitarget-metadata-baseline.json",
+      "public": "tests/helpers/nearfield-multitarget-metadata-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-runtime-delta.json",
+      "compatibility": "tests/helpers/nearfield-multitarget-runtime-delta.json",
+      "public": "tests/helpers/nearfield-multitarget-runtime-delta.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-legacy-hooks.json",
+      "compatibility": "tests/helpers/nearfield-multitarget-legacy-hooks.json",
+      "public": "tests/helpers/nearfield-multitarget-legacy-hooks.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/nearfield-multitarget-owned-suites.json",
+      "compatibility": "tests/helpers/nearfield-multitarget-owned-suites.json",
+      "public": "tests/helpers/nearfield-multitarget-owned-suites.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-multitarget-evidence-map.json",
+      "compatibility": "data/nearfield-multitarget-evidence-map.json",
+      "public": "data/nearfield-multitarget-evidence-map.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "docs/NEARFIELD-MULTITARGET-LESSON-INDEPENDENT-REVIEW.md",
+      "compatibility": "docs/NEARFIELD-MULTITARGET-LESSON-INDEPENDENT-REVIEW.md",
+      "public": "docs/NEARFIELD-MULTITARGET-LESSON-INDEPENDENT-REVIEW.md",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/nearfield-multitarget-lesson-independent-binding.json",
+      "compatibility": "data/nearfield-multitarget-lesson-independent-binding.json",
+      "public": "data/nearfield-multitarget-lesson-independent-binding.json",
+      "owner": "labs/nearfield-multitarget",
+      "role": "source"
+    }
+  ]
+}

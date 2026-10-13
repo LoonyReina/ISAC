@@ -27,6 +27,149 @@ function fields(x,expected,label){if(!x||typeof x!=='object'||Array.isArray(x)||
 const factory="export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}";
 const solverLoop="for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])await import(`../vendor/solver/${name}.js`)";
 const reviewedProfiles=new Map([
+ // Exact source-bound multi-target lesson and audited v2 solver.
+[
+  "labs/nearfield-multitarget/lesson/adapter.mjs",
+  {
+    "sha256": "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/client.mjs",
+  {
+    "sha256": "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781",
+    "runtimePolicy": "reviewed-factory-endpoints",
+    "sourceLiterals": [
+      "workerFactory=url=>new Worker(url,{type:'module'})",
+      "this.factory=workerFactory;",
+      "worker=this.factory(url);"
+    ],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "../runtime/worker.mjs",
+        "literal": "new URL('../runtime/worker.mjs',import.meta.url)"
+      },
+      {
+        "kind": "worker",
+        "url": "./derived-worker.mjs",
+        "literal": "new URL('./derived-worker.mjs',import.meta.url)"
+      }
+    ]
+  }
+],[
+  "labs/nearfield-multitarget/lesson/codec.mjs",
+  {
+    "sha256": "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+  {
+    "sha256": "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/lesson.mjs",
+  {
+    "sha256": "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/presets.mjs",
+  {
+    "sha256": "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/record-check.mjs",
+  {
+    "sha256": "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/lesson/session.mjs",
+  {
+    "sha256": "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/certificate.mjs",
+  {
+    "sha256": "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/linalg.mjs",
+  {
+    "sha256": "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/model.mjs",
+  {
+    "sha256": "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/sampler.mjs",
+  {
+    "sha256": "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/solver.mjs",
+  {
+    "sha256": "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],[
+  "labs/nearfield-multitarget/runtime/worker.mjs",
+  {
+    "sha256": "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-multitarget-module",
+    "runtimeEdges": []
+  }
+],
  ['labs/near-field/research/runtime/src/worker-client.mjs',{
   sha256:'ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d',
   runtimePolicy:'reviewed-factory-endpoints',sourceLiterals:[factory],edgeKind:'reviewed-worker',
@@ -386,6 +529,96 @@ const cellfreePublicFiles=new Map([
     "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e"
   ]
 ]);
+const multitargetPublicFiles=new Map([
+  [
+    "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+    "3ea8557ab493cf2cb4806c9ed8d117a843c4626d3fbbc95818c5724da1bbacf0"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+    "f8e27615f9940c9113e6dbdd1ebda66bdec29a704a052722ecb8bc906ad26d1f"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/README.md",
+    "dd78ec831389d923f3c513b1d6ac95b6a2b7caf685dc552b379606496eeb4267"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/adapter.mjs",
+    "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/client.mjs",
+    "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/codec.mjs",
+    "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+    "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/lesson.css",
+    "b3a5fb16e16e40626032f75eba9f841faf1572b40e3ede2f4c5ebf7412d69106"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/lesson.mjs",
+    "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/presets.mjs",
+    "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/record-check.mjs",
+    "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5"
+  ],
+  [
+    "labs/nearfield-multitarget/lesson/session.mjs",
+    "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+    "f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/MANIFEST.json",
+    "eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+    "d7d2071891bfaf56b4e16b7b59dba46672fab3dc10d233b385c40475ef199515"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/README.md",
+    "0e45e172b622fc84c44a8826b3a2c4cb0f81fe529237d7397576193fca90a5d3"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/certificate.mjs",
+    "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/linalg.mjs",
+    "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/model.mjs",
+    "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/sampler.mjs",
+    "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/solver.mjs",
+    "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267"
+  ],
+  [
+    "labs/nearfield-multitarget/runtime/worker.mjs",
+    "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106"
+  ]
+]);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
 const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
@@ -420,6 +653,7 @@ function moduleDependencies(modules,contract,identities){
   fields(identity,['file','sha256'],'public module identity');
   if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');
   if(identity.file.startsWith('labs/cellfree-maprt/')&&cellfreePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Cell-Free public path or hash: '+identity.file);
+  if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);
   const expectedPath=reviewedHashPaths.get(identity.sha256);
   if(expectedPath&&identity.file!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+identity.file);
   seenIdentities.set(identity.file,identity.sha256);

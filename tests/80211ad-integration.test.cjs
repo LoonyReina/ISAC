@@ -12,7 +12,7 @@ test('80211ad adds exactly one actual receiver lesson under the existing paper a
 });
 test('exact enumerated metadata inverse restores accepted ICI bytes and rejects tampered changes',()=>{
  for(const [key,data,fn]of [['registry',r,P.withoutAdRegistry],['catalog',d,P.withoutAdCatalog],['backlog',b,P.withoutAdBacklog]]){const before=JSON.stringify(data);a.equal(sha(key==='backlog'?P.baselineBacklogText(data):JSON.stringify(fn(data),null,2)+'\n'),base[key]);a.equal(JSON.stringify(data),before);for(const ch of P.changes[key]){const bad=structuredClone(data);let p=bad;for(const k of ch.path.slice(0,-1))p=p[k];const k=ch.path.at(-1);if(ch.append)p[k][ch.lengthBefore]='unreviewed';else p[k]='unreviewed';a.throws(()=>fn(bad),ch.path.join('.'));}}
- a.equal(sha(bytes('content/data/research-guides.json','site/research-guides.json')),base.guides);const unrelated=structuredClone(r);unrelated.legacy.unreviewed='visible';a.equal(P.withoutAdRegistry(unrelated).legacy.unreviewed,'visible');
+ a.equal(sha(JSON.stringify(require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(json('content/data/research-guides.json','site/research-guides.json')),null,2)+'\n'),base.guides);const unrelated=structuredClone(r);unrelated.legacy.unreviewed='visible';a.equal(P.withoutAdRegistry(unrelated).legacy.unreviewed,'visible');
  for(const [key,file,fn]of [['readingMap','docs/READING-MAP.md',P.withoutAdReadingMap],['plan','docs/PAPER-EXECUTION-PLAN.md',P.withoutAdPlan]]){const s=bytes(file).toString();a.equal(sha(fn(s)),base[key]);a.throws(()=>fn(s+'unreviewed'));}
 });
 test('all22 accepted runtime files and the32 existing ESM profiles stay exact',()=>{

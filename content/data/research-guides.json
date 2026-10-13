@@ -464,26 +464,26 @@
       "id": "nearfield-multitarget-correlation",
       "directionId": "spatial",
       "title": "多目标近场：照亮三个位置，为什么还不够？",
-      "question": "同一方向上有不同距离的目标时，除了给每个目标足够功率，还要控制哪些关系，才能让接收端更容易区分它们？",
-      "mechanism": "球面波使阵列到不同位置的相对路程不同，同角异距的位置因此可能具有不同的空间响应。每个位置的照射增益只描述“得到多少能量”；两个位置的互相关还描述照射信号是否过于相似，这会影响后续多目标空间谱。",
-      "innovation": "把角度和距离同时放进多目标波束设计，联合抬高最弱目标的加权照射增益、限制目标间互相关，并满足用户速率与总功率约束。设计不要求预先知道目标 RCS，但仍使用目标位置或对应空间响应。",
+      "question": "相同阵列、功率和最低通信速率下，控制三个已知目标之间的互相关，会怎样改变最弱照射、两用户速率与恢复后的波束？",
+      "mechanism": "逐阵元球面距离给同角异距的位置不同复通道。归一化照射 g 与目标对复模相关 c 是两种读数：intended Eq.17 最大化最弱照射 μ，并要求 c≤εμ。这里只能直接检验发射设计的取舍，不能把照射图当成接收定位图。",
+      "innovation": "在已知用户与目标位置、无需目标 RCS 先验的条件下，用三块 PSD 协方差联合约束最弱目标照射、目标对互相关、用户速率与总期望功率；Eq.18 把恢复残余转入感知协方差，保留总协方差及通信 SINR。",
       "evidence": {
-        "kind": "优化推导＋数值空间谱；本站为原文导读",
-        "summary": "§III 给出 SDP 松弛及保留总协方差的秩一通信波束恢复；Fig. 5 比较加入互相关约束、去掉该约束及远场建模时的归一化 Capon 空间谱，说明仅看照射增益不足以评价这一设置中的多目标处理。"
+        "kind": "优化推导＋数值仿真；本站已有 bounded intended Eq.17/18 数值接受",
+        "summary": "实际求解和秩一恢复已独立核验，覆盖 6×6 与源 10×10 优化参数；新输入重算 proposed/NCCS，不查表。原 Fig.5 声称的接收结果不能由此推得：literal Eq.12 零回波、Eq.19 普通逆结构奇异与未定义索引仍未解决。真实浏览器验收另行进行。"
       },
       "limits": [
-        "模型前提：全数字收发阵列、已知用户和目标位置、点目标与给定球面波信道；“不需要 RCS 先验”不等于能够在未知场景中自动发现所有目标。",
-        "远场基线在 §IV-A 降低用户最低速率，并移除同角目标对的互相关约束以保持可行；不能把图中差距写成相同约束下的公平性能倍数。",
-        "Fig. 5 是归一化 Capon 空间谱，未给出规定虚警率下的检出概率或定位 RMSE；谱峰不能直接当作可靠检测或误差保证。",
-        "固定 arXiv v1 的版本记录为 2025 年会议投稿预印本，本文不声称已核查期刊定稿。本站没有实现该 SDP、Capon 处理或原论文曲线复现。"
+        "全数字阵列、已知两用户和三目标位置、点目标球面波模型；“不需要 RCS 先验”不等于未知场景中的自动发现。输入范围不保证可行或通道满行秩。",
+        "NCCS 只移除三对相关约束，其余条件相同；原 FFBF 还把 r=17 降为 .95 并移除同方向目标对约束，不能作为相同通信要求下的公平第三方案。",
+        "Eq.9 末项共轭按 Eq.8/Eq.16 显式修正；literal Eq.12 半球接收增益为零，rank(R̂X)≤5<N 使 Eq.19 普通逆未定义，另有未定义索引。不偷偷用伪逆、加载或替代空间谱；Fig.5、检测率、定位 RMSE 与完整论文未复现。",
+        "固定 v1 预印本身份不变。Gaussian 协方差抽样、照射切片、数值自洽检查和朝向目标的接收总能量是声明的教学扩展；不是逐流通信合成或原接收定位器。独立数值/Node/受控 DOM 不等于真实浏览器、完整绘制延迟或设备内存认证。"
       ],
-      "nextQuestion": "如果设计只知道目标所在的小区域，而不是准确坐标，原来的互相关约束还能保证什么？先固定相同资源与通信要求，再比较位置失配下的空间谱，并另设检测门限或 RMSE 评价。",
+      "nextQuestion": "先固定同一阵列、功率和通信门槛，手动改变 ε 并比较实际上下界与残差。若目标只在小区域内已知，还需怎样修改设计与接收模型，才能另行评价稳健性、检测或定位误差？",
       "source": {
         "title": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
         "authors": "Hang Ruan、Homa Nikbakht、Ruizhi Zhang、Honglei Chen、Yonina C. Eldar",
-        "edition": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF",
+        "edition": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF，2026-10-13 对照独立数值接受绑定",
         "url": "https://arxiv.org/html/2506.07052v1",
-        "locator": "§II-A；§II-C 式(3)–(7)；§II-D 式(11)–(14)及增益/互相关定义；§III 式(15)–(18)；§IV-A 基线设置；§IV-C 式(19)、Fig. 5"
+        "locator": "§II-A/C 式(3)–(9)；§II-D 式(11)–(14)；§III 式(15)–(18)；§IV-A 源参数与放宽的 FFBF；§IV-C 式(19)、Fig.5 的接收失败边界"
       },
       "prerequisites": [
         {
@@ -497,29 +497,37 @@
         {
           "href": "foundations.html#cfar",
           "label": "理解谱峰与目标检测的差别"
+        },
+        {
+          "href": "nearfield-multitarget.html#experiment",
+          "label": "实际重算有、无相关约束的协方差"
+        },
+        {
+          "href": "nearfield-multitarget.html#paper",
+          "label": "核对优化接受与严格接收失败"
         }
       ],
-      "notebookTopicId": "near-field",
+      "notebookTopicId": "nearfield-multitarget",
       "readingSteps": [
         {
           "label": "先核对已知量和未知量",
           "locator": "§II-A、§II-C 式(3)–(7)、§II-D",
-          "purpose": "把已知位置、未知 RCS 和逐阵元传播距离分开，避免把波束设计误读为盲定位"
+          "purpose": "标明位置和通道为已知设计输入，RCS 不进入优化；逐阵元核对球面相位、半球增益以及接收朝向"
         },
         {
           "label": "把两个感知要求分开读",
-          "locator": "§II-D；§III 式(15b)–(15c)、式(18)",
-          "purpose": "分别解释单个目标增益、目标对互相关，以及恢复通信波束时为何要保留总协方差"
+          "locator": "§II-D；§III 式(15)–(18)",
+          "purpose": "实际求解 intended Eq.17，再用 Eq.18 核对总协方差、三对相关与用户 SINR 的保留；数值失败不等于物理不可行"
         },
         {
-          "label": "先查基线再看谱图",
-          "locator": "§IV-A；§IV-C 式(19)、Fig. 5",
-          "purpose": "标注被放宽的远场约束，辨认空间谱的坐标与含义，不把谱图当作 ROC 或 RMSE"
+          "label": "优化通过后继续核对接收失败",
+          "locator": "§II-D 式(12)；§IV-A；§IV-C 式(19)、Fig.5",
+          "purpose": "保留零回波、普通逆结构奇异和未定义索引；区分 NCCS 与放宽通信要求的 FFBF，不将照射切片冒充定位谱"
         }
       ],
       "visualTrace": {
         "kind": "qualitative-reading-trace",
-        "title": "位置已知时，照射强度与目标间相似性是同一件事吗？",
+        "title": "发射设计已数值通过，为什么还不能声称定位成功？",
         "steps": [
           {
             "id": "observation",
@@ -528,7 +536,7 @@
               {
                 "label": "模型/仿真中的接收观测",
                 "status": "observed",
-                "text": "多个目标回波叠加的阵列观测"
+                "text": "原文意图为多目标回波叠加；本页 literal Eq.12 严格得到 Y=N"
               },
               {
                 "label": "设计输入",
@@ -536,7 +544,7 @@
                 "text": "给定的用户、目标位置和球面波空间响应"
               }
             ],
-            "explanation": "先画清设计所用位置来自假设；不要把位置标签画成已经由接收机估出来的结果。",
+            "explanation": "位置来自设计假设，不能画成已估计结果。字面接收增益为零的失败必须和预期的回波模型分开；优化不使用未知 RCS。",
             "sourceLocator": "§II-A; §II-C, equations (3)–(7); §II-D, equations (11)–(14)",
             "lessonHref": "near-field.html#geometry"
           },
@@ -573,28 +581,28 @@
                 "text": "约束目标间互相关，同时满足通信速率与总功率限制"
               }
             ],
-            "explanation": "单个位置的照射增益与一对位置的互相关是两种约束；能量足够不自动说明两个照射信号容易区分。",
-            "sourceLocator": "§II-D, gain/cross-correlation definitions; §III, equations (15b)–(15f)",
-            "lessonHref": "joint-beamforming.html#model"
+            "explanation": "本页真实求解 intended Eq.17，NCCS 仅移除三对相关约束。Eq.18 将 PSD 残余保留在感知流中；g、c、μ 单位 W，c≤εμ 不是普通相关系数门限。",
+            "sourceLocator": "§III，式(15)–(18)；本站独立接受绑定和物理空间证书",
+            "lessonHref": "nearfield-multitarget.html#experiment"
           },
           {
             "id": "evidence",
             "heading": "证据支持到哪里？",
             "blocks": [
               {
-                "label": "原文证据",
+                "label": "本站已接受范围",
                 "status": "supported",
-                "text": "特定数值配置下的归一化 Capon 空间谱对照"
+                "text": "intended Eq.17/18 数值优化与恢复，含源 10×10 设置"
               },
               {
                 "label": "未由谱峰证明",
                 "status": "not-established",
-                "text": "规定虚警率下的检出概率或位置 RMSE"
+                "text": "literal Eq.12/19、Fig.5、定位/检测、全篇与实际浏览器验收"
               }
             ],
-            "explanation": "先核对远场基线放宽了哪些约束，再读图5。本站没有实现该 SDP、Capon 处理或原图复现。",
-            "sourceLocator": "§IV-A; §IV-C, equation (19), Figure 5",
-            "lessonHref": "foundations.html#cfar"
+            "explanation": "独立数值接受仅闭合发射优化与恢复。字面接收朝向给出零回波；发射经验协方差秩≤5<N，增加 T 或接收噪声不能给普通逆补秩。照射切片与总回波能量扩展都不是 Capon 定位谱。",
+            "sourceLocator": "§II-D，式(12)；§IV-A；§IV-C，式(19)、Fig.5；独立 FINAL-BINDING 数值范围",
+            "lessonHref": "nearfield-multitarget.html#paper"
           }
         ],
         "checkpoint": {
@@ -602,6 +610,19 @@
           "answer": "不能。本文设计仍使用目标位置/空间响应；未知反射强弱和未知目标位置不是同一个问题。",
           "sourceLocator": "§II-A; §II-D; §III."
         }
+      },
+      "executable": {
+        "kind": "validated-paper-algorithm",
+        "coverage": "algorithm",
+        "href": "nearfield-multitarget.html#experiment",
+        "label": "实际运行：多目标协方差优化与 Eq.18 恢复",
+        "summary": "从连续新输入重算 intended Eq.17 proposed/NCCS 两种优化，保留实际矩阵、物理约束、原始/对偶界、秩一恢复、残余与全部终态。已接受数值范围含 6×6 与源 10×10 设置；照射切片由本次 Rₓ 计算。",
+        "limitations": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。 Gaussian 抽样、接收朝向扩展与数值自洽复算单独标记；完整记录重放不是优化或来源认证。",
+        "sourceLocators": [
+          "固定 v1 §II-C/D，式(3)–(14)：球面通道、协方差及 literal Eq.12",
+          "固定 v1 §III，intended 式(17)、式(18)：PSD 优化和保留残余的恢复",
+          "固定 v1 §IV-A/C，式(19)、Fig.5：放宽 FFBF、普通逆和接收失败边界"
+        ]
       }
     },
     {

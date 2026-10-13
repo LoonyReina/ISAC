@@ -4,6 +4,7 @@
 const assert = require('node:assert/strict');
 const baseline = require('./cellfree-maprt-baseline.json');
 const {changes, suffixes} = baseline;
+const MT=require('./nearfield-multitarget-preservation.cjs');
 
 function reverse(input, records) {
   const out = structuredClone(input);
@@ -37,8 +38,8 @@ function reverse(input, records) {
   return out;
 }
 
-const withoutCellfreeRegistry = registry => reverse(registry, changes.registry);
-const withoutCellfreeBacklog = backlog => reverse(backlog, changes.backlog);
+const withoutCellfreeRegistry = registry => reverse(MT.maybeWithoutMultitargetRegistry(registry), changes.registry);
+const withoutCellfreeBacklog = backlog => reverse(MT.maybeWithoutMultitargetBacklog(backlog), changes.backlog);
 const hasCellfree = input => JSON.stringify(input).includes('cellfree-maprt');
 const maybeWithoutCellfreeRegistry = registry => hasCellfree(registry)
   ? withoutCellfreeRegistry(registry) : structuredClone(registry);
@@ -50,8 +51,8 @@ function suffix(text, key) {
   assert.equal(text.split(suffixes[key]).length, 2, 'one appended Cellfree ' + key);
   return text.slice(0, -suffixes[key].length);
 }
-const withoutCellfreeReadingMap = text => suffix(text, 'readingMap');
-const withoutCellfreePlan = text => suffix(text, 'plan');
+const withoutCellfreeReadingMap = text => suffix(MT.withoutMultitargetReadingMap(text), 'readingMap');
+const withoutCellfreePlan = text => suffix(MT.withoutMultitargetPlan(text), 'plan');
 const maybeWithoutCellfreeReadingMap = text => text.includes(suffixes.readingMap)
   ? withoutCellfreeReadingMap(text) : text;
 const maybeWithoutCellfreePlan = text => text.includes(suffixes.plan)

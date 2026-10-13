@@ -1,0 +1,2 @@
+import {Worker} from 'node:worker_threads';
+export function workerFactory(url){const worker=new Worker(new URL('./worker-node.mjs',import.meta.url),{workerData:{url:String(url)}}),wrapper={onmessage:null,onerror:null,onmessageerror:null,postMessage:v=>worker.postMessage(v),terminate:()=>worker.terminate()};worker.on('message',data=>wrapper.onmessage?.({data}));worker.on('error',e=>wrapper.onerror?.(e));worker.on('messageerror',e=>wrapper.onmessageerror?.(e));return wrapper;}

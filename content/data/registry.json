@@ -1527,6 +1527,79 @@
         },
         "verificationNote": "固定 v2 PDF SHA-256 30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10；参考 manifest 30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5；九文件运行 manifest 4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5。来源与失败边界见 docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md。"
       }
+    },
+    {
+      "id": "case-nearfield-multitarget",
+      "title": "照亮三个位置，为什么还要限制它们的相关性？",
+      "fields": {
+        "先修": "<a href=\"near-field.html#experiment\">球面波曲率先修</a>；<a href=\"joint-beamforming.html#model\">协方差与每用户 SINR</a>；<a href=\"foundations.html#iq\">复数样本</a>",
+        "问题": "相同阵列、功率和最低通信速率下，控制三个已知目标之间的互相关，会怎样改变最弱照射、两用户速率与恢复后的波束？",
+        "交互机制": "显式重做 proposed/NCCS 两次真实优化，查看完整矩阵、波束恢复、约束与证书；从当前解派生照射切片，另开有限样本核对严格接收失败。",
+        "证据类型": "固定 v1 优化推导与仿真；独立数值接受含源 10×10 优化参数，实际 Node Worker 与教学契约检查；真实浏览器门开放。",
+        "结论边界": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。",
+        "下一研究问题": "降低 ε、提高最低速率或改变位置时，最弱照射的上下界怎样变化？若要从发射设计走到定位，还必须解决哪些接收公式和秩条件？"
+      },
+      "unit": "nearfield-multitarget",
+      "learningEntry": "nearfield-multitarget.html#question",
+      "paper": "nearfield-multitarget.html#paper",
+      "next": "nearfield-multitarget.html#reproduce",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
+        "sourceUrl": "https://arxiv.org/html/2506.07052v1",
+        "version": "arXiv:2506.07052v1，2025-06-08；固定会议投稿预印本，6 页；2026-10-11 核查 HTML 与 PDF，2026-10-13 对照独立数值接受绑定",
+        "sourceId": "case-nearfield-multitarget-paper",
+        "comparisonLink": "nearfield-multitarget.html#paper",
+        "researchQuestion": "相同阵列、功率和最低通信速率下，控制三个已知目标之间的互相关，会怎样改变最弱照射、两用户速率与恢复后的波束？",
+        "observationsAndUnknowns": "已知两用户和三目标坐标、阵列、噪声与最低速率；未知目标 RCS 不进入发射优化。实际变量 F₁/F₂/Rₛ 为 PSD 协方差，Rₓ 为其总和；照射切片使用当前 Rₓ 重算。可选 X/N 为声明的 Gaussian 协方差抽样，字面 Eq.12 的接收观测严格为 Y=N，没有已恢复位置。",
+        "locator": {
+          "summary": "§II-A/C 式(3)–(9)；§II-D 式(11)–(14)；§III 式(15)–(18)；§IV-A 源参数与放宽的 FFBF；§IV-C 式(19)、Fig.5 的接收失败边界",
+          "section": "§II–III；§IV-A/C",
+          "figure": "Fig.5 未复现；照射切片不是 Capon 谱或位置估计",
+          "equation": "intended Eq.17、Eq.18 已接受；Eq.9 共轭修正显式声明，literal Eq.12/19 失败保留"
+        },
+        "paperEvidenceType": "PSD 协方差优化推导与数值空间谱；非硬件实测",
+        "siteArtifactType": "新输入实际求解 intended Eq.17、Eq.18 恢复及浮点原始/对偶证书；独立 NumPy/CVXPY 与 Node Worker 数值接受；教学层从当前矩阵派生，真实浏览器未验收",
+        "retainedAssumptions": [
+          "全数字半波长二维点阵元、精确球面距离、半球增益与负传播相位；已知位置不等于盲发现目标",
+          "F₁/F₂/Rₛ 全部 PSD；总期望功率、两用户速率、最弱归一化照射与三对复模相关约束；γ=2ʳ−1 且 r>0",
+          "源权重由 h/‖h‖ 吸收；g、c、μ 单位 W，约束 c≤εμ，不是普通相关系数上限",
+          "H 满行秩时用 B=Hᴴ(HHᴴ)⁻¹ 无损约化，实际功率为 P·tr(GZ)，G=BᴴB；退化失败不证明物理 SDP 不可行",
+          "Eq.18 将两通信协方差的 PSD 残余转入自由感知协方差，保留 Rₓ、功率、照射、相关和用户 SINR；NCCS 仅移除三对相关约束"
+        ],
+        "omittedMechanisms": [
+          "可用的原 Eq.12 接收方向约定、Eq.19 普通逆及未定义索引、Capon 处理、目标检测、定位误差和 Fig.5",
+          "源 FFBF 改低最低速率并删同方向目标对约束；本页不把它作为等 QoS 的第三比较方案",
+          "逐通信流加感知流的发射合成、自动小扫描、正则化接收谱、位置不确定性的稳健优化及完整论文",
+          "真实浏览器 Worker/CSP、布局、键盘、下载/导入、取消恢复、内存和完整绘制时延验收"
+        ],
+        "metrics": [
+          "两模式各自的完整终态、迭代/停止/失败与浮点原始下界、对偶上界和 relative gap",
+          "三个归一化照射 g、μ、三对 c/μ、两用户 SINR/bit/s/Hz、总期望功率 W 与完整物理 PSD/恢复残差",
+          "同一当前协方差派生的等色标照射切片、Eq.18 前后不变量、任意复数矩阵元素",
+          "可选完整 X/N、经验协方差特征值/数值秩、有限块功率 W 与能量 W·symbol；字面零回波和普通逆失败"
+        ],
+        "unknowns": [
+          "Eq.9 末项缺共轭，按 Eq.8/Eq.16 协方差代数采用 hᵀRₛh*；不声称知道作者程序",
+          "Eq.12 字面接收增益为零；朝向目标的接收约定仅作明确教学扩展的总回波能量，不替代原式",
+          "本构造 rank(R̂X)≤5<N，T=1000 或接收噪声均不能补足发射秩；不以伪逆、加载、改分子或替代空间谱掩盖 Eq.19",
+          "允许输入域不保证可行、满行秩或数值接受；浮点证书不是区间证明，数值通过不等于定位成功或浏览器性能"
+        ],
+        "resourceBudget": {
+          "summary": "页面固定两用户、三目标，每边 4–10 阵元；默认 6×6、λ=.01m、P=23dBm、噪声 −50dBm、r=4bit/s/Hz、ε=.1。源优化预设 10×10、r=17、噪声 −80dBm 单独标记；原源接收图仍未复现。",
+          "bandwidth": "未指定信号带宽；λ=.01m 与源 30GHz 为近似对应，不把符号数换算吞吐率",
+          "energy": "共同期望功率上限，非相同有限块能量；W·symbol 在无符号时长时不能称 J",
+          "duration": "可选 32–1024 个 Gaussian 快拍，默认 T=1000；未给物理符号时长",
+          "aperture": "side×side、间距 λ/2；源 10×10 阵元端点对角孔径 9λ/√2≈.06364m，不把源约 .071m 当精确几何",
+          "priorKnowledge": "已知两用户与三目标坐标/通道；未知 RCS 不进入优化；几何相位为真值而非接收机解圈",
+          "other": [
+            "每次显式运行顺序重算 proposed/NCCS，预设只填参；最多 600 步与每模式 10s 的求解预算不含全部证书/采样/绘制",
+            "可选 Gaussian 抽样使用相同 seed、底层随机数和噪声；两模式 X 与有限块能量不同，不重缩放",
+            "64MiB 导入上限不是峰值内存保证；完整运行记录可含失败，自洽重放不认证来源或优化最优性"
+          ]
+        },
+        "verificationNote": "固定 PDF SHA-256 315d7c2c7299f43d8ba838de78d45faf5b79ccb8e161474bbc0d27b0a3febaeb；最新独立接受范围见 labs/nearfield-multitarget/runtime/FINAL-BINDING.json。历史 runtime README 的候选阶段原文不重写；教学冻结见 labs/nearfield-multitarget/lesson/LESSON-FREEZE.json。不发布论文全文。"
+      }
     }
   ],
   "legacy": {
@@ -2339,6 +2412,20 @@
       "group": "research",
       "primaryDirectionId": "networks",
       "action": "先看实际复样本，再分开最大化与积分；改变通信门槛或资源，重算功率、检测和独立 holdout，保留全部失败与统计分母。"
+    },
+    {
+      "id": "nearfield-multitarget",
+      "title": "照亮三个位置，为什么还要限制它们的相关性？",
+      "href": "nearfield-multitarget.html#experiment",
+      "question": "相同阵列、功率和最低通信速率下，控制三个已知目标之间的互相关，会怎样改变最弱照射、两用户速率与恢复后的波束？",
+      "prerequisites": [
+        "near-field.html#experiment",
+        "joint-beamforming.html#experiment",
+        "foundations.html#iq"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "先预测 ε、速率或功率的作用，再实际重算两种协方差；核对恢复不变量、上下界与失败，导出完整当前记录。"
     }
   ],
   "pages": [
@@ -2747,6 +2834,20 @@
       "case": "case-cellfree-maprt",
       "next": "reading.html#direction-networks",
       "nextLabel": "对照多站协作原文、资源约束与未实现边界"
+    },
+    {
+      "path": "nearfield-multitarget.html",
+      "title": "照亮三个位置，为什么还要限制它们的相关性？",
+      "stage": "experiments",
+      "role": "有界源算法 · intended Eq.17/18 与严格接收失败分开",
+      "prerequisites": [
+        "near-field.html#experiment",
+        "joint-beamforming.html#experiment",
+        "foundations.html#iq"
+      ],
+      "case": "case-nearfield-multitarget",
+      "next": "reading.html#guide-nearfield-multitarget-correlation",
+      "nextLabel": "回到同一固定论文，核对优化接受与接收失败边界"
     }
   ],
   "schemaVersion": 1,
@@ -3844,7 +3945,7 @@
       "id": "spatial",
       "title": "空间感知：天线怎样分清方向与远近？",
       "question": "阵列怎样区分方向与远近，又怎样同时承载通信和雷达流？",
-      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。 近场同页保留旧一程无噪声先修，新增固定v5全数字SDR–有限X–含噪MUSIC有界计算链。",
+      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。 近场同页保留旧一程无噪声先修，新增固定v5全数字SDR–有限X–含噪MUSIC有界计算链。 多目标近场另接固定 v1 的 intended Eq.17/18 实际优化与恢复，严格保留 Eq.12/19 接收失败。",
       "prerequisites": [
         "iq",
         "array",
@@ -3854,7 +3955,8 @@
         "case-near-field",
         "case-joint-beamforming",
         "case-crb-beamforming",
-        "case-shared-array"
+        "case-shared-array",
+        "case-nearfield-multitarget"
       ],
       "relatedDirectionIds": [
         "channels",
@@ -3911,6 +4013,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+            },
+            {
+              "label": "照亮三个位置，为什么还要限制相关性？",
+              "href": "nearfield-multitarget.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ]
         },
@@ -3955,6 +4065,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
+            },
+            {
+              "label": "从球面通道到 PSD、速率与目标对约束",
+              "href": "nearfield-multitarget.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ]
         },
@@ -4006,6 +4124,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
+            },
+            {
+              "label": "相同条件下实际求解 proposed 与 NCCS",
+              "href": "nearfield-multitarget.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ],
           "coverage": "direction-specific"
@@ -4059,6 +4185,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
+            },
+            {
+              "label": "固定 v1：intended Eq.17/18 与 Eq.12/19 边界",
+              "href": "nearfield-multitarget.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ],
           "comparisonStatus": "partial",
@@ -4113,6 +4247,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际运行二维、单次交互、已知 L=2 的独立缩减估计器；不是完整 GC-SAGE、原文图5–9或场测复现。"
+            },
+            {
+              "label": "照射不是定位：严格零回波与普通逆失败",
+              "href": "nearfield-multitarget.html#boundary",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ]
         },
@@ -4168,12 +4310,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+            },
+            {
+              "label": "导出完整矩阵、证书、失败与可选 X/N",
+              "href": "nearfield-multitarget.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
             }
           ]
         }
       ],
       "nextExtension": "固定同一物理阵列与实际功率，分别加入每天线功率上限、CSI 误差或更多用户，先检查残余干扰与目标照射，再讨论多目标或校准代价。",
-      "coverage": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制；近场研究区已有独立数值/Node核验的单目标有界链，实际浏览器门和原图仍开放",
+      "coverage": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制；近场研究区已有独立数值/Node核验的单目标有界链，实际浏览器门和原图仍开放；多目标协方差已有含源 10×10 设置的数值接受，定位、Fig.5、整篇复现与真实浏览器验收仍未建立",
       "scenePositions": [
         "transmit",
         "propagate"
@@ -5449,14 +5599,15 @@
         "label": "波束与空间设计",
         "question": "同一阵列的空间权重怎样影响通信信号、干扰与目标角度下界？",
         "knownUnknown": "已知阵列响应与即时 H；比较 Wc、Wr、集合协方差 R、方向互相关和每用户信号/干扰功率；深入单用户点目标时，固定总功率与信道，设计 w 并消去未知复反射系数；分离/共享页先固定连续物理分组，比较严格空间置零与复用通信数据。",
-        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较；合成感知辅助案例选择既定码本候选，不是重新优化空间权重或实测通信增益。 2018 共享仅复用通信数据，2020 页面另有独立雷达流；目标照射不是接收估计性能，投影未定义不等于零空间为空。",
+        "boundary": "解析合成构造不等于 SDR 或论文优化型 ZF；协方差秩不是波束峰数，相同方向图不保证相同 SINR。CRB 案例实现单用户点目标精确最优特例，采用总功率预算；可选双流构造另换信道，不能跨模型比较；合成感知辅助案例选择既定码本候选，不是重新优化空间权重或实测通信增益。 2018 共享仅复用通信数据，2020 页面另有独立雷达流；目标照射不是接收估计性能，投影未定义不等于零空间为空。 多目标入口实际优化已知位置的协方差；intended Eq.17/18 数值接受不解决 literal Eq.12/19，也不证明定位成功。",
         "unitRefs": [
           "array",
           "near-field",
           "joint-beamforming",
           "crb-beamforming",
           "radar-beam-decision",
-          "shared-array"
+          "shared-array",
+          "nearfield-multitarget"
         ],
         "entryUnitRef": "array"
       },
@@ -5537,9 +5688,10 @@
         "label": "近场与模型失配",
         "question": "同方向远近目标能否留下不同空间指纹？",
         "knownUnknown": "给定阵列和候选空间位置；比较匹配模型",
-        "boundary": "改变阵元数时物理孔径可能同时变化",
+        "boundary": "改变阵元数时物理孔径可能同时变化 多目标入口实际优化已知位置的协方差；intended Eq.17/18 数值接受不解决 literal Eq.12/19，也不证明定位成功。",
         "unitRefs": [
-          "near-field"
+          "near-field",
+          "nearfield-multitarget"
         ],
         "entryUnitRef": "near-field"
       },

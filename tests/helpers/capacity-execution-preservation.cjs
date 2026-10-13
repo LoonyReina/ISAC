@@ -30,7 +30,7 @@ const statusClauses=[
     "after": "二元例令q=P(S=1)、p=P(X=0)，二者在[0,1/2]内，平均判错失真为qp，边界速率为qH₂(p) bit/次信道使用。图2分时基线特定地在通信阶段不利用反馈，不能当成所有基线。本站已运行并数值验证有限字母修正Blahut–Arimoto算法及二元图2；高斯图3与有限块长通信码仍未实现。本阅读图仍只表示定性关系。"
   }
 ];
-function withoutCapacityExecution(data){
+function withoutCapacityExecution(data){data=require('./nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(data);
  const prior=structuredClone(data),matches=prior.cards.filter(c=>c.id===executionGuideId);
  for(const card of prior.cards)if(Object.hasOwn(card,'executable')){if(card.id==='otfs-joint-estimation-2020')a.deepEqual(card.executable,require('./otfs-receiver-preservation.cjs').changes.guides.find(x=>x.path.at(-1)==='executable').after,'exact later OTFS executable');else if(card.id==='ofdm-ici-aware-receiver-2021')a.deepEqual(card.executable,require('./ofdm-ici-preservation.cjs').changes.guides.find(x=>x.path.at(-1)==='executable').after,'exact later ICI executable');else if(card.id==='ofdm-passive-atomic-errors-2017')a.deepEqual(card.executable,require('./atomic-receiver-preservation.cjs').additions.executable,'exact later atomic execution entry');else if(card.id!=='nearfield-mechanism-aware-mapping-2026')a.equal(card.id,executionGuideId,'execution field belongs only to the reviewed guide');}
  if(!matches.length)return prior;

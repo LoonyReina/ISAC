@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "priorModuleProfileCount": 53,
+  "priorModuleParserSha256": "67a6b6a52aef62a90cc27238bb0fc8a03c277a0e9568df52f96ee14b28ae2532",
+  "priorModuleContractsSha256": "1ec3b93b073a779864ab8124fc461151a06ed48046ae5a3686fa61ae884ced68",
+  "moduleProfiles": [
+    {
+      "public": "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "sha256": "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/client.mjs",
+      "sha256": "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "../runtime/worker.mjs",
+          "literal": "new URL('../runtime/worker.mjs',import.meta.url)"
+        },
+        {
+          "kind": "worker",
+          "url": "./derived-worker.mjs",
+          "literal": "new URL('./derived-worker.mjs',import.meta.url)"
+        }
+      ],
+      "runtimePolicy": "reviewed-factory-endpoints",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/codec.mjs",
+      "sha256": "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "sha256": "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "sha256": "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/presets.mjs",
+      "sha256": "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "sha256": "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/lesson/session.mjs",
+      "sha256": "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "sha256": "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "sha256": "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/model.mjs",
+      "sha256": "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "sha256": "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/solver.mjs",
+      "sha256": "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/nearfield-multitarget/runtime/worker.mjs",
+      "sha256": "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    }
+  ],
+  "publicFiles": [
+    [
+      "labs/nearfield-multitarget/lesson/LESSON-FREEZE.json",
+      "3ea8557ab493cf2cb4806c9ed8d117a843c4626d3fbbc95818c5724da1bbacf0"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json",
+      "f8e27615f9940c9113e6dbdd1ebda66bdec29a704a052722ecb8bc906ad26d1f"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/README.md",
+      "dd78ec831389d923f3c513b1d6ac95b6a2b7caf685dc552b379606496eeb4267"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/adapter.mjs",
+      "21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/client.mjs",
+      "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/codec.mjs",
+      "89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/derived-worker.mjs",
+      "c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/lesson.css",
+      "b3a5fb16e16e40626032f75eba9f841faf1572b40e3ede2f4c5ebf7412d69106"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/lesson.mjs",
+      "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/presets.mjs",
+      "8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/record-check.mjs",
+      "e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5"
+    ],
+    [
+      "labs/nearfield-multitarget/lesson/session.mjs",
+      "1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/FINAL-BINDING.json",
+      "f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/MANIFEST.json",
+      "eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/PROTOCOL-V2.md",
+      "d7d2071891bfaf56b4e16b7b59dba46672fab3dc10d233b385c40475ef199515"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/README.md",
+      "0e45e172b622fc84c44a8826b3a2c4cb0f81fe529237d7397576193fca90a5d3"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/certificate.mjs",
+      "5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/linalg.mjs",
+      "abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/model.mjs",
+      "f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/sampler.mjs",
+      "b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/solver.mjs",
+      "939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267"
+    ],
+    [
+      "labs/nearfield-multitarget/runtime/worker.mjs",
+      "4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106"
+    ]
+  ],
+  "moduleParserChanges": [
+    {
+      "before": "const reviewedProfiles=new Map([",
+      "after": "const reviewedProfiles=new Map([\n // Exact source-bound multi-target lesson and audited v2 solver.\n[\n  \"labs/nearfield-multitarget/lesson/adapter.mjs\",\n  {\n    \"sha256\": \"21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/client.mjs\",\n  {\n    \"sha256\": \"a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781\",\n    \"runtimePolicy\": \"reviewed-factory-endpoints\",\n    \"sourceLiterals\": [\n      \"workerFactory=url=>new Worker(url,{type:'module'})\",\n      \"this.factory=workerFactory;\",\n      \"worker=this.factory(url);\"\n    ],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": [\n      {\n        \"kind\": \"worker\",\n        \"url\": \"../runtime/worker.mjs\",\n        \"literal\": \"new URL('../runtime/worker.mjs',import.meta.url)\"\n      },\n      {\n        \"kind\": \"worker\",\n        \"url\": \"./derived-worker.mjs\",\n        \"literal\": \"new URL('./derived-worker.mjs',import.meta.url)\"\n      }\n    ]\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/codec.mjs\",\n  {\n    \"sha256\": \"89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/derived-worker.mjs\",\n  {\n    \"sha256\": \"c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/lesson.mjs\",\n  {\n    \"sha256\": \"91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/presets.mjs\",\n  {\n    \"sha256\": \"8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/record-check.mjs\",\n  {\n    \"sha256\": \"e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/lesson/session.mjs\",\n  {\n    \"sha256\": \"1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/certificate.mjs\",\n  {\n    \"sha256\": \"5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/linalg.mjs\",\n  {\n    \"sha256\": \"abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/model.mjs\",\n  {\n    \"sha256\": \"f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/sampler.mjs\",\n  {\n    \"sha256\": \"b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/solver.mjs\",\n  {\n    \"sha256\": \"939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],[\n  \"labs/nearfield-multitarget/runtime/worker.mjs\",\n  {\n    \"sha256\": \"4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106\",\n    \"runtimePolicy\": \"no-runtime-loads\",\n    \"sourceLiterals\": [],\n    \"edgeKind\": \"reviewed-multitarget-module\",\n    \"runtimeEdges\": []\n  }\n],"
+    },
+    {
+      "before": "const reviewedHashPaths=new Map(",
+      "after": "const multitargetPublicFiles=new Map([\n  [\n    \"labs/nearfield-multitarget/lesson/LESSON-FREEZE.json\",\n    \"3ea8557ab493cf2cb4806c9ed8d117a843c4626d3fbbc95818c5724da1bbacf0\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json\",\n    \"f8e27615f9940c9113e6dbdd1ebda66bdec29a704a052722ecb8bc906ad26d1f\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/README.md\",\n    \"dd78ec831389d923f3c513b1d6ac95b6a2b7caf685dc552b379606496eeb4267\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/adapter.mjs\",\n    \"21ed9c365a6dacc96152225055e2d1edc2e091ae6c316930239ef832eb1cdcf9\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/client.mjs\",\n    \"a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/codec.mjs\",\n    \"89e60270d88cecd37a76de8f81589610d84250af59a4544c906550c82d04fc57\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/derived-worker.mjs\",\n    \"c0958e5d8e7f794388d5c3f4630ebecdc250917c4b5aeab7b33450df1269af8b\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/lesson.css\",\n    \"b3a5fb16e16e40626032f75eba9f841faf1572b40e3ede2f4c5ebf7412d69106\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/lesson.mjs\",\n    \"91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/presets.mjs\",\n    \"8320b49bd1cc0cb1a7d9df80be4c22d6701f64f23ed505840eebda9b54e2f716\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/record-check.mjs\",\n    \"e35bc54cb588820326f2664a1bff1ae2e12848ebcef82aa757e5dcc4cf9abed5\"\n  ],\n  [\n    \"labs/nearfield-multitarget/lesson/session.mjs\",\n    \"1a9139199cf25a8ca3b8708e16fae584092eaacd3d2b005516cd7acdbe788a8a\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/FINAL-BINDING.json\",\n    \"f78b5b2415ec07f42eca0ccd0a39f5049013c9441bd5e4dca08f9230633de26e\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/MANIFEST.json\",\n    \"eccfffee0878070e936cad88a9de8fac7567cfa9846dde616dfc5a00dcaa7d44\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/PROTOCOL-V2.md\",\n    \"d7d2071891bfaf56b4e16b7b59dba46672fab3dc10d233b385c40475ef199515\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/README.md\",\n    \"0e45e172b622fc84c44a8826b3a2c4cb0f81fe529237d7397576193fca90a5d3\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/certificate.mjs\",\n    \"5446c8691ac5aea951c3b3b559a68f7d89390cb2fb0b3c99ae2a845120bdec20\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/linalg.mjs\",\n    \"abb3495224d647af55229efafb8bd48901dec27704cdb65d52be21b2d784c15a\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/model.mjs\",\n    \"f06df731dbb14a991545b859e676ade1953e245aa12ea97b61e9db773b7d4779\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/sampler.mjs\",\n    \"b225f895253cf6cae64c2acf0038dc33a2d277b00dcd2a850b158f5dca4c6971\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/solver.mjs\",\n    \"939539968a293ceccabeedf1d7f059ee6d2b9080164cc34d5267445be699d267\"\n  ],\n  [\n    \"labs/nearfield-multitarget/runtime/worker.mjs\",\n    \"4b456a678db81236266365071191f30e6ff1b7182e00b2ec6edc94f848944106\"\n  ]\n]);\nconst reviewedHashPaths=new Map("
+    },
+    {
+      "before": "  const expectedPath=reviewedHashPaths.get(identity.sha256);",
+      "after": "  if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);\n  const expectedPath=reviewedHashPaths.get(identity.sha256);"
+    }
+  ]
+}

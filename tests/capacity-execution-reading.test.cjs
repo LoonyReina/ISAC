@@ -117,7 +117,7 @@ test('exact execution reversal restores historical guide and renderer hashes wit
  a.equal(JSON.stringify(data),before);a.ok(!Object.hasOwn(c,'executable'));
  a.equal(c.evidence.kind,statusClauses[0].before);a.equal(c.limits[3],statusClauses[1].before);a.equal(c.visualTrace.steps[3].explanation,statusClauses[2].before);
  guideGuard(data);rendererGuard(read('scripts/research-guides.cjs'));
- const unrelated=data.cards.filter(c=>c.id!==executionGuideId);a.deepEqual(prior.cards.filter(c=>c.id!==executionGuideId),unrelated);
+ const unrelated=require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(data).cards.filter(c=>c.id!==executionGuideId);a.deepEqual(prior.cards.filter(c=>c.id!==executionGuideId),unrelated);
  const expected=structuredClone(card(data));delete expected.executable;expected.evidence.kind=statusClauses[0].before;expected.limits[3]=statusClauses[1].before;expected.visualTrace.steps[3].explanation=statusClauses[2].before;a.deepEqual(c,expected);
 });
 
