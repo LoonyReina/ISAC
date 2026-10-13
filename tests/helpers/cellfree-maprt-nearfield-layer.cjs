@@ -1,0 +1,5 @@
+'use strict';
+const a=require('node:assert/strict'),crypto=require('node:crypto'),d=require('./cellfree-maprt-nearfield-layer.json'),sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+function withoutLayerFile(file,bytes){const record=d.files.find(x=>x.path===file);if(!record)return bytes;a.equal(sha(bytes),record.afterSha256,'exact accepted near-field overlay '+file);let value=bytes;for(const c of [...record.changes].reverse()){const before=Buffer.from(c.beforeBase64,'base64'),after=Buffer.from(c.afterBase64,'base64');a.deepEqual(value.subarray(c.offsetAfter,c.offsetAfter+after.length),after);value=Buffer.concat([value.subarray(0,c.offsetAfter),before,value.subarray(c.offsetAfter+after.length)]);}a.equal(sha(value),record.beforeSha256);return value;}
+function withoutLayerMappings(input){const out=structuredClone(input);for(const e of d.addedEntries){const at=out.entries.flatMap((x,i)=>x.source===e.source?[i]:[]);a.equal(at.length,1);a.deepEqual(out.entries[at[0]],e,'exact near-field overlay mapping');out.entries.splice(at[0],1);}return out;}
+module.exports={withoutLayerFile,withoutLayerMappings};

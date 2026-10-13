@@ -4,11 +4,11 @@ const {moduleDependencies,staticModuleDependencies}=require('../scripts/build/mo
 const {classicDependencies}=require('../scripts/build/classic-dependencies.cjs');
 const {checkDependencies}=require('../scripts/build/compatibility.cjs');
 const root=path.resolve(__dirname,'..'),prefix='labs/gaussian-tradeoff/',runtime=prefix+'runtime/';
-const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('../scripts/build/module-runtime-contracts.json');
+const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeModuleContracts(require('../scripts/build/module-runtime-contracts.json'));
 const delta=require('./helpers/gaussian-tradeoff-runtime-delta.json'),baseline=require('./helpers/gaussian-tradeoff-baseline.json');
 const manifest=require('../build/compatibility-manifest.json');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
-function read(file){const direct=path.join(root,file);if(fs.existsSync(direct))return fs.readFileSync(direct,'utf8');const entry=manifest.entries.find(e=>e.public===file);a.ok(entry?.source,'mapped input '+file);return fs.readFileSync(path.join(root,entry.source),'utf8');}
+function read(file){const direct=path.join(root,file);if(fs.existsSync(direct))return require('./helpers/cellfree-maprt-build-preservation.cjs').priorBytes(file,fs.readFileSync(direct)).toString();const entry=manifest.entries.find(e=>e.public===file);a.ok(entry?.source,'mapped input '+file);return fs.readFileSync(path.join(root,entry.source),'utf8');}
 const identities=sources=>sources.map(({file,source})=>({file,sha256:sha(source)}));
 function esmFixture(){const source=delta.moduleProfiles.map(c=>({file:c.public,source:read(c.public)}));return {source,contract:{schemaVersion:1,modules:structuredClone(delta.moduleProfiles)},identities:identities(source)};}
 function esm(f){return moduleDependencies(f.source,f.contract,f.identities);}

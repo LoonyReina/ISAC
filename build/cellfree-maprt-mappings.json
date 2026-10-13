@@ -1,0 +1,677 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "173455c39472327b17cb8459e749ea244d5baa4a",
+  "baselineManifestSha256": "82c1ec96610bf9849f101df75496972735f3f087ebfac232ca46620da43d500a",
+  "addedOwners": [
+    {
+      "id": "labs/cellfree-maprt",
+      "directory": "labs/cellfree-maprt",
+      "description": "Bounded source-derived multistatic MAPRT and CCP numerical runtime, teaching view and portable tests"
+    },
+    {
+      "id": "validators/cellfree-maprt",
+      "directory": "scripts/validation/cellfree-maprt",
+      "description": "Source-free Cell-Free numerical evidence, independent reviews and portable independent-method checks"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "assets/data/cellfree-maprt-evidence-map.json",
+      "compatibility": "data/cellfree-maprt-evidence-map.json",
+      "public": "data/cellfree-maprt-evidence-map.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part01",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part01",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part01",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part02",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part02",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part02",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part03",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part03",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part03",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part04",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part04",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part04",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part05",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part05",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part05",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part06",
+      "compatibility": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part06",
+      "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part06",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-runtime-source-free.zip",
+      "compatibility": "data/cellfree-maprt-runtime-source-free.zip",
+      "public": "data/cellfree-maprt-runtime-source-free.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt-validation-source-free.zip",
+      "compatibility": "data/cellfree-maprt-validation-source-free.zip",
+      "public": "data/cellfree-maprt-validation-source-free.zip",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/cellfree-maprt.html",
+      "compatibility": "cellfree-maprt.html",
+      "public": "cellfree-maprt.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md",
+      "compatibility": "docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md",
+      "public": "docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/LESSON-FREEZE.json",
+      "compatibility": "labs/cellfree-maprt/lesson/LESSON-FREEZE.json",
+      "public": "labs/cellfree-maprt/lesson/LESSON-FREEZE.json",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/PUBLIC-ASSETS.json",
+      "compatibility": "labs/cellfree-maprt/lesson/PUBLIC-ASSETS.json",
+      "public": "labs/cellfree-maprt/lesson/PUBLIC-ASSETS.json",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/README.md",
+      "compatibility": "labs/cellfree-maprt/lesson/README.md",
+      "public": "labs/cellfree-maprt/lesson/README.md",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "public": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/lesson.css",
+      "compatibility": "labs/cellfree-maprt/lesson/lesson.css",
+      "public": "labs/cellfree-maprt/lesson/lesson.css",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "public": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/reference-summary.json",
+      "compatibility": "labs/cellfree-maprt/lesson/reference-summary.json",
+      "public": "labs/cellfree-maprt/lesson/reference-summary.json",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/session.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/session.mjs",
+      "public": "labs/cellfree-maprt/lesson/session.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/adapter-oracle.py",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/adapter-oracle.py",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/adapter.test.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/adapter.test.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/contract.test.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/contract.test.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/export-records.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/export-records.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/mounted.test.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/mounted.test.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/session.test.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/session.test.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/lesson/tests/worker-node.mjs",
+      "compatibility": "labs/cellfree-maprt/lesson/tests/worker-node.mjs",
+      "public": null,
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/INDEPENDENT-REVIEW.md",
+      "compatibility": "labs/cellfree-maprt/runtime/INDEPENDENT-REVIEW.md",
+      "public": "labs/cellfree-maprt/runtime/INDEPENDENT-REVIEW.md",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/README.md",
+      "compatibility": "labs/cellfree-maprt/runtime/README.md",
+      "public": "labs/cellfree-maprt/runtime/README.md",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/RUNTIME-MANIFEST.json",
+      "compatibility": "labs/cellfree-maprt/runtime/RUNTIME-MANIFEST.json",
+      "public": "labs/cellfree-maprt/runtime/RUNTIME-MANIFEST.json",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/client.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/client.mjs",
+      "public": "labs/cellfree-maprt/runtime/client.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/codec.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/codec.mjs",
+      "public": "labs/cellfree-maprt/runtime/codec.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "public": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "public": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/power.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/power.mjs",
+      "public": "labs/cellfree-maprt/runtime/power.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "public": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "public": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "public": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/runtime/worker.mjs",
+      "compatibility": "labs/cellfree-maprt/runtime/worker.mjs",
+      "public": "labs/cellfree-maprt/runtime/worker.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/INDEPENDENT-LESSON-REVIEW.md",
+      "compatibility": "scripts/validation/cellfree-maprt/INDEPENDENT-LESSON-REVIEW.md",
+      "public": "scripts/validation/cellfree-maprt/INDEPENDENT-LESSON-REVIEW.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "compatibility": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+      "compatibility": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/MATHEMATICS.md",
+      "compatibility": "scripts/validation/cellfree-maprt/MATHEMATICS.md",
+      "public": "scripts/validation/cellfree-maprt/MATHEMATICS.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/REFERENCE-HANDOFF.md",
+      "compatibility": "scripts/validation/cellfree-maprt/REFERENCE-HANDOFF.md",
+      "public": "scripts/validation/cellfree-maprt/REFERENCE-HANDOFF.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/REFERENCE-MANIFEST.json",
+      "compatibility": "scripts/validation/cellfree-maprt/REFERENCE-MANIFEST.json",
+      "public": "scripts/validation/cellfree-maprt/REFERENCE-MANIFEST.json",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/SOURCE-AUDIT.md",
+      "compatibility": "scripts/validation/cellfree-maprt/SOURCE-AUDIT.md",
+      "public": "scripts/validation/cellfree-maprt/SOURCE-AUDIT.md",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/design_and_channel_moments.npz",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/design_and_channel_moments.npz",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/settings.json",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/settings.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/scripts/run_reference.py",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/scripts/run_reference.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/__init__.py",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/__init__.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/maprt.py",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/maprt.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/power.py",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/power.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/scenario.py",
+      "compatibility": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/scenario.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/HANDOFF.md",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/HANDOFF.md",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/README.md",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/README.md",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/RUNTIME-MANIFEST.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/RUNTIME-MANIFEST.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/client.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/client.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/codec.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/codec.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/linalg.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/linalg.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/maprt.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/maprt.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/power.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/power.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/runtime.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/runtime.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/scenario.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/scenario.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/statistics.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/statistics.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/client.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/client.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/contracts.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/contracts.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/fresh-run.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/fresh-run.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-fresh-cases.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-fresh-cases.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-python-validation.py",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-python-validation.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-validation.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt-validation.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/maprt.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/power-test-output.txt",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/power-test-output.txt",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/power.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/power.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_oracle.py",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_oracle.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_oracle_cases.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_oracle_cases.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_validation.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/power_validation.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/resource-boundary.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/resource-boundary.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/runtime-validation.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/runtime-validation.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/runtime.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/runtime.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/scenario-python-validation.py",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/scenario-python-validation.py",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/scenario.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/scenario.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/statistics-cases.json",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/statistics-cases.json",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/worker-node-adapter.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/worker-node-adapter.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/tests/worker.test.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/tests/worker.test.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/portable-runtime/worker.mjs",
+      "compatibility": "scripts/validation/cellfree-maprt/portable-runtime/worker.mjs",
+      "public": null,
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/reassemble-reference.py",
+      "compatibility": "scripts/validation/cellfree-maprt/reassemble-reference.py",
+      "public": "scripts/validation/cellfree-maprt/reassemble-reference.py",
+      "owner": "validators/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "tests/cellfree-maprt-integration.test.cjs",
+      "compatibility": "tests/cellfree-maprt-integration.test.cjs",
+      "public": "tests/cellfree-maprt-integration.test.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/cellfree-maprt-owned.test.cjs",
+      "compatibility": "tests/cellfree-maprt-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-baseline.json",
+      "compatibility": "tests/helpers/cellfree-maprt-baseline.json",
+      "public": "tests/helpers/cellfree-maprt-baseline.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-build-preservation.cjs",
+      "compatibility": "tests/helpers/cellfree-maprt-build-preservation.cjs",
+      "public": "tests/helpers/cellfree-maprt-build-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-legacy-hooks.json",
+      "compatibility": "tests/helpers/cellfree-maprt-legacy-hooks.json",
+      "public": "tests/helpers/cellfree-maprt-legacy-hooks.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-owned-suites.json",
+      "compatibility": "tests/helpers/cellfree-maprt-owned-suites.json",
+      "public": "tests/helpers/cellfree-maprt-owned-suites.json",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-preservation.cjs",
+      "compatibility": "tests/helpers/cellfree-maprt-preservation.cjs",
+      "public": "tests/helpers/cellfree-maprt-preservation.cjs",
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cellfree-maprt-runtime-delta.json",
+      "compatibility": "tests/helpers/cellfree-maprt-runtime-delta.json",
+      "public": "tests/helpers/cellfree-maprt-runtime-delta.json",
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

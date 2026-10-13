@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "settings": {
+    "seed": 81641,
+    "rcsDbsm": 2.37,
+    "clutterScale": 0.713,
+    "gammaDb": 2.63,
+    "cap": 0.837,
+    "channelSamples": 97,
+    "calibrationTrials": 257,
+    "evaluationTrials": 131,
+    "pfa": 0.037
+  },
+  "allocations": 4,
+  "cells": 8,
+  "deterministicIdentical": true,
+  "replay": {
+    "accepted": true,
+    "cells": 8,
+    "maxScoreError": 0,
+    "scope": "raw detector replay only; independent power/scenario checks are separate"
+  },
+  "recordBytes": 2683098,
+  "failures": []
+}

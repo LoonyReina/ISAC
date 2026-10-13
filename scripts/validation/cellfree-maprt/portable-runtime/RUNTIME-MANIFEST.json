@@ -1,0 +1,18 @@
+{
+  "schema": "cellfree-browser-runtime-freeze-v1",
+  "source": "arXiv:2305.12523v2",
+  "reference_manifest_sha256": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5",
+  "files": {
+    "client.mjs": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32",
+    "codec.mjs": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57",
+    "linalg.mjs": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5",
+    "maprt.mjs": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1",
+    "power.mjs": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa",
+    "runtime.mjs": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b",
+    "scenario.mjs": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551",
+    "statistics.mjs": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993",
+    "worker.mjs": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e"
+  },
+  "scope": "Reduced conditional fresh MAPRT + bounded three-start CCP; no global/full-paper/browser-performance claim",
+  "actual_browser_gate": "pending website integration/deployment; Node Worker evidence is separate"
+}

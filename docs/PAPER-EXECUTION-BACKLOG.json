@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-10-12",
+  "updatedOn": "2026-10-13",
   "repository": "LoonyReina/ISAC",
   "baselineCommit": "405cd4abf535cd2bc77e7dc73d397052f26b3509",
   "scope": {
@@ -170,6 +170,12 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Local bounded Gaussian matrix lesson and independently reviewed numerical/Node Worker core; actual browser, paint timing and publication gated separately"
+      },
+      {
+        "paperId": "supplement-case-distributed-detection",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local genuine reduced MAPRT/CCP lesson with independent numerical and Node Worker evidence; actual browser, timing and publication remain separately gated"
       }
     ]
   },
@@ -3006,7 +3012,7 @@
           "coreTestsPassed": 18,
           "independentRandomSlsqpComparisons": 150,
           "binaryFigure2ActualBaSolves": 49,
-          "maximumRateErrorBitsPerUse": 2.591e-9,
+          "maximumRateErrorBitsPerUse": 2.591e-09,
           "maximumDistortionError": 9.819e-11,
           "maximumEveryIterationError": 1.11e-16,
           "sourceAudit": "docs/CAPACITY-DISTORTION-SOURCE-AUDIT.md",
@@ -7144,7 +7150,7 @@
             },
             "nearCollision": {
               "measuredPhaseDifferenceRad": 0.00032003,
-              "thresholdRad": 0.00008,
+              "thresholdRad": 8e-05,
               "passed": false
             },
             "allCasesPhaseParityPassed": false
@@ -7566,15 +7572,17 @@
       "title": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
       "category": "case-only",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-13",
       "canonicalReferences": {
         "guideIds": [],
         "catalogIds": [],
         "caseIds": [
-          "case-distributed-detection"
+          "case-distributed-detection",
+          "case-cellfree-maprt"
         ],
         "sourceIds": [
-          "Behdad2024"
+          "Behdad2024",
+          "case-cellfree-maprt-paper"
         ]
       },
       "paperType": "detection-and-optimization",
@@ -7582,46 +7590,66 @@
         "url": "https://arxiv.org/abs/2305.12523v2",
         "fixedVersion": "Behdad、Demir、Sung、Björnson、Cavdar，IEEE TWC 23(9)，11580–11596，2024；固定 arXiv:2305.12523v2，2024-03-27。DOI 10.1109/TWC.2024.3383209。",
         "locators": {
-          "summary": "固定 v2 §VII 式(20)–(33)：对未知 RCS 与目标无关信道作最大化的 MAPRT；先验允许一般 RCS 协方差。§IX/Table III 的数值设置使用独立、等方差 Swerling-I RCS。这里只核对背景与差别，不把本站 κ>0 例子标成论文仿真设置；不复现论文原图。",
-          "section": "§VII；§IX/Table III",
-          "figure": null,
-          "equation": "式(20)–(33)，只定位原论文 MAPRT，不作为本站边缘化 LRT 公式来源"
+          "summary": "固定 v2 式(1)–(18)发射/观测及 CSI，§VII 式(20)–(33)和附录 A 最大化 MAPRT，式(35)–(49)/算法 1 的感知 SINR 与 CCP，式(50)通信最小功率；§IX/Table III 核对源设置但不复现原图。",
+          "section": "§II–VIII、§IX/Table III、附录 A/B",
+          "figure": "没有声称复现源图 3–7；64 格为独立缩小条件化参考",
+          "equation": "(1)–(18)、(20)–(33)、(35)–(50)；(19)、(51)–(56)只审计未实现"
         },
         "paperIdentity": "arxiv:2305.12523",
         "fixedSourceIdentity": "arxiv:2305.12523v2",
         "pdfSha256": "30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10",
         "hashStatus": "recorded",
-        "details": {}
+        "details": {
+          "audit": "docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md",
+          "operationalConventions": {
+            "test": "Maximized joint densities with MAP prior normalizer log C3; separate integrated Gaussian LRT determinant constant",
+            "power": "Common stream amplitudes p_i=sqrt(rho_i), globally normalized precoders and empirical per-AP expected-power constraints",
+            "fitAndHoldout": "Independent channel-moment samples; fitted feasibility does not establish population or out-of-fit feasibility",
+            "sp": "Ignores clutter in its kernel but calibrates on actual cluttered null observations; source calibration protocol not recovered",
+            "optimizer": "Source CCP; Python SLSQP and original JavaScript barrier-Newton convex subsolver have separate retained failure histories"
+          }
+        }
       },
       "contribution": {
         "types": [
           "algorithm"
         ],
-        "summary": "Maximization-based MAP ratio test for multi-static target detection, with target-unrelated channel nuisance and power allocation."
+        "summary": "Multistatic unknown-Gaussian-RCS/clutter MAPRT from optimized joint densities and sensing-SINR CCP under communication/per-AP constraints; implemented in a disclosed reduced conditional model."
       },
       "minimalFaithfulTarget": {
-        "description": "Implement paper Eq20–33 MAPRT from actual multi-station observations, then its power-allocation loop. The current marginalized LRT is not this algorithm."
+        "description": "Execute actual source Eq11–33 MAPRT and Eq35–50 power allocation on fresh multistatic complex observations. Retain the independent two-station marginalized-LRT prerequisite unchanged; separate source algorithms, synthetic specialization, finite calibration, local solver acceptance and browser gates."
       },
       "experiment": {
         "targets": [
-          "Fixed v2 §IX/TableIII detection and power-allocation settings"
+          "Reduced conditional 4 TX/2 RX/M2/2 UE/10-symbol source-algorithm chain, not original Figure3–7",
+          "Offline selected reference: four RCS values × four allocations × AP/SP × two nominal Pfa =64 cells, with all raw draws, observations, scores and decisions retained",
+          "Fresh adjustable JavaScript scenario/moment estimation, three-start CCP, MAPRT calibration and disjoint evaluation; finite raw-record replay and teaching decompositions"
         ],
         "baselines": [
-          "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+          "Communication-centric minimum expected power, ISAC without sensing stream, and ISAC+S with sensing stream under the same UE and per-AP limits",
+          "Extra cap-saturated communication baseline is separately labeled; common power caps do not imply equal actual used power/energy",
+          "AP correct clutter model and SP clutter-ignoring kernel applied to the same y, with separately calibrated actual-clutter null thresholds; integrated Gaussian LRT shown separately"
         ],
         "metrics": [
-          "固定候选的规定 Pfa、H₀ 校准门限与解析 Pd；Pd 同时对随机 α 和噪声平均，不是一次判决准确率",
-          "原始复样本与两个复匹配输出的 log Λ=Q−log det C；两者相同检测信息，曲线重合",
-          "局部匹配能量和 S=|z₁|²+|z₂|² 是可解析基线；κ>0 时不代表最优能量域检验或全部分布式算法",
-          "ρ=0 时 H₀/H₁ 相同，恒零 Q 达到任意中间 Pfa 需独立随机化；Pd=Pfa",
-          "两站星型单播的上下行实标量数和显式模板更新次数；不是实测网络吞吐、时延或能耗"
+          "MAPRT 的 J₀−J₁、Q 和先验归一化常数 log C₃；积分 Gaussian LRT 的行列式常数另列",
+          "H₀ 校准门限；独立 H₀/H₁ 评估的虚警/检出/漏检原始计数、分母及点态 95% Clopper–Pearson 区间",
+          "同一观测 AP/SP 的配对决定与仅 AP/仅 SP 检出计数；跨分配只共享潜在抽样，不共享 y",
+          "拟合和独立 holdout 的 UE SINR、每 AP 期望功率 W、总期望功率 W 与 W-symbol 块能量；无符号时长不换算 J",
+          "感知 SINR 代理、每次 CCP 重启/迭代/失败/上限，以及凸切平面子问题的数值原始可行性和 gap；不证明原非凸全局最优"
         ],
         "resources": [
-          "Existing independent teaching budget, not the target paper configuration: 同一参数点固定两个接收站、L 个复样本/站/块、已知 s 与 E、σ²、q、κ、时长和一个目标候选。B 块的原始上行为 4LB、复匹配上行为 4B、能量上行为 2B 个实标量。本地匹配模板下行：每块下发 4LB、本次一次更新 4L、运行前有效缓存为本次 0（不是历史免费）；原始上传不需要额外给站端下发模板。模型下行单列更新数与每次标量数，默认 0 表示未估计。该账本是本站独立的星型单播约定。"
+          "固定缩小模型 4 TX、2 RX、M=2、2 UE、10 个符号；合成几何和衰减 Toeplitz 协方差。页面拟合/holdout 各 32–512、校准 128–2048、评估 64–1024；参考是另列的 1024/1024/16384/8192，不混算。",
+          "Archived selected reference: fit1024, independent holdout1024, calibration16384, independent H0/H1 evaluation8192 per design; seeds/common latent draws are explicit, cells are correlated.",
+          "Page bounds: fit/holdout32–512 each, calibration128–2048, evaluation64–1024; fixed4TX/2RX/M2/2UE/10 symbols, 3starts/family, outer cap50 and convex cap400. Common per-AP cap0.1–2W and actual used W/W-symbol are recorded separately."
         ],
-        "unresolved": [],
+        "unresolved": [
+          "源数值 M、RZF 正则项、精确 AP 坐标/种子、角扩展、符号分布、导频复用与门限协议未恢复；本站显式 M=2、正则项=1 和合成协方差不能冒称原设置",
+          "SP 检测核忽略杂波，但本站用真实杂波 H₀ 校准其门限；源未充分指定该协议，不能声称原 SP 曲线匹配",
+          "已接受参考 ISAC+S 近零感知流、每种分配 holdout 越界、不同实际用能与代理/Pd 排序不一致均保留；新输入可以不同",
+          "CCP 局部候选与子问题数值 gap 不是原非凸全局证明；Python SLSQP 的 status-8/retry 与 JavaScript barrier-Newton 的失败状态分别记录"
+        ],
         "details": {
-          "metricScope": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+          "metricScope": "Current metrics describe the actual reduced MAPRT/CCP source-algorithm chain. The prior independent two-station teaching resource budget is retained below and its case remains unchanged; neither is a full source-figure experiment.",
           "existingTeachingResourceBudget": {
             "summary": "同一参数点固定两个接收站、L 个复样本/站/块、已知 s 与 E、σ²、q、κ、时长和一个目标候选。B 块的原始上行为 4LB、复匹配上行为 4B、能量上行为 2B 个实标量。本地匹配模板下行：每块下发 4LB、本次一次更新 4L、运行前有效缓存为本次 0（不是历史免费）；原始上传不需要额外给站端下发模板。模型下行单列更新数与每次标量数，默认 0 表示未估计。该账本是本站独立的星型单播约定。",
             "bandwidth": "没有指定 Hz 或系统占用带宽；L 是每站有限复样本数，不能把减小回传标量解释成提高物理分辨率",
@@ -7635,47 +7663,115 @@
               "bits_per_real 仅按编码宽度换算载荷；没有模拟量化，因此实数数学充分性不等于有限比特无损",
               "跨 κ 改变 H₁ 分布；同 Pfa 最优性限于同一已知模型，不推出相关性越大越好或集中式必胜"
             ]
+          },
+          "boundedCellfreeMaprt": {
+            "txAps": 4,
+            "rxAps": 2,
+            "antennasPerAp": 2,
+            "users": 2,
+            "symbols": 10,
+            "referenceCells": 64,
+            "referenceStoredScores": 1048576,
+            "referenceFitChannels": 1024,
+            "referenceHoldoutChannels": 1024,
+            "referenceCalibrationBlocks": 16384,
+            "referenceEvaluationBlocksPerHypothesis": 8192,
+            "referenceAcceptedRestarts": 6,
+            "referenceAcceptedOuterIterations": 66,
+            "referenceSubproblemAttempts": 71,
+            "referenceFailedStatus8Attempts": 5,
+            "referenceSuccessfulBoundedRetries": 5,
+            "referenceIsacSSensingAmplitude": 2.593e-16,
+            "referenceAllAllocationsHaveHoldoutCrossings": true,
+            "referenceUsedExpectedPowerW": [
+              0.00525546,
+              1.18513454,
+              1.18513454,
+              2.14319608
+            ],
+            "referenceSurrogateOrderingImpliesPdOrdering": false,
+            "sameObservationApSp": true,
+            "sameObservationAcrossAllocations": false,
+            "independentPortFreshRuns": 20,
+            "independentPortCells": 152,
+            "independentPortScores": 89892,
+            "independentPortAcceptedRestarts": 107,
+            "independentPortAttemptedRestarts": 120,
+            "independentPortRetainedIterationCapFailures": 13,
+            "independentPortHoldoutCrossingAllocations": 57,
+            "independentPortAcceptedAllocations": 76,
+            "intervalScope": "Separate conditional pointwise binomial evaluation intervals and calibration-order uncertainty; shared draws correlate cells; no exact Pfa, simultaneous coverage or CFAR claim"
+          },
+          "independentLessonChecks": {
+            "actualBrowser": false,
+            "portableAuthorTests": 23,
+            "freshRuns": 13,
+            "availableAllocations": 46,
+            "detectorCells": 92,
+            "rebuiltScores": 54806,
+            "recomputedConvexSubproblemCertificates": 2394,
+            "acceptedRestarts": 47,
+            "failedRestarts": 31,
+            "holdoutCrossingAllocations": 41,
+            "selectedTrialHandlerExports": 60,
+            "teachingComparisons": 1440,
+            "sameObservationApSpPairs": 30,
+            "lifecycleCases": 15,
+            "downloadScope": "Exact handler-produced strings from mounted DOM harness and actual Node Worker, not native browser saves",
+            "closedDefect": "Old asynchronous file-read rejection cannot invalidate a newer run/import; final repaired lesson freeze is separately bound"
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "独立两站边缘化 LRT、解析 Pd/ROC、确定性反例与双向载荷账本；非原论文 MAPRT、算法或曲线复现",
-        "offline": null,
-        "details": {}
+        "classification": "bounded-source-derived-multistatic-maprt-and-ccp; synthetic-conditional-model; browser-not-accepted",
+        "live": "cellfree-maprt.html#experiment: fresh channel moments, actual CCP/communication allocation, complex observations, MAPRT, independent finite calibration/evaluation and same-data teaching decompositions; actual browser pending",
+        "offline": "Independent selected reference:64 cells and1,048,576 stored scores replayed;6 accepted CCP restarts/66 accepted outer steps/71 attempts preserve5 failed status-8 attempts and5 bounded retries. Historical failed runs remain separate.",
+        "details": {
+          "runtimeFreeze": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+          "runtimeFreezeEntries": 9,
+          "referenceManifest": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5",
+          "referenceArchiveSha256": "52356ca01b77482a1c3a42d70f7fe4dc0914a20c5b29695d5e5e8f8a6df7981b",
+          "browserAccepted": false,
+          "fullPaper": false,
+          "lesson": "cellfree-maprt.html#question",
+          "prerequisite": "distributed-detection.html#question",
+          "lessonFreeze": "d87233daa4e5d122ce3192e4260be127241777ef2746b2219d58311e5125a8d7"
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed2305.12523v2 official PDF identity verified; actual observation/MAPRT/CCP crosswalk and TableIII budgets audited. Unrecovered M/RZF/coordinates/covariances/pilots/threshold protocol remain explicit.",
+        "algorithm": "Nine frozen original ESM modules compute new moment fits, observations, true prior-maximized MAPRT and local three-start CCP. Independent20-run/152-cell review retains107/120 accepted restarts and13 cap failures; convex subproblem certificates do not prove original nonconvex global optimality.",
+        "selectedExperiment": "Independent reduced64-cell Python reference and all1,048,576 scores replayed; status8/retry history, near-zero sensing stream, all-allocation holdout crossings and unequal-energy surrogate/Pd disagreement retained. This is not original Figure3–7.",
+        "fullPaper": "Zero full-paper reproductions. Original-size deployment/user/hotspot averaging, exact source settings/curves, orthogonal sharing, sensing-SE region and complete study remain open.",
+        "latency": "Actual Node Worker/controlled-DOM and numerical-port evidence are separate from browser Worker/CSP/layout/keyboard/download/cancellation and control-to-painted-result timing. Browser measurements remain null."
       },
       "missingImplementation": [
-        "论文未知目标无关信道、阵列、多用户波束、功率优化、完整 cell-free 网络架构及最大化 MAPRT",
-        "噪声/先验估计、同步与相位校准过程、杂波、目标关联、多候选搜索、位置/时延/多普勒估计",
-        "相关先验下最优能量域边缘化似然、有限位量化/饱和、真实链路吞吐、端到端时延、能耗与硬件",
-        "Zou2024 稳定官方/作者全文尚未取得；不归属未核对的公式、fully/partly-informed 算法、载荷公式或原始性能曲线"
+        "源 16 TX/2 RX/8 UE 的完整随机布站、热点与用户位置平均，完整 3GPP/局部散射设置和图 3–7",
+        "式(19)、(51)–(56)的感知 SE、正交资源共享和完整区域；多目标搜索、关联、同步与真实硬件",
+        "全局非凸最优、精确总体约束可行性、稳健/机会约束设计、精确目标 Pfa、同时区间与 CFAR 保证",
+        "真实浏览器 Worker/CSP/布局/键盘/下载/取消与绘制时延；Node/受控 DOM 审查不替代这些验收"
       ],
       "dependencies": [
-        "Primary MAPRT/optimization audit",
-        "Independent matrix optimization and threshold calibration",
-        "Seeded null/alternative Monte Carlo"
+        "Fixed v2 source identity and observation/prior/CSI/unit/threshold audit",
+        "Independently reviewed matrix MAPRT, channel-moment fits and power/certificate checks",
+        "Fresh seeded calibration/evaluation with complete raw arrays and failures",
+        "Actual served-browser lifecycle and downloaded-state audit before browser acceptance"
       ],
       "blockers": [
-        "论文未知目标无关信道、阵列、多用户波束、功率优化、完整 cell-free 网络架构及最大化 MAPRT",
-        "噪声/先验估计、同步与相位校准过程、杂波、目标关联、多候选搜索、位置/时延/多普勒估计"
+        "Actual browser, layout/accessibility, download/reimport, cancellation responsiveness and painted-result timing remain open",
+        "Exact source numerical settings/curves and full-paper experiment coverage remain unresolved",
+        "Empirical holdout crossings, local CCP and finite calibration forbid population-feasibility, global-optimum, exact-Pfa or universal-Pd claims"
       ],
       "realtime": {
         "status": "not-measured",
@@ -7689,7 +7785,7 @@
           "worstMs": null
         },
         "details": {
-          "assessment": "Reduced faithful core is a candidate; numerical reference and desktop profiling required before claiming realtime.",
+          "assessment": "Accepted bounded numerical and Node Worker evidence; actual served-browser/device performance remains unmeasured and cannot be inferred from local Python/Node execution.",
           "measuredLatencyMs": null
         }
       },
@@ -7699,10 +7795,29 @@
         "inventoryAssessment": 4
       },
       "evidence": {
-        "currentRunnable": "独立两站边缘化 LRT、解析 Pd/ROC、确定性反例与双向载荷账本；非原论文 MAPRT、算法或曲线复现",
-        "fixedSourceAudit": "2026-10-11 使用冻结研究记录：Behdad 固定 v2 PDF SHA-256 30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10；该记录已复查本地 PDF 散列与 §VII/§IX 文本，本站不宣称本次重新下载。Zou2024 全文来源未闭合。原文、独立推导、本站实现和实际验收分别报告；九篇影响目录及 2026-10-10 快照保持不变"
+        "currentRunnable": "cellfree-maprt.html#experiment",
+        "fixedSourceAudit": "docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md",
+        "independentNumericalReview": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+        "independentPortReview": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+        "prerequisite": "distributed-detection.html#question",
+        "independentLessonReview": "scripts/validation/cellfree-maprt/INDEPENDENT-LESSON-REVIEW.md"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "fittedFeasibilityImpliesPopulationFeasibility": false,
+          "subproblemGapProvesGlobalCcpOptimum": false,
+          "surrogateOrderingImpliesPdOrdering": false,
+          "commonCapsMeanEqualUsedPower": false,
+          "calibrationAndEvaluationReuseNullTrials": false,
+          "referenceZeroSensingIsUniversal": false,
+          "importedHistoryIsFresh": false,
+          "replayAuthenticatesOptimizer": false,
+          "nodeWorkerIsBrowserAcceptance": false,
+          "browserAccepted": false,
+          "fullPaperReproduced": false
+        },
+        "retainedLegacySourceGap": "Zou2024 remains a separate motivation citation in the unchanged scalar prerequisite; no new formula/algorithm or fulltext claim is made for it."
+      }
     }
   ]
 }

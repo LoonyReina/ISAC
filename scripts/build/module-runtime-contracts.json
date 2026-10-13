@@ -376,6 +376,102 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "sha256": "976112b376b800237066e2f1923fb6958547829bcb6cbf8bb542159b32d37bc7",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "sha256": "53a28855eb8e99e989ff751535fb9703160c008bdd063ba2cca627435963e4e7",
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./reference-summary.json",
+          "literal": "const response=await fetch(new URL('./reference-summary.json',import.meta.url));"
+        }
+      ],
+      "runtimePolicy": "reviewed-cellfree-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/lesson/session.mjs",
+      "sha256": "894831143a4c395f9e3eb9df03540ba40b9dcf4cb6120bca6115c6d2b8d01a00",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/client.mjs",
+      "sha256": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "this.worker=this.factory(new URL('./worker.mjs',import.meta.url));"
+        }
+      ],
+      "runtimePolicy": "reviewed-cellfree-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/codec.mjs",
+      "sha256": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "sha256": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "sha256": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/power.mjs",
+      "sha256": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "sha256": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "sha256": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "sha256": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/cellfree-maprt/runtime/worker.mjs",
+      "sha256": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

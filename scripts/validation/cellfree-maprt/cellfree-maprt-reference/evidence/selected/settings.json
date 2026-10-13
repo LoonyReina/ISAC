@@ -1,0 +1,74 @@
+{
+  "seed": 2026101301,
+  "Ntx": 4,
+  "Nrx": 2,
+  "M": 2,
+  "Nue": 2,
+  "tau_s": 10,
+  "tau_c": 200,
+  "tau_p": 10,
+  "carrier_hz": 1900000000.0,
+  "bandwidth_hz": 20000000.0,
+  "noise_variance_w": 3.981071705534969e-13,
+  "noise_dbm": -94,
+  "per_ap_cap_w": 1.0,
+  "pilot_power_w": 0.2,
+  "communication_gamma_db": 3.0,
+  "communication_gamma": 1.9952623149688795,
+  "channel_moment_samples": 1024,
+  "target_location_samples": 1,
+  "target_fixed": true,
+  "RZF_regularizer_noise_normalized": 1.0,
+  "communication_covariance": "synthetic free-space attenuation 1e-3, Toeplitz 0.45 and geometry phase",
+  "clutter_covariance": "synthetic free-space attenuation 1e-4 times source default s=0.3; Toeplitz tx=0.35, rx=0.25",
+  "pilot_model": "orthogonal Gaussian MMSE, no contamination; different from unrecovered source pilot assignment",
+  "symbols": "known independent unit-modulus QPSK; stored realized block",
+  "R_rcs": "identity, independent normalized Swerling-I, constant over each block",
+  "steering": "literal source Eq.4/Eq.7; horizontal ULA along y, half-wavelength",
+  "geometry": "explicit synthetic coordinates, not digitized source Fig.2",
+  "scope": "reduced-dimensional conditional algorithm reference, not a paper-curve reproduction",
+  "calibration_trials": 16384,
+  "evaluation_trials": 8192,
+  "rcs_dbsm": [
+    -30,
+    -20,
+    -10,
+    0
+  ],
+  "pfa": [
+    0.1,
+    0.01
+  ],
+  "ccp_restarts": 3,
+  "max_ccp_iterations": 100,
+  "ccp_tolerance": 1e-08,
+  "SLSQP_maxiter": 400,
+  "SLSQP_ftol": 1e-11,
+  "calibration_seed": [
+    2026101301,
+    101
+  ],
+  "evaluation_seed": [
+    2026101301,
+    202
+  ],
+  "holdout_channel_seed": 2026101308,
+  "holdout_channel_samples": 1024,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "thread_environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "core_sha256": {
+    "src/__init__.py": "fb6c0e9f3ef678edcd52ee3fef1dc43dde6af44701420f94444cf449a7bf6690",
+    "src/maprt.py": "bab0b8dd7992980c0482421848cbdd83edd9084a47186af4e6c4b23dd87866c9",
+    "src/power.py": "0b83c1738d5d9e70d5218932aace11d6e4fc55e04f77ebaec04509af274b3673",
+    "src/scenario.py": "4d1f24f05e960d4dbb059792f15a3139c7e458098aaa3a5d86cc98b6d5ecda1a"
+  },
+  "source_pdf_sha256": "30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10",
+  "interval_scope": "pointwise 95%; evaluation Clopper-Pearson conditional on frozen threshold; calibration Beta order-statistic separately; no familywise or deployment guarantee"
+}

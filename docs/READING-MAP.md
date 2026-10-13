@@ -527,3 +527,16 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 ## Gaussian-channel Bayesian matrix extension (2026-10-12)
 
 [Fixed arXiv:2204.06938v8](https://arxiv.org/html/2204.06938v8), §II/IV/V-B equations(2)–(7),(41)–(57),(92)–(112), is now connected to the [complex-matrix lesson](../gaussian-tradeoff.html#question). The [scalar CRB prerequisite](../theory.html#crb-mechanism) remains distinct, as does the separate CRB beamforming paper. [Source/evidence boundaries](GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md) record actual source48 covariance shaping, full-matrix certificates, posterior/Fisher checks, Gaussian versus Stiefel waveforms, finite Wishart/MP and a separate rank-one sphere MI integral. The39 Fig.4 integrals and offline9216 covariance solves/2359296 waveform evaluations are bounded evidence, with shared-draw denominators and both Pt/PT interpretations retained. Printed93–94 coordinate/prior and109 sign conflicts remain explicit. No general-MIMO finite-SNR Stiefel MI, exact full region, actual-browser acceptance or full-paper reproduction is implied. The35 canonical paper IDs are unchanged; archives are optional downloads.
+
+
+## Cell-free MAPRT 与功率分配：有界源算法接入（2026-10-13）
+
+固定 [arXiv:2305.12523v2](https://arxiv.org/abs/2305.12523v2) 仍归属同一主论文身份 `supplement-case-distributed-detection`。新增 [真实 MAPRT/CCP 教学入口](../cellfree-maprt.html#question) 接到 networks 的六层；[原两站独立积分 LRT](../distributed-detection.html#question) 继续作为先修。新入口并不把旧积分检测器改名成论文算法，也不增加第 36 篇论文。
+
+- 式(11)–(18)保留实际多站复数 y、已知 G/X 与未知 α/h；式(20)–(33)最大化两种带先验联合密度，保留 log C₃。积分 Gaussian LRT 的行列式常数另列，固定模型下可在正确门限平移后同判决，但定义不同
+- 式(35)–(49)/算法 1 的真实 CCP 以感知 SINR 为代理，在通信与每 AP 期望功率约束下优化；式(50)是通信最小功率基线。4 TX、2 RX、M=2、2 UE、10 符号、合成几何/协方差是明确缩小条件，不是原 16 TX/8 UE 场景或图 3–7
+- 独立参考的 64 格、1,048,576 个存储分数已重放；6 条接受重启、66 次接受外迭代、71 次子问题尝试保留 5 次 status-8 失败及 5 次有界重试。JavaScript 的原生 barrier-Newton 与 Python SLSQP 分别记录，不能宣称重现 SLSQP 状态史
+- 已接受参考的感知流功率近零、每个分配至少一项独立 holdout 越界、实际总期望功率不相等，以及感知 SINR 与条件 Pd 排序不同，全部保留。新输入可产生不同结果；共同每站上限不等于相同用能，W-symbol 不能在无符号时长时写成 J
+- AP/SP 使用同一 y；跨分配只共用潜在抽样。校准与评估分离，点态二项区间与校准次序统计区间分开；不建立精确目标 Pfa、同时覆盖或 CFAR。九文件 JavaScript/实际 Node Worker 与教学分解检查不替代真实浏览器、键盘、下载和绘制时延验收
+
+[来源与数值证据边界](CELLFREE-MAPRT-SOURCE-EVIDENCE.md) 保留固定 PDF/参考/运行冻结、未恢复源参数、历史失败及可选源文件包。原文全文和私有代码不随站点分发，证据压缩包不是启动依赖。35 个主论文 ID、零整篇复现和 current/next CRB 顺序不变。

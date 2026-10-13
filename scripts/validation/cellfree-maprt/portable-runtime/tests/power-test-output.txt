@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "continuous_problem_cases": 4,
+  "ccp_runs": 24,
+  "accepted_convex_subproblems": 268,
+  "maximum_source_vs_browser_sensing_sinr_difference": 5.510321088308956e-10,
+  "maximum_source_vs_browser_amplitude_difference": 2.6628854260524193e-9,
+  "maximum_numerical_convex_subproblem_gap": 9.63800594888653e-10,
+  "minimum_primal_slack": 0,
+  "maximum_independent_certificate_recompute_difference": 8.881784197001252e-16,
+  "failure_probes": {
+    "infeasible_communication": {
+      "accepted": false,
+      "termination": "No strict feasible interior found; infeasible or degenerate boundary-only problem"
+    },
+    "infeasible_initial": {
+      "accepted": false,
+      "termination": "infeasible_initial"
+    },
+    "iteration_cap": {
+      "accepted": false,
+      "termination": "iteration_cap"
+    },
+    "subproblem_cap": {
+      "accepted": false,
+      "termination": "subproblem_failure"
+    },
+    "zero_iteration_cap": {
+      "accepted": false,
+      "termination": "iteration_cap"
+    }
+  },
+  "arithmetic": "float64 numerical certificates, not directed rounding",
+  "optimality_scope": "Each accepted convex tangent subproblem only; no global nonconvex ratio optimum claim"
+}

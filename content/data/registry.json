@@ -1453,6 +1453,80 @@
         },
         "verificationNote": "PDF SHA-256 8bfc316c0faf57c42a8cf2395a1bce594a9f987750f37287680fdb9e190dc342；七文件运行冻结ea5c2ad520d33962b4d33e9f6e9f89e9ddaa3e1ee41e4d249250c54da91cb113；独立审查与源冲突见docs/GAUSSIAN-TRADEOFF-SOURCE-EVIDENCE.md。"
       }
+    },
+    {
+      "id": "case-cellfree-maprt",
+      "title": "未知散射与杂波下，多站怎样检测目标并分配功率？",
+      "fields": {
+        "先修": "<a href=\"distributed-detection.html#model\">两站独立积分 LRT 与充分压缩</a>；<a href=\"foundations.html#cfar\">门限、虚警与检出</a>；<a href=\"waveform-design.html#model\">实际复数发射块</a>",
+        "问题": "接收端不知道当次目标散射与目标无关信道，怎样从实际复数观测比较两种假设，再在通信和每站功率约束下调整发射？",
+        "交互机制": "从新输入重估通信矩、求实际功率分配并生成复数 x/y；逐格核对先验最大化、Schur 二次型、AP/SP 门限、计数与 CCP 子问题证书。",
+        "证据类型": "固定 v2 原理论与仿真；独立 Python 参考、九文件 JavaScript/实际 Node Worker 与教学数值审查。源算法在明确缩小模型中运行；浏览器与整篇复现待验收。",
+        "结论边界": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。",
+        "下一研究问题": "拟合矩可行而独立 holdout 越界时，什么才算可靠通信约束？相同每站上限但不同实际用能时，代理 SINR 排序为什么不能代替条件 Pd 排序？"
+      },
+      "unit": "cellfree-maprt",
+      "learningEntry": "cellfree-maprt.html#question",
+      "paper": "cellfree-maprt.html#paper",
+      "next": "cellfree-maprt.html#reproduce",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
+        "sourceUrl": "https://arxiv.org/abs/2305.12523v2",
+        "version": "Behdad、Demir、Sung、Björnson、Cavdar，IEEE TWC 23(9)，11580–11596，2024；固定 arXiv:2305.12523v2，2024-03-27。DOI 10.1109/TWC.2024.3383209。",
+        "sourceId": "case-cellfree-maprt-paper",
+        "comparisonLink": "cellfree-maprt.html#paper",
+        "researchQuestion": "接收端不知道当次目标散射与目标无关信道，怎样从实际复数观测比较两种假设，再在通信和每站功率约束下调整发射？",
+        "observationsAndUnknowns": "实际多站向量 y 的已知 G/X 与未知 α/h：H₀:y=Xh+n；H₁:y=Gα+Xh+n。接收端知道统计先验但不知道当次 RCS/目标无关通道；先分别最大化带先验联合密度，再校准 MAPRT。发射幅度 p_i=√ρ_i 是优化变量，不是每 AP 独立功率。",
+        "locator": {
+          "summary": "固定 v2 式(1)–(18)发射/观测及 CSI，§VII 式(20)–(33)和附录 A 最大化 MAPRT，式(35)–(49)/算法 1 的感知 SINR 与 CCP，式(50)通信最小功率；§IX/Table III 核对源设置但不复现原图。",
+          "section": "§II–VIII、§IX/Table III、附录 A/B",
+          "figure": "没有声称复现源图 3–7；64 格为独立缩小条件化参考",
+          "equation": "(1)–(18)、(20)–(33)、(35)–(50)；(19)、(51)–(56)只审计未实现"
+        },
+        "paperEvidenceType": "多站检测与功率分配理论及数值仿真；非硬件实测",
+        "siteArtifactType": "实际缩小 MAPRT/CCP 数值实现、独立 Python 参考与 JavaScript/Node Worker 审查；教学分解由同一当前数据推导，真实浏览器待验收",
+        "retainedAssumptions": [
+          "中央已知发射符号/预编码、几何、噪声和 proper-complex Gaussian RCS/目标无关信道先验；当次 α/h 只进入生成及评估",
+          "实际 H₀:y=Xh+n 与 H₁:y=Gα+Xh+n，多站多天线复数观测；RCS 物理方差只在 β 中计入一次",
+          "全局单位范数 RZF 通信波束与估计 UE 信道零空间感知波束；用拟合矩形成通信和每 AP 期望功率约束",
+          "AP 和忽略杂波的 SP 核使用相同实际杂波观测，各自从独立于评估的 H₀ 样本校准门限",
+          "每族三个预先声明的可行起点；只按感知 SINR 在通过数值门槛的收敛候选中选择，不按 Pd 或真值选解"
+        ],
+        "omittedMechanisms": [
+          "源 16 TX/2 RX/8 UE 的完整随机布站、热点与用户位置平均，完整 3GPP/局部散射设置和图 3–7",
+          "式(19)、(51)–(56)的感知 SE、正交资源共享和完整区域；多目标搜索、关联、同步与真实硬件",
+          "全局非凸最优、精确总体约束可行性、稳健/机会约束设计、精确目标 Pfa、同时区间与 CFAR 保证",
+          "真实浏览器 Worker/CSP/布局/键盘/下载/取消与绘制时延；Node/受控 DOM 审查不替代这些验收"
+        ],
+        "metrics": [
+          "MAPRT 的 J₀−J₁、Q 和先验归一化常数 log C₃；积分 Gaussian LRT 的行列式常数另列",
+          "H₀ 校准门限；独立 H₀/H₁ 评估的虚警/检出/漏检原始计数、分母及点态 95% Clopper–Pearson 区间",
+          "同一观测 AP/SP 的配对决定与仅 AP/仅 SP 检出计数；跨分配只共享潜在抽样，不共享 y",
+          "拟合和独立 holdout 的 UE SINR、每 AP 期望功率 W、总期望功率 W 与 W-symbol 块能量；无符号时长不换算 J",
+          "感知 SINR 代理、每次 CCP 重启/迭代/失败/上限，以及凸切平面子问题的数值原始可行性和 gap；不证明原非凸全局最优"
+        ],
+        "unknowns": [
+          "源数值 M、RZF 正则项、精确 AP 坐标/种子、角扩展、符号分布、导频复用与门限协议未恢复；本站显式 M=2、正则项=1 和合成协方差不能冒称原设置",
+          "SP 检测核忽略杂波，但本站用真实杂波 H₀ 校准其门限；源未充分指定该协议，不能声称原 SP 曲线匹配",
+          "已接受参考 ISAC+S 近零感知流、每种分配 holdout 越界、不同实际用能与代理/Pd 排序不一致均保留；新输入可以不同",
+          "CCP 局部候选与子问题数值 gap 不是原非凸全局证明；Python SLSQP 的 status-8/retry 与 JavaScript barrier-Newton 的失败状态分别记录"
+        ],
+        "resourceBudget": {
+          "summary": "固定缩小模型 4 TX、2 RX、M=2、2 UE、10 个符号；合成几何和衰减 Toeplitz 协方差。页面拟合/holdout 各 32–512、校准 128–2048、评估 64–1024；参考是另列的 1024/1024/16384/8192，不混算。",
+          "bandwidth": "源载频 1.9 GHz、带宽 20 MHz；当前不是完整采样/通信 PHY，不把统计次数换算传输速率",
+          "energy": "源默认每 AP 上限 1 W，页面范围 0.1–2 W；共同上限不保证相同实际用能。W-symbol 无符号时长不能称焦耳",
+          "duration": "每块 10 个符号，Swerling-I 散射块内固定；独立块不是延长相干积分，未指定符号时长",
+          "aperture": "4 个发射 AP、2 个接收 AP，每站 M=2 的半波长 ULA；固定公开合成坐标，不是源完整布站",
+          "priorKnowledge": "已知噪声、RCS/目标无关信道统计、瞬时估计 UE 信道、发射符号和几何；真实 α/h 和通道误差隔离于接收与优化输入",
+          "other": [
+            "离线 4 RCS×4 分配×AP/SP×2 Pfa=64 格，1,048,576 存储分数；共享潜在抽样导致相关性，不是独立格试验",
+            "页面固定 3 起点/族、最多 50 外层×400 凸子求解步骤；失败不生成虚构检测结果",
+            "64 MiB JSON 上限不是设备总内存保证；完整参考/验证压缩包只供可选下载，不作页面启动依赖"
+          ]
+        },
+        "verificationNote": "固定 v2 PDF SHA-256 30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10；参考 manifest 30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5；九文件运行 manifest 4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5。来源与失败边界见 docs/CELLFREE-MAPRT-SOURCE-EVIDENCE.md。"
+      }
     }
   ],
   "legacy": {
@@ -2251,6 +2325,20 @@
       "group": "research",
       "primaryDirectionId": "tradeoffs",
       "action": "固定同一复信道、资源与随机样本，实际求解矩阵协方差整形，检查后验、Fisher和证书；分开读外界、有限块均值、Wishart与单独秩一MI。"
+    },
+    {
+      "id": "cellfree-maprt",
+      "title": "未知散射与杂波下，多站怎样检测目标并分配功率？",
+      "href": "cellfree-maprt.html#experiment",
+      "question": "接收端不知道当次目标散射与目标无关信道，怎样从实际复数观测比较两种假设，再在通信和每站功率约束下调整发射？",
+      "prerequisites": [
+        "distributed-detection.html#experiment",
+        "foundations.html#cfar",
+        "waveform-design.html#model"
+      ],
+      "group": "research",
+      "primaryDirectionId": "networks",
+      "action": "先看实际复样本，再分开最大化与积分；改变通信门槛或资源，重算功率、检测和独立 holdout，保留全部失败与统计分母。"
     }
   ],
   "pages": [
@@ -2645,6 +2733,20 @@
       "case": "case-gaussian-tradeoff",
       "next": "reading.html#direction-tradeoffs",
       "nextLabel": "对照通感权衡的原文、统计与未实现边界"
+    },
+    {
+      "path": "cellfree-maprt.html",
+      "title": "未知散射与杂波下，多站怎样检测目标并分配功率？",
+      "stage": "experiments",
+      "role": "有界源算法 · 多站 MAPRT、有限校准与 CCP 功率分配",
+      "prerequisites": [
+        "distributed-detection.html#experiment",
+        "foundations.html#cfar",
+        "waveform-design.html#model"
+      ],
+      "case": "case-cellfree-maprt",
+      "next": "reading.html#direction-networks",
+      "nextLabel": "对照多站协作原文、资源约束与未实现边界"
     }
   ],
   "schemaVersion": 1,
@@ -4089,7 +4191,8 @@
       "primaryCaseIds": [
         "case-clock",
         "case-distributed-detection",
-        "case-networked-sync"
+        "case-networked-sync",
+        "case-cellfree-maprt"
       ],
       "relatedDirectionIds": [
         "spatial",
@@ -4123,6 +4226,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "未知散射与杂波下，目标证据来自哪里？",
+              "href": "cellfree-maprt.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ]
         },
@@ -4159,6 +4270,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "实际复数观测、未知 α/h 与带先验最大化",
+              "href": "cellfree-maprt.html#model",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ]
         },
@@ -4195,6 +4314,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "从新输入求 CCP，再校准 MAPRT 并统计决定",
+              "href": "cellfree-maprt.html#experiment",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ],
           "coverage": "direction-specific"
@@ -4232,6 +4359,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "固定 v2：MAPRT 式(20)–(33)与 CCP 式(35)–(50)",
+              "href": "cellfree-maprt.html#paper",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ],
           "comparisonStatus": "partial",
@@ -4264,6 +4399,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "holdout 越界、近零感知流与代理/Pd 分歧",
+              "href": "cellfree-maprt.html#boundary",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ]
         },
@@ -4294,12 +4437,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定v1；默认6×12×8、可选原尺寸10×36×20两向复数张量与已知秩1–3；独立实现三轴平滑CP、SCPD、ESPRIT和同初始化ALS。几何通过不保证时钟正确，残差可上升且存在局部极小；不是原曲线、全网同步或浏览器认证。"
+            },
+            {
+              "label": "导出原始抽样、核对检测链并重跑新计算",
+              "href": "cellfree-maprt.html#reproduce",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "固定 arXiv:2305.12523v2 的缩小条件化 MAPRT 与 CCP：4 TX、2 RX、每站 2 天线、2 UE、10 符号，合成几何/协方差。实际重算观测、先验最大化、通信矩、局部 CCP 和有限样本门限；保留全部失败与 holdout 越界。不是原图、完整 cell-free 网络、全局最优或真实浏览器认证。"
             }
           ]
         }
       ],
       "nextExtension": "在标量时延基线后加入多目标关联，分别记录漏检、错配与回传开销。",
-      "coverage": "已有网络时钟与两站固定候选检测机制、原文导读及双向载荷账本；未实现完整 cell-free 网络或整篇论文复现",
+      "coverage": "已有网络时钟、两站独立积分 LRT、互易 CP 与缩小多站 MAPRT/CCP 的真实数值链；分别保留先修、原文边界、holdout 与统计不确定性。未实现完整 cell-free 网络或整篇论文复现，新增 MAPRT 的真实浏览器验收待完成",
       "scenePositions": [
         "cooperate"
       ]
