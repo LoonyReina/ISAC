@@ -40,7 +40,7 @@ const reviewedProfiles=new Map([
 ],[
   "labs/nearfield-multitarget/lesson/client.mjs",
   {
-    "sha256": "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781",
+    "sha256": "0777004186f828f0ab283eeb2ee12c5d7a0f5e2be1576e11ba5b2d15a15b956d",
     "runtimePolicy": "reviewed-factory-endpoints",
     "sourceLiterals": [
       "workerFactory=url=>new Worker(url,{type:'module'})",
@@ -82,7 +82,7 @@ const reviewedProfiles=new Map([
 ],[
   "labs/nearfield-multitarget/lesson/lesson.mjs",
   {
-    "sha256": "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6",
+    "sha256": "402ffec78acb542877124f7762c453a277335853debe4a712185dfd42b611dcc",
     "runtimePolicy": "no-runtime-loads",
     "sourceLiterals": [],
     "edgeKind": "reviewed-multitarget-module",
@@ -548,7 +548,7 @@ const multitargetPublicFiles=new Map([
   ],
   [
     "labs/nearfield-multitarget/lesson/client.mjs",
-    "a089a74b4e5a565413202fe67e0f7979fffcd2729d55c7310d7eaff2dcb87781"
+    "0777004186f828f0ab283eeb2ee12c5d7a0f5e2be1576e11ba5b2d15a15b956d"
   ],
   [
     "labs/nearfield-multitarget/lesson/codec.mjs",
@@ -564,7 +564,7 @@ const multitargetPublicFiles=new Map([
   ],
   [
     "labs/nearfield-multitarget/lesson/lesson.mjs",
-    "91bea1779f941a54d0ddb68b5dca69490527488368ca5c6d937aee12558a55f6"
+    "402ffec78acb542877124f7762c453a277335853debe4a712185dfd42b611dcc"
   ],
   [
     "labs/nearfield-multitarget/lesson/presets.mjs",

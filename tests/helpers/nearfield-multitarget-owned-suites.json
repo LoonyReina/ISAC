@@ -43,7 +43,12 @@
       "actual partial failure and failed records keep export, diagnostics and separate statuses",
       "double submit, cancel/edit/reset/hidden/Back ownership never show stale result",
       "malformed/oversize/late files remain fenced and same file can be reselected",
-      "slice actual recompute is view-owned and separate from exact optimization record"
+      "slice actual recompute is view-owned and separate from exact optimization record",
+      "progress clears when the matching real slice completes or fails without hiding its error",
+      "matching real import and historical check settle progress, including malformed import error",
+      "late real slice messages cannot restore progress after input, reset, cancel, import or a newer run",
+      "superseded real slices cannot erase newer progress or a legitimate newer error",
+      "real derived Worker transport failures clear owned progress while preserving terminal errors"
     ],
     "session.test.mjs": [
       "cancel/edit/reset/Back between solve and encoding never materializes current record",

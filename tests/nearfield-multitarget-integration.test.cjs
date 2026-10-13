@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),P=require('./helpers/nearfield-multitarget-preservation.cjs'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-function bytes(...names){for(const name of names){const file=path.join(root,name);if(fs.existsSync(file))return fs.readFileSync(file);}throw Error('Missing multi-target evidence '+names.join(' or '));}
+const U=require('./helpers/nearfield-multitarget-build-preservation.cjs');
+function bytes(...names){for(const name of names){const file=path.join(root,name);if(fs.existsSync(file))return U.withoutUiProgressFile(name,fs.readFileSync(file));}throw Error('Missing multi-target evidence '+names.join(' or '));}
 const json=(...names)=>JSON.parse(bytes(...names)),r=json('content/data/registry.json','site/registry.json'),g=json('content/data/research-guides.json','site/research-guides.json'),b=json('docs/PAPER-EXECUTION-BACKLOG.json'),e=json('assets/data/nearfield-multitarget-evidence-map.json','data/nearfield-multitarget-evidence-map.json');
 const normalize=s=>['HEADER','CONTEXT','NEXT'].reduce((v,k)=>v.replace(new RegExp('<!-- SITE:'+k+':START -->[\\s\\S]*?<!-- SITE:'+k+':END -->'),'<!-- SITE:'+k+' -->'),s).replace(/\n$/,'');
 test('multi-target has one canonical page case unit and all six existing spatial layers',()=>{
@@ -22,4 +23,15 @@ test('multi-target reviewed functional freeze runtime and handwritten page remai
  for(const anchor of ['question','model','experiment','recovery','receiver-failures','paper','boundary','reproduce'])a.equal([...html.matchAll(new RegExp('id="'+anchor+'"','g'))].length,1);
  for(const v of Object.values(e.boundaries))a.equal(v,false);a.equal(sha(bytes(e.independentLessonReview.report)),e.independentLessonReview.reportSha256);a.equal(sha(bytes('assets/'+e.independentLessonReview.binding,e.independentLessonReview.binding)),e.independentLessonReview.bindingSha256);a.equal(e.independentLessonReview.focusedTests,32);a.equal(e.independentLessonReview.actualBrowser,false);
  for(const m of html.matchAll(/<(?:script|link)[^>]+(?:src|href)="([^"]+)"/g))a.doesNotMatch(m[1],/\.zip|\.tar|\.pdf|evidence-map|FINAL-BINDING/);
+});
+
+test('multi-target UI progress exact overlay restores only the three original functional files',()=>{
+ a.deepEqual(U.uiProgressFiles.map(x=>x.path),['labs/nearfield-multitarget/lesson/client.mjs','labs/nearfield-multitarget/lesson/lesson.mjs','labs/nearfield-multitarget/lesson/tests/mounted.test.mjs']);
+ for(const rec of U.uiProgressFiles){const current=fs.readFileSync(path.join(root,rec.path)),copy=Buffer.from(current),prior=U.withoutUiProgressFile(rec.path,current),frozen=e.ownedFiles.find(x=>x.path===rec.path);a.ok(frozen);a.equal(prior.length,frozen.bytes);a.equal(sha(prior),frozen.sha256);a.deepEqual(current,copy);const altered=Buffer.from(current);altered[Math.floor(altered.length/2)]^=1;for(const bad of [Buffer.concat([current,Buffer.from('unreviewed')]),current.subarray(1),altered,prior])a.throws(()=>U.withoutUiProgressFile(rec.path,bad));a.deepEqual(U.withoutUiProgressFile('unlisted/'+rec.path,current),current);}
+ const names=JSON.parse(fs.readFileSync(path.join(root,'tests/helpers/nearfield-multitarget-owned-suites.json')));a.equal(Object.keys(names.lesson).length,6);a.equal(Object.values(names.lesson).flat().length,37);a.equal(names.lesson['mounted.test.mjs'].length,11);a.equal(e.independentLessonReview.focusedTests,32);
+});
+test('multi-target UI progress profile and parser inverses reject changed moved duplicate or already historical identities',()=>{
+ const current=JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'))),original=JSON.stringify(current),prior=U.withoutUiProgressContracts(current);a.equal(JSON.stringify(current),original);
+ for(const rec of U.uiProgressProfiles){a.deepEqual({...rec.after,sha256:rec.before.sha256},rec.before);const i=current.modules.findIndex(x=>x.public===rec.after.public);a.deepEqual(prior.modules[i],rec.before);for(const mutate of [x=>x.modules[i].sha256='0'.repeat(64),x=>x.modules[i].runtimePolicy='unreviewed',x=>x.modules[i].runtimeEdges=[{url:'unreviewed'}],x=>x.modules[i].extra=true,x=>x.modules.splice(i,1),x=>x.modules.push(structuredClone(x.modules[i])),x=>x.modules[i].public='moved/'+x.modules[i].public]){const bad=structuredClone(current);mutate(bad);a.throws(()=>U.withoutUiProgressContracts(bad));}}
+ a.throws(()=>U.withoutUiProgressContracts(prior));const parser=fs.readFileSync(path.join(root,'scripts/build/module-dependencies.cjs'),'utf8'),historical=U.withoutUiProgressParser(parser);for(const rec of U.uiProgressFiles.slice(0,2)){for(const bad of [parser.replace(rec.after.sha256,'0'.repeat(64)),parser+'\n'+rec.after.sha256,parser+'\n'+rec.before.sha256])a.throws(()=>U.withoutUiProgressParser(bad));}a.throws(()=>U.withoutUiProgressParser(historical));a.ok(U.withoutUiProgressParser(parser+'\n/* unrelated remains visible */').endsWith('/* unrelated remains visible */'));
 });

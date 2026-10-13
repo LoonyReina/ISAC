@@ -1,9 +1,17 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),D=require('../scripts/build/module-dependencies.cjs'),P=require('./helpers/nearfield-multitarget-build-preservation.cjs'),d=require('./helpers/nearfield-multitarget-runtime-delta.json'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-function fixture(){const source=d.moduleProfiles.map(c=>({file:c.public,source:fs.readFileSync(path.join(root,c.public),'utf8')}));return {source,contract:{schemaVersion:1,modules:structuredClone(d.moduleProfiles)},identities:source.map(x=>({file:x.file,sha256:sha(x.source)}))};}
+const uiSourceOnly=require('./helpers/nearfield-multitarget-ui-progress-source-only.json');
+function fixture(){const source=P.withUiProgressProfiles(d.moduleProfiles).map(c=>({file:c.public,source:fs.readFileSync(path.join(root,c.public),'utf8')}));return {source,contract:{schemaVersion:1,modules:P.withUiProgressProfiles(d.moduleProfiles)},identities:source.map(x=>({file:x.file,sha256:sha(x.source)}))};}
 const run=f=>D.moduleDependencies(f.source,f.contract,f.identities);
 test('multi-target exact 14 profiles preserve all prior parser and contract identities',()=>{
+ a.equal(uiSourceOnly.schemaVersion,1);a.equal(uiSourceOnly.baselineTree,'ee2387f21a253bc2d963653b57320e26435dd0f3');
+ a.equal(sha(JSON.stringify(uiSourceOnly.repairFreeze,null,2)+'\n'),'4613c0a73982f44fb2ee79f09b690ff4ff7aa6eadd10b215374cc976ec95e354');
+ a.deepEqual(uiSourceOnly.repairFreeze.files,P.uiProgressFiles.map(({path,before,after})=>({path,before,after})));a.equal(uiSourceOnly.repairFreeze.patch.sha256,'438775e5bd8f1cad6d17170b145909322af46c0a5aabfc4c5b77e37c4d8af71e');
+ a.deepEqual(uiSourceOnly.files.map(x=>x.path),["scripts/build/module-dependencies.cjs","scripts/build/module-runtime-contracts.json","tests/helpers/nearfield-multitarget-build-preservation.cjs","tests/helpers/nearfield-multitarget-owned-suites.json","tests/nearfield-multitarget-dependencies.test.cjs","tests/nearfield-multitarget-integration.test.cjs","tests/nearfield-multitarget-owned.test.cjs"]);
+ const manifest=require('../build/compatibility-manifest.json');a.ok(!manifest.entries.some(x=>x.source==='tests/helpers/nearfield-multitarget-ui-progress-source-only.json'),'inverse metadata remains source-only');
+ for(const rec of uiSourceOnly.files){const current=fs.readFileSync(path.join(root,rec.path)),copy=Buffer.from(current),prior=P.reverseUiProgress(rec.path,current,uiSourceOnly.files);a.equal(sha(prior),rec.before.sha256);a.equal(prior.length,rec.before.bytes);a.deepEqual(current,copy);const altered=Buffer.from(current);altered[Math.floor(altered.length/2)]^=1;for(const bad of [Buffer.concat([current,Buffer.from('unreviewed')]),current.subarray(1),altered,prior])a.throws(()=>P.reverseUiProgress(rec.path,bad,uiSourceOnly.files));a.deepEqual(P.reverseUiProgress('unlisted/'+rec.path,current,uiSourceOnly.files),current);}
+ for(const rec of uiSourceOnly.repairFreeze.preserved_accepted_files){const value=fs.readFileSync(path.join(root,rec.path));a.equal(value.length,rec.bytes,rec.path);a.equal(sha(value),rec.sha256,rec.path);}
  a.equal(d.moduleProfiles.length,14);a.equal(d.priorModuleProfileCount,53);
  a.equal(sha(P.withoutMultitargetModuleParser(fs.readFileSync(path.join(root,'scripts/build/module-dependencies.cjs'),'utf8'))),d.priorModuleParserSha256);
  a.equal(sha(JSON.stringify(P.withoutMultitargetModuleContracts(require('../scripts/build/module-runtime-contracts.json')),null,2)+'\n'),d.priorModuleContractsSha256);
@@ -18,8 +26,8 @@ test('multi-target path source policy endpoint and jointly spoofed JSON mutation
 });
 test('multi-target public namespace rejects every unreviewed extension and changed auxiliary byte',()=>{
  for(const file of ['extra.js','extra.JS','extra.cjs','extra.mjs','extra.txt','extensionless','nested/extra.dat']){const f=fixture();f.identities.push({file:'labs/nearfield-multitarget/'+file,sha256:sha('unreviewed')});a.throws(()=>run(f),/Unreviewed multi-target/);}
- for(const[file]of d.publicFiles){const f=fixture(),identity=f.identities.find(x=>x.file===file);if(identity)identity.sha256='0'.repeat(64);else f.identities.push({file,sha256:'0'.repeat(64)});a.throws(()=>run(f));}
- const good=fixture();for(const[file,sha256]of d.publicFiles)if(!good.identities.some(x=>x.file===file))good.identities.push({file,sha256});run(good);
+ for(const[file]of P.withUiProgressPublicFiles(d.publicFiles)){const f=fixture(),identity=f.identities.find(x=>x.file===file);if(identity)identity.sha256='0'.repeat(64);else f.identities.push({file,sha256:'0'.repeat(64)});a.throws(()=>run(f));}
+ const good=fixture();for(const[file,sha256]of P.withUiProgressPublicFiles(d.publicFiles))if(!good.identities.some(x=>x.file===file))good.identities.push({file,sha256});run(good);
 });
 test('multi-target mapping inverse preserves all accepted URLs and rejects path ownership changes',()=>{
  const m=require('../build/compatibility-manifest.json'),delta=require('../build/nearfield-multitarget-mappings.json'),prior=P.withoutMultitargetMappings(m);a.equal(sha(P.priorMappingSource(m)),delta.baselineManifestSha256);a.equal(delta.acceptedBaselineTree,'4ba6cb9ea8a568b1e4b21124b5e0d67648add8e2');const wanted=require('../labs/nearfield-multitarget/lesson/PUBLIC-ASSETS.json').proposed_compatibility_entries;a.equal(wanted.length,35);for(const rec of wanted){const e=m.entries.find(x=>x.source===rec.source);a.ok(e);a.equal(e.compatibility,rec.compatibility);a.equal(e.owner,rec.owner);a.equal(e.public,rec.source.includes('/lesson/tests/')?null:rec.public);}for(const key of ['source','compatibility','public','owner']){const bad=structuredClone(m);bad.entries.find(x=>x.source==='content/pages/nearfield-multitarget.html')[key]='unreviewed';a.throws(()=>P.withoutMultitargetMappings(bad));}
