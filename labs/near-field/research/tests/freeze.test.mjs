@@ -6,9 +6,15 @@ import {defaultSpec} from '../defaults.mjs';
 import {validateDesign,validateScene,validateReceiver,validateSolverOptions} from '../runtime/src/contract.mjs';
 const root=new URL('../',import.meta.url),runtime=new URL('runtime/',root);
 const read=p=>readFile(new URL(p,runtime));
-test('all 22 independently accepted runtime/freeze files are byte-preserved',async()=>{
+test('21 runtime/freeze files are byte-preserved and the one codec delta reverses to its historical identity',async()=>{
  const freeze=JSON.parse(await read('CHAIN-FREEZE.json'));assert.equal(Object.keys(freeze.runtimeFiles).length,22);
- for(const [path,expected]of Object.entries(freeze.runtimeFiles))assert.equal(createHash('sha256').update(await read(path)).digest('hex'),expected,path);
+ const patch=JSON.parse(await readFile(new URL('IMPLEMENTATION-FREEZE.json',root))).runtimeBoundaryPatch;
+ assert.equal(patch.path,'src/replay.mjs');assert.equal(patch.historicalSha256,freeze.runtimeFiles[patch.path]);
+ for(const [path,expected]of Object.entries(freeze.runtimeFiles)){
+  let data=await read(path);
+  if(path===patch.path){assert.equal(createHash('sha256').update(data).digest('hex'),patch.currentSha256);let text=data.toString();for(const delta of [...patch.replacements].reverse()){assert.equal(text.split(delta.after).length,2);text=text.replace(delta.after,delta.before);}data=Buffer.from(text);}
+  assert.equal(createHash('sha256').update(data).digest('hex'),expected,path);
+ }
 });
 test('default raw source channels are fixture-identical; scene prior truth and grids remain distinct',async()=>{
  const fixture=JSON.parse(await read('fixtures/source-input.json')),s=defaultSpec();assert.deepEqual(s.designInput,fixture);validateDesign(s.designInput);validateScene(s.scene);validateReceiver(s.receiver);validateSolverOptions(s.solverOptions);

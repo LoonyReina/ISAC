@@ -52,3 +52,28 @@ Shared integration owns the root aggregate wrapper, exact compatibility mappings
 The separate VM test runs Node with process/module/require absent, exercises the browser-specific UMD load order, and invokes the actual postMessage/onmessage worker branches. It is explicitly not an actual browser test. Actual Node Worker tests exercise the separate Node/CommonJS branch.
 
 `reports/node-cost.json` records a single observed Node run: about36ms finite-X check,77ms raw audit,110ms export at251001 points, and7.21MB complete JSON. These are observations, not percentiles, guarantees or browser timings. Finite-X construction, auditing, import/export and rendering remain synchronous in the caller. The source Worker setup/step/assessment are cooperatively bounded, not hard-interruptible. Actual browser/CSP/layout/keyboard/desktop/narrow-screen latency acceptance and publication remain unperformed here.
+
+## Record-boundary patch v1 (2026-10-13)
+
+The original CHAIN-FREEZE, MUSIC-FREEZE, SOLVER-FREEZE and CONTRACT identities
+remain historical evidence. They do not assert that the current replay codec is
+byte-identical. IMPLEMENTATION-FREEZE.runtimeBoundaryPatch records the exact
+reversible old-to-current replay delta and both identities. All scientific
+solver/receiver/generator, adapter and Experiment bytes remain unchanged.
+
+An allowed noiseless covariance can yield a nonpositive/tiny numerical median
+eigenvalue. The frozen optional principal/max(median, Number.MIN_VALUE) ratio can
+therefore overflow binary64 to positive Infinity. Full record export now encodes
+only outputs.receiver.noiseMedianEigenvalueRatio (also beneath repeated historical
+wrappers) as {diagnosticEncoding: "nearfield-positive-overflow-v1", value:
+"+Infinity", reason: "principal_over_clamped_median_overflows_f64"}. Both encoder
+and importer require 65 finite ascending normalized eigenvalues and independently
+check the same overflow formula. This is a transport representation, not a
+physical infinite SNR claim. No raw arrays, spectra, estimates or statuses change.
+All other nonfinite values and misplaced/malformed tags remain rejected. The
+importer restores this optional diagnostic to Infinity for display/re-export;
+all imported conclusions remain historical_unverified until their respective
+explicit recomputation. Older unpatched importers cannot interpret this new tag;
+use this version for overflow-bearing records. Ordinary finite records retain
+the original byte encoding. Historical archives and browser evidence are not
+rewritten or upgraded by this patch.

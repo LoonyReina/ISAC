@@ -155,14 +155,14 @@
     {
       "source": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
       "public": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
-      "bytes": 7945,
-      "sha256": "845de95ed7510300047fe57a7c1eea736c3dae173536dd56650b3b4724343a96"
+      "bytes": 12799,
+      "sha256": "3839ace11911b56a6dd86bc257775a6a49b3958752a1d528d2eb952e3c274b8a"
     },
     {
       "source": "labs/near-field/research/README.md",
       "public": "labs/near-field/research/README.md",
-      "bytes": 5887,
-      "sha256": "7b836a3e732933603f3697aa876fcb1cf7d8d8fa976d5e89bb39deb3ed188897"
+      "bytes": 7542,
+      "sha256": "a7714499d6bcdf8fb13e20889fc83bd2303bcf8a49b37368acbc982ca57e6dc3"
     },
     {
       "source": "labs/near-field/research/controller.mjs",
@@ -263,8 +263,8 @@
     {
       "source": "labs/near-field/research/runtime/src/replay.mjs",
       "public": "labs/near-field/research/runtime/src/replay.mjs",
-      "bytes": 5104,
-      "sha256": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4"
+      "bytes": 6695,
+      "sha256": "774a56bb18202bb18ac861af2ce344c01a9e8176e4144eb23f590cbbc68a4d42"
     },
     {
       "source": "labs/near-field/research/runtime/src/solver-loader.mjs",
@@ -365,8 +365,8 @@
     {
       "source": "labs/near-field/research/tests/controller.test.mjs",
       "public": null,
-      "bytes": 29150,
-      "sha256": "032bef6c3f5485146c5e8c4e0f0606f993bbf0bbbd742515ad5afaf69c2f3489"
+      "bytes": 34131,
+      "sha256": "c1e29c427c2d76ba1d877ee4959d16c56de4db5191adb4fcb597c0b3358d7e28"
     },
     {
       "source": "labs/near-field/research/tests/fixtures/near-field-legacy.html",
@@ -377,8 +377,8 @@
     {
       "source": "labs/near-field/research/tests/freeze.test.mjs",
       "public": null,
-      "bytes": 2216,
-      "sha256": "4d2ff1fa70d9e7c5323fff31aa9e5dfa616262c07999d71eb36242dc84e46893"
+      "bytes": 2794,
+      "sha256": "fb5efc3a1b24c5c862d1fa9a2ec5daef3622c131dc24c41566df9cb8a192237b"
     },
     {
       "source": "labs/near-field/research/tests/measure-node-cost.mjs",
@@ -401,14 +401,14 @@
     {
       "source": "labs/near-field/research/tests/view.test.mjs",
       "public": null,
-      "bytes": 15357,
-      "sha256": "318d5928ea03ed0b76f23d65bc187e36872afb30959bba29fcf211ff6adb64be"
+      "bytes": 15807,
+      "sha256": "c6b238f0b46c8e250b0d59471bcd871c161cc58bf1a6cdb7b7987acbce56f632"
     },
     {
       "source": "labs/near-field/research/view.mjs",
       "public": "labs/near-field/research/view.mjs",
-      "bytes": 42448,
-      "sha256": "08c85f3ac027cfb6dadff42d265d2e43e94e885bc34d7aa6acd14131d34786c1"
+      "bytes": 42812,
+      "sha256": "d7cf73d30fd321d300ebe8339e372d16c88980ae4e6aca60e31f00333d200362"
     }
   ],
   "legacyFiles": [
@@ -430,5 +430,11 @@
       "bytes": 1088,
       "sha256": "04935d9c7882f19ad3721cf66f6294fc274db315851029f47217c668ae9ac01e"
     }
-  ]
+  ],
+  "runtimeBoundaryPatch": {
+    "version": 1,
+    "currentIdentity": "labs/near-field/research/IMPLEMENTATION-FREEZE.json#runtimeBoundaryPatch",
+    "historicalRuntimeFreezeUnchanged": true,
+    "changedRuntimeFile": "src/replay.mjs"
+  }
 }

@@ -363,6 +363,7 @@ function renderEigen(parent, e) {
   const r = e.receiverOutput, d = r?.diagnostics;
   if (!d) { empty(parent, r ? `接收机终止状态 ${r.status} 没有保留特征分解诊断` : '尚无当前 Y 的样本特征分解'); return; }
   keyValues(parent, [['分解方法', d.method], ['是否达到残差条件', yesNo(d.converged)], ['唯一主特征空间（数值判据）', yesNo(d.uniquePrincipal)], ['相对特征残差', number(d.residualRelative)], ['正交性 Frobenius 残差', number(d.orthogonalityFrobenius)], ['相对主特征间隙', number(d.gapRelative)], ['主值 / 中位噪声特征值比', number(r.noiseMedianEigenvalueRatio)], ['实际扫掠数', number(d.sweeps)], ['特征值还原尺度', number(d.eigenvalueScale)]]);
+  if (r.noiseMedianEigenvalueRatio === Infinity) paragraph(parent, '此可选比值超出浮点数范围：主特征值 / max(中位特征值, Number.MIN_VALUE)。无噪声、近秩一协方差可出现此情况；完整记录以带原因的 +Infinity 标签保存，原始矩阵、并列峰和定位误差不变。这不是检测成功或定位正确的证明');
   showWarnings(parent, r.warnings);
   const normalized = sequence(d.eigenvaluesNormalized), rows = Array.from(normalized, (v, i) => ({ index: i, normalized: v, actual: v * d.eigenvalueScale }));
   if (rows.length) {

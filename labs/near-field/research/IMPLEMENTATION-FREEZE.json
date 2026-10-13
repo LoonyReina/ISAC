@@ -13,8 +13,8 @@
       "sha256": "9f395c2ca3e27216f453aeb4024a67e4880ae1150035e40b7c1884712d716ef8"
     },
     "labs/near-field/research/README.md": {
-      "bytes": 5887,
-      "sha256": "7b836a3e732933603f3697aa876fcb1cf7d8d8fa976d5e89bb39deb3ed188897"
+      "bytes": 7542,
+      "sha256": "a7714499d6bcdf8fb13e20889fc83bd2303bcf8a49b37368acbc982ca57e6dc3"
     },
     "labs/near-field/research/controller.mjs": {
       "bytes": 14728,
@@ -81,8 +81,8 @@
       "sha256": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27"
     },
     "labs/near-field/research/runtime/src/replay.mjs": {
-      "bytes": 5104,
-      "sha256": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4"
+      "bytes": 6695,
+      "sha256": "774a56bb18202bb18ac861af2ce344c01a9e8176e4144eb23f590cbbc68a4d42"
     },
     "labs/near-field/research/runtime/src/solver-loader.mjs": {
       "bytes": 550,
@@ -149,16 +149,16 @@
       "sha256": "0c3e3a4c2af678db796f905b4640172e85bb37aba5bb03238518a58dc17ad77b"
     },
     "labs/near-field/research/tests/controller.test.mjs": {
-      "bytes": 29150,
-      "sha256": "032bef6c3f5485146c5e8c4e0f0606f993bbf0bbbd742515ad5afaf69c2f3489"
+      "bytes": 34131,
+      "sha256": "c1e29c427c2d76ba1d877ee4959d16c56de4db5191adb4fcb597c0b3358d7e28"
     },
     "labs/near-field/research/tests/fixtures/near-field-legacy.html": {
       "bytes": 16623,
       "sha256": "426b626ee4af76b7ef6de6024831e8d97de5c5366de6ad428691a4d0d72c55a8"
     },
     "labs/near-field/research/tests/freeze.test.mjs": {
-      "bytes": 2216,
-      "sha256": "4d2ff1fa70d9e7c5323fff31aa9e5dfa616262c07999d71eb36242dc84e46893"
+      "bytes": 2794,
+      "sha256": "fb5efc3a1b24c5c862d1fa9a2ec5daef3622c131dc24c41566df9cb8a192237b"
     },
     "labs/near-field/research/tests/measure-node-cost.mjs": {
       "bytes": 1740,
@@ -173,17 +173,36 @@
       "sha256": "9ba90ec2d9ea90aea3bd8f8655a011dbf66740b3fcff6885657ff5f6c6d41e25"
     },
     "labs/near-field/research/tests/view.test.mjs": {
-      "bytes": 15357,
-      "sha256": "318d5928ea03ed0b76f23d65bc187e36872afb30959bba29fcf211ff6adb64be"
+      "bytes": 15807,
+      "sha256": "c6b238f0b46c8e250b0d59471bcd871c161cc58bf1a6cdb7b7987acbce56f632"
     },
     "labs/near-field/research/view.mjs": {
-      "bytes": 42448,
-      "sha256": "08c85f3ac027cfb6dadff42d265d2e43e94e885bc34d7aa6acd14131d34786c1"
+      "bytes": 42812,
+      "sha256": "d7cf73d30fd321d300ebe8339e372d16c88980ae4e6aca60e31f00333d200362"
     }
   },
   "browserExecuted": false,
   "published": false,
   "runtimeHashCount": 22,
   "authorTestsPassed": 71,
-  "reviewRepair": "Single-flight Worker recovery; close/reset and repeated-close during recovery checked with actual Node Workers"
+  "reviewRepair": "Single-flight Worker recovery; close/reset and repeated-close during recovery checked with actual Node Workers",
+  "runtimeBoundaryPatch": {
+    "version": 1,
+    "path": "src/replay.mjs",
+    "acceptedBaseTree": "ba98cfd29ad2267af35dd8fc6be0a92af8e8767a",
+    "historicalSha256": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4",
+    "currentSha256": "774a56bb18202bb18ac861af2ce344c01a9e8176e4144eb23f590cbbc68a4d42",
+    "scope": "Optional positive-overflow diagnostic transport only; all scientific computation bytes unchanged. Original22-file freeze remains historical.",
+    "replacements": [
+      {
+        "before": "function encodeValue(v,depth=0){if(depth>32)throw Error('JSON nesting cap');if(v instanceof Float64Array){if(v.length>2*LIMITS.maxGridPoints||!v.every(Number.isFinite))throw Error('Invalid encoded numeric array');return {encoding,data:Array.from(v,x=>Object.is(x,-0)?'-0':x)};}if(typeof v==='number'&&!Number.isFinite(v))throw Error('Export refuses nonfinite value');if(Array.isArray(v))return v.map(x=>encodeValue(x,depth+1));if(v&&typeof v==='object'){const o={};for(const [k,x]of Object.entries(v)){if(['__proto__','constructor','prototype'].includes(k))throw Error('Unsafe JSON key');if(x!==undefined)o[k]=encodeValue(x,depth+1);}return o;}if(v!==null&&!['number','string','boolean'].includes(typeof v))throw Error('Unsupported JSON value');return v;}\n",
+        "after": "// Record-boundary repair only: the frozen MUSIC ratio can overflow for a\n// rank-one/noiseless covariance. Never change its spectrum, estimate or status.\nconst ratioTag={diagnosticEncoding:'nearfield-positive-overflow-v1',value:'+Infinity',reason:'principal_over_clamped_median_overflows_f64'};\nfunction ratioPath(path){return path.length>=3&&path[0]==='outputs'&&path.at(-2)==='receiver'&&path.at(-1)==='noiseMedianEigenvalueRatio'&&path.slice(1,-2).every(k=>k==='historical');}\nfunction assertRatioOverflow(parent,path){\n const eigen=parent?.diagnostics?.eigenvaluesNormalized;\n if(!ratioPath(path)||!(eigen instanceof Float64Array)||eigen.length!==65||!eigen.every(Number.isFinite)||!eigen.every((x,i)=>i===0||x>=eigen[i-1])||!(eigen[64]>0)||eigen[64]/Math.max(eigen[32],Number.MIN_VALUE)!==Infinity)throw Error('Invalid optional diagnostic overflow');\n}\nfunction restoreDiagnosticTags(v,path=[],parent=null){\n if(!v||typeof v!=='object'||ArrayBuffer.isView(v))return v;\n if(Object.hasOwn(v,'diagnosticEncoding')){\n  keys(v,Object.keys(ratioTag),'optional diagnostic encoding');\n  if(!Object.keys(ratioTag).every(k=>v[k]===ratioTag[k]))throw Error('Invalid optional diagnostic tag');\n  assertRatioOverflow(parent,path);return Infinity;\n }\n for(const [k,x]of Object.entries(v))v[k]=restoreDiagnosticTags(x,[...path,k],v);\n return v;\n}\nfunction encodeValue(v,depth=0,path=[],parent=null){if(depth>32)throw Error('JSON nesting cap');if(v instanceof Float64Array){if(v.length>2*LIMITS.maxGridPoints||!v.every(Number.isFinite))throw Error('Invalid encoded numeric array');return {encoding,data:Array.from(v,x=>Object.is(x,-0)?'-0':x)};}if(typeof v==='number'&&!Number.isFinite(v)){if(v!==Infinity)throw Error('Export refuses nonfinite value');assertRatioOverflow(parent,path);return {...ratioTag};}if(Array.isArray(v))return v.map((x,i)=>encodeValue(x,depth+1,[...path,String(i)],v));if(v&&typeof v==='object'){if(Object.hasOwn(v,'diagnosticEncoding'))throw Error('Export refuses pre-encoded diagnostic tag');const o={};for(const [k,x]of Object.entries(v)){if(['__proto__','constructor','prototype'].includes(k))throw Error('Unsafe JSON key');if(x!==undefined)o[k]=encodeValue(x,depth+1,[...path,k],v);}return o;}if(v!==null&&!['number','string','boolean'].includes(typeof v))throw Error('Unsupported JSON value');return v;}\n"
+      },
+      {
+        "before": "export function importJson(text){if(typeof text!=='string'||new TextEncoder().encode(text).byteLength>LIMITS.maxJsonBytes)throw Error('Import exceeds 16 MiB UTF-8 cap');const decoded=decodeValue(JSON.parse(text)),diagnostic=decoded?.kind==='nearfield-live-chain-diagnostic',b=diagnostic?validateDiagnostic(decoded):validateBundle(decoded);return {bundle:b,trust:{rawArraysAuthoritative:!diagnostic,outputs:'historical_unverified',requiresFreshSolveForOptimizerAcceptance:true,receiverRecomputed:false,diagnosticOnly:diagnostic}};}\n",
+        "after": "export function importJson(text){if(typeof text!=='string'||new TextEncoder().encode(text).byteLength>LIMITS.maxJsonBytes)throw Error('Import exceeds 16 MiB UTF-8 cap');const decoded=restoreDiagnosticTags(decodeValue(JSON.parse(text))),diagnostic=decoded?.kind==='nearfield-live-chain-diagnostic',b=diagnostic?validateDiagnostic(decoded):validateBundle(decoded);return {bundle:b,trust:{rawArraysAuthoritative:!diagnostic,outputs:'historical_unverified',requiresFreshSolveForOptimizerAcceptance:true,receiverRecomputed:false,diagnosticOnly:diagnostic}};}\n"
+      }
+    ]
+  },
+  "recordBoundaryTestsPassed": 77
 }
