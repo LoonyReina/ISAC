@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "a46d0eeed2dc1d3894357d149d7b4af6dfa0c232",
+  "baselineTree": "b9aae8a0cc0e9100fbdedbad84e7e64d967d416f",
+  "baselineManifestSha256": "b2ec7fd9e559b1d2f74206c49a0a767a5f6ecb5c804c6726e3452db62879510b",
+  "addedEntries": [
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/check-boundary-v3.py",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/check-boundary-v3.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/test-boundary-v3.py",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/test-boundary-v3.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/DIAGNOSTICS.md",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v3/DIAGNOSTICS.md",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/sensing-assisted-otfs-parity-diagnostics-v3.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-parity-diagnostics-v3.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-diagnostics-preservation.cjs",
+      "compatibility": "tests/helpers/otfs-diagnostics-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-diagnostics-integration-delta.json",
+      "compatibility": "tests/helpers/otfs-diagnostics-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/otfs-diagnostics-mappings.json",
+      "compatibility": "build/otfs-diagnostics-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

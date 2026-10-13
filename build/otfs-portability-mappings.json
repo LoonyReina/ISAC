@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "0e4cc192bf330cfbfb63cfdce2a94f553f4ed370",
+  "baselineTree": "3bdf33e5a1d22a474c5e7d400c88e6ef5924fda4",
+  "baselineManifestSha256": "0791a6b03ca1cf3de5dbdc7853c616e53a9b2a8c61b7c46fe13451b9ffa30d38",
+  "functionalCommit": "b94a47e0edc3cdc9b5d1d83c72fc649a4806d6b7",
+  "functionalTree": "88c1106bb6deeb218a58b83371913fbce9a6ae4c",
+  "addedEntries": [
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/check-boundary-v2.py",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/check-boundary-v2.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/test-boundary-v2.py",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/test-boundary-v2.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/PORTABILITY.md",
+      "compatibility": "scripts/validation/sensing-assisted-otfs/parity-boundary-v2/PORTABILITY.md",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/sensing-assisted-otfs-parity-portability-v2.test.cjs",
+      "compatibility": "tests/sensing-assisted-otfs-parity-portability-v2.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-portability-preservation.cjs",
+      "compatibility": "tests/helpers/otfs-portability-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/otfs-portability-integration-delta.json",
+      "compatibility": "tests/helpers/otfs-portability-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/otfs-portability-mappings.json",
+      "compatibility": "build/otfs-portability-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}
