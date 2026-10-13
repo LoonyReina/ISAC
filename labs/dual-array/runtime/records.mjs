@@ -40,8 +40,34 @@ async function kernelRun(request,options){const run=options.runRequest??(await i
 function provenance(kind){return {...SOURCE,execution:kind==='fresh-scene'?'fresh-single-scene':'raw-observation-replay',trial_count:1,claims:{...CLAIMS}};}
 async function executionCheck(execution,request){keys(execution,['result','request','generation'],'execution');const raw=validateRequest(execution.request);assert(raw.mode==='observation','execution request must contain actual X/Y');for(const k of ['schema','geometry','X','theta_grid_rad','range_grid_m','includeSurfaces'])assert(canonical(raw[k])===canonical(request[k]),`execution.request.${k}: changed input`);if(request.mode==='observation'){assert(execution.generation===null,'raw observation cannot claim generation');assert(canonical(raw.Y)===canonical(request.Y),'raw Y changed during execution');}else assert(execution.generation&&typeof execution.generation==='object'&&!Array.isArray(execution.generation),'scene generation record required');const assessed=validateResult(execution.result,raw);const [xh,yh]=await Promise.all([matrixFingerprint(raw.X),matrixFingerprint(raw.Y)]);assert(execution.result.x_sha256===xh,'stored actual X fingerprint mismatch');assert(execution.result.y_sha256===yh,'stored actual Y fingerprint mismatch');return assessed;}
 export async function makeRecord(input,options={}){const request=validateRequest(input),execution=snapshotJSON(await kernelRun(request,options));await executionCheck(execution,request);const kind=request.mode==='scene'?'fresh-scene':'raw-observation';const body={schema:SCHEMA,kind,provenance:provenance(kind),request,execution};return snapshotJSON({...body,record_sha256:await digest(body)});}
+/** A regenerated scene checks physics, not the byte identity of a saved observation.
+ * Implementation-approximated transcendental math can vary between JS runtimes.
+ * Keep the existing metadata/FIM policy and additionally bound each mean/noise
+ * component to 64 machine epsilons of its own scale (no absolute floor). This
+ * conservative envelope fails closed for ill-conditioned cross-runtime cases.
+ * Exact saved-generation composition prevents even a one-ULP rehashed Y edit
+ * from borrowing that envelope without also changing its generation evidence. */
+function sceneGenerationCheck(execution,regenerated,request){
+  const actual=execution.generation,expected=regenerated.generation;
+  assert(canonical(actual.scene)===canonical(request.scene),'generation.scene: changed input');
+  semanticEqual(actual,expected,'execution.generation');
+  for(const name of ['mean','standardized_noise']){
+    matrix(actual[name],request.geometry.nb,request.X.cols,`generation.${name}`);
+    for(let i=0;i<expected[name].data.length;i++){
+      const a=actual[name].data[i],b=expected[name].data[i];
+      assert(b===0?Object.is(a,b):Math.abs(a-b)<=64*Number.EPSILON*Math.abs(b),`generation.${name}.data[${i}]: cross-runtime numerical mismatch`);
+    }
+  }
+  const sigma=Math.sqrt(request.scene.sigma2);
+  for(let i=0;i<execution.request.Y.data.length;i++)assert(Object.is(execution.request.Y.data[i],actual.mean.data[i]+sigma*actual.standardized_noise.data[i]),`execution.request.Y.data[${i}]: saved generation composition mismatch`);
+  semanticEqual(execution.request.Y,regenerated.request.Y,'execution.request.Y');
+}
 /** Integrity alone is never acceptance: fresh records require bounded semantic replay. */
-export async function checkRecord(input,options={}){const record=snapshotJSON(input);if(record.kind==='historical-summary')return checkHistorical(record);keys(record,['schema','kind','provenance','request','execution','record_sha256'],'record');assert(record.schema===SCHEMA,'unsupported record schema');assert(record.kind==='fresh-scene'||record.kind==='raw-observation','unknown record kind');hash(record.record_sha256,'record_sha256');const {record_sha256,...body}=record;assert(await digest(body)===record_sha256,'record integrity mismatch');assert(canonical(record.provenance)===canonical(provenance(record.kind)),'provenance: exact source, count and claims required');const request=validateRequest(record.request);assert((request.mode==='scene')===(record.kind==='fresh-scene'),'kind/mode mismatch');const assessed=await executionCheck(record.execution,request);const rerun=snapshotJSON(await kernelRun(request,options));await executionCheck(rerun,request);semanticEqual(record.execution,rerun,'execution');return Object.freeze({status:assessed.status==='numeric-estimates'?'passed':'absent-estimate',semantic_valid:true,numeric_estimates:assessed.numeric_estimates,scope:record.kind==='fresh-scene'?'single-scene generator and finite-X/Y receiver replay':'finite-X/Y receiver replay; physical origin unverified',trial_count:1,offline_study_recomputed:false,record_sha256});}
+export async function checkRecord(input,options={}){const record=snapshotJSON(input);if(record.kind==='historical-summary')return checkHistorical(record);keys(record,['schema','kind','provenance','request','execution','record_sha256'],'record');assert(record.schema===SCHEMA,'unsupported record schema');assert(record.kind==='fresh-scene'||record.kind==='raw-observation','unknown record kind');hash(record.record_sha256,'record_sha256');const {record_sha256,...body}=record;assert(await digest(body)===record_sha256,'record integrity mismatch');assert(canonical(record.provenance)===canonical(provenance(record.kind)),'provenance: exact source, count and claims required');const request=validateRequest(record.request);assert((request.mode==='scene')===(record.kind==='fresh-scene'),'kind/mode mismatch');const assessed=await executionCheck(record.execution,request);
+// Hashes and receiver replay always refer to the supplied, unchanged raw X/Y.
+const raw=record.execution.request,rerun=snapshotJSON(await kernelRun(raw,options));await executionCheck(rerun,raw);semanticEqual(record.execution.result,rerun.result,'execution.result');
+if(request.mode==='scene'){const regenerated=snapshotJSON(await kernelRun(request,options));await executionCheck(regenerated,request);sceneGenerationCheck(record.execution,regenerated,request);}
+return Object.freeze({status:assessed.status==='numeric-estimates'?'passed':'absent-estimate',semantic_valid:true,numeric_estimates:assessed.numeric_estimates,scope:record.kind==='fresh-scene'?'single-scene generator and finite-X/Y receiver replay':'finite-X/Y receiver replay; physical origin unverified',trial_count:1,offline_study_recomputed:false,record_sha256});}
 export async function exportRecord(input,options={}){const owned=snapshotJSON(input);await checkRecord(owned,options);return canonical(owned)+'\n';}
 export async function importRecord(text,options={}){assert(typeof text==='string','record text required');assert(text.length<=LIMITS.maxRecordBytes&&new TextEncoder().encode(text).byteLength<=LIMITS.maxRecordBytes,'record byte budget exceeded');const record=snapshotJSON(JSON.parse(text));const verification=await checkRecord(record,options);return Object.freeze({record,verification});}
 /** Exact accepted bytes, not retyped statistics or a claimed successful browser experiment. */

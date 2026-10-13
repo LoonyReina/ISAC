@@ -110,8 +110,8 @@
       {
         "path": "labs/dual-array/lesson/tests/lesson.test.mjs",
         "input": {
-          "bytes": 22073,
-          "sha256": "801c74183f897c4f8c62216f38a11754e132e695d36c3cd2e0ff20ba80ed1fa3"
+          "bytes": 22072,
+          "sha256": "06963949e4d065dd013313af635919900af1ff0dcdd1ce65ed21a23f097f35a4"
         },
         "output": {
           "bytes": 21925,
@@ -187,12 +187,12 @@
       {
         "path": "labs/dual-array/runtime/records.mjs",
         "input": {
-          "bytes": 23311,
-          "sha256": "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158"
+          "bytes": 25244,
+          "sha256": "0c9fda6852ef58b3dd942b5bc8bb911be0ecccbffc36605b9a2f73a7ec043854"
         },
         "output": {
-          "bytes": 23311,
-          "sha256": "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158"
+          "bytes": 25244,
+          "sha256": "0c9fda6852ef58b3dd942b5bc8bb911be0ecccbffc36605b9a2f73a7ec043854"
         }
       },
       {
@@ -253,12 +253,12 @@
       {
         "path": "tests/dual-array-browser-timers.test.cjs",
         "input": {
-          "bytes": 14269,
-          "sha256": "742d3d6e72dc3eee1e7f101a5a3e1273e1336ddaad4907f21078b3b9887220fe"
+          "bytes": 14387,
+          "sha256": "c055780129c3de40500c654b0c6e40ecdeee33ea47ba4b435e23b2461a2d9ce2"
         },
         "output": {
-          "bytes": 14269,
-          "sha256": "742d3d6e72dc3eee1e7f101a5a3e1273e1336ddaad4907f21078b3b9887220fe"
+          "bytes": 14387,
+          "sha256": "c055780129c3de40500c654b0c6e40ecdeee33ea47ba4b435e23b2461a2d9ce2"
         },
         "compatibility": "tests/owned/dual-array-browser-timers.test.cjs"
       },
@@ -282,6 +282,28 @@
         "output": {
           "bytes": 1377,
           "sha256": "0d2cc9baa176aabe55b15353a095b08afd5b75e9565333a8702eaf10bd8928e5"
+        }
+      },
+      {
+        "path": "tests/helpers/dual-array-record-leaf-preservation.cjs",
+        "input": {
+          "bytes": 1035,
+          "sha256": "32dcd1bed93ee7c25066c819ec771520ad9113a3c9d27881035ced322f1de171"
+        },
+        "output": {
+          "bytes": 1035,
+          "sha256": "32dcd1bed93ee7c25066c819ec771520ad9113a3c9d27881035ced322f1de171"
+        }
+      },
+      {
+        "path": "tests/helpers/dual-array-record-leaf-delta.json",
+        "input": {
+          "bytes": 51145,
+          "sha256": "7f116003386b02d6f97ce4fcc3c3c6038f9b86927a1cf4d39cba54da5ccef71e"
+        },
+        "output": {
+          "bytes": 51145,
+          "sha256": "7f116003386b02d6f97ce4fcc3c3c6038f9b86927a1cf4d39cba54da5ccef71e"
         }
       }
     ]

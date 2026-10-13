@@ -3,6 +3,7 @@
 // the unchanged timer leaf suite. The executed client always stays repaired.
 const a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const F=require('./dual-array-browser-integration-preservation.cjs');
+const records=require('./dual-array-record-portability-preservation.cjs');
 const specifications=require('./dual-array-browser-timer-fixture.json'),spec=specifications.timer;
 function prepare(root,name='timer'){
  a.ok(Object.hasOwn(specifications,name));const spec=specifications[name];
@@ -19,7 +20,7 @@ function prepare(root,name='timer'){
   }else{
    a.ok(F.identity(bytes,row.input),'exact current timer fixture input '+row.path);
    if(name==='timer'&&row.path===F.display.corrections[0].path)bytes=F.display.withoutCSS(bytes);
-   if(name==='timer'&&F.repair.adaptedPaths.includes(row.path))bytes=F.repair.withoutAdapter(row.path,bytes);
+   if(name==='timer'&&F.repair.adaptedPaths.includes(row.path))bytes=F.repair.withoutAdapter(row.path,records.maybeWithoutFile(row.path,bytes));
   }
   a.ok(F.identity(bytes,row.output),'exact accepted timer fixture output '+row.path);inputs.set(row.path,bytes);
  }
