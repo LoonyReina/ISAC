@@ -7,7 +7,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const R = require('./helpers/perceptive-bsbl-responsive-preservation.cjs');
 const root = path.resolve(__dirname, '..');
-const read = file => fs.readFileSync(path.join(root, file));
+const read = file => require('./helpers/lesson-narrow-layout-integration-preservation.cjs').maybeWithoutFile(file, fs.readFileSync(path.join(root, file)));
 const css = read(R.correction.path);
 const normalize = text => ['HEADER', 'CONTEXT', 'NEXT'].reduce((value, key) => value.replace(new RegExp('<!-- SITE:' + key + ':START -->[\\s\\S]*?<!-- SITE:' + key + ':END -->'), '<!-- SITE:' + key + ' -->'), text).replace(/\n$/, '');
 

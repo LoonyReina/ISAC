@@ -900,6 +900,93 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/lesson.mjs",
+      "sha256": "c6b83930e3aec78eb3b4c9c8976c62d6d13842213a2dbb59ff0c2eda18c8c781",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/lesson/model.mjs",
+      "sha256": "4608ebcfc164858358b884b2313fb3b8ccd373aea9ada8e57cec00d98a95b7e7",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/lesson/mount.mjs",
+      "sha256": "d2a2bd8468e5aa1ca49b5e9361675362be0f216f7069af1b437322715be34848",
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "../../../assets/data/dual-array/historical-statistics.json",
+          "literal": "fetchImpl('assets/data/dual-array/historical-statistics.json')"
+        }
+      ],
+      "runtimePolicy": "reviewed-dual-array-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/lesson/session.mjs",
+      "sha256": "5768801f8afeb248f77f844f5fd64666b3f0ba0fc25321675b72844bf5dd3664",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/lesson/view.mjs",
+      "sha256": "8f3907a4bc5202432ce9ceda1b7f456e1175a775123a94d0ef286124d4e69c10",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/runtime/client.mjs",
+      "sha256": "16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "reviewed-dual-array-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/runtime/kernel.mjs",
+      "sha256": "0292203f5dd4d0ff39592f892a332c5333f2ba8caf894effdc4a81d43702c32d",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/runtime/records.mjs",
+      "sha256": "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158",
+      "runtimeEdges": [
+        {
+          "kind": "dynamic-module",
+          "url": "./kernel.mjs",
+          "literal": "await import('./kernel.mjs')"
+        }
+      ],
+      "runtimePolicy": "reviewed-dual-array-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/dual-array/runtime/worker.mjs",
+      "sha256": "b2b2376d0b3c62a4e2ec58a84a1f95f31a0ddb1023d9a19940445f641d84f94f",
+      "runtimeEdges": [
+        {
+          "kind": "node-builtin",
+          "url": "node:worker_threads",
+          "literal": "await import('node:worker_threads')"
+        }
+      ],
+      "runtimePolicy": "reviewed-dual-array-runtime",
+      "unverifiedInputs": []
     }
   ]
 }

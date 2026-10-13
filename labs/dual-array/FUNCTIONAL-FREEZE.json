@@ -1,0 +1,128 @@
+{
+  "schema": "dual-array-lesson-functional-freeze-v1",
+  "date_utc": "2026-10-13",
+  "base_commit": "0e4cc192bf330cfbfb63cfdce2a94f553f4ed370",
+  "base_tree": "3bdf33e5a1d22a474c5e7d400c88e6ef5924fda4",
+  "scope": "owned lesson, unchanged accepted runtime, pinned synthetic offline evidence, focused owner tests",
+  "owner_tests": {
+    "passed": 42,
+    "failed": 0,
+    "receipt": "tests-final-v3.log",
+    "node_heap_mb": 512
+  },
+  "owner_formula_replay": {
+    "production_blob_downloads": 6,
+    "numeric_values_compared": 25563,
+    "receipt": "downloads-final-v2/independent-formula-replay.json"
+  },
+  "browser_acceptance": false,
+  "global_integration": false,
+  "remote_actions": false,
+  "files": [
+    {
+      "path": "content/pages/dual-array-positioning.html",
+      "bytes": 20979,
+      "sha256": "9a01945692d73de0ba18931a6af2cb8748aa83225c1fec7350451a92df43b5ed"
+    },
+    {
+      "path": "labs/dual-array/INTEGRATION.md",
+      "bytes": 2933,
+      "sha256": "a61d2f67830bfaa750aa4afc2cf461510a9e8446f6f6eb9a5a4129ad4fe039e1"
+    },
+    {
+      "path": "labs/dual-array/README.md",
+      "bytes": 3645,
+      "sha256": "bfe70bc4e069040aadaec4bb0989c19a50a515b01f61ce0da9a0c83ee1e6c8bc"
+    },
+    {
+      "path": "labs/dual-array/lesson/model.mjs",
+      "bytes": 6181,
+      "sha256": "4608ebcfc164858358b884b2313fb3b8ccd373aea9ada8e57cec00d98a95b7e7"
+    },
+    {
+      "path": "labs/dual-array/lesson/mount.mjs",
+      "bytes": 3708,
+      "sha256": "d2a2bd8468e5aa1ca49b5e9361675362be0f216f7069af1b437322715be34848"
+    },
+    {
+      "path": "labs/dual-array/lesson/session.mjs",
+      "bytes": 7000,
+      "sha256": "5768801f8afeb248f77f844f5fd64666b3f0ba0fc25321675b72844bf5dd3664"
+    },
+    {
+      "path": "labs/dual-array/lesson/tests/dom-harness.cjs",
+      "bytes": 7379,
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d"
+    },
+    {
+      "path": "labs/dual-array/lesson/tests/export-mounted.mjs",
+      "bytes": 2327,
+      "sha256": "cf53f48301e439f359d1386e46632cd434711a665ce29e53018275668d5a06f0"
+    },
+    {
+      "path": "labs/dual-array/lesson/tests/helpers.mjs",
+      "bytes": 1574,
+      "sha256": "397242b15967aef2fe6ff7bb3fbe9a92d804dc1fd469946a60b4bbf8a04faf20"
+    },
+    {
+      "path": "labs/dual-array/lesson/tests/lesson.test.mjs",
+      "bytes": 21925,
+      "sha256": "1845a0aaeadc213d5509eb1275573b48bd1b47c2dc84a80c3f525fd8891aa45a"
+    },
+    {
+      "path": "labs/dual-array/lesson/tests/replay_downloads.py",
+      "bytes": 7206,
+      "sha256": "a9c5f796ee7c82d2f40173d7fba78f7d8a65c1eacf22cf40459af4518b50326e"
+    },
+    {
+      "path": "labs/dual-array/lesson/view.mjs",
+      "bytes": 20075,
+      "sha256": "8f3907a4bc5202432ce9ceda1b7f456e1175a775123a94d0ef286124d4e69c10"
+    },
+    {
+      "path": "labs/dual-array/lesson.css",
+      "bytes": 6118,
+      "sha256": "edf7126ca31eba6bdb657710cf735d84e755268aa8677650daa984c0e8804d81"
+    },
+    {
+      "path": "labs/dual-array/lesson.mjs",
+      "bytes": 346,
+      "sha256": "c6b83930e3aec78eb3b4c9c8976c62d6d13842213a2dbb59ff0c2eda18c8c781"
+    },
+    {
+      "path": "labs/dual-array/runtime/client.mjs",
+      "bytes": 6092,
+      "sha256": "16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824"
+    },
+    {
+      "path": "labs/dual-array/runtime/kernel.mjs",
+      "bytes": 22735,
+      "sha256": "0292203f5dd4d0ff39592f892a332c5333f2ba8caf894effdc4a81d43702c32d"
+    },
+    {
+      "path": "labs/dual-array/runtime/records.mjs",
+      "bytes": 23311,
+      "sha256": "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158"
+    },
+    {
+      "path": "labs/dual-array/runtime/worker.mjs",
+      "bytes": 3496,
+      "sha256": "b2b2376d0b3c62a4e2ec58a84a1f95f31a0ddb1023d9a19940445f641d84f94f"
+    },
+    {
+      "path": "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+      "bytes": 2896,
+      "sha256": "248a7e3f1f4954999677fdc6077a0f04ed0693754e28c72ceba696fb3583b6f6"
+    },
+    {
+      "path": "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+      "bytes": 9631,
+      "sha256": "6f62999886b5a118d245940632733b2dcc9ac33ca9a9bda5d4bc919adc3a45c3"
+    },
+    {
+      "path": "assets/data/dual-array/historical-statistics.json",
+      "bytes": 365594,
+      "sha256": "e54cc91dbc25f25b48584dedd98b885305eed33e4e7bc2c22eeb6a8bdb98018b"
+    }
+  ]
+}

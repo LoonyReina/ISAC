@@ -57,6 +57,7 @@ test('prerequisite links name their subjects consistently in cards and shared pa
   'perceptive-clutter.html#question':'递归背景的复数相减先修',
   'network-clock.html#model':'标量互易时延与时钟先修',
   'near-field.html#experiment':'近场一程无噪声曲率先修',
+  'near-field.html#geometry':'近场曲率与双孔径几何先修',
   'offgrid-range.html#model':'离格测距的观测与模型',
   ...Object.fromEntries(registry.units.map(u=>[u.href,u.title])),
   'foundations.html#start':'基础讲义的起点与学习约定',

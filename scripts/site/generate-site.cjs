@@ -25,6 +25,7 @@ const prerequisiteTitles={
  'perceptive-clutter.html#question':'递归背景的复数相减先修',
  'network-clock.html#model':'标量互易时延与时钟先修',
  'near-field.html#experiment':'近场一程无噪声曲率先修',
+ 'near-field.html#geometry':'近场曲率与双孔径几何先修',
  'offgrid-range.html#model':'离格测距的观测与模型',
  'foundations.html#start':'基础讲义的起点与学习约定',
  'foundations.html#limits':'性能指标与边界',
@@ -36,11 +37,12 @@ function prerequisiteLink(href){const title=registry.units.find(u=>u.href===href
 // Rendering stages bytes from handwritten sources. Generated-only outputs are
 // never inputs; no output is written before complete link/duplicate-ID validation.
 function emit(file,text){if(outputs.has(file))throw new Error('Duplicate generated output: '+file);outputs.set(file,text.trimEnd()+'\n');}
-function header(page){return `${page.path==='pilot-patterns.html'?'<link rel="stylesheet" href="'+siteStylesheet+'">':''}<a class="site-skip" href="#site-main">跳到正文</a>
+function header(page){return `${['pilot-patterns.html','dual-array-positioning.html'].includes(page.path)?'<link rel="stylesheet" href="'+siteStylesheet+'">':''}<a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html"${page.path==='index.html'?' aria-current="page"':''}>ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航">${registry.stages.map(s=>link(s.href,`<span>${s.step}</span> ${s.label}`,page.stage===s.id?` aria-current="${page.path===s.href?'page':'location'}"`:'')).join('')}</nav>${page.path==='foundations.html'?'<button id="print-book" type="button" title="打印或另存为 PDF">打印讲义</button><div id="progress" aria-hidden="true"></div>':''}</header>`;}
-function context(page){const stage=registry.stages.find(s=>s.id===page.stage);let text=`<div class="site-context"${page.path==='pilot-patterns.html'?'':' id="site-main" tabindex="-1"'}><nav class="site-breadcrumb" aria-label="当前位置">${link('index.html','学习地图')}${stage?' <span aria-hidden="true">/</span> '+(stage.href===page.path?`<span aria-current="page">${stage.label}</span>`:link(stage.href,stage.label)+' <span aria-hidden="true">/</span> <span aria-current="page">'+page.title+'</span>'):''}</nav><p class="site-role">${page.role}</p>`;
+function context(page){const stage=registry.stages.find(s=>s.id===page.stage);let text=`<div class="site-context"${['pilot-patterns.html','dual-array-positioning.html'].includes(page.path)?'':' id="site-main" tabindex="-1"'}><nav class="site-breadcrumb" aria-label="当前位置">${link('index.html','学习地图')}${stage?' <span aria-hidden="true">/</span> '+(stage.href===page.path?`<span aria-current="page">${stage.label}</span>`:link(stage.href,stage.label)+' <span aria-hidden="true">/</span> <span aria-current="page">'+page.title+'</span>'):''}</nav><p class="site-role">${page.role}</p>`;
 if(page.prerequisites.length)text+=`<p class="site-prereq">需要时回看：${page.prerequisites.map(prerequisiteLink).join(' · ')}</p>`;
 if(page.case){const c=page.path==='pilot-design.html'?{...caseFor(page.case),unit:'pilot',paper:'pilot-design.html#case',next:'pilot-design.html#reproduce'}:caseFor(page.case);text+=`<nav class="site-topic-nav" aria-label="本主题学习路线">${link(unitFor(c.unit).href,'① 预测与实验')}${link(c.paper,'② 原文与证据')}${link(c.next,'③ 边界与下一问')}${link(notebookHref(c.unit),'④ 记录一次研究')}</nav>`;}
+if(page.path==='dual-array-positioning.html')text+='<p class="small">既有论文身份：nearfield-double-array-ispac。'+link('assets/data/dual-array/lesson-review/ACCEPTANCE.md','2026-10-13 独立功能/数值接受')+'：33 组实际 Node Worker 检查、15 份生产 Blob 导出与 37,495 项公式比较；真实浏览器、90,000 格 SVG 绘制/内存、布局和原生网络仍待单独验收。14,464 次冻结试验不是本次运行。</p>';
 if(page.path==='pilot-patterns.html')text+='<p class="small">既有论文身份：supplement-case-pilot。当前范围：'+link('assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md','2026-10-13 独立功能/来源接受')+'；473 项 Node 断言与 1511 项 NumPy 核查支持有界课件，真实浏览器、布局、原生下载与完整绘制时延仍待验收。早期合同保留其历史阶段。</p>';
 if(page.path==='theory.html')text+='<nav class="site-topic-nav" aria-label="理论桥梁目录"><a href="#pathway">任务与先修</a><a href="#shared-model">共同观测</a><a href="#crb-mechanism">标量 CRB</a><a href="#estimator-crb">实际估计器</a><a href="#rate-crb-bridge">速率桥梁</a><a href="reading.html#case-crb">原文与证据</a></nav>';
 return text+'</div>';}

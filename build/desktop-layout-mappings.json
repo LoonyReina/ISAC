@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "c7281552ffb9205a08171059610a753bd59885fe",
+  "baselineTree": "0ae38118719fb43ec8113c99c54bf6a3c28f7391",
+  "baselineManifestSha256": "78eeb22e986b396abea4108915abb3425cdc18eb13aff7431f3b79ae4068710f",
+  "addedEntries": [
+    {
+      "source": "tests/helpers/pilot-sticky-layout-preservation.cjs",
+      "compatibility": "tests/helpers/pilot-sticky-layout-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/perceptive-sticky-layout-preservation.cjs",
+      "compatibility": "tests/helpers/perceptive-sticky-layout-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/desktop-layout-integration-preservation.cjs",
+      "compatibility": "tests/helpers/desktop-layout-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/desktop-layout-integration-delta.json",
+      "compatibility": "tests/helpers/desktop-layout-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/desktop-layout-mappings.json",
+      "compatibility": "build/desktop-layout-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}
