@@ -483,3 +483,18 @@ test('page controls are labeled, stages are progressive, and scientific/runtime 
 });
 
 module.exports = { identity, canonical };
+
+test('record notice expires after imported recompute and lifecycle reset', {timeout:30000}, async t=>{
+ const h=await mounted(t); await compactRun(h);
+ await h.get('ns-export-raw').fire('click');
+ const exported=h.get('ns-record-status').textContent;
+ await compactRun(h); const exportAfterRun=h.get('ns-record-status').textContent;
+ h.get('ns-import').files=[fileOf(h.downloads[0].text)];await h.get('ns-import').fire('change');
+ const imported=h.get('ns-record-status').textContent;
+ await h.get('ns-apply').fire('click');
+ assert.equal(h.app.controller.state,'complete');
+ const after=h.get('ns-record-status').textContent;
+ assert.match(exported,/已生成|已导出|已下载/);assert.doesNotMatch(exportAfterRun,/已导出|已下载/);assert.match(imported,/请应用|只导入|仍为历史/);
+ assert.doesNotMatch(after,/请应用|只导入|仍为历史/);
+ await h.get('ns-reset').fire('click');assert.doesNotMatch(h.get('ns-record-status').textContent,/已导出|已下载|请应用|只导入|仍为历史/);
+});

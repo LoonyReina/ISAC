@@ -18,9 +18,18 @@ function observation(c){const n=c.shape.reduce((a,b)=>a*b,1),p=c.shape[1]*c.shap
 async function run(r,h){r=validateRequest(r);trace.active++;trace.maxActive=Math.max(trace.maxActive,trace.active);try{const n=r.config.seed===99999?10000:4;for(let i=0;i<n;i++)await h.checkpoint('fixture-compute',{done:i,total:n});if(r.config.seed===88888)throw Error('fixture kernel failure');trace.completed++;return {status:'fresh-execution',config:r.config,observation:r.operation==='held'?r.observation:observation(r.config),methods:{fixture:{numerical_success:true}},fixtureSeed:r.config.seed};}finally{trace.active--;}}
 const api={validateRequest,run};root.NetworkedSync=api;if(typeof module==='object')module.exports=api;
 }(globalThis));`;
+// FIFO transport delay only: the real Worker and kernel remain unchanged. The
+// observed mailbox sees messages as Node receives them; delivery can be paused
+// without sleeps or reordering to model a busy consumer's queued messages.
+class DelayedTransport extends EventEmitter {
+ constructor(worker){super();this.worker=worker;this.observed=mailbox();this.queue=[];this.paused=false;this.pauseAfter=null;worker.on('message',e=>{this.observed.receive(e);if(this.paused)this.queue.push(e);else{this.emit('message',e);if(this.pauseAfter&&this.pauseAfter(e))this.paused=true;}});for(const type of ['error','messageerror','exit'])worker.on(type,e=>this.emit(type,e));}
+ postMessage(e){this.worker.postMessage(e);}
+ flush(){this.paused=false;this.pauseAfter=null;for(const e of this.queue.splice(0))this.emit('message',e);}
+ terminate(){this.observed.clear();return this.worker.terminate();}
+}
 async function nodeWorker(t,opts={}){
  let filename=entry,temp;if(opts.stub||opts.failImport){temp=fs.mkdtempSync(path.join(os.tmpdir(),'ns-worker-test-'));fs.mkdirSync(path.join(temp,'worker'));fs.mkdirSync(path.join(temp,'js'));for(const f of ['receiver-worker.js','protocol.js'])fs.copyFileSync(path.join(root,'worker',f),path.join(temp,'worker',f));for(const f of ['codec.js','sha256.js'])fs.copyFileSync(path.join(root,'js',f),path.join(temp,'js',f));if(opts.stub)fs.writeFileSync(path.join(temp,'js/receiver.js'),stub);filename=path.join(temp,'worker/receiver-worker.js');}
- const worker=new Worker(filename),box=mailbox();worker.on('message',box.receive);worker.on('error',e=>box.receive({type:'transport-error',message:e.message}));t.after(async()=>{box.clear();await worker.terminate();if(temp)fs.rmSync(temp,{recursive:true,force:true});});const ready=await box.wait(e=>e.type==='ready');return {...box,worker,ready,filename,send:x=>worker.postMessage(x)};
+ const actualWorker=new Worker(filename),worker=opts.delay?new DelayedTransport(actualWorker):actualWorker,box=mailbox();worker.on('message',box.receive);worker.on('error',e=>box.receive({type:'transport-error',message:e.message}));t.after(async()=>{box.clear();await worker.terminate();if(temp)fs.rmSync(temp,{recursive:true,force:true});});const ready=await box.wait(e=>e.type==='ready');return {...box,worker,ready,filename,send:x=>worker.postMessage(x)};
 }
 function browserVM(t,opts={}){const box=mailbox(),timers=new Set(),imports=[];let handler;const scope={TextEncoder,TextDecoder,performance,setTimeout(fn,ms){const timer=setTimeout(()=>{timers.delete(timer);fn();},ms);timers.add(timer);return timer;},clearTimeout(timer){clearTimeout(timer);timers.delete(timer);},postMessage:x=>box.receive(structuredClone(x)),addEventListener(name,fn){if(name==='message')handler=fn;}};scope.self=scope;const context=vm.createContext(scope);scope.importScripts=(...urls)=>{imports.push(...urls);if(opts.failImport)throw Error('fixture import failure');for(const url of urls){const code=!opts.real&&url.endsWith('/receiver.js')?stub:fs.readFileSync(path.resolve(root,'worker',url),'utf8');vm.runInContext(code,context,{filename:url});}};vm.runInContext(fs.readFileSync(entry,'utf8'),context,{filename:entry});t.after(()=>{for(const timer of timers)clearTimeout(timer);box.clear();});return {...box,context,imports,send:x=>handler({data:x})};}
 async function run(w,id='run',extra={}){w.send({type:'run',id,request:request(extra)});const e=await w.terminal(id);assert.equal(e.type,'complete',JSON.stringify(e));return e;}
@@ -35,8 +44,54 @@ test('actual Node Worker: fresh kernel result, raw/history export, validated imp
  w.send({type:'process',id:'rerun',observationId:'import',config:{iterations:2}});const processed=await w.terminal('rerun');assert.equal(processed.type,'complete',JSON.stringify(processed));assert.equal(processed.result.freshExecution,true);assert.equal(processed.result.result.operation,'held');assert.equal('truth'in processed.result.result,false);assert.equal('evaluation'in processed.result.result,false);assert.equal(processed.result.identity.sample_sha256,raw.identity.sample_sha256);assert.notEqual(processed.result.identity.config_sha256,raw.identity.config_sha256);
  const progress=w.events.filter(e=>e.id==='fresh'&&e.type==='progress');assert.ok(progress.some(e=>e.progress.stage==='initialization-start'));assert.ok(progress.some(e=>e.progress.stage==='hash-samples'));assert.equal(w.events.at(-1).type,'complete');oneTerminal(w,'fresh','complete');
 });
+function cancelledAfterAcknowledgement(w,id,ack){
+ assert.equal(ack.operation,'cancel');assert.equal(ack.result.targetId,id);assert.equal(ack.result.cancelled,true);
+ const boundary=w.events.indexOf(ack);assert.notEqual(boundary,-1,'Cancellation acknowledgement must be observed');
+ // Only receipt of the acknowledgement establishes the raw transport fence.
+ // Progress already sent by the Worker may arrive after the caller sends cancel.
+ noStale(w,id,boundary+1);oneTerminal(w,id,'cancelled');
+}
 test('actual Node Worker: cooperative cancellation suppresses stale completion and preserves previously held raw data',async t=>{
- const w=await nodeWorker(t);await run(w,'prior');w.send({type:'run',id:'long',request:request({shape:[6,12,8],rank:2,iterations:20})});await w.wait(e=>e.id==='long'&&e.type==='progress');const boundary=w.events.length;w.send({type:'cancel',id:'cancel',targetId:'long'});assert.equal((await w.terminal('cancel')).result.cancelled,true);assert.equal((await w.terminal('long')).type,'cancelled');noStale(w,'long',boundary);oneTerminal(w,'long','cancelled');w.send({type:'export',id:'old-raw',observationId:'prior',mode:'raw'});assert.equal((await w.terminal('old-raw')).type,'complete');await run(w,'reusable');
+ const w=await nodeWorker(t);await run(w,'prior');w.send({type:'run',id:'long',request:request({shape:[6,12,8],rank:2,iterations:20})});await w.wait(e=>e.id==='long'&&e.type==='progress');w.send({type:'cancel',id:'cancel',targetId:'long'});const ack=await w.terminal('cancel');assert.equal(ack.result.cancelled,true);assert.equal((await w.terminal('long')).type,'cancelled');cancelledAfterAcknowledgement(w,'long',ack);w.send({type:'export',id:'old-raw',observationId:'prior',mode:'raw'});assert.equal((await w.terminal('old-raw')).type,'complete');await run(w,'reusable');cancelledAfterAcknowledgement(w,'long',ack);
+});
+test('actual Node Worker: FIFO-delayed pre-cancel progress is legal, post-ack progress or completion is not',async t=>{
+ const w=await nodeWorker(t,{delay:true});await run(w,'prior');
+ w.worker.pauseAfter=e=>e.id==='long'&&e.type==='progress';
+ w.send({type:'run',id:'long',request:request({shape:[6,12,8],rank:2,iterations:20})});
+ const first=await w.wait(e=>e.id==='long'&&e.type==='progress');
+ // Wait for actual additional Worker progress to be held, not a guessed delay.
+ await w.worker.observed.wait(e=>e.id==='long'&&e.type==='progress'&&e!==first);
+ const sentBoundary=w.events.length;assert.ok(w.worker.queue.some(e=>e.id==='long'&&e.type==='progress'));
+ w.send({type:'cancel',id:'cancel',targetId:'long'});
+ const ack=await w.worker.observed.terminal('cancel');assert.equal(ack.result.cancelled,true);
+ assert.equal((await w.worker.observed.terminal('long')).type,'cancelled');w.worker.flush();
+ // The old pre-send assertion demonstrably rejects this legal FIFO trace.
+ assert.throws(()=>noStale(w,'long',sentBoundary),assert.AssertionError);
+ cancelledAfterAcknowledgement(w,'long',ack);
+ const trace=w.events.filter(e=>e.id==='long'||e.id==='cancel');
+ t.diagnostic(JSON.stringify(trace.map(e=>({id:e.id,type:e.type,stage:e.progress&&e.progress.stage,cancelled:e.result&&e.result.cancelled}))));
+ // Inject stale messages into copies of that observed event stream. Each
+ // must fail the same oracle, including a completion before the acknowledgement.
+ const ackIndex=w.events.indexOf(ack);
+ for(const type of ['progress','complete']){
+  const events=w.events.slice();events.splice(ackIndex+1,0,{type,id:'long',operation:'run',progress:{stage:'injected-stale'},result:{stale:true}});
+  assert.throws(()=>cancelledAfterAcknowledgement({events},'long',ack),assert.AssertionError);
+ }
+ const early=w.events.slice();early.splice(ackIndex,0,{type:'complete',id:'long',operation:'run',result:{stale:true}});
+ assert.throws(()=>cancelledAfterAcknowledgement({events:early},'long',ack),assert.AssertionError);
+ w.send({type:'export',id:'old-raw',observationId:'prior',mode:'raw'});assert.equal((await w.terminal('old-raw')).type,'complete');await run(w,'reusable');cancelledAfterAcknowledgement(w,'long',ack);
+});
+test('actual Worker client: cancellation rejects real completion already queued by delayed transport',async t=>{
+ const w=await nodeWorker(t,{delay:true}),events=[];let progress=0;
+ const client=new Client(w.worker,{onEvent:e=>events.push(e)});t.after(()=>client.dispose());
+ w.worker.paused=true;
+ const task=client.run(request(),{id:'queued',onProgress:()=>progress++});
+ assert.equal((await w.worker.observed.terminal('queued')).type,'complete');
+ assert.equal(task.cancel(),true);w.worker.flush();
+ const result=await task.result;assert.equal(result.type,'cancelled');assert.equal(result.queuedResultSuppressed,true);
+ assert.equal(progress,0);assert.equal(events.some(e=>e.id==='queued'&&['progress','complete'].includes(e.type)),false);
+ const ack=await w.worker.observed.wait(e=>e.operation==='cancel'&&e.type==='complete');assert.equal(ack.result.cancelled,false);
+ assert.equal((await client.run(request(),{id:'reusable'}).result).type,'complete');assert.equal(client.pending.size,0);
 });
 test('Node Worker transport with deterministic kernel fixture: burst supersession serializes and emits one terminal per accepted id',async t=>{
  const w=await nodeWorker(t,{stub:true});w.send({type:'run',id:'old',request:request({seed:99999})});await w.wait(e=>e.id==='old'&&e.type==='progress');const boundary=w.events.length;for(let i=0;i<8;i++)w.send({type:'run',id:'new'+i,request:request({seed:i+10})});assert.equal((await w.terminal('old')).type,'superseded');for(let i=0;i<7;i++)assert.equal((await w.terminal('new'+i)).type,'superseded');assert.equal((await w.terminal('new7')).result.result.fixtureSeed,17);oneTerminal(w,'old','superseded');for(let i=0;i<8;i++)oneTerminal(w,'new'+i,i===7?'complete':'superseded');noStale(w,'old',boundary);

@@ -5,7 +5,7 @@ const {classicDependencies}=require('../scripts/build/classic-dependencies.cjs')
 const {checkDependencies}=require('../scripts/build/compatibility.cjs');
 const root=path.resolve(__dirname,'..'),prefix='labs/gaussian-tradeoff/',runtime=prefix+'runtime/';
 const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeModuleContracts(require('../scripts/build/module-runtime-contracts.json'));
-const delta=require('./helpers/gaussian-tradeoff-runtime-delta.json'),baseline=require('./helpers/gaussian-tradeoff-baseline.json');
+const historicalDelta=require('./helpers/gaussian-tradeoff-runtime-delta.json'),delta={...historicalDelta,moduleProfiles:historicalDelta.moduleProfiles.map(row=>modules.modules.find(x=>x.public===row.public))},B=require('./helpers/cellfree-maprt-build-preservation.cjs'),baseline=require('./helpers/gaussian-tradeoff-baseline.json');
 const manifest=require('../build/compatibility-manifest.json');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 function read(file){const direct=path.join(root,file);if(fs.existsSync(direct))return require('./helpers/cellfree-maprt-build-preservation.cjs').priorBytes(file,fs.readFileSync(direct)).toString();const entry=manifest.entries.find(e=>e.public===file);a.ok(entry?.source,'mapped input '+file);return fs.readFileSync(path.join(root,entry.source),'utf8');}
@@ -17,12 +17,13 @@ function classicEdges(f){return classicDependencies(f.source,f.contract,f.identi
 function inverse(source,changes){for(const change of [...changes].reverse()){a.equal(source.split(change.after).length,2,'exact reversible source fragment');source=source.replace(change.after,change.before);}return source;}
 
 test('Gaussian extension preserves every prior 27 classic and 32 ESM row and exact gate source',()=>{
+ const self='tests/gaussian-tradeoff-dependencies.test.cjs',record=B.hostedUiAdapters.find(x=>x.path===self),currentSelf=fs.readFileSync(path.join(root,self));a.ok(!manifest.entries.some(x=>x.source===self),'source-only adapter must stay outside compatibility staging');a.equal(sha(B.withoutHostedUiAdapter(self,currentSelf)),record.before.sha256);a.throws(()=>B.withoutHostedUiAdapter(self,Buffer.concat([currentSelf,Buffer.from('/* unrelated */')])));
  a.equal(delta.priorClassicProfileCount,27);a.equal(delta.priorModuleProfileCount,32);a.equal(classic.scripts.length,28);a.equal(modules.modules.length,41);
- a.deepEqual(classic.scripts.slice(27),delta.classicProfiles);a.deepEqual(modules.modules.slice(32),delta.moduleProfiles);
- a.equal(sha(JSON.stringify({schemaVersion:1,scripts:classic.scripts.slice(0,27)},null,2)+'\n'),baseline.classicContracts);
- a.equal(sha(JSON.stringify({schemaVersion:1,modules:require('./helpers/gaussian-tradeoff-preservation.cjs').withoutNearfieldExportContracts(modules).modules.slice(0,32)},null,2)+'\n'),baseline.esmContracts);
+ a.deepEqual(classic.scripts.slice(27),delta.classicProfiles);a.deepEqual(B.withoutHostedUiContracts(modules,'module').modules.slice(32),historicalDelta.moduleProfiles);
+ a.equal(sha(JSON.stringify({schemaVersion:1,scripts:B.withoutHostedUiContracts(classic,'classic').scripts.slice(0,27)},null,2)+'\n'),baseline.classicContracts);
+ a.equal(sha(JSON.stringify({schemaVersion:1,modules:require('./helpers/gaussian-tradeoff-preservation.cjs').withoutNearfieldExportContracts(B.withoutHostedUiContracts(modules,'module')).modules.slice(0,32)},null,2)+'\n'),baseline.esmContracts);
  for(const [file,key,hash]of [['classic-dependencies.cjs','classicParserChanges','classicParser'],['module-dependencies.cjs','moduleParserChanges','esmParser'],['compatibility.cjs','builderChanges','builder']]){
-  const source=read('scripts/build/'+file);a.equal(sha(inverse(source,delta[key])),baseline[hash]);
+  const current=read('scripts/build/'+file),source=file==='compatibility.cjs'?current:B.withoutHostedUiParser(current,file.startsWith('classic')?'classic':'module');a.equal(sha(inverse(source,delta[key])),baseline[hash]);
   const damaged=source.replace(delta[key][0].after,delta[key][0].after+'\n/* unreviewed */');a.notEqual(sha(inverse(damaged,delta[key])),baseline[hash]);
  }
 });

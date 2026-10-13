@@ -161,7 +161,7 @@ const profiles=[
   },
   {
     "public": "labs/80211ad/lesson/lesson.js",
-    "sha256": "7a890a51bffa4ef51520ecf51c0aff720c12eb373e1194d1c7fa73eaa711a8eb",
+    "sha256": "124cf884cfb3bf461c313f653732ac588f4c989d8d21c8cfbc5947506265624f",
     "runtimePolicy": "exact-frozen-classic",
     "runtimeEdges": []
   },
@@ -173,7 +173,7 @@ const profiles=[
   },
   {
     "public": "labs/networked-sync/lesson/lesson.js",
-    "sha256": "34818f7c783c4234bd2d328d3ab57265c8b6a58f7fadf3d64d2ed3ca9e27f552",
+    "sha256": "6f811fcf415608f8fa40d5f931e73b505d935f4055017a72f75c0b305271b3dc",
     "runtimePolicy": "exact-frozen-classic",
     "runtimeEdges": [
       {

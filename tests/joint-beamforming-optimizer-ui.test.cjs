@@ -9,17 +9,32 @@ const copy=x=>JSON.parse(JSON.stringify(x)),settle=()=>new Promise(resolve=>setI
 function saveEvidence(name,record){if(process.env.JBO_EVIDENCE_DIR){fs.mkdirSync(process.env.JBO_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.JBO_EVIDENCE_DIR,name+'.json'),JSON.stringify(record,null,2)+'\n');}}
 function setup({missingWorker=false,workerThrows=false,importThrows=false,missingRecord=false,cryptoImpl}={}){
  class Element{constructor(tag=''){this.tag=tag;this.children=[];this.value='';this.disabled=false;this.hidden=false;this.open=false;this.dataset={};this.attrs={};this.events={};this.textContent='';this.id='';}setAttribute(k,v){this.attrs[k]=String(v);}getAttribute(k){return this.attrs[k];}append(...children){this.children.push(...children);}replaceChildren(...children){this.children=children;}remove(){}addEventListener(name,fn,capture=false){(this.events[name]??=[]).push({fn,capture});}fire(name){const e={target:this,defaultPrevented:false,stopped:false,preventDefault(){this.defaultPrevented=true;},stopImmediatePropagation(){this.stopped=true;}};for(const{fn}of[...(this.events[name]||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){fn(e);if(e.stopped)break;}return e;}}
+ const recordListeners=new Set();
  const els={},workers=[],events={},timers=new Map(),blobs=[],downloads=[],revoked=[];let time=0,timer=0;
  for(const[,id]of html.matchAll(/\bid="([^"]+)"/g))els[id]=new Element();
  for(const[id,value]of[['jbo-gamma','12'],['jbo-gamma-slider','12'],['jbo-budget','20000'],['jbo-preset','default'],['jbo-prediction','inspect']])els[id].value=value;
  const document={visibilityState:'visible',getElementById:id=>els[id]||null,createElement:tag=>{const e=new Element(tag);if(tag==='a')e.click=()=>downloads.push({href:e.href,name:e.download});return e;},createElementNS:(_ns,tag)=>new Element(tag),body:new Element('body'),addEventListener:(name,fn)=>(events[name]??=[]).push(fn)};
  const env={document,JointBeamformingLesson:M,JointBeamformingData:D,performance:{now:()=>++time},navigator:{userAgent:'Controlled Node DOM VM; not a browser'},setTimeout:(fn,delay)=>{const id=++timer;timers.set(id,{fn,delay});return id;},clearTimeout:id=>timers.delete(id),addEventListener:(name,fn)=>(events[name]??=[]).push(fn),Blob:class{constructor(parts){this.parts=parts;blobs.push(this);}},URL:{createObjectURL:()=>`blob:test-${blobs.length}`,revokeObjectURL:url=>revoked.push(url)},TextEncoder,crypto:cryptoImpl};env.window=env;
- if(!missingRecord){vm.runInNewContext(recordScript,env);}
+ if(!missingRecord){
+  vm.runInNewContext(recordScript,env);
+  const original=env.ExperimentRecord;
+  // Observe successful publication after the real record component updates the DOM.
+  env.ExperimentRecord={...original,create(options){const record=original.create(options);return {...record,update(...args){record.update(...args);for(const notify of recordListeners)notify();}};}};
+ }
  class Worker{constructor(url){if(workerThrows)throw Error('Worker creation blocked');assert.match(url,/^joint-beamforming-optimizer\/worker\.js/);this.url=url;this.tasks=[];this.requests=[];this.messages=[];this.terminated=false;workers.push(this);const w=this;this.context=vm.createContext({performance,Float64Array,Float32Array,Int32Array,ArrayBuffer,Uint8Array,setTimeout:fn=>{w.tasks.push(fn);return w.tasks.length;},postMessage:m=>{const msg=structuredClone(m);w.messages.push(msg);w.onmessage?.({data:msg});},importScripts:(...names)=>{if(importThrows)throw Error('script import blocked');for(const name of names){assert.ok(workerCode[name]);vm.runInContext(workerCode[name],w.context);}}});vm.runInContext('self=globalThis;',this.context);try{vm.runInContext(workerCode['worker.js'],this.context);}catch(e){this.tasks.push(()=>this.onerror?.({message:e.message}));this.loadFailed=true;}}
  postMessage(msg){this.requests.push(structuredClone(msg));if(!this.loadFailed)this.tasks.push(()=>this.context.onmessage({data:structuredClone(msg)}));}terminate(){this.terminated=true;this.tasks=[];}step(){if(!this.terminated&&this.tasks.length)this.tasks.shift()();}deliver(msg){this.onmessage?.({data:structuredClone(msg)});}}
  if(!missingWorker)env.Worker=Worker;
  const api=UI.mount(env);
- const s={els,workers,events,timers,blobs,downloads,revoked,api,env,click:id=>els['jbo-'+id].fire('click'),change(id,value,event='input'){els['jbo-'+id].value=String(value);els['jbo-'+id].fire(event);},edit(k,m,part,value){const f=api.fields.find(f=>+f.dataset.user===k&&+f.dataset.antenna===m&&f.dataset.part===part);f.value=String(value);f.fire('input');},start(){this.click('run');return workers.at(-1);},step(){workers.find(w=>!w.terminated&&w.tasks.length)?.step();},async drain(limit=5000){for(let i=0;i<limit;i++){const w=workers.find(w=>!w.terminated&&w.tasks.length);if(!w)break;w.step();if(i===limit-1)throw Error('Test worker did not finish');}await settle();await settle();},download(){const count=blobs.length;this.click('download');return blobs.length>count?JSON.parse(blobs.at(-1).parts[0]):null;},until(predicate,limit=5000){for(let i=0;!predicate()&&i<limit;i++)this.step();assert.ok(predicate(),'Condition did not occur');}};return s;
+ function waitForRecord(timeoutMs=5000){
+  if(api?.record)return Promise.resolve(api.record);
+  return new Promise((resolve,reject)=>{
+   const published=()=>{clearTimeout(timeout);recordListeners.delete(published);resolve(api.record);};
+   // This is a failure deadline, not a sleep or a scheduler-turn completion guess.
+   const timeout=setTimeout(()=>{recordListeners.delete(published);reject(Error(`Record publication timed out after ${timeoutMs} ms`));},timeoutMs);
+   recordListeners.add(published);
+  });
+ }
+ const s={waitForRecord,els,workers,events,timers,blobs,downloads,revoked,api,env,click:id=>els['jbo-'+id].fire('click'),change(id,value,event='input'){els['jbo-'+id].value=String(value);els['jbo-'+id].fire(event);},edit(k,m,part,value){const f=api.fields.find(f=>+f.dataset.user===k&&+f.dataset.antenna===m&&f.dataset.part===part);f.value=String(value);f.fire('input');},start(){this.click('run');return workers.at(-1);},step(){workers.find(w=>!w.terminated&&w.tasks.length)?.step();},async drain(limit=5000){for(let i=0;i<limit;i++){const w=workers.find(w=>!w.terminated&&w.tasks.length);if(!w)break;w.step();if(i===limit-1)throw Error('Test worker did not finish');}await settle();await settle();},download(){const count=blobs.length;this.click('download');return blobs.length>count?JSON.parse(blobs.at(-1).parts[0]):null;},until(predicate,limit=5000){for(let i=0;!predicate()&&i<limit;i++)this.step();assert.ok(predicate(),'Condition did not occur');}};return s;
 }
 function clear(s){assert.equal(s.els['jbo-download'].disabled,true);assert.equal(s.api.record,null);assert.equal(s.els['jbo-users'].children.length,0);assert.equal(s.els['jbo-summary-sdr'].attrs['data-state'],'not_attempted');assert.equal(s.els['jbo-summary-zf'].attrs['data-state'],'not_attempted');}
 let defaultMessages;
@@ -46,7 +61,53 @@ test('raw shared-scale plot geometry remains finite and trace points are actual 
 test('page preserves canonical route, explicitly separate analytic example, source limits and keyboard labels',()=>{for(const id of ['intuition','model','experiment','solution','paper','limits','reproduce','analytic-prerequisite'])assert.match(html,new RegExp(`id="${id}"`));assert.equal([...html.matchAll(/\bid="experiment"/g)].length,1);assert.match(html,/8 阵元 A → B → C.*不是优化器/);assert.match(html,/不是严格可行上界/);assert.match(html,/ZF 无解不意味着较宽松的 SDR 无解/);assert.match(html,/没有运行算法，也没有当前参数的结果/);for(const id of ['jbo-preset','jbo-gamma','jbo-gamma-slider','jbo-budget','jbo-h-json'])assert.match(html,new RegExp(`for="${id}"`));assert.match(css,/prefers-reduced-motion/);assert.match(css,/max-width:600px/);assert.match(css,/focus-visible/);const src=read('joint-beamforming-optimizer.js','labs/joint-beamforming/joint-beamforming-optimizer.js');assert.doesNotMatch(src,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|setInterval/);assert.doesNotMatch(src,/reference\.json|\.zip/);});
 
 test('asynchronous hash completion cannot revive an old result after an input edit',async()=>{const pending=[],cryptoImpl={subtle:{digest:(_alg,bytes)=>new Promise(resolve=>pending.push({resolve,bytes}))}},s=setup({cryptoImpl});await deliverDefaults(s);assert.equal(pending.length,2);assert.equal(s.els['jbo-download'].disabled,true);s.change('gamma',18);for(const p of pending)p.resolve(new Uint8Array(32).buffer);await settle();await settle();clear(s);assert.match(s.els['jbo-status'].textContent,/参数已改变/);});
-test('real SHA256 covers exact canonical input/model and is named separately from binary H identity',async()=>{const crypto=require('node:crypto'),s=setup({cryptoImpl:crypto.webcrypto});await deliverDefaults(s);for(let i=0;i<20&&!s.api.record;i++)await settle();const r=s.download();assert.ok(r);const expected=crypto.createHash('sha256').update(M.canonical(s.api.current.snapshot.input)).digest('hex');assert.equal(r.inputs.inputFingerprint.value,expected);assert.match(r.inputs.inputFingerprint.algorithm,/canonical sorted-key JSON/);assert.notEqual(expected,D.defaultInput.provenance.channelSha256Complex128LittleEndianRowMajor);assert.equal(r.baseline.identity.modelFingerprint.value,r.model.modelFingerprint.value);});
+function assertRealFingerprints(s){
+ const crypto=require('node:crypto'),r=s.download();assert.ok(r);
+ const expected=crypto.createHash('sha256').update(M.canonical(s.api.current.snapshot.input)).digest('hex');
+ const expectedModel=crypto.createHash('sha256').update(M.canonical(M.modelLedger())).digest('hex');
+ assert.equal(r.inputs.inputFingerprint.value,expected);
+ assert.equal(r.model.modelFingerprint.value,expectedModel);
+ assert.match(r.inputs.inputFingerprint.algorithm,/canonical sorted-key JSON/);
+ assert.match(r.model.modelFingerprint.algorithm,/canonical sorted-key JSON/);
+ assert.notEqual(expected,D.defaultInput.provenance.channelSha256Complex128LittleEndianRowMajor);
+ assert.equal(r.baseline.identity.modelFingerprint.value,r.model.modelFingerprint.value);
+ return r;
+}
+test('real SHA256 covers exact canonical input/model and is named separately from binary H identity',async()=>{
+ const s=setup({cryptoImpl:require('node:crypto').webcrypto});await deliverDefaults(s);
+ await s.waitForRecord();assertRealFingerprints(s);
+});
+test('record publication waits for both real SHA256 digests beyond the old scheduler-turn limit',async()=>{
+ const pending=[],crypto=require('node:crypto'),s=setup({cryptoImpl:{subtle:{digest:(...args)=>new Promise((resolve,reject)=>pending.push(()=>crypto.webcrypto.subtle.digest(...args).then(resolve,reject)))}}});
+ await deliverDefaults(s);assert.equal(pending.length,2);
+ let published=false;const completion=s.waitForRecord().then(()=>{published=true;});
+ // Deliberately withhold completion longer than the old twenty-turn loop.
+ for(let i=0;i<64;i++)await settle();
+ assert.equal(published,false);assert.equal(s.api.record,null);assert.equal(s.download(),null);
+ pending[0]();await settle();assert.equal(published,false);
+ pending[1]();await completion;assertRealFingerprints(s);
+ assert.equal(await s.waitForRecord(),s.api.record); // Already-published path.
+});
+test('record publication deadline rejects a digest that never settles',async()=>{
+ const s=setup({cryptoImpl:{subtle:{digest:()=>new Promise(()=>{})}}});await deliverDefaults(s);
+ await assert.rejects(s.waitForRecord(25),/Record publication timed out after 25 ms/);
+ assert.equal(s.api.record,null);assert.equal(s.download(),null);
+});
+test('real SHA256 assertions reject unavailable, rejected, and wrong digests',async()=>{
+ for(const [kind,cryptoImpl] of [
+  ['unavailable',undefined],
+  ['rejected',{subtle:{digest:()=>Promise.reject(Error('intentional digest rejection'))}}],
+  ['wrong',{subtle:{digest:()=>Promise.resolve(new Uint8Array(32).buffer)}}]
+ ]){
+  const s=setup({cryptoImpl});await deliverDefaults(s);await s.waitForRecord();
+  assert.throws(()=>assertRealFingerprints(s),{code:'ERR_ASSERTION'},kind);
+  const r=s.download();
+  for(const fingerprint of [r.inputs.inputFingerprint,r.model.modelFingerprint]){
+   if(kind==='wrong')assert.equal(fingerprint.value,'0'.repeat(64));
+   else{assert.equal(fingerprint.value,null);assert.match(fingerprint.reason,kind==='rejected'?/intentional digest rejection/:/未提供安全摘要能力/);}
+  }
+ }
+});
 test('cancel watchdog gives explicit unavailable partial state, never numerical success',async()=>{const s=setup();s.start();s.click('cancel');const watchdog=[...s.timers.values()].find(t=>t.delay===2000);assert.ok(watchdog);watchdog.fn();await settle();await settle();const r=s.download();assert.equal(r.run.stopReason,'cancelled');assert.equal(r.run.completeComparison,false);assert.equal(r.baseline.result.status,'cancelled');assert.equal(r.baseline.evidenceCompleteness.complete,false);assert.match(r.baseline.result.failureReason,/没有保存部分状态/);assert.equal(s.workers[0].terminated,true);assert.equal(s.els['jbo-users'].children.length,0);});
 test('ordinary frozen worker cancellation is exported unchanged and explicitly partial without x/z/w',async()=>{const s=setup();s.start();s.until(()=>s.workers[0].messages.some(m=>m.type==='progress'));s.click('cancel');await s.drain();const r=s.download(),raw=s.workers[0].messages.find(m=>m.type==='cancelled').result;assert.deepEqual(r.baseline.result,raw);assert.equal(r.baseline.result.finalState,undefined);assert.equal(r.baseline.evidenceCompleteness.complete,false);saveEvidence('cancelled-partial-dom-worker-export',r);});
 test('live high-Gamma preset renders real ZF certificate separately from a cancelled SDR attempt',async()=>{const s=setup();s.change('preset','certificate','change');s.start();s.until(()=>s.api.current.results.zf?.status==='infeasible_certificate');assert.equal(s.api.current.active.method,'sdr');assert.match(s.els['jbo-summary-zf'].textContent,/数值不可行证书通过/);assert.match(s.els['jbo-evidence-zf'].textContent,/ZF 不可行不能推出 SDR/);assert.equal(s.els['jbo-users'].children.length,0);s.click('cancel');await s.drain();const r=s.download();assert.equal(r.methods.zf.result.status,'infeasible_certificate');assert.equal(r.methods.zf.evidenceCompleteness.complete,true);assert.equal(r.methods.sdr.result.status,'cancelled');assert.equal(r.methods.sdr.evidenceCompleteness.complete,false);assert.equal(r.run.completeComparison,false);saveEvidence('certificate-and-cancelled-sdr-dom-worker-export',r);saveEvidence('certificate-zf-complete-result',r.methods.zf.result);});
