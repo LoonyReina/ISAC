@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "1c04b1d49acab598619c6b89b0dc2853bec5e7b2",
+  "baselineTree": "991ef6ceb4e03e02512be3a791593480fbc6dee0",
+  "baselineManifestSha256": "c6e09456aa01f619f5fcd9b7a6516a75b6226b7fd14ce6c582ff020f513795c4",
+  "functionalCommit": "85456b619eb24fb3309e483862e4477bb6647082",
+  "functionalTree": "9f4c392c7e50efe5c335c59e408b3c35ae196e7e",
+  "functionalFreezeSha256": "183fae1a6f7b536d582595440763a7f57a1aed8b0dcd23e31bbd5a2c4897fbd6",
+  "independentAcceptanceSha256": "6ae4f83aa72a8356b28bcdf19665a722f1d2d18529803b9b17e34841d5d39ba5",
+  "functionalFiles": [
+    "content/pages/dual-array-positioning.html",
+    "labs/dual-array/INTEGRATION.md",
+    "labs/dual-array/README.md",
+    "labs/dual-array/lesson/model.mjs",
+    "labs/dual-array/lesson/mount.mjs",
+    "labs/dual-array/lesson/session.mjs",
+    "labs/dual-array/lesson/tests/dom-harness.cjs",
+    "labs/dual-array/lesson/tests/export-mounted.mjs",
+    "labs/dual-array/lesson/tests/helpers.mjs",
+    "labs/dual-array/lesson/tests/lesson.test.mjs",
+    "labs/dual-array/lesson/tests/replay_downloads.py",
+    "labs/dual-array/lesson/view.mjs",
+    "labs/dual-array/lesson.css",
+    "labs/dual-array/lesson.mjs",
+    "labs/dual-array/runtime/client.mjs",
+    "labs/dual-array/runtime/kernel.mjs",
+    "labs/dual-array/runtime/records.mjs",
+    "labs/dual-array/runtime/worker.mjs",
+    "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+    "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+    "assets/data/dual-array/historical-statistics.json",
+    "labs/dual-array/FUNCTIONAL-FREEZE.json"
+  ],
+  "classification": {
+    "public": [
+      "content/pages/dual-array-positioning.html",
+      "labs/dual-array/README.md",
+      "labs/dual-array/lesson/model.mjs",
+      "labs/dual-array/lesson/mount.mjs",
+      "labs/dual-array/lesson/session.mjs",
+      "labs/dual-array/lesson/view.mjs",
+      "labs/dual-array/lesson.css",
+      "labs/dual-array/lesson.mjs",
+      "labs/dual-array/runtime/client.mjs",
+      "labs/dual-array/runtime/kernel.mjs",
+      "labs/dual-array/runtime/records.mjs",
+      "labs/dual-array/runtime/worker.mjs",
+      "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+      "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+      "assets/data/dual-array/historical-statistics.json"
+    ],
+    "buildOnly": [
+      "labs/dual-array/INTEGRATION.md",
+      "labs/dual-array/lesson/tests/dom-harness.cjs",
+      "labs/dual-array/lesson/tests/export-mounted.mjs",
+      "labs/dual-array/lesson/tests/helpers.mjs",
+      "labs/dual-array/lesson/tests/lesson.test.mjs",
+      "labs/dual-array/lesson/tests/replay_downloads.py",
+      "labs/dual-array/FUNCTIONAL-FREEZE.json"
+    ]
+  },
+  "addedOwners": [
+    {
+      "id": "labs/dual-array",
+      "directory": "labs/dual-array",
+      "description": "Source-bound dual-array bounded Algorithm 1 receiver, same-Y grid comparator and finite-X teaching lesson"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "content/pages/dual-array-positioning.html",
+      "compatibility": "dual-array-positioning.html",
+      "public": "dual-array-positioning.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/INTEGRATION.md",
+      "compatibility": "labs/dual-array/INTEGRATION.md",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/README.md",
+      "compatibility": "labs/dual-array/README.md",
+      "public": "labs/dual-array/README.md",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/model.mjs",
+      "compatibility": "labs/dual-array/lesson/model.mjs",
+      "public": "labs/dual-array/lesson/model.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/mount.mjs",
+      "compatibility": "labs/dual-array/lesson/mount.mjs",
+      "public": "labs/dual-array/lesson/mount.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/session.mjs",
+      "compatibility": "labs/dual-array/lesson/session.mjs",
+      "public": "labs/dual-array/lesson/session.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/tests/dom-harness.cjs",
+      "compatibility": "labs/dual-array/lesson/tests/dom-harness.cjs",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/tests/export-mounted.mjs",
+      "compatibility": "labs/dual-array/lesson/tests/export-mounted.mjs",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/tests/helpers.mjs",
+      "compatibility": "labs/dual-array/lesson/tests/helpers.mjs",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/tests/lesson.test.mjs",
+      "compatibility": "labs/dual-array/lesson/tests/lesson.test.mjs",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/tests/replay_downloads.py",
+      "compatibility": "labs/dual-array/lesson/tests/replay_downloads.py",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson/view.mjs",
+      "compatibility": "labs/dual-array/lesson/view.mjs",
+      "public": "labs/dual-array/lesson/view.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson.css",
+      "compatibility": "labs/dual-array/lesson.css",
+      "public": "labs/dual-array/lesson.css",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/lesson.mjs",
+      "compatibility": "labs/dual-array/lesson.mjs",
+      "public": "labs/dual-array/lesson.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/runtime/client.mjs",
+      "compatibility": "labs/dual-array/runtime/client.mjs",
+      "public": "labs/dual-array/runtime/client.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/runtime/kernel.mjs",
+      "compatibility": "labs/dual-array/runtime/kernel.mjs",
+      "public": "labs/dual-array/runtime/kernel.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/runtime/records.mjs",
+      "compatibility": "labs/dual-array/runtime/records.mjs",
+      "public": "labs/dual-array/runtime/records.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/runtime/worker.mjs",
+      "compatibility": "labs/dual-array/runtime/worker.mjs",
+      "public": "labs/dual-array/runtime/worker.mjs",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+      "compatibility": "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+      "public": "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+      "compatibility": "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+      "public": "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/historical-statistics.json",
+      "compatibility": "assets/data/dual-array/historical-statistics.json",
+      "public": "assets/data/dual-array/historical-statistics.json",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "labs/dual-array/FUNCTIONAL-FREEZE.json",
+      "compatibility": "labs/dual-array/FUNCTIONAL-FREEZE.json",
+      "public": null,
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/lesson-review/ACCEPTANCE.md",
+      "compatibility": "assets/data/dual-array/lesson-review/ACCEPTANCE.md",
+      "public": "assets/data/dual-array/lesson-review/ACCEPTANCE.md",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/lesson-review/ACCEPTANCE.json",
+      "compatibility": "assets/data/dual-array/lesson-review/ACCEPTANCE.json",
+      "public": "assets/data/dual-array/lesson-review/ACCEPTANCE.json",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/dual-array/lesson-review/AUDIT-MANIFEST.json",
+      "compatibility": "assets/data/dual-array/lesson-review/AUDIT-MANIFEST.json",
+      "public": "assets/data/dual-array/lesson-review/AUDIT-MANIFEST.json",
+      "owner": "labs/dual-array",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-preservation.cjs",
+      "compatibility": "tests/helpers/dual-array-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-integration-delta.json",
+      "compatibility": "tests/helpers/dual-array-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-metadata-baseline.json",
+      "compatibility": "tests/helpers/dual-array-metadata-baseline.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/dual-array-owned-suites.json",
+      "compatibility": "tests/helpers/dual-array-owned-suites.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-integration.test.cjs",
+      "compatibility": "tests/dual-array-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/dual-array-owned.test.cjs",
+      "compatibility": "tests/dual-array-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/dual-array-mappings.json",
+      "compatibility": "build/dual-array-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

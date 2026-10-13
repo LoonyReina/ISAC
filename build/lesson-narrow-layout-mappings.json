@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "d6779d32ab93bcb73a4f2f5883239cf58226cde2",
+  "baselineTree": "6e3e52db7dbc414ebc0983646847465c04c61a1e",
+  "baselineManifestSha256": "d33191aead33ceccecbcf9cbf0f2b3b262c71192bb9cff262c490e790009b106",
+  "addedEntries": [
+    {
+      "source": "tests/helpers/lesson-narrow-layout-preservation.cjs",
+      "compatibility": "tests/helpers/lesson-narrow-layout-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/lesson-narrow-layout-integration-preservation.cjs",
+      "compatibility": "tests/helpers/lesson-narrow-layout-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/lesson-narrow-layout-integration-delta.json",
+      "compatibility": "tests/helpers/lesson-narrow-layout-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/lesson-narrow-layout-mappings.json",
+      "compatibility": "build/lesson-narrow-layout-mappings.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ]
+}

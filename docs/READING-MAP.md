@@ -594,3 +594,14 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 - [当前独立功能接受](../assets/data/pilot-pattern/lesson-review/ACCEPTANCE.md)、[结构化结论](../assets/data/pilot-pattern/lesson-review/ACCEPTANCE.json)与[源绑定](../assets/data/pilot-pattern/lesson-review/ACCEPTED-SOURCE-MANIFEST.json)对应commit `9cab398174e4fe14beb28dcca62b6e542968b2f4`、tree `41b8279de0b6a63bd6b84b8f59ff5240a2d315cc`、manifest `18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d`。473项Node断言、1511项独立NumPy核查与13份生产Blob记录接受有界功能/来源范围；旧合同pending和四次历史freeze不重写，当前dated接受另外列明
 - waveforms六层依次追加 `#question`、`#raw-iq`、`#same-y`、`#source`、`#failure`、`#records`；known-pilots、ambiguity、delay、doppler、waveform-design只追加进阶单元；waveform-design因此保留原case-pilot入口，原entryUnitRef、32概念和五条progressions保持。导读从原先修接到新可执行课，没有虚构跨论文引用关系
 - 真正浏览器Worker/CSP、生命周期、布局、键盘/辅助技术、原生下载/重导入、内存和完整控制到绘制时延仍待验收。Node/Blob结果不代替浏览器或上线。没有精确Fig.10/Fig.23、IAA/MUSIC、连续Delay-and-Sum AF、任意不规则/综合图案、校准检测、实测RF或整篇复现
+
+
+## 双阵列：小阵列只见角度，距离从哪里来？（2026-10-13）
+
+- 沿用唯一 `nearfield-double-array-ispac` 与[原上下行导读](../reading.html#guide-nearfield-double-array-ispac)，接入[实际有限 X/Y 新课](../dual-array-positioning.html#question)。新增一案例、一单元和一注册页，仍是35篇独立论文、21篇导读、零整篇复现；当前25案例、41单元、37注册页。原近场先修、另一篇单阵列SDR–MUSIC与全部旧入口保持；不新增影响目录论文
+- 固定 [arXiv:2311.07722v1](https://arxiv.org/html/2311.07722v1)：p3 Eq1、pp3–4 Eqs2–13、p5 Eq20/Algorithm1/Eqs21–23，连接固定F/Z、两种steering、实际X/Y、MUSIC与未知β的距离profile。pp5–6 Eqs24–25/33–35和pp12–13 Appendix A Eqs73–78对应有限X的实FIM；沿用来源审查，不宣称本次重开原文
+- 两阶段与完整二维profile-grid共享同一X/Y，每个候选重新拟合β；网格重算保留所选实际观测，换q则生成新观测。默认Na16/Nb6/NRF4/q4/T32、28GHz、d=λ/2、P=1、θ25°/r.83m，61×61网格的两坐标均off-grid。固定F/Z是本站探测构造，不是通信QoS或波束优化
+- 四实参数FIM按rad/m使用实际有限X，消除未知复增益后给条件局部CRB。秩1的非零距离模板可被β吸收；纯噪声仍有数值极值，零模板与非正则状态保留。具名common-spacing精确alias在任意X下整份均值相同，局部有限界、高SNR和普通网格未采中均不能证明全局唯一
+- [冻结统计](../assets/data/dual-array/historical-statistics.json)仍是Na32/Nb8/NRF8/q8/T64的14,464条配对观测／29实验格／31汇总。载入只校验和显示，不用当前控件重跑。点位95%配对bootstrap不是跨SNR同时区间；361×241精度网格的20dB零角误差／[0,0]来自锁格，不是零总体误差或击败连续CRB。87份代表原始X/Y不等于全部14,464份Y档案
+- [独立运行时接受](../assets/data/dual-array/RUNTIME-ACCEPTANCE.md)与[独立教学功能接受](../assets/data/dual-array/lesson-review/ACCEPTANCE.md)分层。后者绑定freeze `183fae1a6f7b536d582595440763a7f57a1aed8b0dcd23e31bbd5a2c4897fbd6`，33个实际Node Workers、15个Blob receipts／13个不同记录／11对不同X/Y及37,495项数值比较；配对与重放不算新增独立试验。历史失败、freeze与验收原文不改写
+- spatial六层追加 `#question` → `#samples` → `#same-y` → `#source` → `#rank-one` → `#records`；angle、estimation、ambiguity、fisher-crb、near-field只追加进阶单元，原entryUnitRef与五条progressions不变。原Fig.4、优化HB/FD、通信优化、上行、硬件、整篇复现以及真实浏览器布局／键盘／Worker/CSP／历史／下载／内存／绘制时延仍开放；90,000格SVG字符串构造检查不是浏览器认证

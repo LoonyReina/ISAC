@@ -1778,6 +1778,79 @@
         ],
         "verificationNote": "2026-10-13 沿用冻结来源与数值证据，不宣称本次重新下载原文。UTS SHA-256 a51c363bbb6b6a646a1de1ff20054722db60ad7ec2a303421d570ae5b8d82172；JS v2 manifest 7efb99af1382fe39adc8348e168d66b29f9d1ca13d232f076827e2f1e6e3d6fc。离线独立审计重算 83,793 个动作，v2 独立审查 59,900 检查/56 案例/3,594 动作；这些不是浏览器或整篇复现认证。来源合同、历史/当前执行身份与原始不利结果均保留。"
       }
+    },
+    {
+      "id": "case-dual-array-positioning",
+      "title": "小阵列只见角度，距离信息从哪里来？",
+      "fields": {
+        "先修": "<a href=\"near-field.html#geometry\">近场曲率与孔径</a>；<a href=\"foundations.html#array\">阵元相位与方向</a>；<a href=\"theory.html#crb-mechanism\">估计误差与 CRB</a>。旧近场先修与另一篇全数字 SDR–MUSIC 链保持原样。",
+        "问题": "小辅助阵列只留下角度，已知有限发射波形怎样让距离进入整份回波？波形降到秩1后还剩什么？",
+        "交互机制": "从实际有限复数 X/Y 读样本协方差、MUSIC 分母、aᵀX、逐候选重拟合复增益与全部二维 profile；两阶段和联合网格共用同一 X/Y，改变波形秩则生成新观测。",
+        "证据类型": "固定 <a href=\"https://arxiv.org/html/2311.07722v1\">arXiv:2311.07722v1</a> 的下行模型与 Algorithm 1；<a href=\"assets/data/dual-array/RUNTIME-ACCEPTANCE.md\">独立数值／Node Worker 接受</a>与<a href=\"assets/data/dual-array/lesson-review/ACCEPTANCE.md\">独立挂载教学功能接受</a>分开。冻结离线统计不冒充浏览器重算。",
+        "结论边界": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。",
+        "下一研究问题": "保持孔径、T、RF 链数和有限块能量，怎样区分波形秩导致的局部距离信息损失与精确全局别名？通信约束下的探测设计仍需另外实现。"
+      },
+      "unit": "dual-array-positioning",
+      "learningEntry": "dual-array-positioning.html#question",
+      "paper": "dual-array-positioning.html#source",
+      "next": "dual-array-positioning.html#records",
+      "paperComparison": {
+        "comparisonStatus": "partial",
+        "sourceTitle": "Near-Field Integrated Sensing, Positioning, and Communication: A Downlink and Uplink Framework",
+        "sourceUrl": "https://arxiv.org/html/2311.07722v1",
+        "version": "arXiv:2311.07722v1，2023-11-13；固定作者预印本，13 页；2026-10-11 核查 HTML 与 PDF",
+        "sourceId": "case-dual-array-positioning-paper",
+        "comparisonLink": "dual-array-positioning.html#source",
+        "researchQuestion": "小辅助阵列只留下角度，已知有限发射波形怎样让距离进入整份回波？波形降到秩1后还剩什么？",
+        "observationsAndUnknowns": "接收机只读实际有限复数 X∈C^(Na×T)、Y∈C^(Nb×T)、阵列几何及预先声明的角距网格；未知 θ、r、β。生成真值、噪声方差和 seed 仅用于场景／评估，不进入定位器；CRB 单独在已知模拟参数下评估。",
+        "locator": {
+          "summary": "固定 v1：p3 Eq1；pp3–4 Eqs2–13；p5 Eq20 / Algorithm1、Eqs21–23；pp5–6 Eqs24–25、33–35；pp12–13 Appendix A Eqs73–78。",
+          "section": "§II-A/B、§III-A、Appendix A；§V-A–D 只参考实验结构",
+          "figure": "Fig.4(a) 结构参考，作者原设置仍不完整，精确曲线未复现",
+          "equation": "Eq1 固定 F/Z；Eqs2–13 几何／观测；Eqs20–23 两阶段；Eqs24–25、33–35、73–78 实 FIM／干扰参数消除"
+        },
+        "paperEvidenceType": "双阵列上下行定位与通信 QoS 约束优化的理论推导和数值仿真，非硬件实测",
+        "siteArtifactType": "受限下行 Algorithm 1、同 X/Y 有限二维 profile-grid 与有限 X 实 FIM／CRB；独立数值和 Node 挂载功能已接受，真实浏览器门开放",
+        "retainedAssumptions": [
+          "单点目标、主阵列 Fresnel 二阶曲率／辅助阵列平面波；end-origin、broadside 角、理想自干扰消除",
+          "实际已知有限 X，普通转置 aᵀX；proper-complex 白噪声与单信号子空间假设，未知复增益逐候选重拟合",
+          "未中心化 YYᴴ/T、MUSIC 分母最小点，再按 θ̂ 搜索距离；联合比较使用同一 X/Y 和全部预定候选",
+          "η=(θ,r,Reβ,Imβ) 的四实参数 FIM；实 nuisance 消除、rad/m 单位；非正则与零模板不以 ridge／伪逆冒充正则 CRB"
+        ],
+        "omittedMechanisms": [
+          "通信 QoS／发射波束与混合合并优化、优化 HB/FD 比较、上行与硬件",
+          "原 Fig.4 完整 source settings 与精确 RMSE 曲线、连续全局 ML 或连续精修、校准目标检测",
+          "把局部有限 CRB 当作单次误差条或唯一定位保证；秩1与精确 alias 均无此保证",
+          "当前控件重跑14,464条研究、全部原始 Y 档案，以及真实浏览器布局／键盘／网络／生命周期／下载／绘制时延验收"
+        ],
+        "metrics": [
+          "实际 X/Y、Ry/Pn、MUSIC 分母、每候选 β̂、L 与残差、完整二维得分及 tie／边界／缺失状态",
+          "两阶段与联合有限网格的角度／距离估计、相同观测的格距变化；数值极值不是检出",
+          "有限 X 的实 FIM、Schur／投影信息、CRB／RCRB、数值秩与非正则状态",
+          "冻结离线 RMSE、bias、分位数、边界／tie／退化分母及逐点95%配对bootstrap区间"
+        ],
+        "unknowns": [
+          "原 Fig.4 的作者 F/Z、spacing／sector、优化 HB/FD 与完整数值设置未建立，不能称原图复现",
+          "Eq8 transpose、proper-complex prefactor、Eq24 前上下行文字以及 Fig4 平方／平方根等冲突按来源解释账本公开，不称作者勘误",
+          "具名 common-spacing 精确别名采用源孔径的一种条件解释；不是作者实际 spacing／sector 证据",
+          "浏览器端最大全网格 SVG 的真实内存、交互、取消及绘制成本未测；Node 90,000格字符串检查不补足该门"
+        ],
+        "resourceBudget": {
+          "summary": "实时默认 Na16/Nb6/NRF4/q4/T32、28GHz、d=λ/2、P=1，θ25°/r.83m；默认61×61网格−60°…60°与.3…1.5m，两真值均off-grid。固定 F/Z 是本站探测构造。",
+          "bandwidth": "载频28GHz；未声明物理带宽，快拍编号不虚构为秒",
+          "energy": "q1/2/4共同T、孔径、NRF、总有限能量与逐天线均功率；子空间和峰值改变。source SNR=|β|²P/σ² 与接收 target SNR 分开",
+          "duration": "实时T32；冻结研究T64，未给物理快拍间隔，不换算秒",
+          "aperture": "实时Na16/Nb6半波长间距；主／辅Rayleigh尺度只作提示，搜索上端跨主阵列尺度且模型不切换",
+          "priorKnowledge": "已知实际X、几何和固定搜索窗；真角、真距、β、噪声和seed不提供给定位器；固定窗不跟随真值",
+          "other": [
+            "实时q1/2/4、31/61/121方网格；原始导入上限Na64/Nb16/T128、90,000候选、2亿估计复乘加、30秒Worker预算",
+            "请求≤2MiB、记录≤12MiB、保守数值工作区≤64MiB；不是整体浏览器DOM内存保证",
+            "冻结Na32/Nb8/NRF8/q8/T64、θ25°/r2m，主181×121网格；14,464观测／29格／31汇总，不是14,464份完整Y下载",
+            "独立端口复核87份代表原始X/Y；精度网格361×241的20dB角误差全零是锁格，不是零总体误差或击败连续CRB"
+          ]
+        },
+        "verificationNote": "2026-10-13沿用固定来源和独立接受，不声称本次重新下载原文。四运行时字节绑定见 assets/data/dual-array/RUNTIME-ACCEPTANCE.json；教学冻结183fae1a6f7b536d582595440763a7f57a1aed8b0dcd23e31bbd5a2c4897fbd6与独立教学接受见 assets/data/dual-array/lesson-review/ACCEPTANCE.json。33个实际Node Workers、15个Blob receipts／13个不同记录／11对不同X/Y及37,495项数值比较属于有界Node证据，不是浏览器认证。"
+      }
     }
   ],
   "legacy": {
@@ -2646,6 +2719,20 @@
       "group": "research",
       "primaryDirectionId": "waveforms",
       "action": "先预测，再对同一原始I/Q改变ell，逐格读去旋转、短FFT和二维匹配；保存真实候选、噪声代价与失败。"
+    },
+    {
+      "id": "dual-array-positioning",
+      "title": "双阵列下行：从有限 X/Y 到角距定位",
+      "href": "dual-array-positioning.html#question",
+      "question": "小辅助阵列只留下角度，已知有限发射波形怎样让距离进入整份回波？波形降到秩1后还剩什么？",
+      "prerequisites": [
+        "near-field.html#geometry",
+        "foundations.html#array",
+        "theory.html#crb-mechanism"
+      ],
+      "group": "research",
+      "primaryDirectionId": "spatial",
+      "action": "先读实际复数 X/Y，再运行 MUSIC、未知增益距离 profile 与同 Y 二维网格；检查秩1、非正则 CRB 和精确歧义，保存完整记录。"
     }
   ],
   "pages": [
@@ -3110,6 +3197,20 @@
       "case": "case-pilot",
       "next": "practice.html#notebook",
       "nextLabel": "记录这次二维导频处理的输入、代价与失败"
+    },
+    {
+      "path": "dual-array-positioning.html",
+      "title": "小阵列只见角度，距离信息从哪里来？",
+      "stage": "experiments",
+      "role": "同一双阵列论文 · 受限下行 Algorithm 1、同 Y 网格与有限 X 实 CRB；浏览器待验收",
+      "prerequisites": [
+        "near-field.html#geometry",
+        "foundations.html#array",
+        "theory.html#crb-mechanism"
+      ],
+      "case": "case-dual-array-positioning",
+      "next": "reading.html#guide-nearfield-double-array-ispac",
+      "nextLabel": "回到同一论文的上下行导读，核对已实现下行与开放边界"
     }
   ],
   "schemaVersion": 1,
@@ -4353,7 +4454,7 @@
       "id": "spatial",
       "title": "空间感知：天线怎样分清方向与远近？",
       "question": "阵列怎样区分方向与远近，又怎样同时承载通信和雷达流？",
-      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。 近场同页保留旧一程无噪声先修，新增固定v5全数字SDR–有限X–含噪MUSIC有界计算链。 多目标近场另接固定 v1 的 intended Eq.17/18 实际优化与恢复，严格保留 Eq.12/19 接收失败。",
+      "scope": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。 近场同页保留旧一程无噪声先修，新增固定v5全数字SDR–有限X–含噪MUSIC有界计算链。 多目标近场另接固定 v1 的 intended Eq.17/18 实际优化与恢复，严格保留 Eq.12/19 接收失败。 双阵列另接受限下行 Algorithm 1：实际有限 X/Y、同观测二维 profile-grid 与实参数 CRB；固定探测波形不冒充通信优化。",
       "prerequisites": [
         "iq",
         "array",
@@ -4364,7 +4465,8 @@
         "case-joint-beamforming",
         "case-crb-beamforming",
         "case-shared-array",
-        "case-nearfield-multitarget"
+        "case-nearfield-multitarget",
+        "case-dual-array-positioning"
       ],
       "relatedDirectionIds": [
         "channels",
@@ -4429,6 +4531,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "小阵列只见角度，距离信息从哪里来？",
+              "href": "dual-array-positioning.html#question",
+              "kind": "lesson",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ]
         },
@@ -4481,6 +4591,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "实际有限 X/Y、未知 β 与两个孔径",
+              "href": "dual-array-positioning.html#samples",
+              "kind": "model",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ]
         },
@@ -4540,6 +4658,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "同一 X/Y：两阶段与完整二维 profile-grid",
+              "href": "dual-array-positioning.html#same-y",
+              "kind": "interactive",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ],
           "coverage": "direction-specific"
@@ -4601,6 +4727,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "固定 v1：Algorithm 1 与有限 X 实 FIM 逐项对照",
+              "href": "dual-array-positioning.html#source",
+              "kind": "paper-guide",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ],
           "comparisonStatus": "partial",
@@ -4663,6 +4797,14 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "秩1、精确别名和非正则 CRB",
+              "href": "dual-array-positioning.html#rank-one",
+              "kind": "limits",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ]
         },
@@ -4726,12 +4868,20 @@
               "scope": "direction-specific",
               "status": "available",
               "note": "固定 arXiv:2506.07052v1 的 intended Eq.17/18 协方差优化与秩一恢复已有独立数值接受，含 6×6 与源 10×10 设置。字面 Eq.12 接收朝向给出零回波，Eq.19 所需普通逆结构奇异且索引未定义；不声称 Capon 定位、Fig.5 或整篇复现。真实浏览器验收另行进行。"
+            },
+            {
+              "label": "下载实际 X/Y 重算，冻结离线证据另列",
+              "href": "dual-array-positioning.html#records",
+              "kind": "reproduction-plan",
+              "scope": "direction-specific",
+              "status": "available",
+              "note": "仅受限下行 Algorithm 1 与本站同 X/Y 二维 profile-grid；有限 X 的实参数 CRB 是条件局部界。秩1距离不可辨识、精确别名、纯噪声数值极值与零模板失败均保留。固定 F/Z 未做通信优化；14,464 条是冻结离线观测，不是当前控件新跑。原 Fig.4、优化 HB/FD、上行、硬件和整篇复现未完成，真实浏览器与绘制时延另验。"
             }
           ]
         }
       ],
       "nextExtension": "固定同一物理阵列与实际功率，分别加入每天线功率上限、CSI 误差或更多用户，先检查残余干扰与目标照射，再讨论多目标或校准代价。",
-      "coverage": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制；近场研究区已有独立数值/Node核验的单目标有界链，实际浏览器门和原图仍开放；多目标协方差已有含源 10×10 设置的数值接受，定位、Fig.5、整篇复现与真实浏览器验收仍未建立",
+      "coverage": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制；近场研究区已有独立数值/Node核验的单目标有界链，实际浏览器门和原图仍开放；多目标协方差已有含源 10×10 设置的数值接受，定位、Fig.5、整篇复现与真实浏览器验收仍未建立；双阵列下行有独立数值和 Node 挂载功能接受，秩1／精确歧义与冻结离线统计分开，原 Fig.4、上行、通信优化及真实浏览器仍开放",
       "scenePositions": [
         "transmit",
         "propagate"
@@ -5876,7 +6026,8 @@
         "unitRefs": [
           "array",
           "near-field",
-          "perceptive-bsbl"
+          "perceptive-bsbl",
+          "dual-array-positioning"
         ],
         "entryUnitRef": "array"
       },
@@ -5906,7 +6057,8 @@
           "shared",
           "estimator-crb",
           "offgrid-range",
-          "perceptive-bsbl"
+          "perceptive-bsbl",
+          "dual-array-positioning"
         ],
         "entryUnitRef": "shared"
       },
@@ -5958,7 +6110,8 @@
         "unitRefs": [
           "pilot",
           "clock",
-          "pilot-pattern"
+          "pilot-pattern",
+          "dual-array-positioning"
         ],
         "entryUnitRef": "pilot"
       },
@@ -5973,7 +6126,8 @@
         "unitRefs": [
           "crb",
           "estimator-crb",
-          "crb-beamforming"
+          "crb-beamforming",
+          "dual-array-positioning"
         ],
         "entryUnitRef": "crb"
       },
@@ -6109,7 +6263,8 @@
         "boundary": "改变阵元数时物理孔径可能同时变化 多目标入口实际优化已知位置的协方差；intended Eq.17/18 数值接受不解决 literal Eq.12/19，也不证明定位成功。",
         "unitRefs": [
           "near-field",
-          "nearfield-multitarget"
+          "nearfield-multitarget",
+          "dual-array-positioning"
         ],
         "entryUnitRef": "near-field"
       },

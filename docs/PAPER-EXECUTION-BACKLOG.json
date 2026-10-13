@@ -182,6 +182,12 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Local conditional-uplink lesson: frozen v3 numerical/Node core and repaired v2.1 bounded Node teaching independently accepted;60 regressions,18 boundary cases,9 invalid drafts and fresh scalar replay. Actual browser/build/publication remain separate; no predictor, guarded baseline, source figures or full paper."
+      },
+      {
+        "paperId": "nearfield-double-array-ispac",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Accepted bounded downlink Algorithm 1 and headless functional lesson; full/reproducible site integration, actual hosted-browser and publication remain separate. Original Fig.4, communication optimization, uplink and whole-paper gates remain open."
       }
     ]
   },
@@ -642,14 +648,18 @@
       "title": "Near-Field Integrated Sensing, Positioning, and Communication: A Downlink and Uplink Framework",
       "category": "guide",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-13",
       "canonicalReferences": {
         "guideIds": [
           "nearfield-double-array-ispac"
         ],
         "catalogIds": [],
-        "caseIds": [],
-        "sourceIds": []
+        "caseIds": [
+          "case-dual-array-positioning"
+        ],
+        "sourceIds": [
+          "case-dual-array-positioning-paper"
+        ]
       },
       "paperType": "algorithm-and-optimization-study",
       "source": {
@@ -663,7 +673,8 @@
         "pdfSha256": null,
         "hashStatus": "not-recorded",
         "details": {
-          "authors": "Haochen Li、Zhaolin Wang、Xidong Mu、Zhiwen Pan、Yuanwei Liu"
+          "authors": "Haochen Li、Zhaolin Wang、Xidong Mu、Zhiwen Pan、Yuanwei Liu",
+          "selectedCoreLocators": "p 3 Eq 1; pp 3–4 Eqs 2–13; p 5 Eq 20/Algorithm 1 and Eqs 21–23; pp 5–6 Eqs 24–25, 33–35; pp 12–13 Appendix A Eqs 73–78. Existing source-edition audit and null PDF hash are retained; no new source download is claimed."
         }
       },
       "contribution": {
@@ -695,38 +706,70 @@
           "Perfect self-interference cancellation and uplink data cancellation as paper assumptions",
           "Fresnel approximation, equal aperture/energy/snapshots across comparisons"
         ],
-        "unresolved": [],
-        "details": {}
+        "unresolved": [
+          "Exact original Fig.4 waveform F/Z, spacing/sector and optimized HB/FD settings remain incomplete; declared project settings do not reproduce author curves.",
+          "Rank-one range nonidentifiability and exact full-model aliases remain; finite local CRB and a numeric grid extremum do not establish unique detection/localization.",
+          "Actual browser/layout/accessibility/network/download/history and complete control-to-painted-result timing are separate pending gates."
+        ],
+        "details": {
+          "boundedStudy": {
+            "summary": "Frozen 14, 464 paired observations across 29 experiment cells and 31 summary rows; live controls run one new or imported X/Y, never these stored trials.",
+            "source": "assets/data/dual-array/historical-statistics.json",
+            "sha256": "e54cc91dbc25f25b48584dedd98b885305eed33e4e7bc2c22eeb6a8bdb98018b",
+            "configuration": "Na 32 / Nb 8 / NRF 8 / q 8 / T 64, theta 25 deg/range 2 m, main 181 x 121 grid; 1, 024 trials per primary SNR point; 2000-resample pointwise paired percentile bootstrap.",
+            "representativeRawObservations": 87,
+            "wholeStudyRecomputedByLiveControls": false,
+            "precisionGridCaveat": "361 x 241 places 25 deg on grid; all 2048 angle errors at 20 dB and bootstrap[0, 0] are grid locking, not zero population error or beating continuous unbiased CRB."
+          }
+        }
       },
       "implementation": {
-        "classification": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "live": "labs/near-field/near-field-core.js: noiseless one-way broadside ULA template matching only",
-        "offline": null,
-        "details": {}
+        "classification": "bounded-downlink-Algorithm 1; same-X/Y-supplied-grid-profile-comparator; finite-X-real-FIM; independently-accepted-Node-functional-lesson; browser-not-accepted",
+        "live": "dual-array-positioning.html#question: fresh actual finite complex X/Y, uncentered covariance/MUSIC, gain-profile two-stage receiver, full same-Y joint grid, isolated conditional FIM/CRB and complete records; original near-field prerequisites and other-paper algorithms remain unchanged.",
+        "offline": "Pinned Na 32 / Nb 8 / T 64 study:14, 464 observations, 29 cells, 31 summary rows. Independent port acceptance replays 87 representative actual X/Y observations; this is not all 14, 464 raw records or fresh browser Monte Carlo.",
+        "details": {
+          "lesson": "dual-array-positioning.html#question",
+          "prerequisite": "near-field.html#geometry",
+          "guideId": "nearfield-double-array-ispac",
+          "runtimeAcceptance": "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+          "lessonAcceptance": "assets/data/dual-array/lesson-review/ACCEPTANCE.json",
+          "lessonAcceptedCommit": "85456b619eb24fb3309e483862e4477bb6647082",
+          "lessonAcceptedTree": "9f4c392c7e50efe5c335c59e408b3c35ae196e7e",
+          "lessonFreezeSha256": "183fae1a6f7b536d582595440763a7f57a1aed8b0dcd23e31bbd5a2c4897fbd6",
+          "runtimeExecutableCount": 4,
+          "browserAccepted": false,
+          "fullPaper": false,
+          "waveformScope": "Project-fixed partial-connected F and DFT Z; ranks 1/2/4 share aperture, T, NRF, total finite energy and per-antenna mean power. No communication-QoS/beamforming optimization.",
+          "recordBoundary": "Receiver consumes actual X/Y and declared geometry/grid only. Raw replay clears generator/FIM truth; exact historical-source verification is not fresh execution. Digests bind bytes, not source authenticity or numerical correctness."
+        }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed v 1 source crosswalk is inherited from accepted numerical/lesson evidence; Eq 8 transpose, proper-complex prefactor, Eq 24 uplink wording and Fig.4 units/HB-FD interpretation remain explicit project readings. No new source download or complete-paper audit is claimed.",
+        "algorithm": "Accepted unchanged four-file runtime executes bounded downlink Algorithm 1 from actual X/Y: covariance/MUSIC then candidate-wise complex-gain-profile range search. The project-added complete supplied-grid comparison uses the same X/Y; finite-X four-real-parameter FIM removes nuisance gain in real parameter space.",
+        "selectedExperiment": "Declared frozen 14, 464-observation/29-cell/31-row study retains bias, quantiles, ties, boundaries, failures and pointwise paired bootstrap. Port review replays 87 representative actual X/Y records. Original Fig.4 source settings remain blocked; loading stored summaries is not a new trial.",
+        "fullPaper": "The original full downlink/uplink plus communication-constrained hybrid optimization target remains open. No exact Fig.4, optimized HB/FD, uplink, hardware, continuous global ML or whole-paper reproduction.",
+        "latency": "All browser/device/sample-count/quantile fields remain null. Headless Node Worker and 90, 000-cell SVG string checks do not measure browser memory, responsiveness or control-to-painted-result latency.",
+        "independentValidation": "Runtime acceptance binds four exact hashes, 87 historical raw records, 17 novel cases and 96, 426 numerical comparisons. Separate functional acceptance verifies 33 actual Node Workers, 15 production Blob receipts/13 distinct record hashes/11 distinct X/Y pairs and 37, 495 formula comparisons. Paired/replayed receipts are not independent trials.",
+        "liveExecution": "Bounded production moduleWorker and mounted Blob path execute fresh inputs and direct saved actual X/Y replay; cancellation, stale file/job ownership, raw-truth clearing and pagehide/remount synthetic events are independently checked. Real browser/network/history remain separate.",
+        "uiLearning": "Actual arrays drive sample/phase/MUSIC/range/joint/FIM views, candidate diagnostics, rank 1/noise/null counterexamples, same-Y regrid, alias witness and immutable selected records. Accepted headless functional scope is not layout, keyboard, screen-reader or hosted acceptance."
       },
       "missingImplementation": [
-        "No dual-array echoes",
-        "No MUSIC/two-stage receiver",
-        "No FIM/CRB optimization",
-        "No hybrid RF-chain solver"
+        "Exact original Fig.4 author settings and optimized HB/FD comparisons",
+        "Communication-QoS-constrained beamforming and hybrid-combiner optimization",
+        "Uplink two-stage localization and uplink data cancellation branch",
+        "Hardware, continuous global ML and whole-paper coverage",
+        "Actual-browser Worker/CSP, layout, keyboard/accessibility, history, download/reimport, memory and painted-result timing acceptance"
       ],
       "dependencies": [
         "Complex Hermitian eigensolver",
@@ -734,8 +777,9 @@
         "Convex optimization reference for beamforming stage"
       ],
       "blockers": [
-        "No dual-array echoes",
-        "No MUSIC/two-stage receiver"
+        "Original Fig.4 source-setting completeness remains unresolved",
+        "Communication optimization and uplink branches remain unimplemented",
+        "Actual hosted-browser interaction/layout and complete painted-result latency remain unaccepted"
       ],
       "realtime": {
         "status": "not-measured",
@@ -749,7 +793,7 @@
           "worstMs": null
         },
         "details": {
-          "assessment": "Small noisy two-stage estimator plausible live; full SDP/hybrid optimization feasibility depends on reliable solver and benchmark, not yet established.",
+          "assessment": "Bounded downlink runtime and headless teaching lifecycle are accepted. The 90, 000-candidate resource cap bounds numerical work, not full SVG/DOM memory or browser responsiveness; no browser performance measurement exists.",
           "measuredLatencyMs": null,
           "requirement": "Benchmark actual default and largest permitted domain in a desktop browser; report iteration cap, convergence/residual, cancellation and numerical failure rather than claiming unmeasured real time."
         }
@@ -760,11 +804,16 @@
         "inventoryAssessment": 4
       },
       "evidence": {
-        "paperEvidence": "理论推导＋数值仿真；本站为原文导读",
+        "paperEvidence": "原文理论推导＋数值仿真；本站受限下行、有限X实FIM和Node教学功能独立接受，非原图或整篇复现",
         "existingRunnable": [
-          "labs/near-field/near-field-core.js: noiseless one-way broadside ULA template matching only"
+          "labs/near-field/near-field-core.js: noiseless one-way broadside ULA template matching only",
+          "dual-array-positioning.html#question: bounded actual X/Y downlink Algorithm 1 and same-Y supplied-grid comparator"
         ],
-        "currentAudit": "2026-10-12: canonical records and current runtime sources read; fixed arXiv HTML reopened. Equation-by-equation implementation audit remains required."
+        "currentAudit": "2026-10-12: canonical records and current runtime sources read; fixed arXiv HTML reopened. Equation-by-equation implementation audit remains required.",
+        "numericalAcceptance": "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+        "functionalAcceptance": "assets/data/dual-array/lesson-review/ACCEPTANCE.md",
+        "historicalStatistics": "assets/data/dual-array/historical-statistics.json",
+        "currentMilestone": "2026-10-13 local metadata integration of the accepted bounded runtime/lesson. Historical 2026-10-12 audit retained; neither local registration nor Node evidence closes site-build, actual-browser or publication gates."
       },
       "details": {}
     },

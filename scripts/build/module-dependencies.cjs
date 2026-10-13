@@ -27,6 +27,123 @@ function fields(x,expected,label){if(!x||typeof x!=='object'||Array.isArray(x)||
 const factory="export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}";
 const solverLoop="for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])await import(`../vendor/solver/${name}.js`)";
 const reviewedProfiles=new Map([
+ // Exact accepted dual-array bounded receiver and mounted teaching lesson.
+[
+  "labs/dual-array/lesson.mjs",
+  {
+    "sha256": "c6b83930e3aec78eb3b4c9c8976c62d6d13842213a2dbb59ff0c2eda18c8c781",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/dual-array/lesson/model.mjs",
+  {
+    "sha256": "4608ebcfc164858358b884b2313fb3b8ccd373aea9ada8e57cec00d98a95b7e7",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/dual-array/lesson/mount.mjs",
+  {
+    "sha256": "d2a2bd8468e5aa1ca49b5e9361675362be0f216f7069af1b437322715be34848",
+    "runtimePolicy": "reviewed-dual-array-runtime",
+    "sourceLiterals": [
+      "fetchImpl=globalThis.fetch"
+    ],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": [
+      {
+        "kind": "data",
+        "url": "../../../assets/data/dual-array/historical-statistics.json",
+        "literal": "fetchImpl('assets/data/dual-array/historical-statistics.json')"
+      }
+    ]
+  }
+],
+[
+  "labs/dual-array/lesson/session.mjs",
+  {
+    "sha256": "5768801f8afeb248f77f844f5fd64666b3f0ba0fc25321675b72844bf5dd3664",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/dual-array/lesson/view.mjs",
+  {
+    "sha256": "8f3907a4bc5202432ce9ceda1b7f456e1175a775123a94d0ef286124d4e69c10",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/dual-array/runtime/client.mjs",
+  {
+    "sha256": "16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824",
+    "runtimePolicy": "reviewed-dual-array-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": [
+      {
+        "kind": "worker",
+        "url": "./worker.mjs",
+        "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+      }
+    ]
+  }
+],
+[
+  "labs/dual-array/runtime/kernel.mjs",
+  {
+    "sha256": "0292203f5dd4d0ff39592f892a332c5333f2ba8caf894effdc4a81d43702c32d",
+    "runtimePolicy": "no-runtime-loads",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": []
+  }
+],
+[
+  "labs/dual-array/runtime/records.mjs",
+  {
+    "sha256": "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158",
+    "runtimePolicy": "reviewed-dual-array-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": [
+      {
+        "kind": "dynamic-module",
+        "url": "./kernel.mjs",
+        "literal": "await import('./kernel.mjs')"
+      }
+    ]
+  }
+],
+[
+  "labs/dual-array/runtime/worker.mjs",
+  {
+    "sha256": "b2b2376d0b3c62a4e2ec58a84a1f95f31a0ddb1023d9a19940445f641d84f94f",
+    "runtimePolicy": "reviewed-dual-array-runtime",
+    "sourceLiterals": [],
+    "edgeKind": "reviewed-dual-array-module",
+    "runtimeEdges": [
+      {
+        "kind": "node-builtin",
+        "url": "node:worker_threads",
+        "literal": "await import('node:worker_threads')"
+      }
+    ]
+  }
+],
  // Exact immutable pilot-pattern v4 lesson and accepted raw-IQ receiver.
 [
   "labs/pilot-pattern/lesson.mjs",
@@ -1409,9 +1526,89 @@ const pilotPatternPublicFiles=new Map([
     "18ad28cf435178d526b331eb9a2764a622fa54e3af5d972536aa8ed25e68d04d"
   ]
 ]);
+// Separate exact CSS-only narrow-screen correction; numerical module profiles are unchanged.
+if(perceptivePublicFiles.get('labs/perceptive-bsbl/lesson.css')!=='97fa3d71368ca3ba4c8e506aaf77f661558c1a5b4702f597657da81e51df210e')throw Error('Unexpected pre-narrow Perceptive CSS identity');
+perceptivePublicFiles.set('labs/perceptive-bsbl/lesson.css','13dc2126f5812b385c5c3e54b8dd3396163ac64e72e96adbe167107a9ef4ad14');
+if(pilotPatternPublicFiles.get('labs/pilot-pattern/lesson.css')!=='b8f59d4ba8ecb30aba5739271c665f59b8f85fc1bd63f6b10b6a46659c5fec17')throw Error('Unexpected pre-narrow pilot CSS identity');
+pilotPatternPublicFiles.set('labs/pilot-pattern/lesson.css','4c0cae10a4b3960e0bccc2dbf591e057013916a3f118eef5ebfe6d0f32cc1249');
+// Separate exact desktop-only navigation correction; accepted narrow and numerical endpoints stay frozen.
+if(perceptivePublicFiles.get('labs/perceptive-bsbl/lesson.css')!=='13dc2126f5812b385c5c3e54b8dd3396163ac64e72e96adbe167107a9ef4ad14')throw Error('Unexpected pre-desktop Perceptive CSS identity');
+perceptivePublicFiles.set('labs/perceptive-bsbl/lesson.css','30c4e563393c48460c7b1cf19d820223e00744056694cf8a4ee3f38b45574c95');
+if(pilotPatternPublicFiles.get('labs/pilot-pattern/lesson.css')!=='4c0cae10a4b3960e0bccc2dbf591e057013916a3f118eef5ebfe6d0f32cc1249')throw Error('Unexpected pre-desktop pilot CSS identity');
+pilotPatternPublicFiles.set('labs/pilot-pattern/lesson.css','4c00a92b40d0b50735a459492831a139782f76eb357ca81470f8a884baf07350');
+const dualArrayPublicFiles=new Map([
+  [
+    "labs/dual-array/README.md",
+    "bfe70bc4e069040aadaec4bb0989c19a50a515b01f61ce0da9a0c83ee1e6c8bc"
+  ],
+  [
+    "labs/dual-array/lesson/model.mjs",
+    "4608ebcfc164858358b884b2313fb3b8ccd373aea9ada8e57cec00d98a95b7e7"
+  ],
+  [
+    "labs/dual-array/lesson/mount.mjs",
+    "d2a2bd8468e5aa1ca49b5e9361675362be0f216f7069af1b437322715be34848"
+  ],
+  [
+    "labs/dual-array/lesson/session.mjs",
+    "5768801f8afeb248f77f844f5fd64666b3f0ba0fc25321675b72844bf5dd3664"
+  ],
+  [
+    "labs/dual-array/lesson/view.mjs",
+    "8f3907a4bc5202432ce9ceda1b7f456e1175a775123a94d0ef286124d4e69c10"
+  ],
+  [
+    "labs/dual-array/lesson.css",
+    "edf7126ca31eba6bdb657710cf735d84e755268aa8677650daa984c0e8804d81"
+  ],
+  [
+    "labs/dual-array/lesson.mjs",
+    "c6b83930e3aec78eb3b4c9c8976c62d6d13842213a2dbb59ff0c2eda18c8c781"
+  ],
+  [
+    "labs/dual-array/runtime/client.mjs",
+    "16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824"
+  ],
+  [
+    "labs/dual-array/runtime/kernel.mjs",
+    "0292203f5dd4d0ff39592f892a332c5333f2ba8caf894effdc4a81d43702c32d"
+  ],
+  [
+    "labs/dual-array/runtime/records.mjs",
+    "7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158"
+  ],
+  [
+    "labs/dual-array/runtime/worker.mjs",
+    "b2b2376d0b3c62a4e2ec58a84a1f95f31a0ddb1023d9a19940445f641d84f94f"
+  ],
+  [
+    "assets/data/dual-array/RUNTIME-ACCEPTANCE.json",
+    "248a7e3f1f4954999677fdc6077a0f04ed0693754e28c72ceba696fb3583b6f6"
+  ],
+  [
+    "assets/data/dual-array/RUNTIME-ACCEPTANCE.md",
+    "6f62999886b5a118d245940632733b2dcc9ac33ca9a9bda5d4bc919adc3a45c3"
+  ],
+  [
+    "assets/data/dual-array/historical-statistics.json",
+    "e54cc91dbc25f25b48584dedd98b885305eed33e4e7bc2c22eeb6a8bdb98018b"
+  ],
+  [
+    "assets/data/dual-array/lesson-review/ACCEPTANCE.md",
+    "6d25b950b2e5c0a50e04e682a601f66dcc4fd9f17815cc14b3a64447ca5fdf8e"
+  ],
+  [
+    "assets/data/dual-array/lesson-review/ACCEPTANCE.json",
+    "6ae4f83aa72a8356b28bcdf19665a722f1d2d18529803b9b17e34841d5d39ba5"
+  ],
+  [
+    "assets/data/dual-array/lesson-review/AUDIT-MANIFEST.json",
+    "eb7b204b0ea162f6dfb1c0d2ee1ea69a13f20571cbbb0c4c44363fc768741f21"
+  ]
+]);
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
-const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime']);
+const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);
  if(c.runtimeEdges.length!==profile.runtimeEdges.length)throw Error('Reviewed runtime endpoint set mismatch: '+file);
@@ -1443,6 +1640,7 @@ function moduleDependencies(modules,contract,identities){
  for(const identity of identities){
   fields(identity,['file','sha256'],'public module identity');
   if(typeof identity.file!=='string'||!/^[a-f0-9]{64}$/.test(identity.sha256)||seenIdentities.has(identity.file))throw Error('Invalid or duplicate public module identity');
+  if(['labs/dual-array/','assets/data/dual-array/'].some(prefix=>identity.file.startsWith(prefix))&&dualArrayPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed dual-array public path or hash: '+identity.file);
   if(['labs/pilot-pattern/','assets/data/pilot-pattern/'].some(prefix=>identity.file.startsWith(prefix))&&pilotPatternPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed pilot-pattern public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/cellfree-maprt/')&&cellfreePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Cell-Free public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/nearfield-multitarget/')&&multitargetPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed multi-target public path or hash: '+identity.file);
