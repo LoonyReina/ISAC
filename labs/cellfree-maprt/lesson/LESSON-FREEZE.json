@@ -1,0 +1,176 @@
+{
+  "schema": "cellfree-maprt-lesson-freeze-v1",
+  "frozen_at_utc": "2026-10-13T01:14:46.832393+00:00",
+  "accepted_base_tree": "173455c39472327b17cb8459e749ea244d5baa4a",
+  "runtime_manifest_sha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+  "runtime_modified": false,
+  "scope": "new page, exact accepted runtime, lesson adapters/UI/portable tests only; no global registry/buildmanifest/old-page/remote writes",
+  "files": [
+    {
+      "path": "content/pages/cellfree-maprt.html",
+      "bytes": 23675,
+      "sha256": "776e37e629b0cc59415b9bde7f88b5b2b16abdcd39916b13705c33d45ddd25bc"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1532,
+      "sha256": "941403a04929cab4b1cafc92192bb05db404ccbcc6e567532c380b8a89e40fe0"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/README.md",
+      "bytes": 7260,
+      "sha256": "03d1fdd1096bbfa0b6973ae981f6b5fec0955c786e4d0ca216245517b162c3c0"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "bytes": 5003,
+      "sha256": "976112b376b800237066e2f1923fb6958547829bcb6cbf8bb542159b32d37bc7"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/lesson.css",
+      "bytes": 5116,
+      "sha256": "d1865ab0b08c734fffb5d62e7b35f81d0854f41d3aef7baa06e1b56530e46c98"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "bytes": 27303,
+      "sha256": "53a28855eb8e99e989ff751535fb9703160c008bdd063ba2cca627435963e4e7"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/reference-summary.json",
+      "bytes": 93325,
+      "sha256": "4be7f2f643652a673670d05fa25ef448307b5bf1d32e1ec96af6a70e34067f72"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/session.mjs",
+      "bytes": 1906,
+      "sha256": "894831143a4c395f9e3eb9df03540ba40b9dcf4cb6120bca6115c6d2b8d01a00"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/adapter-oracle.py",
+      "bytes": 2525,
+      "sha256": "4d0e1b5e4d0c70d8c5ede6d3e450ab0bb6b171bab753a365754c094d6baeacaa"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/adapter.test.mjs",
+      "bytes": 2729,
+      "sha256": "e77b25682f054c5171737137e2a2e548ea3137c0c66a47214156b91217a9e296"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/contract.test.mjs",
+      "bytes": 2219,
+      "sha256": "08cc77c06f156b97f5116f4dc21c6265df0a845e5dcac1bb7edd1365616eceac"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/dom-harness.cjs",
+      "bytes": 7379,
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/export-records.mjs",
+      "bytes": 2198,
+      "sha256": "42409728011fe8072f610e96edae27ace69a25cf721bb3d3fd0c6634e108db55"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/mounted.test.mjs",
+      "bytes": 10505,
+      "sha256": "8451fd6df4d72b56e1062ff9c46fd84910179193390e398d374bf959ce053815"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/session.test.mjs",
+      "bytes": 2051,
+      "sha256": "57a1a69b3200275bd3ee870557fba7dc5934f29e5f2000bf7fa59ed6eaeaa3d1"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/worker-node.mjs",
+      "bytes": 390,
+      "sha256": "167453588602b2a35fa85c9bdc5e817ca4cab09c9de66fad0f9c7948e434d9ea"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/INDEPENDENT-REVIEW.md",
+      "bytes": 6636,
+      "sha256": "30d9ac2a92314aade0588f167825cc646efc1d5637f3257ad6878fbb2ca90e93"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/README.md",
+      "bytes": 7776,
+      "sha256": "06acd8c5ae76441b1f19e5e81c3d094c312089355d67d50013aac26c1592ef98"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/RUNTIME-MANIFEST.json",
+      "bytes": 1202,
+      "sha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/client.mjs",
+      "bytes": 1724,
+      "sha256": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/codec.mjs",
+      "bytes": 1417,
+      "sha256": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "bytes": 3181,
+      "sha256": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "bytes": 2384,
+      "sha256": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/power.mjs",
+      "bytes": 16382,
+      "sha256": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "bytes": 10485,
+      "sha256": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "bytes": 11215,
+      "sha256": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "bytes": 1655,
+      "sha256": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/worker.mjs",
+      "bytes": 944,
+      "sha256": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e"
+    }
+  ],
+  "verification": {
+    "portable_tests": 23,
+    "passed": 23,
+    "failed": 0,
+    "node": "v24.19.0",
+    "independent_method_adapter_cases": 4,
+    "independent_method_comparisons": 44,
+    "max_normalized_or_absolute_error": 4.263256414560601e-14,
+    "actual_browser": false,
+    "aggregate_integrated_build": false,
+    "deployment": false
+  },
+  "pending": [
+    "independent lesson review",
+    "root integration and explicit compatibility mappings",
+    "canonical aggregate reproducible build",
+    "actual served-browser lifecycle/layout/keyboard/download/performance review",
+    "authorized deployment and exact commit/live checks"
+  ],
+  "development_fixes": [
+    {
+      "finding": "Independent reviewer reproduced stale file-read rejection cancelling a newer Run and clearing newer file selection",
+      "fix": "Import success/catch/finally ownership fenced to the generation initiated by that handler; current failure may invalidate only its own operation",
+      "regression": "Mounted production UI tests: old rejected import versus newer actual Worker Run, and versus newer pending import"
+    }
+  ]
+}

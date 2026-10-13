@@ -1,0 +1,3027 @@
+{
+  "schema": "cellfree-maprt-teaching-selected-summary-v1",
+  "created_utc": "2026-10-13T00:42:09Z",
+  "origin": "read_only_extraction_and_count_complements_from_accepted_reference_records",
+  "reference_manifest_sha256": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5",
+  "source_record_hashes": {
+    "evidence/selected/settings.json": "f83e9d73dff70e077eeb3620b67e26c45ce44c24ae21dd36ea0bb4e46d4aafbb",
+    "evidence/selected/results.json": "3d61df944b8d08125f423cf2d6b3019666dd34b3f6da608dc81bf3df6b78103b",
+    "evidence/selected/solver_records.json": "fbb773cbb29c98de4afdf9d2a836c23c38b0d9ab5bcb048513ee9fd971f87257"
+  },
+  "settings": {
+    "seed": 2026101301,
+    "Ntx": 4,
+    "Nrx": 2,
+    "M": 2,
+    "Nue": 2,
+    "tau_s": 10,
+    "tau_c": 200,
+    "tau_p": 10,
+    "carrier_hz": 1900000000.0,
+    "bandwidth_hz": 20000000.0,
+    "noise_variance_w": 3.981071705534969e-13,
+    "noise_dbm": -94,
+    "per_ap_cap_w": 1.0,
+    "pilot_power_w": 0.2,
+    "communication_gamma_db": 3.0,
+    "communication_gamma": 1.9952623149688795,
+    "channel_moment_samples": 1024,
+    "target_location_samples": 1,
+    "target_fixed": true,
+    "RZF_regularizer_noise_normalized": 1.0,
+    "communication_covariance": "synthetic free-space attenuation 1e-3, Toeplitz 0.45 and geometry phase",
+    "clutter_covariance": "synthetic free-space attenuation 1e-4 times source default s=0.3; Toeplitz tx=0.35, rx=0.25",
+    "pilot_model": "orthogonal Gaussian MMSE, no contamination; different from unrecovered source pilot assignment",
+    "symbols": "known independent unit-modulus QPSK; stored realized block",
+    "R_rcs": "identity, independent normalized Swerling-I, constant over each block",
+    "steering": "literal source Eq.4/Eq.7; horizontal ULA along y, half-wavelength",
+    "geometry": "explicit synthetic coordinates, not digitized source Fig.2",
+    "scope": "reduced-dimensional conditional algorithm reference, not a paper-curve reproduction",
+    "calibration_trials": 16384,
+    "evaluation_trials": 8192,
+    "rcs_dbsm": [
+      -30,
+      -20,
+      -10,
+      0
+    ],
+    "pfa": [
+      0.1,
+      0.01
+    ],
+    "ccp_restarts": 3,
+    "max_ccp_iterations": 100,
+    "ccp_tolerance": 1e-08,
+    "SLSQP_maxiter": 400,
+    "SLSQP_ftol": 1e-11,
+    "calibration_seed": [
+      2026101301,
+      101
+    ],
+    "evaluation_seed": [
+      2026101301,
+      202
+    ],
+    "holdout_channel_seed": 2026101308,
+    "holdout_channel_samples": 1024,
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "core_sha256": {
+      "src/__init__.py": "fb6c0e9f3ef678edcd52ee3fef1dc43dde6af44701420f94444cf449a7bf6690",
+      "src/maprt.py": "bab0b8dd7992980c0482421848cbdd83edd9084a47186af4e6c4b23dd87866c9",
+      "src/power.py": "0b83c1738d5d9e70d5218932aace11d6e4fc55e04f77ebaec04509af274b3673",
+      "src/scenario.py": "4d1f24f05e960d4dbb059792f15a3139c7e458098aaa3a5d86cc98b6d5ecda1a"
+    },
+    "source_pdf_sha256": "30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10",
+    "interval_scope": "pointwise 95%; evaluation Clopper-Pearson conditional on frozen threshold; calibration Beta order-statistic separately; no familywise or deployment guarantee"
+  },
+  "cells": [
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 831,
+      "correct_rejections": 7361,
+      "detections": 827,
+      "misses": 7365,
+      "estimated_pfa": 0.1014404296875,
+      "estimated_pd": 0.1009521484375,
+      "pfa_clopper_pearson_95": [
+        0.09498419784996452,
+        0.10818171199012246
+      ],
+      "pd_clopper_pearson_95": [
+        0.0945100706556656,
+        0.10767963330932705
+      ],
+      "source_sensing_sinr": 1.787734231002995e-05,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.156641481808613,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8990478515625,
+      "pmiss_clopper_pearson_95": [
+        0.8923203666906729,
+        0.9054899293443344
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 70,
+      "misses": 8122,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.008544921875,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "source_sensing_sinr": 1.787734231002995e-05,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.155922792869196,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.991455078125,
+      "pmiss_clopper_pearson_95": [
+        0.9892161725321716,
+        0.9933329303612402
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 821,
+      "correct_rejections": 7371,
+      "detections": 813,
+      "misses": 7379,
+      "estimated_pfa": 0.1002197265625,
+      "estimated_pd": 0.0992431640625,
+      "pfa_clopper_pearson_95": [
+        0.09379896847547681,
+        0.10692642681774225
+      ],
+      "pd_clopper_pearson_95": [
+        0.09285099925886842,
+        0.10592198473971148
+      ],
+      "source_sensing_sinr": 1.787734231002995e-05,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.15654173840495,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9007568359375,
+      "pmiss_clopper_pearson_95": [
+        0.8940780152602885,
+        0.9071490007411316
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 71,
+      "misses": 8121,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.0086669921875,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.006775020492276283,
+        0.010919832682111207
+      ],
+      "source_sensing_sinr": 1.787734231002995e-05,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.155762153833914,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9913330078125,
+      "pmiss_clopper_pearson_95": [
+        0.9890801673178888,
+        0.9932249795077237
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 833,
+      "correct_rejections": 7359,
+      "detections": 826,
+      "misses": 7366,
+      "estimated_pfa": 0.1016845703125,
+      "estimated_pd": 0.100830078125,
+      "pfa_clopper_pearson_95": [
+        0.0952212790556598,
+        0.10843273374981412
+      ],
+      "pd_clopper_pearson_95": [
+        0.09439154622151852,
+        0.1075541062863812
+      ],
+      "source_sensing_sinr": 0.0001787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.145888175175946,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.899169921875,
+      "pmiss_clopper_pearson_95": [
+        0.8924458937136188,
+        0.9056084537784814
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 71,
+      "misses": 8121,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.0086669921875,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.006775020492276283,
+        0.010919832682111207
+      ],
+      "source_sensing_sinr": 0.0001787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.13871708447389,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9913330078125,
+      "pmiss_clopper_pearson_95": [
+        0.9890801673178888,
+        0.9932249795077237
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 822,
+      "correct_rejections": 7370,
+      "detections": 817,
+      "misses": 7375,
+      "estimated_pfa": 0.100341796875,
+      "estimated_pd": 0.0997314453125,
+      "pfa_clopper_pearson_95": [
+        0.09391747808541019,
+        0.10705196864125997
+      ],
+      "pd_clopper_pearson_95": [
+        0.0933249598770459,
+        0.10642422973022268
+      ],
+      "source_sensing_sinr": 0.0001787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.144895160107158,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9002685546875,
+      "pmiss_clopper_pearson_95": [
+        0.8935757702697773,
+        0.9066750401229541
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 75,
+      "misses": 8117,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.0091552734375,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.007207819312544491,
+        0.011462877516916109
+      ],
+      "source_sensing_sinr": 0.0001787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.137116893641728,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9908447265625,
+      "pmiss_clopper_pearson_95": [
+        0.9885371224830839,
+        0.9927921806874556
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 829,
+      "correct_rejections": 7363,
+      "detections": 868,
+      "misses": 7324,
+      "estimated_pfa": 0.1011962890625,
+      "estimated_pd": 0.10595703125,
+      "pfa_clopper_pearson_95": [
+        0.09474712837074119,
+        0.10793067852248195
+      ],
+      "pd_clopper_pearson_95": [
+        0.09937205990927539,
+        0.11282375767756608
+      ],
+      "source_sensing_sinr": 0.0017877342310029952,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.040534734300946,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.89404296875,
+      "pmiss_clopper_pearson_95": [
+        0.8871762423224339,
+        0.9006279400907247
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 86,
+      "misses": 8106,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.010498046875,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.008405418965101673,
+        0.012948982852427677
+      ],
+      "source_sensing_sinr": 0.0017877342310029952,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -8.970484791796965,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.989501953125,
+      "pmiss_clopper_pearson_95": [
+        0.9870510171475724,
+        0.9915945810348983
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 824,
+      "correct_rejections": 7368,
+      "detections": 863,
+      "misses": 7329,
+      "estimated_pfa": 0.1005859375,
+      "estimated_pd": 0.1053466796875,
+      "pfa_clopper_pearson_95": [
+        0.09415450622380042,
+        0.10730304338402782
+      ],
+      "pd_clopper_pearson_95": [
+        0.09877887936667651,
+        0.11219668007006144
+      ],
+      "source_sensing_sinr": 0.0017877342310029952,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -9.03101970094863,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8946533203125,
+      "pmiss_clopper_pearson_95": [
+        0.8878033199299386,
+        0.9012211206333235
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 85,
+      "misses": 8107,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.0103759765625,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.008296135617088442,
+        0.012814285961896755
+      ],
+      "source_sensing_sinr": 0.0017877342310029952,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -8.955213121870253,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9896240234375,
+      "pmiss_clopper_pearson_95": [
+        0.9871857140381033,
+        0.9917038643829116
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 828,
+      "correct_rejections": 7364,
+      "detections": 1547,
+      "misses": 6645,
+      "estimated_pfa": 0.10107421875,
+      "estimated_pd": 0.1888427734375,
+      "pfa_clopper_pearson_95": [
+        0.0946285980403214,
+        0.10780515738645041
+      ],
+      "pd_clopper_pearson_95": [
+        0.1804182348434968,
+        0.1974892354617959
+      ],
+      "source_sensing_sinr": 0.01787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -8.170513776479599,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8111572265625,
+      "pmiss_clopper_pearson_95": [
+        0.8025107645382041,
+        0.8195817651565032
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 76,
+      "correct_rejections": 8116,
+      "detections": 261,
+      "misses": 7931,
+      "estimated_pfa": 0.00927734375,
+      "estimated_pd": 0.0318603515625,
+      "pfa_clopper_pearson_95": [
+        0.0073162579151200184,
+        0.011598404357914621
+      ],
+      "pd_clopper_pearson_95": [
+        0.028163434194822753,
+        0.03589498535588744
+      ],
+      "source_sensing_sinr": 0.01787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -7.599933263098919,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9681396484375,
+      "pmiss_clopper_pearson_95": [
+        0.9641050146441126,
+        0.9718365658051773
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 826,
+      "correct_rejections": 7366,
+      "detections": 1536,
+      "misses": 6656,
+      "estimated_pfa": 0.100830078125,
+      "estimated_pd": 0.1875,
+      "pfa_clopper_pearson_95": [
+        0.09439154622151852,
+        0.1075541062863812
+      ],
+      "pd_clopper_pearson_95": [
+        0.1790991335663683,
+        0.1961237533002464
+      ],
+      "source_sensing_sinr": 0.01787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -8.099114928003956,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8125,
+      "pmiss_clopper_pearson_95": [
+        0.8038762466997535,
+        0.8209008664336317
+      ]
+    },
+    {
+      "allocation": "comm_centric",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 74,
+      "correct_rejections": 8118,
+      "detections": 263,
+      "misses": 7929,
+      "estimated_pfa": 0.009033203125,
+      "estimated_pd": 0.0321044921875,
+      "pfa_clopper_pearson_95": [
+        0.007099474345710101,
+        0.011327258791821714
+      ],
+      "pd_clopper_pearson_95": [
+        0.02839342383143571,
+        0.036153075410558205
+      ],
+      "source_sensing_sinr": 0.01787734231002995,
+      "actual_block_tx_energy_symbol_w": 0.05367848655468771,
+      "threshold_calibration": {
+        "threshold": -7.484295488185653,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9678955078125,
+      "pmiss_clopper_pearson_95": [
+        0.9638469245894418,
+        0.9716065761685643
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 855,
+      "correct_rejections": 7337,
+      "detections": 889,
+      "misses": 7303,
+      "estimated_pfa": 0.1043701171875,
+      "estimated_pd": 0.1085205078125,
+      "pfa_clopper_pearson_95": [
+        0.09782993571028448,
+        0.1111932109063097
+      ],
+      "pd_clopper_pearson_95": [
+        0.10186416753138978,
+        0.11545673540454993
+      ],
+      "source_sensing_sinr": 0.002041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -9.130859030299174,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8914794921875,
+      "pmiss_clopper_pearson_95": [
+        0.8845432645954501,
+        0.8981358324686102
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 74,
+      "correct_rejections": 8118,
+      "detections": 77,
+      "misses": 8115,
+      "estimated_pfa": 0.009033203125,
+      "estimated_pd": 0.0093994140625,
+      "pfa_clopper_pearson_95": [
+        0.007099474345710101,
+        0.011327258791821714
+      ],
+      "pd_clopper_pearson_95": [
+        0.007424788324958689,
+        0.011733841087091603
+      ],
+      "source_sensing_sinr": 0.002041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -9.11134201822126,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9906005859375,
+      "pmiss_clopper_pearson_95": [
+        0.9882661589129084,
+        0.9925752116750413
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 924,
+      "misses": 7268,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.11279296875,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.10602029028370663,
+        0.11984242536361112
+      ],
+      "source_sensing_sinr": 0.002041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -3.1285352176896577,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.88720703125,
+      "pmiss_clopper_pearson_95": [
+        0.8801575746363889,
+        0.8939797097162934
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 71,
+      "misses": 8121,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0086669921875,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.006775020492276283,
+        0.010919832682111207
+      ],
+      "source_sensing_sinr": 0.002041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 1.4188535745910897,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9913330078125,
+      "pmiss_clopper_pearson_95": [
+        0.9890801673178888,
+        0.9932249795077237
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 857,
+      "correct_rejections": 7335,
+      "detections": 1042,
+      "misses": 7150,
+      "estimated_pfa": 0.1046142578125,
+      "estimated_pd": 0.127197265625,
+      "pfa_clopper_pearson_95": [
+        0.09806715477448144,
+        0.11144409502149398
+      ],
+      "pd_clopper_pearson_95": [
+        0.120054537601557,
+        0.13460631954410768
+      ],
+      "source_sensing_sinr": 0.02041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -8.903710969575267,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.872802734375,
+      "pmiss_clopper_pearson_95": [
+        0.8653936804558924,
+        0.879945462398443
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 74,
+      "correct_rejections": 8118,
+      "detections": 110,
+      "misses": 8082,
+      "estimated_pfa": 0.009033203125,
+      "estimated_pd": 0.013427734375,
+      "pfa_clopper_pearson_95": [
+        0.007099474345710101,
+        0.011327258791821714
+      ],
+      "pd_clopper_pearson_95": [
+        0.011048541763915894,
+        0.01616169442069153
+      ],
+      "source_sensing_sinr": 0.02041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -8.719770909144492,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.986572265625,
+      "pmiss_clopper_pearson_95": [
+        0.9838383055793085,
+        0.9889514582360841
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 1053,
+      "misses": 7139,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.1285400390625,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.12136443529966433,
+        0.13598099641517306
+      ],
+      "source_sensing_sinr": 0.02041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 22.847123618976006,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8714599609375,
+      "pmiss_clopper_pearson_95": [
+        0.864019003584827,
+        0.8786355647003357
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 111,
+      "misses": 8081,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0135498046875,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.011159413949302982,
+        0.016294825660657642
+      ],
+      "source_sensing_sinr": 0.02041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 46.98285406565339,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9864501953125,
+      "pmiss_clopper_pearson_95": [
+        0.9837051743393423,
+        0.988840586050697
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 849,
+      "correct_rejections": 7343,
+      "detections": 2747,
+      "misses": 5445,
+      "estimated_pfa": 0.1036376953125,
+      "estimated_pd": 0.3353271484375,
+      "pfa_clopper_pearson_95": [
+        0.09711834640603499,
+        0.11044049077642244
+      ],
+      "pd_clopper_pearson_95": [
+        0.325102868221859,
+        0.3456686878613911
+      ],
+      "source_sensing_sinr": 0.2041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -7.541852970376658,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.6646728515625,
+      "pmiss_clopper_pearson_95": [
+        0.654331312138609,
+        0.6748971317781409
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 73,
+      "correct_rejections": 8119,
+      "detections": 786,
+      "misses": 7406,
+      "estimated_pfa": 0.0089111328125,
+      "estimated_pd": 0.095947265625,
+      "pfa_clopper_pearson_95": [
+        0.006991224905077913,
+        0.011191546351023611
+      ],
+      "pd_clopper_pearson_95": [
+        0.08965304455518004,
+        0.10253055367916793
+      ],
+      "source_sensing_sinr": 0.2041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -6.390496290626822,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.904052734375,
+      "pmiss_clopper_pearson_95": [
+        0.897469446320832,
+        0.9103469554448199
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 2746,
+      "misses": 5446,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.335205078125,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.32498176353812497,
+        0.34554573892586404
+      ],
+      "source_sensing_sinr": 0.2041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 47.110304185770225,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.664794921875,
+      "pmiss_clopper_pearson_95": [
+        0.654454261074136,
+        0.6750182364618751
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 741,
+      "misses": 7451,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0904541015625,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.0843282920102334,
+        0.0968730053998073
+      ],
+      "source_sensing_sinr": 0.2041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 89.49378895955039,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9095458984375,
+      "pmiss_clopper_pearson_95": [
+        0.9031269946001927,
+        0.9156717079897666
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 873,
+      "correct_rejections": 7319,
+      "detections": 7483,
+      "misses": 709,
+      "estimated_pfa": 0.1065673828125,
+      "estimated_pd": 0.9134521484375,
+      "pfa_clopper_pearson_95": [
+        0.09996530962690806,
+        0.11345076621402143
+      ],
+      "pd_clopper_pearson_95": [
+        0.9071543146823556,
+        0.9194540165757227
+      ],
+      "source_sensing_sinr": 2.041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -5.485062596329364,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.0865478515625,
+      "pmiss_clopper_pearson_95": [
+        0.08054598342427732,
+        0.09284568531764437
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 76,
+      "correct_rejections": 8116,
+      "detections": 6465,
+      "misses": 1727,
+      "estimated_pfa": 0.00927734375,
+      "estimated_pd": 0.7891845703125,
+      "pfa_clopper_pearson_95": [
+        0.0073162579151200184,
+        0.011598404357914621
+      ],
+      "pd_clopper_pearson_95": [
+        0.7801887204888804,
+        0.7979742464081858
+      ],
+      "source_sensing_sinr": 2.041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": -3.0623924320623734,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.2108154296875,
+      "pmiss_clopper_pearson_95": [
+        0.20202575359181418,
+        0.21981127951111956
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 888,
+      "correct_rejections": 7304,
+      "detections": 7448,
+      "misses": 744,
+      "estimated_pfa": 0.1083984375,
+      "estimated_pd": 0.9091796875,
+      "pfa_clopper_pearson_95": [
+        0.10174546863392134,
+        0.11533138257870143
+      ],
+      "pd_clopper_pearson_95": [
+        0.9027496157509755,
+        0.9153169338181041
+      ],
+      "source_sensing_sinr": 2.041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 52.074380352894856,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.0908203125,
+      "pmiss_clopper_pearson_95": [
+        0.08468306618189592,
+        0.09725038424902455
+      ]
+    },
+    {
+      "allocation": "isac",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 6365,
+      "misses": 1827,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.7769775390625,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.7678045310271591,
+        0.7859531122250912
+      ],
+      "source_sensing_sinr": 2.041504393925457,
+      "actual_block_tx_energy_symbol_w": 11.881937323853082,
+      "threshold_calibration": {
+        "threshold": 97.82224096217186,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.2230224609375,
+      "pmiss_clopper_pearson_95": [
+        0.21404688777490877,
+        0.23219546897284093
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 855,
+      "correct_rejections": 7337,
+      "detections": 889,
+      "misses": 7303,
+      "estimated_pfa": 0.1043701171875,
+      "estimated_pd": 0.1085205078125,
+      "pfa_clopper_pearson_95": [
+        0.09782993571028448,
+        0.1111932109063097
+      ],
+      "pd_clopper_pearson_95": [
+        0.10186416753138978,
+        0.11545673540454993
+      ],
+      "source_sensing_sinr": 0.0020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -9.130859030299174,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8914794921875,
+      "pmiss_clopper_pearson_95": [
+        0.8845432645954501,
+        0.8981358324686102
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 74,
+      "correct_rejections": 8118,
+      "detections": 77,
+      "misses": 8115,
+      "estimated_pfa": 0.009033203125,
+      "estimated_pd": 0.0093994140625,
+      "pfa_clopper_pearson_95": [
+        0.007099474345710101,
+        0.011327258791821714
+      ],
+      "pd_clopper_pearson_95": [
+        0.007424788324958689,
+        0.011733841087091603
+      ],
+      "source_sensing_sinr": 0.0020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -9.111342018221261,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9906005859375,
+      "pmiss_clopper_pearson_95": [
+        0.9882661589129084,
+        0.9925752116750413
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 924,
+      "misses": 7268,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.11279296875,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.10602029028370663,
+        0.11984242536361112
+      ],
+      "source_sensing_sinr": 0.0020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -3.128535217689624,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.88720703125,
+      "pmiss_clopper_pearson_95": [
+        0.8801575746363889,
+        0.8939797097162934
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 71,
+      "misses": 8121,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0086669921875,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.006775020492276283,
+        0.010919832682111207
+      ],
+      "source_sensing_sinr": 0.0020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 1.4188535745909103,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9913330078125,
+      "pmiss_clopper_pearson_95": [
+        0.9890801673178888,
+        0.9932249795077237
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 857,
+      "correct_rejections": 7335,
+      "detections": 1042,
+      "misses": 7150,
+      "estimated_pfa": 0.1046142578125,
+      "estimated_pd": 0.127197265625,
+      "pfa_clopper_pearson_95": [
+        0.09806715477448144,
+        0.11144409502149398
+      ],
+      "pd_clopper_pearson_95": [
+        0.120054537601557,
+        0.13460631954410768
+      ],
+      "source_sensing_sinr": 0.020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -8.903710969575227,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.872802734375,
+      "pmiss_clopper_pearson_95": [
+        0.8653936804558924,
+        0.879945462398443
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 74,
+      "correct_rejections": 8118,
+      "detections": 110,
+      "misses": 8082,
+      "estimated_pfa": 0.009033203125,
+      "estimated_pd": 0.013427734375,
+      "pfa_clopper_pearson_95": [
+        0.007099474345710101,
+        0.011327258791821714
+      ],
+      "pd_clopper_pearson_95": [
+        0.011048541763915894,
+        0.01616169442069153
+      ],
+      "source_sensing_sinr": 0.020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -8.719770909144463,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.986572265625,
+      "pmiss_clopper_pearson_95": [
+        0.9838383055793085,
+        0.9889514582360841
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 1053,
+      "misses": 7139,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.1285400390625,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.12136443529966433,
+        0.13598099641517306
+      ],
+      "source_sensing_sinr": 0.020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 22.847123618976177,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8714599609375,
+      "pmiss_clopper_pearson_95": [
+        0.864019003584827,
+        0.8786355647003357
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 111,
+      "misses": 8081,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0135498046875,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.011159413949302982,
+        0.016294825660657642
+      ],
+      "source_sensing_sinr": 0.020415043939254435,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 46.9828540656524,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9864501953125,
+      "pmiss_clopper_pearson_95": [
+        0.9837051743393423,
+        0.988840586050697
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 849,
+      "correct_rejections": 7343,
+      "detections": 2747,
+      "misses": 5445,
+      "estimated_pfa": 0.1036376953125,
+      "estimated_pd": 0.3353271484375,
+      "pfa_clopper_pearson_95": [
+        0.09711834640603499,
+        0.11044049077642244
+      ],
+      "pd_clopper_pearson_95": [
+        0.325102868221859,
+        0.3456686878613911
+      ],
+      "source_sensing_sinr": 0.20415043939254437,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -7.541852970376625,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.6646728515625,
+      "pmiss_clopper_pearson_95": [
+        0.654331312138609,
+        0.6748971317781409
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 73,
+      "correct_rejections": 8119,
+      "detections": 786,
+      "misses": 7406,
+      "estimated_pfa": 0.0089111328125,
+      "estimated_pd": 0.095947265625,
+      "pfa_clopper_pearson_95": [
+        0.006991224905077913,
+        0.011191546351023611
+      ],
+      "pd_clopper_pearson_95": [
+        0.08965304455518004,
+        0.10253055367916793
+      ],
+      "source_sensing_sinr": 0.20415043939254437,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -6.39049629062678,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.904052734375,
+      "pmiss_clopper_pearson_95": [
+        0.897469446320832,
+        0.9103469554448199
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 894,
+      "correct_rejections": 7298,
+      "detections": 2746,
+      "misses": 5446,
+      "estimated_pfa": 0.109130859375,
+      "estimated_pd": 0.335205078125,
+      "pfa_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "pd_clopper_pearson_95": [
+        0.32498176353812497,
+        0.34554573892586404
+      ],
+      "source_sensing_sinr": 0.20415043939254437,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 47.11030418577071,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.664794921875,
+      "pmiss_clopper_pearson_95": [
+        0.654454261074136,
+        0.6750182364618751
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 741,
+      "misses": 7451,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0904541015625,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.0843282920102334,
+        0.0968730053998073
+      ],
+      "source_sensing_sinr": 0.20415043939254437,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 89.49378895954864,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9095458984375,
+      "pmiss_clopper_pearson_95": [
+        0.9031269946001927,
+        0.9156717079897666
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 873,
+      "correct_rejections": 7319,
+      "detections": 7483,
+      "misses": 709,
+      "estimated_pfa": 0.1065673828125,
+      "estimated_pd": 0.9134521484375,
+      "pfa_clopper_pearson_95": [
+        0.09996530962690806,
+        0.11345076621402143
+      ],
+      "pd_clopper_pearson_95": [
+        0.9071543146823556,
+        0.9194540165757227
+      ],
+      "source_sensing_sinr": 2.0415043939254436,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -5.485062596326744,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.0865478515625,
+      "pmiss_clopper_pearson_95": [
+        0.08054598342427732,
+        0.09284568531764437
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 76,
+      "correct_rejections": 8116,
+      "detections": 6465,
+      "misses": 1727,
+      "estimated_pfa": 0.00927734375,
+      "estimated_pd": 0.7891845703125,
+      "pfa_clopper_pearson_95": [
+        0.0073162579151200184,
+        0.011598404357914621
+      ],
+      "pd_clopper_pearson_95": [
+        0.7801887204888804,
+        0.7979742464081858
+      ],
+      "source_sensing_sinr": 2.0415043939254436,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": -3.0623924320612055,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.2108154296875,
+      "pmiss_clopper_pearson_95": [
+        0.20202575359181418,
+        0.21981127951111956
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 888,
+      "correct_rejections": 7304,
+      "detections": 7448,
+      "misses": 744,
+      "estimated_pfa": 0.1083984375,
+      "estimated_pd": 0.9091796875,
+      "pfa_clopper_pearson_95": [
+        0.10174546863392134,
+        0.11533138257870143
+      ],
+      "pd_clopper_pearson_95": [
+        0.9027496157509755,
+        0.9153169338181041
+      ],
+      "source_sensing_sinr": 2.0415043939254436,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 52.07438035290401,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.0908203125,
+      "pmiss_clopper_pearson_95": [
+        0.08468306618189592,
+        0.09725038424902455
+      ]
+    },
+    {
+      "allocation": "isac_plus_s",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 6365,
+      "misses": 1827,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.7769775390625,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.7678045310271591,
+        0.7859531122250912
+      ],
+      "source_sensing_sinr": 2.0415043939254436,
+      "actual_block_tx_energy_symbol_w": 11.881937323853442,
+      "threshold_calibration": {
+        "threshold": 97.82224096217956,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.2230224609375,
+      "pmiss_clopper_pearson_95": [
+        0.21404688777490877,
+        0.23219546897284093
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 865,
+      "correct_rejections": 7327,
+      "detections": 894,
+      "misses": 7298,
+      "estimated_pfa": 0.1055908203125,
+      "estimated_pd": 0.109130859375,
+      "pfa_clopper_pearson_95": [
+        0.0990161432489119,
+        0.11244751943529456
+      ],
+      "pd_clopper_pearson_95": [
+        0.10245770215481842,
+        0.11608345945630807
+      ],
+      "source_sensing_sinr": 0.0017685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -9.124208541643762,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.890869140625,
+      "pmiss_clopper_pearson_95": [
+        0.883916540543692,
+        0.8975422978451816
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -30,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 69,
+      "correct_rejections": 8123,
+      "detections": 73,
+      "misses": 8119,
+      "estimated_pfa": 0.0084228515625,
+      "estimated_pd": 0.0089111328125,
+      "pfa_clopper_pearson_95": [
+        0.006559222555718305,
+        0.010647720558930613
+      ],
+      "pd_clopper_pearson_95": [
+        0.006991224905077913,
+        0.011191546351023611
+      ],
+      "source_sensing_sinr": 0.0017685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -9.104850056899952,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9910888671875,
+      "pmiss_clopper_pearson_95": [
+        0.9888084536489764,
+        0.9930087750949221
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 802,
+      "correct_rejections": 7390,
+      "detections": 835,
+      "misses": 7357,
+      "estimated_pfa": 0.097900390625,
+      "estimated_pd": 0.1019287109375,
+      "pfa_clopper_pearson_95": [
+        0.09154785754514705,
+        0.104540561435654
+      ],
+      "pd_clopper_pearson_95": [
+        0.09545837195037468,
+        0.10868374383889978
+      ],
+      "source_sensing_sinr": 0.0017685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -1.1474335899109516,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8980712890625,
+      "pmiss_clopper_pearson_95": [
+        0.8913162561611002,
+        0.9045416280496253
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -30,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 97,
+      "correct_rejections": 8095,
+      "detections": 97,
+      "misses": 8095,
+      "estimated_pfa": 0.0118408203125,
+      "estimated_pd": 0.0118408203125,
+      "pfa_clopper_pearson_95": [
+        0.009612308045448428,
+        0.014425951820639462
+      ],
+      "pd_clopper_pearson_95": [
+        0.009612308045448428,
+        0.014425951820639462
+      ],
+      "source_sensing_sinr": 0.0017685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 3.799673005706424,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.9881591796875,
+      "pmiss_clopper_pearson_95": [
+        0.9855740481793606,
+        0.9903876919545516
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 872,
+      "correct_rejections": 7320,
+      "detections": 1044,
+      "misses": 7148,
+      "estimated_pfa": 0.1064453125,
+      "estimated_pd": 0.12744140625,
+      "pfa_clopper_pearson_95": [
+        0.09984665417460291,
+        0.11332537000726083
+      ],
+      "pd_clopper_pearson_95": [
+        0.12029268129573259,
+        0.13485628029344696
+      ],
+      "source_sensing_sinr": 0.017685796092810523,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -8.838513967670854,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.87255859375,
+      "pmiss_clopper_pearson_95": [
+        0.865143719706553,
+        0.8797073187042674
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -20,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 70,
+      "correct_rejections": 8122,
+      "detections": 128,
+      "misses": 8064,
+      "estimated_pfa": 0.008544921875,
+      "estimated_pd": 0.015625,
+      "pfa_clopper_pearson_95": [
+        0.00666706963875985,
+        0.010783827467828303
+      ],
+      "pd_clopper_pearson_95": [
+        0.01305172319477424,
+        0.018550665925251696
+      ],
+      "source_sensing_sinr": 0.017685796092810523,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -8.656642653760974,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.984375,
+      "pmiss_clopper_pearson_95": [
+        0.9814493340747483,
+        0.9869482768052258
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 804,
+      "correct_rejections": 7388,
+      "detections": 963,
+      "misses": 7229,
+      "estimated_pfa": 0.09814453125,
+      "estimated_pd": 0.1175537109375,
+      "pfa_clopper_pearson_95": [
+        0.0917847649352644,
+        0.10479175673115058
+      ],
+      "pd_clopper_pearson_95": [
+        0.110655070495549,
+        0.12472567016213576
+      ],
+      "source_sensing_sinr": 0.017685796092810523,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 36.57181955983948,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.8824462890625,
+      "pmiss_clopper_pearson_95": [
+        0.8752743298378642,
+        0.889344929504451
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -20,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 96,
+      "correct_rejections": 8096,
+      "detections": 126,
+      "misses": 8066,
+      "estimated_pfa": 0.01171875,
+      "estimated_pd": 0.015380859375,
+      "pfa_clopper_pearson_95": [
+        0.00950225040787028,
+        0.014292017192165392
+      ],
+      "pd_clopper_pearson_95": [
+        0.012828412423132506,
+        0.018285951103679296
+      ],
+      "source_sensing_sinr": 0.017685796092810523,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 63.162874720608336,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.984619140625,
+      "pmiss_clopper_pearson_95": [
+        0.9817140488963207,
+        0.9871715875768675
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 850,
+      "correct_rejections": 7342,
+      "detections": 2927,
+      "misses": 5265,
+      "estimated_pfa": 0.103759765625,
+      "estimated_pd": 0.3572998046875,
+      "pfa_clopper_pearson_95": [
+        0.09723693752601242,
+        0.11056595121789377
+      ],
+      "pd_clopper_pearson_95": [
+        0.34691400633145747,
+        0.3677872043457834
+      ],
+      "source_sensing_sinr": 0.17685796092810524,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -7.0147117149724245,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.6427001953125,
+      "pmiss_clopper_pearson_95": [
+        0.6322127956542166,
+        0.6530859936685425
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -10,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 78,
+      "correct_rejections": 8114,
+      "detections": 924,
+      "misses": 7268,
+      "estimated_pfa": 0.009521484375,
+      "estimated_pd": 0.11279296875,
+      "pfa_clopper_pearson_95": [
+        0.007533408772754732,
+        0.011869189420047133
+      ],
+      "pd_clopper_pearson_95": [
+        0.10602029028370663,
+        0.11984242536361112
+      ],
+      "source_sensing_sinr": 0.17685796092810524,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -5.863901096429316,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.88720703125,
+      "pmiss_clopper_pearson_95": [
+        0.8801575746363889,
+        0.8939797097162934
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 811,
+      "correct_rejections": 7381,
+      "detections": 2524,
+      "misses": 5668,
+      "estimated_pfa": 0.0989990234375,
+      "estimated_pd": 0.30810546875,
+      "pfa_clopper_pearson_95": [
+        0.09261403704076115,
+        0.10567084418274074
+      ],
+      "pd_clopper_pearson_95": [
+        0.29811590707976277,
+        0.3182316974884979
+      ],
+      "source_sensing_sinr": 0.17685796092810524,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 83.06863669274242,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.69189453125,
+      "pmiss_clopper_pearson_95": [
+        0.6817683025115021,
+        0.7018840929202372
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": -10,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 84,
+      "correct_rejections": 8108,
+      "detections": 690,
+      "misses": 7502,
+      "estimated_pfa": 0.01025390625,
+      "estimated_pd": 0.084228515625,
+      "pfa_clopper_pearson_95": [
+        0.008186929994094407,
+        0.01267951263327448
+      ],
+      "pd_clopper_pearson_95": [
+        0.07830198236918207,
+        0.09045272262254457
+      ],
+      "source_sensing_sinr": 0.17685796092810524,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 134.19789124784447,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.915771484375,
+      "pmiss_clopper_pearson_95": [
+        0.9095472773774554,
+        0.9216980176308179
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 842,
+      "correct_rejections": 7350,
+      "detections": 7958,
+      "misses": 234,
+      "estimated_pfa": 0.102783203125,
+      "estimated_pd": 0.971435546875,
+      "pfa_clopper_pearson_95": [
+        0.09628828859736903,
+        0.10956218777865646
+      ],
+      "pd_clopper_pearson_95": [
+        0.9675953194235866,
+        0.9749353025545737
+      ],
+      "source_sensing_sinr": 1.7685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -3.781592517017799,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.028564453125,
+      "pmiss_clopper_pearson_95": [
+        0.025064697445426276,
+        0.032404680576413436
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": 0,
+      "detector": "AP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 85,
+      "correct_rejections": 8107,
+      "detections": 7339,
+      "misses": 853,
+      "estimated_pfa": 0.0103759765625,
+      "estimated_pd": 0.8958740234375,
+      "pfa_clopper_pearson_95": [
+        0.008296135617088442,
+        0.012814285961896755
+      ],
+      "pd_clopper_pearson_95": [
+        0.8890576844828887,
+        0.9024072720626306
+      ],
+      "source_sensing_sinr": 1.7685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": -1.0776924759760114,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.1041259765625,
+      "pmiss_clopper_pearson_95": [
+        0.0975927279373694,
+        0.11094231551711131
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.1,
+      "evaluation_trials": 8192,
+      "false_alarms": 813,
+      "correct_rejections": 7379,
+      "detections": 7873,
+      "misses": 319,
+      "estimated_pfa": 0.0992431640625,
+      "estimated_pd": 0.9610595703125,
+      "pfa_clopper_pearson_95": [
+        0.09285099925886842,
+        0.10592198473971148
+      ],
+      "pd_clopper_pearson_95": [
+        0.956642124552616,
+        0.9651450347055794
+      ],
+      "source_sensing_sinr": 1.7685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 95.20716046995295,
+        "order_k": 14747,
+        "trials": 16384,
+        "target_pfa": 0.1,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.09996948428440647,
+        "calibration_tail_interval": [
+          0.09542320311569291,
+          0.10460825971091142
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.0389404296875,
+      "pmiss_clopper_pearson_95": [
+        0.03485496529442056,
+        0.04335787544738401
+      ]
+    },
+    {
+      "allocation": "comm_cap_saturated",
+      "rcs_dbsm": 0,
+      "detector": "SP",
+      "target_pfa": 0.01,
+      "evaluation_trials": 8192,
+      "false_alarms": 83,
+      "correct_rejections": 8109,
+      "detections": 7047,
+      "misses": 1145,
+      "estimated_pfa": 0.0101318359375,
+      "estimated_pd": 0.8602294921875,
+      "pfa_clopper_pearson_95": [
+        0.008077803475965097,
+        0.012544661524796588
+      ],
+      "pd_clopper_pearson_95": [
+        0.8525315724397566,
+        0.8676701788434915
+      ],
+      "source_sensing_sinr": 1.7685796092810522,
+      "actual_block_tx_energy_symbol_w": 21.890284564965967,
+      "threshold_calibration": {
+        "threshold": 152.57889383913766,
+        "order_k": 16222,
+        "trials": 16384,
+        "target_pfa": 0.01,
+        "continuous_iid_assumption": true,
+        "expected_future_pfa_over_calibration": 0.009948123283490998,
+        "calibration_tail_interval": [
+          0.008486030592402443,
+          0.011523479721628429
+        ]
+      },
+      "integrated_lrt_shifted_threshold_decision_disagreements": 0,
+      "estimated_pmiss": 0.1397705078125,
+      "pmiss_clopper_pearson_95": [
+        0.1323298211565085,
+        0.14746842756024336
+      ]
+    }
+  ],
+  "cell_count": 64,
+  "allocations": {
+    "comm_centric": {
+      "amplitudes_sqrt_w": [
+        0.0,
+        0.05270222695260377,
+        0.0497788668931243
+      ],
+      "stream_powers_w": [
+        0.0,
+        0.0027775247257637555,
+        0.0024779355891633866
+      ],
+      "fit_metrics": {
+        "sensing_sinr": 0.01787734231002995,
+        "communication_sinr": [
+          1.9952623149688788,
+          1.995262314968882
+        ],
+        "per_ap_power_w": [
+          0.0024521602903507596,
+          0.000316989503103688,
+          0.0003075571285745294,
+          0.002178753392898167
+        ],
+        "total_power_w": 0.005255460314927143
+      },
+      "holdout_metrics": {
+        "sensing_sinr": 0.01787734231002995,
+        "communication_sinr": [
+          1.949421225701407,
+          2.0519743620766144
+        ],
+        "per_ap_power_w": [
+          0.002458776536637632,
+          0.0003079749955210594,
+          0.00029237509141791116,
+          0.0021963336913505397
+        ],
+        "total_power_w": 0.0052554603149271425
+      },
+      "heldout_minimum_soc_slack": -0.013325786203377765,
+      "heldout_moment_constraint_violation": true,
+      "constraint_scope": "fit empirical expected powers/SINRs; holdout checks are estimates, not deterministic guarantees",
+      "not_paper_baseline": false
+    },
+    "isac": {
+      "amplitudes_sqrt_w": [
+        0.0,
+        0.0657155900964669,
+        1.0866535791410734
+      ],
+      "stream_powers_w": [
+        0.0,
+        0.004318538781726858,
+        1.1808160010601052
+      ],
+      "fit_metrics": {
+        "sensing_sinr": 2.041504393925457,
+        "communication_sinr": [
+          1.9952623149584328,
+          7.740147141753872
+        ],
+        "per_ap_power_w": [
+          0.035720325983090155,
+          0.08333774495109926,
+          0.06607646890763959,
+          1.0000000000000036
+        ],
+        "total_power_w": 1.1851345398418325
+      },
+      "holdout_metrics": {
+        "sensing_sinr": 2.041504393925457,
+        "communication_sinr": [
+          1.9467259292896013,
+          8.44781847348679
+        ],
+        "per_ap_power_w": [
+          0.036256802646725504,
+          0.0761054118148081,
+          0.061759179293265194,
+          1.0110131460870333
+        ],
+        "total_power_w": 1.185134539841832
+      },
+      "heldout_minimum_soc_slack": -0.017611427102933508,
+      "heldout_moment_constraint_violation": true,
+      "constraint_scope": "fit empirical expected powers/SINRs; holdout checks are estimates, not deterministic guarantees",
+      "not_paper_baseline": false
+    },
+    "isac_plus_s": {
+      "amplitudes_sqrt_w": [
+        2.5931461049144267e-16,
+        0.06571559009669072,
+        1.0866535791410716
+      ],
+      "stream_powers_w": [
+        6.724406721432863e-32,
+        0.0043185387817562745,
+        1.1808160010601012
+      ],
+      "fit_metrics": {
+        "sensing_sinr": 2.0415043939254436,
+        "communication_sinr": [
+          1.9952623149688793,
+          7.7401471417538685
+        ],
+        "per_ap_power_w": [
+          0.0357203259831153,
+          0.0833377449511005,
+          0.06607646890764116,
+          1.000000000000001
+        ],
+        "total_power_w": 1.185134539841858
+      },
+      "holdout_metrics": {
+        "sensing_sinr": 2.0415043939254436,
+        "communication_sinr": [
+          1.946725929299589,
+          8.44781847348679
+        ],
+        "per_ap_power_w": [
+          0.03625680264675071,
+          0.07610541181480941,
+          0.061759179293266714,
+          1.0110131460870306
+        ],
+        "total_power_w": 1.1851345398418576
+      },
+      "heldout_minimum_soc_slack": -0.017611427099301746,
+      "heldout_moment_constraint_violation": true,
+      "constraint_scope": "fit empirical expected powers/SINRs; holdout checks are estimates, not deterministic guarantees",
+      "not_paper_baseline": false
+    },
+    "comm_cap_saturated": {
+      "amplitudes_sqrt_w": [
+        0.0,
+        1.06427666298867,
+        1.0052418921882786
+      ],
+      "stream_powers_w": [
+        0.0,
+        1.132684815382299,
+        1.0105112618102707
+      ],
+      "fit_metrics": {
+        "sensing_sinr": 1.7685796092810522,
+        "communication_sinr": [
+          8.516851904822468,
+          7.702786540641227
+        ],
+        "per_ap_power_w": [
+          0.9999999999999999,
+          0.1292694871338714,
+          0.12542293005264188,
+          0.8885036600060575
+        ],
+        "total_power_w": 2.1431960771925707
+      },
+      "holdout_metrics": {
+        "sensing_sinr": 1.7685796092810522,
+        "communication_sinr": [
+          7.79602325378569,
+          8.40431535637473
+        ],
+        "per_ap_power_w": [
+          1.0026981296095965,
+          0.12559333773283077,
+          0.11923163937056065,
+          0.895672970479582
+        ],
+        "total_power_w": 2.14319607719257
+      },
+      "heldout_minimum_soc_slack": -0.002698129609596478,
+      "heldout_moment_constraint_violation": true,
+      "constraint_scope": "fit empirical expected powers/SINRs; holdout checks are estimates, not deterministic guarantees",
+      "not_paper_baseline": true
+    }
+  },
+  "ccp_runs": [
+    {
+      "family": "isac",
+      "restart_index": 0,
+      "selected": false,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 12,
+      "subproblem_attempts": 16,
+      "failed_attempts": 4,
+      "status_8_attempts": 4,
+      "max_chosen_convex_subproblem_gap": 4.157349753342032e-08,
+      "direct_ratio_success": false
+    },
+    {
+      "family": "isac",
+      "restart_index": 1,
+      "selected": false,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 11,
+      "subproblem_attempts": 11,
+      "failed_attempts": 0,
+      "status_8_attempts": 0,
+      "max_chosen_convex_subproblem_gap": 1.9649275184718817e-07,
+      "direct_ratio_success": true
+    },
+    {
+      "family": "isac",
+      "restart_index": 2,
+      "selected": true,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 11,
+      "subproblem_attempts": 12,
+      "failed_attempts": 1,
+      "status_8_attempts": 1,
+      "max_chosen_convex_subproblem_gap": 3.9073976942916033e-07,
+      "direct_ratio_success": true
+    },
+    {
+      "family": "isac_plus_s",
+      "restart_index": 0,
+      "selected": true,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 10,
+      "subproblem_attempts": 10,
+      "failed_attempts": 0,
+      "status_8_attempts": 0,
+      "max_chosen_convex_subproblem_gap": 8.860889399997518e-08,
+      "direct_ratio_success": true
+    },
+    {
+      "family": "isac_plus_s",
+      "restart_index": 1,
+      "selected": false,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 10,
+      "subproblem_attempts": 10,
+      "failed_attempts": 0,
+      "status_8_attempts": 0,
+      "max_chosen_convex_subproblem_gap": 1.5030916067360067e-08,
+      "direct_ratio_success": true
+    },
+    {
+      "family": "isac_plus_s",
+      "restart_index": 2,
+      "selected": false,
+      "selection_rule": "largest source sensing-SINR among accepted converged restarts; all failures/local outcomes retained",
+      "accepted": true,
+      "termination": "source_tangent_tolerance",
+      "outer_iterations": 12,
+      "subproblem_attempts": 12,
+      "failed_attempts": 0,
+      "status_8_attempts": 0,
+      "max_chosen_convex_subproblem_gap": 1.8049056427216215e-07,
+      "direct_ratio_success": true
+    }
+  ],
+  "false_alarm_groups": [
+    {
+      "target_pfa": 0.1,
+      "cells": 32,
+      "false_alarm_count_range": [
+        802,
+        894
+      ],
+      "estimated_pfa_range": [
+        0.097900390625,
+        0.109130859375
+      ],
+      "nominal_target_excluded_by_pointwise_frozen_threshold_evaluation_interval": 8,
+      "calibration_tail_interval": [
+        0.09542320311569291,
+        0.10460825971091142
+      ],
+      "warning": "Cells share draws and are correlated. Evaluation intervals condition on a frozen estimated threshold; calibration uncertainty is separate. This is not a set of independent calibration failures or a simultaneous coverage test."
+    },
+    {
+      "target_pfa": 0.01,
+      "cells": 32,
+      "false_alarm_count_range": [
+        69,
+        97
+      ],
+      "estimated_pfa_range": [
+        0.0084228515625,
+        0.0118408203125
+      ],
+      "nominal_target_excluded_by_pointwise_frozen_threshold_evaluation_interval": 0,
+      "calibration_tail_interval": [
+        0.008486030592402443,
+        0.011523479721628429
+      ],
+      "warning": "Cells share draws and are correlated. Evaluation intervals condition on a frozen estimated threshold; calibration uncertainty is separate. This is not a set of independent calibration failures or a simultaneous coverage test."
+    }
+  ],
+  "independent_verification": {
+    "scores": 1048576,
+    "max_score_absolute_error": 9.094947017729282e-13,
+    "regenerated_arrays": 357,
+    "npz_files_byte_identical": true
+  },
+  "required_interpretation": [
+    "The accepted local ISAC+S candidates allocate essentially no dedicated sensing power; no impossibility or global optimum is proved.",
+    "All four allocations have finite holdout-moment violations; they remain visible.",
+    "Common per-AP caps do not imply common used power/energy; surrogate sensing SINR does not force conditional Pd ordering.",
+    "Pointwise conditional evaluation intervals and calibration-tail uncertainty are separate.",
+    "This accepted reference is not a live lesson, full-paper reproduction or browser implementation."
+  ]
+}

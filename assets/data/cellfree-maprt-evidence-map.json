@@ -1,0 +1,940 @@
+{
+  "schemaVersion": 1,
+  "acceptedBaselineTree": "173455c39472327b17cb8459e749ea244d5baa4a",
+  "source": {
+    "identity": "arxiv:2305.12523v2",
+    "url": "https://arxiv.org/abs/2305.12523v2",
+    "pdfSha256": "30b871e5bb3dd1a66fab1a4c2ab3974abb8a7e664e04e2dfa62f6e50679c0d10"
+  },
+  "referenceManifestSha256": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5",
+  "runtimeManifestSha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+  "archives": [
+    {
+      "name": "cellfree-maprt-reference-v1-sourcefree.tar.gz",
+      "bytes": 46222011,
+      "sha256": "52356ca01b77482a1c3a42d70f7fe4dc0914a20c5b29695d5e5e8f8a6df7981b",
+      "archiveMemberCount": 64,
+      "members": [
+        {
+          "path": "cellfree-maprt-reference/HANDOFF.md",
+          "bytes": 9921,
+          "sha256": "0ffa825a414324c0d83c547dda5fe45ceb3a86aab3a17c8dd90854f8cce0ee51"
+        },
+        {
+          "path": "cellfree-maprt-reference/MATHEMATICS.md",
+          "bytes": 10571,
+          "sha256": "543d42a5fc0131467a10efe39b958138165542befec1a1321604d4995871bc4e"
+        },
+        {
+          "path": "cellfree-maprt-reference/README.md",
+          "bytes": 6030,
+          "sha256": "9fdd500e871089246960d15fe5a467e878631ff8ddcb406f88b3a6623d44b5d5"
+        },
+        {
+          "path": "cellfree-maprt-reference/SOURCE-AUDIT.md",
+          "bytes": 9473,
+          "sha256": "afecdc727a1ce0a13a0917da0f841ad533cba795afda654b29fdf6e416a85ffb"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/DEVELOPMENT-CORRECTIONS.md",
+          "bytes": 2274,
+          "sha256": "f7757b509f15b64b2513f6613b9356c9f699bdeb56d3c26b09365221fe83908a"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/high_precision.json",
+          "bytes": 561,
+          "sha256": "91020ed037d9c6e20f24dcef09f71a351afd3802961b398755479ee6cca66de5"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/high_precision.log",
+          "bytes": 561,
+          "sha256": "91020ed037d9c6e20f24dcef09f71a351afd3802961b398755479ee6cca66de5"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/mutation_tests.log",
+          "bytes": 2597,
+          "sha256": "6f163e58321d1597d4c86fb272b8237b140f8599e10920471d754c17fff94c1d"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/plot.log",
+          "bytes": 43,
+          "sha256": "a606af71256ea21742a155b08869a09d72b24c2e00195e3960cbb77ecd72b223"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/record_mutation_tests.json",
+          "bytes": 2597,
+          "sha256": "6f163e58321d1597d4c86fb272b8237b140f8599e10920471d754c17fff94c1d"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/conditional_detection.png",
+          "bytes": 173825,
+          "sha256": "0613cfc0d8d82679da5a963766326e8be2e418e22597133b47a84dfff91391b8"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/design_and_channel_moments.npz",
+          "bytes": 1015146,
+          "sha256": "508e4dffd36b5f560fec6ca925802c32f6b52fc6af868d7f1eae232a40edcde4"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/detector_checks.json",
+          "bytes": 11208,
+          "sha256": "e1eb42a4983bd8e2841533b983bed2e1c87ed44d22debb7137b5208e121a2d08"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/power_and_sensing_surrogate.png",
+          "bytes": 84209,
+          "sha256": "0904cdd87866dcf070af80b92630814d3a9048580704eeabcef7b5f5afe080a6"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/raw_common_trials.npz",
+          "bytes": 28171266,
+          "sha256": "8ecc0ed89324428eaef3d1402e2faa30ffd606889ec84c66cde20989955d957d"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/raw_detector_scores_and_decisions.npz",
+          "bytes": 7689213,
+          "sha256": "1a1e1e66cfda503fcc032348639f378e0eb6f6441c3ad97b15322fbf54658e45"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/raw_observation_witnesses.npz",
+          "bytes": 1025361,
+          "sha256": "fa9deaa47a747cc0826d2229e353548958e90d135577cdc560448353acd42705"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/record_verification.json",
+          "bytes": 682,
+          "sha256": "929a4ba9f6f928365b098fdaa50f566ae5262bec1aafb4878856c278bdb6340f"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/results.json",
+          "bytes": 114195,
+          "sha256": "3d61df944b8d08125f423cf2d6b3019666dd34b3f6da608dc81bf3df6b78103b"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/settings.json",
+          "bytes": 2572,
+          "sha256": "f83e9d73dff70e077eeb3620b67e26c45ce44c24ae21dd36ea0bb4e46d4aafbb"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected/solver_records.json",
+          "bytes": 394274,
+          "sha256": "fbb773cbb29c98de4afdf9d2a836c23c38b0d9ab5bcb048513ee9fd971f87257"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected_run.log",
+          "bytes": 543,
+          "sha256": "b5c9a132059a9a0859d60d3a1a5bd4ca89aee8a92c5bac04ec4945516d31d43d"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/selected_verify.log",
+          "bytes": 682,
+          "sha256": "929a4ba9f6f928365b098fdaa50f566ae5262bec1aafb4878856c278bdb6340f"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/design_and_channel_moments.npz",
+          "bytes": 41183,
+          "sha256": "e499978ebad816faa3b8bb43a58d586df9c621a66cf5329175a9704d5ddc45b3"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/detector_checks.json",
+          "bytes": 11210,
+          "sha256": "6c00e2282148f5df7ccba2a9edd7dbf9c34ff301458fa6a6888480ed9681aaf3"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/raw_common_trials.npz",
+          "bytes": 1447825,
+          "sha256": "1fe8a432cd6c3a6b21863b367fc9b2c76e0988b847a6f8dceb28306f7079ef34"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/raw_detector_scores_and_decisions.npz",
+          "bytes": 419881,
+          "sha256": "f8db39ce39f2f4fc8f9e1edfa78ff12740722e318531438d63574d8318c28696"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/raw_observation_witnesses.npz",
+          "bytes": 1017795,
+          "sha256": "8613974a89c9d2a3f55b117b702ccf4072e82b903a74bbe6a1099facd4b4b662"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/record_verification.json",
+          "bytes": 685,
+          "sha256": "dd9c6ab84bb37890488ac01fbd957cf9ef6132da46b493215e5fb8033fff23ef"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/results.json",
+          "bytes": 112363,
+          "sha256": "da815c90f148df781b511cf6555e8694f17a8373222f4b096bc626fdeca3154c"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/settings.json",
+          "bytes": 2566,
+          "sha256": "f95c6b0dbbe832d7a5739995cf5caf61fc3a3182251797372d9bb35f31006303"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke/solver_records.json",
+          "bytes": 585643,
+          "sha256": "1030428f42f404a856fc46c2433b1df9875e0ad32a466e2990b3323d798d28f3"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/design_and_channel_moments.npz",
+          "bytes": 41183,
+          "sha256": "e499978ebad816faa3b8bb43a58d586df9c621a66cf5329175a9704d5ddc45b3"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/detector_checks.json",
+          "bytes": 8481,
+          "sha256": "057f9b25ba48d4f5d81457a591ae7a63c0fd3fe7c00b089bb35405abc1bc371c"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/raw_common_trials.npz",
+          "bytes": 1447825,
+          "sha256": "1fe8a432cd6c3a6b21863b367fc9b2c76e0988b847a6f8dceb28306f7079ef34"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/raw_detector_scores_and_decisions.npz",
+          "bytes": 313720,
+          "sha256": "2426320c40540f4424c02609c78ff8a0d16444f5569427a1a15c7f60907b1632"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/raw_observation_witnesses.npz",
+          "bytes": 765241,
+          "sha256": "28db928eeae627a72214f60b01541069cff6f556ff9d645265e4d7e33a92c5d8"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/results.json",
+          "bytes": 84674,
+          "sha256": "bef7a6a1cf7dbf50eaa76d6e88eecdc1e103f943b23b5e3eff65af93186b3fe1"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/settings.json",
+          "bytes": 2566,
+          "sha256": "61058b7ab45964b370d6503721f95fc76914d95c87f45618b5848a91c63edafd"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_retry_same_start_retained/solver_records.json",
+          "bytes": 400737,
+          "sha256": "7dac0f67e101c5d9975ada377e80525bf75dac044484840d86bd913a3697471d"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_run.log",
+          "bytes": 543,
+          "sha256": "e6cba91249c9ecb3adb5a860ff3800a1a2aee3b55da97d3e3eb9c68cc13725f9"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/design_and_channel_moments.npz",
+          "bytes": 41183,
+          "sha256": "e499978ebad816faa3b8bb43a58d586df9c621a66cf5329175a9704d5ddc45b3"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/detector_checks.json",
+          "bytes": 8481,
+          "sha256": "057f9b25ba48d4f5d81457a591ae7a63c0fd3fe7c00b089bb35405abc1bc371c"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/raw_common_trials.npz",
+          "bytes": 1447825,
+          "sha256": "1fe8a432cd6c3a6b21863b367fc9b2c76e0988b847a6f8dceb28306f7079ef34"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/raw_detector_scores_and_decisions.npz",
+          "bytes": 313720,
+          "sha256": "2426320c40540f4424c02609c78ff8a0d16444f5569427a1a15c7f60907b1632"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/raw_observation_witnesses.npz",
+          "bytes": 765241,
+          "sha256": "28db928eeae627a72214f60b01541069cff6f556ff9d645265e4d7e33a92c5d8"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/results.json",
+          "bytes": 84673,
+          "sha256": "cf414817391de049b6af3bf17f15f760799d03d8a04ac4228205f32af090fd8e"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/settings.json",
+          "bytes": 2566,
+          "sha256": "d83ccd2180213b29b06378c63885f5c6fc97d1c7a2517cef96767cd3460060f5"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained/solver_records.json",
+          "bytes": 191106,
+          "sha256": "ae27b1716fd4e10d5633fc70e4f483f54fbb8f9da5a5b21c1148dfecb891fa5f"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_status8_retained_verifier.log",
+          "bytes": 914,
+          "sha256": "d6751a02fab489752b66257ee2f321b1e68b45207ca40fcd87034c55aad77b72"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/smoke_verify.log",
+          "bytes": 685,
+          "sha256": "dd9c6ab84bb37890488ac01fbd957cf9ef6132da46b493215e5fb8033fff23ef"
+        },
+        {
+          "path": "cellfree-maprt-reference/evidence/unit_tests.log",
+          "bytes": 2945,
+          "sha256": "3f530c63a7cd56e48dffa02af4544170fba1c618b626c0c0a5cc6f13dcde9d01"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/freeze.py",
+          "bytes": 2525,
+          "sha256": "48733da2413a4551523e1dc468e428776e3645555fbfba4b78b2dde4563108f9"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/high_precision.py",
+          "bytes": 1975,
+          "sha256": "9294cbbda90e94b650aa4d64e4360d5e35eb2afe0dab8295c8fce00166ebbb10"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/plot_evidence.py",
+          "bytes": 3224,
+          "sha256": "81a9bd91904cb35efc57cd5163ad30b3fc98970549c988cdc251494fe6d3dbf4"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/run_reference.py",
+          "bytes": 14406,
+          "sha256": "254d9fb8026c2cc845e20216f2d27c6efc96ce2ba2cde76911a8d27250ae53f1"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/test_record_mutations.py",
+          "bytes": 4044,
+          "sha256": "971bd887154a65fd4f83ddacf70c9431a7c0c5f60c805fd7750fbc5d7a5e40ae"
+        },
+        {
+          "path": "cellfree-maprt-reference/scripts/verify_records.py",
+          "bytes": 23565,
+          "sha256": "a5dce15ee493dfcd453df0255efff1c2210e126f5fe22ad1d2fbca1bab6972a5"
+        },
+        {
+          "path": "cellfree-maprt-reference/src/__init__.py",
+          "bytes": 61,
+          "sha256": "fb6c0e9f3ef678edcd52ee3fef1dc43dde6af44701420f94444cf449a7bf6690"
+        },
+        {
+          "path": "cellfree-maprt-reference/src/maprt.py",
+          "bytes": 10309,
+          "sha256": "bab0b8dd7992980c0482421848cbdd83edd9084a47186af4e6c4b23dd87866c9"
+        },
+        {
+          "path": "cellfree-maprt-reference/src/power.py",
+          "bytes": 10275,
+          "sha256": "0b83c1738d5d9e70d5218932aace11d6e4fc55e04f77ebaec04509af274b3673"
+        },
+        {
+          "path": "cellfree-maprt-reference/src/scenario.py",
+          "bytes": 6524,
+          "sha256": "4d1f24f05e960d4dbb059792f15a3139c7e458098aaa3a5d86cc98b6d5ecda1a"
+        },
+        {
+          "path": "cellfree-maprt-reference/tests/test_reference.py",
+          "bytes": 13807,
+          "sha256": "c8d50f7f03ad3cc680f9f72771a756babf5d00f0b4c8451a45f9c07d62059f6a"
+        },
+        {
+          "path": "cellfree-maprt-reference/MANIFEST.json",
+          "bytes": 11270,
+          "sha256": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5"
+        }
+      ],
+      "parts": [
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part01",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part01",
+          "bytes": 9000000,
+          "sha256": "eb21d6904ae7be8126c1b3139e389e69f8b4750472cc1f8ae43b9c2d61ae91db"
+        },
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part02",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part02",
+          "bytes": 9000000,
+          "sha256": "d36fc74443522f4b3aa1a6747bb405421612c34018cc0b99d34c198217a51a42"
+        },
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part03",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part03",
+          "bytes": 9000000,
+          "sha256": "2793489e1c2e8378ac33ee316ec9afba388636bbfa17f256dd532288287e3447"
+        },
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part04",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part04",
+          "bytes": 9000000,
+          "sha256": "c1fb02385bcb50999e007a855d8c3fa54b1141acebd4178480d7549e0ad8d0d3"
+        },
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part05",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part05",
+          "bytes": 9000000,
+          "sha256": "c96136a44a08875408ffeab600a807f117f300de4590696b62abafd80adad009"
+        },
+        {
+          "public": "data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part06",
+          "source": "assets/data/cellfree-maprt-reference-v1-sourcefree.tar.gz.part06",
+          "bytes": 1222011,
+          "sha256": "f9f6dc7eb4efe752c4d4f24df8b1f3fca1d1e78e3e6687283835c08d738d1544"
+        }
+      ],
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false
+    },
+    {
+      "name": "cellfree-maprt-runtime-source-free.zip",
+      "bytes": 26504,
+      "sha256": "9658d9d2c8a150b5288f14f4d77660b97148aae3e7885e3a103ce71fd26b8293",
+      "archiveMemberCount": 12,
+      "members": [
+        {
+          "path": "client.mjs",
+          "bytes": 1724,
+          "sha256": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32",
+          "crc32": "3d489eb5"
+        },
+        {
+          "path": "codec.mjs",
+          "bytes": 1417,
+          "sha256": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57",
+          "crc32": "f5d943f6"
+        },
+        {
+          "path": "linalg.mjs",
+          "bytes": 3181,
+          "sha256": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5",
+          "crc32": "0a13905a"
+        },
+        {
+          "path": "maprt.mjs",
+          "bytes": 2384,
+          "sha256": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1",
+          "crc32": "7d4b282c"
+        },
+        {
+          "path": "power.mjs",
+          "bytes": 16382,
+          "sha256": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa",
+          "crc32": "cf65dc00"
+        },
+        {
+          "path": "runtime.mjs",
+          "bytes": 10485,
+          "sha256": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b",
+          "crc32": "48463fd9"
+        },
+        {
+          "path": "scenario.mjs",
+          "bytes": 11215,
+          "sha256": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551",
+          "crc32": "3043b98b"
+        },
+        {
+          "path": "statistics.mjs",
+          "bytes": 1655,
+          "sha256": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993",
+          "crc32": "764fa90b"
+        },
+        {
+          "path": "worker.mjs",
+          "bytes": 944,
+          "sha256": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e",
+          "crc32": "20ac3d07"
+        },
+        {
+          "path": "README.md",
+          "bytes": 7776,
+          "sha256": "06acd8c5ae76441b1f19e5e81c3d094c312089355d67d50013aac26c1592ef98",
+          "crc32": "b5a803ee"
+        },
+        {
+          "path": "HANDOFF.md",
+          "bytes": 3879,
+          "sha256": "252626a7866eecec9b07d0f6b15ec36956e0a6bab21df1b60f64471267b88042",
+          "crc32": "c4ceca63"
+        },
+        {
+          "path": "RUNTIME-MANIFEST.json",
+          "bytes": 1202,
+          "sha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+          "crc32": "ea5516db"
+        }
+      ],
+      "parts": [
+        {
+          "public": "data/cellfree-maprt-runtime-source-free.zip",
+          "source": "assets/data/cellfree-maprt-runtime-source-free.zip",
+          "bytes": 26504,
+          "sha256": "9658d9d2c8a150b5288f14f4d77660b97148aae3e7885e3a103ce71fd26b8293"
+        }
+      ],
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false
+    },
+    {
+      "name": "cellfree-maprt-validation-source-free.zip",
+      "bytes": 1252851,
+      "sha256": "48582ecfd82c4a808049495446772e00ffb8b281eb9be53d5326be69ac5dca87",
+      "archiveMemberCount": 32,
+      "members": [
+        {
+          "path": "client.mjs",
+          "bytes": 1724,
+          "sha256": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32",
+          "crc32": "3d489eb5"
+        },
+        {
+          "path": "codec.mjs",
+          "bytes": 1417,
+          "sha256": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57",
+          "crc32": "f5d943f6"
+        },
+        {
+          "path": "linalg.mjs",
+          "bytes": 3181,
+          "sha256": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5",
+          "crc32": "0a13905a"
+        },
+        {
+          "path": "maprt.mjs",
+          "bytes": 2384,
+          "sha256": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1",
+          "crc32": "7d4b282c"
+        },
+        {
+          "path": "power.mjs",
+          "bytes": 16382,
+          "sha256": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa",
+          "crc32": "cf65dc00"
+        },
+        {
+          "path": "runtime.mjs",
+          "bytes": 10485,
+          "sha256": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b",
+          "crc32": "48463fd9"
+        },
+        {
+          "path": "scenario.mjs",
+          "bytes": 11215,
+          "sha256": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551",
+          "crc32": "3043b98b"
+        },
+        {
+          "path": "statistics.mjs",
+          "bytes": 1655,
+          "sha256": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993",
+          "crc32": "764fa90b"
+        },
+        {
+          "path": "worker.mjs",
+          "bytes": 944,
+          "sha256": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e",
+          "crc32": "20ac3d07"
+        },
+        {
+          "path": "README.md",
+          "bytes": 7776,
+          "sha256": "06acd8c5ae76441b1f19e5e81c3d094c312089355d67d50013aac26c1592ef98",
+          "crc32": "b5a803ee"
+        },
+        {
+          "path": "HANDOFF.md",
+          "bytes": 3879,
+          "sha256": "252626a7866eecec9b07d0f6b15ec36956e0a6bab21df1b60f64471267b88042",
+          "crc32": "c4ceca63"
+        },
+        {
+          "path": "RUNTIME-MANIFEST.json",
+          "bytes": 1202,
+          "sha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+          "crc32": "ea5516db"
+        },
+        {
+          "path": "tests/client.test.mjs",
+          "bytes": 908,
+          "sha256": "071d93b918e080a297fb4b459bac581695cec88689a6ffd18c205ecb74037d7c",
+          "crc32": "394a5f77"
+        },
+        {
+          "path": "tests/contracts.test.mjs",
+          "bytes": 1522,
+          "sha256": "3f680a596a3adc3a8f022be73ddfd7ed31a94888a3ad869c2372e2f51010188f",
+          "crc32": "375b1340"
+        },
+        {
+          "path": "tests/fresh-run.json",
+          "bytes": 2683114,
+          "sha256": "39bf603b8b39007b434684689fcb97b5a071b1ae1d6daf9de4b968a9a6989bbf",
+          "crc32": "680c7bd9"
+        },
+        {
+          "path": "tests/maprt-fresh-cases.json",
+          "bytes": 63930,
+          "sha256": "e04c4bca43bf748ed263d54fc4e6d688421877755cd392bf77c910b915759a85",
+          "crc32": "ee2d2312"
+        },
+        {
+          "path": "tests/maprt-python-validation.py",
+          "bytes": 1123,
+          "sha256": "31be451237dc3d10ac56904dee26ada33b06dafeae44c09a3d558e7c135239ff",
+          "crc32": "74b6a5c6"
+        },
+        {
+          "path": "tests/maprt-validation.json",
+          "bytes": 178,
+          "sha256": "ed5d17270f825579bc143813eff61ef574917cdbf2383498ab702d1f945bef5f",
+          "crc32": "2a00f9a9"
+        },
+        {
+          "path": "tests/maprt.test.mjs",
+          "bytes": 1004,
+          "sha256": "8eca36063d462e4d891f75bc3b5488cb24496f547bb444479a39f583ae9972ea",
+          "crc32": "f1e21488"
+        },
+        {
+          "path": "tests/power-test-output.txt",
+          "bytes": 1210,
+          "sha256": "b89080ace030c09b2f475218d364287c4425d93a1723b593c76c628147593aea",
+          "crc32": "af2a7e65"
+        },
+        {
+          "path": "tests/power.test.mjs",
+          "bytes": 6771,
+          "sha256": "b8311fdaf048f5b9452a9ebfa9324f531c2445b556670c041201f4d06effda2c",
+          "crc32": "de00117a"
+        },
+        {
+          "path": "tests/power_oracle.py",
+          "bytes": 2134,
+          "sha256": "3edbe5b590cfc72626e15e6a01042429fc23206c9343673b7791009d1b0838e1",
+          "crc32": "e9acb867"
+        },
+        {
+          "path": "tests/power_oracle_cases.json",
+          "bytes": 1595724,
+          "sha256": "978d8ef81da165d7d5a4cf4fd3d6ac6829d86ec8b9b222417be147310340b442",
+          "crc32": "65d473d7"
+        },
+        {
+          "path": "tests/power_validation.json",
+          "bytes": 4547860,
+          "sha256": "47e06b3dac2aa026e506164e87b4957fae153e82d9852d9ac5368590a4286ab9",
+          "crc32": "9a2e18f8"
+        },
+        {
+          "path": "tests/resource-boundary.json",
+          "bytes": 553,
+          "sha256": "c71c4aa954e999680335a8eb4a70bf982897f9c96ab2f5ebaf3c391b4c6f65a6",
+          "crc32": "6ac907cd"
+        },
+        {
+          "path": "tests/runtime-validation.json",
+          "bytes": 530,
+          "sha256": "80e57e7613a4531ec014309572cd80846bda0b8bf20f53b1af66b3351da22b7e",
+          "crc32": "d26a2fb7"
+        },
+        {
+          "path": "tests/runtime.test.mjs",
+          "bytes": 1427,
+          "sha256": "519aad70f3cf738ecaabea35542427808458eee08603e9970c116fa6245525eb",
+          "crc32": "848d9165"
+        },
+        {
+          "path": "tests/scenario-python-validation.py",
+          "bytes": 5371,
+          "sha256": "f28a63efd2dea7ce832e856f0cd562c59fded93f5f475ffa3787ecf51efdd05f",
+          "crc32": "46252ad1"
+        },
+        {
+          "path": "tests/scenario.test.mjs",
+          "bytes": 4377,
+          "sha256": "927464f0c3bc2166e057698b7b190ab98cb93e859b599d8f793cfa01983f6cf3",
+          "crc32": "a6e6a2b4"
+        },
+        {
+          "path": "tests/statistics-cases.json",
+          "bytes": 395,
+          "sha256": "ae4837fdeed4f5c40b664bc4c4fc76adb1722360e18f36ce8557eee966ee95a7",
+          "crc32": "18685f14"
+        },
+        {
+          "path": "tests/worker-node-adapter.mjs",
+          "bytes": 230,
+          "sha256": "f98b2c9eeb9f0cf8a28055349db55e1978dc678876ead496cc1a28567f37d217",
+          "crc32": "33104ee7"
+        },
+        {
+          "path": "tests/worker.test.mjs",
+          "bytes": 986,
+          "sha256": "7657e8a488d8a39caef792cb76d7fa0407360ceced24ba3cbf6173e6e567c57c",
+          "crc32": "c8cb6dc8"
+        }
+      ],
+      "parts": [
+        {
+          "public": "data/cellfree-maprt-validation-source-free.zip",
+          "source": "assets/data/cellfree-maprt-validation-source-free.zip",
+          "bytes": 1252851,
+          "sha256": "48582ecfd82c4a808049495446772e00ffb8b281eb9be53d5326be69ac5dca87"
+        }
+      ],
+      "startupDependency": false,
+      "pdfRedistributed": false,
+      "paperTextRedistributed": false,
+      "restrictedThirdPartyCodeRedistributed": false
+    }
+  ],
+  "copiedEvidence": [
+    {
+      "source": "scripts/validation/cellfree-maprt/SOURCE-AUDIT.md",
+      "public": "scripts/validation/cellfree-maprt/SOURCE-AUDIT.md",
+      "bytes": 9473,
+      "sha256": "afecdc727a1ce0a13a0917da0f841ad533cba795afda654b29fdf6e416a85ffb"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/MATHEMATICS.md",
+      "public": "scripts/validation/cellfree-maprt/MATHEMATICS.md",
+      "bytes": 10571,
+      "sha256": "543d42a5fc0131467a10efe39b958138165542befec1a1321604d4995871bc4e"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/REFERENCE-HANDOFF.md",
+      "public": "scripts/validation/cellfree-maprt/REFERENCE-HANDOFF.md",
+      "bytes": 9921,
+      "sha256": "0ffa825a414324c0d83c547dda5fe45ceb3a86aab3a17c8dd90854f8cce0ee51"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/REFERENCE-MANIFEST.json",
+      "public": "scripts/validation/cellfree-maprt/REFERENCE-MANIFEST.json",
+      "bytes": 11270,
+      "sha256": "30a8e28487ddce0542d767482e02b6eb6af9397a5b69187071f5507cd8e774a5"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "public": "scripts/validation/cellfree-maprt/INDEPENDENT-NUMERICAL-REVIEW.md",
+      "bytes": 9831,
+      "sha256": "cc90fb6061f0f0bf523b83d30f54954012ff02b2bcaadc8c35eb30ac0f51b168"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+      "public": "scripts/validation/cellfree-maprt/INDEPENDENT-PORT-REVIEW.md",
+      "bytes": 6636,
+      "sha256": "30d9ac2a92314aade0588f167825cc646efc1d5637f3257ad6878fbb2ca90e93"
+    }
+  ],
+  "boundaries": {
+    "fullPaperReproduction": false,
+    "globalOptimality": false,
+    "populationFeasibility": false,
+    "equalUsedPowerComparison": false,
+    "exactPfaControl": false,
+    "actualBrowserAccepted": false,
+    "browserPerformanceMeasured": false
+  },
+  "portableReferenceFiles": [
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/__init__.py",
+      "public": null,
+      "path": "src/__init__.py",
+      "bytes": 61,
+      "sha256": "fb6c0e9f3ef678edcd52ee3fef1dc43dde6af44701420f94444cf449a7bf6690"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/maprt.py",
+      "public": null,
+      "path": "src/maprt.py",
+      "bytes": 10309,
+      "sha256": "bab0b8dd7992980c0482421848cbdd83edd9084a47186af4e6c4b23dd87866c9"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/power.py",
+      "public": null,
+      "path": "src/power.py",
+      "bytes": 10275,
+      "sha256": "0b83c1738d5d9e70d5218932aace11d6e4fc55e04f77ebaec04509af274b3673"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/src/scenario.py",
+      "public": null,
+      "path": "src/scenario.py",
+      "bytes": 6524,
+      "sha256": "4d1f24f05e960d4dbb059792f15a3139c7e458098aaa3a5d86cc98b6d5ecda1a"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/scripts/run_reference.py",
+      "public": null,
+      "path": "scripts/run_reference.py",
+      "bytes": 14406,
+      "sha256": "254d9fb8026c2cc845e20216f2d27c6efc96ce2ba2cde76911a8d27250ae53f1"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/design_and_channel_moments.npz",
+      "public": null,
+      "path": "evidence/selected/design_and_channel_moments.npz",
+      "bytes": 1015146,
+      "sha256": "508e4dffd36b5f560fec6ca925802c32f6b52fc6af868d7f1eae232a40edcde4"
+    },
+    {
+      "source": "scripts/validation/cellfree-maprt/cellfree-maprt-reference/evidence/selected/settings.json",
+      "public": null,
+      "path": "evidence/selected/settings.json",
+      "bytes": 2572,
+      "sha256": "f83e9d73dff70e077eeb3620b67e26c45ce44c24ae21dd36ea0bb4e46d4aafbb"
+    }
+  ],
+  "ownedFreeze": {
+    "source": "labs/cellfree-maprt/lesson/LESSON-FREEZE.json",
+    "sha256": "d87233daa4e5d122ce3192e4260be127241777ef2746b2219d58311e5125a8d7"
+  },
+  "ownedFiles": [
+    {
+      "path": "content/pages/cellfree-maprt.html",
+      "bytes": 23675,
+      "sha256": "776e37e629b0cc59415b9bde7f88b5b2b16abdcd39916b13705c33d45ddd25bc"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/PUBLIC-ASSETS.json",
+      "bytes": 1532,
+      "sha256": "941403a04929cab4b1cafc92192bb05db404ccbcc6e567532c380b8a89e40fe0"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/README.md",
+      "bytes": 7260,
+      "sha256": "03d1fdd1096bbfa0b6973ae981f6b5fec0955c786e4d0ca216245517b162c3c0"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/adapter.mjs",
+      "bytes": 5003,
+      "sha256": "976112b376b800237066e2f1923fb6958547829bcb6cbf8bb542159b32d37bc7"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/lesson.css",
+      "bytes": 5116,
+      "sha256": "d1865ab0b08c734fffb5d62e7b35f81d0854f41d3aef7baa06e1b56530e46c98"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/lesson.mjs",
+      "bytes": 27303,
+      "sha256": "53a28855eb8e99e989ff751535fb9703160c008bdd063ba2cca627435963e4e7"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/reference-summary.json",
+      "bytes": 93325,
+      "sha256": "4be7f2f643652a673670d05fa25ef448307b5bf1d32e1ec96af6a70e34067f72"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/session.mjs",
+      "bytes": 1906,
+      "sha256": "894831143a4c395f9e3eb9df03540ba40b9dcf4cb6120bca6115c6d2b8d01a00"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/adapter-oracle.py",
+      "bytes": 2525,
+      "sha256": "4d0e1b5e4d0c70d8c5ede6d3e450ab0bb6b171bab753a365754c094d6baeacaa"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/adapter.test.mjs",
+      "bytes": 2729,
+      "sha256": "e77b25682f054c5171737137e2a2e548ea3137c0c66a47214156b91217a9e296"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/contract.test.mjs",
+      "bytes": 2219,
+      "sha256": "08cc77c06f156b97f5116f4dc21c6265df0a845e5dcac1bb7edd1365616eceac"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/dom-harness.cjs",
+      "bytes": 7379,
+      "sha256": "625f7ba8ac7822efd6833537916770567129c226882c420384b369e83933d51d"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/export-records.mjs",
+      "bytes": 2198,
+      "sha256": "42409728011fe8072f610e96edae27ace69a25cf721bb3d3fd0c6634e108db55"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/mounted.test.mjs",
+      "bytes": 10505,
+      "sha256": "8451fd6df4d72b56e1062ff9c46fd84910179193390e398d374bf959ce053815"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/session.test.mjs",
+      "bytes": 2051,
+      "sha256": "57a1a69b3200275bd3ee870557fba7dc5934f29e5f2000bf7fa59ed6eaeaa3d1"
+    },
+    {
+      "path": "labs/cellfree-maprt/lesson/tests/worker-node.mjs",
+      "bytes": 390,
+      "sha256": "167453588602b2a35fa85c9bdc5e817ca4cab09c9de66fad0f9c7948e434d9ea"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/INDEPENDENT-REVIEW.md",
+      "bytes": 6636,
+      "sha256": "30d9ac2a92314aade0588f167825cc646efc1d5637f3257ad6878fbb2ca90e93"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/README.md",
+      "bytes": 7776,
+      "sha256": "06acd8c5ae76441b1f19e5e81c3d094c312089355d67d50013aac26c1592ef98"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/RUNTIME-MANIFEST.json",
+      "bytes": 1202,
+      "sha256": "4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/client.mjs",
+      "bytes": 1724,
+      "sha256": "6e371cd9595e3463443019cf1fdb20294bbce6fe8326f3385d7ce0b2aabb5a32"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/codec.mjs",
+      "bytes": 1417,
+      "sha256": "658642bb48f4bf930a382f2e3532b71631dc4ed8d764ef8620c9e9166ba67a57"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/linalg.mjs",
+      "bytes": 3181,
+      "sha256": "9aed31d84830eda15ca8071c43add8c1da8c04584ed829b959087a9def1527b5"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/maprt.mjs",
+      "bytes": 2384,
+      "sha256": "cd6ffe513d9f41ae950a53ae9e1ac173fdca26fd669718f4dddfacfdc4bc61d1"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/power.mjs",
+      "bytes": 16382,
+      "sha256": "c777d9339556a967f7d1aa95f1fc4165932e368bcc6da9037d2cbbf53ee3dbfa"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/runtime.mjs",
+      "bytes": 10485,
+      "sha256": "ace8a85459f8109f81504f18948e58d689b566f07f24b868b055791ee0054d1b"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/scenario.mjs",
+      "bytes": 11215,
+      "sha256": "537790f4ea80e70bb48fe57cec7f3b2871242e804538f2a9d2e49bc5a4085551"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/statistics.mjs",
+      "bytes": 1655,
+      "sha256": "2423ee5876b6049a4fad082d11716e595fd9908e7c142e0bcd82871406f20993"
+    },
+    {
+      "path": "labs/cellfree-maprt/runtime/worker.mjs",
+      "bytes": 944,
+      "sha256": "815153fb7e0eb0d8db9354a43135909b28843087be6b375becc2c9d1b711fe7e"
+    }
+  ],
+  "ownedPage": {
+    "handwrittenSha256": "33f6c972796bcf7c6c4a2209513da8c58c726b8876374700e22fb92cd9cdb24a"
+  },
+  "independentLessonReview": {
+    "report": "scripts/validation/cellfree-maprt/INDEPENDENT-LESSON-REVIEW.md",
+    "sha256": "ebb0c7be6946fdd251208a64909087e83a90b2d23dda40a7d6fc3925026c5465",
+    "reviewManifestSha256": "084ce79eb00b371d900a46fdd1a402159f0887daee29dcc09559e9de045699d6",
+    "actualBrowser": false
+  }
+}

@@ -182,6 +182,10 @@ function validate(data) {
         const changes=require('./helpers/gaussian-tradeoff-changes.json').backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
         for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append);else assert.deepEqual(value,change.after,'exact reviewed Gaussian metadata');}
         assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
+      }else if(p.id==='supplement-case-distributed-detection'&&p.implementation.details.runtimeFreezeEntries===9){
+        const changes=require('./helpers/cellfree-maprt-baseline.json').changes.backlog,originalIndex=data.papers.findIndex(x=>x.id===p.id);
+        for(const change of changes.filter(x=>x.path[0]==='papers')){assert.equal(change.path[1],originalIndex);let value=p;for(const k of change.path.slice(2))value=value[k];if(change.append)assert.deepEqual(value.slice(change.lengthBefore,change.lengthBefore+change.append.length),change.append);else assert.deepEqual(value,change.after,'exact reviewed Cell-Free metadata');}
+        assert.equal(p.stages.fullPaper,'not-reproduced');assert.equal(p.stages.latency,'not-measured');assert.equal(p.implementation.details.browserAccepted,false);
       }else assert.ok(p.experiment.resources.every(s => s.startsWith('Existing independent teaching budget')));
     }
   }

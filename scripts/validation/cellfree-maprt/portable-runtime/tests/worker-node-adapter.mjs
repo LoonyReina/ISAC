@@ -1,0 +1,1 @@
+import {parentPort} from 'node:worker_threads';globalThis.self={postMessage:m=>parentPort.postMessage(m)};await import('../worker.mjs');parentPort.on('message',data=>self.onmessage({data}));parentPort.postMessage({type:'ready'});

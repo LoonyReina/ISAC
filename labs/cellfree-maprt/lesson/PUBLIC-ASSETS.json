@@ -1,0 +1,22 @@
+{
+  "schema":"cellfree-maprt-lesson-assets-v1",
+  "page":{"source":"content/pages/cellfree-maprt.html","public":"cellfree-maprt.html"},
+  "anchors":["question","model","experiment","reproduce","reference","paper"],
+  "startup":["course.css","site.css","labs/cellfree-maprt/lesson/lesson.css","labs/cellfree-maprt/lesson/lesson.mjs"],
+  "on_explicit_run_or_replay":["labs/cellfree-maprt/runtime/worker.mjs"],
+  "on_explicit_reference_summary":["labs/cellfree-maprt/lesson/reference-summary.json"],
+  "runtime_manifest_sha256":"4614ef3d375be7185cf32759a4e00638ee0a2db091cce57b62bc7268ff07f9e5",
+  "runtime_modified":false,
+  "same_paper_id":"arxiv:2305.12523v2",
+  "preserved_prerequisite":"distributed-detection.html#derivation",
+  "portable_owned_suites":["labs/cellfree-maprt/lesson/tests/adapter.test.mjs","labs/cellfree-maprt/lesson/tests/session.test.mjs","labs/cellfree-maprt/lesson/tests/contract.test.mjs","labs/cellfree-maprt/lesson/tests/mounted.test.mjs"],
+  "owned_suite_helpers":["labs/cellfree-maprt/lesson/tests/dom-harness.cjs","labs/cellfree-maprt/lesson/tests/worker-node.mjs"],
+  "optional_evidence_producer":"labs/cellfree-maprt/lesson/tests/export-records.mjs",
+  "optional_independent_method_oracle":"labs/cellfree-maprt/lesson/tests/adapter-oracle.py",
+  "suite_writes_site_tree":false,
+  "actual_node_worker_tested":true,
+  "actual_mounted_dom_tested":true,
+  "actual_browser_tested":false,
+  "actual_browser_performance_tested":false,
+  "shared_registry_manifests_generated_files_modified_by_author":false
+}
