@@ -22,7 +22,7 @@ function resolve(href){
 
 test('off-grid range adds one case-free processing mechanism with honest fixed totals',()=>{
  a.ok(u&&p);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.deepEqual([withoutGCSAGERegistry(r).units.length,r.cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(r).pages.length],[28,15,32,8,24]);
+ a.deepEqual([withoutGCSAGERegistry(r).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(r).pages.length],[28,15,32,8,24]);
  a.equal(u.title,'离格目标与测距网格');a.equal(u.question,'同一个目标，网格更密就一定测得更准吗？');a.equal(p.title,u.question);
  a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'experiments');
  a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'practice.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');
@@ -106,7 +106,7 @@ test('generated portals expose the mechanism and accurate totals without adding 
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html');
  for(const [count,label]of [[r.units.length,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
- a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.match(reading,/15 个已有主题/);
+ a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.match(reading,/16 个已有主题/);
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);a.doesNotMatch(reading,/id="case-offgrid-range"/);
  const practice=read('practice.html'),topics=JSON.parse(practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1]);
  a.deepEqual(topics,buildNotebookTopics(r));a.ok(practice.includes('<option value="offgrid-range">离格目标与测距网格</option>'));
@@ -130,7 +130,7 @@ test('source bytes, citation snapshots, strict resolvers and learner notebook be
   'scripts/notebook-topics.cjs':'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477',
   'notebook.js':'ea8698c44028c67c1cd9cd49a7d975a584d5f529f0768b272da2b457e507d4e9'
  };
- for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,file==='site/research-directory.json'?require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(file))):read(file))),digest,file);
+ for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,file==='site/research-directory.json'?require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(file))):file==='docs/READING-MAP.md'?require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsReadingMap(read(file)):read(file))),digest,file);
  // Later reading-only features add these exact hooks. Preserve
  // the byte-level guard for all other generator behavior rather than silently
  // rebasing its original fingerprint or weakening scientific/notebook checks.

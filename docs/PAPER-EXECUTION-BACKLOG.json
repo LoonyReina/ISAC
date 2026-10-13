@@ -109,7 +109,7 @@
       "ofdm_full_duplex"
     ],
     "remainingOrder": "Re-rank remaining work after source/reference and dependency readiness; all records remain open.",
-    "meaning": "Current and next identify the active bounded implementation/reference slice, not whole-paper completion. Every paper retains its independent unfinished coverage gates. The current and next IDs both remain crb until its first hosted point-lesson gate is resolved; no later paper order is inferred.",
+    "meaning": "Current and next identify the active bounded implementation/reference slice, not whole-paper completion. Every paper retains its independent unfinished coverage gates. The current and next IDs both remain crb until its first hosted point-lesson gate is resolved; no later paper order is inferred. OTFS local preparation proceeds in parallel; it does not close or bypass the earlier CRB browser/publication gate.",
     "deliveredBoundedSlices": [
       "tradeoffs-feedback-capacity-distortion-2018",
       "nearfield-mechanism-aware-mapping-2026",
@@ -135,6 +135,12 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Bounded Eq33 point core and teaching integration prepared; actual deployed-browser acceptance pending; original-size/extended/ML references are offline only"
+      },
+      {
+        "paperId": "otfs-joint-estimation-2020",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local bounded finite-grid/MP-G lesson integration; independent Node/reference evidence accepted, actual browser and publication gated separately"
       }
     ]
   },
@@ -153,20 +159,25 @@
           "otfs-joint-estimation-2020"
         ],
         "catalogIds": [],
-        "caseIds": [],
-        "sourceIds": []
+        "caseIds": [
+          "case-otfs-receiver"
+        ],
+        "sourceIds": [
+          "case-otfs-receiver-paper"
+        ]
       },
       "paperType": "algorithm-and-numerical-study",
       "source": {
         "url": "https://arxiv.org/pdf/1910.01896v1",
         "fixedVersion": "arXiv:1910.01896v1，2019-10-04，30页预印本；本卡按该 PDF 编号。后续 TWC 2020 期刊题名增加 Parameter Estimation，勿混用版本页码。",
         "locators": {
-          "summary": "§II–III，式(12)–(16)；§IV-A/B，式(17)–(18)；§VI-B，图4、式(52)–(53)；§VI-C，图6–7"
+          "summary": "§II–III，式(12)–(16)；§IV-A/B，式(17)–(18)；§VI-B，图4、式(52)–(53)；§VI-C，图6–7",
+          "implementation": "§III Eq12–16, §IV P=1 likelihood/grid search, §V-A Gram MP-G; explicit sampled cyclic conventions"
         },
         "paperIdentity": "arxiv:1910.01896",
         "fixedSourceIdentity": "arxiv:1910.01896v1",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "7787286d004ea1014fea059dea88ad4320536a8afcef44dc89a482b0feaaabdc",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Lorenzo Gaudio、Mari Kobayashi、Giuseppe Caire、Giulio Colavolpe",
           "publicationTitle": "On the Effectiveness of OTFS for Joint Radar Parameter Estimation and Communication",
@@ -180,7 +191,7 @@
         "summary": "Rectangular-pulse continuous delay/Doppler OTFS input-output model; approximate multipath ML radar estimator and sparse-factor-graph soft-output communication detector."
       },
       "minimalFaithfulTarget": {
-        "description": "Implement the actual small-frame OTFS channel operator, continuous single-path ML with unknown complex gain, and paper MP-G data detection; then extend pathwise estimator to separated multipath.",
+        "description": "Actual small-frame OTFS operator, source-style finite-grid P=1 sensing with unknown complex gain, and MP-G/full-LMMSE data detection are implemented in separate reduced experiments. Continuous refinement, model-specific FIM and multipath sensing remain separate future gates.",
         "acceptanceGate": "Source-exact algorithm implemented and independently numerically validated; selected paper experiment reproduced with declared parameters/baselines/resources; live inputs recompute outputs; UI explains iterations and failures. A reduced-size algorithm demonstration alone does not close full-paper coverage."
       },
       "experiment": {
@@ -203,46 +214,70 @@
           "Known symbols at radar; unknown communication data with declared CSI",
           "Known path count and separation assumptions retained"
         ],
-        "unresolved": [],
-        "details": {}
+        "unresolved": [
+          "Continuous per-cell refinement and model-specific derivatives/FIM/local CRB",
+          "Multipath sensing and repeated-estimation statistics",
+          "MP-Psi, low-complexity LMMSE26 and original full-size detector/radar figures",
+          "OFDM/FMCW equal-resource radar comparison and exact finite physical equivalence"
+        ],
+        "details": {
+          "boundedCurrentLesson": {
+            "separateObservations": true,
+            "communicationSameObservationAcrossDetectors": true,
+            "sensingFiniteGridOnly": true,
+            "truth": "generation/evaluation only, never receiver input",
+            "gramEdgeTolerance": 0,
+            "physicalCrossModelClaim": false
+          }
+        }
       },
       "implementation": {
-        "classification": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "live": "foundations OFDM chain; labs/ofdm-reference/offgrid-range-core.js: one-dimensional matching only",
-        "offline": null,
-        "details": {}
+        "classification": "independently-validated-bounded-algorithm-cores; local-teaching-integration",
+        "live": "otfs-receiver.html: separate known-x finite-grid sensing and perfect-CSI MP-G/full-LMMSE communication experiments",
+        "offline": "Three source-free frozen reference/port archives linked from the lesson",
+        "details": {
+          "sensing": "P=1 finite declared grid only, eq14_literal or exact_rect_finite; no continuous refinement/FIM",
+          "communication": "N≤3 M≤4 D≤12; QPSK/16QAM; actual Gram MP-G and full LMMSE effective-AWGN soft output; first lesson edgeTolerance=0",
+          "pythonReferenceUnchanged": true,
+          "lmmsePortCorrected": true,
+          "physicalCrossModelEquivalence": "unproven",
+          "browserAccepted": false
+        }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "in-progress",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "qualitative-guide-and-trace; paper-core-not-implemented",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
-        "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "source": "Fixed v1 PDF hash and separate operator conventions audited for bounded kernels; no redistribution of source PDF.",
+        "algorithm": "Accepted independent numerical/Node communication and finite-grid sensing kernels, wired to fresh-input lesson; actual browser acceptance remains open.",
+        "selectedExperiment": "Disclosed reduced operator/detector/grid cases only. No full Fig4/6/7, radar RMSE/CRB Monte Carlo or source-size comparison reproduction.",
+        "fullPaper": "Not reproduced: continuous/multipath sensing, FIM, source-size/statistical figures and physical equivalence remain open.",
+        "latency": "Node Worker measurements and simulated DOM tests are not actual browser painted-result latency; no browser measurement claimed."
       },
       "missingImplementation": [
-        "No OTFS modulator/demodulator or exact channel matrix",
-        "No continuous multipath ML or MP detector",
-        "No original figure Monte Carlo"
+        "Continuous per-cell refinement and model-specific derivatives/FIM/local CRB",
+        "Multipath sensing and repeated-estimation statistics",
+        "MP-Psi, low-complexity LMMSE26 and original full-size detector/radar figures",
+        "OFDM/FMCW equal-resource radar comparison and exact finite physical equivalence"
       ],
       "dependencies": [
-        "Complex matrix/FFT kernels",
-        "Independent Python exact channel and ML reference",
-        "Source-audit detection equations, pulse normalization and rate overhead"
+        "Preserve frozen numerical kernel/module bytes and relative imports",
+        "Source-free numerical archives are optional offline evidence, never startup dependencies",
+        "Independent browser lifecycle/export/replay and painted-result benchmark",
+        "Derive source physical mapping before interpreting cross-model residuals as physical mismatch"
       ],
       "blockers": [
-        "No OTFS modulator/demodulator or exact channel matrix",
-        "No continuous multipath ML or MP detector"
+        "Actual hosted browser lifecycle/download/narrow-screen and latency acceptance pending",
+        "Physical cross-model mapping remains unproven; report only nominal operator residual",
+        "Continuous/FIM/multipath and full original figure/statistical gates remain open"
       ],
       "realtime": {
         "status": "not-measured",
@@ -267,12 +302,33 @@
         "inventoryAssessment": 3
       },
       "evidence": {
-        "paperEvidence": "理论推导＋数值仿真；本站仅导读，未新增实验",
+        "paperEvidence": "理论推导＋原文数值仿真；本站有界真实算法及独立数值/Node核验，浏览器与原图仍开放",
         "existingRunnable": [
-          "foundations OFDM chain",
-          "labs/ofdm-reference/offgrid-range-core.js: one-dimensional matching only"
+          "otfs-receiver.html#sensing",
+          "otfs-receiver.html#communication"
         ],
-        "currentAudit": "2026-10-12: canonical records and current runtime sources read; fixed arXiv HTML reopened. Equation-by-equation implementation audit remains required."
+        "currentAudit": "2026-10-12: frozen source-free Python/communication/sensing reference evidence and exact source/public mappings; local integration only, no browser or publication claim.",
+        "sourceEvidenceDocument": "docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md",
+        "numericalMilestones": {
+          "communication": {
+            "kernelSha256": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7",
+            "independentRawReceivers": 103,
+            "independentOperatorCases": 58,
+            "independent100DigitLMMSECases": 31
+          },
+          "sensing": {
+            "kernelSha256": "dfb81ee33bb55f8f11cbfec234a058e9711ac8ce226f756b4d96cd6b435e880e",
+            "independentOperatorCases": 586,
+            "freshGridCases": 12,
+            "replayedGridCandidateRecords": 35432,
+            "numericalComparisons": 398571
+          },
+          "crossPort": {
+            "cases": 72,
+            "maxAbsoluteError": 4.440892098500626e-16,
+            "physicalEquivalence": false
+          }
+        }
       },
       "details": {}
     },

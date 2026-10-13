@@ -36,7 +36,7 @@ Every box remains open at whole-paper level. A row's status reports the stronges
 
 | # | Fixed primary source | Minimal faithful next target | Current status | Blocking dependency |
 |---|---|---|---|---|
-| 1. ☐ | [On the Effectiveness of OTFS for Joint Radar and Communication](https://arxiv.org/pdf/1910.01896v1)<br>arxiv:1910.01896v1 | OTFS continuous ML + MP-G | Guide/prerequisite only; core pending | No OTFS operator or MP detector |
+| 1. ☐ | [On the Effectiveness of OTFS for Joint Radar and Communication](https://arxiv.org/pdf/1910.01896v1)<br>arxiv:1910.01896v1 | Finite-grid P1 + MP-G/full LMMSE, then continuous/multipath | Independent bounded numerical/Node kernels and local teaching integration | Actual browser; continuous/FIM; physical cross-model mapping; full figures |
 | 2. ☐ | [Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks](https://arxiv.org/pdf/2105.03125v2)<br>arxiv:2105.03125v2 | State prediction → OTFS gain estimate → uncertainty-aware MP | Guide/prerequisite only; core pending | Prediction, receiver and reference absent |
 | 3. ☐ | [Near-Field Integrated Sensing, Positioning, and Communication: A Downlink and Uplink Framework](https://arxiv.org/html/2311.07722v1)<br>arxiv:2311.07722v1 | Dual-array localization + exact CRB; then beam optimization | Guide/prerequisite only; core pending | Echo receiver, hybrid/SDR stages absent |
 | 4. ☐ | [Near-Field Integrated Sensing and Communication for Multi-Target Indication](https://arxiv.org/html/2506.07052v1)<br>arxiv:2506.07052v1 | Small SDP + rank recovery + Capon | Guide/prerequisite only; core pending | SDP/recovery/receive covariance absent |
@@ -99,3 +99,11 @@ The separate optional [source-size offline reference](../data/crb-beamforming-re
 The actual deployed CRB lesson's run/cancel/reset/download/reimport, narrow-screen and input-to-painted-result gates remain pending. A Node source-size5.67s solve cannot close them. Extended-target browser optimization, source point baselines, broader stability and full original figures remain open.
 
 The independent [Worker/UI review](CRB-MULTIUSER-LIVE-VALIDATION.md) passes16groups/427checks; the separate [export checker](CRB-MULTIUSER-EXPORT-VALIDATION.md) keeps5accepted,3complete unaccepted and2incomplete cancelled Node exports distinct. Fixed alpha1/noise1 excludes an extreme raw-kernel numeric-scale edge; the checker rejects unsupported physical claims. These results do not close the hosted-browser gate.
+
+## OTFS bounded local lesson, 2026-10-12
+
+The existing `otfs-joint-estimation-2020` guide and its reading anchor now point to one canonical [OTFS receiver lesson](../otfs-receiver.html#intuition). The sensing and communication panels are two separate reduced experiments with distinct observations. Sensing executes P=1 exhaustive declared-grid gain-profile fitting, without continuous refinement or FIM/CRB. Communication executes actual Gram MP-G and full LMMSE on the same raw y/H per comparison; the first lesson has zero Gram pruning. Truth is generation/evaluation data, never receiver input.
+
+The frozen Python reference remains unchanged. The JavaScript full-LMMSE correction has separate high-precision evidence. Explicit cyclic prehistory, quadrature, carrier, shifted DD-origin and effective-gain conventions accompany the operator. Cross-port agreement is numerical agreement at declared hashes, not proof that the separately labeled physical models are equivalent; only nominal operator residual is interpretable here. See [source/evidence mapping](OTFS-RECEIVER-SOURCE-EVIDENCE.md) for immutable archive hashes and exact scope.
+
+Independent numerical and Node checks do not close actual browser/download/painted-result timing, original-size/statistical figures, OFDM/FMCW fair-resource radar comparisons, or full-paper acceptance. This local integration does not authorize or establish publication/deployment and leaves the earlier CRB gate unchanged.

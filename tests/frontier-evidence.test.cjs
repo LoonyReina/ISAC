@@ -45,7 +45,7 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
 });
 
 test('existing paper layers point to actual readings within the current canonical inventory',()=>{
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(r.cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);
@@ -68,7 +68,7 @@ test('all HTML hrefs/resources resolve locally or use valid external URLs; new s
   const href=raw.replace(/&amp;/g,'&');
   if(/^https?:/.test(href)){const u=new URL(href);a.ok(u.hostname);continue;}
   if(/^(?:data:|mailto:)/.test(href))continue;
-  const [file,hash]=href.split('#'),owner=f.startsWith('site/')?'reading.html':f,target=path.resolve(root,(file||owner).split('?')[0]);
+  const [file,hash]=href.split('#'),owner=f.startsWith('site/')?'reading.html':f,target=path.resolve(root,require('./helpers/otfs-staging-resources.cjs')((file||owner).split('?')[0]));
   a.ok(target.startsWith(root+path.sep));a.ok(fs.existsSync(target),`${f}: ${href}`);
   if(hash)a.ok(ids(fs.readFileSync(target,'utf8')).has(decodeURIComponent(hash)),`${f}: ${href}`);
  }

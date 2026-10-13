@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "modules": [
+    {
+      "public": "otfs-receiver/communication/browser-worker.mjs",
+      "sha256": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/communication/kernel.mjs",
+      "sha256": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/communication/protocol.mjs",
+      "sha256": "d7242dbe37ed8a060f2b14471538cd0920149aeb0a05aa16064996dfc572be9a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/communication/simulation.mjs",
+      "sha256": "17fa68083040da01023d976acb42cd7ab69a9ba490844a02013b6e00c86f3940",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/lesson-controller.mjs",
+      "sha256": "4710f24cc74cf71fa25f7f96d01d73a7fe82f31eadc1b5ef2ae5dc3a956ebc54",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/lesson-evidence.mjs",
+      "sha256": "d2343aca672d8b469dbe7f8f7fdc6c22cf82bdae1978fec66d40a33df52b7416",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/lesson-model.mjs",
+      "sha256": "816b82848d6edc02cd694a3a00dc815a93f437bb502339eba2744cfcf291d185",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/otfs-receiver.mjs",
+      "sha256": "f1ef504ae17caa7a43387e49039738a4a6dc4992fadf41a1e8e7121d3e26761e",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./sensing/browser-worker.mjs",
+          "literal": "new Worker(new URL('./sensing/browser-worker.mjs',import.meta.url),{type:'module'})"
+        },
+        {
+          "kind": "worker",
+          "url": "./communication/browser-worker.mjs",
+          "literal": "new Worker(new URL('./communication/browser-worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/browser-worker.mjs",
+      "sha256": "ddc639f67253409104e101aaef7bad6c5ce7d8ae51290619237c0d6a921d4ee5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/evidence.mjs",
+      "sha256": "565a546db239af2fe2a077b54b068a980444c49e6610ad424738c3bfff1a76a6",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/kernel.mjs",
+      "sha256": "dfb81ee33bb55f8f11cbfec234a058e9711ac8ce226f756b4d96cd6b435e880e",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/operators.mjs",
+      "sha256": "1092109d0e5f28cfa5dbf0fca78f4474b72a19e80b98bac29b0151581f06ff19",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/protocol.mjs",
+      "sha256": "02d335ff4c9659645631e22d27f5d178735056dd5653c0c9299020c8c63c3e67",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/sensing/validation.mjs",
+      "sha256": "752935c5e77d4d898c51ce5105453c2d3b80742735642a5adb46ae51102e729b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "scripts/shared-array-independent-audit/actual_js_adapter.mjs",
+      "sha256": "88f15220ecfa1fea3d012c3e72a9a87d059fd8161d6c8d4730bf10f912fbe458",
+      "runtimeEdges": [],
+      "runtimePolicy": "command-line-inputs-unverified",
+      "unverifiedInputs": [
+        "User-supplied command-line adapter/core filesystem paths; dynamic import or require is outside the website runtime dependency guarantee"
+      ]
+    },
+    {
+      "public": "scripts/shared-array-independent-audit/run_actual_js.mjs",
+      "sha256": "5856acdb0807aef8dfd550e36bae8ddab25978342983461feda008c5dc9361a3",
+      "runtimeEdges": [],
+      "runtimePolicy": "command-line-inputs-unverified",
+      "unverifiedInputs": [
+        "User-supplied command-line adapter/core filesystem paths; dynamic import or require is outside the website runtime dependency guarantee"
+      ]
+    }
+  ]
+}

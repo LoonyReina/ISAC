@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="从接收机知道什么出发，实际计算 OTFS 单目标有限网格感知与 perfect-CSI 通信 MP-G/LMMSE，检查复数据、真实消息、停止原因和可重算记录。">
+  <title>OTFS：接收机知道什么，决定它估计什么 | ISAC</title>
+  <link rel="stylesheet" href="course.css">
+  <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
+  <link rel="stylesheet" href="otfs-receiver/otfs-receiver.css">
+  <script type="module" src="otfs-receiver/otfs-receiver.mjs"></script>
+</head>
+<body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html">01 基础讲义</a><a href="experiments.html" aria-current="location">02 机制实验</a><a href="reading.html">03 论文阅读</a><a href="practice.html">04 研究实践</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="site-main otfs-main" id="otfs-root">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> / <a href="experiments.html">机制实验</a> / <span aria-current="page">OTFS 感知与通信接收机</span></nav><p class="site-role">OTFS 联合设计方向 · 两种知识条件，两个独立实验</p></div>
+<!-- SITE:CONTEXT:END -->
+<nav class="site-topic-nav otfs-stage-nav" aria-label="本主题六层学习路线">
+  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
+</nav>
+
+<section id="intuition" class="otfs-cover">
+  <span id="question" aria-hidden="true"></span>
+  <p class="eyebrow">第一层 · 先问谁知道什么，再问算法怎么做</p>
+  <h1>同样叫接收机，<br>它们要猜的东西不同</h1>
+  <p class="otfs-lead">雷达知道自己发了什么，要从回波找路径；通信端拿到信道描述，要从接收数据找消息。OTFS 的延迟–多普勒表示，把两类问题放进相近的数学语言，但没有把它们变成同一个问题。</p>
+  <div class="otfs-tags"><span>真实复数观测</span><span>有限网格单目标感知</span><span>MP-G / full LMMSE 通信</span><span>暂停回看真实计算</span></div>
+  <div class="otfs-knowledge-grid">
+    <article class="otfs-knowledge otfs-radar"><p class="otfs-card-label">实验 A · 雷达 / 4×8</p><h2>知道 x，估计路径</h2><dl><div><dt>拿到什么</dt><dd>复回波 y<sub>rad</sub>、本帧精确发送数据 x</dd></div><div><dt>先验给定</dt><dd>只有一条路径 P=1、帧参数、拟合模型、搜索域与噪声方差</dd></div><div><dt>不知道什么</dt><dd>延迟 q、多普勒 a、有效复增益 h′</dd></div><div><dt>本页输出</dt><dd>已计算网格上的最佳候选、复增益、残差与停止原因</dd></div></dl><a href="#sensing">从一次路径猜测开始 →</a></article>
+    <article class="otfs-knowledge otfs-comms"><p class="otfs-card-label">实验 B · 通信 / 3×4</p><h2>知道 H，估计消息</h2><dl><div><dt>拿到什么</dt><dd>另一份复观测 y<sub>com</sub>、完整信道矩阵 H</dd></div><div><dt>先验给定</dt><dd>perfect supplied CSI、星座、噪声方差与均匀符号先验</dd></div><div><dt>不知道什么</dt><dd>这一帧实际发送的符号 x</dd></div><div><dt>本页输出</dt><dd>各符号的概率、硬判决、真实消息历史与方法状态</dd></div></dl><a href="#communication">从一个符号的概率开始 →</a></article>
+  </div>
+  <p class="otfs-note"><strong>先记住这一条：</strong>两块实验没有共用波形、观测或输出。通信端的 H 是直接供给的完美 CSI 假设，不是上方雷达估计的成果。“重用同一观测”只指各自实验内的比较。4×8 与 3×4 是本页生成默认；导入数据以实际输入账本为准。</p>
+  <details class="otfs-checkpoint"><summary>先预测：DD 图中一个亮格，就是一个目标吗？</summary><div><p>不是。发送 DD 格是调制系数，接收 DD 格是复投影样本；多条数据与路径可以耦合。要找目标，必须说明已知数据、路径模板、未知增益和选择规则。直接看最亮的 y 格，还没有完成本页的路径估计。</p></div></details>
+  <p class="otfs-small">先修：<a href="foundations.html">复基带、相位与匹配</a> · <a href="offgrid-range.html">离格参数与估计误差</a>。本页从这两个问题继续，不要求先学过雷达或消息传递。</p>
+</section>
+
+<section id="model" class="otfs-section">
+  <header class="otfs-section-head"><p class="eyebrow">第二层 · 把物理链路和数值坐标对齐</p><h2>一个 DD 数据格，怎样进入整帧？</h2><p>OTFS 将数据写在延迟–多普勒（DD）基底上，通过 ISFFT 变成时频（TF）系数，再合成为发送波形。接收端投影、变换后得到复 DD 数据；这些运算改变表示，不凭空恢复目标或消息。</p></header>
+  <ol class="otfs-chain"><li><strong>DD 符号 x[k,l]</strong><span>每格是 I+jQ 调制系数</span></li><li><strong>酉 ISFFT → X[n,m]</strong><span>数据分布到时间与子载波</span></li><li><strong>波形经过路径</strong><span>延迟、频移、复增益共同作用</span></li><li><strong>接收投影 → y[k,l]</strong><span>仍是复数，先保留相位</span></li></ol>
+  <div class="otfs-split">
+    <article class="otfs-card"><h3>先看坐标，避免同字母误读</h3><p>这里沿用论文记号：TF 的 n 是时间槽、m 是子载波；DD 的 k 是多普勒基底索引、l 是延迟基底索引。向量按 d=k+Nl 展平；感知 ISFFT 输出按时间 n 最快排列。基础讲义有其他记号，请不要直接混用。</p><p><strong>q=τB、a=νNT 是归一化路径参数</strong>，不是接收数据格的名字。q、a 可以是小数；小数候选仍可以属于有限网格。</p></article>
+    <article class="otfs-card"><h3>哪些量有物理单位？</h3><div class="otfs-equation">Δf=1/T，B=M/T<br>τ=q/B，ν=a/(NT)<br>单站距离 R=cτ/2，速度 v=cν/(2f<sub>c</sub>)</div><p>T 用秒，f<sub>c</sub> 用 Hz，c=299792458 m/s。此页单站约定中正多普勒对应正报告速度。通信接口只有 N、M，故通信实验不擅自把 q、a 换成米或 m/s。</p></article>
+  </div>
+  <p class="otfs-note">复样本是 I+jQ；幅度是 |z|，功率是 |z|²。噪声方差 v<sub>w</sub>=E|w|²，两路 I/Q 各为 v<sub>w</sub>/2。这里的归一化能量没有校准成焦耳，也不能单凭噪声方差称为固定 SNR。</p>
+  <details><summary>两种感知模型为什么必须分开标注？</summary><div class="otfs-split"><article><h3>eq14_literal · 逐字源式约定</h3><p>保留原文式 (14) 的 ceiling 与 ICI/ISI 分支。它对应已核对的循环前史、右端点求积、负载波与单样本 DD 原点约定，是有明确约定的源式近似模型；不能把它教成一个未经证实的符号笔误。</p></article><article><h3>exact_rect_finite · 有限矩形窗投影</h3><p>采用正频率、有限且零延拓的矩形脉冲，在接收窗 [0,NT) 上投影，不暗中折回尾部或重新归一化能量。它与逐字源式是两个明确不同的算子。</p></article><p class="otfs-wide"><strong>相同的 x、q、a、h′ 标签，不保证两种约定对应同一物理波形或同一目标。</strong>两者各自使用有效增益 h′=h exp(j2πντ)。固定 x/y 改拟合模型，只能作名义拟合残差诊断；跨约定的同物理波形映射尚未验证，不能据此声称物理近似误差或修正了原文。</p></div></details>
+</section>
+
+<section id="sensing" class="otfs-section">
+  <span id="experiment" aria-hidden="true"></span>
+  <header class="otfs-section-head"><p class="eyebrow">第三层 · 先做一次猜测，再把声明的网格搜完</p><h2>感知：每猜一次路径，都重估复增益</h2><p>给定精确 x 与回波 y，候选 q′、a′ 产生路径模板 s。我们不能简单用 y 除以 x，因为 OTFS 信道耦合了数据格。对每个候选先拟合幅度和相位，再比较剩余残差。</p></header>
+  <div class="otfs-equation" aria-label="未知复增益的剖面拟合">s=Ψ(q′,a′)x； ĥ′=(sᴴy)/(sᴴs)<br>ŷ=ĥ′s； r=y−ŷ； 得分=|sᴴy|²/(sᴴs)</div>
+  <p>在同一 y 上，较高得分对应较小 ‖r‖²。每个候选都重估未知 h′；有限矩形窗模型还会随候选重新计算模板能量。sᴴs≤10⁻²⁵ 时，该拟合不可用，不能补一个零分。噪声方差进入似然值，不改变这个剖面得分的选点规则。</p>
+  <noscript><p class="otfs-warning">当前未启用 JavaScript。你仍可阅读模型、原文对照和边界；实际计算需要 JavaScript 与 Worker，下方不提供替代当前输入的预计算结果。</p></noscript>
+
+  <div class="otfs-experiment otfs-radar">
+    <div class="otfs-experiment-heading"><div><p class="otfs-card-label">实验 A · 单路径，未知 q / a / h′</p><h3>生成一份回波，再提交给接收机</h3></div><span class="otfs-badge">生成默认 N=4 · M=8 · D=32</span></div>
+    <p class="otfs-small">本页生成默认：固定 T=6.4 μs、f<sub>c</sub>=5.89 GHz、Δf=156.25 kHz、B=1.25 MHz，固定接收机搜索域 q∈[0.05,3.8]、a∈[−1.4,1.4]；它不围着真值移动。生成真值即使位于域外，也不会自动扩张搜索域。导入数据的帧、搜索域与设置以实际输入账本为准。</p>
+    <form id="sensing-form">
+      <fieldset><legend>① 数据生成：只负责构造 x 与 y</legend><p class="otfs-field-note">这些真值和种子属于生成器，不传进接收机。改动后旧结果立即过期；按“运行感知网格”才生成新的数组。</p>
+        <div class="otfs-controls">
+          <div class="otfs-field-wide"><label for="sensing-generationModel">生成模型</label><select id="sensing-generationModel" name="generationModel" data-generation><option value="eq14_literal" selected>eq14_literal · 逐字源式约定</option><option value="exact_rect_finite">exact_rect_finite · 有限矩形窗</option></select></div>
+          <div><label for="sensing-delayBin">真实 q=τB（0≤q&lt;8）</label><input id="sensing-delayBin" name="delayBin" type="number" step="any" value="1.2" data-generation required></div>
+          <div><label for="sensing-dopplerBin">真实 a=νNT（−4&lt;a&lt;4）</label><input id="sensing-dopplerBin" name="dopplerBin" type="number" step="any" value="0.6" data-generation required></div>
+          <div><label for="sensing-gainRe">真实 h′ 的实部</label><input id="sensing-gainRe" name="gainRe" type="number" min="-4" max="4" step="any" value="0.9" data-generation required></div>
+          <div><label for="sensing-gainIm">真实 h′ 的虚部</label><input id="sensing-gainIm" name="gainIm" type="number" min="-4" max="4" step="any" value="0.25" data-generation required></div>
+          <div><label for="sensing-noiseVariance">复噪声方差 E|w|²</label><input id="sensing-noiseVariance" name="noiseVariance" type="number" min="1e-8" max="10000" step="any" value="0.03" data-generation required></div>
+          <div><label for="sensing-dataSeed">数据种子（uint32）</label><input id="sensing-dataSeed" name="dataSeed" type="number" min="0" max="4294967295" step="1" value="429" data-generation required></div>
+          <div><label for="sensing-noiseSeed">噪声种子（uint32）</label><input id="sensing-noiseSeed" name="noiseSeed" type="number" min="0" max="4294967295" step="1" value="751" data-generation required></div>
+        </div>
+      </fieldset>
+      <fieldset><legend>② 接收机设置：在已知 x/y 上实际求解</legend>
+        <div class="otfs-controls">
+          <div><label for="sensing-gridSize">每轴网格点数</label><select id="sensing-gridSize" name="gridSize" data-setting><option value="17">17 × 17（289 点）</option><option value="33">33 × 33（1089 点）</option><option value="65" selected>65 × 65（4225 点）</option><option value="129">129 × 129（16641 点）</option></select></div>
+          <div><label for="sensing-maxEvaluations">最多评估候选数</label><input id="sensing-maxEvaluations" name="maxEvaluations" type="number" min="1" max="16641" step="1" value="16641" data-setting required></div>
+          <div><label for="sensing-maxElapsedMs">核心墙钟预算（ms）</label><input id="sensing-maxElapsedMs" name="maxElapsedMs" type="number" min="1" max="30000" step="1" value="30000" data-setting required></div>
+        </div>
+        <details><summary>高级：固定观测，改变名义拟合模型</summary><div><label for="sensing-fittedModel">接收机拟合模型</label><select id="sensing-fittedModel" name="fittedModel" data-setting><option value="matched" selected>matched · 与生成模型匹配</option><option value="eq14_literal">eq14_literal · 逐字源式约定</option><option value="exact_rect_finite">exact_rect_finite · 有限矩形窗</option></select><p>改变这一项会重用同一 x/y，只重新拟合。它是<strong>名义算子残差诊断</strong>；不同模型标签之间尚无同物理波形映射，不据此解释跨模型真值参数误差，也不把较小残差当作物理模型更正确。</p></div></details>
+        <p class="otfs-note"><strong>重用同一观测：</strong>只改网格、预算或拟合模型，不重新生成 x/y；仍须按运行才求解。只看候选或揭示真值也不会重新求解。恢复默认会退出导入输入模式、恢复可编辑的生成控件，不自动运行。</p>
+      </fieldset>
+      <div class="otfs-actions"><button id="sensing-run" type="submit">运行感知网格</button><button id="sensing-cancel" type="button" class="otfs-secondary" disabled>取消</button><button id="sensing-reset" type="button" class="otfs-secondary">恢复默认</button><button id="sensing-export" type="button" class="otfs-secondary" disabled>导出感知 JSON</button></div>
+    </form>
+    <p class="otfs-small">首次打开不运行。取消、到达预算、输入过期、没有有效候选，均须保留各自原因；不能显示成网格已搜完。</p>
+    <p id="sensing-status" class="otfs-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+    <div class="otfs-output-block"><h4>这一次，接收机实际知道什么？</h4><p class="otfs-small">运行后列出输入身份、模型、固定域和真实设置。生成信息、真值评价与接收机输入分开记录。</p><pre id="sensing-ledger" aria-label="感知接收机输入账本"></pre></div>
+    <div class="otfs-output-block"><h4>先读真实复数据：x → X，与接收 y</h4><p>表中的 Re / Im 是复数的两部分；|·|² 才是归一化功率。DD 索引为 k、l，TF 索引为 n、m。这里展示本次数据与酉 ISFFT 的实际值，不用动画假装显示未计算的连续波形。</p><div id="sensing-data" class="otfs-table-scroll"></div></div>
+  </div>
+
+  <section class="otfs-computation" aria-labelledby="sensing-grid-title">
+    <h3 id="sensing-grid-title">③ 图上的每一格，都是一次真实候选评估</h3>
+    <p id="sensing-surface-help">横轴是候选延迟 q′，纵轴向上为候选多普勒 a′，都无量纲。颜色由浅蓝的低分走向深黄绿的高分，表示剖面得分 |sᴴy|²/(sᴴs)，不是接收功率或目标概率；上下限取本次实际得分。灰色为未计算，紫色为无信息模板，圆圈为选中点。这里的坐标不是 x/y 数据格或 TF 索引；不同运行的色阶不共用，比较时请读原始分数。</p>
+    <figure><canvas id="sensing-surface" width="760" height="380" role="img" aria-label="实际有限网格剖面得分" aria-describedby="sensing-surface-help">实际网格得分的数值替代见本节数值明细和导出记录。</canvas><figcaption>端点包含在网格内；按 q 外层、a 内层枚举。最高已计算得分胜出，完全相等时保留先遇到的候选。</figcaption></figure>
+    <p id="sensing-progress" class="otfs-readout"></p>
+    <div id="sensing-result" class="otfs-result"></div>
+    <div class="otfs-actions"><button id="sensing-baseline" type="button" class="otfs-secondary" disabled>记住本次结果作同观测比较</button></div>
+    <p class="otfs-small">保留当前结果后，只改拟合模型、网格或预算并重新运行，可比较同一 x/y 上的残差与实际计算量。更换生成配置或输入数组后，这项同观测比较不可用。模型、网格与资源差异须同时读；它不是同物理波形的跨模型误差实验。</p>
+    <div id="sensing-comparison" class="otfs-result"></div>
+    <p class="otfs-warning"><strong>这是有限网格穷举，不是连续优化。</strong>进度是完成了多少候选，不是“沿山坡下降”的迭代。即使所有网格已算完，也没有连续全局最优证书；连续细化与局部 FIM/CRB 在本页均未实现。一个最高分也不等于已检测到目标或有唯一可辨识解。</p>
+    <details><summary>前 12 个实际候选与数值摘要，完整记录见导出</summary><pre id="sensing-values"></pre></details>
+  </section>
+  <section class="otfs-computation" aria-labelledby="sensing-inspect-title">
+    <h3 id="sensing-inspect-title">④ 自己猜一个 q′、a′，检查复数拟合</h3>
+    <p>这里会实际重算所选候选的模板、复增益和残差。候选可不在搜索网格上；手动检查一个小数坐标，不会将上方有限网格变成连续优化器，也不改变已选结果。</p>
+    <div class="otfs-inspect-controls"><div><label for="sensing-q">候选 q′（无量纲）</label><input id="sensing-q" type="number" step="any" value="1.2"></div><div><label for="sensing-a">候选 a′（无量纲）</label><input id="sensing-a" type="number" step="any" value="0.6"></div><button id="sensing-inspect" type="button">计算这个候选</button></div>
+    <div id="sensing-candidate" class="otfs-result"></div>
+    <p>逐样本查看 s、ŷ=ĥ′s、y 与 r=y−ŷ；每行是向量索引 d=k+Nl，不是空间位置。<strong>复数可以相减，幅度或功率不能照此相减：</strong>|y| 不等于 |ŷ|+|r|。</p>
+    <div id="sensing-samples" class="otfs-table-scroll"></div>
+    <label class="otfs-check" for="sensing-truth"><input id="sensing-truth" type="checkbox"> 揭示感知真值，只用于运行后的评价</label>
+    <div id="sensing-evaluation" class="otfs-evaluation" hidden></div>
+    <p class="otfs-small">真值揭示不改变搜索域、候选次序、已计算得分或最佳点。单次误差不是 RMSE；网格格距不是分辨率，得分不是置信度。模型约定不匹配时不作跨模型物理误差解读。</p>
+  </section>
+</section>
+
+<section id="communication" class="otfs-section">
+  <header class="otfs-section-head"><p class="eyebrow">第三层 B · 同一通信输入，比较两种接收方法</p><h2>通信：不知道 x，先从一个符号的概率开始</h2><p>现在切换到独立的通信实验，本页生成默认是 3×4。接收机得到 y=Hx+w 中的 H 与 y，但不知道 x。MP-G 用耦合图上的消息交换更新符号概率；full LMMSE 做完整矩阵线性估计，再采用明确的有效 AWGN 软输出转换。</p></header>
+  <div class="otfs-split"><article class="otfs-card"><h3>MP-G：谁与这个符号耦合？</h3><p>先算 G=HᴴH、z=Hᴴy。G 的非零非对角项连接符号，单点证据来自 z 与 G 的对角项。发给邻居的消息先排除刚从该邻居收到的信息，避免立即把它原样算回去，这就是 cavity 排除。</p><p>保留图上每个局部求和是真实计算；有环图上反复传消息，仍不等于精确联合后验或全局 MAP。</p></article><article class="otfs-card"><h3>full LMMSE：先解线性估计</h3><p>采用完整 H 与噪声方差，不把矩阵对角化来回避干扰。它的符号概率来自估计器的有效增益与残差方差下的 AWGN 近似，不是任意耦合输入的精确联合后验。</p><p>两种方法始终用同一个 H、y、星座和复噪声方差；不允许用不同数据制造优劣。</p></article></div>
+  <div class="otfs-experiment otfs-comms">
+    <div class="otfs-experiment-heading"><div><p class="otfs-card-label">实验 B · 已供给完整 H，未知消息 x</p><h3>先用两条路径观察符号耦合</h3></div><span class="otfs-badge">生成默认 N=3 · M=4 · D=12</span></div>
+    <p class="otfs-small">固定 eq14_literal、perfect-supplied CSI、均匀符号先验。只有归一化 q、a，没有 T/f<sub>c</sub> 的物理换算。路径设置只供生成器生成 H/y；真实符号和比特不传给检测器。本页生成默认尺寸为 3×4；导入数据以实际输入账本的帧和设置为准。</p>
+    <form id="communication-form">
+      <fieldset><legend>① 数据生成：信道、未知符号和噪声</legend>
+        <div class="otfs-controls">
+          <div><label for="communication-order">单位平均能量星座</label><select id="communication-order" name="order" data-generation><option value="4">QPSK（4 点）</option><option value="16" selected>16-QAM（16 点）</option></select></div>
+          <div><label for="communication-pathCount">生成路径数</label><select id="communication-pathCount" name="pathCount" data-generation><option value="1">P=1</option><option value="2" selected>P=2</option></select></div>
+          <div><label for="communication-noiseVariance">复噪声方差 E|w|²</label><input id="communication-noiseVariance" name="noiseVariance" type="number" min="1e-6" max="1000" step="any" value="0.1" data-generation required></div>
+          <div><label for="communication-seed">随机种子（uint32）</label><input id="communication-seed" name="seed" type="number" min="0" max="4294967295" step="1" value="2019" data-generation required></div>
+        </div>
+        <div class="otfs-paths">
+          <fieldset><legend>路径 1</legend><div class="otfs-controls otfs-controls-pair">
+            <div><label for="communication-delay1">q₁（0≤q₁&lt;4）</label><input id="communication-delay1" name="delay1" type="number" step="any" value="0.7" data-generation required></div>
+            <div><label for="communication-doppler1">a₁（−3&lt;a₁&lt;3）</label><input id="communication-doppler1" name="doppler1" type="number" step="any" value="0.35" data-generation required></div>
+            <div><label for="communication-gain1Re">h′₁ 实部</label><input id="communication-gain1Re" name="gain1Re" type="number" min="-4" max="4" step="any" value="1" data-generation required></div>
+            <div><label for="communication-gain1Im">h′₁ 虚部</label><input id="communication-gain1Im" name="gain1Im" type="number" min="-4" max="4" step="any" value="0" data-generation required></div>
+          </div></fieldset>
+          <fieldset><legend>路径 2 · 仅 P=2 时参与生成</legend><div class="otfs-controls otfs-controls-pair">
+            <div><label for="communication-delay2">q₂（0≤q₂&lt;4）</label><input id="communication-delay2" name="delay2" type="number" step="any" value="2.2" data-generation required></div>
+            <div><label for="communication-doppler2">a₂（−3&lt;a₂&lt;3）</label><input id="communication-doppler2" name="doppler2" type="number" step="any" value="-0.65" data-generation required></div>
+            <div><label for="communication-gain2Re">h′₂ 实部</label><input id="communication-gain2Re" name="gain2Re" type="number" min="-4" max="4" step="any" value="0.45" data-generation required></div>
+            <div><label for="communication-gain2Im">h′₂ 虚部</label><input id="communication-gain2Im" name="gain2Im" type="number" min="-4" max="4" step="any" value="0.25" data-generation required></div>
+          </div></fieldset>
+        </div>
+        <p class="otfs-field-note">P=1 是数值一致性检查：有意义的非对角耦合应消失，两种软输出在数值精度内吻合。零裁剪阈值仍可能保留浮点舍入边，不能要求图一定没有边。P=2 增加路径也会改变信道总功率，不能称为等总功率比较。</p>
+      </fieldset>
+      <fieldset><legend>② MP-G 设置：重用同一 H/y</legend><div class="otfs-controls">
+        <div><label for="communication-maxIterations">最大迭代数</label><input id="communication-maxIterations" name="maxIterations" type="number" min="1" max="100" step="1" value="30" data-setting required></div>
+        <div><label for="communication-tolerance">消息变化停止容差</label><input id="communication-tolerance" name="tolerance" type="number" min="1e-14" max="1e-3" step="any" value="1e-9" data-setting required></div>
+        <div><label for="communication-damping">阻尼：新消息权重</label><input id="communication-damping" name="damping" type="number" min="0.05" max="1" step="any" value="1" data-setting required></div>
+      </div><p class="otfs-note">本页生成实验固定 edgeTolerance=0：保留数值上非零的耦合，不主动丢边；运行后仍报告实际 cutoff、边数与移除的 Gram 范数。固定 captureHistory=true：记录第 0 次初始化与每次实际完成的迭代。只改这里的设置会重用同一观测，不重新生成 H/y。导入输入保留文件中的合法裁剪与历史设置，以本次账本为准；若未记录历史，不补造状态。</p></fieldset>
+      <div class="otfs-actions"><button id="communication-run" type="submit">运行 MP-G 与 LMMSE</button><button id="communication-cancel" type="button" class="otfs-secondary" disabled>取消</button><button id="communication-reset" type="button" class="otfs-secondary">恢复默认</button><button id="communication-export" type="button" class="otfs-secondary" disabled>导出通信 JSON</button></div>
+    </form>
+    <p class="otfs-small">改生成控件使旧结果过期；只有按运行才创建新数组。无效的生成结果会明确拒绝，不偷偷重抽样、钳位参数或换一个容易成功的例子。恢复默认会退出导入输入模式、恢复可编辑的生成控件，不自动运行。</p>
+    <p id="communication-status" class="otfs-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+    <div class="otfs-output-block"><h4>这一次，两个检测器收到同样什么？</h4><pre id="communication-ledger" aria-label="通信接收机输入账本"></pre></div>
+    <div class="otfs-output-block"><h4>实际 y 与 H 的行能量</h4><p class="otfs-small">表中 y 的实部与虚部保留相位；每行 Σ|H[d,j]|² 是供给矩阵 H 的行能量，完整复 H 保存在导出记录中。G=HᴴH 的边连接符号索引，不代表物理目标之间的距离，也不能用 H 的行能量代替 G 的耦合值。</p><div id="communication-data" class="otfs-table-scroll"></div></div>
+    <div id="communication-result" class="otfs-result"></div>
+  </div>
+
+  <section class="otfs-computation" aria-labelledby="communication-history-title">
+    <h3 id="communication-history-title">③ 暂停回看：消息到底传了什么？</h3>
+    <p>第 0 次的消息均匀，边缘概率则来自归一化的单点因子，不一定均匀；第 0 次变化量按定义为零，不能据此宣布收敛。下方只访问真实保存的初始化与已完成迭代，没有补帧或自动播放。导入输入若关闭历史记录，则仅显示实际可用的最终结果与轨迹，回看控件不可用。</p>
+    <label for="communication-history">已记录状态（0 为初始化）</label><input id="communication-history" type="range" min="0" max="0" step="1" value="0" disabled>
+    <div class="otfs-actions"><button id="communication-prev" type="button" class="otfs-secondary" disabled>上一状态</button><button id="communication-next" type="button" class="otfs-secondary" disabled>下一状态</button></div>
+    <p id="communication-history-summary" class="otfs-readout"></p>
+    <div class="otfs-inspect-controls"><div><label for="communication-symbol">符号索引 d=k+Nl（生成默认 0…11）</label><input id="communication-symbol" type="number" min="0" max="11" step="1" value="0"></div><div><label for="communication-edge">查看已保留边 e（从 0 开始）</label><input id="communication-edge" type="number" min="0" step="1" value="0" disabled></div></div>
+    <div class="otfs-split"><article class="otfs-card"><h4>所选符号的星座概率</h4><p class="otfs-small">每行是一个复星座点；概率按当前真实状态读取，所有候选点共同归一化。硬判决只取最大项，不代表发送真值。</p><div id="communication-marginals" class="otfs-table-scroll"></div></article><article class="otfs-card"><h4>所选边的两条有向消息</h4><p class="otfs-small">对边 e=(i,j)，存储行 2e 是 j→i，行 2e+1 是 i→j。每行保存接收符号各星座值的对数消息；方向不同不能交换着解释。</p><div id="communication-messages" class="otfs-table-scroll"></div></article></div>
+    <h4 class="otfs-plot-heading">变化变小，说明了什么？</h4>
+    <p id="communication-trace-help">横轴为实际迭代次数；纵轴为最大绝对概率变化量，线性尺度从 0 到本次轨迹的最大值。绿色是消息变化量，橙色是边缘概率变化量。绘点从真实完成的第 1 次开始，第 0 次初始化在上方历史中查看；连线只帮助读数，没有补出的中间状态。停止条件依据消息变化量，不是错误率。</p>
+    <figure><svg id="communication-trace" viewBox="0 0 760 240" role="img" aria-label="真实 MP-G 消息与边缘概率变化轨迹" aria-describedby="communication-trace-help"></svg><figcaption>converged 只表示达到消息容差；max-iterations 表示用完迭代预算。两者都不保证精确后验或正确消息。</figcaption></figure>
+    <details><summary>所选状态、实际轨迹与数值诊断，完整历史见导出</summary><pre id="communication-values"></pre></details>
+    <label class="otfs-check" for="communication-truth"><input id="communication-truth" type="checkbox"> 揭示真实符号与比特，只用于检测后的评价</label>
+    <div id="communication-evaluation" class="otfs-evaluation" hidden></div>
+    <p class="otfs-small">BER / SER 需要生成真值，只在评价层计算。entropy proxy 是近似信念的熵代理，不是容量或测得的互信息；真实符号的 log-score 保留负值。揭示真值与切换历史不会重新求解，也不会影响消息更新。</p>
+  </section>
+</section>
+
+<section id="paper" class="otfs-section">
+  <header class="otfs-section-head"><p class="eyebrow">第四层 · 逐步追问：这个结论来自哪里？</p><h2>把本页每一步接回固定版本的原文</h2><p>Gaudio 等，<a href="https://arxiv.org/abs/1910.01896v1">On the Effectiveness of OTFS for Joint Radar and Communication，arXiv:1910.01896v1</a>（2019-10-04，30 页预印本；<a href="https://arxiv.org/pdf/1910.01896v1">打开该版 PDF</a>）。这里固定的是这一版本，不混用后续期刊标题或页码。</p></header>
+  <div class="otfs-table-scroll"><table class="otfs-paper-table"><caption>原文位置 → 本页对象 → 证据边界</caption><thead><tr><th scope="col">原文位置</th><th scope="col">本页对应</th><th scope="col">保留与尚未实现</th></tr></thead><tbody>
+    <tr><th scope="row">§II / 式 (1)</th><td>第一屏的两份知识账本</td><td>雷达与通信是不同接收机、不同观测；单程通信与单站往返换算分开</td></tr>
+    <tr><th scope="row">§III / 式 (2)–(9)</th><td>DD → 酉 ISFFT → TF → 信道 → 接收投影</td><td>复数与归一化约定明示；有限矩形窗作独立模型，不声称跨约定物理等价</td></tr>
+    <tr><th scope="row">式 (13)–(16)</th><td>eq14_literal 的实际路径算子</td><td>保留逐字 ceiling / ICI / ISI 分支，按已声明约定解释，不自行“改符号”</td></tr>
+    <tr><th scope="row">式 (17)–(19)；式 (25) 后 p.11</th><td>未知复增益剖面目标与有限精细网格</td><td>本页端点、搜索域、65² 默认与129² 上限都是实现选择；原文未给可直接复现的数值 Γ</td></tr>
+    <tr><th scope="row">式 (22)–(25)</th><td>局部 FIM / CRB 的下一步研究</td><td>本页不计算，也没有用占位曲线冒充</td></tr>
+    <tr><th scope="row">式 (37)、(39)–(44)</th><td>Gram 图 MP-G 与真实双向消息</td><td>局部求和精确；有环全局推断、浮点误差与停止规则仍有限制；未实现 MP-Psi</td></tr>
+    <tr><th scope="row">式 (47)</th><td>full LMMSE 与有效 AWGN 软转换</td><td>保留有效增益、残差方差与线性求解诊断，不冒充精确联合后验</td></tr>
+    <tr><th scope="row">式 (52)–(53)</th><td>保护间隔与资源核算的边界说明</td><td>理想联合译码 / 高斯输入检查点，不是此处检测器的实时吞吐结果</td></tr>
+    <tr><th scope="row">式 (54) / 图 6–7</th><td>熵代理、BER / SER 与真值 log-score</td><td>本页为有限单例评价，不复现原文尺寸、完整曲线或编码吞吐率</td></tr>
+  </tbody></table></div>
+  <p class="otfs-note"><strong>证据层级：</strong>原文理论与合成仿真；本站为有限尺寸的独立数值教学实现。感知 4×8，通信 3×4，既不是原尺寸复现，也不是无线硬件实测。数值核心验证、浏览器交互验证与线上部署验证是不同的检查。</p>
+  <details><summary>为什么还要披露通信端的数值稳定性修正？</summary><div><p>通信内核 v0.2.0 在对数归一化时先减最大项；LMMSE 软分数先消去与符号无关的平方项，再做运算，并使用实际残差方差，去掉参考实现中的固定绝对下限。它们是端口的数值修正，不改变 MP 图分解、调度、阻尼或停止规则。</p><p>冻结的 Python 参考保持原样。不能在极小方差的已知差异域宣称普遍逐位一致，也不能因普通尺度结果很准，就宣称所有准入尺度都达到机器精度。零滤波器给均匀概率；非零滤波器而方差下溢时应明确返回 numerical-failure。</p></div></details>
+</section>
+
+<section id="limits" class="otfs-section">
+  <header class="otfs-section-head"><p class="eyebrow">第五层 · 能解释失败，才真正读懂结果</p><h2>哪些结论，眼前这一次实验还支持不了？</h2></header>
+  <div class="otfs-limits-grid">
+    <article class="otfs-card"><h3>搜完网格 ≠ 连续最优</h3><p>网格变密增加计算量，不增加物理信息。evaluation-cap、time-cap、cancelled、superseded 不能写成穷举完成；全零 y 可能出现大量并列，不能宣称唯一解。未实现连续细化、多目标感知、未知路径数估计与局部 FIM/CRB。</p></article>
+    <article class="otfs-card"><h3>消息稳定 ≠ 后验精确</h3><p>MP-G 的 converged 只检验消息变化，环路仍会造成推断误差。小的移除 Gram 范数不是通用概率误差保证；本页采用零裁剪阈值，仍受浮点运算影响。LMMSE 的 Cholesky 主元比不是谱条件数。</p></article>
+    <article class="otfs-card"><h3>单次误差 ≠ 性能曲线</h3><p>一个种子的误差不是 RMSE、检出率、虚警率或容量。未实现实时多试验统计、原文尺寸曲线、信道获取、FEC、MP-Psi、精确有限窗通信或 OFDM / FMCW 雷达比较。</p></article>
+    <article class="otfs-card"><h3>不同资源 ≠ 无条件优越</h3><p>换生成模型、路径或数据会改变观测；换网格会改变计算量。原文 Table I 的 N=50、T=6.4 μs、保护间隔 T/4，给出 OTFS 321.6 μs 与 OFDM 400 μs 的总时长核算：有效符号相同，总时间不同，不能直接称为等资源吞吐优势。</p></article>
+  </div>
+  <p class="otfs-warning"><strong>资源与浏览器验收仍须单独检查：</strong>感知最多129×129个候选，通信最多100次迭代；内核预算不包含所有初始化、序列化、传输与绘图开销，单个候选或单次迭代也可能跨过时间检查点。记录读写采用对称16 MiB上限（16,777,216 UTF-8 字节）。下载后实际取回、输入导入后重算、Worker 取消、键盘、窄屏和指定桌面内存/耗时，均需浏览器验证；Node 数值测试不能代替这些验证，也不构成浏览器性能认证。</p>
+  <details class="otfs-checkpoint"><summary>做完后，试着回答这三个问题</summary><div><ol><li>如果感知搜索域没有包含真实 q，穷举完成能证明什么，不能证明什么？</li><li>如果 MP-G 已收敛却判错符号，是哪一种“成功”成立，哪一种没有成立？</li><li>如果改拟合模型但保留 x/y，怎样报告残差变化，才不偷换成同物理波形比较？</li></ol><p>把输入知识、实际计算、停止条件与真值评价分开写，往往比单看一张漂亮图更接近答案。</p></div></details>
+</section>
+
+<section id="reproduce" class="otfs-section">
+  <header class="otfs-section-head"><p class="eyebrow">第六层 · 把这一次真实计算带走</p><h2>保存原始输入，重新求解</h2><p>两个实验分别导出单次 JSON。记录应保留复输入数组、模型/版本、生成配置、实际设置、完整候选或真实消息历史、停止状态，并将真值评价单列。输入或设置改动后，旧结果不能作为当前结果导出。</p></header>
+  <ol class="otfs-reproduce-steps"><li><strong>先运行，后导出</strong><span>使用各实验的导出按钮；读清楚完整、上限停止或部分结果的实际状态</span></li><li><strong>导入只读取输入</strong><span>文件内的旧输出是历史声明，绝不直接变成当前结果；复核需要从输入重新计算</span></li><li><strong>核对数组与范围</strong><span>种子帮助说明来源，导出的实际数组才是复核依据；相同观测还要核对数组与已知条件，不能只比较包含设置的请求摘要</span></li></ol>
+  <div class="otfs-import"><label for="otfs-import">导入本页实验 JSON（最多 16 MiB）</label><input id="otfs-import" type="file" accept=".json,application/json" aria-describedby="otfs-import-help"><p id="otfs-import-help" class="otfs-small">感知和通信保持独立输入。导入只取输入，通过检查后进行一次全新的求解；旧估计值、消息历史和真值评价均不作为当前结果。导入模式以实际输入账本为准，生成控件暂不可编辑；可改接收机设置继续使用原数组，或按“恢复默认”退出。重算不能认证生成真值、时间戳或历史取消原因。</p><p id="otfs-import-status" class="otfs-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
+  <p>下一次可以只改一个变量：在相同感知 x/y 上减少预算，或在相同通信 H/y 上减少 MP-G 迭代。先预测变化，再用真实停止状态和数值记录解释它。</p>
+  <p class="otfs-small">可选离线复核材料（不参与页面启动）：<a href="data/otfs-effectiveness-reference-v1.zip">独立 Python 参考</a> · <a href="data/otfs-mpg-kernel-v0.2.0.zip">通信内核 v0.2.0 与核验包</a> · <a href="data/otfs-sensing-browser-prototype-v0.1.0.zip">感知内核 v0.1.0 与核验包</a> · <a href="docs/OTFS-RECEIVER-SOURCE-EVIDENCE.md">来源、证据范围与数值修正说明</a>。这些材料验证有限模型和声明的计算范围，不替代浏览器交互与完整论文复现验证。</p>
+  <p><a href="practice.html?topic=otfs-receiver#notebook">记录预测、实际结果与失败边界 →</a> · <a href="reading.html">回到论文阅读路线</a></p>
+</section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next" aria-label="下一步"><p>从“算法给了答案”，走向“这份证据支持什么结论”</p><a href="practice.html?topic=otfs-receiver#notebook">写下一次可复核的 OTFS 接收机实验 →</a></aside><footer class="site-footer">ISAC 交互学习 · 有限教学实现，不是完整论文复现 · <a href="index.html">学习地图</a></footer>
+<!-- SITE:NEXT:END -->
+</main>
+</body>
+</html>

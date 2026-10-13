@@ -1,0 +1,133 @@
+/* Canonical OTFS lesson: desktop-first, actual-data outputs only. */
+.otfs-main{--otfs-teal:#166f65;--otfs-blue:#315d92;--otfs-line:#cedce1;--otfs-muted:#536b79;max-width:1280px;padding:0 36px;color:#203747}
+.otfs-main *{box-sizing:border-box}
+.otfs-main [hidden]{display:none!important}
+.otfs-main :is(p,li,dd){line-height:1.85}
+.otfs-main :is(a,code,dd){overflow-wrap:anywhere}
+.otfs-main :is(section,article,div,fieldset){min-width:0}
+.otfs-main :focus-visible{outline:3px solid #a36a18;outline-offset:4px}
+.otfs-main .eyebrow{font-size:12px;letter-spacing:1.4px;color:var(--otfs-teal);margin:0 0 12px}
+.otfs-stage-nav{gap:8px;margin:19px 0 0;padding:0 0 15px;border-bottom:1px solid var(--otfs-line)}
+.otfs-stage-nav a{display:flex;align-items:center;gap:7px;min-height:42px;padding:6px 10px;color:#365666;text-decoration:none;border:1px solid transparent;border-radius:6px}
+.otfs-stage-nav a:hover{background:#eaf2f1;border-color:#c8dcda}
+.otfs-stage-nav a span{font-size:11px;color:#70818c;font-variant-numeric:tabular-nums}
+.otfs-cover{padding:48px 0 44px}
+.otfs-cover h1{max-width:900px;font-size:clamp(36px,4.4vw,58px);line-height:1.22;letter-spacing:-1.4px;margin:13px 0 22px}
+.otfs-lead{max-width:930px;font-size:20px;color:#46626c;line-height:1.8!important}
+.otfs-tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 27px}
+.otfs-tags span{font-size:12px;line-height:1.6;padding:5px 10px;border:1px solid #c9ded8;border-radius:5px;background:#edf5f1;color:#345e54}
+.otfs-knowledge-grid,.otfs-split,.otfs-limits-grid,.otfs-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.otfs-knowledge{background:#fff;border:1px solid var(--otfs-line);border-top:4px solid var(--otfs-teal);border-radius:9px;padding:22px 25px 20px;height:100%}
+.otfs-knowledge.otfs-comms{border-top-color:var(--otfs-blue)}
+.otfs-main .otfs-card-label{font-size:12px;letter-spacing:.9px;color:var(--otfs-teal);font-weight:700;margin:0 0 7px}
+.otfs-comms .otfs-card-label{color:var(--otfs-blue)}
+.otfs-knowledge h2{font-size:26px;letter-spacing:-.5px;margin:0 0 19px}
+.otfs-knowledge dl{margin:0 0 16px}
+.otfs-knowledge dl>div{display:grid;grid-template-columns:82px minmax(0,1fr);gap:13px;padding:10px 0;border-top:1px solid #e6edef;font-size:14px}
+.otfs-knowledge dt{font-weight:700;color:#476570}
+.otfs-knowledge dd{margin:0}
+.otfs-knowledge>a{display:inline-block;font-size:14px;font-weight:700;min-height:40px;padding:5px 0}
+.otfs-section{padding:43px 0;border-top:1px solid var(--otfs-line);scroll-margin-top:115px}
+.otfs-section-head{max-width:960px;margin-bottom:22px}
+.otfs-section h2{font-size:clamp(27px,2.9vw,35px);line-height:1.4;letter-spacing:-.6px;margin:5px 0 17px}
+.otfs-main h3{font-size:21px;line-height:1.5;margin:0 0 13px}
+.otfs-main h4{font-size:18px;line-height:1.5;margin:0 0 11px}
+.otfs-main p{margin:12px 0 18px}
+.otfs-chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;list-style:none;counter-reset:chain;padding:0;margin:25px 0}
+.otfs-chain li{counter-increment:chain;background:#eef3f4;border:1px solid #d2e0e3;border-radius:7px;padding:16px;font-size:14px}
+.otfs-chain li:before{content:'0' counter(chain);display:block;color:#6f8990;font-size:12px;font-weight:700;margin-bottom:7px}
+.otfs-chain strong,.otfs-chain span{display:block}
+.otfs-chain span{font-size:12px;color:var(--otfs-muted);margin-top:5px}
+.otfs-card{border:1px solid var(--otfs-line);border-radius:8px;background:#fff;padding:22px;height:100%}
+.otfs-card p{font-size:15px}
+.otfs-card p:last-child{margin-bottom:0}
+.otfs-wide{grid-column:1/-1}
+.otfs-equation{padding:18px 21px;background:#edf3f6;border:1px solid #d3e0e7;border-radius:7px;font:15px/2 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;margin:18px 0}
+.otfs-note,.otfs-warning{padding:15px 19px;border-left:4px solid #659989;border-radius:0 7px 7px 0;background:#ecf4f0;font-size:14px}
+.otfs-warning{background:#fff5e5;border-color:#ba8234;color:#695331}
+.otfs-main .otfs-small,.otfs-field-note{font-size:13px;color:var(--otfs-muted);line-height:1.8}
+.otfs-main details{background:#fff;border:1px solid var(--otfs-line);border-radius:8px;margin:21px 0}
+.otfs-main details>div{padding:0 20px 19px}
+.otfs-main details>pre{margin:0 14px 14px}
+.otfs-main summary{min-height:48px;padding:13px 18px;line-height:1.6;font-size:15px;font-weight:650;cursor:pointer}
+.otfs-checkpoint{background:#fffcf5!important;border-color:#e4d7bb!important}
+.otfs-checkpoint summary{color:#785e2f}
+.otfs-experiment{margin:29px 0 32px;padding:26px;border:1px solid #bfd5d3;border-top:4px solid var(--otfs-teal);background:#fff;border-radius:10px;box-shadow:0 4px 18px #1a364907}
+.otfs-experiment.otfs-comms{border-top-color:var(--otfs-blue)}
+.otfs-experiment-heading{display:flex;justify-content:space-between;align-items:start;gap:20px}
+.otfs-experiment-heading h3{font-size:23px;margin:0}
+.otfs-badge{font-size:12px;line-height:1.6;white-space:nowrap;padding:6px 9px;border-radius:5px;border:1px solid #cedee2;background:#f2f6f7;color:#476573;font-variant-numeric:tabular-nums}
+.otfs-main fieldset{border:1px solid #cfdee3;background:#f7f9fa;padding:17px 18px 18px;border-radius:7px;margin:25px 0 0}
+.otfs-main legend{padding:0 8px;font-size:15px;font-weight:700;color:#385963}
+.otfs-main fieldset .otfs-field-note{margin:0 0 17px}
+.otfs-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 17px;align-items:start}
+.otfs-field-wide{grid-column:span 2}
+.otfs-main label{display:block;font-size:13px;line-height:1.55;font-weight:650;margin-bottom:7px}
+.otfs-main :is(input[type=number],select,input[type=file]){width:100%;max-width:100%;min-height:44px;padding:9px 10px;border:1px solid #96acb7;border-radius:5px;background:#fff;color:#203747;font:14px/1.5 system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.otfs-main input[type=range]{width:100%;min-height:40px;accent-color:var(--otfs-teal);margin:0 0 4px}
+.otfs-main input[type=file]{padding:10px;font-size:13px}
+.otfs-main input[type=file]::file-selector-button{font:inherit;border:1px solid #adbfca;border-radius:4px;background:#edf4f4;color:#234b53;padding:7px 12px;margin-right:12px;cursor:pointer}
+.otfs-main select{appearance:auto}
+.otfs-main button{min-height:44px;padding:10px 15px;border:1px solid var(--otfs-teal);border-radius:6px;background:var(--otfs-teal);color:#fff;font:600 14px/1.5 system-ui,sans-serif;white-space:normal;cursor:pointer}
+.otfs-main button:hover:not(:disabled){background:#105d55;border-color:#105d55}
+.otfs-main button.otfs-secondary{color:#345c65;background:#fff;border-color:#9bb5be;font-weight:500}
+.otfs-main button.otfs-secondary:hover:not(:disabled){background:#edf4f3;border-color:#719c9a}
+.otfs-main :is(button,input,select):disabled{background:#edf1f3;border-color:#c5d1d7;color:#768891;opacity:.7;cursor:default}
+.otfs-actions{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 10px}
+.otfs-paths{gap:17px}
+.otfs-paths fieldset{background:#fff;margin:18px 0 0;padding:13px 14px 16px}
+.otfs-paths legend{font-size:13px}
+.otfs-controls-pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.otfs-status{background:#edf4f5;border:1px solid #cfdee2;padding:13px 16px;border-radius:7px;font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.otfs-status:empty{display:none}
+.otfs-output-block{margin-top:25px;padding-top:21px;border-top:1px solid #d8e4e8}
+.otfs-output-block>p{font-size:14px}
+.otfs-main pre{max-width:100%;max-height:420px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2;border:1px solid #d8e3e7;border-radius:6px;padding:14px 16px;background:#f1f5f7;color:#324f5e;font:12px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}
+.otfs-main pre:empty{display:none}
+.otfs-computation{margin:29px 0 0;padding-top:24px;border-top:1px solid #d6e3e6}
+.otfs-computation>h3{font-size:23px;margin:0 0 14px}
+.otfs-main figure{margin:19px 0;padding:13px;background:#fff;border:1px solid var(--otfs-line);border-radius:8px;min-width:0}
+.otfs-main :is(canvas,svg){display:block;width:100%;max-width:100%;height:auto;font:12px system-ui,sans-serif}
+.otfs-main canvas{margin:0;background:#fafcfd;border-color:#d9e5e9;border-radius:5px}
+.otfs-main svg{overflow:hidden;min-height:1px}
+.otfs-main figcaption{font-size:12px;line-height:1.75;color:var(--otfs-muted);margin:11px 3px 0}
+.otfs-readout,.otfs-result{background:#eff6f3;border-left:3px solid #609781;border-radius:0 5px 5px 0;padding:13px 16px;font-size:14px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.otfs-readout:empty,.otfs-result:empty{display:none}
+.otfs-result{margin:18px 0}
+.otfs-result :is(h3,h4){font-size:18px;margin:3px 0 11px}
+.otfs-result p:last-child{margin-bottom:0}
+.otfs-inspect-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto;align-items:end;gap:17px;max-width:760px;margin:22px 0}
+.otfs-inspect-controls button{margin-bottom:0}
+.otfs-table-scroll{max-width:100%;overflow:auto;overscroll-behavior-x:contain;border-radius:6px;margin:14px 0;font-variant-numeric:tabular-nums}
+.otfs-table-scroll:empty{display:none}
+.otfs-main table{width:100%;border-collapse:collapse;background:#fff;font-size:13px;line-height:1.7}
+.otfs-main caption{text-align:left;font-size:14px;color:#3b5d6c;font-weight:650;padding:12px 14px;background:#eef4f6}
+.otfs-main th,.otfs-main td{min-width:0;padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid #dce7eb}
+.otfs-main th{background:#eef4f6;font-size:12px;font-weight:650}
+.otfs-main td:first-child{font-weight:500}
+.otfs-main tbody th{background:#f5f8f9;font-weight:600}
+.otfs-main tbody tr:last-child>:is(td,th){border-bottom:0}
+.otfs-main .otfs-check{display:flex;align-items:center;gap:11px;min-height:48px;font-size:14px;font-weight:500;margin:24px 0 11px}
+.otfs-check input{width:19px;height:19px;accent-color:var(--otfs-teal);flex:0 0 auto;margin:0}
+.otfs-evaluation{padding:17px 20px;background:#f5f1fa;border:1px solid #d8cbe5;border-radius:7px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:520px;overflow:auto;font-variant-numeric:tabular-nums}
+.otfs-evaluation :is(h3,h4){font-size:18px;margin:0 0 10px}
+.otfs-main .otfs-plot-heading{margin-top:28px}
+.otfs-paper-table{min-width:680px}
+.otfs-paper-table th:first-child{width:22%}
+.otfs-paper-table td:nth-child(2){width:31%}
+.otfs-limits-grid{gap:17px}
+.otfs-limits-grid .otfs-card{border-top:3px solid #9fb5bd}
+.otfs-limits-grid h3{font-size:19px}
+.otfs-reproduce-steps{padding-left:23px;max-width:960px}
+.otfs-reproduce-steps li{padding:6px 0 10px 5px}
+.otfs-reproduce-steps strong,.otfs-reproduce-steps span{display:block}
+.otfs-reproduce-steps span{font-size:14px;color:var(--otfs-muted);margin-top:3px}
+.otfs-import{max-width:840px;padding:21px 23px;margin:24px 0;background:#fff;border:1px solid var(--otfs-line);border-radius:8px}
+.otfs-import label{font-size:15px;margin-bottom:12px}
+.otfs-import p:last-child{margin-bottom:0}
+@media(min-width:1350px){.otfs-main{padding:0 44px}.otfs-cover{padding-top:54px}.otfs-knowledge{padding:25px 28px}.otfs-experiment{padding:29px}}
+@media(max-width:1000px){.otfs-main{padding:0 26px}.otfs-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.otfs-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.otfs-knowledge{padding:19px}.otfs-knowledge dl>div{grid-template-columns:70px minmax(0,1fr);gap:9px}.otfs-stage-nav{gap:4px}.otfs-stage-nav a{padding:5px 8px;font-size:13px}.otfs-experiment{padding:21px}.otfs-inspect-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.otfs-inspect-controls button{justify-self:start}.otfs-paths{gap:12px}}
+@media(max-width:700px){.otfs-main{padding:0 20px}.otfs-cover{padding:32px 0}.otfs-cover h1{font-size:37px;letter-spacing:-.9px}.otfs-lead{font-size:18px}.otfs-knowledge-grid,.otfs-split,.otfs-limits-grid,.otfs-paths{grid-template-columns:1fr;gap:15px}.otfs-section{padding:34px 0;scroll-margin-top:150px}.otfs-section-head{margin-bottom:18px}.otfs-experiment-heading{display:block}.otfs-badge{display:inline-block;margin:11px 0 0}.otfs-experiment{padding:17px;margin:25px -3px}.otfs-card{padding:19px}.otfs-main fieldset{padding:14px;margin-top:22px}.otfs-main legend{font-size:14px}.otfs-main details>div{padding:0 16px 16px}.otfs-main summary{padding:13px 15px}.otfs-main .otfs-small{font-size:13px}.otfs-note,.otfs-warning{padding:13px 15px}.otfs-main figure{padding:8px}.otfs-paper-table{min-width:620px}.otfs-main th,.otfs-main td{padding:9px 10px}.otfs-inspect-controls{gap:12px}.otfs-paths fieldset{margin-top:13px}.otfs-import{padding:18px}.otfs-computation>h3{font-size:21px}}
+@media(max-width:430px){.otfs-main{padding:0 16px}.otfs-cover h1{font-size:32px}.otfs-stage-nav a{font-size:12px;padding:5px 6px}.otfs-stage-nav a span{font-size:10px}.otfs-knowledge h2{font-size:24px}.otfs-knowledge dl>div{grid-template-columns:1fr;gap:2px}.otfs-controls:not(.otfs-controls-pair){grid-template-columns:1fr}.otfs-field-wide{grid-column:auto}.otfs-chain{gap:8px}.otfs-chain li{padding:12px}.otfs-chain strong{font-size:13px}.otfs-chain span{font-size:11px}.otfs-main fieldset{padding:12px}.otfs-main label{font-size:12px}.otfs-experiment{padding:13px}.otfs-actions button{font-size:13px;padding:9px 11px}.otfs-equation{font-size:13px;padding:15px}.otfs-main figure{padding:5px}.otfs-inspect-controls{grid-template-columns:1fr}.otfs-inspect-controls button{width:100%}.otfs-main input[type=file]{font-size:12px}.otfs-main input[type=file]::file-selector-button{margin-right:6px;padding:7px}.otfs-evaluation{padding:14px}}
+@media(prefers-reduced-motion:reduce){.otfs-main *{scroll-behavior:auto;transition:none!important}}
+@media print{.otfs-stage-nav,.otfs-actions,.otfs-controls,.otfs-inspect-controls,.otfs-check,.otfs-import{display:none!important}.otfs-main{max-width:none;padding:0}.otfs-cover{padding:15px 0}.otfs-section{padding:25px 0}.otfs-main fieldset{display:none}.otfs-main figure,.otfs-card{break-inside:avoid}.otfs-knowledge-grid,.otfs-split,.otfs-limits-grid{display:block}.otfs-knowledge,.otfs-card{margin-bottom:14px}.otfs-main pre{max-height:none}.otfs-paper-table{min-width:0}.otfs-table-scroll{overflow:visible}.otfs-experiment{box-shadow:none}.otfs-main :is(h2,h3,h4){break-after:avoid}}

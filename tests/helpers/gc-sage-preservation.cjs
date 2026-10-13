@@ -136,7 +136,8 @@ function withoutGCSAGERegistry(registry){
  return prior;
 }
 function withoutGCSAGEGuide(data){
- const prior=require('./atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(data),matches=prior.cards.filter(c=>c.id===additions.guideId);
+ const current=data.cards.some(c=>c.id==='otfs-joint-estimation-2020'&&c.executable)?require('./otfs-receiver-preservation.cjs').withoutOtfsGuides(data):data;
+ const prior=require('./atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(current),matches=prior.cards.filter(c=>c.id===additions.guideId);
  if(!matches.length)return prior;
  a.equal(matches.length,1,'one GC-SAGE guide');const c=matches[0];
  a.equal(Object.keys(c).at(-1),'executable','appended GC-SAGE executable');

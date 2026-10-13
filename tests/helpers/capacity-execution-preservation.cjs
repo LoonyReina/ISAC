@@ -32,7 +32,7 @@ const statusClauses=[
 ];
 function withoutCapacityExecution(data){
  const prior=structuredClone(data),matches=prior.cards.filter(c=>c.id===executionGuideId);
- for(const card of prior.cards)if(Object.hasOwn(card,'executable')){if(card.id==='ofdm-passive-atomic-errors-2017')a.deepEqual(card.executable,require('./atomic-receiver-preservation.cjs').additions.executable,'exact later atomic execution entry');else if(card.id!=='nearfield-mechanism-aware-mapping-2026')a.equal(card.id,executionGuideId,'execution field belongs only to the reviewed guide');}
+ for(const card of prior.cards)if(Object.hasOwn(card,'executable')){if(card.id==='otfs-joint-estimation-2020')a.deepEqual(card.executable,require('./otfs-receiver-preservation.cjs').changes.guides.find(x=>x.path.at(-1)==='executable').after,'exact later OTFS executable');else if(card.id==='ofdm-passive-atomic-errors-2017')a.deepEqual(card.executable,require('./atomic-receiver-preservation.cjs').additions.executable,'exact later atomic execution entry');else if(card.id!=='nearfield-mechanism-aware-mapping-2026')a.equal(card.id,executionGuideId,'execution field belongs only to the reviewed guide');}
  if(!matches.length)return prior;
  a.equal(matches.length,1,'one reviewed execution guide');
  const card=matches[0];

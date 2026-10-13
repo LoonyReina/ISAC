@@ -32,8 +32,8 @@ test('generated local navigation and notebook exit survive shell replacement wit
 });
 
 test('the exact registration inverse preserves unrelated data and rejects malformed or moved additions',()=>{
- const before=JSON.stringify(r),prior=withoutAtomicReceiverRegistry(r);a.equal(JSON.stringify(r),before);a.deepEqual(prior.units,r.units.slice(0,-1));a.deepEqual(prior.pages,r.pages.slice(0,-1));
- for(const k of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[k],r[k]);
+ const before=JSON.stringify(r),prior=withoutAtomicReceiverRegistry(r);a.equal(JSON.stringify(r),before);a.deepEqual(prior.units,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).units.slice(0,-1));a.deepEqual(prior.pages,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).pages.slice(0,-1));
+ for(const k of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[k],require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r)[k]);
  for(const mutate of [x=>x.units.pop(),x=>x.pages.pop(),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>{x.directions.find(d=>d.id==='receiver').coverage+=' changed';},x=>x.units.unshift(x.units.pop()),x=>{x.pages.at(-1).role+=' changed';},x=>{x.directions.find(d=>d.id==='receiver').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);mutate(x);a.throws(()=>withoutAtomicReceiverRegistry(x));}
  const future=structuredClone(r);future.units[0].question+=' unrelated';a.equal(withoutAtomicReceiverRegistry(future).units[0].question,future.units[0].question);
 });

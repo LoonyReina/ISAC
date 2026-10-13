@@ -577,5 +577,5 @@ const changes={
 };
 const collection=(data,key)=>key.split('.').reduce((v,k)=>v[k],data);
 function reverse(data,entries){const prior=structuredClone(data);for(const entry of entries){const matches=collection(prior,entry.collection).filter(x=>x[entry.idKey]===entry.id);a.equal(matches.length,1,'one point-CRB metadata record');for(const ch of entry.changes){let parent=matches[0];for(const k of ch.path.slice(0,-1))parent=parent[k];const k=ch.path.at(-1);a.ok(Object.hasOwn(parent,k));a.deepEqual(parent[k],ch.after,'exact point-CRB metadata '+entry.id+'.'+ch.path.join('.'));if(ch.added)delete parent[k];else parent[k]=structuredClone(ch.before);}}return prior;}
-const withoutCrbPointRegistry=r=>reverse(r,changes.registry),withoutCrbPointCatalog=d=>reverse(d,changes.catalog);
+const withoutCrbPointRegistry=r=>reverse(r.units.some(u=>u.id==='otfs-receiver')?require('./otfs-receiver-preservation.cjs').withoutOtfsRegistry(r):r,changes.registry),withoutCrbPointCatalog=d=>reverse(d,changes.catalog);
 module.exports={changes,collection,withoutCrbPointRegistry,withoutCrbPointCatalog};

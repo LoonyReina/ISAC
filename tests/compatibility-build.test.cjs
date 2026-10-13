@@ -19,7 +19,7 @@ function auditFixture(){
 
 test('editable map explicitly owns legacy paths, declared generated outputs and directly linked evidence',()=>{
  a.equal(M.validateManifest(manifest,root),manifest);a.equal(manifest.schemaVersion,2);
- a.deepEqual(manifest.entries.filter(e=>e.public===null).map(e=>e.compatibility),['.gitignore']);
+ a.deepEqual(manifest.entries.filter(e=>e.public===null).map(e=>e.compatibility),['.gitignore','labs/otfs-receiver/communication/node-worker.mjs','labs/otfs-receiver/sensing/node-worker.mjs','tests/otfs-lesson-controller.test.cjs','tests/otfs-lesson-independent.test.cjs','tests/otfs-lesson-model.test.cjs','tests/otfs-lesson-page.test.cjs']);
  a.equal(manifest.entries.filter(e=>e.role==='generated').length,9);a.ok(manifest.entries.filter(e=>e.role==='generated').every(e=>e.source===null));
  a.deepEqual(fs.readdirSync(path.join(root,'build/compatibility-seeds')),['project.gitignore']);
  for(const f of ['tests/crb-beamforming.test.cjs','tests/crb-beamforming-ui.test.cjs','tests/joint-beamforming.test.cjs','scripts/shared-array-reference/source-audit.md','scripts/generate-waveform.py','data/waveform-states.json'])a.ok(manifest.entries.some(e=>e.public===f),f);
@@ -215,4 +215,14 @@ test('the reviewed build-source exception record has exact independent bytes',()
  const bytes=fs.readFileSync(path.join(root,'build/migration-build-deltas.json'));
  a.equal(M.sha(bytes),'66d7f5b6a11aa339b584c6a035a1d391c32ce6095e529df3099d5f9ad36ed56b');
  a.doesNotThrow(()=>A.validateDeltas(JSON.parse(bytes),baseline,A.BUILD_FILES));
+});
+
+// Source-hash contracts are intentionally reviewed separately from legacy .js scans.
+test('every published ESM source has one exact reviewed contract and both Worker endpoints remain mapped',()=>{
+ const c=JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),modules=manifest.entries.filter(e=>e.public?.endsWith('.mjs'));
+ a.deepEqual(c.modules.map(x=>x.public).sort(),modules.map(x=>x.public).sort());
+ for(const record of c.modules){const mapping=modules.find(e=>e.public===record.public);a.equal(M.sha(fs.readFileSync(path.join(root,mapping.source))),record.sha256);}
+ const ui=c.modules.find(x=>x.public==='otfs-receiver/otfs-receiver.mjs');a.equal(ui.runtimePolicy,'literal-workers');a.deepEqual(ui.runtimeEdges.map(e=>e.url),['./sensing/browser-worker.mjs','./communication/browser-worker.mjs']);
+ for(const edge of ui.runtimeEdges)a.ok(modules.some(e=>e.public==='otfs-receiver/'+edge.url.slice(2)));
+ a.equal(c.modules.filter(x=>x.runtimePolicy==='command-line-inputs-unverified').length,2);
 });
