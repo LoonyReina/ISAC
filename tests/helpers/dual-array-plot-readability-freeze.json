@@ -1,0 +1,64 @@
+{
+  "schema": "dual-array-plot-readability-v1",
+  "base_commit": "d0fa024b352089e10e4f885e1fa2b5d77a1e5104",
+  "base_tree": "a0b0a15e7d212ac2334cb5e94f5553de0869c0e8",
+  "scope": "Stack plot-bearing pairs, preserve natural SVG width in keyboard-focusable local scrollers, and wrap offline provenance hash; all scientific plot data and SVG source unchanged",
+  "browser_acceptance": false,
+  "corrections": [
+    {
+      "path": "labs/dual-array/lesson.css",
+      "before": {
+        "bytes": 6118,
+        "sha256": "edf7126ca31eba6bdb657710cf735d84e755268aa8677650daa984c0e8804d81"
+      },
+      "after": {
+        "bytes": 6389,
+        "sha256": "a26465d08bea5d94ee331ab8e2ced8784ab85261018f21e151b870be4fb784d4"
+      },
+      "suffix": "/* Preserve natural SVG label size; overflow stays in focusable chart regions. */\n.da-pair:has(.da-plot){grid-template-columns:minmax(0,1fr)}\n.da-plot{overflow-x:auto;overscroll-behavior-x:contain}\n.da-plot svg{min-width:850px}\n#da-offline-status{overflow-wrap:anywhere}\n"
+    },
+    {
+      "path": "content/pages/dual-array-positioning.html",
+      "before": {
+        "bytes": 20979,
+        "sha256": "9a01945692d73de0ba18931a6af2cb8748aa83225c1fec7350451a92df43b5ed"
+      },
+      "after": {
+        "bytes": 21122,
+        "sha256": "e9512a3f290e56f71588b336e38b9d419a036f8571e23c45bc8297ef3b75aaee"
+      },
+      "beforeNormalizedSha256": "25642b1d3eac569800ac62761532ecfc1b90eeba38b2f27bca8d322cf53b868a",
+      "afterNormalizedSha256": "bb5719e9e07551b0c32381895dc8ff0daa14a679efa1ce96e285998718a2da65",
+      "from": "class=\"da-plot\" role=\"img\"",
+      "to": "class=\"da-plot\" tabindex=\"0\" role=\"img\"",
+      "occurrences": 11
+    }
+  ],
+  "files": [
+    {
+      "path": "labs/dual-array/lesson.css",
+      "bytes": 6389,
+      "sha256": "a26465d08bea5d94ee331ab8e2ced8784ab85261018f21e151b870be4fb784d4"
+    },
+    {
+      "path": "content/pages/dual-array-positioning.html",
+      "bytes": 21122,
+      "sha256": "e9512a3f290e56f71588b336e38b9d419a036f8571e23c45bc8297ef3b75aaee"
+    },
+    {
+      "path": "labs/dual-array/lesson/view.mjs",
+      "bytes": 20075,
+      "sha256": "8f3907a4bc5202432ce9ceda1b7f456e1175a775123a94d0ef286124d4e69c10"
+    },
+    {
+      "path": "tests/dual-array-plot-readability.test.cjs",
+      "bytes": 5310,
+      "sha256": "53df8e37ac035ad38d7bf0264f806d561b39e8e2532610d033d087f7b51fdf63"
+    },
+    {
+      "path": "tests/helpers/dual-array-plot-readability-preservation.cjs",
+      "bytes": 3335,
+      "sha256": "1d22e902d2e64ba5ce35d37ac5c626faa8c9546547921c6ed82dd20fffe9fd15"
+    }
+  ]
+}

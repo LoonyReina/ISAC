@@ -1,0 +1,37 @@
+{
+  "schema": "dual-array-browser-timer-repair-v1",
+  "base_commit": "d0fa024b352089e10e4f885e1fa2b5d77a1e5104",
+  "base_tree": "a0b0a15e7d212ac2334cb5e94f5553de0869c0e8",
+  "scope": "Bind default host timers only; injected timers and all numerical runtime, schemas, oracles and historical evidence remain unchanged",
+  "browser_acceptance": false,
+  "correction": {
+    "path": "labs/dual-array/runtime/client.mjs",
+    "before": {
+      "bytes": 6092,
+      "sha256": "16e2d61c07929a57520e25e3ffe2ba6d89998fbfdbbc0b8edee7415dabbfd824"
+    },
+    "after": {
+      "bytes": 6126,
+      "sha256": "d78605231b69be6d7468cc4e08dbcd1c4483b091d543875071e40e672aa5017f"
+    },
+    "from": "setTimer=setTimeout,clearTimer=clearTimeout",
+    "to": "setTimer=setTimeout.bind(globalThis),clearTimer=clearTimeout.bind(globalThis)"
+  },
+  "files": [
+    {
+      "path": "labs/dual-array/runtime/client.mjs",
+      "bytes": 6126,
+      "sha256": "d78605231b69be6d7468cc4e08dbcd1c4483b091d543875071e40e672aa5017f"
+    },
+    {
+      "path": "tests/helpers/dual-array-browser-timer-preservation.cjs",
+      "bytes": 1476,
+      "sha256": "45c80f2410598aed3770e69452e3788f97029a78a9216c92b26294a360b7ea3d"
+    },
+    {
+      "path": "tests/dual-array-browser-timers.test.cjs",
+      "bytes": 14269,
+      "sha256": "742d3d6e72dc3eee1e7f101a5a3e1273e1336ddaad4907f21078b3b9887220fe"
+    }
+  ]
+}

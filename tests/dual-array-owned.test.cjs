@@ -9,6 +9,8 @@ const os = require('node:os');
 const cp = require('node:child_process');
 const crypto = require('node:crypto');
 const owned = require('./helpers/dual-array-owned-suites.json');
+const repair = require('./helpers/dual-array-current-runtime-preservation.cjs');
+const adapterFreeze = require('./helpers/dual-array-current-runtime-freeze.json');
 const root = path.resolve(__dirname, '..');
 const page = 'content/pages/dual-array-positioning.html';
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -131,18 +133,31 @@ test(gateName, {timeout: 240000}, t => {
     a.deepEqual(inventory(path.join(root, testDirectory)), owned.functionalFiles.filter(row => row.path.startsWith(testDirectory)).map(row => row.path.slice(testDirectory.length)).sort(), 'every owned helper and suite is frozen; no missing or extra test files');
     const fileReceipts = [];
     for (const row of owned.functionalFiles) {
-      const bytes = source(row);
-      if (row.path === page) a.equal(sha(normalizePage(bytes.toString('utf8'))), owned.functionalPageNormalizedSha256, 'accepted HTML except generated SITE regions');
+      const bytes = source(row), accepted = repair.historicalBytes(row.path, bytes);
+      // Historical provenance uses only exact reviewed inverses. Current bytes execute below.
+      if (row.path === page) a.equal(sha(normalizePage(accepted.toString('utf8'))), owned.functionalPageNormalizedSha256, 'accepted HTML except generated SITE regions');
       else {
-        a.equal(bytes.length, row.bytes, 'accepted size: ' + row.path);
-        a.equal(sha(bytes), row.sha256, 'accepted bytes: ' + row.path);
+        a.equal(accepted.length, row.bytes, 'accepted size: ' + row.path);
+        a.equal(sha(accepted), row.sha256, 'accepted bytes: ' + row.path);
       }
       const target = path.join(sourceRoot, row.path);
       fs.mkdirSync(path.dirname(target), {recursive: true});
       fs.writeFileSync(target, bytes);
-      fileReceipts.push({path: row.path, bytes: bytes.length, sha256: sha(bytes), siteRegionsNormalized: row.path === page});
+      fileReceipts.push({path: row.path, bytes: bytes.length, sha256: sha(bytes), acceptedSha256: sha(accepted), siteRegionsNormalized: row.path === page});
     }
-    a.deepEqual(inventory(sourceRoot), owned.functionalFiles.map(row => row.path).sort(), 'exact reconstructed owned source tree');
+    a.equal(adapterFreeze.schema, 'dual-array-browser-owned-adapter-freeze-v1');
+    a.deepEqual(adapterFreeze.files.map(row => row.path), [...repair.adaptedPaths, ...repair.supportPaths], 'complete explicit current adapter inventory');
+    for (const row of adapterFreeze.files) {
+      const bytes = source(row);
+      a.equal(bytes.length, row.bytes, 'current adapter size: ' + row.path);
+      a.equal(sha(bytes), row.sha256, 'current adapter identity: ' + row.path);
+      if (repair.supportPaths.includes(row.path)) {
+        const target = path.join(sourceRoot, row.path);
+        fs.mkdirSync(path.dirname(target), {recursive: true});
+        fs.writeFileSync(target, bytes);
+      }
+    }
+    a.deepEqual(inventory(sourceRoot), [...owned.functionalFiles.map(row => row.path), ...repair.supportPaths].sort(), 'exact current owned source and provenance adapter tree');
     fs.writeFileSync(path.join(temp, 'source-receipts.json'), JSON.stringify(fileReceipts, null, 2) + '\n');
 
     const suite = run('owned-tests', process.execPath, ['--max-old-space-size=512', '--test', '--test-concurrency=1', '--test-reporter=tap', path.join(sourceRoot, owned.suite)], 160000);
