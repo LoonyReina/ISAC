@@ -1,0 +1,434 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "title": "Near-Field Integrated Sensing and Communications",
+    "url": "https://arxiv.org/html/2302.01153v5",
+    "pdfUrl": "https://arxiv.org/pdf/2302.01153v5",
+    "version": "arXiv:2302.01153v5, 2025-09-23",
+    "pdfSha256": "c4dea3caec6495d08a1c0fba56d13ca9f9c9372173ccac053fbff46b8f2fa4b1",
+    "htmlSha256": "c58b64619745d4b1dca72de9c07aca1869553adfa78ace577f02ef1cc532fdd1",
+    "pdfRedistributed": false,
+    "privateExtractedSourceIncluded": false
+  },
+  "archives": [
+    {
+      "id": "nearfield-live-chain",
+      "manifest": "data/nearfield-live-chain-v1.parts.json",
+      "archiveFile": "nearfield-live-chain-v1.zip",
+      "bytes": 13411301,
+      "sha256": "d9c9a822d2e4ebf34b4914c6586f30e06e329046bd0b559c23f51ed30766b0f7",
+      "publicWholeArchive": null,
+      "parts": [
+        {
+          "order": 1,
+          "file": "nearfield-live-chain-v1.zip.part01",
+          "bytes": 9000000,
+          "sha256": "eac5d8733d6903e92187cdff6401b3d40f3141ebff6d250a5289c127c7b21df0",
+          "public": "data/nearfield-live-chain-v1.zip.part01"
+        },
+        {
+          "order": 2,
+          "file": "nearfield-live-chain-v1.zip.part02",
+          "bytes": 4411301,
+          "sha256": "5d83110609efa244d5c902c470b63ac9a78b130cd4d421557cd5ed440253cc49",
+          "public": "data/nearfield-live-chain-v1.zip.part02"
+        }
+      ],
+      "pdfRedistributed": false,
+      "privateExtractedSourceIncluded": false,
+      "failuresRetained": true,
+      "startupDependency": false,
+      "archiveMemberCount": 107,
+      "manifestListedFileCount": 106
+    },
+    {
+      "id": "nearfield-crb-reference",
+      "manifest": "data/nearfield-crb-reference-v1.parts.json",
+      "archiveFile": "nearfield-crb-reference-v1.zip",
+      "bytes": 14229564,
+      "sha256": "565595aa32712f16676d8a1f36bb7bb5724050b4adfdc96723e6839113ccddce",
+      "publicWholeArchive": null,
+      "parts": [
+        {
+          "order": 1,
+          "file": "nearfield-crb-reference-v1.zip.part01",
+          "bytes": 9000000,
+          "sha256": "38712173410a03b92fd574b84fda17464ca5d1e0f54c78deda53f61602413433",
+          "public": "data/nearfield-crb-reference-v1.zip.part01"
+        },
+        {
+          "order": 2,
+          "file": "nearfield-crb-reference-v1.zip.part02",
+          "bytes": 5229564,
+          "sha256": "daa5c3e788cbc0b846fda531b995ec8104c73df0193f006bac3df9ecc551bc93",
+          "public": "data/nearfield-crb-reference-v1.zip.part02"
+        }
+      ],
+      "pdfRedistributed": false,
+      "privateExtractedSourceIncluded": false,
+      "failuresRetained": true,
+      "startupDependency": false,
+      "archiveMemberCount": 157,
+      "manifestListedFileCount": 156
+    }
+  ],
+  "reassembler": "data/reassemble-nearfield-evidence.py",
+  "runtimePublicRoot": "labs/near-field/research/runtime/",
+  "runtimeFreeze": {
+    "verdict": "accepted_bounded_isolated_compute_chain",
+    "runtimeFiles": {
+      "MUSIC-FREEZE.json": "3493c308a9cb80fcc9f972d41438f56ab2e99e65a5efb13a932f7b208c0817d4",
+      "SOLVER-FREEZE.json": "1754d7e1a04e9ecd78aebc82c3157d7f6ea818107ffc3ea30d215664b509a90f",
+      "src/adapter.mjs": "a882ee455d015c340b9444818224a8e9b51c86a95be79a100118eb2d97fc1799",
+      "src/contract.mjs": "4f14f868f6b5b730b993c9b7ccaa0815206b09e9a05a3a0dc11abc342926ad1e",
+      "src/experiment.mjs": "4600f18e8cd9ba74a92f499dedb3227a32c7b9d5d7431fa1b737b374b4272990",
+      "src/physics.mjs": "7a1a3abc7d3301bbf4f6c61d1881fa54a96e53becb8c1208881bdd3d81235588",
+      "src/receiver-worker.mjs": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27",
+      "src/replay.mjs": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4",
+      "src/solver-loader.mjs": "7e734d0e81d4988bfcabf517673b1d6d12f7b9fb07a0c7b2ac70f32ee4fbd250",
+      "src/solver-worker.mjs": "00e425a74b2be201f39b99f6295bda39bd23fe3c3a7b2fe42b006b9586239abd",
+      "src/worker-client.mjs": "ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d",
+      "vendor/music/generator.mjs": "e083b6e981e307cc9b40efa11946a813d1e6ec3203194c2b3f5f47994bbb2406",
+      "vendor/music/receiver.mjs": "16e0df92c3221a56c51f430cb0f3afc29249f496c6bba9d09ffdf456f2a5f981",
+      "vendor/music/worker.mjs": "406463ea7e7c7893dad88912785fe81bf8cdd2f78ef54e8565782aac704733f3",
+      "vendor/solver/core.js": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de",
+      "vendor/solver/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+      "vendor/solver/linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+      "vendor/solver/metrics.js": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a",
+      "vendor/solver/model.js": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4",
+      "vendor/solver/numerics.js": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782",
+      "vendor/solver/optimizer.js": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c",
+      "vendor/solver/package.json": "dbf8353f77358bc12169b7bb7301e1978d5b503e002ee927229a8993672818fc"
+    },
+    "independentReview": "independent-review/INDEPENDENT-REVIEW.json",
+    "authorGroupsPassed": 35,
+    "independentPhysicsChecksPassed": 235,
+    "independentContractGroupsPassed": 101,
+    "browserTested": false,
+    "published": false
+  },
+  "numericalEvidence": {
+    "authorGroups": 35,
+    "independentPhysicsChecks": 235,
+    "independentRawDatasets": 9,
+    "independentWorkerContractGroups": 101,
+    "sourceFactorColumns": 18,
+    "spatialRankUpperBound": 7,
+    "finiteXShape": [
+      65,
+      256
+    ],
+    "individualPositionErrorsM": [
+      1.237,
+      21.072,
+      33.448
+    ],
+    "endfireTies": 100
+  },
+  "boundaries": {
+    "browserExecuted": false,
+    "browserLatencyMeasured": false,
+    "published": false,
+    "fullPaperReproduced": false,
+    "sourceFiguresReproduced": false,
+    "hybridImplemented": false,
+    "citedOptimizedFarFieldBaselineImplemented": false,
+    "importedOptimizerClaimsVerified": false,
+    "singleRealizationIsRmse": false,
+    "numericalCompletionIsDetection": false,
+    "numericalCompletionIsAccuracy": false,
+    "paperPdfRequiredAtRuntime": false
+  },
+  "ownedFiles": [
+    {
+      "source": "content/pages/near-field.html",
+      "public": "near-field.html",
+      "bytes": 56900,
+      "sha256": "c5ad6c2a58255e9d8f1f712c3dd2702eef32aadcbce0ea2ef371c0c958625ca0"
+    },
+    {
+      "source": "labs/near-field/research/BASELINE.json",
+      "public": "labs/near-field/research/BASELINE.json",
+      "bytes": 570,
+      "sha256": "9f395c2ca3e27216f453aeb4024a67e4880ae1150035e40b7c1884712d716ef8"
+    },
+    {
+      "source": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+      "public": "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+      "bytes": 7945,
+      "sha256": "845de95ed7510300047fe57a7c1eea736c3dae173536dd56650b3b4724343a96"
+    },
+    {
+      "source": "labs/near-field/research/README.md",
+      "public": "labs/near-field/research/README.md",
+      "bytes": 5887,
+      "sha256": "7b836a3e732933603f3697aa876fcb1cf7d8d8fa976d5e89bb39deb3ed188897"
+    },
+    {
+      "source": "labs/near-field/research/controller.mjs",
+      "public": "labs/near-field/research/controller.mjs",
+      "bytes": 14728,
+      "sha256": "d114c76490471281486827ddaee118049147a15c4c6fd1c6cf970f48120cb1fb"
+    },
+    {
+      "source": "labs/near-field/research/defaults.mjs",
+      "public": "labs/near-field/research/defaults.mjs",
+      "bytes": 13184,
+      "sha256": "e3a6fcca0041add3a4811b4fdf417c83f77c37d9cd2058c767d4a69f96ca8a6b"
+    },
+    {
+      "source": "labs/near-field/research/entry.mjs",
+      "public": "labs/near-field/research/entry.mjs",
+      "bytes": 6074,
+      "sha256": "022920a9af1657d83f0fd1cba86bf66b8f8b9d31581e32c81bdda9dbec76b55f"
+    },
+    {
+      "source": "labs/near-field/research/reports/author-tests.txt",
+      "public": "labs/near-field/research/reports/author-tests.txt",
+      "bytes": 7243,
+      "sha256": "dbe2727584a176c740149b4dcadb0c7a01e8a04de266a51bda2defeafb2bfb7e"
+    },
+    {
+      "source": "labs/near-field/research/reports/node-cost.json",
+      "public": "labs/near-field/research/reports/node-cost.json",
+      "bytes": 1508,
+      "sha256": "126f25052d0eacc66ff02c59d0112659c498a92259a1a93ea9bf651d0a4afc25"
+    },
+    {
+      "source": "labs/near-field/research/research.css",
+      "public": "labs/near-field/research/research.css",
+      "bytes": 16084,
+      "sha256": "47e7e6e5667d09d2376f6d1de4e6d3aff8daa19cab6c1d6411056d976c0fb142"
+    },
+    {
+      "source": "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+      "public": "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+      "bytes": 2449,
+      "sha256": "50671d38851d0e86a944dd0aaf462f209d05302bc2aad73b78cf02d320529123"
+    },
+    {
+      "source": "labs/near-field/research/runtime/CONTRACT.json",
+      "public": "labs/near-field/research/runtime/CONTRACT.json",
+      "bytes": 2822,
+      "sha256": "b9ea2fd6c320517906b1cc40f2a9fe9a127c1caee477766ecfcdd0ee887a5b28"
+    },
+    {
+      "source": "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+      "public": "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+      "bytes": 260,
+      "sha256": "3493c308a9cb80fcc9f972d41438f56ab2e99e65a5efb13a932f7b208c0817d4"
+    },
+    {
+      "source": "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+      "public": "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+      "bytes": 1041,
+      "sha256": "1754d7e1a04e9ecd78aebc82c3157d7f6ea818107ffc3ea30d215664b509a90f"
+    },
+    {
+      "source": "labs/near-field/research/runtime/fixtures/source-input.json",
+      "public": "labs/near-field/research/runtime/fixtures/source-input.json",
+      "bytes": 17830,
+      "sha256": "e8efb9769a544742a9ddfffcd61b30deadb30034a34fe1f9359da17f94c6bb74"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/adapter.mjs",
+      "public": "labs/near-field/research/runtime/src/adapter.mjs",
+      "bytes": 9199,
+      "sha256": "a882ee455d015c340b9444818224a8e9b51c86a95be79a100118eb2d97fc1799"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/contract.mjs",
+      "public": "labs/near-field/research/runtime/src/contract.mjs",
+      "bytes": 5211,
+      "sha256": "4f14f868f6b5b730b993c9b7ccaa0815206b09e9a05a3a0dc11abc342926ad1e"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/experiment.mjs",
+      "public": "labs/near-field/research/runtime/src/experiment.mjs",
+      "bytes": 10332,
+      "sha256": "4600f18e8cd9ba74a92f499dedb3227a32c7b9d5d7431fa1b737b374b4272990"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/physics.mjs",
+      "public": "labs/near-field/research/runtime/src/physics.mjs",
+      "bytes": 6191,
+      "sha256": "7a1a3abc7d3301bbf4f6c61d1881fa54a96e53becb8c1208881bdd3d81235588"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/receiver-worker.mjs",
+      "public": "labs/near-field/research/runtime/src/receiver-worker.mjs",
+      "bytes": 2406,
+      "sha256": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/replay.mjs",
+      "public": "labs/near-field/research/runtime/src/replay.mjs",
+      "bytes": 5104,
+      "sha256": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/solver-loader.mjs",
+      "public": "labs/near-field/research/runtime/src/solver-loader.mjs",
+      "bytes": 550,
+      "sha256": "7e734d0e81d4988bfcabf517673b1d6d12f7b9fb07a0c7b2ac70f32ee4fbd250"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/solver-worker.mjs",
+      "public": "labs/near-field/research/runtime/src/solver-worker.mjs",
+      "bytes": 3360,
+      "sha256": "00e425a74b2be201f39b99f6295bda39bd23fe3c3a7b2fe42b006b9586239abd"
+    },
+    {
+      "source": "labs/near-field/research/runtime/src/worker-client.mjs",
+      "public": "labs/near-field/research/runtime/src/worker-client.mjs",
+      "bytes": 2125,
+      "sha256": "ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/generator.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/generator.mjs",
+      "bytes": 3440,
+      "sha256": "e083b6e981e307cc9b40efa11946a813d1e6ec3203194c2b3f5f47994bbb2406"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+      "bytes": 17794,
+      "sha256": "16e0df92c3221a56c51f430cb0f3afc29249f496c6bba9d09ffdf456f2a5f981"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/music/worker.mjs",
+      "public": "labs/near-field/research/runtime/vendor/music/worker.mjs",
+      "bytes": 1451,
+      "sha256": "406463ea7e7c7893dad88912785fe81bf8cdd2f78ef54e8565782aac704733f3"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/core.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/core.js",
+      "bytes": 1463,
+      "sha256": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+      "bytes": 3658,
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/linalg.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/linalg.js",
+      "bytes": 3688,
+      "sha256": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/metrics.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/metrics.js",
+      "bytes": 9554,
+      "sha256": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/model.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/model.js",
+      "bytes": 6970,
+      "sha256": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/numerics.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/numerics.js",
+      "bytes": 3640,
+      "sha256": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+      "public": "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+      "bytes": 9506,
+      "sha256": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c"
+    },
+    {
+      "source": "labs/near-field/research/runtime/vendor/solver/package.json",
+      "public": "labs/near-field/research/runtime/vendor/solver/package.json",
+      "bytes": 20,
+      "sha256": "dbf8353f77358bc12169b7bb7301e1978d5b503e002ee927229a8993672818fc"
+    },
+    {
+      "source": "labs/near-field/research/tests/browser-branch-runner.mjs",
+      "public": null,
+      "bytes": 3706,
+      "sha256": "70d4e0b6c542d40b8ff58309d3d30bc56939ffc7e2383fd4c293bc69a3d6bc38"
+    },
+    {
+      "source": "labs/near-field/research/tests/browser-branch.test.mjs",
+      "public": null,
+      "bytes": 770,
+      "sha256": "0c3e3a4c2af678db796f905b4640172e85bb37aba5bb03238518a58dc17ad77b"
+    },
+    {
+      "source": "labs/near-field/research/tests/controller.test.mjs",
+      "public": null,
+      "bytes": 29150,
+      "sha256": "032bef6c3f5485146c5e8c4e0f0606f993bbf0bbbd742515ad5afaf69c2f3489"
+    },
+    {
+      "source": "labs/near-field/research/tests/fixtures/near-field-legacy.html",
+      "public": null,
+      "bytes": 16623,
+      "sha256": "426b626ee4af76b7ef6de6024831e8d97de5c5366de6ad428691a4d0d72c55a8"
+    },
+    {
+      "source": "labs/near-field/research/tests/freeze.test.mjs",
+      "public": null,
+      "bytes": 2216,
+      "sha256": "4d2ff1fa70d9e7c5323fff31aa9e5dfa616262c07999d71eb36242dc84e46893"
+    },
+    {
+      "source": "labs/near-field/research/tests/measure-node-cost.mjs",
+      "public": null,
+      "bytes": 1740,
+      "sha256": "0bb544b0a009132dd266561384264e03d0034ef7eab8987bc07b523558a69b81"
+    },
+    {
+      "source": "labs/near-field/research/tests/page.test.mjs",
+      "public": null,
+      "bytes": 14124,
+      "sha256": "66092f0524f5a6e616a31c8c1b82d2616105bf2b85c3a0aef6a10a5ebaadfec1"
+    },
+    {
+      "source": "labs/near-field/research/tests/recovery.test.mjs",
+      "public": null,
+      "bytes": 3706,
+      "sha256": "9ba90ec2d9ea90aea3bd8f8655a011dbf66740b3fcff6885657ff5f6c6d41e25"
+    },
+    {
+      "source": "labs/near-field/research/tests/view.test.mjs",
+      "public": null,
+      "bytes": 15357,
+      "sha256": "318d5928ea03ed0b76f23d65bc187e36872afb30959bba29fcf211ff6adb64be"
+    },
+    {
+      "source": "labs/near-field/research/view.mjs",
+      "public": "labs/near-field/research/view.mjs",
+      "bytes": 42448,
+      "sha256": "08c85f3ac027cfb6dadff42d265d2e43e94e885bc34d7aa6acd14131d34786c1"
+    }
+  ],
+  "legacyFiles": [
+    {
+      "source": "labs/near-field/near-field-core.js",
+      "public": "near-field-core.js",
+      "bytes": 3062,
+      "sha256": "cb4424211d1c3649915c5e65c22d88b6cfa73e9a7e55d16f23111e8eedc85f69"
+    },
+    {
+      "source": "labs/near-field/near-field.js",
+      "public": "near-field.js",
+      "bytes": 5317,
+      "sha256": "194dc5066cc86867144c437131c007844af5afdc7e894e03bc5bdee12e1d3ca5"
+    },
+    {
+      "source": "labs/near-field/near-field.css",
+      "public": "near-field.css",
+      "bytes": 1088,
+      "sha256": "04935d9c7882f19ad3721cf66f6294fc274db315851029f47217c668ae9ac01e"
+    }
+  ]
+}

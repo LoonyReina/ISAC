@@ -1,0 +1,1177 @@
+{
+  "registry": [
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "先修"
+      ],
+      "before": "<a href=\"foundations.html#array\">第 6 章：跨阵元相位与方向</a>；<a href=\"theory.html#shared-model\">观测模型中的已知与未知</a>",
+      "after": "<a href=\"foundations.html#iq\">I/Q 与复数样本</a>；<a href=\"foundations.html#array\">跨阵元相位与方向</a>；<a href=\"foundations.html#matched\">匹配提出候选</a>；<a href=\"theory.html#shared-model\">观测中的已知与未知</a>；<a href=\"near-field.html#experiment\">原一程无噪声曲率先修</a>"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "问题"
+      ],
+      "before": "只保留单频空间观测、允许未知公共复增益时，球面波的曲率能否让同一方向的不同距离留下不同的相对相位？",
+      "after": "近场曲率提供什么信息？为通信门槛优化的波束，经过有限发射样本和真实噪声后，能否让未知位置留下可靠的接收证据？"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "交互机制"
+      ],
+      "before": "改变真距离与阵元数，对照球面/球面、球面/平面和平面/平面的归一化匹配响应。间距固定，阵元数变化也会改变孔径。",
+      "after": "先修改变真距离与阵元数，阵元数变化也会改变孔径；研究区现场执行式(20) SDR → 式(21)因子恢复 → 65×256有限 X → 双程含噪 Y → 只读取 Y 的 MUSIC。分开设计先验和实际真值，保留真实迭代、失败与离群估计。"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "证据类型"
+      ],
+      "before": "论文：<a href=\"https://arxiv.org/html/2302.01153v5\">近场 ISAC 原始研究（2023 首稿，固定 2025 v5）</a>的理论与数值仿真；本站：未知复增益下的一程、无噪声空间匹配。边界背景见<a href=\"https://arxiv.org/html/2110.06661v2\">近场波束成形基础原文 v2</a>。",
+      "after": "论文：<a href=\"https://arxiv.org/html/2302.01153v5\">近场 ISAC 原始研究（2023 首稿，固定 2025 v5）</a>的理论与数值仿真；本站：独立数值与 Node Worker 核验的有界全数字计算链，实际浏览器门开放。边界背景见<a href=\"https://arxiv.org/html/2110.06661v2\">近场波束成形基础原文 v2</a>。"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "结论边界"
+      ],
+      "before": "不是单站双程雷达、MUSIC 或论文优化器复现。匹配峰宽、局部曲率、CRB 与实际 MSE 不同；进入通常所说的近场，不保证能分开两个目标。",
+      "after": "保留一程无噪声曲率先修；研究区只实现 N65/K4/T256 的全数字单目标有界链。数值接受不等于检出、准确定位或全局唯一；失败、预算耗尽、边界与差估计保留。无混合架构、原图复现、所引优化远场基线、完整论文或实际浏览器验收。 未知公共复增益保留；进入近场不保证能分开两个目标。"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "fields",
+        "下一研究问题"
+      ],
+      "before": "当角度也未知时，距离与角度怎样耦合？如何在相同孔径、总能量和观测预算下验证估计误差与失败率？",
+      "after": "固定孔径、功率与观测预算，设计点和真值失配如何影响真实定位误差、失败率与边界命中？如何区分已知X的CRB和仅协方差MUSIC的信息差异？"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "siteArtifactType"
+      ],
+      "before": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
+      "after": "保留独立曲率先修；固定v5全数字式(20)有界SDR、式(21)恢复、有限X、真实双程噪声与真值盲MUSIC；独立数值/Node核验，浏览器门开放"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "metrics"
+      ],
+      "before": [
+        "本站归一化空间匹配与局部曲率，非 CRB",
+        "论文速率–RCRB 权衡",
+        "论文近场位置峰与远场角度脊"
+      ],
+      "after": [
+        "真实求解轨迹、功率、逐用户hᵀ速率、PSD/恢复残差与容差限定对偶间隙",
+        "名义点/真值点的距离方差m²与角度方差rad²分别显示，原目标保留m²+rad²",
+        "有限X重建协方差和四参数Fisher；实际YYᴴ/T及二维MUSIC谱",
+        "单次真实位置误差、网格/细化状态、边界/弱分离/并列与失败；不冒充RMSE或检出率"
+      ]
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "unknowns",
+        0
+      ],
+      "before": "完整复现仍需快拍数、复增益、随机几何、求解器及归一化约定",
+      "after": "保留一程无噪声曲率先修；研究区只实现 N65/K4/T256 的全数字单目标有界链。数值接受不等于检出、准确定位或全局唯一；失败、预算耗尽、边界与差估计保留。无混合架构、原图复现、所引优化远场基线、完整论文或实际浏览器验收。"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "unknowns",
+        1
+      ],
+      "before": "本站未复刻论文图2–4或优化器",
+      "after": "T256、复增益、随机用户、DFT分量、噪声种子及搜索/细化策略为明确增补假设；原图绝对曲线不可恢复"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "unknowns",
+        2
+      ],
+      "before": "原文与本站角度基准不同，符号须显式换算",
+      "after": "已知X的CRB与只用Y协方差的MUSIC信息不同；总间隙不相对认证微小角度项"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "locator",
+        "summary"
+      ],
+      "before": "§II–IV、附录A–B；式(1)–(7)、(13)、(16)–(22)；图2–4",
+      "after": "固定v5 §II–IV、附录A–B；式(1)、(4)–(21)、(23)–(29)；图2–4仅作未复现目标"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "locator",
+        "section"
+      ],
+      "before": null,
+      "after": "§II–III；§IV；Appendix A–B"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "locator",
+        "figure"
+      ],
+      "before": null,
+      "after": "Figures 2–4: no matched original-figure reproduction"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "locator",
+        "equation"
+      ],
+      "before": null,
+      "after": "Eqs (20)–(21), (23)–(29); Eq (22) hybrid omitted"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "retainedAssumptions"
+      ],
+      "before": [
+        "球面波空间相位含距离相关曲率",
+        "未知公共复增益不能被默认为已知",
+        "平面波和球面波响应具有不同距离依赖"
+      ],
+      "after": [
+        "球面波单位模阵列响应；源角从+x量，导数以弧度计算",
+        "通信hᵀp与单点双程G=βaaᵀ；未知公共复增益作为干扰参数",
+        "源SDR、PSD/总功率/通信门槛约束及秩一通信恢复",
+        "MUSIC只接收Y、阵列、已知M=1、固定搜索域和数值选项"
+      ]
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "omittedMechanisms",
+        0
+      ],
+      "before": "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
+      "after": "混合架构式(22)、RF/接收合并设计、多径、多目标检测与分辨概率"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "omittedMechanisms",
+        1
+      ],
+      "before": "路径损耗、噪声、多径、多用户通信和完整收发阵列通道",
+      "after": "所引优化远场基线、原始图2–4匹配曲线及完整论文"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "omittedMechanisms",
+        2
+      ],
+      "before": "完整双目标检测与分辨概率",
+      "after": "编码QAM/BER、物理快拍时长与能量换算、硬件和实际浏览器性能认证"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "resourceBudget",
+        "summary"
+      ],
+      "before": "本站λ=0.01 m、d=0.005 m、θ₀=0，等幅度无噪声；改变N也改变孔径。原文§IV使用65阵元、28 GHz、0.5 m孔径、四用户、目标(20 m,45°)、20 dBm、−60 dBm噪声、五条RF链。两套配置不可混用。",
+      "after": "研究链N65、D=.5m、λ=.0107m、K4、T256；源默认P=.1W、通信/感知噪声1e−9W、名义20m/45°。T、β=1e−5exp(.37j)、随机用户、DFT波形和噪声/搜索为增补假设。旧先修λ=.01m、d=.005m、N33/65/129，N65孔径.32m，不与研究阵列混用。"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "resourceBudget",
+        "aperture"
+      ],
+      "before": null,
+      "after": "固定.5m（研究）；旧先修随N改变"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "resourceBudget",
+        "priorKnowledge"
+      ],
+      "before": null,
+      "after": "设计已知原始h和名义位置；MUSIC未知实际位置/β/X，已知M=1与第一象限搜索域"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "resourceBudget",
+        "other"
+      ],
+      "append": [
+        "X65×256；源例F65×18、S18×256；空间秩≤7，因子列数不是秩",
+        "有限X适配不截秩、不裁剪特征值；源因子裁剪需重建验证",
+        "DFT分量样本与归一化功率账本，不声明物理快拍时长或编码数据吞吐"
+      ],
+      "lengthBefore": 0
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "paperComparison",
+        "verificationNote"
+      ],
+      "before": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文",
+      "after": "固定v5来源、独立参考/链审查与不可变存档见 docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md；不发布论文PDF或私有全文；Node证据不是实际浏览器验收"
+    },
+    {
+      "path": [
+        "cases",
+        4,
+        "learningEntry"
+      ],
+      "added": true,
+      "after": "near-field.html#intuition"
+    },
+    {
+      "path": [
+        "units",
+        15,
+        "title"
+      ],
+      "before": "波前曲率与距离",
+      "after": "从波前曲率到含噪近场定位"
+    },
+    {
+      "path": [
+        "units",
+        15,
+        "href"
+      ],
+      "before": "near-field.html#experiment",
+      "after": "near-field.html#research-experiment"
+    },
+    {
+      "path": [
+        "units",
+        15,
+        "question"
+      ],
+      "before": "同方向的目标还能留下不同空间指纹吗？",
+      "after": "设计下界变小，实际定位就一定准确吗？"
+    },
+    {
+      "path": [
+        "units",
+        15,
+        "prerequisites"
+      ],
+      "before": [
+        "foundations.html#array"
+      ],
+      "after": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "foundations.html#matched",
+        "theory.html#shared-model",
+        "near-field.html#experiment"
+      ]
+    },
+    {
+      "path": [
+        "units",
+        15,
+        "action"
+      ],
+      "before": "改变真距离或阵元数，对照三种空间匹配；留意孔径同时改变。",
+      "after": "先看旧曲率先修，再现场优化、构造有限X与含噪Y、运行真值盲MUSIC，保存可复算原始记录并检查失败。"
+    },
+    {
+      "path": [
+        "pages",
+        6,
+        "role"
+      ],
+      "before": "研究主题 · 机制与原文同页对照",
+      "after": "研究主题 · 旧曲率先修与有界SDR–有限X–含噪MUSIC"
+    },
+    {
+      "path": [
+        "pages",
+        6,
+        "prerequisites"
+      ],
+      "before": [
+        "foundations.html#array"
+      ],
+      "after": [
+        "foundations.html#iq",
+        "foundations.html#array",
+        "foundations.html#matched",
+        "theory.html#shared-model"
+      ]
+    },
+    {
+      "path": [
+        "pages",
+        6,
+        "next"
+      ],
+      "before": "practice.html#notebook",
+      "after": "near-field.html#reproduce"
+    },
+    {
+      "path": [
+        "pages",
+        6,
+        "nextLabel"
+      ],
+      "before": "把这个主题写成可复核的实验记录",
+      "after": "导出原始X/Z/Y，分开历史声明与重新计算"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "scope"
+      ],
+      "before": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。",
+      "after": "阵列几何、联合发射波束、空间协方差、近远场与可重构传播；RIS/可重构阵列作为逐步扩展专题。 分清 2018 通信数据共享阵列与 2020 额外独立雷达流，不混用资源预算。 近场同页保留旧一程无噪声先修，新增固定v5全数字SDR–有限X–含噪MUSIC有界计算链。"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        0,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "曲率信息怎样经过设计与噪声到达接收机？",
+          "href": "near-field.html#intuition",
+          "kind": "lesson",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        1,
+        "items",
+        0,
+        "label"
+      ],
+      "before": "从平面波走到球面波几何",
+      "after": "设计先验、有限X与双程含噪观测"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        1,
+        "items",
+        0,
+        "href"
+      ],
+      "before": "near-field.html#geometry",
+      "after": "near-field.html#model"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        1,
+        "items",
+        0,
+        "note"
+      ],
+      "added": true,
+      "after": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        2,
+        "items",
+        1,
+        "label"
+      ],
+      "before": "改变距离与孔径，检查波前曲率",
+      "after": "现场SDR→有限X→含噪Y→真值盲MUSIC"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        2,
+        "items",
+        1,
+        "href"
+      ],
+      "before": "near-field.html#experiment",
+      "after": "near-field.html#research-experiment"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        2,
+        "items",
+        1,
+        "note"
+      ],
+      "added": true,
+      "after": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        3,
+        "items",
+        0,
+        "label"
+      ],
+      "before": "近场案例的原文对照",
+      "after": "固定v5：SDR、恢复、Fisher与MUSIC逐项核对"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        3,
+        "items",
+        0,
+        "note"
+      ],
+      "added": true,
+      "after": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        4,
+        "items",
+        0,
+        "label"
+      ],
+      "before": "未知复增益、孔径和单目标边界",
+      "after": "失败、离群、边界与信息不匹配"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        4,
+        "items",
+        0,
+        "note"
+      ],
+      "added": true,
+      "after": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "levels",
+        5,
+        "items"
+      ],
+      "append": [
+        {
+          "label": "完整原始记录、诊断记录与重新计算",
+          "href": "near-field.html#reproduce",
+          "kind": "reproduction-plan",
+          "scope": "direction-specific",
+          "status": "available",
+          "note": "实际有界数值链与Node核验；独立先修入口仍为#experiment；不等于浏览器、原图或完整论文验收。"
+        }
+      ],
+      "lengthBefore": 5
+    },
+    {
+      "path": [
+        "directions",
+        3,
+        "coverage"
+      ],
+      "before": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制",
+      "after": "专题机制、原文导读与多用户点目标 CRB 式(33)有界核心；原单用户闭式特例另栏保留；尚非整篇论文复现；另有分离/共享资源账本与严格空间置零的独立机制；近场研究区已有独立数值/Node核验的单目标有界链，实际浏览器门和原图仍开放"
+    }
+  ],
+  "guides": [
+    {
+      "path": [
+        "cards",
+        2,
+        "limits",
+        3
+      ],
+      "before": "读取的是固定 2023 年 v1 作者预印本，不把后续期刊版本视为已逐式核对。本站现有一程无噪声近场匹配并未实现该双阵列、MUSIC、CRB 优化或硬件。",
+      "after": "读取的是固定 2023 年 v1 作者预印本，不把后续期刊版本视为已逐式核对。本站保留一程无噪声曲率先修；另有2302.01153v5的单阵列全数字SDR–MUSIC研究链，不是本论文双阵列、混合收发优化或硬件复现。"
+    },
+    {
+      "path": [
+        "cards",
+        2,
+        "prerequisites"
+      ],
+      "append": [
+        {
+          "href": "near-field.html#research-experiment",
+          "label": "可选比较：另一篇固定v5的单阵列全数字SDR–含噪MUSIC，非本文复现"
+        }
+      ],
+      "lengthBefore": 3
+    }
+  ],
+  "backlog": [
+    {
+      "path": [
+        "sequence",
+        "activeStages"
+      ],
+      "append": [
+        {
+          "paperId": "supplement-case-near-field",
+          "stage": "browser-validation",
+          "status": "pending",
+          "branch": "Local source-derived digital SDR/finite-X/noisy-MUSIC lesson; independent numerical and Node chain evidence accepted, actual browser and publication gated separately"
+        }
+      ],
+      "lengthBefore": 4
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "locators",
+        "summary"
+      ],
+      "before": "§II–IV、附录A–B；式(1)–(7)、(13)、(16)–(22)；图2–4",
+      "after": "固定v5 §II–IV、附录A–B；式(1)、(4)–(21)、(23)–(29)；图2–4仅作未复现目标"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "locators",
+        "section"
+      ],
+      "before": null,
+      "after": "§II–III；§IV；Appendix A–B"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "locators",
+        "figure"
+      ],
+      "before": null,
+      "after": "Figures 2–4: no matched original-figure reproduction"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "locators",
+        "equation"
+      ],
+      "before": null,
+      "after": "Eqs (20)–(21), (23)–(29); Eq (22) hybrid omitted"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "pdfSha256"
+      ],
+      "before": null,
+      "after": "c4dea3caec6495d08a1c0fba56d13ca9f9c9372173ccac053fbff46b8f2fa4b1"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "hashStatus"
+      ],
+      "before": "not-recorded",
+      "after": "recorded"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "details",
+        "htmlSha256"
+      ],
+      "added": true,
+      "after": "c58b64619745d4b1dca72de9c07aca1869553adfa78ace577f02ef1cc532fdd1"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "details",
+        "pdfRedistributed"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "source",
+        "details",
+        "sourceEvidence"
+      ],
+      "added": true,
+      "after": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "baselines",
+        0
+      ],
+      "before": "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model.",
+      "after": "Preserved one-way noiseless prerequisite is not a paper baseline. Exact cited optimized far-field and hybrid comparisons remain absent."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "metrics"
+      ],
+      "before": [
+        "本站归一化空间匹配与局部曲率，非 CRB",
+        "论文速率–RCRB 权衡",
+        "论文近场位置峰与远场角度脊"
+      ],
+      "after": [
+        "真实求解轨迹、功率、逐用户hᵀ速率、PSD/恢复残差与容差限定对偶间隙",
+        "名义点/真值点的距离方差m²与角度方差rad²分别显示，原目标保留m²+rad²",
+        "有限X重建协方差和四参数Fisher；实际YYᴴ/T及二维MUSIC谱",
+        "单次真实位置误差、网格/细化状态、边界/弱分离/并列与失败；不冒充RMSE或检出率"
+      ]
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "resources",
+        0
+      ],
+      "before": "Existing independent teaching budget, not the target paper configuration: 本站λ=0.01 m、d=0.005 m、θ₀=0，等幅度无噪声；改变N也改变孔径。原文§IV使用65阵元、28 GHz、0.5 m孔径、四用户、目标(20 m,45°)、20 dBm、−60 dBm噪声、五条RF链。两套配置不可混用。",
+      "after": "研究链N65、D=.5m、λ=.0107m、K4、T256；源默认P=.1W、通信/感知噪声1e−9W、名义20m/45°。T、β=1e−5exp(.37j)、随机用户、DFT波形和噪声/搜索为增补假设。旧先修λ=.01m、d=.005m、N33/65/129，N65孔径.32m，不与研究阵列混用。"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "unresolved"
+      ],
+      "append": [
+        "Source figure2–4 matching, hybrid and exact cited optimized far-field baseline",
+        "Actual browser responsiveness, rendering, CSP, accessibility and latency"
+      ],
+      "lengthBefore": 0
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "details",
+        "metricScope"
+      ],
+      "before": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+      "after": "New metrics describe the bounded source-derived digital chain, not matched source figures; old prerequisite budget remains preserved below."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "experiment",
+        "details",
+        "boundedResearchChain"
+      ],
+      "added": true,
+      "after": {
+        "N": 65,
+        "K": 4,
+        "T": 256,
+        "apertureM": 0.5,
+        "lambdaM": 0.0107,
+        "finiteXShape": [
+          65,
+          256
+        ],
+        "sourceFactorShape": [
+          65,
+          18
+        ],
+        "spatialRankUpperBound": 7,
+        "fullPaperClaim": false,
+        "hybridImplemented": false,
+        "sourceFigureClaim": false,
+        "optimizedFarFieldBaselineImplemented": false
+      }
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "classification"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "independently-validated-bounded-source-chain; local-lesson-integration; browser-pending"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "live"
+      ],
+      "before": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
+      "after": "near-field.html#research-experiment: actual Eq20 SDR → Eq21 recovery → finite X → noisy Y → truth-blind MUSIC; #experiment remains noiseless one-way prerequisite"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "offline"
+      ],
+      "before": null,
+      "after": "Exact source-free frozen Python reference and full chain evidence supplied as optional raw archive parts"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "browserAccepted"
+      ],
+      "added": true,
+      "after": false
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "runtimeFreezeEntries"
+      ],
+      "added": true,
+      "after": 22
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "upstreamModulesUnchanged"
+      ],
+      "added": true,
+      "after": 10
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "completeRawRecord"
+      ],
+      "added": true,
+      "after": true
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "separateDiagnosticRecord"
+      ],
+      "added": true,
+      "after": true
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "implementation",
+        "details",
+        "historicalImportRequiresFreshSolve"
+      ],
+      "added": true,
+      "after": true
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "source"
+      ],
+      "before": "reopening-required",
+      "after": "audited-for-selected-core"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "modelFidelity"
+      ],
+      "before": "not-validated",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "algorithm"
+      ],
+      "before": "not-implemented",
+      "after": "partial-live"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "independentValidation"
+      ],
+      "before": "pending",
+      "after": "passed"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "selectedExperiment"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "liveExecution"
+      ],
+      "before": "prerequisite-only",
+      "after": "partial-core"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stages",
+        "uiLearning"
+      ],
+      "before": "pending",
+      "after": "partial"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "source"
+      ],
+      "before": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
+      "after": "Fixed arXiv2302.01153v5 model and source ambiguity audit; declared T/gain/users/waveform/search assumptions retained."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "algorithm"
+      ],
+      "before": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
+      "after": "Accepted bounded isolated chain: 35 author groups, 235 independent physics checks across9 raw datasets, 101 actual Node Worker/lifecycle/replay groups. Frozen 22 runtime entries copied unchanged."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "selectedExperiment"
+      ],
+      "before": "No independently reproduced named paper experiment established by this inventory.",
+      "after": "Fresh source-derived finite-X/noisy-Y cases accepted under declared added assumptions; original figures2–4 and their optimized far-field/hybrid comparisons not reproduced."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "latency"
+      ],
+      "before": "No measured browser control-to-result latency for the faithful target core.",
+      "after": "No actual browser control-to-painted-result measurements; isolated Node Worker observations are not browser latency."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "independentValidation"
+      ],
+      "added": true,
+      "after": "Numerical and actual Node Worker evidence only, not browser/UI acceptance."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "stageEvidence",
+        "uiLearning"
+      ],
+      "added": true,
+      "after": "Local six-level teaching integration; actual browser/rendering/accessibility acceptance open."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "missingImplementation",
+        0
+      ],
+      "before": "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
+      "after": "混合架构式(22)、RF/接收合并设计、多径、多目标检测与分辨概率"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "missingImplementation",
+        1
+      ],
+      "before": "路径损耗、噪声、多径、多用户通信和完整收发阵列通道",
+      "after": "所引优化远场基线、原始图2–4匹配曲线及完整论文"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "missingImplementation",
+        2
+      ],
+      "before": "完整双目标检测与分辨概率",
+      "after": "编码QAM/BER、物理快拍时长与能量换算、硬件和实际浏览器性能认证"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "dependencies",
+        0
+      ],
+      "before": "Exact v5 source audit",
+      "after": "Fixed-v5 source audit and declared assumptions"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "dependencies",
+        1
+      ],
+      "before": "SDP and Hermitian eigensolver reference",
+      "after": "Exact frozen independent chain/reference evidence and local integration validation"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "blockers",
+        0
+      ],
+      "before": "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
+      "after": "Actual browser interaction, responsiveness, CSP and accessibility acceptance"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "blockers",
+        1
+      ],
+      "before": "路径损耗、噪声、多径、多用户通信和完整收发阵列通道",
+      "after": "Source figures, hybrid and exact cited optimized far-field comparison absent"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "realtime",
+        "details",
+        "assessment"
+      ],
+      "before": "Reduced faithful core is a candidate; numerical reference and desktop profiling required before claiming realtime.",
+      "after": "Bounded live compute is implemented; actual browser measurement and independent rendered UI acceptance remain required."
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "evidence",
+        "currentRunnable"
+      ],
+      "before": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
+      "after": "near-field.html#research-experiment: actual Eq20 SDR → Eq21 recovery → finite X → noisy Y → truth-blind MUSIC; #experiment remains noiseless one-way prerequisite"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "evidence",
+        "fixedSourceAudit"
+      ],
+      "before": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文",
+      "after": "固定v5来源、独立参考/链审查与不可变存档见 docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md；不发布论文PDF或私有全文；Node证据不是实际浏览器验收"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "evidence",
+        "sourceEvidenceDocument"
+      ],
+      "added": true,
+      "after": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "evidence",
+        "evidenceMap"
+      ],
+      "added": true,
+      "after": "data/nearfield-research-evidence-map.json"
+    },
+    {
+      "path": [
+        "papers",
+        32,
+        "details",
+        "failureGates"
+      ],
+      "added": true,
+      "after": {
+        "solverCapIsInfeasible": false,
+        "numericalAcceptanceIsDetection": false,
+        "numericalAcceptanceIsAccuracy": false,
+        "importedClaimsVerified": false,
+        "singleRealizationIsRmse": false,
+        "independentObservedPositionErrorsM": [
+          1.237,
+          21.072,
+          33.448
+        ],
+        "endfireTiesRetained": 100
+      }
+    }
+  ]
+}

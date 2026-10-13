@@ -1,0 +1,33 @@
+{
+  "verdict": "accepted_bounded_isolated_compute_chain",
+  "runtimeFiles": {
+    "MUSIC-FREEZE.json": "3493c308a9cb80fcc9f972d41438f56ab2e99e65a5efb13a932f7b208c0817d4",
+    "SOLVER-FREEZE.json": "1754d7e1a04e9ecd78aebc82c3157d7f6ea818107ffc3ea30d215664b509a90f",
+    "src/adapter.mjs": "a882ee455d015c340b9444818224a8e9b51c86a95be79a100118eb2d97fc1799",
+    "src/contract.mjs": "4f14f868f6b5b730b993c9b7ccaa0815206b09e9a05a3a0dc11abc342926ad1e",
+    "src/experiment.mjs": "4600f18e8cd9ba74a92f499dedb3227a32c7b9d5d7431fa1b737b374b4272990",
+    "src/physics.mjs": "7a1a3abc7d3301bbf4f6c61d1881fa54a96e53becb8c1208881bdd3d81235588",
+    "src/receiver-worker.mjs": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27",
+    "src/replay.mjs": "ab1bb6ee7dea5a7be0857ac987dd925e03461a97f92efa4d1e2b3d861d693fb4",
+    "src/solver-loader.mjs": "7e734d0e81d4988bfcabf517673b1d6d12f7b9fb07a0c7b2ac70f32ee4fbd250",
+    "src/solver-worker.mjs": "00e425a74b2be201f39b99f6295bda39bd23fe3c3a7b2fe42b006b9586239abd",
+    "src/worker-client.mjs": "ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d",
+    "vendor/music/generator.mjs": "e083b6e981e307cc9b40efa11946a813d1e6ec3203194c2b3f5f47994bbb2406",
+    "vendor/music/receiver.mjs": "16e0df92c3221a56c51f430cb0f3afc29249f496c6bba9d09ffdf456f2a5f981",
+    "vendor/music/worker.mjs": "406463ea7e7c7893dad88912785fe81bf8cdd2f78ef54e8565782aac704733f3",
+    "vendor/solver/core.js": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de",
+    "vendor/solver/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+    "vendor/solver/linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+    "vendor/solver/metrics.js": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a",
+    "vendor/solver/model.js": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4",
+    "vendor/solver/numerics.js": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782",
+    "vendor/solver/optimizer.js": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c",
+    "vendor/solver/package.json": "dbf8353f77358bc12169b7bb7301e1978d5b503e002ee927229a8993672818fc"
+  },
+  "independentReview": "independent-review/INDEPENDENT-REVIEW.json",
+  "authorGroupsPassed": 35,
+  "independentPhysicsChecksPassed": 235,
+  "independentContractGroupsPassed": 101,
+  "browserTested": false,
+  "published": false
+}

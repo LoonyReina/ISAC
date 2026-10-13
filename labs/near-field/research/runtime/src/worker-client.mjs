@@ -1,0 +1,10 @@
+// Uses actual module Workers. In browsers, construct with browser Worker; in Node import worker_threads.
+export async function createModuleWorker(relative){const url=new URL(relative,import.meta.url);if(typeof Worker!=='undefined')return new Worker(url,{type:'module'});const {Worker:NodeWorker}=await import('node:worker_threads');return new NodeWorker(url,{type:'module'});}
+export class JobWorker{
+ constructor(worker){this.worker=worker;this.jobs=new Map();this.sequence=0;this.closed=false;const on=m=>{const data=m?.data??m,job=this.jobs.get(data.id);if(!job)return;if(data.type==='progress')job.progress?.(data);if(data.type==='result'||data.type==='error'){this.jobs.delete(data.id);data.type==='error'?job.reject(new Error(data.error)):job.resolve(data.result);}};if(worker.addEventListener){worker.addEventListener('message',on);worker.addEventListener('error',e=>this.fail(e.error??new Error(e.message)));}else{worker.on('message',on);worker.on('error',e=>this.fail(e));worker.on('exit',code=>{if(!this.closed)this.fail(new Error(`Worker exited ${code}`));});}}
+ request(type,payload,progress){if(this.closed)throw Error('Worker is closed');if(!payload||typeof payload!=='object'||Array.isArray(payload)||Object.hasOwn(payload,'id')||Object.hasOwn(payload,'type'))throw Error('Payload must not override reserved id/type');const id=`job-${++this.sequence}`;let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});this.jobs.set(id,{resolve,reject,progress});try{this.worker.postMessage({id,type,...payload});}catch(error){this.jobs.delete(id);throw error;}return {id,promise,cancel:()=>this.worker.postMessage({id,type:'cancel'})};}
+ fail(e){this.closed=true;for(const job of this.jobs.values())job.reject(e);this.jobs.clear();}
+ terminate(){this.closed=true;this.fail(new Error('Worker terminated; no result accepted'));return this.worker.terminate();}
+}
+export async function createSolverClient(){return new JobWorker(await createModuleWorker('./solver-worker.mjs'));}
+export async function createReceiverClient(){return new JobWorker(await createModuleWorker('./receiver-worker.mjs'));}

@@ -507,3 +507,7 @@ Monte Carlo 对发射块抽样，不模拟估计器误差。固定幅度符号�
 ## OTFS bounded receiver extension (2026-10-12)
 
 [On the Effectiveness of OTFS for Joint Radar and Communication, arXiv:1910.01896v1](https://arxiv.org/pdf/1910.01896v1), §III equations (12)–(16), §IV single-path likelihood/grid estimation and §V-A Gram MP-G. [The canonical receiver lesson](../otfs-receiver.html#intuition) executes two independent reduced experiments. [Source/evidence boundaries](OTFS-RECEIVER-SOURCE-EVIDENCE.md) distinguish finite-grid sensing, corrected full-LMMSE port, unchanged Python reference, zero Gram pruning, and pending browser/full-paper/physical-correspondence gates. The existing reading guide ID is retained.
+
+## Near-field bounded research extension (2026-10-12)
+
+[Near-Field Integrated Sensing and Communications, exact v5](https://arxiv.org/html/2302.01153v5), Eqs(20)–(21), Appendix A MUSIC and Appendix B Fisher. The [same canonical page](../near-field.html#research-experiment) adds actual bounded SDR → finite 65×256 X → noisy Y → truth-blind MUSIC. Its old one-way noiseless #experiment remains a prerequisite. [Source/evidence boundaries](NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md) preserve declared assumptions, historical failures, exact source-free archive parts, and separate numerical, browser and full-paper gates.

@@ -1,0 +1,47 @@
+{
+  "kind": "single_Node_timing_observation",
+  "date": "2026-10-12",
+  "node": "v24.19.0",
+  "source": "arxiv:2302.01153v5",
+  "N": 65,
+  "K": 4,
+  "T": 256,
+  "totalSolveObserveMs": 323.956958,
+  "synchronousFiniteXRecheckMs": 36.45196900000002,
+  "synchronousRawAuditMs": 76.89524799999998,
+  "finiteXPassed": true,
+  "auditPassed": true,
+  "workerSolver": {
+    "elapsedMs": 206.312384,
+    "slices": {
+      "setupMs": 20.770223000000016,
+      "maxNewtonStepMs": 3.2082580000000007,
+      "assessmentMs": 13.832119999999975
+    },
+    "cooperative": true,
+    "maxNonYieldingSliceObservedMs": 20.770223000000016,
+    "latencyStatement": "Messages are handled only between bounded setup, one Newton step, and terminal assessment. Observations are not hard timing guarantees.",
+    "limits": {
+      "n": 65,
+      "k": 4,
+      "T": 256,
+      "maxIterations": 240,
+      "maxLineSearch": 50,
+      "maxWallMs": 30000,
+      "maxJsonBytes": 16777216,
+      "maxGridPoints": 260000,
+      "maxFactorColumns": 18
+    }
+  },
+  "receiverStatus": "ok",
+  "gridPoints": 251001,
+  "receiverTotalMs": 1316.083629,
+  "receiverTimings": {
+    "subspaceMs": 91.017697,
+    "gridMs": 1179.2236480000001,
+    "refinementMs": 31.652093999999806
+  },
+  "exportMs": 109.60819500000002,
+  "exportUtf8Bytes": 7209938,
+  "warning": "Single observed Node run only. finite-X, raw audit, import/export and rendering remain synchronous in caller. No browser responsiveness, percentile, or hard cancellation/deadline claim."
+}

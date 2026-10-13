@@ -16,7 +16,7 @@ test('one actual inverse-problem lesson uses canonical sources without creating 
  a.ok(!r.cases.some(c=>c.unit===additions.unit.id));a.ok(!r.knowledgeMap.nodes.some(n=>n.unitRefs.includes(additions.unit.id)));
  a.ok(!r.knowledgeMap.progressions.some(p=>p.unitId===additions.unit.id));
  const local=createLearningEntryResolver(r);a.equal(local.unitEntry(unit(r)),additions.unit.href);
- for(const hook of additions.hooks){a.deepEqual(r.directions.find(d=>d.id===hook.directionId).levels.find(l=>l.id===hook.levelId).items.at(-1),hook.item);a.equal(local.unitEntry({href:hook.item.href}),hook.item.href);}
+ for(const hook of additions.hooks){a.deepEqual(require('./helpers/nearfield-research-preservation.cjs').withoutNearfieldRegistry(r).directions.find(d=>d.id===hook.directionId).levels.find(l=>l.id===hook.levelId).items.at(-1),hook.item);a.equal(local.unitEntry({href:hook.item.href}),hook.item.href);}
  const topic=buildNotebookTopics(r).find(t=>t.id===additions.unit.id);a.equal(topic.teachingHref,additions.unit.href);a.ok(!Object.hasOwn(topic,'evidenceHref'));
  for(const p of ['index.html','experiments.html','reading.html'])a.ok(read(p).includes(additions.unit.href),p);
  a.ok(read('practice.html').includes('"id":"nearfield-gc-sage"'));

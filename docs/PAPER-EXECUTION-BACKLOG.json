@@ -141,6 +141,12 @@
         "stage": "browser-validation",
         "status": "pending",
         "branch": "Local bounded finite-grid/MP-G lesson integration; independent Node/reference evidence accepted, actual browser and publication gated separately"
+      },
+      {
+        "paperId": "supplement-case-near-field",
+        "stage": "browser-validation",
+        "status": "pending",
+        "branch": "Local source-derived digital SDR/finite-X/noisy-MUSIC lesson; independent numerical and Node chain evidence accepted, actual browser and publication gated separately"
       }
     ]
   },
@@ -7041,16 +7047,20 @@
         "url": "https://arxiv.org/html/2302.01153v5",
         "fixedVersion": "首稿2023-02-02；固定v5，2025-09-23；未逐版比较修订",
         "locators": {
-          "summary": "§II–IV、附录A–B；式(1)–(7)、(13)、(16)–(22)；图2–4",
-          "section": null,
-          "figure": null,
-          "equation": null
+          "summary": "固定v5 §II–IV、附录A–B；式(1)、(4)–(21)、(23)–(29)；图2–4仅作未复现目标",
+          "section": "§II–III；§IV；Appendix A–B",
+          "figure": "Figures 2–4: no matched original-figure reproduction",
+          "equation": "Eqs (20)–(21), (23)–(29); Eq (22) hybrid omitted"
         },
         "paperIdentity": "arxiv:2302.01153",
         "fixedSourceIdentity": "arxiv:2302.01153v5",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
-        "details": {}
+        "pdfSha256": "c4dea3caec6495d08a1c0fba56d13ca9f9c9372173ccac053fbff46b8f2fa4b1",
+        "hashStatus": "recorded",
+        "details": {
+          "htmlSha256": "c58b64619745d4b1dca72de9c07aca1869553adfa78ace577f02ef1cc532fdd1",
+          "pdfRedistributed": false,
+          "sourceEvidence": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md"
+        }
       },
       "contribution": {
         "types": [
@@ -7066,19 +7076,23 @@
           "v5 Fig2–4 rate–RCRB and MUSIC comparisons under fixed aperture/power"
         ],
         "baselines": [
-          "Pin exact paper baselines and an explicit equal-resource comparison during source audit; do not infer them from the existing teaching model."
+          "Preserved one-way noiseless prerequisite is not a paper baseline. Exact cited optimized far-field and hybrid comparisons remain absent."
         ],
         "metrics": [
-          "本站归一化空间匹配与局部曲率，非 CRB",
-          "论文速率–RCRB 权衡",
-          "论文近场位置峰与远场角度脊"
+          "真实求解轨迹、功率、逐用户hᵀ速率、PSD/恢复残差与容差限定对偶间隙",
+          "名义点/真值点的距离方差m²与角度方差rad²分别显示，原目标保留m²+rad²",
+          "有限X重建协方差和四参数Fisher；实际YYᴴ/T及二维MUSIC谱",
+          "单次真实位置误差、网格/细化状态、边界/弱分离/并列与失败；不冒充RMSE或检出率"
         ],
         "resources": [
-          "Existing independent teaching budget, not the target paper configuration: 本站λ=0.01 m、d=0.005 m、θ₀=0，等幅度无噪声；改变N也改变孔径。原文§IV使用65阵元、28 GHz、0.5 m孔径、四用户、目标(20 m,45°)、20 dBm、−60 dBm噪声、五条RF链。两套配置不可混用。"
+          "研究链N65、D=.5m、λ=.0107m、K4、T256；源默认P=.1W、通信/感知噪声1e−9W、名义20m/45°。T、β=1e−5exp(.37j)、随机用户、DFT波形和噪声/搜索为增补假设。旧先修λ=.01m、d=.005m、N33/65/129，N65孔径.32m，不与研究阵列混用。"
         ],
-        "unresolved": [],
+        "unresolved": [
+          "Source figure2–4 matching, hybrid and exact cited optimized far-field baseline",
+          "Actual browser responsiveness, rendering, CSP, accessibility and latency"
+        ],
         "details": {
-          "metricScope": "The recorded metrics below describe the existing independent teaching mechanism. Audit and pin the paper-specific metrics, units and parameters before claiming a selected paper experiment.",
+          "metricScope": "New metrics describe the bounded source-derived digital chain, not matched source figures; old prerequisite budget remains preserved below.",
           "existingTeachingResourceBudget": {
             "summary": "本站λ=0.01 m、d=0.005 m、θ₀=0，等幅度无噪声；改变N也改变孔径。原文§IV使用65阵元、28 GHz、0.5 m孔径、四用户、目标(20 m,45°)、20 dBm、−60 dBm噪声、五条RF链。两套配置不可混用。",
             "bandwidth": null,
@@ -7087,45 +7101,74 @@
             "aperture": null,
             "priorKnowledge": null,
             "other": []
+          },
+          "boundedResearchChain": {
+            "N": 65,
+            "K": 4,
+            "T": 256,
+            "apertureM": 0.5,
+            "lambdaM": 0.0107,
+            "finiteXShape": [
+              65,
+              256
+            ],
+            "sourceFactorShape": [
+              65,
+              18
+            ],
+            "spatialRankUpperBound": 7,
+            "fullPaperClaim": false,
+            "hybridImplemented": false,
+            "sourceFigureClaim": false,
+            "optimizedFarFieldBaselineImplemented": false
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
-        "offline": null,
-        "details": {}
+        "classification": "independently-validated-bounded-source-chain; local-lesson-integration; browser-pending",
+        "live": "near-field.html#research-experiment: actual Eq20 SDR → Eq21 recovery → finite X → noisy Y → truth-blind MUSIC; #experiment remains noiseless one-way prerequisite",
+        "offline": "Exact source-free frozen Python reference and full chain evidence supplied as optional raw archive parts",
+        "details": {
+          "browserAccepted": false,
+          "runtimeFreezeEntries": 22,
+          "upstreamModulesUnchanged": 10,
+          "completeRawRecord": true,
+          "separateDiagnosticRecord": true,
+          "historicalImportRequiresFreshSolve": true
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "passed",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "partial",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Fixed arXiv2302.01153v5 model and source ambiguity audit; declared T/gain/users/waveform/search assumptions retained.",
+        "algorithm": "Accepted bounded isolated chain: 35 author groups, 235 independent physics checks across9 raw datasets, 101 actual Node Worker/lifecycle/replay groups. Frozen 22 runtime entries copied unchanged.",
+        "selectedExperiment": "Fresh source-derived finite-X/noisy-Y cases accepted under declared added assumptions; original figures2–4 and their optimized far-field/hybrid comparisons not reproduced.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No actual browser control-to-painted-result measurements; isolated Node Worker observations are not browser latency.",
+        "independentValidation": "Numerical and actual Node Worker evidence only, not browser/UI acceptance.",
+        "uiLearning": "Local six-level teaching integration; actual browser/rendering/accessibility acceptance open."
       },
       "missingImplementation": [
-        "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
-        "路径损耗、噪声、多径、多用户通信和完整收发阵列通道",
-        "完整双目标检测与分辨概率"
+        "混合架构式(22)、RF/接收合并设计、多径、多目标检测与分辨概率",
+        "所引优化远场基线、原始图2–4匹配曲线及完整论文",
+        "编码QAM/BER、物理快拍时长与能量换算、硬件和实际浏览器性能认证"
       ],
       "dependencies": [
-        "Exact v5 source audit",
-        "SDP and Hermitian eigensolver reference"
+        "Fixed-v5 source audit and declared assumptions",
+        "Exact frozen independent chain/reference evidence and local integration validation"
       ],
       "blockers": [
-        "论文 CRB 优化、SDR、混合架构求解与 MUSIC",
-        "路径损耗、噪声、多径、多用户通信和完整收发阵列通道"
+        "Actual browser interaction, responsiveness, CSP and accessibility acceptance",
+        "Source figures, hybrid and exact cited optimized far-field comparison absent"
       ],
       "realtime": {
         "status": "not-measured",
@@ -7139,7 +7182,7 @@
           "worstMs": null
         },
         "details": {
-          "assessment": "Reduced faithful core is a candidate; numerical reference and desktop profiling required before claiming realtime.",
+          "assessment": "Bounded live compute is implemented; actual browser measurement and independent rendered UI acceptance remain required.",
           "measuredLatencyMs": null
         }
       },
@@ -7149,10 +7192,26 @@
         "inventoryAssessment": 4
       },
       "evidence": {
-        "currentRunnable": "单频 ULA、固定正侧向、单目标的独立空间相位/匹配机制演示",
-        "fixedSourceAudit": "仅从仓库原有五个案例 HTML 的已写明内容提取；本次没有重新检索或核验外部论文"
+        "currentRunnable": "near-field.html#research-experiment: actual Eq20 SDR → Eq21 recovery → finite X → noisy Y → truth-blind MUSIC; #experiment remains noiseless one-way prerequisite",
+        "fixedSourceAudit": "固定v5来源、独立参考/链审查与不可变存档见 docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md；不发布论文PDF或私有全文；Node证据不是实际浏览器验收",
+        "sourceEvidenceDocument": "docs/NEARFIELD-RESEARCH-SOURCE-EVIDENCE.md",
+        "evidenceMap": "data/nearfield-research-evidence-map.json"
       },
-      "details": {}
+      "details": {
+        "failureGates": {
+          "solverCapIsInfeasible": false,
+          "numericalAcceptanceIsDetection": false,
+          "numericalAcceptanceIsAccuracy": false,
+          "importedClaimsVerified": false,
+          "singleRealizationIsRmse": false,
+          "independentObservedPositionErrorsM": [
+            1.237,
+            21.072,
+            33.448
+          ],
+          "endfireTiesRetained": 100
+        }
+      }
     },
     {
       "id": "supplement-case-multipath-channel",
