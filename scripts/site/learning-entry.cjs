@@ -24,7 +24,7 @@ class BuildLinkValidationContext{
   const pages=new Map(),references=[];
   for(const [file,html]of outputs){
    if(!file.endsWith('.html'))continue;
-   if(!/^[A-Za-z0-9_-]+\.html$/.test(file)||typeof html!=='string'||pages.has(file))throw new Error('Invalid or duplicate rendered page: '+file);
+   if(!/^(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]+\.html$/.test(file)||typeof html!=='string'||pages.has(file))throw new Error('Invalid or duplicate rendered page: '+file);
    const ids=new Set();pages.set(file,ids);
    for(const attributes of htmlAttributes(html)){
     if(attributes.has('id')){

@@ -17,6 +17,7 @@ function classicEdges(f){return classicDependencies(f.source,f.contract,f.identi
 function inverse(source,changes){for(const change of [...changes].reverse()){a.equal(source.split(change.after).length,2,'exact reversible source fragment');source=source.replace(change.after,change.before);}return source;}
 
 test('Gaussian extension preserves every prior 27 classic and 32 ESM row and exact gate source',()=>{
+ const classic=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutContracts(require('../scripts/build/classic-runtime-contracts.json'));
  const self='tests/gaussian-tradeoff-dependencies.test.cjs',record=B.hostedUiAdapters.find(x=>x.path===self),currentSelf=fs.readFileSync(path.join(root,self));a.ok(!manifest.entries.some(x=>x.source===self),'source-only adapter must stay outside compatibility staging');a.equal(sha(B.withoutHostedUiAdapter(self,currentSelf)),record.before.sha256);a.throws(()=>B.withoutHostedUiAdapter(self,Buffer.concat([currentSelf,Buffer.from('/* unrelated */')])));
  a.equal(delta.priorClassicProfileCount,27);a.equal(delta.priorModuleProfileCount,32);a.equal(classic.scripts.length,28);a.equal(modules.modules.length,41);
  a.deepEqual(classic.scripts.slice(27),delta.classicProfiles);a.deepEqual(B.withoutHostedUiContracts(modules,'module').modules.slice(32),historicalDelta.moduleProfiles);

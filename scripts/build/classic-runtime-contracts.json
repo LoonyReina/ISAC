@@ -264,6 +264,31 @@
       "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
       "runtimePolicy": "exact-frozen-classic",
       "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/false-alarm/adapter.js",
+      "sha256": "7e96c87727b616327f312aada19d652cb67ddde45e6348a7189e24f608f7bf87",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/false-alarm/presentation.js",
+      "sha256": "2fce59e0e952f896b57acd7660454a004e028d967558ba39bd8195dd87a49641",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": []
+    },
+    {
+      "public": "labs/ofdm-ici/false-alarm/app.js",
+      "sha256": "4745cbefb5ffdaed02d479e2041c25e8bd67c607b36a44cec7184a6dd1b6ebb7",
+      "runtimePolicy": "exact-frozen-classic",
+      "runtimeEdges": [
+        {
+          "url": "../runtime/worker/ici-worker.js",
+          "resolutionFrom": "labs/ofdm-ici/false-alarm/index.html",
+          "kind": "reviewed-classic-worker",
+          "literal": "new Worker('../runtime/worker/ici-worker.js')"
+        }
+      ]
     }
   ]
 }

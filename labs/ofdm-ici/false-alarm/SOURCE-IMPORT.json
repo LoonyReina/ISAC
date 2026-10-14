@@ -1,0 +1,34 @@
+{
+  "schema": "ofdm-false-alarm-production-import-v1",
+  "baseCommit": "581c838cb73b8b5935358ebbf741a7f0f2d86198",
+  "sourceManifestSha256": "8ba833108416383da424e883bd7a7873a60b95e71d69c97c25207af3f354f431",
+  "inputs": [
+    {
+      "path": "index.html",
+      "sha256": "eeebced6d881966349d99bc4887db91ebb7c429da4121f89f3754b01ab69394b"
+    },
+    {
+      "path": "app.js",
+      "sha256": "e5be04934b7f237e398894e5965e42af95e502e171a4dcc05ac8abaaf0e5efbe"
+    },
+    {
+      "path": "adapter.js",
+      "sha256": "d94e3999e42ce019e56617c231a23928f428babc87957841916cf7703075a17c"
+    },
+    {
+      "path": "presentation.js",
+      "sha256": "593936e1ad87699c718fbd020f9781ad0596353d4880030abf9031516f7d8b23"
+    },
+    {
+      "path": "style.css",
+      "sha256": "6ff1a52856b3b893a637c4236d080e83d0b8459a36a9144b1aed322e4f963918"
+    }
+  ],
+  "adaptations": [
+    "index: shared runtime paths, return links, fixed paper version, source-boundary link",
+    "app: document-relative Worker path; pagehide invalidates generation, retains history and disposes client; pageshow or submit recreates one client for BFCache recovery",
+    "adapter: Node require path only",
+    "presentation: explicit .js extension for Node require; stylesheet byte-identical"
+  ],
+  "scope": "H0 bounded teaching branch; not full paper reproduction"
+}
