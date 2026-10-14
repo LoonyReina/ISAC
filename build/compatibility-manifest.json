@@ -12486,6 +12486,174 @@
       "public": null,
       "owner": "validators/regression",
       "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/core.js",
+      "compatibility": "crb-receiver/core.js",
+      "public": "crb-receiver/core.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/worker.js",
+      "compatibility": "crb-receiver/worker.js",
+      "public": "crb-receiver/worker.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/runtime-manifest.js",
+      "compatibility": "crb-receiver/runtime-manifest.js",
+      "public": "crb-receiver/runtime-manifest.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-core.test.cjs",
+      "compatibility": "tests/crb-receiver-core.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-worker.test.cjs",
+      "compatibility": "tests/crb-receiver-worker.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/fixtures/crb-receiver-independent.json",
+      "compatibility": "tests/fixtures/crb-receiver-independent.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/fixtures/crb-receiver-source.json",
+      "compatibility": "tests/fixtures/crb-receiver-source.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/fixtures/crb-receiver-source-nt8.json",
+      "compatibility": "tests/fixtures/crb-receiver-source-nt8.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/controller.js",
+      "compatibility": "crb-receiver/controller.js",
+      "public": "crb-receiver/controller.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/ui.js",
+      "compatibility": "crb-receiver/ui.js",
+      "public": "crb-receiver/ui.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/ui.css",
+      "compatibility": "crb-receiver/ui.css",
+      "public": "crb-receiver/ui.css",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-controller.test.cjs",
+      "compatibility": "tests/crb-receiver-controller.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-ui.test.cjs",
+      "compatibility": "tests/crb-receiver-ui.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-independent.test.cjs",
+      "compatibility": "tests/crb-receiver-independent.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/fixtures/crb-receiver-oracle.json",
+      "compatibility": "tests/fixtures/crb-receiver-oracle.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/crb-receiver-dependencies.cjs",
+      "compatibility": "scripts/build/crb-receiver-dependencies.cjs",
+      "public": "scripts/build/crb-receiver-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/crb-receiver-runtime-contracts.json",
+      "compatibility": "scripts/build/crb-receiver-runtime-contracts.json",
+      "public": "scripts/build/crb-receiver-runtime-contracts.json",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/receiver/SOURCE-IMPORT.json",
+      "compatibility": "crb-receiver/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "docs/CRB-RECEIVER-INTEGRATION.md",
+      "compatibility": "docs/CRB-RECEIVER-INTEGRATION.md",
+      "public": "docs/CRB-RECEIVER-INTEGRATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/crb-receiver-integration-preservation.cjs",
+      "compatibility": "tests/helpers/crb-receiver-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/crb-receiver-integration-delta.json",
+      "compatibility": "tests/helpers/crb-receiver-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-preservation.test.cjs",
+      "compatibility": "tests/build/crb-receiver-preservation.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-build.test.cjs",
+      "compatibility": "tests/build/crb-receiver-build.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/crb-receiver-integration.test.cjs",
+      "compatibility": "tests/crb-receiver-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
     }
   ]
 }

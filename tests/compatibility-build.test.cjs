@@ -272,3 +272,7 @@ require("./ofdm-false-alarm-build.test.cjs");
 // Keep source-layout CMC provenance and live dependency rejection gates in builder CI.
 require('./waveform-cmc-preservation.test.cjs');
 require('./waveform-cmc-build.test.cjs');
+
+// Current receiver source-layout provenance and adversarial dependency gates in Pages CI.
+require('./crb-receiver-preservation.test.cjs');
+require('./crb-receiver-build.test.cjs');

@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "2373b94882dc3d9dc173814614477c9f4d013125",
+  "baseSourceTreeSha256": "c3b86e875e0e16c094ea90f3dbead89a2b4ebd9c3ba68f74264a5a25d16a3c50",
+  "acceptedFiles": [
+    {
+      "path": "labs/crb-beamforming/receiver/core.js",
+      "bytes": 36884,
+      "sha256": "3e8fa25e75ad5cd645a2b314d2c2c3938c6d6a944e94235e019008444db35c0c"
+    },
+    {
+      "path": "labs/crb-beamforming/receiver/worker.js",
+      "bytes": 2620,
+      "sha256": "fe90009ab6a5f24337a16844fe12b976be7e19ce5352764bb1c4b514db2be06e"
+    },
+    {
+      "path": "labs/crb-beamforming/receiver/runtime-manifest.js",
+      "bytes": 661,
+      "sha256": "12a9d7b8ecb0a26da7da2d78903f18a15c9a9158ed3cc77241a80b7f2e56c1a1"
+    },
+    {
+      "path": "tests/crb-receiver-core.test.cjs",
+      "bytes": 11800,
+      "sha256": "dbb75dd97ecef23edfd035280321819b31e0063dd86a681059af9a9418bc149a"
+    },
+    {
+      "path": "tests/crb-receiver-worker.test.cjs",
+      "bytes": 5502,
+      "sha256": "08205ee78e1b4699bc7db3802506385d874bb696f15ff8b940d285a710489573"
+    },
+    {
+      "path": "tests/fixtures/crb-receiver-independent.json",
+      "bytes": 132651,
+      "sha256": "99fb2d113071faafdc87b0109168445208238bc9957ece85f4be21cc02b7ae02"
+    },
+    {
+      "path": "tests/fixtures/crb-receiver-source.json",
+      "bytes": 18785,
+      "sha256": "9e50bf86f15d0e98476a107bfcc3835acd3726bed75136f0655ca8fa83755205"
+    },
+    {
+      "path": "tests/fixtures/crb-receiver-source-nt8.json",
+      "bytes": 26666,
+      "sha256": "8984257eb5b515b5353dff9981934aada7e703bfa6ff22389b594481f4f49cf9"
+    },
+    {
+      "path": "labs/crb-beamforming/receiver/controller.js",
+      "bytes": 11905,
+      "sha256": "37c50a668e1f4ae830f78749d7ab0b7e5adc1a4dce686ecf5aa1ffec00cbefb3"
+    },
+    {
+      "path": "labs/crb-beamforming/receiver/ui.js",
+      "bytes": 13570,
+      "sha256": "0a0c9205882ccd1cebaf75277059642fd113304234ab8734178ccdc985f07ce0"
+    },
+    {
+      "path": "labs/crb-beamforming/receiver/ui.css",
+      "bytes": 6160,
+      "sha256": "6add9b17ceb6ee96868573d07060be72eff5c42def358bf764ae1c0704f46a7f"
+    },
+    {
+      "path": "labs/crb-beamforming/crb-multiuser.js",
+      "bytes": 23084,
+      "sha256": "e886e8d94a381504776ee105f7e875dee637fc71a9e3a485a2900cdb2a1a96c5"
+    },
+    {
+      "path": "content/pages/crb-beamforming.html",
+      "bytes": 71354,
+      "sha256": "99b52fb6a90e5ceba4f8610b57835f7ecc409c76a59ccd599d0ad8a2c4c5c6db"
+    },
+    {
+      "path": "tests/crb-receiver-controller.test.cjs",
+      "bytes": 12008,
+      "sha256": "ddce0b4077adb0e0b76f1fef06d5c66b0d0271557b10a3a019da1263788a1673"
+    },
+    {
+      "path": "tests/crb-receiver-ui.test.cjs",
+      "bytes": 17031,
+      "sha256": "6220cf020a6dc91e922e09f7d0e26a68b07a5954d909f2d0c5819d4c7e73fb32"
+    },
+    {
+      "path": "tests/crb-receiver-independent.test.cjs",
+      "bytes": 7406,
+      "sha256": "baff2e985572ce4971a1a18784f9bea15266016dd249bee7d995b9007cb15e05"
+    },
+    {
+      "path": "tests/fixtures/crb-receiver-oracle.json",
+      "bytes": 358922,
+      "sha256": "12d7b79a69f5d2d3f97039d993060a789e6061e389bc178cfae4ca30fe040e7e"
+    }
+  ],
+  "protectedRuntimeFiles": [
+    {
+      "path": "labs/crb-beamforming/crb-beamforming-core.js",
+      "bytes": 9902,
+      "sha256": "d5105b56c4a45ce9ed69443ee519dd9d8594db30c5488134f2926c1d6041fce8"
+    },
+    {
+      "path": "labs/crb-beamforming/crb-beamforming.js",
+      "bytes": 13374,
+      "sha256": "e2fa2f03938197eab129935d6f1c16263eaac8f170ebd4bdf638634d0f146e6d"
+    },
+    {
+      "path": "labs/crb-beamforming/crb-beamforming.css",
+      "bytes": 20807,
+      "sha256": "58a2d9abec5792a862a1acae7b77632ade4909e2f14d71526b9e74c55c9abdf7"
+    },
+    {
+      "path": "labs/crb-beamforming/multiuser/core.js",
+      "bytes": 18012,
+      "sha256": "208f4d91db12d5c24d8bff921a1f31806cea846cb3f1a3a6101f7520f2e335c1"
+    },
+    {
+      "path": "labs/crb-beamforming/multiuser/hermitian.js",
+      "bytes": 3658,
+      "sha256": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a"
+    },
+    {
+      "path": "labs/crb-beamforming/multiuser/linalg.js",
+      "bytes": 3688,
+      "sha256": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d"
+    },
+    {
+      "path": "labs/crb-beamforming/multiuser/worker.js",
+      "bytes": 1469,
+      "sha256": "cdf0412a332c79c6e7ff6d5340285b78a434838aa6c560c9b35762ec4775520b"
+    }
+  ],
+  "protectedK1Sections": {
+    "intuition": {
+      "bytes": 2108,
+      "sha256": "01677cc1be7aec1c65aa974267a1a9967191257d02aad90d6ee100679536cb17"
+    },
+    "experiment": {
+      "bytes": 9001,
+      "sha256": "ae113a4e7e8491a2aae094e382fd0baa49a0dd4de4ed17c1b71b6e8933c8f39f"
+    },
+    "understand": {
+      "bytes": 9626,
+      "sha256": "0bc0b192cd240d6d0791305cf9e516662414cb4295e98ccc007946d24e0941b0"
+    },
+    "companion": {
+      "bytes": 5697,
+      "sha256": "e087363f09e76e53e976e0a61db83fbfd156813c8bccff8aa8a03c32acae6e94"
+    }
+  },
+  "preservedPageIds": [
+    "site-main",
+    "crb-title",
+    "intuition",
+    "crb-intuition-title",
+    "experiment",
+    "crb-experiment-title",
+    "crb-threshold-value",
+    "crb-threshold",
+    "crb-none",
+    "crb-threshold-help",
+    "crb-rho-value",
+    "crb-rho",
+    "crb-rho-zero",
+    "crb-rho-half",
+    "crb-rho-one",
+    "crb-rho-help",
+    "crb-reset",
+    "crb-regime",
+    "crb-bound",
+    "crb-required",
+    "crb-actual",
+    "crb-g",
+    "crb-explanation",
+    "crb-status",
+    "crb-frontier",
+    "crb-transition",
+    "crb-pattern",
+    "crb-resources",
+    "crb-frontier-table",
+    "crb-pattern-table",
+    "crb-data",
+    "understand",
+    "crb-understand-title",
+    "nuisance",
+    "crb-unknown-alpha",
+    "crb-information-chart",
+    "crb-information",
+    "solution",
+    "model",
+    "multiuser-intuition",
+    "cm-intuition-title",
+    "multiuser",
+    "cm-workbench-title",
+    "cm-gamma-number",
+    "cm-gamma",
+    "cm-gamma-help",
+    "cm-nt",
+    "cm-theta",
+    "cm-array-help",
+    "cm-angle-help",
+    "cm-seed",
+    "cm-fresh",
+    "cm-channel-help",
+    "cm-channel-norms",
+    "cm-run",
+    "cm-cancel",
+    "cm-reset",
+    "cm-current-label",
+    "cm-root-crb",
+    "cm-power",
+    "cm-gap",
+    "cm-state",
+    "cm-progress",
+    "cm-error",
+    "cm-ledger",
+    "cm-channel-editor",
+    "cm-export",
+    "cm-import",
+    "cm-import-help",
+    "cm-sinr-chart",
+    "cm-information-chart",
+    "cm-users",
+    "cm-sweep",
+    "cm-tradeoff-chart",
+    "cm-tradeoff-table",
+    "cm-details",
+    "multiuser-method",
+    "cm-method-title",
+    "cm-evidence-title",
+    "companion",
+    "crb-companion-title",
+    "crb-companion-section",
+    "crb-kappa-value",
+    "crb-kappa",
+    "crb-kappa-help",
+    "crb-companion-summary",
+    "crb-companion-pattern",
+    "crb-companion-info",
+    "crb-companion-table",
+    "crb-companion-data",
+    "paper",
+    "crb-paper-title",
+    "limits",
+    "crb-limits-title",
+    "reproduce",
+    "crb-reproduce-title"
+  ],
+  "verificationScope": {
+    "numerical": {
+      "focusedTests": 24,
+      "independentNodeChecks": 111,
+      "independentNumpyChecks": 50,
+      "independentCorruptionsRejected": 10,
+      "independentCITests": 7
+    },
+    "lifecycle": {
+      "focusedTests": 35,
+      "inheritedOptimizerTests": 32,
+      "independentGates": 42
+    },
+    "nativeBrowser": "Pending separate validation; Node/VM/worker_threads do not establish browser provenance",
+    "fullPaperReproduction": false
+  }
+}

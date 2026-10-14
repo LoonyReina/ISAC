@@ -5,6 +5,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cryp
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const {moduleDependencies,isModuleFile}=require('./module-dependencies.cjs');
 const {classicDependencies}=require('./classic-dependencies.cjs');
+const {receiverDependencies}=require('./crb-receiver-dependencies.cjs');
 const compare=(a,b)=>a.path<b.path?-1:a.path>b.path?1:0;
 function insist(ok,message){if(!ok)throw new Error(message);}
 function exactFields(value,fields,label){insist(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join(',')===[...fields].sort().join(','),'Invalid '+label+' fields');}
@@ -67,6 +68,11 @@ function checkDependencies(root,manifest){
  for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
  const classic=[...all.keys()].filter(name=>['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/','labs/gaussian-tradeoff/'].some(prefix=>name.startsWith(prefix))&&name.endsWith('.js')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  for(const edge of classicDependencies(classic,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/classic-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
+ // Receiver checks bind the final current assets and exact document/Worker edges.
+ // Existing module/classic scanners above still inspect their current artifacts.
+ const receiver=[...all.keys()].filter(name=>name.toLowerCase().startsWith('crb-receiver/')&&name.endsWith('.js')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
+ const receiverPages=[{file:'crb-beamforming.html',source:fs.readFileSync(path.join(root,'crb-beamforming.html'),'utf8')}];
+ for(const edge of receiverDependencies(receiver,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/crb-receiver-runtime-contracts.json'),'utf8')),identities,receiverPages))local(edge.from,edge.url,edge.kind);
  // This script constructs URLs from currentScript.src; the literal sequence is
  // checked before adding its dependencies, rather than guessed from filenames.
  const course=fs.readFileSync(path.join(root,'course.js'),'utf8');
