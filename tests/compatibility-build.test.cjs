@@ -268,3 +268,7 @@ test('Cell-Free explicit mappings restore the exact accepted cumulative manifest
 
 // Production nested lesson dependency gate, exercised by the existing builder CI entrypoint.
 require("./ofdm-false-alarm-build.test.cjs");
+
+// Keep source-layout CMC provenance and live dependency rejection gates in builder CI.
+require('./waveform-cmc-preservation.test.cjs');
+require('./waveform-cmc-build.test.cjs');
