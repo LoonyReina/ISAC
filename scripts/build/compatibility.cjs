@@ -57,7 +57,7 @@ function checkDependencies(root,manifest){
   edges.push({from,to:target,kind});
  };
  for(const [name]of all){const data=fs.readFileSync(path.join(root,name)),text=data.toString('utf8');identities.push({file:name,sha256:sha(data)});
-  if(!name.includes('/')&&name.endsWith('.html'))for(const m of text.matchAll(/\b(href|src)\s*=\s*["']([^"']+)["']/g))local(name,m[2],m[1]);
+  if((!name.includes('/')||name==='labs/ofdm-ici/false-alarm/index.html')&&name.endsWith('.html'))for(const m of text.matchAll(/\b(href|src)\s*=\s*["']([^"']+)["']/g))local(name,m[2],m[1]);
   if(name.endsWith('.md')){const prose=text.replace(/```[\s\S]*?```/g,'').replace(/`[^`\n]*`/g,'');for(const m of prose.matchAll(/!?\[[^\]\n]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g))if(/^(?:https?:|#|\.{1,2}\/)|\.(?:md|json|txt|log|sha256|js|cjs|mjs|html|css|py|pdf)(?:[?#]|$)/i.test(m[1]))local(name,m[1],'documentation');}
   if(name.endsWith('.css'))for(const m of text.matchAll(/(?:url\(\s*["']?([^"')\s]+)|@import\s+["']([^"']+))/g))local(name,m[1]||m[2],'css');
   // Preserve the historical .js literal fetch/require check as legacy behavior.

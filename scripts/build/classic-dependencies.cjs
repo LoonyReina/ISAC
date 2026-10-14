@@ -268,9 +268,34 @@ const profiles=[
     "sha256": "7d5983a18f3bf1b54db5076944bc12e84c9489059dc66481fcba277f65bdaafc",
     "runtimePolicy": "exact-frozen-classic",
     "runtimeEdges": []
-  }
+  },
+{
+  "public": "labs/ofdm-ici/false-alarm/adapter.js",
+  "sha256": "7e96c87727b616327f312aada19d652cb67ddde45e6348a7189e24f608f7bf87",
+  "runtimePolicy": "exact-frozen-classic",
+  "runtimeEdges": []
+},
+{
+  "public": "labs/ofdm-ici/false-alarm/presentation.js",
+  "sha256": "2fce59e0e952f896b57acd7660454a004e028d967558ba39bd8195dd87a49641",
+  "runtimePolicy": "exact-frozen-classic",
+  "runtimeEdges": []
+},
+{
+  "public": "labs/ofdm-ici/false-alarm/app.js",
+  "sha256": "4745cbefb5ffdaed02d479e2041c25e8bd67c607b36a44cec7184a6dd1b6ebb7",
+  "runtimePolicy": "exact-frozen-classic",
+  "runtimeEdges": [
+    {
+      "url": "../runtime/worker/ici-worker.js",
+      "resolutionFrom": "labs/ofdm-ici/false-alarm/index.html",
+      "kind": "reviewed-classic-worker",
+      "literal": "new Worker('../runtime/worker/ici-worker.js')"
+    }
+  ]
+}
 ];
-const auxiliaryFiles=new Set(["labs/ofdm-ici/README.md","labs/ofdm-ici/lesson/PUBLIC-ASSETS.json","labs/ofdm-ici/lesson/ici-lesson.css","labs/ofdm-ici/runtime/FORMAT.md","labs/ofdm-ici/runtime/HANDOFF.md","labs/ofdm-ici/runtime/SOURCE-FREEZE.json","labs/ofdm-ici/LESSON-FREEZE.json","labs/80211ad/runtime/DEVELOPMENT-FIXES.json","labs/80211ad/runtime/FORMAT.md","labs/80211ad/runtime/HANDOFF.md","labs/80211ad/runtime/README.md","labs/80211ad/runtime/SOURCE-FREEZE.json","labs/80211ad/runtime/package.json","labs/80211ad/runtime/run_all.sh","labs/80211ad/runtime/tests/benchmark.cjs","labs/80211ad/runtime/tests/test-kernel.cjs","labs/80211ad/runtime/tests/test-worker.cjs","labs/80211ad/runtime/tests/verify_manifest.py","labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json","labs/80211ad/runtime/worker/README.md","labs/80211ad/runtime/worker/TEST-REPORT.txt","labs/80211ad/runtime/worker/WORKER-FREEZE.json","labs/80211ad/runtime/worker/benchmark-boundary.cjs","labs/80211ad/runtime/RUNTIME-MANIFEST.json","labs/80211ad/lesson/DEVELOPMENT-FIXES.json","labs/80211ad/lesson/PUBLIC-ASSETS.json","labs/80211ad/lesson/README.md","labs/80211ad/lesson/lesson.css","labs/80211ad/lesson/LESSON-FREEZE.json","labs/networked-sync/lesson/DEVELOPMENT-FIXES.json","labs/networked-sync/lesson/LESSON-FREEZE.json","labs/networked-sync/lesson/PUBLIC-ASSETS.json","labs/networked-sync/lesson/README.md","labs/networked-sync/lesson/lesson.css","labs/networked-sync/runtime/DEVELOPMENT-FIXES.json","labs/networked-sync/runtime/HANDOFF.md","labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md","labs/networked-sync/runtime/README.md","labs/networked-sync/runtime/RELEASE-BOUNDARIES.json","labs/networked-sync/runtime/SOURCE-FREEZE.json","labs/networked-sync/runtime/worker/FORMAT.md","labs/networked-sync/runtime/worker/README.md","labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json","labs/gaussian-tradeoff/runtime/ATTRIBUTION.md","labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json","labs/gaussian-tradeoff/runtime/HANDOFF.md","labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md","labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md","labs/gaussian-tradeoff/runtime/README.md","labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json","labs/gaussian-tradeoff/lesson/README.md","labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json","labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json","labs/gaussian-tradeoff/lesson/lesson.css"]);
+const auxiliaryFiles=new Set(["labs/ofdm-ici/false-alarm/index.html","labs/ofdm-ici/false-alarm/style.css","labs/ofdm-ici/false-alarm/SOURCE-IMPORT.json","labs/ofdm-ici/README.md","labs/ofdm-ici/lesson/PUBLIC-ASSETS.json","labs/ofdm-ici/lesson/ici-lesson.css","labs/ofdm-ici/runtime/FORMAT.md","labs/ofdm-ici/runtime/HANDOFF.md","labs/ofdm-ici/runtime/SOURCE-FREEZE.json","labs/ofdm-ici/LESSON-FREEZE.json","labs/80211ad/runtime/DEVELOPMENT-FIXES.json","labs/80211ad/runtime/FORMAT.md","labs/80211ad/runtime/HANDOFF.md","labs/80211ad/runtime/README.md","labs/80211ad/runtime/SOURCE-FREEZE.json","labs/80211ad/runtime/package.json","labs/80211ad/runtime/run_all.sh","labs/80211ad/runtime/tests/benchmark.cjs","labs/80211ad/runtime/tests/test-kernel.cjs","labs/80211ad/runtime/tests/test-worker.cjs","labs/80211ad/runtime/tests/verify_manifest.py","labs/80211ad/runtime/worker/BOUNDARY-BENCHMARK.json","labs/80211ad/runtime/worker/README.md","labs/80211ad/runtime/worker/TEST-REPORT.txt","labs/80211ad/runtime/worker/WORKER-FREEZE.json","labs/80211ad/runtime/worker/benchmark-boundary.cjs","labs/80211ad/runtime/RUNTIME-MANIFEST.json","labs/80211ad/lesson/DEVELOPMENT-FIXES.json","labs/80211ad/lesson/PUBLIC-ASSETS.json","labs/80211ad/lesson/README.md","labs/80211ad/lesson/lesson.css","labs/80211ad/lesson/LESSON-FREEZE.json","labs/networked-sync/lesson/DEVELOPMENT-FIXES.json","labs/networked-sync/lesson/LESSON-FREEZE.json","labs/networked-sync/lesson/PUBLIC-ASSETS.json","labs/networked-sync/lesson/README.md","labs/networked-sync/lesson/lesson.css","labs/networked-sync/runtime/DEVELOPMENT-FIXES.json","labs/networked-sync/runtime/HANDOFF.md","labs/networked-sync/runtime/NUMERICAL-VERIFICATION.md","labs/networked-sync/runtime/README.md","labs/networked-sync/runtime/RELEASE-BOUNDARIES.json","labs/networked-sync/runtime/SOURCE-FREEZE.json","labs/networked-sync/runtime/worker/FORMAT.md","labs/networked-sync/runtime/worker/README.md","labs/gaussian-tradeoff/runtime/SOURCE-FREEZE.json","labs/gaussian-tradeoff/runtime/ATTRIBUTION.md","labs/gaussian-tradeoff/runtime/DEVELOPMENT-FIXES.json","labs/gaussian-tradeoff/runtime/HANDOFF.md","labs/gaussian-tradeoff/runtime/NUMERICAL-VERIFICATION.md","labs/gaussian-tradeoff/runtime/PROTOCOL-HANDOFF.md","labs/gaussian-tradeoff/runtime/README.md","labs/gaussian-tradeoff/lesson/DEVELOPMENT-FIXES.json","labs/gaussian-tradeoff/lesson/README.md","labs/gaussian-tradeoff/lesson/LESSON-FREEZE.json","labs/gaussian-tradeoff/lesson/PUBLIC-ASSETS.json","labs/gaussian-tradeoff/lesson/lesson.css"]);
 // Module bytes are checked by the unified ESM gate; this is only namespace inventory.
 const gaussianModuleFiles=new Set(["labs/gaussian-tradeoff/runtime/codec.mjs","labs/gaussian-tradeoff/runtime/kernel.mjs","labs/gaussian-tradeoff/runtime/math.mjs","labs/gaussian-tradeoff/runtime/presets.mjs","labs/gaussian-tradeoff/runtime/runtime.mjs","labs/gaussian-tradeoff/runtime/worker.mjs","labs/gaussian-tradeoff/lesson/controller.mjs","labs/gaussian-tradeoff/lesson/view.mjs","labs/gaussian-tradeoff/lesson/lesson.mjs"]);
 // A narrow owned namespace inventory, not a claim that every extension executes.
