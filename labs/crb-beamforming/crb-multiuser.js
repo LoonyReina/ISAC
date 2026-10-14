@@ -15,6 +15,8 @@
   const getTime = () => performance.now();
   const number = value => M.fmt(value);
   const plots = ['cm-sinr-chart', 'cm-information-chart', 'cm-tradeoff-chart'];
+  // The receiver instance and its accepted source stay private to this controller.
+  const receiver = window.CrbReceiverUI?.create({window,document}) || null;
   function text(id, value) { $(id).textContent = value; }
   function node(tag, attrs, value) { const n = document.createElementNS(ns, tag); for (const [k,v] of Object.entries(attrs || {})) n.setAttribute(k,String(v)); if (value !== undefined) n.textContent = String(value); return n; }
   function table(id, rows) { const body = $(id); body.replaceChildren(); for (const row of rows) { const tr = document.createElement('tr'); for (const value of row) { const td = document.createElement('td'); td.textContent = String(value); tr.append(td); } body.append(tr); } }
@@ -34,6 +36,7 @@
   function xAxis(c, ticks, label) { for (const tick of ticks) { c.svg.append(node('line',{x1:c.x(tick.value),y1:c.bottom,x2:c.x(tick.value),y2:c.bottom+4,stroke:'#a0b0b4'})); c.svg.append(node('text',{x:c.x(tick.value),y:c.bottom+19,'text-anchor':Math.abs(c.x(tick.value)-c.right)<1?'end':Math.abs(c.x(tick.value)-c.left)<1?'start':'middle','font-size':10,fill:'#415a65'},tick.label)); } c.svg.append(node('text',{x:(c.left+c.right)/2,y:277,'text-anchor':'middle','font-size':11,fill:'#415a65'},label)); }
   function emptyPlot(id, note) { const c = chart(id,0,1,0,1,''); c.svg.append(node('text',{x:c.width/2,y:133,'text-anchor':'middle','font-size':12,fill:'#62747c'},note)); $(id).setAttribute('aria-label',note); }
   function clearCurrent() {
+    receiver?.invalidate('当前设计已清除。请重新求解并取得验收波束。');
     current = null;
     for (const id of ['cm-root-crb','cm-power','cm-gap']) text(id,'—');
     table('cm-users',[]);
@@ -93,7 +96,7 @@
     message('参数已改变，请重新求解。最近一次下载记录仍保留原来的输入。');
     text('cm-current-label','尚未求解当前输入'); text('cm-progress',''); updateButtons();
   }
-  function renderResult(result,runInput,id) {
+  function renderResult(result,runInput,id,sourceSeed,sourceTimingMs) {
     const cls=M.classify(result); clearCurrent();
     text('cm-current-label',`运行 ${id} · Γ=${number(runInput.gammaDb)} dB · ${cls.label}`);
     if(!cls.accepted) {
@@ -102,6 +105,7 @@
       return;
     }
     current={result,input:runInput,id};
+    receiver?.accept({sourceRunId:id,input:clone(runInput),result:clone(result),sourceSeed:sourceSeed??null,sourceTimingMs});
     text('cm-root-crb',number(result.metrics.radar.rootCrbDegrees)+'°');
     text('cm-power',number(result.metrics.powerMw)+' / 1000 mW');
     text('cm-gap',number(result.certificate.relativeRecoveredGap));
@@ -147,6 +151,7 @@
     if(history.length>12)history.shift();renderHistory();return safe;
   }
   function startRun(nextInput,remaining) {
+    receiver?.invalidate('已开始新的波束求解。旧接收结果失效。');
     clearError();
     let checked;
     try { checked=M.validateInput(nextInput); } catch(e){message(e.message,true);return;}
@@ -184,7 +189,7 @@
         queue=null;clearCurrent();text('cm-current-label',`运行 ${id} · 未完成`);message(msg.type==='error'?'求解未完成：'+String(msg.error):'已停止；本次没有新的验收结果。',msg.type==='error');updateButtons();return;
       }
       try{
-        const end=getTime(),r=saveResult(msg.result,job,end-job.start);renderResult(r,job.input,job.id);
+        const end=getTime(),r=saveResult(msg.result,job,end-job.start);renderResult(r,job.input,job.id,job.seed,end-job.start);
         text('cm-progress',`本机本次：内核 ${(r.kernelWallMs/1000).toFixed(3)} 秒；启动到结果消息 ${((end-job.start)/1000).toFixed(3)} 秒（不含后续绘制完成测量）`);
         if(queue&&queue.length){const next=queue.shift();const rest=queue;startRun({...clone(job.input),gammaDb:next},rest);}
         else queue=null;
@@ -214,6 +219,9 @@
   $('cm-export').addEventListener('click',()=>{try{if(!lastRecord)throw Error('尚无运行记录可导出');const serialized=M.exportRecord(lastRecord),blob=new Blob([serialized],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='crb-point-run-'+(lastRecord.run?.id||runSerial)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),0);message('已导出最近一次实际运行记录，文件内保留那次运行的原始输入与状态。');}catch(e){message(e.message,true);}});
   $('cm-import').addEventListener('change',async event=>{
     const file=event.target.files&&event.target.files[0];if(!file)return;
+    receiver?.invalidate('正在载入外部输入。历史结果不能作为新验收波束。');
+    // File selection is a lifecycle boundary, before asynchronous file reading.
+    if(active){cancelWork('import started');text('cm-current-label','导入开始，先前求解已停止');text('cm-progress','');}
     const requestEdit=editSerial,requestRun=runSerial,requestImport=++importSerial;let applied=false;
     try{
       if(file.size>2*1024*1024)throw Error('文件超过 2 MiB 上限');const raw=await file.text();

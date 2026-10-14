@@ -134,6 +134,15 @@ function publicFixture(t){
  put('scripts/build/classic-runtime-contracts.json',JSON.stringify(classic),false);put('scripts/build/module-runtime-contracts.json',JSON.stringify(modules),false);
  put('course.js',"document.currentScript.src;const files=['course-ui.js','velocity-core.js','velocity-bridge.js'];");for(const name of ['course-ui.js','velocity-core.js','velocity-bridge.js'])put(name,'/* fixture */');
  put('gaussian-tradeoff.html','<script type="module" src="'+(modules.modules.some(x=>x.public===prefix+'lesson/lesson.mjs')?prefix+'lesson/lesson.mjs':runtime+'runtime.mjs')+'"></script>');
+ // The unified current-output gate also requires the accepted receiver entry head
+ // and its real dependencies. Keep this fixture partial in page body only; never
+ // substitute historical runtime bytes or skip an active production checker.
+ const receiver=require('../scripts/build/crb-receiver-runtime-contracts.json'),page=read(receiver.entryPoint),head=page.slice(0,page.indexOf('</head>')+7);
+ a.ok(head.endsWith('</head>'),'current receiver entry head');
+ for(const row of [...receiver.scripts,...receiver.assets,...receiver.boundExistingFiles])put(row.public);
+ for(const match of head.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){const file=match[1].split(/[?#]/)[0];if(!seen.has(file))put(file);}
+ put('scripts/build/crb-receiver-runtime-contracts.json',JSON.stringify(receiver),false);
+ put(receiver.entryPoint,head+'\n<body></body>\n</html>\n');
  return {directory,manifest:{entries},put};
 }
 
@@ -141,6 +150,9 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
  const f=publicFixture(t),out=checkDependencies(f.directory,f.manifest);
  for(const [from,to,kind]of [[runtime+'math.mjs',runtime+'vendor/linalg.js','static-module'],[runtime+'runtime.mjs',runtime+'worker.mjs','reviewed-worker'],[runtime+'worker.mjs',runtime+'kernel.mjs','static-module']])a.ok(out.some(e=>e.from===from&&e.to===to&&e.kind===kind),from+' → '+to);
  a.ok(!out.some(e=>e.to.startsWith('node:')),'Node builtins are reviewed fallbacks, not published browser resources');
+ a.ok(out.some(e=>e.from==='crb-beamforming.html'&&e.to==='crb-receiver/worker.js'&&e.kind==='reviewed-crb-receiver-worker'),'same live receiver gate remains active');
+ for(const file of ['crb-beamforming.html','crb-receiver/core.js','crb-multiuser.js'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing receiver mapping must fail: '+file);
+ const receiverPage=path.join(f.directory,'crb-beamforming.html'),bytes=fs.readFileSync(receiverPage);fs.unlinkSync(receiverPage);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT/);fs.writeFileSync(receiverPage,bytes);
 });
 
 test('unified gate rejects missing Gaussian local imports and omitted default Worker mapping',t=>{
