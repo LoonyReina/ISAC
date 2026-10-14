@@ -987,6 +987,40 @@
       ],
       "runtimePolicy": "reviewed-dual-array-runtime",
       "unverifiedInputs": []
+    },
+    {
+      "public": "labs/waveform-design/cmc/lesson.mjs",
+      "sha256": "2ef289612d5d9d406b2c9efb1ebf57b2029f208bde0b1a35b43f8afdfb7b8cfe",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./cmc-worker.mjs",
+          "literal": "new Worker(new URL('./cmc-worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/waveform-design/cmc/phase-diagram.mjs",
+      "sha256": "710385dd8d9d12992294c4231b30377e22fd21353fecf739380b6cfee5f9c6a1",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/waveform-design/cmc/cmc-core.mjs",
+      "sha256": "90d6212608de088b564ad3cad6d17b186ca6a0f9ad9557bbc46e46edb2c936e0",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/waveform-design/cmc/cmc-worker.mjs",
+      "sha256": "2b29f476a00676718c745e6ba4bb2f4418349e43fadb0b8d45c280f8ed1b93ef",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

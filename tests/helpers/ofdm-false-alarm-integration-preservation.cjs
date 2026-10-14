@@ -6,6 +6,7 @@ const delta=require('./ofdm-false-alarm-integration-delta.json');
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const identity=(bytes,row)=>bytes.length===row.bytes&&sha(bytes)===row.sha256;
 function withoutFile(file,bytes){
+ bytes=require('./waveform-cmc-integration-preservation.cjs').withoutFile(file,bytes);
  const rows=delta.files.filter(row=>row.path===file||row.compatibility===file);a.ok(rows.length<=1,'one OFDM exact file inverse');
  if(!rows.length)return bytes;
  const row=rows[0];if(identity(bytes,row.before)||(row.historicalIntermediates||[]).some(prior=>identity(bytes,prior)))return bytes;
@@ -13,7 +14,7 @@ function withoutFile(file,bytes){
  const prior=Buffer.from(row.beforeBase64,'base64');a.ok(identity(prior,row.before),'exact pre-OFDM source '+file);return prior;
 }
 function withoutMappings(input){
- const out=structuredClone(input);
+ const out=require('./waveform-cmc-integration-preservation.cjs').withoutMappings(input);
  if(!out.entries.some(row=>row.source==='tests/helpers/ofdm-false-alarm-integration-preservation.cjs'))return out;
  for(const row of delta.addedEntries){
   const indices=out.entries.flatMap((entry,i)=>entry.source===row.source?[i]:[]);
