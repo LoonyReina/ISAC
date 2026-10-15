@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "entryPoint": "cooperative-clusters.html",
-  "entryPageSha256": "6285dc0def08c139ad25d0b0f2456d1e82e4222bf96bca312e84567f9c352454",
+  "entryPageSha256": "7b7d3f52db7cc47b5f61369d47c049850d4b2f849d82f2aa3a3eaae93c6e1e3c",
   "pageRegions": {
     "HEADER": "<!-- SITE:HEADER:START -->\n<a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
-    "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">站更多，方向也更充分吗？</span></nav><p class=\"site-role\">协作感知 · 式 (5)/(6) 归一化几何 FIM 与有界样本回放</p><p class=\"site-prereq\">需要时回看：<a href=\"foundations.html#geometry\">双站与多站几何</a> · <a href=\"theory.html#estimator-crb\">下界什么时候真的能达到？</a></p></div>\n<!-- SITE:CONTEXT:END -->",
+    "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">协作站与定位下界</span></nav><p class=\"site-role\">协作感知 · 式 (5)/(6) 归一化几何 FIM 与有界样本回放</p><p class=\"site-prereq\">需要时回看：<a href=\"foundations.html#geometry\">双站与多站几何</a> · <a href=\"theory.html#estimator-crb\">下界什么时候真的能达到？</a></p></div>\n<!-- SITE:CONTEXT:END -->",
     "NEXT": "<!-- SITE:NEXT:START -->\n<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p><a href=\"reading.html#guide-networks-cooperative-clusters-2024\">回到同一篇论文，区分几何信息、网络负载与完整结果 →</a></aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href=\"index.html\">学习地图</a> · <a href=\"reading.html#reading\">原文与证据</a></footer>\n<!-- SITE:NEXT:END -->"
   },
-  "entryHeadSha256": "e91c240fe0b19f59f39273dac75ce3bf679e521fb66ab20c8616a5232ea2bd93",
+  "entryHeadSha256": "6a0545d3234133f5a8e5dbdc4699765794abcceae5f6f9fdc5ebccabedd933c8",
   "pageScripts": [
     "<script type=\"module\" src=\"cooperative-fim-ui.mjs\"></script>"
   ],
@@ -95,7 +95,7 @@
     },
     {
       "public": "cooperative-fim-view.mjs",
-      "sha256": "3907f202b0a461ad129e3ba134b4ce94aa403255af4a5baf18aefca70bc52b2b",
+      "sha256": "32ef3e3601c0388d0b3c78c500fa9a62e3d7232639aed6fa037311de548eca5b",
       "runtimePolicy": "no-runtime-loads",
       "sourceLiterals": [],
       "runtimeEdges": [],
@@ -103,7 +103,7 @@
     },
     {
       "public": "cooperative-fim-ui.mjs",
-      "sha256": "ae96250bf8285bd49f79402b371fcf210a393880cf535d44cf26dc1dccc0a375",
+      "sha256": "3bdd57d3f16cc9983c68508af83047d56c68a869b9c1b051db1de2d55efd1d0e",
       "runtimePolicy": "reviewed-cooperative-runtime",
       "sourceLiterals": [],
       "runtimeEdges": [
@@ -123,7 +123,7 @@
   "assets": [
     {
       "public": "cooperative-fim.css",
-      "sha256": "681a814d248b431d722f318e4f4bc8437ce9eb6200288520c9082acea6070a98"
+      "sha256": "690f757ab89c520784f59c1cc943d0fad28ebe19fd03fcead7c862ae4448af00"
     },
     {
       "public": "assets/data/cooperative-fim-retained-coordinates.json",

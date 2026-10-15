@@ -9,7 +9,7 @@ export function formatNumber(value, digits = 6) {
 }
 export const statusLabel = status => ({finite:'有限界限',singular:'已证奇异 · 无有限二维界限',unstable:'数值不稳定，暂不报告有限界限',singular_or_roundoff_unresolved:'秩亏或舍入影响未能分辨',invalid_input:'输入几何无效',arithmetic_failure:'计算失败',invalid_matrix:'矩阵无效',zero_information:'零信息',non_psd:'信息矩阵非半正定',nonsymmetric:'信息矩阵不对称',inverse_overflow:'逆矩阵溢出',eigenvalue_overflow:'特征值溢出',incomplete_run:'已取消 / 未完成，无完成态平均',incomplete_numerical_resolution:'存在未分辨尝试，平均暂不报告',contains_infinite_bound:'包含无限界限',all_finite_sample_not_expectation_proof:'本次样本全部有限'})[status] || status || '暂无结果';
 export const stateLabel = s => s.preset === 'symmetric' ? `对称布局 · N=2 → ${s.n}` : s.preset === 'collinear' ? `几乎共线 · ε=10⁻³ → ${s.epsilon}` : `随机网络 · N=4 → 8 · ${s.view === 'average' ? `T=${s.trials} 个保留布局` : '保留布局 0'}`;
-export const questions = {symmetric:'两站变四站，下界怎样变？资源增加了多少？',collinear:'几乎共线，为什么仍不能总给出有限界限？',network:'同一网络加入较远的站，平均的又是什么？'};
+export const questions = {symmetric:'新增两个方位，下界怎样变化？',collinear:'方位接近共线时，哪个方向的信息最弱？',network:'逐个布局求下界，平均后能说明什么？'};
 
 function axes(extent, xLabel, yLabel) {
   const scale = 103 / extent, cx = 250, cy = 135;

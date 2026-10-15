@@ -6,3 +6,32 @@
 @media print{.cf-actions,.cf-preset-tabs,#cf-download{display:none}.cf-experiment{box-shadow:none}.cf-main{max-width:none}}
 
 .cf-population-note{padding:8px 24px 12px;margin:0;border-top:1px solid #e4e9ed;background:#fafbfc}
+
+/* Teaching hierarchy stays scoped to this lesson, with readable captions. */
+@media screen{
+ .cooperative-lesson{font-size:16px;line-height:1.7}
+ .cooperative-lesson .cf-heading{align-items:flex-start;gap:24px}
+ .cooperative-lesson .cf-heading h1{font-size:30px;font-weight:650;line-height:1.35;letter-spacing:0;margin:8px 0}
+ .cooperative-lesson .cf-heading .eyebrow{font-size:13px;font-weight:600;line-height:1.5;letter-spacing:0}
+ .cooperative-lesson .cf-heading p:not(.eyebrow){font-size:16px;line-height:1.7}
+ .cooperative-lesson .cf-scope{font-size:13px;line-height:1.5;margin:12px 0 24px}
+ .cooperative-lesson .cf-controls h2{font-size:20px;font-weight:650;line-height:1.4;letter-spacing:0;margin:16px 0}
+ .cooperative-lesson .cf-figure figcaption{display:block}
+ .cooperative-lesson .cf-figure figcaption b{display:block;font-size:18px;font-weight:600;line-height:1.45}
+ .cooperative-lesson .cf-figure figcaption span{display:block;font-size:13px;line-height:1.5;margin-top:6px}
+ .cooperative-lesson .cf-comparison-head h3{font-size:18px;font-weight:600;line-height:1.45;letter-spacing:0}
+ .cooperative-lesson .cf-comparison-head p{font-size:13px;line-height:1.5;margin-top:6px}
+ .cooperative-lesson .cf-comparison-head .cf-metric-formula{font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums}
+ .cooperative-lesson .cf-value{font-size:32px;font-weight:650;line-height:1.2;letter-spacing:0}
+ .cooperative-lesson .cf-value.cf-unavailable{font-size:17px;line-height:1.5}
+ .cooperative-lesson .cf-small,.cooperative-lesson .cf-plot-legend,.cooperative-lesson .cf-fixed,.cooperative-lesson .cf-state-summary,.cooperative-lesson .cf-resource{font-size:13px;line-height:1.5}
+ .cooperative-lesson .cf-detail-body{font-size:16px;line-height:1.7}
+ .cooperative-lesson .cf-answer{font-size:15px;line-height:1.7}
+ .cooperative-lesson .cf-details-grid{margin:24px 0}
+}
+@media screen and (max-width:620px){
+ .cooperative-lesson .cf-heading h1{font-size:26px}
+ .cooperative-lesson .cf-controls h2{font-size:18px}
+ .cooperative-lesson .cf-value{font-size:28px}
+ .cooperative-lesson .cf-value.cf-unavailable{font-size:16px}
+}
