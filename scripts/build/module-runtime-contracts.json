@@ -1085,6 +1085,41 @@
       ],
       "runtimePolicy": "reviewed-cooperative-runtime",
       "unverifiedInputs": []
+    },
+    {
+      "public": "causal-capacity-controller.mjs",
+      "sha256": "003af7a21f1c127d914f0a1c1135f3ee594c5f2f4e7b13cfb5a3dc14cc37b324",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "causal-capacity-core.mjs",
+      "sha256": "3ff7638e823166132f96572055a8019229876824fef3c7ae089a08da2d3613e3",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "causal-capacity-runtime.mjs",
+      "sha256": "d51938af45a3df9976c117c7c45fd2d10be01300e1f9583b354fa09c8be04fe4",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "causal-capacity-ui.mjs",
+      "sha256": "1f763a9d2c9a380c4102b331ba43f175f63d47486a83eed05e394f06743f9503",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "causal-capacity-view.mjs",
+      "sha256": "db773efa2d4016efcf7a92027fdff249fc942f812eaf65bda85cfc878fe3bfd1",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

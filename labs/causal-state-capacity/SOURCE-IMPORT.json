@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "dateUTC": "2026-10-15",
+  "sourceArtifact": "causal-capacity-lesson-20261015",
+  "sourceManifestSha256": "8d7ed46df33bf4b7e40ea53c2165c097e231bb41e04aa6393a92800578a22105",
+  "sourceCoreManifestSha256": "3b229738d106789c3dbedffef98311e17fe73c91df5b60705c517e7abdc9c313",
+  "independentReviewManifestSha256": "ead54f62794bbc8a92ba2dc3e1f76223e1d86781adcb656d088783432a86ea83",
+  "files": [
+    {
+      "overlay": "public/causal-capacity-controller.mjs",
+      "source": "labs/causal-state-capacity/causal-capacity-controller.mjs",
+      "public": "causal-capacity-controller.mjs",
+      "compatibility": "causal-capacity-controller.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 1277,
+      "sha256": "003af7a21f1c127d914f0a1c1135f3ee594c5f2f4e7b13cfb5a3dc14cc37b324",
+      "runtimeImports": [
+        "./causal-capacity-runtime.mjs"
+      ]
+    },
+    {
+      "overlay": "public/causal-capacity-core.mjs",
+      "source": "labs/causal-state-capacity/causal-capacity-core.mjs",
+      "public": "causal-capacity-core.mjs",
+      "compatibility": "causal-capacity-core.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 12576,
+      "sha256": "3ff7638e823166132f96572055a8019229876824fef3c7ae089a08da2d3613e3",
+      "runtimeImports": []
+    },
+    {
+      "overlay": "public/causal-capacity-runtime.mjs",
+      "source": "labs/causal-state-capacity/causal-capacity-runtime.mjs",
+      "public": "causal-capacity-runtime.mjs",
+      "compatibility": "causal-capacity-runtime.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 2401,
+      "sha256": "d51938af45a3df9976c117c7c45fd2d10be01300e1f9583b354fa09c8be04fe4",
+      "runtimeImports": [
+        "./causal-capacity-core.mjs"
+      ]
+    },
+    {
+      "overlay": "public/causal-capacity-ui.mjs",
+      "source": "labs/causal-state-capacity/causal-capacity-ui.mjs",
+      "public": "causal-capacity-ui.mjs",
+      "compatibility": "causal-capacity-ui.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 7993,
+      "sha256": "1f763a9d2c9a380c4102b331ba43f175f63d47486a83eed05e394f06743f9503",
+      "runtimeImports": [
+        "./causal-capacity-controller.mjs",
+        "./causal-capacity-view.mjs"
+      ]
+    },
+    {
+      "overlay": "public/causal-capacity-view.mjs",
+      "source": "labs/causal-state-capacity/causal-capacity-view.mjs",
+      "public": "causal-capacity-view.mjs",
+      "compatibility": "causal-capacity-view.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 6754,
+      "sha256": "db773efa2d4016efcf7a92027fdff249fc942f812eaf65bda85cfc878fe3bfd1",
+      "runtimeImports": [
+        "./causal-capacity-core.mjs"
+      ]
+    },
+    {
+      "overlay": "public/causal-capacity.css",
+      "source": "labs/causal-state-capacity/causal-capacity.css",
+      "public": "causal-capacity.css",
+      "compatibility": "causal-capacity.css",
+      "owner": "labs/causal-state-capacity",
+      "role": "source",
+      "bytes": 13055,
+      "sha256": "07652a85fdac88382be14456ec8025321d7318b5ea3801f34986770b963fa9da",
+      "runtimeImports": []
+    },
+    {
+      "overlay": "public/causal-state-capacity.html",
+      "source": "content/pages/causal-state-capacity.html",
+      "public": "causal-state-capacity.html",
+      "compatibility": "causal-state-capacity.html",
+      "owner": "content/pages",
+      "role": "source",
+      "bytes": 14489,
+      "sha256": "ece5a424d62e8f534b458d4089ec904aa9a68950e50df653483536cc4c04d8fd",
+      "runtimeImports": []
+    }
+  ],
+  "unchangedTests": [
+    {
+      "source": "tests/lesson.test.mjs",
+      "sha256": "076476b9254ff0504452208be4886c05e01617bf17ffce7d7f766f11f55c5a19",
+      "target": "labs/causal-state-capacity/tests/lesson.test.mjs"
+    }
+  ],
+  "scope": "Fixed p=q=1/4 causal Theorem 3/Proposition 4 single-letter asymptotic theorem evaluation; no finite code, general parameters, strictly-causal Fig. 2 or full-paper claim. Browser acceptance is separate."
+}

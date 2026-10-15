@@ -1619,6 +1619,8 @@ dualArrayPublicFiles.set('labs/dual-array/runtime/records.mjs','0c9fda6852ef58b3
 for(const [file,profile] of require('./cooperative-clusters-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate cooperative profile');reviewedProfiles.set(file,profile);}
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
+// Fixed-quarter causal module identities; no fetch, Worker, or dynamic imports.
+for(const [file,profile] of require('./causal-capacity-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate causal profile');reviewedProfiles.set(file,profile);}
 const reviewedPolicies=new Set(['reviewed-cooperative-runtime','reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);

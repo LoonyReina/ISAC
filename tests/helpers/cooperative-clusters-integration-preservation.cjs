@@ -43,7 +43,7 @@ module.exports={delta,sha,identity,withoutFile,withoutRegistry,withoutMappings,w
 // remain visible to their original guards. Mixed old/new endpoints fail closed.
 const sameMetadata=(x,y)=>require('node:util').isDeepStrictEqual(x,y)&&JSON.stringify(x)===JSON.stringify(y);
 function withoutMetadata(input,key){
- const out=structuredClone(input),record=delta.metadataChanges[key],rows=out[record.collection];
+ const out=require('./causal-capacity-integration-preservation.cjs')[key==='guides'?'withoutGuides':'withoutBacklog'](input),record=delta.metadataChanges[key],rows=out[record.collection];
  a.ok(Array.isArray(rows),'cooperative metadata collection');
  const matches=rows.filter(x=>x.id===record.id);a.equal(matches.length,1,'one cooperative historical paper identity');const item=matches[0];
  const states=record.changes.map(c=>{let parent=item;for(const part of c.path.slice(0,-1)){a.ok(parent&&Object.hasOwn(parent,part),'cooperative metadata parent');parent=parent[part];}const leaf=c.path.at(-1),present=Object.hasOwn(parent,leaf),value=parent[leaf];return {c,parent,leaf,prior:c.added?!present:present&&sameMetadata(value,c.before),current:present&&sameMetadata(value,c.after)};});

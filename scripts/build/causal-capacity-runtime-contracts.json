@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "entryPoint": "causal-state-capacity.html",
+  "entryPageSha256": "7eb76c58b015e3424ffc6077d7fd7766bd3879ee421a60d62f766a525b783422",
+  "pageRegions": {
+    "HEADER": "<!-- SITE:HEADER:START -->\n<a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
+    "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">先抵消当前状态，再为延迟重构留出多少速率？</span></nav><p class=\"site-role\">同一论文 §IV · 固定 p=q=1/4 的单字母渐近定理求值；真实浏览器待验收</p><p class=\"site-prereq\">需要时回看：<a href=\"theory.html#shared-model\">共同观测：判决与估计</a> · <a href=\"foundations.html#limits\">性能指标与边界</a> · <a href=\"foundations.html#codesign\">发射、接收与联合设计</a></p></div>\n<!-- SITE:CONTEXT:END -->",
+    "NEXT": "<!-- SITE:NEXT:START -->\n<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p><a href=\"reading.html#guide-tradeoffs-causal-state-communication-2013\">回到同一篇论文，分清严格因果导读与 §IV 因果模型 →</a></aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href=\"index.html\">学习地图</a> · <a href=\"reading.html#reading\">原文与证据</a></footer>\n<!-- SITE:NEXT:END -->"
+  },
+  "entryHeadSha256": "791c79283ccb3d9c4ba691a5034f4eadcfd63802a1764e6e2c3fd06dcec3c6e2",
+  "pageScripts": [
+    "<script type=\"module\" src=\"causal-capacity-ui.mjs\"></script>"
+  ],
+  "pageStyles": [
+    "<link rel=\"stylesheet\" href=\"course.css\">",
+    "<link rel=\"stylesheet\" href=\"site.css?v=knowledge-map-v1\">",
+    "<link rel=\"stylesheet\" href=\"causal-capacity.css\">"
+  ],
+  "pageEdges": [
+    {
+      "kind": "script",
+      "url": "causal-capacity-ui.mjs"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "course.css"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "site.css?v=knowledge-map-v1"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "causal-capacity.css"
+    }
+  ],
+  "modules": [
+    {
+      "public": "causal-capacity-controller.mjs",
+      "sha256": "003af7a21f1c127d914f0a1c1135f3ee594c5f2f4e7b13cfb5a3dc14cc37b324",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./causal-capacity-runtime.mjs"
+      ]
+    },
+    {
+      "public": "causal-capacity-core.mjs",
+      "sha256": "3ff7638e823166132f96572055a8019229876824fef3c7ae089a08da2d3613e3",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
+    },
+    {
+      "public": "causal-capacity-runtime.mjs",
+      "sha256": "d51938af45a3df9976c117c7c45fd2d10be01300e1f9583b354fa09c8be04fe4",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./causal-capacity-core.mjs"
+      ]
+    },
+    {
+      "public": "causal-capacity-ui.mjs",
+      "sha256": "1f763a9d2c9a380c4102b331ba43f175f63d47486a83eed05e394f06743f9503",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./causal-capacity-controller.mjs",
+        "./causal-capacity-view.mjs"
+      ]
+    },
+    {
+      "public": "causal-capacity-view.mjs",
+      "sha256": "db773efa2d4016efcf7a92027fdff249fc942f812eaf65bda85cfc878fe3bfd1",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./causal-capacity-core.mjs"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "public": "causal-capacity.css",
+      "sha256": "07652a85fdac88382be14456ec8025321d7318b5ea3801f34986770b963fa9da"
+    }
+  ]
+}

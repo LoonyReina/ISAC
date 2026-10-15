@@ -7,6 +7,7 @@ const {moduleDependencies,isModuleFile,staticModuleDependencies}=require('./modu
 const {classicDependencies}=require('./classic-dependencies.cjs');
 const {receiverDependencies}=require('./crb-receiver-dependencies.cjs');
 const {cooperativeDependencies}=require('./cooperative-clusters-dependencies.cjs');
+const {causalDependencies}=require('./causal-capacity-dependencies.cjs');
 const compare=(a,b)=>a.path<b.path?-1:a.path>b.path?1:0;
 function insist(ok,message){if(!ok)throw new Error(message);}
 function exactFields(value,fields,label){insist(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join(',')===[...fields].sort().join(','),'Invalid '+label+' fields');}
@@ -77,6 +78,9 @@ function checkDependencies(root,manifest){
  const cooperative=modules.filter(m=>m.file.startsWith('cooperative-fim-'));
  const cooperativePages=[{file:'cooperative-clusters.html',source:fs.readFileSync(path.join(root,'cooperative-clusters.html'),'utf8')}];
  for(const edge of cooperativeDependencies(cooperative,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/cooperative-clusters-runtime-contracts.json'),'utf8')),identities,cooperativePages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
+ const causal=modules.filter(m=>m.file.startsWith('causal-capacity-'));
+ const causalPages=[{file:'causal-state-capacity.html',source:fs.readFileSync(path.join(root,'causal-state-capacity.html'),'utf8')}];
+ for(const edge of causalDependencies(causal,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/causal-capacity-runtime-contracts.json'),'utf8')),identities,causalPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
  // This script constructs URLs from currentScript.src; the literal sequence is
  // checked before adding its dependencies, rather than guessed from filenames.
  const course=fs.readFileSync(path.join(root,'course.js'),'utf8');
