@@ -46,3 +46,25 @@
 @media print{.foundation-path,.foundation-extension{background:white;box-shadow:none}.foundation-extension li,.foundation-observation li{break-inside:avoid}}
 
 .concept-sources{margin:18px 0;border-top:1px solid #cbd5e1;padding:12px 0}.concept-sources>summary{min-height:44px;cursor:pointer;font-weight:700}
+
+/* Foundations: one page title, then a clear question/concept hierarchy. */
+@media screen{
+ .foundation-book{font-size:16px;line-height:1.7}
+ .foundation-book .cover{padding:32px 0}
+ .foundation-book .cover h1{font-size:28px;font-weight:650;line-height:1.35;letter-spacing:0;margin:8px 0}
+ .foundation-book .cover>p:not(.eyebrow){font-size:16px;line-height:1.7;margin:8px 0 20px;max-width:46em}
+ .foundation-book .eyebrow{font-size:13px;font-weight:600;line-height:1.5;letter-spacing:0;margin:0 0 8px}
+ .foundation-book .chapter{padding:40px 0 32px}
+ .foundation-book .chapter-head{margin-bottom:24px}
+ .foundation-book .chapter-head h2{font-size:30px;font-weight:650;line-height:1.35;letter-spacing:0;margin:8px 0}
+ .foundation-book .goal{font-size:16px;line-height:1.7;margin:8px 0 0}
+ .foundation-book .foundation-path h2,.foundation-book .chapter>h3{font-size:22px;font-weight:650;line-height:1.4;letter-spacing:0}
+ .foundation-book .chapter>h3{margin:32px 0 12px}
+ .foundation-book .lab-title,.foundation-book .step-panel h3{font-size:18px;font-weight:600;line-height:1.45;letter-spacing:0}
+}
+@media screen and (max-width:620px){
+ .foundation-book .cover{padding:24px 0}
+ .foundation-book .chapter-head h2{font-size:26px}
+ .foundation-book .chapter{padding:32px 0}
+ .foundation-book .foundation-path h2,.foundation-book .chapter>h3{font-size:20px}
+}

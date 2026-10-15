@@ -109,7 +109,7 @@ function contextualFoundationReferences(html){
 const researchDirectory=JSON.parse(read(registry.researchDirectoryFile));
 const {buildResearchTree,renderResearchTree}=require(path.join(__dirname,'research-tree.cjs'));
 const researchTree=buildResearchTree(registry,JSON.parse(read(registry.researchGuidesFile)),researchDirectory,JSON.parse(read('docs/PAPER-EXECUTION-BACKLOG.json')));
-let reading='<div class="reading-intro"><h1>论文阅读</h1><p>沿研究分支找到一个问题，打开原文与有界算法教程。</p></div>';
+let reading='<div class="reading-intro"><h1>论文阅读</h1><p>从研究方向找到问题，再选择论文</p></div>';
 reading+=renderResearchTree(researchTree);
 reading+='<details class="reading-legacy-evidence" id="reading-legacy-evidence"><summary>按需查看原文定位与历史证据</summary><p>这里保留已有导读、来源与书签。研究树中的课程入口直接指向同一内容；连线不表示引用或技术继承。</p>';
 reading+=`<section class="site-section" id="foundations"><h2 id="foundations-title">先接上必需的基础</h2><p>${link('foundations.html#start','连续基础讲义')} · ${link('theory.html#pathway','通信与感知的已知、未知')} · ${link('reading.html#research-method','把问题写成可复核计划')}</p><p>不必先读完所有内容；每个主题会指出当前需要的基础。</p></section>`;

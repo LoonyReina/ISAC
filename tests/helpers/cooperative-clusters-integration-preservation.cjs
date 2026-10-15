@@ -4,7 +4,9 @@
 const a=require('node:assert/strict'),crypto=require('node:crypto'),delta=require('./cooperative-clusters-integration-delta.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const identity=(b,r)=>b.length===r.bytes&&sha(b)===r.sha256;
+const headings=require('./teaching-heading-maintenance-preservation.cjs');
 function withoutFile(file,bytes,rows=delta.files){
+ bytes=headings.withoutFile(file,bytes);
  const matches=rows.filter(r=>r.path===file||r.compatibility===file);a.ok(matches.length<=1,'unique cooperative inverse');if(!matches.length)return bytes;
  const row=matches[0];if(identity(bytes,row.before)||(row.historicalIntermediates||[]).some(r=>identity(bytes,r)))return bytes;
  a.ok(identity(bytes,row.after),'exact cooperative current file '+file);let prior=Buffer.from(bytes);
@@ -17,20 +19,20 @@ function withoutFile(file,bytes,rows=delta.files){
  a.ok(identity(prior,row.before),'exact cooperative prior file '+file);return prior;
 }
 function withoutRegistry(input){
- const out=structuredClone(input),marker=delta.registryAdditions;
+ const out=headings.withoutRegistry(input),marker=delta.registryAdditions;
  if(!marker.some(c=>Array.isArray(out[c.key])&&out[c.key].some(v=>JSON.stringify(v)===JSON.stringify(c.value)||v.path==='cooperative-clusters.html'||v.canonicalHref?.startsWith('cooperative-clusters.html'))))return out;
  for(const c of marker){a.equal(out[c.key].length,c.priorLength+1,'complete cooperative registry '+c.key);a.deepEqual(out[c.key][c.priorLength],c.value,'exact cooperative registry addition '+c.key);out[c.key].splice(c.priorLength,1);}
  return out;
 }
 function withoutMappings(input){
- const out=structuredClone(input),rows=delta.addedEntries,owners=delta.addedOwners;
+ const out=headings.withoutMappings(input),rows=delta.addedEntries,owners=delta.addedOwners;
  if(!rows.some(row=>out.entries.some(e=>e.source===row.source))&&!owners.some(row=>out.owners.some(o=>o.id===row.id)))return out;
  for(const row of rows){const at=out.entries.flatMap((e,i)=>e.source===row.source?[i]:[]);a.equal(at.length,1,'one cooperative mapping '+row.source);a.deepEqual(out.entries[at[0]],row,'exact cooperative mapping');out.entries.splice(at[0],1);}
  for(const row of owners){const at=out.owners.flatMap((e,i)=>e.id===row.id?[i]:[]);a.equal(at.length,1,'one cooperative owner');a.deepEqual(out.owners[at[0]],row,'exact cooperative owner');out.owners.splice(at[0],1);}
  a.equal(sha(JSON.stringify(out,null,2)+'\n'),delta.priorManifestSha256,'exact pre-cooperative manifest');return out;
 }
 function withoutContracts(input){
- const out=structuredClone(input),rows=delta.addedModuleProfiles;
+ const out=headings.withoutContracts(input),rows=delta.addedModuleProfiles;
  if(!rows.some(row=>out.modules.some(e=>e.public===row.public)))return out;
  a.equal(out.modules.length,delta.priorModuleCount+rows.length,'complete cooperative module inventory');a.deepEqual(out.modules.slice(delta.priorModuleCount),rows,'exact cooperative appended profiles');out.modules.splice(delta.priorModuleCount);return out;
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="从站点坐标重算协同感知信息矩阵，比较对称、近共线和固定随机样本的归一化位置 MSE 下界。">
-<title>协作几何与信息界限 | ISAC 论文阅读</title>
+<title>协作站与定位下界 | ISAC 论文阅读</title>
 <link rel="stylesheet" href="course.css"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="cooperative-fim.css">
 <script type="module" src="cooperative-fim-ui.mjs"></script>
 </head>
@@ -16,12 +16,12 @@
 <!-- SITE:CONTEXT:START -->
 <div class="cf-breadcrumb"><a href="reading.html#guide-networks-cooperative-clusters-2024">论文阅读</a><span aria-hidden="true">/</span><span>协作几何与信息界限</span></div>
 <!-- SITE:CONTEXT:END -->
-<header class="cf-heading"><div><p class="eyebrow">式 (5) → 式 (6) · COOPERATIVE SENSING</p><h1>站更多，方向也更充分吗？</h1><p>从站点位置重新计算信息矩阵，比较增加协作站后的界限</p></div><a class="cf-prereq-link" href="#prerequisites">先看：方向 → 信息 → 界限 ↗</a></header>
+<header class="cf-heading"><div><p class="eyebrow">多站协作 · 几何与定位</p><h1>增加协作站，定位下界怎样变化？</h1><p>先比较站点方位，再看误差下界和资源变化</p></div><a class="cf-prereq-link" href="#prerequisites">先理解：方向与定位下界 ↗</a></header>
 <p class="cf-scope">归一化模型 · 所有站接受协作 · 式 (5)/(6) · 非定位接收机</p>
 <section class="cf-experiment" aria-labelledby="cf-question">
 <div class="cf-controls">
 <div class="cf-preset-tabs" role="group" aria-label="选择教学例子"><button type="button" data-preset="symmetric" aria-pressed="true"><span>01</span> 对称布局</button><button type="button" data-preset="collinear" aria-pressed="false"><span>02</span> 几乎共线</button><button type="button" data-preset="network" aria-pressed="false"><span>03</span> 随机网络</button></div>
-<h2 id="cf-question">两站变四站，下界怎样变？资源增加了多少？</h2>
+<h2 id="cf-question">新增两个方位，下界怎样变化？</h2>
 <div class="cf-control-row">
 <div id="cf-conditional-controls">
 <label data-control="symmetric">比较站数 N <select id="cf-n"><option value="1">1 站</option><option value="2">2 站</option><option value="4" selected>4 站</option></select></label>
@@ -36,10 +36,10 @@
 <div id="cf-run-status" class="cf-run-status" role="status" aria-live="polite" aria-atomic="true">正在载入坐标与计算核心…</div>
 <div id="cf-result-panel" aria-busy="true">
 <div class="cf-figures">
-<figure class="cf-figure"><figcaption><b>站点与目标</b><span id="cf-geometry-caption">位置坐标 · 相同前缀，不换布局</span></figcaption><svg id="cf-geometry" viewBox="0 0 500 290" role="img" aria-label="等待计算的站点布局"></svg><p class="cf-plot-legend">○ A 原有站　● B 已加入　＋ B 新增站　┄ 未加入　◇ 目标</p><p id="cf-geometry-note" class="cf-small">x、y 等比例，均为归一化位置坐标</p></figure>
-<figure class="cf-figure"><figcaption><b id="cf-bound-title">信息界限椭圆</b><span id="cf-bound-caption">误差坐标 δ · A/B 共用比例尺</span></figcaption><svg id="cf-bound" viewBox="0 0 500 290" role="img" aria-label="等待计算的信息界限"></svg><p id="cf-bound-legend" class="cf-plot-legend"><span class="cf-key-a">┄ A 基线</span>　<span class="cf-key-b">━ B 比较</span>　δᵀFδ = 1</p><p id="cf-bound-note" class="cf-small">无概率覆盖率含义；不是误差散点或置信区域</p></figure>
+<figure class="cf-figure"><figcaption><b>01 · 比较站点方位</b><span id="cf-geometry-caption">位置坐标 · 相同前缀，不换布局</span></figcaption><svg id="cf-geometry" viewBox="0 0 500 290" role="img" aria-label="等待计算的站点布局"></svg><p class="cf-plot-legend">○ A 原有站　● B 已加入　＋ B 新增站　┄ 未加入　◇ 目标</p><p id="cf-geometry-note" class="cf-small">x、y 等比例，均为归一化位置坐标</p></figure>
+<figure class="cf-figure"><figcaption><b id="cf-bound-title">02 · 找出信息较弱的方向</b><span id="cf-bound-caption">误差坐标 δ · A/B 共用比例尺</span></figcaption><svg id="cf-bound" viewBox="0 0 500 290" role="img" aria-label="等待计算的信息界限"></svg><p id="cf-bound-legend" class="cf-plot-legend"><span class="cf-key-a">┄ A 基线</span>　<span class="cf-key-b">━ B 比较</span>　δᵀFδ = 1</p><p id="cf-bound-note" class="cf-small">无概率覆盖率含义；不是误差散点或置信区域</p></figure>
 </div>
-<div class="cf-comparison-head"><div><h3>位置 MSE 下界 B = tr(F⁻¹)</h3><p>这是无偏位置估计的理论界限，不是测得的定位误差</p></div><button id="cf-download" type="button" disabled>下载本次完整证据 ↓</button></div>
+<div class="cf-comparison-head"><div><h3>无偏位置估计的 MSE 下界</h3><p class="cf-metric-formula">B = tr(F⁻¹)</p><p>这是无偏位置估计的理论界限，不是测得的定位误差</p></div><button id="cf-download" type="button" disabled>下载本次计算记录 ↓</button></div>
 <div id="cf-comparison" class="cf-comparison"><p class="cf-empty">载入后运行一个例子，查看从坐标算出的结果</p></div>
 <p id="cf-explanation" class="cf-answer">先预测：增加站点时，方向信息和资源预算会一起怎样变化？</p>
 <p id="cf-population-note" class="cf-small cf-population-note">固定几何的两站可以有有限界限；若方位独立均匀随机，N=2 的总体平均为 ∞，有限样本不证明总体均值有限。此结论不推及 N≥3</p>

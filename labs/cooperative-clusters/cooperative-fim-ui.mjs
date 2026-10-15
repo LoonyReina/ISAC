@@ -10,7 +10,7 @@ function renderResult(result) {
   $('cf-bound').innerHTML=boundSVG(result);
   $('cf-geometry-caption').textContent=result.state.preset==='network'?'固定样本重算 · 布局 0':result.state.preset==='collinear'?'相同四站 · 改变 ε 与几何':'位置坐标 · 相同前缀，不换布局';
   $('cf-geometry-note').textContent=result.state.preset==='collinear'?'x、y 等比例；微小 ε 视觉上近乎重合，计算保留完整坐标':result.kind==='average'?'布局 0 示例，不代表平均布局；x、y 等比例':'x、y 等比例，均为归一化位置坐标';
-  $('cf-bound-title').textContent=result.kind==='average'?'各自求界限，再平均':'信息界限椭圆';
+  $('cf-bound-title').textContent=result.kind==='average'?'02 · 逐个布局求下界，再平均':'02 · 找出信息较弱的方向';
   $('cf-bound-caption').textContent=result.kind==='average'?'有限样本 mean B · 不是平均椭圆':'误差坐标 δ · A/B 共用比例尺';
   $('cf-bound-legend').innerHTML=result.kind==='average'?'<span class="cf-key-a">┄ A · N=4</span>　<span class="cf-key-b">━ B · N=8</span>　布局 → 求界限 → 平均':'<span class="cf-key-a">┄ A 基线</span>　<span class="cf-key-b">━ B 比较</span>　δᵀFδ = 1';
   $('cf-bound-note').textContent=result.kind==='average'?'包含全部尝试；任何未分辨尝试都会使有限平均被暂扣':'无概率覆盖率含义；不是误差散点或置信区域';
@@ -51,7 +51,7 @@ function renderSnapshot(snapshot){
   for(const label of document.querySelectorAll('[data-control]'))label.hidden=label.dataset.control!==state.preset;
   $('cf-trials-control').hidden=!(state.preset==='network'&&state.view==='average');
   $('cf-n').value=state.n;$('cf-epsilon').value=state.epsilon;$('cf-view').value=state.view;$('cf-trials').value=state.trials;
-  $('cf-question').textContent=state.preset==='symmetric'&&state.n===1?'一个站为什么无法约束两个方向？':state.preset==='symmetric'&&state.n===2?'同样的两站，几何与资源都不变时会得到什么？':questions[state.preset];
+  $('cf-question').textContent=state.preset==='symmetric'&&state.n===1?'一个站为什么不能约束二维位置？':state.preset==='symmetric'&&state.n===2?'保持两站不变，下界会变吗？':questions[state.preset];
   const busy=['running','cancelling','loading'].includes(phase);
   $('cf-run').disabled=phase==='loading'||phase==='cancelling';$('cf-cancel').hidden=!['running','cancelling'].includes(phase);$('cf-cancel').disabled=phase==='cancelling';
   $('cf-result-panel').setAttribute('aria-busy',String(busy));$('cf-result-panel').classList.toggle('cf-result-stale',phase==='stale'||phase==='running'||phase==='error');

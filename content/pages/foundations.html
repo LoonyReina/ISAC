@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="面向学过信号与系统、通信原理的本科生：从回波、I/Q 和相位出发，逐步推导匹配滤波、OFDM、CFAR、阵列和多站感知，再接上综述与2026年研究。"><title>ISAC 交互讲义 · 从一束电波到一张感知图</title><link rel="stylesheet" href="course.css?v=learning-flow-v1"><script defer src="course-core.js?v=iq-path-v4"></script><link rel="stylesheet" href="intuition.css?v=iq-path-v4"><script defer src="intuition-core.js?v=iq-path-v4"></script><script defer src="intuition.js?v=iq-path-v4"></script><script defer src="course.js?v=learning-flow-v2"></script><link rel="stylesheet" href="research.css?v=1"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"></head><body class="foundation-book">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="面向学过信号与系统、通信原理的本科生：从回波、I/Q 和相位出发，逐步推导匹配滤波、OFDM、CFAR、阵列和多站感知，再接上综述与2026年研究。"><title>基础知识 | ISAC 交互学习</title><link rel="stylesheet" href="course.css?v=learning-flow-v1"><script defer src="course-core.js?v=iq-path-v4"></script><link rel="stylesheet" href="intuition.css?v=iq-path-v4"><script defer src="intuition-core.js?v=iq-path-v4"></script><script defer src="intuition.js?v=iq-path-v4"></script><script defer src="course.js?v=learning-flow-v2"></script><link rel="stylesheet" href="research.css?v=1"><link rel="stylesheet" href="site.css?v=knowledge-map-v1"></head><body class="foundation-book">
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html" aria-current="page"><span>01</span> 基础讲义</a><a href="experiments.html"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav><button id="print-book" type="button" title="打印或另存为 PDF">打印讲义</button><div id="progress" aria-hidden="true"></div></header>
@@ -9,9 +9,9 @@
 <!-- SITE:CONTEXT:START -->
 <div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <span aria-current="page">基础讲义</span></nav><p class="site-role">连续讲义 · 00–13 章</p></div>
 <!-- SITE:CONTEXT:END -->
-<div class="cover"><p class="eyebrow">本科起点 · 可推导的通感一体</p><h1>从一束电波，<br>走到一张感知图。</h1><p>不是从热图开始，而是从热图里的第一个数开始。</p><div class="cover-tags"><span>复数与相位</span><span>七步 OFDM</span><span>模型与现实</span><span>研究截至 2026-10-08</span></div></div>
+<div class="cover"><p class="eyebrow">连续讲义 · 00–13 章</p><h1>基础知识</h1><p>从回波与 I/Q 出发，理解距离、速度和角度怎样从接收数据中得到</p><div class="cover-tags"><span>复数与相位</span><span>七步 OFDM</span><span>模型与现实</span><span>研究截至 2026-10-08</span></div></div>
 <section class="foundation-path" id="foundation-path" aria-labelledby="foundation-path-title">
-<p class="eyebrow">基础知识 · 一条连续的推导路线</p><h2 id="foundation-path-title">先走通一个回波，再打开一个问题</h2>
+<h2 id="foundation-path-title">学习顺序</h2>
 <p>从已学过的信号与系统出发，不预设雷达、估计理论或优化知识。每章先解释物理对象和可观测量，再给公式、图和操作；章末的延伸练习仍属于这一章。</p>
 <ol class="foundation-steps">
 <li><a href="#history"><b>01–06 · 建立物理直觉</b><span>通信与感知 → 回波 → I/Q → 匹配 → 多普勒 → 阵列</span></a><p>能说明一个复数从哪里来，以及路径如何改变它的相位。</p></li>
@@ -22,7 +22,7 @@
 <p class="small">按章节顺序学习即可。已有 00–13 章的推导、原控件和数值计算继续保留；本次整理学习路线与章内延伸，不把所有专题重新命名为已经重写的基础课。需要查一个具体论文的方法、证据和复现边界时，再进入<a href="reading.html">论文阅读</a>。</p>
 </section>
 <noscript><div class="callout">正文和推导可以直接阅读。交互实验需要 JavaScript；当前不会更新图形与读数。</div></noscript>
-<section class="chapter" id="start" data-number="00"><header class="chapter-head"><div class="eyebrow">建立物理直觉 / 00</div><h2>先约定：这不是一页研究名词表</h2><p class="goal">起点：见过复数、傅里叶变换、卷积与基本调制；不默认你已经理解它们为什么有用。基础概念也从用途、实物与可操作例子重讲。</p></header><span class="anchor-alias" id="concept"></span>
+<section class="chapter" id="start" data-number="00"><header class="chapter-head"><div class="eyebrow">建立物理直觉 / 00</div><h2>学习前需要知道什么？</h2><p class="goal">起点：见过复数、傅里叶变换、卷积与基本调制；不默认你已经理解它们为什么有用。基础概念也从用途、实物与可操作例子重讲。</p></header><span class="anchor-alias" id="concept"></span>
 <p>我们跟着一个具体场景走到底：<strong>基站给联网机器人发数据，同时利用这次发射的反射信号，测量附近一辆车的位置和速度。</strong>车可以不联网。通信终端和被感知目标是两个角色，即使某些系统中它们恰好是同一个物体，也不能在推导时偷偷混为一谈。</p>
 <p>先问“电波走了哪条路”，再问“接收机实际拿到了什么数”，最后才问“如何把这些数变成距离和速度”。网页中的任何彩色格子都必须交代三件事：<strong>从哪里来、两个坐标是什么、颜色代表什么。</strong></p>
 <div class="journey"><a href="#echo"><b>物理世界</b><span>目标改变传播路径</span></a><a href="#iq"><b>可观测量</b><span>延迟、相位、幅度</span></a><a href="#ofdm"><b>接收处理</b><span>采样、补偿、累加</span></a><a href="#cfar"><b>系统输出</b><span>检测、估计、跟踪</span></a><a href="reading.html#frontiers"><b>研究问题</b><span>哪条理想假设失效？</span></a></div>
@@ -51,11 +51,11 @@
 <article><span>2023–2026 · 网络与验证</span><h4>一台演示机还不是一张可运营的网络</h4><p>ITU-R M.2160 将 ISAC 纳入 IMT-2030 愿景；后续工作扩展到目标/背景信道、节点同步、调度、结果报告和真实硬件。规范的服务需求、研究报告、原型演示与规模商用，必须分开描述。</p></article>
 </div>
 <p>这条历史给出本书的路线：先掌握测量原理，再理解通信波形为何可复用，最后讨论为复用付出的代价。不要把“先出现”简单等同于“被后者淘汰”：专用雷达、通信辅助感知和联合设计仍各有适用场景。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-STD">[STD]</a> · <a href="reading.html#ref-R7">[R7]</a></p><details class="checkpoint"><summary>停一下，先预测：信道估计已经存在，为什么还需要研究感知？</summary><div><p>通信只需一个足以均衡/解调的 H；感知还要把 H 分解成可解释的几何参数，处理同步偏差、多径、不可辨识性和误差，并判断哪些路径属于目标。这是一个额外的逆问题。</p></div></details><a class="next-chapter" href="#echo">下一章 02 → 从回声开始：为什么延迟能够测距？</a></section>
-<section class="chapter" id="echo" data-number="02"><header class="chapter-head"><div class="eyebrow">建立物理直觉 / 02</div><h2>从回声开始：为什么延迟能够测距？</h2><p class="goal">本章只需要速度 × 时间 = 路程。先不使用 FFT。</p></header>
+<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-STD">[STD]</a> · <a href="reading.html#ref-R7">[R7]</a></p><details class="checkpoint"><summary>停一下，先预测：信道估计已经存在，为什么还需要研究感知？</summary><div><p>通信只需一个足以均衡/解调的 H；感知还要把 H 分解成可解释的几何参数，处理同步偏差、多径、不可辨识性和误差，并判断哪些路径属于目标。这是一个额外的逆问题。</p></div></details><a class="next-chapter" href="#echo">下一章 02 → 怎样用回波延迟测距？</a></section>
+<section class="chapter" id="echo" data-number="02"><header class="chapter-head"><div class="eyebrow">02 · 回波与距离</div><h2>怎样用回波延迟测距？</h2><p class="goal">先看信号走过的往返路径，再把传播时间换算成目标距离</p></header>
 <p>基站在 t = 0 发出一小段已知信号。目标距离为 R，传播速度 c ≈ 3×10⁸ m/s。信号先走 R 到目标，再走 R 返回共址接收机。忽略反射自身的额外时间：</p>
-<div class="equation">τ = R/c + R/c = 2R/c　⇒　R = cτ/2</div><p class="eqnote">τ 是往返传播延迟（秒），R 是单站距离（米）。下面的动画把纳秒级传播放慢显示，图中比例不是实时光速。</p><div class="lab"><div class="lab-title">动手推导 · 让一小段波包往返一次</div><label class="range-label" for="echo-r">目标距离<output id="echo-r-value">60 m</output></label><input id="echo-r" type="range" min="10" max="140" step="1" value="60" data-unit="m"><label class="range-label" for="echo-t">物理时刻<output id="echo-t-value">0 μs</output></label><input id="echo-t" type="range" min="0" max="1" step="0.005" value="0" data-unit="μs"><div class="actions"><button data-play="echo-t" data-rate="0.22">播放传播</button><button data-reset="echo-t">回到发射时刻</button></div><canvas id="echo-c" width="800" height="210" data-h="210" role="img" aria-label="去程、反射与回程的位置示意">去程、反射与回程的位置示意。数值解释见图下文字。</canvas><p id="echo-read" class="readout"></p></div>
-<h3>但接收机怎样知道“哪一刻到了”？</h3>
+<div class="equation">τ = R/c + R/c = 2R/c　⇒　R = cτ/2</div><p class="eqnote">τ 是往返传播延迟（秒），R 是单站距离（米）。下面的动画把纳秒级传播放慢显示，图中比例不是实时光速。</p><div class="lab"><div class="lab-title">拖动时间，观察信号的位置</div><label class="range-label" for="echo-r">目标距离<output id="echo-r-value">60 m</output></label><input id="echo-r" type="range" min="10" max="140" step="1" value="60" data-unit="m"><label class="range-label" for="echo-t">物理时刻<output id="echo-t-value">0 μs</output></label><input id="echo-t" type="range" min="0" max="1" step="0.005" value="0" data-unit="μs"><div class="actions"><button data-play="echo-t" data-rate="0.22">播放传播</button><button data-reset="echo-t">回到发射时刻</button></div><canvas id="echo-c" width="800" height="210" data-h="210" role="img" aria-label="去程、反射与回程的位置示意">去程、反射与回程的位置示意。数值解释见图下文字。</canvas><p id="echo-read" class="readout"></p></div>
+<h3>接收机怎样找到回波到达的时刻？</h3>
 <p>上面的动画给你看到了干净的波包。现实里接收信号并没有写着“我是刚才那个回波”。它可能很弱，叠着噪声，甚至有好几段相似的返回。于是测距分成两步：<strong>先从波形中识别延迟 τ，再把 τ 换算成 R。</strong>第 4 章的匹配滤波解决前一步。</p>
 <h3>把物理动作翻译成你学过的系统模型</h3>
 <div class="equation">y(t) = a·s(t − τ) + n(t)</div><p class="eqnote">s(t) 是已知发射基带信号；a 是反射与传播带来的复增益；n(t) 是噪声。先把目标看成一条路径。</p>

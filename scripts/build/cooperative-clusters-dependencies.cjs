@@ -4,7 +4,7 @@
 const a=require('node:assert/strict'),crypto=require('node:crypto');
 const contract=require('./cooperative-clusters-runtime-contracts.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-const CONTRACT_SHA256='0b1a317748304c2891b0ed0c31c4c199cd14e1405a5f89c7c98a46d2a8aacd73';
+const CONTRACT_SHA256='e83f830281db82c57297d26551a92ee27ab9cba40c979368c7c15997f4f6e1ea';
 a.equal(sha(JSON.stringify(contract)),CONTRACT_SHA256,'Unreviewed cooperative runtime contract');
 const runtimeProfiles=contract.modules.map(m=>({public:m.public,sha256:m.sha256,runtimeEdges:m.runtimeEdges,runtimePolicy:m.runtimePolicy,unverifiedInputs:[]}));
 const reviewedProfiles=contract.modules.map(m=>[m.public,{sha256:m.sha256,runtimePolicy:m.runtimePolicy,sourceLiterals:m.sourceLiterals,edgeKind:'reviewed-cooperative-module',runtimeEdges:m.runtimeEdges}]);
