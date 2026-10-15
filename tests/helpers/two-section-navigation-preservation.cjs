@@ -6,6 +6,7 @@ const delta=require('./two-section-navigation-delta.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const identity=(b,r)=>b.length===r.bytes&&sha(b)===r.sha256;
 function reverseFile(file,bytes,rows=delta.files){
+ bytes=require('./cooperative-clusters-integration-preservation.cjs').withoutFile(file,bytes);
  const found=rows.filter(r=>r.path===file||r.compatibility===file);a.ok(found.length<=1,'unique two-section navigation file');if(!found.length)return bytes;
  const row=found[0];if(identity(bytes,row.before)||(row.historicalIntermediates||[]).some(r=>identity(bytes,r)))return bytes;
  a.ok(identity(bytes,row.after),'exact reviewed two-section navigation current bytes '+file);
@@ -19,7 +20,7 @@ function reverseFile(file,bytes,rows=delta.files){
  a.ok(identity(prior,row.before),'exact pre-two-section navigation bytes '+file);return prior;
 }
 function withoutRegistry(input,changes=delta.registryChanges){
- const out=structuredClone(input),keys=changes.map(c=>JSON.stringify(c.path));a.equal(new Set(keys).size,keys.length,'unique navigation metadata paths');
+ const out=require('./cooperative-clusters-integration-preservation.cjs').withoutRegistry(input),keys=changes.map(c=>JSON.stringify(c.path));a.equal(new Set(keys).size,keys.length,'unique navigation metadata paths');
  // Earlier checkpoints legitimately have fewer pages. A partial current redesign is not earlier history.
  const stageChange=changes.find(c=>JSON.stringify(c.path)==='["stages"]');a.ok(stageChange,'explicit stage delta');
  if(!Object.hasOwn(out,'lessonPlacement')&&JSON.stringify(out.stages)===JSON.stringify(stageChange.before))return out;
@@ -33,7 +34,7 @@ function withoutRegistry(input,changes=delta.registryChanges){
 const withoutFile=(file,bytes)=>['content/data/registry.json','site/registry.json'].includes(file)?Buffer.from(JSON.stringify(withoutRegistry(JSON.parse(bytes)),null,2)+'\n'):reverseFile(file,bytes);
 module.exports={delta,sha,identity,reverseFile,withoutFile,withoutRegistry};
 function withoutMappings(input){
- const out=structuredClone(input),rows=delta.addedMappings||[];
+ const out=require('./cooperative-clusters-integration-preservation.cjs').withoutMappings(input),rows=delta.addedMappings||[];
  if(!rows.some(row=>out.entries.some(e=>e.source===row.source)))return out;
  for(const row of rows){const indices=out.entries.flatMap((e,i)=>e.source===row.source?[i]:[]);a.equal(indices.length,1,'one exact two-section mapping');a.deepEqual(out.entries[indices[0]],row,'exact two-section mapping');out.entries.splice(indices[0],1);}
  a.equal(sha(JSON.stringify(out,null,2)+'\n'),delta.priorManifestSha256,'exact frozen pre-two-section manifest');return out;

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "overlayManifestSha256": "97546d1ebd17ebd5f5821fc38f9f8d272734bc3fca3738d0349a2a06637172e7",
+  "date": "2026-10-15",
+  "scope": "Frozen bounded normalized Eq. (5)/(6) teaching overlay; no browser acceptance transfer",
+  "files": [
+    {
+      "source": "content/pages/cooperative-clusters.html",
+      "sha256": "f7a5aeb07e6429c2a0b8781b109b35d3f77ee5bf983beda16e19fc02ec6b992a"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-core.mjs",
+      "sha256": "ecaccbc421e50359bc8b8725103730d9c4f8d31b813f82dff113c54e64a661c3"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-model.mjs",
+      "sha256": "2be9c3438d651952d7dbd653b875f37107701fe8db6818ca05602217560f2808"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-controller.mjs",
+      "sha256": "9bdfbea4d21d327aa242993432a55be0b1690c60085593888e09fa055f3788b8"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-worker.mjs",
+      "sha256": "9c2151b606ac552617e652e1d68bd155e69063d8626580b2ed83e53e10e4d01c"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-view.mjs",
+      "sha256": "3907f202b0a461ad129e3ba134b4ce94aa403255af4a5baf18aefca70bc52b2b"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-ui.mjs",
+      "sha256": "ae96250bf8285bd49f79402b371fcf210a393880cf535d44cf26dc1dccc0a375"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim.css",
+      "sha256": "681a814d248b431d722f318e4f4bc8437ce9eb6200288520c9082acea6070a98"
+    },
+    {
+      "source": "assets/data/cooperative-fim-retained-coordinates.json",
+      "sha256": "07fa3de3e8aa966d1d88a4d9c07868019802b98c0bbf1bf057c69a14166bfb19"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/model.test.mjs",
+      "sha256": "62780b3e1b7e7a804aa7a7496753b789d3e6a2ab8a4fdbf88adcb8c231209686"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/controller.test.mjs",
+      "sha256": "9550166c1aaaacf082604ecacd3a3c9894800c5467590cf9239c8683966b9ab0"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/worker-runtime.test.mjs",
+      "sha256": "9f90940eb6c681846fc57326b1c46b618df79d0040458c56c69ebc7ba022d1d2"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/view.test.mjs",
+      "sha256": "9b53080799feca550a64f841e4883cfe9e7d9ee13cdd317f527c1ec62f5300f5"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/ui-lifecycle.test.mjs",
+      "sha256": "4e83bc6853e7d7af1e4f1ec9f32bb747a103602ac9c73ae1d853877341931a78"
+    }
+  ]
+}
