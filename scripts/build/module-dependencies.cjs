@@ -1615,9 +1615,11 @@ dualArrayPublicFiles.set('labs/dual-array/lesson.css','a26465d08bea5d94ee331ab8e
 if(reviewedProfiles.get('labs/dual-array/runtime/records.mjs').sha256!=='7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158'||dualArrayPublicFiles.get('labs/dual-array/runtime/records.mjs')!=='7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158')throw Error('Unexpected prior dual-array records identity');
 reviewedProfiles.set('labs/dual-array/runtime/records.mjs',{...reviewedProfiles.get('labs/dual-array/runtime/records.mjs'),sha256:'0c9fda6852ef58b3dd942b5bc8bb911be0ecccbffc36605b9a2f73a7ec043854'});
 dualArrayPublicFiles.set('labs/dual-array/runtime/records.mjs','0c9fda6852ef58b3dd942b5bc8bb911be0ecccbffc36605b9a2f73a7ec043854');
+// Separately reviewed cooperative FIM closure; existing profiles retain their identities.
+for(const [file,profile] of require('./cooperative-clusters-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate cooperative profile');reviewedProfiles.set(file,profile);}
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
-const reviewedPolicies=new Set(['reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
+const reviewedPolicies=new Set(['reviewed-cooperative-runtime','reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);
  if(c.runtimeEdges.length!==profile.runtimeEdges.length)throw Error('Reviewed runtime endpoint set mismatch: '+file);

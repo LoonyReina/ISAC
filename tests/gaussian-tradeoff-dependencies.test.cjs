@@ -143,6 +143,19 @@ function publicFixture(t){
  for(const match of head.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){const file=match[1].split(/[?#]/)[0];if(!seen.has(file))put(file);}
  put('scripts/build/crb-receiver-runtime-contracts.json',JSON.stringify(receiver),false);
  put(receiver.entryPoint,head+'\n<body></body>\n</html>\n');
+ // Keep the new bounded lesson's live checker active in this isolated fixture.
+ // Current bytes and exact generated regions are used, never a historical projection.
+ const cooperative=require('../scripts/build/cooperative-clusters-dependencies.cjs'),cc=cooperative.contract;
+ const current=file=>fs.readFileSync(path.join(root,manifest.entries.find(e=>e.public===file).source),'utf8');
+ for(const row of [...cc.modules,...cc.assets])put(row.public,current(row.public));
+ put('scripts/build/cooperative-clusters-runtime-contracts.json',JSON.stringify(cc),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles]}),false);
+ let cooperativePage=current(cc.entryPoint).replace(/<link rel="stylesheet" href="site\.css(?:\?[^"]*)?">/,cc.pageStyles.find(s=>s.includes('href="site.css')));
+ for(const [key,region]of Object.entries(cc.pageRegions))cooperativePage=cooperativePage.replace(new RegExp('<!-- SITE:'+key+':START -->[\\s\\S]*?<!-- SITE:'+key+':END -->'),region);
+ a.equal(sha(cooperativePage),cc.entryPageSha256,'exact generated cooperative fixture page');
+ for(const file of ['course.css','site.css'])put(file,current(file));
+ for(const [file,ids]of [['index.html',[]],['foundations.html',['geometry']],['theory.html',['estimator-crb']],['reading.html',['reading','guide-networks-cooperative-clusters-2024']]])put(file,ids.map(id=>'<div id="'+id+'"></div>').join(''));
+ put(cc.entryPoint,cooperativePage);
  return {directory,manifest:{entries},put};
 }
 
@@ -153,6 +166,12 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
  a.ok(out.some(e=>e.from==='crb-beamforming.html'&&e.to==='crb-receiver/worker.js'&&e.kind==='reviewed-crb-receiver-worker'),'same live receiver gate remains active');
  for(const file of ['crb-beamforming.html','crb-receiver/core.js','crb-multiuser.js'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing receiver mapping must fail: '+file);
  const receiverPage=path.join(f.directory,'crb-beamforming.html'),bytes=fs.readFileSync(receiverPage);fs.unlinkSync(receiverPage);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT/);fs.writeFileSync(receiverPage,bytes);
+ a.ok(out.some(e=>e.from==='cooperative-fim-controller.mjs'&&e.to==='cooperative-fim-worker.mjs'&&e.kind==='reviewed-cooperative-worker'),'same live cooperative gate remains active');
+ for(const file of ['cooperative-clusters.html','cooperative-fim-controller.mjs','cooperative-fim-worker.mjs','assets/data/cooperative-fim-retained-coordinates.json']){
+  a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing cooperative mapping must fail: '+file);
+  const full=path.join(f.directory,file),bytes=fs.readFileSync(full);fs.unlinkSync(full);a.throws(()=>checkDependencies(f.directory,f.manifest),'missing cooperative bytes must fail: '+file);fs.writeFileSync(full,bytes);
+ }
+
 });
 
 test('unified gate rejects missing Gaussian local imports and omitted default Worker mapping',t=>{

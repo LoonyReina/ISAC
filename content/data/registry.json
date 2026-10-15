@@ -3292,6 +3292,18 @@
       "case": "case-dual-array-positioning",
       "next": "reading.html#guide-nearfield-double-array-ispac",
       "nextLabel": "回到同一论文的上下行导读，核对已实现下行与开放边界"
+    },
+    {
+      "path": "cooperative-clusters.html",
+      "title": "站更多，方向也更充分吗？",
+      "stage": "reading",
+      "role": "协作感知 · 式 (5)/(6) 归一化几何 FIM 与有界样本回放",
+      "prerequisites": [
+        "foundations.html#geometry",
+        "theory.html#estimator-crb"
+      ],
+      "next": "reading.html#guide-networks-cooperative-clusters-2024",
+      "nextLabel": "回到同一篇论文，区分几何信息、网络负载与完整结果"
     }
   ],
   "schemaVersion": 1,
@@ -7933,6 +7945,11 @@
       "canonicalHref": "theory.html#capacity-distortion",
       "section": "reading",
       "parentLabel": "通感权衡/容量–失真算法"
+    },
+    {
+      "canonicalHref": "cooperative-clusters.html#cf-question",
+      "section": "reading",
+      "parentLabel": "多站协作/归一化位置 FIM 与信息下界"
     }
   ]
 }

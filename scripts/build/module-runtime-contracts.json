@@ -1021,6 +1021,70 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-core.mjs",
+      "sha256": "ecaccbc421e50359bc8b8725103730d9c4f8d31b813f82dff113c54e64a661c3",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-model.mjs",
+      "sha256": "2be9c3438d651952d7dbd653b875f37107701fe8db6818ca05602217560f2808",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-controller.mjs",
+      "sha256": "9bdfbea4d21d327aa242993432a55be0b1690c60085593888e09fa055f3788b8",
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./assets/data/cooperative-fim-retained-coordinates.json",
+          "literal": "fixtureURL = new URL('./assets/data/cooperative-fim-retained-coordinates.json', import.meta.url)"
+        },
+        {
+          "kind": "data",
+          "url": "./cooperative-fim-core.mjs",
+          "literal": "new URL('./cooperative-fim-core.mjs', import.meta.url)"
+        },
+        {
+          "kind": "worker",
+          "url": "./cooperative-fim-worker.mjs",
+          "literal": "new Worker(new URL('./cooperative-fim-worker.mjs', import.meta.url), { type: 'module' })"
+        }
+      ],
+      "runtimePolicy": "reviewed-cooperative-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-worker.mjs",
+      "sha256": "9c2151b606ac552617e652e1d68bd155e69063d8626580b2ed83e53e10e4d01c",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-view.mjs",
+      "sha256": "3907f202b0a461ad129e3ba134b4ce94aa403255af4a5baf18aefca70bc52b2b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-fim-ui.mjs",
+      "sha256": "ae96250bf8285bd49f79402b371fcf210a393880cf535d44cf26dc1dccc0a375",
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./assets/data/cooperative-fim-retained-coordinates.json",
+          "literal": "new URL('./assets/data/cooperative-fim-retained-coordinates.json',import.meta.url)"
+        }
+      ],
+      "runtimePolicy": "reviewed-cooperative-runtime",
+      "unverifiedInputs": []
     }
   ]
 }

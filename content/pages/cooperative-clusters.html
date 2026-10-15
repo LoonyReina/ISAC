@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="从站点坐标重算协同感知信息矩阵，比较对称、近共线和固定随机样本的归一化位置 MSE 下界。">
+<title>协作几何与信息界限 | ISAC 论文阅读</title>
+<link rel="stylesheet" href="course.css"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="cooperative-fim.css">
+<script type="module" src="cooperative-fim-ui.mjs"></script>
+</head>
+<body class="cooperative-lesson">
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="学习导航"><a href="foundations.html">基础知识</a><a href="reading.html" aria-current="location">论文阅读</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main class="cf-main" id="site-main" tabindex="-1">
+<!-- SITE:CONTEXT:START -->
+<div class="cf-breadcrumb"><a href="reading.html#guide-networks-cooperative-clusters-2024">论文阅读</a><span aria-hidden="true">/</span><span>协作几何与信息界限</span></div>
+<!-- SITE:CONTEXT:END -->
+<header class="cf-heading"><div><p class="eyebrow">式 (5) → 式 (6) · COOPERATIVE SENSING</p><h1>站更多，方向也更充分吗？</h1><p>从站点位置重新计算信息矩阵，比较增加协作站后的界限</p></div><a class="cf-prereq-link" href="#prerequisites">先看：方向 → 信息 → 界限 ↗</a></header>
+<p class="cf-scope">归一化模型 · 所有站接受协作 · 式 (5)/(6) · 非定位接收机</p>
+<section class="cf-experiment" aria-labelledby="cf-question">
+<div class="cf-controls">
+<div class="cf-preset-tabs" role="group" aria-label="选择教学例子"><button type="button" data-preset="symmetric" aria-pressed="true"><span>01</span> 对称布局</button><button type="button" data-preset="collinear" aria-pressed="false"><span>02</span> 几乎共线</button><button type="button" data-preset="network" aria-pressed="false"><span>03</span> 随机网络</button></div>
+<h2 id="cf-question">两站变四站，下界怎样变？资源增加了多少？</h2>
+<div class="cf-control-row">
+<div id="cf-conditional-controls">
+<label data-control="symmetric">比较站数 N <select id="cf-n"><option value="1">1 站</option><option value="2">2 站</option><option value="4" selected>4 站</option></select></label>
+<label data-control="collinear" hidden>偏移 ε <select id="cf-epsilon"><option value="0.001">10⁻³</option><option value="1e-05" selected>10⁻⁵</option><option value="1e-07">10⁻⁷</option></select></label>
+<label data-control="network" hidden>观察方式 <select id="cf-view"><option value="single">一个布局</option><option value="average">样本平均</option></select></label>
+<label id="cf-trials-control" hidden>布局数 T <select id="cf-trials"><option value="64">64</option><option value="128">128</option><option value="256" selected>256</option></select></label>
+</div>
+<div class="cf-actions"><button class="primary" id="cf-run" type="button" disabled>运行比较</button><button id="cf-cancel" type="button" hidden>取消计算</button><button id="cf-reset" type="button">重置本例</button></div>
+<p class="cf-fixed">β = 2 · q = 1 · 归一化，无米 / 瓦标定</p>
+</div>
+</div>
+<div id="cf-run-status" class="cf-run-status" role="status" aria-live="polite" aria-atomic="true">正在载入坐标与计算核心…</div>
+<div id="cf-result-panel" aria-busy="true">
+<div class="cf-figures">
+<figure class="cf-figure"><figcaption><b>站点与目标</b><span id="cf-geometry-caption">位置坐标 · 相同前缀，不换布局</span></figcaption><svg id="cf-geometry" viewBox="0 0 500 290" role="img" aria-label="等待计算的站点布局"></svg><p class="cf-plot-legend">○ A 原有站　● B 已加入　＋ B 新增站　┄ 未加入　◇ 目标</p><p id="cf-geometry-note" class="cf-small">x、y 等比例，均为归一化位置坐标</p></figure>
+<figure class="cf-figure"><figcaption><b id="cf-bound-title">信息界限椭圆</b><span id="cf-bound-caption">误差坐标 δ · A/B 共用比例尺</span></figcaption><svg id="cf-bound" viewBox="0 0 500 290" role="img" aria-label="等待计算的信息界限"></svg><p id="cf-bound-legend" class="cf-plot-legend"><span class="cf-key-a">┄ A 基线</span>　<span class="cf-key-b">━ B 比较</span>　δᵀFδ = 1</p><p id="cf-bound-note" class="cf-small">无概率覆盖率含义；不是误差散点或置信区域</p></figure>
+</div>
+<div class="cf-comparison-head"><div><h3>位置 MSE 下界 B = tr(F⁻¹)</h3><p>这是无偏位置估计的理论界限，不是测得的定位误差</p></div><button id="cf-download" type="button" disabled>下载本次完整证据 ↓</button></div>
+<div id="cf-comparison" class="cf-comparison"><p class="cf-empty">载入后运行一个例子，查看从坐标算出的结果</p></div>
+<p id="cf-explanation" class="cf-answer">先预测：增加站点时，方向信息和资源预算会一起怎样变化？</p>
+<p id="cf-population-note" class="cf-small cf-population-note">固定几何的两站可以有有限界限；若方位独立均匀随机，N=2 的总体平均为 ∞，有限样本不证明总体均值有限。此结论不推及 N≥3</p>
+<p id="cf-sample-warning" class="cf-small" hidden>固定样本重算；本次有限样本，未证明总体期望 / 方差有限</p>
+</div>
+</section>
+<div class="cf-details-grid">
+<details id="prerequisites"><summary>先修：方向、信息矩阵与 CRB</summary><div class="cf-prerequisites"><div><svg viewBox="0 0 160 55" role="img" aria-label="一个站指向目标的方向"><circle cx="20" cy="28" r="6"/><path d="M28 28H125m-10-7 10 7-10 7"/><path d="m137 20 8 8-8 8-8-8z"/></svg><b>一个方向</b><p>单站只约束沿视线的位移；垂直方向仍可能不受约束</p></div><div><svg viewBox="0 0 160 55" role="img" aria-label="两个独立方向交汇"><path d="M20 45 78 12 138 45M78 12v33"/><circle cx="20" cy="45" r="4"/><circle cx="138" cy="45" r="4"/></svg><b>合成信息</b><p>非平行的方位可提供二维信息。先由坐标求距离与方位，再加所有有序项</p></div><div><svg viewBox="0 0 160 55" role="img" aria-label="不同轴长的信息界限椭圆"><ellipse cx="80" cy="28" rx="44" ry="17"/><path d="M25 28h110M80 4v48"/></svg><b>逆信息给界限</b><p>弱信息方向对应长轴。只有通过数值门槛，才报告有限逆矩阵界限</p></div></div></details>
+<details><summary>式 (5) 怎样从站点求和？</summary><div class="cf-detail-body"><p>rᵢ 是站点 i 到目标的距离，uᵢ 从站点指向目标；wᵢ = rᵢ⁻ᵝ，q = |ζ|² 为正的归一化信息前因子。</p><p class="cf-formula">F = q Σᵢ Σⱼ wᵢwⱼ (uᵢ + uⱼ)(uᵢ + uⱼ)ᵀ</p><p>包含全部有序 (i,j)，也包含 i=j；没有额外的 1/2。N² 是求和项数，不是独立测量数、吞吐量或时隙数。</p><div class="cf-pair-grid" aria-label="对称布局前两站的四项"><span>C₁₁ = [[4,0],[0,0]]</span><span>C₁₂ = [[1,1],[1,1]]</span><span>C₂₁ = [[1,1],[1,1]]</span><span>C₂₂ = [[0,0],[0,4]]</span></div><p>独立推导的有限几何恒等式：F = 2q(SQ + vvᵀ)，其中 S = Σwᵢ、Q = Σwᵢuᵢuᵢᵀ、v = Σwᵢuᵢ。它不是论文的期望界限近似。</p><p>式 (6) 的顺序：布局 → 各自求 tr(F⁻¹) → 平均界限；不能替换成先平均 F 再求逆。</p></div></details>
+<details><summary>本次数值状态与样本细节</summary><div class="cf-detail-body"><div id="cf-numerical-detail">暂无运行结果</div><p>数值门槛 λmin / λmax &gt; 10⁻⁸；浮点分辨底线 64εmachine ≈ 1.4211 × 10⁻¹⁴。它是本页声明的数值政策，不是论文定理或精度保证。无伪逆、距离下限修补、对角加载或有限样本筛除。</p><p><b>站点共线，不等于方位共线：</b>例如站点 (1,1)、(2,1)、(3,1)、(4,1) 在同一直线上，目标 (0,0) 不在该直线上，各站到目标的方位仍不共线。不能只看站点排列判断是否奇异；这里不是一个匹配资源的目标移动实验。</p><p>已证奇异显示 ∞；不稳定、秩亏与舍入未分辨、输入失败均保留状态，不用零误差或旧结果替代。取消时保留已尝试数，不报告完成态平均。</p><p>“均值下界的平方根” √(mean B) 与“逐布局根界限的均值” mean(√B) 分开报告；两者都不是接收机 RMSE。配对标准误仅描述本次样本，不构成总体置信区间。</p></div></details>
+<details><summary>来源、N=2 的平均边界与适用范围</summary><div class="cf-detail-body"><p><a href="https://arxiv.org/pdf/2403.20228v3#page=2" target="_blank" rel="noopener">Meng &amp; Masouros · arXiv 2403.20228v3 · PDF 第 2 页</a>，2024-06-11。<i>Cooperative Sensing and Communication for ISAC Networks: Performance Analysis and Optimization</i>。只运行归一化、所有站接受协作的式 (5)/(6) 切片，未实现完整论文。</p><p><b>N=2 的总体均值为 ∞：</b>在正且有限的固定距离、独立均匀方位条件下，几乎每个布局都有有限界限，但接近平行 / 反平行时 B 按角偏离的平方倒数增长，其总体期望发散。有限运行全为有限值也不能证明总体均值有限。此结论来自独立解析推导，未归因于原论文；不推及 N≥3。</p><p>随机例子重新计算保留的 256 个坐标布局；原种子 2026101401、密度 1 只说明来源，没有在浏览器重现 NumPy PCG64。每次 T 扩大保留相同前 T 个布局，每个布局按相同站序取 N=4/8。</p><p>不含物理标定、定位估计器、负载 / 拒绝、通信速率、回传、优化或原论文图复现。核心验证 β∈[2,4]；本课固定 β=2。总参与功率随站数变化，不是固定总功率比较。</p><p>后续审计：式 (13)/(14) 系数、式 (12)/(22) 对角索引、式 (15)/(24) Gamma / 阶乘约定存在尚未解释的印刷差异，不据此认定作者错误，也不计算修补的近似。</p><p id="cf-provenance" class="cf-hash">正在读取核心字节来源…</p><p class="cf-small">原文 PDF SHA-256：9c8fc76d85b3fdaedbcfd7a2bb97560c7bfe4afa5323d852c570f99ffd870acd；本站不分发论文全文</p></div></details>
+</div>
+<noscript><p class="cf-answer">此交互需要 JavaScript。静态结论：正交两站的 B=0.375，四个单位圆对称站的 B=0.125；它是增加参与资源后的理论下界比较。单站无法约束二维位置，近共线布局可能不能可靠求逆。</p></noscript>
+<!-- SITE:NEXT:START -->
+<footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="foundations.html">基础知识</a> · <a href="reading.html">论文阅读</a></footer>
+<!-- SITE:NEXT:END -->
+</main></body></html>

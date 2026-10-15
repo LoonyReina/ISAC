@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "entryPoint": "cooperative-clusters.html",
+  "entryPageSha256": "6285dc0def08c139ad25d0b0f2456d1e82e4222bf96bca312e84567f9c352454",
+  "pageRegions": {
+    "HEADER": "<!-- SITE:HEADER:START -->\n<a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
+    "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">站更多，方向也更充分吗？</span></nav><p class=\"site-role\">协作感知 · 式 (5)/(6) 归一化几何 FIM 与有界样本回放</p><p class=\"site-prereq\">需要时回看：<a href=\"foundations.html#geometry\">双站与多站几何</a> · <a href=\"theory.html#estimator-crb\">下界什么时候真的能达到？</a></p></div>\n<!-- SITE:CONTEXT:END -->",
+    "NEXT": "<!-- SITE:NEXT:START -->\n<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p><a href=\"reading.html#guide-networks-cooperative-clusters-2024\">回到同一篇论文，区分几何信息、网络负载与完整结果 →</a></aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href=\"index.html\">学习地图</a> · <a href=\"reading.html#reading\">原文与证据</a></footer>\n<!-- SITE:NEXT:END -->"
+  },
+  "entryHeadSha256": "e91c240fe0b19f59f39273dac75ce3bf679e521fb66ab20c8616a5232ea2bd93",
+  "pageScripts": [
+    "<script type=\"module\" src=\"cooperative-fim-ui.mjs\"></script>"
+  ],
+  "pageStyles": [
+    "<link rel=\"stylesheet\" href=\"course.css\">",
+    "<link rel=\"stylesheet\" href=\"site.css?v=knowledge-map-v1\">",
+    "<link rel=\"stylesheet\" href=\"cooperative-fim.css\">"
+  ],
+  "pageEdges": [
+    {
+      "kind": "script",
+      "url": "cooperative-fim-ui.mjs"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "course.css"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "site.css?v=knowledge-map-v1"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "cooperative-fim.css"
+    }
+  ],
+  "modules": [
+    {
+      "public": "cooperative-fim-core.mjs",
+      "sha256": "ecaccbc421e50359bc8b8725103730d9c4f8d31b813f82dff113c54e64a661c3",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
+    },
+    {
+      "public": "cooperative-fim-model.mjs",
+      "sha256": "2be9c3438d651952d7dbd653b875f37107701fe8db6818ca05602217560f2808",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./cooperative-fim-core.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-fim-controller.mjs",
+      "sha256": "9bdfbea4d21d327aa242993432a55be0b1690c60085593888e09fa055f3788b8",
+      "runtimePolicy": "reviewed-cooperative-runtime",
+      "sourceLiterals": [
+        "[new URL(fixtureURL, import.meta.url), PROVENANCE.fixture_sha256]",
+        "const response = await fetchImpl(url);"
+      ],
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./assets/data/cooperative-fim-retained-coordinates.json",
+          "literal": "fixtureURL = new URL('./assets/data/cooperative-fim-retained-coordinates.json', import.meta.url)"
+        },
+        {
+          "kind": "data",
+          "url": "./cooperative-fim-core.mjs",
+          "literal": "new URL('./cooperative-fim-core.mjs', import.meta.url)"
+        },
+        {
+          "kind": "worker",
+          "url": "./cooperative-fim-worker.mjs",
+          "literal": "new Worker(new URL('./cooperative-fim-worker.mjs', import.meta.url), { type: 'module' })"
+        }
+      ],
+      "staticSpecifiers": [
+        "./cooperative-fim-model.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-fim-worker.mjs",
+      "sha256": "9c2151b606ac552617e652e1d68bd155e69063d8626580b2ed83e53e10e4d01c",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./cooperative-fim-core.mjs",
+        "./cooperative-fim-model.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-fim-view.mjs",
+      "sha256": "3907f202b0a461ad129e3ba134b4ce94aa403255af4a5baf18aefca70bc52b2b",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
+    },
+    {
+      "public": "cooperative-fim-ui.mjs",
+      "sha256": "ae96250bf8285bd49f79402b371fcf210a393880cf535d44cf26dc1dccc0a375",
+      "runtimePolicy": "reviewed-cooperative-runtime",
+      "sourceLiterals": [],
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./assets/data/cooperative-fim-retained-coordinates.json",
+          "literal": "new URL('./assets/data/cooperative-fim-retained-coordinates.json',import.meta.url)"
+        }
+      ],
+      "staticSpecifiers": [
+        "./cooperative-fim-controller.mjs",
+        "./cooperative-fim-model.mjs",
+        "./cooperative-fim-view.mjs"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "public": "cooperative-fim.css",
+      "sha256": "681a814d248b431d722f318e4f4bc8437ce9eb6200288520c9082acea6070a98"
+    },
+    {
+      "public": "assets/data/cooperative-fim-retained-coordinates.json",
+      "sha256": "07fa3de3e8aa966d1d88a4d9c07868019802b98c0bbf1bf057c69a14166bfb19"
+    }
+  ]
+}

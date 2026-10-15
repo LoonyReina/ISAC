@@ -325,6 +325,11 @@
       "id": "labs/dual-array",
       "directory": "labs/dual-array",
       "description": "Source-bound dual-array bounded Algorithm 1 receiver, same-Y grid comparator and finite-X teaching lesson"
+    },
+    {
+      "id": "labs/cooperative-clusters",
+      "directory": "labs/cooperative-clusters",
+      "description": "Normalized Eq. (5)/(6) cooperative sensing geometry lesson, accepted core and Worker replay"
     }
   ],
   "entries": [
@@ -12716,6 +12721,160 @@
       "compatibility": "tests/two-section-navigation-preservation.test.cjs",
       "public": "tests/two-section-navigation-preservation.test.cjs",
       "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/cooperative-clusters.html",
+      "compatibility": "cooperative-clusters.html",
+      "public": "cooperative-clusters.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-core.mjs",
+      "compatibility": "cooperative-fim-core.mjs",
+      "public": "cooperative-fim-core.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-model.mjs",
+      "compatibility": "cooperative-fim-model.mjs",
+      "public": "cooperative-fim-model.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-controller.mjs",
+      "compatibility": "cooperative-fim-controller.mjs",
+      "public": "cooperative-fim-controller.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-worker.mjs",
+      "compatibility": "cooperative-fim-worker.mjs",
+      "public": "cooperative-fim-worker.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-view.mjs",
+      "compatibility": "cooperative-fim-view.mjs",
+      "public": "cooperative-fim-view.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim-ui.mjs",
+      "compatibility": "cooperative-fim-ui.mjs",
+      "public": "cooperative-fim-ui.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/cooperative-fim.css",
+      "compatibility": "cooperative-fim.css",
+      "public": "cooperative-fim.css",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cooperative-fim-retained-coordinates.json",
+      "compatibility": "assets/data/cooperative-fim-retained-coordinates.json",
+      "public": "assets/data/cooperative-fim-retained-coordinates.json",
+      "owner": "content/evidence-data",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/cooperative-clusters-dependencies.cjs",
+      "compatibility": "scripts/build/cooperative-clusters-dependencies.cjs",
+      "public": "scripts/build/cooperative-clusters-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/cooperative-clusters-runtime-contracts.json",
+      "compatibility": "scripts/build/cooperative-clusters-runtime-contracts.json",
+      "public": "scripts/build/cooperative-clusters-runtime-contracts.json",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "tests/cooperative-clusters-integration.test.cjs",
+      "compatibility": "tests/cooperative-clusters-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/cooperative-clusters-build.test.cjs",
+      "compatibility": "tests/build/cooperative-clusters-build.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-clusters-integration-preservation.cjs",
+      "compatibility": "tests/helpers/cooperative-clusters-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-clusters-integration-delta.json",
+      "compatibility": "tests/helpers/cooperative-clusters-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/model.test.mjs",
+      "compatibility": "tests/cooperative-clusters/model.test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/controller.test.mjs",
+      "compatibility": "tests/cooperative-clusters/controller.test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/worker-runtime.test.mjs",
+      "compatibility": "tests/cooperative-clusters/worker-runtime.test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/view.test.mjs",
+      "compatibility": "tests/cooperative-clusters/view.test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/tests/ui-lifecycle.test.mjs",
+      "compatibility": "tests/cooperative-clusters/ui-lifecycle.test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/SOURCE-IMPORT.json",
+      "compatibility": "labs/cooperative-clusters/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "docs/COOPERATIVE-CLUSTERS-INTEGRATION.md",
+      "compatibility": "docs/COOPERATIVE-CLUSTERS-INTEGRATION.md",
+      "public": "docs/COOPERATIVE-CLUSTERS-INTEGRATION.md",
+      "owner": "content/documentation",
       "role": "source"
     }
   ]

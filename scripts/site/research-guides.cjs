@@ -41,9 +41,10 @@ function validateVisualTrace(trace,card,local){
  }
  if(!object(trace.checkpoint,['prompt','answer','sourceLocator'])||!['prompt','answer','sourceLocator'].every(k=>prose(trace.checkpoint[k])))throw new Error('Invalid visual trace checkpoint');
 }
-const executionCoverageLabels=Object.freeze({algorithm:'已数值验证论文算法','algorithm-and-selected-figure':'已数值验证论文算法与选定图'});
+const executionCoverageLabels=Object.freeze({'bounded-model':'已数值验证有界模型',algorithm:'已数值验证论文算法','algorithm-and-selected-figure':'已数值验证论文算法与选定图'});
 function validateExecutable(executable,local){
- if(!object(executable,['kind','coverage','href','label','summary','limitations','sourceLocators'])||executable.kind!=='validated-paper-algorithm'||typeof executable.coverage!=='string'||!Object.hasOwn(executionCoverageLabels,executable.coverage)||!['label','summary','limitations'].every(k=>prose(executable[k]))||!Array.isArray(executable.sourceLocators)||!executable.sourceLocators.length||executable.sourceLocators.length>8||!executable.sourceLocators.every(prose)||new Set(executable.sourceLocators).size!==executable.sourceLocators.length)throw new Error('Invalid research guide executable');
+ if(!object(executable,['kind','coverage','href','label','summary','limitations','sourceLocators'])||!['validated-paper-algorithm','validated-paper-model'].includes(executable.kind)||typeof executable.coverage!=='string'||!Object.hasOwn(executionCoverageLabels,executable.coverage)||!['label','summary','limitations'].every(k=>prose(executable[k]))||!Array.isArray(executable.sourceLocators)||!executable.sourceLocators.length||executable.sourceLocators.length>8||!executable.sourceLocators.every(prose)||new Set(executable.sourceLocators).size!==executable.sourceLocators.length)throw new Error('Invalid research guide executable');
+ if ((executable.kind==='validated-paper-model') !== (executable.coverage==='bounded-model')) throw new Error('Invalid bounded model coverage');
  local.unitEntry({href:executable.href});
 }
 function buildResearchGuides(data,registry,validationContext){
@@ -122,7 +123,7 @@ function renderVisualTrace(card){
 }
 function renderExecutable(card){
  const e=card.executable;if(!e)return '';
- return `<div class="guide-executable"><p class="site-primary"><strong>${link(e.href,e.label,' class="guide-executable-link"')}</strong></p><p><strong>${executionCoverageLabels[e.coverage]}：</strong>${escapeHtml(e.summary)}</p><p>${escapeHtml(e.limitations)}</p><p class="small">核对算法与实验：${e.sourceLocators.map(locator=>link(card.source.url,locator)).join(' · ')}</p></div>\n`;
+ return `<div class="guide-executable"><p class="site-primary"><strong>${link(e.href,e.label,' class="guide-executable-link"')}</strong></p><p><strong>${executionCoverageLabels[e.coverage]}：</strong>${escapeHtml(e.summary)}</p><p>${escapeHtml(e.limitations)}</p><p class="small">核对${e.kind==='validated-paper-model'?'模型与条件':'算法与实验'}：${e.sourceLocators.map(locator=>link(card.source.url,locator)).join(' · ')}</p></div>\n`;
 }
 function renderGuideDirectionLink(cards,directionId){
  const count=cards.filter(c=>c.directionId===directionId).length;

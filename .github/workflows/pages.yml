@@ -43,6 +43,7 @@ jobs:
           node --test tests/lesson-narrow-layout-source-gate.test.cjs tests/pilot-sticky-layout-source-gate.test.cjs tests/perceptive-sticky-layout.test.cjs tests/desktop-layout-integration.test.cjs tests/lesson-narrow-layout-integration.test.cjs tests/dual-array-dependencies.test.cjs tests/otfs-diagnostics-integration.test.cjs tests/otfs-portability-integration.test.cjs tests/perceptive-bsbl-responsive.test.cjs tests/perceptive-bsbl-responsive-integration.test.cjs tests/pilot-pattern-dependencies.test.cjs tests/perceptive-bsbl-dependencies.test.cjs tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
           node --test tests/build-fixture-lifetime.test.cjs tests/dual-array-browser-timers-current.test.cjs tests/dual-array-plot-readability-current.test.cjs tests/dual-array-current-runtime.test.cjs tests/dual-array-browser-integration.test.cjs
           node --max-old-space-size=512 --test --test-concurrency=1 tests/dual-array-record-portability.test.cjs tests/dual-array-record-portability-integration.test.cjs
+          node --test tests/cooperative-clusters-build.test.cjs
           node --test tests/compatibility-build.test.cjs
       - name: Run full legacy tests and independently reproduce the public artifact
         run: |

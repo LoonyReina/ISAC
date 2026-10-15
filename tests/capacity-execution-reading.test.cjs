@@ -7,7 +7,7 @@ const {createBuildLinkValidationContext}=require('../scripts/learning-entry.cjs'
 const {executionGuideId,executable,statusClauses,executionRendererHooks,withoutCapacityExecution,withoutCapacityExecutionRenderer}=require('./helpers/capacity-execution-preservation.cjs');
 const {withoutFrontierTraces}=require('./helpers/frontier-trace-preservation.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
-const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const root=path.resolve(__dirname,'..'),read=f=>{const bytes=fs.readFileSync(path.join(root,f));return (f==='scripts/research-guides.cjs'?require('./helpers/cooperative-clusters-integration-preservation.cjs').withoutFile(f,bytes):bytes).toString();};
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const card=d=>d.cards.find(c=>c.id===executionGuideId),build=(d=data,context)=>buildResearchGuides(d,registry,context),render=d=>renderResearchGuides(build(d));
 const isolated=()=>({schemaVersion:data.schemaVersion,cards:[structuredClone(card(data))]});

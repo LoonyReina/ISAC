@@ -1001,7 +1001,7 @@
       "title": "Cooperative Sensing and Communication for ISAC Networks: Performance Analysis and Optimization",
       "category": "guide",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-15",
       "canonicalReferences": {
         "guideIds": [
           "networks-cooperative-clusters-2024"
@@ -1015,12 +1015,13 @@
         "url": "https://arxiv.org/pdf/2403.20228v3",
         "fixedVersion": "arXiv:2403.20228v3，2024-06-11，7页作者预印本；本卡按该 PDF 编号。另有 SPAWC 2024 会议版本，446–450页，不混用页码。",
         "locators": {
-          "summary": "§II-A–D，图1、式(4)–(10)；§III-A–B，式(12)–(16)；§V，图2–5（PDF第5页）"
+          "summary": "§II-A–D，图1、式(4)–(10)；§III-A–B，式(12)–(16)；§V，图2–5（PDF第5页）",
+          "boundedCore": "v3 PDF 第2页式 (5)/(6)；§III-A all-stations-accept premise"
         },
         "paperIdentity": "arxiv:2403.20228",
         "fixedSourceIdentity": "arxiv:2403.20228v3",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "9c8fc76d85b3fdaedbcfd7a2bb97560c7bfe4afa5323d852c570f99ffd870acd",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Kaitao Meng、Christos Masouros",
           "publicationUrl": "https://doi.org/10.1109/SPAWC60668.2024.10694260"
@@ -1086,70 +1087,77 @@
         }
       },
       "implementation": {
-        "classification": "guide-only-with-related-prerequisite-labs",
-        "live": null,
-        "offline": null,
+        "classification": "source-backed bounded normalized geometry FIM model",
+        "live": {
+          "href": "cooperative-clusters.html#cf-question",
+          "scope": "Eq. (5)/(6) normalized geometry and retained-coordinate replay, all stations accept"
+        },
+        "offline": {
+          "scope": "Independent literal Python and weighted-moment references; retained coordinate replay in JavaScript"
+        },
         "details": {
-          "guideTraceKind": "qualitative-reading-trace",
+          "lesson": "cooperative-clusters.html#cf-question",
           "actualArtifacts": [
             {
-              "path": "labs/network-clock/network-core.js",
+              "path": "labs/cooperative-clusters/cooperative-fim-core.mjs",
               "exists": true,
-              "role": "单目标标量时延/位置网格，非随机网络/负载模型"
+              "role": "Accepted bounded Eq. (5)/(6) numerical core"
             },
             {
-              "path": "labs/distributed-detection/distributed-detection-core.js",
+              "path": "content/pages/cooperative-clusters.html",
               "exists": true,
-              "role": "两站固定候选边缘化LRT和载荷账本，非本文CRLB/CoMP模型"
+              "role": "Coordinate-driven teaching lesson, not a localization estimator"
             },
             {
-              "path": "docs/DISTRIBUTED-DETECTION-VALIDATION.md",
+              "path": "assets/data/cooperative-fim-retained-coordinates.json",
               "exists": true,
-              "role": "历史独立机制验证，不能给本论文背书"
+              "role": "Retained input coordinates only; live values are recomputed"
             }
           ],
           "omissions": [
-            "PPP/最近邻簇抽样",
-            "接受概率与拒绝机制",
-            "本文位置FIM/CRLB与通信积分",
-            "回传约束下边界及原图数值"
+            "Acceptance/rejection and load model",
+            "Communication rate integrals and joint optimization",
+            "Physical calibration, localization receiver and RMSE",
+            "Paper approximations and source-figure reproduction"
           ],
-          "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+          "validatorScope": "Accepted offline numerical port and targeted lesson regressions. Browser acceptance is a separate gate; no full-paper or physical-accuracy claim.",
+          "browserAccepted": false
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "in-progress",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "guide-only-with-related-prerequisite-labs",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Source p2 Eq. (5)/(6) visually checked in frozen reference. Source PDF hash retained; no source PDF redistribution.",
+        "algorithm": "Bounded normalized geometry FIM, all N² ordered pairs, no rejection, fixed per-station q.",
+        "selectedExperiment": "Retained coordinate prefixes are recomputed; no named source figure reproduced.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No actual-browser run-to-painted latency accepted by this integration candidate.",
+        "independentValidation": "Frozen JS corpus replay: 3,225,880 checks; independent JS boundary review: 13,354 assertions. These establish the bounded offline port only."
       },
       "missingImplementation": [
-        "PPP/最近邻簇抽样",
-        "接受概率与拒绝机制",
-        "本文位置FIM/CRLB与通信积分",
-        "回传约束下边界及原图数值"
+        "Acceptance/rejection and load model",
+        "Communication rate integrals and joint optimization",
+        "Physical calibration, localization receiver and RMSE",
+        "Paper approximations and source-figure reproduction"
       ],
       "dependencies": [
-        "重建原始FIM与解析近似的独立Python参考",
-        "稳健不完全Gamma/Beta与数值积分",
-        "可复现PPP/衰落随机流及边界截断审计",
-        "回传单位、原文Monte Carlo次数/窗口截断仍须明确"
+        "Retained fixed geometry and station/trial prefixes; accepted core SHA-256 ecaccbc421e50359bc8b8725103730d9c4f8d31b813f82dff113c54e64a661c3",
+        "Independent browser lifecycle and responsive-layout acceptance",
+        "Source approximation, Gamma/Beta and rate integration audits for future network-wide extension"
       ],
       "blockers": [
-        "没有该论文参考实现/数值fixture；站内两个网络实验均不是本模型",
-        "原图的Monte Carlo次数与仿真边界策略尚未在本次审计确认"
+        "Browser acceptance and browser latency remain separate pending gates",
+        "No load/rejection, communication-rate, total-power-fixed optimization, calibrated receiver or source-figure reproduction",
+        "Finite retained samples do not establish population convergence; N=2 mean diverges and no N≥3 integrability guarantee is made"
       ],
       "realtime": {
         "status": "not-measured",
@@ -1165,7 +1173,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "解析表达式与小网格簇扫描有望在浏览器重算；PPP Monte Carlo需分块/后台计算，完整精度与延迟未测",
+          "assessment": "Bounded geometry and retained-coordinate batches run locally; numerical offline timing is not browser run-to-painted latency.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -1180,7 +1188,14 @@
         }
       },
       "evidence": {
-        "auxiliaryPrimarySources": []
+        "auxiliaryPrimarySources": [],
+        "boundedNumericalCore": {
+          "coreSha256": "ecaccbc421e50359bc8b8725103730d9c4f8d31b813f82dff113c54e64a661c3",
+          "corpusChecks": 3225880,
+          "independentAssertions": 13354,
+          "scope": "Offline normalized all-stations-accept Eq. (5)/(6), no browser acceptance transfer",
+          "reviewDate": "2026-10-15"
+        }
       },
       "details": {}
     },

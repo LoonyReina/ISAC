@@ -18,7 +18,7 @@ function withoutMappings(input){
  a.equal(sha(JSON.stringify(out,null,2)+'\n'),delta.baselineManifestSha256,'exact pre-CMC cumulative manifest');return out;
 }
 function withoutContracts(input){
- const out=structuredClone(input);
+ const out=require('./cooperative-clusters-integration-preservation.cjs').withoutContracts(input);
  if(!out.modules.some(e=>delta.addedModuleProfiles.some(r=>r.public===e.public)))return out;
  a.equal(out.modules.length,delta.priorModuleCount+delta.addedModuleProfiles.length,'complete CMC module inventory');
  a.deepEqual(out.modules.slice(delta.priorModuleCount),delta.addedModuleProfiles,'exact appended CMC profiles');out.modules.splice(delta.priorModuleCount);return out;
