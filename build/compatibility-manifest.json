@@ -330,6 +330,11 @@
       "id": "labs/cooperative-clusters",
       "directory": "labs/cooperative-clusters",
       "description": "Normalized Eq. (5)/(6) cooperative sensing geometry lesson, accepted core and Worker replay"
+    },
+    {
+      "id": "labs/causal-state-capacity",
+      "directory": "labs/causal-state-capacity",
+      "description": "Fixed-quarter causal Proposition 4 theorem evaluation, actual PMF and delayed state description lesson"
     }
   ],
   "entries": [
@@ -12894,6 +12899,125 @@
     {
       "source": "tests/teaching-heading-maintenance.test.cjs",
       "compatibility": "tests/teaching-heading-maintenance.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity-controller.mjs",
+      "compatibility": "causal-capacity-controller.mjs",
+      "public": "causal-capacity-controller.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity-core.mjs",
+      "compatibility": "causal-capacity-core.mjs",
+      "public": "causal-capacity-core.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity-runtime.mjs",
+      "compatibility": "causal-capacity-runtime.mjs",
+      "public": "causal-capacity-runtime.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity-ui.mjs",
+      "compatibility": "causal-capacity-ui.mjs",
+      "public": "causal-capacity-ui.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity-view.mjs",
+      "compatibility": "causal-capacity-view.mjs",
+      "public": "causal-capacity-view.mjs",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/causal-capacity.css",
+      "compatibility": "causal-capacity.css",
+      "public": "causal-capacity.css",
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/causal-state-capacity.html",
+      "compatibility": "causal-state-capacity.html",
+      "public": "causal-state-capacity.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/causal-capacity-dependencies.cjs",
+      "compatibility": "scripts/build/causal-capacity-dependencies.cjs",
+      "public": "scripts/build/causal-capacity-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/causal-capacity-runtime-contracts.json",
+      "compatibility": "scripts/build/causal-capacity-runtime-contracts.json",
+      "public": "scripts/build/causal-capacity-runtime-contracts.json",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "tests/causal-capacity-integration.test.cjs",
+      "compatibility": "tests/causal-capacity-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/causal-capacity-build.test.cjs",
+      "compatibility": "tests/build/causal-capacity-build.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/causal-capacity-integration-preservation.cjs",
+      "compatibility": "tests/helpers/causal-capacity-integration-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/causal-capacity-integration-delta.json",
+      "compatibility": "tests/helpers/causal-capacity-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/tests/lesson.test.mjs",
+      "compatibility": "tests/causal-state-capacity/lesson.test.mjs",
+      "public": null,
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "labs/causal-state-capacity/SOURCE-IMPORT.json",
+      "compatibility": "labs/causal-state-capacity/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/causal-state-capacity",
+      "role": "source"
+    },
+    {
+      "source": "docs/CAUSAL-CAPACITY-INTEGRATION.md",
+      "compatibility": "docs/CAUSAL-CAPACITY-INTEGRATION.md",
+      "public": "docs/CAUSAL-CAPACITY-INTEGRATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/causal-capacity-refresh-delta.json",
+      "compatibility": "tests/helpers/causal-capacity-refresh-delta.json",
       "public": null,
       "owner": "validators/regression",
       "role": "source"

@@ -3304,6 +3304,19 @@
       ],
       "next": "reading.html#guide-networks-cooperative-clusters-2024",
       "nextLabel": "回到同一篇论文，区分几何信息、网络负载与完整结果"
+    },
+    {
+      "path": "causal-state-capacity.html",
+      "title": "先抵消当前状态，再为延迟重构留出多少速率？",
+      "stage": "reading",
+      "role": "同一论文 §IV · 固定 p=q=1/4 的单字母渐近定理求值；真实浏览器待验收",
+      "prerequisites": [
+        "theory.html#shared-model",
+        "foundations.html#limits",
+        "foundations.html#codesign"
+      ],
+      "next": "reading.html#guide-tradeoffs-causal-state-communication-2013",
+      "nextLabel": "回到同一篇论文，分清严格因果导读与 §IV 因果模型"
     }
   ],
   "schemaVersion": 1,
@@ -7950,6 +7963,11 @@
       "canonicalHref": "cooperative-clusters.html#cf-question",
       "section": "reading",
       "parentLabel": "多站协作/归一化位置 FIM 与信息下界"
+    },
+    {
+      "canonicalHref": "causal-state-capacity.html#cc-question",
+      "section": "reading",
+      "parentLabel": "通感权衡/§IV 固定四分之一因果状态通信"
     }
   ]
 }

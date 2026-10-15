@@ -3314,7 +3314,7 @@
       "title": "Causal State Communication",
       "category": "guide",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-15",
       "canonicalReferences": {
         "guideIds": [
           "tradeoffs-causal-state-communication-2013"
@@ -3328,12 +3328,13 @@
         "url": "https://web.eng.ucsd.edu/~yhk/pdfs/it2013jun.pdf",
         "fixedVersion": "作者托管IEEE TIT期刊VoR，59(6)，3709–3719，2013-06；首页注明首次发表2013-02-07、当前版本2013-05-15。2026-10-11核对11页PDF；以下使用期刊印刷页码。",
         "locators": {
-          "summary": "§II，Fig.1、Theorem 1，pp.3710–3712；§III，Theorem 2、式(4)、Remark 4、式(7)–(8)，pp.3713–3714；§III-A，Proposition 1、式(9)，p.3714；§III-B/C，pp.3714–3715；Appendix B，pp.3718–3719"
+          "summary": "§II，Fig.1、Theorem 1，pp.3710–3712；§III，Theorem 2、式(4)、Remark 4、式(7)–(8)，pp.3713–3714；§III-A，Proposition 1、式(9)，p.3714；§III-B/C，pp.3714–3715；Appendix B，pp.3718–3719",
+          "boundedCore": "§IV，Theorem 3、式(11)与Proposition 4，期刊pp.3715–3716；固定p=q=1/4"
         },
         "paperIdentity": "title:causalstatecommunication",
         "fixedSourceIdentity": "https://web.eng.ucsd.edu/~yhk/pdfs/it2013jun.pdf",
-        "pdfSha256": null,
-        "hashStatus": "not-recorded",
+        "pdfSha256": "43bbfbd4f841f79d4900531f291391f937851225625a7ee7f86391f3edd1edd4",
+        "hashStatus": "recorded",
         "details": {
           "authors": "Chiranjib Choudhuri、Young-Han Kim、Urbashi Mitra",
           "publicationUrl": "https://doi.org/10.1109/TIT.2013.2245719"
@@ -3343,66 +3344,77 @@
         "types": [
           "theory"
         ],
-        "kind": "严格因果状态通信的block-Markov编码/Wyner–Ziv式压缩与容量–失真定理",
+        "kind": "严格因果状态通信的block-Markov编码/Wyner–Ziv式压缩与容量–失真定理；§IV另改为当前状态已知的因果模型",
         "pipeline": [
           "TX直接获知过去状态；用辅助变量U描述上一块状态",
           "下一块共享码率承载新消息和状态描述",
           "RX利用先前输出作侧信息，解码消息并恢复过去状态",
-          "Theorem2优化输入分布、状态描述分布与重构函数；特殊条件下化为容量减去Wyner–Ziv率失真"
+          "Theorem2优化输入分布、状态描述分布与重构函数；特殊条件下化为容量减去Wyner–Ziv率失真",
+          "§IV Theorem3/Proposition4允许TX在第i次已知当前S_i，状态抵消后仍需延迟传送状态描述；与§III严格因果分开"
         ],
-        "locators": "期刊pp.3710–3715 §II–III/定理1–2、式(4)/(7)–(10)、命题1–3；AppendixB pp.3718–3719",
+        "locators": "期刊pp.3710–3715 §II–III/定理1–2、式(4)/(7)–(10)、命题1–3；AppendixB pp.3718–3719；§IV Theorem3/式(11)/Proposition4 pp.3715–3716",
         "clarification": "本篇没有像2018那样给一个可直接套用的通用数值迭代器；核心是编码定理/可达构造，不能贴上其他BA算法就说复现"
       },
       "minimalFaithfulTarget": {
-        "description": "直接实现并独立复现§III-C/命题3及Fig2对应容量–失真计算，同时展示优化出的状态描述/重构策略；若用户要求通信码执行，增加真实小块block-Markov编码/解码，明确有限块误差而不声称达定理界",
+        "description": "当前有界里程碑仅实现§IV Theorem3/Proposition4固定p=q=1/4的单字母渐近定理求值：当前状态抵消、延迟状态描述的联合PMF与容量–失真曲线。§III严格因果导读保留；争议Fig.2分支排除，不改式(10)，不代表一般参数、有限通信码或整篇复现。",
         "liveControls": [
-          "状态概率、噪声概率、失真预算、严格因果/因果知识模型、有限码实验的块长/种子"
+          "仅失真预算D∈[0,0.5]；固定状态概率q=1/4、噪声概率p=1/4，不提供严格因果/因果切换"
         ],
         "independentValidation": [
-          "确定性可逆零失真特例",
-          "二元解析/独立穷举与凸包比较",
-          "每个模型记录已知量和时序，不能与2018TX反馈估计拼接",
-          "数值边界、有限码错误率、渐近定理分开"
+          "独立80位精度、binary64精确有理输入参考：111个案例，包括封闭门槛窗口的8个值及相邻值",
+          "直接枚举16原子PMF核对信息量、边缘、重构失真与公式；不可行/未决点的可达速率为null",
+          "反向测试信道E独立于U且S=U⊕E；当前状态知识、延迟解码与无输出反馈分别记录",
+          "数学/DOM/静态/隔离构建证据与真实浏览器验收、有限通信码执行分开"
         ],
         "acceptanceGate": "先固定原文版本、逐式独立参考和原实验配置，运行并保存可复现数值证据，再接教学页面；同一真实算子驱动图与指标。缩小规模须明示，不替代原图复现；先修机制和定性trace不能算该论文核心"
       },
       "experiment": {
         "targets": [
-          "§III-A确定性可逆特例容量与零失真",
-          "§III-B/C含噪Gaussian/二元状态特例",
-          "Fig2严格因果和因果模型边界，条件分开"
+          "§IV Theorem3/Proposition4，固定p=q=1/4的单字母渐近容量–失真及16原子PMF",
+          "D=0.20工作点、D≥0.25平台、不可行区和封闭数值门槛窗口",
+          "§III严格因果与Fig.2争议分支不在当前数值目标内"
         ],
         "baselines": [
-          "不发送额外状态描述",
-          "严格因果与因果知识（信息条件不同，不作等信息性能排名）",
-          "不可逆/加噪条件下状态描述成本"
+          "同一固定p=q=1/4下只改变D，比较状态描述成本与剩余消息率",
+          "D≥0.25时零额外描述成本平台与重构失真0.25",
+          "严格因果与因果信息条件只作文字对照，不生成等条件性能排名或Fig.2曲线"
         ],
         "metrics": [
-          "可靠消息率C_SC(D)，bit/信道使用",
-          "接收端平均状态重构失真",
-          "状态描述率及跨块等待",
-          "不是雷达估计器RMSE/CRB或有限时延跟踪"
+          "因果模型可靠消息率C(D)，bits/channel use；不可行/未决为null",
+          "请求失真预算D与候选PMF重构失真分别显示",
+          "信道容量、状态描述成本、有符号信息差及PMF直接互信息",
+          "单字母渐近量；不是有限码错误率、雷达估计RMSE/CRB或有限时延跟踪"
         ],
         "resources": [
-          "有限字母表无记忆信道、iid状态；TX在第i次仅知S^(i−1)",
-          "无输出反馈，接收端无完美状态真值",
-          "长码长/跨块编码；状态获知本身的成本不建模",
-          "式(8)容量减单一Wyner–Ziv函数只在所述输入无关条件成立"
+          "固定p=q=1/4；二元Hamming失真；iid状态、独立iid信道噪声；无输入成本约束",
+          "§IV因果编码在第i次使用当前S_i，X_i=V_i⊕S_i；接收端延迟分块重构，未执行有限码",
+          "无输出反馈，接收端无完美状态真值；状态获知本身成本不建模",
+          "反向测试信道E独立于U，S=U⊕E；不把E宣称为独立于S，不是物理源生成过程",
+          "§III式(8)的输入无关条件保留在严格因果导读，不能移作本课一般结论"
         ],
-        "unresolved": [],
+        "unresolved": [
+          "严格因果Fig.2争议分支保持排除，未修改式(10)",
+          "原文印刷前向独立误差构造与本课独立核验反向测试信道的差异，不称官方勘误"
+        ],
         "details": {
           "auditedGuideLimits": [
             "主模型是有限字母表的无记忆信道与独立同分布状态。严格因果是第i次发射时已知前i−1次状态；没有从接收端返回Y的输出反馈，也没有给接收端完美状态真值。状态获知过程本身不在模型里。",
             "容量–失真函数给定失真预算后求最大可靠消息速率；源编码的率失真函数则问把源压缩到某失真至少要多少描述速率。两者方向和任务不同，不能把它们当同一个量。",
             "状态估计在接收端完成，性能按长码长平均失真衡量。跨块描述带来等待，定理不是有限时延跟踪器；随机状态重建也不直接等于固定目标距离、角度的MSE或CRB。",
-            "§IV把前提改成发射端也知道当前状态，属于另一个因果模型。§III-A的零失真结果还依赖确定性与可逆性；一旦加入噪声，不能沿用“感知免费”的结论。论文没有提供ISAC雷达原型，本站也未实现其通信码或数值复现。"
+            "§IV把前提改成发射端也知道当前状态，属于另一个因果模型。§III-A的零失真结果还依赖确定性与可逆性；一旦加入噪声，不能沿用“感知免费”的结论。论文没有提供ISAC雷达原型；本站未实现通信码，§II–III仍只作原文导读。单独的§IV子模块仅求值固定p=q=1/4的单字母渐近定理，不覆盖一般参数或整篇论文，严格因果Fig.2争议分支保持排除。",
+            "§IV子模块使用经独立核验的反向测试信道：E独立于U且S=U⊕E，E一般不独立于S；这规定联合辅助分布，不是物理源生成过程。原文印刷的前向独立误差构造不能达到该有偏源公式，此区别不是官方勘误。实际浏览器布局、键盘与下载验收仍待完成。"
           ]
         }
       },
       "implementation": {
-        "classification": "guide-only-with-related-prerequisite-labs",
-        "live": null,
-        "offline": null,
+        "classification": "source-backed bounded fixed-quarter causal theorem evaluation",
+        "live": {
+          "href": "causal-state-capacity.html#cc-question",
+          "scope": "§IV Theorem 3/Proposition 4 only, p=q=0.25; single-letter asymptotic theorem evaluation, not finite-code execution"
+        },
+        "offline": {
+          "scope": "Accepted isolated core/PMF evidence, independent 80-digit exact-binary64-to-rational oracle and DOM/export lifecycle; not browser acceptance"
+        },
         "details": {
           "guideTraceKind": "qualitative-reading-trace",
           "actualArtifacts": [
@@ -3414,55 +3426,91 @@
             {
               "path": "content/data/research-guides.json",
               "exists": true,
-              "role": "仅原文理论导读/四步定性trace"
+              "role": "保留§II–III严格因果原文导读/四步定性trace，另附§IV固定参数因果子模块"
             },
             {
               "path": "tests/research-guides.test.cjs",
               "exists": true,
               "role": "导读字段/版本边界验证，非码或定理数值验证"
+            },
+            {
+              "path": "labs/causal-state-capacity/causal-capacity-core.mjs",
+              "exists": true,
+              "role": "Accepted fixed-quarter causal Theorem3/Proposition4 numerical core and actual 16-atom PMF"
+            },
+            {
+              "path": "labs/causal-state-capacity/causal-capacity-runtime.mjs",
+              "exists": true,
+              "role": "Accepted immutable export/runtime contract; feasibility and residuals retained"
+            },
+            {
+              "path": "content/pages/causal-state-capacity.html",
+              "exists": true,
+              "role": "Separately labeled same-paper §IV lesson; current-state encoding and delayed-description timing"
             }
           ],
           "omissions": [
-            "Theorem2容量–失真函数求值",
-            "状态描述分布/重构优化",
-            "block-Markov与侧信息解码执行",
-            "§III解析特例/Fig2的独立数值复现"
+            "§III Theorem2严格因果容量–失真数值求值及争议Fig.2分支",
+            "一般p/q参数和全模型辅助分布/重构优化",
+            "有限block-Markov通信码、侧信息编码/解码执行及误码/时延",
+            "物理感知实验及完整论文复现"
           ],
-          "validatorScope": "现存测试/验证只支持列出的独立机制与导读结构；本次只读核验未重跑历史测试，不把通过状态转移给论文算法"
+          "validatorScope": "Accepted isolated numerical/PMF, production DOM/export, static accessibility, build replay and local HTTP evidence only. Full-site and actual-browser gates remain separate; no finite-code, general-p/q, strictly-causal Fig.2 or full-paper acceptance transfer.",
+          "lesson": "causal-state-capacity.html#cc-question",
+          "browserAccepted": false,
+          "modelScope": {
+            "section": "IV",
+            "theorem": "Theorem 3 / Proposition 4",
+            "p": 0.25,
+            "q": 0.25,
+            "D": [
+              0,
+              0.5
+            ],
+            "encoderTiming": "causal_current_state",
+            "decoderTiming": "delayed_block_state_reconstruction",
+            "method": "single-letter asymptotic theorem evaluation",
+            "finiteCode": false,
+            "strictlyCausalFig2": false,
+            "generalPQ": false,
+            "reverseTestChannel": "E independent U; S=U xor E; E generally not independent S; joint auxiliary law, not physical source generation or official erratum"
+          }
         }
       },
       "stages": {
-        "source": "audited-partial",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "in-progress",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "guide-only-with-related-prerequisite-labs",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "Fixed author-hosted IEEE TIT VoR, pp.3715–3716 §IV Theorem3/Eq.(11)/Proposition4 for the bounded slice; retained PDF SHA-256 recorded. §II–III guide and strict-causal distinctions retained.",
+        "algorithm": "Fixed p=q=0.25 causal single-letter asymptotic theorem evaluation and independent reverse-test-channel PMF accounting; no finite communication code or general parameter optimizer.",
+        "selectedExperiment": "Fresh fixed-quarter curve, D=0.20 point and D≥0.25 plateau; infeasible/null region and closed unresolved threshold window preserved. No named source figure reproduced; strictly-causal Fig.2 excluded.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No actual-browser control-to-painted latency accepted; DOM harness and local HTTP are not browser measurements.",
+        "independentValidation": "Accepted isolated evidence: 111 high-precision oracle cases, 31,436 independent assertions, 9/9 local mutations detected, 15 actual package tests, 9-file byte-identical build replay. These are prior isolated results, not this full-site or browser acceptance."
       },
       "missingImplementation": [
-        "Theorem2容量–失真函数求值",
-        "状态描述分布/重构优化",
-        "block-Markov与侧信息解码执行",
-        "§III解析特例/Fig2的独立数值复现"
+        "§III Theorem2严格因果容量–失真数值求值及争议Fig.2分支",
+        "一般p/q参数和全模型辅助分布/重构优化",
+        "有限block-Markov通信码、侧信息编码/解码执行及误码/时延",
+        "物理感知实验及完整论文复现"
       ],
       "dependencies": [
-        "逐式读取期刊数学公式与辅助变量基数约束；本轮网页提取丢失部分公式，不能据片段猜实现",
-        "独立计算二元Wyner–Ziv下凸包/定理边界",
-        "如要求实际码而不止理论边界，须实现有限小块编码/解码及渐近与有限块差异"
+        "Keep accepted core/runtime byte-identical; fixed-quarter core SHA-256 3ff7638e823166132f96572055a8019229876824fef3c7ae089a08da2d3613e3",
+        "Full-site preservation, compatibility build/test/reproducibility and supported real-browser layout/keyboard/download acceptance",
+        "Separate source audit before any strictly-causal Fig.2, general-p/q or finite-code extension"
       ],
       "blockers": [
-        "论文是编码定理，必须先与实现验收界定“核心理论求值”及“有限码”",
-        "本站无定理求值或编码实现；公式完整可读版本需复核"
+        "Actual-browser acceptance and browser latency remain pending; full-site integration and publication are separate gates",
+        "Strictly-causal Fig.2 disputed branch stays excluded; no Eq.(10) change or whole-paper acceptance",
+        "No finite-code execution, general p/q controls or physical sensing experiment"
       ],
       "realtime": {
         "status": "not-measured",
@@ -3478,7 +3526,7 @@
         "details": {
           "measuredBrowserLatencyMs": null,
           "measuredThisAudit": false,
-          "assessment": "论文二元理论边界的真实数值优化有望交互；有限block-Markov码本穷举随块长指数增长，不能承诺实时或用解析边界冒充已运行通信码",
+          "assessment": "Fixed-quarter values and curves are recomputed from the accepted PMF/formula core; DOM and local HTTP evidence do not establish actual-browser timing. Finite communication coding is not executed.",
           "paperReportedTiming": null,
           "requiredBenchmark": "在实际目标浏览器/设备测量重算p50/p95/最坏时延、内存、取消/重复操作；分开计算、加载、采集和链路开销。任何预计算曲线均不可标为实时求解"
         }
@@ -3493,7 +3541,20 @@
         }
       },
       "evidence": {
-        "auxiliaryPrimarySources": []
+        "auxiliaryPrimarySources": [],
+        "boundedNumericalCore": {
+          "coreSha256": "3ff7638e823166132f96572055a8019229876824fef3c7ae089a08da2d3613e3",
+          "runtimeSha256": "d51938af45a3df9976c117c7c45fd2d10be01300e1f9583b354fa09c8be04fe4",
+          "reviewedCoreManifestSha256": "3b229738d106789c3dbedffef98311e17fe73c91df5b60705c517e7abdc9c313",
+          "independentReviewManifestSha256": "ead54f62794bbc8a92ba2dc3e1f76223e1d86781adcb656d088783432a86ea83",
+          "oracleCases": 111,
+          "oraclePrecisionDigits": 80,
+          "independentAssertions": 31436,
+          "localMutationsDetected": 9,
+          "isolatedPackageTestsPassed": 15,
+          "reviewDate": "2026-10-15",
+          "scope": "Accepted bounded isolated fixed-quarter §IV theorem evaluation, PMF/DOM/export and build replay only; actual browser, full-site integration and publication remain separate gates"
+        }
       },
       "details": {}
     },

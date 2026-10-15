@@ -156,6 +156,17 @@ function publicFixture(t){
  for(const file of ['course.css','site.css'])put(file,current(file));
  for(const [file,ids]of [['index.html',[]],['foundations.html',['geometry']],['theory.html',['estimator-crb']],['reading.html',['reading','guide-networks-cooperative-clusters-2024']]])put(file,ids.map(id=>'<div id="'+id+'"></div>').join(''));
  put(cc.entryPoint,cooperativePage);
+ // The causal lesson is an additional unconditional current runtime closure.
+ const causal=require('../scripts/build/causal-capacity-dependencies.cjs'),ca=causal.contract;
+ for(const row of [...ca.modules,...ca.assets])put(row.public,current(row.public));
+ put('scripts/build/causal-capacity-runtime-contracts.json',JSON.stringify(ca),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles]}),false);
+ let causalPage=current(ca.entryPoint).replace(/<link rel="stylesheet" href="site\.css(?:\?[^"]*)?">/,ca.pageStyles.find(s=>s.includes('href="site.css')));
+ for(const [key,region]of Object.entries(ca.pageRegions))causalPage=causalPage.replace(new RegExp('<!-- SITE:'+key+':START -->[\\s\\S]*?<!-- SITE:'+key+':END -->'),region);
+ a.equal(sha(causalPage),ca.entryPageSha256,'exact generated causal fixture page');
+ // Both lessons' generated return/prerequisite anchors stay live in the fixture.
+ for(const [file,ids]of [['theory.html',['estimator-crb','shared-model']],['foundations.html',['geometry','limits','codesign']],['reading.html',['reading','guide-networks-cooperative-clusters-2024','guide-tradeoffs-causal-state-communication-2013']]])put(file,ids.map(id=>'<div id="'+id+'"></div>').join(''));
+ put(ca.entryPoint,causalPage);
  return {directory,manifest:{entries},put};
 }
 
@@ -166,6 +177,11 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
  a.ok(out.some(e=>e.from==='crb-beamforming.html'&&e.to==='crb-receiver/worker.js'&&e.kind==='reviewed-crb-receiver-worker'),'same live receiver gate remains active');
  for(const file of ['crb-beamforming.html','crb-receiver/core.js','crb-multiuser.js'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing receiver mapping must fail: '+file);
  const receiverPage=path.join(f.directory,'crb-beamforming.html'),bytes=fs.readFileSync(receiverPage);fs.unlinkSync(receiverPage);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT/);fs.writeFileSync(receiverPage,bytes);
+ a.ok(out.some(e=>e.from==='causal-capacity-runtime.mjs'&&e.to==='causal-capacity-core.mjs'&&e.kind==='causal-static-module'),'same live causal gate remains active');
+ for(const file of ['causal-state-capacity.html','causal-capacity-ui.mjs','causal-capacity-controller.mjs','causal-capacity-runtime.mjs','causal-capacity-core.mjs','causal-capacity-view.mjs','causal-capacity.css']){
+  a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing causal mapping must fail: '+file);
+  const full=path.join(f.directory,file),bytes=fs.readFileSync(full);fs.unlinkSync(full);a.throws(()=>checkDependencies(f.directory,f.manifest),'missing causal bytes must fail: '+file);fs.writeFileSync(full,bytes);
+ }
  a.ok(out.some(e=>e.from==='cooperative-fim-controller.mjs'&&e.to==='cooperative-fim-worker.mjs'&&e.kind==='reviewed-cooperative-worker'),'same live cooperative gate remains active');
  for(const file of ['cooperative-clusters.html','cooperative-fim-controller.mjs','cooperative-fim-worker.mjs','assets/data/cooperative-fim-retained-coordinates.json']){
   a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing cooperative mapping must fail: '+file);
