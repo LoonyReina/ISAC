@@ -27,3 +27,22 @@
  .foundation-book .mobile-toc nav a{min-height:44px;align-items:center}
 }
 @media print{.foundation-book>.mobile-toc{display:none!important}.step-panel h3:focus,.foundation-book .chapter h2:focus{outline:none}}
+
+/* Foundation course path: semantic links, no duplicate runtime widgets. */
+.foundation-path{padding:clamp(20px,4vw,38px);margin:24px 0 42px;border:1px solid var(--line,#d9e1e7);border-radius:18px;background:var(--card,#fff)}
+.foundation-path h2{font-size:clamp(1.45rem,3vw,2rem);line-height:1.35}
+.foundation-steps{list-style:none;counter-reset:foundation-step;display:grid;gap:14px;padding:0;margin:22px 0}
+.foundation-steps li{counter-increment:foundation-step;border-left:3px solid var(--accent,#177d73);padding:8px 0 8px 18px}
+.foundation-steps a,.foundation-steps span{display:block}.foundation-steps span{font-size:.93rem;margin-top:5px}.foundation-steps p{margin:8px 0 0}
+.foundation-observation{margin:24px 0;padding:18px;background:var(--soft,#f3f7f8);border-radius:12px}
+.foundation-observation figcaption{font-size:.9rem;line-height:1.7;margin-bottom:14px}
+.foundation-observation ol{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0;margin:0}
+.foundation-observation li{border:1px solid var(--line,#d9e1e7);border-radius:8px;padding:12px;background:var(--card,#fff)}
+.foundation-observation b,.foundation-observation span{display:block}.foundation-observation span{font-size:.88rem;margin-top:5px}
+.foundation-extension{margin:30px 0 22px;padding:22px;border:1px solid var(--line,#d9e1e7);border-left:4px solid var(--accent,#177d73);border-radius:10px;background:var(--soft,#f3f7f8)}
+.foundation-extension h3{margin-top:8px}.foundation-extension ol{padding-left:24px}.foundation-extension li{padding-left:4px;margin-bottom:16px}.foundation-extension li>a{font-weight:700}.foundation-extension li p{margin:6px 0 0;font-size:.94rem;line-height:1.8}.foundation-return{font-size:.88rem;border-top:1px solid var(--line,#d9e1e7);padding-top:12px}
+.foundation-path a:focus-visible,.foundation-extension a:focus-visible{outline:3px solid #177d73;outline-offset:4px}
+@media(max-width:520px){.foundation-observation ol{grid-template-columns:1fr}.foundation-extension{padding:16px}.foundation-path{padding:18px}.foundation-steps li{padding-left:12px}}
+@media print{.foundation-path,.foundation-extension{background:white;box-shadow:none}.foundation-extension li,.foundation-observation li{break-inside:avoid}}
+
+.concept-sources{margin:18px 0;border-top:1px solid #cbd5e1;padding:12px 0}.concept-sources>summary{min-height:44px;cursor:pointer;font-weight:700}

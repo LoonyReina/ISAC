@@ -10,6 +10,17 @@
 <div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> <span aria-hidden="true">/</span> <span aria-current="page">基础讲义</span></nav><p class="site-role">连续讲义 · 00–13 章</p></div>
 <!-- SITE:CONTEXT:END -->
 <div class="cover"><p class="eyebrow">本科起点 · 可推导的通感一体</p><h1>从一束电波，<br>走到一张感知图。</h1><p>不是从热图开始，而是从热图里的第一个数开始。</p><div class="cover-tags"><span>复数与相位</span><span>七步 OFDM</span><span>模型与现实</span><span>研究截至 2026-10-08</span></div></div>
+<section class="foundation-path" id="foundation-path" aria-labelledby="foundation-path-title">
+<p class="eyebrow">基础知识 · 一条连续的推导路线</p><h2 id="foundation-path-title">先走通一个回波，再打开一个问题</h2>
+<p>从已学过的信号与系统出发，不预设雷达、估计理论或优化知识。每章先解释物理对象和可观测量，再给公式、图和操作；章末的延伸练习仍属于这一章。</p>
+<ol class="foundation-steps">
+<li><a href="#history"><b>01–06 · 建立物理直觉</b><span>通信与感知 → 回波 → I/Q → 匹配 → 多普勒 → 阵列</span></a><p>能说明一个复数从哪里来，以及路径如何改变它的相位。</p></li>
+<li><a href="#ofdm-basics"><b>07–10 · 从样本走到结论</b><span>OFDM 接收 → 七步感知链 → 检测 → 性能边界</span></a><p>能区分复数样本、匹配功率、检测结果和估计误差。</p></li>
+<li><a href="#codesign"><b>11–13 · 把条件放回系统</b><span>资源共享 → 多径与背景 → 多站与同步</span></a><p>能指出结论依赖的功率、带宽、孔径、时间和先验。</p></li>
+</ol>
+<figure class="foundation-observation"><figcaption><b>贯穿全书的读图顺序</b>：这是处理关系示意，不是测量结果；每个框说明进入下一步时保留了什么。</figcaption><ol><li><b>传播路径</b><span>实物位置改变时延与相位</span></li><li><b>接收数据</b><span>I/Q 两个实数保留为复数</span></li><li><b>候选匹配</b><span>按假设对齐后求和，再看功率</span></li><li><b>检测与估计</b><span>用门限和误差说明结果可信度</span></li></ol></figure>
+<p class="small">按章节顺序学习即可。已有 00–13 章的推导、原控件和数值计算继续保留；本次整理学习路线与章内延伸，不把所有专题重新命名为已经重写的基础课。需要查一个具体论文的方法、证据和复现边界时，再进入<a href="reading.html">论文阅读</a>。</p>
+</section>
 <noscript><div class="callout">正文和推导可以直接阅读。交互实验需要 JavaScript；当前不会更新图形与读数。</div></noscript>
 <section class="chapter" id="start" data-number="00"><header class="chapter-head"><div class="eyebrow">建立物理直觉 / 00</div><h2>先约定：这不是一页研究名词表</h2><p class="goal">起点：见过复数、傅里叶变换、卷积与基本调制；不默认你已经理解它们为什么有用。基础概念也从用途、实物与可操作例子重讲。</p></header><span class="anchor-alias" id="concept"></span>
 <p>我们跟着一个具体场景走到底：<strong>基站给联网机器人发数据，同时利用这次发射的反射信号，测量附近一辆车的位置和速度。</strong>车可以不联网。通信终端和被感知目标是两个角色，即使某些系统中它们恰好是同一个物体，也不能在推导时偷偷混为一谈。</p>
@@ -21,10 +32,10 @@
 <li><a href="#ofdm-basics">第二遍 · 第 7–10 章：亲手构造 OFDM 感知链</a>，沿七步处理走到检测与性能边界。</li>
 <li><a href="#codesign">第三遍 · 第 11–13 章：连接实际系统</a>，先读收发设计、真实信道和多站几何；研究分支与原文移到论文阅读阶段。</li>
 </ol>
-<p class="study-catalog">需要选择其他主题时，查看<a href="experiments.html">机制实验目录</a>；准备核对原文时，进入<a href="reading.html">论文阅读</a>。</p>
+<p class="study-catalog">先沿章节完成推导；每章的延伸练习从当前概念出发，只改变一个条件。准备核对具体方法与证据时，进入<a href="reading.html">论文阅读</a>。</p>
 <p>每章的“停一下”不是考试，而是让你先猜结果，再打开答案。</p>
 <div class="callout"><b>为什么不从二维热图开始？</b><p>现在第 8 章默认只显示一个复数样本，绝不一上来就显示二维热图。你会先看一格、再看一行、再做一次距离匹配、再看一列，最后亲手把它们拼成矩阵。原来的二维图变成推导的结果，而不是起点。</p></div>
-<p class="small">正文与数值推导为本站重新组织的教学内容，不是逐句翻译综述。近期研究的检索截止为 <time>2026-10-08</time>；标注预印本、仿真、实测和标准文件的不同证据层级。补充的参数对照实验统一从<a href="experiments.html#supplements">实验目录</a>进入。</p>
+<p class="small">正文与数值推导为本站重新组织的教学内容，不是逐句翻译综述。近期研究的检索截止为 <time>2026-10-08</time>；标注预印本、仿真、实测和标准文件的不同证据层级。想继续核对第 10 章的分辨率与网格，可在<a href="resolution.html">分辨率补充讲解</a>中比较；需要自由调整参数时，可使用<a href="sandbox.html">参数沙盒</a>。</p>
 <a class="next-chapter" href="#history">下一章 01 → 为什么通信与雷达会走到一起？</a></section>
 <section class="chapter" id="history" data-number="01"><header class="chapter-head"><div class="eyebrow">建立物理直觉 / 01</div><h2>为什么通信与雷达会走到一起？</h2><p class="goal">先理解问题的沿革，再记技术名称。</p></header>
 <h3>两个任务，原来就借用了同一套数学</h3>
@@ -127,7 +138,9 @@
 <p>Barker 码与全 +1 长脉冲的比较，用来展示相关形状；它们的时域变化和占用频谱不同，不能据此声称某个波形在<strong>相同带宽、功率、持续时间和通信任务</strong>下无条件更好。</p>
 <h3>为什么宽带更能区分接近的目标？</h3>
 <p>把波形平移很小的时间，如果它几乎没有变化，两个不同延迟就很难区分。宽带信号能在更短时间内显著变化，相关主瓣通常更窄。理想尺度为 Δτ ≈ 1/B；单站对应 ΔR ≈ c/(2B)。这是分开两个响应的尺度，不是每次测距误差都恰好等于 ΔR。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S3">[S3]</a></p><details class="checkpoint"><summary>停一下，先预测：换了发射码，是否一定要发明新的匹配滤波算法？</summary><div><p>不一定。相乘、相加、扫描的框架可以不变；但模板必须对应新码。故意保留旧模板，正好能看到“算法框架不变”和“接收端什么都不改”的区别。</p></div></details><a class="next-chapter" href="#doppler">下一章 05 → 运动怎样留下痕迹：每秒多转了多少圈？</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S3">[S3]</a></p><details class="checkpoint"><summary>停一下，先预测：换了发射码，是否一定要发明新的匹配滤波算法？</summary><div><p>不一定。相乘、相加、扫描的框架可以不变；但模板必须对应新码。故意保留旧模板，正好能看到“算法框架不变”和“接收端什么都不改”的区别。</p></div></details>
+<aside class="foundation-extension" id="foundation-matched-extension" aria-labelledby="foundation-matched-title"><p class="eyebrow">第 04 章 · 把当前概念多走一步</p><h3 id="foundation-matched-title">相关不只是找一个最大值</h3><p>先完成本章的模板平移，再问：换一种已知训练序列，能改变什么？</p><ol><li><a href="golay-radar.html#experiment">训练序列与互补相关</a><p>先预测两段相关旁瓣相加后会怎样；改变运动条件，观察互补抵消何时不再成立。不要把理想互补性当成任意运动下的保证。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#doppler">下一章 05 → 运动怎样留下痕迹：每秒多转了多少圈？</a></section>
 <section class="chapter" id="doppler" data-number="05">
 <header class="chapter-head"><div class="eyebrow">建立物理直觉 / 05</div><h2>车只动了几毫米，为什么 I/Q 箭头转了这么多？</h2><p class="goal">跟着同一个目标，依次看位置、去回两段路、波长、相位和两种采样时钟。每一条公式都在图上找到对应的量。</p></header>
 <p>前面的声源动画讲的是波峰到达节奏；现在发射基站不动，<strong>反射目标在动</strong>。我们不再让接收机逐个数 GHz 波峰，而是用第 3 章的本振去除共同载波，再观察反射路径造成的残余相位。</p>
@@ -192,7 +205,9 @@
 <p>发射权重控制把能量主要送往哪里；接收权重控制如何从到达各天线的信号中挑出某个方向。可以分别设计，也可以联合设计。通信用户与感知目标不在同一方向时，发射能量如何分配就是实实在在的权衡。</p>
 <p>阵列增大通常使主瓣变窄，但还涉及栅瓣、互耦、宽带波束偏斜、近场波前和校准误差。MIMO 雷达若能分离不同发射通道，还可构造虚拟阵列；这需要可分离波形与正确的虚拟阵元位置，不能简单把天线数量相乘当成无条件收益。</p>
 <p>如果只放松平面波假设，保留波前弯曲，同一方向的不同距离还会给出相同的阵列向量吗？<a href="near-field.html#geometry">接着读近场的几何推导</a>，再用<a href="near-field.html#experiment">一个空间匹配实验</a>检查曲率留下了什么线索。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a></p><details class="checkpoint"><summary>停一下，先预测：角度与距离都影响相位，怎么分得开？</summary><div><p>在本章远场近似下，看的是不同坐标上的变化：同一时刻、同一频率，跨阵元比较主要提供角度；同一时刻、同一阵元，跨频率比较主要提供延迟。三种采样轴的角色不同；真实宽带、多径条件下也可能耦合。</p></div></details><a class="next-chapter" href="#ofdm-basics">下一章 07 → 先把 OFDM 通信接收机搭回来</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a></p><details class="checkpoint"><summary>停一下，先预测：角度与距离都影响相位，怎么分得开？</summary><div><p>在本章远场近似下，看的是不同坐标上的变化：同一时刻、同一频率，跨阵元比较主要提供角度；同一时刻、同一阵元，跨频率比较主要提供延迟。三种采样轴的角色不同；真实宽带、多径条件下也可能耦合。</p></div></details>
+<aside class="foundation-extension" id="foundation-array-extension" aria-labelledby="foundation-array-title"><p class="eyebrow">第 06 章 · 把当前概念多走一步</p><h3 id="foundation-array-title">从方向差走到波前曲率</h3><p>本章用阵元间相位差找方向。先确认这个相位差来自哪段路径，再逐一放松远场和平面波假设。</p><ol><li><a href="near-field.html#experiment">相同角度，不同距离</a><p>保持方向不变，只改变距离，比较各阵元的路径差；看球面波与平面波的失配，不将聚焦图直接当作含噪估计精度。</p></li><li><a href="shared-array.html#experiment">共享天线与空间置零</a><p>固定总功率，先猜投影掉通信方向后还剩多少目标照射；再比较分离与共享阵列。raw 投影诊断与同功率配方分开读。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#ofdm-basics">下一章 07 → 先把 OFDM 通信接收机搭回来</a></section>
 <section class="chapter" id="ofdm-basics" data-number="07"><header class="chapter-head"><div class="eyebrow">走通一条接收链 / 07</div><h2>先把 OFDM 通信接收机搭回来</h2><p class="goal">需要回忆正交基展开；先别把通信 FFT 和感知 FFT 混在一起。</p></header>
 <h3>同一时间发多根频率，为什么能够分别读出来？</h3>
 <p>在长度 T<sub>u</sub> 的有效符号区间中，选频率 kΔf，且 Δf = 1/T<sub>u</sub>。每根频率上放一个复数权重 X[k]，然后相加：</p>
@@ -219,7 +234,9 @@
 <h3>何时不能简单地 Y/X？</h3>
 <p>单站知道自己发射的数据；双站接收机却可能只知道导频，未必知道负载。即使知道，若 X 的幅度很小，N/X 的噪声也会被放大；若 X = 0，则不能相除。多用户、多发射通道重叠时，一个标量除法也未必能分离它们。</p>
 <p>所以有的工作用导频、先解调再重构，或把已知符号放入更一般的测量矩阵；也有的采用 YX*/(|X|²+ε) 这种正则化形式。改变处理方式后，噪声统计、旁瓣和门限需要重新核对。第 15 章的实测论文就把这一数值问题接到了真实基站中。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-R2">[R2]</a></p><details class="checkpoint"><summary>停一下，先预测：二维相位图和距离–多普勒图中，亮色是否都表示大功率？</summary><div><p>不是。H 的相位图用颜色编码方向，可能所有格子的功率都一样；D 的功率图用亮度编码相干匹配后的能量。这是两种数据对象、两套坐标、两种颜色含义。</p></div></details><a class="next-chapter" href="#cfar">下一章 09 → 从“有一个峰”到“值得报警”：CFAR</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-R2">[R2]</a></p><details class="checkpoint"><summary>停一下，先预测：二维相位图和距离–多普勒图中，亮色是否都表示大功率？</summary><div><p>不是。H 的相位图用颜色编码方向，可能所有格子的功率都一样；D 的功率图用亮度编码相干匹配后的能量。这是两种数据对象、两套坐标、两种颜色含义。</p></div></details>
+<aside class="foundation-extension" id="foundation-ofdm-extension" aria-labelledby="foundation-ofdm-title"><p class="eyebrow">第 08 章 · 把当前概念多走一步</p><h3 id="foundation-ofdm-title">相位矩阵中，空格和参考值意味着什么？</h3><p>先完成七步 OFDM，再进入下列问题。这里每个入口仍沿用原来的真实样本、参数和计算，不把不同处理的彩色图混成同一观测。</p><ol><li><a href="pilot-design.html#experiment">从完整网格到稀疏导频</a><p>先预测等间隔取样会重复哪些匹配峰；只改导频间隔，比较歧义和可用资源，不将格距称作分辨率。</p></li><li><a href="ofdm-interpolation.html#experiment">空格能否直接插值？</a><p>固定信号条件，改变时间空缺或插值方式，观察恢复误差与感知结果；补出的数不是新增观测。</p></li><li><a href="reference-uncertainty.html#experiment">参考符号不确定时的匹配</a><p>先区分接收样本和参考符号，再改变参考可靠性；解释匹配输出变化来自哪一步，而非只比较峰高。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#cfar">下一章 09 → 从“有一个峰”到“值得报警”：CFAR</a></section>
 <noscript><p id="velocity-matching">速度匹配交互需要 JavaScript；可先阅读<a href="#ofdm">七步 OFDM 的静态推导</a>。</p></noscript>
 <section class="chapter" id="cfar" data-number="09"><header class="chapter-head"><div class="eyebrow">走通一条接收链 / 09</div><h2>从“有一个峰”到“值得报警”：CFAR</h2><p class="goal">检测与参数估计不是一回事。先区分 H₀ 与 H₁。</p></header>
 <p>距离–多普勒变换把候选参数排成格子。即使没有目标，噪声也总会产生一个最大值。因此“取全图最高点”总能给出坐标，却不能证明那里真的有目标。检测先回答<strong>这个响应是否足够不像背景</strong>，估计再回答其参数是多少。</p>
@@ -236,7 +253,9 @@
 <h3>为什么还会研究新的检测器？</h3>
 <p>背景台阶使训练窗不再代表 CUT；邻近强目标会把平均值和门限一起拉高，从而掩盖弱目标。OS-CFAR 改用排序统计量，GO/SO 类方法分别处理两侧参考区；它们的门限系数和适用条件也不同，不存在一个“换上就全场景恒虚警”的按钮。相关杂波、加窗后相关格子、多脉冲积累都会改变统计模型。</p>
 <p>一张图若有 Q 个检验，P<sub>FA</sub> = 10⁻³ 不等于“整张图只有千分之一概率虚警”。在相同边缘虚警率下，期望虚警数约为 QP<sub>FA</sub>；格子间相关与后处理会影响整图报警概率。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-CF">[CF]</a> · <a href="reading.html#ref-S5">[S5]</a></p><details class="checkpoint"><summary>停一下，先预测：把 P_FA 设得更小，检出率就一定更高吗？</summary><div><p>恰好相反：在其他条件不变时，更低设计虚警率通常需要更高门限，弱目标更难检出。比较检测器应在相同虚警约束下比较检出率，而不能各自随意设门限。</p></div></details><a class="next-chapter" href="#limits">下一章 10 → 四个常被混淆的量：分辨率、格距、精度和范围</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-CF">[CF]</a> · <a href="reading.html#ref-S5">[S5]</a></p><details class="checkpoint"><summary>停一下，先预测：把 P_FA 设得更小，检出率就一定更高吗？</summary><div><p>恰好相反：在其他条件不变时，更低设计虚警率通常需要更高门限，弱目标更难检出。比较检测器应在相同虚警约束下比较检出率，而不能各自随意设门限。</p></div></details>
+<aside class="foundation-extension" id="foundation-cfar-extension" aria-labelledby="foundation-cfar-title"><p class="eyebrow">第 09 章 · 把当前概念多走一步</p><h3 id="foundation-cfar-title">多站的证据可以压成几个数吗？</h3><p>完成单站虚警率与检测门限后，再讨论融合之前到底保存了什么。</p><ol><li><a href="distributed-detection.html#experiment">复匹配输出与局部能量</a><p>先猜同相与反相观测被取模平方后还剩什么；在已校准、固定候选模型下比较不同压缩。相关散射下，相对相位一般仍是证据。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#limits">下一章 10 → 四个常被混淆的量：分辨率、格距、精度和范围</a></section>
 <section class="chapter" id="limits" data-number="10"><header class="chapter-head"><div class="eyebrow">走通一条接收链 / 10</div><h2>四个常被混淆的量：分辨率、格距、精度和范围</h2><p class="goal">知道一个峰怎样出现以后，再讨论它能说明多精细。</p></header><span class="anchor-alias" id="lab"></span>
 <h3>先用四个不同的问题来记</h3>
 <div class="table-scroll"><table><thead><tr><th>你问的问题</th><th>对应概念</th><th>不能混成什么</th></tr></thead><tbody><tr><td>两个相近目标能分开吗？</td><td>分辨率</td><td>不是单目标误差</td></tr><tr><td>图上的相邻坐标差多少？</td><td>栅格间距</td><td>补零可变细，不等于新信息</td></tr><tr><td>一个目标反复测，离真值差多少？</td><td>估计精度，如 RMSE</td><td>受 SNR、算法、偏差、模型误差影响</td></tr><tr><td>哪两个参数会产生相同采样？</td><td>不模糊范围</td><td>与主瓣宽度不是一回事</td></tr></tbody></table></div>
@@ -251,7 +270,9 @@
 <p>把未知距离看成 θ，接收数据分布是 p(y;θ)。θ 变一点，分布改变得越明显，数据就越有能力区分它；Fisher 信息量化这种敏感度。在相应正则条件下，无偏估计的方差受 Cramér–Rao 下界（CRB）约束。多参数时用 Fisher 信息矩阵，未知增益、初相位等“无关参数”也会影响可用信息。</p>
 <div class="equation">Var(θ̂) ≥ 1/J(θ)　（单参数、相应条件下）</div><p class="eqnote">这是理论界，不是“我的算法误差”。有偏、有限样本、低 SNR 门限效应或模型失配时，需要另外解释适用性。</p>
 <p>研究中减少 CRB 可以帮助设计导频或波束，但仍需看实际 RMSE 与检测概率。一个只在高 SNR 才接近 CRB 的估计器，可能在低 SNR 偶尔跳到错误旁瓣，平均误差突然变大。只画一条理想下界曲线不足以证明可部署。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S3">[S3]</a> · <a href="reading.html#ref-S1">[S1]</a></p><details class="checkpoint"><summary>停一下，先预测：4 倍补零后，原来分不开的两辆车必然能分开吗？</summary><div><p>不会。补零增加候选采样点，使曲线和峰位置显示更细；原有观测信息没有增加。参数估计可能因插值减轻网格误差，但它与提升物理分辨能力是不同概念。</p></div></details><a class="next-chapter" href="#codesign">下一章 11 → 研究可以从哪一端动手：发射、接收，还是联合？</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S3">[S3]</a> · <a href="reading.html#ref-S1">[S1]</a></p><details class="checkpoint"><summary>停一下，先预测：4 倍补零后，原来分不开的两辆车必然能分开吗？</summary><div><p>不会。补零增加候选采样点，使曲线和峰位置显示更细；原有观测信息没有增加。参数估计可能因插值减轻网格误差，但它与提升物理分辨能力是不同概念。</p></div></details>
+<aside class="foundation-extension" id="foundation-limits-extension" aria-labelledby="foundation-limits-title"><p class="eyebrow">第 10 章 · 把当前概念多走一步</p><h3 id="foundation-limits-title">把分辨率、误差和下界拆开验证</h3><p>不要只看曲线越低越好：先说清未知量、估计器拿到哪些数、横纵轴和平均的对象。</p><ol><li><a href="offgrid-range.html#experiment">目标落在网格之间</a><p>固定带宽与观测，只细化搜索网格；比较量化偏差和峰宽，说明插值不会凭空增加物理带宽。</p></li><li><a href="theory.html#shared-model">同一观测，判决与估计求谁？</a><p>给 X、H、Y、N 分配角色；把已知输入、未知参数和噪声写清，再选择检测或估计任务。</p></li><li><a href="theory.html#crb-mechanism">随机能量与条件 CRB</a><p>先预测低能量块对倒数平均的影响；区分先逐块求界再平均，与先平均能量再求界。</p></li><li><a href="theory.html#estimator-crb">下界什么时候真的能达到？</a><p>实际生成 x、n、y 再求 LS 估计；区分固定块换噪声与同时重抽输入。有限次经验 MSE 不等于期望，也不是任意模型都可达到 CRB。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#codesign">下一章 11 → 研究可以从哪一端动手：发射、接收，还是联合？</a></section>
 <section class="chapter" id="codesign" data-number="11"><header class="chapter-head"><div class="eyebrow">进入真实研究 / 11</div><h2>研究可以从哪一端动手：发射、接收，还是联合？</h2><p class="goal">把研究分类写成变量与接口，而不是互不相干的名词盒子。</p></header><span class="anchor-alias" id="methods"></span>
 <p>现在你已走过一条可工作的最简接收链：知道发射信号 → 提取信道 → 参数匹配 → 检测。研究并不要求每个模块同时原创。真正需要问的是：<strong>你改变了哪个设计变量，其他模块是否仍满足其工作假设？</strong></p>
 <div class="contrast"><div><b>固定接收框架，优化发射</b><p>改序列、导频位置、子载波功率或发射波束；仍用匹配滤波/变换/检测。必须更新模板、权重与必要的门限，不能只报发射方向图而不看回波结果。</p></div><div><b>固定发射，优化接收</b><p>面对现有 WiFi/OFDM 帧，改进数据重构、杂波抑制、频偏校准、参数估计或鲁棒检测。兼容现有波形本身就可能是研究价值。</p></div></div>
@@ -264,7 +285,9 @@
 <div class="equation">χ(τ,ν) = ∫ s(t)s*(t−τ)e<sup>−j2πνt</sup> dt</div><p class="eqnote">一种常见模糊函数约定；不同文献的共轭与符号可能不同。它描述波形在参数误配下的相似度，不是环境真实目标分布。</p>
 <h3>一个公平的比较应固定什么？</h3>
 <p>至少核对带宽、总能量或功率、观察时长、阵列孔径、通信负载、先验知识、噪声/杂波模型和算法复杂度。比如新方案使用了双倍观察时间，却只把结果归因于“新波形”，归因就不成立。若文章只研究发射优化，可以明确固定标准接收机；关键是证明收益跨过了那个接口。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S3">[S3]</a> · <a href="reading.html#ref-R1">[R1]</a></p><details class="checkpoint"><summary>停一下，先预测：降低目标方向之外的辐射，能否一定减少接收端杂波？</summary><div><p>可能有帮助，但不一定充分。杂波来自空间、延迟、多普勒与传播环境的共同作用；感兴趣目标和杂波也可能同角度。要在具体信道与接收处理下检查，而不是只看一张发射方向图。</p></div></details><a class="next-chapter" href="#realworld">下一章 12 → 把理想条件一条条拆掉：真实信道与干扰</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S1">[S1]</a> · <a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S3">[S3]</a> · <a href="reading.html#ref-R1">[R1]</a></p><details class="checkpoint"><summary>停一下，先预测：降低目标方向之外的辐射，能否一定减少接收端杂波？</summary><div><p>可能有帮助，但不一定充分。杂波来自空间、延迟、多普勒与传播环境的共同作用；感兴趣目标和杂波也可能同角度。要在具体信道与接收处理下检查，而不是只看一张发射方向图。</p></div></details>
+<aside class="foundation-extension" id="foundation-codesign-extension" aria-labelledby="foundation-codesign-title"><p class="eyebrow">第 11 章 · 把当前概念多走一步</p><h3 id="foundation-codesign-title">共享资源之后，两个任务各付出了什么？</h3><p>把资源预算放在结论前面：同样的平均功率，不一定有同样的带宽、时间、孔径或先验。</p><ol><li><a href="theory.html#rate-crb-bridge">速率与估计界的桥梁</a><p>在明确的实标量已知输入模型中，比较两个候选工作点；不把它们连成未经求解的完整 Pareto 边界。</p></li><li><a href="sbfd-resource.html#experiment">频谱资源与双孔径</a><p>改变资源安排，分别读通信占用和感知孔径；区分频率跨度与实际占用带宽。</p></li><li><a href="radar-beam-decision.html#experiment">感知信息怎样缩小波束候选？</a><p>先判断测量能排除哪些候选，再看候选决策与开销；知道位置不等于已经测准了通信信道。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#realworld">下一章 12 → 把理想条件一条条拆掉：真实信道与干扰</a></section>
 <section class="chapter" id="realworld" data-number="12"><header class="chapter-head"><div class="eyebrow">进入真实研究 / 12</div><h2>把理想条件一条条拆掉：真实信道与干扰</h2><p class="goal">不是“最后统一加一点噪声”就能代表现实。</p></header>
 <h3>第一条：一个峰不必等于一个物体</h3>
 <p>一辆车可能有多个散射中心；同一目标的能量也可能经过墙面的多次反射等间接路径到达接收机。反过来，不同物体可能落在同一距离–多普勒分辨单元里。参数峰是传播路径的证据，不自动是语义目标。检测、路径/目标关联、聚类与跟踪，仍是不同步骤。</p>
@@ -278,7 +301,9 @@
 <h3>三种建模层次，各有用途</h3>
 <p><strong>几何/射线模型</strong>把位置与路径联系起来，适合研究可观测性和场景；<strong>统计模型</strong>描述一类环境的分布，适合系统级评估；<strong>测量驱动混合模型</strong>用实测校准参数、保留目标与背景的结构。若要研究通信与感知互助，还应保留两种链路共享散射体的相关性，不能独立随机生成后再声称分析了互助收益。</p>
 <p>Rel-19 信道综述把目标信道、背景信道、散射特征和空间一致性组织进统一建模流程。这一层解决“模拟世界怎样生成”，而不是替你完成接收机、标准合规或实际部署。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S4">[S4]</a> · <a href="reading.html#ref-S5">[S5]</a> · <a href="reading.html#ref-S7">[S7]</a> · <a href="reading.html#ref-R3">[R3]</a></p><details class="checkpoint"><summary>停一下，先预测：做静态环境地图前，先把所有零多普勒成分去掉，合理吗？</summary><div><p>通常不能这样一概处理。静止墙面、家具也在近零多普勒。对运动检测它们可能是杂波；对地图它们可能是目标。先定义任务，再定义什么叫“干扰”。</p></div></details><a class="next-chapter" href="#geometry">下一章 13 → 多站感知：同一个目标，不同路径给出不同约束</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S4">[S4]</a> · <a href="reading.html#ref-S5">[S5]</a> · <a href="reading.html#ref-S7">[S7]</a> · <a href="reading.html#ref-R3">[R3]</a></p><details class="checkpoint"><summary>停一下，先预测：做静态环境地图前，先把所有零多普勒成分去掉，合理吗？</summary><div><p>通常不能这样一概处理。静止墙面、家具也在近零多普勒。对运动检测它们可能是杂波；对地图它们可能是目标。先定义任务，再定义什么叫“干扰”。</p></div></details>
+<aside class="foundation-extension" id="foundation-realworld-extension" aria-labelledby="foundation-realworld-title"><p class="eyebrow">第 12 章 · 把当前概念多走一步</p><h3 id="foundation-realworld-title">理想回波多了另一条路径之后</h3><p>先画出信号经过的路径，再解释同一个终端为何不一定对应一个峰。</p><ol><li><a href="multipath-channel.html#experiment">两条传播路径与同一接收信号</a><p>只改变反射路径条件，观察复数叠加与匹配输出；峰对应路径，不自动对应两个物体。</p></li><li><a href="perceptive-clutter.html#experiment">递归背景会不会吞掉慢目标？</a><p>改变背景更新条件，比较残差；被背景吸收和目标不存在不是同一个结论。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="#geometry">下一章 13 → 多站感知：同一个目标，不同路径给出不同约束</a></section>
 <section class="chapter" id="geometry" data-number="13"><header class="chapter-head"><div class="eyebrow">进入真实研究 / 13</div><h2>多站感知：同一个目标，不同路径给出不同约束</h2><p class="goal">从二维几何理解 WiFi 多基地，而不是把 2v/λ 到处套用。</p></header>
 <p>发射机在 T，接收机在 R，目标在 p。单次反射的总路径是 L(p) = |p−T| + |p−R|。已知绝对时基时，cτ = L；若用直达波作参考，测得的额外路径是 L−|T−R|。</p>
 <p>固定 L，对应以 T、R 为焦点的一条椭圆。<strong>一个路径长度只能把目标约束到一条曲线，不是唯一二维坐标。</strong>多条独立链路的约束相交才可能改善定位，还要检查几何、镜像歧义、噪声和数据关联。</p>
@@ -288,7 +313,9 @@
 <p>融合原始复信号，需要更严格的时频/相位校准和更大回传；融合各站检测点或轨迹，对相干同步的要求可不同，但必须处理误差协方差、坐标变换和“谁与谁是同一个目标”的关联。站多并不自动好：几何重复、错误关联和不一致时钟都可能抵消收益。</p>
 <h3>从检测点走到 BEV 或地图，还缺哪几步？</h3>
 <p>距离–多普勒图不是俯视地图。需要先结合角度/多站几何，把测量转为位置约束；再处理路径归属、遮挡、镜面反射和置信度；最后才是占据栅格、表面地图或语义 BEV。机器人自身在运动时，还要估计自运动并变换到共同坐标系。训练出来的语义图可能含强场景先验，不能把每个像素都解释成独立可观测的射频几何证据。</p>
-<p class="sources">原文接力：<a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S4">[S4]</a> · <a href="reading.html#ref-S7">[S7]</a> · <a href="reading.html#ref-R4">[R4]</a></p><details class="checkpoint"><summary>停一下，先预测：双站总路径 80 m，能否说目标离接收机 40 m？</summary><div><p>不能。它只约束两个距离的和。椭圆上可以有很多不同的 |p−R|；只有收发共址的单站往返几何才自然除以 2 得目标距离。</p></div></details><a class="next-chapter" href="experiments.html">完成基础链 → 选择一个机制实验</a></section>
+<p class="sources">原文接力：<a href="reading.html#ref-S2">[S2]</a> · <a href="reading.html#ref-S4">[S4]</a> · <a href="reading.html#ref-S7">[S7]</a> · <a href="reading.html#ref-R4">[R4]</a></p><details class="checkpoint"><summary>停一下，先预测：双站总路径 80 m，能否说目标离接收机 40 m？</summary><div><p>不能。它只约束两个距离的和。椭圆上可以有很多不同的 |p−R|；只有收发共址的单站往返几何才自然除以 2 得目标距离。</p></div></details>
+<aside class="foundation-extension" id="foundation-geometry-extension" aria-labelledby="foundation-geometry-title"><p class="eyebrow">第 13 章 · 把当前概念多走一步</p><h3 id="foundation-geometry-title">时钟和几何，哪个在移动你的定位结果？</h3><p>把单站的往返距离换成多站路径和之前，先分清每个时延的时间参考。</p><ol><li><a href="network-clock.html#experiment">时钟偏差与位置约束</a><p>固定几何，先只改时钟偏差，观察位置约束怎样移动；不能把所有延迟变化都解释成目标运动。</p></li></ol><p class="foundation-return">做完后回到本章，解释你刚刚改变的是观测、处理还是假设，再继续下一章。</p></aside>
+<a class="next-chapter" href="reading.html">完成基础链 → 按问题进入论文阅读</a></section>
 
 
 

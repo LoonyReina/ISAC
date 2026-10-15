@@ -13,6 +13,7 @@ function reverseFile(file,bytes,rows=delta.changedFiles){
  const old=Buffer.from(r.beforeBase64,'base64');a.ok(identity(old,r.before),'exact browser integration prior identity '+file);return old;
 }
 function withoutFile(file,bytes){
+ bytes=require('./two-section-navigation-preservation.cjs').withoutFile(file,bytes);
  bytes=records.maybeWithoutFile(file,bytes);
  if(file===timer.correction.path||display.corrections.some(r=>r.path===file)||file==='dual-array-positioning.html'||repair.adaptedPaths.includes(file))return repair.historicalBytes(file,bytes);
  return reverseFile(file,bytes);

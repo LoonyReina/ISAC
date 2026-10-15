@@ -40,7 +40,7 @@ test('all notebook topics are canonical projections of the single registry',()=>
 });
 
 test('topic IDs use the bounded lowercase unit grammar rather than arbitrary query strings',()=>{
- for(const id of ['echo','waveform-design','a1-b2','a'.repeat(64)])a.equal(notebookHref(id),'practice.html?topic='+id+'#notebook');
+ for(const id of ['echo','waveform-design','a1-b2','a'.repeat(64)])a.equal(notebookHref(id),'reading.html?topic='+id+'#notebook');
  for(const id of ['',null,42,'Echo','x_y','-echo','echo-','echo--one','echo\n','echo\r','echo?x=1','echo#notebook','%65cho','回波','a'.repeat(65)]){
   a.throws(()=>notebookHref(id),/Invalid notebook unit ID/,String(id));
   const r=structuredClone(registry);r.units[0].id=id;
@@ -83,7 +83,7 @@ test('generated options and JSON cannot cross HTML or script boundaries',()=>{
  a.deepEqual(JSON.parse(json),topics);
 });
 
-test('practice generation fills both placeholders and includes notebook assets only there',()=>{
+test('reading and legacy practice share the same notebook projection and assets',()=>{
  const render=generator(),practice=render.output('practice.html'),topics=buildNotebookTopics(registry);
  a.doesNotMatch(practice,/<!-- NOTEBOOK:(?:OPTIONS|TOPICS) -->/);
  const json=practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1];
@@ -93,7 +93,7 @@ test('practice generation fills both placeholders and includes notebook assets o
  for(const topic of topics)a.ok(select.includes(`<option value="${topic.id}">`),topic.id);
  for(const page of registry.pages){
   const html=render.output(page.path);
-  for(const asset of ['notebook.js?v=guided-notebook-v1','notebook.css?v=guided-notebook-v1'])a.equal(html.includes(asset),page.path==='practice.html',page.path+': '+asset);
+  for(const asset of ['notebook.js?v=guided-notebook-v1','notebook.css?v=guided-notebook-v1'])a.equal(html.includes(asset),['practice.html','reading.html'].includes(page.path),page.path+': '+asset);
  }
  const template=read('site/content-practice.html');
  for(const marker of ['<!-- NOTEBOOK:OPTIONS -->','<!-- NOTEBOOK:TOPICS -->']){
@@ -110,10 +110,10 @@ test('each case page receives its unit query in context and only eligible next l
   hasLink(context,href,'④ 记录一次研究');
   hasLink(context,source.paper,'② 原文与证据');hasLink(context,source.next,'③ 边界与下一问');
   const next=html.match(/<!-- SITE:NEXT:START -->([\s\S]*?)<!-- SITE:NEXT:END -->/)[1];
-  hasLink(next,page.next==='practice.html#notebook'?href:page.next,page.nextLabel+' →');
+  hasLink(next,page.next==='reading.html#notebook'?href:page.next,page.nextLabel+' →');
  }
  a.equal(JSON.stringify(registry),before);
- const eligible={case:'case-pilot',next:'practice.html#notebook',nextLabel:'记录'};
+ const eligible={case:'case-pilot',next:'reading.html#notebook',nextLabel:'记录'};
  hasLink(render.next(eligible),notebookHref('pilot-pattern'),'记录 →');
  for(const page of [{...eligible,case:undefined},{...eligible,case:'unknown-case'},{...eligible,next:'practice.html'},{...eligible,next:'practice.html#research-method'},{...eligible,next:'practice.html?view=1#notebook'},{...eligible,next:'reading.html#case-pilot'}])hasLink(render.next(page),page.next,'记录 →');
  const theory=registry.pages.find(page=>page.path==='theory.html');
@@ -130,9 +130,9 @@ test('all reading cards, including CRB on theory, offer contextual recording wit
   a.ok(reading.includes(card),source.id);
  }
  const crb=registry.cases.find(c=>c.id==='case-crb');
- hasLink(render.readingCard(crb),'practice.html?topic=crb#notebook','记录这个问题');
+ hasLink(render.readingCard(crb),'reading.html?topic=crb#notebook','记录这个问题');
  for(const page of ['index.html','experiments.html'])a.doesNotMatch(render.output(page),/practice\.html\?topic=/,page);
  const readingPage=registry.pages.find(page=>page.path==='reading.html');
- hasLink(render.next(readingPage),'practice.html',readingPage.nextLabel+' →');
+ hasLink(render.next(readingPage),readingPage.next,readingPage.nextLabel+' →');
  for(const direction of registry.directions)for(const level of direction.levels)for(const item of level.items)if(item.status==='available'&&item.href.startsWith('practice.html'))hasLink(reading,item.href,item.label);
 });

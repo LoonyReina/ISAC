@@ -4,7 +4,7 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Content, generator and simulated DOM regression. No browser or source refetch claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
-const root=path.resolve(__dirname,'..'),read=f=>{const value=fs.readFileSync(path.join(root,f),'utf8');return f==='index.html'?require('./helpers/dual-array-preservation.cjs').withoutGeneratedPage(f,value):f==='reading.html'?require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage(f,value):value;};
+const root=path.resolve(__dirname,'..'),read=f=>{const value=require('./helpers/two-section-navigation-preservation.cjs').withoutFile(f,fs.readFileSync(path.join(root,f))).toString();return f==='index.html'?require('./helpers/dual-array-preservation.cjs').withoutGeneratedPage(f,value):f==='reading.html'?require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage(f,value):value;};
 const registry=require('./helpers/dual-array-preservation.cjs').withoutRegistry(JSON.parse(read('site/registry.json'))),data=require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(JSON.parse(read(registry.researchGuidesFile)));
 const legacyUnitCount=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).units.length-1;
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
@@ -96,8 +96,8 @@ test('reading navigation and direction links resolve to the same generated guide
   if(href.startsWith('#')){a.ok(ids.includes(href.slice(1)),href);continue;}
   if(href.startsWith('https:'))continue;
   const url=new URL(href,'https://example.test/ISAC/');a.equal(url.origin,'https://example.test');
-  a.ok(read(path.basename(url.pathname)).includes(`id="${url.hash.slice(1)}"`),href);
-  if(url.search)a.ok(['practice.html?topic=near-field#notebook','practice.html?topic=sbfd#notebook','practice.html?topic=otfs-receiver#notebook','practice.html?topic=ofdm-ici-receiver#notebook'].includes(href));
+  a.ok(fs.readFileSync(path.join(root,path.basename(url.pathname)),'utf8').includes(`id="${url.hash.slice(1)}"`),href);
+  if(url.search)a.ok(['reading.html?topic=near-field#notebook','reading.html?topic=sbfd#notebook','reading.html?topic=otfs-receiver#notebook','reading.html?topic=ofdm-ici-receiver#notebook'].includes(href));
  }
  a.match(render(),/已有机制的空白实验本/);a.doesNotMatch(render(),/topic=otfs(?!-receiver)|topic=nearfield-double/);
  for(const c of build())if(c.notebook)a.ok(['near-field','sbfd','otfs-receiver','ofdm-ici-receiver'].includes(c.notebook.id));
@@ -521,7 +521,7 @@ test('new spatial question, both backlinks and native disclosures use existing s
  }
  h.form.fire('reset');h.search('2026脉络');a.equal(h.cards.filter(c=>!c.hidden).length,5);a.equal(card.hidden,false);a.ok(trace.open&&answer.open);
  a.match(card.querySelector('[class="guide-currentness"]').textContent,/固定版本：2026-05-01.*非最新保证/);
- a.ok(card.querySelector('[href="practice.html?topic=near-field#notebook"]'));a.match(card.textContent,/已有机制的空白实验本/);
+ a.ok(card.querySelector('[href="reading.html?topic=near-field#notebook"]'));a.match(card.textContent,/已有机制的空白实验本/);
 });
 
 test('three frontier traces preserve all twenty complete prior records, seventeen traces and every context',()=>{

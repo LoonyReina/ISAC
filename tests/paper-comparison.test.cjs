@@ -17,7 +17,7 @@ test('comparison is a reading-only group without changing learning/catalog count
  const groups=M.buildComparisonGroups(registry);a.equal(groups.length,1);a.equal(groups[0].members.length,3);
  const html=read('reading.html');a.ok(html.indexOf('id="directions"')<html.indexOf('id="paper-comparisons"'));a.ok(html.indexOf('id="paper-comparisons"')<html.indexOf('id="influential-papers"'));
  for(const name of ['paper-comparisons','comparison-beamforming','comparison-beamforming-resources','comparison-beamforming-checks','comparison-beamforming-next'])a.ok(html.includes(`id="${name}"`));
- a.match(html,/href="#paper-comparisons">同方向论文对读/);a.match(html,/paper-comparison.css\?v=paper-comparison-v1/);a.match(html,/defer src="paper-comparison.js\?v=paper-comparison-v1/);
+ a.match(html,/<details class="reading-legacy-evidence" id="reading-legacy-evidence">/);a.ok(html.indexOf('id="reading-legacy-evidence"')<html.indexOf('id="paper-comparisons"'));a.match(html,/paper-comparison.css\?v=paper-comparison-v1/);a.match(html,/defer src="paper-comparison.js\?v=paper-comparison-v1/);
  for(const page of registry.pages.filter(p=>p.path!=='reading.html'))a.doesNotMatch(read(page.path),/src="paper-comparison\.js|href="paper-comparison\.css/);
 });
 test('source edition pins are independent of unchanged article and lesson metadata',()=>{
@@ -29,7 +29,7 @@ test('source edition pins are independent of unchanged article and lesson metada
 });
 test('all derived teaching, experiment, evidence, boundary and notebook destinations stay canonical',()=>{
  const g=M.buildComparisonGroups(registry)[0];
- for(const m of g.members){const c=registry.cases.find(c=>c.id===m.caseId),u=registry.units.find(u=>u.id===c.unit);a.equal(m.links.model,m.modelHref);a.equal(m.links.teaching,c.learningEntry);a.equal(m.links.experiment,u.href);a.equal(m.links.evidence,c.paper);a.equal(m.links.boundary,c.next);a.equal(m.links.notebook,'practice.html?topic='+u.id+'#notebook');}
+ for(const m of g.members){const c=registry.cases.find(c=>c.id===m.caseId),u=registry.units.find(u=>u.id===c.unit);a.equal(m.links.model,m.modelHref);a.equal(m.links.teaching,c.learningEntry);a.equal(m.links.experiment,u.href);a.equal(m.links.evidence,c.paper);a.equal(m.links.boundary,c.next);a.equal(m.links.notebook,'reading.html?topic='+u.id+'#notebook');}
  const h=M.renderComparisonGroups(registry),ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);a.equal(ids.length,new Set(ids).size);
  for(const [,href]of h.matchAll(/href="([^"]+)"/g)){if(href.startsWith('#'))a.ok(ids.includes(href.slice(1)),href);else if(!href.startsWith('https:')){const [file,fragment]=href.split('#'),[name,query]=file.split('?');a.ok(read(name).includes(`id="${fragment}"`));if(query)a.match(query,/^topic=(shared-array|joint-beamforming|crb-beamforming)$/);}}
  const practice=read('practice.html');const fields=[...practice.matchAll(/<textarea\b[^>]*>([\s\S]*?)<\/textarea>/g)];a.equal(fields.length,10);a.ok(fields.every(m=>m[1]===''));a.doesNotMatch(h,/practice\.html\?[^" ]*(?:question|answer|plan|content)=/);

@@ -2,12 +2,12 @@
 
 ## 页面与代码
 
-- `index.html` 是唯一四阶段学习地图；`foundations.html` 保留原 00–13 章连续基础与全部原绑定控件。这些名称指发布 URL；手写页面源在 `content/pages/`，基础讲义脚本在 `features/foundations/`，共享样式在 `shared/styles/`。
-- `experiments.html` 注册机制实验；`reading.html` 组织八个研究方向、六层深度、主题原文与原 14/15/17 章；`practice.html` 承接研究工作流和原 16 章任务。页面 URL、锚点、资源 URL 与脚本加载顺序不随源码目录移动。
+- `index.html` 是基础知识与论文阅读的双入口首页；`foundations.html` 保留原 00–13 章连续基础与全部原绑定控件。这些名称指发布 URL；手写页面源在 `content/pages/`，基础讲义脚本在 `features/foundations/`，共享样式在 `shared/styles/`。
+- 一级导航只有基础知识和论文阅读。机制实验归入基础概念子课，真实论文算法归入论文阅读；`lessonPlacement` 按 unit/锚点声明归属。`experiments.html` 仅保留旧书签兼容；`reading.html` 组织研究树、主题原文和有界算法，原研究方法与记录作为其局部工具；`practice.html` 仅保留旧链接和无 JS 兼容。页面 URL、锚点、资源 URL 与脚本加载顺序不随源码目录移动。
 - `content/data/registry.json` 是共享导航、主题、研究方向、证据槽与兼容路线的单一来源；研究指南和影响证据目录同属 `content/data/`。科学正文手写；生成器只改写手写页面中的 `SITE:HEADER/CONTEXT/NEXT` 标记区域。生成门户的手写正文源在 `content/fragments/content-*.html`，不要直接编辑生成门户。
 - 跨页面功能放在 `features/`，专题数值核心、界面和样式放在 `labs/`；通用记录/下载支持放在 `shared/records/`，既有证据数据放在 `assets/data/`。多径与反射孔径共同归属 `labs/channel-geometry/`；离格测距与参考不确定性共同归属 `labs/ofdm-reference/`。不要仅按文件后缀重新堆成大目录。
 - 站点生成器与解析器源在 `scripts/site/`；独立参考、审计和验证包按专题归属 `scripts/validation/`。`tests/` 保留原回归。历史验证报告、日志、来源快照与数值证据保持原文和日期，搬迁路径不表示重新验证。
-- 新增主题先注册方向、先修、模型、实验、原文证据与下一问；横向增方向，纵向补六层。available/proposed、前置实验/专项机制、研究计划/已验证复现必须分清，未实现内容不得生成假按钮。
+- 新增主题先注册方向、先修、模型、实验、原文证据与下一问；研究树主题归属不得冒充引用或技术继承，学术关系须有固定版本来源定位；横向增方向，纵向补六层。available/proposed、前置实验/专项机制、研究计划/已验证复现必须分清，未实现内容不得生成假按钮。
 - 原文对照需版本、章节/图/式、观测与未知量、保留/省略条件、论文与本站证据类型、指标和资源预算；未知字段标待核对，不从链接推断完整复现。
 - `sandbox.html`、`resolution.html` 仅为按需补充实验，不能成为平行首页。`learn.html`、`overview.html`、`research.html` 与旧首页锚点保留明确兼容映射及无 JS 对应链接。
 
@@ -60,3 +60,10 @@
 - I/Q 图区分真实 RF 瞬时电压、两路基带系数、复向量与归一化功率；说明硬件架构并非一定是两颗 ADC。
 - 路径相位图先用有限位移数波长，再讲导数；区分射频时钟、片段内快时间与观察间慢时间。显示累计圈数时标明它来自已知真值，而不是自动解模糊。
 - `features/foundations/intuition-core.js` 负责新增纯模型；同目录的 `intuition.js` 通过原 `course.js` 统一输入/播放循环连接图像。全部数值回归通过 `node scripts/build-compatibility.cjs --test --reproducible` 在旧路径暂存布局中执行。
+
+## 两板块重构约束
+
+- 首页与每页一级导航只显示基础知识、论文阅读；书籍可作为概念引用，不建立书目目录。
+- 旧 URL、锚点、运行时资源和导出协议保留。科学核心与证据不得因视觉重构复制或改口径。
+- 论文树以主题分类为默认关系，3D 只作渐进增强；无 JS 的原生列表同样能到达所有论文。
+- 记录工具当前是页面内临时内容，刷新/关闭可能丢失；不声称有本地持久化。

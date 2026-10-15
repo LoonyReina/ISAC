@@ -1,0 +1,9 @@
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ISACResearchTreeModel=api;})(typeof globalThis==='object'?globalThis:this,function(){
+'use strict';
+function validate(data){const ids=new Set();for(const p of data.papers){if(ids.has(p.id))throw Error('Duplicate paper identity: '+p.id);ids.add(p.id);if(!p.directionIds.every(id=>data.directions.some(d=>d.id===id)))throw Error('Unknown direction');}for(const e of data.lineage||[])if(!e.provenance||!e.sourceUrl||!e.locator)throw Error('Research lineage requires source and locator');return data;}
+function search(data,query,direction){const q=String(query||'').normalize('NFKC').toLocaleLowerCase().trim();return data.papers.filter(p=>(!direction||p.directionIds.includes(direction))&&(!q||[p.title,p.shortTitle,p.question,p.boundary,p.id,p.sourceIdentity,...p.directionIds.map(id=>data.directions.find(d=>d.id===id)?.title)].join(' ').toLocaleLowerCase().includes(q)));}
+// Parallel orthographic projection keeps every label screen-facing and its hit target stable.
+function project(point,yaw=0,pitch=0,centerX=450){const y=yaw*Math.PI/180,p=pitch*Math.PI/180;const centeredX=point.x-centerX,depth=-centeredX*Math.sin(y)+point.z*Math.cos(y);return {x:centerX+centeredX*Math.cos(y)+point.z*Math.sin(y),y:point.y*Math.cos(p)-depth*Math.sin(p),depth};}
+function layout(papers,opened,yaw=0,pitch=0,width=900){const nodes=[],edges=[];let row=0;for(const paper of papers){const y=96+row*164;const q={id:'question-'+paper.id,kind:'problem',paper,x:width*.25,y,z:-36};nodes.push({...q,...project(q,yaw,pitch,width/2)});if(opened.has(paper.id)){const n={id:paper.id,kind:'paper',paper,x:width*.75,y,z:42};nodes.push({...n,...project(n,yaw,pitch,width/2)});edges.push({from:q.id,to:n.id});}row++;}return {nodes,edges,height:Math.max(220,row*164+60),width,nodeWidth:Math.min(350,width*.36)};}
+return {validate,search,project,layout};
+});

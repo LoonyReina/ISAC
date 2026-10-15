@@ -9,7 +9,7 @@ function originalTheory(html){
  return html.replace(/<!-- CAPACITY-DISTORTION:START -->[\s\S]*?<!-- CAPACITY-DISTORTION:END -->\n/,'').replace(tags,'').replace('五个可复算实验','四个可复算实验');
 }
 test('new optimizer preserves the existing theory science outside its explicit block and asset hooks',()=>{
- const html=read('theory.html'),baseline='2a4a08c66d256e5118a5c37cd8b25539e240501e0336ec573d3c542fb9720b1c';
+ const html=require('./helpers/two-section-navigation-preservation.cjs').withoutFile('theory.html',Buffer.from(read('theory.html'))).toString(),baseline='2a4a08c66d256e5118a5c37cd8b25539e240501e0336ec573d3c542fb9720b1c';
  a.equal(hash(originalTheory(html)),baseline);
  const mutated=html.replace('两个点不是完整 Pareto 边界','两个点就是完整 Pareto 边界');a.notEqual(mutated,html);a.notEqual(hash(originalTheory(mutated)),baseline);
  a.throws(()=>originalTheory(html.replace(tags,'')));a.throws(()=>originalTheory(html+tags));

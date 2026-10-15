@@ -13,8 +13,8 @@ function article(html,id){const m=html.match(new RegExp(`<article[^>]* id="${id}
 test('radar registry owns one independent sensing-assisted communication case with six learning layers',()=>{
  a.ok(c&&u&&p);a.equal(c.title,'猜中最优波束，与保住通信增益是一回事吗？');
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'learning');
- a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'practice.html#notebook');
+ a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'learning');
+ a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'reading.html#notebook');
  a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  const d=r.directions.find(d=>d.id==='learning');a.deepEqual(d.primaryCaseIds,[c.id]);a.match(d.title,/感知辅助通信/);a.match(d.scope,/感知辅助通信/);
  a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'reading.html#branches');
@@ -89,7 +89,7 @@ test('radar page and generated portals expose real sections, shared navigation a
  for(const anchor of ['mechanism','experiment','model','paper','limits','reproduce'])resolve(`${p.path}#${anchor}`);
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.next])resolve(href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp(`<!-- SITE:${key}:START -->`,'g'))||[]).length,1);
- a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html?topic=radar-beam-decision#notebook"'));
+ a.ok(html.includes('href="foundations.html" aria-current="location"'));a.ok(html.includes('href="reading.html?topic=radar-beam-decision#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  a.ok(read('index.html').includes(`href="${c.learningEntry}"`));a.equal(article(read('reading.html'),'ref-RADAR'),article(read('site/content-reading.html'),'ref-RADAR'));
 });

@@ -26,7 +26,7 @@ function region(html,key){
 
 test('reference uncertainty adds one case-free mechanism and one page without inflating source evidence',()=>{
  a.deepEqual([withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,withoutGCSAGERegistry(registry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
- a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(registry.pages.find(p=>p.path===page.path),page);
+ a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(registry).pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
  const guides=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile)));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
@@ -77,7 +77,7 @@ test('canonical entry, shared shell and next reading destination resolve without
  const entry=createLearningEntryResolver(registry);a.equal(entry.unitEntry(unit),unit.href);
  for(const href of [...unit.prerequisites,unit.href,page.next,...['experiment','model','limits','sources'].map(id=>page.path+'#'+id)])resolve(href);
  const html=read(page.path),header=region(html,'HEADER'),context=region(html,'CONTEXT'),next=region(html,'NEXT');
- a.ok(header.includes('href="experiments.html" aria-current="location"'));
+ a.ok(header.includes('href="foundations.html" aria-current="location"'));
  for(const href of unit.prerequisites)a.ok(context.includes(`href="${href}"`),href);
  a.doesNotMatch(context,/class="site-topic-nav"|reading\.html#case-reference/);
  a.ok(next.includes(`href="${page.next}">${page.nextLabel} →</a>`));
@@ -89,12 +89,12 @@ test('canonical entry, shared shell and next reading destination resolve without
 test('native notebook projection and generated portals expose the mechanism without new export semantics',()=>{
  const topics=buildNotebookTopics(registry),topic=topics.find(t=>t.id===unit.id);a.equal(topics.length,registry.units.length);
  a.deepEqual(topic,{id:unit.id,title:unit.title,question:unit.question,action:unit.action,teachingHref:unit.href,experimentHref:unit.href});
- a.equal(notebookHref(unit.id),'practice.html?topic=reference-uncertainty#notebook');
+ a.equal(notebookHref(unit.id),'reading.html?topic=reference-uncertainty#notebook');
  const practice=read('practice.html'),embedded=JSON.parse(practice.match(/<script type="application\/json" id="notebook-topics">([\s\S]*?)<\/script>/)[1]);
  a.deepEqual(embedded,topics);a.ok(practice.includes('<option value="reference-uncertainty">参考不确定性与距离匹配</option>'));
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
- a.ok(home.includes(`<strong>${registry.units.length}</strong> 个机制实验`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
+ a.ok(home.includes(`<strong>${registry.units.length}</strong> 个教学入口`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage('reading.html',reading),/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');

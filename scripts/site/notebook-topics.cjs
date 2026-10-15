@@ -10,7 +10,7 @@ function validateUnitId(id){
  return id;
 }
 
-function notebookHref(unitId){return 'practice.html?topic='+validateUnitId(unitId)+'#notebook';}
+function notebookHref(unitId){return 'reading.html?topic='+validateUnitId(unitId)+'#notebook';}
 
 function buildNotebookTopics(registry,validationContext){
  const entries=createLearningEntryResolver(registry,validationContext);

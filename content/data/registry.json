@@ -2,39 +2,21 @@
   "stages": [
     {
       "id": "foundations",
-      "label": "基础讲义",
+      "label": "基础知识",
       "href": "foundations.html",
       "step": "01",
-      "outcome": "把传播路径写成接收机的复数观测",
-      "description": "从回波、I/Q 与相位出发，沿 00–13 章构造 OFDM 感知链。",
-      "next": "先从一束回波开始"
-    },
-    {
-      "id": "experiments",
-      "label": "机制实验",
-      "href": "experiments.html",
-      "step": "02",
-      "outcome": "只改变一个条件，解释曲线为什么变",
-      "description": "按观测、处理和约束选择实验；先预测，再用数值检验。",
-      "next": "选一个想弄清的问题"
+      "outcome": "从一个概念，走到可解释的实验",
+      "description": "沿回波、I/Q、匹配与 OFDM 主线学习；机制实验放回对应概念。",
+      "next": "从第一束回波开始"
     },
     {
       "id": "reading",
       "label": "论文阅读",
       "href": "reading.html",
-      "step": "03",
-      "outcome": "把作者的主张与证据逐一对应",
-      "description": "按八个方向深入已有主题，读固定版本原文，分清机制演示、仿真与实测。",
-      "next": "带着问题回到原文"
-    },
-    {
-      "id": "practice",
-      "label": "研究实践",
-      "href": "practice.html",
-      "step": "04",
-      "outcome": "留下一个能复核、也能失败的最小实验",
-      "description": "从问题、资源预算和基线，走到试验记录、边界与下一问。",
-      "next": "写下你的第一个实验计划"
+      "step": "02",
+      "outcome": "沿研究分支，读懂并运行论文方法",
+      "description": "从问题找到固定版本原文与真实算法课，分清已实现范围和开放边界。",
+      "next": "探索论文研究树"
     }
   ],
   "cases": [
@@ -2031,8 +2013,8 @@
       "geo-read": "foundations.html#geo-read",
       "branches": "reading.html#branches",
       "frontiers": "reading.html#frontiers",
-      "practice": "practice.html#practice",
-      "roadmap": "practice.html#roadmap",
+      "practice": "reading.html#practice",
+      "roadmap": "reading.html#roadmap",
       "reading": "reading.html#reading",
       "ref-S1": "reading.html#ref-S1",
       "ref-S2": "reading.html#ref-S2",
@@ -2139,7 +2121,7 @@
       "bPlay": "sandbox.html#bPlay",
       "beamCanvas": "sandbox.html#beamCanvas",
       "bResult": "sandbox.html#bResult",
-      "research": "practice.html#design-interface",
+      "research": "reading.html#design-interface",
       "sources": "sandbox.html#sources",
       "s1": "sandbox.html#s1",
       "s2": "sandbox.html#s2",
@@ -2171,8 +2153,8 @@
       "lineB": "resolution.html#lineB",
       "labnote": "resolution.html#labnote",
       "architecture": "foundations.html#codesign",
-      "methods": "practice.html#research-method",
-      "experiment": "practice.html#practice",
+      "methods": "reading.html#research-method",
+      "experiment": "reading.html#practice",
       "reading": "reading.html#reading",
       "ref1": "reading.html#ref-S1",
       "ref2": "reading.html#ref-S2",
@@ -2181,8 +2163,107 @@
       "ref5": "reading.html#ref-S5",
       "ref6": "reading.html#ref-S6",
       "ref7": "reading.html#ref-S7",
-      "roadmap": "practice.html#roadmap",
-      "faq": "practice.html#faq"
+      "roadmap": "reading.html#roadmap",
+      "faq": "reading.html#faq"
+    },
+    "experiments.html": {
+      "": "foundations.html",
+      "unit-echo": "foundations.html#echo",
+      "unit-iq": "foundations.html#iq",
+      "unit-matched": "foundations.html#matched",
+      "unit-doppler": "foundations.html#doppler",
+      "unit-array": "foundations.html#array",
+      "unit-ofdm": "foundations.html#ofdm",
+      "unit-cfar": "foundations.html#cfar",
+      "unit-geometry": "foundations.html#geometry",
+      "unit-shared": "theory.html#shared-model",
+      "unit-crb": "theory.html#crb-mechanism",
+      "unit-estimator-crb": "theory.html#estimator-crb",
+      "unit-rate": "theory.html#rate-crb-bridge",
+      "unit-pilot": "pilot-design.html#experiment",
+      "unit-clock": "network-clock.html#experiment",
+      "unit-sbfd": "sbfd-resource.html#experiment",
+      "unit-near-field": "near-field.html#research-experiment",
+      "unit-waveform-design": "waveform-design.html#experiment",
+      "unit-joint-beamforming": "joint-beamforming.html#experiment",
+      "unit-crb-beamforming": "crb-beamforming.html#experiment",
+      "unit-golay-radar": "golay-radar.html#experiment",
+      "unit-ofdm-interpolation": "ofdm-interpolation.html#experiment",
+      "unit-radar-beam-decision": "radar-beam-decision.html#experiment",
+      "unit-perceptive-clutter": "perceptive-clutter.html#experiment",
+      "unit-shared-array": "shared-array.html#experiment",
+      "unit-multipath-channel": "multipath-channel.html#experiment",
+      "unit-distributed-detection": "distributed-detection.html#experiment",
+      "unit-offgrid-range": "offgrid-range.html#experiment",
+      "unit-reference-uncertainty": "reference-uncertainty.html#experiment",
+      "unit-nearfield-gc-sage": "nearfield-gc-sage.html#experiment",
+      "unit-atomic-ofdm-receiver": "atomic-ofdm-receiver.html#experiment",
+      "unit-otfs-receiver": "otfs-receiver.html#experiment",
+      "unit-ofdm-ici-receiver": "ofdm-ici-receiver.html#experiment",
+      "unit-80211ad-receiver": "80211ad-receiver.html#experiment",
+      "unit-networked-sync": "networked-sync.html#experiment",
+      "unit-gaussian-tradeoff": "gaussian-tradeoff.html#experiment",
+      "unit-cellfree-maprt": "cellfree-maprt.html#experiment",
+      "unit-nearfield-multitarget": "nearfield-multitarget.html#experiment",
+      "unit-otfs-sensing-assisted": "otfs-sensing-assisted.html#experiment",
+      "unit-perceptive-bsbl": "perceptive-bsbl.html#run",
+      "unit-pilot-pattern": "pilot-patterns.html#question",
+      "unit-dual-array-positioning": "dual-array-positioning.html#question",
+      "observation": "foundations.html#iq",
+      "processing": "foundations.html#ofdm",
+      "research": "reading.html",
+      "supplements": "foundations.html#limits"
+    },
+    "practice.html": {
+      "": "reading.html#research-method",
+      "practice": "reading.html#practice",
+      "research-method": "reading.html#research-method",
+      "pilot-plan": "reading.html#pilot-plan",
+      "notebook": "reading.html#notebook",
+      "notebook-jump": "reading.html#notebook-jump",
+      "notebook-loss-notice": "reading.html#notebook-loss-notice",
+      "notebook-form": "reading.html#notebook-form",
+      "notebook-reference-heading": "reading.html#notebook-reference-heading",
+      "notebook-topic": "reading.html#notebook-topic",
+      "notebook-reference-notice": "reading.html#notebook-reference-notice",
+      "notebook-reference-title": "reading.html#notebook-reference-title",
+      "notebook-reference-question": "reading.html#notebook-reference-question",
+      "notebook-reference-action": "reading.html#notebook-reference-action",
+      "notebook-teaching": "reading.html#notebook-teaching",
+      "notebook-experiment": "reading.html#notebook-experiment",
+      "notebook-evidence": "reading.html#notebook-evidence",
+      "notebook-boundary": "reading.html#notebook-boundary",
+      "notebook-topic-status": "reading.html#notebook-topic-status",
+      "notebook-limits": "reading.html#notebook-limits",
+      "notebook-identity-help": "reading.html#notebook-identity-help",
+      "notebook-identity": "reading.html#notebook-identity",
+      "notebook-question-help": "reading.html#notebook-question-help",
+      "notebook-question": "reading.html#notebook-question",
+      "notebook-observations-help": "reading.html#notebook-observations-help",
+      "notebook-observations": "reading.html#notebook-observations",
+      "notebook-geometry-help": "reading.html#notebook-geometry-help",
+      "notebook-geometry": "reading.html#notebook-geometry",
+      "notebook-comparison-help": "reading.html#notebook-comparison-help",
+      "notebook-comparison": "reading.html#notebook-comparison",
+      "notebook-parameters-help": "reading.html#notebook-parameters-help",
+      "notebook-parameters": "reading.html#notebook-parameters",
+      "notebook-metrics-help": "reading.html#notebook-metrics-help",
+      "notebook-metrics": "reading.html#notebook-metrics",
+      "notebook-results-help": "reading.html#notebook-results-help",
+      "notebook-results": "reading.html#notebook-results",
+      "notebook-uncertainty-help": "reading.html#notebook-uncertainty-help",
+      "notebook-uncertainty": "reading.html#notebook-uncertainty",
+      "notebook-scope-help": "reading.html#notebook-scope-help",
+      "notebook-scope": "reading.html#notebook-scope",
+      "notebook-check": "reading.html#notebook-check",
+      "notebook-download-md": "reading.html#notebook-download-md",
+      "notebook-download-json": "reading.html#notebook-download-json",
+      "notebook-check-status": "reading.html#notebook-check-status",
+      "notebook-download-status": "reading.html#notebook-download-status",
+      "notebook-topics": "reading.html#notebook-topics",
+      "roadmap": "reading.html#roadmap",
+      "faq": "reading.html#faq",
+      "design-interface": "reading.html#design-interface"
     }
   },
   "units": [
@@ -2738,12 +2819,12 @@
   "pages": [
     {
       "path": "foundations.html",
-      "title": "基础讲义：从回波到多站几何",
+      "title": "基础知识：从回波到多站几何",
       "stage": "foundations",
       "role": "连续讲义 · 00–13 章",
       "prerequisites": [],
-      "next": "experiments.html",
-      "nextLabel": "选择一个机制实验"
+      "next": "reading.html",
+      "nextLabel": "带着概念问题进入论文阅读"
     },
     {
       "path": "theory.html",
@@ -2760,54 +2841,54 @@
     {
       "path": "sandbox.html",
       "title": "补充实验：参数与失败对照",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "补充沙盒 · 独立参数与模型",
       "prerequisites": [
         "foundations.html#ofdm"
       ],
-      "next": "experiments.html",
-      "nextLabel": "回到机制实验目录"
+      "next": "foundations.html",
+      "nextLabel": "回到对应基础概念"
     },
     {
       "path": "pilot-design.html",
       "title": "导频省下来，距离为什么重复？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 机制与原文同页对照",
       "prerequisites": [
         "foundations.html#ofdm"
       ],
       "case": "case-pilot",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "把这个主题写成可复核的实验记录"
     },
     {
       "path": "network-clock.html",
       "title": "时钟差 10 ns，位置差多少？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 机制与原文同页对照",
       "prerequisites": [
         "foundations.html#geometry"
       ],
       "case": "case-clock",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "把这个主题写成可复核的实验记录"
     },
     {
       "path": "sbfd-resource.html",
       "title": "分的是带宽，测速看的是时间",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 机制与原文同页对照",
       "prerequisites": [
         "foundations.html#ofdm"
       ],
       "case": "case-sbfd",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "把这个主题写成可复核的实验记录"
     },
     {
       "path": "near-field.html",
       "title": "同一个方向，为什么还可能分出远近？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "研究主题 · 旧曲率先修与有界SDR–有限X–含噪MUSIC",
       "prerequisites": [
         "foundations.html#iq",
@@ -2821,36 +2902,36 @@
     },
     {
       "path": "experiments.html",
-      "title": "机制实验",
-      "stage": "experiments",
-      "role": "学习阶段 02",
+      "title": "旧实验入口已归入对应课程",
+      "stage": "",
+      "role": "旧链接兼容 · 基础概念与论文课",
       "prerequisites": [],
-      "next": "reading.html",
-      "nextLabel": "带着实验现象阅读原文"
+      "next": "foundations.html",
+      "nextLabel": "进入基础知识"
     },
     {
       "path": "reading.html",
       "title": "论文阅读",
       "stage": "reading",
-      "role": "学习阶段 03",
+      "role": "论文阅读 · 方向、原文与有界算法",
       "prerequisites": [],
-      "next": "practice.html",
-      "nextLabel": "设计一个可复核的实验"
+      "next": "foundations.html",
+      "nextLabel": "需要时回到基础概念"
     },
     {
       "path": "practice.html",
-      "title": "研究实践",
-      "stage": "practice",
-      "role": "学习阶段 04",
+      "title": "论文阅读中的方法与记录",
+      "stage": "",
+      "role": "旧链接兼容 · 阅读局部工具",
       "prerequisites": [],
-      "next": "reading.html",
-      "nextLabel": "选择下一条研究支线"
+      "next": "reading.html#notebook",
+      "nextLabel": "进入论文阅读中的实验记录"
     },
     {
       "path": "index.html",
       "title": "ISAC 交互学习地图",
       "stage": "",
-      "role": "四个阶段 · 从物理直觉到研究证据",
+      "role": "基础知识与论文阅读 · 两条学习入口",
       "prerequisites": [],
       "next": "foundations.html#start",
       "nextLabel": "开始基础讲义"
@@ -2858,7 +2939,7 @@
     {
       "path": "resolution.html",
       "title": "带宽与观察时间：理想响应尺度",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "补充机制 · 理想单目标响应对照",
       "prerequisites": [
         "foundations.html#limits"
@@ -2869,20 +2950,20 @@
     {
       "path": "waveform-design.html",
       "title": "方向图相同，通信符号为什么不同？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "研究主题 · 严格协方差到等能量加权波形",
       "prerequisites": [
         "foundations.html#iq",
         "foundations.html#array"
       ],
       "case": "case-waveform",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次固定资源的波形实验"
     },
     {
       "path": "joint-beamforming.html",
       "title": "同一阵列，为什么还要加独立雷达流？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "研究主题 · 实际SDR/优化型ZF与因子验收",
       "prerequisites": [
         "foundations.html#iq",
@@ -2890,13 +2971,13 @@
         "waveform-design.html#model"
       ],
       "case": "case-joint-beamforming",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次固定资源的联合预编码检验"
     },
     {
       "path": "crb-beamforming.html",
       "title": "提高通信门槛，角度估计下界一定立刻变差吗？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "研究主题 · 多用户点目标式(33)实际求解、未知反射系数与单用户定理先修",
       "prerequisites": [
         "foundations.html#array",
@@ -2904,13 +2985,13 @@
         "foundations.html#limits"
       ],
       "case": "case-crb-beamforming",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次固定信道与总功率下的 CRB 检验"
     },
     {
       "path": "golay-radar.html",
       "title": "通信训练序列，为什么也能测距？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 通信训练复用、独立 Golay 互补模型与原文边界",
       "prerequisites": [
         "foundations.html#iq",
@@ -2918,13 +2999,13 @@
         "foundations.html#doppler"
       ],
       "case": "case-golay-radar",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同资源的训练序列相关检验"
     },
     {
       "path": "ofdm-interpolation.html",
       "title": "补出来的格子，为什么不是新观测？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · OFDM 时间插值、同观测比较与硬件证据边界",
       "prerequisites": [
         "foundations.html#iq",
@@ -2933,26 +3014,26 @@
         "foundations.html#doppler"
       ],
       "case": "case-ofdm-interpolation",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同观测、同资源的补值检验"
     },
     {
       "path": "radar-beam-decision.html",
       "title": "猜中最优波束，与保住通信增益是一回事吗？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 合成感知辅助通信、候选波束与评估边界",
       "prerequisites": [
         "foundations.html#iq",
         "foundations.html#array"
       ],
       "case": "case-radar-beam-decision",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同码本、同训练量的候选决策检验"
     },
     {
       "path": "perceptive-clutter.html",
       "title": "递归去背景：为什么慢目标也会变弱？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 复数递归背景、慢时间运动与相关噪声",
       "prerequisites": [
         "foundations.html#iq",
@@ -2961,13 +3042,13 @@
         "theory.html#shared-model"
       ],
       "case": "case-perceptive-clutter",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同输入、同初值的递归背景检验"
     },
     {
       "path": "shared-array.html",
       "title": "同样八根天线，分开使用会少掉什么？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 分离/共享资源账本与空间置零代价",
       "prerequisites": [
         "foundations.html#iq",
@@ -2975,13 +3056,13 @@
         "foundations.html#codesign"
       ],
       "case": "case-shared-array",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同阵列、同功率的空间置零检验"
     },
     {
       "path": "multipath-channel.html",
       "title": "同一个终端，为什么收到两条路径？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 单向主动链路、镜面双路径与相干匹配",
       "prerequisites": [
         "foundations.html#echo",
@@ -2990,13 +3071,13 @@
         "foundations.html#ofdm"
       ],
       "case": "case-multipath-channel",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同波形、同网格的双路径检验"
     },
     {
       "path": "distributed-detection.html",
       "title": "两个功率数，够不够判断有目标？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "研究主题 · 两站充分压缩、联合检测与双向回传账本",
       "prerequisites": [
         "foundations.html#iq",
@@ -3005,26 +3086,26 @@
         "foundations.html#geometry"
       ],
       "case": "case-distributed-detection",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录一次同观测、同虚警率的检测检验"
     },
     {
       "path": "offgrid-range.html",
       "title": "同一个目标，网格更密就一定测得更准吗？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "基础机制 · 离格单目标测距与同观测误差比较",
       "prerequisites": [
         "foundations.html#matched",
         "foundations.html#ofdm",
         "foundations.html#limits"
       ],
-      "next": "practice.html?topic=offgrid-range#notebook",
+      "next": "reading.html?topic=offgrid-range#notebook",
       "nextLabel": "记录一次同观测的测距检验"
     },
     {
       "path": "reference-uncertainty.html",
       "title": "同一份回波，参考符号知道多少？",
-      "stage": "experiments",
+      "stage": "foundations",
       "role": "基础机制 · 单目标同回波与参考信息条件消融",
       "prerequisites": [
         "foundations.html#matched",
@@ -3037,7 +3118,7 @@
     {
       "path": "nearfield-gc-sage.html",
       "title": "拟合得更好，环境就画对了吗？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "论文算法缩减实现 · 二维、单次交互、已知双路径的宽带几何约束估计",
       "prerequisites": [
         "near-field.html#experiment",
@@ -3050,7 +3131,7 @@
     {
       "path": "atomic-ofdm-receiver.html",
       "title": "参考符号错了，还能分开两条路径吗？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "论文算法有界实现 · 4×4连续矩Toeplitz SDP/ADMM与稀疏参考错误估计",
       "prerequisites": [
         "offgrid-range.html#model",
@@ -3063,7 +3144,7 @@
     {
       "path": "otfs-receiver.html",
       "title": "OTFS：已知符号估路径，未知符号怎样恢复？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界论文算法 · 单路径有限网格感知与完美CSI的MP-G/完整LMMSE通信",
       "prerequisites": [
         "foundations.html#ofdm",
@@ -3076,7 +3157,7 @@
     {
       "path": "ofdm-ici-receiver.html",
       "title": "高速 OFDM：从同一份回波检出目标、估频偏与解模糊",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界论文算法 · 有限网格ICI-aware接收、同观测FFT与失败记录",
       "prerequisites": [
         "foundations.html#ofdm",
@@ -3089,7 +3170,7 @@
     {
       "path": "80211ad-receiver.html",
       "title": "802.11ad：从真实前导样本找帧、测距与测速",
-      "stage": "experiments",
+      "stage": "reading",
       "case": "case-80211ad-receiver",
       "role": "有界源算法 · 实际802.11ad前导接收与失败诊断",
       "prerequisites": [
@@ -3103,7 +3184,7 @@
     {
       "path": "networked-sync.html",
       "title": "从两块复数观测中，分开目标、时钟与频偏",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "源算法有界实现 · 互易复数张量、结构CP与独立误差评估",
       "prerequisites": [
         "network-clock.html#model",
@@ -3117,7 +3198,7 @@
     {
       "path": "gaussian-tradeoff.html",
       "title": "同一平均功率，随机波形怎样改变矩阵估计误差？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界源模型 · 复矩阵Bayesian后验、协方差整形与输入分布",
       "prerequisites": [
         "theory.html#crb-mechanism",
@@ -3131,7 +3212,7 @@
     {
       "path": "cellfree-maprt.html",
       "title": "未知散射与杂波下，多站怎样检测目标并分配功率？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界源算法 · 多站 MAPRT、有限校准与 CCP 功率分配",
       "prerequisites": [
         "distributed-detection.html#experiment",
@@ -3145,7 +3226,7 @@
     {
       "path": "nearfield-multitarget.html",
       "title": "照亮三个位置，为什么还要限制它们的相关性？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界源算法 · intended Eq.17/18 与严格接收失败分开",
       "prerequisites": [
         "near-field.html#experiment",
@@ -3159,7 +3240,7 @@
     {
       "path": "otfs-sensing-assisted.html",
       "title": "知道路径位置，为什么还要估增益？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界条件上行 · 声明支持、污染导频估增益与四模式近似SPA；浏览器待验收",
       "prerequisites": [
         "foundations.html#ofdm",
@@ -3173,7 +3254,7 @@
     {
       "path": "perceptive-bsbl.html",
       "title": "知道发出的符号，怎样找出几条路径？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "有界直接恢复 · 单场景 block-MMV、投影提案与证据下降；真实浏览器待验收",
       "prerequisites": [
         "perceptive-clutter.html#question",
@@ -3188,20 +3269,20 @@
     {
       "path": "pilot-patterns.html",
       "title": "多丢一些样本，为什么反而能看清长延迟回波？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "同一导频论文 · 真实合成I/Q的二维解释性处理；数值/Node接受与浏览器门分开",
       "prerequisites": [
         "pilot-design.html#experiment",
         "foundations.html#ofdm"
       ],
       "case": "case-pilot",
-      "next": "practice.html#notebook",
+      "next": "reading.html#notebook",
       "nextLabel": "记录这次二维导频处理的输入、代价与失败"
     },
     {
       "path": "dual-array-positioning.html",
       "title": "小阵列只见角度，距离信息从哪里来？",
-      "stage": "experiments",
+      "stage": "reading",
       "role": "同一双阵列论文 · 受限下行 Algorithm 1、同 Y 网格与有限 X 实 CRB；浏览器待验收",
       "prerequisites": [
         "near-field.html#geometry",
@@ -7594,6 +7675,264 @@
           "status": "现有单用户实验可执行；实现实际角度估计器并检验下界可达性仍是未执行计划。"
         }
       ]
+    }
+  ],
+  "lessonPlacement": [
+    {
+      "unitId": "echo",
+      "canonicalHref": "foundations.html#echo",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "iq",
+      "canonicalHref": "foundations.html#iq",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "matched",
+      "canonicalHref": "foundations.html#matched",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "doppler",
+      "canonicalHref": "foundations.html#doppler",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "array",
+      "canonicalHref": "foundations.html#array",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "ofdm",
+      "canonicalHref": "foundations.html#ofdm",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "cfar",
+      "canonicalHref": "foundations.html#cfar",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "geometry",
+      "canonicalHref": "foundations.html#geometry",
+      "section": "foundations",
+      "parentLabel": "连续基础"
+    },
+    {
+      "unitId": "shared",
+      "canonicalHref": "theory.html#shared-model",
+      "section": "foundations",
+      "parentLabel": "估计与性能边界（含论文算法子节）"
+    },
+    {
+      "unitId": "crb",
+      "canonicalHref": "theory.html#crb-mechanism",
+      "section": "foundations",
+      "parentLabel": "估计与性能边界（含论文算法子节）"
+    },
+    {
+      "unitId": "estimator-crb",
+      "canonicalHref": "theory.html#estimator-crb",
+      "section": "foundations",
+      "parentLabel": "估计与性能边界（含论文算法子节）"
+    },
+    {
+      "unitId": "rate",
+      "canonicalHref": "theory.html#rate-crb-bridge",
+      "section": "foundations",
+      "parentLabel": "估计与性能边界（含论文算法子节）"
+    },
+    {
+      "unitId": "pilot",
+      "canonicalHref": "pilot-design.html#experiment",
+      "section": "foundations",
+      "parentLabel": "OFDM/稀疏导频与歧义"
+    },
+    {
+      "unitId": "clock",
+      "canonicalHref": "network-clock.html#experiment",
+      "section": "foundations",
+      "parentLabel": "多站几何/时钟偏差"
+    },
+    {
+      "unitId": "sbfd",
+      "canonicalHref": "sbfd-resource.html#experiment",
+      "section": "foundations",
+      "parentLabel": "OFDM/频谱与时间孔径"
+    },
+    {
+      "unitId": "near-field",
+      "canonicalHref": "near-field.html#research-experiment",
+      "section": "reading",
+      "parentLabel": "空间/近场CRB与含噪MUSIC（曲率先修归基础）"
+    },
+    {
+      "unitId": "waveform-design",
+      "canonicalHref": "waveform-design.html#experiment",
+      "section": "reading",
+      "parentLabel": "波形/严格协方差、等能量加权、恒模分支"
+    },
+    {
+      "unitId": "joint-beamforming",
+      "canonicalHref": "joint-beamforming.html#experiment",
+      "section": "reading",
+      "parentLabel": "联合设计/SDR与ZF"
+    },
+    {
+      "unitId": "crb-beamforming",
+      "canonicalHref": "crb-beamforming.html#experiment",
+      "section": "reading",
+      "parentLabel": "空间/点目标CRB优化与实际接收"
+    },
+    {
+      "unitId": "golay-radar",
+      "canonicalHref": "golay-radar.html#experiment",
+      "section": "foundations",
+      "parentLabel": "匹配滤波/互补序列"
+    },
+    {
+      "unitId": "ofdm-interpolation",
+      "canonicalHref": "ofdm-interpolation.html#experiment",
+      "section": "foundations",
+      "parentLabel": "采样与OFDM/插值不增加观测"
+    },
+    {
+      "unitId": "radar-beam-decision",
+      "canonicalHref": "radar-beam-decision.html#experiment",
+      "section": "foundations",
+      "parentLabel": "阵列/波束决策与指标"
+    },
+    {
+      "unitId": "perceptive-clutter",
+      "canonicalHref": "perceptive-clutter.html#experiment",
+      "section": "foundations",
+      "parentLabel": "多普勒/背景相减"
+    },
+    {
+      "unitId": "shared-array",
+      "canonicalHref": "shared-array.html#experiment",
+      "section": "foundations",
+      "parentLabel": "阵列/共享资源"
+    },
+    {
+      "unitId": "multipath-channel",
+      "canonicalHref": "multipath-channel.html#experiment",
+      "section": "foundations",
+      "parentLabel": "传播与相位/双路径"
+    },
+    {
+      "unitId": "distributed-detection",
+      "canonicalHref": "distributed-detection.html#experiment",
+      "section": "foundations",
+      "parentLabel": "检测/多站融合"
+    },
+    {
+      "unitId": "offgrid-range",
+      "canonicalHref": "offgrid-range.html#experiment",
+      "section": "foundations",
+      "parentLabel": "估计/离格与网格"
+    },
+    {
+      "unitId": "reference-uncertainty",
+      "canonicalHref": "reference-uncertainty.html#experiment",
+      "section": "foundations",
+      "parentLabel": "观测模型/参考已知条件"
+    },
+    {
+      "unitId": "nearfield-gc-sage",
+      "canonicalHref": "nearfield-gc-sage.html#experiment",
+      "section": "reading",
+      "parentLabel": "空间/机制感知几何估计"
+    },
+    {
+      "unitId": "atomic-ofdm-receiver",
+      "canonicalHref": "atomic-ofdm-receiver.html#experiment",
+      "section": "reading",
+      "parentLabel": "接收/原子范数有限SDP"
+    },
+    {
+      "unitId": "otfs-receiver",
+      "canonicalHref": "otfs-receiver.html#experiment",
+      "section": "reading",
+      "parentLabel": "波形/OTFS估计与MP-G"
+    },
+    {
+      "unitId": "ofdm-ici-receiver",
+      "canonicalHref": "ofdm-ici-receiver.html#experiment",
+      "section": "reading",
+      "parentLabel": "接收/ICI-aware OFDM"
+    },
+    {
+      "unitId": "80211ad-receiver",
+      "canonicalHref": "80211ad-receiver.html#experiment",
+      "section": "reading",
+      "parentLabel": "原型与标准/802.11ad实际前导"
+    },
+    {
+      "unitId": "networked-sync",
+      "canonicalHref": "networked-sync.html#experiment",
+      "section": "reading",
+      "parentLabel": "多站/互易观测同步"
+    },
+    {
+      "unitId": "gaussian-tradeoff",
+      "canonicalHref": "gaussian-tradeoff.html#experiment",
+      "section": "reading",
+      "parentLabel": "权衡/复矩阵Bayesian后验"
+    },
+    {
+      "unitId": "cellfree-maprt",
+      "canonicalHref": "cellfree-maprt.html#experiment",
+      "section": "reading",
+      "parentLabel": "多站/MAPRT与CCP"
+    },
+    {
+      "unitId": "nearfield-multitarget",
+      "canonicalHref": "nearfield-multitarget.html#experiment",
+      "section": "reading",
+      "parentLabel": "空间/多目标相关性约束"
+    },
+    {
+      "unitId": "otfs-sensing-assisted",
+      "canonicalHref": "otfs-sensing-assisted.html#experiment",
+      "section": "reading",
+      "parentLabel": "波形/感知辅助条件上行"
+    },
+    {
+      "unitId": "perceptive-bsbl",
+      "canonicalHref": "perceptive-bsbl.html#run",
+      "section": "reading",
+      "parentLabel": "接收/Block-MMV恢复"
+    },
+    {
+      "unitId": "pilot-pattern",
+      "canonicalHref": "pilot-patterns.html#question",
+      "section": "reading",
+      "parentLabel": "波形/二维导频接收"
+    },
+    {
+      "unitId": "dual-array-positioning",
+      "canonicalHref": "dual-array-positioning.html#question",
+      "section": "reading",
+      "parentLabel": "空间/双阵列定位"
+    },
+    {
+      "canonicalHref": "near-field.html#experiment",
+      "section": "foundations",
+      "parentLabel": "阵列与空间/近场曲率先修"
+    },
+    {
+      "canonicalHref": "theory.html#capacity-distortion",
+      "section": "reading",
+      "parentLabel": "通感权衡/容量–失真算法"
     }
   ]
 }

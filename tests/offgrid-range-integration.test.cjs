@@ -24,8 +24,8 @@ test('off-grid range adds one case-free processing mechanism with honest fixed t
  a.ok(u&&p);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.deepEqual([withoutGCSAGERegistry(r).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(r).pages.length],[28,15,32,8,24]);
  a.equal(u.title,'离格目标与测距网格');a.equal(u.question,'同一个目标，网格更密就一定测得更准吗？');a.equal(p.title,u.question);
- a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'experiments');
- a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'practice.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');
+ a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'foundations');
+ a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'reading.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');
  a.equal(p.role,'基础机制 · 离格单目标测距与同观测误差比较');
  a.ok(!Object.hasOwn(p,'case'));a.ok(!r.cases.some(c=>c.unit===u.id));
  a.ok(!r.knowledgeMap.nodes.some(n=>n.id===u.id));a.ok(!r.directions.some(d=>d.id===u.id));
@@ -44,7 +44,7 @@ test('every earlier unit, case, page, unrelated direction and legacy route is pr
  a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
  waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
  a.equal(hash(historicalDirections),'3ee503aa4655bba2a42d975d611a5140bedfabe66e5d8c5c48c27b425197fb5d');
- a.equal(hash(r.legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
+ a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
 test('only delay, estimation and resolution gain unit references; original concept entries and edges remain intact',()=>{
@@ -97,14 +97,14 @@ test('generated page shell keeps the fixed notebook query and real prerequisites
  for(const key of ['HEADER','CONTEXT','NEXT'])for(const side of ['START','END'])a.equal((page.match(new RegExp('<!-- SITE:'+key+':'+side+' -->','g'))||[]).length,1);
  const context=page.match(/<!-- SITE:CONTEXT:START -->([\s\S]*?)<!-- SITE:CONTEXT:END -->/)[1];
  const next=page.match(/<!-- SITE:NEXT:START -->([\s\S]*?)<!-- SITE:NEXT:END -->/)[1];
- a.ok(page.includes('href="experiments.html" aria-current="location"'));for(const href of p.prerequisites)a.ok(context.includes(`href="${href}"`),href);
+ a.ok(page.includes('href="foundations.html" aria-current="location"'));for(const href of p.prerequisites)a.ok(context.includes(`href="${href}"`),href);
  a.doesNotMatch(context,/原文与证据|边界与下一问|reading\.html#case-offgrid/);a.ok(next.includes(`href="${p.next}">${p.nextLabel} →</a>`));
  for(const anchor of ['experiment','model','trials','limits','record'])resolve(p.path+'#'+anchor);
 });
 
 test('generated portals expose the mechanism and accurate totals without adding research cases or bibliography cards',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
- const home=read('index.html'),reading=read('reading.html');
+ const home=require('./helpers/two-section-navigation-preservation.cjs').withoutFile('index.html',Buffer.from(read('index.html'))).toString(),reading=read('reading.html');
  for(const [count,label]of [[r.units.length,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
  a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);a.doesNotMatch(reading,/id="case-offgrid-range"/);

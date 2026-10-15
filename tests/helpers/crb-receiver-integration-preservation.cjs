@@ -8,10 +8,13 @@ function reverseFile(file,bytes,rows=delta.files){
  a.ok(identity(bytes,row.after),'exact current receiver integration file '+file);
  const prior=Buffer.from(row.beforeBase64,'base64');a.ok(identity(prior,row.before),'exact pre-receiver source '+file);return prior;
 }
-function withoutFile(file,bytes){return reverseFile(file,bytes);}
+function withoutFile(file,bytes){return reverseFile(file,require('./two-section-navigation-preservation.cjs').withoutFile(file,bytes));}
 function withoutMappings(input){
- const out=structuredClone(input),sources=new Set(delta.addedEntries.map(x=>x.source));
- if(!out.entries.some(x=>sources.has(x.source))){a.ok(delta.historicalManifestIdentities.some(row=>row.sha256===sha(JSON.stringify(out,null,2)+'\n')),'Unrecognized pre-receiver manifest identity');return out;}
+ const sources=new Set(delta.addedEntries.map(x=>x.source));
+ // Validate receiver-absent input at its own historical boundary before the newer
+ // navigation layer. Relocated receiver sources are not a navigation migration.
+ if(!input.entries.some(x=>sources.has(x.source))){a.ok(delta.historicalManifestIdentities.some(row=>row.sha256===sha(JSON.stringify(input,null,2)+'\n')),'Unrecognized pre-receiver manifest identity');return structuredClone(input);}
+ const out=require('./two-section-navigation-preservation.cjs').withoutMappings(input);
  for(const row of delta.addedEntries){const ii=out.entries.flatMap((x,i)=>x.source===row.source?[i]:[]);a.equal(ii.length,1,'one exact receiver mapping '+row.source);a.deepEqual(out.entries[ii[0]],row,'exact receiver mapping ownership');out.entries.splice(ii[0],1);}
  a.equal(sha(JSON.stringify(out,null,2)+'\n'),delta.baselineManifestSha256,'exact pre-receiver cumulative manifest');return out;
 }
