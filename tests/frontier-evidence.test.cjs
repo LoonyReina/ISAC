@@ -30,7 +30,7 @@ test('service requirements keep fixed Rel-19 text separate from later version me
 
 test('three 2026 readings keep fixed author versions, dates, questions and evidence boundaries',()=>{
  a.match(source,/id="reading-2026" aria-labelledby="reading-2026-title"/);
- a.match(html,/href="#reading-2026">2026 阅读补充/);
+ a.match(html,/<details class="reading-legacy-evidence" id="reading-legacy-evidence">/);a.match(html,/id="reading-2026" aria-labelledby="reading-2026-title"/);
  a.match(source,/不是影响力排名，本站尚未完成这些论文的复现/);
  for(const [id,version,date]of [['F1','2504.19091v2','2025-12-31'],['F2','2504.13363v3','2026-02-13'],['F3','2607.14938v1','2026-07-16']]){
   const c=article(source,'ref-'+id);a.equal(article(html,'ref-'+id),c);

@@ -11,7 +11,7 @@ const hash=v=>crypto.createHash('sha256').update(v).digest('hex');
 
 test('one actual inverse-problem lesson uses canonical sources without creating a paper case or graph edge',()=>{
  const before=JSON.stringify(r),sourceBefore=JSON.stringify(data);
- a.deepEqual(unit(r),additions.unit);a.deepEqual(r.pages.find(p=>p.path===additions.page.path),additions.page);
+ a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).pages.find(p=>p.path===additions.page.path),additions.page);
  a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);
  a.ok(!r.cases.some(c=>c.unit===additions.unit.id));a.ok(!r.knowledgeMap.nodes.some(n=>n.unitRefs.includes(additions.unit.id)));
  a.ok(!r.knowledgeMap.progressions.some(p=>p.unitId===additions.unit.id));

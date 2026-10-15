@@ -3,7 +3,7 @@
 面向有信号与系统/通信原理基础、但尚未学过雷达或估计理论的读者。
 在线阅读：https://loonyreina.github.io/ISAC/
 
-## 一条主路线，四个阶段
+## 一条主路线，两大板块
 
 1. `index.html` 是唯一学习地图：选择当前阶段，不堆叠所有案例
 2. `foundations.html` 是连续基础讲义（原 00–13 章）：回波 → I/Q → 匹配 → 多普勒 → 阵列 → OFDM → 检测 → 系统与几何
@@ -89,3 +89,7 @@ python3 -m http.server 8000 --directory dist
 [同一个目标，网格更密就一定测得更准吗？](https://loonyreina.github.io/ISAC/offgrid-range.html#experiment) 是新增的基础机制，不是第 16 个论文案例。固定同一份 16 子载波复数观测、物理预算与闭区间，比较 5 m / 0.5 m 候选；未知复增益逐候选拟合，真值只进入生成器与评价。先预测无噪声误差，再查看全部配对试验的 RMSE 与预先声明的大误差次数。
 
 低 SNR 固定反例明确标为经探索选取，全部错误峰和数值失败行保留；取消的部分运行不报告整批指标。原始 JSON 使用既有本地下载组件，研究草稿仍由学习者自己填写。独立参考与完整探索见 [数值说明](https://loonyreina.github.io/ISAC/scripts/offgrid-range-reference/README.md)（源码归属 `scripts/validation/ofdm-reference/offgrid-range-reference/`，公开地址保持原路径），实际检查范围见 [本次验证](docs/OFFGRID-RANGE-VALIDATION.md)。
+
+## 当前导航结构
+
+基础知识围绕概念整合机制子课；论文阅读以研究分支连接固定原文、实际算法课与证据。原 experiments/practice URL 仅作兼容入口，研究方法与记录位于 reading 页面内部。完整旧链接和科学核心保持可用。

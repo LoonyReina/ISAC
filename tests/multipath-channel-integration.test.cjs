@@ -18,8 +18,8 @@ const template=(html,id)=>{const m=html.match(new RegExp(`<template[^>]+id="map-
 test('one bounded active-link lesson is canonical within the existing eight directions',()=>{
  a.ok(c&&u&&p);a.equal(c.title,'同一个终端，为什么收到两条路径？');a.equal(u.title,c.title);a.equal(p.title,c.title);
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
- a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'channels');
- a.equal(c.learningEntry,'multipath-channel.html#question');a.equal(u.href,'multipath-channel.html#experiment');a.equal(c.paper,'multipath-channel.html#source');a.equal(c.next,'multipath-channel.html#boundary');a.equal(p.next,'practice.html#notebook');
+ a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'channels');
+ a.equal(c.learningEntry,'multipath-channel.html#question');a.equal(u.href,'multipath-channel.html#experiment');a.equal(c.paper,'multipath-channel.html#source');a.equal(c.next,'multipath-channel.html#boundary');a.equal(p.next,'reading.html#notebook');
  a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
@@ -83,13 +83,13 @@ test('source guide, six anchors and generated portals use the shared shell and v
  const page=read(p.path);for(const href of expected){resolve(href);a.ok(c.fields['先修'].includes(`href="${href}"`));a.ok(page.includes(`href="${href}"`));}
  for(const anchor of ['question','model','experiment','source','boundary','derivation'])resolve(p.path+'#'+anchor);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((page.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
- a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=multipath-channel#notebook"'));
+ a.ok(page.includes('href="foundations.html" aria-current="location"'));a.ok(page.includes('href="reading.html?topic=multipath-channel#notebook"'));
  const guide=article(read('site/content-reading.html'),'ref-MULTIPATH'),doc=read('docs/READING-MAP.md');
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.path+'#model',p.path+'#derivation'])a.ok(guide.includes(`href="${href}"`),href);
  for(const [,href]of guide.matchAll(/href="(https:[^"]+)"/g))a.ok(doc.includes(href),href);
  a.doesNotMatch(guide,/class="influence-card"|<button|<input|<canvas/);a.equal(article(read('reading.html'),'ref-MULTIPATH'),guide);
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);a.ok(read('index.html').includes(`href="${c.learningEntry}"`));
- a.ok(read('index.html').includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(read('reading.html').includes(r.cases.length+' 个已有主题'));
+ a.ok(read('index.html').includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(read('reading.html').includes(r.cases.length+' 个已有主题'));
 });
 
 test('source manifest identifies fetched official HTML bytes without distributing paper text or mixing evidence',()=>{

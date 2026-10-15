@@ -16,7 +16,7 @@ test('pilot NEXT closes the existing question-to-paper route and keeps the noteb
  a.ok(next.includes(output));a.match(output,/刚才的导频值是已知的；如果参考符号本身出错呢？/);a.match(output,/所选导频值视为可靠已知.*解调得到的参考符号若有误/);a.match(output,/不表示本页实现了论文算法/);
  for(const [id,title]of [[g.id,g.title],[n.id,n.title]])a.ok(output.includes(`href="reading.html#guide-${id}">${escapeHtml(title)}`));
  a.ok(output.includes(escapeHtml(n.nextQuestion)));a.ok(output.includes(escapeHtml(relation.verificationNote)));a.match(output,/本站按问题关联（非引用关系）/);a.match(output,/尚待检验的下一问/);a.doesNotMatch(output,/作者把本页|继承了.*算法|reference-uncertainty/);
- const first=next.indexOf('reading.html#guide-'+g.id),second=next.indexOf('reading.html#guide-'+n.id),notebook=next.indexOf('practice.html?topic=pilot#notebook');a.ok(first>=0&&first<second&&second<notebook);a.match(next,/也可先记录这次观察/);a.ok(next.includes(page.nextLabel));
+ const first=next.indexOf('reading.html#guide-'+g.id),second=next.indexOf('reading.html#guide-'+n.id),notebook=next.indexOf('reading.html?topic=pilot#notebook');a.ok(first>=0&&first<second&&second<notebook);a.match(next,/也可先记录这次观察/);a.ok(next.includes(page.nextLabel));
  for(const [,href]of next.matchAll(/href="([^"]+)"/g)){const u=new URL(href,'https://site.invalid/');a.equal(u.origin,'https://site.invalid');const f=u.pathname.slice(1);a.ok(fs.existsSync(path.join(root,f)));if(u.hash)a.ok(read(f).includes(`id="${u.hash.slice(1)}"`),href);}
  for(const p of registry.pages.filter(p=>p.path!==page.path))a.equal(render(registry,data,p),'');
  a.equal(JSON.stringify({registry,data}),before,'rendering does not mutate source records');
@@ -35,7 +35,7 @@ test('titles, proposed next question and relationship note are source-derived an
 });
 
 test('exact next-only generator normalization retains prior hash and rejects unrelated or relocated edits',()=>{
- const source=require('./helpers/nearfield-research-preservation.cjs').maybeWithoutNearfieldPrerequisiteTitle(generator);
+ const source=require('./helpers/nearfield-research-preservation.cjs').maybeWithoutNearfieldPrerequisiteTitle(require('./helpers/two-section-navigation-preservation.cjs').withoutFile('scripts/generate-site.cjs',Buffer.from(generator)).toString());
  // Current publication baseline 6dffedc includes the approved deferred validation.
  const original='2e93164c68fc94dc605db5c51a647fee4011ef48e06fa9fa4ca11b0308f15f27';a.equal(hash(withoutPilotContinuation(source)),original);
  for(const mutate of [s=>s.replace('本页把所选导频值视为可靠已知','changed scientific boundary'),s=>s.replace("page.path!=='pilot-design.html'","page.path!=='shared-array.html'"),s=>s.replace(helper,''),s=>s+helper,s=>s.replace(newNext,''),s=>s+newNext,s=>s.replace(newNext,'')+newNext,s=>s.replace(helper,'')+helper,s=>s.replace("page.nextLabel+' →'","'changed generic next label'"),s=>s.replace("link('reading.html#reading','原文与证据')","link('reading.html#reading','changed footer')")]){const changed=mutate(source);a.notEqual(changed,source);a.throws(()=>withoutPilotContinuation(changed));}
@@ -46,7 +46,7 @@ test('pilot scientific body and source prose are unchanged outside its generated
  // Fingerprints were obtained from HEAD 6dffedc source bytes via git show and
  // the compatibility manifest, then one clean seedless generator invocation.
  const strip=s=>{a.equal(s.split('<!-- SITE:NEXT:START -->').length,2);a.equal(s.split('<!-- SITE:NEXT:END -->').length,2);return s.replace(/<!-- SITE:NEXT:START -->[\s\S]*?<!-- SITE:NEXT:END -->/,'<!-- NEXT omitted -->');};
- const historical=require('./helpers/pilot-pattern-preservation.cjs').withoutPage(read('pilot-design.html')),body=strip(historical);a.equal(hash(body),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');a.notEqual(hash(strip(historical.replace('已知非零导频 X[k]','changed assumption'))),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');
+ const historical=require('./helpers/pilot-pattern-preservation.cjs').withoutPage(require('./helpers/two-section-navigation-preservation.cjs').withoutFile('pilot-design.html',Buffer.from(read('pilot-design.html'))).toString()),body=strip(historical);a.equal(hash(body),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');a.notEqual(hash(strip(historical.replace('已知非零导频 X[k]','changed assumption'))),'e8f6ce86d1bd1c6d9836bace62b94e4fad7ff90f2c72d903a47440b4517ccb5d');
 });
 
 test('the continuation leaves the generic NEXT rendering unchanged on every other current page',()=>{

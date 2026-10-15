@@ -9,7 +9,7 @@ const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchGu
 const card=d=>d.cards.find(c=>c.id===additions.guideId),unit=x=>x.units.find(u=>u.id===additions.unit.id);
 
 test('the actual finite-SDP lesson is a single canonical registered unit without invented cases or map associations',()=>{
- const before=JSON.stringify(r),guideBefore=JSON.stringify(data);a.deepEqual(unit(r),additions.unit);a.deepEqual(r.pages.find(p=>p.path===additions.page.path),additions.page);a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);a.equal(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver').coverage,additions.directionCoverage.after);
+ const before=JSON.stringify(r),guideBefore=JSON.stringify(data);a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).pages.find(p=>p.path===additions.page.path),additions.page);a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);a.equal(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver').coverage,additions.directionCoverage.after);
  a.ok(!r.cases.some(c=>c.unit===additions.unit.id));a.ok(!r.knowledgeMap.nodes.some(n=>n.unitRefs.includes(additions.unit.id)));a.ok(!r.knowledgeMap.progressions.some(p=>p.unitId===additions.unit.id));
  const local=createLearningEntryResolver(r);a.equal(local.unitEntry(unit(r)),additions.unit.href);
  for(const h of additions.hooks){a.deepEqual(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id===h.directionId).levels.find(l=>l.id===h.levelId).items.at(-1),h.item);a.equal(local.unitEntry({href:h.item.href}),h.item.href);}

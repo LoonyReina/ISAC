@@ -60,7 +60,7 @@ test('fixed author-version evidence distinguishes independent Golay construction
 
 test('generated portals and native topic navigation reach the canonical experiment and paper',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
- const html=read('golay-radar.html');for(const href of [u.href,c.paper,c.next,'practice.html?topic=golay-radar#notebook'])a.ok(html.includes(`href="${href}"`),href);
+ const html=read('golay-radar.html');for(const href of [u.href,c.paper,c.next,'reading.html?topic=golay-radar#notebook'])a.ok(html.includes(`href="${href}"`),href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp(`<!-- SITE:${key}:START -->`,'g'))||[]).length,1);
- a.ok(html.includes('href="experiments.html" aria-current="location"'));
+ a.ok(html.includes('href="foundations.html" aria-current="location"'));
 });

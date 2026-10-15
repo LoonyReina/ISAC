@@ -55,15 +55,15 @@ test('reading directory uses native closed disclosures, labelled groups, working
  const h=render();a.equal([...h.matchAll(/class="paper-evidence"/g)].length,9);a.ok(!/<details[^>]*\bopen\b/.test(h));a.ok(!/<(?:script|button|input)\b/.test(h));
  for(const [,hash]of h.matchAll(/href="#([^"]+)"/g))a.ok(h.includes(`id="${hash}"`));
  for(const [,id]of h.matchAll(/aria-labelledby="([^"]+)"/g))a.ok(h.includes(`id="${id}"`));
- a.match(html,/aria-label="论文阅读目录"/);a.match(html,/href="#influential-papers"/);
+ a.match(html,/<details class="reading-legacy-evidence" id="reading-legacy-evidence">/);a.match(html,/id="influential-papers"/);a.doesNotMatch(html,/aria-label="论文阅读目录"/);
  const css=read('research-directory.css');a.match(css,/align-items:start/);a.match(css,/overflow-wrap:anywhere/);a.match(css,/@media\(max-width:700px\)\{\.influence-grid\{grid-template-columns:1fr\}/);a.match(css,/focus-visible/);a.match(css,/min-height:44px/);
 });
-test('adding or removing bibliography cards updates both generated heading and reading navigation counts',()=>{
+test('adding or removing evidence cards updates the collapsed heading and card count without a parallel catalogue menu',()=>{
  const vm=require('node:vm');
  for(const cards of [data.cards.slice(0,-1),[...data.cards,{...data.cards[0],id:'additional-paper'}]]){
   const changed={...data,cards},outputs={};
   vm.runInNewContext(read('scripts/generate-site.cjs'),{__dirname:path.join(root,'scripts'),process:{argv:[]},console:{log(){}},require:id=>id==='node:fs'?{...fs,readFileSync:(file,...args)=>String(file)===path.join(root,registry.researchDirectoryFile)?JSON.stringify(changed):fs.readFileSync(file,...args),writeFileSync:(file,text)=>outputs[path.basename(file)]=text}:require(id)});
-  const h=outputs['reading.html'];a.ok(h.includes(`>${cards.length} 篇研究论文：先选机制，再核对影响证据</h2>`));a.ok(h.includes(`href="#influential-papers">${cards.length} 篇论文与影响证据</a>`));a.equal([...h.matchAll(/class="influence-card"/g)].length,cards.length);a.doesNotMatch(h.match(/<h2 id="influential-papers-title">[^<]*<\/h2>/)[0],/九篇/);a.doesNotMatch(h.match(/href="#influential-papers">[^<]*<\/a>/)[0],/九篇/);
+  const h=outputs['reading.html'];a.ok(h.includes(`>${cards.length} 篇研究论文：先选机制，再核对影响证据</h2>`));a.match(h,/<details class="reading-legacy-evidence" id="reading-legacy-evidence">/);a.equal([...h.matchAll(/class="influence-card"/g)].length,cards.length);a.doesNotMatch(h.match(/<h2 id="influential-papers-title">[^<]*<\/h2>/)[0],/九篇/);a.doesNotMatch(h,/aria-label="论文阅读目录"/);
  }
 });
 

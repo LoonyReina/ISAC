@@ -38,7 +38,7 @@ function search(){const q=normalize(query.value);results.replaceChildren();resul
  for(const e of direct){const link=document.createElement('a');link.setAttribute('href',e.getAttribute('href'));link.dataset.mapUnit=e.dataset.mapUnit;result(link,e.textContent,'课程入口 · 直接打开');}
  for(const e of matches){const button=document.createElement('button'),g=groups.find(g=>g.dataset.mapGroup===e.dataset.mapGroup);button.type='button';button.dataset.mapNode=e.dataset.mapEntry;button.setAttribute('aria-controls','map-detail');result(button,e.querySelector('a').textContent,(e.dataset.mapKind==='direction'||e.dataset.mapEntry.startsWith('direction:')?'研究方向':'概念关系')+' · '+g.querySelector('.map-group-name').textContent+' · 查看关系');}
  const count=direct.length+matches.length;
- status.textContent=count?`找到 ${count} 个入口（${direct.length} 个课程入口，${matches.length} 个概念或方向）；四阶段路线仍在下方。`:'没有匹配的概念、课程或方向。试试“相位”“导频”，或清除搜索。';
+ status.textContent=count?`找到 ${count} 个入口（${direct.length} 个课程入口，${matches.length} 个概念或方向）；基础知识与论文阅读入口仍在首页。`:'没有匹配的概念、课程或方向。试试“相位”“导频”，或清除搜索。';
 }
 map.addEventListener('click',event=>{const target=event.target.closest('button');if(!target)return;
  if(target.hasAttribute('data-map-node'))choose(target.dataset.mapNode,target);

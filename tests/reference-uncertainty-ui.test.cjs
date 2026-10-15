@@ -162,8 +162,9 @@ test('export shell additions preserve all prior scientific HTML, immutable core 
   for(const asset of ['reference-uncertainty.css','reference-uncertainty.js']){a.equal(h.split(asset+'?v=reference-record-v1').length,2);h=h.replace(asset+'?v=reference-record-v1',asset+'?v=reference-uncertainty-v1');}
   return h.replace(widget,'');
  }
- const old='a183720e65adbc16e64504466dfa3213a5d09e1eca871ff593f7a4af28702245';a.equal(hash(priorHtml(html)),old);
- a.notEqual(hash(priorHtml(html.replace('相位斜坡在 62.5 m 给出 Q=1','相位斜坡在 62.5 m 给出 Q=2'))),old);
+ const historicalHtml=require('./helpers/two-section-navigation-preservation.cjs').withoutFile('reference-uncertainty.html',Buffer.from(html)).toString();
+ const old='a183720e65adbc16e64504466dfa3213a5d09e1eca871ff593f7a4af28702245';a.equal(hash(priorHtml(historicalHtml)),old);
+ a.notEqual(hash(priorHtml(historicalHtml.replace('相位斜坡在 62.5 m 给出 Q=1','相位斜坡在 62.5 m 给出 Q=2'))),old);
  a.equal(hash(read('reference-uncertainty-core.js')),'fffc85f8ea37b2cf365ce05464bcffcbe1337ba67150dd8bf1e690ce805c4551');
  a.equal(hash(read('experiment-record.js')),'cb9f4bc1c330db98d013922287ae4625f5b9d788b74860d86fe22eec40f6bb8f');
  a.equal(hash(css.split('\n.ru-record{')[0]),'8f4675dc66557f69ec7fdf14419ea1bb28b59a69baeb08cef07a9b5ab97e22ea');

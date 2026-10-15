@@ -37,3 +37,6 @@ body[data-route="reading.html"] .direction-depth{border-color:#dce5e9;border-rad
 body[data-route="reading.html"] .direction-depth summary{padding:14px 16px;line-height:1.65}
 @media(max-width:700px){.site-nav a{min-height:44px;display:flex;justify-content:center;align-items:center}}
 @media(prefers-reduced-motion:reduce){.site-nav a{transition:none}}
+
+/* Two sections: a calm cover; the concept map and reading tools are optional detail. */
+.home-concept-details,.reading-tools{margin:24px 0;border:1px solid #cbd5e1;border-radius:16px;padding:16px}.home-concept-details>summary,.reading-tools>summary{min-height:44px;cursor:pointer;font-weight:700}.stage-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:700px){.stage-grid{grid-template-columns:1fr}}

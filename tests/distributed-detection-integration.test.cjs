@@ -20,8 +20,8 @@ const template=(html,id)=>{const m=html.match(new RegExp(`<template[^>]+id="map-
 test('two-station detection adds one canonical lesson within the existing eight directions',()=>{
  a.ok(c&&u&&p);a.equal(c.title,'两个功率数，够不够判断有目标？');a.equal(u.title,c.title);a.equal(p.title,c.title);
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
- a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'networks');
- a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'practice.html#notebook');
+ a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'networks');
+ a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'reading.html#notebook');
  a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
@@ -37,7 +37,7 @@ test('existing lessons, cases, pages, unrelated directions and legacy links matc
  a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
  waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
  a.equal(hash(historicalDirections),'8cbd0865146fb27cfdceab1f7297c6182f5ea771378f5e6cbef02f54c6d370d4');
- a.equal(hash(r.legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
+ a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
 test('networks preserves its clock beginner route while adding six honest detection depths',()=>{
@@ -106,9 +106,9 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes(r.cases.length+' 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
- a.ok(page.includes('href="experiments.html" aria-current="location"'));a.ok(page.includes('href="practice.html?topic=distributed-detection#notebook"'));
+ a.ok(page.includes('href="foundations.html" aria-current="location"'));a.ok(page.includes('href="reading.html?topic=distributed-detection#notebook"'));
  for(const href of p.prerequisites)a.ok(page.includes(`href="${href}"`));
 });

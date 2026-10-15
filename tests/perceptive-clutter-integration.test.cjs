@@ -370,8 +370,8 @@ const originalProposedWork=[{"direction":"channels","level":"experiment","item":
 test('perceptive clutter registers one digital-preprocessing lesson in the existing eight-direction architecture',()=>{
  a.ok(c&&u&&p);a.equal(c.title,'递归去背景：为什么慢目标也会变弱？');
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'experiments');a.equal(u.primaryDirectionId,'receiver');
- a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'practice.html#notebook');
+ a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'receiver');
+ a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'reading.html#notebook');
  a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
  for(const [level,anchor]of [['intuition','question'],['model','model'],['experiment','experiment'],['papers','source'],['limits','boundary'],['reproduction','validation']]){
@@ -434,9 +434,9 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
  for(const anchor of ['question','model','experiment','source','boundary','validation'])resolve(p.path+'#'+anchor);
  for(const href of [c.learningEntry,u.href,c.paper,c.next,p.next])resolve(href);
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
- a.ok(html.includes('href="experiments.html" aria-current="location"'));a.ok(html.includes('href="practice.html?topic=perceptive-clutter#notebook"'));
+ a.ok(html.includes('href="foundations.html" aria-current="location"'));a.ok(html.includes('href="reading.html?topic=perceptive-clutter#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes('href="'+u.href+'"'),file);a.ok(read('index.html').includes('href="'+c.learningEntry+'"'));
- const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes(`<strong>${r.units.length}</strong> 个机制实验`));a.ok(home.includes('<strong>8</strong> 个研究方向'));
+ const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes('<strong>8</strong> 个研究方向'));
 });
 
 test('the perceptive paper card is usable while the unavailable DeepSense card and the split-record warning remain honest',()=>{
