@@ -45,6 +45,7 @@ jobs:
           node --max-old-space-size=512 --test --test-concurrency=1 tests/dual-array-record-portability.test.cjs tests/dual-array-record-portability-integration.test.cjs
           node --test tests/cooperative-clusters-build.test.cjs
           node --test tests/causal-capacity-build.test.cjs
+          node --test tests/multipath-information-build.test.cjs
           node --test tests/compatibility-build.test.cjs
       - name: Run full legacy tests and independently reproduce the public artifact
         run: |

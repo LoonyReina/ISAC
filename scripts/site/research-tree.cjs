@@ -19,9 +19,13 @@ function buildResearchTree(registry, guides, directory, backlog) {
     const impl=record.implementation, liveHref=impl.details?.receiverLesson||impl.details?.lesson||impl.details?.directRecovery?.lesson||impl.live?.href||(typeof impl.live==='string' ? impl.live.match(/^([a-z0-9-]+\.html#[a-zA-Z0-9-]+)/)?.[1] : null);
     const tutorials=[];const add=t=>{if(!tutorials.some(x=>x.href===t.href))tutorials.push(t);};
     const algorithmHref=record.id==='crb'?'crb-beamforming.html#multiuser':liveHref;
-    if(bounded&&algorithmHref){const c=cs.find(c=>c.paper.split('#')[0]===algorithmHref.split('#')[0]);add({href:algorithmHref,label:gs[0]?.executable?.kind==='validated-paper-model'?'进入有界模型交互教程'+(record.id==='tradeoffs-causal-state-communication-2013'?' · '+gs[0].executable.label:''):'进入有界算法交互教程',kind:'algorithm',scope:c?.fields?.['结论边界']||gs[0]?.executable?.limitations||cs[0]?.paperComparison?.siteArtifactType||record.minimalFaithfulTarget.description});}
+    if(bounded&&algorithmHref){const c=cs.find(c=>c.paper.split('#')[0]===algorithmHref.split('#')[0]);add({href:algorithmHref,label:impl.details?.lessonKind==='information-bound'?'进入有界信息模型交互教程':gs[0]?.executable?.kind==='validated-paper-model'?'进入有界模型交互教程'+(record.id==='tradeoffs-causal-state-communication-2013'?' · '+gs[0].executable.label:''):'进入有界算法交互教程',kind:'algorithm',scope:c?.fields?.['结论边界']||gs[0]?.executable?.limitations||cs[0]?.paperComparison?.siteArtifactType||record.minimalFaithfulTarget.description});}
     if(record.id==='crb'){const prerequisite=registry.units.find(u=>u.id==='crb-beamforming');if(!prerequisite)throw Error('Missing CRB single-user prerequisite');add({href:prerequisite.href,label:'回看 K=1 单用户先修',kind:'prerequisite',scope:'单用户定理先修；多用户式(33)请使用主算法入口。'});}
     gs.filter(g=>g.executable).forEach(g=>add({href:g.executable.href,label:g.executable.label,kind:'algorithm',scope:g.executable.limitations}));
+    if(record.id==='supplement-case-multipath-channel'&&impl.details?.lessonKind==='information-bound'){
+      add({href:'multipath-channel.html#source',label:'保留原 OFDM 先修的原文对照',kind:'case',scope:'原单向静态 OFDM 双路径先修；匹配峰与 Gram 不等同定位 Fisher 信息。'});
+      add({href:'multipath-channel.html#question',label:'回看双路径复数叠加先修',kind:'prerequisite',scope:'保留原波形、匹配网格、控件与独立导出；与 RRC 信息界使用不同模型与预算。'});
+    }
     cs.forEach(c=>add({href:c.paper,label:'阅读模型、算法与证据边界',kind:'case',scope:c.paperComparison.siteArtifactType}));
     gs.forEach(g=>add({href:`reading.html#guide-${g.id}`,label:'论文导读与原文定位',kind:'guide',scope:g.limits.join(' ')}));
     ds.forEach(c=>add({href:`reading.html#paper-${c.id}`,label:'论文身份与阅读证据',kind:'directory',scope:c.evidenceBoundary}));

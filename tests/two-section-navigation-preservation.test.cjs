@@ -4,7 +4,10 @@ const P=require('./helpers/two-section-navigation-preservation.cjs'),root=path.r
 const registry=JSON.parse(fs.readFileSync(path.join(root,fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json')));
 test('two-section historical projection reverses only explicit navigation fields without mutating science',()=>{
  const before=JSON.stringify(registry),prior=P.withoutRegistry(registry);a.equal(JSON.stringify(registry),before);a.deepEqual(P.withoutRegistry(prior),prior);
- for(const key of ['cases','units','directions','knowledgeMap','paperComparisonGroups'])a.deepEqual(prior[key],registry[key],key+' science remains live');
+ // Compare this historical navigation layer after the separately enumerated
+ // multipath lesson addition is reversed; unrelated science stays live below.
+ const beforeMultipath=require('./helpers/multipath-information-preservation.cjs').withoutRegistry(registry);
+ for(const key of ['cases','units','directions','knowledgeMap','paperComparisonGroups'])a.deepEqual(prior[key],beforeMultipath[key],key+' science remains live');
  for(const c of P.delta.registryChanges){const bad=structuredClone(registry);let x=bad;for(const key of c.path.slice(0,-1))x=x[key];x[c.path.at(-1)]={unreviewed:true};a.throws(()=>P.withoutRegistry(bad),c.path.join('.'));}
  const bad=structuredClone(registry);bad.cases[0].title='unreviewed science';a.equal(P.withoutRegistry(bad).cases[0].title,'unreviewed science','never hide scientific mutations');
  a.throws(()=>P.withoutRegistry(registry,[...P.delta.registryChanges,P.delta.registryChanges[0]]));

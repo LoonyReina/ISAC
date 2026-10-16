@@ -7843,7 +7843,7 @@
       "title": "Evaluation of Position-related Information in Multipath Components for Indoor Positioning",
       "category": "case-only",
       "owner": null,
-      "updatedOn": "2026-10-12",
+      "updatedOn": "2026-10-15",
       "canonicalReferences": {
         "guideIds": [],
         "catalogIds": [],
@@ -7868,7 +7868,15 @@
         "fixedSourceIdentity": "arxiv:1409.1467v2",
         "pdfSha256": null,
         "hashStatus": "not-recorded",
-        "details": {}
+        "details": {
+          "boundedInformationSource": {
+            "format": "PDF",
+            "url": "https://arxiv.org/pdf/1409.1467v2",
+            "sha256": "9fbf11a7043424d15bbcc030532ac196e29b3a9ea1c5a738fc59b497c734195f",
+            "locators": "PDF p3 Eqs.(7)–(12); p4 Eq.(17) and following Schur expression; p5 Eq.(22); p6 Eqs.(28)/(29). Corresponding HTML EFIM equations are (36)/(37).",
+            "scope": "New fixed-PDF record; prior HTML source identity and historical source fields retained."
+          }
+        }
       },
       "contribution": {
         "types": [
@@ -7913,45 +7921,99 @@
               "固定候选 0:0.01:14 m，不加入真值；纵轴固定 0…0.12，因 |z|²≤1/9，不按每场景峰值或接收能量缩放",
               "全零响应返回 no_response/estimate=null；非零仅返回 single_grid_maximum；更细网格不增加带宽或独立信息"
             ]
+          },
+          "boundedInformationModel": {
+            "scope": "有限采样 RRC 双路径完整 FIM、未知复增益消除与位置 EFIM/PEB；已知墙面、关联、同步，x/y 与两路复增益未知。不是定位接收机、原图3–5或整篇复现。",
+            "metrics": [
+              "full 6×6 FIM",
+              "2×2 position EFIM in m^-2",
+              "PEB in m",
+              "unit-Mahalanobis CRLB ellipse",
+              "typed null/singular states",
+              "same-resource nonoverlap approximation"
+            ],
+            "preservedTeachingMetrics": "Existing experiment.metrics and existingTeachingResourceBudget still describe the OFDM prerequisite only."
           }
         }
       },
       "implementation": {
-        "classification": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "live": "独立单向静态双路径机制、实际复数观测匹配与解析核/独立夹具校验；非论文数值复现、检测器或二维定位系统",
-        "offline": null,
-        "details": {}
+        "classification": "source-backed bounded sampled multipath information model",
+        "live": {
+          "href": "multipath-channel.html#position-information",
+          "scope": "有限采样 RRC 双路径完整 FIM、未知复增益消除与位置 EFIM/PEB；已知墙面、关联、同步，x/y 与两路复增益未知。不是定位接收机、原图3–5或整篇复现。"
+        },
+        "offline": {
+          "scope": "Accepted frozen JS/Python core and independent actual-browser scene JSON replay; numerical acceptance does not establish whole-paper or integrated browser acceptance."
+        },
+        "details": {
+          "lesson": "multipath-channel.html#position-information",
+          "lessonKind": "information-bound",
+          "prerequisite": "multipath-channel.html#question",
+          "browserAccepted": false,
+          "coreRuntimeBundleSha256": "9d2ca2b6c82e894f5425d1a415833ac0a207d8042611e5a421d19f013936d942",
+          "scope": "有限采样 RRC 双路径完整 FIM、未知复增益消除与位置 EFIM/PEB；已知墙面、关联、同步，x/y 与两路复增益未知。不是定位接收机、原图3–5或整篇复现。",
+          "inputDomain": {
+            "heightM": [
+              0,
+              0.01,
+              0.05,
+              0.1,
+              0.25,
+              0.5,
+              1,
+              2,
+              4,
+              6
+            ],
+            "phaseRad": [
+              0,
+              0.3,
+              1.5707963267948966,
+              3.141592653589793
+            ],
+            "noiseMode": [
+              "white",
+              "colored"
+            ]
+          },
+          "resources": {
+            "pulse": "unit full-line energy RRC, Tp=1 ns, rolloff=.6",
+            "samples": "193 points, 0–48 ns inclusive, Ts=.25 ns",
+            "gains": "1 and .7 exp(j phaseRad), independently unknown to information model",
+            "noise": "N0=.01; fixed sampled PDP, locally fixed covariance; no received-SNR renormalization"
+          },
+          "validationScope": "Accepted isolated core and independent 32-check replay of the actual browser-exported phase90 scene. Full-site and integrated-browser acceptance are separate gates."
+        }
       },
       "stages": {
-        "source": "reopening-required",
-        "modelFidelity": "not-validated",
-        "algorithm": "not-implemented",
-        "independentValidation": "pending",
-        "selectedExperiment": "pending",
+        "source": "audited-for-selected-core",
+        "modelFidelity": "partial",
+        "algorithm": "partial-live",
+        "independentValidation": "partial",
+        "selectedExperiment": "partial",
         "fullPaper": "not-reproduced",
-        "liveExecution": "prerequisite-only",
-        "uiLearning": "pending",
+        "liveExecution": "partial-core",
+        "uiLearning": "in-progress",
         "latency": "not-measured"
       },
       "stageEvidence": {
-        "source": "Existing fixed-version audit and locator inventory; not a complete independent derivation of every paper result.",
-        "algorithm": "source-audit-reopening-required; existing-independent-mechanism-not-paper-reproduction",
-        "selectedExperiment": "No independently reproduced named paper experiment established by this inventory.",
+        "source": "2026-10-15 fixed PDF v2 identity, hash and equation locators stored separately from the retained historical HTML reading record.",
+        "algorithm": "有限采样 RRC 双路径完整 FIM、未知复增益消除与位置 EFIM/PEB；已知墙面、关联、同步，x/y 与两路复增益未知。不是定位接收机、原图3–5或整篇复现。",
+        "selectedExperiment": "Bounded ten-height/four-phase/two-noise information study; actual sample-domain likelihood and source nonoverlap approximation recomputed. Not source Figures 3–5 or original room/gain/PDP realization.",
         "fullPaper": "No full-paper reproduction established; the minimal target is a first milestone only.",
-        "latency": "No measured browser control-to-result latency for the faithful target core."
+        "latency": "No integrated browser control-to-painted benchmark accepted. Isolated Node computation timing is not browser latency.",
+        "independentValidation": "Accepted frozen runtime bundle 9d2ca2b6c82e894f5425d1a415833ac0a207d8042611e5a421d19f013936d942; independent full FIM/EFIM and actual-browser exported scene replay passed 32 checks."
       },
       "missingImplementation": [
-        "漫散射、噪声、Doppler、材料/极化、真实天线方向图、穿透、绕射和实测信道校准",
-        "未知时钟、未知地图、路径关联、目标检测、二维定位、多锚点、论文的 CRB/EFIM 与完整算法",
-        "论文原图、实验数据与数值参数复现；N=128、2 MHz、6 GHz、QPSK/CP、1/L 幅度和固定匹配接收机均是独立教学选择"
+        "Unknown-map/path-association estimation, noise/PDP estimation uncertainty, diffuse-material/dynamic calibration and localization receiver",
+        "Original paper room, gain/PDP realization, Figures 3–5, measured positioning accuracy and full-paper reproduction"
       ],
       "dependencies": [
-        "Independent derivative/Fisher reference",
-        "Pulse/noise/diffuse-multipath source audit"
+        "Integrated browser import/export and interrupted/repeated interaction acceptance; final public deployment QA",
+        "Original room/gain/PDP realization and measurement validation before any full-paper reproduction claim"
       ],
       "blockers": [
-        "漫散射、噪声、Doppler、材料/极化、真实天线方向图、穿透、绕射和实测信道校准",
-        "未知时钟、未知地图、路径关联、目标检测、二维定位、多锚点、论文的 CRB/EFIM 与完整算法"
+        "Full-paper claims remain blocked: original room/figures/measurements and localization receiver not implemented"
       ],
       "realtime": {
         "status": "not-measured",
@@ -7976,7 +8038,8 @@
       },
       "evidence": {
         "currentRunnable": "独立单向静态双路径机制、实际复数观测匹配与解析核/独立夹具校验；非论文数值复现、检测器或二维定位系统",
-        "fixedSourceAudit": "2026-10-11 使用固定 arXiv v2（2018-12-10）与独立数值研究记录；论文年份为 2015。来源对照、独立参考、本站实现与浏览器/线上验收分别报告，不把来源核对称为论文复现。九篇影响目录及 2026-10-10 证据快照保持不变"
+        "fixedSourceAudit": "2026-10-11 使用固定 arXiv v2（2018-12-10）与独立数值研究记录；论文年份为 2015。来源对照、独立参考、本站实现与浏览器/线上验收分别报告，不把来源核对称为论文复现。九篇影响目录及 2026-10-10 证据快照保持不变",
+        "boundedInformationCore": "2026-10-15 frozen JS core, independent numerical acceptance and 32-check actual-browser scene JSON replay; original OFDM evidence retained."
       },
       "details": {}
     },
