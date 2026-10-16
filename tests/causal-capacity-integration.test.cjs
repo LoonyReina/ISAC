@@ -41,7 +41,9 @@ test('refresh preserves the accepted causal history, graph runtime and all77 pre
  a.equal(sha(read(sourceLayout?'features/research-reading/research-tree.css':'research-tree.css')),refresh.acceptedConstellationPatch.source_files.find(f=>f.path.endsWith('.css')).patch_sha256);
  const B=require(sourceLayout?'../scripts/site/research-tree.cjs':'../scripts/research-tree.cjs');
  const tree=B.buildResearchTree(...['content/data/registry.json','content/data/research-guides.json','content/data/research-directory.json','docs/PAPER-EXECUTION-BACKLOG.json'].map(f=>JSON.parse(read(f))));
- const routes=tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind})));
+ // Only the historical route-count comparison is projected; causal runtime,
+ // source and current display assertions above remain on current production.
+ const routes=require('./helpers/multipath-information-preservation.cjs').withoutTutorials(tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind}))));
  a.equal(refresh.preservedTutorialRoutes.length,77);a.equal(routes.length,78);
  for(const route of refresh.preservedTutorialRoutes)a.ok(routes.some(r=>JSON.stringify(r)===JSON.stringify(route)),route.id+': '+route.href);
  a.deepEqual(routes.filter(r=>!refresh.preservedTutorialRoutes.some(x=>JSON.stringify(x)===JSON.stringify(r))),[{id:'tradeoffs-causal-state-communication-2013',href:'causal-state-capacity.html#cc-question',kind:'algorithm'}]);

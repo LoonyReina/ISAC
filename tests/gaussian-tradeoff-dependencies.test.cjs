@@ -167,6 +167,19 @@ function publicFixture(t){
  // Both lessons' generated return/prerequisite anchors stay live in the fixture.
  for(const [file,ids]of [['theory.html',['estimator-crb','shared-model']],['foundations.html',['geometry','limits','codesign']],['reading.html',['reading','guide-networks-cooperative-clusters-2024','guide-tradeoffs-causal-state-communication-2013']]])put(file,ids.map(id=>'<div id="'+id+'"></div>').join(''));
  put(ca.entryPoint,causalPage);
+ // Extend this synthetic site with the new unconditional multipath closure.
+ // Scientific/runtime bytes remain current; unrelated linked pages/documents
+ // keep minimal local-target stubs, as in the existing receiver/causal fixture.
+ const multipath=require('../scripts/build/multipath-information-dependencies.cjs'),mp=multipath.contract;
+ for(const row of [...mp.modules,...mp.assets])put(row.public,current(row.public));
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles]}),false);
+ const multipathPage=current(mp.entryPoint);put(mp.entryPoint,multipathPage);
+ for(const match of multipathPage.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){
+  if(/^(?:https?:|#)/.test(match[1]))continue;
+  const url=new URL(match[1],'https://fixture.invalid/'),file=url.pathname.slice(1),target=path.join(directory,file);
+  if(!seen.has(file))put(file,/\.(?:js|mjs|css)$/.test(file)?current(file):'');
+  if(url.hash&&file.endsWith('.html')){const id=decodeURIComponent(url.hash.slice(1)),text=fs.readFileSync(target,'utf8');if(!text.includes('id="'+id+'"'))put(file,text+'<div id="'+id+'"></div>');}
+ }
  return {directory,manifest:{entries},put};
 }
 
@@ -174,6 +187,8 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
  const f=publicFixture(t),out=checkDependencies(f.directory,f.manifest);
  for(const [from,to,kind]of [[runtime+'math.mjs',runtime+'vendor/linalg.js','static-module'],[runtime+'runtime.mjs',runtime+'worker.mjs','reviewed-worker'],[runtime+'worker.mjs',runtime+'kernel.mjs','static-module']])a.ok(out.some(e=>e.from===from&&e.to===to&&e.kind===kind),from+' → '+to);
  a.ok(!out.some(e=>e.to.startsWith('node:')),'Node builtins are reviewed fallbacks, not published browser resources');
+ a.ok(out.some(e=>e.from==='multipath-information-ui.mjs'&&e.to==='multipath-information-core/multipath-fisher-worker.mjs'&&e.kind==='reviewed-multipath-worker'),'same live multipath gate remains active');
+ for(const file of ['multipath-channel.html','multipath-information-ui.mjs','multipath-information-core/multipath-fisher-core.mjs'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing multipath mapping must fail: '+file);
  a.ok(out.some(e=>e.from==='crb-beamforming.html'&&e.to==='crb-receiver/worker.js'&&e.kind==='reviewed-crb-receiver-worker'),'same live receiver gate remains active');
  for(const file of ['crb-beamforming.html','crb-receiver/core.js','crb-multiuser.js'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing receiver mapping must fail: '+file);
  const receiverPage=path.join(f.directory,'crb-beamforming.html'),bytes=fs.readFileSync(receiverPage);fs.unlinkSync(receiverPage);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT/);fs.writeFileSync(receiverPage,bytes);

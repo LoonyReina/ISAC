@@ -1120,6 +1120,61 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-core/multipath-fisher-core.mjs",
+      "sha256": "7323407f2d76c34c9fd30661d43905bb237c2fe93c4ab719b98a565e0a3a15eb",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-core/multipath-fisher-worker.mjs",
+      "sha256": "11adc46037725ee03dc5e7f64eb1608a49f9b6124e36686d1957d2d06aa479fb",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-core/numerical-kernel.mjs",
+      "sha256": "4f6e5ca347b0ac055362abf1f976b821b91cc40f9640be70b6be458ffbd1daa5",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-core/provenance.mjs",
+      "sha256": "bbd4fcb81bdce145f9f7c2da7faf4fe6afa10694c14f5273e053cd80c23aeea0",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-ui.mjs",
+      "sha256": "27982b9fa8730d093be5131af3605e2e4368bce78b419e806a1524f5d78b090c",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./multipath-information-core/multipath-fisher-worker.mjs",
+          "literal": "new Worker(new URL('./multipath-information-core/multipath-fisher-worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-controller.mjs",
+      "sha256": "92b90527881ad3b6f3ffb5c3f9620cdb21178ba44562f27faaaa4b008fe48320",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "multipath-information-views.mjs",
+      "sha256": "efd73a88af2b4acc77718beef8c47ca6f53a1cea404b4187c8b7d301d6cba9d2",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

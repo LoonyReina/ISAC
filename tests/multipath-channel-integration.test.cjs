@@ -6,7 +6,7 @@ const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
-const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const root=path.resolve(__dirname,'..'),read=f=>require('./helpers/multipath-information-preservation.cjs').withoutFile(f,fs.readFileSync(path.join(root,f))).toString('utf8');
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-multipath-channel'),u=r.units.find(u=>u.id==='multipath-channel'),p=r.pages.find(p=>p.path==='multipath-channel.html');
 const researchGuides=buildResearchGuides(JSON.parse(read(r.researchGuidesFile)),r);

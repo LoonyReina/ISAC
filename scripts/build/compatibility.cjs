@@ -68,6 +68,9 @@ function checkDependencies(root,manifest){
  }
  const modules=[...all.keys()].filter(name=>isModuleFile(name)).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
+ const multipath=modules.filter(m=>m.file.startsWith('multipath-information'));
+ const multipathPages=[{file:'multipath-channel.html',source:fs.readFileSync(path.join(root,'multipath-channel.html'),'utf8')}];
+ for(const edge of require('./multipath-information-dependencies.cjs').multipathDependencies(multipath,identities,multipathPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
  const classic=[...all.keys()].filter(name=>['labs/ofdm-ici/','labs/80211ad/','labs/networked-sync/','labs/gaussian-tradeoff/'].some(prefix=>name.startsWith(prefix))&&name.endsWith('.js')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  for(const edge of classicDependencies(classic,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/classic-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
  // Receiver checks bind the final current assets and exact document/Worker edges.

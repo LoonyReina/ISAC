@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "baseline": "PR104 main 07a6de9; stage against current authority and review conflicts",
+  "paperId": "supplement-case-multipath-channel",
+  "caseId": "case-multipath-channel",
+  "lessonAnchor": "multipath-channel.html#position-information",
+  "coreRuntimeBundle": "9d2ca2b6c82e894f5425d1a415833ac0a207d8042611e5a421d19f013936d942",
+  "addedEntries": [
+    {
+      "source": "labs/channel-geometry/multipath-information-core/multipath-fisher-core.mjs",
+      "compatibility": "multipath-information-core/multipath-fisher-core.mjs",
+      "public": "multipath-information-core/multipath-fisher-core.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-core/multipath-fisher-worker.mjs",
+      "compatibility": "multipath-information-core/multipath-fisher-worker.mjs",
+      "public": "multipath-information-core/multipath-fisher-worker.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-core/numerical-kernel.mjs",
+      "compatibility": "multipath-information-core/numerical-kernel.mjs",
+      "public": "multipath-information-core/numerical-kernel.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-core/provenance.mjs",
+      "compatibility": "multipath-information-core/provenance.mjs",
+      "public": "multipath-information-core/provenance.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-ui.mjs",
+      "compatibility": "multipath-information-ui.mjs",
+      "public": "multipath-information-ui.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-controller.mjs",
+      "compatibility": "multipath-information-controller.mjs",
+      "public": "multipath-information-controller.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information-views.mjs",
+      "compatibility": "multipath-information-views.mjs",
+      "public": "multipath-information-views.mjs",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-geometry/multipath-information.css",
+      "compatibility": "multipath-information.css",
+      "public": "multipath-information.css",
+      "owner": "labs/channel-geometry",
+      "role": "source"
+    }
+  ]
+}
