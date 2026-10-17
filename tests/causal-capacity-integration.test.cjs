@@ -34,7 +34,7 @@ test('refresh preserves the accepted causal history, graph runtime and all77 pre
  const delta=JSON.parse(read('tests/helpers/causal-capacity-refresh-delta.json')),refresh=delta.refreshMaintenance;
  a.equal(sha(read('tests/helpers/causal-capacity-integration-delta.json')),refresh.acceptedCausalDeltaSha256);
  a.equal(sha(read('tests/helpers/teaching-heading-maintenance-delta.json')),refresh.acceptedHeadingDeltaSha256);
- for(const row of refresh.preservedGraphSources){if(!sourceLayout&&row.path.startsWith('content/pages/'))continue;const f=sourceLayout?row.path:row.compatibility;a.equal(sha(read(f)),row.sha256,row.path);}
+ for(const row of refresh.preservedGraphSources){if(!sourceLayout&&row.path.startsWith('content/pages/'))continue;const f=sourceLayout?row.path:row.compatibility;a.equal(sha(require('./helpers/cooperative-load-preservation.cjs').withoutFile(row.path,Buffer.from(read(f)))),row.sha256,row.path);}
  const display=refresh.graphDisplayOnlyChange,runtime=read(sourceLayout?display.path:display.compatibility);
  a.equal(sha(runtime),display.afterSha256);a.equal(runtime.split(display.afterText).length,2);a.equal(sha(runtime.replace(display.afterText,display.beforeText)),display.beforeSha256,'only the exact causal status branch changes');
  const generator=read(sourceLayout?'scripts/site/generate-site.cjs':'scripts/generate-site.cjs');a.ok(generator.includes('research-tree.js?v=constellation-sky-20261015'),'new runtime URL prevents stale cached status');a.ok(!generator.includes('two-section-tree-v1'));for(const file of ['research-tree.css','research-tree-model.js'])a.ok(generator.includes(file+'?v=constellation-sky-20261015'));

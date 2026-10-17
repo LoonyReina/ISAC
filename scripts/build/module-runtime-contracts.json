@@ -1175,6 +1175,89 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/app.mjs",
+      "sha256": "d3ea4e1ae4bea565639e54810435fee9031cdb3d5a6df3c3ade619bec8539341",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/controller.mjs",
+      "sha256": "669ef55cae380933ab75fa93e759cc89b7639c05df22d521fc6412fedb797a67",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/load-adapter.mjs",
+      "sha256": "e8e5866dc71acbfa5652b98f70e3e18c7a9ae8d88754f78a047020ba75e7cca4",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/subset-adapter.mjs",
+      "sha256": "44e0cb38dd6f0127e7b306d4cc138fd38448c1fa2e34dfb3ed35e7a2e1e01199",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/request-scheduler.mjs",
+      "sha256": "f48c851014eb78932320f7d944fc2a36261b940b1a1ea05a27c9383c0e49bd7a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-load/presets.mjs",
+      "sha256": "db41aee5baddd2ebd88675fa4dea763746bb42d52aabd7dbf8971c9edc8f84b7",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-rate/app.mjs",
+      "sha256": "79a12e0e28197668fac203defe7730ef9a8657f17c1a03960338057d4b951446",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-rate/controller.mjs",
+      "sha256": "95d57958bcb4ad9290102a0cc137c91f7e6d9af0aa4123d11033772b75db7d59",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-rate/transport.mjs",
+      "sha256": "d632e5d3527c0b1d5b534d01aff1046d3f3578d054caaac29df6cfa61db15156",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-rate/worker.mjs",
+      "sha256": "2d22580585b41f900edb78faf89961edd23dfdc2e7d010149fe697cc8645f721",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "cooperative-rate/kernel.mjs",
+      "sha256": "44465ebfe45a8340bca293b27586d5e7c7376a90d8bb55544c142a37a47e3588",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

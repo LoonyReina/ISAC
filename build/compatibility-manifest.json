@@ -13119,6 +13119,244 @@
       "public": null,
       "owner": "validators/module-dependencies",
       "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/app.mjs",
+      "compatibility": "cooperative-load/app.mjs",
+      "public": "cooperative-load/app.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/controller.mjs",
+      "compatibility": "cooperative-load/controller.mjs",
+      "public": "cooperative-load/controller.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/load-adapter.mjs",
+      "compatibility": "cooperative-load/load-adapter.mjs",
+      "public": "cooperative-load/load-adapter.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/subset-adapter.mjs",
+      "compatibility": "cooperative-load/subset-adapter.mjs",
+      "public": "cooperative-load/subset-adapter.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/request-scheduler.mjs",
+      "compatibility": "cooperative-load/request-scheduler.mjs",
+      "public": "cooperative-load/request-scheduler.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/presets.mjs",
+      "compatibility": "cooperative-load/presets.mjs",
+      "public": "cooperative-load/presets.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/style.css",
+      "compatibility": "cooperative-load/style.css",
+      "public": "cooperative-load/style.css",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/SOURCE-IMPORT.json",
+      "compatibility": "tests/cooperative-load/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/reference/load-adapter.cjs",
+      "compatibility": "tests/cooperative-load/reference/load-adapter.cjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/reference/subset-adapter.cjs",
+      "compatibility": "tests/cooperative-load/reference/subset-adapter.cjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/reference/request-scheduler.cjs",
+      "compatibility": "tests/cooperative-load/reference/request-scheduler.cjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/tests/test-ui-state.mjs",
+      "compatibility": "tests/cooperative-load/tests/test-ui-state.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/load/tests/test-esm-parity.mjs",
+      "compatibility": "tests/cooperative-load/tests/test-esm-parity.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "tests/cooperative-load-integration.test.cjs",
+      "compatibility": "tests/cooperative-load-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/cooperative-load-build.test.cjs",
+      "compatibility": "tests/build/cooperative-load-build.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-load-preservation.cjs",
+      "compatibility": "tests/helpers/cooperative-load-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-load-delta.json",
+      "compatibility": "tests/helpers/cooperative-load-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "docs/COOPERATIVE-LOAD-INTEGRATION.md",
+      "compatibility": "docs/COOPERATIVE-LOAD-INTEGRATION.md",
+      "public": "docs/COOPERATIVE-LOAD-INTEGRATION.md",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/app.mjs",
+      "compatibility": "cooperative-rate/app.mjs",
+      "public": "cooperative-rate/app.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/controller.mjs",
+      "compatibility": "cooperative-rate/controller.mjs",
+      "public": "cooperative-rate/controller.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/transport.mjs",
+      "compatibility": "cooperative-rate/transport.mjs",
+      "public": "cooperative-rate/transport.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/worker.mjs",
+      "compatibility": "cooperative-rate/worker.mjs",
+      "public": "cooperative-rate/worker.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/kernel.mjs",
+      "compatibility": "cooperative-rate/kernel.mjs",
+      "public": "cooperative-rate/kernel.mjs",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/style.css",
+      "compatibility": "cooperative-rate/style.css",
+      "public": "cooperative-rate/style.css",
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/cooperative-rate.html",
+      "compatibility": "cooperative-rate.html",
+      "public": "cooperative-rate.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/SOURCE-IMPORT.json",
+      "compatibility": "tests/cooperative-rate/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/tests/test.mjs",
+      "compatibility": "tests/cooperative-rate/tests/test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/tests/test-worker-adapter.mjs",
+      "compatibility": "tests/cooperative-rate/tests/test-worker-adapter.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/reference/test.mjs",
+      "compatibility": "tests/cooperative-rate/reference/test.mjs",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "labs/cooperative-clusters/rate/reference/python-parity-reference.json",
+      "compatibility": "tests/cooperative-rate/reference/python-parity-reference.json",
+      "public": null,
+      "owner": "labs/cooperative-clusters",
+      "role": "source"
+    },
+    {
+      "source": "tests/cooperative-rate-integration.test.cjs",
+      "compatibility": "tests/cooperative-rate-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-rate-preservation.cjs",
+      "compatibility": "tests/helpers/cooperative-rate-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/cooperative-rate-delta.json",
+      "compatibility": "tests/helpers/cooperative-rate-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "docs/COOPERATIVE-RATE-INTEGRATION.md",
+      "compatibility": "docs/COOPERATIVE-RATE-INTEGRATION.md",
+      "public": "docs/COOPERATIVE-RATE-INTEGRATION.md",
+      "owner": "content/documentation",
+      "role": "source"
     }
   ]
 }

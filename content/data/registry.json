@@ -3322,6 +3322,18 @@
       ],
       "next": "reading.html#guide-tradeoffs-causal-state-communication-2013",
       "nextLabel": "回到同一篇论文，分清严格因果导读与 §IV 因果模型"
+    },
+    {
+      "path": "cooperative-rate.html",
+      "title": "协作通信速率",
+      "stage": "reading",
+      "role": "独立固定接受概率 PPP 模型 · 平均速率积分 · 非原文复现",
+      "prerequisites": [
+        "cooperative-clusters.html#cl-question",
+        "foundations.html#geometry"
+      ],
+      "next": "reading.html#guide-networks-cooperative-clusters-2024",
+      "nextLabel": "回到同一论文，核对独立模型边界"
     }
   ],
   "schemaVersion": 1,
@@ -7978,6 +7990,16 @@
       "canonicalHref": "multipath-channel.html#position-information",
       "section": "reading",
       "parentLabel": "真实信道/多径信息"
+    },
+    {
+      "canonicalHref": "cooperative-clusters.html#cl-question",
+      "section": "reading",
+      "parentLabel": "多站协作/独立固定负载与请求可辨识性"
+    },
+    {
+      "canonicalHref": "cooperative-rate.html#cr-question",
+      "section": "reading",
+      "parentLabel": "多站协作/独立通信速率"
     }
   ]
 }

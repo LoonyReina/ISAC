@@ -44,6 +44,7 @@ jobs:
           node --test tests/build-fixture-lifetime.test.cjs tests/dual-array-browser-timers-current.test.cjs tests/dual-array-plot-readability-current.test.cjs tests/dual-array-current-runtime.test.cjs tests/dual-array-browser-integration.test.cjs
           node --max-old-space-size=512 --test --test-concurrency=1 tests/dual-array-record-portability.test.cjs tests/dual-array-record-portability-integration.test.cjs
           node --test tests/cooperative-clusters-build.test.cjs
+          node --test tests/cooperative-load-build.test.cjs
           node --test tests/causal-capacity-build.test.cjs
           node --test tests/multipath-information-build.test.cjs
           node --test tests/compatibility-build.test.cjs

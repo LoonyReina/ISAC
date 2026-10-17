@@ -4,7 +4,7 @@
 const a=require('node:assert/strict'),crypto=require('node:crypto');
 const contract=require('./cooperative-clusters-runtime-contracts.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-const CONTRACT_SHA256='e83f830281db82c57297d26551a92ee27ab9cba40c979368c7c15997f4f6e1ea';
+const CONTRACT_SHA256='3c5a5b59f465c0e12fefa09eb6d47b4b6c99362a6029d618dd3554dc20506b7e';
 a.equal(sha(JSON.stringify(contract)),CONTRACT_SHA256,'Unreviewed cooperative runtime contract');
 const runtimeProfiles=contract.modules.map(m=>({public:m.public,sha256:m.sha256,runtimeEdges:m.runtimeEdges,runtimePolicy:m.runtimePolicy,unverifiedInputs:[]}));
 const reviewedProfiles=contract.modules.map(m=>[m.public,{sha256:m.sha256,runtimePolicy:m.runtimePolicy,sourceLiterals:m.sourceLiterals,edgeKind:'reviewed-cooperative-module',runtimeEdges:m.runtimeEdges}]);
@@ -15,7 +15,7 @@ function cooperativeDependencies(modules,current,identities,pages,parse){
  const files=[...contract.modules,...contract.assets,{public:contract.entryPoint,sha256:contract.entryPageSha256}],expected=new Map(files.map(f=>[f.public,f])),ids=new Map(),sources=new Map();
  a.equal(expected.size,files.length,'Unique cooperative file inventory');
  for(const id of identities){fields(id,['file','sha256'],'identity');a.ok(typeof id.file==='string'&&/^[a-f0-9]{64}$/.test(id.sha256)&&!ids.has(id.file),'Unique valid cooperative identity');ids.set(id.file,id.sha256);
-  if(/^(?:cooperative-fim|assets\/data\/cooperative-fim)/i.test(id.file))a.ok(expected.has(id.file),'Unlisted cooperative public dependency '+id.file);
+  if(/^(?:cooperative-fim|cooperative-load\/|assets\/data\/cooperative-fim)/i.test(id.file))a.ok(expected.has(id.file),'Unlisted cooperative public dependency '+id.file);
   for(const f of files)if(f.sha256===id.sha256)a.equal(id.file,f.public,'Cooperative dependency moved or duplicated');
  }
  for(const f of files)a.equal(ids.get(f.public),f.sha256,'Missing or changed cooperative dependency '+f.public);
@@ -27,7 +27,7 @@ function cooperativeDependencies(modules,current,identities,pages,parse){
   for(const e of m.runtimeEdges)edges.push({from:m.public,url:e.url,kind:'reviewed-cooperative-'+e.kind});
  }
  for(const item of parse(modules)){const m=contract.modules.find(m=>m.public===item.file);a.deepEqual(item.specifiers,m.staticSpecifiers,'Exact cooperative static module edges');for(const url of item.specifiers)edges.push({from:item.file,url,kind:'cooperative-static-module'});}
- for(const e of edges){a.ok(typeof e.url==='string'&&e.url.startsWith('./')&&!/[?#\\\s]/.test(e.url)&&!e.url.includes('..'),'Local bounded cooperative edge');a.ok(expected.has(e.url.slice(2)),'Unlisted cooperative runtime edge '+e.url);}
+ for(const e of edges){a.ok(typeof e.url==='string'&&e.url.startsWith('./')&&!/[?#\\\s]/.test(e.url)&&!e.url.includes('..'),'Local bounded cooperative edge');a.ok(expected.has(require('node:path').posix.join(require('node:path').posix.dirname(e.from),e.url)),'Unlisted cooperative runtime edge '+e.url);}
  a.equal(ids.get(contract.entryPoint),contract.entryPageSha256,'Mapped exact cooperative entry page identity');
  const matches=pages.filter(p=>p.file===contract.entryPoint);a.equal(matches.length,1,'Exactly one cooperative entry page');const source=matches[0].source;
  a.equal(sha(source),contract.entryPageSha256,'Exact complete cooperative entry page');
