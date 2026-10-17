@@ -68,6 +68,9 @@ function checkDependencies(root,manifest){
  }
  const modules=[...all.keys()].filter(name=>isModuleFile(name)).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
+ const fullDuplex=modules.filter(m=>m.file.startsWith('full-duplex/'));
+ const fullDuplexPages=[{file:'full-duplex-cancellation.html',source:fs.readFileSync(path.join(root,'full-duplex-cancellation.html'),'utf8')}];
+ for(const edge of require('./full-duplex-dependencies.cjs').fullDuplexDependencies(fullDuplex,identities,fullDuplexPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
  const multipath=modules.filter(m=>m.file.startsWith('multipath-information'));
  const multipathPages=[{file:'multipath-channel.html',source:fs.readFileSync(path.join(root,'multipath-channel.html'),'utf8')}];
  for(const edge of require('./multipath-information-dependencies.cjs').multipathDependencies(multipath,identities,multipathPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);

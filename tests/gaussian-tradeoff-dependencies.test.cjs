@@ -181,6 +181,20 @@ function publicFixture(t){
   if(!seen.has(file))put(file,/\.(?:js|mjs|css)$/.test(file)?current(file):'');
   if(url.hash&&file.endsWith('.html')){const id=decodeURIComponent(url.hash.slice(1)),text=fs.readFileSync(target,'utf8');if(!text.includes('id="'+id+'"'))put(file,text+'<div id="'+id+'"></div>');}
  }
+ // The full-duplex closure is likewise mandatory, even in this synthetic site.
+ // Keep its four modules, stylesheet and authored page at exact current bytes;
+ // only unrelated destination pages receive minimal local anchor stubs.
+ const fullDuplex=require('../scripts/build/full-duplex-dependencies.cjs'),fd=fullDuplex.contract;
+ const fullDuplexProfiles=fd.modules.map(({staticSpecifiers,...profile})=>profile);
+ for(const row of [...fd.modules,...fd.assets])put(row.public,current(row.public));
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles,...fullDuplexProfiles]}),false);
+ const fullDuplexPage=current(fd.entryPoint);put(fd.entryPoint,fullDuplexPage);
+ for(const match of fullDuplexPage.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){
+  if(/^(?:https?:|#)/.test(match[1]))continue;
+  const url=new URL(match[1],'https://fixture.invalid/'),file=url.pathname.slice(1),target=path.join(directory,file);
+  if(!seen.has(file))put(file,/\.(?:js|mjs|css)$/.test(file)?current(file):'');
+  if(url.hash&&file.endsWith('.html')){const id=decodeURIComponent(url.hash.slice(1)),text=fs.readFileSync(target,'utf8');if(!text.includes('id="'+id+'"'))put(file,text+'<div id="'+id+'"></div>');}
+ }
  return {directory,manifest:{entries},put};
 }
 
@@ -190,6 +204,12 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
  a.ok(!out.some(e=>e.to.startsWith('node:')),'Node builtins are reviewed fallbacks, not published browser resources');
  a.ok(out.some(e=>e.from==='multipath-information-ui.mjs'&&e.to==='multipath-information-core/multipath-fisher-worker.mjs'&&e.kind==='reviewed-multipath-worker'),'same live multipath gate remains active');
  for(const file of ['multipath-channel.html','multipath-information-ui.mjs','multipath-information-core/multipath-fisher-core.mjs'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing multipath mapping must fail: '+file);
+ a.ok(out.some(e=>e.from==='full-duplex/app.mjs'&&e.to==='full-duplex/worker.mjs'&&e.kind==='full-duplex-worker'),'same live full-duplex gate remains active');
+ for(const file of ['full-duplex-cancellation.html','full-duplex/app.mjs','full-duplex/controller.mjs','full-duplex/worker.mjs','full-duplex/kernel.mjs','full-duplex/style.css']){
+  a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing full-duplex mapping must fail: '+file);
+  const full=path.join(f.directory,file),bytes=fs.readFileSync(full);fs.unlinkSync(full);a.throws(()=>checkDependencies(f.directory,f.manifest),'missing full-duplex bytes must fail: '+file);fs.writeFileSync(full,bytes);
+  fs.writeFileSync(full,Buffer.concat([bytes,Buffer.from('/* unreviewed */')]));a.throws(()=>checkDependencies(f.directory,f.manifest),'changed full-duplex bytes must fail: '+file);fs.writeFileSync(full,bytes);
+ }
  a.ok(out.some(e=>e.from==='crb-beamforming.html'&&e.to==='crb-receiver/worker.js'&&e.kind==='reviewed-crb-receiver-worker'),'same live receiver gate remains active');
  for(const file of ['crb-beamforming.html','crb-receiver/core.js','crb-multiuser.js'])a.throws(()=>checkDependencies(f.directory,{entries:f.manifest.entries.filter(x=>x.public!==file)}),'missing receiver mapping must fail: '+file);
  const receiverPage=path.join(f.directory,'crb-beamforming.html'),bytes=fs.readFileSync(receiverPage);fs.unlinkSync(receiverPage);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT/);fs.writeFileSync(receiverPage,bytes);

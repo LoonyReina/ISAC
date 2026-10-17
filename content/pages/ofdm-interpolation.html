@@ -18,6 +18,7 @@
 <h1>补出来的格子，<br>为什么不是新观测？</h1>
 <p>通信没有在每个时刻、每个子载波都发送符号。雷达处理想要一张整齐的复数网格，能不能把空格连起来？先看一个静止回波，再让它动起来。</p>
 <p class="oi-boundary">取自 2019 年全双工 OFDM 雷达论文的时间插值机制。本页是独立的稀疏探测教学模型，未复现 LTE/NR 标准波形、射频硬件或论文实测。</p></header>
+<aside class="oi-section"><h2>同一论文：自干扰消除</h2><p>时间补值之外，<a href="full-duplex-cancellation.html#fd-question">自干扰消除与目标保留</a>用合成 IQ 运行式 (11) 的 block LS，分开看残余抑制和目标擦除；不复现式 (12) 或射频测量。</p></aside>
 <section id="mechanism" class="oi-section">
 <h2>空格表示没测到，不表示信道为零</h2>
 <p>横向每列是一次探测时刻 m，纵向每行是一个子载波 k。蓝格发送已知单位幅度符号 X；橙色空格的 X=0。接收端只在<strong>蓝格</strong>计算 d=Y/X。空格里的接收噪声不能除以零变成信道观测。</p>

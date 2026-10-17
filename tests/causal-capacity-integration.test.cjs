@@ -35,14 +35,14 @@ test('refresh preserves the accepted causal history, graph runtime and all77 pre
  a.equal(sha(read('tests/helpers/causal-capacity-integration-delta.json')),refresh.acceptedCausalDeltaSha256);
  a.equal(sha(read('tests/helpers/teaching-heading-maintenance-delta.json')),refresh.acceptedHeadingDeltaSha256);
  for(const row of refresh.preservedGraphSources){if(!sourceLayout&&row.path.startsWith('content/pages/'))continue;const f=sourceLayout?row.path:row.compatibility;a.equal(sha(require('./helpers/cooperative-load-preservation.cjs').withoutFile(row.path,Buffer.from(read(f)))),row.sha256,row.path);}
- const display=refresh.graphDisplayOnlyChange,runtime=read(sourceLayout?display.path:display.compatibility);
+ const display=refresh.graphDisplayOnlyChange,runtime=require('./helpers/full-duplex-preservation.cjs').withoutFile(display.path,Buffer.from(read(sourceLayout?display.path:display.compatibility))).toString();
  a.equal(sha(runtime),display.afterSha256);a.equal(runtime.split(display.afterText).length,2);a.equal(sha(runtime.replace(display.afterText,display.beforeText)),display.beforeSha256,'only the exact causal status branch changes');
  const generator=read(sourceLayout?'scripts/site/generate-site.cjs':'scripts/generate-site.cjs');a.ok(generator.includes('research-tree.js?v=constellation-sky-20261015'),'new runtime URL prevents stale cached status');a.ok(!generator.includes('two-section-tree-v1'));for(const file of ['research-tree.css','research-tree-model.js'])a.ok(generator.includes(file+'?v=constellation-sky-20261015'));
  a.equal(sha(read(sourceLayout?'features/research-reading/research-tree.css':'research-tree.css')),refresh.acceptedConstellationPatch.source_files.find(f=>f.path.endsWith('.css')).patch_sha256);
  const B=require(sourceLayout?'../scripts/site/research-tree.cjs':'../scripts/research-tree.cjs');
  const tree=B.buildResearchTree(...['content/data/registry.json','content/data/research-guides.json','content/data/research-directory.json','docs/PAPER-EXECUTION-BACKLOG.json'].map(f=>JSON.parse(read(f))));
- // Only the historical route-count comparison is projected; causal runtime,
- // source and current display assertions above remain on current production.
+ // The historical graph-byte and route-count comparisons use exact inverses;
+ // causal runtime checks remain current, and current graph display is tested separately.
  const routes=require('./helpers/multipath-information-preservation.cjs').withoutTutorials(tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind}))));
  a.equal(refresh.preservedTutorialRoutes.length,77);a.equal(routes.length,78);
  for(const route of refresh.preservedTutorialRoutes)a.ok(routes.some(r=>JSON.stringify(r)===JSON.stringify(route)),route.id+': '+route.href);

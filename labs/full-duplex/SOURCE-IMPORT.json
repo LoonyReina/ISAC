@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "ed77780b2d392503fcfe22b876f5328717a0b538",
+  "baselineGitSourceTree": "5dc132986a22db7775f10532b93997cf03d78b1c",
+  "runtime": {
+    "app.mjs": "a62542a870285ce442b3937faec12fe1af2619b77d89e929340e9e8b23e43280",
+    "controller.mjs": "0df645720137d7ccf60168c675bfab4279bd4cdb72ad2dd7fb754b6a5d33ab41",
+    "worker.mjs": "f9a80eac9832bb1aff68fd4a2b71005ce16ce6e8b67d859ab8c1ab096dc60cea",
+    "kernel.mjs": "441bf5a359dba43b3abcad1bc8289708da34680928901104463714f146a2fbe0"
+  },
+  "reference": {
+    "test_kernel.mjs": "7d70d3ff6477fdbfd74b14e6cf8a1a969c15708ba613994ed687c0dea4c9b7e5",
+    "fixtures.json": "762015b03ed11b29e47b9930981276e89a80a3de6a12e862380f0cb1b6b0f26f",
+    "REFERENCE-MODEL-CONTRACT.md": "b7066c94286d65f9624c6d77737eca577e18060f4a0691a81bbef18557afed6c"
+  },
+  "testPortability": "Accepted UI test changes only replace an absolute sibling-file equality check with the immutable accepted kernel SHA256; 43 checks remain."
+}
