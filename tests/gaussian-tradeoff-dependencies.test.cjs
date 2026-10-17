@@ -156,6 +156,7 @@ function publicFixture(t){
  for(const file of ['course.css','site.css'])put(file,current(file));
  for(const [file,ids]of [['index.html',[]],['foundations.html',['geometry']],['theory.html',['estimator-crb']],['reading.html',['reading','guide-networks-cooperative-clusters-2024']]])put(file,ids.map(id=>'<div id="'+id+'"></div>').join(''));
  put(cc.entryPoint,cooperativePage);
+ put('docs/COOPERATIVE-LOAD-INTEGRATION.md',current('docs/COOPERATIVE-LOAD-INTEGRATION.md'));
  // The causal lesson is an additional unconditional current runtime closure.
  const causal=require('../scripts/build/causal-capacity-dependencies.cjs'),ca=causal.contract;
  for(const row of [...ca.modules,...ca.assets])put(row.public,current(row.public));

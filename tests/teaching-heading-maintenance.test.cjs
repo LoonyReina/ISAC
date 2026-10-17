@@ -17,7 +17,7 @@ test('cooperative UI and view changes contain only display string replacements',
  for(const file of ['labs/cooperative-clusters/cooperative-fim-ui.mjs','labs/cooperative-clusters/cooperative-fim-view.mjs']){const row=P.delta.files.find(r=>r.path===file),now=fs.readFileSync(locate(row),'utf8'),before=priorFor(file).toString();a.equal(now.replace(quoted,'STRING'),before.replace(quoted,'STRING'),file);}
 });
 test('cooperative current contract changes only presentation identities and the display breadcrumb',()=>{
- const file='scripts/build/cooperative-clusters-runtime-contracts.json',row=P.delta.files.find(r=>r.path===file),now=JSON.parse(fs.readFileSync(locate(row))),before=JSON.parse(priorFor(file));
+ const file='scripts/build/cooperative-clusters-runtime-contracts.json',row=P.delta.files.find(r=>r.path===file),now=JSON.parse(require('./helpers/cooperative-load-preservation.cjs').withoutFile(file,fs.readFileSync(locate(row)))),before=JSON.parse(priorFor(file));
  const normalized=structuredClone(now);normalized.entryPageSha256=before.entryPageSha256;normalized.entryHeadSha256=before.entryHeadSha256;normalized.pageRegions.CONTEXT=normalized.pageRegions.CONTEXT.replace(P.delta.registryTitle.after,P.delta.registryTitle.before);
  for(const p of ['cooperative-fim-ui.mjs','cooperative-fim-view.mjs'])normalized.modules.find(m=>m.public===p).sha256=before.modules.find(m=>m.public===p).sha256;
  normalized.assets.find(m=>m.public==='cooperative-fim.css').sha256=before.assets.find(m=>m.public==='cooperative-fim.css').sha256;
@@ -25,7 +25,7 @@ test('cooperative current contract changes only presentation identities and the 
 });
 test('page copy changes retain all IDs, controls, links and resource loading attributes',()=>{
  const structural=s=>[...s.matchAll(/<(?:input|button|select|option|canvas|svg|script|link|a)\b[^>]*>|\bid=(?:"[^"]*"|'[^']*')/g)].map(m=>m[0]);
- for(const file of ['content/pages/foundations.html','content/pages/cooperative-clusters.html','foundations.html','cooperative-clusters.html']){const row=P.delta.files.find(r=>r.path===file),p=locate(row);if(!p)continue;a.deepEqual(structural(fs.readFileSync(p,'utf8')),structural(P.withoutFile(row.path,fs.readFileSync(p)).toString()),file);}
+ for(const file of ['content/pages/foundations.html','content/pages/cooperative-clusters.html','foundations.html','cooperative-clusters.html']){const row=P.delta.files.find(r=>r.path===file),p=locate(row);if(!p)continue;a.deepEqual(structural(require('./helpers/cooperative-load-preservation.cjs').withoutFile(row.path,fs.readFileSync(p)).toString()),structural(P.withoutFile(row.path,fs.readFileSync(p)).toString()),file);}
 });
 test('presentation metadata inverses change only exact declared title and module identities',()=>{
  const registryFile=P.delta.files.find(r=>r.path==='content/data/registry.json'),registry=JSON.parse(fs.readFileSync(locate(registryFile))),oldRegistry=JSON.parse(priorFor(registryFile.path));a.deepEqual(P.withoutRegistry(registry),oldRegistry);

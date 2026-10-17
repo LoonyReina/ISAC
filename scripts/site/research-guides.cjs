@@ -75,6 +75,10 @@ function buildResearchGuides(data,registry,validationContext){
   if(card.readingSteps!==undefined&&(!Array.isArray(card.readingSteps)||!card.readingSteps.length||!card.readingSteps.every(s=>['label','locator','purpose'].every(k=>text(s[k])))))throw new Error('Invalid research guide reading steps');
   const notebook=card.notebookTopicId&&registry.units.find(u=>u.id===card.notebookTopicId);
   if(card.notebookTopicId!==undefined&&!notebook)throw new Error('Invalid research guide notebook topic');
+  if(card.sublessons!==undefined){
+   if(!Array.isArray(card.sublessons)||!card.sublessons.length||new Set(card.sublessons.map(s=>s.href)).size!==card.sublessons.length)throw new Error('Invalid research sublessons');
+   for(const s of card.sublessons){if(!object(s,['href','label','kind','scope'])||s.kind!=='independent-model'||!prose(s.label)||!prose(s.scope))throw new Error('Invalid independent sublesson');local.unitEntry({href:s.href});}
+  }
   if(Object.hasOwn(card,'executable'))validateExecutable(card.executable,local);
   if(card.visualTrace!==undefined)validateVisualTrace(card.visualTrace,card,local);
   if(card.contextTrail!==undefined)validateContextTrail(card.contextTrail,card,cards);
@@ -139,7 +143,7 @@ function renderResearchGuides(cards){
 <p class="eyebrow">原文导读 · ${escapeHtml(c.evidence.kind)}</p><h4 id="guide-${escapeHtml(c.id)}-title">${escapeHtml(c.title)}</h4>
 ${c.source.checkedAt?`<p class="guide-currentness">${c.contextTrail?escapeHtml(c.source.versionAt.slice(0,4))+'脉络 · ':''}固定版本：<time datetime="${escapeHtml(c.source.versionAt)}">${escapeHtml(c.source.versionAt.slice(0,10))}</time> · 核查：<time datetime="${escapeHtml(c.source.checkedAt)}">${escapeHtml(c.source.checkedAt)}</time>（非最新保证）</p>`:''}${c.existingSourceCase?`<p class="guide-existing-source">已有案例原文的新对读：${link('#'+c.existingSourceCase.id,c.existingSourceCase.title)}；不计作新增论文或实验。</p>`:''}
 <p class="guide-question"><strong>先问：</strong>${escapeHtml(c.question)}</p><p><strong>直觉机制：</strong>${escapeHtml(c.mechanism)}</p>
-${renderExecutable(c)}${renderVisualTrace(c)}${renderContextTrail(c,byId)}${onward(c)}<details class="guide-depth"><summary>继续读：创新 → 证据 → 边界 → 下一问</summary><div>
+${renderExecutable(c)}${(c.sublessons||[]).map(s=>`<p class="guide-sublesson">${link(s.href,s.label)} · 独立教学扩展<br>${escapeHtml(s.scope)}</p>`).join('')}${renderVisualTrace(c)}${renderContextTrail(c,byId)}${onward(c)}<details class="guide-depth"><summary>继续读：创新 → 证据 → 边界 → 下一问</summary><div>
 <dl><dt>作者推进了哪一步？</dt><dd>${escapeHtml(c.innovation)}</dd><dt>证据支持到哪里？</dt><dd>${escapeHtml(c.evidence.summary)}</dd><dt>哪些条件不能略去？</dt><dd><ul>${c.limits.map(t=>`<li>${escapeHtml(t)}</li>`).join('')}</ul></dd><dt>带着什么问题继续？</dt><dd>${escapeHtml(c.nextQuestion)}</dd></dl>
 ${c.readingSteps?`<ol class="guide-reading-steps">${c.readingSteps.map(s=>`<li><strong>${escapeHtml(s.label)}</strong> · ${escapeHtml(s.locator)}<br>${escapeHtml(s.purpose)}</li>`).join('')}</ol>`:''}
 <p class="guide-connection"><strong>需要时回看已有机制：</strong>${c.prerequisites.map(p=>link(p.href,p.label)).join(' · ')}</p>

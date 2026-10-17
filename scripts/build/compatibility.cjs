@@ -78,7 +78,7 @@ function checkDependencies(root,manifest){
  const receiver=[...all.keys()].filter(name=>name.toLowerCase().startsWith('crb-receiver/')&&name.endsWith('.js')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  const receiverPages=[{file:'crb-beamforming.html',source:fs.readFileSync(path.join(root,'crb-beamforming.html'),'utf8')}];
  for(const edge of receiverDependencies(receiver,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/crb-receiver-runtime-contracts.json'),'utf8')),identities,receiverPages))local(edge.from,edge.url,edge.kind);
- const cooperative=modules.filter(m=>m.file.startsWith('cooperative-fim-'));
+ const cooperative=modules.filter(m=>m.file.startsWith('cooperative-fim-')||m.file.startsWith('cooperative-load/'));
  const cooperativePages=[{file:'cooperative-clusters.html',source:fs.readFileSync(path.join(root,'cooperative-clusters.html'),'utf8')}];
  for(const edge of cooperativeDependencies(cooperative,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/cooperative-clusters-runtime-contracts.json'),'utf8')),identities,cooperativePages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
  const causal=modules.filter(m=>m.file.startsWith('causal-capacity-'));

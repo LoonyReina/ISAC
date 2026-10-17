@@ -1,0 +1,13 @@
+# Independent cooperative-rate sublesson
+
+2026-10-16. [Rate lesson](../cooperative-rate.html#cr-question), part of the same [canonical paper guide](../reading.html#guide-networks-cooperative-clusters-2024). The separate [fixed-load lesson](../cooperative-clusters.html#cl-question) is a prerequisite, not a source of rate inputs. Two top-level sections remain unchanged.
+
+The existing guide gains an optional validated sublessons list (href, label, kind, scope). Each entry is an independent-model, validated against actual local pages/anchors and rendered as a secondary lesson in both the guide and canonical paper tree. The primary FIM entry and the paper count remain unchanged. Registry pages and lessonPlacement declare the new reading route; no new direction, unit, paper, or top-level section is introduced.
+
+This is an independent fixed-exogenous-acceptance PPP model inspired by arXiv:2403.20228v3 §II.C / Eq.(8), not the literal Theorem 2, a coherent receiver, source-figure reproduction, or complete paper implementation. Fixed α=4, K=3, pc=0.5; manual quadrature for L=1/2/3/5 and κ=0/.25/.5/.75/1. Same acceptance marks jointly allocate signal and interference. The common per-station gain convention and same-frequency resource do not imply equal coordination cost or a finite fixed network-wide power budget. No original source PDF/text is redistributed.
+
+Runtime app, controller, transport, Worker and kernel retain the accepted isolated prototype bytes, including globalThis timer wrappers. HTML adopts generated site shell and separate lesson anchors; CSS is scoped to the lesson. Explicit source/public mappings publish cooperative-rate.html and cooperative-rate/*.mjs / style.css. Non-public provenance and tests remain in the compatibility workspace. The kernel uses genuine quadrature; no reference lookup drives the plot. Results and downloads require the same complete, fresh response.
+
+The prototype's supported desktop Chromium review passed all 20 public choices, cancellation/edit/reset, back navigation and a downloaded record. This is prior isolated evidence, not acceptance of this integrated page. Narrow/tablet, slow devices, paint timing, screen-reader audit and integration browser checks remain open. The 60-second protection is provisional, not a production latency promise. No realtime or rigorous total-error claim is made: empirical two-level difference and analytic out-of-region truncation are separate.
+
+Local integration test/build outcomes are recorded separately after execution. This document itself does not assert a passed build or publication. All previous scientific assets and dated reports are preserved; exact historical inverse adapters exist only for provenance tests and are not used by current runtime gates.

@@ -11,6 +11,7 @@ const identity = (bytes, record) => bytes.length === record.bytes && sha(bytes) 
 const same = (left, right) => isDeepStrictEqual(left, right) && JSON.stringify(left) === JSON.stringify(right);
 
 function withoutFile(file, bytes, rows = delta.files) {
+  bytes = require("./cooperative-load-preservation.cjs").withoutFile(file, bytes);
   // Authored HTML and rendered HTML share a compatibility URL but have
   // distinct exact identities. Prefer an explicitly named layout endpoint.
   const exact = rows.filter(row => row.path === file);
@@ -83,11 +84,12 @@ function withoutMetadata(input, key, additions = []) {
   for (const state of [...states].reverse()) state.restore();
   return out;
 }
-const withoutRegistry = input => withoutMetadata(input, 'registry', delta.registryAdditions);
-const withoutGuides = input => withoutMetadata(input, 'guides');
+const withoutRegistry = input => withoutMetadata(require('./cooperative-load-preservation.cjs').withoutRegistry(input), 'registry', delta.registryAdditions);
+const withoutGuides = input => withoutMetadata(require('./cooperative-rate-preservation.cjs').withoutGuides(input), 'guides');
 const withoutBacklog = input => withoutMetadata(input, 'backlog');
 
 function withoutMappings(input) {
+  input = require("./cooperative-load-preservation.cjs").withoutMappings(input);
   const out = structuredClone(input);
   const added = delta.addedEntries;
   const owners = delta.addedOwners;
@@ -105,6 +107,7 @@ function withoutMappings(input) {
 }
 
 function withoutContracts(input) {
+  input = require("./cooperative-load-preservation.cjs").withoutContracts(input);
   const out = structuredClone(input);
   const rows = delta.addedModuleProfiles;
   if (!rows.some(row => out.modules.some(item => item.public === row.public))) return out;
@@ -115,7 +118,7 @@ function withoutContracts(input) {
 }
 
 function withoutTutorials(input) {
-  const out = structuredClone(input);
+  const out = require('./cooperative-rate-preservation.cjs').withoutTutorials(input);
   const record = delta.tutorialChanges;
   const bytes = Buffer.from(JSON.stringify(out));
   if (identity(bytes, record.before)) return out;

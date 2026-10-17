@@ -1,5 +1,5 @@
 'use strict';
-// Current production model/routing assertions; no historical projection here.
+// Current production model assertions; prior route inventory uses the exact rate-addition inverse below.
 const test=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),sourceLayout=fs.existsSync(path.join(root,'content/pages/multipath-channel.html'));
 const read=f=>fs.readFileSync(path.join(root,sourceLayout?f:f.replace('content/data/','site/').replace('content/pages/','').replace('scripts/site/','scripts/')),'utf8');
@@ -9,7 +9,7 @@ const B=require(sourceLayout?'../scripts/site/research-tree.cjs':'../scripts/res
 test('same multipath paper gains bounded information primary route while all78 prior routes remain',()=>{
  const [r,g,d,b]=data(),tree=B.buildResearchTree(r,g,d,b),paper=tree.papers.find(p=>p.id==='supplement-case-multipath-channel'),delta=JSON.parse(read('tests/helpers/multipath-information-integration-delta.json'));
  a.equal(tree.papers.length,35);a.equal(tree.papers.filter(p=>p.status==='bounded-core').length,21);a.equal(paper.status,'bounded-core');a.equal(paper.tutorials[0].href,'multipath-channel.html#position-information');a.equal(paper.tutorials[0].kind,'algorithm');a.match(paper.tutorials[0].label,/有界信息模型/);
- const routes=tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind})));a.equal(routes.length,80);a.equal(delta.tutorialChanges.preserved.length,78);for(const prior of delta.tutorialChanges.preserved)a.ok(routes.some(r=>JSON.stringify(r)===JSON.stringify(prior)),prior.href);
+ const currentRoutes=tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind})));a.equal(currentRoutes.length,82);const routes=require('./helpers/cooperative-rate-preservation.cjs').withoutTutorials(currentRoutes);a.equal(routes.length,80);a.equal(delta.tutorialChanges.preserved.length,78);for(const prior of delta.tutorialChanges.preserved)a.ok(routes.some(r=>JSON.stringify(r)===JSON.stringify(prior)),prior.href);
  a.deepEqual(routes.filter(r=>!delta.tutorialChanges.preserved.some(p=>JSON.stringify(p)===JSON.stringify(r))),[{id:paper.id,href:'multipath-channel.html#position-information',kind:'algorithm'},{id:paper.id,href:'multipath-channel.html#question',kind:'prerequisite'}]);
  const c=r.cases.find(c=>c.id==='case-multipath-channel'),u=r.units.find(u=>u.id==='multipath-channel');a.equal(c.learningEntry,'multipath-channel.html#question');a.equal(u.href,'multipath-channel.html#experiment');a.equal(c.paper,'multipath-channel.html#position-information');a.ok(r.lessonPlacement.some(p=>p.canonicalHref===c.paper&&p.section==='reading'));
  if(!sourceLayout){const L=require('../scripts/learning-entry.cjs').createLearningEntryResolver(r);a.equal(L.caseEntry(c),c.learningEntry);a.equal(L.unitEntry(u),c.learningEntry);}

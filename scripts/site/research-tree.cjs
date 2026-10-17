@@ -22,6 +22,7 @@ function buildResearchTree(registry, guides, directory, backlog) {
     if(bounded&&algorithmHref){const c=cs.find(c=>c.paper.split('#')[0]===algorithmHref.split('#')[0]);add({href:algorithmHref,label:impl.details?.lessonKind==='information-bound'?'进入有界信息模型交互教程':gs[0]?.executable?.kind==='validated-paper-model'?'进入有界模型交互教程'+(record.id==='tradeoffs-causal-state-communication-2013'?' · '+gs[0].executable.label:''):'进入有界算法交互教程',kind:'algorithm',scope:c?.fields?.['结论边界']||gs[0]?.executable?.limitations||cs[0]?.paperComparison?.siteArtifactType||record.minimalFaithfulTarget.description});}
     if(record.id==='crb'){const prerequisite=registry.units.find(u=>u.id==='crb-beamforming');if(!prerequisite)throw Error('Missing CRB single-user prerequisite');add({href:prerequisite.href,label:'回看 K=1 单用户先修',kind:'prerequisite',scope:'单用户定理先修；多用户式(33)请使用主算法入口。'});}
     gs.filter(g=>g.executable).forEach(g=>add({href:g.executable.href,label:g.executable.label,kind:'algorithm',scope:g.executable.limitations}));
+    gs.forEach(g=>(g.sublessons||[]).forEach(s=>add({href:s.href,label:s.label+' · 独立教学扩展',kind:'independent-model',scope:s.scope})));
     if(record.id==='supplement-case-multipath-channel'&&impl.details?.lessonKind==='information-bound'){
       add({href:'multipath-channel.html#source',label:'保留原 OFDM 先修的原文对照',kind:'case',scope:'原单向静态 OFDM 双路径先修；匹配峰与 Gram 不等同定位 Fisher 信息。'});
       add({href:'multipath-channel.html#question',label:'回看双路径复数叠加先修',kind:'prerequisite',scope:'保留原波形、匹配网格、控件与独立导出；与 RRC 信息界使用不同模型与预算。'});

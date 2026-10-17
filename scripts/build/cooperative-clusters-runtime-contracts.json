@@ -1,20 +1,22 @@
 {
   "schemaVersion": 1,
   "entryPoint": "cooperative-clusters.html",
-  "entryPageSha256": "7b7d3f52db7cc47b5f61369d47c049850d4b2f849d82f2aa3a3eaae93c6e1e3c",
+  "entryPageSha256": "8929cd908b98e1c08f34aef594a3f5bf433eac4a3dc1fdb4182ac22c8bb36e81",
   "pageRegions": {
     "HEADER": "<!-- SITE:HEADER:START -->\n<a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
     "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">协作站与定位下界</span></nav><p class=\"site-role\">协作感知 · 式 (5)/(6) 归一化几何 FIM 与有界样本回放</p><p class=\"site-prereq\">需要时回看：<a href=\"foundations.html#geometry\">双站与多站几何</a> · <a href=\"theory.html#estimator-crb\">下界什么时候真的能达到？</a></p></div>\n<!-- SITE:CONTEXT:END -->",
     "NEXT": "<!-- SITE:NEXT:START -->\n<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p><a href=\"reading.html#guide-networks-cooperative-clusters-2024\">回到同一篇论文，区分几何信息、网络负载与完整结果 →</a></aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href=\"index.html\">学习地图</a> · <a href=\"reading.html#reading\">原文与证据</a></footer>\n<!-- SITE:NEXT:END -->"
   },
-  "entryHeadSha256": "6a0545d3234133f5a8e5dbdc4699765794abcceae5f6f9fdc5ebccabedd933c8",
+  "entryHeadSha256": "bba1919ace6a540d1fbe02c658448c519937965dfab64e909a429161b2953cf5",
   "pageScripts": [
-    "<script type=\"module\" src=\"cooperative-fim-ui.mjs\"></script>"
+    "<script type=\"module\" src=\"cooperative-fim-ui.mjs\"></script>",
+    "<script type=\"module\" src=\"cooperative-load/app.mjs\"></script>"
   ],
   "pageStyles": [
     "<link rel=\"stylesheet\" href=\"course.css\">",
     "<link rel=\"stylesheet\" href=\"site.css?v=knowledge-map-v1\">",
-    "<link rel=\"stylesheet\" href=\"cooperative-fim.css\">"
+    "<link rel=\"stylesheet\" href=\"cooperative-fim.css\">",
+    "<link rel=\"stylesheet\" href=\"cooperative-load/style.css\">"
   ],
   "pageEdges": [
     {
@@ -32,6 +34,14 @@
     {
       "kind": "stylesheet",
       "url": "cooperative-fim.css"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "cooperative-load/style.css"
+    },
+    {
+      "kind": "script",
+      "url": "cooperative-load/app.mjs"
     }
   ],
   "modules": [
@@ -118,6 +128,63 @@
         "./cooperative-fim-model.mjs",
         "./cooperative-fim-view.mjs"
       ]
+    },
+    {
+      "public": "cooperative-load/app.mjs",
+      "sha256": "d3ea4e1ae4bea565639e54810435fee9031cdb3d5a6df3c3ade619bec8539341",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./subset-adapter.mjs",
+        "./request-scheduler.mjs",
+        "./controller.mjs",
+        "./presets.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-load/controller.mjs",
+      "sha256": "669ef55cae380933ab75fa93e759cc89b7639c05df22d521fc6412fedb797a67",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
+    },
+    {
+      "public": "cooperative-load/load-adapter.mjs",
+      "sha256": "e8e5866dc71acbfa5652b98f70e3e18c7a9ae8d88754f78a047020ba75e7cca4",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
+    },
+    {
+      "public": "cooperative-load/subset-adapter.mjs",
+      "sha256": "44e0cb38dd6f0127e7b306d4cc138fd38448c1fa2e34dfb3ed35e7a2e1e01199",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./load-adapter.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-load/request-scheduler.mjs",
+      "sha256": "f48c851014eb78932320f7d944fc2a36261b940b1a1ea05a27c9383c0e49bd7a",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": [
+        "./subset-adapter.mjs"
+      ]
+    },
+    {
+      "public": "cooperative-load/presets.mjs",
+      "sha256": "db41aee5baddd2ebd88675fa4dea763746bb42d52aabd7dbf8971c9edc8f84b7",
+      "runtimePolicy": "no-runtime-loads",
+      "sourceLiterals": [],
+      "runtimeEdges": [],
+      "staticSpecifiers": []
     }
   ],
   "assets": [
@@ -128,6 +195,10 @@
     {
       "public": "assets/data/cooperative-fim-retained-coordinates.json",
       "sha256": "07fa3de3e8aa966d1d88a4d9c07868019802b98c0bbf1bf057c69a14166bfb19"
+    },
+    {
+      "public": "cooperative-load/style.css",
+      "sha256": "ac3ba6bc0a69810c8ac8a5204858dfebd510fb8ee843c4f9630a7171a8f021a4"
     }
   ]
 }

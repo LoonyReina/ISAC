@@ -58,3 +58,7 @@ never import it. Frozen earlier inverse contracts and original numerical/data
 bytes are unchanged. The new owned test adapter runs the lesson's original
 assertions against the actual mapped runtime bytes in an isolated source-layout
 fixture. The Pages workflow also runs the new current-closure mutation tests.
+
+## Independent fixed-load teaching extension (2026-10-16)
+
+The original all-stations-accept FIM lesson and its numerical assets remain unchanged. A separately labelled [fixed-load tagged-request extension](../cooperative-clusters.html#cl-question) follows it on the same page. Its load assumptions are independent teaching assumptions, not a reproduction of the paper load formula. See [extension boundaries and verification](COOPERATIVE-LOAD-INTEGRATION.md). Earlier dated acceptance statements above retain their original scope.
