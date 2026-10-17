@@ -1292,6 +1292,40 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/statistics/browser-worker.mjs",
+      "sha256": "eb1557b704b43865c77523ad8ffe02cede665ee3569b6a9104d5c92818e02922",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/statistics/fixed-frame.mjs",
+      "sha256": "3017fbc36a4e25f3b7d2291329d233ee3166bc6ef3d2cfa018c3354673a4e8e1",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/statistics/otfs-core.mjs",
+      "sha256": "20c887dec06148dc7b031b15d2c2aba64ba10776c523a6d28367e005e82fabe2",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/statistics/statistics.mjs",
+      "sha256": "4fe7e4604760ae8cf2146384696b117d468d74485844ad894b3b02cf7aeef83b",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./browser-worker.mjs",
+          "literal": "new Worker(new URL('./browser-worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
     }
   ]
 }

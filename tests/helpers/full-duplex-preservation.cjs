@@ -6,11 +6,13 @@ const a = require('node:assert/strict');
 const crypto = require('node:crypto');
 const {isDeepStrictEqual} = require('node:util');
 const delta = require('./full-duplex-delta.json');
+const statistics = require('./otfs-statistical-preservation.cjs');
 const sha = value => crypto.createHash('sha256').update(value).digest('hex');
 const identity = (bytes, record) => bytes.length === record.bytes && sha(bytes) === record.sha256;
 const same = (left, right) => isDeepStrictEqual(left, right) && JSON.stringify(left) === JSON.stringify(right);
 
 function withoutFile(file, bytes, rows = delta.files) {
+  bytes = statistics.withoutFile(file, bytes);
   // Authored and generated HTML have separate identities at the same URL.
   const exact = rows.filter(row => row.path === file);
   const matches = exact.length ? exact : rows.filter(row => row.compatibility === file);
@@ -33,7 +35,7 @@ function withoutFile(file, bytes, rows = delta.files) {
 }
 
 function withoutRegistry(input) {
-  const out = structuredClone(input), states = [];
+  const out = statistics.withoutRegistry(input), states = [];
   for (const record of delta.registryChanges) {
     const rows = out[record.collection];
     a.ok(Array.isArray(rows), 'full-duplex registry collection');
@@ -72,7 +74,7 @@ function withoutRegistry(input) {
 }
 
 function withoutMappings(input) {
-  const out = structuredClone(input);
+  const out = statistics.withoutMappings(input);
   if (!delta.addedEntries.some(row => out.entries.some(item => item.source === row.source)) &&
       !delta.addedOwners.some(row => out.owners.some(item => item.id === row.id))) return out;
   for (const [key, rows, identityKey] of [['entries', delta.addedEntries, 'source'], ['owners', delta.addedOwners, 'id']]) {
@@ -88,7 +90,7 @@ function withoutMappings(input) {
 }
 
 function withoutContracts(input) {
-  const out = structuredClone(input), rows = delta.addedModuleProfiles;
+  const out = statistics.withoutContracts(input), rows = delta.addedModuleProfiles;
   if (!rows.some(row => out.modules.some(item => item.public === row.public))) return out;
   a.equal(out.modules.length, delta.priorModuleCount + rows.length, 'complete full-duplex module inventory');
   a.ok(same(out.modules.slice(delta.priorModuleCount), rows), 'exact full-duplex appended profiles');

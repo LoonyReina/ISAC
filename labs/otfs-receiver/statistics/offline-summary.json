@@ -1,0 +1,630 @@
+{
+  "config": {
+    "N": 8,
+    "M": 8,
+    "T_s": 6.4e-06,
+    "bandwidth_hz": 1250000.0,
+    "useful_duration_s": 5.12e-05,
+    "fc_hz": 5890000000.0,
+    "c_mps": 299792458.0,
+    "range_m": 20,
+    "velocity_kmph": 80,
+    "truth_qa": [
+      0.16678204759907603,
+      0.044707669804762804
+    ],
+    "snr_definition": "|h|² Pavg / E|w|²; |h|=1, unit-energy QPSK symbols, Pavg=1",
+    "pilot_or_data": "All known radar symbols, not communication detection",
+    "seed": 191001896,
+    "fixed_x": true,
+    "coarse_grid_candidates": 121,
+    "fine_grid_candidates": 6561,
+    "delay_interval": [
+      0,
+      2
+    ],
+    "doppler_interval": [
+      -1,
+      1
+    ],
+    "trials_per_snr": 200,
+    "literal_convention": "same as frozen accepted numerical Eq14; no physical model equivalence asserted"
+  },
+  "failed_local_attempts": 39,
+  "total_local_attempts": 2985,
+  "selected_failed_status_candidates": 19,
+  "selected_grid_candidates": 122,
+  "summary": [
+    {
+      "snr_db": -25,
+      "trials": 200,
+      "local_crb_qa": [
+        0.6720714014764669,
+        0.7866994005021527
+      ],
+      "fim_min_eigenvalue": 0.060517212066320984,
+      "fim_schur_error": 1.4432899320127035e-15,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.737217952400924,
+            -0.0027076698047627168
+          ],
+          "rmse_qa": [
+            1.0250240530554455,
+            0.6607899299140171
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.942257862317766,
+              1.1038997285251881
+            ],
+            [
+              0.6186271116142885,
+              0.6984634496256149
+            ]
+          ],
+          "range_rmse_m": 122.91779214984577,
+          "velocity_rmse_mps": 328.44969842717217,
+          "outlier_count": 153,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            0.6909679524009243,
+            -0.017207669804762783
+          ],
+          "rmse_qa": [
+            0.9859933563392433,
+            0.6505208327948533
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.9012953044316175,
+              1.0612758335106578
+            ],
+            [
+              0.6075269796726039,
+              0.6873760755589614
+            ]
+          ],
+          "range_rmse_m": 118.23734874744464,
+          "velocity_rmse_mps": 323.3453805506156,
+          "outlier_count": 151,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.6877777832212473,
+            -0.01854998230546799
+          ],
+          "rmse_qa": [
+            0.9848871146668118,
+            0.6502401991183322
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.8998790442746489,
+              1.0604367226595617
+            ],
+            [
+              0.6068644410035205,
+              0.6871383585177268
+            ]
+          ],
+          "range_rmse_m": 118.10469158339653,
+          "velocity_rmse_mps": 323.20588985584385,
+          "outlier_count": 151,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": -20,
+      "trials": 200,
+      "local_crb_qa": [
+        0.21252763789270848,
+        0.24877619394758166
+      ],
+      "fim_min_eigenvalue": 0.19137222777299773,
+      "fim_schur_error": 3.0878077872387166e-16,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.7132179524009244,
+            -0.02270766980476277
+          ],
+          "rmse_qa": [
+            0.9858396662880674,
+            0.6908195410293212
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.9059772919626676,
+              1.0591211807843703
+            ],
+            [
+              0.648105437030877,
+              0.732149044017653
+            ]
+          ],
+          "range_rmse_m": 118.21891870015978,
+          "velocity_rmse_mps": 343.37610130984064,
+          "outlier_count": 160,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            0.6833429524009249,
+            -0.013207669804762772
+          ],
+          "rmse_qa": [
+            0.9671824801820038,
+            0.6979127399193052
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.8905293955715442,
+              1.0419145773705174
+            ],
+            [
+              0.6549073909229581,
+              0.7391568604342308
+            ]
+          ],
+          "range_rmse_m": 115.98160522731968,
+          "velocity_rmse_mps": 346.9018194402643,
+          "outlier_count": 161,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.6753231060022209,
+            -0.0043224153485498015
+          ],
+          "rmse_qa": [
+            0.964706133440197,
+            0.6964881869755788
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.8884429648475616,
+              1.0372252093051035
+            ],
+            [
+              0.653259110290426,
+              0.7383781841395012
+            ]
+          ],
+          "range_rmse_m": 115.68464919668504,
+          "velocity_rmse_mps": 346.19373663878855,
+          "outlier_count": 161,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": -15,
+      "trials": 200,
+      "local_crb_qa": [
+        0.06720714014764669,
+        0.07866994005021524
+      ],
+      "fim_min_eigenvalue": 0.6051721206631988,
+      "fim_schur_error": 1.6653345369377348e-16,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.5282179524009236,
+            -0.039707669804762764
+          ],
+          "rmse_qa": [
+            0.8707406073215066,
+            0.5536711108964638
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.7772720656707486,
+              0.9570416246949018
+            ],
+            [
+              0.5064221932272281,
+              0.5994877449023465
+            ]
+          ],
+          "range_rmse_m": 104.41658677973089,
+          "velocity_rmse_mps": 275.2056306691053,
+          "outlier_count": 95,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            0.4468429524009241,
+            -0.05058266980476274
+          ],
+          "rmse_qa": [
+            0.8194616272195879,
+            0.5440723443252538
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.7201565393474456,
+              0.9082412340570448
+            ],
+            [
+              0.497025682052501,
+              0.5892632973282771
+            ]
+          ],
+          "range_rmse_m": 98.26736618433598,
+          "velocity_rmse_mps": 270.4345047138459,
+          "outlier_count": 88,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.44724209636825274,
+            -0.061230909125350924
+          ],
+          "rmse_qa": [
+            0.8213620396660299,
+            0.5469000753154374
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.7238630189797746,
+              0.9084882688077888
+            ],
+            [
+              0.4961018286774034,
+              0.593073319825682
+            ]
+          ],
+          "range_rmse_m": 98.49525791174904,
+          "velocity_rmse_mps": 271.84004579265724,
+          "outlier_count": 89,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": -10,
+      "trials": 200,
+      "local_crb_qa": [
+        0.021252763789270847,
+        0.02487761939475812
+      ],
+      "fim_min_eigenvalue": 1.9137222777299563,
+      "fim_schur_error": 6.245004513516506e-17,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.1822179524009242,
+            0.03429233019523737
+          ],
+          "rmse_qa": [
+            0.4664787049557409,
+            0.2958630830472418
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.3536371690471549,
+              0.5629866509546885
+            ],
+            [
+              0.24566054529615552,
+              0.34161420719186414
+            ]
+          ],
+          "range_rmse_m": 55.93871902533533,
+          "velocity_rmse_mps": 147.06056494420952,
+          "outlier_count": 26,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            0.13896795240092408,
+            0.034042330195237315
+          ],
+          "rmse_qa": [
+            0.4629568330789659,
+            0.28004654567611015
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.35565212910559046,
+              0.5568731834692278
+            ],
+            [
+              0.23233750425411356,
+              0.32510411453577887
+            ]
+          ],
+          "range_rmse_m": 55.51638677465555,
+          "velocity_rmse_mps": 139.19885777444944,
+          "outlier_count": 25,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.13732079018094145,
+            0.03473192003818483
+          ],
+          "rmse_qa": [
+            0.4660369502252734,
+            0.2817746267132503
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.35721668401175255,
+              0.5598759445725934
+            ],
+            [
+              0.23430672257263874,
+              0.3273873548222547
+            ]
+          ],
+          "range_rmse_m": 55.885745130743345,
+          "velocity_rmse_mps": 140.0578110814108,
+          "outlier_count": 25,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": 0,
+      "trials": 200,
+      "local_crb_qa": [
+        0.0021252763789270847,
+        0.0024877619394758133
+      ],
+      "fim_min_eigenvalue": 19.13722277729987,
+      "fim_schur_error": 5.204170427930421e-18,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.03221795240092396,
+            -0.0207076698047627
+          ],
+          "rmse_qa": [
+            0.03517096042061116,
+            0.06821149161793107
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.03321795240092391,
+              0.038783045874512055
+            ],
+            [
+              0.06138509840033886,
+              0.07515363951437992
+            ]
+          ],
+          "range_rmse_m": 4.217595469886293,
+          "velocity_rmse_mps": 33.904941399594705,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            -0.00015704759907601604,
+            -0.004707669804762757
+          ],
+          "rmse_qa": [
+            0.04732080978753832,
+            0.04805894458881379
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.04281972958728704,
+              0.05148264137398224
+            ],
+            [
+              0.04351225160183412,
+              0.052428765248132884
+            ]
+          ],
+          "range_rmse_m": 5.674568752302627,
+          "velocity_rmse_mps": 23.88799396349461,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.0006436104672411245,
+            -0.0037948717556907435
+          ],
+          "rmse_qa": [
+            0.046710395768033534,
+            0.04662733479208361
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.0418428832369169,
+              0.05150029830171016
+            ],
+            [
+              0.04246189628765656,
+              0.05071107691175882
+            ]
+          ],
+          "range_rmse_m": 5.601369744580628,
+          "velocity_rmse_mps": 23.176403509834707,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": 10,
+      "trials": 200,
+      "local_crb_qa": [
+        0.00021252763789270842,
+        0.0002487761939475811
+      ],
+      "fim_min_eigenvalue": 191.37222777299928,
+      "fim_schur_error": 7.589415207398531e-19,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.03321795240092396,
+            -0.044707669804762734
+          ],
+          "rmse_qa": [
+            0.03321795240092391,
+            0.04470766980476277
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.03321795240092391,
+              0.03321795240092391
+            ],
+            [
+              0.04470766980476277,
+              0.04470766980476277
+            ]
+          ],
+          "range_rmse_m": 3.9833966399999916,
+          "velocity_rmse_mps": 22.222222222222204,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            -0.00040704759907600973,
+            0.0015423301952372436
+          ],
+          "rmse_qa": [
+            0.017787637919294205,
+            0.018393376047673764
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.016250588914663713,
+              0.019382909448171302
+            ],
+            [
+              0.016578394647327223,
+              0.020132678913919275
+            ]
+          ],
+          "range_rmse_m": 2.133039877535686,
+          "velocity_rmse_mps": 9.142540681124062,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            -6.0572864427080184e-05,
+            0.0019147754488847923
+          ],
+          "rmse_qa": [
+            0.015088450325484296,
+            0.016194965912228937
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.013566996826640103,
+              0.016663272721105574
+            ],
+            [
+              0.014676947468482828,
+              0.017735607423342455
+            ]
+          ],
+          "range_rmse_m": 1.8093614441951347,
+          "velocity_rmse_mps": 8.049807403393803,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    },
+    {
+      "snr_db": 20,
+      "trials": 200,
+      "local_crb_qa": [
+        2.125276378927085e-05,
+        2.487761939475813e-05
+      ],
+      "fim_min_eigenvalue": 1913.722277729987,
+      "fim_schur_error": 5.759824041329242e-20,
+      "methods": {
+        "coarse": {
+          "bias_qa": [
+            0.03321795240092396,
+            -0.044707669804762734
+          ],
+          "rmse_qa": [
+            0.03321795240092391,
+            0.04470766980476277
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.03321795240092391,
+              0.03321795240092391
+            ],
+            [
+              0.04470766980476277,
+              0.04470766980476277
+            ]
+          ],
+          "range_rmse_m": 3.9833966399999916,
+          "velocity_rmse_mps": 22.222222222222204,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "fine": {
+          "bias_qa": [
+            0.004342952400924006,
+            0.004417330195237233
+          ],
+          "rmse_qa": [
+            0.010035965850713702,
+            0.006373553251817596
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.009542492522348688,
+              0.010555838647610222
+            ],
+            [
+              0.005622507785481606,
+              0.007044981782070696
+            ]
+          ],
+          "range_rmse_m": 1.2034827483158086,
+          "velocity_rmse_mps": 3.168013840255415,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        },
+        "refined": {
+          "bias_qa": [
+            0.0002831220551792847,
+            5.55545568897077e-05
+          ],
+          "rmse_qa": [
+            0.004811376096942382,
+            0.004993480837272664
+          ],
+          "rmse_95_bootstrap_interval_qa": [
+            [
+              0.004345871978158251,
+              0.005305187198222652
+            ],
+            [
+              0.00457308794158975,
+              0.00538606315680045
+            ]
+          ],
+          "range_rmse_m": 0.5769657065859212,
+          "velocity_rmse_mps": 2.4820403593582046,
+          "outlier_count": 0,
+          "outlier_definition": "|q error|>0.5 OR |a error|>0.5; bins, not detection misses"
+        }
+      }
+    }
+  ],
+  "raw_sha256": "39548907b7d9252263d006d72e34f68896cdabbd8fb2dc07fed715afc658f064",
+  "results_sha256": "cd2b816ba241587d8390d200045c6106404192c1f1e6f5f6f73d2262922b18d1",
+  "provenance": "Offline Python/SciPy experiment; 200 trials at each of 7 SNRs; fixed frame; all trials retained. Not live recomputation."
+}
