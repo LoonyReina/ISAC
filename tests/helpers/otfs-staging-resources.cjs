@@ -1,5 +1,14 @@
 'use strict';
 const paths={
+  "otfs-receiver/statistics/browser-worker.mjs": "labs/otfs-receiver/statistics/browser-worker.mjs",
+  "otfs-receiver/statistics/fixed-frame.json": "labs/otfs-receiver/statistics/fixed-frame.json",
+  "otfs-receiver/statistics/fixed-frame.mjs": "labs/otfs-receiver/statistics/fixed-frame.mjs",
+  "otfs-receiver/statistics/offline-rmse.svg": "labs/otfs-receiver/statistics/offline-rmse.svg",
+  "otfs-receiver/statistics/offline-summary.json": "labs/otfs-receiver/statistics/offline-summary.json",
+  "otfs-receiver/statistics/otfs-core.mjs": "labs/otfs-receiver/statistics/otfs-core.mjs",
+  "otfs-receiver/statistics/statistics.css": "labs/otfs-receiver/statistics/statistics.css",
+  "otfs-receiver/statistics/statistics.mjs": "labs/otfs-receiver/statistics/statistics.mjs",
+
   "otfs-receiver/communication/FREEZE.json": "labs/otfs-receiver/communication/FREEZE.json",
   "otfs-receiver/communication/browser-worker.mjs": "labs/otfs-receiver/communication/browser-worker.mjs",
   "otfs-receiver/communication/kernel.mjs": "labs/otfs-receiver/communication/kernel.mjs",

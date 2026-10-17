@@ -5,10 +5,11 @@ const a = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const P = require('./helpers/full-duplex-preservation.cjs');
+const statistics = require('./helpers/otfs-statistical-preservation.cjs');
 const root = path.resolve(__dirname, '..');
 const sourceLayout = fs.existsSync(path.join(root, 'content/data/registry.json'));
 const locate = row => path.join(root, sourceLayout ? row.path : row.compatibility);
-const read = file => fs.readFileSync(path.join(root, file));
+const read = file => statistics.withoutFile(file, fs.readFileSync(path.join(root, file)));
 const registry = () => JSON.parse(read(sourceLayout ? 'content/data/registry.json' : 'site/registry.json'));
 
 test('full-duplex inverse binds complete current and predecessor bytes and rejects unreviewed deltas', () => {
@@ -18,8 +19,8 @@ test('full-duplex inverse binds complete current and predecessor bytes and rejec
     // Generated and authored page records have one compatibility URL; evaluate
     // authored records only in source layout and generated records in staging.
     if (!sourceLayout && row.authored) continue;
-    const current = fs.readFileSync(file), original = Buffer.from(current);
     const key = sourceLayout ? row.path : row.compatibility;
+    const current = statistics.withoutFile(key, fs.readFileSync(file)), original = Buffer.from(current);
     const prior = P.withoutFile(key, current);
     a.ok(P.identity(prior, row.before), row.path);
     a.deepEqual(current, original, 'inverse does not mutate input');

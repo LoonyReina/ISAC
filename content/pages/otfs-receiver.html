@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
   <link rel="stylesheet" href="otfs-receiver/otfs-receiver.css">
   <script type="module" src="otfs-receiver/otfs-receiver.mjs"></script>
+  <link rel="stylesheet" href="otfs-receiver/statistics/statistics.css">
+  <script type="module" src="otfs-receiver/statistics/statistics.mjs"></script>
 </head>
 <body>
 <!-- SITE:HEADER:START -->
@@ -20,7 +22,7 @@
 <div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> / <a href="experiments.html">机制实验</a> / <span aria-current="page">OTFS 感知与通信接收机</span></nav><p class="site-role">OTFS 联合设计方向 · 两种知识条件，两个独立实验</p></div>
 <!-- SITE:CONTEXT:END -->
 <nav class="site-topic-nav otfs-stage-nav" aria-label="本主题六层学习路线">
-  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
+  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#statistics"><span>03A+</span> 误差与统计</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
 </nav>
 
 <section id="intuition" class="otfs-cover">
@@ -98,7 +100,7 @@
     <div class="otfs-actions"><button id="sensing-baseline" type="button" class="otfs-secondary" disabled>记住本次结果作同观测比较</button></div>
     <p class="otfs-small">保留当前结果后，只改拟合模型、网格或预算并重新运行，可比较同一 x/y 上的残差与实际计算量。更换生成配置或输入数组后，这项同观测比较不可用。模型、网格与资源差异须同时读；它不是同物理波形的跨模型误差实验。</p>
     <div id="sensing-comparison" class="otfs-result"></div>
-    <p class="otfs-warning"><strong>这是有限网格穷举，不是连续优化。</strong>进度是完成了多少候选，不是“沿山坡下降”的迭代。即使所有网格已算完，也没有连续全局最优证书；连续细化与局部 FIM/CRB 在本页均未实现。一个最高分也不等于已检测到目标或有唯一可辨识解。</p>
+    <p class="otfs-warning"><strong>这是有限网格穷举，不是连续优化。</strong>进度是完成了多少候选，不是“沿山坡下降”的迭代。即使所有网格已算完，也没有连续全局最优证书；本实验不执行连续细化；新增 <a href="#statistics">8×8 统计分支</a>单独提供开单元细化与局部 FIM/CRB。一个最高分也不等于已检测到目标或有唯一可辨识解。</p>
     <details><summary>前 12 个实际候选与数值摘要，完整记录见导出</summary><pre id="sensing-values"></pre></details>
   </section>
   <section class="otfs-computation" aria-labelledby="sensing-inspect-title">
@@ -112,6 +114,38 @@
     <div id="sensing-evaluation" class="otfs-evaluation" hidden></div>
     <p class="otfs-small">真值揭示不改变搜索域、候选次序、已计算得分或最佳点。单次误差不是 RMSE；网格格距不是分辨率，得分不是置信度。模型约定不匹配时不作跨模型物理误差解读。</p>
   </section>
+</section>
+
+
+<section id="statistics" class="otfs-section otfs-statistics">
+  <header class="otfs-section-head"><p class="eyebrow">感知延伸 · 从一个答案，到误差的尺度</p><h2>网格变密，为什么仍不等于更准？</h2><p>先看同一份带噪回波怎样被三个接收机解释，再看重复 200 次后误差如何变化。真值只用于评价；搜索从观测出发，不拿真值作初值。</p></header>
+  <div class="stats-contract"><span>固定 8×8 已知 QPSK</span><span>20 m · 80 km/h</span><span>1.25 MHz · 51.2 μs 有效时长</span><span>P=1 · literal Eq.14</span></div>
+  <article class="stats-live" aria-labelledby="stats-live-title">
+    <div class="stats-panel-head"><div><p class="otfs-card-label">01 / 浏览器实时重算 · 单次观测</p><h3 id="stats-live-title">三个答案，共用一份 y</h3></div><span class="stats-badge">LIVE · 不是 RMSE</span></div>
+    <p class="otfs-small">输入已知发送符号 x 与复高斯噪声，生成一份复回波 y。候选模板 u=Ψ(q,a)x，是当前参数对已知 x 的预测回波。下面每一格是拟合未知复增益后的归一化匹配分数 |uᴴy|²/(uᴴu)，不是空间功率或检出概率；颜色按本次最高分归一化，越深表示拟合越好。</p>
+    <form id="stats-form" class="stats-controls">
+      <label for="stats-snr">信噪比 <output id="stats-snr-value" for="stats-snr">20 dB</output><input id="stats-snr" type="range" min="-25" max="20" step="5" value="20"></label>
+      <label for="stats-seed">噪声种子<input id="stats-seed" type="number" min="1" max="4294967295" step="1" value="1910" required></label>
+      <button type="submit" id="stats-run">重算同一份观测</button><button type="button" id="stats-next">换一份噪声</button><button type="button" id="stats-cancel" disabled>取消</button>
+    </form>
+    <p class="otfs-small stats-input-note">同一种子复用同一份标准噪声，SNR 只改变其尺度。改输入立即废弃旧结果；按“重算”才开始。此处 live 种子与离线 NumPy 种子不等价。</p>
+    <p id="stats-status" class="otfs-status" role="status" aria-live="polite">尚未运行。三个方法将共享同一份观测和搜索域。</p>
+    <div id="stats-live-result" hidden>
+      <div class="stats-live-grid">
+        <figure class="stats-figure"><div class="stats-map-top"><span>延迟 q × 多普勒 a · 单位 bin</span><label for="stats-zoom"><input id="stats-zoom" type="checkbox">放大真值附近（仅显示）</label></div><canvas id="stats-map" width="820" height="620" role="img" aria-label="同一观测的匹配分数与三种估计位置，精确值见右侧结果"></canvas><figcaption>○ 真值　□ 粗网格　◇ 细网格　＋ 局部细化　虚线：真值处局部 CRB 精度椭圆（1 倍尺度，非置信区域）。放大时，视域外候选只在数值栏显示</figcaption></figure>
+        <div class="stats-estimates"><h4>似然更大，误差就更小？</h4><p class="otfs-small">q=τM/T，a=νNT。粗 / 细格距分别为 0.2 / 0.025 bin。下面直接比较有符号估计误差，单位 bin；这一次的误差不代表平均性能。</p><div id="stats-estimates"></div><div class="stats-bound"><strong>局部 CRB · 标准差尺度</strong><p id="stats-crb"></p><p>在已知真值与本帧 x 处计算，消去未知复增益。它是正则局部无偏估计的界，不保证本次误差落在椭圆内，也不约束有偏网格估计的全部 MSE。</p></div><p id="stats-solver" class="otfs-small"></p></div>
+      </div>
+    </div>
+    <noscript><p>实时实验需要 JavaScript。下方离线图仍可阅读；单次实验不是离线统计的播放。</p></noscript>
+  </article>
+  <article class="stats-offline" aria-labelledby="stats-offline-title">
+    <div class="stats-panel-head"><div><p class="otfs-card-label">02 / 已完成的离线实验 · 1,400 次试验</p><h3 id="stats-offline-title">把偶然误差，变成一条统计曲线</h3></div><span class="stats-badge stats-badge-offline">OFFLINE · 不随控件改变</span></div>
+    <p>横轴是 SNR，纵轴是 RMSE（bin，对数刻度）。每个 SNR 独立运行 200 次，三个方法在每次试验中共享 y；目标和发送帧固定。细线误差棒为逐点 95% bootstrap 区间。</p>
+    <img class="stats-rmse" src="otfs-receiver/statistics/offline-rmse.svg" width="1100" height="440" alt="离线延迟和多普勒 RMSE 对比。20 dB 时局部细化接近局部 CRB，细网格仍有量化误差；低 SNR 不能保证更细网格的参数误差更小。">
+    <div class="stats-takeaways"><p><strong>高 SNR：格距会成为瓶颈</strong><span>20 dB 时，延迟 RMSE：粗网格 0.03322 → 细网格 0.01004 → 局部细化 0.00481 bin；局部 CRB 标准差为 0.00461 bin。</span></p><p><strong>低 SNR：最大匹配也会选错</strong><span>0 dB 的粗网格延迟 RMSE 反而更低。嵌套网格保证最佳似然不下降，不保证参数误差改善。离群点全部保留。</span></p></div>
+    <details><summary>统计口径、求解失败与复核材料</summary><div><p>离线细化使用 SciPy L-BFGS-B；本页实时细化使用经 Python 对照的确定性有界模式搜索，两者不能混称同一求解器或逐次重放。细化只在原开延迟单元内移动，保留细网格候选，不证明连续全局最优，也不是原文有限网格算法。</p><p>离线 2,985 次局部尝试中，39 次报告失败状态；最终 1,400 个估计中，19 个选用了有限、可行、似然改善但求解器仍报失败的候选，122 个保留了网格答案。未删除任何失败试验，失败状态不改写成收敛。</p><p>区间来自固定 x、固定目标下的 1,000 次整试验 bootstrap；不是同时置信带，不涵盖波形或场景变化。离群定义为 |q 误差| &gt; 0.5 或 |a 误差| &gt; 0.5 bin，不等于漏检或虚警。</p><p><a href="otfs-receiver/statistics/offline-summary.json">紧凑统计数据与原始结果散列</a> · <a href="docs/OTFS-STATISTICAL-EXTENSION.md">模型、来源与数值边界</a></p></div></details>
+  </article>
+  <p class="otfs-warning"><strong>这是缩小尺寸的统计分支，不是原文 Fig.4 复现。</strong>来源为 <a href="https://arxiv.org/abs/1910.01896v1">1910.01896v1</a> 的 Eq.14、§IV-A/B 与 Fig.4 雷达分支。原文 50×64、10 MHz、320 μs 有效时长；这里 8×8、1.25 MHz、51.2 μs。导数从所实现的 Eq.14 重新推导，未照抄有不一致的 Eq.24/25；不声称该 literal 数值约定等价于物理连续波形。OFDM/FMCW 对比、多径、原尺寸曲线与 waterfall 预测仍未完成。</p>
 </section>
 
 <section id="communication" class="otfs-section">
@@ -183,7 +217,7 @@
     <tr><th scope="row">§III / 式 (2)–(9)</th><td>DD → 酉 ISFFT → TF → 信道 → 接收投影</td><td>复数与归一化约定明示；有限矩形窗作独立模型，不声称跨约定物理等价</td></tr>
     <tr><th scope="row">式 (13)–(16)</th><td>eq14_literal 的实际路径算子</td><td>保留逐字 ceiling / ICI / ISI 分支，按已声明约定解释，不自行“改符号”</td></tr>
     <tr><th scope="row">式 (17)–(19)；式 (25) 后 p.11</th><td>未知复增益剖面目标与有限精细网格</td><td>本页端点、搜索域、65² 默认与129² 上限都是实现选择；原文未给可直接复现的数值 Γ</td></tr>
-    <tr><th scope="row">式 (22)–(25)</th><td>局部 FIM / CRB 的下一步研究</td><td>本页不计算，也没有用占位曲线冒充</td></tr>
+    <tr><th scope="row">式 (22)–(25)</th><td>8×8 统计分支的局部 FIM / CRB</td><td>从所实现的 Eq.14 推导导数，保留未知复增益；非全局界，原式24/25存在不一致，不照抄其导数</td></tr>
     <tr><th scope="row">式 (37)、(39)–(44)</th><td>Gram 图 MP-G 与真实双向消息</td><td>局部求和精确；有环全局推断、浮点误差与停止规则仍有限制；未实现 MP-Psi</td></tr>
     <tr><th scope="row">式 (47)</th><td>full LMMSE 与有效 AWGN 软转换</td><td>保留有效增益、残差方差与线性求解诊断，不冒充精确联合后验</td></tr>
     <tr><th scope="row">式 (52)–(53)</th><td>保护间隔与资源核算的边界说明</td><td>理想联合译码 / 高斯输入检查点，不是此处检测器的实时吞吐结果</td></tr>
@@ -196,9 +230,9 @@
 <section id="limits" class="otfs-section">
   <header class="otfs-section-head"><p class="eyebrow">第五层 · 能解释失败，才真正读懂结果</p><h2>哪些结论，眼前这一次实验还支持不了？</h2></header>
   <div class="otfs-limits-grid">
-    <article class="otfs-card"><h3>搜完网格 ≠ 连续最优</h3><p>网格变密增加计算量，不增加物理信息。evaluation-cap、time-cap、cancelled、superseded 不能写成穷举完成；全零 y 可能出现大量并列，不能宣称唯一解。未实现连续细化、多目标感知、未知路径数估计与局部 FIM/CRB。</p></article>
+    <article class="otfs-card"><h3>搜完网格 ≠ 连续最优</h3><p>网格变密增加计算量，不增加物理信息。evaluation-cap、time-cap、cancelled、superseded 不能写成穷举完成；全零 y 可能出现大量并列，不能宣称唯一解。新增 8×8 统计分支提供开单元局部细化与局部 FIM/CRB，仍不支持多目标感知和未知路径数估计。</p></article>
     <article class="otfs-card"><h3>消息稳定 ≠ 后验精确</h3><p>MP-G 的 converged 只检验消息变化，环路仍会造成推断误差。小的移除 Gram 范数不是通用概率误差保证；本页采用零裁剪阈值，仍受浮点运算影响。LMMSE 的 Cholesky 主元比不是谱条件数。</p></article>
-    <article class="otfs-card"><h3>单次误差 ≠ 性能曲线</h3><p>一个种子的误差不是 RMSE、检出率、虚警率或容量。未实现实时多试验统计、原文尺寸曲线、信道获取、FEC、MP-Psi、精确有限窗通信或 OFDM / FMCW 雷达比较。</p></article>
+    <article class="otfs-card"><h3>单次误差 ≠ 性能曲线</h3><p>一个种子的误差不是 RMSE、检出率、虚警率或容量。新增离线 1,400 次试验不等于实时多试验统计；仍未实现原文尺寸曲线、信道获取、FEC、MP-Psi、精确有限窗通信或 OFDM / FMCW 雷达比较。</p></article>
     <article class="otfs-card"><h3>不同资源 ≠ 无条件优越</h3><p>换生成模型、路径或数据会改变观测；换网格会改变计算量。原文 Table I 的 N=50、T=6.4 μs、保护间隔 T/4，给出 OTFS 321.6 μs 与 OFDM 400 μs 的总时长核算：有效符号相同，总时间不同，不能直接称为等资源吞吐优势。</p></article>
   </div>
   <p class="otfs-warning"><strong>资源与浏览器验收仍须单独检查：</strong>感知最多129×129个候选，通信最多100次迭代；内核预算不包含所有初始化、序列化、传输与绘图开销，单个候选或单次迭代也可能跨过时间检查点。记录读写采用对称16 MiB上限（16,777,216 UTF-8 字节）。下载后实际取回、输入导入后重算、Worker 取消、键盘、窄屏和指定桌面内存/耗时，均需浏览器验证；Node 数值测试不能代替这些验证，也不构成浏览器性能认证。</p>
