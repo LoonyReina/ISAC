@@ -335,6 +335,11 @@
       "id": "labs/causal-state-capacity",
       "directory": "labs/causal-state-capacity",
       "description": "Fixed-quarter causal Proposition 4 theorem evaluation, actual PMF and delayed state description lesson"
+    },
+    {
+      "id": "labs/full-duplex",
+      "directory": "labs/full-duplex",
+      "description": "Eq11 bounded synthetic cancellation lesson and accepted numerical verification"
     }
   ],
   "entries": [
@@ -13356,6 +13361,125 @@
       "compatibility": "docs/COOPERATIVE-RATE-INTEGRATION.md",
       "public": "docs/COOPERATIVE-RATE-INTEGRATION.md",
       "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/app.mjs",
+      "compatibility": "full-duplex/app.mjs",
+      "public": "full-duplex/app.mjs",
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/controller.mjs",
+      "compatibility": "full-duplex/controller.mjs",
+      "public": "full-duplex/controller.mjs",
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/worker.mjs",
+      "compatibility": "full-duplex/worker.mjs",
+      "public": "full-duplex/worker.mjs",
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/kernel.mjs",
+      "compatibility": "full-duplex/kernel.mjs",
+      "public": "full-duplex/kernel.mjs",
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/style.css",
+      "compatibility": "full-duplex/style.css",
+      "public": "full-duplex/style.css",
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/full-duplex-cancellation.html",
+      "compatibility": "full-duplex-cancellation.html",
+      "public": "full-duplex-cancellation.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/SOURCE-IMPORT.json",
+      "compatibility": "tests/full-duplex/SOURCE-IMPORT.json",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/tests/test.mjs",
+      "compatibility": "tests/full-duplex/tests/test.mjs",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/tests/test-worker-bridge.mjs",
+      "compatibility": "tests/full-duplex/tests/test-worker-bridge.mjs",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/reference/test_kernel.mjs",
+      "compatibility": "tests/full-duplex/reference/test_kernel.mjs",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/reference/fixtures.json",
+      "compatibility": "tests/full-duplex/reference/fixtures.json",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "labs/full-duplex/reference/REFERENCE-MODEL-CONTRACT.md",
+      "compatibility": "tests/full-duplex/reference/REFERENCE-MODEL-CONTRACT.md",
+      "public": null,
+      "owner": "labs/full-duplex",
+      "role": "source"
+    },
+    {
+      "source": "tests/full-duplex-integration.test.cjs",
+      "compatibility": "tests/full-duplex-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/full-duplex-preservation.cjs",
+      "compatibility": "tests/helpers/full-duplex-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/full-duplex-delta.json",
+      "compatibility": "tests/helpers/full-duplex-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/full-duplex-dependencies.cjs",
+      "compatibility": "scripts/build/full-duplex-dependencies.cjs",
+      "public": "scripts/build/full-duplex-dependencies.cjs",
+      "owner": "validators/module-dependencies",
+      "role": "source"
+    },
+    {
+      "source": "tests/full-duplex-preservation.test.cjs",
+      "compatibility": "tests/full-duplex-preservation.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
       "role": "source"
     }
   ]

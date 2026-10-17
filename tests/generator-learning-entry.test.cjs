@@ -54,6 +54,7 @@ test('both catalogs follow a changed learningEntry instead of hard-coding a ques
 
 test('prerequisite links name their subjects consistently in cards and shared page context',()=>{
  const render=generator(),subjects={
+  'ofdm-interpolation.html#mechanism':'时间插值与真实观测先修',
   'cooperative-clusters.html#cl-question':'负载与拒绝：独立模型先修',
   'perceptive-clutter.html#question':'递归背景的复数相减先修',
   'network-clock.html#model':'标量互易时延与时钟先修',

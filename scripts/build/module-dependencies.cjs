@@ -1618,6 +1618,7 @@ dualArrayPublicFiles.set('labs/dual-array/runtime/records.mjs','0c9fda6852ef58b3
 // Separately reviewed cooperative FIM closure; existing profiles retain their identities.
 for(const [file,profile] of require('./cooperative-clusters-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate cooperative profile');reviewedProfiles.set(file,profile);}
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
+for(const [file,profile] of require('./full-duplex-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate full-duplex profile');reviewedProfiles.set(file,profile);}
 const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
 // Fixed-quarter causal module identities; no fetch, Worker, or dynamic imports.
 for(const [file,profile] of require('./causal-capacity-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate causal profile');reviewedProfiles.set(file,profile);}

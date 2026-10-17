@@ -1258,6 +1258,40 @@
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
+    },
+    {
+      "public": "full-duplex/app.mjs",
+      "sha256": "a62542a870285ce442b3937faec12fe1af2619b77d89e929340e9e8b23e43280",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "full-duplex/controller.mjs",
+      "sha256": "0df645720137d7ccf60168c675bfab4279bd4cdb72ad2dd7fb754b6a5d33ab41",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "full-duplex/worker.mjs",
+      "sha256": "f9a80eac9832bb1aff68fd4a2b71005ce16ce6e8b67d859ab8c1ab096dc60cea",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "full-duplex/kernel.mjs",
+      "sha256": "441bf5a359dba43b3abcad1bc8289708da34680928901104463714f146a2fbe0",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
     }
   ]
 }

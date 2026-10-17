@@ -716,7 +716,15 @@
         },
         "verificationNote": "2026-10-11 使用已核对的固定 v1 原文与独立推导交接。该 PDF SHA-256 为 fe694b1caabd7f2f79ca9e0e06e674ba1a48d60e598b514fcd7a248c5ca05af3；未与期刊最终排版比对。影响力证据沿用 2026-10-10 快照，本次不刷新。"
       },
-      "learningEntry": "ofdm-interpolation.html#mechanism"
+      "learningEntry": "ofdm-interpolation.html#mechanism",
+      "algorithmLessons": [
+        {
+          "href": "full-duplex-cancellation.html#fd-question",
+          "label": "自干扰消除与目标保留",
+          "kind": "algorithm",
+          "scope": "式 (11) 合成 IQ 记忆多项式 block LS；相同数据/噪声、4 对 12 个复参数，分开报告留出残余与目标匹配幅度。不是 Eq. (12)、标准波形、RF 测量或完整论文复现。"
+        }
+      ]
     },
     {
       "id": "case-radar-beam-decision",
@@ -3334,6 +3342,18 @@
       ],
       "next": "reading.html#guide-networks-cooperative-clusters-2024",
       "nextLabel": "回到同一论文，核对独立模型边界"
+    },
+    {
+      "path": "full-duplex-cancellation.html",
+      "title": "自干扰消除与目标保留",
+      "stage": "reading",
+      "role": "同一论文式 (11) · 合成 IQ block LS · 资源公平与目标擦除",
+      "prerequisites": [
+        "foundations.html#iq",
+        "ofdm-interpolation.html#mechanism"
+      ],
+      "next": "reading.html#paper-ofdm_full_duplex",
+      "nextLabel": "回到同一篇全双工论文，核对原文与证据"
     }
   ],
   "schemaVersion": 1,
@@ -8000,6 +8020,11 @@
       "canonicalHref": "cooperative-rate.html#cr-question",
       "section": "reading",
       "parentLabel": "多站协作/独立通信速率"
+    },
+    {
+      "canonicalHref": "full-duplex-cancellation.html#fd-question",
+      "section": "reading",
+      "parentLabel": "波形与资源/全双工式 (11) block LS"
     }
   ]
 }
