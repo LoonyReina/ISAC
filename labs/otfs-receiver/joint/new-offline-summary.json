@@ -1,0 +1,3718 @@
+{
+  "mode": "main",
+  "frames": 2100,
+  "method_rows": 6300,
+  "unique_seeds": 2100,
+  "groups": {
+    "well_separated/0/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 38,
+      "all_target_success_rate": 0.38,
+      "all_target_success_wilson95": [
+        0.29097599252478734,
+        0.47790244704488916
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 121,
+      "missed": 79,
+      "false": 79,
+      "matched_error_count": 121,
+      "matched_conditional_rmse_qa": [
+        0.05402349066709938,
+        0.04721881310137339
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.07886527912298871,
+        0.08137748585796986
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 400,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 162,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 238
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.472698667060109
+    },
+    "well_separated/0/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 65,
+      "missed": 135,
+      "false": 35,
+      "matched_error_count": 65,
+      "matched_conditional_rmse_qa": [
+        0.0521614811071972,
+        0.04908520907041365
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.08226732356744268,
+        0.06298546923962957
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 396,
+      "optimizer_status_counts": {
+        "0": 396,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.6477569167275654
+    },
+    "well_separated/0/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 33,
+      "all_target_success_rate": 0.33,
+      "all_target_success_wilson95": [
+        0.24563122734128034,
+        0.4269465620490947
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 122,
+      "missed": 78,
+      "false": 78,
+      "matched_error_count": 122,
+      "matched_conditional_rmse_qa": [
+        0.05479485198631655,
+        0.04986417246095501
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.07916523021391754,
+        0.07938486583767698
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 794,
+      "optimizer_status_counts": {
+        "0": 794,
+        "2": 6
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.4788137302018416
+    },
+    "well_separated/5/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 85,
+      "all_target_success_rate": 0.85,
+      "all_target_success_wilson95": [
+        0.7671644040916763,
+        0.9069401471634337
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 185,
+      "missed": 15,
+      "false": 15,
+      "matched_error_count": 185,
+      "matched_conditional_rmse_qa": [
+        0.04292148964003945,
+        0.03787145098707625
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.049097950842372215,
+        0.04343293048178218
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 399,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 191,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 208,
+        "ABNORMAL: ": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.22428492186350876
+    },
+    "well_separated/5/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 88,
+      "missed": 112,
+      "false": 12,
+      "matched_error_count": 88,
+      "matched_conditional_rmse_qa": [
+        0.05347886947670143,
+        0.038323419865222905
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.06312833458092942,
+        0.03833037957133771
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 396,
+      "optimizer_status_counts": {
+        "0": 396,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.47133676436581007
+    },
+    "well_separated/5/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 78,
+      "all_target_success_rate": 0.78,
+      "all_target_success_wilson95": [
+        0.6892964648501421,
+        0.8499871761539459
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 177,
+      "missed": 23,
+      "false": 23,
+      "matched_error_count": 177,
+      "matched_conditional_rmse_qa": [
+        0.049995193426006466,
+        0.04025844684128166
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.058751221066237536,
+        0.044246293811390405
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 792,
+      "optimizer_status_counts": {
+        "0": 792,
+        "2": 8
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.23263368837668882
+    },
+    "well_separated/10/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.027723456496363333,
+        0.021457184255712386
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.027723456496363333,
+        0.021457184255712386
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 400,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 209,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 191
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08483287261339198
+    },
+    "well_separated/10/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.06008827380824578,
+        0.019062340393560466
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.06008827380824578,
+        0.019062340393560466
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 398,
+      "optimizer_status_counts": {
+        "0": 398,
+        "2": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.37851692328105707
+    },
+    "well_separated/10/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.04894513506395336,
+        0.023177922101817492
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.04894513506395336,
+        0.023177922101817492
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 795,
+      "optimizer_status_counts": {
+        "0": 795,
+        "2": 5
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.09433273773429247
+    },
+    "well_separated/15/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.014387147540414327,
+        0.01328622463926705
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.014387147540414327,
+        0.01328622463926705
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "ABNORMAL: ": 3,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 172,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 225
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.029252789367921906
+    },
+    "well_separated/15/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.05822557066110846,
+        0.012951858258190844
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.05822557066110846,
+        0.012951858258190844
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 398,
+      "optimizer_status_counts": {
+        "0": 398,
+        "2": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.339755972053937
+    },
+    "well_separated/15/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.04330378181676313,
+        0.016779759161080748
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.04330378181676313,
+        0.016779759161080748
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 797,
+      "optimizer_status_counts": {
+        "0": 797,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.03922416804440906
+    },
+    "well_separated/20/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.00878950753531018,
+        0.006870055745666935
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.00878950753531018,
+        0.006870055745666935
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 396,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 240,
+        "ABNORMAL: ": 4,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 156
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009251678315102412
+    },
+    "well_separated/20/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.05683829314057142,
+        0.011012277225742002
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.05683829314057142,
+        0.011012277225742002
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 400,
+      "optimizer_status_counts": {
+        "0": 400
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.3247538994231878
+    },
+    "well_separated/20/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 100,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9630065017930143,
+        1
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 200,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 200,
+      "matched_conditional_rmse_qa": [
+        0.04187813542748939,
+        0.011338781630235169
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.04187813542748939,
+        0.011338781630235169
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 799,
+      "optimizer_status_counts": {
+        "0": 799,
+        "2": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.019423471115893584
+    },
+    "close_delay/0/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 67,
+      "missed": 133,
+      "false": 133,
+      "matched_error_count": 67,
+      "matched_conditional_rmse_qa": [
+        0.052154719481361564,
+        0.05382782969116979
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.39084842035633155,
+        0.42664271775742296
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 378,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 198,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 180,
+        "ABNORMAL: ": 22
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 17,
+        "ls_numerical_failure": 6
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.46435702623293973
+    },
+    "close_delay/0/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 95,
+      "missed": 105,
+      "false": 5,
+      "matched_error_count": 95,
+      "matched_conditional_rmse_qa": [
+        0.055828109262661754,
+        0.03872883624505631
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.05538832968437327,
+        0.045699782332664
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.48863162216663364
+    },
+    "close_delay/0/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 95,
+      "missed": 105,
+      "false": 105,
+      "matched_error_count": 95,
+      "matched_conditional_rmse_qa": [
+        0.055828109262661754,
+        0.03872883624505631
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.6145896691459122,
+        0.5567007539820457
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 789,
+      "optimizer_status_counts": {
+        "0": 789,
+        "2": 11
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.46490202691070387
+    },
+    "close_delay/5/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 79,
+      "missed": 121,
+      "false": 121,
+      "matched_error_count": 79,
+      "matched_conditional_rmse_qa": [
+        0.054435802573033966,
+        0.04324538568906761
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.3271180068625499,
+        0.45202559756048016
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 378,
+      "optimizer_status_counts": {
+        "ABNORMAL: ": 22,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 193,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 185
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 5,
+        "rank_deficient": 2
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.2226064023968316
+    },
+    "close_delay/5/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.058326984245287705,
+        0.03058214402624028
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.058326984245287705,
+        0.03058214402624028
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 398,
+      "optimizer_status_counts": {
+        "0": 398,
+        "2": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.23486796240709254
+    },
+    "close_delay/5/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.058326984245287705,
+        0.03058214402624028
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.57135595214797,
+        0.5469425674223677
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 791,
+      "optimizer_status_counts": {
+        "0": 791,
+        "2": 9
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.22360832951992546
+    },
+    "close_delay/10/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 1,
+      "all_target_success_rate": 0.01,
+      "all_target_success_wilson95": [
+        0.0017674320641406505,
+        0.054486196178705315
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 96,
+      "missed": 104,
+      "false": 104,
+      "matched_error_count": 96,
+      "matched_conditional_rmse_qa": [
+        0.059867271417057485,
+        0.03042816843415291
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.28595853622435374,
+        0.4498373613389517
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 383,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 218,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 165,
+        "ABNORMAL: ": 17
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 2,
+        "rank_deficient": 7
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08226543708966756
+    },
+    "close_delay/10/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.06791519119033253,
+        0.013847511591695658
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.06791519119033253,
+        0.013847511591695658
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 393,
+      "optimizer_status_counts": {
+        "0": 393,
+        "2": 7
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08644068051628881
+    },
+    "close_delay/10/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.06791519119033253,
+        0.013847511591695658
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5581864303844645,
+        0.6043484268742545
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 789,
+      "optimizer_status_counts": {
+        "0": 789,
+        "2": 11
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08234360197334963
+    },
+    "close_delay/15/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 1,
+      "all_target_success_rate": 0.01,
+      "all_target_success_wilson95": [
+        0.0017674320641406505,
+        0.054486196178705315
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 96,
+      "missed": 104,
+      "false": 104,
+      "matched_error_count": 96,
+      "matched_conditional_rmse_qa": [
+        0.06394401886967989,
+        0.02517771457153645
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.24657640390923363,
+        0.4367926739746034
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 377,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 202,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 175,
+        "ABNORMAL: ": 21,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 17,
+        "ls_numerical_failure": 5
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.02856715625007792
+    },
+    "close_delay/15/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.07230585456544107,
+        0.009079375790677913
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.07230585456544107,
+        0.009079375790677913
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 396,
+      "optimizer_status_counts": {
+        "0": 396,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.030127074734958945
+    },
+    "close_delay/15/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.07230585456544107,
+        0.009079375790677913
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5470617784047261,
+        0.523955058368178
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 792,
+      "optimizer_status_counts": {
+        "0": 792,
+        "2": 8
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.028656209112345912
+    },
+    "close_delay/20/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 6,
+      "all_target_success_rate": 0.06,
+      "all_target_success_wilson95": [
+        0.027786123963188192,
+        0.1247681544589592
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 106,
+      "missed": 94,
+      "false": 94,
+      "matched_error_count": 106,
+      "matched_conditional_rmse_qa": [
+        0.06425395445941548,
+        0.01622174506606458
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.2531016038435656,
+        0.377419239326505
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 391,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 217,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 174,
+        "ABNORMAL: ": 8,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 4
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009228260930838188
+    },
+    "close_delay/20/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.073515812100173,
+        0.004674582872417662
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.073515812100173,
+        0.004674582872417662
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 400,
+      "optimizer_status_counts": {
+        "0": 400
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009775014502058296
+    },
+    "close_delay/20/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.073515812100173,
+        0.004674582872417662
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5356739865747332,
+        0.5513414239665745
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 797,
+      "optimizer_status_counts": {
+        "0": 797,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009255646274930461
+    },
+    "close_doppler/0/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 71,
+      "missed": 129,
+      "false": 129,
+      "matched_error_count": 71,
+      "matched_conditional_rmse_qa": [
+        0.04739958380868089,
+        0.05188800051262039
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.45778853287718135,
+        0.4310289531774337
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 382,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 194,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 188,
+        "ABNORMAL: ": 18
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 44,
+        "ill_conditioned": 16,
+        "rank_deficient": 3
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.4667730873696217
+    },
+    "close_doppler/0/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 90,
+      "missed": 110,
+      "false": 10,
+      "matched_error_count": 90,
+      "matched_conditional_rmse_qa": [
+        0.045224092642561914,
+        0.05467742633278565
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.0569458411866423,
+        0.053865253917703186
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 395,
+      "optimizer_status_counts": {
+        "0": 395,
+        "2": 5
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.4923902322526316
+    },
+    "close_doppler/0/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 90,
+      "missed": 110,
+      "false": 110,
+      "matched_error_count": 90,
+      "matched_conditional_rmse_qa": [
+        0.045224092642561914,
+        0.05467742633278565
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.6101717589683598,
+        0.5267245748073223
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 790,
+      "optimizer_status_counts": {
+        "0": 790,
+        "2": 10
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.46919228970416854
+    },
+    "close_doppler/5/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 79,
+      "missed": 121,
+      "false": 121,
+      "matched_error_count": 79,
+      "matched_conditional_rmse_qa": [
+        0.038813429378979435,
+        0.057048917339495374
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.3691766732252724,
+        0.4022397200460073
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 379,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 199,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 180,
+        "ABNORMAL: ": 21
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 9,
+        "rank_deficient": 13
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.22310496665717128
+    },
+    "close_doppler/5/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.02633924076480465,
+        0.06391087807737175
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.02633924076480465,
+        0.06391087807737175
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.23527132777149007
+    },
+    "close_doppler/5/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.02633924076480465,
+        0.06391087807737175
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.6200500097227019,
+        0.5200162006452247
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 796,
+      "optimizer_status_counts": {
+        "0": 796,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.22314397419045331
+    },
+    "close_doppler/10/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 2,
+      "all_target_success_rate": 0.02,
+      "all_target_success_wilson95": [
+        0.00550196755016235,
+        0.07001179072854388
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 93,
+      "missed": 107,
+      "false": 107,
+      "matched_error_count": 93,
+      "matched_conditional_rmse_qa": [
+        0.03718440283995436,
+        0.06231204119139601
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.3540046785080284,
+        0.40038397629310624
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 384,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 210,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 174,
+        "ABNORMAL: ": 16
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 29,
+        "ls_numerical_failure": 1
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08359307938284877
+    },
+    "close_doppler/10/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.01763353886018102,
+        0.06846644036357992
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.01763353886018102,
+        0.06846644036357992
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 398,
+      "optimizer_status_counts": {
+        "0": 398,
+        "2": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08792205980215984
+    },
+    "close_doppler/10/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.01763353886018102,
+        0.06846644036357992
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5706150122897459,
+        0.5347649332967029
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 794,
+      "optimizer_status_counts": {
+        "0": 794,
+        "2": 6
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08376295104725338
+    },
+    "close_doppler/15/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 4,
+      "all_target_success_rate": 0.04,
+      "all_target_success_wilson95": [
+        0.01566330399154762,
+        0.0983707143588792
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.02899378652261579,
+        0.06716907170285429
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.3152581986825737,
+        0.4099787019932361
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 385,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 179,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 206,
+        "ABNORMAL: ": 13,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 5,
+        "rank_deficient": 1
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.027139805700530192
+    },
+    "close_doppler/15/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.009507855048098533,
+        0.07380976236578447
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.009507855048098533,
+        0.07380976236578447
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 399,
+      "optimizer_status_counts": {
+        "0": 399,
+        "2": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.0288166840077403
+    },
+    "close_doppler/15/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.009507855048098533,
+        0.07380976236578447
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5724664738389867,
+        0.5029375846775525
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 796,
+      "optimizer_status_counts": {
+        "0": 796,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.027271373654160436
+    },
+    "close_doppler/20/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 9,
+      "all_target_success_rate": 0.09,
+      "all_target_success_wilson95": [
+        0.04807254000256516,
+        0.1622621285271631
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 109,
+      "missed": 91,
+      "false": 91,
+      "matched_error_count": 109,
+      "matched_conditional_rmse_qa": [
+        0.023412386860772034,
+        0.06491579601858408
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.230404196008978,
+        0.40340903206354567
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 393,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 227,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 166,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 1,
+        "ABNORMAL: ": 6
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 1
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009255230533423885
+    },
+    "close_doppler/20/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.00548441039901211,
+        0.07321339841770982
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.00548441039901211,
+        0.07321339841770982
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.00984534068875119
+    },
+    "close_doppler/20/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 100,
+      "missed": 100,
+      "false": 100,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.00548441039901211,
+        0.07321339841770982
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5591147212086075,
+        0.5365638006622329
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 795,
+      "optimizer_status_counts": {
+        "0": 795,
+        "2": 5
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.009305822946022004
+    },
+    "unequal_amplitudes/0/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 3,
+      "all_target_success_rate": 0.03,
+      "all_target_success_wilson95": [
+        0.010254524024038925,
+        0.0845193642905276
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 66,
+      "missed": 134,
+      "false": 134,
+      "matched_error_count": 66,
+      "matched_conditional_rmse_qa": [
+        0.05264486490892437,
+        0.055345124205320714
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.551245847683918,
+        0.5635867506152126
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 380,
+      "optimizer_status_counts": {
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 199,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 181,
+        "ABNORMAL: ": 20
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 7,
+        "rank_deficient": 32,
+        "ill_conditioned": 3
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.4587001203573031
+    },
+    "unequal_amplitudes/0/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 86,
+      "missed": 114,
+      "false": 14,
+      "matched_error_count": 86,
+      "matched_conditional_rmse_qa": [
+        0.045623247012825316,
+        0.047595405601038206
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.05258222649344567,
+        0.0562698737538538
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 398,
+      "optimizer_status_counts": {
+        "0": 398,
+        "2": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.49086648379352504
+    },
+    "unequal_amplitudes/0/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 7,
+      "all_target_success_rate": 0.07,
+      "all_target_success_wilson95": [
+        0.03431926106727268,
+        0.137495147390735
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 94,
+      "missed": 106,
+      "false": 106,
+      "matched_error_count": 94,
+      "matched_conditional_rmse_qa": [
+        0.04486915579006575,
+        0.04889725290041961
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.36294386050581107,
+        0.4518023799639265
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 795,
+      "optimizer_status_counts": {
+        "0": 795,
+        "2": 5
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.45795136645824497
+    },
+    "unequal_amplitudes/5/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 1,
+      "all_target_success_rate": 0.01,
+      "all_target_success_wilson95": [
+        0.0017674320641406505,
+        0.054486196178705315
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 69,
+      "missed": 131,
+      "false": 131,
+      "matched_error_count": 69,
+      "matched_conditional_rmse_qa": [
+        0.041870273628254885,
+        0.033407983772927176
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.6104810668160662,
+        0.6354867588354075
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 380,
+      "optimizer_status_counts": {
+        "ABNORMAL: ": 20,
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 199,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 181
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 14,
+        "rank_deficient": 16
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.2360711291362525
+    },
+    "unequal_amplitudes/5/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.03155674334863693,
+        0.025701014643600854
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.03155674334863693,
+        0.025701014643600854
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.25187910322062673
+    },
+    "unequal_amplitudes/5/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 10,
+      "all_target_success_rate": 0.1,
+      "all_target_success_wilson95": [
+        0.0552291370606751,
+        0.17436566150491345
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 110,
+      "missed": 90,
+      "false": 90,
+      "matched_error_count": 110,
+      "matched_conditional_rmse_qa": [
+        0.03548797882484923,
+        0.030507721782649613
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.2731515972763249,
+        0.31929536274981535
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 793,
+      "optimizer_status_counts": {
+        "0": 793,
+        "2": 7
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.2282733308793356
+    },
+    "unequal_amplitudes/10/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 91,
+      "missed": 109,
+      "false": 109,
+      "matched_error_count": 91,
+      "matched_conditional_rmse_qa": [
+        0.03347723014372189,
+        0.02827647161417867
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5798490732040719,
+        0.512304929930344
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 384,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 204,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 180,
+        "ABNORMAL: ": 16
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 13,
+        "ls_numerical_failure": 13
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.09474090741589722
+    },
+    "unequal_amplitudes/10/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.021903966516987856,
+        0.015465083040073683
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.021903966516987856,
+        0.015465083040073683
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.10483413409233379
+    },
+    "unequal_amplitudes/10/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 32,
+      "all_target_success_rate": 0.32,
+      "all_target_success_wilson95": [
+        0.23669147324999093,
+        0.41662618610452384
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 132,
+      "missed": 68,
+      "false": 68,
+      "matched_error_count": 132,
+      "matched_conditional_rmse_qa": [
+        0.03293748674660696,
+        0.028708375952859494
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.09467306559350924,
+        0.1317332330427697
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 792,
+      "optimizer_status_counts": {
+        "0": 792,
+        "2": 8
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.08440599755873934
+    },
+    "unequal_amplitudes/15/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 97,
+      "missed": 103,
+      "false": 103,
+      "matched_error_count": 97,
+      "matched_conditional_rmse_qa": [
+        0.022945621720341675,
+        0.020890824540871905
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5865829504257984,
+        0.5133363364501606
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 381,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 208,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 173,
+        "ABNORMAL: ": 18,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 20,
+        "ill_conditioned": 1,
+        "ls_numerical_failure": 6
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.041649416536648706
+    },
+    "unequal_amplitudes/15/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.014403908632876182,
+        0.009306165473561313
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.014403908632876182,
+        0.009306165473561313
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 397,
+      "optimizer_status_counts": {
+        "0": 397,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.04882155485890752
+    },
+    "unequal_amplitudes/15/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 73,
+      "all_target_success_rate": 0.73,
+      "all_target_success_wilson95": [
+        0.6356788323205499,
+        0.8073041585042365
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 173,
+      "missed": 27,
+      "false": 27,
+      "matched_error_count": 173,
+      "matched_conditional_rmse_qa": [
+        0.030638035540542456,
+        0.033636500467417646
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.04897582194548202,
+        0.04456112561784996
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 795,
+      "optimizer_status_counts": {
+        "0": 795,
+        "2": 5
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.029355618701013896
+    },
+    "unequal_amplitudes/20/joint_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 99,
+      "missed": 101,
+      "false": 101,
+      "matched_error_count": 99,
+      "matched_conditional_rmse_qa": [
+        0.01668136837731218,
+        0.01914613823222003
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.5286699322707181,
+        0.38843020228158276
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 377,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 223,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 154,
+        "ABNORMAL: ": 21,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 2
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 9,
+        "ls_numerical_failure": 1
+      },
+      "selected_origin_counts": {
+        "continuous": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.022602909569932467
+    },
+    "unequal_amplitudes/20/single_target_shared_grid": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "truth_count": 200,
+      "estimate_count": 100,
+      "matched": 100,
+      "missed": 100,
+      "false": 0,
+      "matched_error_count": 100,
+      "matched_conditional_rmse_qa": [
+        0.013281330355360298,
+        0.006113108437139951
+      ],
+      "unrestricted_assignment_error_count": 100,
+      "unrestricted_assignment_rmse_qa": [
+        0.013281330355360298,
+        0.006113108437139951
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 400,
+      "optimizer_success_count": 400,
+      "optimizer_status_counts": {
+        "0": 400
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 400
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.030277642747185095
+    },
+    "unequal_amplitudes/20/sequential_cancellation_known_P": {
+      "frames": 100,
+      "available": 100,
+      "all_target_success_count": 98,
+      "all_target_success_rate": 0.98,
+      "all_target_success_wilson95": [
+        0.929988209271456,
+        0.9944980324498376
+      ],
+      "truth_count": 200,
+      "estimate_count": 200,
+      "matched": 198,
+      "missed": 2,
+      "false": 2,
+      "matched_error_count": 198,
+      "matched_conditional_rmse_qa": [
+        0.02915746343115829,
+        0.027397929297441354
+      ],
+      "unrestricted_assignment_error_count": 200,
+      "unrestricted_assignment_rmse_qa": [
+        0.029902406901119137,
+        0.02825961652181625
+      ],
+      "status_counts": {
+        "available": 100
+      },
+      "optimizer_attempts": 800,
+      "optimizer_success_count": 797,
+      "optimizer_status_counts": {
+        "0": 797,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 800
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 100
+      },
+      "fit_available_count": 100,
+      "mean_normalized_fit_residual": 0.01017888857257011
+    },
+    "three_path_stress/5/joint_known_P": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 7,
+      "all_target_success_rate": 0.14,
+      "all_target_success_wilson95": [
+        0.06950833427016294,
+        0.2618619371058554
+      ],
+      "truth_count": 150,
+      "estimate_count": 150,
+      "matched": 91,
+      "missed": 59,
+      "false": 59,
+      "matched_error_count": 91,
+      "matched_conditional_rmse_qa": [
+        0.04911310035554887,
+        0.05052939864395018
+      ],
+      "unrestricted_assignment_error_count": 150,
+      "unrestricted_assignment_rmse_qa": [
+        0.11348986415192756,
+        0.15887823307727336
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 200,
+      "optimizer_success_count": 184,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 164,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 20,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 10,
+        "ABNORMAL: ": 6
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 200
+      },
+      "evaluation_failure_counts": {
+        "ls_numerical_failure": 3,
+        "rank_deficient": 35,
+        "ill_conditioned": 2
+      },
+      "selected_origin_counts": {
+        "continuous": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.2159171390349328
+    },
+    "three_path_stress/5/single_target_shared_grid": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ],
+      "truth_count": 150,
+      "estimate_count": 50,
+      "matched": 10,
+      "missed": 140,
+      "false": 40,
+      "matched_error_count": 10,
+      "matched_conditional_rmse_qa": [
+        0.03459366937641323,
+        0.06937607236788004
+      ],
+      "unrestricted_assignment_error_count": 50,
+      "unrestricted_assignment_rmse_qa": [
+        0.032714696593751695,
+        0.13981776977089613
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 200,
+      "optimizer_success_count": 200,
+      "optimizer_status_counts": {
+        "0": 200
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 200
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.5258651992900485
+    },
+    "three_path_stress/5/sequential_cancellation_known_P": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 1,
+      "all_target_success_rate": 0.02,
+      "all_target_success_wilson95": [
+        0.003539259271646236,
+        0.10495443589637815
+      ],
+      "truth_count": 150,
+      "estimate_count": 150,
+      "matched": 52,
+      "missed": 98,
+      "false": 98,
+      "matched_error_count": 52,
+      "matched_conditional_rmse_qa": [
+        0.049674419085210336,
+        0.05225836473426898
+      ],
+      "unrestricted_assignment_error_count": 150,
+      "unrestricted_assignment_rmse_qa": [
+        0.08338526569034543,
+        0.17979124832658328
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 600,
+      "optimizer_success_count": 596,
+      "optimizer_status_counts": {
+        "0": 596,
+        "2": 4
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 600
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.2514196167617733
+    },
+    "three_path_stress/15/joint_known_P": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 50,
+      "all_target_success_rate": 1.0,
+      "all_target_success_wilson95": [
+        0.9286524008666414,
+        1
+      ],
+      "truth_count": 150,
+      "estimate_count": 150,
+      "matched": 150,
+      "missed": 0,
+      "false": 0,
+      "matched_error_count": 150,
+      "matched_conditional_rmse_qa": [
+        0.026073580335114744,
+        0.023290748752811976
+      ],
+      "unrestricted_assignment_error_count": 150,
+      "unrestricted_assignment_rmse_qa": [
+        0.026073580335114744,
+        0.023290748752811976
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 200,
+      "optimizer_success_count": 197,
+      "optimizer_status_counts": {
+        "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 163,
+        "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 34,
+        "ABNORMAL: ": 2,
+        "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 200
+      },
+      "evaluation_failure_counts": {
+        "rank_deficient": 25,
+        "ls_numerical_failure": 3
+      },
+      "selected_origin_counts": {
+        "continuous": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.027232261237314783
+    },
+    "three_path_stress/15/single_target_shared_grid": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ],
+      "truth_count": 150,
+      "estimate_count": 50,
+      "matched": 2,
+      "missed": 148,
+      "false": 48,
+      "matched_error_count": 2,
+      "matched_conditional_rmse_qa": [
+        0.008436508302876676,
+        0.09731430025400531
+      ],
+      "unrestricted_assignment_error_count": 50,
+      "unrestricted_assignment_rmse_qa": [
+        0.016081321136528704,
+        0.13052106978495856
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 200,
+      "optimizer_success_count": 199,
+      "optimizer_status_counts": {
+        "0": 199,
+        "2": 1
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 200
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "local": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.40470217661900043
+    },
+    "three_path_stress/15/sequential_cancellation_known_P": {
+      "frames": 50,
+      "available": 50,
+      "all_target_success_count": 0,
+      "all_target_success_rate": 0.0,
+      "all_target_success_wilson95": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ],
+      "truth_count": 150,
+      "estimate_count": 150,
+      "matched": 52,
+      "missed": 98,
+      "false": 98,
+      "matched_error_count": 52,
+      "matched_conditional_rmse_qa": [
+        0.05107271848340229,
+        0.03362754663865211
+      ],
+      "unrestricted_assignment_error_count": 150,
+      "unrestricted_assignment_rmse_qa": [
+        0.059525500796080974,
+        0.14030254900838382
+      ],
+      "status_counts": {
+        "available": 50
+      },
+      "optimizer_attempts": 600,
+      "optimizer_success_count": 597,
+      "optimizer_status_counts": {
+        "0": 597,
+        "2": 3
+      },
+      "final_profile_status_counts": {
+        "full_rank_conditioned": 600
+      },
+      "evaluation_failure_counts": {},
+      "selected_origin_counts": {
+        "sequential": 50
+      },
+      "fit_available_count": 50,
+      "mean_normalized_fit_residual": 0.0691376861308238
+    }
+  },
+  "paired": {
+    "well_separated/0/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.38,
+      "success_difference_paired_bootstrap95": [
+        0.29,
+        0.48
+      ],
+      "discordant_joint_only": 38,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.17505824966745634,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/0/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.05,
+      "success_difference_paired_bootstrap95": [
+        -0.02,
+        0.13
+      ],
+      "discordant_joint_only": 10,
+      "discordant_other_only": 5,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.006115063141732735,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/5/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.85,
+      "success_difference_paired_bootstrap95": [
+        0.78,
+        0.92
+      ],
+      "discordant_joint_only": 85,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.24705184250230128,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/5/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.07,
+      "success_difference_paired_bootstrap95": [
+        -0.01,
+        0.15
+      ],
+      "discordant_joint_only": 12,
+      "discordant_other_only": 5,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.008348766513180044,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/10/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 1.0,
+      "success_difference_paired_bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "discordant_joint_only": 100,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.2936840506676651,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/10/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.009499865120900482,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/15/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 1.0,
+      "success_difference_paired_bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "discordant_joint_only": 100,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.31050318268601507,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/15/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.009971378676487163,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/20/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 1.0,
+      "success_difference_paired_bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "discordant_joint_only": 100,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.31550222110808535,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "well_separated/20/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.010171792800791175,
+      "bootstrap_seed_sequence": [
+        903,
+        0,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/0/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.024274595933693854,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/0/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0005450006777641342,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/5/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.012261560010260887,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/5/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0010019271230938293,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/10/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.01,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.03
+      ],
+      "discordant_joint_only": 1,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.004175243426621237,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/10/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.01,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.03
+      ],
+      "discordant_joint_only": 1,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -7.816488368206309e-05,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/15/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.01,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.03
+      ],
+      "discordant_joint_only": 1,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0015599184848810238,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/15/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.01,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.03
+      ],
+      "discordant_joint_only": 1,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -8.905286226798363e-05,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/20/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.06,
+      "success_difference_paired_bootstrap95": [
+        0.02,
+        0.11
+      ],
+      "discordant_joint_only": 6,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0005467535712201118,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_delay/20/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.06,
+      "success_difference_paired_bootstrap95": [
+        0.02,
+        0.11
+      ],
+      "discordant_joint_only": 6,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -2.7385344092274035e-05,
+      "bootstrap_seed_sequence": [
+        903,
+        1,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/0/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.025617144883009937,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/0/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0024192023345468838,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/5/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.012166361114318854,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/5/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -3.900753328206802e-05,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/10/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.02,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.05
+      ],
+      "discordant_joint_only": 2,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.004328980419311051,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/10/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.02,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.05
+      ],
+      "discordant_joint_only": 2,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.00016987166440461158,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/15/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.04,
+      "success_difference_paired_bootstrap95": [
+        0.01,
+        0.08
+      ],
+      "discordant_joint_only": 4,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0016768783072101056,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/15/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.04,
+      "success_difference_paired_bootstrap95": [
+        0.01,
+        0.08
+      ],
+      "discordant_joint_only": 4,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0001315679536302364,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/20/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.09,
+      "success_difference_paired_bootstrap95": [
+        0.04,
+        0.15
+      ],
+      "discordant_joint_only": 9,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0005901101553273045,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "close_doppler/20/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": 0.09,
+      "success_difference_paired_bootstrap95": [
+        0.04,
+        0.15
+      ],
+      "discordant_joint_only": 9,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -5.059241259811736e-05,
+      "bootstrap_seed_sequence": [
+        903,
+        2,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/0/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.03,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.07
+      ],
+      "discordant_joint_only": 3,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.032166363436222055,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/0/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": -0.04,
+      "success_difference_paired_bootstrap95": [
+        -0.08,
+        -0.01
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 4,
+      "paired_fit_available": 100,
+      "mean_fit_difference": 0.0007487538990579523,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        0
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/5/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.01,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.03
+      ],
+      "discordant_joint_only": 1,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.015807974084374177,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/5/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": -0.09,
+      "success_difference_paired_bootstrap95": [
+        -0.15,
+        -0.04
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 9,
+      "paired_fit_available": 100,
+      "mean_fit_difference": 0.007797798256916939,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/10/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.010093226676436546,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/10/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": -0.32,
+      "success_difference_paired_bootstrap95": [
+        -0.41,
+        -0.23
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 32,
+      "paired_fit_available": 100,
+      "mean_fit_difference": 0.010334909857157872,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        10
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/15/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.0071721383222588305,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/15/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": -0.73,
+      "success_difference_paired_bootstrap95": [
+        -0.81,
+        -0.64
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 73,
+      "paired_fit_available": 100,
+      "mean_fit_difference": 0.012293797835634808,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/20/joint_minus_single_target_shared_grid": {
+      "all_frames": 100,
+      "success_difference": 0.0,
+      "success_difference_paired_bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 0,
+      "paired_fit_available": 100,
+      "mean_fit_difference": -0.007674733177252629,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "unequal_amplitudes/20/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 100,
+      "success_difference": -0.98,
+      "success_difference_paired_bootstrap95": [
+        -1.0,
+        -0.95
+      ],
+      "discordant_joint_only": 0,
+      "discordant_other_only": 98,
+      "paired_fit_available": 100,
+      "mean_fit_difference": 0.012424020997362353,
+      "bootstrap_seed_sequence": [
+        903,
+        3,
+        20
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "three_path_stress/5/joint_minus_single_target_shared_grid": {
+      "all_frames": 50,
+      "success_difference": 0.14,
+      "success_difference_paired_bootstrap95": [
+        0.06,
+        0.24
+      ],
+      "discordant_joint_only": 7,
+      "discordant_other_only": 0,
+      "paired_fit_available": 50,
+      "mean_fit_difference": -0.30994806025511573,
+      "bootstrap_seed_sequence": [
+        903,
+        4,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "three_path_stress/5/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 50,
+      "success_difference": 0.12,
+      "success_difference_paired_bootstrap95": [
+        0.02,
+        0.22
+      ],
+      "discordant_joint_only": 7,
+      "discordant_other_only": 1,
+      "paired_fit_available": 50,
+      "mean_fit_difference": -0.035502477726840634,
+      "bootstrap_seed_sequence": [
+        903,
+        4,
+        5
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "three_path_stress/15/joint_minus_single_target_shared_grid": {
+      "all_frames": 50,
+      "success_difference": 1.0,
+      "success_difference_paired_bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "discordant_joint_only": 50,
+      "discordant_other_only": 0,
+      "paired_fit_available": 50,
+      "mean_fit_difference": -0.37746991538168573,
+      "bootstrap_seed_sequence": [
+        903,
+        4,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    },
+    "three_path_stress/15/joint_minus_sequential_cancellation_known_P": {
+      "all_frames": 50,
+      "success_difference": 1.0,
+      "success_difference_paired_bootstrap95": [
+        1.0,
+        1.0
+      ],
+      "discordant_joint_only": 50,
+      "discordant_other_only": 0,
+      "paired_fit_available": 50,
+      "mean_fit_difference": -0.04190542489350903,
+      "bootstrap_seed_sequence": [
+        903,
+        4,
+        15
+      ],
+      "bootstrap_replicates": 2000
+    }
+  },
+  "decoded_records_sha256": "bbc6229195c65190e707ef6398bb33b96e035cc420b8977c80e99a3db916e36f"
+}

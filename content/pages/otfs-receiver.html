@@ -11,7 +11,7 @@
   <script type="module" src="otfs-receiver/otfs-receiver.mjs"></script>
   <link rel="stylesheet" href="otfs-receiver/statistics/statistics.css">
   <script type="module" src="otfs-receiver/statistics/statistics.mjs"></script>
-</head>
+<link rel="stylesheet" href="otfs-receiver/joint/joint.css"><script type="module" src="otfs-receiver/joint/lesson.mjs"></script><link rel="stylesheet" href="otfs-receiver/mppsi/mppsi.css"><script type="module" src="otfs-receiver/mppsi/mppsi-ui.mjs"></script></head>
 <body>
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
@@ -22,7 +22,7 @@
 <div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> / <a href="experiments.html">机制实验</a> / <span aria-current="page">OTFS 感知与通信接收机</span></nav><p class="site-role">OTFS 联合设计方向 · 两种知识条件，两个独立实验</p></div>
 <!-- SITE:CONTEXT:END -->
 <nav class="site-topic-nav otfs-stage-nav" aria-label="本主题六层学习路线">
-  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#statistics"><span>03A+</span> 误差与统计</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
+  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#statistics"><span>03A+</span> 误差与统计</a><a href="#joint-otfs"><span>03A++</span> 联合多径</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
 </nav>
 
 <section id="intuition" class="otfs-cover">
@@ -117,6 +117,20 @@
 </section>
 
 
+<section class="mppsi-extension" id="mppsi-extension" aria-label="MP-Ψ 模型失配对照">
+<header><p class="eyebrow">OTFS 论文阅读 · 通信检测 / 同论文有界扩展</p><h2>同一份接收数据，换模型还是换检测器？</h2><p>接收机看到的是 12 个复数观测 y，不知道发送符号。这里让 MP-Ψ、MP-G 和全矩阵 LMMSE 读取同一个 y，分别使用真实匹配矩阵或仅将延迟取整的名义矩阵，分开观察模型失配与推断方法的影响。</p></header>
+<section aria-labelledby="mppsi-live-title"><h2 id="mppsi-live-title">1 · 先运行一帧，再看错在哪里</h2><p>有界模型：N=3、M=4，QPSK，两个固定路径。SNR=首径单位增益×单位符号能量 / E|w|²，不重归一化多径能量；真实信道使用文中 Eq.14 的本站字面离散实现。完整物理脉冲等价性未证实。</p>
+<form id="mppsi-run-form"><div class="controls"><label for="mppsi-scenario">真实延迟<select id="mppsi-scenario"><option value="fractional">分数延迟 [0.35, 1.4]</option><option value="integer">整数对照 [0, 1]</option></select></label><label for="mppsi-snr">SNR / dB<input id="mppsi-snr" type="number" min="0" max="30" step="any" value="10" required></label><label for="mppsi-seed">实时帧种子<input id="mppsi-seed" type="number" min="0" max="4294967295" step="1" value="20261017" required></label><button id="mppsi-run" type="submit">生成同一观测并比较</button><button id="mppsi-cancel" type="button" disabled>取消</button></div></form>
+<div class="actions"><button id="mppsi-export" disabled>导出本帧输入</button><label class="file" for="mppsi-import">导入并重算<input id="mppsi-import" type="file" accept="application/json,.json"></label></div><p id="mppsi-status" role="status" aria-live="polite">尚未运行。所有结果均由浏览器计算，第 3 节仅保留未重放的历史汇总，不能作为新验收证据。</p>
+<p class="note">取整只改变 delayBin→floor(delayBin+0.5)，多普勒 [0.23, −0.41] 与复增益保持不变，不拟合增益。取整矩阵绝对值 &lt;10⁻¹² 的元素清零；匹配矩阵不做此处理。</p>
+<div id="mppsi-results"></div></section>
+<section aria-labelledby="mppsi-mechanism-title"><h2 id="mppsi-mechanism-title">2 · MP-Ψ 怎样把观测变成符号判断？</h2><p>每条边先用上一轮消息估计其余符号的干扰均值 μ 和方差 v（含复噪声方差），再计算当前符号的似然；去掉接收消息对应的观测，得到外信息 PMF，最后以 0.7×新消息 + 0.3×旧消息同步更新。下方查看首条非零边，全部值来自当前计算。</p>
+<div class="controls"><label for="mppsi-inspect-model">查看的名义模型<select id="mppsi-inspect-model"><option value="matched">匹配</option><option value="rounded">延迟取整</option></select></label><label for="mppsi-iteration">迭代<input id="mppsi-iteration" type="range" min="1" max="1" value="1" disabled></label><output id="mppsi-iteration-value">—</output></div><div id="mppsi-trace"><p>运行后显示干扰矩、外信息、阻尼消息与置信比例。</p></div>
+<details><summary>必须保留的源文补全与解释边界</summary><ul><li>Eq.40 的逐因子归一化乘积不一定是 PMF；本站对最终乘积再归一化，这是显式的概率一致性补全。</li><li>Eq.41 按 ηᵢ &gt; ηᵢ₋₁ 更新保留决策，而非选择历史最高 η；停止规则另用历史最高 η，严格下降超过 0.2 才停止。</li><li>源文未定义 η₀ 和无改善时的返回决策：本站取 η₀=0，保留首轮作为回退，并单独标记。最后一轮不能偷偷替代它。</li><li>γ=0.01、50 轮上限是本站设置。0.7 阻尼来自原文特定 4QAM 场景，不能视为普遍最优。</li><li>η 是最大近似边缘概率 ≥0.99 的符号比例；“全部自信”不等于全部正确。保留轮的近似概率是软输出扩展，不是精确后验或校准置信度。</li><li>MP-G 使用消息变化容限 10⁻⁹；LMMSE 直接求解。相同上限不代表相同停止准则。分数延迟稠密矩阵也不继承原文稀疏复杂度。</li></ul></details></section>
+<details><summary id="mppsi-offline-title">历史汇总留档（原始1000帧证据缺失，未重新验收）</summary><p class="note">原始逐帧数据、重放脚本和来源散列文件尚未恢复。下表仅做历史留档，其计数算术一致不等于研究结果已被重新验证，不应用来建立新性能优劣结论。</p><p>独立 Python 实验：两种固定信道 × 五个 SNR × 100 帧，共 1000 帧 / 6000 方法–模型结果；同一帧六路配对，所有回退、置信下降和上限结果保留。这些是原记录描述的研究规模；当前只有历史汇总，没有原始数据可重放。不是本次浏览器重跑，也不是原论文 Fig.6/7。</p><div class="controls"><label for="mppsi-offline-mode">离线信道<select id="mppsi-offline-mode"><option value="fractional_delay">分数延迟</option><option value="integer_delay">整数对照</option></select></label><label for="mppsi-offline-snr">离线 SNR / dB<select id="mppsi-offline-snr"><option>0</option><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label></div><div id="mppsi-offline">正在加载离线汇总…</div><p class="note">BER 区间为整帧 bootstrap 的逐点 95% 区间，条件于这两条固定信道，不支持信道人群排名。零错误会给出退化 bootstrap 区间；独立帧 FER 的 Clopper–Pearson 上界仍非零，不能解释为零风险。</p></details>
+<p><a href="otfs-receiver/mppsi/revalidation/README.md">新有界数值检查：22个独立小例、6个配对演示、11个模拟生命周期检查</a>。这不验收原1000帧研究，也不是实际浏览器认证。</p><footer><p>原文：<a href="https://arxiv.org/abs/1910.01896v1">Gaudio 等，1910.01896v1，§V-B / Eq.14</a>；<a href="https://arxiv.org/abs/1802.05242v2">Raviteja 等，1802.05242v2，§IV / Algorithm 1 / Eqs.35–41</a>。这是缩小规模、明确补全源文空缺的算法教学扩展，非完整论文复现、作者代码复现或实测链路。</p></footer>
+</section>
+
 <section id="statistics" class="otfs-section otfs-statistics">
   <header class="otfs-section-head"><p class="eyebrow">感知延伸 · 从一个答案，到误差的尺度</p><h2>网格变密，为什么仍不等于更准？</h2><p>先看同一份带噪回波怎样被三个接收机解释，再看重复 200 次后误差如何变化。真值只用于评价；搜索从观测出发，不拿真值作初值。</p></header>
   <div class="stats-contract"><span>固定 8×8 已知 QPSK</span><span>20 m · 80 km/h</span><span>1.25 MHz · 51.2 μs 有效时长</span><span>P=1 · literal Eq.14</span></div>
@@ -146,6 +160,18 @@
     <details><summary>统计口径、求解失败与复核材料</summary><div><p>离线细化使用 SciPy L-BFGS-B；本页实时细化使用经 Python 对照的确定性有界模式搜索，两者不能混称同一求解器或逐次重放。细化只在原开延迟单元内移动，保留细网格候选，不证明连续全局最优，也不是原文有限网格算法。</p><p>离线 2,985 次局部尝试中，39 次报告失败状态；最终 1,400 个估计中，19 个选用了有限、可行、似然改善但求解器仍报失败的候选，122 个保留了网格答案。未删除任何失败试验，失败状态不改写成收敛。</p><p>区间来自固定 x、固定目标下的 1,000 次整试验 bootstrap；不是同时置信带，不涵盖波形或场景变化。离群定义为 |q 误差| &gt; 0.5 或 |a 误差| &gt; 0.5 bin，不等于漏检或虚警。</p><p><a href="otfs-receiver/statistics/offline-summary.json">紧凑统计数据与原始结果散列</a> · <a href="docs/OTFS-STATISTICAL-EXTENSION.md">模型、来源与数值边界</a></p></div></details>
   </article>
   <p class="otfs-warning"><strong>这是缩小尺寸的统计分支，不是原文 Fig.4 复现。</strong>来源为 <a href="https://arxiv.org/abs/1910.01896v1">1910.01896v1</a> 的 Eq.14、§IV-A/B 与 Fig.4 雷达分支。原文 50×64、10 MHz、320 μs 有效时长；这里 8×8、1.25 MHz、51.2 μs。导数从所实现的 Eq.14 重新推导，未照抄有不一致的 Eq.24/25；不声称该 literal 数值约定等价于物理连续波形。OFDM/FMCW 对比、多径、原尺寸曲线与 waterfall 预测仍未完成。</p>
+</section>
+
+<section id="joint-otfs" class="otfs-section joint-lesson" aria-labelledby="joint-title">
+ <header><p class="eyebrow">多径扩展 · 先看初始化如何限制答案</p><h2 id="joint-title">联合估计多条路径，为什么仍会漏掉弱路径？</h2><p>已知路径数 P，把多条模板一起拟合复增益。这里实际重算的是<strong>实时联合网格估计</strong>：P2 穷举 300 个支持集，P3 穷举 2,300 个；不运行离线连续细化。</p></header>
+ <p class="otfs-warning">项目对 arXiv:1910.01896v1 式 (17)–(19) 的变量投影扩展，不是逐字实现式 (21)，也不是式 (26) 的单径 waterfall 公式。沿用有限 8×8 literal-Eq14 模型，不证明物理脉冲等价；已知 P，不估计模型阶数。</p>
+ <div class="joint-controls"><label for="joint-scene">场景 <select id="joint-scene"><option value="0">双径 · 分离良好</option><option value="1">双径 · 时延很近</option><option value="2">双径 · 多普勒很近</option><option value="3">双径 · 弱第二路径</option><option value="4">三径 · 压力场景</option></select></label><label for="joint-snr">SNR / dB <input id="joint-snr" type="number" min="0" max="30" step="1" value="20"></label><label for="joint-seed">噪声种子 <input id="joint-seed" type="number" min="1" max="4294967295" step="1" value="191018"></label><button id="joint-run" type="button">重新生成并估计</button><button id="joint-cancel" type="button" disabled>取消</button><button id="joint-export" type="button" disabled>导出当前真实输入与结果</button></div>
+ <p id="joint-status" role="status" aria-live="polite">正在准备已验证的有限模型…</p>
+ <div id="joint-result" class="joint-result"></div>
+ <details><summary>初始化、搜索范围与数值状态</summary><div id="joint-diagnostics"><p>运行后显示四个由观测排序的网格初始化与每个延迟单元的边界。真值不会进入支持集选择。</p></div><p>固定 5×5 网格：q={0.2,0.6,1,1.4,1.8}，a={−0.8,−0.4,0,0.4,0.8}。所有 300/2,300 个支持集均经过秩、条件数≤10⁸、缩放正规方程残差≤10⁻¹⁰ 检查。不可用候选计入失败，不补抽、不静默当作零残差。完整穷举只保证此有限网格的最佳合格支持集；不是连续全局最优、收敛证明或恢复成功。</p><p>实时使用复数列主元 QR（再正交化），小型单边 Jacobi 奇异值条件数诊断；离线为 SciPy 主元 QR/SVD。数值核验不等于两个非线性优化器相同。实时仅列出四个初始化，不执行 L-BFGS-B；单径与顺序消去基线也仅用同一个网格和同一观测，顺序增益不做最后联合重拟合。</p></details>
+ <p class="otfs-warning"><strong>冻结离线结果提醒：</strong>弱径 20 dB：联合 0/100，顺序 98/100；近时延 / 近多普勒联合仅 6/100、9/100。三径 15 dB 联合 50/50，顺序 0/50。初始化与单元边界会限制可达解，不能把联合拟合说成普遍更好。</p>
+ <details><summary>离线连续细化（SciPy L-BFGS-B）：2,100 帧的正面与负面证据</summary><div class="joint-offline"><p>固定 25 点网格、四个真值盲初始化、每次最多 120 次迭代，细化限制在起始开延迟单元，q∈[0,2]、a∈[−1,1]。这组从恢复源码重新计算并独立审查的新冻结结果，不是找回的旧归档；与上面的实时网格输出分开，不会随控件改变。</p><ul><li>20 dB 分离双径：联合与顺序均 100/100 成功</li><li>20 dB 近时延：联合 6/100，顺序 0/100；近多普勒：联合 9/100，顺序 0/100</li><li>20 dB 弱路径：联合 0/100，顺序 98/100。所有四个联合初始化把两条时延放在≤1 的单元，无法到达弱径 q=1.45</li><li>15 dB 三径：联合 50/50，顺序 0/50。是有限场景的正面证据，不是通用优越性</li></ul><p>保留全部 2,100 帧 / 6,300 方法记录。联合 8,400 次尝试中：8,105 优化器成功、275 ABNORMAL、20 迭代上限；390 次中间拒绝（240 秩亏、128 数值失败、22 病态）。47 个最终选中联合输出来自未成功终止的尝试：它们仅是有限可行估计，不能称为驻点或已收敛。单径 54 次异常、42 个选中未成功输出；顺序 129 次异常也保留。</p><p>成功需一对一匹配且 |Δq|、|Δa| 均≤0.1；P2 每格 100 帧，P3 每格 50 帧。P1 的全路径成功必为零，不能用作精度排名。条件误差只针对匹配路径，估计可用不等于恢复成功。新计算主运行 537.017 秒、峰值 RSS 61,736 KiB；联合总计 450.923 秒，顺序 56.221 秒；工作量不同，不能据此宣称相同计算预算。</p><p><a href="otfs-receiver/joint/new-offline-summary.json">完整分组分母、Wilson 区间、成对 bootstrap 与原始记录散列</a>（按需读取，不参与页面启动）。<a href="assets/data/otfs-joint/new-joint-evidence.tar.xz">下载新计算完整证据归档</a>。新计算已完成独立数值复核；浏览器交互、部署与实时资源表现须另行验证。没有调参替换不利结果，也没有把实时新噪声当作冻结 C2 复跑。</p></div></details>
+ <p><a href="https://arxiv.org/abs/1910.01896v1">论文来源与版本</a> · 思考：残差更小为什么不保证每条真路径都被识别？</p>
 </section>
 
 <section id="communication" class="otfs-section">

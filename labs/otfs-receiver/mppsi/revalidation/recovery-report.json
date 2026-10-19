@@ -1,0 +1,25 @@
+{
+  "source_files": {
+    "mppsi-worker.mjs": "c1df1bf7053cc5871d19db5c9ee72d6cdf4595ddd75361cbf1597fadec9b1493",
+    "mppsi.css": "7714e8abda287638fb72e5222075445c27ab17904b6c54554b19119314e1b73e",
+    "offline-summary.json": "9792d3031eafff7f47de0c10b256c844f0aaba2d0229522cb62eb76da5309d90",
+    "SOURCE-CONTRACT.md": "af24eaeea41eca0f91bdbf5d0f6480630e5733f120b95fc430de305a4fe5ab1d",
+    "mppsi-ui.mjs": "27e101ad65d6225c209aecd83fa933b9ef71cb03846ae4bef23207d4f4b404df",
+    "mppsi-kernel.mjs": "565c161b020aef6fa6c9c61150d484ca3e88bbabc22547ca7a59f3657ee96dfd",
+    "accepted-kernel.mjs": "80fad52c681d19eaa5d82a6b1d20dd329a6cf40d39c08cd92774f88118d8f1e7"
+  },
+  "accepted_comparator_matches_public_baseline": true,
+  "summary_arithmetic_cells_checked": 60,
+  "summary_status": "historical recovered aggregate; no raw replay validation",
+  "missing_original_evidence": [
+    "raw.npz",
+    "RESULTS.json",
+    "SOURCE-HASHES.json",
+    "study.py",
+    "independent_oracle.py",
+    "original Python unit tests",
+    "archive with claimed SHA256 e986f424bce7dd86522eadef9e81d3134fe0fb4a13266d725eeb33861f12fee6"
+  ],
+  "claim_boundary": "Fresh limited numerical and mocked lifecycle checks, not recovery of original 1000-frame proof, original figure reproduction, browser validation, or physical-pulse validation",
+  "release_recommendation": "Preserve branch in local candidate; prominently label offline aggregates historical/unreplayed or withhold comparative study claims; verify actual page wiring/browser before any release"
+}

@@ -92,7 +92,7 @@
       "doi": "https://doi.org/10.1109/tsp.2020.3004739",
       "identitySource": "https://arxiv.org/abs/1912.03420",
       "mechanism": "把独立雷达波形与通信符号加权叠加，在用户SINR约束下设计雷达发射方向图；原文研究紧半定松弛与低复杂度零迫方案。",
-      "evidenceBoundary": "理论与仿真；本站实际求解有界M=10/K=2雷达独立、SDR与优化型ZF并恢复因子，已有独立数值核验及32配对信道离线切片。1000信道、K=4/6、SSP、雷达接收机与真实浏览器门仍开放。",
+      "evidenceBoundary": "理论与仿真；本站有界 M=10/K=2 雷达独立、SDR与优化型ZF核心及32配对信道切片；同页另有 K=2/4/6 有界 SSP 与新统一策略 K4/K6 各32信道配对证据。SSP驻点不保证硬QoS，条件子集不代表等实际QoS优势。原文1000信道全规模、雷达接收机与实测仍开放；浏览器复核按具体版本记录。",
       "metrics": {
         "snapshotDate": "2026-10-10",
         "openAlex": {
@@ -132,7 +132,7 @@
         "status": "unavailable",
         "text": "未取得可靠的社交讨论量；不以引用、奖项或下载量替代。"
       },
-      "readingPlan": "先辨认H、Γ、每天线功率与三类流，再实际运行同模型雷达独立、SDR和优化型ZF，查看恢复因子与残差。原八阵元解析构造另作先修；iteration_limit只表示未解决，不是不可行证明。",
+      "readingPlan": "先辨认H、Γ、每天线功率与三类流，再实际运行同模型雷达独立、SDR和优化型ZF，查看恢复因子与残差。原八阵元解析构造另作先修；iteration_limit只表示未解决，不是不可行证明。 再跳到同页 SSP 续课，比较相同请求门槛与实际QoS，查阅全部未决与失败。",
       "links": [
         {
           "label": "原文与身份来源",
@@ -152,7 +152,7 @@
       "caseId": "case-joint-beamforming",
       "executionStatus": {
         "status": "validated-algorithm-core",
-        "scope": "有界雷达独立/SDR/优化型ZF协方差核心"
+        "scope": "有界雷达独立/SDR/优化型ZF核心，以及 K=2/4/6 SSP 续课与新配对切片"
       }
     },
     {

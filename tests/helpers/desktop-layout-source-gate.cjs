@@ -799,7 +799,7 @@ function createFixture(root, name) {
       && !row.path.startsWith('../') && !row.path.includes('\\'), 'relative exact fixture path');
     const source = path.join(root, row.path);
     assert.ok(fs.lstatSync(source).isFile(), 'source fixture regular file: ' + row.path);
-    const bytes = fs.readFileSync(source);
+    const bytes = require('./recovery-published-baseline-projection.cjs').projectFile(row.path, fs.readFileSync(source));
     bind(bytes, row.input, 'input ' + row.path);
     inputs.set(row.path, bytes);
   }

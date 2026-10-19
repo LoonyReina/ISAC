@@ -7,11 +7,13 @@ const a = require('node:assert/strict');
 const crypto = require('node:crypto');
 const {isDeepStrictEqual} = require('node:util');
 const delta = require('./otfs-statistical-delta.json');
+const recoveryProjection = require('./recovery-published-baseline-projection.cjs');
 const sha = value => crypto.createHash('sha256').update(value).digest('hex');
 const identity = (bytes, record) => bytes.length === record.bytes && sha(bytes) === record.sha256;
 const same = (left, right) => isDeepStrictEqual(left, right) && JSON.stringify(left) === JSON.stringify(right);
 
 function withoutFile(file, bytes, rows = delta.files) {
+  bytes = recoveryProjection.forHistoricalChain(file, bytes);
   const exact = rows.filter(row => row.path === file);
   const matches = exact.length ? exact : rows.filter(row => row.compatibility === file);
   a.ok(matches.length <= 1, 'unique OTFS statistical inverse: ' + file);
@@ -63,10 +65,11 @@ function withoutMetadata(input, records) {
   for (const state of states) state.restore();
   return out;
 }
-const withoutRegistry = (input, records = delta.registryChanges) => withoutMetadata(input, records);
+const withoutRegistry = (input, records = delta.registryChanges) => withoutMetadata(recoveryProjection.jsonForHistoricalChain('content/data/registry.json', input), records);
 const withoutGuides = (input, records = delta.guideChanges) => withoutMetadata(input, records);
 
 function withoutMappings(input) {
+  input = recoveryProjection.jsonForHistoricalChain('build/compatibility-manifest.json', input);
   const out = structuredClone(input);
   if (!delta.addedEntries.some(row => out.entries.some(item => item.source === row.source)) &&
       !delta.addedOwners.some(row => out.owners.some(item => item.id === row.id))) return out;
@@ -83,6 +86,7 @@ function withoutMappings(input) {
 }
 
 function withoutContracts(input) {
+  input = recoveryProjection.jsonForHistoricalChain('scripts/build/module-runtime-contracts.json', input);
   const out = structuredClone(input), rows = delta.addedModuleProfiles;
   if (!rows.some(row => out.modules.some(item => item.public === row.public))) return out;
   a.equal(out.modules.length, delta.priorModuleCount + rows.length, 'complete OTFS statistical module inventory');

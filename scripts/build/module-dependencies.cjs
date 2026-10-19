@@ -1619,10 +1619,16 @@ dualArrayPublicFiles.set('labs/dual-array/runtime/records.mjs','0c9fda6852ef58b3
 for(const [file,profile] of require('./cooperative-clusters-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate cooperative profile');reviewedProfiles.set(file,profile);}
 const isModuleFile=file=>file.endsWith('.mjs')||sensingOtfsJsModules.has(file);
 for(const [file,profile] of require('./full-duplex-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate full-duplex profile');reviewedProfiles.set(file,profile);}
-const reviewedHashPaths=new Map([...reviewedProfiles].map(([file,profile])=>[profile.sha256,file]));
+// Additive direct recovery delta; source profiles and public files are explicitly enumerated.
+const recoveryProfiles=require('./recovery-module-profiles.cjs');
+for(const [file,profile] of recoveryProfiles.reviewedProfiles)reviewedProfiles.set(file,profile);
+for(const [file,hash] of recoveryProfiles.pilotPublicFiles)pilotPatternPublicFiles.set(file,hash);
+for(const [file,hash] of recoveryProfiles.cellfreePublicFiles)cellfreePublicFiles.set(file,hash);
+// Identical reviewed bytes may have multiple explicit immutable comparator paths.
+const reviewedHashPaths=new Map();for(const [file,profile] of reviewedProfiles){if(!reviewedHashPaths.has(profile.sha256))reviewedHashPaths.set(profile.sha256,new Set());reviewedHashPaths.get(profile.sha256).add(file);}
 // Fixed-quarter causal module identities; no fetch, Worker, or dynamic imports.
 for(const [file,profile] of require('./causal-capacity-dependencies.cjs').reviewedProfiles){if(reviewedProfiles.has(file))throw Error('Duplicate causal profile');reviewedProfiles.set(file,profile);}
-const reviewedPolicies=new Set(['reviewed-cooperative-runtime','reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
+const reviewedPolicies=new Set(['reviewed-recovery-runtime','reviewed-cooperative-runtime','reviewed-factory-endpoints','reviewed-enumerated-imports','reviewed-gaussian-runtime','reviewed-cellfree-runtime','reviewed-sensing-otfs-runtime','reviewed-perceptive-runtime','reviewed-dual-array-runtime']);
 function reviewedProfileEdges(file,source,c,profile){
  if(c.sha256!==profile.sha256)throw Error('Unreviewed frozen runtime source hash: '+file);
  if(c.runtimeEdges.length!==profile.runtimeEdges.length)throw Error('Reviewed runtime endpoint set mismatch: '+file);
@@ -1643,7 +1649,7 @@ function moduleDependencies(modules,contract,identities){
   const hasRuntimeEdges=c.runtimePolicy==='literal-workers'||reviewedPolicies.has(c.runtimePolicy);
   if(!['literal-workers','no-runtime-loads','command-line-inputs-unverified',...reviewedPolicies].includes(c.runtimePolicy)||!Array.isArray(c.unverifiedInputs)||c.unverifiedInputs.some(x=>typeof x!=='string'||!x)||(hasRuntimeEdges!==(c.runtimeEdges.length>0))||((c.runtimePolicy==='command-line-inputs-unverified')!==(c.unverifiedInputs.length>0)))throw Error('Invalid module runtime boundary');
   const expectedPath=reviewedHashPaths.get(c.sha256);
-  if(expectedPath&&c.public!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+c.public);
+  if(expectedPath&&!expectedPath.has(c.public))throw Error('Reviewed frozen runtime path mismatch: '+c.public);
   const profile=reviewedProfiles.get(c.public);
   if((profile&&c.runtimePolicy!==profile.runtimePolicy)||(!profile&&reviewedPolicies.has(c.runtimePolicy)))throw Error('Unreviewed module runtime policy: '+c.public);
   declared.set(c.public,c);
@@ -1661,7 +1667,7 @@ function moduleDependencies(modules,contract,identities){
   if(['labs/perceptive-bsbl/','assets/data/perceptive-bsbl/','scripts/validation/perceptive-bsbl/'].some(prefix=>identity.file.startsWith(prefix))&&perceptivePublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed Perceptive public path or hash: '+identity.file);
   if(identity.file.startsWith('labs/otfs-sensing-assisted/')&&sensingOtfsPublicFiles.get(identity.file)!==identity.sha256)throw Error('Unreviewed sensing-assisted OTFS public path or hash: '+identity.file);
   const expectedPath=reviewedHashPaths.get(identity.sha256);
-  if(expectedPath&&identity.file!==expectedPath)throw Error('Reviewed frozen runtime path mismatch: '+identity.file);
+  if(expectedPath&&!expectedPath.has(identity.file))throw Error('Reviewed frozen runtime path mismatch: '+identity.file);
   seenIdentities.set(identity.file,identity.sha256);
  }
  for(const {file,source}of modules)if(seenIdentities.get(file)!==sha(source))throw Error('Missing or changed public module identity: '+file);

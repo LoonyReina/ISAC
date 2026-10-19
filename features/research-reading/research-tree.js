@@ -87,7 +87,7 @@ const SKY_LABELS=Object.freeze({
   ],
   "joint_beamforming": [
     "为何加入独立雷达流？",
-    "联合发射波束"
+    "联合发射波束成形"
   ],
   "mu_mimo": [
     "阵列分开会失去什么？",

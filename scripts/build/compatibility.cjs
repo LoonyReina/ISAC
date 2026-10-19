@@ -67,7 +67,10 @@ function checkDependencies(root,manifest){
   if(name.endsWith('.js'))for(const m of text.matchAll(/\b(?:fetch|require(?:\.resolve)?)\(\s*['"]([^'"]+)['"]/g))if(m[1].startsWith('.')||m[1].includes('/'))local(name,m[1],'runtime');
  }
  const modules=[...all.keys()].filter(name=>isModuleFile(name)).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
- for(const edge of moduleDependencies(modules,JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8')),identities))local(edge.from,edge.url,edge.kind);
+ const moduleContract=JSON.parse(fs.readFileSync(path.join(root,'scripts/build/module-runtime-contracts.json'),'utf8'));
+ for(const edge of moduleDependencies(modules,moduleContract,identities))local(edge.from,edge.url,edge.kind);
+ const recoveryPages=[...all.keys()].filter(file=>file.endsWith('.html')&&!file.includes('/')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
+ for(const edge of require('./recovery-dependencies.cjs').recoveryDependencies({identities,modules,contract:moduleContract,pages:recoveryPages}))local(edge.from,edge.url,edge.kind);
  const fullDuplex=modules.filter(m=>m.file.startsWith('full-duplex/'));
  const fullDuplexPages=[{file:'full-duplex-cancellation.html',source:fs.readFileSync(path.join(root,'full-duplex-cancellation.html'),'utf8')}];
  for(const edge of require('./full-duplex-dependencies.cjs').fullDuplexDependencies(fullDuplex,identities,fullDuplexPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);
@@ -94,7 +97,19 @@ function checkDependencies(root,manifest){
  for(const file of ['course-ui.js','velocity-core.js','velocity-bridge.js']){insist(course.includes("'"+file+"'"),'Unmapped dynamic course dependency: '+file);local('course.js',file,'dynamic-runtime');}
  return edges.sort((a,b)=>(a.from+'\0'+a.to+'\0'+a.kind).localeCompare(b.from+'\0'+b.to+'\0'+b.kind,'en'));
 }
-function run(command,args,cwd){const env={...process.env};delete env.NODE_TEST_CONTEXT;const result=cp.spawnSync(command,args,{cwd,env,encoding:'utf8',maxBuffer:32*1024*1024});if(result.error)throw result.error;insist(result.status===0,`Command failed: ${command} ${args.join(' ')}\n${result.stdout}\n${result.stderr}`);return result.stdout;}
+function run(command,args,cwd){
+ const env={...process.env};delete env.NODE_TEST_CONTEXT;
+ const options={cwd,env,encoding:'utf8',maxBuffer:32*1024*1024};let logs=null,fds=[];
+ if(env.ISAC_BUILD_LOG_DIR){
+  insist(path.isAbsolute(env.ISAC_BUILD_LOG_DIR),'ISAC_BUILD_LOG_DIR must be an explicit absolute directory');const parent=path.resolve(env.ISAC_BUILD_LOG_DIR);fs.mkdirSync(parent,{recursive:true});
+  logs=fs.mkdtempSync(path.join(parent,'command-'));fs.writeFileSync(path.join(logs,'command.json'),JSON.stringify({command,args,cwd,startedAt:new Date().toISOString()},null,2)+'\n');
+  fds=['stdout.log','stderr.log'].map(name=>fs.openSync(path.join(logs,name),'w'));options.stdio=['ignore',...fds];
+  process.stderr.write('Build subprocess logs: '+logs+'\n');
+ }
+ let result;try{result=cp.spawnSync(command,args,options);}finally{for(const fd of fds)fs.closeSync(fd);}
+ if(logs){result.stdout=fs.readFileSync(path.join(logs,'stdout.log'),'utf8');result.stderr=fs.readFileSync(path.join(logs,'stderr.log'),'utf8');fs.writeFileSync(path.join(logs,'result.json'),JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message||null,finishedAt:new Date().toISOString()},null,2)+'\n');}
+ if(result.error)throw result.error;insist(result.status===0,`Command failed: ${command} ${args.join(' ')}\n${result.stdout}\n${result.stderr}`);return result.stdout;
+}
 function generatedPath(file){return /^[^/]+\.html$/.test(file)||file==='legacy-routes.js';}
 function stage(manifest,root,directory,runTests){
  fs.mkdirSync(directory,{recursive:true});const inputs=[];
@@ -109,7 +124,7 @@ function stage(manifest,root,directory,runTests){
  // ordinary regeneration can change otherwise equivalent SVD signs.
  run('python3',['scripts/generate-waveform.py','--check'],directory);assertTree(directory,generated);
  let tests=null;
- if(runTests){const files=manifest.entries.map(e=>e.compatibility).filter(f=>/^tests\/[^/]+\.test\.cjs$/.test(f)).sort();insist(files.length>0,'No compatibility tests');tests=run(process.execPath,['--test',...files],directory);assertTree(directory,generated);}
+ if(runTests){const files=manifest.entries.map(e=>e.compatibility).filter(f=>/^tests\/[^/]+\.test\.cjs$/.test(f)).sort();insist(files.length>0,'No compatibility tests');tests=run(process.execPath,['--test','--test-concurrency=1',...files],directory);assertTree(directory,generated);}
  return {inputs,generated,tests};
 }
 function guardOutput(root,manifest,destination){

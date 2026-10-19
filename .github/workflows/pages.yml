@@ -18,7 +18,7 @@ jobs:
   build:
     name: Verify compatibility and build
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 60
     permissions:
       contents: read
     steps:
@@ -38,8 +38,13 @@ jobs:
       - name: Install canonical scientific validation dependencies
         run: |
           python -m pip install --disable-pip-version-check --only-binary=:all: numpy==2.3.5 scipy==1.17.0
+      - name: Verify and reconstruct chunked evidence
+        run: |
+          node --test tests/chunked-evidence.test.cjs
+          node scripts/restore-chunked-evidence.cjs
       - name: Test source-only dependency preservation and the compatibility builder
         run: |
+          node --test --test-concurrency=1 tests/recovery-baseline-projection.test.cjs
           node --test tests/lesson-narrow-layout-source-gate.test.cjs tests/pilot-sticky-layout-source-gate.test.cjs tests/perceptive-sticky-layout.test.cjs tests/desktop-layout-integration.test.cjs tests/lesson-narrow-layout-integration.test.cjs tests/dual-array-dependencies.test.cjs tests/otfs-diagnostics-integration.test.cjs tests/otfs-portability-integration.test.cjs tests/perceptive-bsbl-responsive.test.cjs tests/perceptive-bsbl-responsive-integration.test.cjs tests/pilot-pattern-dependencies.test.cjs tests/perceptive-bsbl-dependencies.test.cjs tests/sensing-assisted-otfs-dependencies.test.cjs tests/nearfield-multitarget-dependencies.test.cjs tests/cellfree-maprt-dependencies.test.cjs
           node --test tests/build-fixture-lifetime.test.cjs tests/dual-array-browser-timers-current.test.cjs tests/dual-array-plot-readability-current.test.cjs tests/dual-array-current-runtime.test.cjs tests/dual-array-browser-integration.test.cjs
           node --max-old-space-size=512 --test --test-concurrency=1 tests/dual-array-record-portability.test.cjs tests/dual-array-record-portability-integration.test.cjs

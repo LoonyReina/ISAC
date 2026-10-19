@@ -1,0 +1,44 @@
+{
+  "generatedAtUtc": "2026-10-18T05:43:49.723940+00:00",
+  "provenance": "NEW 2026-10-18 independent CVXPY and exact-core JS rerun; not recovered original outputs",
+  "versions": {
+    "python": "3.12.14",
+    "node": "v24.19.0",
+    "cvxpy": "1.9.3",
+    "numpy": "2.3.5",
+    "clarabel": "0.11.1",
+    "scs": "3.3.1"
+  },
+  "counts": {
+    "oracleCertificateQualified": 18,
+    "oracleTotal": 18,
+    "jsParityPhysicalDualSchurPassed": 18,
+    "jsTotal": 18,
+    "arbitraryPsdRecoveryPassed": 4,
+    "arbitraryPsdRecoveryTotal": 4
+  },
+  "solverStatusCounts": {
+    "optimal_inaccurate": 18
+  },
+  "exitCodes": {
+    "run-fresh.py": 0,
+    "verify_oracle.py": 0,
+    "run-port.cjs": 0,
+    "check_port.py": 0
+  },
+  "maxObjectiveRelativeDifference": 2.4350350899052467e-07,
+  "maxJsRepairedRelativeGap": 5.350446290941036e-09,
+  "maxOracleRepairedRelativeGap": 1.9450076834481275e-07,
+  "minOracleSinrRatio": 0.9999998621965727,
+  "minJsSinrRatio": 0.9999999991991108,
+  "oracleMaxPowerFraction": 1.0000000039634518,
+  "thresholdsUnchanged": true,
+  "environment": {
+    "PYTHONPATH": "/workspace/shared/recovery/python-deps",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TMPDIR": "/workspace/shared/recovery/tmp"
+  },
+  "originalRecoveryUnmodified": true
+}

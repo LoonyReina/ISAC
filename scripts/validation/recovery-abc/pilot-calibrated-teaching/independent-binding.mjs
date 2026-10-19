@@ -1,0 +1,4 @@
+import {siteRoot,sourceURL,outputURL,outputRoot,fixture} from './paths.mjs';
+import fs from 'node:fs/promises';import assert from 'node:assert/strict';
+const mode=process.argv[2];globalThis.fetch=async url=>{if(mode==='fail')throw Error('unavailable');let bytes=await fs.readFile(url);if(String(url).endsWith('/core.mjs'))bytes=Buffer.concat([bytes,Buffer.from('\n// simulated deployment drift')]);return new Response(bytes)};
+const {defaultConfig,generateRecord}=await import(sourceURL('labs/pilot-pattern/runtime/records.mjs'));const c=defaultConfig();c.transmit_seed=20261018;c.noise_variance=.7;const r=await generateRecord({config:c,processing:{ells:[0,5],axes:null}});assert.ok(r.results.calibration.branches.every(b=>!b.available&&b.decisions['0.01'].threshold===null));assert.ok(r.results.calibration.branches[0].reasons.some(x=>x.startsWith(mode==='fail'?'source-hash-unverified':'source-hash-mismatch')));console.log('PASS runtime binding fail-closed',mode);

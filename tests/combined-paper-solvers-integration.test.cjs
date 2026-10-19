@@ -112,7 +112,7 @@ test('approved numerical runtime bytes and original prerequisite cores are uncha
  for(const [files,hash]of entries)a.equal(sha(bytes(...files)),hash,files[0]);
 });
 test('published scope distinguishes numerical algorithms, changed constraints and missing paper/browser gates',()=>{
- const w=registry.cases.find(c=>c.id==='case-waveform'),j=registry.cases.find(c=>c.id==='case-joint-beamforming');
+ const w=registry.cases.find(c=>c.id==='case-waveform'),j=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/registry.json',registry).cases.find(c=>c.id==='case-joint-beamforming');
  a.match(w.fields['交互机制'],/严格协方差解 X₀/);a.match(w.fields['交互机制'],/放松协方差等式/);a.match(w.fields['结论边界'],/原图3加权曲线仍未吻合/);a.match(JSON.stringify(w),/radar-closest/);
  a.match(j.fields['交互机制'],/式\(15\).*SDR式\(32\).*ZF式\(40\)/);a.match(j.fields['结论边界'],/迭代上限只表示未解决/);a.match(JSON.stringify(j),/1000/);
  for(const id of ['joint_beamforming','optimal_waveform']){a.equal(catalog.cards.filter(c=>c.id===id).length,1);const p=backlog.papers.find(p=>p.id===id);a.equal(p.stages.fullPaper,'not-reproduced');a.notEqual(p.stages.liveExecution,'validated');a.match(JSON.stringify(p.blockers),/browser/i);}
@@ -124,7 +124,7 @@ test('all exact metadata adapters reject tampering and retain unrelated scientif
   const prior=fn(original);a.notDeepEqual(prior,original);
   for(const entry of preserve.changes[kind])for(const ch of entry.changes){const bad=structuredClone(original);let p=preserve.collection(bad,entry.collection).find(x=>x[entry.idKey]===entry.id);for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]='unreviewed mutation';a.throws(()=>fn(bad));}
  }
- const c=structuredClone(catalog);c.cards.find(x=>x.id==='joint_beamforming').metrics.unrelated='preserve';a.equal(preserve.withoutCombinedCatalog(c).cards.find(x=>x.id==='joint_beamforming').metrics.unrelated,'preserve');
+ const c=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/research-directory.json',catalog);c.cards.find(x=>x.id==='joint_beamforming').metrics.unrelated='preserve';a.equal(preserve.withoutCombinedCatalog(c).cards.find(x=>x.id==='joint_beamforming').metrics.unrelated,'preserve');
 });
 test('complete joint reference is three exact optional raw parts, never a nonexistent single ZIP',()=>{
  const prefix=fs.existsSync(path.join(root,'validation'))?'validation/':'labs/joint-beamforming/validation/';
