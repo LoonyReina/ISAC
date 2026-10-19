@@ -195,6 +195,7 @@ function publicFixture(t){
   if(!seen.has(file))put(file,/\.(?:js|mjs|css)$/.test(file)?current(file):'');
   if(url.hash&&file.endsWith('.html')){const id=decodeURIComponent(url.hash.slice(1)),text=fs.readFileSync(target,'utf8');if(!text.includes('id="'+id+'"'))put(file,text+'<div id="'+id+'"></div>');}
  }
+ require('./helpers/recovery-current-fixture.cjs')({directory,put},root);
  return {directory,manifest:{entries},put};
 }
 

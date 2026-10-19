@@ -1,0 +1,17 @@
+{
+  "all_passed": true,
+  "checks": [
+    "restart terminates prior worker; stale completion ignored",
+    "successful result renders and enables export",
+    "changed inputs invalidate old results",
+    "cancel invalidates stale worker reply",
+    "runtime error clears state",
+    "worker startup error clears state",
+    "pagehide terminates worker",
+    "stale asynchronous import cannot replace new run",
+    "oversized import rejected",
+    "malformed JSON import rejected",
+    "worker response IDs and error path"
+  ],
+  "scope": "Executed Node VM DOM/Worker mocks; not real browser, layout, module loading, download, or accessibility proof"
+}

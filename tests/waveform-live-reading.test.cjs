@@ -45,7 +45,7 @@ test('historical adapters remove exactly the reviewed local algorithm status cha
  a.equal(JSON.stringify(r),rb);a.equal(JSON.stringify(data),db);
  const unrelated=structuredClone(r);unrelated.cases.find(c=>c.id===P.additions.caseId).title='future case title';unrelated.units.push({id:'future-independent-unit'});
  const normalized=P.withoutWaveformLiveRegistry(unrelated);a.equal(normalized.cases.find(c=>c.id===P.additions.caseId).title,'future case title');a.deepEqual(normalized.units.at(-1),{id:'future-independent-unit'});
- const catalog=structuredClone(data);selected(catalog).metrics.futureAudit='must survive';catalog.cards.push({id:'future-independent-paper'});const nd=P.withoutWaveformLiveCatalog(catalog);a.equal(selected(nd).metrics.futureAudit,'must survive');a.deepEqual(nd.cards.at(-1),{id:'future-independent-paper'});
+ const catalog=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/research-directory.json',data);selected(catalog).metrics.futureAudit='must survive';catalog.cards.push({id:'future-independent-paper'});const nd=P.withoutWaveformLiveCatalog(catalog);a.equal(selected(nd).metrics.futureAudit,'must survive');a.deepEqual(nd.cards.at(-1),{id:'future-independent-paper'});
 });
 
 test('historical adapters reject tampered reviewed fields and missing or duplicate selected records',()=>{

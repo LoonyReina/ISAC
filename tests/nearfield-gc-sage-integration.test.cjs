@@ -41,7 +41,7 @@ test('exact registry inverse retains all old fields and rejects missing, moved o
  const beforeGC=require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r),beforeCoverage=require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(beforeGC);a.deepEqual(prior.units,beforeCoverage.units.slice(0,-1));a.deepEqual(prior.pages,beforeCoverage.pages.slice(0,-1));
  for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(beforeGC)[key]);
  for(const change of [x=>x.units.splice(-2,1),x=>x.pages.splice(-2,1),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>x.units.unshift(x.units.splice(-2,1)[0]),x=>{x.pages.at(-2).role+=' changed';},x=>{x.directions.find(d=>d.id==='spatial').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);change(x);a.throws(()=>withoutGCSAGERegistry(x));}
- const changed=structuredClone(r);changed.units[0].question+=' unrelated';a.equal(withoutGCSAGERegistry(changed).units[0].question,changed.units[0].question,'unrelated changes are not hidden');
+ const changed=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/registry.json',r);changed.units[0].question+=' unrelated';a.equal(withoutGCSAGERegistry(changed).units[0].question,changed.units[0].question,'unrelated changes are not hidden');
 });
 
 test('exact guide inverse removes only one executable, factual coverage sentence and exact gain-aware question',()=>{

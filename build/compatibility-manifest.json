@@ -13572,6 +13572,678 @@
       "public": null,
       "owner": "validators/regression",
       "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/calibration.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/calibration.mjs",
+      "public": "labs/pilot-pattern/runtime/calibration.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/pilot-pattern/runtime/calibration-data.mjs",
+      "compatibility": "labs/pilot-pattern/runtime/calibration-data.mjs",
+      "public": "labs/pilot-pattern/runtime/calibration-data.mjs",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/robustness/model.mjs",
+      "compatibility": "labs/cellfree-maprt/robustness/model.mjs",
+      "public": "labs/cellfree-maprt/robustness/model.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/robustness/panel.css",
+      "compatibility": "labs/cellfree-maprt/robustness/panel.css",
+      "public": "labs/cellfree-maprt/robustness/panel.css",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/robustness/study.json",
+      "compatibility": "labs/cellfree-maprt/robustness/study.json",
+      "public": "labs/cellfree-maprt/robustness/study.json",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/cellfree-maprt/robustness/panel.mjs",
+      "compatibility": "labs/cellfree-maprt/robustness/panel.mjs",
+      "public": "labs/cellfree-maprt/robustness/panel.mjs",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/joint-core.mjs",
+      "compatibility": "labs/otfs-receiver/joint/joint-core.mjs",
+      "public": "otfs-receiver/joint/joint-core.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/simulation.mjs",
+      "compatibility": "labs/otfs-receiver/joint/simulation.mjs",
+      "public": "otfs-receiver/joint/simulation.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/lesson.mjs",
+      "compatibility": "labs/otfs-receiver/joint/lesson.mjs",
+      "public": "otfs-receiver/joint/lesson.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/worker.mjs",
+      "compatibility": "labs/otfs-receiver/joint/worker.mjs",
+      "public": "otfs-receiver/joint/worker.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/waveform.json",
+      "compatibility": "labs/otfs-receiver/joint/waveform.json",
+      "public": "otfs-receiver/joint/waveform.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/lesson-fragment.html",
+      "compatibility": "labs/otfs-receiver/joint/lesson-fragment.html",
+      "public": "otfs-receiver/joint/lesson-fragment.html",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/joint.css",
+      "compatibility": "labs/otfs-receiver/joint/joint.css",
+      "public": "otfs-receiver/joint/joint.css",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/scenes.json",
+      "compatibility": "labs/otfs-receiver/joint/scenes.json",
+      "public": "otfs-receiver/joint/scenes.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/session.mjs",
+      "compatibility": "labs/otfs-receiver/joint/session.mjs",
+      "public": "otfs-receiver/joint/session.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/joint/new-offline-summary.json",
+      "compatibility": "labs/otfs-receiver/joint/new-offline-summary.json",
+      "public": "otfs-receiver/joint/new-offline-summary.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/pilot-pattern/new-calibrated-detection-evidence.tar.gz",
+      "compatibility": "assets/data/pilot-pattern/new-calibrated-detection-evidence.tar.gz",
+      "public": "assets/data/pilot-pattern/new-calibrated-detection-evidence.tar.gz",
+      "owner": "labs/pilot-pattern",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/cellfree-maprt/new-robustness-evidence.tar.xz",
+      "compatibility": "assets/data/cellfree-maprt/new-robustness-evidence.tar.xz",
+      "public": "assets/data/cellfree-maprt/new-robustness-evidence.tar.xz",
+      "owner": "labs/cellfree-maprt",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/otfs-joint/new-joint-evidence.tar.xz",
+      "compatibility": "assets/data/otfs-joint/new-joint-evidence.tar.xz",
+      "public": "assets/data/otfs-joint/new-joint-evidence.tar.xz",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/maprt-teaching/robustness.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/maprt-teaching/robustness.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/otfs-joint-teaching/session.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/otfs-joint-teaching/session.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/otfs-joint-teaching/pagehide-race.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/otfs-joint-teaching/pagehide-race.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/otfs-joint-teaching/node-worker.mjs",
+      "compatibility": "scripts/validation/recovery-abc/otfs-joint-teaching/node-worker.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/otfs-joint-teaching/independent-joint-grid.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/otfs-joint-teaching/independent-joint-grid.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/otfs-joint-teaching/independent-oracles.json",
+      "compatibility": "scripts/validation/recovery-abc/otfs-joint-teaching/independent-oracles.json",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/independent-binding.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/independent-binding.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/author.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/author.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/mounted.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/mounted.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/paths.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/paths.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/independent-ui.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/independent-ui.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/calibrated-ui.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/calibrated-ui.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/pilot-calibrated-teaching/node-worker.mjs",
+      "compatibility": "scripts/validation/recovery-abc/pilot-calibrated-teaching/node-worker.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/extended/core.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/extended/core.js",
+      "public": "labs/crb-beamforming/extended-lab/extended/core.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/extended/hermitian.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/extended/hermitian.js",
+      "public": "labs/crb-beamforming/extended-lab/extended/hermitian.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/extended/linalg.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/extended/linalg.js",
+      "public": "labs/crb-beamforming/extended-lab/extended/linalg.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/index.html",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/index.html",
+      "public": "labs/crb-beamforming/extended-lab/prototype/index.html",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/app.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/app.js",
+      "public": "labs/crb-beamforming/extended-lab/prototype/app.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/record.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/record.js",
+      "public": "labs/crb-beamforming/extended-lab/prototype/record.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/worker.js",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/worker.js",
+      "public": "labs/crb-beamforming/extended-lab/prototype/worker.js",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/style.css",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/style.css",
+      "public": "labs/crb-beamforming/extended-lab/prototype/style.css",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/DERIVATION.md",
+      "compatibility": "labs/crb-beamforming/extended-lab/DERIVATION.md",
+      "public": "labs/crb-beamforming/extended-lab/DERIVATION.md",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/SCHEMA.md",
+      "compatibility": "labs/crb-beamforming/extended-lab/SCHEMA.md",
+      "public": "labs/crb-beamforming/extended-lab/SCHEMA.md",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/tests/INDEPENDENT-REVIEW.md",
+      "compatibility": "labs/crb-beamforming/extended-lab/tests/INDEPENDENT-REVIEW.md",
+      "public": "labs/crb-beamforming/extended-lab/tests/INDEPENDENT-REVIEW.md",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/fresh-evidence/README.md",
+      "compatibility": "labs/crb-beamforming/extended-lab/fresh-evidence/README.md",
+      "public": "labs/crb-beamforming/extended-lab/fresh-evidence/README.md",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/fresh-evidence/SUMMARY.json",
+      "compatibility": "labs/crb-beamforming/extended-lab/fresh-evidence/SUMMARY.json",
+      "public": "labs/crb-beamforming/extended-lab/fresh-evidence/SUMMARY.json",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/fresh-evidence/MANIFEST.json",
+      "compatibility": "labs/crb-beamforming/extended-lab/fresh-evidence/MANIFEST.json",
+      "public": "labs/crb-beamforming/extended-lab/fresh-evidence/MANIFEST.json",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/crb-beamforming/new-extended-crb-evidence.tar.gz",
+      "compatibility": "assets/data/crb-beamforming/new-extended-crb-evidence.tar.gz",
+      "public": "assets/data/crb-beamforming/new-extended-crb-evidence.tar.gz",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/ui-races.test.cjs",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/ui-races.test.cjs",
+      "public": null,
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/recovery-lifecycle.test.cjs",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/recovery-lifecycle.test.cjs",
+      "public": null,
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/prototype/worker-node-shim.cjs",
+      "compatibility": "labs/crb-beamforming/extended-lab/prototype/worker-node-shim.cjs",
+      "public": null,
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp-core.mjs",
+      "compatibility": "labs/joint-beamforming/ssp/ssp-core.mjs",
+      "public": "joint-beamforming/ssp/ssp-core.mjs",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp-ui.mjs",
+      "compatibility": "labs/joint-beamforming/ssp/ssp-ui.mjs",
+      "public": "joint-beamforming/ssp/ssp-ui.mjs",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp.css",
+      "compatibility": "labs/joint-beamforming/ssp/ssp.css",
+      "public": "joint-beamforming/ssp/ssp.css",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/SOURCE-AUDIT.md",
+      "compatibility": "labs/joint-beamforming/ssp/SOURCE-AUDIT.md",
+      "public": "joint-beamforming/ssp/SOURCE-AUDIT.md",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp-data.json",
+      "compatibility": "labs/joint-beamforming/ssp/ssp-data.json",
+      "public": "joint-beamforming/ssp/ssp-data.json",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/recomputed-ssp-k2-evidence.zip",
+      "compatibility": "labs/joint-beamforming/ssp/recomputed-ssp-k2-evidence.zip",
+      "public": "joint-beamforming/ssp/recomputed-ssp-k2-evidence.zip",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/ssp/lifecycle.test.cjs",
+      "compatibility": "scripts/validation/recovery-abc/ssp/lifecycle.test.cjs",
+      "public": null,
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/recovery-module-profiles.cjs",
+      "compatibility": "scripts/build/recovery-module-profiles.cjs",
+      "public": "scripts/build/recovery-module-profiles.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/recovery-dependencies.cjs",
+      "compatibility": "scripts/build/recovery-dependencies.cjs",
+      "public": "scripts/build/recovery-dependencies.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/recovery-dependencies.test.cjs",
+      "compatibility": "tests/recovery-dependencies.test.cjs",
+      "public": "tests/recovery-dependencies.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/mppsi-worker.mjs",
+      "compatibility": "labs/otfs-receiver/mppsi/mppsi-worker.mjs",
+      "public": "otfs-receiver/mppsi/mppsi-worker.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/mppsi.css",
+      "compatibility": "labs/otfs-receiver/mppsi/mppsi.css",
+      "public": "otfs-receiver/mppsi/mppsi.css",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/offline-summary.json",
+      "compatibility": "labs/otfs-receiver/mppsi/offline-summary.json",
+      "public": "otfs-receiver/mppsi/offline-summary.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/SOURCE-CONTRACT.md",
+      "compatibility": "labs/otfs-receiver/mppsi/SOURCE-CONTRACT.md",
+      "public": "otfs-receiver/mppsi/SOURCE-CONTRACT.md",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/mppsi-ui.mjs",
+      "compatibility": "labs/otfs-receiver/mppsi/mppsi-ui.mjs",
+      "public": "otfs-receiver/mppsi/mppsi-ui.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/mppsi-kernel.mjs",
+      "compatibility": "labs/otfs-receiver/mppsi/mppsi-kernel.mjs",
+      "public": "otfs-receiver/mppsi/mppsi-kernel.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/accepted-kernel.mjs",
+      "compatibility": "labs/otfs-receiver/mppsi/accepted-kernel.mjs",
+      "public": "otfs-receiver/mppsi/accepted-kernel.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/revalidation/README.md",
+      "compatibility": "labs/otfs-receiver/mppsi/revalidation/README.md",
+      "public": "otfs-receiver/mppsi/revalidation/README.md",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/revalidation/recovery-report.json",
+      "compatibility": "labs/otfs-receiver/mppsi/revalidation/recovery-report.json",
+      "public": "otfs-receiver/mppsi/revalidation/recovery-report.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/revalidation/numerical-report.json",
+      "compatibility": "labs/otfs-receiver/mppsi/revalidation/numerical-report.json",
+      "public": "otfs-receiver/mppsi/revalidation/numerical-report.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/mppsi/revalidation/lifecycle-report.json",
+      "compatibility": "labs/otfs-receiver/mppsi/revalidation/lifecycle-report.json",
+      "public": "otfs-receiver/mppsi/revalidation/lifecycle-report.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/mppsi/produce-fixtures.mjs",
+      "compatibility": "scripts/validation/recovery-abc/mppsi/produce-fixtures.mjs",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/mppsi/lifecycle-check.mjs",
+      "compatibility": "scripts/validation/recovery-abc/mppsi/lifecycle-check.mjs",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/mppsi/independent-check.py",
+      "compatibility": "scripts/validation/recovery-abc/mppsi/independent-check.py",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/mppsi/fixtures.json",
+      "compatibility": "scripts/validation/recovery-abc/mppsi/fixtures.json",
+      "public": null,
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "tests/recovery-owned.test.cjs",
+      "compatibility": "tests/recovery-owned.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/recovery-published-baseline-projection.cjs",
+      "compatibility": "tests/helpers/recovery-published-baseline-projection.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/recovery-published-baseline-projection.json",
+      "compatibility": "tests/helpers/recovery-published-baseline-projection.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/recovery-published-module-dependencies.cjs",
+      "compatibility": "tests/helpers/recovery-published-module-dependencies.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/recovery-current-fixture.cjs",
+      "compatibility": "tests/helpers/recovery-current-fixture.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp-model.mjs",
+      "compatibility": "labs/joint-beamforming/ssp/ssp-model.mjs",
+      "public": "joint-beamforming/ssp/ssp-model.mjs",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/ssp-worker.mjs",
+      "compatibility": "labs/joint-beamforming/ssp/ssp-worker.mjs",
+      "public": "joint-beamforming/ssp/ssp-worker.mjs",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/user-load-data.json",
+      "compatibility": "labs/joint-beamforming/ssp/user-load-data.json",
+      "public": "joint-beamforming/ssp/user-load-data.json",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/teaching-pins.mjs",
+      "compatibility": "labs/joint-beamforming/ssp/teaching-pins.mjs",
+      "public": "joint-beamforming/ssp/teaching-pins.mjs",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/USER-LOAD-SOURCE-AUDIT.md",
+      "compatibility": "labs/joint-beamforming/ssp/USER-LOAD-SOURCE-AUDIT.md",
+      "public": "joint-beamforming/ssp/USER-LOAD-SOURCE-AUDIT.md",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/evidence/user-load-final-review.json",
+      "compatibility": "labs/joint-beamforming/ssp/evidence/user-load-final-review.json",
+      "public": "joint-beamforming/ssp/evidence/user-load-final-review.json",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/evidence/REVIEW.md",
+      "compatibility": "labs/joint-beamforming/ssp/evidence/REVIEW.md",
+      "public": "joint-beamforming/ssp/evidence/REVIEW.md",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/joint-beamforming/ssp/evidence/REAL-MAPPING-REVIEW.json",
+      "compatibility": "labs/joint-beamforming/ssp/evidence/REAL-MAPPING-REVIEW.json",
+      "public": "joint-beamforming/ssp/evidence/REAL-MAPPING-REVIEW.json",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/user-load/ledger.test.cjs",
+      "compatibility": "scripts/validation/recovery-abc/user-load/ledger.test.cjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/user-load/independent-lifecycle.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/user-load/independent-lifecycle.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/user-load/contracts.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/user-load/contracts.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/user-load/raw-initial-objectives.json",
+      "compatibility": "scripts/validation/recovery-abc/user-load/raw-initial-objectives.json",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/user-load/real-inputs.test.mjs",
+      "compatibility": "scripts/validation/recovery-abc/user-load/real-inputs.test.mjs",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/joint-beamforming/user-load-uniform-recomputation-20261018-full.tar.xz",
+      "compatibility": "assets/data/joint-beamforming/user-load-uniform-recomputation-20261018-full.tar.xz",
+      "public": "assets/data/joint-beamforming/user-load-uniform-recomputation-20261018-full.tar.xz",
+      "owner": "labs/joint-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "scripts/validation/recovery-abc/current-numerical-inputs.json",
+      "compatibility": "scripts/validation/recovery-abc/current-numerical-inputs.json",
+      "public": null,
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/compatibility.cjs",
+      "compatibility": "scripts/build/compatibility.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
     }
   ]
 }

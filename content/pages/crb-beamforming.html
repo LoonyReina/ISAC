@@ -324,6 +324,7 @@
   </div></details>
 </section>
 
+<section class="chapter" id="extended-target"><h2>同论文扩展：恢复波束时，怎样保留协方差？</h2><p>扩展目标 full-response CRB，固定 K=2、Nt=4/6、Γ=0–20 dB。比较同一个松弛解的构造恢复与主特征对基线；原 probing 保留，不缩放功率。奇异 R 没有有限逆迹界，预算耗尽不代表不可行。</p><p><a href="labs/crb-beamforming/extended-lab/prototype/index.html">进入有界协方差恢复实验</a> · <a href="assets/data/crb-beamforming/new-extended-crb-evidence.tar.gz">下载新计算数值证据</a></p><p>恢复源码后的新独立 CVXPY 对照18/18通过；18次 optimal_inaccurate 全部保留，并分别通过既有修复证书检查。不是原始丢失输出、区间证明或整篇论文复现；浏览器和性能验证仍待完成。</p></section>
 <section class="chapter" id="paper" aria-labelledby="crb-paper-title">
   <header class="chapter-head"><p class="eyebrow">07 / 回到原文</p><h2 id="crb-paper-title">论文优化的是估计下界：从精确特例到有条件的多用户恢复</h2></header>
   <div class="crb-paper-citation"><span class="crb-paper-year">2022</span><div><h3><a href="https://doi.org/10.1109/TSP.2021.3135692">Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming</a></h3><p>Fan Liu · Ya-Feng Liu · Ang Li · Christos Masouros · Yonina C. Eldar<br>IEEE Transactions on Signal Processing, 70, 240–253</p><a href="https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Cramr-Rao_Bound_Optimization_for_Joint_Radar-Communication_Beamforming.pdf">阅读作者托管的已发表期刊 PDF ↗</a></div></div>

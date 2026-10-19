@@ -1,0 +1,3 @@
+/* Test-only browser Worker bridge. Executes the unchanged worker.js loop. */
+const {parentPort}=require('node:worker_threads'),vm=require('node:vm'),fs=require('node:fs'),path=require('node:path');
+const context={setTimeout,clearTimeout,performance,console,Float64Array,postMessage:m=>parentPort.postMessage(m)};context.self=context;context.globalThis=context;vm.createContext(context);context.importScripts=(...files)=>files.forEach(file=>vm.runInContext(fs.readFileSync(path.resolve(__dirname,file),'utf8'),context,{filename:file}));vm.runInContext(fs.readFileSync(path.join(__dirname,'worker.js'),'utf8'),context,{filename:'worker.js'});parentPort.on('message',data=>context.onmessage({data}));

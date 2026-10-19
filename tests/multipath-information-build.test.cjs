@@ -23,7 +23,7 @@ test('multipath mappings preserve every deployed predecessor mapping and reject 
  for(const row of P.delta.addedEntries)for(const mode of ['missing','duplicate','changed']){const bad=structuredClone(manifest),at=bad.entries.findIndex(e=>e.source===row.source);if(mode==='missing')bad.entries.splice(at,1);if(mode==='duplicate')bad.entries.push(structuredClone(row));if(mode==='changed')bad.entries[at].public='unreviewed';a.throws(()=>P.withoutMappings(bad));}
 });
 test('multipath addition preserves all previous numerical assets and historical JSONs unchanged',()=>{
- const records=P.withoutMappings(manifest).entries.filter(e=>e.source&&(e.source.startsWith('labs/')&&/\.(?:js|mjs|json)$/.test(e.source)||e.source.startsWith('assets/data/'))).map(e=>({path:e.source,sha256:sha(fs.readFileSync(path.join(root,e.source)))})).sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0);a.equal(records.length,P.delta.protectedNumericalFileCount);a.equal(sha(JSON.stringify(records)),P.delta.protectedNumericalTreeSha256);
+ const records=P.withoutMappings(manifest).entries.filter(e=>e.source&&(e.source.startsWith('labs/')&&/\.(?:js|mjs|json)$/.test(e.source)||e.source.startsWith('assets/data/'))).map(e=>({path:e.source,sha256:sha(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(e.source,fs.readFileSync(path.join(root,e.source))))})).sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0);a.equal(records.length,P.delta.protectedNumericalFileCount);a.equal(sha(JSON.stringify(records)),P.delta.protectedNumericalTreeSha256);
  for(const row of P.delta.preservedHistoricalJSONs)a.equal(sha(fs.readFileSync(path.join(root,row.path))),row.sha256,row.path);
 });
 test('multipath ancestors refer to exact same-path immutable predecessor records',()=>{

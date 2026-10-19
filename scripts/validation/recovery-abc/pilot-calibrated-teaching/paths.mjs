@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {gunzipSync} from 'node:zlib';
+const here=path.dirname(fileURLToPath(import.meta.url));
+export const siteRoot=path.resolve(process.env.PILOT_TEST_SITE_ROOT||path.join(here,'../../../..'));
+export const outputRoot=path.resolve(process.env.PILOT_TEST_OUTPUT||fs.mkdtempSync(path.join(os.tmpdir(),'isac-pilot-owned-')));
+fs.mkdirSync(outputRoot,{recursive:true});
+export const outputURL=pathToFileURL(outputRoot+path.sep);
+export const sourceURL=name=>pathToFileURL(path.join(siteRoot,name));
+export const fixture=name=>JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/'+name+'.json.gz',import.meta.url))));

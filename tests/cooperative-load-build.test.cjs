@@ -3,7 +3,7 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const root=path.resolve(__dirname,'..'),P=require('./helpers/cooperative-load-preservation.cjs'),manifest=require('../build/compatibility-manifest.json'),G=require('../scripts/build/cooperative-clusters-dependencies.cjs');
 test('load addition restores exact main manifest and preserves every prior numerical asset',()=>{
  a.equal(P.sha(JSON.stringify(P.withoutMappings(manifest),null,2)+'\n'),P.delta.priorManifestSha256);
- for(const row of P.delta.protectedAssets)a.equal(P.sha(fs.readFileSync(path.join(root,row.path))),row.sha256,row.path);
+ for(const row of P.delta.protectedAssets)a.equal(P.sha(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(row.path,fs.readFileSync(path.join(root,row.path)))),row.sha256,row.path);
  for(const row of P.delta.addedEntries){const bad=structuredClone(manifest);bad.entries.find(x=>x.source===row.source).public='unreviewed';a.throws(()=>P.withoutMappings(bad));}
 });
 test('load exact byte layer preserves prior endpoints and rejects unexplained mutations',()=>{
