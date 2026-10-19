@@ -12,11 +12,23 @@ function regular(root,relative,allowMissing=false){
  const parts=relative.split('/');let current=root;
  for(let i=0;i<parts.length;i++){
   current=path.join(current,parts[i]);const stat=fs.lstatSync(current,{throwIfNoEntry:false});
-  if(allowMissing&&i===parts.length-1&&!stat)return current;
+  // A missing ancestor has no descendants to inspect; validate existing ancestors first.
+  if(allowMissing&&!stat)return path.join(root,relative);
   if(!stat)throw Error('Missing evidence path: '+relative);
   if(stat.isSymbolicLink()||(i===parts.length-1?!stat.isFile():!stat.isDirectory()))throw Error('Unsafe evidence path: '+relative);
  }
  return current;
+}
+function createParents(root,relative){
+ let current=root;
+ for(const part of relative.split('/').slice(0,-1)){
+  current=path.join(current,part);
+  if(!fs.lstatSync(current,{throwIfNoEntry:false})){
+   try{fs.mkdirSync(current);}catch(error){if(error.code!=='EEXIST')throw error;}
+  }
+  const stat=fs.lstatSync(current);
+  if(stat.isSymbolicLink()||!stat.isDirectory())throw Error('Unsafe evidence path: '+relative);
+ }
 }
 function digest(file,expected,output){
  const hash=crypto.createHash('sha256'),buffer=Buffer.alloc(1024*1024),fd=fs.openSync(file,'r');let size=0;
@@ -42,12 +54,16 @@ function restore(root=path.resolve(__dirname,'..')){
  }
  return jobs.map(({archive,files,destination})=>{
   if(fs.existsSync(destination))return {...identities.find(x=>x.path===archive.path),reconstructed:false};
+  // Only validated inputs may cause directory creation. Check each component, never follow symlinks.
+  createParents(root,archive.path);
+  regular(root,archive.path,true);
   const temporary=fs.mkdtempSync(path.join(path.dirname(destination),'.chunked-evidence-')),pending=path.join(temporary,'archive');
   try{
    const fd=fs.openSync(pending,'wx');
    try{for(let i=0;i<files.length;i++)digest(files[i],archive.chunks[i],fd);fs.fsyncSync(fd);}finally{fs.closeSync(fd);}
    digest(pending,archive);
    // Refuse to replace anything created while reconstruction was in progress.
+   regular(root,archive.path,true);
    fs.linkSync(pending,destination);
   }finally{fs.rmSync(temporary,{recursive:true,force:true});}
   return {...identities.find(x=>x.path===archive.path),reconstructed:true};
