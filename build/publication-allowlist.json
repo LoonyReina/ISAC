@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "33faf04211f4d95a2a9daa04d820d5fb61aa8af7",
+  "policy": "Only accepted, already deployed bounded lessons; never full-paper reproduction. Private registry is not a publication source.",
+  "basicPages": [
+    "index.html",
+    "foundations.html",
+    "theory.html",
+    "sandbox.html",
+    "resolution.html",
+    "pilot-design.html",
+    "network-clock.html",
+    "sbfd-resource.html",
+    "near-field.html",
+    "golay-radar.html",
+    "ofdm-interpolation.html",
+    "radar-beam-decision.html",
+    "perceptive-clutter.html",
+    "shared-array.html",
+    "distributed-detection.html",
+    "offgrid-range.html",
+    "reference-uncertainty.html"
+  ],
+  "excludedPages": [
+    "dual-array-positioning.html",
+    "perceptive-bsbl.html",
+    "cooperative-clusters.html",
+    "cooperative-rate.html",
+    "full-duplex-cancellation.html"
+  ],
+  "excludedAssetPrefixes": [
+    "labs/dual-array/",
+    "labs/perceptive-bsbl/",
+    "labs/cooperative-clusters/",
+    "labs/cooperative-load/",
+    "labs/full-duplex/",
+    "labs/near-field/research/"
+  ],
+  "modules": [
+    {
+      "id": "otfs-joint-estimation-2020",
+      "title": "On the Effectiveness of OTFS for Joint Radar and Communication",
+      "href": "otfs-receiver.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/otfs-receiver"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "otfs-sensing-assisted-2021",
+      "title": "Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks",
+      "href": "otfs-sensing-assisted.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/otfs-sensing-assisted"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "nearfield-multitarget-correlation",
+      "title": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
+      "href": "nearfield-multitarget.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/nearfield-multitarget"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "ofdm-ici-aware-receiver-2021",
+      "title": "MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?",
+      "href": "ofdm-ici-receiver.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/ofdm-ici"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "ofdm-passive-atomic-errors-2017",
+      "title": "Super-Resolution Delay-Doppler Estimation for OFDM Passive Radar",
+      "href": "atomic-ofdm-receiver.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/ofdm-reference"
+      ],
+      "sharedAssetPrefixes": [
+        "atomic-receiver"
+      ],
+      "sharedPageSections": []
+    },
+    {
+      "id": "tradeoffs-feedback-capacity-distortion-2018",
+      "title": "Joint State Sensing and Communication: Optimal Tradeoff for a Memoryless Case",
+      "href": "theory.html#capacity-distortion",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/capacity-distortion"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [
+        "capacity-distortion"
+      ]
+    },
+    {
+      "id": "tradeoffs-causal-state-communication-2013",
+      "title": "Causal State Communication",
+      "href": "causal-state-capacity.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/causal-state-capacity"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "nearfield-mechanism-aware-mapping-2026",
+      "title": "Propagation Mechanism-Aware Near-Field Spatially Non-Stationary Channel Estimation and Environment Mapping",
+      "href": "nearfield-gc-sage.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/near-field"
+      ],
+      "sharedAssetPrefixes": [
+        "nearfield-gc-sage"
+      ],
+      "sharedPageSections": []
+    },
+    {
+      "id": "optimal_waveform",
+      "title": "Toward Dual-functional Radar-Communication Systems: Optimal Waveform Design",
+      "href": "waveform-design.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/waveform-design"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "joint_beamforming",
+      "title": "Joint Transmit Beamforming for Multiuser MIMO Communications and MIMO Radar",
+      "href": "joint-beamforming.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/joint-beamforming"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "crb",
+      "title": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
+      "href": "crb-beamforming.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/crb-beamforming"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "80211ad",
+      "title": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+      "href": "80211ad-receiver.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/80211ad"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "supplement-case-crb",
+      "title": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
+      "href": "gaussian-tradeoff.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/gaussian-tradeoff"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "supplement-case-pilot",
+      "title": "OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing",
+      "href": "pilot-patterns.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/pilot-pattern"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "supplement-case-clock",
+      "title": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+      "href": "networked-sync.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/networked-sync"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    },
+    {
+      "id": "supplement-case-multipath-channel",
+      "title": "Evaluation of Position-related Information in Multipath Components for Indoor Positioning",
+      "href": "multipath-channel.html#position-information",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/channel-geometry"
+      ],
+      "sharedAssetPrefixes": [
+        "multipath-information"
+      ],
+      "sharedPageSections": [
+        "position-information"
+      ]
+    },
+    {
+      "id": "supplement-case-distributed-detection",
+      "title": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
+      "href": "cellfree-maprt.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/cellfree-maprt"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    }
+  ],
+  "basicRuntimeOwners": [
+    "labs/theory",
+    "labs/sandbox",
+    "labs/distributed-detection",
+    "labs/golay-radar",
+    "labs/near-field",
+    "labs/network-clock",
+    "labs/ofdm-interpolation",
+    "labs/ofdm-reference",
+    "labs/perceptive-clutter",
+    "labs/pilot-design",
+    "labs/radar-beam-decision",
+    "labs/resolution",
+    "labs/sbfd-resource",
+    "labs/shared-array",
+    "labs/channel-geometry"
+  ],
+  "sharedRuntimeOwners": [
+    "shared/styles",
+    "shared/records",
+    "features/foundations",
+    "features/learning-map",
+    "features/research-reading",
+    "features/catalog"
+  ]
+}
