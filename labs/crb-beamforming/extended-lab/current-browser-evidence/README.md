@@ -1,0 +1,11 @@
+# Current desktop-browser replay, 2026-10-21
+
+This report supplements, not replaces, the 2026-10-18 recovery notes. “Browser acceptance remains pending” in the frozen prototype is the historical recovery-stage statement. Current bounded desktop replay is now independently checked as described here. None of the original 14 prototype/runtime/evidence files or scientific bytes were changed.
+
+Two real browser Worker runs use the exact existing independent oracle inputs: Nt4 and Nt6, K2, Gamma10dB, seed271+Nt NumPy fixtures. Native JSON downloads were fed unchanged into the existing independent NumPy physical/dual/Schur checker: 2/2 passed. Objective differences against the existing, certificate-qualified but optimal_inaccurate CVXPY results are 1.18e-8 and 8.64e-8 relative. The oracle was not rerun. Independent reconstruction of the same-relaxation principal-eigenpair baseline also passes 2/2; its lower used energy is retained, not rescaled.
+
+Changing Nt/H invalidates the previous result. A live Nt6 cancellation is acknowledged and exported as cancelled with physical gate false. A duplicate Nt4 channel at Gamma20 runs to the unchanged 20000-iteration cap (observed 65.49 seconds), exports iteration_cap and physical gate false, and never claims infeasibility. Generate H subsequently clears the result and disables stale export. All four native raw records, DOM observations, current source binding, and independent outputs are retained in the local validation bundle.
+
+No import/file chooser was used. Mobile, first-paint/memory, and singular/infeasible baseline display remain unverified. A full-page screenshot timed out; viewport screenshots and native records were retained. No timing is a performance benchmark. Historical known failures, missing original screenshots, and all 18 optimal_inaccurate statuses are preserved. This is not physical localization/receiver simulation, interval certification, exhaustive editable-channel proof, or exact full-paper figure reproduction.
+
+See SUMMARY.json for independent metrics and native-record hashes. The exact nested prototype URL must remain in the publication manifest so this same-paper extension is executable rather than reduced to narrative/download links.

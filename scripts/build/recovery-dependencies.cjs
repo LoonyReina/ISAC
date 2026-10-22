@@ -32,7 +32,7 @@ const requiredFiles={
   "labs/crb-beamforming/extended-lab/extended/core.js": "1c73151c201fdf2e345f36023bf3f1553d17402d07fe4f5a83a4c39ffb461dae",
   "labs/crb-beamforming/extended-lab/extended/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
   "labs/crb-beamforming/extended-lab/extended/linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
-  "labs/crb-beamforming/extended-lab/prototype/index.html": "cd7968c38ff702799db38a761be2f65677612c4886355202d8b9a7c829056c25",
+  "labs/crb-beamforming/extended-lab/prototype/index.html": "5574d18d3a59591024e0d3181afd5f2c3e9632f741089c4a75ed3c1aa2e0ea00",
   "labs/crb-beamforming/extended-lab/prototype/app.js": "a23fb6594c9e109331cb661b6fcf07ccee263a7c3ac410f29da4ca9676374000",
   "labs/crb-beamforming/extended-lab/prototype/record.js": "204dc02aca475fed766a497fb1ccbf747b5794579cb87dad00c678500f077cc7",
   "labs/crb-beamforming/extended-lab/prototype/worker.js": "98f38a7e5099c1f2bd893ee84b389bc0783992d96e114a9914c5018d4333ae9e",
@@ -383,6 +383,13 @@ const additionalEdges=[
 
 function check(ok,message){if(!ok)throw Error('Recovery production boundary: '+message);}
 function unique(items,key,label){const map=new Map();for(const item of items){check(item&&typeof item[key]==='string'&&!map.has(item[key]),'duplicate or invalid '+label);map.set(item[key],item);}return map;}
+// Exact pilot reset-only UI update; historical original constants remain above.
+{const file='labs/pilot-pattern/lesson.mjs',old='c130e713a876cb59500df0e1e7fe16ea6a6af5bbe1c739eb6384c1da505b773a',next='c2563de72b9709b58882f32feef596ac6cb0d2d2d334cc42510ca1a9635b214f';
+check(requiredFiles[file]===old&&requiredModules[file].sha256===old,'unexpected prior pilot reset UI identity');
+requiredFiles[file]=next;requiredModules[file]={...requiredModules[file],sha256:next};}
+// Additive 2026-10-21 current-browser reports; no historical hashes are replaced.
+for(const [file,hash] of Object.entries({"labs/crb-beamforming/extended-lab/current-browser-evidence/README.md": "9ef3d8d1a344bbfa9cafa6defe71d05e13c4b2ba29d81e8a42d579c539342c59", "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json": "840f9ab8c3e9b71f53630e80cdd55a7ab45ecbaa9aacc7b4ad95f57238508ac8"})){if(Object.hasOwn(requiredFiles,file))throw Error("Duplicate current CRB report");requiredFiles[file]=hash;}
+additionalEdges.push(...[{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/manual.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/guided-lesson.css","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/integration.css","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/lessons.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/receiver-adapters.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/receiver-views.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/theory-adapters.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/theory-views.js","kind":"teaching19-nested-html"},{"from":"labs/crb-beamforming/extended-lab/prototype/index.html","url":"../../../../features/teaching19/engine.js","kind":"teaching19-nested-html"}]);
 function recoveryDependencies({identities,modules,contract,pages}){
  check(Array.isArray(identities)&&Array.isArray(modules)&&Array.isArray(pages)&&contract?.schemaVersion===1&&Array.isArray(contract.modules),'complete inputs required');
  const files=unique(identities,'file','identity'),sources=unique(modules,'file','module'),declared=unique(contract.modules,'public','contract'),documents=unique(pages,'file','page');

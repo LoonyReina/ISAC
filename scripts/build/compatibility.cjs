@@ -71,6 +71,10 @@ function checkDependencies(root,manifest){
  for(const edge of moduleDependencies(modules,moduleContract,identities))local(edge.from,edge.url,edge.kind);
  const recoveryPages=[...all.keys()].filter(file=>file.endsWith('.html')&&!file.includes('/')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
  for(const edge of require('./recovery-dependencies.cjs').recoveryDependencies({identities,modules,contract:moduleContract,pages:recoveryPages}))local(edge.from,edge.url,edge.kind);
+ const target19Pages=[...all.keys()].filter(file=>file.endsWith('.html')).map(file=>({file,source:fs.readFileSync(path.join(root,file),'utf8')}));
+ for(const edge of require('./target19-otfs-dependencies.cjs').target19OtfsDependencies({identities,pages:target19Pages}))local(edge.from,edge.url,edge.kind);
+ require('./target19-nearfield-dependencies.cjs').target19NearfieldDependencies({identities,pages:target19Pages});
+ for(const edge of require('./target19-bistatic-dependencies.cjs').target19BistaticDependencies({identities,pages:target19Pages,read:file=>fs.readFileSync(path.join(root,file),'utf8')}))local(edge.from,edge.url,edge.kind);
  const fullDuplex=modules.filter(m=>m.file.startsWith('full-duplex/'));
  const fullDuplexPages=[{file:'full-duplex-cancellation.html',source:fs.readFileSync(path.join(root,'full-duplex-cancellation.html'),'utf8')}];
  for(const edge of require('./full-duplex-dependencies.cjs').fullDuplexDependencies(fullDuplex,identities,fullDuplexPages,staticModuleDependencies))local(edge.from,edge.url,edge.kind);

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="从单站功率扫描到双站通信时延关联：可调参数、浏览器本地实时重算的 ISAC 教学候选。">
+  <title>从感知到通信 · ISAC 信道映射实验室</title>
+  <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
+  <link rel="stylesheet" href="channel-mapping/styles.css">
+  <script type="module" src="channel-mapping/src/app.mjs"></script>
+  <link rel="stylesheet" href="channel-mapping/site-integration.css">
+</head>
+<body>
+<!-- SITE:HEADER:START -->
+<a class="site-skip" href="#site-main">跳到正文</a>
+<header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="基础知识与论文阅读导航"><a href="foundations.html"><span>01</span> 基础知识</a><a href="reading.html" aria-current="location"><span>02</span> 论文阅读</a></nav></header>
+<!-- SITE:HEADER:END -->
+<main id="top">
+<!-- SITE:CONTEXT:START -->
+<div class="site-context" id="site-main" tabindex="-1"><p>论文阅读 · 本地核心教学已验收；本集成页待验，未部署。</p></div>
+<!-- SITE:CONTEXT:END -->
+  <section class="hero">
+    <p class="eyebrow">PAPER → ALGORITHM → EXPERIMENT</p>
+    <h1>从感知扫描，<br>推回通信路径。</h1>
+    <p class="lede">角度告诉我们物体在哪，距离告诉我们信号走了多远。现在从带噪功率扫描开始，亲手检验它们何时能解释同一条通信路径。</p>
+    <p class="paper-line"><a href="https://arxiv.org/html/2601.18558v1#S3" target="_blank" rel="noopener noreferrer">Cui et al. · arXiv:2601.18558v1 · §§3.1–3.2 ↗</a></p>
+    <div class="pipeline" aria-label="实际计算链"><span>01 扫描取峰</span><i>→</i><span>02 几何反投影</span><i>→</i><span>03 物体聚类</span><i>→</i><span>04 双站时延关联</span></div>
+    <div class="notice"><strong>这是新的合成实验，不是原作者测量。</strong> portable-v2 生成器、聚类与匹配规则均公开说明。旧版 36 个实验和 21 张截图不构成本页验证。新重建独立版本已于 2026-10-20 通过本地核心教学验收；本页新增站点导航后的界面、整站回归与部署仍待验证。严格浏览器/Node 逐值比较的 15 处微小浮点差异仍保留为 FAIL，不改写为全项通过。</div>
+  </section>
+  <div class="lab-layout">
+    <aside class="settings card">
+      <div class="section-top"><p class="eyebrow">CONTROL ROOM</p><span class="pill">本地 Worker</span></div>
+      <h2>改变条件，重新推断</h2><p class="muted">每次计算参数编辑立即取消旧任务、清除旧结果；有效输入停顿后自动重算。</p>
+      <form id="parameters" novalidate>
+        <fieldset><legend>观测生成</legend>
+          <label for="scene">场景</label><select id="scene" name="scene"><option value="separated">分离物体</option><option value="delay_ambiguous">相同时延歧义</option><option value="sensing_missing">感知缺失，通信仍存在</option></select>
+          <p id="scene-note" class="field-note"></p>
+          <div class="two-fields"><div><label for="seed">整数种子</label><input id="seed" name="seed" type="number" min="0" max="2147483647" step="1" value="101" required></div><div><label for="noise">噪声尺度</label><input id="noise" name="noise" type="number" min="0" max="3" step="any" value="1" required></div></div>
+          <p class="field-note">noise ∈ [0,3]，可取任意实数。0 关闭扰动，不改变抽样约定。相同种子不等于旧版输入。</p>
+        </fieldset>
+        <fieldset><legend>原文峰值门限</legend>
+          <label for="minPowerDb">最低峰值功率 <span>dB</span></label><input id="minPowerDb" name="minPowerDb" type="number" min="-120" max="0" step="any" value="-55" required>
+          <div class="two-fields"><div><label for="minSeparationNs">最小间隔 <span>ns</span></label><input id="minSeparationNs" name="minSeparationNs" type="number" min="0" max="40" step="any" value="2.2" required></div><div><label for="minRangeM">最小距离 <span>m</span></label><input id="minRangeM" name="minRangeM" type="number" min="0" max="20" step="any" value="0.5" required></div></div>
+          <label for="maxPeaksPerAngle">每角最多峰数 K</label><input id="maxPeaksPerAngle" name="maxPeaksPerAngle" type="number" min="0" max="16" step="1" value="4" required>
+        </fieldset>
+        <fieldset><legend>本站公开补充规则</legend><div class="two-fields"><div><label for="clusterRadiusM">连通聚类半径 <span>m</span></label><input id="clusterRadiusM" name="clusterRadiusM" type="number" min="0" max="2" step="any" value="0.45" required></div><div><label for="associationGateNs">时延候选容差 <span>ns</span></label><input id="associationGateNs" name="associationGateNs" type="number" min="0" max="20" step="any" value="0.75" required></div></div></fieldset>
+        <div class="actions"><button type="submit" class="primary">立即重算</button><button type="reset">恢复默认</button><button type="button" id="cancel">停止</button></div>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite">正在准备本地计算…</p>
+      <noscript><p class="notice">此实验需要 JavaScript 执行本地算法。当前尚未计算，也没有结果。</p></noscript>
+    </aside>
+    <div class="results-column">
+      <section id="empty-state" class="card empty-state"><span class="orb">↗</span><h2>结果从扫描开始</h2><p>参数有效时将在本地生成观测，依次计算峰值、匿名物体和通信时延关联。不会预先填入真值坐标。</p></section>
+      <div id="results" hidden>
+        <section class="card result-toolbar"><div><p class="eyebrow">CURRENT OBSERVATION</p><p id="run-identity"></p></div><button id="export" type="button" disabled>导出当前 JSON</button><p id="export-status" class="field-note" role="status"></p></section>
+        <section class="card">
+          <div class="section-top"><div><p class="eyebrow">01 / OBSERVE</p><h2>从功率扫描中取峰</h2></div><span id="peak-count" class="pill"></span></div>
+          <p class="muted">横轴为绝对往返时延，纵轴为扫描角度。白框为保留峰值，粉色为选中物体的成员；点击峰值可关联查看物体。</p>
+          <div class="scan-grid"><figure><figcaption>Mono₁ · 朝向 +x</figcaption><canvas id="scan1" role="img" aria-label="第一站功率扫描，峰值也可从下方物体选择框查看"></canvas></figure><figure><figcaption>Mono₂ · 朝向 −x</figcaption><canvas id="scan2" role="img" aria-label="第二站功率扫描，峰值也可从下方物体选择框查看"></canvas></figure></div>
+          <div class="color-key"><span>弱 −85 dB</span><div></div><span>强 −35 dB</span></div>
+          <p id="scan-summary" class="field-note"></p>
+          <details><summary>峰值处理顺序与离散规则</summary><p>局部极大值（平顶取最早 bin）→ 功率门限 → 强峰优先最小间隔 → 近场距离门限 → 每角 Top-K。等号保留，端点不取峰。近场峰先参加间隔筛选，之后才被距离门限去除。</p></details>
+        </section>
+        <section class="card">
+          <div class="section-top"><div><p class="eyebrow">02–03 / RECONSTRUCT</p><h2>距离 × 角度，变成匿名物体</h2></div><span id="group-count" class="pill"></span></div>
+          <div class="formula">Mono₁: (R cosθ, −R sinθ)　·　Mono₂: (4 − R cosθ, −R sinθ)</div>
+          <div class="display-options"><label class="check"><input id="reveal-truth" type="checkbox">显示评价真值</label><label class="check"><input id="show-detections" type="checkbox" checked>显示全部反投影点</label></div>
+          <svg id="map" viewBox="0 0 650 360" role="img" aria-label="双站反投影、聚类物体与可选评价真值"></svg>
+          <div class="legend"><span class="station1">● Mono₁</span><span class="station2">● Mono₂</span><span class="estimated">◆ 聚类代表</span><span>＋ 真值，仅用于评价</span></div>
+          <label for="selected-group">选择物体，检查实际扫描来源</label><select id="selected-group"></select><div id="group-detail" class="detail"></div>
+          <details><summary>聚类不是原作者公开的自动识别算法</summary><p>本页采用半径连通分量。每站选最强成员，再对可用站代表等权平均。连通链可把不同物体合并；群组不具备“墙”或“金属板”等语义。单站也可提出几何预测，但本页尚未建立其性能优势。</p></details>
+        </section>
+        <section class="card">
+          <div class="section-top"><div><p class="eyebrow">04 / ASSOCIATE</p><h2>能解释哪一条通信路径？</h2></div></div>
+          <label for="branch">查看预测分支（仅切换展示，不重新生成观测）</label><select id="branch"><option value="coordinate">坐标重建 · 原文 Eq.3</option><option value="paired_range">公平基线 · 同组双站观测距离</option><option value="zero_angle">破坏性消融 · 角度全部设为 0</option></select>
+          <p id="branch-note" class="branch-note"></p><div id="formula" class="formula"></div>
+          <div id="association-list" class="association-list"></div>
+          <p class="field-note">只在候选恰为一个时做唯一关联；多个候选保留歧义，没有候选则拒配。每条 MPC 独立处理，不实施全局一对一指派。</p>
+        </section>
+        <section class="card">
+          <p class="eyebrow">EVALUATE / NOT FEEDBACK</p><h2>让结果允许失败</h2><p class="muted">评价模块事后读取真值，不能修正推断结果。公平比较的两条分支共享扫描、聚类及最强代表，不把破坏性消融当对照。</p>
+          <p id="comparison" class="comparison"></p><div id="metrics" class="metrics-grid"></div>
+          <p id="metric-footnote" class="field-note"></p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <section id="scope" class="card scope"><p class="eyebrow">READ THE BOUNDARY</p><h2>核心复现，不等于完整论文复现。</h2><div class="scope-grid"><div><h3>原文支撑</h3><p>§3.1 的扫描峰值门限、往返距离映射、相向站点的 Eqs.1–2；§3.2 的 Eq.3 几何时延与通信 MPC 对应关系。</p></div><div><h3>明确补充</h3><p>可复现均匀随机生成器、MAX 功率峰注入、连通聚类、最强代表、唯一候选规则、共享观测基线及独立真值匹配。</p></div><div><h3>尚未复现</h3><p>原始测量 PADP/CIR、真实硬件校准、实测 S1/S2、墙体 3 mm 精度、RCS 与语义识别。这里也不构成已部署网站或完整验收。</p></div></div><p class="field-note">本页完全本地计算。显示与导出仅针对新的 portable-v2 输入。启动下载不代表已保存文件；没有上传、远程求解或遥测。</p></section>
+<section class="card mapping-integration-status" aria-labelledby="integration-status-title"><h2 id="integration-status-title">验收范围与站点状态</h2><p>新重建独立版本：local-core-accepted。此统一站点连接候选：integration-not-verified / not-deployed。不新增“整篇论文复现”或重算其他论文的验收数量。</p><p><a href="assets/data/channel-mapping/acceptance-summary.json" download>下载验收范围摘要 JSON</a> · <a href="reading.html">返回论文阅读与单窗口星图</a> · <a href="#scope">查看科学边界</a></p></section>
+<!-- SITE:NEXT:START -->
+<aside class="site-next"><a href="reading.html">返回论文阅读与单窗口星图</a></aside>
+<!-- SITE:NEXT:END -->
+</main>
+</body></html>

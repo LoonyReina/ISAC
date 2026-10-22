@@ -140,7 +140,7 @@ export function mountLesson(root) {
   const pageshow=event=>{if(event.persisted)select(readInput());};
   window.addEventListener('resize',resize);window.addEventListener('pagehide',pagehide);
   window.addEventListener('pageshow',pageshow);
-  select({...core.DEFAULT_INPUT});
+  if (globalThis.ISACGuidedManual !== true) select({...core.DEFAULT_INPUT});
   return {controller,dispose(){importSerial++;clearTimeout(resizeTimer);controller.dispose();window.removeEventListener('pagehide',pagehide);window.removeEventListener('pageshow',pageshow);window.removeEventListener('resize',resize);}};
 }
 if(typeof document!=='undefined'){

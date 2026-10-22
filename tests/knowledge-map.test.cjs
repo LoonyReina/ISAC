@@ -4,6 +4,9 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json')),renderMap=require('../scripts/knowledge-map.cjs');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
+const historyGuideData=JSON.parse(readForHistory(historyRegistry.researchGuidesFile));
 const {buildResearchGuides}=require('../scripts/research-guides.cjs'),guideData=JSON.parse(read(registry.researchGuidesFile));
 const render=(r=registry,data=guideData)=>renderMap(r,buildResearchGuides(data,r));
 const escape=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
@@ -230,16 +233,16 @@ test('DOM disclosure toggles and native links add no history; restored templates
 
 test('estimation starts with common observations and retains the scoped advanced LS route',()=>{
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='estimation'),advanced=registry.units.find(u=>u.id==='estimator-crb');
- a.equal(n.entryUnitRef,'shared');a.deepEqual(require('./helpers/perceptive-bsbl-preservation.cjs').withoutRegistry(registry).knowledgeMap.nodes.find(x=>x.id===n.id).unitRefs,['shared','estimator-crb','offgrid-range']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
+ a.equal(n.entryUnitRef,'shared');a.deepEqual(require('./helpers/perceptive-bsbl-preservation.cjs').withoutRegistry(historyRegistry).knowledgeMap.nodes.find(x=>x.id===n.id).unitRefs,['shared','estimator-crb','offgrid-range']);a.equal(advanced.group,'research');a.deepEqual(advanced.prerequisites,['theory.html#crb-mechanism']);
  const h=template(render(registry),n.id),beginner=parse(h).querySelector('.map-beginner');a.equal(beginner.querySelector('a').attrs.href,'theory.html#shared-model');a.ok(h.includes('href="'+advanced.href+'"'));
  const d=registry.directions.find(d=>d.id==='receiver'),item=d.levels.find(l=>l.id==='experiment').items.find(i=>i.href===advanced.href);
- a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(registry).directions.find(x=>x.id===d.id).coverage,/离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(registry).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
+ a.equal(item.status,'available');a.match(item.label,/实标量 LS/);a.match(item.note,/无量纲实增益/);a.match(item.note,/不是非线性测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).coverage,/离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
  resolve(item.href);a.ok(read('reading.html').includes(escape(item.note)));
 });
 
 test('mutual assistance preserves its native theory entry and links only the bounded synthetic mechanism',()=>{
- const legacyRegistry=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry),k=legacyRegistry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,['radar-beam-decision']);a.equal(n.entryUnitRef,undefined);resolve(n.href);
- const h=template(render(legacyRegistry,require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(guideData)),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/任务互助收益/);a.match(h,/已有独立合成感知辅助波束候选机制/);a.match(h,/未实现在线闭环或端到端收益验证/);a.doesNotMatch(h,/尚无独立专项实验/);
+ const legacyRegistry=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(historyRegistry),k=legacyRegistry.knowledgeMap,n=k.nodes.find(n=>n.id==='mutual-assistance');a.equal(n.groupId,'codesign');a.equal(n.href,'theory.html#evolution');a.deepEqual(n.unitRefs,['radar-beam-decision']);a.equal(n.entryUnitRef,undefined);resolve(n.href);
+ const h=template(render(legacyRegistry,require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(historyGuideData)),n.id),tree=parse(h);a.match(h,/集成收益/);a.match(h,/任务互助收益/);a.match(h,/已有独立合成感知辅助波束候选机制/);a.match(h,/未实现在线闭环或端到端收益验证/);a.doesNotMatch(h,/尚无独立专项实验/);
  const beginner=tree.querySelector('.map-beginner');a.deepEqual(beginner.querySelectorAll('a').map(l=>l.attrs.href),['theory.html#evolution','radar-beam-decision.html#experiment']);
  const choices=tree.querySelector('.map-case-paths').querySelectorAll('a');a.equal(choices.length,1);a.equal(choices[0].attrs.href,'radar-beam-decision.html#mechanism');resolve(choices[0].attrs.href);
  const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
@@ -326,7 +329,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,require('./helpers/pilot-pattern-preservation.cjs').maybeWithoutGuides(guideData).cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
+ a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,require('./helpers/pilot-pattern-preservation.cjs').maybeWithoutGuides(historyGuideData).cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
@@ -379,7 +382,7 @@ test('native ladder links and explanation work with unchanged selection, search,
 test('ladder remains a vertical native disclosure with versioned styles and no runtime or source-data changes',()=>{
  const css=read('knowledge-map.css');a.match(css,/\.map-progression-steps\{[^}]*border-left:/);a.match(css,/\.map-progression-why>summary\{[^}]*min-height:44px/);a.match(css,/\.map-progression\{[^}]*overflow-wrap:anywhere/);a.ok(read('index.html').includes('knowledge-map.css?v=map-progression-v1'));
  a.doesNotMatch(read('knowledge-map.js'),/progression|researchGuides|contextTrail/);
- a.equal(require('node:crypto').createHash('sha256').update(require('./helpers/research-guide-trace-preservation.cjs').priorGuideSource(guideData)).digest('hex'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
+ a.equal(require('node:crypto').createHash('sha256').update(require('./helpers/research-guide-trace-preservation.cjs').priorGuideSource(historyGuideData)).digest('hex'),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  const generator=withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs'));a.ok(generator.indexOf('const researchGuides=')<generator.indexOf("const home=pageFor('index.html');"));a.match(generator,/'knowledge-map\.cjs'\)\)\(registry,researchGuides\)/);
 });
 
@@ -406,10 +409,10 @@ test('three additional source-backed selections preserve the first route and all
   ['beam-design','array','mimo-ofdm-realtime-testbed-2023','sbfd-resource-synchronization-2026','problem-link']
  ];
  a.deepEqual(registry.knowledgeMap.progressions.slice(1,4).map(p=>[p.nodeId,p.unitId,p.guideId,p.nextGuideId]),expected.map(e=>e.slice(0,4)));
- const before=withoutGCSAGERegistry(registry);before.knowledgeMap.progressions.splice(1);
+ const before=withoutGCSAGERegistry(historyRegistry);before.knowledgeMap.progressions.splice(1);
  const hash=v=>require('node:crypto').createHash('sha256').update(v).digest('hex');
  a.equal(hash(JSON.stringify(before)),'2a8a834a37e7bd94a77a87b645b201dfc81a2f798bfa04eff92dcbd02bc2d5c7');
- const first=template(render(require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry),require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(guideData)),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';
+ const first=template(render(require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(historyRegistry),require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutGuides(historyGuideData)),'known-pilots'),correction='本站的代表性原文导读将这个机制列为先修';
  a.equal(first.split(correction).length,2);
  // Preserve first-release markup except the separately reviewed attribution correction.
  const normalize=h=>h.replace(correction,'代表性原文将这个实验列为先修');
@@ -442,7 +445,7 @@ test('direct-citation qualification stays visible and all three added ladders re
 
 test('the fifth geometry ladder uses only reviewed existing joins and preserves the first four rendered routes',()=>{
  const {progression,withoutNetworkProgression,withoutNetworkContext}=require('./helpers/network-context-preservation.cjs');
- a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(registry),withoutNetworkContext(guideData)),current=render(),beforeSolverCoverage=render(require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(registry),require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(guideData));
+ a.deepEqual(registry.knowledgeMap.progressions[4],progression);const old=render(withoutNetworkProgression(historyRegistry),withoutNetworkContext(historyGuideData)),current=render(),beforeSolverCoverage=render(require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(historyRegistry),require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(historyGuideData));
  // Preserve original rendered routes after reversing only separately guarded solver-coverage fields.
  for(const id of ['known-pilots','angle','echo','beam-design'])a.equal(template(beforeSolverCoverage,id),template(old,id),id);
  const n=registry.knowledgeMap.nodes.find(n=>n.id==='geometry'),u=registry.units.find(u=>u.id==='geometry'),g=guideData.cards.find(c=>c.id===progression.guideId),next=guideData.cards.find(c=>c.id===progression.nextGuideId);

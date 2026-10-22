@@ -81,7 +81,7 @@ const profiles=[
   },
   {
     "public": "labs/ofdm-ici/lesson/ici-lesson.js",
-    "sha256": "1b51814832d69dcbce235594cf6812d8766f9017cbf90ebaf6f609cf9343fd0b",
+    "sha256": "42824018b1a913b442ac40984ff8e54a2f6b0de59411dce23135a0109709f2f9",
     "runtimePolicy": "exact-frozen-classic",
     "runtimeEdges": []
   },
@@ -300,6 +300,8 @@ const auxiliaryFiles=new Set(["labs/ofdm-ici/false-alarm/index.html","labs/ofdm-
 const gaussianModuleFiles=new Set(["labs/gaussian-tradeoff/runtime/codec.mjs","labs/gaussian-tradeoff/runtime/kernel.mjs","labs/gaussian-tradeoff/runtime/math.mjs","labs/gaussian-tradeoff/runtime/presets.mjs","labs/gaussian-tradeoff/runtime/runtime.mjs","labs/gaussian-tradeoff/runtime/worker.mjs","labs/gaussian-tradeoff/lesson/controller.mjs","labs/gaussian-tradeoff/lesson/view.mjs","labs/gaussian-tradeoff/lesson/lesson.mjs"]);
 // A narrow owned namespace inventory, not a claim that every extension executes.
 function fields(x,keys,label){if(!x||typeof x!=='object'||Array.isArray(x)||Object.keys(x).sort().join(',')!==[...keys].sort().join(','))throw Error('Invalid '+label+' fields');}
+// Exact reset-only UI update. Prior scientific/runtime profiles remain frozen above.
+{const p=profiles.filter(p=>p.public==='labs/80211ad/lesson/lesson.js');a.equal(p.length,1);a.equal(p[0].sha256,'124cf884cfb3bf461c313f653732ac588f4c989d8d21c8cfbc5947506265624f');p[0].sha256='63afe2d831a094f11197e4155de73588754e4861d9cec17ce43c3b77d34d3104';}
 function classicDependencies(scripts,contract,identities){
  fields(contract,['schemaVersion','scripts'],'classic contract');
  if(contract.schemaVersion!==1||!Array.isArray(contract.scripts))throw Error('Invalid classic contract');

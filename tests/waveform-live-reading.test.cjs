@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const r=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(JSON.parse(read('site/registry.json'))),data=JSON.parse(read(r.researchDirectoryFile));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const r=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(JSON.parse(readForHistory('site/registry.json'))),data=JSON.parse(read(r.researchDirectoryFile));
 const {renderResearchDirectory}=require('../scripts/render-research-directory.cjs');
 const render=(d=data,registry=r,exists=file=>fs.existsSync(path.join(root,file)))=>renderResearchDirectory(d,registry,exists);
 const selected=d=>d.cards.find(c=>c.id==='optimal_waveform');

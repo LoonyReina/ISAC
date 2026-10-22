@@ -40,11 +40,60 @@ test('Selective lesson presentation retains the two-section constellation and cu
  const css=read('labs/joint-beamforming/ssp/ssp.css','labs/joint-beamforming/ssp/ssp.css');for(const rule of ['min-height:44px','max-height:min(32rem,65vh)','position:sticky',':focus-visible'])assert.ok(css.includes(rule));
 });
 
-test('Current numerical inputs retain every published identity except two separately reviewed recovery leaves',()=>{
+// This frozen inventory predates two separately authenticated reset-only UI edits.
+// Authenticate their actual complete current closure before reconstructing history;
+// Current runtime validators remain raw; only the enumerated predecessor endpoints use history.
+const targetIdentity=require('./helpers/target19-source-identity.cjs');
+const targetInventoryPaths=Object.freeze(['labs/near-field/research/entry.mjs','labs/ofdm-ici/lesson/ici-lesson.js','labs/ofdm-reference/atomic-receiver-model.js','labs/ofdm-reference/atomic-receiver.js']);
+const resetInventoryPaths=Object.freeze(['labs/80211ad/lesson/lesson.js','labs/pilot-pattern/lesson.mjs']);
+const teachingInventoryPaths=Object.freeze(["labs/causal-state-capacity/causal-capacity-ui.mjs", "labs/channel-geometry/multipath-information-ui.mjs", "labs/near-field/research/tests/page.test.mjs"]);
+const teachingInventoryCompatibility=Object.freeze({"labs/causal-state-capacity/causal-capacity-ui.mjs": "causal-capacity-ui.mjs", "labs/channel-geometry/multipath-information-ui.mjs": "multipath-information-ui.mjs", "labs/near-field/research/tests/page.test.mjs": "labs/near-field/research/tests/page.test.mjs"});
+function assertNumericalInventoryEntry(entry,base=root){
+ const sha=b=>require('node:crypto').createHash('sha256').update(b).digest('hex');
+ const file=fs.existsSync(path.join(base,entry.source))?entry.source:entry.compatibility,raw=fs.readFileSync(path.join(base,file));
+ const reset=resetInventoryPaths.includes(entry.source),scientific=targetInventoryPaths.includes(entry.source),teaching=teachingInventoryPaths.includes(entry.source),projected=reset||scientific||teaching;let historical=raw;
+ if(scientific){const row=targetIdentity.rowFor(entry.source);assert.equal(entry.compatibility,row.compatibility);historical=targetIdentity.readCurrentForHistory(file,raw,{root:base});assert.notEqual(row.after.sha256,row.before.sha256);}
+ if(reset){assert.equal(entry.compatibility,entry.source,'Exact reset inventory path, never an alias');historical=require('./helpers/reset-ui-preservation.cjs').readCurrentForHistory(entry.source,raw,{root:base});}
+ if(teaching){assert.equal(entry.compatibility,teachingInventoryCompatibility[entry.source],'Exact teaching inventory mapping, never an alias');targetIdentity.assertCurrentClosure(base);assert.ok(raw.equals(fs.readFileSync(targetIdentity.regular(base,file))),'Actual raw teaching inventory read');historical=targetIdentity.teachingBefore(entry.source,raw);assert.notEqual(sha(historical),sha(raw),'Teaching endpoint must replay its exact198 predecessor');}
+ assert.equal(sha(historical),entry.currentSha256,entry.source);if(!entry.reviewedRecoveryLeaf)assert.equal(entry.currentSha256,entry.publishedSha256,entry.source);
+ return {projected,rawSha256:sha(raw),historicalSha256:sha(historical)};
+}
+test('Frozen numerical inputs retain published identities and two recovery leaves through separately authenticated reset UI and target19 predecessor history',()=>{
  const sha=b=>require('node:crypto').createHash('sha256').update(b).digest('hex'),bytes=fs.readFileSync(path.join(root,'scripts/validation/recovery-abc/current-numerical-inputs.json'));
  assert.equal(sha(bytes),'548804e19308567dbffcbdfe144dc8fafebcbef51d480308a2ad53928b9db2bf');const inventory=JSON.parse(bytes);assert.equal(inventory.baseline,'ba68a519430bc39b12d2507276df1e9ab60a6ab5');assert.equal(inventory.files.length,790);
  assert.deepEqual(inventory.files.filter(e=>e.reviewedRecoveryLeaf).map(e=>e.source),['labs/pilot-pattern/lesson.mjs','labs/pilot-pattern/runtime/records.mjs']);
- for(const entry of inventory.files){const file=fs.existsSync(path.join(root,entry.source))?entry.source:entry.compatibility;assert.equal(sha(fs.readFileSync(path.join(root,file))),entry.currentSha256,entry.source);if(!entry.reviewedRecoveryLeaf)assert.equal(entry.currentSha256,entry.publishedSha256,entry.source);}
+ assert.equal(new Set(inventory.files.map(e=>e.source)).size,790);const projected=[],raw=[];
+ for(const entry of inventory.files){const result=assertNumericalInventoryEntry(entry);(result.projected?projected:raw).push(entry.source);if(result.projected)assert.notEqual(result.rawSha256,result.historicalSha256);else assert.equal(result.rawSha256,result.historicalSha256);}
+ assert.deepEqual(projected,[...resetInventoryPaths,...targetInventoryPaths,...teachingInventoryPaths].sort());assert.equal(raw.length,781);
+});
+function numericalIdentityFixture(t){
+ const U=require('./helpers/reset-ui-preservation.cjs'),out=temp(t),source=fs.existsSync(path.join(root,'content/data/registry.json'));
+ const rows=[...U.delta.files.filter(r=>source||!r.sourceOnly),U.gaussianClassicEntry,...(source?[U.gaussianDependenciesEntry]:[])];
+ for(const row of rows){const to=path.join(out,row.path);fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(path.join(root,row.path),to);}
+ if(source){const file='content/data/registry.json',to=path.join(out,file);fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(path.join(root,file),to);}
+ targetIdentity.copyCurrentFixture(root,out);assert.equal(U.assertCurrentClosure(out),true);return {U,out,inventory:JSON.parse(fs.readFileSync(path.join(root,'scripts/validation/recovery-abc/current-numerical-inputs.json')))};
+}
+test('Numerical inventory reset bridge rejects altered predecessor missing renamed aliased and symlinked actual inputs',t=>{
+ const {U,out,inventory}=numericalIdentityFixture(t);
+ for(const file of [...resetInventoryPaths,'labs/ofdm-ici/lesson/ici-lesson.js']){
+  const entry=inventory.files.find(e=>e.source===file),p=path.join(out,file),current=fs.readFileSync(p),prior=U.readCurrentForHistory(file,current,{root:out}),changed=Buffer.from(current);changed[Math.floor(changed.length/2)]^=1;
+  assert.equal(assertNumericalInventoryEntry(entry,out).projected,true);
+  for(const bad of [changed,prior,current.subarray(1),Buffer.concat([current,Buffer.from('unreviewed')])]){fs.writeFileSync(p,bad);try{assert.throws(()=>assertNumericalInventoryEntry(entry,out));}finally{fs.writeFileSync(p,current);}}
+  // A current disk endpoint does not authorize supplying frozen or invented bytes.
+  for(const bad of [prior,changed])assert.throws(()=>U.readCurrentForHistory(file,bad,{root:out}));
+  const moved=p+'.renamed';fs.renameSync(p,moved);try{assert.throws(()=>assertNumericalInventoryEntry(entry,out));fs.symlinkSync(moved,p);try{assert.throws(()=>assertNumericalInventoryEntry(entry,out));}finally{fs.unlinkSync(p);}}finally{fs.renameSync(moved,p);}
+  assert.throws(()=>assertNumericalInventoryEntry({...entry,compatibility:file+'.alias'},out));
+  const alias='unreviewed/'+file,to=path.join(out,alias);fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(p,to);
+  assert.throws(()=>assertNumericalInventoryEntry({...entry,source:alias,compatibility:alias},out));
+  assert.equal(assertNumericalInventoryEntry(entry,out).projected,true);
+ }
+});
+test('Numerical inventory bridge rejects other closure drift and keeps ordinary recovery records raw and exact',t=>{
+ const {out,inventory}=numericalIdentityFixture(t),file='scripts/build/classic-runtime-contracts.json',p=path.join(out,file),original=fs.readFileSync(p);
+ fs.appendFileSync(p,'\n');try{for(const name of resetInventoryPaths)assert.throws(()=>assertNumericalInventoryEntry(inventory.files.find(e=>e.source===name),out));}finally{fs.writeFileSync(p,original);}
+ const entry=inventory.files.find(e=>e.source==='labs/pilot-pattern/runtime/records.mjs'),to=path.join(out,entry.source);assert.ok(entry.reviewedRecoveryLeaf);fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(path.join(root,entry.source),to);
+ for(const name of teachingInventoryPaths){const e=inventory.files.find(x=>x.source===name),f=fs.existsSync(path.join(out,e.source))?e.source:e.compatibility,p=path.join(out,f),current=fs.readFileSync(p);assert.equal(assertNumericalInventoryEntry(e,out).projected,true);assert.throws(()=>assertNumericalInventoryEntry({...e,compatibility:e.compatibility+'.alias'},out));for(const bad of [targetIdentity.teachingBefore(name,current),Buffer.concat([current,Buffer.from('unreviewed')])]){fs.writeFileSync(p,bad);try{assert.throws(()=>assertNumericalInventoryEntry(e,out));}finally{fs.writeFileSync(p,current);}}const moved=p+'.renamed';fs.renameSync(p,moved);try{assert.throws(()=>assertNumericalInventoryEntry(e,out));fs.symlinkSync(moved,p);try{assert.throws(()=>assertNumericalInventoryEntry(e,out));}finally{fs.unlinkSync(p);}}finally{fs.renameSync(moved,p);}}
+ assert.equal(assertNumericalInventoryEntry(entry,out).projected,false);fs.appendFileSync(to,'\n');assert.throws(()=>assertNumericalInventoryEntry(entry,out));
 });
 test('Shared reading scope recognizes delivered bounded SSP while preserving whole-paper gaps',()=>{
  const read=(source,staged)=>JSON.parse(fs.readFileSync(path.join(root,fs.existsSync(path.join(root,source))?source:staged)));

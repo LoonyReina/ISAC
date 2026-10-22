@@ -38,6 +38,23 @@ jobs:
       - name: Install canonical scientific validation dependencies
         run: |
           python -m pip install --disable-pip-version-check --only-binary=:all: numpy==2.3.5 scipy==1.17.0
+      - name: Check target19 candidate state before expensive validation
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python - <<'PYCODE'
+          import importlib.util, json, os
+          spec=importlib.util.spec_from_file_location('target19','scripts/publish-target19.py')
+          target19=importlib.util.module_from_spec(spec);spec.loader.exec_module(target19)
+          cfg=json.load(open('build/publication-target19.json'))
+          target19.validate_config(cfg,draft=os.environ['GITHUB_EVENT_NAME']=='pull_request')
+          PYCODE
+      - name: Verify target19 integration and exact projection contracts
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          node --test tests/target19-otfs-integration.test.cjs tests/target19-nearfield-integration.test.cjs tests/target19-bistatic-integration.test.cjs tests/target19-otfs-alias.test.cjs tests/target19-layout.test.cjs tests/target19-pages-security.test.cjs
+          python tests/test-target19-publication.py
       - name: Verify and reconstruct chunked evidence
         run: |
           node --test tests/chunked-evidence.test.cjs
@@ -70,11 +87,22 @@ jobs:
         run: |
           node scripts/build-compatibility.cjs --check
           git diff --exit-code
-      - name: Project accepted deployed lessons
+      - name: Project and independently compare exact target19 artifact
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
         run: |
-          node --test tests/accepted-publication-workflow.test.cjs
-          python scripts/publish-accepted.py --input dist --output published
-          python scripts/test-publication.py --input dist --output published
+          draft=''
+          if [ "$GITHUB_EVENT_NAME" = 'pull_request' ]; then draft='--local-draft'; fi
+          python scripts/publish-target19.py --input dist --output published $draft
+          python scripts/publish-target19.py --input dist --output published-recheck $draft
+          python - <<'PYCODE'
+          import hashlib, pathlib
+          def inventory(directory):
+              root=pathlib.Path(directory)
+              return {str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          first,second=inventory('published'),inventory('published-recheck')
+          if not first or first!=second: raise SystemExit('Target19 projection is not byte-reproducible')
+          PYCODE
       - name: Upload verified Pages artifact
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0

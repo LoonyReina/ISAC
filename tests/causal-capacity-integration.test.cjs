@@ -2,6 +2,8 @@
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),sourceLayout=fs.existsSync(path.join(root,'content/pages/causal-state-capacity.html'));
 const read=f=>fs.readFileSync(path.join(root,sourceLayout?f:f.replace('content/data/','site/').replace('content/pages/','')),'utf8');
+// Only frozen tutorial inventories use this strict historical disk seed. Raw readers and trees stay live.
+const historicalTree=()=>{const B=require('./helpers/target19-source-identity.cjs').historicalResearchTree(root);return B.buildResearchTree(...['content/data/registry.json','content/data/research-guides.json','content/data/research-directory.json','docs/PAPER-EXECUTION-BACKLOG.json'].map(f=>{const actual=sourceLayout?f:f.replace('content/data/','site/');return JSON.parse(require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(actual,fs.readFileSync(path.join(root,actual)),{root}));}));};
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 test('same paper retains strictly causal reading and routes separately to fixed-quarter causal theorem',()=>{
  const r=JSON.parse(read('content/data/registry.json')),g=JSON.parse(read('content/data/research-guides.json')),b=JSON.parse(read('docs/PAPER-EXECUTION-BACKLOG.json')),d=JSON.parse(read('content/data/research-directory.json'));
@@ -17,11 +19,12 @@ test('same paper retains strictly causal reading and routes separately to fixed-
 });
 test('unchanged accepted lesson suite runs against mapped current production sources',t=>{
  const overlay=fs.mkdtempSync(path.join(os.tmpdir(),'isac-causal-tests-'));t.after(()=>fs.rmSync(overlay,{recursive:true,force:true}));
+ const teachingIdentity=require('./helpers/target19-source-identity.cjs');teachingIdentity.assertCurrentClosure(root);
  const receipt=JSON.parse(read(sourceLayout?'labs/causal-state-capacity/SOURCE-IMPORT.json':'labs/causal-state-capacity/SOURCE-IMPORT.json'));
  const copy=(from,to)=>{const dest=path.join(overlay,to);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join(root,from),dest);};
  for(const file of receipt.files){const from=sourceLayout?file.source:file.public;const bytes=fs.readFileSync(path.join(root,from));
-  // Handwritten page markup is generated in the staged suite; immutable science and UI retain exact bytes.
-  if(sourceLayout||!file.public.endsWith('.html'))a.equal(sha(bytes),file.sha256,'accepted lesson '+file.public);
+  // Generated markup is checked separately; only exact reviewed UI startup gates invert for import provenance. The copied lesson remains current.
+  if(sourceLayout||!file.public.endsWith('.html'))a.equal(sha(teachingIdentity.forHistoricalChain(from,bytes)),file.sha256,'accepted lesson historical import; current bytes independently authenticated '+file.public);
   copy(from,'public/'+file.public);
  }
  const tests=sourceLayout?'labs/causal-state-capacity/tests':'tests/causal-state-capacity';
@@ -43,7 +46,7 @@ test('refresh preserves the accepted causal history, graph runtime and all77 pre
  const tree=B.buildResearchTree(...['content/data/registry.json','content/data/research-guides.json','content/data/research-directory.json','docs/PAPER-EXECUTION-BACKLOG.json'].map(f=>JSON.parse(read(f))));
  // The historical graph-byte and route-count comparisons use exact inverses;
  // causal runtime checks remain current, and current graph display is tested separately.
- const routes=require('./helpers/multipath-information-preservation.cjs').withoutTutorials(tree.papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind}))));
+ const routes=require('./helpers/multipath-information-preservation.cjs').withoutTutorials(historicalTree().papers.flatMap(p=>p.tutorials.map(t=>({id:p.id,href:t.href,kind:t.kind}))));
  a.equal(refresh.preservedTutorialRoutes.length,77);a.equal(routes.length,78);
  for(const route of refresh.preservedTutorialRoutes)a.ok(routes.some(r=>JSON.stringify(r)===JSON.stringify(route)),route.id+': '+route.href);
  a.deepEqual(routes.filter(r=>!refresh.preservedTutorialRoutes.some(x=>JSON.stringify(x)===JSON.stringify(r))),[{id:'tradeoffs-causal-state-communication-2013',href:'causal-state-capacity.html#cc-question',kind:'algorithm'}]);

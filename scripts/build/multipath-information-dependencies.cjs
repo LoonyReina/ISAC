@@ -47,7 +47,7 @@ const contract={
     },
     {
       "public": "multipath-information-ui.mjs",
-      "sha256": "27982b9fa8730d093be5131af3605e2e4368bce78b419e806a1524f5d78b090c",
+      "sha256": "0ba06c19fe0f2c7b7942ca8538d7f3a19d486c1b23756fd335a9b9d15772e8fa",
       "runtimeEdges": [
         {
           "kind": "worker",
@@ -92,14 +92,23 @@ const contract={
     "<script defer src=\"multipath-channel.js?v=multipath-channel-v2-axis-label\"></script>",
     "<script defer src=\"reflection-aperture-core.js?v=reflection-aperture-v1\"></script>",
     "<script defer src=\"reflection-aperture.js?v=reflection-aperture-v1\"></script>",
-    "<script type=\"module\" src=\"multipath-information-ui.mjs?v=mpi-20261015-v1\"></script>"
+    "<script type=\"module\" src=\"multipath-information-ui.mjs?v=mpi-20261015-v1\"></script>",
+    "<script src=\"features/teaching19/manual.js\"></script>",
+    "<script defer src=\"features/teaching19/lessons.js\"></script>",
+    "<script defer src=\"features/teaching19/receiver-adapters.js\"></script>",
+    "<script defer src=\"features/teaching19/receiver-views.js\"></script>",
+    "<script defer src=\"features/teaching19/theory-adapters.js\"></script>",
+    "<script defer src=\"features/teaching19/theory-views.js\"></script>",
+    "<script defer src=\"features/teaching19/engine.js\"></script>"
   ],
   "pageStyles": [
     "<link rel=\"stylesheet\" href=\"course.css\">",
     "<link rel=\"stylesheet\" href=\"site.css?v=knowledge-map-v1\">",
     "<link rel=\"stylesheet\" href=\"multipath-channel.css?v=multipath-channel-v1\">",
     "<link rel=\"stylesheet\" href=\"reflection-aperture.css?v=reflection-aperture-v1\">",
-    "<link rel=\"stylesheet\" href=\"multipath-information.css?v=mpi-20261015-v1\">"
+    "<link rel=\"stylesheet\" href=\"multipath-information.css?v=mpi-20261015-v1\">",
+    "<link rel=\"stylesheet\" href=\"features/teaching19/guided-lesson.css\">",
+    "<link rel=\"stylesheet\" href=\"features/teaching19/integration.css\">"
   ]
 };
 const normalizePage=s=>s.replace(/<!-- SITE:(HEADER|CONTEXT|NEXT):START -->[\s\S]*?<!-- SITE:\1:END -->/g,(_,key)=>'<!-- SITE:'+key+' -->');

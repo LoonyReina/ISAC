@@ -1,3 +1,4 @@
+import {loadPrecomputed} from './precomputed-loader.mjs';
 import {ResearchController,fieldsFromSpec,MAX_RECORD_BYTES} from './controller.mjs';
 import {renderResearch} from './view.mjs';
 
@@ -14,6 +15,7 @@ export function mountResearch(root) {
  const controls=[...root.querySelectorAll('[data-nfr-field]')],buttons=[...root.querySelectorAll('[data-nfr-action]')];
  let current=null,renderQueued=false,disposed=false,lastAnnouncement='';const downloads=new Set();
  function updateButtons(s){
+  const preset=root.querySelector('[data-nfr-preset]');if(preset)preset.disabled=!!s.busy||s.invalidGroups.length>0;
   for(const b of buttons){const action=b.dataset.nfrAction,invalid=s.invalidGroups.length>0;
    b.disabled=action==='cancel'?!s.busy:['receive','export-full'].includes(action)?invalid||!controller.hasRaw||!!s.busy:action==='regenerate'?invalid||!controller.hasWaveform||!!s.busy:action==='audit'?invalid||!controller.hasRaw||!!s.busy:action==='export-diagnostic'?invalid||!!s.busy:action==='solve'?invalid:false;
   }
@@ -36,7 +38,9 @@ export function mountResearch(root) {
   const url=URL.createObjectURL(blob);downloads.add(url);const a=doc.createElement('a');a.href=url;a.download=`nearfield-${kind}-${new Date().toISOString().replaceAll(':','-')}.json`;doc.body.append(a);a.click();a.remove();
   setTimeout(()=>{URL.revokeObjectURL(url);downloads.delete(url);},30000);
  }
- async function onClick(event){const button=event.target.closest?.('[data-nfr-action]');if(!button||!root.contains(button)||button.disabled)return;
+ async function onClick(event){
+  const preset=event.target.closest?.('[data-nfr-preset]');if(preset&&root.contains(preset)&&!preset.disabled){try{const result=await loadPrecomputed(controller);if(result.status==='precomputed_observation_ready'){syncControls();await controller.action('receive');}}catch(e){error(e);}return;}
+  const button=event.target.closest?.('[data-nfr-action]');if(!button||!root.contains(button)||button.disabled)return;
   const action=button.dataset.nfrAction;try{
    if(action==='reset'){controller.reset();syncControls();}
    else if(action==='cancel')controller.cancel();

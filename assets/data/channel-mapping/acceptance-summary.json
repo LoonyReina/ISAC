@@ -1,0 +1,45 @@
+{
+  "schema": "channel-mapping-local-acceptance-summary-v1",
+  "paperId": "channels-sensing-communication-mapping-2026",
+  "fixedSource": "https://arxiv.org/html/2601.18558v1",
+  "sourceLocators": [
+    "§3.1, Eqs.1–2",
+    "§3.2, Eq.3"
+  ],
+  "candidateAcceptance": "local-core-accepted",
+  "publication": "not-deployed",
+  "integration": "not-verified",
+  "standaloneVerdict": "PAPER_CORE_TEACHING_COMPLETE",
+  "dateUtc": "2026-10-20",
+  "acceptedScope": "Calibrated scalar-power scans -> peak extraction/backprojection -> inferred anonymous scatterer groups -> Eq3 bistatic excess-delay prediction -> communication-MPC association, with a new fair representative task study and actually running adjustable browser teaching.",
+  "representativeStudy": {
+    "newRawCases": 36,
+    "sameInputBranches": 108,
+    "syntheticNotAuthorMeasurement": true
+  },
+  "strictBrowserNodeEquality": {
+    "status": "FAIL_RETAINED",
+    "numericLeavesDifferent": 15,
+    "maxAbsoluteDifference": 2.842170943040401e-14,
+    "downstreamDecisionsPredictionsEvaluationExactForInspectedPair": true,
+    "posthocAppendixNotNewPrimaryPass": true
+  },
+  "notClaimed": [
+    "Original measured PADP/CIR, hardware, S1/S2, semantic identification, 3 mm wall result, RCS/Eq4",
+    "Full-paper reproduction",
+    "Whole-site integration acceptance",
+    "New global paper-completion count or acceptance of other lessons",
+    "Deployment"
+  ],
+  "frozenCoreHashes": {
+    "cli.mjs": "cd4c81101c4c6c5e66752261da3032632d95329836ea183fcaa0dc9befec1425",
+    "src/config.mjs": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+    "src/geometry.mjs": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+    "src/generator.mjs": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+    "src/inference.mjs": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+    "src/evaluation.mjs": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+    "src/experiment.mjs": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253"
+  },
+  "standaloneUiFreezeSha256": "3253b9576c3fd9384899c322a2b852128f0142669257845ef8c9a6e38b8bf1e9",
+  "dispositionSha256": "559fe145db8de2ae4258c892ede84c3f4ba77d635ba0f1d5e7db19c54f206b70"
+}

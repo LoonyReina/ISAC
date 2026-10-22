@@ -1,20 +1,29 @@
 {
   "schemaVersion": 1,
   "entryPoint": "causal-state-capacity.html",
-  "entryPageSha256": "7eb76c58b015e3424ffc6077d7fd7766bd3879ee421a60d62f766a525b783422",
+  "entryPageSha256": "51e8daf355d07bb730582d3f49a5b078b688bbd3a6e947c4245776adf7752318",
   "pageRegions": {
-    "HEADER": "<!-- SITE:HEADER:START -->\n<a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
+    "HEADER": "<!-- SITE:HEADER:START -->\n<script src=\"features/teaching19/manual.js\"></script><link rel=\"stylesheet\" href=\"features/teaching19/guided-lesson.css\"><link rel=\"stylesheet\" href=\"features/teaching19/integration.css\"><script defer src=\"features/teaching19/lessons.js\"></script><script defer src=\"features/teaching19/receiver-adapters.js\"></script><script defer src=\"features/teaching19/receiver-views.js\"></script><script defer src=\"features/teaching19/theory-adapters.js\"></script><script defer src=\"features/teaching19/theory-views.js\"></script><script defer src=\"features/teaching19/engine.js\"></script><a class=\"site-skip\" href=\"#site-main\">跳到正文</a>\n<header class=\"site-header\"><a class=\"site-brand\" href=\"index.html\">ISAC <span>交互学习</span></a><nav class=\"site-nav\" aria-label=\"基础知识与论文阅读导航\"><a href=\"foundations.html\"><span>01</span> 基础知识</a><a href=\"reading.html\" aria-current=\"location\"><span>02</span> 论文阅读</a></nav></header>\n<!-- SITE:HEADER:END -->",
     "CONTEXT": "<!-- SITE:CONTEXT:START -->\n<div class=\"site-context\"><nav class=\"site-breadcrumb\" aria-label=\"当前位置\"><a href=\"index.html\">学习地图</a> <span aria-hidden=\"true\">/</span> <a href=\"reading.html\">论文阅读</a> <span aria-hidden=\"true\">/</span> <span aria-current=\"page\">先抵消当前状态，再为延迟重构留出多少速率？</span></nav><p class=\"site-role\">同一论文 §IV · 固定 p=q=1/4 的单字母渐近定理求值；真实浏览器待验收</p><p class=\"site-prereq\">需要时回看：<a href=\"theory.html#shared-model\">共同观测：判决与估计</a> · <a href=\"foundations.html#limits\">性能指标与边界</a> · <a href=\"foundations.html#codesign\">发射、接收与联合设计</a></p></div>\n<!-- SITE:CONTEXT:END -->",
     "NEXT": "<!-- SITE:NEXT:START -->\n<aside class=\"site-next\" aria-label=\"下一步\"><p>完成当前问题之后</p><a href=\"reading.html#guide-tradeoffs-causal-state-communication-2013\">回到同一篇论文，分清严格因果导读与 §IV 因果模型 →</a></aside><footer class=\"site-footer\">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href=\"index.html\">学习地图</a> · <a href=\"reading.html#reading\">原文与证据</a></footer>\n<!-- SITE:NEXT:END -->"
   },
   "entryHeadSha256": "791c79283ccb3d9c4ba691a5034f4eadcfd63802a1764e6e2c3fd06dcec3c6e2",
   "pageScripts": [
-    "<script type=\"module\" src=\"causal-capacity-ui.mjs\"></script>"
+    "<script type=\"module\" src=\"causal-capacity-ui.mjs\"></script>",
+    "<script src=\"features/teaching19/manual.js\"></script>",
+    "<script defer src=\"features/teaching19/lessons.js\"></script>",
+    "<script defer src=\"features/teaching19/receiver-adapters.js\"></script>",
+    "<script defer src=\"features/teaching19/receiver-views.js\"></script>",
+    "<script defer src=\"features/teaching19/theory-adapters.js\"></script>",
+    "<script defer src=\"features/teaching19/theory-views.js\"></script>",
+    "<script defer src=\"features/teaching19/engine.js\"></script>"
   ],
   "pageStyles": [
     "<link rel=\"stylesheet\" href=\"course.css\">",
     "<link rel=\"stylesheet\" href=\"site.css?v=knowledge-map-v1\">",
-    "<link rel=\"stylesheet\" href=\"causal-capacity.css\">"
+    "<link rel=\"stylesheet\" href=\"causal-capacity.css\">",
+    "<link rel=\"stylesheet\" href=\"features/teaching19/guided-lesson.css\">",
+    "<link rel=\"stylesheet\" href=\"features/teaching19/integration.css\">"
   ],
   "pageEdges": [
     {
@@ -32,6 +41,42 @@
     {
       "kind": "stylesheet",
       "url": "causal-capacity.css"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/manual.js"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "features/teaching19/guided-lesson.css"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "features/teaching19/integration.css"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/lessons.js"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/receiver-adapters.js"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/receiver-views.js"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/theory-adapters.js"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/theory-views.js"
+    },
+    {
+      "kind": "script",
+      "url": "features/teaching19/engine.js"
     }
   ],
   "modules": [
@@ -65,7 +110,7 @@
     },
     {
       "public": "causal-capacity-ui.mjs",
-      "sha256": "1f763a9d2c9a380c4102b331ba43f175f63d47486a83eed05e394f06743f9503",
+      "sha256": "e2aa1094e463784d7a6954826b040451c9a9cb02ec507b3194aa0510d86aa41d",
       "runtimePolicy": "no-runtime-loads",
       "sourceLiterals": [],
       "runtimeEdges": [],

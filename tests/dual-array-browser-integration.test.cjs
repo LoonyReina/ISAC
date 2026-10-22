@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const root=path.resolve(__dirname,'..'),F=require('./helpers/dual-array-browser-integration-preservation.cjs'),read=f=>fs.readFileSync(path.join(root,f));
-const records=require('./helpers/dual-array-record-portability-preservation.cjs'),priorRead=f=>records.maybeWithoutFile(f,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(f,read(f)));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const records=require('./helpers/dual-array-record-portability-preservation.cjs'),priorRead=f=>records.maybeWithoutFile(f,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(f,readForHistory(f)));
 const names=s=>[...s.matchAll(/^(?:for \(const type of \['error', 'messageerror'\]\) )?(?:test|lifecycle)\((?:'([^']+)'|`([^`]+)`)/gm)].flatMap(m=>m[1]?[m[1]]:['error','messageerror'].map(type=>m[2].replace('${type}',type)));
 test('Browser integration pins all three reviewed leaves and preserves every maintenance source endpoint',()=>{
  a.deepEqual(F.delta.acceptedCommits,['a73e62c0cef6b6a993957c6e9537569037015fb6','2d1b7a4bac8224a739ccbe6bda1cd8ca27662db4','33f0ad091da8c1cb163837dd10eec5b71e37e6bf']);
@@ -19,7 +20,7 @@ test('Browser integration current profiles accept only repaired client and reada
  a.deepEqual(F.maybeWithoutContracts(contract).modules,D.moduleProfiles);for(const mutate of [x=>x.modules.push(structuredClone(x.modules.find(r=>r.public===F.timer.correction.path))),x=>x.modules.find(r=>r.public===F.timer.correction.path).extra=true,x=>x.modules.find(r=>r.public===F.timer.correction.path).runtimeEdges=[]]){const bad=structuredClone(contract);mutate(bad);a.throws(()=>F.maybeWithoutContracts(bad));}
 });
 test('Browser integration build-only mappings and exact names make all current and historical gates mandatory',()=>{
- const manifest=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutMappings(require('../build/compatibility-manifest.json')),old=F.withoutMappings(manifest);a.deepEqual(manifest.entries.filter(x=>x.public!==null),old.entries.filter(x=>x.public!==null));a.equal(old.entries.filter(x=>x.public!==null).length,1177);
+ const manifest=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutMappings(JSON.parse(readForHistory('build/compatibility-manifest.json'))),old=F.withoutMappings(manifest);a.deepEqual(manifest.entries.filter(x=>x.public!==null),old.entries.filter(x=>x.public!==null));a.equal(old.entries.filter(x=>x.public!==null).length,1177);
  for(const row of F.mapping.addedEntries){a.equal(row.public,null);for(const mode of ['missing','duplicate','spoof']){const bad=structuredClone(manifest);if(mode==='missing')bad.entries=bad.entries.filter(x=>x.source!==row.source);if(mode==='duplicate')bad.entries.push(structuredClone(row));if(mode==='spoof')bad.entries.find(x=>x.source===row.source).public='unreviewed';a.throws(()=>F.withoutMappings(bad));}}
  const workflow=read('.github/workflows/pages.yml').toString(),builder=read('tests/compatibility-build.test.cjs').toString();a.ok(builder.includes('Object.entries(browserRepair.sourceOnlyGates)'));a.deepEqual(names(builder),F.delta.priorBuilderNames);
  for(const[file,wanted]of Object.entries(F.delta.sourceOnlyGates)){a.ok(workflow.includes(file));const origin=F.delta.gateOrigins[file]||file;a.deepEqual(names(read(origin).toString()),wanted);}

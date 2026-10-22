@@ -1,0 +1,183 @@
+{
+  "scope": "Acceptance-layer verification of retained current candidate/evidence, not a new simulation or a rerun of the independent full peak/group audit",
+  "status": "PASS_FOR_STATED_CHECKS",
+  "checks": 2566,
+  "core_hashes": 7,
+  "UI_manifest_hashes": 25,
+  "candidate_manifest_files": 26,
+  "study_manifest_files": 49,
+  "full_raw_cases": 36,
+  "branch_records": 108,
+  "raw_retention_hashes_verified": true,
+  "prior_strict_audit_status": "FAIL",
+  "prior_mathematical_cases_passed": 36,
+  "prior_mathematical_top_level_checks": 1308,
+  "fair_paired_lower_cases": 36,
+  "fair_decision_tie_cases": 36,
+  "new_study_aggregates": {
+    "coordinate": {
+      "delay_sse": 4.3843778724235944,
+      "matched": 96,
+      "missed": 12,
+      "correct": 72,
+      "false": 0,
+      "ambiguous": 24,
+      "unmatched": 48,
+      "physical_paths": 108,
+      "pooled_delay_rmse_ns": 0.21370681514108475
+    },
+    "paired_range": {
+      "delay_sse": 0.6983474064265189,
+      "matched": 96,
+      "missed": 12,
+      "correct": 72,
+      "false": 0,
+      "ambiguous": 24,
+      "unmatched": 48,
+      "physical_paths": 108,
+      "pooled_delay_rmse_ns": 0.08529039893373837
+    },
+    "zero_angle": {
+      "delay_sse": 2564.1740442376563,
+      "matched": 96,
+      "missed": 12,
+      "correct": 0,
+      "false": 0,
+      "ambiguous": 0,
+      "unmatched": 144,
+      "physical_paths": 108,
+      "pooled_delay_rmse_ns": 5.168185977124106
+    }
+  },
+  "browser_node_pair": {
+    "strict_parsed_numeric_equality": "FAIL",
+    "differences": [
+      {
+        "path": "observations.stations[0].power_db[13][83]",
+        "browser": -75.01665177530991,
+        "node": -75.01665177530994,
+        "abs": 2.842170943040401e-14,
+        "node_ulp": 2.0
+      },
+      {
+        "path": "observations.stations[0].power_db[14][83]",
+        "browser": -60.512677768563925,
+        "node": -60.51267776856395,
+        "abs": 2.1316282072803006e-14,
+        "node_ulp": 3.0
+      },
+      {
+        "path": "observations.stations[0].power_db[15][83]",
+        "browser": -50.17537042848461,
+        "node": -50.17537042848462,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "observations.stations[0].power_db[16][83]",
+        "browser": -44.004729755071956,
+        "node": -44.00472975507196,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "observations.stations[0].power_db[19][83]",
+        "browser": -50.492807734833995,
+        "node": -50.49280773483398,
+        "abs": 1.4210854715202004e-14,
+        "node_ulp": 2.0
+      },
+      {
+        "path": "observations.stations[0].power_db[20][83]",
+        "browser": -60.98883372808801,
+        "node": -60.98883372808799,
+        "abs": 2.1316282072803006e-14,
+        "node_ulp": 3.0
+      },
+      {
+        "path": "observations.stations[0].power_db[21][83]",
+        "browser": -75.65152638800868,
+        "node": -75.65152638800866,
+        "abs": 1.4210854715202004e-14,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "observations.stations[1].power_db[7][77]",
+        "browser": -49.86176462166439,
+        "node": -49.861764621664385,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "observations.stations[1].power_db[12][77]",
+        "browser": -52.23392252284014,
+        "node": -52.233922522840146,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "inference.detections[1].point_m[0]",
+        "browser": 1.8270100781109573,
+        "node": 1.8270100781109568,
+        "abs": 4.440892098500626e-16,
+        "node_ulp": 2.0
+      },
+      {
+        "path": "inference.detections[10].power_db",
+        "browser": -50.17537042848461,
+        "node": -50.17537042848462,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "inference.detections[11].power_db",
+        "browser": -44.004729755071956,
+        "node": -44.00472975507196,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "inference.detections[14].power_db",
+        "browser": -50.492807734833995,
+        "node": -50.49280773483398,
+        "abs": 1.4210854715202004e-14,
+        "node_ulp": 2.0
+      },
+      {
+        "path": "inference.detections[19].power_db",
+        "browser": -49.86176462166439,
+        "node": -49.861764621664385,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      },
+      {
+        "path": "inference.detections[24].power_db",
+        "browser": -52.23392252284014,
+        "node": -52.233922522840146,
+        "abs": 7.105427357601002e-15,
+        "node_ulp": 1.0
+      }
+    ],
+    "max_absolute_difference": 2.842170943040401e-14,
+    "max_node_ulp": 3.0,
+    "all_decisions_groups_predictions_candidate_residuals_evaluation_exact": true,
+    "within_preexisting_absolute_tolerance_1e_minus_10": true,
+    "universal_cross_runtime_equivalence_claim": false
+  },
+  "bindings": {
+    "rebuilt-channel-mapping-v1/evidence/CORE-FREEZE-v2.json": "227556e11219853dceb056afae47781ccb799db823193959b3e2489200ed4e49",
+    "rebuilt-channel-mapping-v1/evidence/UI-BUILD-FREEZE-v3.json": "3253b9576c3fd9384899c322a2b852128f0142669257845ef8c9a6e38b8bf1e9",
+    "rebuilt-channel-mapping-v1/SHA256SUMS": "87c4593dd057753aa87423a205ba1c67db2a19234d13d3eaa24e337e7a41d0bf",
+    "new-validation/mapping-study-v1/FILES.sha256": "5d167443e5a7a8f619ccfd4abccd09dc8e1708a079ca13a3c0b6908ead225e60",
+    "new-validation/mapping-study-independent-v1/independent-audit-result.json": "76c2b28575ecf5e9876f014ac00419782e1766dc949d40d1fba3421bc34485e0",
+    "new-validation/mapping-study-independent-v1/BROWSER-NODE-POSTHOC-DIFFERENCES.json": "b841149edd8ebfe662ab0eafe0ea9048a7ba4b14c3e795095524e3996974443b",
+    "new-validation/mapping-browser-v1/export-v3-seed111.json": "ce2752b9bf1b9e1239b43adc786aa7a711f163ef78af321e7d9f0954d42235d1",
+    "new-validation/mapping-study-v1/attempt-v1/raw/separated-seed111.json": "1d199f5f8bca871030a7afea5f99919eacadd3467acbef3fda28fc71c577a392"
+  },
+  "elapsed_s": 0.36431096499973137,
+  "peak_rss_kib": 12128,
+  "candidate_imported_or_executed": false,
+  "browser_launched": false,
+  "evidence_modified": false,
+  "historical_case_or_screenshot_evidence_inherited": false
+}

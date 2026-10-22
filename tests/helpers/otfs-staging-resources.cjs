@@ -1,5 +1,6 @@
 'use strict';
 const paths={
+  "otfs-receiver/source-objective-v1/index.html": "labs/otfs-receiver/source-objective-v1/index.html",
   "joint-beamforming/ssp/SOURCE-AUDIT.md": "labs/joint-beamforming/ssp/SOURCE-AUDIT.md",
   "joint-beamforming/ssp/USER-LOAD-SOURCE-AUDIT.md": "labs/joint-beamforming/ssp/USER-LOAD-SOURCE-AUDIT.md",
   "joint-beamforming/ssp/evidence/REAL-MAPPING-REVIEW.json": "labs/joint-beamforming/ssp/evidence/REAL-MAPPING-REVIEW.json",

@@ -7,10 +7,12 @@ const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-distributed-detection'),u=r.units.find(u=>u.id==='distributed-detection'),p=r.pages.find(p=>p.path==='distributed-detection.html');
 const {withoutReferenceUncertainty}=require('./helpers/reference-uncertainty-registry.cjs');
-const beforeReferenceUncertainty=withoutReferenceUncertainty(r);
+const beforeReferenceUncertainty=withoutReferenceUncertainty(historyRegistry);
 const researchGuides=buildResearchGuides(JSON.parse(read(r.researchGuidesFile)),r);
 const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
 const resolve=href=>{const [file,anchor]=href.split('#');a.ok(fs.existsSync(path.join(root,file)),href);if(anchor)a.ok(read(file).includes(`id="${anchor}"`),href);};
@@ -22,14 +24,14 @@ test('two-station detection adds one canonical lesson within the existing eight 
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'networks');
  a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('existing lessons, cases, pages, unrelated directions and legacy links match the current integration snapshot',()=>{
  // The case-free off-grid mechanism changes only its own unit/page and receiver depth;
  // offgrid-range-integration.test.cjs also locks every earlier unit/page and all case evidence.
  a.equal(hash(beforeReferenceUncertainty.units.filter(x=>x.id!==u.id)),'ca4c7f1707ae80034abacea14e95cbfa93c7bd3619c0c8cc9af8a4f5e6609b6b');
- a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r).cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(historyRegistry).cases.filter(x=>x.id!==c.id)),'35c3df650a13990aaa0217f488aedf239904d3c581cd00218258662736db2a99');
  a.equal(hash(beforeReferenceUncertainty.pages.filter(x=>x.path!==p.path)),'04732f472b3881947c54187d6890aa997aa4cc8065b62e1a8551943c91de51e7');
  // Normalize the exact new mechanism hooks first; retain the older reading-only scope normalization.
  const historicalDirections=structuredClone(beforeReferenceUncertainty.directions.filter(x=>x.id!=='networks'));
@@ -37,11 +39,11 @@ test('existing lessons, cases, pages, unrelated directions and legacy links matc
  a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
  waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
  a.equal(hash(historicalDirections),'8cbd0865146fb27cfdceab1f7297c6182f5ea771378f5e6cbef02f54c6d370d4');
- a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
+ a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyRegistry).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
 test('networks preserves its clock beginner route while adding six honest detection depths',()=>{
- const d=require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(r).directions.find(d=>d.id==='networks');a.deepEqual(d.primaryCaseIds,['case-clock',c.id]);a.equal(d.levels.length,6);a.equal(d.levels[0].items[0].href,'foundations.html#geometry');
+ const d=require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(historyRegistry).directions.find(d=>d.id==='networks');a.deepEqual(d.primaryCaseIds,['case-clock',c.id]);a.equal(d.levels.length,6);a.equal(d.levels[0].items[0].href,'foundations.html#geometry');
  a.match(d.title,/融合证据/);a.match(d.question,/位置估计与存在性判决/);a.match(d.coverage,/未实现完整 cell-free 网络或整篇论文复现/);
  for(const [level,anchor]of [['intuition','question'],['model','observation'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','paper'],['reproduction','practice']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href===p.path+'#'+anchor);a.equal(items.length,1);a.equal(items[0].scope,'direction-specific');a.equal(items[0].status,'available');resolve(items[0].href);

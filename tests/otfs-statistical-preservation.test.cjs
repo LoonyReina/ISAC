@@ -7,6 +7,7 @@ const P = require('./helpers/otfs-statistical-preservation.cjs');
 const root = path.resolve(__dirname, '..');
 const sourceLayout = fs.existsSync(path.join(root, 'content/data/registry.json'));
 const read = file => fs.readFileSync(path.join(root, file));
+const readForHistory = file => require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file, read(file), {root});
 const metadataPath = name => (sourceLayout ? 'content/data/' : 'site/') + name;
 
 // These are additional historical checks. No current source is replaced when
@@ -19,7 +20,7 @@ test('OTFS statistical inverse binds whole authored/rendered bytes and rejects u
       a.ok(sourceLayout && row.generated || !sourceLayout && row.sourceOnly, row.path);
       continue;
     }
-    const current = require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, read(file)), original = Buffer.from(current);
+    const current = require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, readForHistory(file)), original = Buffer.from(current);
     a.ok(P.identity(current, row.after), 'current reviewed bytes: ' + file);
     const prior = P.withoutFile(file, current);
     a.ok(P.identity(prior, row.before), file);
@@ -47,9 +48,9 @@ test('OTFS statistical inverse binds whole authored/rendered bytes and rejects u
 });
 
 function metadataTests(name, inverse, records) {
-  const file = metadataPath(name), input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, read(file))), original = JSON.stringify(input);
+  const file = metadataPath(name), input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, readForHistory(file))), original = JSON.stringify(input);
   const prior = inverse(input);
-  a.deepEqual(prior, JSON.parse(P.withoutFile(file, require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, read(file)))), 'structural inverse equals reviewed byte predecessor');
+  a.deepEqual(prior, JSON.parse(P.withoutFile(file, require('./helpers/recovery-published-baseline-projection.cjs').projectFile(file, readForHistory(file)))), 'structural inverse equals reviewed byte predecessor');
   a.equal(JSON.stringify(input), original);
   a.deepEqual(inverse(prior), prior);
   const unrelated = structuredClone(input); unrelated.unreviewed = {science: 'must remain visible'};
@@ -78,7 +79,7 @@ test('OTFS statistical registry inverse restores only exact canonical leaves and
 test('OTFS statistical guide inverse restores only exact canonical leaves and rejects mixed endpoints', () => metadataTests('research-guides.json', P.withoutGuides, P.delta.guideChanges));
 
 test('OTFS statistical contract inverse preserves live old profiles and rejects changed or partial additions', () => {
-  const input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile('scripts/build/module-runtime-contracts.json', read('scripts/build/module-runtime-contracts.json'))), original = JSON.stringify(input);
+  const input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile('scripts/build/module-runtime-contracts.json', readForHistory('scripts/build/module-runtime-contracts.json'))), original = JSON.stringify(input);
   const prior = P.withoutContracts(input);
   a.equal(prior.modules.length, P.delta.priorModuleCount);
   a.deepEqual(prior.modules, input.modules.slice(0, P.delta.priorModuleCount));
@@ -97,7 +98,7 @@ test('OTFS statistical contract inverse preserves live old profiles and rejects 
 
 test('OTFS statistical mapping inverse binds the exact prior inventory and rejects altered additions', () => {
   if (!sourceLayout) return; // Old-layout staging never contains this source-only manifest.
-  const input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile('build/compatibility-manifest.json', read('build/compatibility-manifest.json'))), original = JSON.stringify(input);
+  const input = JSON.parse(require('./helpers/recovery-published-baseline-projection.cjs').projectFile('build/compatibility-manifest.json', readForHistory('build/compatibility-manifest.json'))), original = JSON.stringify(input);
   const prior = P.withoutMappings(input);
   a.equal(P.sha(JSON.stringify(prior, null, 2) + '\n'), P.delta.priorManifestSha256);
   a.deepEqual(P.withoutMappings(prior), prior); a.equal(JSON.stringify(input), original);

@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "c6b998db01b2335b401090c22dd140a9b6f039d0",
+  "baseManifestSha256": "64948938fe231514d18d323b639611d0d3d70355cdcee38136df4a2b9aea4b34",
+  "baseManifestPublicEntries": 1335,
+  "addedOwners": [
+    {
+      "id": "labs/channel-mapping",
+      "directory": "labs/channel-mapping",
+      "description": "New portable-v2 bounded calibrated scan-to-communication-delay mapping lesson; local core accepted, integrated UI pending, not deployed"
+    }
+  ],
+  "addedEntries": [
+    {
+      "source": "labs/channel-mapping/cli.mjs",
+      "compatibility": "labs/channel-mapping/cli.mjs",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/styles.css",
+      "compatibility": "labs/channel-mapping/styles.css",
+      "public": "channel-mapping/styles.css",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/INTERFACES.md",
+      "compatibility": "labs/channel-mapping/INTERFACES.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/SOURCE-AND-BOUNDARIES.md",
+      "compatibility": "labs/channel-mapping/SOURCE-AND-BOUNDARIES.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/tests/unit.mjs",
+      "compatibility": "labs/channel-mapping/tests/unit.mjs",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/CORE-FREEZE-v2.json",
+      "compatibility": "labs/channel-mapping/evidence/CORE-FREEZE-v2.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/UI-BUILD-FREEZE-v3.json",
+      "compatibility": "labs/channel-mapping/evidence/UI-BUILD-FREEZE-v3.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/app.mjs",
+      "compatibility": "labs/channel-mapping/src/app.mjs",
+      "public": "channel-mapping/src/app.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/config.mjs",
+      "compatibility": "labs/channel-mapping/src/config.mjs",
+      "public": "channel-mapping/src/config.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/evaluation.mjs",
+      "compatibility": "labs/channel-mapping/src/evaluation.mjs",
+      "public": "channel-mapping/src/evaluation.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/experiment.mjs",
+      "compatibility": "labs/channel-mapping/src/experiment.mjs",
+      "public": "channel-mapping/src/experiment.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/generator.mjs",
+      "compatibility": "labs/channel-mapping/src/generator.mjs",
+      "public": "channel-mapping/src/generator.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/geometry.mjs",
+      "compatibility": "labs/channel-mapping/src/geometry.mjs",
+      "public": "channel-mapping/src/geometry.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/inference.mjs",
+      "compatibility": "labs/channel-mapping/src/inference.mjs",
+      "public": "channel-mapping/src/inference.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/worker.mjs",
+      "compatibility": "labs/channel-mapping/src/worker.mjs",
+      "public": "channel-mapping/src/worker.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/standalone-index.html",
+      "compatibility": "labs/channel-mapping/evidence/standalone-index.html",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/DISPOSITION.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/DISPOSITION.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/REVIEW.md",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/REVIEW.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/EVIDENCE-BINDINGS.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/EVIDENCE-BINDINGS.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/RETAINED-EVIDENCE-CHECK.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/RETAINED-EVIDENCE-CHECK.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/UI-EVIDENCE-CHECK.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/UI-EVIDENCE-CHECK.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/channel-mapping.html",
+      "compatibility": "channel-mapping.html",
+      "public": "channel-mapping.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/site-integration.css",
+      "compatibility": "labs/channel-mapping/site-integration.css",
+      "public": "channel-mapping/site-integration.css",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/channel-mapping/acceptance-summary.json",
+      "compatibility": "assets/data/channel-mapping/acceptance-summary.json",
+      "public": "assets/data/channel-mapping/acceptance-summary.json",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "build/local-candidate-allowlist.json",
+      "compatibility": "build/local-candidate-allowlist.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/project-local-mapping.py",
+      "compatibility": "scripts/project-local-mapping.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/check-local-mapping.py",
+      "compatibility": "scripts/check-local-mapping.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/channel-mapping-integration.test.cjs",
+      "compatibility": "tests/channel-mapping-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/channel-mapping-integration-delta.json",
+      "compatibility": "build/channel-mapping-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/channel-mapping-preservation.cjs",
+      "compatibility": "tests/helpers/channel-mapping-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/channel-mapping-endpoints.json",
+      "compatibility": "tests/helpers/channel-mapping-endpoints.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/channel-mapping-preservation.test.cjs",
+      "compatibility": "tests/channel-mapping-preservation.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    }
+  ],
+  "registryAdditions": {
+    "pages": [
+      {
+        "path": "channel-mapping.html",
+        "title": "从感知扫描，推回通信路径",
+        "stage": "reading",
+        "role": "新重建本地核心教学已验收 · 合成扫描到通信时延关联；集成页待验、未部署",
+        "prerequisites": [
+          "foundations.html#echo",
+          "foundations.html#array",
+          "multipath-channel.html#experiment"
+        ],
+        "next": "reading.html",
+        "nextLabel": "回到论文阅读与单窗口星图，核对原文与有界实现"
+      }
+    ],
+    "lessonPlacement": [
+      {
+        "canonicalHref": "channel-mapping.html#top",
+        "section": "reading",
+        "parentLabel": "真实信道/感知到通信路径映射（新重建本地核心）"
+      }
+    ]
+  },
+  "guideChange": {
+    "id": "channels-sensing-communication-mapping-2026",
+    "before": {
+      "id": "channels-sensing-communication-mapping-2026",
+      "directionId": "channels",
+      "title": "测到墙和金属板，能预测通信反射路径吗？",
+      "question": "雷达看见的环境反射，怎样变成另一处通信接收机的路径线索？同一个散射体是否意味着相同的信道？",
+      "mechanism": "先从单站回波的时延和扫描角度找出主要散射位置，再按发射端、散射体和通信接收端的几何关系计算双站路径。把预测的超额时延与通信测量中的主径对照，而不是直接复制雷达信道系数。",
+      "innovation": "把统计模型中的“共享环境”接到可检查的物体与路径对应：通过单站感知图、双站通信测量和几何关系，检验两种观测究竟共享了什么。",
+      "evidence": {
+        "kind": "室内信道实测与几何校验；本站仅原文导读",
+        "summary": "§3.2、图5把两条通信主径分别关联到金属板与墙。实验使用62.64 GHz、1.76 GHz带宽、两个单站位置及一条4 m双站链路；支持的是该场景的主径对应，未证明跨场景完整复信道恢复或通信速率收益。"
+      },
+      "limits": [
+        "测量是约1 m高度的水平扫描；波束宽度、扫描步进、提峰门槛与物体可见性都会限制保留下来的路径。扫描步进不是角分辨率。",
+        "§3.3报告的3 mm是墙体几何校验误差，不是多目标定位RMSE。雷达散射截面（RCS，描述散射强弱）还使用双站直达路径功率标定，不能说仅凭单站观测独立获得。",
+        "没有留出房间、设备或动态遮挡的盲测；不把主径几何关系外推为所有多径的幅相关系。本站未复现测量或原图。"
+      ],
+      "nextQuestion": "冻结校准和选径门槛，在未参与建图的接收位置预测通信主径，再加入遮挡物：时延误差、漏检和误配何时明显增加？先验预测须在查看通信测量前完成。",
+      "source": {
+        "title": "Experimental Characterization of ISAC Channel Mapping and Environment Awareness",
+        "authors": "Zhuangzhuang Cui、Rizqi Hersyandika、Haoqiu Xiong、Sofie Pollin",
+        "edition": "arXiv:2601.18558v1，2026-01-26；固定4页作者预印本",
+        "url": "https://arxiv.org/html/2601.18558v1",
+        "locator": "§1 / References [5]；§2.1–2.2 / 图1–2；§3.1 / 式(1)–(2)、图4；§3.2 / 式(3)、图5；§3.3 / 式(4)、图6",
+        "firstSubmittedAt": "2026-01-26T15:06:55Z",
+        "versionAt": "2026-01-26T15:06:55Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "版本页注明submitted to URSI-GASS 2026；本次未确认录用或出版"
+      },
+      "prerequisites": [
+        {
+          "href": "multipath-channel.html#model",
+          "label": "先看同一信号的多条路径怎样相加"
+        },
+        {
+          "href": "foundations.html#echo",
+          "label": "区分总路径与单站目标距离"
+        },
+        {
+          "href": "foundations.html#array",
+          "label": "区分扫描步进与角分辨率"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先画两种路径",
+          "locator": "§2、图1–2；§3.2、式(3)",
+          "purpose": "分别画单站往返与双站折线路径，不能沿用同一个距离换算。"
+        },
+        {
+          "label": "再查哪些峰被保留",
+          "locator": "§3.1、图4；§3.2、图5",
+          "purpose": "记录扫描、提峰和几何对应条件；没有被保留的路径也要算进边界。"
+        },
+        {
+          "label": "最后检查校准与外推",
+          "locator": "§3.3、式(4)、图6",
+          "purpose": "分清几何误差、散射强度与定位统计误差，提出留出位置检验。"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "共享簇模型问通感信道怎样统计相关；目标–环境耦合研究问目标加入后哪些背景路径会改变。",
+        "changedCondition": "这里转向已测场景中具体物体与通信主径的几何对应；下一步可以检验接收位置或遮挡变化是否破坏映射。",
+        "links": [
+          {
+            "guideId": "channels-shared-clusters-2024",
+            "relationType": "direct-citation",
+            "verificationNote": "新文直接引用共享簇论文作为相关背景；不代表扩展或复现其随机模型。",
+            "sourceLocator": "2026 v1 §1及参考文献[5]"
+          },
+          {
+            "guideId": "channels-target-environment-coupling-2025",
+            "relationType": "problem-link",
+            "verificationNote": "编辑提出的问题关联；核对完整参考文献[1]–[6]未见该旧文，未声称引用或继承。",
+            "sourceLocator": "2026 v1 §3及完整参考文献[1]–[6]"
+          }
+        ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一面墙，怎样从单站回波走到通信路径？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先分开两种实测观测",
+            "blocks": [
+              {
+                "label": "单站扫描",
+                "status": "observed",
+                "text": "两个位置的功率–角度–时延图"
+              },
+              {
+                "label": "双站链路",
+                "status": "observed",
+                "text": "分离收发端之间的通信时延峰"
+              }
+            ],
+            "explanation": "看见同一物体，不代表两端拿到同一个信道。单站是往返路径，双站是经过散射体的折线路径。",
+            "sourceLocator": "§2.1–2.2，图1–2；§3.2，图5",
+            "lessonHref": "foundations.html#echo"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些几何已知，哪些系数仍未知？",
+            "blocks": [
+              {
+                "label": "可用参考",
+                "status": "known",
+                "text": "收发位置、扫描角和经校准的时延观测"
+              },
+              {
+                "label": "待判定关系",
+                "status": "unknown",
+                "text": "主要峰的物体对应；仅凭感知能否预测通信信道幅相"
+              }
+            ],
+            "explanation": "把位置与路径长度关联起来，只解决部分问题；一个峰的几何对应不能替代所有多径的复增益。",
+            "sourceLocator": "§2.1；§3.1–3.3，式(1)–(4)",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "把映射拆成选径与几何预测",
+            "blocks": [
+              {
+                "label": "选择候选",
+                "status": "design",
+                "text": "按门槛、最小间隔和距离门保留主要回波峰"
+              },
+              {
+                "label": "转换路径",
+                "status": "design",
+                "text": "由散射位置计算双站总路程，再减去直达路程"
+              }
+            ],
+            "explanation": "再将预测超额时延与通信峰比对。选径规则会影响哪些反射被看见；扫描步进也不等于角分辨率。",
+            "sourceLocator": "§2.1；§3.1–3.2，图4–5、式(3)",
+            "lessonHref": "foundations.html#array"
+          },
+          {
+            "id": "evidence",
+            "heading": "主径对应以后，还缺哪一步？",
+            "blocks": [
+              {
+                "label": "本场景支持",
+                "status": "supported",
+                "text": "图5把两条主要通信反射分别关联到金属板和墙"
+              },
+              {
+                "label": "仍未建立",
+                "status": "not-established",
+                "text": "换位置或房间后完整复信道的盲预测，以及通信速率收益"
+              }
+            ],
+            "explanation": "下一步可先冻结校准和选径规则，再去未用于建图的位置检验。这是延伸问题，不是本文已有结果。",
+            "sourceLocator": "§3.2，图5；§3.3，图6；§4"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "图5的两个时延峰对上了，是否就能把雷达信道直接交给通信接收机做均衡？",
+          "answer": "不能。这里核对的是主要路径的几何与时延，均衡还需要完整通信信道的复系数。§3.3的散射强度估计也借用了双站直达径功率标定，并非单站信息独立完成。",
+          "sourceLocator": "§3.2–3.3，式(3)–(4)、图5–6"
+        }
+      }
+    },
+    "after": {
+      "id": "channels-sensing-communication-mapping-2026",
+      "directionId": "channels",
+      "title": "测到墙和金属板，能预测通信反射路径吗？",
+      "question": "雷达看见的环境反射，怎样变成另一处通信接收机的路径线索？同一个散射体是否意味着相同的信道？",
+      "mechanism": "先从单站回波的时延和扫描角度找出主要散射位置，再按发射端、散射体和通信接收端的几何关系计算双站路径。把预测的超额时延与通信测量中的主径对照，而不是直接复制雷达信道系数。",
+      "innovation": "把统计模型中的“共享环境”接到可检查的物体与路径对应：通过单站感知图、双站通信测量和几何关系，检验两种观测究竟共享了什么。",
+      "evidence": {
+        "kind": "室内信道实测与几何校验；本站新重建合成核心教学已本地验收，集成页待验",
+        "summary": "§3.2、图5把两条通信主径分别关联到金属板与墙。实验使用62.64 GHz、1.76 GHz带宽、两个单站位置及一条4 m双站链路；支持的是该场景的主径对应，未证明跨场景完整复信道恢复或通信速率收益。"
+      },
+      "limits": [
+        "测量是约1 m高度的水平扫描；波束宽度、扫描步进、提峰门槛与物体可见性都会限制保留下来的路径。扫描步进不是角分辨率。",
+        "§3.3报告的3 mm是墙体几何校验误差，不是多目标定位RMSE。雷达散射截面（RCS，描述散射强弱）还使用双站直达路径功率标定，不能说仅凭单站观测独立获得。",
+        "没有留出房间、设备或动态遮挡的盲测；不把主径几何关系外推为所有多径的幅相关系。本站未复现测量或原图。",
+        "本站以新 portable-v2 合成扫描重建峰值、匿名分组、双站时延和 MPC 关联主链，采用公开补充聚类/代表/拒配规则。新 36 个全量样本、108 分支及独立数学/浏览器证据支持本地核心教学，不是旧源码或测量恢复。严格浏览器/Node 逐值比较的 15 处浮点差异仍为 FAIL；集成页、整站回归与部署另待验收。"
+      ],
+      "nextQuestion": "冻结校准和选径门槛，在未参与建图的接收位置预测通信主径，再加入遮挡物：时延误差、漏检和误配何时明显增加？先验预测须在查看通信测量前完成。",
+      "source": {
+        "title": "Experimental Characterization of ISAC Channel Mapping and Environment Awareness",
+        "authors": "Zhuangzhuang Cui、Rizqi Hersyandika、Haoqiu Xiong、Sofie Pollin",
+        "edition": "arXiv:2601.18558v1，2026-01-26；固定4页作者预印本",
+        "url": "https://arxiv.org/html/2601.18558v1",
+        "locator": "§1 / References [5]；§2.1–2.2 / 图1–2；§3.1 / 式(1)–(2)、图4；§3.2 / 式(3)、图5；§3.3 / 式(4)、图6",
+        "firstSubmittedAt": "2026-01-26T15:06:55Z",
+        "versionAt": "2026-01-26T15:06:55Z",
+        "checkedAt": "2026-10-11",
+        "publicationStatus": "版本页注明submitted to URSI-GASS 2026；本次未确认录用或出版"
+      },
+      "prerequisites": [
+        {
+          "href": "multipath-channel.html#model",
+          "label": "先看同一信号的多条路径怎样相加"
+        },
+        {
+          "href": "foundations.html#echo",
+          "label": "区分总路径与单站目标距离"
+        },
+        {
+          "href": "foundations.html#array",
+          "label": "区分扫描步进与角分辨率"
+        }
+      ],
+      "readingSteps": [
+        {
+          "label": "先画两种路径",
+          "locator": "§2、图1–2；§3.2、式(3)",
+          "purpose": "分别画单站往返与双站折线路径，不能沿用同一个距离换算。"
+        },
+        {
+          "label": "再查哪些峰被保留",
+          "locator": "§3.1、图4；§3.2、图5",
+          "purpose": "记录扫描、提峰和几何对应条件；没有被保留的路径也要算进边界。"
+        },
+        {
+          "label": "最后检查校准与外推",
+          "locator": "§3.3、式(4)、图6",
+          "purpose": "分清几何误差、散射强度与定位统计误差，提出留出位置检验。"
+        }
+      ],
+      "contextTrail": {
+        "oldQuestion": "共享簇模型问通感信道怎样统计相关；目标–环境耦合研究问目标加入后哪些背景路径会改变。",
+        "changedCondition": "这里转向已测场景中具体物体与通信主径的几何对应；下一步可以检验接收位置或遮挡变化是否破坏映射。",
+        "links": [
+          {
+            "guideId": "channels-shared-clusters-2024",
+            "relationType": "direct-citation",
+            "verificationNote": "新文直接引用共享簇论文作为相关背景；不代表扩展或复现其随机模型。",
+            "sourceLocator": "2026 v1 §1及参考文献[5]"
+          },
+          {
+            "guideId": "channels-target-environment-coupling-2025",
+            "relationType": "problem-link",
+            "verificationNote": "编辑提出的问题关联；核对完整参考文献[1]–[6]未见该旧文，未声称引用或继承。",
+            "sourceLocator": "2026 v1 §3及完整参考文献[1]–[6]"
+          }
+        ]
+      },
+      "visualTrace": {
+        "kind": "qualitative-reading-trace",
+        "title": "同一面墙，怎样从单站回波走到通信路径？",
+        "steps": [
+          {
+            "id": "observation",
+            "heading": "先分开两种实测观测",
+            "blocks": [
+              {
+                "label": "单站扫描",
+                "status": "observed",
+                "text": "两个位置的功率–角度–时延图"
+              },
+              {
+                "label": "双站链路",
+                "status": "observed",
+                "text": "分离收发端之间的通信时延峰"
+              }
+            ],
+            "explanation": "看见同一物体，不代表两端拿到同一个信道。单站是往返路径，双站是经过散射体的折线路径。",
+            "sourceLocator": "§2.1–2.2，图1–2；§3.2，图5",
+            "lessonHref": "foundations.html#echo"
+          },
+          {
+            "id": "known-unknown",
+            "heading": "哪些几何已知，哪些系数仍未知？",
+            "blocks": [
+              {
+                "label": "可用参考",
+                "status": "known",
+                "text": "收发位置、扫描角和经校准的时延观测"
+              },
+              {
+                "label": "待判定关系",
+                "status": "unknown",
+                "text": "主要峰的物体对应；仅凭感知能否预测通信信道幅相"
+              }
+            ],
+            "explanation": "把位置与路径长度关联起来，只解决部分问题；一个峰的几何对应不能替代所有多径的复增益。",
+            "sourceLocator": "§2.1；§3.1–3.3，式(1)–(4)",
+            "lessonHref": "multipath-channel.html#model"
+          },
+          {
+            "id": "design",
+            "heading": "把映射拆成选径与几何预测",
+            "blocks": [
+              {
+                "label": "选择候选",
+                "status": "design",
+                "text": "按门槛、最小间隔和距离门保留主要回波峰"
+              },
+              {
+                "label": "转换路径",
+                "status": "design",
+                "text": "由散射位置计算双站总路程，再减去直达路程"
+              }
+            ],
+            "explanation": "再将预测超额时延与通信峰比对。选径规则会影响哪些反射被看见；扫描步进也不等于角分辨率。",
+            "sourceLocator": "§2.1；§3.1–3.2，图4–5、式(3)",
+            "lessonHref": "foundations.html#array"
+          },
+          {
+            "id": "evidence",
+            "heading": "主径对应以后，还缺哪一步？",
+            "blocks": [
+              {
+                "label": "本场景支持",
+                "status": "supported",
+                "text": "图5把两条主要通信反射分别关联到金属板和墙"
+              },
+              {
+                "label": "仍未建立",
+                "status": "not-established",
+                "text": "换位置或房间后完整复信道的盲预测，以及通信速率收益"
+              }
+            ],
+            "explanation": "下一步可先冻结校准和选径规则，再去未用于建图的位置检验。这是延伸问题，不是本文已有结果。",
+            "sourceLocator": "§3.2，图5；§3.3，图6；§4"
+          }
+        ],
+        "checkpoint": {
+          "prompt": "图5的两个时延峰对上了，是否就能把雷达信道直接交给通信接收机做均衡？",
+          "answer": "不能。这里核对的是主要路径的几何与时延，均衡还需要完整通信信道的复系数。§3.3的散射强度估计也借用了双站直达径功率标定，并非单站信息独立完成。",
+          "sourceLocator": "§3.2–3.3，式(3)–(4)、图5–6"
+        }
+      },
+      "executable": {
+        "kind": "validated-paper-model",
+        "coverage": "bounded-model",
+        "href": "channel-mapping.html#top",
+        "label": "本地核心已验收：感知扫描到通信时延关联（集成页待验）",
+        "summary": "从经校准的标量功率扫描取峰并反投影，按明确补充规则形成匿名组，再用原文 Eq.3 预测通信超额时延并保留唯一、歧义与无匹配结果。三个分支使用同一观测；推断不读取真值。",
+        "limitations": "这是源公式支持的有界合成模型，不是作者未公开的自动聚类算法或实测重现。共享组距离基线继承角度分组，零角度是破坏性消融；本地核心验收不等于本集成页面、整站或部署通过。严格逐值比较 FAIL 保留，整篇论文未复现。",
+        "sourceLocators": [
+          "v1 §3.1 Eqs.1–2：经校准单站扫描、峰值门限及相向站点反投影",
+          "v1 §3.2 Eq.3：双站绕行超额时延与通信 MPC 对照",
+          "本站公开补充：聚类、代表、候选拒配与评价规则；原文未指定完整自动实现"
+        ]
+      }
+    }
+  },
+  "addedModuleContracts": [
+    {
+      "public": "channel-mapping/src/app.mjs",
+      "sha256": "0a348234ff86701464c595deee7ea17e43f9a48af8b6ce33e27675fe55d412f3",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/config.mjs",
+      "sha256": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/evaluation.mjs",
+      "sha256": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/experiment.mjs",
+      "sha256": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/generator.mjs",
+      "sha256": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/geometry.mjs",
+      "sha256": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/inference.mjs",
+      "sha256": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/worker.mjs",
+      "sha256": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    }
+  ],
+  "oldChecksAndHistoricalHashesUnchanged": true,
+  "historicalInverseBridge": "Exact four-file before/after adapter prepared under tests/helpers/channel-mapping-preservation.cjs; no existing read boundary is wired or weakened. See HISTORICAL-ADAPTER-PLAN.md."
+}

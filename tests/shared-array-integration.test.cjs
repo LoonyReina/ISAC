@@ -3,6 +3,8 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 // Registry, frozen source and static navigation contracts; numerical and browser evidence are separate.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-shared-array'),u=r.units.find(u=>u.id==='shared-array'),p=r.pages.find(p=>p.path==='shared-array.html');
 const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
@@ -14,7 +16,7 @@ test('shared-array has one canonical mechanism in the existing eight-direction f
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(i=>i[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'spatial');
  a.equal(c.learningEntry,'shared-array.html#question');a.equal(u.href,'shared-array.html#experiment');a.equal(c.paper,'shared-array.html#paper');a.equal(c.next,'shared-array.html#boundaries');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
 });
 
 test('shared-array provides all six learning layers without replacing existing beginner entries',()=>{

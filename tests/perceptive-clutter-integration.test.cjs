@@ -3,6 +3,8 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 // Registry, evidence preservation and static navigation only; no browser, RF or complete-paper certification.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-perceptive-clutter'),u=r.units.find(u=>u.id==='perceptive-clutter'),p=r.pages.find(p=>p.path==='perceptive-clutter.html');
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -372,13 +374,13 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'receiver');
  a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
- const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(historyRegistry).directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
  for(const [level,anchor]of [['intuition','question'],['model','model'],['experiment','experiment'],['papers','source'],['limits','boundary'],['reproduction','validation']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href==='perceptive-clutter.html#'+anchor);
   a.equal(items.length,1);a.equal(items[0].status,'available');a.equal(items[0].scope,'direction-specific');resolve(items[0].href);
  }
- a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,/递归背景与离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
+ a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).coverage,/递归背景与离格单目标有限网格测距/);a.match(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).coverage,/连续优化、真实信道校准和多目标跟踪尚未实现/);
 });
 
 test('all original beginner entries and proposed work survive the narrowly scoped new concept',()=>{
@@ -389,7 +391,7 @@ test('all original beginner entries and proposed work survive the narrowly scope
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(ref=>ref===u.id).length<=1);
  const pending=r.directions.flatMap(d=>d.levels.flatMap(l=>l.items.filter(i=>i.status==='proposed').map(item=>({direction:d.id,level:l.id,item}))));a.deepEqual(pending,originalProposedWork);
  for(const {item}of pending)a.ok(!item.href);
- a.deepEqual(require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(r).directions.find(d=>d.id==='networks').primaryCaseIds,['case-clock','case-distributed-detection']);a.deepEqual(r.directions.find(d=>d.id==='channels').primaryCaseIds,['case-multipath-channel']);
+ a.deepEqual(require('./helpers/networked-sync-preservation.cjs').withoutSyncRegistry(historyRegistry).directions.find(d=>d.id==='networks').primaryCaseIds,['case-clock','case-distributed-detection']);a.deepEqual(r.directions.find(d=>d.id==='channels').primaryCaseIds,['case-multipath-channel']);
  for(const edge of r.knowledgeMap.edges.filter(e=>e.source==='background-subtraction'||e.target==='background-subtraction')){a.equal(edge.provenance,'editorial-pedagogic');a.equal(edge.scientificClaim,false);}
 });
 

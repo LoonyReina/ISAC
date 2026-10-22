@@ -3,7 +3,7 @@
  */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AtomicReceiverLesson=api;})(typeof self!=='undefined'?self:globalThis,function(){
 'use strict';
-const VERSION='atomic-receiver-lesson-v1',SOURCE_HASH='f0441c1053085d83356e40d200fe83c442c33d5d403c39d2bc89745f8ac2a722',CORE_HASH='3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14';
+const VERSION='atomic-receiver-lesson-v2-continuous',SOURCE_HASH='f0441c1053085d83356e40d200fe83c442c33d5d403c39d2bc89745f8ac2a722',CORE_HASH='3d5656febab24737613e135946aada744d6083c93d5fe9d722b4f6ac2d568d14';
 const DEFAULT_CONFIG=Object.freeze({seed:20261012,separation:.30,errorCount:2,snrDb:25,lambdaScale:1,muScale:1,maxIter:6000});
 const PRESETS=Object.freeze({nominal:{...DEFAULT_CONFIG},errorFree:{...DEFAULT_CONFIG,errorCount:0},closePaths:{...DEFAULT_CONFIG,separation:.04},denseErrors:{...DEFAULT_CONFIG,errorCount:8},iterationLimit:{...DEFAULT_CONFIG,maxIter:500}});
 const finite=(v,n)=>{if(typeof v!=='number'||!Number.isFinite(v))throw Error(n+' 必须是有限数');return v;};
@@ -70,5 +70,49 @@ function errorEvaluation(snapshot,truth,input){
  for(let i=0;i<16;i++){const a=Math.hypot(snapshot.e.re[i],snapshot.e.im[i])>threshold,b=Math.hypot(truth.e.re[i],truth.e.im[i])>1e-12;if(a)estimated.push(i);if(b)actual.push(i);if(a&&b)truePositives++;if(a&&!b)falsePositives++;if(!a&&b)falseNegatives++;}
  return {threshold,thresholdRule:'|estimated e_i| > 0.1*mu; declared teaching threshold, not original paper',truePositives,falsePositives,falseNegatives,estimated,actual};
 }
-return {VERSION,SOURCE_HASH,CORE_HASH,DEFAULT_CONFIG,PRESETS,generate,postprocess,evaluate,errorEvaluation};
+// NEW 2026-10-21: bounded continuous dual refinement and rank-revealing gain LS.
+// Protocol follows the frozen Python reference baselines.py; Newton/Armijo is
+// independently implemented instead of SciPy L-BFGS-B. No truth or true K input.
+function dualDerivatives(nu,M,N,lambda,phi,psi){
+ const q=[0,0],d=[[0,0],[0,0]],h=[[[0,0],[0,0]],[[0,0],[0,0]]];
+ for(let i=0;i<M*N;i++){const k=[2*Math.PI*(i%M),-2*Math.PI*Math.floor(i/M)],v=-(k[0]*phi+k[1]*psi),c=Math.cos(v),s=Math.sin(v),a=nu.re[i]*c-nu.im[i]*s,b=nu.re[i]*s+nu.im[i]*c;q[0]+=a;q[1]+=b;for(let j=0;j<2;j++){d[j][0]+=k[j]*b;d[j][1]-=k[j]*a;for(let l=0;l<2;l++){h[j][l][0]-=k[j]*k[l]*a;h[j][l][1]-=k[j]*k[l]*b;}}}
+ const scale=lambda*lambda,dot=(a,b)=>a[0]*b[0]+a[1]*b[1];return {value:dot(q,q)/scale,gradient:d.map(x=>2*dot(q,x)/scale),hessian:d.map((x,j)=>d.map((y,l)=>2*(dot(x,y)+dot(q,h[j][l]))/scale))};
+}
+function refineDual(nu,M,N,lambda,seed,{maxIterations=60}={}){
+ const lo=[seed.phi-1/64,seed.psi-1/64],hi=[seed.phi+1/64,seed.psi+1/64],x=[seed.phi,seed.psi];let v=dualDerivatives(nu,M,N,lambda,...x),status='iteration_limit',iterations=0;
+ const project=g=>g.map((a,j)=>(x[j]<=lo[j]+1e-13&&a<0)||(x[j]>=hi[j]-1e-13&&a>0)?0:a);
+ for(let it=0;it<maxIterations;it++){iterations=it;const g=project(v.gradient),gn=Math.hypot(...g);if(gn<1e-8){status='converged';break;}const h=v.hessian,det=h[0][0]*h[1][1]-h[0][1]*h[1][0];let step;
+  if(g[0]===0&&g[1]!==0&&h[1][1]<-1e-9)step=[0,-g[1]/h[1][1]];else if(g[1]===0&&g[0]!==0&&h[0][0]<-1e-9)step=[-g[0]/h[0][0],0];else if(h[0][0]<-1e-9&&h[1][1]<-1e-9&&det>1e-12)step=[(-h[1][1]*g[0]+h[0][1]*g[1])/det,(h[1][0]*g[0]-h[0][0]*g[1])/det];else step=g.map(a=>a/gn/64);
+  if(step[0]*g[0]+step[1]*g[1]<=0)step=g.map(a=>a/gn/64);
+  let accepted=false;for(let b=0;b<30;b++){const a=2**(-b),y=x.map((c,j)=>Math.max(lo[j],Math.min(hi[j],c+a*step[j]))),move=y.map((c,j)=>c-x[j]),dot=move[0]*v.gradient[0]+move[1]*v.gradient[1];if(Math.hypot(...move)<1e-15)break;const z=dualDerivatives(nu,M,N,lambda,...y);if(z.value>=v.value+1e-4*dot-1e-15){x[0]=y[0];x[1]=y[1];v=z;accepted=true;break;}}
+  if(!accepted){status='line_search_stalled';break;}iterations=it+1;
+ }
+ const pg=Math.hypot(...project(v.gradient));if(pg<1e-8)status='converged';return {phi:wrap(x[0]),psi:wrap(x[1]),ratio:Math.sqrt(Math.max(0,v.value)),seed:{phi:seed.phi,psi:seed.psi,ratio:seed.ratio},iterations,status,projectedGradientNorm:pg,boxHalfWidth:1/64,boundary:x.some((a,j)=>Math.abs(a-lo[j])<1e-10||Math.abs(a-hi[j])<1e-10),method:'continuous analytic-Hessian Newton / projected Armijo; no truth'};
+}
+function recoverAmplitudes(input,snapshot,candidates){
+ const {M,N}=input,D=M*N,K=candidates.length,b=Array.from({length:D},(_,i)=>[input.r.re[i]-snapshot.e.re[i],input.r.im[i]-snapshot.e.im[i]]),mul=(a,b)=>[a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]],dot=(a,b)=>a.reduce((v,x,i)=>[v[0]+x[0]*b[i][0]+x[1]*b[i][1],v[1]+x[0]*b[i][1]-x[1]*b[i][0]],[0,0]),norm=a=>Math.sqrt(a.reduce((s,x)=>s+x[0]**2+x[1]**2,0));
+ const A=candidates.map(p=>Array.from({length:D},(_,i)=>{const a=2*Math.PI*((i%M)*p.phi-Math.floor(i/M)*p.psi);return mul([input.s.re[i],input.s.im[i]],[Math.cos(a),Math.sin(a)]);}));
+ if(!K)return {status:'no_candidates',rank:0,candidateCount:0,coefficients:null,predictedObservation:null,residualNorm:norm(b),normalResidualNorm:0,method:'column-pivoted twice-reorthogonalized complex QR',rankToleranceRelative:1e-10};
+ const V=A.map(a=>a.map(v=>v.slice())),R=Array.from({length:K},()=>Array.from({length:K},()=>[0,0])),Q=[],perm=Array.from({length:K},(_,i)=>i),diagonal=[];let rank=0;
+ for(let j=0;j<Math.min(D,K);j++){let p=j;for(let k=j+1;k<K;k++)if(norm(V[k])>norm(V[p]))p=k;[V[j],V[p]]=[V[p],V[j]];[perm[j],perm[p]]=[perm[p],perm[j]];for(let k=0;k<j;k++)[R[k][j],R[k][p]]=[R[k][p],R[k][j]];const n=norm(V[j]);if(n<=(diagonal[0]||1)*1e-10)break;diagonal.push(n);R[j][j]=[n,0];Q[j]=V[j].map(x=>[x[0]/n,x[1]/n]);rank++;
+  for(let k=j+1;k<K;k++)for(let repeat=0;repeat<2;repeat++){const r=dot(Q[j],V[k]);R[j][k][0]+=r[0];R[j][k][1]+=r[1];V[k]=V[k].map((x,i)=>{const y=mul(Q[j][i],r);return [x[0]-y[0],x[1]-y[1]];});}
+ }
+ const common={rank,candidateCount:K,columnPermutation:perm,method:'column-pivoted twice-reorthogonalized complex QR; solve shat*A*alpha=r-e',rankToleranceRelative:1e-10,diagonalRatio:diagonal.length?Math.min(...diagonal)/Math.max(...diagonal):null,diagonalRatioMeaning:'rank diagnostic, not a condition number or resolution certificate'};
+ if(rank<K)return {...common,status:'rank_deficient',coefficients:null,predictedObservation:null,residualNorm:null,normalResidualNorm:null};
+ const y=Q.map(q=>dot(q,b)),xp=Array.from({length:K},()=>[0,0]),x=Array.from({length:K},()=>[0,0]);for(let j=K-1;j>=0;j--){const v=y[j].slice();for(let k=j+1;k<K;k++){const z=mul(R[j][k],xp[k]);v[0]-=z[0];v[1]-=z[1];}xp[j]=v.map(a=>a/R[j][j][0]);x[perm[j]]=xp[j];}
+ const predicted=Array.from({length:D},(_,i)=>A.reduce((v,a,k)=>{const z=mul(a[i],x[k]);return [v[0]+z[0],v[1]+z[1]];},[0,0])),residual=b.map((v,i)=>[v[0]-predicted[i][0],v[1]-predicted[i][1]]),normal=A.map(a=>dot(a,residual));
+ let rNorm1=0,inverseNorm1=0;for(let k=0;k<K;k++){let sum=0;for(let j=0;j<K;j++)sum+=Math.hypot(...R[j][k]);rNorm1=Math.max(rNorm1,sum);const v=Array.from({length:K},()=>[0,0]);for(let j=K-1;j>=0;j--){const a=[j===k?1:0,0];for(let l=j+1;l<K;l++){const z=mul(R[j][l],v[l]);a[0]-=z[0];a[1]-=z[1];}v[j]=a.map(t=>t/R[j][j][0]);}inverseNorm1=Math.max(inverseNorm1,v.reduce((t,a)=>t+Math.hypot(...a),0));}const triangularCondition1=rNorm1*inverseNorm1;return {...common,triangularCondition1,conditioningMeaning:'exact 1-norm condition of pivoted triangular R (not 2-norm condition of shat*A)',status:triangularCondition1>1e8?'ill_conditioned':'solved',coefficients:{re:x.map(a=>a[0]),im:x.map(a=>a[1])},predictedObservation:{re:predicted.map(a=>a[0]),im:predicted.map(a=>a[1])},residualNorm:norm(residual),normalResidualNorm:norm(normal)};
+}
+function continuousPostprocess(input,snapshot,options={}){
+ const p=postprocess(input,snapshot,options),seeds=p.localMaxima.filter(x=>x.ratio>=.8).slice(0,128),attempts=seeds.map(s=>refineDual(snapshot.nu,input.M,input.N,input.lambda,s)),candidates=[];
+ for(const a of attempts.filter(x=>x.ratio>=p.threshold).sort((a,b)=>b.ratio-a.ratio||a.phi-b.phi||a.psi-b.psi))if(candidates.every(b=>Math.hypot(((a.phi-b.phi+.5)%1+1)%1-.5,((a.psi-b.psi+.5)%1+1)%1-.5)>1e-5))candidates.push(a);
+ return {...p,gridCandidates:p.candidates,candidates,continuous:{attempts,seedRatio:.8,maxCandidates:128,mergeToroidalDistance:1e-5,solverFailureCount:attempts.filter(x=>x.status!=='converged').length,method:'64x64 initialization then continuous 2D local optimization, NOT denser-grid lookup',globalDualCertificate:false},amplitudeRecovery:recoverAmplitudes(input,snapshot,candidates),method:'continuous bounded dual maxima + complex gain least squares; site-declared extraction, not author detector'};
+}
+
+function evaluateAmplitudes(candidates,recovery,truth){
+ const score=evaluate(candidates,truth),matches=[];
+ if(recovery.coefficients)for(const q of score.matches){const a=truth.paths[q.truthIndex].alpha,j=q.candidateIndex,dr=recovery.coefficients.re[j]-a.re,di=recovery.coefficients.im[j]-a.im;matches.push({...q,complexError:{re:dr,im:di},squaredError:dr*dr+di*di});}
+ return {matchedCount:matches.length,totalTruthPaths:truth.paths.length,missed:score.missed,extra:score.falseCandidates,conditionalComplexRmse:matches.length?Math.sqrt(matches.reduce((s,q)=>s+q.squaredError,0)/matches.length):null,matches,protocol:'position-only one-to-one association, then complex gain error; conditional score excludes misses and extras; truth never enters extraction or LS'};
+}
+return {VERSION,SOURCE_HASH,CORE_HASH,DEFAULT_CONFIG,PRESETS,generate,postprocess,evaluate,errorEvaluation,dualDerivatives,refineDual,recoverAmplitudes,continuousPostprocess,evaluateAmplitudes};
 });

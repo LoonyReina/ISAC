@@ -4,6 +4,7 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const root=path.resolve(__dirname,'..'),R=require('./helpers/dual-array-record-portability-preservation.cjs');
 const Q=require('./helpers/dual-array-record-runtime-preservation.cjs'),B=require('./helpers/dual-array-browser-integration-preservation.cjs');
 const read=file=>fs.readFileSync(path.join(root,file));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
 const names=text=>[...text.matchAll(/^test\('([^']+)'/gm)].map(x=>x[1]);
 const endpoint=file=>[...R.delta.changedFiles,...R.leaf.delta.files].find(row=>row.path===file);
 const previous=file=>Buffer.from(endpoint(file).beforeBase64,'base64');
@@ -15,7 +16,7 @@ test('Record portability exact leaf rejects old corrupted duplicate and forged i
  a.equal(R.leaf.delta.files[0].before.sha256,'7340f93036f1d2abbf833e88e73341820c14e5432d39a7ea7e4844e99b642158');
  a.equal(R.leaf.delta.files[0].after.sha256,'0c9fda6852ef58b3dd942b5bc8bb911be0ecccbffc36605b9a2f73a7ec043854');
  for(const row of [...R.leaf.delta.files,...R.delta.changedFiles]){
-  const bytes=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(row.path,read(row.path)),prior=R.withoutFile(row.path,bytes);a.ok(R.identity(prior,row.before));a.deepEqual(R.maybeWithoutFile(row.path,prior),prior);
+  const bytes=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(row.path,readForHistory(row.path)),prior=R.withoutFile(row.path,bytes);a.ok(R.identity(prior,row.before));a.deepEqual(R.maybeWithoutFile(row.path,prior),prior);
   for(const bad of [prior,bytes.subarray(1),Buffer.concat([bytes,Buffer.from('unreviewed')])])a.throws(()=>R.withoutFile(row.path,bad));
   const inverse=R.leaf.delta.files.includes(row)?R.leaf.withoutFile:R.withoutFile;
   for(const key of ['before','after'])for(const field of ['bytes','sha256']){const bad=structuredClone(row);bad[key][field]=field==='bytes'?0:'0'.repeat(64);a.throws(()=>inverse(row.path,bytes,[bad]));}
@@ -57,7 +58,7 @@ test('Record module identity overlay retains exact edges and rejects old source 
 });
 
 test('Record portability mappings add only explicit build-only evidence and recover the whole prior manifest',()=>{
- const manifest=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutMappings(require('../build/compatibility-manifest.json')),prior=R.withoutMappings(manifest);a.deepEqual(manifest.entries.filter(x=>x.public!==null),prior.entries.filter(x=>x.public!==null));a.equal(prior.entries.filter(x=>x.public!==null).length,1177);
+ const manifest=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutMappings(JSON.parse(readForHistory('build/compatibility-manifest.json'))),prior=R.withoutMappings(manifest);a.deepEqual(manifest.entries.filter(x=>x.public!==null),prior.entries.filter(x=>x.public!==null));a.equal(prior.entries.filter(x=>x.public!==null).length,1177);
  for(const row of R.mapping.addedEntries){a.equal(row.public,null);a.ok(fs.statSync(path.join(root,row.source)).isFile());for(const mode of ['missing','duplicate','spoof']){const bad=structuredClone(manifest);if(mode==='missing')bad.entries=bad.entries.filter(x=>x.source!==row.source);if(mode==='duplicate')bad.entries.push(structuredClone(row));if(mode==='spoof')bad.entries.find(x=>x.source===row.source).public='unreviewed';a.throws(()=>R.withoutMappings(bad));}}
  const fixtures=R.mapping.addedEntries.filter(x=>x.source.startsWith('tests/fixtures/dual-array-browser-records/')).map(x=>path.basename(x.source)).sort();a.deepEqual(fixtures,fs.readdirSync(path.join(root,'tests/fixtures/dual-array-browser-records')).sort());
 });
@@ -85,5 +86,5 @@ test('Record integration preserves historical evidence bytes and restricts the p
  const publicChanged=[...R.leaf.delta.files,...R.delta.changedFiles].flatMap(row=>manifest.entries.filter(entry=>entry.source===row.path&&entry.public!==null).map(entry=>entry.public));
  a.deepEqual(publicChanged,['labs/dual-array/runtime/records.mjs','scripts/build/module-dependencies.cjs','scripts/build/module-runtime-contracts.json']);
  for(const file of ['tests/helpers/dual-array-current-runtime-delta.json','tests/helpers/dual-array-current-runtime-freeze.json','tests/helpers/dual-array-browser-integration-delta.json','tests/helpers/dual-array-browser-timer-repair.json','labs/dual-array/FUNCTIONAL-FREEZE.json'])a.equal(endpoint(file),undefined,'historical evidence never rebased '+file);
- for(const row of B.delta.acceptedFiles)a.ok(R.identity(R.maybeWithoutFile(row.path,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(row.path,read(row.path))),row),'every previous reviewed endpoint '+row.path);
+ for(const row of B.delta.acceptedFiles)a.ok(R.identity(R.maybeWithoutFile(row.path,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(row.path,readForHistory(row.path))),row),'every previous reviewed endpoint '+row.path);
 });

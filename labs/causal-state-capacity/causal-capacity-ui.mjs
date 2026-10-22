@@ -106,7 +106,7 @@ export function mountCausalCapacityLesson(root=document, {saveFile=downloadJSON,
 }
 
 if (typeof document!=='undefined' && document.querySelector('#cc-budget')) {
-  try { mountCausalCapacityLesson(document); }
+  try { mountCausalCapacityLesson(document, {autoStart:globalThis.ISACGuidedManual !== true}); }
   catch (error) {
     const status=document.querySelector('#cc-status');
     if(status){status.dataset.phase='error';status.textContent=`初始化失败：${error.message}。未生成或接受计算结果。`;}

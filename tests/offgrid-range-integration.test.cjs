@@ -8,9 +8,11 @@ const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs
 const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const r=JSON.parse(read('site/registry.json')),u=r.units.find(u=>u.id==='offgrid-range'),p=r.pages.find(p=>p.path==='offgrid-range.html');
 const {withoutReferenceUncertainty,withoutReferencePrerequisite}=require('./helpers/reference-uncertainty-registry.cjs');
-const beforeReferenceUncertainty=withoutReferenceUncertainty(r);
+const beforeReferenceUncertainty=withoutReferenceUncertainty(historyRegistry);
 const researchGuides=buildResearchGuides(JSON.parse(read(r.researchGuidesFile)),r);
 const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
 const template=(html,id)=>{const m=html.match(new RegExp(`<template[^>]+id="map-template-${id}"[^>]*>([\\s\\S]*?)<\\/template>`));a.ok(m,id);return m[1];};
@@ -22,7 +24,7 @@ function resolve(href){
 
 test('off-grid range adds one case-free processing mechanism with honest fixed totals',()=>{
  a.ok(u&&p);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.deepEqual([withoutGCSAGERegistry(r).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(r).pages.length],[28,15,32,8,24]);
+ a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(historyRegistry).pages.length],[28,15,32,8,24]);
  a.equal(u.title,'离格目标与测距网格');a.equal(u.question,'同一个目标，网格更密就一定测得更准吗？');a.equal(p.title,u.question);
  a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'foundations');
  a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'reading.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');
@@ -36,7 +38,7 @@ test('off-grid range adds one case-free processing mechanism with honest fixed t
 
 test('every earlier unit, case, page, unrelated direction and legacy route is preserved',()=>{
  a.equal(hash(beforeReferenceUncertainty.units.filter(x=>x.id!==u.id)),'8fc37c5693efdcd718fa3824c7136f763857ba1d762d5904157261e63fb340a2');
- a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(r).cases),'8bad502395d9fad13770b4afab9ed26575eca9545599f5c82abbe55ff6187362');
+ a.equal(hash(require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(historyRegistry).cases),'8bad502395d9fad13770b4afab9ed26575eca9545599f5c82abbe55ff6187362');
  a.equal(hash(beforeReferenceUncertainty.pages.filter(x=>x.path!==p.path)),'10ef3d09ee0bdfc391203f8911e3746999630f7dcfeb5448fb394875f1d3939b');
  // Normalize the exact new mechanism hooks first; retain the older reading-only scope normalization.
  const historicalDirections=structuredClone(beforeReferenceUncertainty.directions.filter(d=>d.id!=='receiver'));
@@ -44,7 +46,7 @@ test('every earlier unit, case, page, unrelated direction and legacy route is pr
  a.equal(waveforms.scope,'发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；新增 OTFS 原文导读；完整 OTFS 收发机实验仍待实现。');
  waveforms.scope='发射信号、调制坐标、导频歧义、训练序列复用与严格协方差波形优化；OTFS 为后续专题。';
  a.equal(hash(historicalDirections),'3ee503aa4655bba2a42d975d611a5140bedfabe66e5d8c5c48c27b425197fb5d');
- a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
+ a.equal(hash(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyRegistry).legacy),'1fb9c986a8111d4c4b8a16f7762fb5f4c3c6c470c1f6bc95d2c3caf99dd6ffed');
 });
 
 test('only delay, estimation and resolution gain unit references; original concept entries and edges remain intact',()=>{
@@ -53,7 +55,7 @@ test('only delay, estimation and resolution gain unit references; original conce
  const estimation=nodes.find(n=>n.id==='estimation'),resolution=nodes.find(n=>n.id==='resolution');
  a.equal(estimation.entryUnitRef,'shared');a.match(estimation.knownUnknown,/非线性测距/);a.match(estimation.knownUnknown,/每个距离候选拟合未知复增益/);a.match(estimation.knownUnknown,/真值只供生成与评价，不提供给估计器/);
  a.equal(estimation.boundary,'实标量 LS 等号不能直接搬到非线性距离或角度');a.equal(resolution.href,'foundations.html#limits');a.ok(!resolution.entryUnitRef);
- const preserved=withoutMapProgressions(r).knowledgeMap;
+ const preserved=withoutMapProgressions(historyRegistry).knowledgeMap;
  for(const n of preserved.nodes)n.unitRefs=n.unitRefs.filter(id=>id!==u.id);
  preserved.nodes.find(n=>n.id==='estimation').knownUnknown='先固定样本比较未知参数的候选；深入实标量 LS 时，估计器接收 x、y，θ 只作评估真值';
  a.equal(hash(preserved),'ac34027eec50100720f9216c7304cc1b89a2949ed1798accef56c24cbb82afa1');
@@ -64,7 +66,7 @@ test('only delay, estimation and resolution gain unit references; original conce
 });
 
 test('receiver gains five independent mechanism depths and two repeatable checks without fabricated paper evidence',()=>{
- const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver');a.equal(d.levels.length,6);a.deepEqual(d.primaryCaseIds,['case-perceptive-clutter']);
+ const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(historyRegistry).directions.find(d=>d.id==='receiver');a.equal(d.levels.length,6);a.deepEqual(d.primaryCaseIds,['case-perceptive-clutter']);
  a.equal(d.levels[0].items[0].href,'foundations.html#matched');
  const expected=[['intuition','experiment'],['model','model'],['experiment','experiment'],['limits','limits'],['reproduction','trials'],['reproduction','record']];
  const added=d.levels.flatMap(l=>l.items.filter(i=>i.href?.startsWith(p.path+'#')).map(i=>[l.id,i.href.split('#')[1]]));a.deepEqual(added,expected);
@@ -73,11 +75,11 @@ test('receiver gains five independent mechanism depths and two repeatable checks
   a.match(item.note,/独立离格单目标有限网格机制/);a.match(item.note,/不是连续优化、检测或论文复现/);resolve(item.href);
   if(level==='reproduction')a.equal(item.kind,'reproduction-plan');
  }
- a.equal(hash(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).levels.find(l=>l.id==='papers')),'a6d7c5bdfa684a4e1fb64256a5c3ae432cbf3f1e01484ab4d1079f0776a21ce3');
+ a.equal(hash(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).levels.find(l=>l.id==='papers')),'a6d7c5bdfa684a4e1fb64256a5c3ae432cbf3f1e01484ab4d1079f0776a21ce3');
  const preserved=structuredClone(beforeReferenceUncertainty.directions.find(x=>x.id===d.id));delete preserved.coverage;delete preserved.nextExtension;
  for(const l of preserved.levels)l.items=l.items.filter(i=>!i.href?.startsWith(p.path+'#'));
  a.equal(hash(preserved),'bc767b44c732476150458bb4f86ed74df350595d78be85e1f45c1b62285bcb11');
- a.equal(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r).directions.find(x=>x.id===d.id).coverage,'已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。');
+ a.equal(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(historyRegistry).directions.find(x=>x.id===d.id).coverage,'已有匹配、CFAR、实标量 LS/CRB、递归背景与离格单目标有限网格测距；连续优化、真实信道校准和多目标跟踪尚未实现。');
  for(const term of ['连续参数估计','模型失配','低 SNR','有限反例','普遍排序'])a.ok(d.nextExtension.includes(term),term);
 });
 
@@ -104,7 +106,7 @@ test('generated page shell keeps the fixed notebook query and real prerequisites
 
 test('generated portals expose the mechanism and accurate totals without adding research cases or bibliography cards',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
- const home=require('./helpers/two-section-navigation-preservation.cjs').withoutFile('index.html',Buffer.from(read('index.html'))).toString(),reading=read('reading.html');
+ const home=require('./helpers/two-section-navigation-preservation.cjs').withoutFile('index.html',readForHistory('index.html')).toString(),reading=read('reading.html');
  for(const [count,label]of [[r.units.length,'机制实验'],[32,'核心概念'],[8,'研究方向']])a.ok(home.includes(`<strong>${count}</strong> 个${label}`));
  a.ok(home.includes(`data-map-unit="${u.id}" href="${u.href}"`));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);a.doesNotMatch(reading,/id="case-offgrid-range"/);

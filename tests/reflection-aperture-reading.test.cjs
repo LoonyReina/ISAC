@@ -7,7 +7,8 @@ const {buildResearchGuides,renderResearchGuides}=require('../scripts/research-gu
 const {spatialGuideId,spatialGuideHash,aperturePrerequisite,withoutApertureTeachingLinks,withoutSpatialFrontier}=require('./helpers/spatial-frontier-preservation.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const registry=JSON.parse(read('site/registry.json')),data=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile)));
+const readForHistory=file=>require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root}).toString('utf8');
+const registry=JSON.parse(read('site/registry.json')),data=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(readForHistory(registry.researchGuidesFile)));
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const spatial=d=>d.cards.find(c=>c.id===spatialGuideId),design=d=>spatial(d).visualTrace.steps.find(s=>s.id==='design');
 
@@ -61,6 +62,7 @@ test('only exact appended links are normalized before the unchanged spatial-card
 });
 
 test('existing model, export, guide runtime and canonical registry/resolvers stay byte-exact',()=>{
+ const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
  const expected={
   'multipath-channel-core.js':'414f00f2bcad736281881edd643308fa622887ccf4227aa2e227fe24119816a8',
   'multipath-channel.js':'f67b0b9a7ca812467677ea66d68d05afe7faad007373f1cb23b91d13b01e9cca',
@@ -71,6 +73,6 @@ test('existing model, export, guide runtime and canonical registry/resolvers sta
   'research-guides.js':'67bd79cf79a670ad9ffa12d3ad13084c1ffb8f4e5b4cf2e538fae51904e2d890',
   'site/registry.json':'b8414c17f5251f1ea940c62c69e6e8f93327b964e972b3f7c3e89bef14ce7f07'
  };
- for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,read(file))),digest,file);
- a.deepEqual([data.cards.length,withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,registry.knowledgeMap.nodes.length],[20,28,15,32]);
+ for(const [file,digest]of Object.entries(expected))a.equal(hash(withoutBuildLinkValidation(file,file==='site/registry.json'?readForHistory(file):read(file))),digest,file);
+ a.deepEqual([data.cards.length,withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,registry.knowledgeMap.nodes.length],[20,28,15,32]);
 });

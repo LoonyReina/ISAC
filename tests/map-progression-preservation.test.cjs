@@ -4,7 +4,8 @@ const {withoutMapProgressions,withoutMapProgressionGenerator,withoutBuildLinkVal
 const {withoutReferenceUncertainty,withoutReferencePrerequisite}=require('./helpers/reference-uncertainty-registry.cjs');
 const {withoutPilotContinuation}=require('./helpers/pilot-continuation-preservation.cjs');
 const {withoutCapacityExecutionRenderer}=require('./helpers/capacity-execution-preservation.cjs');
-const root=path.resolve(__dirname,'..'),read=file=>require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(file,fs.readFileSync(path.join(root,file))).toString();
+const root=path.resolve(__dirname,'..'),read=file=>require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(file,readForHistory(file)).toString();
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
 const registry=JSON.parse(read('site/registry.json')),generator=withoutBuildLinkValidation('scripts/generate-site.cjs',read('scripts/generate-site.cjs'));
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 // Reuse the earlier fingerprints, including their earlier exact normalization.
