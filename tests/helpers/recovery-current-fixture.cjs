@@ -2,9 +2,29 @@
 // NEW actual-current fixture augmentation. No baseline projection is used here:
 // the production unified gate receives every required recovery feature verbatim.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+// Cache only the exact generated shell for this source root, never mutable fixture bytes.
+const generatedHeaders=new Map();
+function currentMultipathHeader(root,manifest){
+ if(!generatedHeaders.has(root)){
+  const temporary=fs.mkdtempSync(path.join(require('node:os').tmpdir(),'isac-gaussian-current-header-'));
+  try{
+   const output=path.join(temporary,'dist');require('../../scripts/build/compatibility.cjs').build({root,manifest,output});
+   const page=fs.readFileSync(path.join(output,'multipath-channel.html'),'utf8'),headers=[...page.matchAll(/<!-- SITE:HEADER:START -->[\s\S]*?<!-- SITE:HEADER:END -->/g)];
+   assert.equal(headers.length,1,'One actual current generated multipath header');generatedHeaders.set(root,headers[0][0]);
+  }finally{fs.rmSync(temporary,{recursive:true,force:true});}
+ }
+ return generatedHeaders.get(root);
+}
 module.exports=function augmentRecoveryFixture({directory,put},root){
  const R=require('../../scripts/build/recovery-dependencies.cjs'),manifest=JSON.parse(fs.readFileSync(path.join(root,'build/compatibility-manifest.json')));
  const read=file=>{const direct=path.join(root,file);if(fs.existsSync(direct))return fs.readFileSync(direct);const e=manifest.entries.find(e=>e.public===file);assert.ok(e?.source,'actual-current fixture input '+file);return fs.readFileSync(path.join(root,e.source));};
+ // The causal contract declares the nine teaching resources as current page edges.
+ for(const file of new Set(require('../../scripts/build/causal-capacity-dependencies.cjs').contract.pageEdges.map(edge=>edge.url.split('?')[0])))put(file,read(file));
+ // The multipath handwritten source deliberately excludes the generated teaching shell.
+ // Use the official generator output, without changing its scientific body or any validator.
+ const multipathFile='multipath-channel.html',multipath=fs.readFileSync(path.join(directory,multipathFile),'utf8'),header=/<!-- SITE:HEADER:START -->[\s\S]*?<!-- SITE:HEADER:END -->/g;
+ assert.equal([...multipath.matchAll(header)].length,1,'One current multipath fixture header');
+ put(multipathFile,multipath.replace(header,()=>currentMultipathHeader(root,manifest)));
  // Every unconditional current gate needs its complete real asset closure, not only ESM rows.
  const requiredFiles={...R.requiredFiles,...require('../../scripts/build/target19-otfs-dependencies.cjs').requiredFiles,...require('../../scripts/build/target19-nearfield-dependencies.cjs').requiredFiles,...require('../../scripts/build/target19-bistatic-dependencies.cjs').requiredFiles};
  for(const file of Object.keys(requiredFiles))put(file,read(file));
