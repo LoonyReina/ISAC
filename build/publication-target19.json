@@ -1,0 +1,718 @@
+{
+  "schemaVersion": 2,
+  "baselineCommit": "33faf04211f4d95a2a9daa04d820d5fb61aa8af7",
+  "policy": "Target19 candidate projection; readiness and deployment are independent. No publication authorization.",
+  "basicPages": [
+    "index.html",
+    "foundations.html",
+    "theory.html",
+    "sandbox.html",
+    "resolution.html",
+    "pilot-design.html",
+    "network-clock.html",
+    "sbfd-resource.html",
+    "near-field.html",
+    "golay-radar.html",
+    "ofdm-interpolation.html",
+    "radar-beam-decision.html",
+    "perceptive-clutter.html",
+    "shared-array.html",
+    "distributed-detection.html",
+    "offgrid-range.html",
+    "reference-uncertainty.html",
+    "otfs-receiver.html"
+  ],
+  "excludedPages": [
+    "dual-array-positioning.html",
+    "perceptive-bsbl.html",
+    "cooperative-clusters.html",
+    "cooperative-rate.html",
+    "full-duplex-cancellation.html"
+  ],
+  "excludedAssetPrefixes": [
+    "labs/dual-array/",
+    "labs/perceptive-bsbl/",
+    "labs/cooperative-clusters/",
+    "labs/cooperative-load/",
+    "labs/full-duplex/",
+    "labs/near-field/research/"
+  ],
+  "modules": [
+    {
+      "id": "otfs-joint-estimation-2020",
+      "title": "On the Effectiveness of OTFS for Joint Radar and Communication",
+      "href": "otfs-receiver/source-objective-v1/index.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/otfs-receiver"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "从同一 OTFS 观测，怎样联合估计未知复增益、时延和多普勒？",
+        "boundary": "保留原式 14/17 的有限 8×8、已知路径数联合任务，以明确补充的 residual-BCD 和轮末式 19 求解，并对比同观测顺序消去。原打印式 21 的来源确认仍未解决；新方法不冒充作者原算法或等计算量胜出，旧单径与通信分支保留。",
+        "evidence": [
+          "otfs-receiver/source-objective-v1/index.html"
+        ]
+      }
+    },
+    {
+      "id": "nearfield-multitarget-correlation",
+      "title": "Near-Field Integrated Sensing and Communication for Multi-Target Indication",
+      "href": "nearfield-multitarget.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/nearfield-multitarget"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "已知多目标位置时，相关性约束怎样改变近场照射与通信保障？",
+        "boundary": "实时式 17 的 PSD 最大最小照射设计及式 18 恢复，与仅移除目标相关约束的 NCCS 对比。目标位置是输入，不是定位结果；不同波形实际能量不强行归一，原回波和逆矩阵疑点、失败及扩展标签保留。",
+        "evidence": [
+          "nearfield-multitarget.html"
+        ]
+      }
+    },
+    {
+      "id": "bistatic-ofdm-clock-measurement-2023",
+      "title": "bistatic-ofdm-clock-measurement-2023",
+      "href": "network-clock.html#bistatic-core",
+      "runtimeOwners": [],
+      "sharedAssetPrefixes": [
+        "bistatic-core.js",
+        "bistatic-worker.js",
+        "bistatic-ui.js",
+        "bistatic.css"
+      ],
+      "sharedPageSections": [
+        "bistatic-core"
+      ],
+      "enabled": true,
+      "coreReady": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "exactPublicFiles": [
+        "bistatic-core.js",
+        "bistatic-worker.js",
+        "bistatic-ui.js",
+        "bistatic.css"
+      ],
+      "bindingComplete": true,
+      "exactPublicHashes": {
+        "bistatic-core.js": "a95a5adc73ba1384627d7323c601ccb255f53a9eb29ed3c542e79a5cd7d38771",
+        "bistatic-worker.js": "bad47fca67ce38f7e481c5f7b24a0ad6fdc44d517afebad619a86f4d21c69dc5",
+        "bistatic-ui.js": "71e2a1abd07d9b89a800940c15b399e98097cfb5fb78a91d7d73243cce22c540",
+        "bistatic.css": "9c62b02ed320d76dc6b178c3aad21b2e3e2f7ff18531aca0566f68eb4e9673b3"
+      },
+      "bindingProvenance": "bistatic-browser-teaching-v1/CHANGESET.json; final generated entry remains pending",
+      "currentSummary": {
+        "question": "仅凭公开导频，怎样完成双基地 OFDM 同步、时钟补偿与延迟–多普勒感知？",
+        "boundary": "模拟导频分支实时完成定时、整数/小数频偏、时钟估计、重采样及残余补偿。N256 互动与 N2048 预计算证据区分，三分支共用同一 IQ；保留捕获失败与错误估计，不冒充原始实测 IQ、完整原权重、硬件或 LDPC 复现。",
+        "evidence": [
+          "network-clock.html#bistatic-core"
+        ]
+      }
+    },
+    {
+      "id": "ofdm-ici-aware-receiver-2021",
+      "title": "MIMO-OFDM Joint Radar-Communications: Is ICI Friend or Foe?",
+      "href": "ofdm-ici-receiver.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/ofdm-ici"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "把载波间干扰纳入模型后，怎样从同一 OFDM 观测联合检测并估计多目标？",
+        "boundary": "有界 MUSIC/APES、GLRT-OMP 与联合增益重估，和同一观测上的已知发送信号 FFT 对照。无 ICI 反事实另行生成；保留漏检、虚警与困难场景，不宣称完整原文曲线或已校准实际虚警率。",
+        "evidence": [
+          "ofdm-ici-receiver.html"
+        ]
+      }
+    },
+    {
+      "id": "ofdm-passive-atomic-errors-2017",
+      "title": "Super-Resolution Delay-Doppler Estimation for OFDM Passive Radar",
+      "href": "atomic-ofdm-receiver.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/ofdm-reference"
+      ],
+      "sharedAssetPrefixes": [
+        "atomic-receiver"
+      ],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "含解调错误的 OFDM 观测，怎样联合恢复稀疏错误与连续时延、多普勒？",
+        "boundary": "有限 SDP 与披露修正的 exact-block ADMM，连续局部对偶峰搜索及式 32 复数幅度恢复；同输入对比稀疏错误模型和固定零错误模型。连续搜索不再限于显示网格，但不是全局连续证书；漏检、多候选和未收敛保留。",
+        "evidence": [
+          "atomic-ofdm-receiver.html"
+        ]
+      }
+    },
+    {
+      "id": "tradeoffs-feedback-capacity-distortion-2018",
+      "title": "Joint State Sensing and Communication: Optimal Tradeoff for a Memoryless Case",
+      "href": "theory.html#capacity-distortion",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/capacity-distortion"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [
+        "capacity-distortion"
+      ],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "给定代价与感知失真约束，怎样实时求解有限字母信道的通信容量？",
+        "boundary": "实时 BA 迭代与贝叶斯失真，覆盖原二元例及明确标注的三元扩展。解析解与 KKT 独立核对；不可行、单输入边界和迭代上限保留，不等于整篇性能图复现。",
+        "evidence": [
+          "theory.html#capacity-distortion"
+        ]
+      }
+    },
+    {
+      "id": "tradeoffs-causal-state-communication-2013",
+      "title": "Causal State Communication",
+      "href": "causal-state-capacity.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/causal-state-capacity"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "编码器已知当前状态时，怎样抵消信道状态并延迟传递状态描述？",
+        "boundary": "限定 p=q=1/4 的当前状态已知模型，以 16 原子概率求值 Theorem 3 / Proposition 4。阈值端点未解时返回空值，反向测试信道与原打印构造差异保留；严格因果 Fig. 2 分支不在本课，也未实现有限块编码器。",
+        "evidence": [
+          "causal-state-capacity.html"
+        ]
+      }
+    },
+    {
+      "id": "channels-sensing-communication-mapping-2026",
+      "title": "channels-sensing-communication-mapping-2026",
+      "href": "channel-mapping.html",
+      "runtimeOwners": [],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "enabled": true,
+      "coreReady": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "exactPublicFiles": [
+        "channel-mapping/styles.css",
+        "channel-mapping/src/app.mjs",
+        "channel-mapping/src/config.mjs",
+        "channel-mapping/src/evaluation.mjs",
+        "channel-mapping/src/experiment.mjs",
+        "channel-mapping/src/generator.mjs",
+        "channel-mapping/src/geometry.mjs",
+        "channel-mapping/src/inference.mjs",
+        "channel-mapping/src/worker.mjs",
+        "channel-mapping/site-integration.css",
+        "assets/data/channel-mapping/acceptance-summary.json"
+      ],
+      "bindingComplete": true,
+      "exactPublicHashes": {
+        "channel-mapping/styles.css": "6488365a3cf3205dd396d060348ab9a983a2ee090302f8f4630f6a13c7464a52",
+        "channel-mapping/src/app.mjs": "69c2d03d4a6883e65073b360b8ce93cba1f106b23eec7c51dd7ec6e8a1c6f205",
+        "channel-mapping/src/config.mjs": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+        "channel-mapping/src/evaluation.mjs": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+        "channel-mapping/src/experiment.mjs": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253",
+        "channel-mapping/src/generator.mjs": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+        "channel-mapping/src/geometry.mjs": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+        "channel-mapping/src/inference.mjs": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+        "channel-mapping/src/worker.mjs": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73",
+        "channel-mapping/site-integration.css": "1f6286aec930c1ea58d33d26fde052893daef0a9600af2818c81884a9010e1ec",
+        "assets/data/channel-mapping/acceptance-summary.json": "c9b6322e7aa37bc2fc08377c8815ec3ff6ef8f5cf96cf5ef1a88ccdea67c1a8c"
+      },
+      "bindingProvenance": "newcandidate-v6 exact compatibility-manifest entries; final unified browser gate pending",
+      "currentSummary": {
+        "question": "怎样从共享观测的角度–时延路径构造并检验感知与通信信道映射？",
+        "boundary": "Portable-v2 合成数据上的路径提取、分组、坐标反演和关联，不是原场地实测恢复。公平配对距离基线与坐标法共用支持集，坐标法更差的结果及关联歧义保留，不宣称性能胜出。",
+        "evidence": [
+          "channel-mapping.html"
+        ]
+      }
+    },
+    {
+      "id": "nearfield-mechanism-aware-mapping-2026",
+      "title": "Propagation Mechanism-Aware Near-Field Spatially Non-Stationary Channel Estimation and Environment Mapping",
+      "href": "nearfield-gc-sage.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/near-field"
+      ],
+      "sharedAssetPrefixes": [
+        "nearfield-gc-sage"
+      ],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "如何用传播几何约束，从同一近场观测联合估计路径参数与环境结构？",
+        "boundary": "二维单次反射、已知两条路径的 GC-SAGE，对比几何耦合与约化模型。真值只作评价，保留参考盲、关联和机制判别失败；不宣称三维、模型阶数估计或硬件复现。",
+        "evidence": [
+          "nearfield-gc-sage.html"
+        ]
+      }
+    },
+    {
+      "id": "optimal_waveform",
+      "title": "Toward Dual-functional Radar-Communication Systems: Optimal Waveform Design",
+      "href": "waveform-design.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/waveform-design"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "怎样在雷达协方差约束与多用户通信干扰之间优化实际发送波形？",
+        "boundary": "实时求解严格协方差约束及加权权衡波形，核对功率、干扰、速率与方向图。历史恒模实验明确为离线；非唯一解不按逐元素一致判优，也不保证通信端零干扰。",
+        "evidence": [
+          "waveform-design.html"
+        ]
+      }
+    },
+    {
+      "id": "joint_beamforming",
+      "title": "Joint Transmit Beamforming for Multiuser MIMO Communications and MIMO Radar",
+      "href": "joint-beamforming.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/joint-beamforming"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "在相同信道与资源约束下，SDR 和 ZF 怎样权衡雷达方向图与通信 SINR？",
+        "boundary": "实时发射设计、恢复与物理约束核查，并保留明确修正的 SSP 分支。历史 SSP 对照标为预计算；未满足 QoS、迭代上限与近似 gap 不被包装成全局可行性认证。",
+        "evidence": [
+          "joint-beamforming.html"
+        ]
+      }
+    },
+    {
+      "id": "crb",
+      "title": "Cramér-Rao Bound Optimization for Joint Radar-Communication Beamforming",
+      "href": "crb-beamforming.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/crb-beamforming"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [
+        "labs/crb-beamforming/extended-lab/DERIVATION.md",
+        "labs/crb-beamforming/extended-lab/SCHEMA.md",
+        "labs/crb-beamforming/extended-lab/tests/INDEPENDENT-REVIEW.md",
+        "labs/crb-beamforming/extended-lab/extended/core.js",
+        "labs/crb-beamforming/extended-lab/extended/hermitian.js",
+        "labs/crb-beamforming/extended-lab/extended/linalg.js",
+        "labs/crb-beamforming/extended-lab/prototype/style.css",
+        "labs/crb-beamforming/extended-lab/prototype/index.html",
+        "labs/crb-beamforming/extended-lab/prototype/app.js",
+        "labs/crb-beamforming/extended-lab/prototype/record.js",
+        "labs/crb-beamforming/extended-lab/prototype/worker.js",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/SUMMARY.json",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/README.md",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/MANIFEST.json",
+        "labs/crb-beamforming/extended-lab/current-browser-evidence/README.md",
+        "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json"
+      ],
+      "bindingComplete": true,
+      "exactPublicHashes": {
+        "labs/crb-beamforming/extended-lab/DERIVATION.md": "427289c6e8c0ee01dfdf8fb4948de61843507949d37f52570d1187d33d8c5ee3",
+        "labs/crb-beamforming/extended-lab/SCHEMA.md": "557acc687751c40ecb6e0f06572a14f0ed68781e5a65f71e8b1c84fe4ca666da",
+        "labs/crb-beamforming/extended-lab/tests/INDEPENDENT-REVIEW.md": "40f25c7399dca9d6403c1604abab86c44e54cab690ecf4f72f0f5067a083a7e3",
+        "labs/crb-beamforming/extended-lab/extended/core.js": "1c73151c201fdf2e345f36023bf3f1553d17402d07fe4f5a83a4c39ffb461dae",
+        "labs/crb-beamforming/extended-lab/extended/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+        "labs/crb-beamforming/extended-lab/extended/linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+        "labs/crb-beamforming/extended-lab/prototype/style.css": "73aa08c0659040d8b0bbd86b51dcdf75f6f91516b3adb4caf8146c80939808a8",
+        "labs/crb-beamforming/extended-lab/prototype/index.html": "5574d18d3a59591024e0d3181afd5f2c3e9632f741089c4a75ed3c1aa2e0ea00",
+        "labs/crb-beamforming/extended-lab/prototype/app.js": "a23fb6594c9e109331cb661b6fcf07ccee263a7c3ac410f29da4ca9676374000",
+        "labs/crb-beamforming/extended-lab/prototype/record.js": "204dc02aca475fed766a497fb1ccbf747b5794579cb87dad00c678500f077cc7",
+        "labs/crb-beamforming/extended-lab/prototype/worker.js": "98f38a7e5099c1f2bd893ee84b389bc0783992d96e114a9914c5018d4333ae9e",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/SUMMARY.json": "e3f0b91103f24f58b39ba5257b987f264f9daf580443c9f0c8a2e699b23fbd63",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/README.md": "c8c019c4d7586fedc7ffc16e93a8f2f4ad5f58b96be9c338d3a702f1270fbee5",
+        "labs/crb-beamforming/extended-lab/fresh-evidence/MANIFEST.json": "dee7617216e2849fa4a0e2ab31cc4ab2f0114bb6facdf1b2ddd1250019ecb8b5",
+        "labs/crb-beamforming/extended-lab/current-browser-evidence/README.md": "9ef3d8d1a344bbfa9cafa6defe71d05e13c4b2ba29d81e8a42d579c539342c59",
+        "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json": "840f9ab8c3e9b71f53630e80cdd55a7ab45ecbaa9aacc7b4ad95f57238508ac8"
+      },
+      "bindingProvenance": "extended-crb-browser-restoration-v1/EXACT-PUBLIC-FILES.json; existing point and extended target ranges retained as one paper",
+      "currentSummary": {
+        "question": "怎样在通信约束下优化点目标与扩展目标 CRB，并恢复可发送波束？",
+        "boundary": "包含点目标式 33 与扩展目标式 46–49 的 SDP 和恢复。扩展目标两种恢复共用同一松弛解，实际功率不同；浮点弱对偶核查不是区间认证，也不是接收机定位误差实验。",
+        "evidence": [
+          "crb-beamforming.html"
+        ]
+      }
+    },
+    {
+      "id": "80211ad",
+      "title": "IEEE 802.11ad-Based Radar: An Approach to Joint Vehicular Communication-Radar System",
+      "href": "80211ad-receiver.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/80211ad"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "如何从真实复数接收数组完成 802.11ad 前导相关、频偏估计和雷达检测？",
+        "boundary": "实时 STF/CEF、Moose 与慢时间 FFT 检测，保留速度混叠及检测失败。STF/CEF 积分能量不同，不作等能量优越性结论；补零只细化显示网格，不提高物理分辨率。",
+        "evidence": [
+          "80211ad-receiver.html"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-crb",
+      "title": "On the Fundamental Tradeoff of Integrated Sensing and Communications Under Gaussian Channels",
+      "href": "gaussian-tradeoff.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/gaussian-tradeoff"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "在有限维高斯矩阵模型中，怎样平衡贝叶斯感知精度与通信设计？",
+        "boundary": "实时矩阵后验、KKT 与可行协方差对照，真值只用于评价。这是所选有限高斯分支，不是一般有限信噪比的 Stiefel 互信息求解，也不等同于点目标 CRB 论文。",
+        "evidence": [
+          "gaussian-tradeoff.html"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-pilot",
+      "title": "OFDM Reference Signal Pattern Design Criteria for Integrated Communication and Sensing",
+      "href": "pilot-patterns.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/pilot-pattern"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "二维 OFDM 参考信号能否从短窗原始 IQ 中重建目标并进行可解释检测？",
+        "boundary": "实时二维重建与检测；处理方法复用同一观测和导频。阈值来自明确标注的预计算标定，改变显著性不是现场重标定；D4 不声称已标定虚警率，有限样本结果不保证未来虚警率。",
+        "evidence": [
+          "pilot-patterns.html"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-clock",
+      "title": "Joint Synchronization and Sensing in Networked ISAC via Structured Canonical Polyadic Decomposition",
+      "href": "networked-sync.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/networked-sync"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "怎样用结构化张量分解联合估计同步参数与感知信息？",
+        "boundary": "限定秩 2 的 ESPRIT/SCPD/ALS，三轴平滑为披露变体，投影最小二乘不保证全局最优。同一观测与初始化对照；秩 3 相位失败保留，不宣称完整网络同步算法。",
+        "evidence": [
+          "networked-sync.html"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-near-field",
+      "title": "Near-Field Integrated Sensing and Communications",
+      "href": "near-field.html#research-experiment",
+      "runtimeOwners": [],
+      "sharedAssetPrefixes": [
+        "labs/near-field/research/"
+      ],
+      "sharedPageSections": [],
+      "enabled": true,
+      "coreReady": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "exactPublicFiles": [
+        "labs/near-field/research/BASELINE.json",
+        "labs/near-field/research/IMPLEMENTATION-FREEZE.json",
+        "labs/near-field/research/README.md",
+        "labs/near-field/research/RESTORATION-BOUNDARY.md",
+        "labs/near-field/research/controller.mjs",
+        "labs/near-field/research/defaults.mjs",
+        "labs/near-field/research/entry.mjs",
+        "labs/near-field/research/precomputed/source-chain.json",
+        "labs/near-field/research/precomputed/tx-baseline-matrices.json",
+        "labs/near-field/research/precomputed-loader.mjs",
+        "labs/near-field/research/reports/author-tests.txt",
+        "labs/near-field/research/reports/node-cost.json",
+        "labs/near-field/research/research.css",
+        "labs/near-field/research/restoration-summary.json",
+        "labs/near-field/research/runtime/CHAIN-FREEZE.json",
+        "labs/near-field/research/runtime/CONTRACT.json",
+        "labs/near-field/research/runtime/MUSIC-FREEZE.json",
+        "labs/near-field/research/runtime/SOLVER-FREEZE.json",
+        "labs/near-field/research/runtime/fixtures/source-input.json",
+        "labs/near-field/research/runtime/src/adapter.mjs",
+        "labs/near-field/research/runtime/src/contract.mjs",
+        "labs/near-field/research/runtime/src/experiment.mjs",
+        "labs/near-field/research/runtime/src/physics.mjs",
+        "labs/near-field/research/runtime/src/receiver-worker.mjs",
+        "labs/near-field/research/runtime/src/replay.mjs",
+        "labs/near-field/research/runtime/src/solver-loader.mjs",
+        "labs/near-field/research/runtime/src/solver-worker.mjs",
+        "labs/near-field/research/runtime/src/worker-client.mjs",
+        "labs/near-field/research/runtime/vendor/music/generator.mjs",
+        "labs/near-field/research/runtime/vendor/music/receiver.mjs",
+        "labs/near-field/research/runtime/vendor/music/worker.mjs",
+        "labs/near-field/research/runtime/vendor/solver/core.js",
+        "labs/near-field/research/runtime/vendor/solver/hermitian.js",
+        "labs/near-field/research/runtime/vendor/solver/linalg.js",
+        "labs/near-field/research/runtime/vendor/solver/metrics.js",
+        "labs/near-field/research/runtime/vendor/solver/model.js",
+        "labs/near-field/research/runtime/vendor/solver/numerics.js",
+        "labs/near-field/research/runtime/vendor/solver/optimizer.js",
+        "labs/near-field/research/runtime/vendor/solver/package.json",
+        "labs/near-field/research/tx-design-independent-results.json",
+        "labs/near-field/research/view.mjs"
+      ],
+      "bindingComplete": true,
+      "exactPublicHashes": {
+        "labs/near-field/research/BASELINE.json": "9f395c2ca3e27216f453aeb4024a67e4880ae1150035e40b7c1884712d716ef8",
+        "labs/near-field/research/IMPLEMENTATION-FREEZE.json": "3839ace11911b56a6dd86bc257775a6a49b3958752a1d528d2eb952e3c274b8a",
+        "labs/near-field/research/README.md": "a7714499d6bcdf8fb13e20889fc83bd2303bcf8a49b37368acbc982ca57e6dc3",
+        "labs/near-field/research/RESTORATION-BOUNDARY.md": "415a995fe509612e4551cf4b2bf0561c8dd376be1bcba3df7b822351363f41d2",
+        "labs/near-field/research/controller.mjs": "d114c76490471281486827ddaee118049147a15c4c6fd1c6cf970f48120cb1fb",
+        "labs/near-field/research/defaults.mjs": "e3a6fcca0041add3a4811b4fdf417c83f77c37d9cd2058c767d4a69f96ca8a6b",
+        "labs/near-field/research/entry.mjs": "495be6ba115c8153cffc1d7e358d2d57620a9b4d3295444c4d4c736365f0370a",
+        "labs/near-field/research/precomputed/source-chain.json": "6b349173fa6f16abe3828a508a74f85e22b4f9a6485500d7514664f0e488590e",
+        "labs/near-field/research/precomputed/tx-baseline-matrices.json": "68b6460862385462511d77bf8bb921c709140014eb077915f1e998ae2f931568",
+        "labs/near-field/research/precomputed-loader.mjs": "ada0a82d284affd18e44db88609af9e93400ce3d034886f8dcb663043fc557ae",
+        "labs/near-field/research/reports/author-tests.txt": "dbe2727584a176c740149b4dcadb0c7a01e8a04de266a51bda2defeafb2bfb7e",
+        "labs/near-field/research/reports/node-cost.json": "126f25052d0eacc66ff02c59d0112659c498a92259a1a93ea9bf651d0a4afc25",
+        "labs/near-field/research/research.css": "47e7e6e5667d09d2376f6d1de4e6d3aff8daa19cab6c1d6411056d976c0fb142",
+        "labs/near-field/research/restoration-summary.json": "8a55f82c299a23ed565801bfbb387c92c12673c16162b8d4b42a883e68024576",
+        "labs/near-field/research/runtime/CHAIN-FREEZE.json": "50671d38851d0e86a944dd0aaf462f209d05302bc2aad73b78cf02d320529123",
+        "labs/near-field/research/runtime/CONTRACT.json": "b9ea2fd6c320517906b1cc40f2a9fe9a127c1caee477766ecfcdd0ee887a5b28",
+        "labs/near-field/research/runtime/MUSIC-FREEZE.json": "3493c308a9cb80fcc9f972d41438f56ab2e99e65a5efb13a932f7b208c0817d4",
+        "labs/near-field/research/runtime/SOLVER-FREEZE.json": "1754d7e1a04e9ecd78aebc82c3157d7f6ea818107ffc3ea30d215664b509a90f",
+        "labs/near-field/research/runtime/fixtures/source-input.json": "e8efb9769a544742a9ddfffcd61b30deadb30034a34fe1f9359da17f94c6bb74",
+        "labs/near-field/research/runtime/src/adapter.mjs": "a882ee455d015c340b9444818224a8e9b51c86a95be79a100118eb2d97fc1799",
+        "labs/near-field/research/runtime/src/contract.mjs": "4f14f868f6b5b730b993c9b7ccaa0815206b09e9a05a3a0dc11abc342926ad1e",
+        "labs/near-field/research/runtime/src/experiment.mjs": "4600f18e8cd9ba74a92f499dedb3227a32c7b9d5d7431fa1b737b374b4272990",
+        "labs/near-field/research/runtime/src/physics.mjs": "7a1a3abc7d3301bbf4f6c61d1881fa54a96e53becb8c1208881bdd3d81235588",
+        "labs/near-field/research/runtime/src/receiver-worker.mjs": "fe4687461c2fe85442a132738527b5dd695f51761fef89b13db7a9470ac3fe27",
+        "labs/near-field/research/runtime/src/replay.mjs": "774a56bb18202bb18ac861af2ce344c01a9e8176e4144eb23f590cbbc68a4d42",
+        "labs/near-field/research/runtime/src/solver-loader.mjs": "7e734d0e81d4988bfcabf517673b1d6d12f7b9fb07a0c7b2ac70f32ee4fbd250",
+        "labs/near-field/research/runtime/src/solver-worker.mjs": "00e425a74b2be201f39b99f6295bda39bd23fe3c3a7b2fe42b006b9586239abd",
+        "labs/near-field/research/runtime/src/worker-client.mjs": "ebd7e69157c05099e89c576e6959364b915f950f365f1c22a76847f41d7dea4d",
+        "labs/near-field/research/runtime/vendor/music/generator.mjs": "e083b6e981e307cc9b40efa11946a813d1e6ec3203194c2b3f5f47994bbb2406",
+        "labs/near-field/research/runtime/vendor/music/receiver.mjs": "16e0df92c3221a56c51f430cb0f3afc29249f496c6bba9d09ffdf456f2a5f981",
+        "labs/near-field/research/runtime/vendor/music/worker.mjs": "406463ea7e7c7893dad88912785fe81bf8cdd2f78ef54e8565782aac704733f3",
+        "labs/near-field/research/runtime/vendor/solver/core.js": "fa8ecbd09337cebe2c88637e31b30021ec79a431bb71533b0d5ca0c9b6a938de",
+        "labs/near-field/research/runtime/vendor/solver/hermitian.js": "da5721e4c3abfc616792c06684add0a41925f53125afc2e4abe6279e6c7bec7a",
+        "labs/near-field/research/runtime/vendor/solver/linalg.js": "11b0de23151c48a4cedcad17405bf26a610739b22db37378b2d77828af560d0d",
+        "labs/near-field/research/runtime/vendor/solver/metrics.js": "eb2fd49e2bbf647da01428ea54dde7cf83d325a0674fe7e262085db006c90e7a",
+        "labs/near-field/research/runtime/vendor/solver/model.js": "185be83a6d057f2bb18c4fd9ef591308ae8cd74c03829afd1fc1bf246c6d4bc4",
+        "labs/near-field/research/runtime/vendor/solver/numerics.js": "b322a385ac5a780e4a5735f854a80dbc391ceec7a9c32e56f6cc5a2a81cbd782",
+        "labs/near-field/research/runtime/vendor/solver/optimizer.js": "2ba6da263fdda103d89d545bf8fcc6c7d5c9ba1705db8e188082ee9e4ccf5d5c",
+        "labs/near-field/research/runtime/vendor/solver/package.json": "dbf8353f77358bc12169b7bb7301e1978d5b503e002ee927229a8993672818fc",
+        "labs/near-field/research/tx-design-independent-results.json": "9f314de53382dd96625806d61661cf24a001f897a6fe3bc7fff73980c4ec36a3",
+        "labs/near-field/research/view.mjs": "d7cf73d30fd321d300ebe8339e372d16c88980ae4e6aca60e31f00333d200362"
+      },
+      "bindingProvenance": "nearfield-target19-restoration-v1/CHANGESET.json; generated page and final browser gate pending",
+      "currentSummary": {
+        "question": "近场数字波束设计怎样影响有噪声回波的距离与角度估计？",
+        "boundary": "式 20 SDR 与式 21 恢复的真实重计算设计明确为预计算；噪声和种子驱动有限波形、回波与 MUSIC 接收链实时重算。保留同约束等功率发射对照；平面波接收只估角度，不冒充独立优化的远场发射基线，CRB 目标不混淆单位或归一化尺度。",
+        "evidence": [
+          "near-field.html#research-experiment"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-multipath-channel",
+      "title": "Evaluation of Position-related Information in Multipath Components for Indoor Positioning",
+      "href": "multipath-channel.html#position-information",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/channel-geometry"
+      ],
+      "sharedAssetPrefixes": [
+        "multipath-information"
+      ],
+      "sharedPageSections": [
+        "position-information"
+      ],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "多径、未知增益与时钟偏差怎样改变位置参数的 Fisher 信息下界？",
+        "boundary": "计算六参数似然 FIM、消去干扰参数的 EFIM 及单程几何下界。不是位置估计器；未知时钟不可辨识时不造有限界，近似式的非重叠和稳态假设不能代替精确模型。",
+        "evidence": [
+          "multipath-channel.html#position-information"
+        ]
+      }
+    },
+    {
+      "id": "supplement-case-distributed-detection",
+      "title": "Multi-Static Target Detection and Power Allocation for Integrated Sensing and Communication in Cell-Free Massive MIMO",
+      "href": "cellfree-maprt.html",
+      "enabled": true,
+      "acceptance": "pending-target19",
+      "publication": "not-deployed",
+      "runtimeOwners": [
+        "labs/cellfree-maprt"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": [],
+      "coreReady": true,
+      "exactPublicFiles": [],
+      "bindingComplete": true,
+      "currentSummary": {
+        "question": "在分布式感知中，功率分配与杂波建模怎样共同影响 MAPRT 检测？",
+        "boundary": "实时 CCP 功率分配和原始观测 MAPRT，AP/SP 接收模型读取同一杂波观测。不同分配的能量不相同，有限样本区间不是未来虚警率保证；超标和失败保留，鲁棒性扫描另标离线。",
+        "evidence": [
+          "cellfree-maprt.html"
+        ]
+      }
+    }
+  ],
+  "basicRuntimeOwners": [
+    "labs/theory",
+    "labs/sandbox",
+    "labs/distributed-detection",
+    "labs/golay-radar",
+    "labs/near-field",
+    "labs/network-clock",
+    "labs/ofdm-interpolation",
+    "labs/ofdm-reference",
+    "labs/perceptive-clutter",
+    "labs/pilot-design",
+    "labs/radar-beam-decision",
+    "labs/resolution",
+    "labs/sbfd-resource",
+    "labs/shared-array",
+    "labs/channel-geometry"
+  ],
+  "sharedRuntimeOwners": [
+    "shared/styles",
+    "shared/records",
+    "features/foundations",
+    "features/learning-map",
+    "features/research-reading",
+    "features/catalog",
+    "features/teaching19"
+  ],
+  "targetIds": [
+    "otfs-joint-estimation-2020",
+    "nearfield-multitarget-correlation",
+    "bistatic-ofdm-clock-measurement-2023",
+    "ofdm-ici-aware-receiver-2021",
+    "ofdm-passive-atomic-errors-2017",
+    "tradeoffs-feedback-capacity-distortion-2018",
+    "tradeoffs-causal-state-communication-2013",
+    "channels-sensing-communication-mapping-2026",
+    "nearfield-mechanism-aware-mapping-2026",
+    "optimal_waveform",
+    "joint_beamforming",
+    "crb",
+    "80211ad",
+    "supplement-case-crb",
+    "supplement-case-pilot",
+    "supplement-case-clock",
+    "supplement-case-near-field",
+    "supplement-case-multipath-channel",
+    "supplement-case-distributed-detection"
+  ],
+  "releaseReady": true,
+  "deployed": false,
+  "compatibilityModules": [
+    {
+      "id": "otfs-sensing-assisted-2021",
+      "title": "Integrated Sensing and Communication-assisted Orthogonal Time Frequency Space Transmission for Vehicular Networks",
+      "href": "otfs-sensing-assisted.html",
+      "enabled": true,
+      "acceptance": "bounded-accepted",
+      "publication": "deployed",
+      "runtimeOwners": [
+        "labs/otfs-sensing-assisted"
+      ],
+      "sharedAssetPrefixes": [],
+      "sharedPageSections": []
+    }
+  ],
+  "nearfieldResearchId": "supplement-case-near-field",
+  "nearfieldResearchPrefix": "labs/near-field/research/"
+}

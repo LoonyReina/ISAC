@@ -1,15 +1,18 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),P=require('./helpers/cooperative-load-preservation.cjs'),manifest=require('../build/compatibility-manifest.json'),G=require('../scripts/build/cooperative-clusters-dependencies.cjs');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyJSON=file=>JSON.parse(readForHistory(file));
+const historyManifest=historyJSON('build/compatibility-manifest.json');
 test('load addition restores exact main manifest and preserves every prior numerical asset',()=>{
- a.equal(P.sha(JSON.stringify(P.withoutMappings(manifest),null,2)+'\n'),P.delta.priorManifestSha256);
+ a.equal(P.sha(JSON.stringify(P.withoutMappings(historyManifest),null,2)+'\n'),P.delta.priorManifestSha256);
  for(const row of P.delta.protectedAssets)a.equal(P.sha(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(row.path,fs.readFileSync(path.join(root,row.path)))),row.sha256,row.path);
- for(const row of P.delta.addedEntries){const bad=structuredClone(manifest);bad.entries.find(x=>x.source===row.source).public='unreviewed';a.throws(()=>P.withoutMappings(bad));}
+ for(const row of P.delta.addedEntries){const bad=structuredClone(historyManifest);bad.entries.find(x=>x.source===row.source).public='unreviewed';a.throws(()=>P.withoutMappings(bad));}
 });
 test('load exact byte layer preserves prior endpoints and rejects unexplained mutations',()=>{
- for(const row of P.delta.files){const current=row.path==='cooperative-clusters.html'?renderedPage():fs.readFileSync(path.join(root,row.path));a.ok(P.identity(P.withoutFile(row.path,current),row.before));a.throws(()=>P.withoutFile(row.path,Buffer.concat([current,Buffer.from('unreviewed')])));}
- const c=require('../scripts/build/module-runtime-contracts.json'),prior=P.withoutContracts(c);a.equal(prior.modules.length,P.delta.priorModuleCount);const bad=structuredClone(c);bad.modules.at(-1).sha256='0'.repeat(64);a.throws(()=>P.withoutContracts(bad));
- const r=require('../content/data/registry.json');a.equal(P.withoutRegistry(r).lessonPlacement.length,P.delta.registryAddition.priorLength);const rb=structuredClone(r);rb.lessonPlacement.at(-1).section='foundations';a.throws(()=>P.withoutRegistry(rb));
+ for(const row of P.delta.files){const current=row.path==='cooperative-clusters.html'?renderedPage():readForHistory(row.path);a.ok(P.identity(P.withoutFile(row.path,current),row.before));a.throws(()=>P.withoutFile(row.path,Buffer.concat([current,Buffer.from('unreviewed')])));}
+ const c=historyJSON('scripts/build/module-runtime-contracts.json'),prior=P.withoutContracts(c);a.equal(prior.modules.length,P.delta.priorModuleCount);const bad=structuredClone(c);bad.modules.at(-1).sha256='0'.repeat(64);a.throws(()=>P.withoutContracts(bad));
+ const r=historyJSON('content/data/registry.json');a.equal(P.withoutRegistry(r).lessonPlacement.length,P.delta.registryAddition.priorLength);const rb=structuredClone(r);rb.lessonPlacement.at(-1).section='foundations';a.throws(()=>P.withoutRegistry(rb));
 });
 test('load runtime files are covered by complete cooperative current closure',()=>{
  const wanted=['app.mjs','controller.mjs','load-adapter.mjs','subset-adapter.mjs','request-scheduler.mjs','presets.mjs'];a.deepEqual(G.contract.modules.filter(x=>x.public.startsWith('cooperative-load/')).map(x=>x.public.slice(17)),wanted);

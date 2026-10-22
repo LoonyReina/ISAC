@@ -4,7 +4,8 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 // Content, generator and simulated DOM regression. No browser or source refetch claim.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
-const root=path.resolve(__dirname,'..'),read=f=>{const value=require('./helpers/two-section-navigation-preservation.cjs').withoutFile(f,fs.readFileSync(path.join(root,f))).toString();return f==='index.html'?require('./helpers/dual-array-preservation.cjs').withoutGeneratedPage(f,value):f==='reading.html'?require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage(f,value):value;};
+const root=path.resolve(__dirname,'..'),read=f=>{const value=require('./helpers/two-section-navigation-preservation.cjs').withoutFile(f,readForHistory(f)).toString();return f==='index.html'?require('./helpers/dual-array-preservation.cjs').withoutGeneratedPage(f,value):f==='reading.html'?require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage(f,value):value;};
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
 const registry=require('./helpers/dual-array-preservation.cjs').withoutRegistry(JSON.parse(read('site/registry.json'))),data=require('./helpers/nearfield-multitarget-preservation.cjs').maybeWithoutMultitargetGuides(JSON.parse(read(registry.researchGuidesFile)));
 const legacyUnitCount=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).units.length-1;
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));

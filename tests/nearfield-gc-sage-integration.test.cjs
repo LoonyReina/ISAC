@@ -1,6 +1,7 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const readForHistory=file=>require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root}).toString('utf8');
 const {additions,withoutGCSAGERegistry,withoutGCSAGEGuide,withoutGCSAGEHomeShell}=require('./helpers/gc-sage-preservation.cjs');
 const {buildResearchGuides,renderResearchGuides}=require('../scripts/research-guides.cjs');
 const {buildNotebookTopics}=require('../scripts/notebook-topics.cjs');
@@ -10,13 +11,14 @@ const card=d=>d.cards.find(c=>c.id===additions.guideId),unit=x=>x.units.find(u=>
 const hash=v=>crypto.createHash('sha256').update(v).digest('hex');
 
 test('one actual inverse-problem lesson uses canonical sources without creating a paper case or graph edge',()=>{
+ const historyR=JSON.parse(readForHistory('site/registry.json'));
  const before=JSON.stringify(r),sourceBefore=JSON.stringify(data);
- a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).pages.find(p=>p.path===additions.page.path),additions.page);
+ a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyR).pages.find(p=>p.path===additions.page.path),additions.page);
  a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);
  a.ok(!r.cases.some(c=>c.unit===additions.unit.id));a.ok(!r.knowledgeMap.nodes.some(n=>n.unitRefs.includes(additions.unit.id)));
  a.ok(!r.knowledgeMap.progressions.some(p=>p.unitId===additions.unit.id));
  const local=createLearningEntryResolver(r);a.equal(local.unitEntry(unit(r)),additions.unit.href);
- for(const hook of additions.hooks){a.deepEqual(require('./helpers/nearfield-research-preservation.cjs').withoutNearfieldRegistry(r).directions.find(d=>d.id===hook.directionId).levels.find(l=>l.id===hook.levelId).items.at(-1),hook.item);a.equal(local.unitEntry({href:hook.item.href}),hook.item.href);}
+ for(const hook of additions.hooks){a.deepEqual(require('./helpers/nearfield-research-preservation.cjs').withoutNearfieldRegistry(historyR).directions.find(d=>d.id===hook.directionId).levels.find(l=>l.id===hook.levelId).items.at(-1),hook.item);a.equal(local.unitEntry({href:hook.item.href}),hook.item.href);}
  const topic=buildNotebookTopics(r).find(t=>t.id===additions.unit.id);a.equal(topic.teachingHref,additions.unit.href);a.ok(!Object.hasOwn(topic,'evidenceHref'));
  for(const p of ['index.html','experiments.html','reading.html'])a.ok(read(p).includes(additions.unit.href),p);
  a.ok(read('practice.html').includes('"id":"nearfield-gc-sage"'));
@@ -37,6 +39,7 @@ test('the existing fixed-v1 guide exposes the bounded estimator as its one prima
 });
 
 test('exact registry inverse retains all old fields and rejects missing, moved or changed additions',()=>{
+ const r=JSON.parse(readForHistory('site/registry.json'));
  const before=JSON.stringify(r),prior=withoutGCSAGERegistry(r);a.equal(JSON.stringify(r),before);
  const beforeGC=require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverRegistry(r),beforeCoverage=require('./helpers/combined-paper-solvers-preservation.cjs').withoutCombinedRegistry(beforeGC);a.deepEqual(prior.units,beforeCoverage.units.slice(0,-1));a.deepEqual(prior.pages,beforeCoverage.pages.slice(0,-1));
  for(const key of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[key],require('./helpers/waveform-live-preservation.cjs').withoutWaveformLiveRegistry(beforeGC)[key]);
@@ -45,6 +48,7 @@ test('exact registry inverse retains all old fields and rejects missing, moved o
 });
 
 test('exact guide inverse removes only one executable, factual coverage sentence and exact gain-aware question',()=>{
+ const data=JSON.parse(readForHistory(r.researchGuidesFile));
  const before=JSON.stringify(data),prior=withoutGCSAGEGuide(data);a.equal(JSON.stringify(data),before);
  for(const c of require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverGuide(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsGuides(data)).cards){if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);}
  const expected=structuredClone(card(data));delete expected.executable;expected.limits[5]=additions.statusBefore;expected.question=additions.questionBefore;a.deepEqual(card(prior),expected);

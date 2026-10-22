@@ -1,0 +1,99 @@
+{
+  "scope": "Saved new supplemental screenshot byte/image checks; parent native interaction records remain separate from these pictures",
+  "checksum_records": [
+    {
+      "file": "supplemental-desktop-observation.txt",
+      "sha256": "e9c517fa158d508074cae989a237e059616a62487f355fd9ba8ee630c3bf97b8",
+      "bytes": 532
+    },
+    {
+      "file": "supplemental-desktop.jpg",
+      "sha256": "aa68037c5c5c43eb14de00ca5f7108bd2b2e41fb65f1cd127c26ddf2de1dd82f",
+      "bytes": 90350
+    },
+    {
+      "file": "supplemental-desktop.meta.json",
+      "sha256": "484dce676568e4db264e5585c2ada823085785c2eb712b16bb902582cb52883d",
+      "bytes": 1355
+    },
+    {
+      "file": "supplemental-manifest.json",
+      "sha256": "20134ad9ce7d47c18710bc344f792316c0365bef6ba224429387ecb7aba302d7",
+      "bytes": 1790
+    },
+    {
+      "file": "supplemental-narrow-controls.jpg",
+      "sha256": "d2fb2af65a696210f975eef75fef806fcdcd42a98ac808f1897f64a89ab8d650",
+      "bytes": 40897
+    },
+    {
+      "file": "supplemental-narrow.jpg",
+      "sha256": "0962624418335851154f2983b63633fa9ae3c3b931f1e3b4146cb0c8bb204ba7",
+      "bytes": 47128
+    },
+    {
+      "file": "supplemental-narrow.meta.json",
+      "sha256": "3a131fb13a311911b194bfccaa735ab82d1c914f54457f3404498eabd8a068ad",
+      "bytes": 1309
+    },
+    {
+      "file": "supplemental-post-restore-still-narrow-observation.txt",
+      "sha256": "4cc6c8328e55efac4b241dc6b3e9ea0959bdcb771c5acceb93bce0b26a14d509",
+      "bytes": 1240
+    },
+    {
+      "file": "supplemental-post-restore-still-narrow.jpg",
+      "sha256": "0962624418335851154f2983b63633fa9ae3c3b931f1e3b4146cb0c8bb204ba7",
+      "bytes": 47128
+    }
+  ],
+  "images": [
+    {
+      "file": "supplemental-desktop.jpg",
+      "pixels": [
+        1166,
+        747
+      ],
+      "sha256": "aa68037c5c5c43eb14de00ca5f7108bd2b2e41fb65f1cd127c26ddf2de1dd82f"
+    },
+    {
+      "file": "supplemental-narrow-controls.jpg",
+      "pixels": [
+        521,
+        736
+      ],
+      "sha256": "d2fb2af65a696210f975eef75fef806fcdcd42a98ac808f1897f64a89ab8d650"
+    },
+    {
+      "file": "supplemental-narrow.jpg",
+      "pixels": [
+        521,
+        736
+      ],
+      "sha256": "0962624418335851154f2983b63633fa9ae3c3b931f1e3b4146cb0c8bb204ba7"
+    },
+    {
+      "file": "supplemental-post-restore-still-narrow.jpg",
+      "pixels": [
+        521,
+        736
+      ],
+      "sha256": "0962624418335851154f2983b63633fa9ae3c3b931f1e3b4146cb0c8bb204ba7"
+    }
+  ],
+  "unique_image_sha256_count": 3,
+  "pixels_inspected_by_acceptance_reviewer": [
+    "supplemental-desktop.jpg",
+    "supplemental-narrow.jpg",
+    "supplemental-narrow-controls.jpg"
+  ],
+  "historical_screenshot_recovery_claim": false,
+  "strict_browser_node_numeric_equality_still": "FAIL",
+  "UI_v3_observations_sha256": "b021692ba8510f11fce6480c225563646fdece63e27e556c3092f4bf3aff98fe",
+  "UI_v2_observations_sha256": "a94e15abb55c2b8c232b25a8bf33b6ef431f82181f72234dcd72a7b3b1c48e54",
+  "notes": [
+    "Four JPEG files include one preserved duplicate narrow image; three unique screenshot images, not four independent visual states.",
+    "Desktop capture shows an already-loaded default result after static server expiry, not a fresh wide-viewport recomputation.",
+    "Root earlier screenshots were tool-visible only; this manifest does not manufacture files for those observations."
+  ]
+}

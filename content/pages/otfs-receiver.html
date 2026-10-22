@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="从接收机知道什么出发，实际计算 OTFS 单目标有限网格感知与 perfect-CSI 通信 MP-G/LMMSE，检查复数据、真实消息、停止原因和可重算记录。">
+  <meta name="description" content="从单径入门到已知路径数的 OTFS 多径联合估计，区分原目标 residual-BCD 补充求解、原打印式21未确认和有界 MP-Ψ/MP-G/LMMSE 通信。">
   <title>OTFS：接收机知道什么，决定它估计什么 | ISAC</title>
   <link rel="stylesheet" href="course.css">
   <link rel="stylesheet" href="site.css?v=knowledge-map-v1">
@@ -22,15 +22,15 @@
 <div class="site-context" id="site-main" tabindex="-1"><nav class="site-breadcrumb" aria-label="当前位置"><a href="index.html">学习地图</a> / <a href="experiments.html">机制实验</a> / <span aria-current="page">OTFS 感知与通信接收机</span></nav><p class="site-role">OTFS 联合设计方向 · 两种知识条件，两个独立实验</p></div>
 <!-- SITE:CONTEXT:END -->
 <nav class="site-topic-nav otfs-stage-nav" aria-label="本主题六层学习路线">
-  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#statistics"><span>03A+</span> 误差与统计</a><a href="#joint-otfs"><span>03A++</span> 联合多径</a><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
+  <a href="#intuition"><span>01</span> 问题直觉</a><a href="#model"><span>02</span> 观测模型</a><a href="#sensing"><span>03A</span> 感知计算</a><a href="#statistics"><span>03A+</span> 误差与统计</a><a href="#joint-otfs"><span>03A++</span> 联合多径</a><!-- TARGET19:OTFS:NAV:START --><a href="#joint-source-objective"><span>03A+++</span> 原目标补充求解</a><!-- TARGET19:OTFS:NAV:END --><a href="#communication"><span>03B</span> 通信计算</a><a href="#paper"><span>04</span> 原文证据</a><a href="#limits"><span>05</span> 失败边界</a><a href="#reproduce"><span>06</span> 带走记录</a>
 </nav>
 
 <section id="intuition" class="otfs-cover">
   <span id="question" aria-hidden="true"></span>
   <p class="eyebrow">第一层 · 先问谁知道什么，再问算法怎么做</p>
   <h1>同样叫接收机，<br>它们要猜的东西不同</h1>
-  <p class="otfs-lead">雷达知道自己发了什么，要从回波找路径；通信端拿到信道描述，要从接收数据找消息。OTFS 的延迟–多普勒表示，把两类问题放进相近的数学语言，但没有把它们变成同一个问题。</p>
-  <div class="otfs-tags"><span>真实复数观测</span><span>有限网格单目标感知</span><span>MP-G / full LMMSE 通信</span><span>暂停回看真实计算</span></div>
+  <p class="otfs-lead">雷达知道自己发了什么，要从回波找路径；通信端拿到信道描述，要从接收数据找消息。OTFS 的延迟–多普勒表示，把两类问题放进相近的数学语言，但没有把它们变成同一个问题。</p><p class="otfs-note">本页先用下面两块单径与通信实验入门，再进入 8×8 统计、多径 joint-profile、原式 17 residual-BCD 补充求解及 MP-Ψ 模型失配对照。各分支的尺寸、观测与范围分别标注；新联合求解不是作者打印式 21 的来源确认实现。</p>
+  <div class="otfs-tags"><span>真实复数观测</span><span>单径入门与多径联合估计</span><span>MP-Ψ / MP-G / full LMMSE 通信</span><span>暂停回看真实计算</span></div>
   <div class="otfs-knowledge-grid">
     <article class="otfs-knowledge otfs-radar"><p class="otfs-card-label">实验 A · 雷达 / 4×8</p><h2>知道 x，估计路径</h2><dl><div><dt>拿到什么</dt><dd>复回波 y<sub>rad</sub>、本帧精确发送数据 x</dd></div><div><dt>先验给定</dt><dd>只有一条路径 P=1、帧参数、拟合模型、搜索域与噪声方差</dd></div><div><dt>不知道什么</dt><dd>延迟 q、多普勒 a、有效复增益 h′</dd></div><div><dt>本页输出</dt><dd>已计算网格上的最佳候选、复增益、残差与停止原因</dd></div></dl><a href="#sensing">从一次路径猜测开始 →</a></article>
     <article class="otfs-knowledge otfs-comms"><p class="otfs-card-label">实验 B · 通信 / 3×4</p><h2>知道 H，估计消息</h2><dl><div><dt>拿到什么</dt><dd>另一份复观测 y<sub>com</sub>、完整信道矩阵 H</dd></div><div><dt>先验给定</dt><dd>perfect supplied CSI、星座、噪声方差与均匀符号先验</dd></div><div><dt>不知道什么</dt><dd>这一帧实际发送的符号 x</dd></div><div><dt>本页输出</dt><dd>各符号的概率、硬判决、真实消息历史与方法状态</dd></div></dl><a href="#communication">从一个符号的概率开始 →</a></article>
@@ -174,6 +174,15 @@
  <p><a href="https://arxiv.org/abs/1910.01896v1">论文来源与版本</a> · 思考：残差更小为什么不保证每条真路径都被识别？</p>
 </section>
 
+<!-- TARGET19:OTFS:SECTION:START -->
+<section id="joint-source-objective" class="otfs-section" aria-labelledby="joint-source-objective-title">
+ <header class="otfs-section-head"><p class="eyebrow">NEW · 原式 (14)/(17) 联合未知量核心教学</p><h2 id="joint-source-objective-title">固定同一观测，从原残差目标逐块更新</h2></header>
+ <p>下面保留已知路径数下的时延、多普勒和复增益联合未知量，实时比较顺序消去与明确补充的 residual-BCD 求解。它不是作者打印式 (21) 的确认实现，也不等于原尺寸性能曲线复现。近径失败与未获来源确认的打印式解释变体均保留；旧通信、MP-Ψ 和 joint-profile 分支仍在本页，不被替换。</p>
+ <p><a href="otfs-receiver/source-objective-v1/index.html" target="_blank" rel="noopener">在独立页面打开原目标补充实验</a>。嵌入区域可独立滚动；键盘 Tab 可进入和离开控件。计算只在点击运行后开始。</p>
+ <iframe title="OTFS 原残差目标联合估计：NEW 有界交互实验" src="otfs-receiver/source-objective-v1/index.html" loading="lazy" style="display:block;box-sizing:border-box;width:100%;max-width:100%;height:1900px;border:1px solid #bccbd9;border-radius:12px;background:#f4f7fb"></iframe>
+</section>
+<!-- TARGET19:OTFS:SECTION:END -->
+
 <section id="communication" class="otfs-section">
   <header class="otfs-section-head"><p class="eyebrow">第三层 B · 同一通信输入，比较两种接收方法</p><h2>通信：不知道 x，先从一个符号的概率开始</h2><p>现在切换到独立的通信实验，本页生成默认是 3×4。接收机得到 y=Hx+w 中的 H 与 y，但不知道 x。MP-G 用耦合图上的消息交换更新符号概率；full LMMSE 做完整矩阵线性估计，再采用明确的有效 AWGN 软输出转换。</p></header>
   <div class="otfs-split"><article class="otfs-card"><h3>MP-G：谁与这个符号耦合？</h3><p>先算 G=HᴴH、z=Hᴴy。G 的非零非对角项连接符号，单点证据来自 z 与 G 的对角项。发给邻居的消息先排除刚从该邻居收到的信息，避免立即把它原样算回去，这就是 cavity 排除。</p><p>保留图上每个局部求和是真实计算；有环图上反复传消息，仍不等于精确联合后验或全局 MAP。</p></article><article class="otfs-card"><h3>full LMMSE：先解线性估计</h3><p>采用完整 H 与噪声方差，不把矩阵对角化来回避干扰。它的符号概率来自估计器的有效增益与残差方差下的 AWGN 近似，不是任意耦合输入的精确联合后验。</p><p>两种方法始终用同一个 H、y、星座和复噪声方差；不允许用不同数据制造优劣。</p></article></div>
@@ -242,26 +251,26 @@
     <tr><th scope="row">§II / 式 (1)</th><td>第一屏的两份知识账本</td><td>雷达与通信是不同接收机、不同观测；单程通信与单站往返换算分开</td></tr>
     <tr><th scope="row">§III / 式 (2)–(9)</th><td>DD → 酉 ISFFT → TF → 信道 → 接收投影</td><td>复数与归一化约定明示；有限矩形窗作独立模型，不声称跨约定物理等价</td></tr>
     <tr><th scope="row">式 (13)–(16)</th><td>eq14_literal 的实际路径算子</td><td>保留逐字 ceiling / ICI / ISI 分支，按已声明约定解释，不自行“改符号”</td></tr>
-    <tr><th scope="row">式 (17)–(19)；式 (25) 后 p.11</th><td>未知复增益剖面目标与有限精细网格</td><td>本页端点、搜索域、65² 默认与129² 上限都是实现选择；原文未给可直接复现的数值 Γ</td></tr>
+    <tr><th scope="row">式 (17)–(19)；式 (25) 后 p.11</th><td>未知复增益剖面目标与有限精细网格</td><td>单径入门分支的端点、搜索域、65² 默认与129² 上限都是实现选择；原文未给可直接复现的数值 Γ；多径分支另列各自网格与预算</td></tr>
     <tr><th scope="row">式 (22)–(25)</th><td>8×8 统计分支的局部 FIM / CRB</td><td>从所实现的 Eq.14 推导导数，保留未知复增益；非全局界，原式24/25存在不一致，不照抄其导数</td></tr>
-    <tr><th scope="row">式 (37)、(39)–(44)</th><td>Gram 图 MP-G 与真实双向消息</td><td>局部求和精确；有环全局推断、浮点误差与停止规则仍有限制；未实现 MP-Psi</td></tr>
+    <tr><th scope="row">式 (37)、(39)–(44)</th><td>Gram 图 MP-G 与真实双向消息</td><td>局部求和精确；有环全局推断、浮点误差与停止规则仍有限制。本行仅描述 MP-G；MP-Ψ 另见本页模型失配对照，其有界实现不等于原文全尺寸性能验证</td></tr>
     <tr><th scope="row">式 (47)</th><td>full LMMSE 与有效 AWGN 软转换</td><td>保留有效增益、残差方差与线性求解诊断，不冒充精确联合后验</td></tr>
     <tr><th scope="row">式 (52)–(53)</th><td>保护间隔与资源核算的边界说明</td><td>理想联合译码 / 高斯输入检查点，不是此处检测器的实时吞吐结果</td></tr>
     <tr><th scope="row">式 (54) / 图 6–7</th><td>熵代理、BER / SER 与真值 log-score</td><td>本页为有限单例评价，不复现原文尺寸、完整曲线或编码吞吐率</td></tr>
   </tbody></table></div>
-  <p class="otfs-note"><strong>证据层级：</strong>原文理论与合成仿真；本站为有限尺寸的独立数值教学实现。感知 4×8，通信 3×4，既不是原尺寸复现，也不是无线硬件实测。数值核心验证、浏览器交互验证与线上部署验证是不同的检查。</p>
+  <p class="otfs-note"><strong>证据层级：</strong>原文理论与合成仿真；本站为有限尺寸的独立数值教学实现。单径入门默认 4×8，统计及多径分支采用 8×8，基础通信默认 3×4；各分支单独给出模型与预算，既不是原尺寸完整复现，也不是无线硬件实测。数值核心验证、浏览器交互验证与线上部署验证是不同的检查。</p>
   <details><summary>为什么还要披露通信端的数值稳定性修正？</summary><div><p>通信内核 v0.2.0 在对数归一化时先减最大项；LMMSE 软分数先消去与符号无关的平方项，再做运算，并使用实际残差方差，去掉参考实现中的固定绝对下限。它们是端口的数值修正，不改变 MP 图分解、调度、阻尼或停止规则。</p><p>冻结的 Python 参考保持原样。不能在极小方差的已知差异域宣称普遍逐位一致，也不能因普通尺度结果很准，就宣称所有准入尺度都达到机器精度。零滤波器给均匀概率；非零滤波器而方差下溢时应明确返回 numerical-failure。</p></div></details>
 </section>
 
 <section id="limits" class="otfs-section">
   <header class="otfs-section-head"><p class="eyebrow">第五层 · 能解释失败，才真正读懂结果</p><h2>哪些结论，眼前这一次实验还支持不了？</h2></header>
   <div class="otfs-limits-grid">
-    <article class="otfs-card"><h3>搜完网格 ≠ 连续最优</h3><p>网格变密增加计算量，不增加物理信息。evaluation-cap、time-cap、cancelled、superseded 不能写成穷举完成；全零 y 可能出现大量并列，不能宣称唯一解。新增 8×8 统计分支提供开单元局部细化与局部 FIM/CRB，仍不支持多目标感知和未知路径数估计。</p></article>
+    <article class="otfs-card"><h3>搜完网格 ≠ 连续最优</h3><p>网格变密增加计算量，不增加物理信息。evaluation-cap、time-cap、cancelled、superseded 不能写成穷举完成；全零 y 可能出现大量并列，不能宣称唯一解。8×8 单径统计分支提供开单元局部细化与局部 FIM/CRB，该子模块不支持多目标感知。另列的多径分支以已知路径数为输入，也不估计未知路径数；原式 21 的来源确认仍未解决。</p></article>
     <article class="otfs-card"><h3>消息稳定 ≠ 后验精确</h3><p>MP-G 的 converged 只检验消息变化，环路仍会造成推断误差。小的移除 Gram 范数不是通用概率误差保证；本页采用零裁剪阈值，仍受浮点运算影响。LMMSE 的 Cholesky 主元比不是谱条件数。</p></article>
-    <article class="otfs-card"><h3>单次误差 ≠ 性能曲线</h3><p>一个种子的误差不是 RMSE、检出率、虚警率或容量。新增离线 1,400 次试验不等于实时多试验统计；仍未实现原文尺寸曲线、信道获取、FEC、MP-Psi、精确有限窗通信或 OFDM / FMCW 雷达比较。</p></article>
+    <article class="otfs-card"><h3>单次误差 ≠ 性能曲线</h3><p>一个种子的误差不是 RMSE、检出率、虚警率或容量。历史离线 1,400 次试验不等于实时多试验统计；仍未实现原文尺寸曲线、信道获取、FEC、精确有限窗通信或 OFDM / FMCW 雷达比较。本页 MP-Ψ 是有界模型失配扩展，其未重放的历史汇总不作本轮新证据。</p></article>
     <article class="otfs-card"><h3>不同资源 ≠ 无条件优越</h3><p>换生成模型、路径或数据会改变观测；换网格会改变计算量。原文 Table I 的 N=50、T=6.4 μs、保护间隔 T/4，给出 OTFS 321.6 μs 与 OFDM 400 μs 的总时长核算：有效符号相同，总时间不同，不能直接称为等资源吞吐优势。</p></article>
   </div>
-  <p class="otfs-warning"><strong>资源与浏览器验收仍须单独检查：</strong>感知最多129×129个候选，通信最多100次迭代；内核预算不包含所有初始化、序列化、传输与绘图开销，单个候选或单次迭代也可能跨过时间检查点。记录读写采用对称16 MiB上限（16,777,216 UTF-8 字节）。下载后实际取回、输入导入后重算、Worker 取消、键盘、窄屏和指定桌面内存/耗时，均需浏览器验证；Node 数值测试不能代替这些验证，也不构成浏览器性能认证。</p>
+  <p class="otfs-warning"><strong>资源与浏览器验收仍须单独检查：</strong>单径入门感知最多129×129个候选，基础通信最多100次迭代；新增分支的预算与导出协议另见各模块。内核预算不包含所有初始化、序列化、传输与绘图开销，单个候选或单次迭代也可能跨过时间检查点。记录读写采用对称16 MiB上限（16,777,216 UTF-8 字节）。下载后实际取回、输入导入后重算、Worker 取消、键盘、窄屏和指定桌面内存/耗时，均需浏览器验证；Node 数值测试不能代替这些验证，也不构成浏览器性能认证。</p>
   <details class="otfs-checkpoint"><summary>做完后，试着回答这三个问题</summary><div><ol><li>如果感知搜索域没有包含真实 q，穷举完成能证明什么，不能证明什么？</li><li>如果 MP-G 已收敛却判错符号，是哪一种“成功”成立，哪一种没有成立？</li><li>如果改拟合模型但保留 x/y，怎样报告残差变化，才不偷换成同物理波形比较？</li></ol><p>把输入知识、实际计算、停止条件与真值评价分开写，往往比单看一张漂亮图更接近答案。</p></div></details>
 </section>
 

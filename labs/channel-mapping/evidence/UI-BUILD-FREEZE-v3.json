@@ -1,0 +1,43 @@
+{
+  "schema": "rebuilt-mapping-ui-build-freeze-v3",
+  "timestamp_utc": "2026-10-20T20:07:57.350645+00:00",
+  "core_freeze": "evidence/CORE-FREEZE-v2.json",
+  "scientific_7_files_unchanged": true,
+  "runtime_files_changed_from_v2": [
+    "styles.css"
+  ],
+  "change_record": "evidence/UI-CHANGE-v3.md",
+  "preserved_v2_directory": "../preserved-channel-mapping-ui-v2",
+  "author_browser_test_performed": false,
+  "manifest_cycle_exclusions": [
+    "SHA256SUMS",
+    "evidence/UI-BUILD-FREEZE-v3.json"
+  ],
+  "files": {
+    "HANDOFF.md": "b30914f21fc3d193c932940c903d621688995e494d7ac703730e6040ca676edd",
+    "INTERFACES.md": "306d1da6edd00bba4578d6a1175ddcf95836b04374fc5c297dc31f56582138f2",
+    "README.md": "2ca06479682e24d4335dbb71ea61e215ce5287a207dfc3d929a8832ff4e86381",
+    "SOURCE-AND-BOUNDARIES.md": "a588ae5fc83bb602b67cae8eb8a5d635eac651796d0a796fb2b5f86cd3e9781b",
+    "VALIDATION-PLAN.md": "a94f0dee847004ac08d6dcd33ea45633891aa8106f1beb84fd5c729fb4963bba",
+    "cli.mjs": "cd4c81101c4c6c5e66752261da3032632d95329836ea183fcaa0dc9befec1425",
+    "evidence/BUILD-STATUS.json": "410a0792f8e6689bb33a3c0002a34b612a93dddb16f6d23a245a3cf2aa72d3d6",
+    "evidence/CORE-FREEZE-v1.json": "054ba326a996a169ec7fdd1dfc380974adcfc818298fbf1ee9d971fc1a590f8f",
+    "evidence/CORE-FREEZE-v2.json": "227556e11219853dceb056afae47781ccb799db823193959b3e2489200ed4e49",
+    "evidence/UI-BUILD-FREEZE-v1.json": "1911d94abb7e81ed1e689dc21b06bff202f3a5e0b4526193abdec3839c468df1",
+    "evidence/UI-BUILD-FREEZE-v2.json": "4cc139fde6dcc4e52e12565ffdee39d31457360817d7689607f8ebd411b3ea2f",
+    "evidence/UI-CHANGE-v3.md": "3bdb6586b93d5f8aafb96ff1b4d514d3a7846e7dd4c3acaebc0df4dee4631942",
+    "evidence/UNIT-v2-supplement.log": "2761e74a0b32b4a401adefda1702eed4aea0497394e2b102102da522fd279cf1",
+    "evidence/UNIT-v2.log": "4f5e7b00471c410240d03325beb9e340f452d2d16917324c6e55b905f1965ca8",
+    "index.html": "3ce1b235709f7fe9bc5558a5d18532dc1057fbd785d847f22a4b309be02b10a9",
+    "src/app.mjs": "0a348234ff86701464c595deee7ea17e43f9a48af8b6ce33e27675fe55d412f3",
+    "src/config.mjs": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+    "src/evaluation.mjs": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+    "src/experiment.mjs": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253",
+    "src/generator.mjs": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+    "src/geometry.mjs": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+    "src/inference.mjs": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+    "src/worker.mjs": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73",
+    "styles.css": "6488365a3cf3205dd396d060348ab9a983a2ee090302f8f4630f6a13c7464a52",
+    "tests/unit.mjs": "f4ea79914c33928efa3fcdb1244358ecb0383e32c23ae09044cdaa6d3f6525cf"
+  }
+}

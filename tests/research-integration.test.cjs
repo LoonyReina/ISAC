@@ -2,8 +2,10 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),registry=JSON.parse(read('site/registry.json'));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
 test('waveform map concept preserves separate pilot and strict-covariance models through canonical references',()=>{
- const node=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(registry).knowledgeMap.nodes.find(n=>n.id==='waveform-design');
+ const node=require('./helpers/pilot-pattern-preservation.cjs').withoutRegistry(historyRegistry).knowledgeMap.nodes.find(n=>n.id==='waveform-design');
  assert.deepEqual(node.unitRefs,['pilot','waveform-design','golay-radar']);assert.equal(node.entryUnitRef,'pilot');
  assert.match(node.knownUnknown,/静止单径时延/);assert.match(node.knownUnknown,/H、目标符号 S 与协方差 R_d 已知/);
  assert.match(node.boundary,/无噪声确定性符号误差/);assert.match(node.boundary,/不保证相同延迟–多普勒性能/);
@@ -33,7 +35,7 @@ test('joint beamforming canonical case is integrated as its own mechanism and pr
 test('point-target CRB beamforming has a separate canonical identity and preserves the beginner concept map',()=>{
  const data=JSON.parse(read(registry.researchDirectoryFile)),card=data.cards.find(c=>c.id==='crb'),c=registry.cases.find(c=>c.id===card.caseId),unit=registry.units.find(u=>u.id===c.unit);
  assert.equal(c.id,'case-crb-beamforming');assert.equal(c.learningEntry,'crb-beamforming.html#intuition');assert.equal(unit.id,'crb-beamforming');assert.equal(unit.href,'crb-beamforming.html#experiment');
- assert.equal(withoutGCSAGERegistry(registry).units.length,28);assert.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,15);assert.equal(registry.knowledgeMap.nodes.length,32);
+ assert.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);assert.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);assert.equal(registry.knowledgeMap.nodes.length,32);
  assert.equal(registry.cases.find(c=>c.id==='case-crb').unit,'crb');assert.equal(registry.units.find(u=>u.id==='crb').href,'theory.html#crb-mechanism');
  assert.ok(registry.pages.some(p=>p.path==='crb-beamforming.html'&&p.case===c.id));
  const page=read('crb-beamforming.html');for(const id of ['intuition','model','experiment','solution','nuisance','companion','paper','limits','reproduce'])assert.ok(page.includes(`id="${id}"`),id);

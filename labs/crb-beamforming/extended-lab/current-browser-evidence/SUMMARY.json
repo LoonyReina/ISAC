@@ -1,0 +1,137 @@
+{
+  "dateUtc": "2026-10-21",
+  "status": "CURRENT_DESKTOP_BROWSER_REPLAY_PASSED_WITH_DECLARED_LIMITS",
+  "scope": "Nt4/6 K2 extended-target CRB Eqs46-49 bounded teaching prototype; not physical receiver or full-paper reproduction",
+  "sourceCoreSha256": "1c73151c201fdf2e345f36023bf3f1553d17402d07fe4f5a83a4c39ffb461dae",
+  "scienceBytesUnchanged": true,
+  "existingIndependentOracle": "2026-10-18 fresh-evidence: 18/18; every solver status optimal_inaccurate retained; no CVXPY rerun in this browser check",
+  "browserRuns": [
+    {
+      "artifact": "nt4-g10-native.json",
+      "runId": "run-1792553247077-1",
+      "Nt": 4,
+      "gammaDb": 10,
+      "status": "converged",
+      "physicalGate": true,
+      "sha256": "ceba42ed255b139910358d34a840ba8612038966a3232b65d8ca2144af94f3e1"
+    },
+    {
+      "artifact": "nt6-g10-native.json",
+      "runId": "run-1792553278959-2",
+      "Nt": 6,
+      "gammaDb": 10,
+      "status": "converged",
+      "physicalGate": true,
+      "sha256": "ed3b307a06a201971d1ed28f1e53382d2aadb2a1bfbc603747072952a0934087"
+    },
+    {
+      "artifact": "cancelled-native.json",
+      "runId": "run-1792553300642-3",
+      "Nt": 6,
+      "gammaDb": 10,
+      "status": "cancelled",
+      "physicalGate": false,
+      "sha256": "54507dbc815f02bde7e9e3e212216087c779ddc7a7c174dee88d425b08976386"
+    },
+    {
+      "artifact": "duplicate-cap-native.json",
+      "runId": "run-1792553326706-4",
+      "Nt": 4,
+      "gammaDb": 20,
+      "status": "iteration_cap",
+      "physicalGate": false,
+      "sha256": "55e2b5e5279978cd133494bb46ab290c4e2db71460526e5a2a1161845bb678ef"
+    }
+  ],
+  "independentNativeChecks": [
+    {
+      "id": "fresh-n4-seed271-g10",
+      "status": "converged",
+      "powerFraction": 1.0000000000001148,
+      "minSINRRatio": 6.403076371496704,
+      "objective": 0.9999999999998853,
+      "oracleRelativeDifference": 1.181603759281693e-08,
+      "oracleComparisonAvailable": true,
+      "independentLowerBound": 0.9999999997422431,
+      "dualReportedBoundDifference": 0.0,
+      "dualMinEigenvalue": -1.4820340250673668e-17,
+      "stationarityMinEigenvalue": 1.00135468000894e-10,
+      "coefficientResidual": 6.111276588957426e-14,
+      "relativeGap": 2.576422408751296e-10,
+      "covarianceDefect": 6.895037410341018e-14,
+      "schurMinEigenvalue": -1.7688404459876708e-12,
+      "epigraphObjectiveDifference": 0.0,
+      "reportedConeConservative": true,
+      "reportedStationarityConservative": true,
+      "passed": true
+    },
+    {
+      "id": "fresh-n6-seed271-g10",
+      "status": "converged",
+      "powerFraction": 0.999999999998721,
+      "minSINRRatio": 1.0000000000167857,
+      "objective": 1.0016948952534621,
+      "oracleRelativeDifference": 8.643821988451456e-08,
+      "oracleComparisonAvailable": true,
+      "independentLowerBound": 1.0016948950817295,
+      "dualReportedBoundDifference": 4.440892098500626e-16,
+      "dualMinEigenvalue": -3.978085952348853e-18,
+      "stationarityMinEigenvalue": 1.1336243194661925e-10,
+      "coefficientResidual": 3.4290860304448777e-13,
+      "relativeGap": 1.7144205179825641e-10,
+      "covarianceDefect": 5.755237169145499e-14,
+      "schurMinEigenvalue": 7.19996949362816e-13,
+      "epigraphObjectiveDifference": 0.0,
+      "reportedConeConservative": true,
+      "reportedStationarityConservative": true,
+      "passed": true
+    }
+  ],
+  "independentNativeBaselineChecks": [
+    {
+      "id": "fresh-n4-seed271-g10",
+      "auxiliaryCovarianceDefect": 6.948031269051756e-14,
+      "maxDataEigenvaluePowerDefect": 3.979039320256561e-13,
+      "maxDataEigenvectorResidual": 1.1718137778494322e-13,
+      "maxMetricsAbsoluteError": 1.4210854715202004e-13,
+      "inverseTraceError": 1.1796119636642288e-16,
+      "usedPowerMw": 666.6666665375949,
+      "minSINR": 64.03076380440457,
+      "reportedFeasible": true,
+      "independentlyFeasible": true,
+      "radarStatus": "regular",
+      "passed": true
+    },
+    {
+      "id": "fresh-n6-seed271-g10",
+      "auxiliaryCovarianceDefect": 7.224276441793555e-14,
+      "maxDataEigenvaluePowerDefect": 1.4210854715202004e-13,
+      "maxDataEigenvectorResidual": 1.821959955446822e-14,
+      "maxMetricsAbsoluteError": 1.3642420526593924e-12,
+      "inverseTraceError": 0.0,
+      "usedPowerMw": 555.9649602663752,
+      "minSINR": 10.000000003982493,
+      "reportedFeasible": true,
+      "independentlyFeasible": true,
+      "radarStatus": "regular",
+      "passed": true
+    }
+  ],
+  "lifecycle": {
+    "changedNtClearsStaleResults": true,
+    "cancelAcknowledged": true,
+    "duplicateChannelCapPreserved": true,
+    "generateHClearsResultAndDisablesExport": true,
+    "nativeExport": true
+  },
+  "knownLimits": [
+    "Native import not exercised; no file chooser used",
+    "Mobile, first-paint latency and browser memory are unverified",
+    "No singular/infeasible baseline display replay",
+    "Native timings are observations, not benchmarks",
+    "No interval certification or exact paper figure claim",
+    "Full-page screenshot timed out; DOM snapshots/native exports and viewport screenshots retained",
+    "Existing historical caps, harness timeouts, missing historical screenshot bytes, and all optimal_inaccurate statuses remain unchanged"
+  ],
+  "historicalReportsUnmodified": true
+}

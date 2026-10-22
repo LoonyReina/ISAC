@@ -8,6 +8,7 @@ const {executionGuideId,executable,statusClauses,executionRendererHooks,withoutC
 const {withoutFrontierTraces}=require('./helpers/frontier-trace-preservation.cjs');
 const {withoutBuildLinkValidation}=require('./helpers/map-progression-preservation.cjs');
 const root=path.resolve(__dirname,'..'),read=f=>{const bytes=fs.readFileSync(path.join(root,f));return (f==='scripts/research-guides.cjs'?require('./helpers/cooperative-clusters-integration-preservation.cjs').withoutFile(f,bytes):bytes).toString();};
+const readForHistory=file=>require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root}).toString('utf8');
 const registry=JSON.parse(read('site/registry.json')),data=JSON.parse(read(registry.researchGuidesFile));
 const card=d=>d.cards.find(c=>c.id===executionGuideId),build=(d=data,context)=>buildResearchGuides(d,registry,context),render=d=>renderResearchGuides(build(d));
 const isolated=()=>({schemaVersion:data.schemaVersion,cards:[structuredClone(card(data))]});
@@ -113,6 +114,7 @@ test('execution label, status text and source locators are escaped through the e
 });
 
 test('exact execution reversal restores historical guide and renderer hashes without mutating inputs',()=>{
+ const data=JSON.parse(readForHistory(registry.researchGuidesFile));
  const before=JSON.stringify(data),prior=withoutCapacityExecution(data),c=card(prior);
  a.equal(JSON.stringify(data),before);a.ok(!Object.hasOwn(c,'executable'));
  a.equal(c.evidence.kind,statusClauses[0].before);a.equal(c.limits[3],statusClauses[1].before);a.equal(c.visualTrace.steps[3].explanation,statusClauses[2].before);
@@ -122,6 +124,7 @@ test('exact execution reversal restores historical guide and renderer hashes wit
 });
 
 test('the exact data adapter rejects missing, duplicate, moved, malformed or changed execution additions',()=>{
+ const data=JSON.parse(readForHistory(registry.researchGuidesFile));
  const mutations=[
   d=>{delete card(d).executable;},d=>{card(d).executable=null;},d=>{card(d).executable={};},
   d=>{d.cards.push(structuredClone(card(d)));},d=>{d.cards[0].executable=structuredClone(executable);},
@@ -136,6 +139,7 @@ test('the exact data adapter rejects missing, duplicate, moved, malformed or cha
 });
 
 test('existing guide protection still catches unrelated scientific, source, trace, ordering and other-card changes',()=>{
+ const data=JSON.parse(readForHistory(registry.researchGuidesFile));
  const mutations=[
   d=>{card(d).mechanism+=' changed';},d=>{card(d).innovation+=' changed';},d=>{card(d).evidence.summary+=' changed';},
   d=>{card(d).limits[0]+=' changed';},d=>{card(d).source.edition+=' changed';},d=>{card(d).source.url+='-changed';},

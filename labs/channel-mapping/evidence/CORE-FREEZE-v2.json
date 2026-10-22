@@ -1,0 +1,20 @@
+{
+  "schema": "new-core-source-freeze-v2",
+  "candidate": "rebuilt-channel-mapping-v1",
+  "timestamp_utc": "2026-10-20T20:01:11.199661+00:00",
+  "purpose": "Independent portable-v2 differential; no inherited historical evidence",
+  "changed_from_v1": [
+    "src/evaluation.mjs"
+  ],
+  "change_reason": "Reject malformed captured truth: unique IDs, exact observed MPC coverage, known object references, typed/consistent identifiability. Generator/inference untouched.",
+  "files": {
+    "cli.mjs": "cd4c81101c4c6c5e66752261da3032632d95329836ea183fcaa0dc9befec1425",
+    "src/config.mjs": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+    "src/geometry.mjs": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+    "src/generator.mjs": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+    "src/inference.mjs": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+    "src/evaluation.mjs": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+    "src/experiment.mjs": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253"
+  },
+  "self_test_log": "UNIT-v2.log"
+}

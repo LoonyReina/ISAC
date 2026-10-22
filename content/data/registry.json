@@ -3356,6 +3356,19 @@
       ],
       "next": "reading.html#paper-ofdm_full_duplex",
       "nextLabel": "回到同一篇全双工论文，核对原文与证据"
+    },
+    {
+      "path": "channel-mapping.html",
+      "title": "从感知扫描，推回通信路径",
+      "stage": "reading",
+      "role": "新重建本地核心教学已验收 · 合成扫描到通信时延关联；集成页待验、未部署",
+      "prerequisites": [
+        "foundations.html#echo",
+        "foundations.html#array",
+        "multipath-channel.html#experiment"
+      ],
+      "next": "reading.html",
+      "nextLabel": "回到论文阅读与单窗口星图，核对原文与有界实现"
     }
   ],
   "schemaVersion": 1,
@@ -8027,6 +8040,11 @@
       "canonicalHref": "full-duplex-cancellation.html#fd-question",
       "section": "reading",
       "parentLabel": "波形与资源/全双工式 (11) block LS"
+    },
+    {
+      "canonicalHref": "channel-mapping.html#top",
+      "section": "reading",
+      "parentLabel": "真实信道/感知到通信路径映射（新重建本地核心）"
     }
   ]
 }

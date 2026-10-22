@@ -4,7 +4,9 @@ const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('no
 const root=path.resolve(__dirname,'..');
 const bytes=(...files)=>{for(const f of files){const p=path.join(root,f);if(fs.existsSync(p))return fs.readFileSync(p);}throw Error('Missing input '+files.join(' or '));};
 const read=(...files)=>bytes(...files).toString('utf8'),json=(...files)=>JSON.parse(read(...files)),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const historyJSON=(...files)=>{for(const file of files){const p=path.join(root,file);if(fs.existsSync(p))return JSON.parse(require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(p),{root}));}throw Error('Missing input '+files.join(' or '));};
 const registry=json('site/registry.json','content/data/registry.json'),catalog=json('site/research-directory.json','content/data/research-directory.json'),backlog=json('docs/PAPER-EXECUTION-BACKLOG.json');
+const historyRegistry=historyJSON('site/registry.json','content/data/registry.json');
 const preserve=require('./helpers/combined-paper-solvers-preservation.cjs');
 const anchors={
   "joint-beamforming.html": [
@@ -112,7 +114,7 @@ test('approved numerical runtime bytes and original prerequisite cores are uncha
  for(const [files,hash]of entries)a.equal(sha(bytes(...files)),hash,files[0]);
 });
 test('published scope distinguishes numerical algorithms, changed constraints and missing paper/browser gates',()=>{
- const w=registry.cases.find(c=>c.id==='case-waveform'),j=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/registry.json',registry).cases.find(c=>c.id==='case-joint-beamforming');
+ const w=registry.cases.find(c=>c.id==='case-waveform'),j=require('./helpers/recovery-published-baseline-projection.cjs').projectJSON('content/data/registry.json',historyRegistry).cases.find(c=>c.id==='case-joint-beamforming');
  a.match(w.fields['交互机制'],/严格协方差解 X₀/);a.match(w.fields['交互机制'],/放松协方差等式/);a.match(w.fields['结论边界'],/原图3加权曲线仍未吻合/);a.match(JSON.stringify(w),/radar-closest/);
  a.match(j.fields['交互机制'],/式\(15\).*SDR式\(32\).*ZF式\(40\)/);a.match(j.fields['结论边界'],/迭代上限只表示未解决/);a.match(JSON.stringify(j),/1000/);
  for(const id of ['joint_beamforming','optimal_waveform']){a.equal(catalog.cards.filter(c=>c.id===id).length,1);const p=backlog.papers.find(p=>p.id===id);a.equal(p.stages.fullPaper,'not-reproduced');a.notEqual(p.stages.liveExecution,'validated');a.match(JSON.stringify(p.blockers),/browser/i);}
@@ -120,7 +122,7 @@ test('published scope distinguishes numerical algorithms, changed constraints an
  a.equal(backlog.scope.fullPaperReproductionsEstablished,0);
 });
 test('all exact metadata adapters reject tampering and retain unrelated scientific/citation changes',()=>{
- for(const [kind,original,fn]of [['registry',registry,preserve.withoutCombinedRegistry],['catalog',catalog,preserve.withoutCombinedCatalog]]){
+ for(const [kind,original,fn]of [['registry',historyRegistry,preserve.withoutCombinedRegistry],['catalog',catalog,preserve.withoutCombinedCatalog]]){
   const prior=fn(original);a.notDeepEqual(prior,original);
   for(const entry of preserve.changes[kind])for(const ch of entry.changes){const bad=structuredClone(original);let p=preserve.collection(bad,entry.collection).find(x=>x[entry.idKey]===entry.id);for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]='unreviewed mutation';a.throws(()=>fn(bad));}
  }

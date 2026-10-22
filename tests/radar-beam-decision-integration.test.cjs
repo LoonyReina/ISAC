@@ -3,6 +3,8 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 // Source/registry and static navigation contracts; these do not certify browser or RF performance.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchDirectoryFile));
 const c=r.cases.find(c=>c.id==='case-radar-beam-decision'),u=r.units.find(u=>u.id==='radar-beam-decision'),p=r.pages.find(p=>p.path==='radar-beam-decision.html');
 const source=JSON.parse(read('data/radar-beam-decision-sources.json'));
@@ -15,7 +17,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'learning');
  a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
  const d=r.directions.find(d=>d.id==='learning');a.deepEqual(d.primaryCaseIds,[c.id]);a.match(d.title,/感知辅助通信/);a.match(d.scope,/感知辅助通信/);
  a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'reading.html#branches');
  for(const [level,anchor]of [['intuition','mechanism'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','limits'],['reproduction','reproduce']]){

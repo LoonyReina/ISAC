@@ -1,0 +1,3 @@
+'use strict';
+importScripts('bistatic-core.js');
+onmessage=({data})=>{const started=performance.now();try{const observation=BistaticCore.generate(data.scenario),branches={};for(const method of ['acq_no_sfo','filtered_zero_sfo','author']){try{branches[method]=BistaticCore.receive(observation,{method,residual:data.residual,cutoff:data.cutoff});}catch(e){branches[method]={status:e.message,iqHash:BistaticCore.hash(observation.samples)};}}postMessage({id:data.id,frame:BistaticCore.frame,rawObservation:observation,branches,elapsedMs:performance.now()-started});}catch(e){postMessage({id:data.id,error:e.message});}};

@@ -402,8 +402,10 @@ test('lesson page has unique anchors, seven explicit stages, labeled controls an
   }
   assert.match(html, /<noscript>/); assert.match(html, /id="ici-status"[^>]*role="status"[^>]*aria-live="polite"/);
   assert.match(html, /id="ici-progress"[^>]*aria-live="off"/);
+  const teaching=require(path.join(root,'tests/helpers/teaching-page-assets.cjs'))(root,path.relative(root,pagePath),html);
   const scripts = Array.from(html.matchAll(/<script\s+defer\s+src="([^"]+)"/g), m => m[1]);
-  assert.deepEqual(scripts, ['labs/ofdm-ici/runtime/js/linalg.js', 'labs/ofdm-ici/runtime/js/sha256.js', 'labs/ofdm-ici/runtime/js/evaluate.js', 'labs/ofdm-ici/runtime/js/ici-kernel.js', 'labs/ofdm-ici/runtime/worker/ici-client.js', 'labs/ofdm-ici/lesson/ici-controller.js', 'labs/ofdm-ici/lesson/ici-lesson.js']);
+  assert.deepEqual(scripts, ['labs/ofdm-ici/runtime/js/linalg.js', 'labs/ofdm-ici/runtime/js/sha256.js', 'labs/ofdm-ici/runtime/js/evaluate.js', 'labs/ofdm-ici/runtime/js/ici-kernel.js', 'labs/ofdm-ici/runtime/worker/ici-client.js', 'labs/ofdm-ici/lesson/ici-controller.js', 'labs/ofdm-ici/lesson/ici-lesson.js', ...teaching.deferUrls]);
+  assert.deepEqual(Array.from(html.matchAll(/<script\b[^>]*src="([^"]+)"/g),m=>m[1]),[...scripts.slice(0,7),...teaching.scriptUrls]);
   for (const script of scripts) assert.ok(fs.existsSync(path.join(root, script)), script);
 });
 
@@ -422,10 +424,12 @@ function lightDocument(html, { canvas = true } = {}) {
   const byId = new Map(), canvasCalls = [], downloads = [], windowEvents = {};
   const decode = text => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
   class Element {
-    constructor(tag) { this.tagName = tag.toUpperCase(); this.children = []; this.attrs = {}; this.dataset = {}; this.events = {}; this._value = ''; this._text = ''; this._html = ''; this.hidden = false; this.checked = false; this.disabled = false; this.style = {}; this.width = 880; this.height = 330; this.files = []; this.classes = new Set(); this.classList = { toggle: (name, force) => { const on = force === undefined ? !this.classes.has(name) : force; if (on) this.classes.add(name); else this.classes.delete(name); return on; }, contains: name => this.classes.has(name), add: name => this.classes.add(name), remove: name => this.classes.delete(name) }; }
-    setAttribute(name, value) { value = String(value); this.attrs[name] = value; if (name === 'id') { this.id = value; byId.set(value, this); } if (name.startsWith('data-')) this.dataset[name.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())] = value; if (name === 'value') this._value = value; if (['checked', 'hidden', 'disabled', 'selected'].includes(name)) this[name] = true; if (['width', 'height'].includes(name)) this[name] = Number(value); }
+    constructor(tag) { this.tagName = tag.toUpperCase(); this.children = []; this.attrs = {}; this.dataset = {}; this.events = {}; this._value = ''; this._text = ''; this._html = ''; if (this.tagName !== 'SVG') this.hidden = false; this.checked = false; this.disabled = false; this.style = {}; this.width = 880; this.height = 330; this.files = []; this.classes = new Set(); this.classList = { toggle: (name, force) => { const on = force === undefined ? !this.classes.has(name) : force; if (on) this.classes.add(name); else this.classes.delete(name); return on; }, contains: name => this.classes.has(name), add: name => this.classes.add(name), remove: name => this.classes.delete(name) }; }
+    setAttribute(name, value) { value = String(value); this.attrs[name] = value; if (name === 'id') { this.id = value; byId.set(value, this); } if (name.startsWith('data-')) this.dataset[name.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())] = value; if (name === 'value') this._value = value; if (['checked', 'hidden', 'disabled', 'selected'].includes(name) && !(name === 'hidden' && this.tagName === 'SVG')) this[name] = true; if (['width', 'height'].includes(name)) this[name] = Number(value); }
     getAttribute(name) { return this.attrs[name] ?? null; }
     hasAttribute(name) { return name in this.attrs; }
+    // SVG hidden is an attribute; assigning .hidden must not reflect it.
+    toggleAttribute(name, force) { const on = force === undefined ? !this.hasAttribute(name) : force; if (on) this.setAttribute(name, ''); else this.removeAttribute(name); return on; }
     removeAttribute(name) { delete this.attrs[name]; }
     set value(value) { this._value = String(value); }
     get value() { return this.tagName === 'OPTION' && !('value' in this.attrs) ? this.textContent : this._value; }
@@ -493,6 +497,9 @@ async function deliverUI(harness, result) {
 test('production UI mounts without precomputed output and renders every stage from actual Node Worker arrays', async t => {
   const h = await mounted(t), r = await fixture();
   assert.equal(h.workers.length, 0); assert.equal(h.view.controller.state, 'idle');
+  assert.equal(h.get('ici-line').hasAttribute('hidden'), false);
+  h.get('ici-line').hidden = true;
+  assert.equal(h.get('ici-line').hasAttribute('hidden'), false, 'SVG expando cannot hide the plot');
   assert.match(h.get('ici-status').textContent, /尚未计算/);
   assert.equal(h.get('ici-export-history').disabled, true); assert.equal(h.get('ici-truth').checked, false);
   assert.equal(h.view.readScene().targets.length, 5);
@@ -503,6 +510,8 @@ test('production UI mounts without precomputed output and renders every stage fr
   for (const stage of ['observe', 'music', 'cfo', 'refit', 'cfar', 'unwrap', 'evaluate']) {
     await h.document.querySelector(`[data-stage="${stage}"]`).fire('click');
     assert.ok(h.get('ici-stage-title').textContent.length > 5, stage);
+    assert.equal(h.get('ici-line').hasAttribute('hidden'), stage === 'cfar', stage + ' SVG visibility attribute');
+    assert.equal(h.get('ici-map').hidden, stage !== 'cfar', stage + ' HTML canvas visibility');
     assert.ok(h.get('ici-stage-summary').textContent.length > 8, stage);
     assert.doesNotMatch(h.get('ici-stage-details').innerHTML, /\bundefined\b|\bNaN\b/, stage);
     assert.doesNotMatch(h.get('ici-line').innerHTML, /\bundefined\b|\bNaN\b|\bInfinity\b/, stage);

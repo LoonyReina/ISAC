@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="网络 ISAC 论文七问：互易测量、时钟偏差与双基地几何。独立交互实验展示不可辨识性、镜像歧义和搜索残差。"><title>研究案例 · 时钟差 10 ns，位置差多少？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="network.css"><script defer src="network-core.js"></script><script defer src="network.js"></script><link rel="stylesheet" href="site.css?v=knowledge-map-v1"></head><body>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="网络 ISAC 论文七问：互易测量、时钟偏差与双基地几何。独立交互实验展示不可辨识性、镜像歧义和搜索残差。"><title>研究案例 · 时钟差 10 ns，位置差多少？ | ISAC</title><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="theory.css"><link rel="stylesheet" href="network.css"><script defer src="network-core.js"></script><script defer src="network.js"></script><link rel="stylesheet" href="site.css?v=knowledge-map-v1"><link rel="stylesheet" href="bistatic.css"><script defer src="bistatic-ui.js"></script></head><body>
 <!-- SITE:HEADER:START -->
 <a class="site-skip" href="#site-main">跳到正文</a>
 <header class="site-header"><a class="site-brand" href="index.html">ISAC <span>交互学习</span></a><nav class="site-nav" aria-label="四阶段学习导航"><a href="foundations.html"><span>01</span> 基础讲义</a><a href="experiments.html" aria-current="location"><span>02</span> 机制实验</a><a href="reading.html"><span>03</span> 论文阅读</a><a href="practice.html"><span>04</span> 研究实践</a></nav></header>
@@ -48,7 +48,33 @@
 <p><b>失败也要显示：</b>修正总路径若小于两站直线距离，违反三角不等式，不画实椭圆；有界搜索仍会给出最小残差候选，不能因此叫“定位成功”。真值不在网格、误差导致边界极小值、共线多解、局部导数退化都应区别对待。当前区域以外的候选没有搜索。</p>
 <p><b>范围限制：</b>只模拟单目标、已关联标量时延，等权路径最小二乘。没有幅度/相位信道、SNR 到时延方差的映射、CFO、多径、漏检/虚警、跟踪或硬件实测。反向额外路径只是几何变化/方向硬件不一致的标量代用，不是完整运动轨迹。网页上的位置误差是一次确定性试验，不是原论文 RMSE。</p>
 <p><b>从这里返回论文：</b>我们只是把时间读数转成位置，已经遇到时钟、几何、关联和噪声。如果输入还是多个目标叠在一起的复数信号，首先必须把哪些路径和参数分开？再读 §IV 的结构约束与互易参数提取，并把条件 RMSE 与成功率放在同一张记录表。</p>
-<p class="sources">来源核对日期：2026-10-10。主论文固定 v1：§I–VII、附录 A–B 的模型、算法、图注与结果说明；未独立重证所有定理或重做原图。综述固定 v4：§VI-F 与图13。本站模型为独立推导，不使用论文图或数据。</p></section><footer>ISAC 交互讲义 · 研究案例 / 网络时钟 · <a href="foundations.html">连续基础</a> · <a href="reading.html">研究阅读地图</a></footer><!-- SITE:NEXT:START -->
+<p class="sources">来源核对日期：2026-10-10。主论文固定 v1：§I–VII、附录 A–B 的模型、算法、图注与结果说明；未独立重证所有定理或重做原图。综述固定 v4：§VI-F 与图13。本站模型为独立推导，不使用论文图或数据。</p></section><section class="chapter" id="bistatic-core" aria-labelledby="bi-title">
+<header class="chapter-head"><p class="eyebrow">独立论文分支 / 2023 双站 OFDM</p><h2 id="bi-title">接收机只拿到 IQ，怎样让时钟不再拖着图跑？</h2><p class="goal">这不是上方 SCPD/标量互易课的替代，也不是把先验误差减掉。这里运行另一篇论文的受限 pilot-only 接收链。</p></header>
+<p><a href="https://arxiv.org/pdf/2305.15058v1">Giroto de Oliveira 等，arXiv:2305.15058v1</a> §II 式(2)、§III：先用2个同步符号估计定时/CFO，再用10个训练符号估计采样频偏，FIR → 多项式 → FIR 重采样，最后只用实际导频对齐主径并形成感知图。原文允许不能保证载荷正确时采用纯导频；这里没有 LDPC 或已解码全帧增益。</p>
+<p class="bi-badge">源码一致的有界教学重建，独立审查未验收；不是作者代码、原实测复现或完整 TVT2005 最优估计器。</p>
+<ol><li>生成器在连续分段 OFDM 指数和上按独立采样时钟取样，未知 QPSK 只负责产生真实干扰背景。</li><li>接收器只接收 IQ 与公开帧格式。S&amp;C 偶整数 CFO 用两符号差分 PN 相干搜索，不偷看设置值。</li><li>五对重复训练用主值相位和 |Ĥ|² 权重求作者小残差闭式核，然后算术平均。相位不展开、不按真值筛选。</li><li>三个分支共享一份 IQ：无FIR、相同FIR但SFO置零、相同FIR＋作者估计。让滤波损耗与频偏补偿分开。</li><li>只对 m=0,4,…,28 且偶数活动 k 的 Y/公开导频测得复 CFR；主径复峰轨迹用于残差校准。没有将未知数据格插值成“实测格”。</li></ol>
+<div class="bi-controls">
+<label>采样周期偏差 δ（ppm） <output id="bi-ppm-value">20</output><input id="bi-ppm" type="range" min="-80" max="80" step="5" value="20"></label>
+<label>载频偏差（子载波 bins） <output id="bi-cfo-value">2.12</output><input id="bi-cfo" type="range" min="-10.12" max="10.12" step="0.04" value="2.12"></label>
+<label>接收 SNR（dB） <output id="bi-snr-value">30</output><input id="bi-snr" type="range" min="0" max="60" step="5" value="30"></label>
+<label>目标相对主径延迟（样本） <output id="bi-delay-value">12</output><input id="bi-delay" type="range" min="4" max="24" step="1" value="12"></label>
+<label>目标相对多普勒（Hz） <output id="bi-doppler-value">12000</output><input id="bi-doppler" type="range" min="-40000" max="40000" step="1000" value="12000"></label>
+<label>确定性场景种子 <output id="bi-seed-value">101</output><input id="bi-seed" type="number" min="1" max="99999" step="1" value="101"></label>
+<label>工程 FIR 截止频率（cycles/input sample）<select id="bi-filter"><option value=".49">修正 .49，257 taps</option><option value=".46">窄带 .46，257 taps（仅隔离截止频率）</option></select></label>
+<label><input type="checkbox" id="bi-residual" checked> 用可观测主径轨迹作残差校准</label>
+</div><p>控件是生成器场景参数，不是接收器输入。改变后自动重新计算；调接收处理开关仍采用同种子同 IQ。种子不是自动选优。每次算三分支，无服务器 Python 或查表代替算法。</p>
+<button id="bi-run" type="button">重新计算</button><button id="bi-reset" type="button">恢复默认</button><button id="bi-download" type="button" disabled>下载本次计算记录</button><p id="bi-status" role="status" aria-live="polite">等待计算</p><noscript>需要 JavaScript 和 Web Worker 执行本实验；下方来源、失败和边界说明仍可阅读。</noscript>
+<p class="bi-summary" id="bi-summary"></p>
+<p>先看接收器如何估计。左图横轴整数候选 g，纵轴是两符号差分 PN 的相干和模；中图每条线对应一对训练，纵轴 θ=arg(Z₂conj Z₁)（rad），不是误差真值；右图纵轴是实测主径延迟（样本），横轴为8个导频时刻。图由本次模型输出驱动。</p>
+<div class="bi-panels"><figure><canvas id="bi-cfo-plot" width="460" height="230" aria-label="CFO整数候选相干和"></canvas><figcaption>取最大相干候选，固定竞争比≥1.4、相干度≥0.4；搜索 g=−4…4 不是任意 CFO 捕获。</figcaption></figure><figure><canvas id="bi-phase" width="460" height="230" aria-label="五对训练主值相位"></canvas><figcaption>五种颜色为五对训练。S₀=Σw、S₁=Σwk、S₂=Σwk²、T₀=Σwθ、T₁=Σwkθ。δ̂=(S₀T₁−S₁T₀)/[2π(N+CP)/N·(S₀S₂−S₁²)]。</figcaption></figure><figure><canvas id="bi-track" width="460" height="230" aria-label="导频主径延迟轨迹"></canvas><figcaption>拟合主径延迟/相位后作复数对齐；不是第二次时间重采样，也不能逆转符号内 ICI。</figcaption></figure></div>
+<p>下面是功率图，不是空间位置图。三图共用最大值与 −55…0 dB 色尺（深蓝弱，黄色强）；横轴相对主径延迟 −64…63.5 样本，向右增大；纵轴多普勒 −48,828…42,725 Hz，从上向下增大。仅显示导频歧义的一个主单元。每列间隔0.5样本、每行6103.516Hz，补零格距不等于分辨率。主径校准后通常在中心最亮，次峰未经过检测率/虚警率标定。</p>
+<div class="bi-panels"><figure><h3>仅同步，无FIR/SFO</h3><canvas id="bi-map-0" width="512" height="220" aria-label="仅同步分支延迟多普勒功率"></canvas><figcaption id="bi-result-0" class="bi-result"></figcaption></figure><figure><h3>同FIR，SFO置零</h3><canvas id="bi-map-1" width="512" height="220" aria-label="零SFO滤波对照功率"></canvas><figcaption id="bi-result-1" class="bi-result"></figcaption></figure><figure><h3>作者SFO＋同FIR</h3><canvas id="bi-map-2" width="512" height="220" aria-label="作者SFO分支功率"></canvas><figcaption id="bi-result-2" class="bi-result"></figcaption></figure></div>
+<details><summary>源参数、教学缩放与工程选择</summary><p>原文 N2048 / CP512、10个SFO前导、导频频率间距2/时间间距4、双轴 Hamming，载荷512或4096。冻结源码实验保留 N2048 / CP512 / payload32 / Fs=1GHz（名义模型，不是恢复到的硬件ADC率）。本页为实时教学明确缩小至 N256 / CP64 / payload32 / Fs=125MHz，活动 k=±1…±112：占用跨度109.863MHz、896导频格、载荷CPI81.92μs、主径之外目标幅度0.3。不要把它当原尺寸结果或长帧分辨率。</p><p>δ 是采样周期偏差，t=nTs(1+δ)；补偿坐标是 origin+q/(1+δ̂)。FIR 4倍上采样、257 taps、Kaiser β=8.6、cubic Lagrange、第二FIR，中心裁切去群延迟；零延拓完整序列，不按OFDM符号周期绕回。δ=0也不保证滤波恒等。公开训练采用固定LCG BPSK（不是原2023 PN），满足 v=√2 X₂/X₁；五对均值、时域检测阈值、LS信道、搜索界限、FIR系数和1/16样本主径搜索都是工程选择。</p><p>原文只约束结构，没有公开原始IQ、PN、滤波器系数或完整LDPC配置。Tsai TVT2005全文未恢复；核来自作者2007 §5.3.3式(5.38),(5.41)–(5.43)对该文的明确重述，只适用小残差、准静态信道和可忽略ICI。S&amp;C整数核来自作者专利 US5732113A式(15)–(17)，不声称完整1997定时实现。该页实时链与Python同IQ数值比对不等于论文科学验收。</p></details>
+<details><summary>不能藏掉的历史失败与离线证据（不是当前控件结果）</summary><p>冻结包 rebuilt-bistatic-author-pilot-v1：source N2048 P1 +20ppm→+19.961024ppm，P2 −20ppm→−20.007247ppm；原N128 case12 真值−20ppm，作者−43.544742ppm、generic−51.537574ppm。修正FIR仍不能修复错误估计，case12同IQ NMSE从零SFO .0267663 变为作者 .0395009，恶化约47.6%。</p><p>P3固定 seed103 / SNR5dB / 0ppm 为 NO_PREAMBLE，保留分母：3个处理成功＋1个失败。上述是离线冻结结果，不能拿本页N256/不同PN种子的表现替换。本页另有固定反例：seed101 / 30dB / −20ppm，CFO −4.12时估计−16.143667ppm，CFO −2.12时估计−23.052831ppm；缩尺后不承诺原N2048精度。源N2048整数CFO ±2/±4捕获，+10超搜索门失败，平坦差分PN不可辨识。这里调整参数出现失败也保留，不回退真值或自动换种子。</p></details>
+<p>双站相对路径差 ΔL=c·τ，不除2；本站一个样本约2.398m。结果相对可观测主径，不是绝对发射时钟。未知主径传播多普勒和振荡器 CFO 不能仅凭单接收机分离。无射频硬件、量化、真实ADC/DAC滤波；矩形OFDM边界不带限，插值不能声称逐样本精确。没有原始实测、原512/4096帧长或全帧LDPC增益。</p>
+</section>
+
+<footer>ISAC 交互讲义 · 研究案例 / 网络时钟 · <a href="foundations.html">连续基础</a> · <a href="reading.html">研究阅读地图</a></footer><!-- SITE:NEXT:START -->
 <aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="practice.html?topic=clock#notebook">把这个主题写成可复核的实验记录 →</a></aside><footer class="site-footer">ISAC 交互学习 · 独立教学模型不等于完整论文复现 · <a href="index.html">学习地图</a> · <a href="reading.html#reading">原文与证据</a></footer>
 <!-- SITE:NEXT:END -->
 </main></body></html>

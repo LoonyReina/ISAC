@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Local-only review projection. Never a publication authorization or a replacement for the deployed allowlist.",
+  "officialAllowlistSha256": "b399a4c3c01e2cb797b150295f672703595d50cc7ba87c11a4d01d02f7d95dc7",
+  "officialProjectorSha256": "c95e4a57578d2f8c3e1367cfbd6f7bc5f9150712ff7814d10539c234903d47a0",
+  "baselineManifestSha256": "64948938fe231514d18d323b639611d0d3d70355cdcee38136df4a2b9aea4b34",
+  "baselinePublicPaths": 1335,
+  "carriedForwardDeployedIds": [
+    "otfs-joint-estimation-2020",
+    "otfs-sensing-assisted-2021",
+    "nearfield-multitarget-correlation",
+    "ofdm-ici-aware-receiver-2021",
+    "ofdm-passive-atomic-errors-2017",
+    "tradeoffs-feedback-capacity-distortion-2018",
+    "tradeoffs-causal-state-communication-2013",
+    "nearfield-mechanism-aware-mapping-2026",
+    "optimal_waveform",
+    "joint_beamforming",
+    "crb",
+    "80211ad",
+    "supplement-case-crb",
+    "supplement-case-pilot",
+    "supplement-case-clock",
+    "supplement-case-multipath-channel",
+    "supplement-case-distributed-detection"
+  ],
+  "carriedForwardNotNewlyReaccepted": true,
+  "candidate": {
+    "id": "channels-sensing-communication-mapping-2026",
+    "href": "channel-mapping.html",
+    "enabled": true,
+    "acceptance": "local-core-accepted",
+    "publication": "not-deployed",
+    "integration": "not-verified",
+    "runtimeOwners": [
+      "labs/channel-mapping"
+    ]
+  },
+  "newPublicFiles": {
+    "channel-mapping/styles.css": {
+      "source": "labs/channel-mapping/styles.css",
+      "sha256": "6488365a3cf3205dd396d060348ab9a983a2ee090302f8f4630f6a13c7464a52"
+    },
+    "channel-mapping/src/app.mjs": {
+      "source": "labs/channel-mapping/src/app.mjs",
+      "sha256": "0a348234ff86701464c595deee7ea17e43f9a48af8b6ce33e27675fe55d412f3"
+    },
+    "channel-mapping/src/config.mjs": {
+      "source": "labs/channel-mapping/src/config.mjs",
+      "sha256": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d"
+    },
+    "channel-mapping/src/evaluation.mjs": {
+      "source": "labs/channel-mapping/src/evaluation.mjs",
+      "sha256": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b"
+    },
+    "channel-mapping/src/experiment.mjs": {
+      "source": "labs/channel-mapping/src/experiment.mjs",
+      "sha256": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253"
+    },
+    "channel-mapping/src/generator.mjs": {
+      "source": "labs/channel-mapping/src/generator.mjs",
+      "sha256": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889"
+    },
+    "channel-mapping/src/geometry.mjs": {
+      "source": "labs/channel-mapping/src/geometry.mjs",
+      "sha256": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35"
+    },
+    "channel-mapping/src/inference.mjs": {
+      "source": "labs/channel-mapping/src/inference.mjs",
+      "sha256": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60"
+    },
+    "channel-mapping/src/worker.mjs": {
+      "source": "labs/channel-mapping/src/worker.mjs",
+      "sha256": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73"
+    },
+    "channel-mapping.html": {
+      "source": "content/pages/channel-mapping.html",
+      "sha256": "23009317c5b9e8312291735a677647fb112b0151316cfe3b3b9aeedd284e2b72"
+    },
+    "channel-mapping/site-integration.css": {
+      "source": "labs/channel-mapping/site-integration.css",
+      "sha256": "1f6286aec930c1ea58d33d26fde052893daef0a9600af2818c81884a9010e1ec"
+    },
+    "assets/data/channel-mapping/acceptance-summary.json": {
+      "source": "assets/data/channel-mapping/acceptance-summary.json",
+      "sha256": "c9b6322e7aa37bc2fc08377c8815ec3ff6ef8f5cf96cf5ef1a88ccdea67c1a8c"
+    }
+  },
+  "allowedChangedExistingPreviewFiles": [
+    "reading.html",
+    "research-tree-model.js",
+    "research-tree.js"
+  ],
+  "freeze": {
+    "core": {
+      "cli.mjs": "cd4c81101c4c6c5e66752261da3032632d95329836ea183fcaa0dc9befec1425",
+      "src/config.mjs": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+      "src/geometry.mjs": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+      "src/generator.mjs": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+      "src/inference.mjs": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+      "src/evaluation.mjs": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+      "src/experiment.mjs": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253"
+    },
+    "ui": {
+      "src/app.mjs": "0a348234ff86701464c595deee7ea17e43f9a48af8b6ce33e27675fe55d412f3",
+      "src/worker.mjs": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73",
+      "styles.css": "6488365a3cf3205dd396d060348ab9a983a2ee090302f8f4630f6a13c7464a52"
+    },
+    "dispositionSha256": "559fe145db8de2ae4258c892ede84c3f4ba77d635ba0f1d5e7db19c54f206b70"
+  }
+}

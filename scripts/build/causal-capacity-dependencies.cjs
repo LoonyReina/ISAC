@@ -4,7 +4,7 @@
 const a=require('node:assert/strict'),crypto=require('node:crypto');
 const contract=require('./causal-capacity-runtime-contracts.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-const CONTRACT_SHA256='b7be3b4d84ebd2183d53fe2c2ab3975e1775b895b6339b9dfd033cb86b8f11b3';
+const CONTRACT_SHA256='7aeec144d7f4509dbc88f95fd8e7d46d002b45fe57aae5433dfdf4e1bd6d3f3e';
 a.equal(sha(JSON.stringify(contract)),CONTRACT_SHA256,'Unreviewed causal runtime contract');
 const runtimeProfiles=contract.modules.map(m=>({public:m.public,sha256:m.sha256,runtimeEdges:m.runtimeEdges,runtimePolicy:m.runtimePolicy,unverifiedInputs:[]}));
 const reviewedProfiles=contract.modules.map(m=>[m.public,{sha256:m.sha256,runtimePolicy:m.runtimePolicy,sourceLiterals:m.sourceLiterals,edgeKind:'reviewed-causal-module',runtimeEdges:m.runtimeEdges}]);

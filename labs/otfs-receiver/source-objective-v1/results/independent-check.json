@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "checks": 15807,
+  "failures": [],
+  "records": 30,
+  "seconds": 11.398991823196411,
+  "peak_rss_kib": 26180,
+  "max_absolute_errors": {
+    "scalar": 9.485749680535094e-16,
+    "generation": 7.106294666405892e-15,
+    "literal": 2.2737367544323206e-13,
+    "block": 3.126388037344441e-13,
+    "round": 7.105427357601002e-14,
+    "final": 3.552713678800501e-14,
+    "baseline": 6.394884621840902e-14,
+    "complex": 1.3855583347321954e-13
+  },
+  "groups": [
+    {
+      "scene": "close_delay",
+      "snr": 5,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.1707825127659933,
+          0.5377421934967227
+        ],
+        "mean_residual": 53.57001979307501
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.1707825127659933,
+          0.6130524719249841
+        ],
+        "mean_residual": 54.04947374517574
+      }
+    },
+    {
+      "scene": "close_delay",
+      "snr": 20,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.25,
+          0.2362907813126304
+        ],
+        "mean_residual": 2.286174359388694
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.45,
+          0.35
+        ],
+        "mean_residual": 3.6623902266959707
+      }
+    },
+    {
+      "scene": "close_doppler",
+      "snr": 5,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.10000000000000002,
+          0.12583057392117916
+        ],
+        "mean_residual": 54.35256267432854
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.10000000000000002,
+          0.12583057392117916
+        ],
+        "mean_residual": 55.52161483603853
+      }
+    },
+    {
+      "scene": "close_doppler",
+      "snr": 20,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.29999999999999993,
+          0.20615528128088303
+        ],
+        "mean_residual": 3.0975274836635154
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.4999999999999999,
+          0.25
+        ],
+        "mean_residual": 5.755773903666267
+      }
+    },
+    {
+      "scene": "three_path_stress",
+      "snr": 5,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.09574271077563382,
+          0.050000000000000044
+        ],
+        "mean_residual": 23.3731211962338
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 26.991167299219256
+      }
+    },
+    {
+      "scene": "three_path_stress",
+      "snr": 20,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 1.9511789100672405
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 6.640865544896815
+      }
+    },
+    {
+      "scene": "unequal_amplitudes",
+      "snr": 5,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.12583057392117913,
+          0.43493294502332963
+        ],
+        "mean_residual": 19.748778992555163
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 0,
+        "los_rmse_qa": [
+          0.12583057392117913,
+          0.43493294502332963
+        ],
+        "mean_residual": 19.98623884019132
+      }
+    },
+    {
+      "scene": "unequal_amplitudes",
+      "snr": 20,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 1,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 1.7509907105487141
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 1,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 1.7603260563382461
+      }
+    },
+    {
+      "scene": "well_separated",
+      "snr": 5,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.09574271077563382,
+          0.09574271077563384
+        ],
+        "mean_residual": 31.818904441034405
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.09574271077563382,
+          0.09574271077563384
+        ],
+        "mean_residual": 32.19875883227995
+      }
+    },
+    {
+      "scene": "well_separated",
+      "snr": 20,
+      "n": 3,
+      "proposed": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.050000000000000044,
+          0.050000000000000044
+        ],
+        "mean_residual": 2.1152046599625938
+      },
+      "baseline": {
+        "all_path_success_tolerance_point2": 3,
+        "los_rmse_qa": [
+          0.14999999999999997,
+          0.050000000000000044
+        ],
+        "mean_residual": 6.370179024404134
+      }
+    }
+  ],
+  "scope": "NEW independent dense/scalar Eq14 + every BCD step/round, same-y sequential and source-literal failure. This does not certify printed Eq21 or whole-paper reproduction."
+}

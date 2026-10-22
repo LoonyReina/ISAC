@@ -2,6 +2,8 @@
 // Publication/metadata preservation contracts. This suite does not operate a browser.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory(fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json'));
 const bytes=(...names)=>{for(const n of names)if(fs.existsSync(path.join(root,n)))return fs.readFileSync(path.join(root,n));throw Error('Missing '+names.join(' or '));};
 const read=(...names)=>bytes(...names).toString('utf8'),json=(...names)=>JSON.parse(read(...names)),sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const registry=json('site/registry.json','content/data/registry.json'),catalog=json('site/research-directory.json','content/data/research-directory.json'),backlog=json('docs/PAPER-EXECUTION-BACKLOG.json'),preserve=require('./helpers/crb-point-preservation.cjs');
@@ -199,7 +201,7 @@ test('optional reference archives and manifests are never startup assets',()=>{
  a.ok(h.includes('data/crb-point-kernel-v0.4.zip'));a.ok(h.includes('data/crb-beamforming-reference-v1.zip'));
 });
 test('metadata adapters restore exact previous source hashes and reject every edited-leaf mutation',()=>{
- for(const [kind,original,fn,file]of [['registry',registry,preserve.withoutCrbPointRegistry,'content/data/registry.json'],['catalog',catalog,preserve.withoutCrbPointCatalog,'content/data/research-directory.json']]){
+ for(const [kind,original,fn,file]of [['registry',historyRegistry,preserve.withoutCrbPointRegistry,'content/data/registry.json'],['catalog',catalog,preserve.withoutCrbPointCatalog,'content/data/research-directory.json']]){
   a.equal(sha(JSON.stringify(fn(original),null,2)+'\n'),baseline.old[file]);
   for(const entry of preserve.changes[kind])for(const ch of entry.changes){const bad=structuredClone(original);let p=preserve.collection(bad,entry.collection).find(x=>x[entry.idKey]===entry.id);for(const k of ch.path.slice(0,-1))p=p[k];p[ch.path.at(-1)]='unreviewed mutation';a.throws(()=>fn(bad));}
  }

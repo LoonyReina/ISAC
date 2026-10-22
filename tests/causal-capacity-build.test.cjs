@@ -1,6 +1,9 @@
 'use strict';
 const test=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),M=require('../scripts/build/compatibility.cjs'),G=require('../scripts/build/causal-capacity-dependencies.cjs'),P=require('./helpers/causal-capacity-integration-preservation.cjs');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyJSON=file=>JSON.parse(readForHistory(file));
+const historyManifest=historyJSON('build/compatibility-manifest.json');
 const {staticModuleDependencies}=require('../scripts/build/module-dependencies.cjs');
 const manifest=require('../build/compatibility-manifest.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -32,11 +35,11 @@ test('causal closure rejects missing, duplicate, moved, changed and unlisted dep
  mutate(x=>x.pages[0].source=x.pages[0].source.replace('<body','<body onload="fetch(\'https://unlisted.invalid/data\')"'));
  for(const region of ['HEADER','CONTEXT','NEXT'])mutate(x=>x.pages[0].source=x.pages[0].source.replace('<!-- SITE:'+region+':END -->','<!-- SITE:'+region+':END --><img src="https://unlisted.invalid/x.png">'));
 });
-test('causal mappings preserve the exact deployed pre-integration manifest',()=>{const prior=P.withoutMappings(manifest);a.equal(P.sha(JSON.stringify(prior,null,2)+'\n'),P.delta.priorManifestSha256);a.deepEqual(P.withoutMappings(prior),prior);for(const row of P.delta.addedEntries){for(const kind of ['missing','duplicate','mutated']){const bad=structuredClone(manifest),at=bad.entries.findIndex(e=>e.source===row.source);if(kind==='missing')bad.entries.splice(at,1);if(kind==='duplicate')bad.entries.push(structuredClone(row));if(kind==='mutated')bad.entries[at].public='unreviewed';a.throws(()=>P.withoutMappings(bad));}}});
+test('causal mappings preserve the exact deployed pre-integration manifest',()=>{const prior=P.withoutMappings(historyManifest);a.equal(P.sha(JSON.stringify(prior,null,2)+'\n'),P.delta.priorManifestSha256);a.deepEqual(P.withoutMappings(prior),prior);for(const row of P.delta.addedEntries){for(const kind of ['missing','duplicate','mutated']){const bad=structuredClone(historyManifest),at=bad.entries.findIndex(e=>e.source===row.source);if(kind==='missing')bad.entries.splice(at,1);if(kind==='duplicate')bad.entries.push(structuredClone(row));if(kind==='mutated')bad.entries[at].public='unreviewed';a.throws(()=>P.withoutMappings(bad));}}});
 test('causal compact inverses retain exact byte identities and reject altered endpoints',()=>{
- for(const row of P.delta.files){const candidate=path.join(root,row.path);if(!fs.existsSync(candidate))continue;const current=fs.readFileSync(candidate),prior=P.withoutFile(row.path,current);a.ok(P.identity(prior,row.before));a.deepEqual(P.withoutFile(row.path,prior),prior);a.throws(()=>P.withoutFile(row.path,Buffer.concat([current,Buffer.from('unreviewed')])));a.throws(()=>P.withoutFile(row.path,current,[row,row]));const bad=structuredClone(row);bad.changes[0].beforeBase64=Buffer.from('unreviewed').toString('base64');a.throws(()=>P.withoutFile(row.path,current,[bad]));}
+ for(const row of P.delta.files){const candidate=path.join(root,row.path);if(!fs.existsSync(candidate))continue;const current=readForHistory(row.path),prior=P.withoutFile(row.path,current);a.ok(P.identity(prior,row.before));a.deepEqual(P.withoutFile(row.path,prior),prior);a.throws(()=>P.withoutFile(row.path,Buffer.concat([current,Buffer.from('unreviewed')])));a.throws(()=>P.withoutFile(row.path,current,[row,row]));const bad=structuredClone(row);bad.changes[0].beforeBase64=Buffer.from('unreviewed').toString('base64');a.throws(()=>P.withoutFile(row.path,current,[bad]));}
 });
-test('causal addition never changes existing numerical source assets',()=>{const old=P.withoutMappings(manifest);const records=old.entries.filter(e=>e.source&&(e.source.startsWith('labs/')&&/\.(?:js|mjs|json)$/.test(e.source)||e.source.startsWith('assets/data/'))).map(e=>({path:e.source,sha256:sha(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(e.source,fs.readFileSync(path.join(root,e.source))))})).sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0);a.equal(sha(JSON.stringify(records)),P.delta.protectedNumericalTreeSha256);});
+test('causal addition never changes existing numerical source assets',()=>{const old=P.withoutMappings(historyManifest);const records=old.entries.filter(e=>e.source&&(e.source.startsWith('labs/')&&/\.(?:js|mjs|json)$/.test(e.source)||e.source.startsWith('assets/data/'))).map(e=>({path:e.source,sha256:sha(require('./helpers/recovery-published-baseline-projection.cjs').projectFile(e.source,fs.readFileSync(path.join(root,e.source))))})).sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0);a.equal(sha(JSON.stringify(records)),P.delta.protectedNumericalTreeSha256);});
 test('causal historical ancestors have exact path-specific frozen provenance, never a wildcard exception',()=>{
  for(const row of P.delta.files)for(const identity of row.historicalIntermediates||[]){
   a.ok(identity.provenance?.includes('#$'));{
@@ -51,7 +54,7 @@ test('causal historical ancestors have exact path-specific frozen provenance, ne
 
 test('causal structural guide and backlog inverses preserve unrelated fields and reject partial endpoints',()=>{
  for(const [key,file,fn]of [['guides','content/data/research-guides.json',P.withoutGuides],['backlog','docs/PAPER-EXECUTION-BACKLOG.json',P.withoutBacklog]]){
-  const bytes=fs.readFileSync(path.join(root,file)),input=JSON.parse(bytes),expected=JSON.parse(P.withoutFile(file,bytes)),record=P.delta.metadataChanges[key];
+  const bytes=readForHistory(file),input=JSON.parse(bytes),expected=JSON.parse(P.withoutFile(file,bytes)),record=P.delta.metadataChanges[key];
   a.deepEqual(fn(input),expected);a.deepEqual(fn(expected),expected);a.deepEqual(input,JSON.parse(bytes));
   const item=x=>x[record.collection].find(r=>r.id===record.id);
   const other=structuredClone(input);other.unrelated='retain';a.equal(fn(other).unrelated,'retain');

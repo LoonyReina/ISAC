@@ -1,6 +1,8 @@
 // Static author checks of the hand-written source and bindings only.
 // These tests do not run or certify a browser, layout, keyboard use, or graphics.
 import test from 'node:test';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -45,9 +47,10 @@ test('all 21 legacy IDs remain unique and original curve lesson sections remain 
 test('legacy core, script, style bytes and existing script/style order are unchanged against accepted tree',()=>{
  for(const file of ['near-field-core.js','near-field.js','near-field.css'])assert.equal(sha256(read(`labs/near-field/${file}`,file)),baselineHashes[file],file);
  const scripts=text=>[...text.matchAll(/<script\b[^>]*src="[^"]+"[^>]*><\/script>/g)].map(m=>m[0]);
- const priorScripts=scripts(previous),currentScripts=scripts(html);assert.deepEqual(currentScripts.filter(tag=>!tag.includes('labs/near-field/research/entry.mjs')),priorScripts);assert.deepEqual(priorScripts,['<script defer src="near-field-core.js"></script>','<script defer src="near-field.js"></script>']);
+ const teaching=createRequire(import.meta.url)(new URL('tests/helpers/teaching-page-assets.cjs',root).pathname)(fileURLToPath(root),existsSync(new URL('content/pages/near-field.html',root))?'content/pages/near-field.html':'near-field.html',html);
+ const priorScripts=scripts(previous),allScripts=scripts(html),currentScripts=allScripts.filter(tag=>!teaching.scriptTags.includes(tag));assert.deepEqual(allScripts,[...currentScripts,...teaching.scriptTags]);assert.deepEqual(currentScripts.filter(tag=>!tag.includes('labs/near-field/research/entry.mjs')),priorScripts);assert.deepEqual(priorScripts,['<script defer src="near-field-core.js"></script>','<script defer src="near-field.js"></script>']);
  assert.equal(currentScripts.at(-1),'<script type="module" src="labs/near-field/research/entry.mjs"></script>');
- const styles=text=>tags(text).filter(tag=>attributes(tag).rel==='stylesheet');assert.deepEqual(styles(html).filter(tag=>!tag.includes('labs/near-field/research/research.css')),styles(previous));assert(styles(html).some(tag=>attributes(tag).href==='labs/near-field/research/research.css'));
+ const styles=text=>tags(text).filter(tag=>attributes(tag).rel==='stylesheet');assert.deepEqual(styles(html).filter(tag=>!tag.includes('labs/near-field/research/research.css')&&!teaching.styleTags.includes(tag)),styles(previous));assert(styles(html).some(tag=>attributes(tag).href==='labs/near-field/research/research.css'));
 });
 
 test('every research control is uniquely labeled and matches a real controller field',()=>{

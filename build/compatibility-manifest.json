@@ -340,6 +340,16 @@
       "id": "labs/full-duplex",
       "directory": "labs/full-duplex",
       "description": "Eq11 bounded synthetic cancellation lesson and accepted numerical verification"
+    },
+    {
+      "id": "labs/channel-mapping",
+      "directory": "labs/channel-mapping",
+      "description": "New portable-v2 bounded calibrated scan-to-communication-delay mapping lesson; local core accepted, integrated UI pending, not deployed"
+    },
+    {
+      "id": "features/teaching19",
+      "directory": "features/teaching19",
+      "description": "Exact19 guided teaching enhancement; no numerical cores"
     }
   ],
   "entries": [
@@ -14255,6 +14265,622 @@
     {
       "source": "tests/helpers/accepted-publication-delta.json",
       "compatibility": "tests/helpers/accepted-publication-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/cli.mjs",
+      "compatibility": "labs/channel-mapping/cli.mjs",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/styles.css",
+      "compatibility": "labs/channel-mapping/styles.css",
+      "public": "channel-mapping/styles.css",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/INTERFACES.md",
+      "compatibility": "labs/channel-mapping/INTERFACES.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/SOURCE-AND-BOUNDARIES.md",
+      "compatibility": "labs/channel-mapping/SOURCE-AND-BOUNDARIES.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/tests/unit.mjs",
+      "compatibility": "labs/channel-mapping/tests/unit.mjs",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/CORE-FREEZE-v2.json",
+      "compatibility": "labs/channel-mapping/evidence/CORE-FREEZE-v2.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/UI-BUILD-FREEZE-v3.json",
+      "compatibility": "labs/channel-mapping/evidence/UI-BUILD-FREEZE-v3.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/app.mjs",
+      "compatibility": "labs/channel-mapping/src/app.mjs",
+      "public": "channel-mapping/src/app.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/config.mjs",
+      "compatibility": "labs/channel-mapping/src/config.mjs",
+      "public": "channel-mapping/src/config.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/evaluation.mjs",
+      "compatibility": "labs/channel-mapping/src/evaluation.mjs",
+      "public": "channel-mapping/src/evaluation.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/experiment.mjs",
+      "compatibility": "labs/channel-mapping/src/experiment.mjs",
+      "public": "channel-mapping/src/experiment.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/generator.mjs",
+      "compatibility": "labs/channel-mapping/src/generator.mjs",
+      "public": "channel-mapping/src/generator.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/geometry.mjs",
+      "compatibility": "labs/channel-mapping/src/geometry.mjs",
+      "public": "channel-mapping/src/geometry.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/inference.mjs",
+      "compatibility": "labs/channel-mapping/src/inference.mjs",
+      "public": "channel-mapping/src/inference.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/src/worker.mjs",
+      "compatibility": "labs/channel-mapping/src/worker.mjs",
+      "public": "channel-mapping/src/worker.mjs",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/standalone-index.html",
+      "compatibility": "labs/channel-mapping/evidence/standalone-index.html",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/DISPOSITION.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/DISPOSITION.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/REVIEW.md",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/REVIEW.md",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/EVIDENCE-BINDINGS.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/EVIDENCE-BINDINGS.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/RETAINED-EVIDENCE-CHECK.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/RETAINED-EVIDENCE-CHECK.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/evidence/acceptance/UI-EVIDENCE-CHECK.json",
+      "compatibility": "labs/channel-mapping/evidence/acceptance/UI-EVIDENCE-CHECK.json",
+      "public": null,
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "content/pages/channel-mapping.html",
+      "compatibility": "channel-mapping.html",
+      "public": "channel-mapping.html",
+      "owner": "content/pages",
+      "role": "source"
+    },
+    {
+      "source": "labs/channel-mapping/site-integration.css",
+      "compatibility": "labs/channel-mapping/site-integration.css",
+      "public": "channel-mapping/site-integration.css",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "assets/data/channel-mapping/acceptance-summary.json",
+      "compatibility": "assets/data/channel-mapping/acceptance-summary.json",
+      "public": "assets/data/channel-mapping/acceptance-summary.json",
+      "owner": "labs/channel-mapping",
+      "role": "source"
+    },
+    {
+      "source": "build/local-candidate-allowlist.json",
+      "compatibility": "build/local-candidate-allowlist.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/project-local-mapping.py",
+      "compatibility": "scripts/project-local-mapping.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "scripts/check-local-mapping.py",
+      "compatibility": "scripts/check-local-mapping.py",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/channel-mapping-integration.test.cjs",
+      "compatibility": "tests/channel-mapping-integration.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "build/channel-mapping-integration-delta.json",
+      "compatibility": "build/channel-mapping-integration-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/channel-mapping-preservation.cjs",
+      "compatibility": "tests/helpers/channel-mapping-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/channel-mapping-endpoints.json",
+      "compatibility": "tests/helpers/channel-mapping-endpoints.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/channel-mapping-preservation.test.cjs",
+      "compatibility": "tests/channel-mapping-preservation.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/reset-ui-preservation.cjs",
+      "compatibility": "tests/helpers/reset-ui-preservation.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/reset-ui-delta.json",
+      "compatibility": "tests/helpers/reset-ui-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/index.html",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/index.html",
+      "public": "otfs-receiver/source-objective-v1/index.html",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/joint/joint-core.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/joint/joint-core.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/joint-core.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/joint/scenes.json",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/joint/scenes.json",
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/scenes.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/joint/simulation.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/joint/simulation.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/simulation.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/joint/waveform.json",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/joint/waveform.json",
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/waveform.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/printed-variant.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/printed-variant.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/printed-variant.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/source-objective.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/source-objective.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/source-objective.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/statistics/otfs-core.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/statistics/otfs-core.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/statistics/otfs-core.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/ui.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/ui.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/ui.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/runtime/worker.mjs",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/runtime/worker.mjs",
+      "public": "otfs-receiver/source-objective-v1/runtime/worker.mjs",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/results/independent-check.json",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/results/independent-check.json",
+      "public": "otfs-receiver/source-objective-v1/results/independent-check.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "labs/otfs-receiver/source-objective-v1/results/new-study-30.json",
+      "compatibility": "labs/otfs-receiver/source-objective-v1/results/new-study-30.json",
+      "public": "otfs-receiver/source-objective-v1/results/new-study-30.json",
+      "owner": "labs/otfs-receiver",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/target19-otfs-dependencies.cjs",
+      "compatibility": "scripts/build/target19-otfs-dependencies.cjs",
+      "public": "scripts/build/target19-otfs-dependencies.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-otfs-integration.test.cjs",
+      "compatibility": "tests/target19-otfs-integration.test.cjs",
+      "public": "tests/target19-otfs-integration.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "scripts/publish-target19.py",
+      "compatibility": "scripts/publish-target19.py",
+      "public": "scripts/publish-target19.py",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/test-target19-publication.py",
+      "compatibility": "tests/test-target19-publication.py",
+      "public": "tests/test-target19-publication.py",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "build/publication-target19.json",
+      "compatibility": "build/publication-target19.json",
+      "public": "build/publication-target19.json",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/RESTORATION-BOUNDARY.md",
+      "compatibility": "labs/near-field/research/RESTORATION-BOUNDARY.md",
+      "public": "labs/near-field/research/RESTORATION-BOUNDARY.md",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/precomputed/source-chain.json",
+      "compatibility": "labs/near-field/research/precomputed/source-chain.json",
+      "public": "labs/near-field/research/precomputed/source-chain.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/precomputed/tx-baseline-matrices.json",
+      "compatibility": "labs/near-field/research/precomputed/tx-baseline-matrices.json",
+      "public": "labs/near-field/research/precomputed/tx-baseline-matrices.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/precomputed-loader.mjs",
+      "compatibility": "labs/near-field/research/precomputed-loader.mjs",
+      "public": "labs/near-field/research/precomputed-loader.mjs",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/restoration-summary.json",
+      "compatibility": "labs/near-field/research/restoration-summary.json",
+      "public": "labs/near-field/research/restoration-summary.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "labs/near-field/research/tx-design-independent-results.json",
+      "compatibility": "labs/near-field/research/tx-design-independent-results.json",
+      "public": "labs/near-field/research/tx-design-independent-results.json",
+      "owner": "labs/near-field",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/target19-nearfield-dependencies.cjs",
+      "compatibility": "scripts/build/target19-nearfield-dependencies.cjs",
+      "public": "scripts/build/target19-nearfield-dependencies.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-nearfield-integration.test.cjs",
+      "compatibility": "tests/target19-nearfield-integration.test.cjs",
+      "public": "tests/target19-nearfield-integration.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/network-clock/bistatic-core.js",
+      "compatibility": "bistatic-core.js",
+      "public": "bistatic-core.js",
+      "owner": "labs/network-clock",
+      "role": "source"
+    },
+    {
+      "source": "labs/network-clock/bistatic-worker.js",
+      "compatibility": "bistatic-worker.js",
+      "public": "bistatic-worker.js",
+      "owner": "labs/network-clock",
+      "role": "source"
+    },
+    {
+      "source": "labs/network-clock/bistatic-ui.js",
+      "compatibility": "bistatic-ui.js",
+      "public": "bistatic-ui.js",
+      "owner": "labs/network-clock",
+      "role": "source"
+    },
+    {
+      "source": "labs/network-clock/bistatic.css",
+      "compatibility": "bistatic.css",
+      "public": "bistatic.css",
+      "owner": "labs/network-clock",
+      "role": "source"
+    },
+    {
+      "source": "scripts/build/target19-bistatic-dependencies.cjs",
+      "compatibility": "scripts/build/target19-bistatic-dependencies.cjs",
+      "public": "scripts/build/target19-bistatic-dependencies.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-bistatic-integration.test.cjs",
+      "compatibility": "tests/target19-bistatic-integration.test.cjs",
+      "public": "tests/target19-bistatic-integration.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/current-browser-evidence/README.md",
+      "compatibility": "labs/crb-beamforming/extended-lab/current-browser-evidence/README.md",
+      "public": "labs/crb-beamforming/extended-lab/current-browser-evidence/README.md",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json",
+      "compatibility": "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json",
+      "public": "labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json",
+      "owner": "labs/crb-beamforming",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-otfs-alias.test.cjs",
+      "compatibility": "tests/target19-otfs-alias.test.cjs",
+      "public": "tests/target19-otfs-alias.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/target19-layout.cjs",
+      "compatibility": "tests/helpers/target19-layout.cjs",
+      "public": "tests/helpers/target19-layout.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-layout.test.cjs",
+      "compatibility": "tests/target19-layout.test.cjs",
+      "public": "tests/target19-layout.test.cjs",
+      "owner": "content/documentation",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/target19-source-identity.cjs",
+      "compatibility": "tests/helpers/target19-source-identity.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/target19-source-delta.json",
+      "compatibility": "tests/helpers/target19-source-delta.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/target19-reviewed-evidence.json",
+      "compatibility": "tests/helpers/target19-reviewed-evidence.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/target19-source-identity.test.cjs",
+      "compatibility": "tests/target19-source-identity.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/target19-layout-manifest.json",
+      "compatibility": "tests/helpers/target19-layout-manifest.json",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/manual.js",
+      "compatibility": "features/teaching19/manual.js",
+      "public": "features/teaching19/manual.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/guided-lesson.css",
+      "compatibility": "features/teaching19/guided-lesson.css",
+      "public": "features/teaching19/guided-lesson.css",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/integration.css",
+      "compatibility": "features/teaching19/integration.css",
+      "public": "features/teaching19/integration.css",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/lessons.js",
+      "compatibility": "features/teaching19/lessons.js",
+      "public": "features/teaching19/lessons.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/receiver-adapters.js",
+      "compatibility": "features/teaching19/receiver-adapters.js",
+      "public": "features/teaching19/receiver-adapters.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/receiver-views.js",
+      "compatibility": "features/teaching19/receiver-views.js",
+      "public": "features/teaching19/receiver-views.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/theory-adapters.js",
+      "compatibility": "features/teaching19/theory-adapters.js",
+      "public": "features/teaching19/theory-adapters.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/theory-views.js",
+      "compatibility": "features/teaching19/theory-views.js",
+      "public": "features/teaching19/theory-views.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "features/teaching19/engine.js",
+      "compatibility": "features/teaching19/engine.js",
+      "public": "features/teaching19/engine.js",
+      "owner": "features/teaching19",
+      "role": "source"
+    },
+    {
+      "source": "tests/teaching19-guided.test.cjs",
+      "compatibility": "tests/teaching19-guided.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/teaching-page-assets.cjs",
+      "compatibility": "tests/helpers/teaching-page-assets.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/teaching-current-identity.test.cjs",
+      "compatibility": "tests/teaching-current-identity.test.cjs",
+      "public": null,
+      "owner": "validators/regression",
+      "role": "source"
+    },
+    {
+      "source": "tests/helpers/teaching-current-epoch.json",
+      "compatibility": "tests/helpers/teaching-current-epoch.json",
       "public": null,
       "owner": "validators/regression",
       "role": "source"

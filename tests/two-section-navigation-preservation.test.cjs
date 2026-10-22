@@ -1,7 +1,8 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const P=require('./helpers/two-section-navigation-preservation.cjs'),root=path.resolve(__dirname,'..');
-const registry=JSON.parse(fs.readFileSync(path.join(root,fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json')));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const registryFile=fs.existsSync(path.join(root,'content/data/registry.json'))?'content/data/registry.json':'site/registry.json',currentRegistry=JSON.parse(fs.readFileSync(path.join(root,registryFile))),registry=JSON.parse(readForHistory(registryFile));
 test('two-section historical projection reverses only explicit navigation fields without mutating science',()=>{
  const before=JSON.stringify(registry),prior=P.withoutRegistry(registry);a.equal(JSON.stringify(registry),before);a.deepEqual(P.withoutRegistry(prior),prior);
  // Compare this historical navigation layer after the separately enumerated
@@ -16,7 +17,7 @@ test('two-section historical file inverses require exact complete bytes and reje
  a.ok(P.delta.files.length,'reviewed navigation source and rendered-file inventory');
  for(const row of P.delta.files){
   const local=path.join(root,row.compatibility||row.path);a.ok(fs.existsSync(local),'mapped historical input '+row.compatibility);
-  const bytes=fs.readFileSync(local),copy=Buffer.from(bytes),prior=P.withoutFile(row.path,bytes);a.ok(P.identity(prior,row.before));a.deepEqual(bytes,copy);a.deepEqual(P.withoutFile(row.path,prior),prior);
+  const bytes=readForHistory(path.relative(root,local).split(path.sep).join('/')),copy=Buffer.from(bytes),prior=P.withoutFile(row.path,bytes);a.ok(P.identity(prior,row.before));a.deepEqual(bytes,copy);a.deepEqual(P.withoutFile(row.path,prior),prior);
   for(const bad of [bytes.subarray(1),Buffer.concat([bytes,Buffer.from('unreviewed')])])a.throws(()=>P.withoutFile(row.path,bad));
   for(const side of ['before','after'])for(const key of ['bytes','sha256']){const bad=structuredClone(row);bad[side][key]=key==='bytes'?0:'0'.repeat(64);a.throws(()=>P.reverseFile(row.path,bytes,[bad]));}
   const bad=structuredClone(row);bad.changes[0].beforeBase64=Buffer.from('unreviewed').toString('base64');a.throws(()=>P.reverseFile(row.path,bytes,[bad]));a.throws(()=>P.reverseFile(row.path,bytes,[row,row]));a.deepEqual(P.withoutFile('unlisted/'+row.path,bytes),bytes);
@@ -37,4 +38,7 @@ test('enumerated narrow and CMC helper endpoints remain exact and reject altered
    for(const bad of [changed,historical.subarray(1),Buffer.concat([historical,Buffer.from('unreviewed')])])a.throws(()=>P.withoutFile(file,bad));
   }
  }
+});
+test('two-section current scientific metadata stays live outside the historical navigation seed',()=>{
+ for(const key of ['cases','units','directions','knowledgeMap','paperComparisonGroups'])a.deepEqual(registry[key],currentRegistry[key],key+' current science remains raw');
 });

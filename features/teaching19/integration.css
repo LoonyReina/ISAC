@@ -1,0 +1,65 @@
+.gl-shell {padding:16px 20px!important;max-width:1040px;margin:16px auto!important;scroll-margin-top:76px;}
+.gl-shell h2 {font-size:clamp(1.4rem,2.6vw,2rem);margin:6px 0 10px;line-height:1.3}
+.gl-shell h3 {font-size:1.15rem;margin:8px 0;scroll-margin-top:84px}
+.gl-shell p {margin:8px 0;line-height:1.6;max-width:76ch}
+.gl-shell .gl-top {margin:0;gap:8px}
+.gl-shell .gl-task {padding:12px!important;gap:8px}
+.gl-shell .gl-known {gap:12px}
+.gl-shell .gl-known h4 {margin:4px 0}
+.gl-shell .gl-known ul {margin:6px 0;padding-left:20px}
+.gl-shell .gl-nav {margin-top:12px;padding:0}
+.gl-shell .gl-progress {font-size:.9rem;margin:6px 0}
+.gl-shell .gl-scope {font-size:.9rem;padding:8px 10px!important;margin:8px 0!important}
+.gl-scope-details {font-size:.88rem;max-width:80ch}
+.gl-scope-details summary {cursor:pointer;padding:6px 0}
+.gl-shell[data-role="orient"] .gl-progress {display:none}
+.gl-shell[data-role="orient"] .gl-task>h3 {display:none}
+.gl-shell .gl-live {max-width:100%;overflow-wrap:anywhere}
+.gl-shell .gl-status {font-size:.92rem}
+.gl-shell .gl-results {min-width:0;overflow-x:auto}
+.gl-shell button {min-height:40px}
+@media(max-width:600px){.gl-shell{padding:10px!important;margin:8px!important}.gl-shell .gl-known{grid-template-columns:1fr}.gl-shell .gl-task{padding:8px!important}}
+.gl-shell .gl-results .cd-output-grid{grid-template-columns:1fr}
+.gl-shell .gl-results .gl-result-more{display:block!important;margin-top:14px}
+.gl-shell .gl-results .gl-result-more .cd-output-grid{display:grid!important}
+.gl-shell .gl-results .gl-result-more>details,.gl-shell .gl-results .gl-result-more>label,.gl-shell .gl-results .gl-result-more>.cd-overlay-controls{display:block!important}
+.gl-shell .gl-results #cd-metrics{grid-template-columns:repeat(3,minmax(0,1fr));font-size:.85rem;gap:6px}
+.gl-shell .gl-results #cd-metrics>*{padding:7px}
+.gl-shell .gl-results .cd-chart{max-height:260px}
+.gl-shell .gl-raw-state{font-size:.85rem;margin:4px 0}
+.gl-shell .gl-raw-state>summary{cursor:pointer}
+.gl-shell .gl-raw-state p{font-size:.82rem}
+.gl-shell .gl-live{margin:8px 0;padding-top:4px}
+.gl-shell .gl-task{margin-top:10px}
+.gl-shell .gl-results{margin:8px 0}
+.gl-shell{scroll-margin-top:0!important}
+#capacity-distortion[data-guided19]{padding-top:0!important;scroll-margin-top:0!important}
+.gl-shell .gl-scope-details{padding:0!important;margin:2px 0!important;background:transparent!important;border:0!important}
+.gl-shell .gl-scope-details>summary{padding:2px 0!important;margin:0!important;background:transparent!important;border:0!important;min-height:0!important}
+.gl-shell .gl-scope p{margin:2px 0!important}
+.gl-shell .gl-scope{padding:6px 10px!important}
+.gl-shell .gl-known{margin:8px 0!important}
+.gl-shell .gl-known>div{padding:8px 12px!important}
+.gl-shell .gl-task>div>details:not(.gl-worked){padding:5px 8px;margin:6px 0}
+.gl-shell #ad-stop{display:none}
+.gl-shell .gl-task h3{scroll-margin-top:0!important}
+.gl-shell .gl-raw-state,.gl-shell .gl-receiver-receipt,.gl-shell .gl-receiver-more,.gl-shell .gl-result-more{padding:4px 0!important;margin:4px 0!important;background:transparent!important;border:0!important}
+.gl-shell .gl-raw-state>summary,.gl-shell .gl-receiver-receipt>summary,.gl-shell .gl-receiver-more>summary,.gl-shell .gl-result-more>summary{padding:2px 0!important;min-height:0!important}
+.gl-shell .gl-results #cd-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.gl-shell .gl-receiver-more #ad-stage-question,.gl-shell .gl-receiver-more #ad-stage-equation,.gl-shell .gl-receiver-more #ad-stage-explanation,.gl-shell .gl-receiver-more #ad-stage-source,.gl-shell .gl-receiver-more .ad-view,.gl-shell .gl-receiver-more .ad-inspector{display:block}
+.gl-shell .ad-stage>figure{margin:6px 0}
+.gl-shell .ad-stage>figure svg{height:260px;width:100%}
+.gl-shell .ad-stage>figure figcaption{font-size:.85rem;line-height:1.4}
+@media(max-width:600px){.gl-shell .gl-results #cd-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gl-shell .gl-live{margin:2px 0!important;padding:0!important;border:0!important}
+.gl-shell .gl-status{margin:3px 0!important}
+.gl-shell .gl-results #cd-metrics{margin:6px 0!important}
+.gl-shell .gl-results .cd-output-grid{gap:0!important;margin:0!important}
+.gl-shell .gl-results #cd-pmf-note,.gl-shell .gl-results #cd-frontier-note{margin:5px 0!important;font-size:.9rem}
+.gl-shell .ad-result-strip{padding:0!important;margin:0!important;border:0!important;font-size:.85rem;line-height:1.4}
+.gl-shell .ad-result-strip #ad-current-label{font-size:.85rem}
+.gl-shell .ad-result-strip #ad-gates{margin:3px 0!important;line-height:1.4}
+.gl-shell .gl-receiver-receipt{padding:0!important;margin:0!important}
+.gl-shell .ad-stage{padding:0!important;margin:0!important;border:0!important}
+.gl-shell .ad-stage #ad-stage-summary{font-size:.9rem;line-height:1.5}
+.gl-shell .ad-stage #ad-stage-caveat{font-size:.85rem;line-height:1.45}

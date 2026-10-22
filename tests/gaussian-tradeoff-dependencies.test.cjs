@@ -4,7 +4,9 @@ const {moduleDependencies,staticModuleDependencies}=require('../scripts/build/mo
 const {classicDependencies}=require('../scripts/build/classic-dependencies.cjs');
 const {checkDependencies}=require('../scripts/build/compatibility.cjs');
 const root=path.resolve(__dirname,'..'),prefix='labs/gaussian-tradeoff/',runtime=prefix+'runtime/';
-const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeModuleContracts(require('../scripts/build/module-runtime-contracts.json'));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyJSON=file=>JSON.parse(readForHistory(file));
+const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeModuleContracts(historyJSON('scripts/build/module-runtime-contracts.json'));
 const historicalDelta=require('./helpers/gaussian-tradeoff-runtime-delta.json'),delta={...historicalDelta,moduleProfiles:historicalDelta.moduleProfiles.map(row=>modules.modules.find(x=>x.public===row.public))},B=require('./helpers/cellfree-maprt-build-preservation.cjs'),baseline=require('./helpers/gaussian-tradeoff-baseline.json');
 const manifest=require('../build/compatibility-manifest.json');
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
@@ -12,13 +14,15 @@ function read(file){const direct=path.join(root,file);if(fs.existsSync(direct))r
 const identities=sources=>sources.map(({file,source})=>({file,sha256:sha(source)}));
 function esmFixture(){const source=delta.moduleProfiles.map(c=>({file:c.public,source:read(c.public)}));return {source,contract:{schemaVersion:1,modules:structuredClone(delta.moduleProfiles)},identities:identities(source)};}
 function esm(f){return moduleDependencies(f.source,f.contract,f.identities);}
-function classicFixture(){const source=classic.scripts.map(c=>({file:c.public,source:read(c.public)}));return {source,contract:structuredClone(classic),identities:identities(source)};}
+// Current classic validation must read actual runtime bytes, not the historical adapter view.
+function currentRuntime(file){const direct=path.join(root,file),entry=manifest.entries.find(e=>e.public===file);const source=fs.existsSync(direct)?direct:entry&&path.join(root,entry.source);a.ok(source,'current mapped runtime '+file);return fs.readFileSync(source,'utf8');}
+function classicFixture(){const source=classic.scripts.map(c=>({file:c.public,source:currentRuntime(c.public)}));return {source,contract:structuredClone(classic),identities:identities(source)};}
 function classicEdges(f){return classicDependencies(f.source,f.contract,f.identities);}
 function inverse(source,changes){for(const change of [...changes].reverse()){a.equal(source.split(change.after).length,2,'exact reversible source fragment');source=source.replace(change.after,change.before);}return source;}
 
 test('Gaussian extension preserves every prior 27 classic and 32 ESM row and exact gate source',()=>{
- const classic=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutContracts(require('../scripts/build/classic-runtime-contracts.json'));
- const self='tests/gaussian-tradeoff-dependencies.test.cjs',record=B.hostedUiAdapters.find(x=>x.path===self),currentSelf=fs.readFileSync(path.join(root,self));a.ok(!manifest.entries.some(x=>x.source===self),'source-only adapter must stay outside compatibility staging');a.equal(sha(B.withoutHostedUiAdapter(self,currentSelf)),record.before.sha256);a.throws(()=>B.withoutHostedUiAdapter(self,Buffer.concat([currentSelf,Buffer.from('/* unrelated */')])));
+ const classic=require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutContracts(historyJSON('scripts/build/classic-runtime-contracts.json'));
+ const self='tests/gaussian-tradeoff-dependencies.test.cjs',record=B.hostedUiAdapters.find(x=>x.path===self),currentSelf=readForHistory(self);a.ok(!manifest.entries.some(x=>x.source===self),'source-only adapter must stay outside compatibility staging');a.equal(sha(B.withoutHostedUiAdapter(self,currentSelf)),record.before.sha256);a.throws(()=>B.withoutHostedUiAdapter(self,Buffer.concat([currentSelf,Buffer.from('/* unrelated */')])));
  a.equal(delta.priorClassicProfileCount,27);a.equal(delta.priorModuleProfileCount,32);a.equal(classic.scripts.length,28);a.equal(modules.modules.length,41);
  a.deepEqual(classic.scripts.slice(27),delta.classicProfiles);a.deepEqual(B.withoutHostedUiContracts(modules,'module').modules.slice(32),historicalDelta.moduleProfiles);
  a.equal(sha(JSON.stringify({schemaVersion:1,scripts:B.withoutHostedUiContracts(classic,'classic').scripts.slice(0,27)},null,2)+'\n'),baseline.classicContracts);
@@ -129,7 +133,8 @@ function publicFixture(t){
  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'isac-gaussian-dependencies-'));t.after(()=>fs.rmSync(directory,{recursive:true,force:true}));
  const entries=[],seen=new Set();
  function put(file,source=read(file),published=true){fs.mkdirSync(path.dirname(path.join(directory,file)),{recursive:true});fs.writeFileSync(path.join(directory,file),source);if(published&&!seen.has(file)){seen.add(file);entries.push({public:file});}}
- for(const row of [...classic.scripts,...modules.modules])put(row.public);
+ for(const row of classic.scripts)put(row.public,currentRuntime(row.public));
+ for(const row of modules.modules)put(row.public);
  for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])put('labs/near-field/research/runtime/vendor/solver/'+name+'.js');
  put('scripts/build/classic-runtime-contracts.json',JSON.stringify(classic),false);put('scripts/build/module-runtime-contracts.json',JSON.stringify(modules),false);
  put('course.js',"document.currentScript.src;const files=['course-ui.js','velocity-core.js','velocity-bridge.js'];");for(const name of ['course-ui.js','velocity-core.js','velocity-bridge.js'])put(name,'/* fixture */');

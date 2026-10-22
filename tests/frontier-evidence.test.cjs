@@ -3,6 +3,8 @@ const {withoutGCSAGERegistry}=require('./helpers/gc-sage-preservation.cjs');
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8'),r=JSON.parse(read('site/registry.json'));
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
+const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
 const source=read('site/content-reading.html'),frontiers=read('site/content-frontiers.html'),html=read('reading.html'),map=read('index.html');
 const article=(s,id)=>{const m=s.match(new RegExp(`<article[^>]* id="${id}"[^>]*>[\\s\\S]*?<\\/article>`));a.ok(m,`missing ${id}`);return m[0];};
 const official={itu:'https://www.itu.int/en/ITU-R/study-groups/rsg5/rwp5d/IMT-2030/Pages/default.aspx',architecture:'https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=5516',report:'https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4446',work:'https://portal.3gpp.org/desktopmodules/WorkItem/WorkItemDetails.aspx?workitemId=1121123'};
@@ -45,7 +47,7 @@ test('three 2026 readings keep fixed author versions, dates, questions and evide
 });
 
 test('existing paper layers point to actual readings within the current canonical inventory',()=>{
- a.equal(withoutGCSAGERegistry(r).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
  const expected={receiver:['F1'],spatial:['F1'],learning:['F2','F3']};let count=0;
  for(const d of r.directions){
   a.equal(d.levels.length,6);
@@ -68,7 +70,7 @@ test('all HTML hrefs/resources resolve locally or use valid external URLs; new s
   const href=raw.replace(/&amp;/g,'&');
   if(/^https?:/.test(href)){const u=new URL(href);a.ok(u.hostname);continue;}
   if(/^(?:data:|mailto:)/.test(href))continue;
-  const [file,hash]=href.split('#'),owner=f.startsWith('site/')?'reading.html':f,target=path.resolve(root,require('./helpers/otfs-staging-resources.cjs')((file||owner).split('?')[0]));
+  const [file,hash]=href.split('#'),owner=f.startsWith('site/')?'reading.html':f,target=path.resolve(root,require('./helpers/channel-mapping-preservation.cjs').resolveCurrentStagingResource((file||owner).split('?')[0],{root}));
   a.ok(target.startsWith(root+path.sep));a.ok(fs.existsSync(target),`${f}: ${href}`);
   if(hash)a.ok(ids(fs.readFileSync(target,'utf8')).has(decodeURIComponent(hash)),`${f}: ${href}`);
  }

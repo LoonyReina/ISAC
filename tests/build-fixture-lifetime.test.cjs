@@ -2,7 +2,8 @@
 // Source-only tests: run the actual six scenario callbacks with tiny independent
 // copied inputs and an instrumented build boundary. Full scientific gates remain mandatory.
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),vm=require('node:vm'),crypto=require('node:crypto'),{createRequire}=require('node:module');
-const root=path.resolve(__dirname,'..'),builderPath='tests/compatibility-build.test.cjs',read=f=>require('./helpers/dual-array-browser-integration-preservation.cjs').maybeWithoutFile(f,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(f,fs.readFileSync(path.join(root,f)))),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const root=path.resolve(__dirname,'..'),builderPath='tests/compatibility-build.test.cjs',read=f=>require('./helpers/dual-array-browser-integration-preservation.cjs').maybeWithoutFile(f,require('./helpers/ofdm-false-alarm-integration-preservation.cjs').withoutFile(f,readForHistory(f))),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
 const current=read(builderPath),delta=require('../build/fixture-lifetime-source-delta.json'),T=require('./helpers/desktop-layout-integration-preservation.cjs');
 const groups=['missing classic dependencies, changed source plus spoofed JSON, and undeclared alternate-extension files fail before output','80211ad missing dependencies changed frozen source and namespace bypasses fail before output'];
 function inverse(file,bytes,rows=delta.changedFiles){

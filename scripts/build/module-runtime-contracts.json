@@ -17,7 +17,7 @@
     },
     {
       "public": "labs/near-field/research/entry.mjs",
-      "sha256": "022920a9af1657d83f0fd1cba86bf66b8f8b9d31581e32c81bdda9dbec76b55f",
+      "sha256": "495be6ba115c8153cffc1d7e358d2d57620a9b4d3295444c4d4c736365f0370a",
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
@@ -841,7 +841,7 @@
     },
     {
       "public": "labs/pilot-pattern/lesson.mjs",
-      "sha256": "c130e713a876cb59500df0e1e7fe16ea6a6af5bbe1c739eb6384c1da505b773a",
+      "sha256": "c2563de72b9709b58882f32feef596ac6cb0d2d2d334cc42510ca1a9635b214f",
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
@@ -1109,7 +1109,7 @@
     },
     {
       "public": "causal-capacity-ui.mjs",
-      "sha256": "1f763a9d2c9a380c4102b331ba43f175f63d47486a83eed05e394f06743f9503",
+      "sha256": "e2aa1094e463784d7a6954826b040451c9a9cb02ec507b3194aa0510d86aa41d",
       "runtimeEdges": [],
       "runtimePolicy": "no-runtime-loads",
       "unverifiedInputs": []
@@ -1151,7 +1151,7 @@
     },
     {
       "public": "multipath-information-ui.mjs",
-      "sha256": "27982b9fa8730d093be5131af3605e2e4368bce78b419e806a1524f5d78b090c",
+      "sha256": "0ba06c19fe0f2c7b7942ca8538d7f3a19d486c1b23756fd335a9b9d15772e8fa",
       "runtimeEdges": [
         {
           "kind": "worker",
@@ -1516,6 +1516,146 @@
       "sha256": "f91e5f2f8a476f60ff36778335277f3c0357201839cadede41d565dc70fb1ec5",
       "runtimePolicy": "no-runtime-loads",
       "runtimeEdges": [],
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/app.mjs",
+      "sha256": "69c2d03d4a6883e65073b360b8ce93cba1f106b23eec7c51dd7ec6e8a1c6f205",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        }
+      ],
+      "runtimePolicy": "literal-workers",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/config.mjs",
+      "sha256": "7ee140f1217d67136b5ac2c462dc3592309459353aff5ed72e824d6840ce013d",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/evaluation.mjs",
+      "sha256": "61f6e5fbc06a89191cfc669595af1b855b60256ee7bf6e0931d6069f0210b27b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/experiment.mjs",
+      "sha256": "648bfad6bf4b1f53ef95d0278372785c6b908986202f02c4cc11fc1228c9c253",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/generator.mjs",
+      "sha256": "7e0abe4259ee12656b4640e48577ab4efc055d070a40105663a8ebb539e29889",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/geometry.mjs",
+      "sha256": "03c1c1662aecfbb58a572069ad4b5cd89e9ef23d755915a5e7018266c627ac35",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/inference.mjs",
+      "sha256": "ebe13c06237f7236479b63aff5d0a0da03f4ef7fd2100712dd846797174bea60",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "channel-mapping/src/worker.mjs",
+      "sha256": "03524e7d28aa1b131b0a03519dc6385975d06071cb591478a2a0b07dddef3e73",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/joint-core.mjs",
+      "sha256": "e77c420cbe2ad3cd2623a9adfc9af36bbe585d50d8683ef4371248ab0d52328a",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/joint/simulation.mjs",
+      "sha256": "9fa29d9c8eeb4bf9af2df9a17b81a612fab17f474afd4ebb48533d13ae9d49f0",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/printed-variant.mjs",
+      "sha256": "e0a009d84359d3b88ba5d158d53191cae31f38d2115a399dccca95a4a96e2393",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/source-objective.mjs",
+      "sha256": "a4d06b7c14eb7bbc75ec0649d037f51d23981a5e2f93ea05d734abc0363a817b",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/statistics/otfs-core.mjs",
+      "sha256": "20c887dec06148dc7b031b15d2c2aba64ba10776c523a6d28367e005e82fabe2",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/ui.mjs",
+      "sha256": "58fbabe54930e9dc90b44ebca023b02f0d7e8e9cf3c4f9823114979cb53bad0b",
+      "runtimeEdges": [
+        {
+          "kind": "worker",
+          "url": "./worker.mjs",
+          "literal": "new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})"
+        },
+        {
+          "kind": "data",
+          "url": "./joint/waveform.json",
+          "literal": "fetch('./runtime/joint/waveform.json')"
+        },
+        {
+          "kind": "data",
+          "url": "./joint/scenes.json",
+          "literal": "fetch('./runtime/joint/scenes.json')"
+        }
+      ],
+      "runtimePolicy": "reviewed-recovery-runtime",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "otfs-receiver/source-objective-v1/runtime/worker.mjs",
+      "sha256": "1133d5ded43d4a1ae54ea593f2e83ecee6be5352af20d21e0be03002e6d9b668",
+      "runtimeEdges": [],
+      "runtimePolicy": "no-runtime-loads",
+      "unverifiedInputs": []
+    },
+    {
+      "public": "labs/near-field/research/precomputed-loader.mjs",
+      "sha256": "ada0a82d284affd18e44db88609af9e93400ce3d034886f8dcb663043fc557ae",
+      "runtimeEdges": [
+        {
+          "kind": "data",
+          "url": "./precomputed/source-chain.json",
+          "literal": "new URL('./precomputed/source-chain.json',import.meta.url)"
+        }
+      ],
+      "runtimePolicy": "reviewed-recovery-runtime",
       "unverifiedInputs": []
     }
   ]

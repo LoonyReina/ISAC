@@ -1,6 +1,7 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const readForHistory=file=>require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root}).toString('utf8');
 const {createLearningEntryResolver}=require('../scripts/learning-entry.cjs');
 const {buildResearchGuides,renderResearchGuides}=require('../scripts/research-guides.cjs');
 const {buildNotebookTopics}=require('../scripts/notebook-topics.cjs');
@@ -9,10 +10,11 @@ const r=JSON.parse(read('site/registry.json')),data=JSON.parse(read(r.researchGu
 const card=d=>d.cards.find(c=>c.id===additions.guideId),unit=x=>x.units.find(u=>u.id===additions.unit.id);
 
 test('the actual finite-SDP lesson is a single canonical registered unit without invented cases or map associations',()=>{
- const before=JSON.stringify(r),guideBefore=JSON.stringify(data);a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(r).pages.find(p=>p.path===additions.page.path),additions.page);a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);a.equal(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id==='receiver').coverage,additions.directionCoverage.after);
+ const historyR=JSON.parse(readForHistory('site/registry.json'));
+ const before=JSON.stringify(r),guideBefore=JSON.stringify(data);a.deepEqual(unit(r),additions.unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyR).pages.find(p=>p.path===additions.page.path),additions.page);a.equal(r.units.filter(u=>u.id===additions.unit.id).length,1);a.equal(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(historyR).directions.find(d=>d.id==='receiver').coverage,additions.directionCoverage.after);
  a.ok(!r.cases.some(c=>c.unit===additions.unit.id));a.ok(!r.knowledgeMap.nodes.some(n=>n.unitRefs.includes(additions.unit.id)));a.ok(!r.knowledgeMap.progressions.some(p=>p.unitId===additions.unit.id));
  const local=createLearningEntryResolver(r);a.equal(local.unitEntry(unit(r)),additions.unit.href);
- for(const h of additions.hooks){a.deepEqual(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(r).directions.find(d=>d.id===h.directionId).levels.find(l=>l.id===h.levelId).items.at(-1),h.item);a.equal(local.unitEntry({href:h.item.href}),h.item.href);}
+ for(const h of additions.hooks){a.deepEqual(require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(historyR).directions.find(d=>d.id===h.directionId).levels.find(l=>l.id===h.levelId).items.at(-1),h.item);a.equal(local.unitEntry({href:h.item.href}),h.item.href);}
  const topic=buildNotebookTopics(r).find(t=>t.id===additions.unit.id);a.equal(topic.teachingHref,additions.unit.href);a.ok(!Object.hasOwn(topic,'evidenceHref'));
  for(const p of ['index.html','experiments.html','reading.html'])a.ok(read(p).includes(additions.unit.href),p);a.ok(read('practice.html').includes('"id":"atomic-ofdm-receiver"'));
  buildResearchGuides(data,r);a.equal(JSON.stringify(r),before);a.equal(JSON.stringify(data),guideBefore);
@@ -32,6 +34,7 @@ test('generated local navigation and notebook exit survive shell replacement wit
 });
 
 test('the exact registration inverse preserves unrelated data and rejects malformed or moved additions',()=>{
+ const r=JSON.parse(readForHistory('site/registry.json'));
  const before=JSON.stringify(r),prior=withoutAtomicReceiverRegistry(r);a.equal(JSON.stringify(r),before);a.deepEqual(prior.units,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).units.slice(0,-1));a.deepEqual(prior.pages,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r).pages.slice(0,-1));
  for(const k of Object.keys(r).filter(k=>!['units','pages','directions'].includes(k)))a.deepEqual(prior[k],require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(r)[k]);
  for(const mutate of [x=>x.units.pop(),x=>x.pages.pop(),x=>x.units.push({...additions.unit}),x=>{unit(x).action+=' changed';},x=>{x.directions.find(d=>d.id==='receiver').coverage+=' changed';},x=>x.units.unshift(x.units.pop()),x=>{x.pages.at(-1).role+=' changed';},x=>{x.directions.find(d=>d.id==='receiver').levels[0].items.at(-1).note+=' changed';}]){const x=structuredClone(r);mutate(x);a.throws(()=>withoutAtomicReceiverRegistry(x));}
@@ -39,6 +42,7 @@ test('the exact registration inverse preserves unrelated data and rejects malfor
 });
 
 test('the exact guide inverse strips only the executable and three factual coverage clauses',()=>{
+ const data=JSON.parse(readForHistory(r.researchGuidesFile));
  const before=JSON.stringify(data),prior=withoutAtomicReceiverGuide(data);a.equal(JSON.stringify(data),before);for(const c of data.cards)if(c.id!==additions.guideId)a.deepEqual(prior.cards.find(x=>x.id===c.id),c);
  const expected=structuredClone(card(data));delete expected.executable;for(const change of additions.guideChanges){let parent=expected;for(const k of change.path.slice(0,-1))parent=parent[k];parent[change.path.at(-1)]=change.before;}a.deepEqual(card(prior),expected);
  for(const mutate of [d=>delete card(d).executable,d=>{card(d).executable.coverage='algorithm-and-selected-figure';},d=>{card(d).evidence.kind+=' changed';},d=>{card(d).limits[3]+=' changed';},d=>{card(d).visualTrace.steps[3].explanation+=' changed';},d=>d.cards.push(structuredClone(card(d)))]){const d=structuredClone(data);mutate(d);a.throws(()=>withoutAtomicReceiverGuide(d));}

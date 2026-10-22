@@ -1,0 +1,177 @@
+{
+  "source": "arxiv:2302.01153v5",
+  "verificationDate": "2026-10-21",
+  "scope": "Rebuilt digital-core lesson from verified historic raw design, not recovered October20 UI",
+  "rawChecks": 37,
+  "receiverCases": [
+    {
+      "label": "source",
+      "noiseVariance": 1e-09,
+      "seed": 230201153,
+      "ySha256": "3cf27fc93ba867f75d044cce85fade419cd586b6d25b5c029aa117ee634fa26f",
+      "xSha256": "45279f88489c3df57d7c82fdaf0148355703082e4acdb7b20c4d8c3851544702",
+      "estimate": {
+        "xyM": [
+          13.315986032966581,
+          13.13460804691112
+        ],
+        "rangeM": 18.70383416778879,
+        "angleRad": 0.7785410341137823,
+        "minimumDenominator": 1.4391904766227412,
+        "boundaryHit": false,
+        "originAngleUndefined": false
+      },
+      "plane": {
+        "angleRad": 0.778416846389471,
+        "rangeM": null,
+        "rangeIdentifiable": false,
+        "rangeRidge": "all ranges at each maximizing angle; no finite range estimate"
+      },
+      "positionErrorM": 1.2370868709921494
+    },
+    {
+      "label": "new-seed",
+      "noiseVariance": 1e-09,
+      "seed": 230201154,
+      "ySha256": "c6307baca9c70bd6232af710b8467e323353d8f984929978e4fc1b8aea41e350",
+      "xSha256": "45279f88489c3df57d7c82fdaf0148355703082e4acdb7b20c4d8c3851544702",
+      "estimate": {
+        "xyM": [
+          12.163104048326726,
+          11.989954462773857
+        ],
+        "rangeM": 17.079230313741096,
+        "angleRad": 0.7782294390151692,
+        "minimumDenominator": 1.3258681379622246,
+        "boundaryHit": false,
+        "originAngleUndefined": false
+      },
+      "plane": {
+        "angleRad": 0.778416846389471,
+        "rangeM": null,
+        "rangeIdentifiable": false,
+        "rangeRidge": "all ranges at each maximizing angle; no finite range estimate"
+      },
+      "positionErrorM": 2.861682753148172
+    },
+    {
+      "label": "larger-noise",
+      "noiseVariance": 1e-08,
+      "seed": 230201154,
+      "ySha256": "4ccb50d120ac40fe24594a58fb652873ef8990aca3be42b3aa586be7d342cef1",
+      "xSha256": "45279f88489c3df57d7c82fdaf0148355703082e4acdb7b20c4d8c3851544702",
+      "estimate": {
+        "xyM": [
+          8.016977544486316,
+          7.904926893975429
+        ],
+        "rangeM": 11.258765391813345,
+        "angleRad": 0.7783607639978525,
+        "minimumDenominator": 20.49783223140146,
+        "boundaryHit": false,
+        "originAngleUndefined": false
+      },
+      "plane": {
+        "angleRad": 0.7792895110154682,
+        "rangeM": null,
+        "rangeIdentifiable": false,
+        "rangeRidge": "all ranges at each maximizing angle; no finite range estimate"
+      },
+      "positionErrorM": 8.682147364170367
+    }
+  ],
+  "limits": [
+    "precomputed design; no fresh optimization claim",
+    "same-Y Eq5 receiver model comparison is not independently optimized far-field transmission baseline",
+    "original source figures and hybrid absent",
+    "historical original live optimizer timeout retained",
+    "remaining 16-experiment scope stays pending"
+  ],
+  "presetSpecificDual": {
+    "scope": "NEW floating-point re-evaluation for exact JS authoritative H. Independent coefficients; Gram-rebuilt cone; stored positive rate multipliers, additional conservative power-dual repair. Not interval arithmetic; tiny angular term not relatively certified.",
+    "presetSha256": "6b349173fa6f16abe3828a508a74f85e22b4f9a6485500d7514664f0e488590e",
+    "lowerBoundScaled": 2.014893767027898,
+    "feasibleUpperScaled": 2.014897571178653,
+    "relativeGap": 1.888011981208537e-06,
+    "physicalMultiplier": 0.4646593005012276,
+    "additionalPowerDualShift": 2.868858622395972e-10,
+    "stationarityMinimumEigenvalues": [
+      3.3072435184634283e-10,
+      1.8531656063528844e-06,
+      8.883014489762509e-08,
+      1.0835542386684879e-05,
+      0.00830799541794803
+    ],
+    "gramConeMinEigenvalueNumerical": -2.4953415853678734e-16,
+    "savedZRelativeDifference": 1.7591195793503498e-19,
+    "exactAuthoritativeHUsed": true,
+    "pythonReferenceLowerBoundTransferred": false
+  },
+  "txDesignComparison": {
+    "initial": {
+      "powerW": 0.09999999506827909,
+      "ratesBpsHz": [
+        5.157850074915603,
+        5.088638126572583,
+        5.280401803425839,
+        5.174334307456289
+      ],
+      "rateMarginsBpsHz": [
+        0.15785007491560332,
+        0.08863812657258308,
+        0.2804018034258391,
+        0.17433430745628886
+      ],
+      "rangeCrbM2": 3.904340999801365,
+      "angleCrbRad2": 5.261527506374203e-08,
+      "objectiveM2PlusRad2": 3.9043410524166404,
+      "covarianceRecoveryRelative": 2.4796138131052906e-13,
+      "minStreamEigenvalue": 0.0016462341344684603,
+      "minSensingEigenvalue": -2.1404602243128663e-18,
+      "minEquivalentFisherEigenvalue": 0.25612516940575036,
+      "finiteXFisherRelative": 1.7128882650929134e-16,
+      "positiveDenominators": true
+    },
+    "optimized": {
+      "powerW": 0.09999999506827906,
+      "ratesBpsHz": [
+        5.000194605160487,
+        5.000037891766466,
+        5.001277221686094,
+        5.000015969909389
+      ],
+      "rateMarginsBpsHz": [
+        0.00019460516048663834,
+        3.7891766465847354e-05,
+        0.001277221686094343,
+        1.5969909388680037e-05
+      ],
+      "rangeCrbM2": 0.9362408614325487,
+      "angleCrbRad2": 3.4572946736057494e-08,
+      "objectiveM2PlusRad2": 0.9362408960054954,
+      "covarianceRecoveryRelative": 5.1297923640816106e-14,
+      "minStreamEigenvalue": 1.5444997511770374e-09,
+      "minSensingEigenvalue": -3.517980589373168e-18,
+      "minEquivalentFisherEigenvalue": 1.0681012132509817,
+      "finiteXFisherRelative": 6.437513898079077e-16,
+      "positiveDenominators": true
+    },
+    "relativeObjectiveReduction": 0.7602051451355671,
+    "baselineMatrixSha256": "68b6460862385462511d77bf8bb921c709140014eb077915f1e998ae2f931568",
+    "presetSha256": "6b349173fa6f16abe3828a508a74f85e22b4f9a6485500d7514664f0e488590e",
+    "scope": "Single exact same-input, equal-power feasible unoptimized Tx design vs optimized precomputed design. Neither separately optimized far-field baseline nor full source-figure reproduction."
+  },
+  "checks": {
+    "selectedRawPhysics": 37,
+    "nativeBrowserExportRawPhysics": 37,
+    "txDesignAndPresetDual": 15,
+    "freezeAndPage": 11,
+    "receiverBehaviorAssertions": 11
+  },
+  "separatePythonReference": {
+    "artifact": "rate5.npz",
+    "sha256": "247650abed8efaefb742fc66709a2fe17928867ba8247939b1022b57488fbc5b",
+    "relativeGap": 2.7242369645396135e-05,
+    "scope": "Different floating-point H. This lower bound is NOT transferred to JS preset."
+  }
+}

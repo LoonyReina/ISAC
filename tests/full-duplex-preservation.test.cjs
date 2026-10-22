@@ -9,7 +9,8 @@ const statistics = require('./helpers/otfs-statistical-preservation.cjs');
 const root = path.resolve(__dirname, '..');
 const sourceLayout = fs.existsSync(path.join(root, 'content/data/registry.json'));
 const locate = row => path.join(root, sourceLayout ? row.path : row.compatibility);
-const read = file => statistics.withoutFile(file, fs.readFileSync(path.join(root, file)));
+const readCurrent = file => require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file, fs.readFileSync(path.join(root, file)), {root});
+const read = file => statistics.withoutFile(file, readCurrent(file));
 const registry = () => JSON.parse(read(sourceLayout ? 'content/data/registry.json' : 'site/registry.json'));
 
 test('full-duplex inverse binds complete current and predecessor bytes and rejects unreviewed deltas', () => {
@@ -20,7 +21,7 @@ test('full-duplex inverse binds complete current and predecessor bytes and rejec
     // authored records only in source layout and generated records in staging.
     if (!sourceLayout && row.authored) continue;
     const key = sourceLayout ? row.path : row.compatibility;
-    const current = statistics.withoutFile(key, fs.readFileSync(file)), original = Buffer.from(current);
+    const current = statistics.withoutFile(key, readCurrent(key)), original = Buffer.from(current);
     const prior = P.withoutFile(key, current);
     a.ok(P.identity(prior, row.before), row.path);
     a.deepEqual(current, original, 'inverse does not mutate input');
@@ -99,7 +100,7 @@ test('full-duplex mapping inverse retains exact predecessor inventory and reject
 
 test('full-duplex tutorial inverse preserves every prior route and rejects altered current inventory', () => {
   const load = name => JSON.parse(read((sourceLayout ? 'content/data/' : 'site/') + name));
-  const B = require(sourceLayout ? '../scripts/site/research-tree.cjs' : '../scripts/research-tree.cjs');
+  const B = require('./helpers/target19-source-identity.cjs').historicalResearchTree(root);
   const tree = B.buildResearchTree(registry(), load('research-guides.json'), load('research-directory.json'), JSON.parse(read('docs/PAPER-EXECUTION-BACKLOG.json')));
   const input = tree.papers.flatMap(paper => paper.tutorials.map(item => ({id: paper.id, href: item.href, kind: item.kind})));
   a.ok(P.identity(Buffer.from(JSON.stringify(input)), P.delta.tutorialChanges.after));

@@ -10,8 +10,9 @@ const {buildNotebookTopics,notebookHref}=require('../scripts/notebook-topics.cjs
 const renderMap=require('../scripts/knowledge-map.cjs');
 const {buildResearchGuides}=require('../scripts/research-guides.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
+const readForHistory=file=>require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root}).toString('utf8');
 const registry=JSON.parse(read('site/registry.json'));
-const researchGuides=buildResearchGuides(require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile))),registry);
+const researchGuides=buildResearchGuides(require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(readForHistory(registry.researchGuidesFile))),registry);
 const hash=value=>crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const baseline='c759bdb61a8ae539569b5ed526bf169793dace46510a381a998ffbd9264b56ae';
 function resolve(href){
@@ -25,22 +26,25 @@ function region(html,key){
 }
 
 test('reference uncertainty adds one case-free mechanism and one page without inflating source evidence',()=>{
- a.deepEqual([withoutGCSAGERegistry(registry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(registry).cases.length,withoutGCSAGERegistry(registry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
- a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(registry).pages.find(p=>p.path===page.path),page);
+ const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
+ a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,withoutGCSAGERegistry(historyRegistry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
+ a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyRegistry).pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));
- const guides=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(read(registry.researchGuidesFile)));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
+ const guides=require('./helpers/pilot-pattern-preservation.cjs').withoutGuides(JSON.parse(readForHistory(registry.researchGuidesFile)));a.equal(guides.cards.length,20);a.equal(guides.cards.filter(c=>c.visualTrace).length,20);
  a.equal(hash(priorGuideSource(guides)),'96ada0f0c6d048af19228c4a3f9e6e11855fc4d9a00930795d2af7953409a6cb');
  a.equal(hash(require('./helpers/waveform-live-preservation.cjs').priorCatalogSource(JSON.parse(read(registry.researchDirectoryFile)))),'95b0038bc1e110bd64efba999015f85eeeea2f63dceaea30cedc79fd1059f1b9');
 });
 
 test('exact additive normalization preserves the complete pre-experiment registry and does not mutate its input',()=>{
+ const registry=JSON.parse(readForHistory('site/registry.json'));
  const before=JSON.stringify(registry),preserved=withoutReferenceUncertainty(withoutMapProgressions(registry));
  a.equal(hash(preserved),baseline);a.equal(JSON.stringify(registry),before);
  a.deepEqual([preserved.units.length,preserved.cases.length,preserved.pages.length],[27,15,23]);
 });
 
 test('additive normalization rejects modified units, page contracts and exact direction hooks',()=>{
+ const registry=JSON.parse(readForHistory('site/registry.json'));
  const mutations=[
   r=>r.units.find(u=>u.id===unit.id).action+=' changed',
   r=>r.units.find(u=>u.id===unit.id).prerequisites.pop(),
@@ -55,6 +59,7 @@ test('additive normalization rejects modified units, page contracts and exact di
 });
 
 test('normalization cannot hide edits to old prose, sources, fields, links or same-href hooks elsewhere',()=>{
+ const registry=JSON.parse(readForHistory('site/registry.json'));
  const mutations=[
   r=>r.units[0].title+=' changed',r=>r.pages[0].role+=' changed',r=>r.cases[0].title+=' changed',
   r=>r.directions.find(d=>d.id==='receiver').coverage+=' changed',
@@ -95,7 +100,7 @@ test('native notebook projection and generated portals expose the mechanism with
  const home=read('index.html'),reading=read('reading.html');
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${unit.href}"`),file);
  a.ok(home.includes(`<strong>${registry.units.length}</strong> 个教学入口`));a.ok(home.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
- a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage('reading.html',reading),/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
+ a.ok(reading.includes(registry.cases.length+' 个已有主题'));a.match(require('./helpers/pilot-pattern-preservation.cjs').withoutGeneratedPage('reading.html',readForHistory('reading.html')),/20 篇问题式导读/);a.doesNotMatch(reading,/id="case-reference-uncertainty"/);
  const mapped=renderMap(registry,researchGuides);a.ok(mapped.includes(`data-map-unit="${unit.id}" href="${unit.href}"`));
  a.equal(hash(withoutBuildLinkValidation('scripts/learning-entry.cjs',read('scripts/learning-entry.cjs'))),'f7c2fcdeb49f2759f7de3537bfcdddfd3bb9a60abf4c58f27e31e6194b66d287');
  a.equal(hash(withoutBuildLinkValidation('scripts/notebook-topics.cjs',read('scripts/notebook-topics.cjs'))),'d542ae472a8ce50c3b1b8f7b4ee919f7dce1463777f7e27fe138c04269b29477');
