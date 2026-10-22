@@ -13,7 +13,7 @@ function validateTable(spec=delta){a.ok(JSON.stringify(spec)===JSON.stringify(de
 const aliases=validateTable();
 // Separate exact CURRENT teaching epoch. The 198 table above stays byte-for-byte frozen.
 const teachingBytes=fs.readFileSync(path.join(__dirname,'teaching-current-epoch.json'));
-a.equal(sha(teachingBytes),'bc17e54d56684e28d48d6e8c2f001c84a40c6ba291d065bce76d84feb0817e57','Exact teaching current epoch');
+a.equal(sha(teachingBytes),'a020c2d6ce205e3d1e071e0774f925764371c6252788b52d5d100526fd50236e','Exact teaching current epoch');
 const teaching=JSON.parse(teachingBytes);a.equal(teaching.predecessorTableSha256,sha(data));
 for(const r of teaching.files){a.ok(safe(r.path)&&safe(r.compatibility));if(r.predecessor)a.ok(same(Buffer.from(r.predecessorBase64,'base64'),r.predecessor),'Exact teaching predecessor '+r.path);}
 function teachingRow(file,source){const rows=teaching.files.filter(r=>(r.path===file||r.compatibility===file)&&(!source||!r.stagedOnly));a.ok(rows.length<=1,'Unique teaching current endpoint');return rows[0];}

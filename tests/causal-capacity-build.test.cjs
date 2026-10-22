@@ -11,7 +11,8 @@ const bytes=file=>fs.readFileSync(path.join(root,manifest.entries.find(e=>e.publ
 function inputs(){
  const contract=structuredClone(G.contract),modules=contract.modules.map(m=>({file:m.public,source:bytes(m.public).toString()}));
  const identities=[...contract.modules,...contract.assets].map(m=>({file:m.public,sha256:sha(bytes(m.public))}));
- for(const file of ['course.css','site.css'])identities.push({file,sha256:sha(bytes(file))});
+ // Page dependencies are current mapped bytes, including the frozen teaching assets.
+ for(const file of new Set(contract.pageEdges.map(e=>e.url.split('?')[0])))if(!identities.some(i=>i.file===file))identities.push({file,sha256:sha(bytes(file))});
  const raw=bytes(contract.entryPoint).toString();let source=raw.replace(/<link rel="stylesheet" href="site\.css(?:\?[^"]*)?">/,contract.pageStyles.find(s=>s.includes('href="site.css')));
  for(const [key,region] of Object.entries(contract.pageRegions))source=source.replace(new RegExp('<!-- SITE:'+key+':START -->[\\s\\S]*?<!-- SITE:'+key+':END -->'),region);
  identities.push({file:contract.entryPoint,sha256:sha(source)});
@@ -22,6 +23,12 @@ test('causal current runtime has exact complete local static-module closure with
 test('causal closure rejects missing, duplicate, moved, changed and unlisted dependencies',()=>{
  const mutate=fn=>{const x=inputs();fn(x);a.throws(()=>run(x));};
  for(const p of [...G.contract.modules,...G.contract.assets,{public:G.contract.entryPoint,sha256:G.contract.entryPageSha256}]){mutate(x=>x.identities=x.identities.filter(i=>i.file!==p.public));mutate(x=>x.identities.push({file:p.public,sha256:p.sha256}));mutate(x=>x.identities.find(i=>i.file===p.public).sha256='0'.repeat(64));mutate(x=>x.identities.find(i=>i.file===p.public).file='moved/'+p.public);}
+ // Exercise every page-only input independently, so omitted fixtures cannot mask failures.
+ for(const file of new Set(G.contract.pageEdges.map(e=>e.url.split('?')[0]))){
+  mutate(x=>x.identities=x.identities.filter(i=>i.file!==file));
+  mutate(x=>x.identities.push({...x.identities.find(i=>i.file===file)}));
+  mutate(x=>x.identities.find(i=>i.file===file).file='moved/'+file);
+ }
  mutate(x=>x.identities.push({file:'causal-capacity-unlisted.mjs',sha256:'1'.repeat(64)}));
  mutate(x=>x.identities.push({file:'causal-state-capacity-extra.json',sha256:'1'.repeat(64)}));
  mutate(x=>x.identities=x.identities.filter(i=>i.file!==G.contract.entryPoint));

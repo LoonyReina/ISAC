@@ -8,7 +8,17 @@ const historyManifest=historyJSON('build/compatibility-manifest.json');
 const {staticModuleDependencies}=require('../scripts/build/module-dependencies.cjs'),manifest=require('../build/compatibility-manifest.json');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const bytes=file=>fs.readFileSync(path.join(root,manifest.entries.find(e=>e.public===file).source));
-function inputs(){return {modules:G.contract.modules.map(m=>({file:m.public,source:bytes(m.public).toString()})),identities:[...G.contract.modules,...G.contract.assets,{public:G.contract.entryPoint}].map(m=>({file:m.public,sha256:sha(bytes(m.public))})),pages:[{file:G.contract.entryPoint,source:bytes(G.contract.entryPoint).toString()}]};}
+// Use one isolated current build: the generated HEADER owns the teaching scripts.
+let currentPage;
+function renderedPage(){
+ if(currentPage===undefined){
+  const directory=fs.mkdtempSync(path.join(require('node:os').tmpdir(),'isac-multipath-current-'));
+  try{const output=path.join(directory,'dist');require('../scripts/build/compatibility.cjs').build({root,manifest,output});currentPage=fs.readFileSync(path.join(output,G.contract.entryPoint),'utf8');}
+  finally{fs.rmSync(directory,{recursive:true,force:true});}
+ }
+ return currentPage;
+}
+function inputs(){return {modules:G.contract.modules.map(m=>({file:m.public,source:bytes(m.public).toString()})),identities:[...G.contract.modules,...G.contract.assets,{public:G.contract.entryPoint}].map(m=>({file:m.public,sha256:sha(m.public===G.contract.entryPoint?renderedPage():bytes(m.public))})),pages:[{file:G.contract.entryPoint,source:renderedPage()}]};}
 const run=x=>G.multipathDependencies(x.modules,x.identities,x.pages,staticModuleDependencies);
 test('multipath runtime closure binds all eight assets, fixed scientific page and module Worker',()=>{const edges=run(inputs());a.ok(fs.readFileSync(path.join(root,'.github/workflows/pages.yml'),'utf8').includes('node --test tests/multipath-information-build.test.cjs'),'current source closure is mandatory in Pages CI');a.equal(G.contract.modules.length,7);a.equal(G.contract.assets.length,1);a.ok(edges.some(e=>e.url==='./multipath-information-core/multipath-fisher-worker.mjs'));a.ok(edges.every(e=>!/^https?:/.test(e.url)));});
 test('multipath closure fails closed for missing duplicate moved modified unlisted modules or active page edges',()=>{
