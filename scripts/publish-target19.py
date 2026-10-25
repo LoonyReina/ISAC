@@ -284,7 +284,10 @@ def main():
             v=local(p,n['attrs'][attribute])
             if v and (v[0] not in selected or (v[1] and v[0] in anchors and v[1] not in anchors[v[0]])):
                 if n['tag']!='a' and not any(v[0] in m.get('exactPublicFiles',[]) for m in disabled): raise ValueError('Missing enabled page runtime resource: '+p+' -> '+n['attrs'][attribute])
-                if n['tag']=='a' and v[0]=='reading.html' and v[1] in citations:
+                if n['tag']=='a' and v[0]=='reading.html' and v[1] in anchors.get('foundations.html',set()):
+                    tag=s[n['start']:n['openEnd']];tag=re.sub(r'href=([\"\'])(.*?)\1','href="foundations.html#'+v[1]+'"',tag)
+                    rs.append((n['start'],n['openEnd'],tag))
+                elif n['tag']=='a' and v[0]=='reading.html' and v[1] in citations:
                     tag=s[n['start']:n['openEnd']];tag=re.sub(r'href=([\"\'])(.*?)\1','href="'+citations[v[1]]+'"',tag)
                     rs.append((n['start'],n['openEnd'],tag))
                 else:rs.append((n['start'],n.get('end',n['openEnd']),''))
