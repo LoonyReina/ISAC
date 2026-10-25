@@ -89,3 +89,5 @@ retry.onclick=loadEvidence;cancelLoad.onclick=()=>loadAbort?.abort();
 archive.addEventListener('toggle',()=>{if(archive.open)loadEvidence();});
 function openLinkedArchive(){if(location.hash.startsWith('#ssp-')){archive.open=true;loadEvidence();}}
 window.addEventListener('hashchange',openLinkedArchive);openLinkedArchive();
+
+window.addEventListener('pageshow',event=>{if(!event.persisted)return;stopped=false;retry.disabled=!!(data&&load)||!!loading;if(data&&load){clear();$('status').textContent='页面已恢复；已校验证据保留，请重新运行 SSP。';}else $('status').textContent='页面已恢复；请点击加载 SSP 输入与历史证据。';});
