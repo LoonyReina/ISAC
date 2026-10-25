@@ -22,7 +22,7 @@
 <section class="pp-panel" id="calibrated-detection"><h2>先问整幅图有没有超过噪声门槛，再问找对了几条路径</h2>
 <p>这是本站新增的条件校准检测器，不是论文原图复现或任意杂波 CFAR。输入仍是上面的实际 raw I/Q → H → 固定 192×121 相干图。每格 score=raw |Z|²/Vz，Vz=σt² Σ 1/(L|Xᵢ,ₘ|²)；场景分数是所有格子的最大值，不除以本帧峰值。选择“校准条件”预设后运行；其他控制仍可探索，条件不符就明确停用校准。</p>
 <label>名义场景虚警 α<select id="pp-alpha"><option value="0.01">1%</option><option value="0.05">5%</option></select></label>
-<p id="pp-calibration-status" class="pp-note pp-hash" aria-live="polite">尚未运行</p><p id="pp-calibration-binding" class="pp-small pp-hash"></p>
+<p id="pp-calibration-status" class="pp-note pp-hash" aria-live="polite">尚未运行</p><details><summary>校准绑定与原始诊断</summary><p id="pp-calibration-binding" class="pp-small pp-hash"></p></details>
 <div id="pp-calibrated-candidates" class="pp-table"></div><p id="pp-calibrated-evaluation" class="pp-note"></p>
 <p>上表只取绝对门槛以上的 3×3 局部极大，最多 8 个，沿用固定近等高分组与抑制。上方 5%-of-peak 表是单独的启发式比较，非零纯噪声也会出候选。整帧超过门槛不代表找齐目标；真值匹配、漏失、未匹配候选只在评估区显示。阈值不能去除精确 aliases、旁瓣或估计模型阶数。</p>
 <p>A 与 D 使用不同的发射波形，相同噪声 seed 配对的是标准化噪声，不能称为同一 y；D/ell5 与 D/ell0 的确共享同一 raw y。ell0 保护界只有 12 samples，ell5 为 92；超界或逐样本多普勒是 H1 模型失配，与条件 H0 校准分开解释。</p>
