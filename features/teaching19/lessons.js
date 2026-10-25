@@ -23,6 +23,28 @@ const feedback={
 'supplement-case-multipath-channel':['相位影响重叠路径的信息交叉项，延迟不变不保证位置界不变。请核对当前精确界与近似界。','相位可能改变信息，但不保证单调方向。请使用当前场景标签和精确界比较，保留不可辨识状态。','先记录当前精确界与近似界，再仅改相位；无有限界时不要用零代替。'],
 'supplement-case-distributed-detection':['同观测使用不同接收模型，分数和门限都可能变化，决定也可能不同。请逐项读本次统计。','对比必须保持观测和分配固定；本次是否不同要看实际分数、门限和计数，不能预先保证 AP 胜出。','先记录本次计数与区间，再在同一观测上切换 AP/SP；不要重抽噪声后称作同样本比较。']
 };
+
+const identity={
+ 'otfs-joint-estimation-2020':['合成 OTFS 复观测','有限 8×8 模型；源式与补充 residual-BCD 分列','单次拟合与路径恢复'],
+ 'nearfield-multitarget-correlation':['已知用户/目标的合成几何与信道','两种有限阵列发射设计','优化照射与约束；不是未知目标定位'],
+ 'bistatic-ofdm-clock-measurement-2023':['合成双基地 OFDM IQ','定时、载波频偏与采样时钟补偿','单次同步估计；不是外场测量'],
+ 'ofdm-ici-aware-receiver-2021':['合成 OFDM 阵列观测','有限 MUSIC/APES/GLRT-OMP 接收链','当前候选与检测；保留停止/失败状态'],
+ 'ofdm-passive-atomic-errors-2017':['4×4 合成观测和参考错误','有限 SDP/ADMM 与连续候选提取','候选恢复与数值接受；不是无限精度定理'],
+ 'tradeoffs-feedback-capacity-distortion-2018':['有限字母概率模型','输入分布优化与证书','模型容量–失真权衡；非实测吞吐率'],
+ 'tradeoffs-causal-state-communication-2013':['固定二元状态/信道概率','定理曲线与 PMF 信息量求值','模型容量与状态描述成本'],
+ 'channels-sensing-communication-mapping-2026':['portable-v2 合成扫描','峰提取、聚类、几何映射与关联','合成场景的单次映射/误差；非作者实测'],
+ 'nearfield-mechanism-aware-mapping-2026':['二维合成多位置传播观测','已知两路径的散射/反射几何拟合','残差与机制识别分开评价'],
+ 'optimal_waveform':['有限模型的信道与通信符号','协方差约束下计算发射矩阵 X','符号误差与方向图约束'],
+ 'joint_beamforming':['固定或导入的有限信道矩阵','同信道 SDR/ZF 与波束恢复','雷达代价、通信约束与数值证书'],
+ 'crb':['有限阵列与合成通信信道','双用户点目标优化与恢复','CRB 理论下界；不是接收机实测误差'],
+ '80211ad':['合成 802.11ad 前导 IQ','捕获、相关、距离与速度处理链','单次估计和检测；不是硬件/标准认证'],
+ 'supplement-case-crb':['有限信道模型与随机合成波形','协方差优化和有限块 Monte Carlo','理论外界与样本平均分列'],
+ 'supplement-case-pilot':['合成 OFDM IQ','同一观测下保留窗与重建','噪声代价和有条件检测；零噪声不校准 Pfa'],
+ 'supplement-case-clock':['合成双向 6×12×8 张量','秩 2 分解、双向关联与同步','单次参数恢复；列号不等于目标身份'],
+ 'supplement-case-near-field':['预计算发射设计＋合成回波','当前波形/回波生成与 MUSIC 接收','当前单次位置估计；设计证书是历史结果'],
+ 'supplement-case-multipath-channel':['给定几何、脉冲与噪声模型','FIM/EFIM 和位置界求值','理论下界；不可辨识时不报有限 PEB'],
+ 'supplement-case-distributed-detection':['合成信道、校准与独立检测样本','功率优化、门限校准与 MAPRT','带试验分母/区间的统计检测']
+};
 const inputs={
 'nearfield-multitarget-correlation':['#mt-form input','#mt-form select'],
  'tradeoffs-feedback-capacity-distortion-2018':['#cd-q','#cd-mu','#cd-model','#cd-noise','#cd-cost','#cd-budget','#cd-feedback','#cd-cap','#cd-tolerance','#cd-dual','#cd-inner-cap','#cd-oracle'],
@@ -41,5 +63,6 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  lesson.feedbackMetricSelectors=[...new Set(lesson.steps.filter(s=>s.role==='read').flatMap(s=>s.viewMetrics||[]))].slice(0,4);
  if(lesson.coreId==='extended-target')lesson.feedbackMetricSelectors=['#status','#origin'];
  lesson.recordVersion='feedback-20261025-v1';
+ lesson.learningIdentity=lesson.coreId==='extended-target'?['有限扩展目标与通信信道模型','扩展目标 SDP 与两种恢复','扩展目标 CRB 下界；不是单次估计误差']:identity[lesson.id];
 }
 })(globalThis.Guided19Data);
