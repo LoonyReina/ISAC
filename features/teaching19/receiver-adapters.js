@@ -1,7 +1,7 @@
 (function(root){'use strict';
 /** Install after original initialization, before guided DOM moves. No Worker or numerical calls. */
 function installReceiverAdapter(doc,lesson){
- const cache=new Map(),events=[],formRestore=[];let revision=0,submittedRevision=null,submittedSnapshot=null,disposed=false;
+ const cache=new Map(),events=[],formRestore=[];let revision=0,submittedRevision=null,submittedSnapshot=null,disposed=false,serial=0;
  const host=doc.querySelector(lesson.ui.rootSelector);if(!host)throw Error('Missing lesson root');
  const query=selector=>{if(cache.has(selector))return cache.get(selector);const list=host.querySelectorAll(selector);if(list.length!==1)throw Error('Receiver binding is not unique: '+selector+' ('+list.length+')');cache.set(selector,list[0]);return list[0];};
  const listen=(node,type,fn,capture=false)=>{node.addEventListener(type,fn,capture);events.push([node,type,fn,capture]);};
@@ -15,13 +15,14 @@ function installReceiverAdapter(doc,lesson){
  const snapshot=()=>JSON.stringify(numericalControls().map(e=>[e.id,e.type==='checkbox'?e.checked:e.value]));
  const markEdited=()=>{revision++;};
  // Display-only inspection controls are deliberately excluded; only numerical input controls invalidate.
- const onEdit=e=>{if(numericalControls().includes(e.target))markEdited();};
+ const onEdit=e=>{if(numericalControls().includes(e.target)||e.target.type==='file')markEdited();};
  listen(host,'input',onEdit,true);listen(host,'change',onEdit,true);
- const begin=()=>{submittedRevision=revision;submittedSnapshot=snapshot();};
+ const begin=()=>{serial++;submittedRevision=revision;submittedSnapshot=snapshot();};
  for(const selector of new Set([lesson.firstRun.runSelector,...(comparison?.runSelector?[comparison.runSelector]:[])]))listen(query(selector),'click',begin,true);
  // Enter-to-submit remains a real execution, including when the original button was moved.
  const formIds=new Set((lesson.ui.formBindings||[]).map(b=>b.form));for(const id of formIds)listen(doc.getElementById(id),'submit',begin,true);
  listen(query(lesson.ui.resetSelector),'click',()=>{markEdited();submittedRevision=null;submittedSnapshot=null;},true);
+ for(const s of lesson.ui.actionSelectors.filter(s=>/cancel/.test(s))){const e=query(s);listen(e,'click',()=>{markEdited();submittedRevision=null;},true);}
  const setControls=items=>{if(disposed)throw Error('Disposed receiver adapter');for(const c of items){const e=query(c.selector);if(e.type==='checkbox')e.checked=Boolean(c.value);else e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'change',{bubbles:true}));}};
  const predicate=p=>{if(!p?.selector)return false;const e=query(p.selector);if(p.textIncludes!==undefined)return e.textContent.includes(p.textIncludes);if(p.attribute)return e.getAttribute(p.attribute)===String(p.equals);if(p.property)return e[p.property]===p.equals;if(p.classIncludes)return e.classList.contains(p.classIncludes);return false;};
  const fresh=()=>submittedRevision!==null&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!predicate(lesson.ui.lifecycle?.stale);
@@ -33,7 +34,7 @@ function installReceiverAdapter(doc,lesson){
   return predicate(lesson.ui.lifecycle?.ready)||query(lesson.ui.readySelector).textContent.includes(lesson.ui.readyText||lesson.firstRun.completionText);
  };
  const prepare=()=>{query(lesson.ui.resetSelector).click();setControls(lesson.firstRun.controls);submittedRevision=null;submittedSnapshot=null;};
- return {query,setControls,prepare,ready,busy,fresh,begin,get revision(){return revision;},getState(){return {revision,submittedRevision,fresh:fresh(),busy:busy(),ready:ready(),scientificSuccess:'not inferred'};},dispose(){disposed=true;for(const [e,t,f,c]of events)e.removeEventListener(t,f,c);for(const [e,old]of formRestore){if(old===null)e.removeAttribute('form');else e.setAttribute('form',old);}cache.clear();}};
+ return {query,setControls,prepare,ready,busy,fresh,begin,get revision(){return revision;},getState(){return {revision,submittedRevision,serial,parameters:numericalControls().map(e=>({id:e.id||e.name,value:['checkbox','radio'].includes(e.type)?e.checked:e.value})),fresh:fresh(),busy:busy(),ready:ready(),scientificSuccess:'not inferred'};},dispose(){disposed=true;for(const [e,t,f,c]of events)e.removeEventListener(t,f,c);for(const [e,old]of formRestore){if(old===null)e.removeAttribute('form');else e.setAttribute('form',old);}cache.clear();}};
 }
 const active=new WeakMap();
 function beforeMount(doc,route){if(active.has(doc))throw Error('Receiver adapter already mounted');const a=installReceiverAdapter(doc,route);active.set(doc,a);return a;}
