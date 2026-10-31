@@ -19,7 +19,9 @@ function installTheoryAdapter(doc,lesson){
  const rootHost=query(lesson.ui.rootSelector);listen(rootHost,'input',edited);listen(rootHost,'change',edited);
  listen(query(lesson.firstRun.runSelector),'click',start);
  for(const selector of [lesson.singleControlChange?.runSelector,lesson.singleControlChange?.followupRunSelector,'#wfl-weighted-run','[data-nfr-action="receive"]','[data-nfr-action="regenerate"]']){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',start);}
- for(const selector of [lesson.ui.resetSelector,...lesson.ui.actionSelectors.filter(s=>/cancel/.test(s))]){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',()=>{revision++;requested=false;presetPending=false;});}
+ // Fresh-channel and sweep actions change H / the submitted scenario without an input event.
+ // They must not revive a prior guided record, even if the visible values later match.
+ for(const selector of [lesson.ui.resetSelector,...lesson.ui.actionSelectors.filter(s=>/cancel/.test(s)),...(id==='crb'?['#cm-fresh','#cm-sweep']:[])]){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',()=>{revision++;requested=false;presetPending=false;});}
 
  function setControls(cs){for(const c of cs||[]){const e=query(c.selector);if(e.disabled)throw Error('Original control disabled: '+c.selector);if(e.type==='checkbox')e.checked=Boolean(c.value);else if(e.type==='radio')e.checked=true;else e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'input',{bubbles:true}));}}
  const click=s=>{const e=query(s);if(e.disabled)throw Error('Original action disabled: '+s);e.click();};

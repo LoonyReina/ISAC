@@ -51,7 +51,7 @@ const inputs={
  'tradeoffs-causal-state-communication-2013':['#cc-budget','#cc-budget-slider'],
  'optimal_waveform':['#wfl-n','#wfl-k','#wfl-l','#wfl-seed','#wfl-pt','#wfl-beta','#wfl-angle','#wfl-input','#wfl-rho','#wfl-tie'],
  'joint_beamforming':['#jbo-preset','#jbo-gamma','#jbo-gamma-slider','#jbo-budget','#jbo-h-json'],
- 'crb':['#cm-gamma-number','#cm-gamma','#cm-nt','#cm-theta','#cm-seed'],
+ 'crb':['#cm-gamma-number','#cm-gamma','#cm-nt','#cm-theta','#cm-seed','#cm-channel-editor input'],
  'supplement-case-crb':['#gt-preset','#gt-kappa','#gt-comm-only','#gt-t','#gt-ns','#gt-power','#gt-snoise','#gt-cnoise','#gt-prior','#gt-blocks','#gt-seed','#gt-landmarks','#gt-channel','#gt-custom-q','#gt-covariance'],
  'supplement-case-near-field':['[data-nfr-field]'],
  'supplement-case-multipath-channel':['#mpi-height','#mpi-noise','input[name="mpi-phase"]'],
