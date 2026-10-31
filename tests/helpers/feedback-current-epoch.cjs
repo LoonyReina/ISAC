@@ -4,7 +4,7 @@
 const a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),zlib=require('node:zlib');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),same=(b,r)=>!!r&&b.length===r.bytes&&sha(b)===r.sha256;
 const bytes=fs.readFileSync(path.join(__dirname,'feedback-current-epoch.json'));
-a.equal(sha(bytes),'e8569596d21208e3a293288cd8a6d995391e4a57c52829e01a4bf085fc020766','Exact feedback epoch table');
+a.equal(sha(bytes),'14754f659429f6e7213c9c8ed2ed0e7b630ecd65da15f1f4b74a1cf23f2e3449','Exact feedback epoch table');
 const delta=JSON.parse(bytes),safe=f=>typeof f==='string'&&f&&!path.posix.isAbsolute(f)&&path.posix.normalize(f)===f&&!f.startsWith('../')&&!/[\\*?#]/.test(f);
 function validateTable(spec=delta){
  a.deepEqual(spec,delta,'Exact code-owned feedback epoch');a.equal(spec.schemaVersion,1);
