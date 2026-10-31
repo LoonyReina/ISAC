@@ -18,3 +18,19 @@ test('feedback current closure rejects altered missing renamed symlink and stale
 test('feedback table rejects wildcard duplicate omitted or forged predecessors',()=>{
  for(const mutate of [s=>s.files.pop(),s=>s.files.push(s.files[0]),s=>s.files[0].path='features/*',s=>s.files.find(r=>r.predecessor).predecessorDeflateBase64='Zm9yZ2Vk',s=>s.files.find(r=>r.predecessor).predecessor.bytes++,s=>s.files.find(r=>r.predecessor).predecessor.sha256='0'.repeat(64)]){const d=structuredClone(F.delta);mutate(d);a.throws(()=>F.validateTable(d));}
 });
+
+// Reconstruction belongs to restore-chunked-evidence, after the CI source gates.
+// A source identity check must not require its unchanged untracked outputs.
+test('feedback closure excludes existing chunk-restored archives and passes before reconstruction',t=>{
+ const outputs=['assets/data/joint-beamforming/user-load-uniform-recomputation-20261018-full.tar.xz','labs/joint-beamforming/ssp/recomputed-ssp-k2-evidence.zip'];
+ a.deepEqual(F.reconstructedEvidenceOutputs,outputs);
+ for(const file of outputs)a.ok(!F.delta.files.some(r=>r.path===file||r.compatibility===file),'No invented added feedback identity '+file);
+ if(F.sourceLayout(root)){
+  a.equal(F.sha(fs.readFileSync(path.join(root,'build/chunked-evidence/manifest.json'))),'017691171898eadc6e6caea7a0350ad63433105a5d0c822fa3d4ed1d84c02799');
+  a.equal(F.sha(fs.readFileSync(path.join(root,'scripts/restore-chunked-evidence.cjs'))),'eb665759fd57d7ea2bb6dce931ca264ba87a5a9d214b2f6301beb945db73b62d');
+ }
+ const out=fs.mkdtempSync(path.join(os.tmpdir(),'feedback-pre-restore-'));t.after(()=>fs.rmSync(out,{recursive:true,force:true}));
+ T.copyCurrentFixture(root,out);
+ for(const file of outputs)a.equal(fs.existsSync(path.join(out,file)),false,'Identity fixture contains no reconstruction output');
+ a.equal(F.assertCurrentClosure(out),true);a.equal(T.assertCurrentClosure(out),true);
+});
