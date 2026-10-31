@@ -33,3 +33,12 @@ test('classic feedback progress display keeps exact current bytes and runtime en
  assert.doesNotThrow(()=>classicDependencies(scripts,c,identities));const file='labs/networked-sync/lesson/lesson.js',entry=scripts.find(e=>e.file===file);entry.source+='\n// unreviewed mutation';assert.throws(()=>classicDependencies(scripts,c,identities),/hash/);
  const altered=structuredClone(c);altered.scripts.find(e=>e.public===file).sha256=sha(entry.source);assert.throws(()=>classicDependencies(scripts,altered,identities),/Unreviewed classic runtime contract/);
 });
+test('publication exact-file pins match all current restricted assets, including translated near-field view',()=>{
+ const config=require('../build/publication-target19.json'),manifest=fs.existsSync(path.join(root,'build/compatibility-manifest.json'))?require('../build/compatibility-manifest.json'):JSON.parse(require('./helpers/target19-layout.cjs').reader(root)('build/compatibility-manifest.json'));let count=0;
+ for(const lesson of config.modules)for(const [file,hash] of Object.entries(lesson.exactPublicHashes||{})){
+  const entry=manifest.entries.find(e=>e.public===file);assert(entry?.source,'explicit source for '+file);
+  const source=fs.existsSync(path.join(root,entry.source))?entry.source:entry.compatibility;
+  assert.equal(sha(fs.readFileSync(path.join(root,source))),hash,file);count++;
+ }
+ assert.equal(count,72,'fixed four bound lesson asset groups; no broad exemption');
+});
