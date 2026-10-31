@@ -30,3 +30,14 @@ test('mapping lower status section identifies retained receipt fields as history
  a.match(status,/assets\/data\/channel-mapping\/acceptance-summary\.json/);
  a.doesNotMatch(html,/此统一站点连接候选：integration-not-verified/);
 });
+
+test('mapping generated site context uses the current registry publication boundary',()=>{
+ const registrySource=path.join(root,'content/data/registry.json');
+ const registry=JSON.parse(fs.readFileSync(fs.existsSync(registrySource)?registrySource:path.join(root,'site/registry.json'),'utf8'));
+ const pages=registry.pages.filter(p=>p.path==='channel-mapping.html');
+ a.equal(pages.length,1);
+ a.match(pages[0].role,/合成扫描到通信时延关联/);
+ a.match(pages[0].role,/公开入口随 PR111 上线/);
+ a.match(pages[0].role,/发布不等于原作者实测或完整论文验收/);
+ a.doesNotMatch(pages[0].role,/集成页待验|未部署|本次修订已上线/);
+});
