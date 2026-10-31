@@ -23,8 +23,8 @@ test('exact payload mapping and production dependency edges',()=>{
  const teaching=["manual.js", "guided-lesson.css", "integration.css", "lessons.js", "receiver-adapters.js", "receiver-views.js", "theory-adapters.js", "theory-views.js", "engine.js"].map(name=>'features/teaching19/'+name),nested='otfs-receiver/source-objective-v1/index.html';
  assert.equal(identities.length,12);const edges=check({identities,pages});
  const original=[{from:'otfs-receiver.html',url:nested,kind:'target19-iframe'},...['https://arxiv.org/abs/1910.01896v1','results/independent-check.json','results/new-study-30.json','runtime/ui.mjs'].map(url=>({from:nested,url,kind:'target19-nested-html'})),...['runtime/joint/waveform.json','runtime/joint/scenes.json'].map(url=>({from:nested,url,kind:'target19-document-fetch'}))];
- assert.equal(original.length,7);const added=[...teaching.map(url=>'../../'+url),'../../otfs-receiver.html'].map(url=>({from:nested,url,kind:'target19-nested-html'}));
- assert.deepEqual(edges,[original[0],...added,...original.slice(1)],'exact original seven edges plus ordered nine teaching assets and parent backlink');
+ assert.equal(original.length,7);const added=[...teaching.map(url=>'../../'+url),'#main-content','../../otfs-receiver.html','https://github.com/LoonyReina/ISAC/pull/111'].map(url=>({from:nested,url,kind:'target19-nested-html'}));
+ assert.deepEqual(edges,[original[0],...added,...original.slice(1)],'exact original seven edges plus ordered nine teaching assets, skip anchor, parent backlink and PR111 publication link');
 
  for(const edge of edges){if(/^https?:/.test(edge.url))continue;const dest=new URL(edge.url,'https://example.org/ISAC/'+edge.from).pathname.slice(6);assert(entry(dest)||teaching.includes(dest),'explicit original manifest or exact teaching target '+dest);assert(sha(teaching.includes(dest)?fs.readFileSync(T.regular(root,dest)):authored(dest)));}
 });
