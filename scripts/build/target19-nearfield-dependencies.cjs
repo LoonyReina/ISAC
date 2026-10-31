@@ -42,6 +42,10 @@ const requiredFiles={
   "labs/near-field/research/tx-design-independent-results.json": "9f314de53382dd96625806d61661cf24a001f897a6fe3bc7fff73980c4ec36a3",
   "labs/near-field/research/view.mjs": "d7cf73d30fd321d300ebe8339e372d16c88980ae4e6aca60e31f00333d200362"
 };
+// Exact feedback presentation revision; scientific files and historical constants stay frozen.
+for(const [file,prior,next] of [["labs/near-field/research/view.mjs","d7cf73d30fd321d300ebe8339e372d16c88980ae4e6aca60e31f00333d200362","08e4a3fc7eb542e5c115b5f323a28e91c8377245c6562cecfa8117e564511c70"]]){
+ if(requiredFiles[file]!==prior)throw Error("Unexpected pre-feedback target19 identity: "+file);requiredFiles[file]=next;
+}
 function target19NearfieldDependencies({identities,pages}) {
  const files=new Map(identities.map(e=>[e.file,e.sha256]));
  for(const [file,h] of Object.entries(requiredFiles))if(files.get(file)!==h)throw Error('Target19 near-field missing/changed '+file);

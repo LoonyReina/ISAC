@@ -46,7 +46,7 @@ test('strict current closure rejects current mutation deletion and symlink befor
   copyResetClosure(dir,c.sourceLayout);
   a.equal(P.assertCurrentReadClosure(dir).sourceLayout,c.sourceLayout);
   const row=rows[0],file=c.sourceLayout?row.path:row.compatibility,p=path.join(dir,file),current=fs.readFileSync(p),bad=Buffer.from(current);bad[0]^=1;
-  fs.writeFileSync(p,bad);a.throws(()=>P.readCurrentForHistory(file,current,{root:dir}),/Exact live current closure/);
+  fs.writeFileSync(p,bad);a.throws(()=>P.readCurrentForHistory(file,current,{root:dir}),{name:'AssertionError',message:'Exact current feedback endpoint '+file});
   fs.writeFileSync(p,current);fs.renameSync(p,p+'.retained');a.throws(()=>P.readCurrentForHistory(file,current,{root:dir}));
   fs.symlinkSync(p+'.retained',p);a.throws(()=>P.readCurrentForHistory(file,current,{root:dir}),/symlink/);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
