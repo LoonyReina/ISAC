@@ -14,6 +14,10 @@ const requiredFiles={
   "otfs-receiver/source-objective-v1/results/independent-check.json": "3311e45c6f761022d65a6175782d715ad5faf51ad5567283f9066f47a10802c4",
   "otfs-receiver/source-objective-v1/results/new-study-30.json": "78cbdaedd870496c165ffdf9ea8f6edeaf88657f622d3ce7b9aa6d992dc53470"
 };
+// Exact feedback presentation revision; scientific files and historical constants stay frozen.
+for(const [file,prior,next] of [["otfs-receiver/source-objective-v1/index.html","64f01f7d62e24293d8765714e81d4a77ab353fcb446c667ab636f987318cf537","346711a8d917df10ef587efd070860b3338fb984b898f7822c4f0e89da7ae861"],["otfs-receiver/source-objective-v1/runtime/ui.mjs","58fbabe54930e9dc90b44ebca023b02f0d7e8e9cf3c4f9823114979cb53bad0b","078067117f0a0583507d070a2843bfade34e07f82cc941af28491b908c3cd81f"]]){
+ if(requiredFiles[file]!==prior)throw Error("Unexpected pre-feedback target19 identity: "+file);requiredFiles[file]=next;
+}
 function target19OtfsDependencies({identities,pages}){
  const files=new Map(identities.map(e=>[e.file,e.sha256])), docs=new Map(pages.map(e=>[e.file,e.source]));
  const fail=m=>{throw Error('Target19 OTFS boundary: '+m);};

@@ -10,6 +10,16 @@ const registry=require('./helpers/dual-array-preservation.cjs').withoutRegistry(
 const legacyUnitCount=require('./helpers/sensing-assisted-otfs-preservation.cjs').maybeWithoutRegistry(registry).units.length-1;
 const M=require('../scripts/research-guides.cjs'),build=(d=data,r=registry)=>M.buildResearchGuides(d,r),render=(d=data,r=registry)=>M.renderResearchGuides(build(d,r));
 const source=read('research-guides.js');
+// Historical page assertions use the authenticated predecessor renderer as well.
+// Current editorial wording has its own feedback-navigation regression.
+function historicalMapRenderer(){
+ const filename=path.join(root,'scripts/knowledge-map.cjs'),module={exports:{}};
+ const historical=readForHistory('scripts/knowledge-map.cjs').toString();
+ const requireFromMap=require('node:module').createRequire(filename);
+ vm.runInNewContext(historical,{module,exports:module.exports,require:requireFromMap},{filename});
+ return module.exports;
+}
+
 const {remainingTraceIds,withoutRemainingTraces,priorGuideSource}=require('./helpers/research-guide-trace-preservation.cjs');
 const {withoutNetworkContext,withoutNetworkProgression}=require('./helpers/network-context-preservation.cjs');
 const {spatialGuideId,withoutSpatialFrontier}=require('./helpers/spatial-frontier-preservation.cjs');
@@ -153,7 +163,7 @@ test('trace-only reading additions preserve the four map routes and unchanged re
  for(const [file,digest]of Object.entries(unchanged)){
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutNetworkProgression(registry),null,2)+'\n';
-  if(file==='index.html'){const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeHomeShell(require('./helpers/nearfield-multitarget-preservation.cjs').withoutMultitargetHomeShell(prior,legacyUnitCount+1),legacyUnitCount),(legacyUnitCount-1)),(legacyUnitCount-1)-1),(legacyUnitCount-1)-2),(legacyUnitCount-1)-3),(legacyUnitCount-1)-4),(legacyUnitCount-1)-5),(legacyUnitCount-1)-6);}
+  if(file==='index.html'){const map=historicalMapRenderer(),current=map(registry,build()),old=map(withoutNetworkProgression(registry),build(withoutNetworkContext(data)));a.equal(prior.split(current).length,2);prior=prior.replace(current,old);prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeHomeShell(require('./helpers/nearfield-multitarget-preservation.cjs').withoutMultitargetHomeShell(prior,legacyUnitCount+1),legacyUnitCount),(legacyUnitCount-1)),(legacyUnitCount-1)-1),(legacyUnitCount-1)-2),(legacyUnitCount-1)-3),(legacyUnitCount-1)-4),(legacyUnitCount-1)-5),(legacyUnitCount-1)-6);}
   a.equal(crypto.createHash('sha256').update(prior).digest('hex'),digest,file);
  }
 });
@@ -471,7 +481,7 @@ test('one network context and five source fields preserve all nineteen prior car
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutGCSAGERegistry(registry),null,2)+'\n';
   if(file==='index.html'){
-   const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
+   const map=historicalMapRenderer(),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
    prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeHomeShell(require('./helpers/nearfield-multitarget-preservation.cjs').withoutMultitargetHomeShell(prior,legacyUnitCount+1),legacyUnitCount),(legacyUnitCount-1)),(legacyUnitCount-1)-1),(legacyUnitCount-1)-2),(legacyUnitCount-1)-3),(legacyUnitCount-1)-4),(legacyUnitCount-1)-5),(legacyUnitCount-1)-6);
   }
@@ -545,7 +555,7 @@ test('three frontier traces preserve all twenty complete prior records, seventee
   let prior=read(file);
   if(file==='site/registry.json')prior=JSON.stringify(withoutGCSAGERegistry(registry),null,2)+'\n';
   if(file==='index.html'){
-   const map=require('../scripts/knowledge-map.cjs'),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
+   const map=historicalMapRenderer(),current=map(registry,build()),old=map(withoutGCSAGERegistry(registry),build());
    a.equal(prior.split(current).length,2);prior=prior.replace(current,old);
    prior=require('./helpers/gc-sage-preservation.cjs').withoutGCSAGEHomeShell(require('./helpers/atomic-receiver-preservation.cjs').withoutAtomicReceiverHomeShell(withoutOtfsHomeShell(withoutIciHomeShell(require('./helpers/80211ad-preservation.cjs').withoutAdHomeShell(require('./helpers/networked-sync-preservation.cjs').withoutSyncHomeShell(require('./helpers/gaussian-tradeoff-preservation.cjs').withoutGaussianHomeShell(require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeHomeShell(require('./helpers/nearfield-multitarget-preservation.cjs').withoutMultitargetHomeShell(prior,legacyUnitCount+1),legacyUnitCount),(legacyUnitCount-1)),(legacyUnitCount-1)-1),(legacyUnitCount-1)-2),(legacyUnitCount-1)-3),(legacyUnitCount-1)-4),(legacyUnitCount-1)-5),(legacyUnitCount-1)-6);
   }

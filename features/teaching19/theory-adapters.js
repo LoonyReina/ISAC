@@ -3,16 +3,26 @@
 'use strict';
 function installTheoryAdapter(doc,lesson){
  if(lesson.coreId==='extended-target')return installExtendedAdapter(doc,lesson);
- const id=lesson.id, cache=new Map(),restore=[],listeners=[];let disposed=false,requested=false,serial=0;
+ const id=lesson.id, cache=new Map(),restore=[],listeners=[];let disposed=false,requested=false,serial=0,revision=0,submittedRevision=null,submittedSnapshot=null,presetPending=false;
  const query=s=>{if(!s)throw Error('Missing selector');if(!cache.has(s)){const e=doc.querySelector(s);if(!e)throw Error('Missing original control '+s);cache.set(s,e);}return cache.get(s);};
  const text=s=>query(s).textContent||'', on=s=>!query(s).disabled, visible=s=>!query(s).hidden;
  // Cache before a shell reparents controls. Maintain original form submission ownership.
  for(const s of [lesson.firstRun.runSelector,...lesson.firstRun.outputSelectors,...(lesson.ui.liveSelectors||[]),...(lesson.ui.actionSelectors||[])])query(s);
  for(const [button,form] of id==='nearfield-multitarget-correlation'?[['#mt-run','mt-form']]:id==='supplement-case-distributed-detection'?[['#cf-run','cf-form']]:[]){const e=query(button),old=e.getAttribute('form');restore.push(()=>old===null?e.removeAttribute('form'):e.setAttribute('form',old));e.setAttribute('form',form);}
  const listen=(e,t,f)=>{e.addEventListener(t,f,true);listeners.push(()=>e.removeEventListener(t,f,true));};
- const start=()=>{requested=true;serial++;};listen(query(lesson.firstRun.runSelector),'click',start);
- if(id==='tradeoffs-causal-state-communication-2013')listen(query('#cc-budget'),'input',start);
- if(id==='supplement-case-multipath-channel')for(const e of doc.querySelectorAll('#position-information select,input[name="mpi-phase"]'))listen(e,'change',start);
+ const recordNodes=()=>[...new Set((lesson.ui.recordInputSelectors||[]).flatMap(s=>Array.from(doc.querySelectorAll(s))))];
+ const parameters=()=>recordNodes().map(e=>({id:e.id||e.name,type:e.type,value:['checkbox','radio'].includes(e.type)?e.checked:e.value,option:e.type==='radio'?e.value:undefined}));
+ const snapshot=()=>JSON.stringify(parameters());
+ const start=()=>{requested=true;serial++;submittedRevision=revision;submittedSnapshot=snapshot();presetPending=id==='supplement-case-near-field';};
+ const autoEdit=['tradeoffs-feedback-capacity-distortion-2018','tradeoffs-causal-state-communication-2013','supplement-case-multipath-channel'].includes(id);
+ const edited=e=>{if(recordNodes().includes(e.target)){revision++;requested=false;presetPending=false;if(autoEdit)start();}else if(e.target.type==='file'){revision++;requested=false;presetPending=false;}};
+ const rootHost=query(lesson.ui.rootSelector);listen(rootHost,'input',edited);listen(rootHost,'change',edited);
+ listen(query(lesson.firstRun.runSelector),'click',start);
+ for(const selector of [lesson.singleControlChange?.runSelector,lesson.singleControlChange?.followupRunSelector,'#wfl-weighted-run','[data-nfr-action="receive"]','[data-nfr-action="regenerate"]']){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',start);}
+ // Fresh-channel and sweep actions change H / the submitted scenario without an input event.
+ // They must not revive a prior guided record, even if the visible values later match.
+ for(const selector of [lesson.ui.resetSelector,...lesson.ui.actionSelectors.filter(s=>/cancel/.test(s)),...(id==='crb'?['#cm-fresh','#cm-sweep']:[])]){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',()=>{revision++;requested=false;presetPending=false;});}
+
  function setControls(cs){for(const c of cs||[]){const e=query(c.selector);if(e.disabled)throw Error('Original control disabled: '+c.selector);if(e.type==='checkbox')e.checked=Boolean(c.value);else if(e.type==='radio')e.checked=true;else e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'input',{bubbles:true}));}}
  const click=s=>{const e=query(s);if(e.disabled)throw Error('Original action disabled: '+s);e.click();};
  function busy(){switch(id){
@@ -39,7 +49,7 @@ function installTheoryAdapter(doc,lesson){
  case 'supplement-case-multipath-channel':return !!query('#position-information').dataset.mpiRecordId||['error','failed'].includes(query('#position-information').dataset.mpiState);
  case 'supplement-case-distributed-detection':return visible('#cf-results')||visible('#cf-error')&&!!text('#cf-error');
  default:return false;}}
- function fresh(){return requested&&!busy()&&terminal();}
+ function fresh(){if(!requested||submittedRevision!==revision||busy()||!terminal())return false;if(presetPending){submittedSnapshot=snapshot();presetPending=false;}return submittedSnapshot===snapshot();}
  function ready(){return !disposed&&fresh();} // terminal is deliberately not a numerical acceptance assertion
  async function waitFor(test,ms=180000){const ticket=serial,end=Date.now()+ms;while(!test()){if(disposed||ticket!==serial)throw Error('Guided action superseded or disposed');if(Date.now()>end)throw Error('Waiting limit reached; original result remains pending, not success');await new Promise(r=>setTimeout(r,50));}}
  function prepare(){/* Do not silently overwrite a custom matrix or stop an existing original task. */return {idle:!busy(),autostartGated:['tradeoffs-causal-state-communication-2013','supplement-case-multipath-channel'].includes(id),ready:ready()};}
@@ -90,23 +100,27 @@ function installTheoryAdapter(doc,lesson){
   if(!step?.focusSelector)for(const s of selectors)click(s);
   if(step?.focusSelector){const e=query(step.focusSelector);if(e.tagName==='BUTTON'&&(e.hasAttribute?.('data-stage')||e.hasAttribute?.('data-mpi-view'))&&!e.disabled)e.click();for(let p=e.parentElement;p;p=p.parentElement){if(p.tagName==='DETAILS')p.open=true;if(p.id&&/^(mt|cf)-(geometry|optimization|recovery|illumination|receiver|observation|matrices|detection|power)$/.test(p.id)){const name=p.id.replace(/^(mt|cf)-/,'');const b=doc.querySelector('[data-stage="'+name+'"]');if(b&&!b.disabled)b.click();}}e.scrollIntoView?.({block:'nearest'});}
  }
- return {query,prepare,setControls,ready,busy,fresh,run,reveal,actions:{compare:true,failure:true},getState:()=>({requested,ready:ready(),busy:busy(),fresh:fresh(),scientificSuccess:'not inferred'}),dispose(){disposed=true;for(const f of listeners)f();for(const f of restore)f();cache.clear();}};
+ return {query,prepare,setControls,ready,busy,fresh,run,reveal,actions:{compare:true,failure:true},getState:()=>({requested,revision,submittedRevision,serial,parameters:parameters(),ready:ready(),busy:busy(),fresh:fresh(),scientificSuccess:'not inferred'}),dispose(){disposed=true;for(const f of listeners)f();for(const f of restore)f();cache.clear();}};
 }
 function installExtendedAdapter(doc,lesson){
- const cache=new Map(),offs=[];let requested=false,disposed=false;
+ const cache=new Map(),offs=[];let requested=false,disposed=false,revision=0,submittedRevision=null,submittedSnapshot=null,serial=0;
  const query=s=>{if(!cache.has(s)){const e=doc.querySelector(s);if(!e)throw Error('Missing extended CRB control '+s);cache.set(s,e);}return cache.get(s);};
  const status=()=>query('#status').textContent||'',origin=()=>query('#origin').textContent||'';
  const btn=query('#form button[type="submit"]'),form=query('#form'),prior=btn.getAttribute('form');btn.setAttribute('form','form');
  const listen=(e,t,f)=>{e.addEventListener(t,f,true);offs.push(()=>e.removeEventListener(t,f,true));};
- const begin=()=>{requested=true;};listen(btn,'click',begin);listen(form,'submit',begin);
+ const nodes=()=>Array.from(doc.querySelectorAll('#form input,#form select,#form textarea')).filter(e=>e.type!=='file');
+ const parameters=()=>nodes().map(e=>({id:e.id||e.name,value:['checkbox','radio'].includes(e.type)?e.checked:e.value}));
+ const snapshot=()=>JSON.stringify(parameters());
+ const begin=()=>{requested=true;serial++;submittedRevision=revision;submittedSnapshot=snapshot();};listen(btn,'click',begin);listen(form,'submit',begin);
+ const edit=()=>{revision++;requested=false;};listen(form,'input',edit);listen(form,'change',edit);
  const busy=()=>/^Starting |^Running |^Cancellation requested/.test(status());
  const terminal=()=>/^Finished:|^Worker error:|^Worker could not run:|^Result validation failed:|^Input error:/.test(status());
- const fresh=()=>requested&&!busy()&&terminal()&&!/^IMPORTED/.test(origin());
+ const fresh=()=>requested&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!busy()&&terminal()&&!/^IMPORTED/.test(origin());
  const ready=()=>!disposed&&fresh();
  const setControls=cs=>{for(const c of cs||[]){const e=query(c.selector);if(e.disabled)throw Error('Original control disabled '+c.selector);e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'input',{bubbles:true}));}};
  const run=async(kind='first')=>{if(disposed||busy())throw Error('Extended CRB unavailable or busy');if(kind!=='first')throw Error('Extended recovery comparison is already in the same real run; no extra comparison/failure action is authored');requested=true;setControls(lesson.firstRun?.controls||[]);btn.click();};
  const reveal=step=>{if(step?.focusSelector){const e=query(step.focusSelector);for(let p=e.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;e.scrollIntoView?.({block:'nearest'});}};
- return {query,setControls,prepare:()=>({idle:!busy(),ready:ready()}),busy,fresh,ready,run,reveal,actions:{compare:false,failure:false},getState:()=>({ready:ready(),busy:busy(),fresh:fresh(),scientificSuccess:'not inferred'}),dispose(){disposed=true;offs.forEach(f=>f());if(prior===null)btn.removeAttribute('form');else btn.setAttribute('form',prior);cache.clear();}};
+ return {query,setControls,prepare:()=>({idle:!busy(),ready:ready()}),busy,fresh,ready,run,reveal,actions:{compare:false,failure:false},getState:()=>({revision,submittedRevision,serial,parameters:parameters(),ready:ready(),busy:busy(),fresh:fresh(),scientificSuccess:'not inferred'}),dispose(){disposed=true;offs.forEach(f=>f());if(prior===null)btn.removeAttribute('form');else btn.setAttribute('form',prior);cache.clear();}};
 }
 const api={installTheoryAdapter};if(typeof module==='object'&&module.exports)module.exports=api;else root.TheoryGuidedAdapters=api;
 })(globalThis);

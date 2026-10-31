@@ -1,2 +1,30 @@
 <section class="site-section" id="lab"><noscript><p>曲线更新需要 JavaScript；下方保留默认参数、公式与数值，仍可核验 100 MHz 对应 1.50 m、20 ms 对应约 0.268 m/s 的尺度。</p></noscript><div class="sectionhead"><div class="eyebrow">04 / 交互小实验</div><h2>调大带宽，两个目标会发生什么？</h2><p>假设两个静止目标距离相差 2 m。改变带宽观察理想距离响应；再改变观测时间，比较距离和速度分辨率各由什么决定。</p></div><div class="two"><div class="card controls"><label for="bw">信号带宽 B <b id="bwval">100 MHz</b></label><input id="bw" type="range" min="20" max="400" step="10" value="100"><label for="tm">相干观测时间 T <b id="tmval">20 ms</b></label><input id="tm" type="range" min="5" max="100" step="5" value="20"><p class="small">固定载频 28 GHz，c ≈ 3×10⁸ m/s。单站、理想矩形频谱及观测窗；速度变化、同步和信噪比影响暂不建模。</p><div class="metrics" aria-live="polite"><div class="metric"><span>距离分辨率 ΔR</span><strong id="dr">1.50 m</strong></div><div class="metric"><span>速度分辨率 Δv</span><strong id="dv">0.268 m/s</strong></div><div class="metric"><span>目标间距 / ΔR</span><strong id="ratio">1.33</strong></div></div></div><div><svg id="response" viewBox="0 0 530 290" role="img" aria-label="两个目标各自的理想归一化距离响应，随带宽更新"><rect x="55" y="20" width="450" height="215" fill="white" stroke="#dbe4ee"/><path d="M55 127.5H505" stroke="#e3eaf3"/><path d="M235 20V235M325 20V235" stroke="#aebdd0" stroke-dasharray="4 5"/><g fill="#52647b" font-size="13"><text x="25" y="26">1.0</text><text x="25" y="133">0.5</text><text x="34" y="240">0</text><text x="55" y="258">95</text><text x="224" y="258">99</text><text x="311" y="258">101</text><text x="480" y="258">105</text><text x="210" y="284">距离 / m</text><text x="57" y="14">归一化功率（各目标单独响应）</text></g><path id="lineA" fill="none" stroke="#225dcc" stroke-width="2.5"/><path id="lineB" fill="none" stroke="#087c73" stroke-width="2.5" stroke-dasharray="7 3"/></svg><p class="small">蓝实线：99 m 目标；绿虚线：101 m 目标。曲线为各自的 sinc² 响应，不是二者相干叠加后的实际测量。</p><p id="labnote" class="note" aria-live="polite"></p></div></div><div class="formula">ΔR ≈ c / (2B)　　Δv ≈ λ / (2T)</div><p class="small">这是教学尺度估算，不是实际检测成功的保证。加窗会改变主瓣与旁瓣；信噪比、目标强弱差和算法也影响可分辨性。增大带宽可能同时有益于通信与感知，并非所有资源变化都必然造成二者对立。</p></section>
-<p class="callout">图中的两条曲线分别是 |a₁h₁|² 与 |a₂h₂|²。相干接收的总功率是 |a₁h₁+a₂h₂|²，通常含相位相关的交叉项；也不能直接把两条功率相加当作任意接收机输出。本页不模拟该合成、检测器或双目标分辨概率。</p>
+<p class="callout">图中的两条曲线分别是 |a₁h₁|² 与 |a₂h₂|²。相干接收的总功率是 |a₁h₁+a₂h₂|²，通常含相位相关的交叉项；也不能直接把两条功率相加当作任意接收机输出。上图不模拟该合成；下方可选练习从复观测模拟相干叠加，但仍不模拟检测器或双目标分辨概率。</p>
+
+<section class="site-section" id="two-target-exercise">
+  <h2>可选练习：从同一组复观测看双目标与失效</h2>
+  <p>先预测：两个同距离、等强度的回波相差 180° 时，接收机会看到两个峰、一个峰，还是抵消？再展开计算。此练习独立于上方单目标响应示意，固定 64 个子载波和 100 MHz 带宽。</p>
+  <details><summary>展开双目标复数叠加实验</summary>
+    <p>数据：本页生成的合成复数，不是硬件实测。本次计算：单个 OFDM 符号的复回波叠加 → 已知数据消除 → 距离匹配 → 功率。结论层级：模型机制与单次候选，不是统计检测。</p>
+    <p>模型假设：单站、两个静止点目标、理想同步、CP 足够、子载波正交；忽略多普勒、路径损耗变化和硬件误差。a₁=1，a₂ 的相位包含反射与载频传播相位；改变距离时这里独立保持该参考相位。</p>
+    <div class="formula">y[k] = s[k] {exp(−i2πkΔf·2R₁/c) + a₂ exp(−i2πkΔf·2R₂/c)} + w[k]<br>a₂ = 10^(强弱差 / 20) exp(iφ)，k = 0,…,63，Δf = 100 MHz / 64，c = 3×10⁸ m/s<br>z[k] = y[k] / s[k]，H(r) = (1/64) Σ z[k] exp(i2πkΔf·2r/c)，功率 = |H(r)|²</div>
+    <p class="small">s[k] 是单位模 QPSK 已知数据；每格 y、z、H 都是复数，只有最后取模平方才是功率。噪声为圆对称复高斯，滑块给出 √E|w|²，单位与 a₁ 相同。固定种子 20261023；调整物理参数沿用同一符号和单位噪声实现，不用于统计成功率。强弱差是第二目标相对第一目标的功率 dB。</p>
+    <div class="two"><div class="card controls">
+      <label for="tt-separation">间距 <b id="tt-separation-value">4.00 m</b></label><input id="tt-separation" type="range" min="0" max="16" step="0.25" value="4">
+      <label for="tt-phase">相对相位 φ <b id="tt-phase-value">0°</b></label><input id="tt-phase" type="range" min="0" max="360" step="15" value="0">
+      <label for="tt-strength">第二目标强弱差 <b id="tt-strength-value">0 dB</b></label><input id="tt-strength" type="range" min="-30" max="0" step="1" value="0">
+      <label for="tt-noise">复噪声 RMS <b id="tt-noise-value">0.00</b></label><input id="tt-noise" type="range" min="0" max="2" step="0.05" value="0">
+      <label for="tt-padding">同观测补零倍率</label><select id="tt-padding"><option value="1">×1</option><option value="4">×4</option><option value="8">×8</option></select>
+      <label for="tt-wrong"><input id="tt-wrong" type="checkbox">只破坏一个假设：用错位的已知数据消除</label>
+      <p><button id="tt-cancel" type="button">试验：同距离等强反相</button> <button id="tt-reset" type="button">恢复 10 / 14 m 默认例</button></p>
+    </div><div>
+      <p>先读图：横轴为 0–32 m 的距离候选（全不模糊区间为 [0,96) m），纵轴为相对于第一目标单位幅度的匹配功率，不逐次归一化。紫线连接实际计算的候选点；两条灰虚线只标真值，不是检测结果。低于全区间的局部图可能不含最大候选。</p>
+      <svg viewBox="0 0 530 290" role="img" aria-label="共同复观测产生的距离匹配功率，显示零到三十二米" aria-describedby="tt-result tt-warning"><rect x="55" y="20" width="450" height="215" fill="white" stroke="#dbe4ee"/><path id="tt-truth-a" stroke="#65758b" stroke-dasharray="4 5"/><path id="tt-truth-b" stroke="#65758b" stroke-dasharray="4 5"/><g fill="#52647b" font-size="13"><text id="tt-scale" x="5" y="26">4.00</text><text x="34" y="240">0</text><text x="55" y="258">0</text><text x="271" y="258">16</text><text x="483" y="258">32</text><text x="210" y="282">距离 / m</text></g><path id="tt-curve" fill="none" stroke="#7b43ac" stroke-width="2.5"/></svg>
+      <p id="tt-truth">真值：R₁ = 10.00 m，R₂ = 14.00 m。</p><p id="tt-result" role="status">启用 JavaScript 后显示本次计算。</p><p class="note" id="tt-warning"></p>
+      <details><summary>核对消除数据后的前四个复数样本</summary><p id="tt-sample"></p></details>
+    </div></div>
+    <p>补零只在原 64 格之外补零，以上直接复数求和与相应补零逆 DFT 等价，始终除以 64；不增加带宽、观测能量或信息。×1 / ×4 / ×8 使用完全相同的接收数组，格距分别为 1.5 / 0.375 / 0.1875 m，分辨尺度仍为 1.5 m。连线不是新增观测，也不是连续优化峰位置。</p>
+    <ol><li>先保持默认 10 / 14 m，比较三种补零；说明候选变密与物理分辨率有何区别。</li><li>将间距减小，分别改变相位、强弱或噪声。每次只动一个参数，观察相干交叉项和弱目标遮蔽；不能仅靠峰数宣布检出了几个目标。</li><li>点“同距离等强反相”：零噪声时复数相消，功率接近数值零；补零不能恢复已经抵消的观测。</li><li>恢复默认，只勾选错误数据消除。原始 y 不变，除数却错了；把“通信数据已知且正确消除”写作本次唯一被破坏的条件。</li></ol>
+    <p class="callout">回看预测：你的原判断是什么？本次候选、功率或近零观测支持什么，又不能证明什么？这里不运行 CFAR，不报告 Pd/Pfa 或双目标分辨概率，不把最大峰当作已检出目标。</p>
+  </details>
+</section>

@@ -9,10 +9,15 @@ const historyJSON=file=>JSON.parse(readForHistory(file));
 const classic=require('../scripts/build/classic-runtime-contracts.json'),modules=require('./helpers/cellfree-maprt-build-preservation.cjs').withoutCellfreeModuleContracts(historyJSON('scripts/build/module-runtime-contracts.json'));
 const historicalDelta=require('./helpers/gaussian-tradeoff-runtime-delta.json'),delta={...historicalDelta,moduleProfiles:historicalDelta.moduleProfiles.map(row=>modules.modules.find(x=>x.public===row.public))},B=require('./helpers/cellfree-maprt-build-preservation.cjs'),baseline=require('./helpers/gaussian-tradeoff-baseline.json');
 const manifest=require('../build/compatibility-manifest.json');
+// Historical reconstruction above is solely for the frozen-baseline assertions.
+// Every live production parser fixture must use its current contract and runtime.
+const currentContract=require('../scripts/build/module-runtime-contracts.json');
+const currentModules={schemaVersion:1,modules:modules.modules.map(row=>{const current=currentContract.modules.find(x=>x.public===row.public);a.ok(current,'current module contract '+row.public);return current;})};
+const currentGaussianProfiles=historicalDelta.moduleProfiles.map(row=>currentModules.modules.find(x=>x.public===row.public));
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 function read(file){const direct=path.join(root,file);if(fs.existsSync(direct))return require('./helpers/cellfree-maprt-build-preservation.cjs').priorBytes(file,fs.readFileSync(direct)).toString();const entry=manifest.entries.find(e=>e.public===file);a.ok(entry?.source,'mapped input '+file);return fs.readFileSync(path.join(root,entry.source),'utf8');}
 const identities=sources=>sources.map(({file,source})=>({file,sha256:sha(source)}));
-function esmFixture(){const source=delta.moduleProfiles.map(c=>({file:c.public,source:read(c.public)}));return {source,contract:{schemaVersion:1,modules:structuredClone(delta.moduleProfiles)},identities:identities(source)};}
+function esmFixture(){const source=currentGaussianProfiles.map(c=>({file:c.public,source:currentRuntime(c.public)}));return {source,contract:{schemaVersion:1,modules:structuredClone(currentGaussianProfiles)},identities:identities(source)};}
 function esm(f){return moduleDependencies(f.source,f.contract,f.identities);}
 // Current classic validation must read actual runtime bytes, not the historical adapter view.
 function currentRuntime(file){const direct=path.join(root,file),entry=manifest.entries.find(e=>e.public===file);const source=fs.existsSync(direct)?direct:entry&&path.join(root,entry.source);a.ok(source,'current mapped runtime '+file);return fs.readFileSync(source,'utf8');}
@@ -46,10 +51,10 @@ test('Gaussian static imports are parsed without executing source and browser/No
  const f=esmFixture(),out=esm(f),parsed=staticModuleDependencies(f.source),byFile=new Map(parsed.map(x=>[x.file,x.specifiers]));
  a.equal(sha(read(prefix+'lesson/LESSON-FREEZE.json')),'c4d52b780e100daaed3fe7ba5259eb57135af076e40cdd00da3ae4e850d2e41f');
  const assets=JSON.parse(read(prefix+'lesson/PUBLIC-ASSETS.json'));
- a.deepEqual(Object.keys(assets.static_module_edges).sort(),delta.moduleProfiles.filter(x=>x.public.startsWith(prefix+'lesson/')).map(x=>x.public).sort());
+ a.deepEqual(Object.keys(assets.static_module_edges).sort(),currentGaussianProfiles.filter(x=>x.public.startsWith(prefix+'lesson/')).map(x=>x.public).sort());
  for(const [file,imports]of Object.entries(assets.static_module_edges)){
   a.deepEqual([...byFile.get(file)].sort(),[...imports].sort(),'exact parsed lesson imports '+file);
-  const profile=delta.moduleProfiles.find(x=>x.public===file);a.equal(profile.runtimePolicy,'no-runtime-loads');a.deepEqual(profile.runtimeEdges,[]);
+  const profile=currentGaussianProfiles.find(x=>x.public===file);a.equal(profile.runtimePolicy,'no-runtime-loads');a.deepEqual(profile.runtimeEdges,[]);
  }
  a.deepEqual(byFile.get(runtime+'math.mjs'),['./vendor/linalg.js']);
  a.deepEqual(byFile.get(runtime+'kernel.mjs'),['./codec.mjs','./math.mjs','./presets.mjs']);
@@ -67,7 +72,7 @@ test('Gaussian static imports are parsed without executing source and browser/No
 });
 
 test('every Gaussian module rejects changed bytes even with matching JSON and public identity hashes',()=>{
- for(const original of delta.moduleProfiles){
+ for(const original of currentGaussianProfiles){
   const f=esmFixture(),m=f.source.find(x=>x.file===original.public),c=f.contract.modules.find(x=>x.public===original.public);
   m.source+='\n/* unreviewed Gaussian source */';f.identities.find(x=>x.file===m.file).sha256=sha(m.source);
   a.throws(()=>esm(f),/Unreviewed module source hash/);
@@ -76,7 +81,7 @@ test('every Gaussian module rejects changed bytes even with matching JSON and pu
 });
 
 test('Gaussian runtime endpoint omission, additions, reordering, fallback changes and policy downgrade fail closed',()=>{
- for(const record of delta.moduleProfiles.filter(x=>x.runtimeEdges.length)){
+ for(const record of currentGaussianProfiles.filter(x=>x.runtimeEdges.length)){
   for(const mutate of [c=>c.runtimeEdges.pop(),c=>c.runtimeEdges.push({...c.runtimeEdges[0]}),c=>c.runtimeEdges[0].url='https://unreviewed.invalid/worker.mjs',c=>c.runtimeEdges[0].url='../outside.mjs',c=>c.runtimeEdges[0].kind='unreviewed',c=>c.runtimeEdges[0].literal='await import("unreviewed")',c=>c.runtimeEdges[0].extra=true,c=>{c.runtimePolicy='no-runtime-loads';c.runtimeEdges=[];},c=>{c.runtimePolicy='command-line-inputs-unverified';c.runtimeEdges=[];c.unverifiedInputs=['unreviewed downgrade'];}]){
    const f=esmFixture();mutate(f.contract.modules.find(x=>x.public===record.public));a.throws(()=>esm(f));
   }
@@ -94,12 +99,12 @@ test('Gaussian runtime endpoint omission, additions, reordering, fallback change
 });
 
 test('frozen Gaussian ESM bytes cannot relocate under any extension or policy downgrade',()=>{
- for(const record of delta.moduleProfiles)for(const extension of ['.mjs','.js','.JS','.cjs','.txt','.dat','']){
+ for(const record of currentGaussianProfiles)for(const extension of ['.mjs','.js','.JS','.cjs','.txt','.dat','']){
   const f=esmFixture(),wrong='wrong-prefix/renamed'+extension;
   f.identities.push({file:wrong,sha256:record.sha256});a.throws(()=>esm(f),/Reviewed frozen runtime path mismatch/);
  }
- for(const record of delta.moduleProfiles)for(const policy of ['no-runtime-loads','command-line-inputs-unverified']){
-  const source=read(record.public),file='wrong-prefix/'+record.public,c={...structuredClone(record),public:file,runtimePolicy:policy,runtimeEdges:[],unverifiedInputs:policy==='command-line-inputs-unverified'?['not reviewed']:[]};
+ for(const record of currentGaussianProfiles)for(const policy of ['no-runtime-loads','command-line-inputs-unverified']){
+  const source=currentRuntime(record.public),file='wrong-prefix/'+record.public,c={...structuredClone(record),public:file,runtimePolicy:policy,runtimeEdges:[],unverifiedInputs:policy==='command-line-inputs-unverified'?['not reviewed']:[]};
   a.throws(()=>moduleDependencies([{file,source}],{schemaVersion:1,modules:[c]},[{file,sha256:sha(source)}]),/Reviewed frozen runtime path mismatch/);
  }
 });
@@ -121,7 +126,7 @@ test('Gaussian namespace admits only exact reviewed script module and auxiliary 
  for(const suffix of ['.js','.mjs','.JS','.cjs','.md','.json','.dat','']){
   const f=classicFixture();f.identities.push({file:prefix+'unreviewed'+suffix,sha256:sha('unreviewed namespace member')});a.throws(()=>classicEdges(f),/Unreviewed classic source path/);
  }
- const f=classicFixture();for(const file of [...delta.moduleProfiles.map(x=>x.public),...delta.auxiliaryFiles])f.identities.push({file,sha256:sha(read(file))});a.doesNotThrow(()=>classicEdges(f));
+ const f=classicFixture();for(const file of [...currentGaussianProfiles.map(x=>x.public),...delta.auxiliaryFiles])f.identities.push({file,sha256:sha(currentRuntime(file))});a.doesNotThrow(()=>classicEdges(f));
  for(const file of [runtime+'tests/protocol.test.mjs',runtime+'oracle/finite-integrals.json',runtime+'reports/numerics.json',runtime+'run_all.sh',runtime+'ARTIFACT-MANIFEST.json']){
   const f=classicFixture();f.identities.push({file,sha256:sha(read(file))});a.throws(()=>classicEdges(f),/Unreviewed classic source path/);
  }
@@ -134,11 +139,11 @@ function publicFixture(t){
  const entries=[],seen=new Set();
  function put(file,source=read(file),published=true){fs.mkdirSync(path.dirname(path.join(directory,file)),{recursive:true});fs.writeFileSync(path.join(directory,file),source);if(published&&!seen.has(file)){seen.add(file);entries.push({public:file});}}
  for(const row of classic.scripts)put(row.public,currentRuntime(row.public));
- for(const row of modules.modules)put(row.public);
+ for(const row of currentModules.modules)put(row.public,currentRuntime(row.public));
  for(const name of ['linalg','hermitian','numerics','model','optimizer','metrics','core'])put('labs/near-field/research/runtime/vendor/solver/'+name+'.js');
- put('scripts/build/classic-runtime-contracts.json',JSON.stringify(classic),false);put('scripts/build/module-runtime-contracts.json',JSON.stringify(modules),false);
+ put('scripts/build/classic-runtime-contracts.json',JSON.stringify(classic),false);put('scripts/build/module-runtime-contracts.json',JSON.stringify(currentModules),false);
  put('course.js',"document.currentScript.src;const files=['course-ui.js','velocity-core.js','velocity-bridge.js'];");for(const name of ['course-ui.js','velocity-core.js','velocity-bridge.js'])put(name,'/* fixture */');
- put('gaussian-tradeoff.html','<script type="module" src="'+(modules.modules.some(x=>x.public===prefix+'lesson/lesson.mjs')?prefix+'lesson/lesson.mjs':runtime+'runtime.mjs')+'"></script>');
+ put('gaussian-tradeoff.html','<script type="module" src="'+(currentModules.modules.some(x=>x.public===prefix+'lesson/lesson.mjs')?prefix+'lesson/lesson.mjs':runtime+'runtime.mjs')+'"></script>');
  // The unified current-output gate also requires the accepted receiver entry head
  // and its real dependencies. Keep this fixture partial in page body only; never
  // substitute historical runtime bytes or skip an active production checker.
@@ -154,7 +159,7 @@ function publicFixture(t){
  const current=file=>fs.readFileSync(path.join(root,manifest.entries.find(e=>e.public===file).source),'utf8');
  for(const row of [...cc.modules,...cc.assets])put(row.public,current(row.public));
  put('scripts/build/cooperative-clusters-runtime-contracts.json',JSON.stringify(cc),false);
- put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles]}),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...currentModules,modules:[...currentModules.modules,...cooperative.runtimeProfiles]}),false);
  let cooperativePage=current(cc.entryPoint).replace(/<link rel="stylesheet" href="site\.css(?:\?[^"]*)?">/,cc.pageStyles.find(s=>s.includes('href="site.css')));
  for(const [key,region]of Object.entries(cc.pageRegions))cooperativePage=cooperativePage.replace(new RegExp('<!-- SITE:'+key+':START -->[\\s\\S]*?<!-- SITE:'+key+':END -->'),region);
  a.equal(sha(cooperativePage),cc.entryPageSha256,'exact generated cooperative fixture page');
@@ -166,7 +171,7 @@ function publicFixture(t){
  const causal=require('../scripts/build/causal-capacity-dependencies.cjs'),ca=causal.contract;
  for(const row of [...ca.modules,...ca.assets])put(row.public,current(row.public));
  put('scripts/build/causal-capacity-runtime-contracts.json',JSON.stringify(ca),false);
- put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles]}),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...currentModules,modules:[...currentModules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles]}),false);
  let causalPage=current(ca.entryPoint).replace(/<link rel="stylesheet" href="site\.css(?:\?[^"]*)?">/,ca.pageStyles.find(s=>s.includes('href="site.css')));
  for(const [key,region]of Object.entries(ca.pageRegions))causalPage=causalPage.replace(new RegExp('<!-- SITE:'+key+':START -->[\\s\\S]*?<!-- SITE:'+key+':END -->'),region);
  a.equal(sha(causalPage),ca.entryPageSha256,'exact generated causal fixture page');
@@ -178,7 +183,7 @@ function publicFixture(t){
  // keep minimal local-target stubs, as in the existing receiver/causal fixture.
  const multipath=require('../scripts/build/multipath-information-dependencies.cjs'),mp=multipath.contract;
  for(const row of [...mp.modules,...mp.assets])put(row.public,current(row.public));
- put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles]}),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...currentModules,modules:[...currentModules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles]}),false);
  const multipathPage=current(mp.entryPoint);put(mp.entryPoint,multipathPage);
  for(const match of multipathPage.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){
   if(/^(?:https?:|#)/.test(match[1]))continue;
@@ -192,7 +197,7 @@ function publicFixture(t){
  const fullDuplex=require('../scripts/build/full-duplex-dependencies.cjs'),fd=fullDuplex.contract;
  const fullDuplexProfiles=fd.modules.map(({staticSpecifiers,...profile})=>profile);
  for(const row of [...fd.modules,...fd.assets])put(row.public,current(row.public));
- put('scripts/build/module-runtime-contracts.json',JSON.stringify({...modules,modules:[...modules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles,...fullDuplexProfiles]}),false);
+ put('scripts/build/module-runtime-contracts.json',JSON.stringify({...currentModules,modules:[...currentModules.modules,...cooperative.runtimeProfiles,...causal.runtimeProfiles,...multipath.runtimeProfiles,...fullDuplexProfiles]}),false);
  const fullDuplexPage=current(fd.entryPoint);put(fd.entryPoint,fullDuplexPage);
  for(const match of fullDuplexPage.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){
   if(/^(?:https?:|#)/.test(match[1]))continue;
@@ -234,7 +239,7 @@ test('unified gate resolves Gaussian ESM, classic helper and default Worker edge
 
 test('unified gate rejects missing Gaussian local imports and omitted default Worker mapping',t=>{
  const f=publicFixture(t);
- for(const file of [runtime+'vendor/linalg.js',...delta.moduleProfiles.map(x=>x.public)]){
+ for(const file of [runtime+'vendor/linalg.js',...currentGaussianProfiles.map(x=>x.public)]){
   const missing={entries:f.manifest.entries.filter(x=>x.public!==file)};a.throws(()=>checkDependencies(f.directory,missing),/Unmapped public dependency|Unreviewed or missing/);
   const full=path.join(f.directory,file),source=fs.readFileSync(full);fs.unlinkSync(full);a.throws(()=>checkDependencies(f.directory,f.manifest),/ENOENT|Missing public dependency/);fs.writeFileSync(full,source);
  }

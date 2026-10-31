@@ -22,7 +22,7 @@ test('mapping mounts one canonical reading route without creating a third sectio
  const h=read('content/pages/channel-mapping.html','channel-mapping.html').toString();for(const key of ['HEADER','CONTEXT','NEXT'])a.ok(h.includes('<!-- SITE:'+key+':START -->'));
  const nav=h.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)[0];a.deepEqual([...nav.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['foundations.html','reading.html']);
  const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);a.equal(new Set(ids).size,ids.length);for(const id of ['top','scope','site-main','parameters','results','export'])a.ok(ids.includes(id));
- a.match(h,/集成页待验|界面、整站回归与部署仍待验证/);a.match(h,/15 处微小浮点差异仍保留为 FAIL/);a.doesNotMatch(h,/本候选的独立数值与实际浏览器验收尚待完成/);
+ a.match(h,/本课公开入口随 PR111 上线/);a.match(h,/历史|旧回执/);a.match(h,/15 处微小浮点差异仍保留为 FAIL/);a.doesNotMatch(h,/本候选的独立数值与实际浏览器验收尚待完成/);
 });
 test('mapping same-origin module Worker CSP and JSON protocol stay source-bound',()=>{
  const h=read('content/pages/channel-mapping.html','channel-mapping.html').toString(),app=read('labs/channel-mapping/src/app.mjs').toString();
@@ -35,5 +35,5 @@ test('local visibility carries forward exactly 17 deployed identities and adds o
  a.equal(cfg.carriedForwardDeployedIds.length,17);a.equal(new Set(cfg.carriedForwardDeployedIds).size,17);a.ok(!cfg.carriedForwardDeployedIds.includes(id));
  a.equal(cfg.candidate.id,id);a.equal(cfg.candidate.acceptance,'local-core-accepted');a.equal(cfg.candidate.publication,'not-deployed');a.equal(cfg.candidate.integration,'not-verified');
  a.deepEqual(cfg.allowedChangedExistingPreviewFiles,['reading.html','research-tree-model.js','research-tree.js']);a.equal(Object.keys(cfg.newPublicFiles).length,12);
- if(source){a.equal(sha(read('build/publication-allowlist.json')),cfg.officialAllowlistSha256);a.equal(sha(read('scripts/publish-accepted.py')),cfg.officialProjectorSha256);const m=json('build/compatibility-manifest.json');for(const row of delta.addedEntries)a.deepEqual(m.entries.filter(x=>x.source===row.source),[row]);a.equal(m.entries.filter(x=>x.public!==null).length,1347);}
+ if(source){a.equal(sha(read('build/publication-allowlist.json')),cfg.officialAllowlistSha256);a.equal(sha(read('scripts/publish-accepted.py')),cfg.officialProjectorSha256);const m=json('build/compatibility-manifest.json');for(const row of delta.addedEntries)a.deepEqual(m.entries.filter(x=>x.source===row.source),[row]);a.equal(JSON.parse(require('./helpers/feedback-current-epoch.cjs').before('build/compatibility-manifest.json',read('build/compatibility-manifest.json'))).entries.filter(x=>x.public!==null).length,1347);}
 });

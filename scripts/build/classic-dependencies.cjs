@@ -302,6 +302,8 @@ const gaussianModuleFiles=new Set(["labs/gaussian-tradeoff/runtime/codec.mjs","l
 function fields(x,keys,label){if(!x||typeof x!=='object'||Array.isArray(x)||Object.keys(x).sort().join(',')!==[...keys].sort().join(','))throw Error('Invalid '+label+' fields');}
 // Exact reset-only UI update. Prior scientific/runtime profiles remain frozen above.
 {const p=profiles.filter(p=>p.public==='labs/80211ad/lesson/lesson.js');a.equal(p.length,1);a.equal(p[0].sha256,'124cf884cfb3bf461c313f653732ac588f4c989d8d21c8cfbc5947506265624f');p[0].sha256='63afe2d831a094f11197e4155de73588754e4861d9cec17ce43c3b77d34d3104';}
+// Exact feedback progress/status presentation; runtime endpoint inventory is unchanged.
+{const p=profiles.filter(p=>p.public==='labs/networked-sync/lesson/lesson.js');a.equal(p.length,1);a.equal(p[0].sha256,'6f811fcf415608f8fa40d5f931e73b505d935f4055017a72f75c0b305271b3dc');p[0].sha256='b84917011995bcc069f5ec0bacd9041c6ef561b1127b0013a28299f05deb3d66';}
 function classicDependencies(scripts,contract,identities){
  fields(contract,['schemaVersion','scripts'],'classic contract');
  if(contract.schemaVersion!==1||!Array.isArray(contract.scripts))throw Error('Invalid classic contract');

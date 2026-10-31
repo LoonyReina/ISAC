@@ -8,3 +8,7 @@
 .gl-task h3{scroll-margin-top:90px}
 #capacity-distortion[data-guided-mounted]{scroll-margin-top:80px;padding-top:0}.gl-task h3{margin:0 0 12px}.gl-task{padding-top:16px;margin-top:18px}.gl-known{margin:12px 0}.gl-known>div{padding:12px 16px}
 .gl-task>h3{scroll-margin-top:0}.gl-shell #ad-cancel:disabled,.gl-shell #cd-cancel:disabled{display:none}.gl-results #cd-results>h3:not(:first-of-type){display:none}.gl-receipt{font-size:13px;margin-top:8px}.gl-receipt summary{cursor:pointer}.gl-live{padding-top:4px;margin:10px 0}.gl-task .gl-why{margin:8px 0}.gl-task>p{margin:10px 0}
+
+/* Local learning record and evidence-linked prediction review. */
+.gl-feedback,.gl-learning{border:1px solid var(--line,#d7e0ea);border-radius:12px;padding:1rem;margin:1rem 0;background:var(--panel,#f6f8fb);color:inherit;overflow-wrap:anywhere}
+.gl-feedback a{display:inline-block;max-width:100%;margin:.3rem 0}.gl-learning ol{padding-left:1.5rem}.gl-learning li{margin:.4rem 0}.gl-learning button{margin:.2rem}.gl-learning textarea{display:block;box-sizing:border-box;width:100%;margin:.5rem 0;font:inherit}.gl-learning pre{max-height:18rem;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.gl-save-status{font-size:.9rem}.gl-learning input[type=file]{max-width:100%;display:block;margin:.5rem 0}

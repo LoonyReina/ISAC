@@ -43,6 +43,23 @@ class Projection(unittest.TestCase):
   else:self.assertNotEqual(r.returncode,0);return r
   return out
  def ids(self,out):return {p['id'] for p in json.loads(re.search(r'data-tree-data>(.*?)</script>',(out/'reading.html').read_text()).group(1))['papers']}
+ def test_contextual_citations_keep_all_eight_labels_and_surrounding_prose(self):
+  ids=['Q1','Q2','Q3','D1']
+  refs=''.join('<article id="ref-'+i+'"><a href="https://example.org/'+i+'">source</a></article>' for i in ids)
+  prose=''.join('<p>参考 <a href="reading.html#ref-'+i+'">['+i+']</a>；物理说明。</p>' for i in ids for _ in range(2))
+  self.files['foundations.html']+=prose+refs
+  # Reading now contains only local relocation notices, not external citations.
+  self.files['reading.html']+=''.join('<p id="ref-'+i+'"><a href="foundations.html#ref-'+i+'">已迁移</a></p>' for i in ids)
+  out=self.run_projection();page=(out/'foundations.html').read_text()
+  for i in ids:
+   self.assertEqual(page.count('href="foundations.html#ref-'+i+'"'),2)
+   self.assertEqual(page.count('['+i+']'),2)
+  self.assertEqual(page.count('；物理说明。'),8)
+ def test_external_citation_keeps_label_when_directory_is_projected(self):
+  self.files['foundations.html']+='<p>模型 <a href="reading.html#ref-S1">[S1]</a> 的范围。</p>'
+  self.files['reading.html']+='<article id="ref-S1"><a href="https://arxiv.org/pdf/2108.07165">source</a></article>'
+  page=(self.run_projection()/'foundations.html').read_text()
+  self.assertIn('<a href="https://arxiv.org/pdf/2108.07165">[S1]</a> 的范围。',page)
  def test_exact19_and_legacy_compatibility(self):
   out=self.run_projection();self.assertEqual(self.ids(out),M.TARGET_IDS);self.assertTrue((out/'otfs-sensing-assisted.html').exists());self.assertNotIn(M.LEGACY_ID,(out/'research-tree.js').read_text());self.assertIn('legacy-control',(out/'near-field.html').read_text());self.assertTrue((out/'embedded/runtime/worker-data.json').exists())
  def test_otfs_site_role_exact_unique_node_only(self):

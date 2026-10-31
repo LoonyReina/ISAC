@@ -65,8 +65,8 @@ export function mount(document,{workerFactory,urlApi=URL,blobClass=Blob}={}){
   if(session.state.stale||session.state.active){text('calibration-status','校准结果不可用于待运行配置：旧结果已过期或计算尚未完成');text('calibrated-candidates','');text('calibrated-evaluation','');return;}
   const ell=Number($('branch').value),cal=r.results.calibration,b=cal?.branches.find(v=>v.ell===ell)||cal?.branches.at(-1),raw=r.results.branches.find(v=>v.ell===b?.ell);
   if(!b){text('calibration-status','历史记录无校准扩展；从相同 raw 重算后再判断');return;}
-  text('calibration-binding',`条件 ID ${cal.id}；pilot SHA-256 ${cal.pilot_sha256}；噪声来源：${cal.noise.provenance}；当前 σt²=${fmt(cal.noise.variance)}。仅绑定固定波形 seed 20261018、A5/D5/D0、192×121 搜索、矩形相干权重与已知白噪声。`);
-  if(!b.available){text('calibration-status',`校准不可用：${b.reasons.join('；')}。${b.maximum_score===null?'无法标准化噪声分数':`未经校准解释的标准化最大值=${fmt(b.maximum_score)}`}；原始图和启发式比较仍可查看。`);text('calibrated-candidates','没有有效校准候选；不复用其他配置阈值');text('calibrated-evaluation','H0 条件未成立，不能从匹配结果反推校准有效');return;}
+  text('calibration-binding',`条件 ID ${cal.id}；pilot SHA-256 ${cal.pilot_sha256}；噪声来源：${cal.noise.provenance}；当前 σt²=${fmt(cal.noise.variance)}。原始诊断：${b.reasons?.join('；')||'无不可用原因'}。仅绑定固定波形 seed 20261018、A5/D5/D0、192×121 搜索、矩形相干权重与已知白噪声。`);
+  if(!b.available){text('calibration-status',cal.noise.variance===0?'此例用于观察无噪声机制，不能标定虚警。请切换到带噪校准预设，再生成观测；原始图仍可查看。':'当前参数不满足冻结校准条件，不能复用门限。请切换到校准预设；原始诊断见校准详情。');text('calibrated-candidates','没有有效校准候选；不复用其他配置阈值');text('calibrated-evaluation','H0 条件未成立，不能从匹配结果反推校准有效');return;}
   const decision=b.decisions[alpha],score=raw.map.raw_power.map(v=>v/b.noise_map_variance),candidates=absoluteCandidates(score,r.processing.axes.delay_samples,r.processing.axes.doppler_hz,decision.threshold);
   text('calibration-status',`${b.configuration} 条件绑定有效；最大 score=${fmt(b.maximum_score)}，固定阈值=${fmt(decision.threshold)}，名义 α=${Number(alpha)*100}%；${b.maximum_score>decision.threshold?'场景检出':'未检出场景'}（严格 >）；Vz=${fmt(b.noise_map_variance)}。这不是目标数或恒虚警保证。`);
   table($('calibrated-candidates'),['绝对阈值候选','delay / samples','Doppler / Hz','score','近等高组'],candidates.map((c,i)=>[i+1,c.delay_samples,c.doppler_hz,fmt(c.power),c.near_tie_group_size]));

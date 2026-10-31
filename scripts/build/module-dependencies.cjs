@@ -1624,6 +1624,13 @@ const recoveryProfiles=require('./recovery-module-profiles.cjs');
 for(const [file,profile] of recoveryProfiles.reviewedProfiles)reviewedProfiles.set(file,profile);
 for(const [file,hash] of recoveryProfiles.pilotPublicFiles)pilotPatternPublicFiles.set(file,hash);
 for(const [file,hash] of recoveryProfiles.cellfreePublicFiles)cellfreePublicFiles.set(file,hash);
+// Exact reviewed feedback UI endpoints: presentation and deferred loading only.
+// Frozen profiles above remain intact; worker/data/module endpoint inventories are unchanged.
+for(const [file,prior,next] of [["labs/gaussian-tradeoff/lesson/lesson.mjs","af1dfaca2790fe654ad95265c3923a54eaf076a6c718800152dc103e482eba57","c70547a82c4c72aff06f1b45f344a1e1b662e3363eb091091d46ffe52c13446c"],["labs/pilot-pattern/lesson.mjs","c2563de72b9709b58882f32feef596ac6cb0d2d2d334cc42510ca1a9635b214f","c7bebb46dc6bf59057d82e2be3706d0d3b304eb0651a6e0a5ffa77a64ab8da7c"],["joint-beamforming/ssp/ssp-ui.mjs","06e6057492d51d3e5dd0214a8e60b27809adc43692b23042d331ba2cebd9404e","b4e1a980255843f95fae94cff285b37d27588bdca04a998dfd54e1041a010c85"],["otfs-receiver/source-objective-v1/runtime/ui.mjs","58fbabe54930e9dc90b44ebca023b02f0d7e8e9cf3c4f9823114979cb53bad0b","078067117f0a0583507d070a2843bfade34e07f82cc941af28491b908c3cd81f"]]) {
+ const profile=reviewedProfiles.get(file);if(!profile||profile.sha256!==prior)throw Error("Unexpected pre-feedback module identity: "+file);
+ reviewedProfiles.set(file,{...profile,sha256:next});
+ if(file==='labs/pilot-pattern/lesson.mjs'){if(pilotPatternPublicFiles.get(file)!==prior)throw Error("Unexpected pre-feedback pilot public identity");pilotPatternPublicFiles.set(file,next);}
+}
 // Identical reviewed bytes may have multiple explicit immutable comparator paths.
 const reviewedHashPaths=new Map();for(const [file,profile] of reviewedProfiles){if(!reviewedHashPaths.has(profile.sha256))reviewedHashPaths.set(profile.sha256,new Set());reviewedHashPaths.get(profile.sha256).add(file);}
 // Fixed-quarter causal module identities; no fetch, Worker, or dynamic imports.

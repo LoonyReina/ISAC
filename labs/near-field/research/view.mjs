@@ -216,14 +216,19 @@ function marker(c, xy, shape, color, label) {
   } else svgNode(g, 'circle', { cx: x, cy: y, r: r + 3 });
 }
 
+export function trustLabel(value){
+ const labels={absent:'尚未生成',running:'正在计算',cancelled_unaccepted:'已取消，结果未接受',invalidated_design_change:'设计已变，旧结果失效',invalidated_scene_change:'场景已变，旧观测失效',invalidated_receiver_change:'接收设置已变，旧估计失效',unaccepted:'未通过数值接受条件',fresh_recomputed_and_finite_X_checked:'本次设计与有限波形已检查',recomputed_from_authoritative_raw_Y:'已用当前复数观测重新估计',historical_unverified:'历史记录，尚未重新验证',worker_or_physical_error_unaccepted:'计算或物理检查失败',observation_error_unaccepted:'观测生成失败',worker_error_unaccepted:'计算任务失败'};
+ return labels[value]??(String(value).startsWith('recomputed_receiver_')?'接收机已返回非正常终止状态，详见诊断':'其他状态，详见原始诊断');
+}
 function renderStatus(parent, s) {
   const e = s.experiment;
   paragraph(parent, s.status || '尚未计算', 'nfr-badge');
   if (s.busy) paragraph(parent, `正在执行：${s.busy}。此处的进度来自实际任务消息`);
   if (s.error) paragraph(parent, s.error, 'nfr-error');
   if (s.invalidGroups?.length) warning(parent, `这些输入已改变，关联结果已失效：${s.invalidGroups.join('、')}。修改输入不会自动求解`);
-  keyValues(parent, [['优化器信任状态', e.trust?.optimizer ?? 'absent'], ['接收机信任状态', e.trust?.receiver ?? 'absent'],
+  keyValues(parent, [['优化器信任状态', trustLabel(e.trust?.optimizer ?? 'absent')], ['接收机信任状态', trustLabel(e.trust?.receiver ?? 'absent')],
     ['设计身份', s.identity?.design ?? '尚未建立'], ['观测身份', s.identity?.observation ?? '尚未建立'], ['接收机身份', s.identity?.receiver ?? '尚未建立']]);
+  details(parent, '完整内部状态与身份（保留原值）', {trust:e.trust,identity:s.identity});
   const progress = list(s.progress);
   if (progress.length) details(parent, `最近 ${Math.min(8, progress.length)} 条实际进度消息`, progress.slice(-8));
 }

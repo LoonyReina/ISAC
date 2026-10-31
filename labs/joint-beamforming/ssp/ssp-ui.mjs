@@ -1,11 +1,11 @@
 import {prepare,decodeImport} from './ssp-model.mjs';
-const $=id=>document.getElementById('ssp-'+id),fmt=x=>Number.isFinite(x)?x.toFixed(5):String(x);let data,load,epoch=0,last=null,worker=null,stopped=false;const loadAbort=new AbortController();
+const $=id=>document.getElementById('ssp-'+id),fmt=x=>Number.isFinite(x)?x.toFixed(5):String(x);let data,load,epoch=0,last=null,worker=null,stopped=false;let loadAbort=null, loading=null;
 const config=()=>({K:+$('users').value,trial:+$('trial').value,gammaDb:+$('gamma').value,start:+$('start').value,maxIterations:Number($('cap').value),power:Number($('power').value),noise:Number($('noise').value)});
 function clear(){epoch++;worker?.terminate();worker=null;last=null;$('export').disabled=true;$('cancel').disabled=true;$('run').disabled=stopped||!data||!load;$('results').replaceChildren();$('status').textContent='参数已改变，请运行新的同信道实验';for(let id of ['beam','loss'])$(id).getContext('2d').clearRect(0,0,1000,280);$('figureText').textContent='';$('lossText').textContent='';if(data&&load)offline();const reference=$('reference-note');if(reference)reference.textContent=config().power===1&&config().noise===.01?'SDR / ZF：仅显示同信道、同 Γ 的冻结参照（功率 1、噪声 0.01）。':'SDR / ZF：当前功率或噪声已改变，冻结参照不适用。';}
 function channels(){let k=+$('users').value;$('trial').replaceChildren();if(k===2){for(let i=0;i<32;i++)$('trial').add(new Option(String(i),String(i)));}else for(let e of Object.values(load.examples).filter(e=>e.K===k))$('trial').add(new Option(`${e.trial} · ${e.label}`,String(e.trial)));}
 for(let id of ['trial','gamma','start','cap','power','noise'])$(id).addEventListener('input',clear);
 $('users').addEventListener('input',()=>{if(load)channels();clear();});
-window.addEventListener('pagehide',()=>{stopped=true;loadAbort.abort();clear();$('status').textContent='页面已离开；重新运行可开始新实验';});
+window.addEventListener('pagehide',()=>{stopped=true;loadAbort?.abort();clear();$('status').textContent='页面已离开；重新运行可开始新实验';});
 $('cancel').onclick=()=>{clear();$('status').textContent='已取消；没有将中间结果标为完成'};
 function table(headers,rows){let t=document.createElement('table'),head=t.createTHead().insertRow();headers.forEach(s=>{let th=document.createElement('th');th.textContent=s;th.scope='col';head.append(th)});let b=t.createTBody();rows.forEach(r=>{let tr=b.insertRow();r.forEach(v=>tr.insertCell().textContent=String(v));});return t;}
 function plot(id,series,xLabel){let c=$(id).getContext('2d'),w=1000,h=280,values=series.flatMap(s=>s.y),lo=Math.min(0,...values),hi=Math.max(...values,lo+1e-8),xmax=Math.max(...series.flatMap(s=>s.x)),xmin=Math.min(...series.flatMap(s=>s.x));c.clearRect(0,0,w,h);c.font='14px system-ui';c.fillStyle='#16243a';c.fillText(`${fmt(hi)}`,4,24);c.fillText(`${fmt(lo)}`,4,244);c.fillText(xLabel,400,275);c.strokeStyle='#a0adbd';c.strokeRect(80,30,890,210);series.forEach((s,i)=>{c.strokeStyle=s.color;c.beginPath();s.y.forEach((v,j)=>{let x=80+890*(s.x[j]-xmin)/Math.max(xmax-xmin,1),y=240-210*(v-lo)/(hi-lo);j?c.lineTo(x,y):c.moveTo(x,y)});c.stroke();c.fillStyle=s.color;c.fillText(s.name,130+i*200,20)});c.fillStyle='#16243a';c.fillText(String(xmin),80,260);c.fillText(String(xmax),940,260);}
@@ -56,10 +56,38 @@ function attemptLedger(root,records){
 function qosLabel(metrics){return typeof metrics?.sinr_target_pass==='boolean'?(metrics.sinr_target_pass?'是':'未达标'):'不适用/无可用解';}
 function evidence(){let cells=load.cells;let h=document.createElement('p');h.textContent=`新统一策略研究：${load.accounting.channel_threshold_points} 点、${load.rows.length} 条方法结果、${load.attempts.optimizer.length} 次优化尝试、${load.attempts.phaseI.length} 条phase-I证书。逐格分母与接受/未决状态如下；驻点接受不等于实际 QoS 达标。不与已丢失的历史混合策略数据等同。`;const ss=load.rows.filter(r=>r.method==='ssp'),accepted=ss.filter(r=>r.accepted),finite=ss.filter(r=>r.metrics),caps=load.attempts.optimizer.filter(a=>a.method==='ssp'&&a.status==='iteration_limit');h.textContent+=` SSP 驻点 ${accepted.length}/${ss.length}，未决 ${ss.filter(r=>r.state==='unresolved').length}；实际 QoS：驻点中 ${accepted.filter(r=>r.metrics?.sinr_target_pass).length}/${accepted.length}，全部有限选中解 ${finite.filter(r=>r.metrics.sinr_target_pass).length}/${finite.length}。SSP 初始点触及上限 ${caps.length} 次。`;const boot=document.createElement('p');boot.textContent=cells.map(c=>{const b=c.paired_bootstrap.ssp_minus_sdr_eq46_mse.threshold_common;return `K${c.K}/Γ${c.gamma_db}：共同子集 ${b.n}/${c.denominator}，整组 bootstrap ${b.undefined_draws}/5000 次无定义（未填零）`}).join('；');$('allOffline').append(boot);$('allOffline').append(h,table(['K','Γ','分母','SDR接受/不可行','ZF接受/不可行','SSP驻点/未决','SSP QoS/驻点','QoS/全部有限','共同子集'],cells.map(c=>{let {sdr,zf,ssp}=c.methods;return[c.K,c.gamma_db,c.denominator,`${sdr.accepted}/${sdr.certified_infeasible}`,`${zf.accepted}/${zf.certified_infeasible}`,`${ssp.accepted}/${ssp.unresolved}`,`${ssp.actual_qos_pass_among_accepted}/${ssp.accepted}`,`${ssp.actual_qos_pass_all_selected_finite}/${ssp.selected_finite_count}`,`${c.common_accepted_channel_ids.length}/${c.denominator}`]})));
 let full=document.createElement('details'),summary=document.createElement('summary');summary.textContent=`全部 ${load.rows.length} 条方法结果：实际QoS、未决与失败（按需展开）`;full.append(summary);full.addEventListener('toggle',()=>{if(!full.open||full.dataset.loaded)return;full.dataset.loaded='yes';full.append(table(['K','信道','Γ','方法','状态','QoS','最小SINR dB','逐用户线性SINR','相对短缺','尝试数'],load.rows.map(r=>[r.K,r.trial,r.gamma_db,r.method,r.state,qosLabel(r.metrics),fmt(r.metrics?.min_sinr_db),r.metrics?.sinr_linear.map(fmt).join(', ')||'无波束',fmt(r.metrics?.relative_sinr_shortfall),r.attempt_count])));});$('allOffline').append(full);let attempts=document.createElement('details'),title=document.createElement('summary');title.textContent=`全部 ${load.attempts.optimizer.length+load.attempts.phaseI.length} 条尝试/证书：上限、失败门限、补救阶段与phase-I`;attempts.append(title);attempts.addEventListener('toggle',()=>{if(!attempts.open||attempts.dataset.loaded)return;attempts.dataset.loaded='yes';attemptLedger(attempts,[...load.attempts.optimizer,...load.attempts.phaseI]);});$('allOffline').append(attempts);}
-try{
+// The default SDR/ZF lesson does not need the optional SSP historical datasets.
+// Keep their original bytes, schemas and hashes; fetch only after an explicit expansion.
+const extension=document.getElementById('ssp-extension');
+const archive=document.createElement('details');archive.id='ssp-history-panel';
+const archiveTitle=document.createElement('summary');archiveTitle.textContent='可选：SSP 扩展与历史证据（首次展开下载约 9.39 MB）';
+extension.before(archive);archive.append(archiveTitle,extension);
+const loadControls=document.createElement('p');
+const retry=document.createElement('button');retry.type='button';retry.textContent='加载 SSP 输入与历史证据';
+const cancelLoad=document.createElement('button');cancelLoad.type='button';cancelLoad.textContent='取消证据下载';cancelLoad.disabled=true;
+loadControls.append(retry,cancelLoad);$('status').before(loadControls);
+$('status').textContent='尚未加载历史大文件；上方默认 SDR/ZF 实验可独立运行。展开本节后按原始摘要校验证据。';
+async function loadEvidence(){
+ if(stopped||data&&load)return;
+ if(loading)return loading;
+ loadAbort=new AbortController();const signal=loadAbort.signal;
+ retry.disabled=true;cancelLoad.disabled=false;
+ $('status').textContent='正在下载约 9.39 MB 的 SSP 历史输入并校验 SHA-256；可取消，不影响上方默认实验。';
+ loading=(async()=>{try{
  const {default:pins}=await import('./teaching-pins.mjs');
- async function checked(name){const pin=pins[name];if(!pin)throw Error('缺少来源绑定');const r=await fetch(new URL(name,import.meta.url),{signal:loadAbort.signal});if(!r.ok)throw Error(`HTTP ${r.status}`);const bytes=await r.arrayBuffer();if(stopped)throw Error('页面已停止');const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(stopped)throw Error('页面已停止');if(hash!==pin.sha256)throw Error('证据 SHA-256 不匹配');const value=JSON.parse(new TextDecoder().decode(bytes));if(value.schema!==pin.schema)throw Error('证据 schema 不匹配');if(pin.archive_sha256&&value.archive_sha256!==pin.archive_sha256)throw Error('证据归档不匹配');Object.defineProperty(value,'source_bytes_sha256',{value:hash});return value;}
- const inputs=await Promise.all(['ssp-data.json','user-load-data.json'].map(checked));if(stopped)throw Error('页面已停止');[data,load]=inputs;
- if(load.schema!=='isac-user-load-teaching-v2-uniform-recomputed'||load.provenance?.kind!=='new-uniform-recomputation-not-recovered-original')throw Error('新研究来源不匹配');
- channels();clear();$('status').textContent='新计算证据已校验；SSP在独立Worker中真实求解，SDR/ZF为预计算；不声称精确轨迹复现';evidence();
-}catch(e){data=null;load=null;$('run').disabled=true;$('export').disabled=true;if(!stopped)$('status').textContent='加载失败：'+e.message;}
+ async function checked(name){const pin=pins[name];if(!pin)throw Error('缺少来源绑定');const r=await fetch(new URL(name,import.meta.url),{signal});if(!r.ok)throw Error(`HTTP ${r.status}`);const bytes=await r.arrayBuffer();if(stopped||signal.aborted)throw Error('下载已取消');const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(stopped||signal.aborted)throw Error('下载已取消');if(hash!==pin.sha256)throw Error('证据 SHA-256 不匹配');const value=JSON.parse(new TextDecoder().decode(bytes));if(value.schema!==pin.schema)throw Error('证据 schema 不匹配');if(pin.archive_sha256&&value.archive_sha256!==pin.archive_sha256)throw Error('证据归档不匹配');Object.defineProperty(value,'source_bytes_sha256',{value:hash});return value;}
+ const inputs=await Promise.all(['ssp-data.json','user-load-data.json'].map(checked));if(stopped||signal.aborted)throw Error('下载已取消');
+ const [nextData,nextLoad]=inputs;
+ if(nextLoad.schema!=='isac-user-load-teaching-v2-uniform-recomputed'||nextLoad.provenance?.kind!=='new-uniform-recomputation-not-recovered-original')throw Error('新研究来源不匹配');
+ data=nextData;load=nextLoad;
+ channels();clear();$('status').textContent='证据已校验；SSP 在独立 Worker 中真实求解，SDR/ZF 为预计算参照。再次展开不会重复下载。';evidence();
+ }catch(e){const cancelled=signal.aborted;data=null;load=null;loadAbort?.abort();$('run').disabled=true;$('export').disabled=true;if(!stopped)$('status').textContent=cancelled?'证据下载已取消或中断；可点击加载重试。':'加载失败：'+e.message+'；可点击加载重试。';
+ }finally{loading=null;retry.disabled=stopped||!!(data&&load);cancelLoad.disabled=true;}})();
+ return loading;
+}
+retry.onclick=loadEvidence;cancelLoad.onclick=()=>loadAbort?.abort();
+archive.addEventListener('toggle',()=>{if(archive.open)loadEvidence();});
+function openLinkedArchive(){if(location.hash.startsWith('#ssp-')){archive.open=true;loadEvidence();}}
+window.addEventListener('hashchange',openLinkedArchive);openLinkedArchive();
+
+window.addEventListener('pageshow',event=>{if(!event.persisted)return;stopped=false;retry.disabled=!!(data&&load)||!!loading;if(data&&load){clear();$('status').textContent='页面已恢复；已校验证据保留，请重新运行 SSP。';}else $('status').textContent='页面已恢复；请点击加载 SSP 输入与历史证据。';});
