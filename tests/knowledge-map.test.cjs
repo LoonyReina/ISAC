@@ -247,7 +247,7 @@ test('mutual assistance preserves its native theory entry and links only the bou
  const choices=tree.querySelector('.map-case-paths').querySelectorAll('a');a.equal(choices.length,1);a.equal(choices[0].attrs.href,'radar-beam-decision.html#mechanism');resolve(choices[0].attrs.href);
  const edges=k.edges.filter(e=>e.source===n.id||e.target===n.id);a.equal(edges.length,1);a.equal(edges[0].target,'direction:networks');a.equal(edges[0].type,'research_entry');a.equal(edges[0].scientificClaim,false);
  const runtime=setup();runtime.search('互助');a.equal(runtime.results.children.length,1);runtime.click(runtime.results.querySelector('button'));a.equal(runtime.location.hash,'#map-node-mutual-assistance');
- a.ok(read('index.html').includes(`<strong>${k.nodes.length}</strong> 个核心概念`));
+ a.ok(read('index.html').includes(`<strong>${registry.knowledgeMap.nodes.length}</strong> 个核心概念`));
 });
 
 test('generated lesson index has exactly one canonical native link per registered unit, including case-free units',()=>{
@@ -256,7 +256,7 @@ test('generated lesson index has exactly one canonical native link per registere
  for(const u of registry.units){const c=registry.cases.find(c=>c.unit===u.id),entry=index.find(e=>e.dataset.mapUnit===u.id);a.equal(entry.textContent,u.title);a.equal(entry.attrs.href,c?.learningEntry||u.href);resolve(entry.attrs.href);a.equal(entry.hasAttribute('data-map-node'),false);}
  a.ok(registry.units.some(u=>!registry.cases.some(c=>c.unit===u.id)));
  a.equal(h.map.querySelectorAll('[data-map-unit]').length,0,'inert template is not a second visible directory');
- a.equal(h.map.querySelectorAll('[data-map-entry]').length,40);
+ a.equal(h.map.querySelectorAll('[data-map-entry]').length,registry.knowledgeMap.nodes.length+registry.directions.length);
 });
 
 test('exact and partial Chinese and English unit titles expose direct learning entries before relationship results',()=>{
@@ -291,7 +291,7 @@ test('search count includes all typed matches without a hidden cap or repeated u
  const h=setup({html:render(r)});h.search(word);
  const lessons=h.results.querySelectorAll('a'),relations=h.results.querySelectorAll('button');
  const lessonCount=r.units.length,relationCount=r.knowledgeMap.nodes.length+r.directions.length;
- a.equal(lessonCount,registry.units.length);a.equal(relationCount,40);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
+ a.equal(lessonCount,registry.units.length);a.equal(relationCount,registry.knowledgeMap.nodes.length+registry.directions.length);a.equal(lessons.length,lessonCount);a.equal(relations.length,relationCount);a.equal(h.results.children.length,lessonCount+relationCount);
  a.equal(new Set(lessons.map(l=>l.dataset.mapUnit)).size,lessonCount);a.equal(h.status.textContent,`找到 ${lessonCount+relationCount} 个入口（${lessonCount} 个课程入口，${relationCount} 个概念或方向）；基础知识与论文阅读入口仍在首页。`);
  a.deepEqual(h.results.children.slice(0,lessonCount).map(li=>li.querySelector('a').dataset.mapUnit),r.units.map(u=>u.id));
  a.ok(h.groups.some(g=>g.textContent.includes(`${lessonCount} 个实验 · ${r.cases.length} 个专题`)));
@@ -329,7 +329,7 @@ test('mixed cached HTML without the lesson template retains original concept and
 test('the original four-ID selection reuses existing concept, unit, prerequisite and typed paper relations without adding edges or counts',()=>{
  const selection={nodeId:'known-pilots',unitId:'pilot',guideId:'ofdm-passive-atomic-errors-2017',nextGuideId:'zak-otfs-semiblind-offgrid-2026'};
  a.deepEqual(registry.knowledgeMap.progressions[0],selection);a.equal(registry.knowledgeMap.progressions.length,5);
- a.deepEqual([registry.knowledgeMap.nodes.length,registry.directions.length,withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,require('./helpers/pilot-pattern-preservation.cjs').maybeWithoutGuides(historyGuideData).cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
+ a.deepEqual([historyRegistry.knowledgeMap.nodes.length,historyRegistry.directions.length,withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,require('./helpers/pilot-pattern-preservation.cjs').maybeWithoutGuides(historyGuideData).cards.length,guideData.cards.filter(c=>c.visualTrace).length],[32,8,28,15,20,20]);
  const n=registry.knowledgeMap.nodes.find(n=>n.id===selection.nodeId),u=registry.units.find(u=>u.id===selection.unitId),g=guideData.cards.find(g=>g.id===selection.guideId),next=guideData.cards.find(g=>g.id===selection.nextGuideId);
  a.ok(n.unitRefs.includes(u.id));a.ok(g.prerequisites.some(p=>p.href===u.href));a.equal(next.contextTrail.links.find(e=>e.guideId===g.id).relationType,'problem-link');
  const h=template(render(),'known-pilots'),ladder=parse(h).querySelector('.map-progression');
@@ -345,7 +345,7 @@ test('the relevant native group contains the identical no-JS ladder while enhanc
  a.equal((h.match(/<noscript>/g)||[]).length,4);a.ok(h.includes('<noscript><div class="map-progression-fallback">'+ladder+'</div></noscript>'));
  const nojs=parse(h),fallback=nojs.querySelectorAll('noscript').find(e=>e.closest('.map-group').dataset.mapGroup==='observation');a.equal(fallback.closest('.map-group').dataset.mapGroup,'observation');a.equal(fallback.querySelectorAll('a').filter(e=>e.attrs.href.startsWith('reading.html#guide-')).length,2);
  a.ok(fallback.querySelectorAll('a').every(e=>!e.hidden));a.equal(fallback.querySelector('details').open,false);a.equal(new Set(ids(h)).size,ids(h).length);
- const runtime=setup({hash:'#map-node-known-pilots'});a.ok(runtime.panel.querySelector('.map-progression'));a.equal(runtime.map.querySelectorAll('[data-map-entry]').length,40);
+ const runtime=setup({hash:'#map-node-known-pilots'});a.ok(runtime.panel.querySelector('.map-progression'));a.equal(runtime.map.querySelectorAll('[data-map-entry]').length,registry.knowledgeMap.nodes.length+registry.directions.length);
 });
 test('ladder text derives from source records, escapes arbitrary prose and keeps fixed link identities',()=>{
  const r=structuredClone(registry),d=structuredClone(guideData),attack='A <img src=x onerror=bad()> & "B" </script>';

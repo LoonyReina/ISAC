@@ -24,7 +24,7 @@ test('two-station detection adds one canonical lesson within the existing eight 
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(x=>x[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'networks');
  a.equal(c.learningEntry,p.path+'#question');a.equal(u.href,p.path+'#experiment');a.equal(c.paper,p.path+'#paper');a.equal(c.next,p.path+'#practice');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,36);a.equal(r.directions.length,8);
 });
 
 test('existing lessons, cases, pages, unrelated directions and legacy links match the current integration snapshot',()=>{
@@ -51,12 +51,12 @@ test('networks preserves its clock beginner route while adding six honest detect
  for(const l of d.levels)for(const item of l.items)if(item.status==='proposed')a.ok(!item.href);
 });
 
-test('matched, detection and budget gain a lesson while all concept entries and edges stay intact',()=>{
+test('matched, detection and budget gain a lesson while all original concept entries and edges stay intact beside prerequisite additions',()=>{
  const nodes=r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(u.id));a.deepEqual(nodes.map(n=>n.id),['matched','detection','budget']);
  for(const n of nodes)a.equal(n.unitRefs.filter(id=>id===u.id).length,1);
  a.equal(nodes[0].entryUnitRef,'matched');a.equal(nodes[1].entryUnitRef,'cfar');a.equal(nodes[2].href,'foundations.html#codesign');
- a.equal(hash(r.knowledgeMap.nodes.map(({id,entryUnitRef,href})=>({id,entryUnitRef,href}))),'99e8da7877af455b1943b0be1e56113a218f0c00f59d85f13d32ec07923279d2');
- a.equal(hash(r.knowledgeMap.edges),'3fea85e3d66a240d1680ecb1dff3d4028f49a7530d9ceab71308941111f8d83f');
+ a.equal(hash(r.knowledgeMap.nodes.slice(0,32).map(({id,entryUnitRef,href})=>({id,entryUnitRef,href}))),'99e8da7877af455b1943b0be1e56113a218f0c00f59d85f13d32ec07923279d2');
+ a.equal(hash(r.knowledgeMap.edges.slice(0,69)),'3fea85e3d66a240d1680ecb1dff3d4028f49a7530d9ceab71308941111f8d83f');
  a.deepEqual(r.knowledgeMap.nodes.find(n=>n.id==='synchronization').unitRefs,['clock']);
 });
 
@@ -108,7 +108,7 @@ test('source guide and real page anchors preserve prerequisites without fabricat
 test('generated portals expose real learning and experiment links, accurate counts and the unchanged influence directory',()=>{
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes(`href="${u.href}"`),file);
  const home=read('index.html'),reading=read('reading.html'),page=read(p.path);
- a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(reading.includes(r.cases.length+' 个已有主题'));
+ a.ok(home.includes(`href="${c.learningEntry}"`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes(`<strong>${r.knowledgeMap.nodes.length}</strong> 个核心概念`));a.ok(reading.includes(r.cases.length+' 个已有主题'));
  a.equal(article(reading,'ref-DISTRIBUTED'),article(read('site/content-reading.html'),'ref-DISTRIBUTED'));
  a.equal((reading.match(/class="influence-card"/g)||[]).length,9);a.match(reading,/深度交互已接入：8 \/ 9 篇/);
  a.ok(page.includes('href="foundations.html" aria-current="location"'));a.ok(page.includes('href="reading.html?topic=distributed-detection#notebook"'));

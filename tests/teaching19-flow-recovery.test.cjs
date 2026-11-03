@@ -92,7 +92,8 @@ test('causal native UI and real controller complete compare, infeasible run, inv
 test('reordered study steps reject old positional records rather than silently resuming another stage',()=>{
  const {newRecord,readRecord}=require(path.join(dir,'engine.js'));
  for(const lesson of [...box.Guided19Data.lessons,...(box.Guided19Data.variants||[])]){
-  assert.equal(lesson.recordVersion,'study-20261103-v1');
+  const hasAlgorithmBridge=['otfs-joint-estimation-2020','ofdm-passive-atomic-errors-2017'].includes(lesson.id);
+  assert.equal(lesson.recordVersion,hasAlgorithmBridge?'algorithm-bridges-20261103-v1':'study-20261103-v1');
   const record=newRecord(lesson);record.step=Math.min(3,lesson.steps.length-1);record.visited=[record.step];record.attempted=[record.step];
   assert.equal(readRecord(JSON.stringify(record),lesson).step,record.step);
   record.version='feedback-20261025-v1';

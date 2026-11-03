@@ -16,7 +16,7 @@ test('shared-array has one canonical mechanism in the existing eight-direction f
  for(const [items,key,value]of [[r.cases,'id',c.id],[r.units,'id',u.id],[r.pages,'path',p.path]])a.equal(items.filter(i=>i[key]===value).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'spatial');
  a.equal(c.learningEntry,'shared-array.html#question');a.equal(u.href,'shared-array.html#experiment');a.equal(c.paper,'shared-array.html#paper');a.equal(c.next,'shared-array.html#boundaries');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,36);a.equal(r.directions.length,8);
 });
 
 test('shared-array provides all six learning layers without replacing existing beginner entries',()=>{

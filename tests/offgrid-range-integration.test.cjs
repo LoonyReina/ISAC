@@ -24,7 +24,7 @@ function resolve(href){
 
 test('off-grid range adds one case-free processing mechanism with honest fixed totals',()=>{
  a.ok(u&&p);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
- a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(historyRegistry).pages.length],[28,15,32,8,24]);
+ a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,r.knowledgeMap.nodes.length,r.directions.length,withoutGCSAGERegistry(historyRegistry).pages.length],[28,15,36,8,24]);
  a.equal(u.title,'离格目标与测距网格');a.equal(u.question,'同一个目标，网格更密就一定测得更准吗？');a.equal(p.title,u.question);
  a.equal(u.group,'processing');a.equal(u.primaryDirectionId,'receiver');a.equal(p.stage,'foundations');
  a.equal(u.href,'offgrid-range.html#experiment');a.equal(p.next,'reading.html?topic=offgrid-range#notebook');a.equal(p.nextLabel,'记录一次同观测的测距检验');

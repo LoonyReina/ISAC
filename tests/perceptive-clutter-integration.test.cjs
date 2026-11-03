@@ -374,7 +374,7 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'receiver');
  a.equal(c.learningEntry,'perceptive-clutter.html#question');a.equal(u.href,'perceptive-clutter.html#experiment');a.equal(c.paper,'perceptive-clutter.html#source');a.equal(c.next,'perceptive-clutter.html#boundary');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,32);a.equal(r.directions.length,8);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.knowledgeMap.nodes.length,36);a.equal(r.directions.length,8);
  const d=require('./helpers/ofdm-ici-preservation.cjs').withoutIciRegistry(historyRegistry).directions.find(d=>d.id==='receiver');a.deepEqual(d.primaryCaseIds,[c.id]);a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'foundations.html#matched');
  for(const [level,anchor]of [['intuition','question'],['model','model'],['experiment','experiment'],['papers','source'],['limits','boundary'],['reproduction','validation']]){
   const items=d.levels.find(l=>l.id===level).items.filter(i=>i.href==='perceptive-clutter.html#'+anchor);
@@ -386,7 +386,7 @@ test('perceptive clutter registers one digital-preprocessing lesson in the exist
 test('all original beginner entries and proposed work survive the narrowly scoped new concept',()=>{
  const originalIds=originalBeginnerRoutes.map(([id])=>id);
  a.deepEqual(r.knowledgeMap.nodes.filter(n=>originalIds.includes(n.id)).map(n=>[n.id,n.entryUnitRef??null,n.href??null]),originalBeginnerRoutes);
- const added=r.knowledgeMap.nodes.filter(n=>!originalIds.includes(n.id));a.equal(added.length,1);a.equal(added[0].id,'background-subtraction');a.equal(added[0].groupId,'inference');a.equal(added[0].href,c.learningEntry);
+ const added=r.knowledgeMap.nodes.filter(n=>!originalIds.includes(n.id));a.deepEqual(added.map(n=>n.id),['background-subtraction','maximum-likelihood','covariance-psd','rank-subspace','sdr-kkt']);a.equal(added[0].id,'background-subtraction');a.equal(added[0].groupId,'inference');a.equal(added[0].href,c.learningEntry);
  a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(u.id)).map(n=>n.id),['doppler','channels','background-subtraction']);
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(ref=>ref===u.id).length<=1);
  const pending=r.directions.flatMap(d=>d.levels.flatMap(l=>l.items.filter(i=>i.status==='proposed').map(item=>({direction:d.id,level:l.id,item}))));a.deepEqual(pending,originalProposedWork);
@@ -438,7 +438,7 @@ test('new lesson prerequisites, six sections and generated portals resolve throu
  for(const key of ['HEADER','CONTEXT','NEXT'])a.equal((html.match(new RegExp('<!-- SITE:'+key+':START -->','g'))||[]).length,1);
  a.ok(html.includes('href="foundations.html" aria-current="location"'));a.ok(html.includes('href="reading.html?topic=perceptive-clutter#notebook"'));
  for(const file of ['index.html','experiments.html','reading.html'])a.ok(read(file).includes('href="'+u.href+'"'),file);a.ok(read('index.html').includes('href="'+c.learningEntry+'"'));
- const home=read('index.html');a.ok(home.includes('<strong>32</strong> 个核心概念'));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes('<strong>8</strong> 个研究方向'));
+ const home=read('index.html');a.ok(home.includes(`<strong>${r.knowledgeMap.nodes.length}</strong> 个核心概念`));a.ok(home.includes(`<strong>${r.units.length}</strong> 个教学入口`));a.ok(home.includes('<strong>8</strong> 个研究方向'));
 });
 
 test('the perceptive paper card is usable while the unavailable DeepSense card and the split-record warning remain honest',()=>{

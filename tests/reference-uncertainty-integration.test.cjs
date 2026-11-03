@@ -27,7 +27,7 @@ function region(html,key){
 
 test('reference uncertainty adds one case-free mechanism and one page without inflating source evidence',()=>{
  const historyRegistry=JSON.parse(readForHistory('site/registry.json'));
- a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,withoutGCSAGERegistry(historyRegistry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,32]);
+ a.deepEqual([withoutGCSAGERegistry(historyRegistry).units.length,require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,withoutGCSAGERegistry(historyRegistry).pages.length,registry.directions.length,registry.knowledgeMap.nodes.length],[28,15,24,8,36]);
  a.deepEqual(registry.units.find(u=>u.id===unit.id),unit);a.deepEqual(require('./helpers/two-section-navigation-preservation.cjs').withoutRegistry(historyRegistry).pages.find(p=>p.path===page.path),page);
  a.ok(!registry.cases.some(c=>c.unit===unit.id));a.ok(!Object.hasOwn(page,'case'));
  a.ok(!registry.knowledgeMap.nodes.some(n=>n.id===unit.id||n.unitRefs.includes(unit.id)));

@@ -125,10 +125,11 @@ function install(doc,lesson){
    const users=doc.querySelector('#cm-users'),userTable=users&&users.closest('.cm-table-wrap');
    if(userTable)move(userTable,main);
    showCrb=step=>{
-    const communication=(step?.viewSelectors||[]).includes('#cm-sinr-chart');
+    const selectors=[...(step?.viewSelectors||[]),...(step?.viewMetrics||[])];
+    const communication=selectors.includes('#cm-sinr-chart');
     if(sinrFigure){(communication?more:main).appendChild(figure);(communication?main:more).appendChild(sinrFigure);}
     if(boundCard)(communication?more:main).appendChild(boundCard);
-    if(userTable)(communication?main:more).appendChild(userTable);
+    if(userTable)(communication||selectors.includes('#cm-users')?main:more).appendChild(userTable);
    };
   }else{
    const pattern=doc.querySelector('#jbo-pattern'),figure=pattern&&pattern.closest('figure'),cards=root.querySelector('.jbo-results');
