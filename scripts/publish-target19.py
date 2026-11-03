@@ -42,6 +42,28 @@ def local(base,href):
     p=posixpath.normpath(posixpath.join(posixpath.dirname(base),unquote(u.path))) if u.path else base
     if p.startswith('../') or p.startswith('/'):raise ValueError('Local URL escapes project: '+href)
     return p,unquote(u.fragment)
+def repair_projected_navigation(page, text):
+    """Repair only static navigation after omitted links have been removed."""
+    import posixpath
+    parsed=Elements(text); replacements=[]
+    for node in parsed.nodes:
+        if node['tag']=='aside' and 'site-next' in node['attrs'].get('class','').split():
+            links=[child for child in parsed.nodes if child['tag']=='a' and child['attrs'].get('href','').strip() and node['openEnd']<=child['start']<node['end']]
+            if not links:
+                end=text.rfind('</aside',node['openEnd'],node['end'])
+                href=posixpath.relpath('reading.html',posixpath.dirname(page) or '.')
+                replacements.append((end,end,'<a href="'+href+'">返回论文阅读</a>'))
+        if node['tag']!='p':continue
+        parent=node['parent']
+        reference_navigation=(page=='reference-uncertainty.html' and not node['attrs'] and parent is not None and parent['attrs'].get('id')=='limits')
+        atomic_navigation=(page=='atomic-ofdm-receiver.html' and node['attrs']=={'class':'ar-evidence'})
+        if reference_navigation or atomic_navigation:
+            # Require an actual orphan separator. Empty/dynamic nodes and content stay intact.
+            inner=text[node['openEnd']:text.rfind('</p',node['openEnd'],node['end'])]
+            if '·' in inner and re.fullmatch(r'[\s·]*',inner):
+                replacements.append((node['start'],node['end'],''))
+    return edits(text,replacements)
+
 def shell(title,body,scripts=''):
     return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | ISAC</title><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="research-tree.css">'+scripts+'</head><body><header class="site-header"><a class="site-brand" href="index.html">ISAC 交互学习</a><nav class="site-nav"><a href="foundations.html">基础知识</a><a href="reading.html">论文阅读</a></nav></header><main class="site-main" id="site-main">'+body+'</main></body></html>\n'
 
@@ -307,7 +329,7 @@ def main():
                     tag=s[n['start']:n['openEnd']];tag=re.sub(r'href=([\"\'])(.*?)\1','href="'+citations[v[1]]+'"',tag)
                     rs.append((n['start'],n['openEnd'],tag))
                 else:rs.append((n['start'],n.get('end',n['openEnd']),''))
-        contents[p]=edits(s,rs)
+        contents[p]=repair_projected_navigation(p,edits(s,rs))
         contents[p]=re.sub(r'<p class="sources">原文接力：[\s·、；，]*</p>','',contents[p])
         contents[p]=re.sub(r'<li>\s*</li>','',contents[p])
         if p=='index.html':contents[p]=contents[p].replace('已经有一篇论文或一个疑问？<br></p>','已经有一篇论文或一个疑问？<br><a href="reading.html">查看目标论文教学 →</a></p>')

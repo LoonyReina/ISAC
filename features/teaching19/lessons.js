@@ -240,3 +240,9 @@ for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19D
  const nf=get('supplement-case-near-field');
  nf.steps.find(s=>s.role==='bridge').viewMetrics=[];
 })(globalThis.Guided19Data);
+
+// Only the communication-first feedback preview is narrowed; full saved evidence is unchanged.
+(function(data){
+ const crb=data.lessons.find(l=>l.id==='crb');
+ crb.steps.find(s=>s.role==='read').feedbackMetricSelectors=['#cm-users','#cm-power','#cm-current-label'];
+})(globalThis.Guided19Data);

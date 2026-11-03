@@ -59,6 +59,32 @@ class Projection(unittest.TestCase):
   self.assertIn('href="#learning-route"',page)
   for href in re.findall(r'href="([^"]+)"',M.learning_route()):self.assertIn('href="'+href+'"',page)
   self.assertIn('不等于整篇论文复现',page)
+ def test_projected_empty_next_falls_back_and_static_separators_only_are_removed(self):
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html']:
+   self.cfg['basicPages'].append(page)
+   self.add(page,'<title>Fixture</title><aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="omitted.html">Omitted</a></aside><aside class="site-next"><a href="reading.html">Existing</a></aside><section id="limits"><p> · </p><p id="dynamic-status"></p><p> · teaching content</p></section><p class="ar-evidence"> ·  ·  · </p><p id="dynamic-separator"> · </p>')
+  out=self.run_projection()
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html']:
+   text=(out/page).read_text()
+   self.assertEqual(text.count('返回论文阅读'),1)
+   self.assertIn('<a href="reading.html">返回论文阅读</a></aside>',text)
+   self.assertIn('<aside class="site-next"><a href="reading.html">Existing</a></aside>',text)
+   self.assertIn('<p id="dynamic-status"></p>',text)
+   self.assertIn('<p id="dynamic-separator"> · </p>',text)
+   self.assertIn('<p> · teaching content</p>',text)
+   self.assertEqual(M.repair_projected_navigation(page,text),text)
+  self.assertNotIn('<section id="limits"><p> · </p>',(out/'reference-uncertainty.html').read_text())
+  self.assertIn('<p class="ar-evidence"> ·  ·  · </p>',(out/'reference-uncertainty.html').read_text())
+  self.assertNotIn('<p class="ar-evidence">',(out/'atomic-ofdm-receiver.html').read_text())
+  self.assertIn('<section id="limits"><p> · </p>',(out/'atomic-ofdm-receiver.html').read_text())
+ def test_navigation_cleanup_preserves_empty_dynamic_nodes_and_nested_paths(self):
+  dynamic='<section id="limits"><p></p><p data-live="true"> · </p></section><p class="ar-evidence" id="live"></p>'
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html','other.html']:
+   self.assertEqual(M.repair_projected_navigation(page,dynamic),dynamic)
+  nested=M.repair_projected_navigation('nested/course/index.html','<aside class="site-next"></aside>')
+  self.assertIn('href="../../reading.html"',nested)
+  existing='<aside class="site-next"><a href="https://example.org/paper">Paper</a></aside>'
+  self.assertEqual(M.repair_projected_navigation('index.html',existing),existing)
  def test_reference_uncertainty_source_names_papers_and_real_lessons(self):
   page=(ROOT/'content/pages/reference-uncertainty.html').read_text()
   source=page.split('<section id="sources"')[1].split('</section>')[0]

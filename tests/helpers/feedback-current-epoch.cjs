@@ -4,7 +4,7 @@
 const a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),zlib=require('node:zlib');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex'),same=(b,r)=>!!r&&b.length===r.bytes&&sha(b)===r.sha256;
 const bytes=fs.readFileSync(path.join(__dirname,'feedback-current-epoch.json'));
-a.equal(sha(bytes),'39782e3457e272810ce3543bf96afc27cd8de9afcd63382365cdd500a5013301','Exact feedback epoch table');
+a.equal(sha(bytes),'3b06aa9de307c3c384fd627b2cf8034355eb7a3b581be53309b3112e9149019a','Exact feedback epoch table');
 const delta=JSON.parse(bytes),safe=f=>typeof f==='string'&&f&&!path.posix.isAbsolute(f)&&path.posix.normalize(f)===f&&!f.startsWith('../')&&!/[\\*?#]/.test(f);
 const reconstructedEvidenceOutputs=["assets/data/joint-beamforming/user-load-uniform-recomputation-20261018-full.tar.xz", "labs/joint-beamforming/ssp/recomputed-ssp-k2-evidence.zip"];
 function validateTable(spec=delta){

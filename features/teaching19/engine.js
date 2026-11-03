@@ -32,6 +32,9 @@ function prerequisiteLinks(lesson){
  };
  return (choices[lesson.id]||[]).map(key=>({href:links[key][0],text:links[key][1]}));
 }
+// Display-only step overrides never change the complete evidence saved in run records.
+function feedbackMetricSelectorsForStep(lesson,step){return step?.feedbackMetricSelectors??lesson.feedbackMetricSelectors??[];}
+function collectMetricEvidence(doc,selectors){return selectors.map(selector=>{const e=doc.querySelector(selector);return {selector,text:(e?.textContent||'').replace(/\s+/g,' ').trim().slice(0,8000)};}).filter(m=>m.text);}
 function isClickable(e){return e&&((e.tagName==='BUTTON')||(e.tagName==='INPUT'&&['button','submit','reset','radio','checkbox'].includes(e.type)));}
 function installGroupViews(doc,policy){
  const groups=(policy.viewGroups||[]).map(g=>{const parent=doc.querySelector(g.parentSelector);if(!parent)throw Error('Missing view parent '+g.parentSelector);const members=g.members.map(m=>{const anchor=doc.querySelector(m.anchorSelector),node=m.closest?anchor?.closest(m.closest):anchor;if(!node||node.parentElement!==parent)throw Error('Unsafe view ancestry '+m.anchorSelector);return {node,marker:null};});return {...g,parent,members,details:null};});let active=false;
@@ -120,17 +123,18 @@ function mount(doc,lesson,base='/'){
  const importLabel=n('label','导入本课学习记录（仅历史，不替换实验参数）'),importFile=n('input');importFile.type='file';importFile.accept='.json,application/json';importLabel.append(importFile);learning.append(importLabel);
  importFile.addEventListener('change',async()=>{try{const file=importFile.files?.[0];if(!file)return;if(file.size>1000000)throw Error('文件过大，请选择本课导出的轻量记录。');const restored=readRecord(await file.text(),lesson);record=restored;index=record.step;attempted.clear();record.attempted.forEach(i=>attempted.add(i));if(record.prediction===null)delete panel.dataset.prediction;else panel.dataset.prediction=String(record.prediction);reflection.value=record.note;currentRun=null;const state=adapter.getState();lastToken=adapter.ready()?JSON.stringify([state.serial,state.revision,state.submittedRevision]):null;learningStatus.textContent='已导入历史学习记录；未修改实验输入，也未重新计算。';saveRecord();render();}catch(e){learningStatus.textContent=e.message;}finally{importFile.value='';}});
  learning.addEventListener('toggle',()=>{if(learning.open)showRecord();});
- function collectMetrics(){return (lesson.feedbackMetricSelectors||[]).map(selector=>{const e=doc.querySelector(selector);return {selector,text:(e?.textContent||'').replace(/\s+/g,' ').trim().slice(0,8000)};}).filter(m=>m.text);}
+ function collectMetrics(){return collectMetricEvidence(doc,lesson.feedbackMetricSelectors||[]);}
  function updateFeedback(){
  const ready=adapter.ready(),state=adapter.getState(),token=ready?JSON.stringify([state.serial,state.revision,state.submittedRevision]):null;
  if(ready&&token!==lastToken){lastToken=token;currentRun=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);record.observations.push({runId:currentRun,at:new Date().toISOString(),parameters:state.parameters||[],metrics:collectMetrics(),scientificSuccess:'not inferred'});record.observations=record.observations.slice(-40);saveRecord();}
  if(!ready){currentRun=null;lastToken=null;}
  const step=lesson.steps[index];feedback.hidden=['orient','intro','predict','run'].includes(step.role);
- const signature=JSON.stringify([ready,record.prediction,collectMetrics(),step.role]);if(feedback.dataset.signature===signature)return;feedback.dataset.signature=signature;
+ const visibleMetrics=collectMetricEvidence(doc,feedbackMetricSelectorsForStep(lesson,step));
+ const signature=JSON.stringify([ready,record.prediction,visibleMetrics,step.role]);if(feedback.dataset.signature===signature)return;feedback.dataset.signature=signature;
  const hasPrediction=lesson.steps.some(s=>s.role==='predict');
  feedback.replaceChildren(n('h4',hasPrediction?'回看原预测':'解释本次证据'));
  if(hasPrediction)feedback.append(n('p',record.prediction===null?'未作预测':lesson.predictionQuestion.options[record.prediction]),n('p',predictionFeedback(lesson,record.prediction)));
- if(ready){feedback.append(n('p','本次实际证据（程序返回不等于科学成功）：'));const metrics=collectMetrics();for(const m of metrics.slice(0,2)){const a=n('a',m.text.length>420?m.text.slice(0,420)+'…（查看完整指标）':m.text);a.href=m.selector.startsWith('#')?m.selector:'#';a.addEventListener('click',e=>{e.preventDefault();const target=doc.querySelector(m.selector);if(target){for(let p=target.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;target.scrollIntoView({block:'center'});}});feedback.append(a,n('br'));}if(!metrics.length)feedback.append(n('p','本次未提供可读指标。请先检查原始状态，不能据此支持预测。'));}
+ if(ready){feedback.append(n('p','本次实际证据（程序返回不等于科学成功）：'));const metrics=visibleMetrics;for(const m of metrics.slice(0,2)){const a=n('a',m.text.length>420?m.text.slice(0,420)+'…（查看完整指标）':m.text);a.href=m.selector.startsWith('#')?m.selector:'#';a.addEventListener('click',e=>{e.preventDefault();const target=doc.querySelector(m.selector);if(target){for(let p=target.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;target.scrollIntoView({block:'center'});}});feedback.append(a,n('br'));}if(!metrics.length)feedback.append(n('p','本次未提供可读指标。请先检查原始状态，不能据此支持预测。'));}
  else {feedback.append(n('p','尚无与当前输入绑定的新结果。历史摘录不代表本页已经重算。'));const runIndex=lesson.steps.findIndex(s=>s.role==='run');if(runIndex>=0)feedback.append(button('回到运行步骤，重建当前结果',()=>{index=runIndex;prepared=false;render();}));}
  feedback.append(n('p',lesson.steps.some(s=>s.role==='compare')?'先保留本次读数，再完成“只改一项”的对照。条件性预测不凭一个结果判定对错。':'请结合本次约束、状态与指标解释结论；程序返回不代表数值接受或科学成功。'));
  }
@@ -171,5 +175,5 @@ function mount(doc,lesson,base='/'){
  }catch(error){observer?.disconnect();rollbackListeners.forEach(f=>f());try{views?.restore();}catch{}restoreOriginalTree(rollbackTree);adapter.dispose();delete host.dataset.guided19;throw error;}
 }
 function start(doc,data){validateRuntime(data);const base=siteBase(doc);const matches=resolveLessons(data,doc.defaultView.location,base);if(matches.length>1)throw Error('Ambiguous exact19 route');if(matches.length===1){try{global.guided19=mount(doc,matches[0],base);}catch(e){console.error('Guide unavailable; runtime binding or structure check failed:',e);global.guided19Error=e.message;}}else{const pathname=doc.defaultView.location.pathname.slice(base.length);const entry=data.lessons.find(r=>r.entryHref.split('#')[0]===pathname&&r.executionHref.split('#')[0]!==pathname);if(entry){const box=doc.createElement('aside');box.className='gl-shell';const a=doc.createElement('a');a.href=base+entry.executionHref;a.textContent=entry.plainTitle+'：从真实核心开始逐步实验';box.append(a);(doc.querySelector('main')||doc.body).prepend(box);}}}
-if(typeof module==='object'&&module.exports)module.exports={recordKey,newRecord,readRecord,predictionFeedback,stageStatus,siteBase,isEntryHash,resolveLessons,prerequisiteLinks,isClickable,displayValue,validateRuntime,validateViewStructure,restoreOriginalTree,mount,start};else global.addEventListener('load',()=>start(global.document,global.Guided19Data),{once:true});
+if(typeof module==='object'&&module.exports)module.exports={feedbackMetricSelectorsForStep,collectMetricEvidence,recordKey,newRecord,readRecord,predictionFeedback,stageStatus,siteBase,isEntryHash,resolveLessons,prerequisiteLinks,isClickable,displayValue,validateRuntime,validateViewStructure,restoreOriginalTree,mount,start};else global.addEventListener('load',()=>start(global.document,global.Guided19Data),{once:true});
 })(globalThis);

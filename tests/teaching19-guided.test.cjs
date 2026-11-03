@@ -212,3 +212,20 @@ test('optional prerequisites expose ICI, atomic and CRB detours before full evid
  assert.deepEqual(prerequisiteLinks({id:'unknown'}),[]);
  const source=fs.readFileSync(path.join(runtime,'engine.js'),'utf8');assert.match(source,/a\.href=base\+item\.href;a\.target='_blank';a\.rel='noopener'/);assert.match(source,/nav\.setAttribute\('aria-label','按需补基础'\)/);
 });
+
+test('CRB communication-first feedback defers bound without dropping saved evidence',()=>{
+ const lesson=data.lessons.find(l=>l.id==='crb'),read=lesson.steps.find(s=>s.role==='read'),bridge=lesson.steps.find(s=>s.role==='bridge');
+ const values={'#cm-root-crb':'0.00576642°','#cm-users':'用户1与2 SINR达标','#cm-power':'总功率 30 mW','#cm-gap':'gap 0.0001','#cm-current-label':'当前已接受'};
+ const doc={querySelector:s=>({textContent:values[s]})};
+ const {feedbackMetricSelectorsForStep:selectors,collectMetricEvidence:collect}=engine;
+ const full=collect(doc,lesson.feedbackMetricSelectors);
+ const fourth=collect(doc,selectors(lesson,read));
+ assert.deepEqual(fourth.map(m=>m.selector),['#cm-users','#cm-power','#cm-current-label']);
+ assert(!JSON.stringify(fourth).includes('0.00576642'));
+ assert.equal(collect(doc,selectors(lesson,bridge))[0].text,'0.00576642°');
+ assert.equal(full[0].text,'0.00576642°');
+ assert.deepEqual(collect(doc,lesson.feedbackMetricSelectors),full,'complete record evidence remains unchanged');
+ // Back/forward and other steps restore their own default preview, not a cached prior role.
+ assert.deepEqual(collect(doc,selectors(lesson,read)),fourth);
+ assert.deepEqual(selectors(lesson,lesson.steps.find(s=>s.role==='compare')),lesson.feedbackMetricSelectors);
+});
