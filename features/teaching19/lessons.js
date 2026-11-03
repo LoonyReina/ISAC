@@ -66,3 +66,30 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  lesson.learningIdentity=lesson.coreId==='extended-target'?['有限扩展目标与通信信道模型','扩展目标 SDP 与两种恢复','扩展目标 CRB 下界；不是单次估计误差']:identity[lesson.id];
 }
 })(globalThis.Guided19Data);
+
+// Beginner bridges for lessons 13–19. These are labelled arithmetic examples,
+// never values injected into a receiver, optimizer, threshold or scientific result.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id);
+ const step=(l,title)=>l.steps.find(s=>s.title===title);
+ const ad=get('80211ad');
+ step(ad,'距离读懂后，才看两段相位差').body+=' 纸笔例：相关向量z=1+j，其相角atan2(1,1)=π/4 rad。若两段相隔Δt=1 ms，f̂=(π/4)/(2π×0.001)=125 Hz。再假设振荡器频偏已独立去除、单站目标接近为正、λ=5 mm，则v̂=λf̂/2=0.3125 m/s。这里的Δt和λ仅供手算，实际应读本次配置；有未知CFO时只能报告合并频偏，不能如此换速度。';
+ step(ad,'拉开时间间隔读取相位').body+=' 在上面的纸笔例中，125 Hz与1125 Hz相隔1/Δt=1000 Hz，两者相关向量相角相同。主值只能给[−500,500) Hz内的代表值；单站速度区间相应为[−1.25,1.25) m/s。图上相角来自真实复相关，整圈数不是接收机自动知道的。';
+ const gt=get('supplement-case-crb');
+ const symbols='本页归一化：pₜ是每阵元功率，Q的特征值qᵢ=pₜwᵢ，所以wᵢ≥0且Σwᵢ=m；δ=σs²/(Tσh²pₜ)来自感知噪声与proper先验；aᵢ=pₜλᵢ(HᴴH/σc²)是该通信模式的无量纲增益。δ>0让未照方向仍有有限先验误差。';
+ step(gt,'把图上的现象接回数学').body=symbols+' 对照当前阶段的Q、模式功率与表格，不把横轴通信率当成wᵢ。目标中的ln是自然对数；最终率用log₂，单位bit/复使用。';
+ step(gt,'求根与KKT证书').body='手算KKT：取m=2、δ=1、a=(1,0)、κ=32/45。最优候选w=(1.5,0.5)满足Σw=2；两个活动方向边际收益sᵢ=1/(wᵢ+δ)²+κaᵢ/(1+aᵢwᵢ)，均为4/9。均分w=(1,1)时s=(109/180,1/4)，往第一维挪一点功率会降低目标，直到边际相等。真实核心用求根求共同乘子μ；wᵢ>0时sᵢ=μ，wᵢ=0时sᵢ(0)≤μ，再读本次功率残差与全矩阵支持平面gap。此二维数值不是本轮真实分配。';
+ const pilot=get('supplement-case-pilot');
+ const rotation=step(pilot,'去掉已知错列旋转');
+ rotation.body='默认查看i=0时线性错列F₀=0，补偿因子为1，蓝橙向量重合是正确结果。点击下面按钮只切换查看i=1、r=1，不重算y；从当前相位表核对Fᵢ与ell。默认D图案F₁=1且ell=5时，旋转角为−2π×81/96=−27π/16（等价+5π/16），模长不变。若已经比较到ell=4或3，则按当前ell重新代入，不能继续用81。';
+ rotation.action={label:'查看 i=1、r=1 的真实向量',controls:[{selector:'#pp-i',value:1,event:'input'},{selector:'#pp-r',value:1,event:'input'}],runSelector:null};
+ const compare=pilot.steps.find(s=>s.role==='compare');
+ compare.body+=' 保留同y标识并记录本次ell=4的NMSE与候选匹配数，下一步继续用同一y试ell=3。Ncp=12时，ell=5/4/3的保护界分别为92/76/60 samples，L分别为16/32/48，N/L分别为6/3/2。';
+ const third={...compare,title:'同一观测再少丢一段：ell=3',why:'候选仍能匹配，并不代表复信道已经无污染。',body:'只改变ell=3，保持同一y。与刚才ell=5、4的记录对照：保护界缩到60 samples，可能露出原来被挡住的长时延污染。匹配数只数候选落入匹配容差的个数；即使仍是4/4，复信道NMSE也可不同。开启“显示生成器／评估层”才读NMSE，它只评分，不回馈接收机。NMSE=Σ|H−H理想|²/Σ|H理想|²；共同增益对齐NMSE另作诊断，不可替代原NMSE。默认无噪声时这些差异不能称作噪声放大。',action:{controls:[{selector:'#pp-ell',value:3,event:'input'},{selector:'#pp-truth',value:true,event:'change'}],runSelector:'#pp-reprocess'},viewMetrics:['#pp-pair-id','#pp-noise-table','#pp-evaluation'],viewSelectors:['#pp-mape','#pp-hi']};
+ pilot.steps.splice(pilot.steps.indexOf(compare)+1,0,third);
+ const clock=get('supplement-case-clock');
+ step(clock,'观测除以已知导频').body='张量不是新物理量，而是三轴数据表：X[a,k,m]用天线a、子载波k、符号m定位一个复样本。除以已知非零导频后，一条路径近似贡献g A[a]B[k]C[m]；两条路径就在每一格复数相加。先在当前数据图固定两轴读一列，再换轴；每个因子列是沿该轴的相位变化，不是一条已经分离的真实路径标签。';
+ step(clock,'一条路径分成三根斜率').body+=' 纸笔例：A=(1,j)、B=(1,−1)、C=(1,j)，g=1，则X[1,1,1]=j×(−1)×j=1，X[0,1,0]=−1。三根短向量的外积重建整个三维块；两径还要相加。实际A/B/C长度与数值以当前张量为准。';
+ step(clock,'核对重构残差').body+=' 残差‖X−X̂‖²/‖X‖²检查“能否解释观测”；参数误差检查“是否对应生成器的真实延迟/角度”。例如X=a bᵀ，换为(2a)(b/2)ᵀ，残差完全不变；列交换也不变。近邻路径与噪声还可能让不同参数同样拟合，所以低残差不是准确证书。';
+ step(clock,'双向关联并分离公共偏差').body+=' 主值跨圈纸笔例：真实组合相位分别为0.9π和1.3π，后者显示成−0.7π。直接取半和得0.1π，而未绕圈半和是1.1π；两者差π。关联只能解决列对应，不能凭主值知道丢了哪一圈。真实失败练习仍应读当前残差、别名范围与评价误差，禁止按真值补圈。';
+})(globalThis.Guided19Data);
