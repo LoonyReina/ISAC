@@ -128,3 +128,22 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  step(cf,'校准再评估').body='把校准与评估分开数：示意校准H₀分数[1,2,3,4]，目标Pfa=0.4，k=ceil((4+1)(1−0.4))=3，冻结门限3。独立评估H₀=[0.5,1.5,2.5,3.5]给1/4虚警；H₁=[2,3,4,5]按score≥3给3/4检出。示例分数不是实时输出，有限4例也不证明总体率。请将本次统计表里的校准样本数、门限、评估计数/分母和区间逐一代回这条链。AP/SP同观测并列在完整方案表；跨功率方案则仅共享随机潜变量，不是同一y。';
  cf.steps.find(s=>s.role==='compare').body+=' 展开“完整失败警示、用能对照与运行身份”的方案表，同一行并列AP Pd与SP Pd；再回本次直方图核对各自门限和分母。不要拿不同分配的行充当同y接收机对照。';
 })(globalThis.Guided19Data);
+
+// Lesson-local output contracts: strict and weighted results, physical user ledger,
+// and extended-response semantics must match the stage the learner is reading.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id),w=get('optimal_waveform'),j=get('joint_beamforming'),c=get('crb'),n=get('supplement-case-clock'),e=data.variants.find(l=>l.coreId==='extended-target');
+ w.ui.readSelectors.push('#wfl-weighted-result');
+ w.feedbackMetricSelectors=['#wfl-weighted-metrics','#wfl-metrics','#wfl-weighted-status'];
+ w.steps.find(s=>s.role==='bridge').body+=' 手算小矩阵：令 L=2，X₀=√2 I₂，X₁=√2 diag(1,−1)。两者 XXᴴ/L=I₂，方向图完全相同；但 D=‖X₁−X₀‖²=8。若 H=[1,1]、S=[√2,√2]，C(X₀)=0、C(X₁)=8。这个实数例只说明协方差相同不等于波形距离为零，不是本次核心结果。现在对照真实表的协方差残差和符号误差，再进入ρ实验。';
+ j.steps.find(s=>s.role==='bridge').body+=' 为什么还要恢复波束？手算 Q=diag(2,1)、h=[1,0]：Q为PSD但秩2，不能等于单根 w wᴴ。构造 w=Qhᴴ/√(hQhᴴ)=[√2,0]ᵀ，剩余 Q−wwᴴ=diag(0,1) 仍为PSD，可交给探测流。此时有用功率 |hw|²=2，而剩余对这个h的功率为0。真实多用户还会有其他用户干扰，所以下表必须从恢复后的因子重算 D/(Iu+Ir+噪声)，不能只拿Q宣称已得到可发送波束。';
+ c.steps.find(s=>s.role==='bridge').body+=' 消去未知反射参数的2×2纸笔例：设归一化参数(θ,a)的FIM为 [[4,1],[1,1]]。若a已知，θ方差界为1/4；若a未知，Schur补信息为4−1×1⁻¹×1=3，界为1/3。信息被耦合扣除，不能直接取Jθθ的倒数。这是局部正则、无偏条件下的示例；真实复反射模型由完整FIM计算，当前图给出实际信息。';
+ n.ui.readSelectors.push('#ns-truth-controls');n.feedbackMetricSelectors=['#ns-summary','#ns-comparison','#ns-identity'];
+ e.concreteQuestion='在同一个扩展目标松弛协方差下，两种波束恢复如何改变实际功率、通信约束与完整响应MSE下界？';
+ e.knownUnknown={known:['用户信道 H、两用户SINR门槛、功率预算、Nt与Nr、L=30'],unknown:['数据与探测协方差及其可发送因子；不估计目标角度'],observation:'完整响应复MSE下界 = Nr σ²/L × tr(R⁻¹)，不是角度CRB，也不是单次估计误差。'};
+ e.priorKnowledge={inlinePrimer:'扩展目标在这里以完整复响应矩阵为未知量。R的每个特征方向都要受到照射；某个特征值为零时，逆迹界不能报告有限值。'};
+ e.plainScope='本页优化完整响应复MSE下界，不是角度CRB或接收机实测误差。';
+ e.learningIdentity=['有限扩展目标与通信信道模型','扩展目标 SDP 与两种恢复','完整响应复MSE下界；不是角度方差'];
+ e.feedbackMetricSelectors=['#output','#status'];
+ e.steps[2].body+=' 纸笔恢复：Q=diag(2,1)、h=[1,0]、探测协方差P=I₂，故R=diag(3,2)。构造w=[√2,0]ᵀ，并把剩余diag(0,1)加到P，R仍为diag(3,2)，tr(R⁻¹)=5/6。主特征对只保留wwᴴ和原P，R变为diag(3,1)，tr(R⁻¹)=4/3，实际总功率也从5降到4。这个小例不是实际运行数值；请在下方两张真实卡片核对同样的量，不将不同能量解释成无条件优劣。';
+})(globalThis.Guided19Data);

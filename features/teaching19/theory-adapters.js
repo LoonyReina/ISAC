@@ -125,9 +125,9 @@ function installExtendedAdapter(doc,lesson){
  const snapshot=()=>JSON.stringify(parameters());
  const begin=()=>{requested=true;serial++;submittedRevision=revision;submittedSnapshot=snapshot();};listen(btn,'click',begin);listen(form,'submit',begin);
  const edit=()=>{revision++;requested=false;};listen(form,'input',edit);listen(form,'change',edit);
- const busy=()=>/^Starting |^Running |^Cancellation requested/.test(status());
- const terminal=()=>/^Finished:|^Worker error:|^Worker could not run:|^Result validation failed:|^Input error:/.test(status());
- const fresh=()=>requested&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!busy()&&terminal()&&!/^IMPORTED/.test(origin());
+ const busy=()=>/^正在启动 |^正在计算 |^已请求取消|^Starting |^Running |^Cancellation requested/.test(status());
+ const terminal=()=>/^已完成：|^Worker错误：|^Worker无法运行：|^结果校验失败：|^输入错误：|^Finished:|^Worker error:|^Worker could not run:|^Result validation failed:|^Input error:/.test(status());
+ const fresh=()=>requested&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!busy()&&terminal()&&!/^IMPORTED|^导入历史记录/.test(origin());
  const ready=()=>!disposed&&fresh();
  const setControls=cs=>{for(const c of cs||[]){const e=query(c.selector);if(e.disabled)throw Error('Original control disabled '+c.selector);e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'input',{bubbles:true}));}};
  const run=async(kind='first')=>{if(disposed||busy())throw Error('Extended CRB unavailable or busy');if(kind!=='first')throw Error('Extended recovery comparison is already in the same real run; no extra comparison/failure action is authored');requested=true;setControls(lesson.firstRun?.controls||[]);btn.click();};

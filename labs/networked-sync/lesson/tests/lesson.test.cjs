@@ -498,3 +498,19 @@ test('record notice expires after imported recompute and lifecycle reset', {time
  assert.doesNotMatch(after,/请应用|只导入|仍为历史/);
  await h.get('ns-reset').fire('click');assert.doesNotMatch(h.get('ns-record-status').textContent,/已导出|已下载|请应用|只导入|仍为历史/);
 });
+
+test('completed progress and held budget comparison show actual records without inheriting truth', {timeout:20000}, async t=>{
+ const h=mounted(t);await compactRun(h);
+ assert.doesNotMatch(h.get('ns-progress').textContent,/正在/);
+ assert.match(h.get('ns-progress').textContent,/已结束/);
+ const before=h.app.controller.result,hash=h.app.controller.held.identity.sample_sha256;
+ h.get('ns-iterations').value='2';await h.get('ns-apply').fire('click');
+ assert.equal(h.app.controller.held.identity.sample_sha256,hash);
+ assert.match(h.get('ns-comparison').textContent,/同一观测预算前后对照/);
+ assert.ok(h.get('ns-comparison').textContent.includes(hash));
+ assert.ok(h.get('ns-comparison').textContent.includes('改前 '+before.config.iterations+'轮上限'));
+ assert.match(h.get('ns-comparison').textContent,/改后 2轮上限/);
+ assert.doesNotMatch(h.get('ns-comparison').textContent,/undefined|NaN/);
+ assert.equal(h.app.controller.result.truth,undefined);
+ await h.get('ns-run').fire('click');assert.equal(h.get('ns-comparison').textContent,'','a fresh generation cannot inherit the held comparison');
+});

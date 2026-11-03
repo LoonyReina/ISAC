@@ -91,6 +91,8 @@ function install(doc,lesson){
    function classify(){for(const r of tbody.children){if(!rowClasses.has(r))rowClasses.set(r,r.classList.contains(cls));const label=r.firstElementChild&&r.firstElementChild.textContent.trim();if(label!=='总符号误差 E'&&label!=='协方差相对残差')r.classList.add(cls);}}
    classify();const MO=doc.defaultView&&doc.defaultView.MutationObserver;if(MO){observer=new MO(classify);observer.observe(tbody,{childList:true});}
    more.addEventListener('toggle',()=>{if(!active)return;if(more.open){more.appendChild(table);main.classList.remove('theory-guided-ledger-compact');}else{main.appendChild(table);main.classList.add('theory-guided-ledger-compact');}});
+   style.textContent+='.gl-shell[data-role="compare"] #wfl-result{display:none}';
+   // Weighted output has its own native gate and is mounted alongside strict output.
    // Other original plots stay under their original result gate; no native hidden changed.
   }else if(gt){
    const svg=doc.querySelector('#gt-main-plot'),figure=svg&&svg.closest('figure'),title=doc.querySelector('#gt-stage-title'),section=title&&title.parentNode;
@@ -113,6 +115,9 @@ function install(doc,lesson){
    const pattern=doc.querySelector('#jbo-pattern'),figure=pattern&&pattern.closest('figure'),cards=root.querySelector('.jbo-results');
    if(!figure||!cards){restore();return;}
    const main=doc.createElement('div');main.className='theory-guided-compact';root.insertBefore(main,cards);additions.push(main);move(figure,main);
+   // User power decomposition and acceptance ledger sit outside .jbo-output in the authored page.
+   // Move their original containing tables, retaining captions and native rows.
+   for(const selector of ['#jbo-users','#jbo-checks']){const body=doc.querySelector(selector);move(body&&body.closest('.jbo-table-wrap'),root);}
    // Keep all three original per-mode summaries/evidence visible, including failed gates.
    const more=detail('完整迭代轨迹与输入指纹');root.appendChild(more);
    move(doc.querySelector('#jbo-input-hash'),more);const trace=doc.querySelector('#jbo-trace');move(trace&&trace.closest('figure'),more);
