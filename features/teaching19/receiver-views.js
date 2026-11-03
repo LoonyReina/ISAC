@@ -3,7 +3,7 @@
 const AD_PRIMARY={range:'ad-secondary',moose:'ad-secondary',map:'ad-map',channel:'ad-line',observation:'ad-line',phase:'ad-line',acquisition:'ad-line',detection:'ad-line',frequency:'ad-line',boundary:'ad-line',alias:'ad-line',evaluate:'ad-line',record:null};
 function stageFor(step){const s=step.stageSelector||step.revealSelector||step.focusSelector||'';const m=s.match(/\[data-stage=["']?([^"'\]]+)/);return m?m[1]:null;}
 function installReceiverViews(doc,lesson){
- if(['ofdm-passive-atomic-errors-2017','channels-sensing-communication-mapping-2026','supplement-case-pilot','supplement-case-clock'].includes(lesson.id))return installCompactReceiverViews(doc,lesson);
+ if(['nearfield-mechanism-aware-mapping-2026','ofdm-passive-atomic-errors-2017','channels-sensing-communication-mapping-2026','supplement-case-pilot','supplement-case-clock'].includes(lesson.id))return installCompactReceiverViews(doc,lesson);
  if(lesson.id!=='80211ad')return installGroupViews(doc,lesson);
  const query=s=>{const a=doc.querySelectorAll(s);if(a.length!==1)throw Error('AD view target must be unique: '+s);return a[0];};
  const stage=query('.ad-stage'),strip=query('.ad-result-strip'),figures={};for(const id of ['ad-line','ad-secondary','ad-map'])figures[id]=query('#'+id).closest('figure');
@@ -42,7 +42,13 @@ function installCompactReceiverViews(doc,lesson){
  function receipt(node,keep=[]){if(node)createFold(node,Array.from(node.children),'receipt',keep);}
  function style(node,values){if(node)styles.push({node,old:node.getAttribute('style'),values});}
  const id=lesson.id;
- if(id==='ofdm-passive-atomic-errors-2017'){
+ if(id==='nearfield-mechanism-aware-mapping-2026'){
+  const panels=lesson.ui.readSelectors.map(q).filter(Boolean),parent=panels[0]?.parentElement;
+  createFold(parent,panels,'primary',[q('#gcs-common-cost')].filter(Boolean));
+  for(const panel of panels)children(panel,[...panel.querySelectorAll('h3'),Array.from(panel.children).find(n=>n.tagName==='P'),q('#gcs-common-cost'),...panel.querySelectorAll('label')].filter(Boolean));
+  const maps=q('.gcs-map-grid');if(maps)createFold(maps,Array.from(maps.children));
+  for(const selector of ['#gcs-map-hybrid','#gcs-map-scattering'])style(q(selector),{height:'280px',width:'100%'});
+ }else if(id==='ofdm-passive-atomic-errors-2017'){
   const timing=q('#ar-timing');if(timing)createFold(timing.parentElement,[timing],'receipt');
   const root=q('#ar-results'),sections=Array.from(root.children).filter(n=>n.tagName==='SECTION');
   createFold(root,sections,'primary');

@@ -183,3 +183,28 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
 })(globalThis.Guided19Data);
 // Step identities changed in the beginner-study revision; old positional records stay historical.
 for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19Data.variants||[])])lesson.recordVersion='study-20261103-v1';
+
+// Match each guided reading to its native calculation stage; no numerical changes.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id);
+ const gt=get('supplement-case-crb');
+ const direction='κ是通信项的权重，不是感知权重：本页最小化“感知误差项 − κ×通信收益”。κ越大越重视通信；κ=0只优化当前感知项。模式是HᴴH的特征方向，不是单根天线。';
+ gt.steps[0].body+=' '+direction;
+ gt.steps.find(s=>s.role==='predict').body=direction;
+ const bridge=gt.steps.find(s=>s.role==='bridge');
+ bridge.revealSelector='[data-stage="shaping"]';
+ bridge.viewSelectors=['#gt-second-plot'];bridge.viewMetrics=['#gt-summary','#gt-table'];
+ bridge.body+=' 本步横轴为通信特征方向的模式索引，纵轴为本次分配qᵢ；mode 0不是天线0。下面模式表逐项给出qᵢ与wᵢ，完整证书仍可展开。';
+ const modes=gt.steps.find(s=>s.title==='H的模式与Q分配');
+ modes.viewSelectors=['#gt-second-plot'];modes.viewMetrics=['#gt-summary','#gt-table'];
+ const cf=get('supplement-case-distributed-detection');
+ const detectors='这里AP/SP是两种检测器标签：AP在检测模型中纳入未知背景通道的先验，SP忽略该背景先验；它们对同一功率方案使用逐元素相同的观测y，并各自用含背景的H₀校准门限。不要与“接入点AP”的硬件简称混淆，也不预设AP在每次有限样本中都更好。';
+ cf.steps[0].body+=' '+detectors;
+ cf.steps.find(s=>s.role==='predict').body=detectors;
+ const crb=get('crb'),read=crb.steps.find(s=>s.role==='read');
+ read.title='先核对通信，再读感知下界';
+ read.viewMetrics=['#cm-users','#cm-power','#cm-current-label'];
+ read.body='先在用户SINR图与表中核对每个用户的实际SINR是否达到门槛，再核对总功率与当前接受状态。通过这些检查后，下一步才读角度信息和标准差下界；未接受或未收敛结果不能当成可行设计。';
+ const nf=get('supplement-case-near-field');
+ nf.steps.find(s=>s.role==='bridge').viewMetrics=[];
+})(globalThis.Guided19Data);

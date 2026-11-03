@@ -6,11 +6,11 @@ function install(doc,lesson){
  if(!waveform&&!joint&&!crb&&!gt&&!nf&&!mpi&&!cf&&!mt)return {show(){},restore(){},guide(){}};
  const root=doc.querySelector(waveform?'#wfl-result':joint?'.jbo-output':crb?'.cm-answer':gt?'.gt-layout':nf?'.nfr-results':mpi?'#position-information':cf?'#cf-results':'#mt-results');
  if(!root)return {show(){},restore(){},guide(){}};
- let showMultitarget=()=>{};let showNearfield=()=>{};let extraRestore=()=>{};let active=false, moves=[], additions=[], rowClasses=new Map(), observer=null;
+ let showMultitarget=()=>{};let showNearfield=()=>{};let showGaussian=()=>{};let showCrb=()=>{};let extraRestore=()=>{};let active=false, moves=[], additions=[], rowClasses=new Map(), observer=null;
  const cls='theory-guided-secondary-row';
  function move(node,parent,before=null){if(!node)return;const marker=doc.createComment('theory-guided-original-position');node.parentNode.insertBefore(marker,node);moves.push({node,marker});parent.insertBefore(node,before);}
  function detail(label){const d=doc.createElement('details'),s=doc.createElement('summary');s.textContent=label;d.appendChild(s);additions.push(d);return d;}
- function restore(){showMultitarget=()=>{};showNearfield=()=>{};extraRestore();extraRestore=()=>{};if(observer)observer.disconnect();observer=null;for(const [r,had] of rowClasses)if(!had)r.classList.remove(cls);rowClasses.clear();for(const {node,marker} of moves.reverse())if(marker.parentNode)marker.parentNode.replaceChild(node,marker);moves=[];for(const n of additions)n.remove();additions=[];active=false;}
+ function restore(){showMultitarget=()=>{};showNearfield=()=>{};showGaussian=()=>{};showCrb=()=>{};extraRestore();extraRestore=()=>{};if(observer)observer.disconnect();observer=null;for(const [r,had] of rowClasses)if(!had)r.classList.remove(cls);rowClasses.clear();for(const {node,marker} of moves.reverse())if(marker.parentNode)marker.parentNode.replaceChild(node,marker);moves=[];for(const n of additions)n.remove();additions=[];active=false;}
  function guide(){if(active)return;active=true;
   const style=doc.createElement('style');style.textContent='.theory-guided-compact svg{width:100%;height:260px;max-height:260px}.theory-guided-compact{margin:8px 0}.theory-guided-ledger-compact .theory-guided-secondary-row{display:none}.gt-layout:has(.theory-guided-gt){display:block}';root.appendChild(style);additions.push(style);
   if(mt){
@@ -101,7 +101,16 @@ function install(doc,lesson){
    const more=detail('完整阶段选择、输入显示与数值证书');section.appendChild(more);
    move(doc.querySelector('.gt-stages'),more);move(title,more);move(doc.querySelector('#gt-explanation'),more);
    const law=doc.querySelector('#gt-law');move(law&&law.closest('.gt-controls'),more);move(doc.querySelector('#gt-table'),more);
-   const second=doc.querySelector('#gt-second-plot');move(second&&second.closest('figure'),more);
+   const second=doc.querySelector('#gt-second-plot'),secondFigure=second&&second.closest('figure'),table=doc.querySelector('#gt-table');move(secondFigure,more);
+   let lastSelection=null;
+   showGaussian=step=>{
+    const selectors=[...(step?.viewSelectors||[]),...(step?.viewMetrics||[])];
+    const mode=selectors.includes('#gt-second-plot');
+    const key=JSON.stringify(selectors);if(key!==lastSelection)more.open=false;lastSelection=key;
+    // Both plots are native, live stage outputs. Swap whole figures with captions.
+    if(secondFigure){(mode?more:main).appendChild(figure);(mode?main:more).appendChild(secondFigure);}
+    if(table)(selectors.includes('#gt-table')?main:more).appendChild(table);
+   };
    // gt-draft/fresh/error and caveat are never moved or unhidden. Summary remains live, not parsed.
   }else if(crb){
    const info=doc.querySelector('#cm-information-chart'),figure=info&&info.closest('figure');
@@ -111,6 +120,13 @@ function install(doc,lesson){
    const bound=doc.querySelector('#cm-root-crb');move(bound&&bound.closest('.cm-metric'),main);
    const more=detail('完整资源与迭代诊断');root.appendChild(more);
    move(doc.querySelector('#cm-progress'),more);
+   const sinr=doc.querySelector('#cm-sinr-chart'),sinrFigure=sinr&&sinr.closest('figure'),boundCard=bound&&bound.closest('.cm-metric');
+   if(sinrFigure)move(sinrFigure,more);
+   showCrb=step=>{
+    const communication=(step?.viewSelectors||[]).includes('#cm-sinr-chart');
+    if(sinrFigure){(communication?more:main).appendChild(figure);(communication?main:more).appendChild(sinrFigure);}
+    if(boundCard)(communication?more:main).appendChild(boundCard);
+   };
   }else{
    const pattern=doc.querySelector('#jbo-pattern'),figure=pattern&&pattern.closest('figure'),cards=root.querySelector('.jbo-results');
    if(!figure||!cards){restore();return;}
@@ -123,7 +139,7 @@ function install(doc,lesson){
    move(doc.querySelector('#jbo-input-hash'),more);const trace=doc.querySelector('#jbo-trace');move(trace&&trace.closest('figure'),more);
   }
  }
- function show(step){guide();if(mt)showMultitarget(step);if(nf)showNearfield(step);if(joint&&step&&step.role==='bridge'){const trace=doc.querySelector('#jbo-trace');const d=trace&&trace.closest('details');if(d)d.open=true;}}
+ function show(step){guide();if(mt)showMultitarget(step);if(nf)showNearfield(step);if(gt)showGaussian(step);if(crb)showCrb(step);if(joint&&step&&step.role==='bridge'){const trace=doc.querySelector('#jbo-trace');const d=trace&&trace.closest('details');if(d)d.open=true;}}
  return {show,restore,guide};
 }
 const api={install};global.TheoryGuidedViews=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
