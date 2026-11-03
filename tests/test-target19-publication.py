@@ -43,6 +43,31 @@ class Projection(unittest.TestCase):
   else:self.assertNotEqual(r.returncode,0);return r
   return out
  def ids(self,out):return {p['id'] for p in json.loads(re.search(r'data-tree-data>(.*?)</script>',(out/'reading.html').read_text()).group(1))['papers']}
+ def test_home_learning_route_and_continuous_research_number_survive_projection(self):
+  self.files['index.html']='<title>Map</title><details class="home-concept-details"><section id="knowledge-map"><details id="map-group-research"><summary>09 old</summary></details><details id="map-group-evidence"><summary><span class="map-number">10</span>原文、实验与复核</summary></details></section></details>'
+  destinations={'foundations.html':['echo','iq','matched','ofdm'],'pilot-design.html':['experiment'],'offgrid-range.html':['model'],'reference-uncertainty.html':['experiment','sources'],'atomic-ofdm-receiver.html':['question'],'otfs-receiver.html':['question']}
+  for page,anchors in destinations.items():
+   if page not in self.cfg['basicPages']:self.cfg['basicPages'].append(page)
+   role='<p class="site-role">有界论文算法 · 单路径有限网格感知与完美CSI的MP-G/完整LMMSE通信</p>' if page=='otfs-receiver.html' else ''
+   self.add(page,'<title>Fixture</title>'+role+''.join('<section id="'+a+'"></section>' for a in anchors))
+  page=(self.run_projection()/'index.html').read_text()
+  self.assertEqual(page.count('id="learning-route"'),1)
+  self.assertLess(page.index('id="learning-route"'),page.index('class="home-concept-details"'))
+  self.assertIn('<span class="map-number">09</span>',page)
+  self.assertIn('<span class="map-number">10</span>',page)
+  self.assertIn('id="map-group-research" class="map-group" data-map-group="research"',page)
+  self.assertIn('href="#learning-route"',page)
+  for href in re.findall(r'href="([^"]+)"',M.learning_route()):self.assertIn('href="'+href+'"',page)
+  self.assertIn('不等于整篇论文复现',page)
+ def test_reference_uncertainty_source_names_papers_and_real_lessons(self):
+  page=(ROOT/'content/pages/reference-uncertainty.html').read_text()
+  source=page.split('<section id="sources"')[1].split('</section>')[0]
+  for title in ['Super-Resolution Delay-Doppler Estimation for OFDM Passive Radar','On the Effectiveness of OTFS for Joint Radar and Communication','Zak-OTFS ISAC with Bistatic Sensing via Semi-Blind Atomic Norm Denoising Scheme']:
+   self.assertIn(title,source)
+  for href in ['atomic-ofdm-receiver.html#question','otfs-receiver.html#question']:
+   self.assertIn('href="'+href+'"',source)
+  self.assertIn('不含这篇 Zak-OTFS 论文',source)
+  self.assertIn('href="reading.html"',page)
  def test_contextual_citations_keep_all_eight_labels_and_surrounding_prose(self):
   ids=['Q1','Q2','Q3','D1']
   refs=''.join('<article id="ref-'+i+'"><a href="https://example.org/'+i+'">source</a></article>' for i in ids)
