@@ -45,6 +45,21 @@ def local(base,href):
 def shell(title,body,scripts=''):
     return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | ISAC</title><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="course.css"><link rel="stylesheet" href="research-tree.css">'+scripts+'</head><body><header class="site-header"><a class="site-brand" href="index.html">ISAC 交互学习</a><nav class="site-nav"><a href="foundations.html">基础知识</a><a href="reading.html">论文阅读</a></nav></header><main class="site-main" id="site-main">'+body+'</main></body></html>\n'
 
+def learning_route():
+    """A static prerequisite-to-paper route, retained in the published projection."""
+    return '''<section class="site-section" id="learning-route" aria-labelledby="learning-route-title">
+<h2 id="learning-route-title">只有本科通信基础？先走通这一条路线</h2>
+<p>不要求先学过雷达、估计理论或优化。先用同一条“参考符号是否可靠”的问题线，把回波、实验和论文连起来；不必先读完全部课程。</p>
+<ol class="learning-route-steps">
+<li><h3>1 · 把回波读成复数观测</h3><p>先看 <a href="foundations.html#echo">回波与时延</a> → <a href="foundations.html#iq">I/Q 与相位</a> → <a href="foundations.html#matched">匹配滤波</a> → <a href="foundations.html#ofdm">OFDM 感知</a>。</p><p><strong>进入下一步前：</strong>能说清一格复数从哪里来，以及为什么改变候选距离会改变相干和。</p></li>
+<li><h3>2 · 固定观测，只改参考信息</h3><p>先用 <a href="pilot-design.html#experiment">导频与歧义</a>、<a href="offgrid-range.html#model">候选网格与未知复增益</a> 补齐模型，再到 <a href="reference-uncertainty.html#experiment">参考不确定性实验</a>。</p><p><strong>带走一个解释：</strong>全符号、仅导频和受扰参考看的是同一份回波，但知道的信息不同；更多参考不保证更准确。</p></li>
+<li><h3>3 · 从机制进入一篇论文的有界算法</h3><p>在 <a href="reference-uncertainty.html#sources">完整论文标题与固定版本</a> 核对问题，再进入 <a href="atomic-ofdm-receiver.html#question">2017 被动 OFDM：参考错误与原子范数算法课</a>。先读模型与保留/省略条件，再运行计算。</p><p><strong>先修不够时：</strong>返回第 2 步，而不是把算法课当基础课。基础机制没有实现原子范数；算法课也不等于整篇论文复现。</p></li>
+<li><h3>4 · 回到论文，检查能说多大的结论</h3><p>对照观测、已知量、未知量、资源预算和证据类型，写下一项结果与一项未验证的问题。然后从 <a href="reading.html">论文阅读目录</a> 选择下一篇；比较 OTFS 前先看 <a href="otfs-receiver.html#question">OTFS 的不同观测与模型</a>，不要直接沿用 OFDM 假设。</p></li>
+</ol><p class="small">这是一条教学顺序，不是论文引用或技术继承关系。跳到任一实验后，都可以用页面顶部的“学习地图”回到这里。</p></section>'''
+
+def research_map_entry(count):
+    return '<details id="map-group-research" class="map-group" data-map-group="research"><summary><span class="map-number">09</span><span class="map-group-name">论文研究方向</span><span class="map-group-question">从先修机制接到原文与算法</span><span class="map-count">'+str(count)+' 篇目标论文<span class="map-disclosure-closed"> · 展开</span><span class="map-disclosure-open"> · 已展开</span></span></summary><ul class="map-node-list"><li><a href="reading.html">查看 '+str(count)+' 篇目标论文教学</a></li><li><a href="#learning-route">先走本科基础到论文的路线</a></li></ul></details>'
+
 TARGET_IDS = frozenset(['otfs-joint-estimation-2020', 'nearfield-multitarget-correlation', 'bistatic-ofdm-clock-measurement-2023', 'ofdm-ici-aware-receiver-2021', 'ofdm-passive-atomic-errors-2017', 'tradeoffs-feedback-capacity-distortion-2018', 'tradeoffs-causal-state-communication-2013', 'channels-sensing-communication-mapping-2026', 'nearfield-mechanism-aware-mapping-2026', 'optimal_waveform', 'joint_beamforming', 'crb', '80211ad', 'supplement-case-crb', 'supplement-case-pilot', 'supplement-case-clock', 'supplement-case-near-field', 'supplement-case-multipath-channel', 'supplement-case-distributed-detection'])
 LEGACY_ID = 'otfs-sensing-assisted-2021'
 def validate_config(cfg, draft=False):
@@ -231,8 +246,9 @@ def main():
         if at.get('class') in {'map-deep','map-direction-depth'}:
             rs.append((n['start'],n['end'],''))
         elif at.get('id')=='map-group-research' or (n['tag']=='template' and 'direction:' in str(at)):
-            rs.append((n['start'],n['end'],'<p><a href="reading.html">查看 '+str(count)+' 篇目标论文教学</a></p>' if n['tag']!='template' else ''))
+            rs.append((n['start'],n['end'],research_map_entry(count) if n['tag']!='template' else ''))
     texts['index.html']=edits(texts['index.html'],rs)
+    texts['index.html']=texts['index.html'].replace('<details class="home-concept-details">',learning_route()+'<details class="home-concept-details">',1)
     texts['index.html']=texts['index.html'].replace('<strong>8</strong> 个研究方向','<strong>'+str(len(directions))+'</strong> 个研究方向').replace('<strong>41</strong> 个教学入口','<strong>'+str(count)+'</strong> 篇有界论文').replace('41 个实验 · 25 个专题','基础机制与目标论文')
     basics=''.join('<li><a href="'+p+'">'+html.escape(re.sub('<.*?>','',re.search(r'<title>(.*?)</title>',texts[p],re.S).group(1)).split('|')[0])+'</a></li>' for p in cfg['basicPages'] if p not in {'index.html'})
     texts['experiments.html']=shell('基础实验','<h1>基础机制实验</h1><p>这些先修工具不计作论文复现。</p><ul>'+basics+'</ul><a href="reading.html">目标论文教学</a>')

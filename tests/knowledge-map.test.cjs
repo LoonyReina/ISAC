@@ -459,3 +459,12 @@ test('the fifth geometry ladder uses only reviewed existing joins and preserves 
  h.navigate('#map-node-echo','popstate');h.navigate('#map-node-geometry','popstate');a.ok(h.panel.querySelector('[data-map-progression="geometry"]'));a.equal(h.pushes.length,0);
  h.map.fire('keydown',{key:'Escape'});a.equal(h.location.hash,'#knowledge-map');
 });
+
+test('prerequisite vocabulary is searchable in Chinese and English and points to bounded primers',()=>{
+ const terms=[['最大似然','maximum-likelihood'],['maximum likelihood','maximum-likelihood'],['MLE','maximum-likelihood'],['协方差','covariance-psd'],['PSD','covariance-psd'],['子空间','rank-subspace'],['rank','rank-subspace'],['SDR','sdr-kkt'],['KKT','sdr-kkt']];
+ for(const [query,id]of terms){const h=setup();h.search(query);const button=h.results.querySelectorAll('button').find(b=>b.dataset.mapNode===id);a.ok(button,query);h.click(button);a.ok(h.panel.textContent.includes('适用边界'));const node=registry.knowledgeMap.nodes.find(n=>n.id===id);resolve(node.href);a.ok(h.panel.querySelectorAll('a').some(link=>link.attrs.href===node.href));}
+ const theory=read('theory.html');for(const anchor of ['primer-ml','primer-covariance','primer-rank','primer-optimization'])a.ok(ids(theory).includes(anchor));a.match(theory,/未提供通用 SDP/);a.match(theory,/零均值模型/);a.match(theory,/不保证/);
+});
+test('search aliases reject malformed editorial data',()=>{
+ const copy=JSON.parse(JSON.stringify(registry));copy.knowledgeMap.nodes[0].searchAliases=[null];a.throws(()=>render(copy),/Invalid knowledge-map search aliases/);
+});
