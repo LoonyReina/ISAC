@@ -102,3 +102,29 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
   if(step.focusSelector==='#cc-information-y')step.body+=' 从上一步的16原子按相同 Y 或 (U,V,Y) 汇总后，代入互信息定义；本页实时信息差再与公式账本核对，不把原子概率当成信息量。';
  }
 })(globalThis.Guided19Data);
+
+// Spatial information and multi-station decision bridges; native arrays stay authoritative.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id),step=(l,title)=>l.steps.find(s=>s.title===title);
+ const nf=get('supplement-case-near-field');
+ const read=nf.steps.find(s=>s.role==='read');
+ read.body='先只读二维谱峰的位置，再并列读下面本次估计(x,y)、仿真真值(x,y)与欧氏误差；两组坐标来自原始接收与事后评估节点。真值不进入搜索。其他角度、范围和边界诊断可展开，设计仍是预计算，接收才是本次计算。球面与平面相位差在几何阶段作解析对照；本课没有运行一个独立平面波定位器，不能把几何近似当已测得的接收性能基线。';
+ step(nf,'由有限波形生成Y').body='逐项接上球面波：候选位置p到第n阵元的路程rₙ(p)给复响应aₙ(p)（相位含−2πrₙ/λ，幅度也按源模型）。本课单目标收发链Y=βa(p)a(p)ᵀX+Z，注意此处是转置ᵀ，协方差才用共轭转置ᴴ。X是已固定的发射块；aᵀX给照向该位置的每个快拍，外乘a再到接收阵列。Y的一列是一时刻所有阵元的复样本，不是位置图片；β未知，生成真值只留给评价。';
+ const bridge=step(nf,'把图上的现象接回数学');
+ bridge.body='先由Y计算R̂=YYᴴ/T，再特征分解。已知单目标假设下，最大特征向量张成信号子空间，其余组成Eₙ。候选位置p产生球面模板a(p)，MUSIC分母为‖Eₙᴴa(p)‖²（按核心模板归一化约定）；越接近噪声子空间的正交补，谱越高。位置来自逐点搜索与细化，不是由特征值直接读出。请在本步先看实际特征值分离，再对照下一步二维谱。';
+ bridge.formulaBridge='两阵元无噪声纸笔例：Y=[[1,1],[j,j]]，R̂=[[1,−j],[j,1]]，特征值(2,0)。a=(1,j)与噪声向量(1,−j)/√2正交，分母为0；错误模板(1,−j)分母为2。理想零分母不是现实无限精度，噪声、有限快拍和相似模板仍可使峰不稳。';
+ step(nf,'子空间与二维候选搜索').body+=' 阅读顺序：本次Y → 本次R̂特征值 → 固定搜索域内球面模板分数 → 网格候选 → 有界细化 → 事后真值。这里预设只有一个目标，不能用同一信号子空间维数直接解释任意多目标场景。';
+ step(nf,'子空间与二维候选搜索').viewSelectors=['[data-nfr-view="eigen"]','[data-nfr-view="spectrum"]'];
+ step(nf,'细化与评价分离').viewSelectors=['[data-nfr-view="refinement"]','[data-nfr-view="evaluation"]'];
+ const mpi=get('supplement-case-multipath-channel');
+ const mbridge=step(mpi,'把图上的现象接回数学');
+ mbridge.body='把热身接到米单位位置界：另设二维位置(x,y)和未知η的小型FIM J=[[4,0,1],[0,1,0],[1,0,1]]，前两行对应位置（位置块单位m⁻²）。Jpp=diag(4,1)，Jpη=(1,0)ᵀ，Jηη=1。Schur补扣除[[1,0],[0,0]]，得到EFIM=diag(3,1) m⁻²。取逆为diag(1/3,1) m²，再取PEB=√tr(EFIM⁻¹)=√(4/3)≈1.154701 m。若η已知，则PEB=√(1/4+1)≈1.118034 m。这里只是可验算的局部信息账本，不是当前六参数模型的输出，也不是实际定位误差。';
+ mbridge.formulaBridge='真实路径时延/复增益导数 → 完整FIM → 消未知增益的Schur补 → 单程几何Jacobian映射至位置EFIM → √tr(逆矩阵)。任何必要块奇异时先报告不可辨识，不用伪逆填有限PEB。';
+ step(mpi,'Schur补与几何映射').body+=' 回看二维热身的1.154701 m，再在本次精确PEB与近似PEB之间核对差异：前者保留脉冲重叠交叉项，后者依赖额外近似。两者都不是位置估计器输出；无有限界时保留原失败标签。';
+ const cf=get('supplement-case-distributed-detection');
+ step(cf,'把图上的现象接回数学').body='从一维MAP扩成两个站的实数热身：把同一时刻观测堆成y=(2,0)ᵀ，G=(1,1)ᵀ，α~N(0,1)，噪声协方差I。最优α̂=(GᵀG+1)⁻¹Gᵀy=2/3，ŷ=(2/3,2/3)，C₀=4，C₁=‖y−Gα̂‖²+α̂²=8/3，二次项改善4/3。第二站的0也参与拟合，不能把各站最佳幅度分别拟合后当成同一目标。此热身没有背景通道和完整常数项。真实核心把时间、接收站和天线堆成40维复y，用已知设计G、背景设计X和各自先验矩阵联合拟合。';
+ step(cf,'把图上的现象接回数学').formulaBridge='H₀: y=Xh+n；H₁: y=Gα+Xh+n。MAP以噪声加权残差加αᴴRα⁻¹α、hᴴRh⁻¹h惩罚，求解共轭正规方程并保留完整MAPRT常数。不是把实数热身4/3直接当实际分数。';
+ step(cf,'CCP功率分配与检查').body='CCP先把当前点附近的非凸项换成可解的凸子问题，再检查原问题。纸笔例：q(p,t)=p²/t（t>0）在(p₀,t₀)=(1,2)的切平面下界为p−t/4，起点两者都是0.5；到(1.2,2.2)，下界0.65而真实q≈0.654545。这解释为何优化下界可能推进原代理目标，不是本站多站约束求解结果。真实p是功率平方根，代理含多站矩阵A/B、通信与AP功率约束；请读当前选中重启的前后p、切平面改进、真实SINR改进与停止原因。局部收敛不代表全局最优，未通过子问题证书不能填Pd。';
+ step(cf,'校准再评估').body='把校准与评估分开数：示意校准H₀分数[1,2,3,4]，目标Pfa=0.4，k=ceil((4+1)(1−0.4))=3，冻结门限3。独立评估H₀=[0.5,1.5,2.5,3.5]给1/4虚警；H₁=[2,3,4,5]按score≥3给3/4检出。示例分数不是实时输出，有限4例也不证明总体率。请将本次统计表里的校准样本数、门限、评估计数/分母和区间逐一代回这条链。AP/SP同观测并列在完整方案表；跨功率方案则仅共享随机潜变量，不是同一y。';
+ cf.steps.find(s=>s.role==='compare').body+=' 展开“完整失败警示、用能对照与运行身份”的方案表，同一行并列AP Pd与SP Pd；再回本次直方图核对各自门限和分母。不要拿不同分配的行充当同y接收机对照。';
+})(globalThis.Guided19Data);

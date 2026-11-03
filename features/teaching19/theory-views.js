@@ -55,6 +55,16 @@ function install(doc,lesson){
    for(const card of cards){move(card,full);const view=card.querySelector('.nfr-view');if(view&&card.firstChild!==view)move(view,card,card.firstChild);}
    const status=doc.querySelector('[data-nfr-view="status"]');
    if(status){const had=status.classList.contains('theory-guided-trust-compact');status.classList.add('theory-guided-trust-compact');const more=detail('完整身份与实际进度');status.parentNode.insertBefore(more,status.nextSibling);more.addEventListener('toggle',()=>{if(!active)return;status.classList[more.open?'remove':'add']('theory-guided-trust-compact');});extraRestore=()=>{if(!had)status.classList.remove('theory-guided-trust-compact');};}
+   // Keep the original estimate and truth side by side in the same ledger.
+   // Fold only secondary range/angle values; ambiguity and boundary diagnostics remain visible.
+   const evaluation=doc.querySelector('[data-nfr-view="evaluation"]'),evaluationCard=evaluation&&evaluation.closest('.nfr-result-card');
+   if(evaluationCard){
+    const compact='theory-guided-evaluation-compact',had=evaluationCard.classList.contains(compact);evaluationCard.classList.add(compact);
+    style.textContent+='.theory-guided-evaluation-compact [data-nfr-view="evaluation"] > dl > :nth-child(n+7):nth-child(-n+18){display:none}';
+    const more=detail('展开范围、角度与带符号误差');evaluationCard.appendChild(more);
+    more.addEventListener('toggle',()=>{if(active)evaluationCard.classList[more.open?'remove':'add'](compact);});
+    const priorRestore=extraRestore;extraRestore=()=>{priorRestore();if(!had)evaluationCard.classList.remove(compact);};
+   }
    let lastNearfieldSelection=null;
    showNearfield=step=>{
     const selectors=[...(step?.viewSelectors||[]),...(step?.viewMetrics||[])];
