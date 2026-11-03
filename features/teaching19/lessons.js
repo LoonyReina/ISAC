@@ -83,14 +83,26 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  const rotation=step(pilot,'去掉已知错列旋转');
  rotation.body='默认查看i=0时线性错列F₀=0，补偿因子为1，蓝橙向量重合是正确结果。点击下面按钮只切换查看i=1、r=1，不重算y；从当前相位表核对Fᵢ与ell。默认D图案F₁=1且ell=5时，旋转角为−2π×81/96=−27π/16（等价+5π/16），模长不变。若已经比较到ell=4或3，则按当前ell重新代入，不能继续用81。';
  rotation.action={label:'查看 i=1、r=1 的真实向量',controls:[{selector:'#pp-i',value:1,event:'input'},{selector:'#pp-r',value:1,event:'input'}],runSelector:null};
+ const sameYRead=step(pilot,'同一份 IQ，比较保留多少样本');
+ sameYRead.action={label:'显示本次 ell=5 的评估 NMSE',controls:[{selector:'#pp-truth',value:true,event:'change'}],runSelector:null};
+ sameYRead.viewMetrics=[...new Set([...(sameYRead.viewMetrics||[]),'#pp-evaluation'])];
+ sameYRead.body+=' 点击显示评估按钮，记录本次ell=5的原始NMSE与匹配数；这只显示事后评分，不改变y或接收机。后面保持同一y比较ell=4和3。';
  const compare=pilot.steps.find(s=>s.role==='compare');
+ compare.action={...compare.action,controls:[{selector:'#pp-ell',value:4,event:'input'},{selector:'#pp-truth',value:true,event:'change'}]};
+ compare.runtimeAction=compare.action;
+ compare.viewMetrics=[...new Set([...(compare.viewMetrics||[]),'#pp-evaluation'])];
+ pilot.singleControlChange.runtimeAction=compare.action;
+ pilot.singleControlChange.viewMetrics=compare.viewMetrics;
  compare.body+=' 保留同y标识并记录本次ell=4的NMSE与候选匹配数，下一步继续用同一y试ell=3。Ncp=12时，ell=5/4/3的保护界分别为92/76/60 samples，L分别为16/32/48，N/L分别为6/3/2。';
  const third={...compare,title:'同一观测再少丢一段：ell=3',why:'候选仍能匹配，并不代表复信道已经无污染。',body:'只改变ell=3，保持同一y。与刚才ell=5、4的记录对照：保护界缩到60 samples，可能露出原来被挡住的长时延污染。匹配数只数候选落入匹配容差的个数；即使仍是4/4，复信道NMSE也可不同。开启“显示生成器／评估层”才读NMSE，它只评分，不回馈接收机。NMSE=Σ|H−H理想|²/Σ|H理想|²；共同增益对齐NMSE另作诊断，不可替代原NMSE。默认无噪声时这些差异不能称作噪声放大。',action:{controls:[{selector:'#pp-ell',value:3,event:'input'},{selector:'#pp-truth',value:true,event:'change'}],runSelector:'#pp-reprocess'},viewMetrics:['#pp-pair-id','#pp-noise-table','#pp-evaluation'],viewSelectors:['#pp-mape','#pp-hi']};
+ third.instruction='只把ell从4改为3，保持当前y、known pilots与grid；显示真值开关只用于评价。';
+ third.expected=third.body;
+ third.runtimeAction=third.action;
  pilot.steps.splice(pilot.steps.indexOf(compare)+1,0,third);
  const clock=get('supplement-case-clock');
  step(clock,'观测除以已知导频').body='张量不是新物理量，而是三轴数据表：X[a,k,m]用天线a、子载波k、符号m定位一个复样本。除以已知非零导频后，一条路径近似贡献g A[a]B[k]C[m]；两条路径就在每一格复数相加。先在当前数据图固定两轴读一列，再换轴；每个因子列是沿该轴的相位变化，不是一条已经分离的真实路径标签。';
  step(clock,'一条路径分成三根斜率').body+=' 纸笔例：A=(1,j)、B=(1,−1)、C=(1,j)，g=1，则X[1,1,1]=j×(−1)×j=1，X[0,1,0]=−1。三根短向量的外积重建整个三维块；两径还要相加。实际A/B/C长度与数值以当前张量为准。';
- step(clock,'核对重构残差').body+=' 残差‖X−X̂‖²/‖X‖²检查“能否解释观测”；参数误差检查“是否对应生成器的真实延迟/角度”。例如X=a bᵀ，换为(2a)(b/2)ᵀ，残差完全不变；列交换也不变。近邻路径与噪声还可能让不同参数同样拟合，所以低残差不是准确证书。';
+ step(clock,'核对重构残差').body+=' 图中的相对残差‖X−X̂‖F/‖X‖F检查“能否解释观测”；预算前后账本的末轮残差是未归一化范数，不混用数值；参数误差检查“是否对应生成器的真实延迟/角度”。例如X=a bᵀ，换为(2a)(b/2)ᵀ，残差完全不变；列交换也不变。近邻路径与噪声还可能让不同参数同样拟合，所以低残差不是准确证书。';
  step(clock,'双向关联并分离公共偏差').body+=' 主值跨圈纸笔例：真实组合相位分别为0.9π和1.3π，后者显示成−0.7π。直接取半和得0.1π，而未绕圈半和是1.1π；两者差π。关联只能解决列对应，不能凭主值知道丢了哪一圈。真实失败练习仍应读当前残差、别名范围与评价误差，禁止按真值补圈。';
 })(globalThis.Guided19Data);
 
