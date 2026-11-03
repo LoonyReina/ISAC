@@ -93,3 +93,12 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  step(clock,'核对重构残差').body+=' 残差‖X−X̂‖²/‖X‖²检查“能否解释观测”；参数误差检查“是否对应生成器的真实延迟/角度”。例如X=a bᵀ，换为(2a)(b/2)ᵀ，残差完全不变；列交换也不变。近邻路径与噪声还可能让不同参数同样拟合，所以低残差不是准确证书。';
  step(clock,'双向关联并分离公共偏差').body+=' 主值跨圈纸笔例：真实组合相位分别为0.9π和1.3π，后者显示成−0.7π。直接取半和得0.1π，而未绕圈半和是1.1π；两者差π。关联只能解决列对应，不能凭主值知道丢了哪一圈。真实失败练习仍应读当前残差、别名范围与评价误差，禁止按真值补圈。';
 })(globalThis.Guided19Data);
+
+// The causal lesson keeps its live PMF beside the corresponding guided explanation.
+(function(data){const lesson=data.lessons.find(l=>l.id==='tradeoffs-causal-state-communication-2013');
+ lesson.ui.readSelectors.push('#cc-mechanism');
+ for(const step of lesson.steps){
+  if(step.focusSelector==='#cc-pmf')step.body+=' 点击任一概率格，下面直接展开本次原子的四项概率乘积与同一 UE 行对 V、Z 求和的边缘化。';
+  if(step.focusSelector==='#cc-information-y')step.body+=' 从上一步的16原子按相同 Y 或 (U,V,Y) 汇总后，代入互信息定义；本页实时信息差再与公式账本核对，不把原子概率当成信息量。';
+ }
+})(globalThis.Guided19Data);
