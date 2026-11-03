@@ -229,3 +229,17 @@ test('CRB communication-first feedback defers bound without dropping saved evide
  assert.deepEqual(collect(doc,selectors(lesson,read)),fourth);
  assert.deepEqual(selectors(lesson,lesson.steps.find(s=>s.role==='compare')),lesson.feedbackMetricSelectors);
 });
+
+
+test('CRB table preview uses a semantic link label without changing evidence or other steps',()=>{
+ const lesson=data.lessons.find(l=>l.id==='crb'),read=lesson.steps.find(s=>s.role==='read'),bridge=lesson.steps.find(s=>s.role==='bridge');
+ const raw='112.3450.67811012.3450.234221.2340.45611013.4560.345',table={selector:'#cm-users',text:raw};
+ const snapshot=JSON.stringify(table);
+ assert.equal(engine.feedbackMetricLabel(read,table),'查看本次两位用户的 SINR、功率与约束余量');
+ assert.equal(JSON.stringify(table),snapshot,'link labels never rewrite raw evidence');
+ assert.equal(engine.feedbackMetricLabel(read,{selector:'#cm-power',text:'30 mW'}),'30 mW');
+ assert.equal(engine.feedbackMetricLabel(bridge,{selector:'#cm-root-crb',text:'0.00576642°'}),'0.00576642°');
+ assert.equal(engine.feedbackMetricLabel(bridge,table),raw,'label is local to authored step and selector');
+ const doc={querySelector:()=>({textContent:raw})};
+ assert.equal(engine.collectMetricEvidence(doc,['#cm-users'])[0].text,raw,'original table text remains available to evidence collection');
+});

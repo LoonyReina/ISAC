@@ -246,3 +246,9 @@ for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19D
  const crb=data.lessons.find(l=>l.id==='crb');
  crb.steps.find(s=>s.role==='read').feedbackMetricSelectors=['#cm-users','#cm-power','#cm-current-label'];
 })(globalThis.Guided19Data);
+
+// A table link names its destination instead of flattening adjacent cell values.
+(function(data){
+ const crb=data.lessons.find(l=>l.id==='crb');
+ crb.steps.find(s=>s.role==='read').feedbackMetricLabels={'#cm-users':'查看本次两位用户的 SINR、功率与约束余量'};
+})(globalThis.Guided19Data);
