@@ -183,3 +183,72 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
 })(globalThis.Guided19Data);
 // Step identities changed in the beginner-study revision; old positional records stay historical.
 for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19Data.variants||[])])lesson.recordVersion='study-20261103-v1';
+
+// Beginner bridges: independent hand calculations, never runtime receiver inputs.
+(function addAlgorithmBridges(data){
+ const find=id=>data.lessons.find(l=>l.id===id);
+ const beforePrediction=(lesson,steps)=>lesson.steps.splice(lesson.steps.findIndex(s=>s.role==='predict'),0,...steps);
+ const intro=(title,why,body)=>({role:'intro',title,why,body});
+ const otfs=find('otfs-joint-estimation-2020');
+ beforePrediction(otfs,[
+  intro('先从发出去的 x 造一条预测回波','模板不是从接收图里抄一个亮格，而是问：假如这条路径存在，会收到什么？','已知 DD 符号 x，经 ISFFT、发送脉冲合成，经过候选延迟与多普勒，再做接收投影，得到整帧预测 u。固定候选后，这条链对 x 是线性的，写作 u(q,a)=Ψ(q,a)x。真实实验使用原式(14)的有限 literal 算子；下面只用自选两维线性算子练乘法，不推导或替代原式(14)。'),
+  intro('两次矩阵乘法，得到两条模板','下面所有数值都是独立教学例，没有秒、米或 OTFS 数据格的物理含义。','设已知 x=(1,1)ᵀ，候选算子 Ψ₁=[[1,0],[0,0]]、Ψ₂=[[1,0],[0,1]]。逐行乘 x：u₁=(1×1+0×1,0×1+0×1)ᵀ=(1,0)ᵀ；u₂=(1,1)ᵀ。它们预测同一组两个观测位置，候选编号不是观测编号。实际核心的 Ψ 为64×64，u 为64维复向量。'),
+  intro('把模板当列，才得到待拟合矩阵','每个未知增益缩放一整条模板，不是只调整一个数据格。','固定这两个候选，把模板并排：U=[u₁ u₂]=[[1,1],[0,1]]。设 h=(h₁,h₂)ᵀ，则 Uh=(h₁+h₂,h₂)ᵀ。观测 y=(2,1)ᵀ 已给定；我们先只找 h，使 Uh 接近 y。真实64维实验也是 U 的每行对应观测、每列对应一条候选路径；搜索(q,a)会换整列。')
+ ]);
+ otfs.workedExample={label:'从模板矩阵手算联合增益（独立教学例）',setup:'继续使用上一步 U=[[1,1],[0,1]]、y=(2,1)ᵀ。所有数是实数，故此例的共轭转置等于转置；真实接收机必须保留复共轭。',steps:[
+  {operation:'先只拟合第一列',calculation:'h₁=(u₁ᴴy)/(u₁ᴴu₁)=2/1=2',result:'剩余 y−2u₁=(0,1)ᵀ'},
+  {operation:'再拟合剩余，但不回改第一列',calculation:'h₂=(u₂ᴴ(0,1)ᵀ)/(u₂ᴴu₂)=1/2',result:'预测 (2.5,0.5)ᵀ；残差 (−0.5,0.5)ᵀ，平方残差=0.5'},
+  {operation:'让两列一起解释同一 y',calculation:'最小化 ‖y−Uh‖²；满列秩时满足 (UᴴU)h=Uᴴy',result:'UᴴU=[[1,1],[1,2]]，Uᴴy=(2,3)ᵀ'},
+  {operation:'解两条联立方程',calculation:'h₁+h₂=2，h₁+2h₂=3 ⇒ h₂=1，h₁=1',result:'Uh=(2,1)ᵀ，平方残差=0。此例联合回拟修正了先前借走的第二径能量'},
+  {operation:'检查什么时候不能唯一解',calculation:'若两列都变为 (1,0)ᵀ，则只能约束 h₁+h₂',result:'U 不满列秩，不能宣称唯一恢复两条路径；这就是重复支持需要暴露的问题'}
+ ],bridgeToCore:'对应原文式(17)的残差目标与式(19)的联合增益思路；这些两维数值不是原文例子。真实程序用数值线性求解与秩检查，不直接求逆。下一步才运行64维候选搜索；小例没有证明原打印式(21)或全局恢复。',notEvidenceOf:'没有运行 OTFS 波形、原尺寸仿真或二维时延–多普勒搜索；无噪声且候选恰好正确是此手算例的条件。'};
+ otfs.steps.find(s=>s.role==='predict').title='手算：顺序拟合为什么需要联合回拟';
+ otfs.recordVersion='algorithm-bridges-20261103-v1';
+ const atomic=find('ofdm-passive-atomic-errors-2017');
+ beforePrediction(atomic,[
+  intro('一条路径就是两方向的相位步进','先把原子理解成一个可计算的复向量，不先背优化名词。','独立2×2教学例：m为块、n为子载波，φ=1/4、ψ=1/2，a[m,n]=exp(j2π(mφ−nψ))。按 i=m+2n 排列，四格依次是1、j、−1、−j。沿m每走一步乘j，沿n每走一步乘−1。幅度都为1，相位不同；真实页面用4×4、i=m+4n。'),
+  intro('多径先相加，参考再调制','路径参数相同的整幅相位图叫一条原子；多径不是逐格挑最大的幅度。','继续2×2例。第一条 a₁=(1,j,−1,−j)ᵀ，第二条零相位斜率 a₂=(1,1,1,1)ᵀ；取 α₁=2、α₂=1，则 z=2a₁+a₂=(3,1+2j,−1,1−2j)ᵀ。实际观测还需逐格乘参考 ŝ，再加稀疏误差e和噪声v：r=Sz+e+v，S=diag(ŝ)。z、原子与r是不同对象。'),
+  intro('相位差怎样留下 Toeplitz 结构','外积把两个位置相比较；相同位置差产生相同相位差。','对任一原子，a[m,n]conj(a[p,q])=exp(j2π((m−p)φ−(n−q)ψ))，只依赖两方向的索引差。于是 aaᴴ 是两层 Toeplitz Hermitian 矩阵。它也为半正定（PSD）：任意复向量 b 都有 bᴴaaᴴb=|aᴴb|²≥0。这里是代数检查，不是已经从观测估到了矩阵。'),
+  intro('把 z 接进 PSD：一个可手查的构造','单独约束T的结构还没有把它与待估计的z联系起来。','仍用第一条原子，设 z=2a₁，取 T=2a₁a₁ᴴ、t=2。提升矩阵 B=[[T,z],[zᴴ,t]]=2[a₁;1][a₁;1]ᴴ，因此 B⪰0；T为4×4，B为5×5。T的对角线全是2，所以 tr(T)/(2D)+t/2=8/8+1=2（D=4）。这是为一个已知原子造可行矩阵，不是优化器已知真实路径。'),
+  intro('多径构造通向优化，但不是无条件等价证明','现在才问：未知路径时，能否直接寻找满足结构的T、z、t？','若 αₖ=|αₖ|exp(jθₖ)，每条路径的提升向量可取 [aₖ;exp(−jθₖ)]；将 |αₖ| 乘各外积后相加，得到 T=Σ|αₖ|aₖaₖᴴ、z=Σαₖaₖ、t=Σ|αₖ|，仍为PSD，迹代价为Σ|αₖ|。这只证明“原子和能造一个可行提升”。任意二维可行T能否反向分解还需要条件，不能跳称SDP永远等于连续原子范数。'),
+  intro('式(27)的三项代价各在管什么','下面热身只看参考错误；随后才运行真实有限SDP。','½‖r−Sz−e‖²要求解释观测；λ[tr(T)/(2D)+t/2]惩罚结构化成分的大小；μΣ|eᵢ|鼓励错误集中在少数格，均不保证精确路径数。它们在两层Toeplitz和提升PSD约束下共同优化。真实4×4实验的提升为17×17，ADMM分块更新并投影到PSD锥；不是把这个手算构造当答案，也不使用真值路径。原文式(27)与本站修正求解的逐式边界仍在完整证据中。')
+ ]);
+ atomic.recordVersion='algorithm-bridges-20261103-v1';
+})(globalThis.Guided19Data);
+
+// Match each guided reading to its native calculation stage; no numerical changes.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id);
+ const gt=get('supplement-case-crb');
+ const direction='κ是通信项的权重，不是感知权重：本页最小化“感知误差项 − κ×通信收益”。κ越大越重视通信；κ=0只优化当前感知项。模式是HᴴH的特征方向，不是单根天线。';
+ gt.steps[0].body+=' '+direction;
+ gt.steps.find(s=>s.role==='predict').body=direction;
+ const bridge=gt.steps.find(s=>s.role==='bridge');
+ bridge.revealSelector='[data-stage="shaping"]';
+ bridge.viewSelectors=['#gt-second-plot'];bridge.viewMetrics=['#gt-summary','#gt-table'];
+ bridge.body+=' 本步横轴为通信特征方向的模式索引，纵轴为本次分配qᵢ；mode 0不是天线0。下面模式表逐项给出qᵢ与wᵢ，完整证书仍可展开。';
+ const modes=gt.steps.find(s=>s.title==='H的模式与Q分配');
+ modes.viewSelectors=['#gt-second-plot'];modes.viewMetrics=['#gt-summary','#gt-table'];
+ const cf=get('supplement-case-distributed-detection');
+ const detectors='这里AP/SP是两种检测器标签：AP在检测模型中纳入未知背景通道的先验，SP忽略该背景先验；它们对同一功率方案使用逐元素相同的观测y，并各自用含背景的H₀校准门限。不要与“接入点AP”的硬件简称混淆，也不预设AP在每次有限样本中都更好。';
+ cf.steps[0].body+=' '+detectors;
+ cf.steps.find(s=>s.role==='predict').body=detectors;
+ const crb=get('crb'),read=crb.steps.find(s=>s.role==='read');
+ read.title='先核对通信，再读感知下界';
+ read.viewMetrics=['#cm-users','#cm-power','#cm-current-label'];
+ read.body='先在用户SINR图与表中核对每个用户的实际SINR是否达到门槛，再核对总功率与当前接受状态。通过这些检查后，下一步才读角度信息和标准差下界；未接受或未收敛结果不能当成可行设计。';
+ const nf=get('supplement-case-near-field');
+ nf.steps.find(s=>s.role==='bridge').viewMetrics=[];
+})(globalThis.Guided19Data);
+
+// Only the communication-first feedback preview is narrowed; full saved evidence is unchanged.
+(function(data){
+ const crb=data.lessons.find(l=>l.id==='crb');
+ crb.steps.find(s=>s.role==='read').feedbackMetricSelectors=['#cm-users','#cm-power','#cm-current-label'];
+})(globalThis.Guided19Data);
+
+// A table link names its destination instead of flattening adjacent cell values.
+(function(data){
+ const crb=data.lessons.find(l=>l.id==='crb');
+ crb.steps.find(s=>s.role==='read').feedbackMetricLabels={'#cm-users':'查看本次两位用户的 SINR、功率与约束余量'};
+})(globalThis.Guided19Data);

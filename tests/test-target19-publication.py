@@ -43,6 +43,57 @@ class Projection(unittest.TestCase):
   else:self.assertNotEqual(r.returncode,0);return r
   return out
  def ids(self,out):return {p['id'] for p in json.loads(re.search(r'data-tree-data>(.*?)</script>',(out/'reading.html').read_text()).group(1))['papers']}
+ def test_home_learning_route_and_continuous_research_number_survive_projection(self):
+  self.files['index.html']='<title>Map</title><details class="home-concept-details"><section id="knowledge-map"><details id="map-group-research"><summary>09 old</summary></details><details id="map-group-evidence"><summary><span class="map-number">10</span>原文、实验与复核</summary></details></section></details>'
+  destinations={'foundations.html':['echo','iq','matched','ofdm'],'pilot-design.html':['experiment'],'offgrid-range.html':['model'],'reference-uncertainty.html':['experiment','sources'],'atomic-ofdm-receiver.html':['question'],'otfs-receiver.html':['question']}
+  for page,anchors in destinations.items():
+   if page not in self.cfg['basicPages']:self.cfg['basicPages'].append(page)
+   role='<p class="site-role">有界论文算法 · 单路径有限网格感知与完美CSI的MP-G/完整LMMSE通信</p>' if page=='otfs-receiver.html' else ''
+   self.add(page,'<title>Fixture</title>'+role+''.join('<section id="'+a+'"></section>' for a in anchors))
+  page=(self.run_projection()/'index.html').read_text()
+  self.assertEqual(page.count('id="learning-route"'),1)
+  self.assertLess(page.index('id="learning-route"'),page.index('class="home-concept-details"'))
+  self.assertIn('<span class="map-number">09</span>',page)
+  self.assertIn('<span class="map-number">10</span>',page)
+  self.assertIn('id="map-group-research" class="map-group" data-map-group="research"',page)
+  self.assertIn('href="#learning-route"',page)
+  for href in re.findall(r'href="([^"]+)"',M.learning_route()):self.assertIn('href="'+href+'"',page)
+  self.assertIn('不等于整篇论文复现',page)
+ def test_projected_empty_next_falls_back_and_static_separators_only_are_removed(self):
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html']:
+   self.cfg['basicPages'].append(page)
+   self.add(page,'<title>Fixture</title><aside class="site-next" aria-label="下一步"><p>完成当前问题之后</p><a href="omitted.html">Omitted</a></aside><aside class="site-next"><a href="reading.html">Existing</a></aside><section id="limits"><p> · </p><p id="dynamic-status"></p><p> · teaching content</p></section><p class="ar-evidence"> ·  ·  · </p><p id="dynamic-separator"> · </p>')
+  out=self.run_projection()
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html']:
+   text=(out/page).read_text()
+   self.assertEqual(text.count('返回论文阅读'),1)
+   self.assertIn('<a href="reading.html">返回论文阅读</a></aside>',text)
+   self.assertIn('<aside class="site-next"><a href="reading.html">Existing</a></aside>',text)
+   self.assertIn('<p id="dynamic-status"></p>',text)
+   self.assertIn('<p id="dynamic-separator"> · </p>',text)
+   self.assertIn('<p> · teaching content</p>',text)
+   self.assertEqual(M.repair_projected_navigation(page,text),text)
+  self.assertNotIn('<section id="limits"><p> · </p>',(out/'reference-uncertainty.html').read_text())
+  self.assertIn('<p class="ar-evidence"> ·  ·  · </p>',(out/'reference-uncertainty.html').read_text())
+  self.assertNotIn('<p class="ar-evidence">',(out/'atomic-ofdm-receiver.html').read_text())
+  self.assertIn('<section id="limits"><p> · </p>',(out/'atomic-ofdm-receiver.html').read_text())
+ def test_navigation_cleanup_preserves_empty_dynamic_nodes_and_nested_paths(self):
+  dynamic='<section id="limits"><p></p><p data-live="true"> · </p></section><p class="ar-evidence" id="live"></p>'
+  for page in ['reference-uncertainty.html','atomic-ofdm-receiver.html','other.html']:
+   self.assertEqual(M.repair_projected_navigation(page,dynamic),dynamic)
+  nested=M.repair_projected_navigation('nested/course/index.html','<aside class="site-next"></aside>')
+  self.assertIn('href="../../reading.html"',nested)
+  existing='<aside class="site-next"><a href="https://example.org/paper">Paper</a></aside>'
+  self.assertEqual(M.repair_projected_navigation('index.html',existing),existing)
+ def test_reference_uncertainty_source_names_papers_and_real_lessons(self):
+  page=(ROOT/'content/pages/reference-uncertainty.html').read_text()
+  source=page.split('<section id="sources"')[1].split('</section>')[0]
+  for title in ['Super-Resolution Delay-Doppler Estimation for OFDM Passive Radar','On the Effectiveness of OTFS for Joint Radar and Communication','Zak-OTFS ISAC with Bistatic Sensing via Semi-Blind Atomic Norm Denoising Scheme']:
+   self.assertIn(title,source)
+  for href in ['atomic-ofdm-receiver.html#question','otfs-receiver.html#question']:
+   self.assertIn('href="'+href+'"',source)
+  self.assertIn('不含这篇 Zak-OTFS 论文',source)
+  self.assertIn('href="reading.html"',page)
  def test_contextual_citations_keep_all_eight_labels_and_surrounding_prose(self):
   ids=['Q1','Q2','Q3','D1']
   refs=''.join('<article id="ref-'+i+'"><a href="https://example.org/'+i+'">source</a></article>' for i in ids)

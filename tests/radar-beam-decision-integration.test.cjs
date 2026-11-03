@@ -17,7 +17,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
  a.equal(r.cases.filter(x=>x.id===c.id).length,1);a.equal(r.units.filter(x=>x.id===u.id).length,1);a.equal(r.pages.filter(x=>x.path===p.path).length,1);
  a.equal(c.unit,u.id);a.equal(p.case,c.id);a.equal(p.stage,'foundations');a.equal(u.primaryDirectionId,'learning');
  a.equal(c.learningEntry,'radar-beam-decision.html#mechanism');a.equal(u.href,'radar-beam-decision.html#experiment');a.equal(c.paper,'radar-beam-decision.html#paper');a.equal(c.next,'radar-beam-decision.html#limits');a.equal(p.next,'reading.html#notebook');
- a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,32);
+ a.equal(withoutGCSAGERegistry(historyRegistry).units.length,28);a.equal(require('./helpers/otfs-receiver-preservation.cjs').withoutOtfsRegistry(historyRegistry).cases.length,15);a.equal(r.directions.length,8);a.equal(r.knowledgeMap.nodes.length,36);
  const d=r.directions.find(d=>d.id==='learning');a.deepEqual(d.primaryCaseIds,[c.id]);a.match(d.title,/感知辅助通信/);a.match(d.scope,/感知辅助通信/);
  a.equal(d.levels.find(l=>l.id==='intuition').items[0].href,'reading.html#branches');
  for(const [level,anchor]of [['intuition','mechanism'],['model','model'],['experiment','experiment'],['papers','paper'],['limits','limits'],['reproduction','reproduce']]){
@@ -31,7 +31,7 @@ test('radar registry owns one independent sensing-assisted communication case wi
 
 test('radar registry preserves every existing concept beginner route and adds only three relevant deep references',()=>{
  const expected=[['messages','shared',null],['iq','iq',null],['ofdm-basics',null,'foundations.html#ofdm-basics'],['communication-rate','rate',null],['echo','echo',null],['matched','matched',null],['geometry','geometry',null],['shared-model','shared',null],['sampling','ofdm',null],['phase','doppler',null],['known-pilots','pilot',null],['delay','ofdm',null],['doppler','doppler',null],['angle','array',null],['detection','cfar',null],['estimation','shared',null],['association',null,'reading.html#direction-networks'],['task-learning',null,'reading.html#direction-learning'],['resolution',null,'foundations.html#limits'],['ambiguity','pilot',null],['fisher-crb','crb',null],['budget',null,'foundations.html#codesign'],['waveform-design','pilot',null],['beam-design','array',null],['mutual-assistance',null,'theory.html#evolution'],['resource-design','sbfd',null],['joint-objectives','rate',null],['channels',null,'foundations.html#realworld'],['synchronization','clock',null],['near-field','near-field',null],['implementation',null,'reading.html#direction-prototype']];
- a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.id!=='background-subtraction').map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected);
+ a.deepEqual(r.knowledgeMap.nodes.slice(0,32).filter(n=>n.id!=='background-subtraction').map(n=>[n.id,n.entryUnitRef??null,n.href??null]),expected);
  a.deepEqual(r.knowledgeMap.nodes.filter(n=>n.unitRefs.includes(u.id)).map(n=>n.id),['task-learning','beam-design','mutual-assistance']);
  for(const n of r.knowledgeMap.nodes)a.ok(n.unitRefs.filter(id=>id===u.id).length<=1);
  a.doesNotMatch(r.knowledgeMap.nodes.find(n=>n.id==='mutual-assistance').boundary,/尚无感知辅助波束选择/);
