@@ -17,7 +17,7 @@ function installIciView(doc,query){
  const stage=query('.ici-evidence'),children=Array.from(stage.childNodes),keep=['#ici-plot-key','#ici-line','#ici-map','#ici-stage-summary'].map(query),details=doc.createElement('details');details.className='gl-result-more';const label=doc.createElement('summary');label.textContent='本阶段完整公式、参数与数组';details.append(label);let active=false;
  function guide(){if(active)return;active=true;for(const e of children)if(!keep.includes(e))details.append(e);stage.append(details);}
  function restore(){if(!active)return;for(const e of children)stage.append(e);details.remove();active=false;}
- function show(step){guide();details.open=step.role==='algorithm';}
+ function show(step){guide();details.open=step.role==='algorithm'||step.openReadDetails===true;}
  guide();return {show,guide,restore};
 }
 function installViews(doc,lesson,query){

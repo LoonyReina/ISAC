@@ -134,6 +134,7 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
 (function(data){
  const get=id=>data.lessons.find(l=>l.id===id),w=get('optimal_waveform'),j=get('joint_beamforming'),c=get('crb'),n=get('supplement-case-clock'),e=data.variants.find(l=>l.coreId==='extended-target');
  w.ui.readSelectors.push('#wfl-weighted-result');
+ w.ui.liveSelectors.push('#wfl-weighted-status');
  w.feedbackMetricSelectors=['#wfl-weighted-metrics','#wfl-metrics','#wfl-weighted-status'];
  w.steps.find(s=>s.role==='bridge').body+=' 手算小矩阵：令 L=2，X₀=√2 I₂，X₁=√2 diag(1,−1)。两者 XXᴴ/L=I₂，方向图完全相同；但 D=‖X₁−X₀‖²=8。若 H=[1,1]、S=[√2,√2]，C(X₀)=0、C(X₁)=8。这个实数例只说明协方差相同不等于波形距离为零，不是本次核心结果。现在对照真实表的协方差残差和符号误差，再进入ρ实验。';
  j.steps.find(s=>s.role==='bridge').body+=' 为什么还要恢复波束？手算 Q=diag(2,1)、h=[1,0]：Q为PSD但秩2，不能等于单根 w wᴴ。构造 w=Qhᴴ/√(hQhᴴ)=[√2,0]ᵀ，剩余 Q−wwᴴ=diag(0,1) 仍为PSD，可交给探测流。此时有用功率 |hw|²=2，而剩余对这个h的功率为0。真实多用户还会有其他用户干扰，所以下表必须从恢复后的因子重算 D/(Iu+Ir+噪声)，不能只拿Q宣称已得到可发送波束。';
@@ -168,3 +169,5 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  const cm=lesson('channels-sensing-communication-mapping-2026');each(cm,s=>{if(/通信.*时延|物体.*时延/.test(s.title))s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#group-detail'])];});
  const gc=lesson('nearfield-mechanism-aware-mapping-2026');each(gc,s=>{if((s.viewMetrics||[]).includes('#gcs-update')||s.focusSelector==='#gcs-update'){s.focusSelector='#gcs-update';s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#gcs-inspector'])];s.body+=' 展开原“回看已计算更新”，选择实际轮次和路径；逐值读几何长度→τ→复相位，再核对扣除其他路径后的输入、新路径贡献与更新后残差。';}});
 })(globalThis.Guided19Data);
+// Step identities changed in the beginner-study revision; old positional records stay historical.
+for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19Data.variants||[])])lesson.recordVersion='study-20261103-v1';

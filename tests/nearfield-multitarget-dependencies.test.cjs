@@ -4,7 +4,8 @@ const root=path.resolve(__dirname,'..'),D=require('../scripts/build/module-depen
 function readForHistory(file){return require('./helpers/channel-mapping-preservation.cjs').readCurrentForHistory(file,fs.readFileSync(path.join(root,file)),{root});}
 const historyJSON=file=>JSON.parse(readForHistory(file));
 const uiSourceOnly=require('./helpers/nearfield-multitarget-ui-progress-source-only.json');
-function fixture(){const source=P.withUiProgressProfiles(d.moduleProfiles).map(c=>({file:c.public,source:fs.readFileSync(path.join(root,c.public),'utf8')}));return {source,contract:{schemaVersion:1,modules:P.withUiProgressProfiles(d.moduleProfiles)},identities:source.map(x=>({file:x.file,sha256:sha(x.source)}))};}
+// Current teaching UI bytes use the production contract; frozen solver profiles remain unchanged.
+function fixture(){const current=require('../scripts/build/module-runtime-contracts.json'),profiles=P.withUiProgressProfiles(d.moduleProfiles).map(c=>c.public==='labs/nearfield-multitarget/lesson/lesson.mjs'?current.modules.find(m=>m.public===c.public):c);const source=profiles.map(c=>({file:c.public,source:fs.readFileSync(path.join(root,c.public),'utf8')}));return {source,contract:{schemaVersion:1,modules:structuredClone(profiles)},identities:source.map(x=>({file:x.file,sha256:sha(x.source)}))};}
 const run=f=>D.moduleDependencies(f.source,f.contract,f.identities);
 test('multi-target exact 14 profiles preserve all prior parser and contract identities',()=>{
  a.equal(uiSourceOnly.schemaVersion,1);a.equal(uiSourceOnly.baselineTree,'ee2387f21a253bc2d963653b57320e26435dd0f3');

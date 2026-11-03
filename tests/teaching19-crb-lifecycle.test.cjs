@@ -33,6 +33,7 @@ test('reset, raw-input import and native channel/sweep actions invalidate old CR
 test('result-alignment contracts expose weighted metrics, truth controls and extended-response semantics',()=>{
  const data=box.Guided19Data,w=data.lessons.find(l=>l.id==='optimal_waveform'),j=data.lessons.find(l=>l.id==='joint_beamforming'),c=data.lessons.find(l=>l.id==='crb'),n=data.lessons.find(l=>l.id==='supplement-case-clock'),e=data.variants.find(l=>l.coreId==='extended-target');
  assert(w.ui.readSelectors.includes('#wfl-weighted-result'));
+ assert(w.ui.liveSelectors.includes('#wfl-weighted-status'));
  assert(w.feedbackMetricSelectors.includes('#wfl-weighted-metrics'));
  assert(n.ui.readSelectors.includes('#ns-truth-controls'));
  assert(n.feedbackMetricSelectors.includes('#ns-comparison'));

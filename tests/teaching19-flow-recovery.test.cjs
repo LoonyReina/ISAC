@@ -8,7 +8,7 @@ function fixture(id){
  function node(s){if(!nodes.has(s)){const listeners={};const n={id:s.slice(1),type:'number',value:'0.2',disabled:false,hidden:false,textContent:'',dataset:{},getAttribute(){return null},setAttribute(){},removeAttribute(){},addEventListener(t,f,capture=false){(listeners[t]??=[]).push({f,capture});},removeEventListener(t,f){listeners[t]=(listeners[t]||[]).filter(x=>x.f!==f)},emit(t,target,capture){for(const l of listeners[t]||[])if(l.capture===capture)l.f({type:t,target})},dispatchEvent(e){const t=e.type;if(host!==this)host.emit(t,this,true);this.emit(t,this,true);this.emit(t,this,false);if(host!==this)host.emit(t,this,false);},click(){this.dispatchEvent({type:'click'})}};nodes.set(s,n);}return nodes.get(s);}
  host=node(lesson.ui.rootSelector);
  const inputSelectors=id.includes('causal')?['#cc-budget','#cc-budget-slider']:['#mpi-height','#mpi-noise'];
- const doc={querySelector:node,querySelectorAll:s=>inputSelectors.includes(s)?[node(s)]:['#mpi-coincident','#mpi-reset','#mpi-retry'].includes(s)?[node(s)]:[],defaultView:{Event:class{constructor(type){this.type=type}}}};
+ const doc={querySelector:node,querySelectorAll:s=>s==='[data-budget]'?[node('#cc-preset')]:inputSelectors.includes(s)?[node(s)]:['#mpi-coincident','#mpi-reset','#mpi-retry'].includes(s)?[node(s)]:[],defaultView:{Event:class{constructor(type){this.type=type}}}};
  lesson.ui.recordInputSelectors=inputSelectors;
  return {lesson,node,doc,install:()=>installTheoryAdapter(doc,lesson)};
 }
@@ -72,4 +72,28 @@ test('stage review and record import call the mounted renderer; back and refresh
 test('courses without prediction or comparison do not invent either requirement',async()=>{
  const f=engineFixture({predict:false,compare:false});const learning=f.root.querySelector('.gl-learning');learning.open=true;await learning.fire('toggle');await f.find('Read').click();
  const text=f.root.querySelector('.gl-feedback').querySelectorAll('*').map(n=>n.textContent).join(' ');assert(!text.includes('回看原预测'));assert(!text.includes('返回热身'));assert(!text.includes('只改一项'));assert(text.includes('解释本次证据'));
+});
+test('causal native UI and real controller complete compare, infeasible run, invalid input and recovery with guided freshness',async()=>{
+ const source=path.resolve(__dirname,'../labs/causal-state-capacity'),base=fs.existsSync(path.join(source,'causal-capacity-ui.mjs'))?source:path.resolve(__dirname,'..');
+ const {mountCausalCapacityLesson}=await import(path.join(base,'causal-capacity-ui.mjs'));
+ const f=fixture('tradeoffs-causal-state-communication-2013');
+ for(const s of ['#cc-budget','#cc-budget-slider'])Object.defineProperty(f.node(s),'valueAsNumber',{get(){return this.value===''?NaN:Number(this.value)}});
+ f.node('#cc-preset').dataset.budget='0.1551404838969245';
+ const ui=mountCausalCapacityLesson(f.doc,{autoStart:false}),a=f.install(),settle=()=>new Promise(resolve=>setImmediate(resolve));
+ await a.run('first');await settle();assert(a.ready());assert.equal(ui.controller.getState().result.requestedD,.2);
+ await a.run('compare');await settle();assert(a.ready());let r=ui.controller.getState().result;assert.equal(r.requestedD,.3);assert.equal(r.metrics.actualDistortion,.25);assert.equal(r.feasibility.status,'plateau');
+ await a.run('failure');await settle();assert(a.ready());r=ui.controller.getState().result;assert.equal(r.requestedD,.15);assert.equal(r.feasibility.status,'infeasible');assert.equal(r.feasibility.feasibleRate,null);
+ f.node('#cc-preset').click();await settle();assert(a.ready(),'native endpoint preset updates submitted inputs after synchronization');assert.equal(ui.controller.getState().result.feasibility.status,'boundary_within_numerical_resolution');assert.equal(ui.controller.getState().result.feasibility.feasibleRate,null);
+ f.node('#cc-budget').value='';f.node('#cc-budget').dispatchEvent({type:'input'});await settle();assert(a.ready(),'invalid terminal readable without claiming a numerical result');assert.equal(ui.controller.getState().phase,'invalid');assert.equal(ui.controller.getState().result,null);
+ await a.run('first');await settle();assert(a.ready());assert.equal(ui.controller.getState().result.requestedD,.2);a.dispose();ui.dispose();
+});
+test('reordered study steps reject old positional records rather than silently resuming another stage',()=>{
+ const {newRecord,readRecord}=require(path.join(dir,'engine.js'));
+ for(const lesson of [...box.Guided19Data.lessons,...(box.Guided19Data.variants||[])]){
+  assert.equal(lesson.recordVersion,'study-20261103-v1');
+  const record=newRecord(lesson);record.step=Math.min(3,lesson.steps.length-1);record.visited=[record.step];record.attempted=[record.step];
+  assert.equal(readRecord(JSON.stringify(record),lesson).step,record.step);
+  record.version='feedback-20261025-v1';
+  assert.throws(()=>readRecord(JSON.stringify(record),lesson),/课程版本已更新/,'old numeric step must not map onto a newly ordered stage');
+ }
 });
