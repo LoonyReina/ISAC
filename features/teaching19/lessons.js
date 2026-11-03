@@ -66,3 +66,120 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  lesson.learningIdentity=lesson.coreId==='extended-target'?['有限扩展目标与通信信道模型','扩展目标 SDP 与两种恢复','扩展目标 CRB 下界；不是单次估计误差']:identity[lesson.id];
 }
 })(globalThis.Guided19Data);
+
+// Beginner bridges for lessons 13–19. These are labelled arithmetic examples,
+// never values injected into a receiver, optimizer, threshold or scientific result.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id);
+ const step=(l,title)=>l.steps.find(s=>s.title===title);
+ const ad=get('80211ad');
+ step(ad,'距离读懂后，才看两段相位差').body+=' 纸笔例：相关向量z=1+j，其相角atan2(1,1)=π/4 rad。若两段相隔Δt=1 ms，f̂=(π/4)/(2π×0.001)=125 Hz。再假设振荡器频偏已独立去除、单站目标接近为正、λ=5 mm，则v̂=λf̂/2=0.3125 m/s。这里的Δt和λ仅供手算，实际应读本次配置；有未知CFO时只能报告合并频偏，不能如此换速度。';
+ step(ad,'拉开时间间隔读取相位').body+=' 在上面的纸笔例中，125 Hz与1125 Hz相隔1/Δt=1000 Hz，两者相关向量相角相同。主值只能给[−500,500) Hz内的代表值；单站速度区间相应为[−1.25,1.25) m/s。图上相角来自真实复相关，整圈数不是接收机自动知道的。';
+ const gt=get('supplement-case-crb');
+ const symbols='本页归一化：pₜ是每阵元功率，Q的特征值qᵢ=pₜwᵢ，所以wᵢ≥0且Σwᵢ=m；δ=σs²/(Tσh²pₜ)来自感知噪声与proper先验；aᵢ=pₜλᵢ(HᴴH/σc²)是该通信模式的无量纲增益。δ>0让未照方向仍有有限先验误差。';
+ step(gt,'把图上的现象接回数学').body=symbols+' 对照当前阶段的Q、模式功率与表格，不把横轴通信率当成wᵢ。目标中的ln是自然对数；最终率用log₂，单位bit/复使用。';
+ step(gt,'求根与KKT证书').body='手算KKT：取m=2、δ=1、a=(1,0)、κ=32/45。最优候选w=(1.5,0.5)满足Σw=2；两个活动方向边际收益sᵢ=1/(wᵢ+δ)²+κaᵢ/(1+aᵢwᵢ)，均为4/9。均分w=(1,1)时s=(109/180,1/4)，往第一维挪一点功率会降低目标，直到边际相等。真实核心用求根求共同乘子μ；wᵢ>0时sᵢ=μ，wᵢ=0时sᵢ(0)≤μ，再读本次功率残差与全矩阵支持平面gap。此二维数值不是本轮真实分配。';
+ const pilot=get('supplement-case-pilot');
+ const rotation=step(pilot,'去掉已知错列旋转');
+ rotation.body='默认查看i=0时线性错列F₀=0，补偿因子为1，蓝橙向量重合是正确结果。点击下面按钮只切换查看i=1、r=1，不重算y；从当前相位表核对Fᵢ与ell。默认D图案F₁=1且ell=5时，旋转角为−2π×81/96=−27π/16（等价+5π/16），模长不变。若已经比较到ell=4或3，则按当前ell重新代入，不能继续用81。';
+ rotation.action={label:'查看 i=1、r=1 的真实向量',controls:[{selector:'#pp-i',value:1,event:'input'},{selector:'#pp-r',value:1,event:'input'}],runSelector:null};
+ const sameYRead=step(pilot,'同一份 IQ，比较保留多少样本');
+ sameYRead.action={label:'显示本次 ell=5 的评估 NMSE',controls:[{selector:'#pp-truth',value:true,event:'change'}],runSelector:null};
+ sameYRead.viewMetrics=[...new Set([...(sameYRead.viewMetrics||[]),'#pp-evaluation'])];
+ sameYRead.body+=' 点击显示评估按钮，记录本次ell=5的原始NMSE与匹配数；这只显示事后评分，不改变y或接收机。后面保持同一y比较ell=4和3。';
+ const compare=pilot.steps.find(s=>s.role==='compare');
+ compare.action={...compare.action,controls:[{selector:'#pp-ell',value:4,event:'input'},{selector:'#pp-truth',value:true,event:'change'}]};
+ compare.runtimeAction=compare.action;
+ compare.viewMetrics=[...new Set([...(compare.viewMetrics||[]),'#pp-evaluation'])];
+ pilot.singleControlChange.runtimeAction=compare.action;
+ pilot.singleControlChange.viewMetrics=compare.viewMetrics;
+ compare.body+=' 保留同y标识并记录本次ell=4的NMSE与候选匹配数，下一步继续用同一y试ell=3。Ncp=12时，ell=5/4/3的保护界分别为92/76/60 samples，L分别为16/32/48，N/L分别为6/3/2。';
+ const third={...compare,title:'同一观测再少丢一段：ell=3',why:'候选仍能匹配，并不代表复信道已经无污染。',body:'只改变ell=3，保持同一y。与刚才ell=5、4的记录对照：保护界缩到60 samples，可能露出原来被挡住的长时延污染。匹配数只数候选落入匹配容差的个数；即使仍是4/4，复信道NMSE也可不同。开启“显示生成器／评估层”才读NMSE，它只评分，不回馈接收机。NMSE=Σ|H−H理想|²/Σ|H理想|²；共同增益对齐NMSE另作诊断，不可替代原NMSE。默认无噪声时这些差异不能称作噪声放大。',action:{controls:[{selector:'#pp-ell',value:3,event:'input'},{selector:'#pp-truth',value:true,event:'change'}],runSelector:'#pp-reprocess'},viewMetrics:['#pp-pair-id','#pp-noise-table','#pp-evaluation'],viewSelectors:['#pp-mape','#pp-hi']};
+ third.instruction='只把ell从4改为3，保持当前y、known pilots与grid；显示真值开关只用于评价。';
+ third.expected=third.body;
+ third.runtimeAction=third.action;
+ pilot.steps.splice(pilot.steps.indexOf(compare)+1,0,third);
+ const clock=get('supplement-case-clock');
+ step(clock,'观测除以已知导频').body='张量不是新物理量，而是三轴数据表：X[a,k,m]用天线a、子载波k、符号m定位一个复样本。除以已知非零导频后，一条路径近似贡献g A[a]B[k]C[m]；两条路径就在每一格复数相加。先在当前数据图固定两轴读一列，再换轴；每个因子列是沿该轴的相位变化，不是一条已经分离的真实路径标签。';
+ step(clock,'一条路径分成三根斜率').body+=' 纸笔例：A=(1,j)、B=(1,−1)、C=(1,j)，g=1，则X[1,1,1]=j×(−1)×j=1，X[0,1,0]=−1。三根短向量的外积重建整个三维块；两径还要相加。实际A/B/C长度与数值以当前张量为准。';
+ step(clock,'核对重构残差').body+=' 图中的相对残差‖X−X̂‖F/‖X‖F检查“能否解释观测”；预算前后账本的末轮残差是未归一化范数，不混用数值；参数误差检查“是否对应生成器的真实延迟/角度”。例如X=a bᵀ，换为(2a)(b/2)ᵀ，残差完全不变；列交换也不变。近邻路径与噪声还可能让不同参数同样拟合，所以低残差不是准确证书。';
+ step(clock,'双向关联并分离公共偏差').body+=' 主值跨圈纸笔例：真实组合相位分别为0.9π和1.3π，后者显示成−0.7π。直接取半和得0.1π，而未绕圈半和是1.1π；两者差π。关联只能解决列对应，不能凭主值知道丢了哪一圈。真实失败练习仍应读当前残差、别名范围与评价误差，禁止按真值补圈。';
+})(globalThis.Guided19Data);
+
+// The causal lesson keeps its live PMF beside the corresponding guided explanation.
+(function(data){const lesson=data.lessons.find(l=>l.id==='tradeoffs-causal-state-communication-2013');
+ lesson.ui.readSelectors.push('#cc-mechanism');
+ for(const step of lesson.steps){
+  if(step.focusSelector==='#cc-pmf')step.body+=' 点击任一概率格，下面直接展开本次原子的四项概率乘积与同一 UE 行对 V、Z 求和的边缘化。';
+  if(step.focusSelector==='#cc-information-y')step.body+=' 从上一步的16原子按相同 Y 或 (U,V,Y) 汇总后，代入互信息定义；本页实时信息差再与公式账本核对，不把原子概率当成信息量。';
+ }
+})(globalThis.Guided19Data);
+
+// Spatial information and multi-station decision bridges; native arrays stay authoritative.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id),step=(l,title)=>l.steps.find(s=>s.title===title);
+ const nf=get('supplement-case-near-field');
+ const read=nf.steps.find(s=>s.role==='read');
+ read.body='先只读二维谱峰的位置，再并列读下面本次估计(x,y)、仿真真值(x,y)与欧氏误差；两组坐标来自原始接收与事后评估节点。真值不进入搜索。其他角度、范围和边界诊断可展开，设计仍是预计算，接收才是本次计算。球面与平面相位差在几何阶段作解析对照；本课没有运行一个独立平面波定位器，不能把几何近似当已测得的接收性能基线。';
+ step(nf,'由有限波形生成Y').body='逐项接上球面波：候选位置p到第n阵元的路程rₙ(p)给复响应aₙ(p)（相位含−2πrₙ/λ，幅度也按源模型）。本课单目标收发链Y=βa(p)a(p)ᵀX+Z，注意此处是转置ᵀ，协方差才用共轭转置ᴴ。X是已固定的发射块；aᵀX给照向该位置的每个快拍，外乘a再到接收阵列。Y的一列是一时刻所有阵元的复样本，不是位置图片；β未知，生成真值只留给评价。';
+ const bridge=step(nf,'把图上的现象接回数学');
+ bridge.body='先由Y计算R̂=YYᴴ/T，再特征分解。已知单目标假设下，最大特征向量张成信号子空间，其余组成Eₙ。候选位置p产生球面模板a(p)，MUSIC分母为‖Eₙᴴa(p)‖²（按核心模板归一化约定）；越接近噪声子空间的正交补，谱越高。位置来自逐点搜索与细化，不是由特征值直接读出。请在本步先看实际特征值分离，再对照下一步二维谱。';
+ bridge.formulaBridge='两阵元无噪声纸笔例：Y=[[1,1],[j,j]]，R̂=[[1,−j],[j,1]]，特征值(2,0)。a=(1,j)与噪声向量(1,−j)/√2正交，分母为0；错误模板(1,−j)分母为2。理想零分母不是现实无限精度，噪声、有限快拍和相似模板仍可使峰不稳。';
+ step(nf,'子空间与二维候选搜索').body+=' 阅读顺序：本次Y → 本次R̂特征值 → 固定搜索域内球面模板分数 → 网格候选 → 有界细化 → 事后真值。这里预设只有一个目标，不能用同一信号子空间维数直接解释任意多目标场景。';
+ step(nf,'子空间与二维候选搜索').viewSelectors=['[data-nfr-view="eigen"]','[data-nfr-view="spectrum"]'];
+ step(nf,'细化与评价分离').viewSelectors=['[data-nfr-view="refinement"]','[data-nfr-view="evaluation"]'];
+ const mpi=get('supplement-case-multipath-channel');
+ const mbridge=step(mpi,'把图上的现象接回数学');
+ mbridge.body='把热身接到米单位位置界：另设二维位置(x,y)和未知η的小型FIM J=[[4,0,1],[0,1,0],[1,0,1]]，前两行对应位置（位置块单位m⁻²）。Jpp=diag(4,1)，Jpη=(1,0)ᵀ，Jηη=1。Schur补扣除[[1,0],[0,0]]，得到EFIM=diag(3,1) m⁻²。取逆为diag(1/3,1) m²，再取PEB=√tr(EFIM⁻¹)=√(4/3)≈1.154701 m。若η已知，则PEB=√(1/4+1)≈1.118034 m。这里只是可验算的局部信息账本，不是当前六参数模型的输出，也不是实际定位误差。';
+ mbridge.formulaBridge='真实路径时延/复增益导数 → 完整FIM → 消未知增益的Schur补 → 单程几何Jacobian映射至位置EFIM → √tr(逆矩阵)。任何必要块奇异时先报告不可辨识，不用伪逆填有限PEB。';
+ step(mpi,'Schur补与几何映射').body+=' 回看二维热身的1.154701 m，再在本次精确PEB与近似PEB之间核对差异：前者保留脉冲重叠交叉项，后者依赖额外近似。两者都不是位置估计器输出；无有限界时保留原失败标签。';
+ const cf=get('supplement-case-distributed-detection');
+ step(cf,'把图上的现象接回数学').body='从一维MAP扩成两个站的实数热身：把同一时刻观测堆成y=(2,0)ᵀ，G=(1,1)ᵀ，α~N(0,1)，噪声协方差I。最优α̂=(GᵀG+1)⁻¹Gᵀy=2/3，ŷ=(2/3,2/3)，C₀=4，C₁=‖y−Gα̂‖²+α̂²=8/3，二次项改善4/3。第二站的0也参与拟合，不能把各站最佳幅度分别拟合后当成同一目标。此热身没有背景通道和完整常数项。真实核心把时间、接收站和天线堆成40维复y，用已知设计G、背景设计X和各自先验矩阵联合拟合。';
+ step(cf,'把图上的现象接回数学').formulaBridge='H₀: y=Xh+n；H₁: y=Gα+Xh+n。MAP以噪声加权残差加αᴴRα⁻¹α、hᴴRh⁻¹h惩罚，求解共轭正规方程并保留完整MAPRT常数。不是把实数热身4/3直接当实际分数。';
+ step(cf,'CCP功率分配与检查').body='CCP先把当前点附近的非凸项换成可解的凸子问题，再检查原问题。纸笔例：q(p,t)=p²/t（t>0）在(p₀,t₀)=(1,2)的切平面下界为p−t/4，起点两者都是0.5；到(1.2,2.2)，下界0.65而真实q≈0.654545。这解释为何优化下界可能推进原代理目标，不是本站多站约束求解结果。真实p是功率平方根，代理含多站矩阵A/B、通信与AP功率约束；请读当前选中重启的前后p、切平面改进、真实SINR改进与停止原因。局部收敛不代表全局最优，未通过子问题证书不能填Pd。';
+ step(cf,'校准再评估').body='把校准与评估分开数：示意校准H₀分数[1,2,3,4]，目标Pfa=0.4，k=ceil((4+1)(1−0.4))=3，冻结门限3。独立评估H₀=[0.5,1.5,2.5,3.5]给1/4虚警；H₁=[2,3,4,5]按score≥3给3/4检出。示例分数不是实时输出，有限4例也不证明总体率。请将本次统计表里的校准样本数、门限、评估计数/分母和区间逐一代回这条链。AP/SP同观测并列在完整方案表；跨功率方案则仅共享随机潜变量，不是同一y。';
+ cf.steps.find(s=>s.role==='compare').body+=' 展开“完整失败警示、用能对照与运行身份”的方案表，同一行并列AP Pd与SP Pd；再回本次直方图核对各自门限和分母。不要拿不同分配的行充当同y接收机对照。';
+})(globalThis.Guided19Data);
+
+// Lesson-local output contracts: strict and weighted results, physical user ledger,
+// and extended-response semantics must match the stage the learner is reading.
+(function(data){
+ const get=id=>data.lessons.find(l=>l.id===id),w=get('optimal_waveform'),j=get('joint_beamforming'),c=get('crb'),n=get('supplement-case-clock'),e=data.variants.find(l=>l.coreId==='extended-target');
+ w.ui.readSelectors.push('#wfl-weighted-result');
+ w.ui.liveSelectors.push('#wfl-weighted-status');
+ w.feedbackMetricSelectors=['#wfl-weighted-metrics','#wfl-metrics','#wfl-weighted-status'];
+ w.steps.find(s=>s.role==='bridge').body+=' 手算小矩阵：令 L=2，X₀=√2 I₂，X₁=√2 diag(1,−1)。两者 XXᴴ/L=I₂，方向图完全相同；但 D=‖X₁−X₀‖²=8。若 H=[1,1]、S=[√2,√2]，C(X₀)=0、C(X₁)=8。这个实数例只说明协方差相同不等于波形距离为零，不是本次核心结果。现在对照真实表的协方差残差和符号误差，再进入ρ实验。';
+ j.steps.find(s=>s.role==='bridge').body+=' 为什么还要恢复波束？手算 Q=diag(2,1)、h=[1,0]：Q为PSD但秩2，不能等于单根 w wᴴ。构造 w=Qhᴴ/√(hQhᴴ)=[√2,0]ᵀ，剩余 Q−wwᴴ=diag(0,1) 仍为PSD，可交给探测流。此时有用功率 |hw|²=2，而剩余对这个h的功率为0。真实多用户还会有其他用户干扰，所以下表必须从恢复后的因子重算 D/(Iu+Ir+噪声)，不能只拿Q宣称已得到可发送波束。';
+ c.steps.find(s=>s.role==='bridge').body+=' 消去未知反射参数的2×2纸笔例：设归一化参数(θ,a)的FIM为 [[4,1],[1,1]]。若a已知，θ方差界为1/4；若a未知，Schur补信息为4−1×1⁻¹×1=3，界为1/3。信息被耦合扣除，不能直接取Jθθ的倒数。这是局部正则、无偏条件下的示例；真实复反射模型由完整FIM计算，当前图给出实际信息。';
+ n.ui.readSelectors.push('#ns-truth-controls');n.feedbackMetricSelectors=['#ns-summary','#ns-comparison','#ns-identity'];
+ e.concreteQuestion='在同一个扩展目标松弛协方差下，两种波束恢复如何改变实际功率、通信约束与完整响应MSE下界？';
+ e.knownUnknown={known:['用户信道 H、两用户SINR门槛、功率预算、Nt与Nr、L=30'],unknown:['数据与探测协方差及其可发送因子；不估计目标角度'],observation:'完整响应复MSE下界 = Nr σ²/L × tr(R⁻¹)，不是角度CRB，也不是单次估计误差。'};
+ e.priorKnowledge={inlinePrimer:'扩展目标在这里以完整复响应矩阵为未知量。R的每个特征方向都要受到照射；某个特征值为零时，逆迹界不能报告有限值。'};
+ e.plainScope='本页优化完整响应复MSE下界，不是角度CRB或接收机实测误差。';
+ e.learningIdentity=['有限扩展目标与通信信道模型','扩展目标 SDP 与两种恢复','完整响应复MSE下界；不是角度方差'];
+ e.feedbackMetricSelectors=['#output','#status'];
+ e.steps[2].body+=' 纸笔恢复：Q=diag(2,1)、h=[1,0]、探测协方差P=I₂，故R=diag(3,2)。构造w=[√2,0]ᵀ，并把剩余diag(0,1)加到P，R仍为diag(3,2)，tr(R⁻¹)=5/6。主特征对只保留wwᴴ和原P，R变为diag(3,1)，tr(R⁻¹)=4/3，实际总功率也从5降到4。这个小例不是实际运行数值；请在下方两张真实卡片核对同样的量，不将不同能量解释成无条件优劣。';
+})(globalThis.Guided19Data);
+/* Beginner bridge revision: actual native outputs and read-only controls, not new solvers. */
+(function(data){
+ const lesson=id=>data.lessons.find(l=>l.id===id);
+ const each=(l,fn)=>{l.steps.forEach(fn);(l.algorithmRoute?.steps||[]).forEach(fn);};
+ const otfs=lesson('otfs-joint-estimation-2020');
+ const o=otfs.steps.find(s=>s.role==='read');o.title='先把二维投影扩成64个复坐标';o.body='在当前结果的模板选择框换一个(q,a)，先比较模板能量、复内积、投影增益与投影后残差，再展开64格逐值核对。每个候选是一整条u(q,a)，不是一格功率；这项单模板投影用于理解搜索评分，不冒充多路径联合结果。随后读蓝线与同观测顺序基线。';
+ const mt=lesson('nearfield-multitarget-correlation');mt.steps.find(s=>s.role==='read').body+=' 当前表下先解释c/μ和ρ的不同分母。运行退化例后，可展开“回看本会话最近一次两模式均接受的示例”；历史只用于对照，不填补当前失败。';
+ const bi=lesson('bistatic-ofdm-clock-measurement-2023');bi.predictionQuestion.prompt='只关闭残余主径延迟/相位校正，已经估计的采样时钟偏差会自动变成零吗？';bi.predictionQuestion.options=['会，两个步骤是同一个校正','不会，它们修正不同阶段的误差'];bi.predictionQuestion.feedback=['SFO估计/重采样先发生，开关控制后续跨符号主径对齐，不会把估计的ppm清零。','对。比较相同IQ指纹、SFO估计与峰形；残余对齐不能消除符号内ICI。'];
+ const br=bi.steps.find(s=>s.role==='read');br.title='先读训练符号的相位斜率';br.body='先看有符号子载波k上的五条主值相位差，再用第一对的拟合斜率÷C×10⁶核对ppm。截距对应公共相位差，斜率对应采样时钟误差；随后再看载荷主径延迟随慢时间的轨迹。两张图横轴不同，不混作一条曲线。';br.viewSelectors=['#bi-phase','#bi-track'];br.viewMetrics=['#bi-summary'];bi.steps.find(s=>s.role==='failure').body='当前状态若显示捕获或估计失败，就没有可解释的新峰；先记录失败，再返回首轮起点重跑作对照。即使0 dB返回有效结果，也只说明这个种子未失败，不改变失效边界。';
+ const ici=lesson('ofdm-ici-aware-receiver-2021');const ci=ici.steps.findIndex(s=>s.role==='compare');
+ const extra=ici.algorithmRoute.steps.filter(s=>/地图上的峰|快慢两种/.test(s.title)).map(s=>({...s,role:'read',openReadDetails:true}));
+ extra[0].title='第二道门：从通道地图到检测';extra[0].body='前一关检验加入CFO是否足够改善拟合；这里逐格比较实际功率P与邻域噪声门限α×训练均值，并要求严格局部极大。接受成分不等于检出目标。用CUT行列控件移动一个格，核对功率、训练数、门限与是否输出。';
+ extra[1].title='在一根数轴上合并快慢频偏';extra[1].body='蓝圆是慢时间模糊估计，橙方是符号内CFO估计。按下面实际数值算k=floor((εCFO+0.4)/0.8)，再算ε最终=ε慢+0.8k。数轴边界是半开区间，边界附近误差会换区；没有检测时保持空结果，不造一个点。';ici.steps.splice(ci,0,...extra);
+ const ar=lesson('ofdm-passive-atomic-errors-2017');const arFirst=ar.steps.find(s=>s.role==='read');arFirst.title='一条原子怎样变成结构化观测';arFirst.body='先读当前首个候选的φ、ψ如何在所选(m,n)格生成复指数，再看16格组成的z如何进入17×17提升矩阵。把回看滑块拨到最左的零初始化，再到记录2（真实迭代1），核对下面同一复样本的e¹、z¹与复数等式。这是已计算状态，不是插值动画。';arFirst.viewSelectors=['#ar-matrices','#ar-history','#ar-history-out','#ar-inspection-status'];arFirst.viewMetrics=['#ar-complex'];
+ const cd=lesson('tradeoffs-feedback-capacity-distortion-2018');cd.firstRun.controls.find(c=>c.selector==='#cd-mu').value=.5;cd.predictionQuestion.prompt='从μ=0.5到μ=2，更重视感知时应该多发哪个符号？';cd.predictionQuestion.feedback=cd.predictionQuestion.feedback.map(t=>t.replace('μ=0','μ=0.5'));cd.singleControlChange.from=.5;cd.singleControlChange.instruction='只把μ从0.5改为2，再运行；先比较p(1)，再找本次(D,I)点。';
+ const cc=cd.steps.find(s=>s.role==='compare');cc.from=.5;cc.instruction=cc.why=cd.singleControlChange.instruction;cd.steps.find(s=>s.role==='predict').authoredBody=cd.predictionQuestion.prompt;bi.steps.find(s=>s.role==='predict').authoredBody=bi.predictionQuestion.prompt;
+ cd.steps.splice(cd.steps.findIndex(s=>s.role==='compare'),0,{role:'algorithm',title:'亲手回看一次非退化BA更新',why:'μ=0的均匀输入可能已经最优，无法看见更新；本课用μ=0.5起跑。',body:'把“查看第k次迭代”滑块先拨到0，再拨到1。核对上一分布→通信后验Q→指数归一化的新分布，以及p(1)、D和I的实际变化。后验表里不可达列不做除法。只回看已有轨迹，不再次求解；后面的gap才回答是否达到最优证书。',focusSelector:'#cd-step',viewSelectors:['#cd-pmf'],viewMetrics:['#cd-step-cards','#cd-step-out']});
+ cd.steps.find(s=>s.role==='failure').body='q=0时状态恒为0，通信和感知指标都为0；均匀初始化就可能通过gap证书。因此没有第1步更新不是计算失败，分布不唯一也不是程序出错。';
+ const cm=lesson('channels-sensing-communication-mapping-2026');each(cm,s=>{if(/通信.*时延|物体.*时延/.test(s.title))s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#group-detail'])];});
+ const gc=lesson('nearfield-mechanism-aware-mapping-2026');each(gc,s=>{if((s.viewMetrics||[]).includes('#gcs-update')||s.focusSelector==='#gcs-update'){s.focusSelector='#gcs-update';s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#gcs-inspector'])];s.body+=' 展开原“回看已计算更新”，选择实际轮次和路径；逐值读几何长度→τ→复相位，再核对扣除其他路径后的输入、新路径贡献与更新后残差。';}});
+})(globalThis.Guided19Data);
+// Step identities changed in the beginner-study revision; old positional records stay historical.
+for(const lesson of [...globalThis.Guided19Data.lessons,...(globalThis.Guided19Data.variants||[])])lesson.recordVersion='study-20261103-v1';

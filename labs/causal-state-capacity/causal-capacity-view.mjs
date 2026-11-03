@@ -75,5 +75,9 @@ export function pmfHTML(result, selectedIndex=0) {
 export function atomText(result, selectedIndex=0) {
   if (!result) return '选择一个概率格，核对确定性映射';
   const a=result.atoms[selectedIndex];
-  return `U,E,V,Z = (${a.U},${a.E},${a.V},${a.Z}) → S=${a.S}，X=${a.X}，Y=${a.Y}，Ŝ=${a.Shat}；概率 ${a.probability}`;
+  const one=[result.distribution.UProbabilityOne,result.distribution.EProbabilityOne,.5,.25];
+  const factors=[a.U,a.E,a.V,a.Z].map((bit,i)=>bit?one[i]:1-one[i]);
+  const row=result.atoms.filter(b=>b.U===a.U&&b.E===a.E);
+  const marginal=row.reduce((sum,b)=>sum+b.probability,0);
+  return `U,E,V,Z = (${a.U},${a.E},${a.V},${a.Z}) → S=${a.S}，X=${a.X}，Y=${a.Y}，Ŝ=${a.Shat}；概率 ${a.probability}。独立变量的乘积 P(U=${a.U})P(E=${a.E})P(V=${a.V})P(Z=${a.Z}) = ${factors.map(x=>precise(x)).join(' × ')} = ${precise(a.probability)}。对同一 UE 行的四列 VZ 求和：${row.map(b=>precise(b.probability)).join(' + ')} = P(U=${a.U},E=${a.E}) = ${precise(marginal)}。这是概率边缘化，不是相加 bit 数。`;
 }

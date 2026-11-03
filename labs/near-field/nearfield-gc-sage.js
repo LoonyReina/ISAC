@@ -31,6 +31,26 @@
     for(const u of result.history.updates){if(u.trace_index>index)break;if(u.accepted)states[u.path]=clone(u.state);}
     return states;
   }
+  // Read-only bridge over the exact stored states; no fitting or truth access.
+  function sampleBridge(core,observations,model,result,index,path,q,p){
+    if(!Number.isInteger(q)||q<0||q>=observations.rows||!Number.isInteger(p)||p<0||p>=observations.cols)throw new RangeError('Sample index out of range');
+    const states=replayHistory(result,index),s=states[path],k=q*observations.cols+p,phase=-2*Math.PI*model.frequencies[p]*s.delays[q],steering=[Math.cos(phase),Math.sin(phase)],prediction=core.predict([s],model.frequencies);
+    const tx=model.tx[Math.floor(q/model.rx.length)],rx=model.rx[q%model.rx.length],bounce=s.bounce_points?s.bounce_points[q]:null;
+    const lengths=bounce?[Math.hypot(tx[0]-bounce[0],tx[1]-bounce[1]),Math.hypot(rx[0]-bounce[0],rx[1]-bounce[1])]:null;
+    const out={path,q,p,kind:s.kind,tx,rx,bounce,lengths,delay:s.delays[q],frequency:model.frequencies[p],phase,steering,gain:[s.gains.real[q],s.gains.imag[q]],component:[prediction.real[k],prediction.imag[k]],update:null};
+    if(index){const u=result.history.updates[index-1],before=replayHistory(result,index-1),total=core.predict(before,model.frequencies),old=core.predict([before[u.path]],model.frequencies),hidden=core.hiddenData(observations,total,old),after=core.predict([states[u.path]],model.frequencies);
+      out.update={path:u.path,accepted:u.accepted,observed:[observations.real[k],observations.imag[k]],other:[total.real[k]-old.real[k],total.imag[k]-old.imag[k]],hidden:[hidden.real[k],hidden.imag[k]],after:[after.real[k],after.imag[k]],residual:[hidden.real[k]-after.real[k],hidden.imag[k]-after.imag[k]],beforeSSE:core.residualSSE(observations,total),afterSSE:core.residualSSE(observations,core.predict(states,model.frequencies))};}
+    return out;
+  }
+  function bridgeText(b){
+    const z=a=>fmt(a[0],7)+(a[1]<0?' − j ':' + j ')+fmt(Math.abs(a[1]),7),point=a=>'('+a.map(v=>fmt(v,7)).join(', ')+') m';
+    let text='逐值桥梁：所选路径 '+(b.path+1)+'，q='+b.q+'、p='+b.p+'。';
+    text+=b.lengths?'Tx '+point(b.tx)+' → 交互点 '+point(b.bounce)+' → Rx '+point(b.rx)+'；两段 '+fmt(b.lengths[0],8)+' + '+fmt(b.lengths[1],8)+' m，τ = 路长 / c = '+fmt(b.delay*1e9,9)+' ns。':'当前状态尚未定位，不能从虚构几何算路长；仅有数据初始化时延 τ='+fmt(b.delay*1e9,9)+' ns。';
+    text+='ν='+fmt(b.frequency/1e6,8)+' MHz，φ=−2πντ='+fmt(b.phase,9)+' rad；exp(jφ)='+z(b.steering)+'。α='+z(b.gain)+'，该路径复贡献 α exp(jφ)='+z(b.component)+'。这里 ν 是基带频偏；载频相位由自由复增益吸收，不等于 RF 绝对相位。';
+    if(b.update){const u=b.update;text+=' 本次实际更新路径 '+(u.path+1)+'（可能不同于所选展示路径）：Y='+z(u.observed)+'，其他路径旧贡献='+z(u.other)+'，隔离观测 r₋l=Y−其他='+z(u.hidden)+'；扣除更新后该路径 '+z(u.after)+'，剩余='+z(u.residual)+'。这是一个复样本，不是全局 SSE。所有 q,p 的平方模求和：更新前 '+fmt(u.beforeSSE,9)+' → 后 '+fmt(u.afterSSE,9)+'；'+(u.accepted?'接受':'拒绝并保留前态')+'。';}
+    else text+='此帧是初始化，还没有逐路径更新。用“下一次已计算更新”查看一次扣除与重新拟合。';
+    return text;
+  }
   function buildRecord(run){
     if(!run.complete||!run.results.scattering||!run.results.hybrid)throw new Error('两种方法完成后才能导出比较');
     const s=run.sample,receiverLedger={...s.ledger};delete receiverLedger.evaluation_only;delete receiverLedger.seed;
@@ -105,13 +125,14 @@
     function render(){
       const run=state.run,model=currentModel(),selected=Number($('path').value)||0,truth=run&&$('truth').checked?run.sample.truth:null;
       MODES.forEach(mode=>{$('map-'+mode).innerHTML=mapSVG(model,resultStates(mode),selected,truth,G,mode,state.frames[mode]);$('map-'+mode).setAttribute('data-history-index',state.frames[mode]);});
-      acquisitionSummary();renderHistory();renderPlots();renderEvaluation();
+      acquisitionSummary();renderHistory();renderPlots();renderEvaluation();sampleReadout();
     }
     function renderHistory(){const run=state.run,mode=$('method').value,r=run&&run.results[mode],i=r?Math.min(state.frames[mode],r.trace.length-1):0;
       $('history').max=r?r.trace.length-1:0;$('history').value=i;$('history').disabled=!r;$('history-out').textContent=i+' / '+(r?r.trace.length-1:0);$('prev').disabled=!r||i===0;$('next').disabled=!r||i===r.trace.length-1;$('final').disabled=!r||i===r.trace.length-1;
       if(!r){$('update').textContent='所选方法尚无已计算更新';return;}
       const tr=r.trace[i],u=i?r.history.updates[i-1]:null,budget=u?u.cumulative_budget:r.history.initial.cumulative_budget;
       $('update').textContent=NAMES[mode]+' · 更新 '+i+'，扫描轮 '+tr.sweep+'；SSE '+fmt(tr.sse,9)+(u?'；活跃路径 '+(u.path+1)+'；来源 '+u.chosen_source+'；'+(u.geometry_changed?'几何有变化':'几何未变')+'；'+(u.accepted?'接受计算状态':'拒绝并保留前态')+'。子问题 SSE：原状态增益重拟合 '+fmt(u.incumbent_subproblem_sse,8)+'，散射 '+fmt(tr.scattering_subproblem_sse,8)+'（'+tr.scattering_search_status+'），反射 '+fmt(tr.reflection_subproblem_sse,8)+'（'+tr.reflection_search_status+'）。':'；数据初始化，尚无几何。')+' 累计有效候选：散射 '+budget.scattering_candidates+'，反射 '+budget.reflection_candidates+'；累计候选投影 '+(budget.scattering_tone_products+budget.reflection_tone_products)+'，原状态重拟合 '+budget.incumbent_tone_products+' 个通道×频点乘积；到此耗时 '+fmt((u?u.elapsed_seconds:r.history.initial.elapsed_seconds)*1000,5)+' ms。';
+      const q=Number($('sample-q').value),p=Number($('sample-p').value);if(Number.isInteger(q)&&q>=0&&q<run.sample.observations.rows&&Number.isInteger(p)&&p>=0&&p<run.sample.observations.cols)$('update').textContent+=' '+bridgeText(sampleBridge(G,run.sample.observations,run.sample.model,r,i,Number($('path').value)||0,q,p));
     }
     function renderPlots(){
       const run=state.run,results=run?run.results:{},available=MODES.filter(m=>results[m]),path=Number($('path').value)||0;
@@ -206,12 +227,12 @@
     $('history').addEventListener('input',()=>{state.frames[$('method').value]=Number($('history').value);render();});
     for(const [id,delta] of [['prev',-1],['next',1]])$(id).addEventListener('click',()=>{const mode=$('method').value,r=state.run&&state.run.results[mode];if(r){state.frames[mode]=Math.max(0,Math.min(r.trace.length-1,state.frames[mode]+delta));render();}});
     $('final').addEventListener('click',()=>{const mode=$('method').value,r=state.run&&state.run.results[mode];if(r){state.frames[mode]=r.trace.length-1;render();}});
-    ['sample-q','sample-p'].forEach(id=>$(id).addEventListener('input',sampleReadout));
+    ['sample-q','sample-p'].forEach(id=>$(id).addEventListener('input',()=>{sampleReadout();renderHistory();}));
     win.addEventListener('pagehide',()=>{stopWorker();if(record)record.clear();});
     invalidate();
     if(!G||!O||!record||typeof win.Worker!=='function')fail('需要可用的估计核心、观测模块、记录模块与 Web Worker。静态解释仍可阅读。',true);
     else if(G.VERSION!==ALGORITHM||G.HISTORY_SCHEMA_VERSION!==HISTORY||O.VERSION!==SIMULATOR||O.GEOMETRY_VERSION!==ALGORITHM)fail('模块版本不一致，请刷新后核对发布资源。',true);
     return {start,invalidate,state,render};
   }
-  return Object.freeze({VERSION,ALGORITHM,SIMULATOR,HISTORY,DEFAULTS,optionsFor,readSettings,replayHistory,buildRecord,mapSVG,graphSVG,boot});
+  return Object.freeze({VERSION,ALGORITHM,SIMULATOR,HISTORY,DEFAULTS,optionsFor,readSettings,replayHistory,sampleBridge,bridgeText,buildRecord,mapSVG,graphSVG,boot});
 }));

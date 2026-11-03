@@ -61,7 +61,7 @@ function installCompactReceiverViews(doc,lesson){
   for(const panel of panels)children(panel,[...panel.querySelectorAll('label'),q('#pp-calibration-status'),q('#pp-calibration-binding')].filter(Boolean));
  }else if(id==='supplement-case-clock'){
   receipt(q('.ns-strip'),[q('#ns-current'),q('#ns-state-warning')].filter(Boolean));
-  const stage=q('section[aria-labelledby="ns-stage-title"]');children(stage,[q('#ns-caveat')].filter(Boolean));
+  const stage=q('section[aria-labelledby="ns-stage-title"]');children(stage,[q('#ns-caveat'),q('#ns-comparison')].filter(Boolean));
   const plots=q('.ns-plots');if(plots)createFold(plots,Array.from(plots.children));
  }
  function openHash(){const hash=doc.defaultView?.location?.hash;if(!hash)return;let target;try{target=q(hash);}catch{return;}if(!target)return;for(let p=target.parentElement;p;p=p.parentElement)if(details.includes(p))p.open=true;}

@@ -9,16 +9,29 @@ function installTheoryAdapter(doc,lesson){
  // Cache before a shell reparents controls. Maintain original form submission ownership.
  for(const s of [lesson.firstRun.runSelector,...lesson.firstRun.outputSelectors,...(lesson.ui.liveSelectors||[]),...(lesson.ui.actionSelectors||[])])query(s);
  for(const [button,form] of id==='nearfield-multitarget-correlation'?[['#mt-run','mt-form']]:id==='supplement-case-distributed-detection'?[['#cf-run','cf-form']]:[]){const e=query(button),old=e.getAttribute('form');restore.push(()=>old===null?e.removeAttribute('form'):e.setAttribute('form',old));e.setAttribute('form',form);}
- const listen=(e,t,f)=>{e.addEventListener(t,f,true);listeners.push(()=>e.removeEventListener(t,f,true));};
+ const listen=(e,t,f,capture=true)=>{e.addEventListener(t,f,capture);listeners.push(()=>e.removeEventListener(t,f,capture));};
  const recordNodes=()=>[...new Set((lesson.ui.recordInputSelectors||[]).flatMap(s=>Array.from(doc.querySelectorAll(s))))];
  const parameters=()=>recordNodes().map(e=>({id:e.id||e.name,type:e.type,value:['checkbox','radio'].includes(e.type)?e.checked:e.value,option:e.type==='radio'?e.value:undefined}));
  const snapshot=()=>JSON.stringify(parameters());
  const start=()=>{requested=true;serial++;submittedRevision=revision;submittedSnapshot=snapshot();presetPending=id==='supplement-case-near-field';};
  const autoEdit=['tradeoffs-feedback-capacity-distortion-2018','tradeoffs-causal-state-communication-2013','supplement-case-multipath-channel'].includes(id);
- const edited=e=>{if(recordNodes().includes(e.target)){revision++;requested=false;presetPending=false;if(autoEdit)start();}else if(e.target.type==='file'){revision++;requested=false;presetPending=false;}};
- const rootHost=query(lesson.ui.rootSelector);listen(rootHost,'input',edited);listen(rootHost,'change',edited);
- listen(query(lesson.firstRun.runSelector),'click',start);
- for(const selector of [lesson.singleControlChange?.runSelector,lesson.singleControlChange?.followupRunSelector,'#wfl-weighted-run','[data-nfr-action="receive"]','[data-nfr-action="regenerate"]']){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',start);}
+ const edited=e=>{if(recordNodes().includes(e.target)){
+  const nativeEvent=id==='supplement-case-multipath-channel'?'change':'input';
+  // Paired input/change events must not accept a result before the native calculation,
+  // or invalidate it again after the calculation's input handler already ran.
+  if(autoEdit&&e.type!==nativeEvent&&submittedSnapshot===snapshot())return;
+  revision++;requested=false;presetPending=false;if(autoEdit&&e.type===nativeEvent)start();
+ }else if(e.target.type==='file'){revision++;requested=false;presetPending=false;}};
+ const rootHost=query(lesson.ui.rootSelector);// Auto-calculating controls synchronize paired inputs in their target handlers.
+ // Snapshot on bubble, after that synchronization, never by accepting an arbitrary later DOM.
+ listen(rootHost,'input',edited,!autoEdit);listen(rootHost,'change',edited,!autoEdit);
+ if(id==='tradeoffs-causal-state-communication-2013')for(const el of doc.querySelectorAll('[data-budget]'))listen(el,'click',start,false);
+ if(id==='supplement-case-multipath-channel'){
+  for(const selector of ['#mpi-coincident','#mpi-reset','#mpi-retry','[data-mpi-preset]','#mpi-prompt'])
+   for(const el of doc.querySelectorAll(selector))listen(el,selector==='#mpi-prompt'?'change':'click',start,false);
+ }
+ listen(query(lesson.firstRun.runSelector),'click',start,!autoEdit);
+ for(const selector of [lesson.singleControlChange?.runSelector,lesson.singleControlChange?.followupRunSelector,'#wfl-weighted-run','[data-nfr-action="receive"]','[data-nfr-action="regenerate"]']){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',start,!autoEdit);}
  // Fresh-channel and sweep actions change H / the submitted scenario without an input event.
  // They must not revive a prior guided record, even if the visible values later match.
  for(const selector of [lesson.ui.resetSelector,...lesson.ui.actionSelectors.filter(s=>/cancel/.test(s)),...(id==='crb'?['#cm-fresh','#cm-sweep']:[])]){const el=selector&&doc.querySelector(selector);if(el)listen(el,'click',()=>{revision++;requested=false;presetPending=false;});}
@@ -113,9 +126,9 @@ function installExtendedAdapter(doc,lesson){
  const snapshot=()=>JSON.stringify(parameters());
  const begin=()=>{requested=true;serial++;submittedRevision=revision;submittedSnapshot=snapshot();};listen(btn,'click',begin);listen(form,'submit',begin);
  const edit=()=>{revision++;requested=false;};listen(form,'input',edit);listen(form,'change',edit);
- const busy=()=>/^Starting |^Running |^Cancellation requested/.test(status());
- const terminal=()=>/^Finished:|^Worker error:|^Worker could not run:|^Result validation failed:|^Input error:/.test(status());
- const fresh=()=>requested&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!busy()&&terminal()&&!/^IMPORTED/.test(origin());
+ const busy=()=>/^正在启动 |^正在计算 |^已请求取消|^Starting |^Running |^Cancellation requested/.test(status());
+ const terminal=()=>/^已完成：|^Worker错误：|^Worker无法运行：|^结果校验失败：|^输入错误：|^Finished:|^Worker error:|^Worker could not run:|^Result validation failed:|^Input error:/.test(status());
+ const fresh=()=>requested&&submittedRevision===revision&&submittedSnapshot===snapshot()&&!busy()&&terminal()&&!/^IMPORTED|^导入历史记录/.test(origin());
  const ready=()=>!disposed&&fresh();
  const setControls=cs=>{for(const c of cs||[]){const e=query(c.selector);if(e.disabled)throw Error('Original control disabled '+c.selector);e.value=String(c.value);e.dispatchEvent(new doc.defaultView.Event(c.event||'input',{bubbles:true}));}};
  const run=async(kind='first')=>{if(disposed||busy())throw Error('Extended CRB unavailable or busy');if(kind!=='first')throw Error('Extended recovery comparison is already in the same real run; no extra comparison/failure action is authored');requested=true;setControls(lesson.firstRun?.controls||[]);btn.click();};

@@ -18,6 +18,10 @@ const requiredFiles={
 for(const [file,prior,next] of [["otfs-receiver/source-objective-v1/index.html","64f01f7d62e24293d8765714e81d4a77ab353fcb446c667ab636f987318cf537","346711a8d917df10ef587efd070860b3338fb984b898f7822c4f0e89da7ae861"],["otfs-receiver/source-objective-v1/runtime/ui.mjs","58fbabe54930e9dc90b44ebca023b02f0d7e8e9cf3c4f9823114979cb53bad0b","078067117f0a0583507d070a2843bfade34e07f82cc941af28491b908c3cd81f"]]){
  if(requiredFiles[file]!==prior)throw Error("Unexpected pre-feedback target19 identity: "+file);requiredFiles[file]=next;
 }
+// Explicit current teaching witnesses; frozen scientific evidence unchanged.
+for(const [file,prior,next] of []){if(requiredFiles[file]!==prior)throw Error("Unexpected prior teaching witness "+file);requiredFiles[file]=next;}
+// Current read-only OTFS projection witness, exact bounded endpoints.
+for(const [file,prior,next] of [["otfs-receiver/source-objective-v1/runtime/source-objective.mjs","a4d06b7c14eb7bbc75ec0649d037f51d23981a5e2f93ea05d734abc0363a817b","74f28fcb12cdfb5bfc10a57f432831643b8a94547f0606f50d350f11c64b2d49"],["otfs-receiver/source-objective-v1/runtime/ui.mjs","078067117f0a0583507d070a2843bfade34e07f82cc941af28491b908c3cd81f","06d1263cb3f1f7d04127738b491c57f2cd79f63a96f365236342a9db220389c5"]]){if(requiredFiles[file]!==prior)throw Error("Unexpected prior OTFS witness");requiredFiles[file]=next;}
 function target19OtfsDependencies({identities,pages}){
  const files=new Map(identities.map(e=>[e.file,e.sha256])), docs=new Map(pages.map(e=>[e.file,e.source]));
  const fail=m=>{throw Error('Target19 OTFS boundary: '+m);};

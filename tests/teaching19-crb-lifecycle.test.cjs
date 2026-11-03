@@ -29,3 +29,33 @@ test('reset, raw-input import and native channel/sweep actions invalidate old CR
  const f=fixture();f.complete();f.host.fire('change',{type:'file'});assert(!f.adapter.ready(),'import selection invalidates before asynchronous reading');f.complete();
  f.adapter.dispose();assert(!f.adapter.ready());
 });
+
+test('result-alignment contracts expose weighted metrics, truth controls and extended-response semantics',()=>{
+ const data=box.Guided19Data,w=data.lessons.find(l=>l.id==='optimal_waveform'),j=data.lessons.find(l=>l.id==='joint_beamforming'),c=data.lessons.find(l=>l.id==='crb'),n=data.lessons.find(l=>l.id==='supplement-case-clock'),e=data.variants.find(l=>l.coreId==='extended-target');
+ assert(w.ui.readSelectors.includes('#wfl-weighted-result'));
+ assert(w.ui.liveSelectors.includes('#wfl-weighted-status'));
+ assert(w.feedbackMetricSelectors.includes('#wfl-weighted-metrics'));
+ assert(n.ui.readSelectors.includes('#ns-truth-controls'));
+ assert(n.feedbackMetricSelectors.includes('#ns-comparison'));
+ assert.match(e.knownUnknown.observation,/完整响应复MSE/);
+ assert.match(e.knownUnknown.unknown.join(' '),/不估计目标角度/);
+ assert.match(e.plainScope,/不是角度CRB/);
+ assert.match(w.steps.find(s=>s.role==='bridge').body,/D=‖X₁−X₀‖²=8/);
+ assert.match(j.steps.find(s=>s.role==='bridge').body,/Q=diag\(2,1\)/);
+ assert.match(c.steps.find(s=>s.role==='bridge').body,/Schur补信息为4−1×1⁻¹×1=3/);
+ assert.match(e.steps[2].body,/tr\(R⁻¹\)=5\/6/);
+});
+
+test('joint guided views reparent both real physical tables with their captions',()=>{
+ const source=fs.readFileSync(path.join(runtime,'theory-views.js'),'utf8');
+ assert.match(source,/for\(const selector of \['#jbo-users','#jbo-checks'\]\)/);
+ assert.match(source,/body&&body\.closest\('\.jbo-table-wrap'\)/);
+ assert.match(source,/\.gl-shell\[data-role="compare"\] #wfl-result\{display:none\}/);
+});
+
+test('extended target Chinese status lifecycle retains cancellation and imported-history gates',()=>{
+ const source=fs.readFileSync(path.join(runtime,'theory-adapters.js'),'utf8');
+ assert.match(source,/\^已完成：/);assert.match(source,/\^已请求取消/);assert.match(source,/\^导入历史记录/);
+ const appPath=fs.existsSync(path.join(base,'labs/crb-beamforming/extended-lab/prototype/app.js'))?path.join(base,'labs/crb-beamforming/extended-lab/prototype/app.js'):null;
+ if(appPath){const app=fs.readFileSync(appPath,'utf8');assert.match(app,/完整响应复MSE下界（不是角度CRB）/);assert.match(app,/构造恢复/);assert.match(app,/主特征对基线/);}
+});

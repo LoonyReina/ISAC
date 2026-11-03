@@ -40,3 +40,12 @@ export function runCompletion(input){
 export function sequential(input){const {y,P,grid,U}=prepare(input),r=Float64Array.from(y),stages=[],ids=[];for(let p=0;p<P;p++){let best=null;for(let j=0;j<U.length;j++){if(ids.includes(j))continue;const v=scalar(r,U[j]);if(!best||v.score>best.score)best={id:j,...v};}ids.push(best.id);sub(r,U[best.id],best.h);stages.push(best);}return {status:'finite_grid_sequential',ids,theta:ids.map(i=>grid[i]),h:stages.map(s=>s.h),residual:norm(r),stages,candidateEvaluations:P*U.length-P*(P-1)/2,scope:'same x/y/grid; sequential single-path residual fits, no joint gain refit'};}
 export function complexTermWitness(input,fit){const {y,P,U}=prepare(input);let witness=null;for(let p=0;p<P;p++)for(let j=0;j<U.length;j++){let cr=0,ci=0;for(let q=0;q<P;q++)if(q!==p){const c=dot(U[j],U[fit.ids[q]]),h=fit.h[q];cr+=h[0]*c[0]-h[1]*c[1];ci+=h[0]*c[1]+h[1]*c[0];}const c=dot(U[j],y),e=norm(U[j]),I=[(cr*c[0]+ci*c[1])/e,(ci*c[0]-cr*c[1])/e];if(!witness||Math.abs(I[1])>Math.abs(witness.I[1]))witness={path:p,candidate:j,I};}return witness;}
 export async function runAll(input,progress=()=>{}){const literal=literalFirstRound(input);progress('source');await new Promise(r=>setTimeout(r,0));const proposed=runCompletion(input);progress('bcd');await new Promise(r=>setTimeout(r,0));const baseline=sequential(input);const printedVariant=runPrintedVariant({...input,grid:input.grid??GRID});return {literal,proposed,baseline,printedVariant,complexTerm:proposed.h?complexTermWitness(input,proposed):null};}
+
+/** Read-only teaching witness: the same finite template and complex projection as scalar(). */
+export function projectionWitness(input,id=0){
+ const {y,U,grid}=prepare(input);
+ if(!Number.isInteger(id)||id<0||id>=U.length)throw new RangeError('candidate index');
+ const u=U[id],energy=norm(u),inner=dot(u,y),fit=scalar(y,u),r=sub(Float64Array.from(y),u,fit.h);
+ return {id,theta:grid[id],energy,inner,h:fit.h,score:fit.score,before:norm(y),after:fit.residual,
+ cells:Array.from({length:64},(_,i)=>({i,u:[u[2*i],u[2*i+1]],y:[y[2*i],y[2*i+1]],r:[r[2*i],r[2*i+1]]}))};
+}

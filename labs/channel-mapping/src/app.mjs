@@ -1,4 +1,5 @@
-import {DEFAULTS,caseConfig} from './config.mjs';
+import {DEFAULTS,caseConfig,C} from './config.mjs';
+import {distance,backproject,excessDelayNs} from './geometry.mjs';
 const $=id=>document.getElementById(id);
 const form=$('parameters');
 const branchNames={coordinate:'坐标重建',paired_range:'共享组双站距离',zero_angle:'零角度消融'};
@@ -127,6 +128,15 @@ function renderGroupDetail(){
   target.append(element('strong',`${group.id} · 坐标 (${number(group.point_m[0])}, ${number(group.point_m[1])}) m · ${group.member_count} 个峰`));
   const list=element('ul');for(const rep of group.representatives){list.append(element('li',`Mono${rep.station_id} 最强代表：row ${rep.row_index} / bin ${rep.bin_index}，θ=${rep.angle_deg}°，τ=${number(rep.delay_ns,2)} ns，R=${number(rep.range_m,4)} m，P=${number(rep.power_db,2)} dB。`));}target.append(list);
   target.append(element('p','行和 bin 从 0 计数。代表按功率选取，站间等权平均；不是把真值坐标当作输入。','field-note'));
+  const chain=element('div',undefined,'geometry-chain');chain.append(element('h4','把一个扫描峰算成坐标，再算通信超额时延'));
+  chain.append(element('p','先用单站的绝对往返时延除以 2 得单程距离。两站相向：Mono1 的 +x 朝右，Mono2 的 +x 朝左；本页两站均用 y = y站 − R sinθ，所以负角指向图上方。'));
+  for(const rep of group.representatives){const station=current.observations.stations.find(s=>s.id===rep.station_id),theta=rep.angle_deg*Math.PI/180,dx=rep.range_m*Math.cos(theta),dy=rep.range_m*Math.sin(theta),point=backproject(rep.station_id,station.position_m,rep.angle_deg,rep.range_m);
+    chain.append(element('p',`Mono${rep.station_id}：R = ${C} m/s × ${number(rep.delay_ns,3)} ns × 10⁻⁹ / 2 = ${number(rep.range_m,5)} m；θ = ${number(rep.angle_deg,2)}°，R cosθ = ${number(dx,5)} m，R sinθ = ${number(dy,5)} m。x = ${number(station.position_m[0])} ${rep.station_id===1?'+':'−'} (${number(dx,5)}) = ${number(point[0],5)} m；y = ${number(station.position_m[1])} − (${number(dy,5)}) = ${number(point[1],5)} m。`));
+  }
+  const stations=current.observations.stations.map(s=>s.position_m),d1=distance(group.point_m,stations[0]),d2=distance(group.point_m,stations[1]),base=distance(...stations),excess=excessDelayNs(group.point_m,...stations);
+  chain.append(element('p',`两站代表坐标等权平均（若仅一站就用该站代表）得到 m = (${number(group.point_m[0],5)}, ${number(group.point_m[1],5)}) m。再从这个估计点量两段距离：d₁ = ${number(d1,5)} m，d₂ = ${number(d2,5)} m。通信总路长 ${number(d1+d2,5)} m；减去直达路长 ${number(base,5)} m，Δτ = (${number(d1,5)} + ${number(d2,5)} − ${number(base,5)}) / ${C} × 10⁹ = ${number(excess,5)} ns。这才是下方“坐标重建”分支与 MPC 比较的超额时延；不能把扫描 τ 直接拿去匹配。`));
+  target.append(chain);
+
   if($('reveal-truth').checked){const match=current.evaluation.matches.find(m=>m.group_id===group.id);target.append(element('p',match?`仅评价：对应真值 ${match.object_id}，位置误差 ${number(match.localization_error_m,4)} m。`:'仅评价：在 0.6 m 真值匹配门内没有对应物体。','field-note'));}
 }
 function renderAssociations(){
