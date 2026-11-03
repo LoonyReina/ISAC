@@ -36,7 +36,7 @@ test('causal live PMF is included in guide output and its selected atom explains
 });
 
 // Minimal DOM with actual engine mounting: events invoke real record callbacks across try-block scope.
-function engineFixture({predict=true,compare=true,saved=null}={}){
+function engineFixture({predict=true,compare=true,saved=null,externalAdapter=null}={}){
  class N{
   constructor(tag){this.tagName=tag.toUpperCase();this.childNodes=[];this.parentElement=null;this.hidden=false;this.dataset={};this.attrs={};this.events={};this.value='';this.textContent='';}
   get children(){return this.childNodes;}get parentNode(){return this.parentElement;}
@@ -52,14 +52,14 @@ function engineFixture({predict=true,compare=true,saved=null}={}){
   async fire(t){for(const f of this.events[t]||[])await f({target:this});}click(){return this.fire('click');}focus(){}scrollIntoView(){}
  }
  const root=new N('main');root.id='root';for(const id of ['run','status','result']){const n=new N(id==='run'?'button':'p');n.id=id;root.append(n);}
- let ready=false,storage=saved;
- const doc={querySelector:s=>s==='#root'?root:root.querySelector(s),querySelectorAll:s=>s==='#root'?[root]:root.querySelectorAll(s),createElement:t=>new N(t),createTextNode:t=>{const n=new N('text');n.textContent=t;return n;},createComment:()=>new N('comment'),defaultView:{localStorage:{getItem:()=>storage,setItem:(k,v)=>storage=v},location:{hash:''},addEventListener(){},removeEventListener(){},MutationObserver:class{observe(){}disconnect(){}}}};
+ let ready=false,storage=saved,mutate=()=>{};
+ const doc={querySelector:s=>s==='#root'?root:root.querySelector(s),querySelectorAll:s=>s==='#root'?[root]:root.querySelectorAll(s),createElement:t=>new N(t),createTextNode:t=>{const n=new N('text');n.textContent=t;return n;},createComment:()=>new N('comment'),defaultView:{localStorage:{getItem:()=>storage,setItem:(k,v)=>storage=v},location:{hash:''},addEventListener(){},removeEventListener(){},MutationObserver:class{constructor(callback){mutate=callback;}observe(){}disconnect(){}}}};
  const steps=[{role:'orient',title:'Start'},...(predict?[{role:'predict',title:'Predict'}]:[]),{role:'run',title:'Run'},{role:'read',title:'Read'},...(compare?[{role:'compare',title:'Compare'}]:[]),{role:'algorithm',title:'Explain'}];
  const lesson={id:'fixture',entryHref:'fixture.html',executionHref:'fixture.html',steps,firstRun:{runSelector:'#run'},ui:{rootSelector:'#root',liveSelectors:['#status'],actionSelectors:['#run'],readSelectors:['#result']},predictionQuestion:{options:['A','B']},knownUnknown:{known:[],unknown:[]},priorKnowledge:[],feedbackMetricSelectors:['#result']};
- const adapter={query:s=>doc.querySelector(s),ready:()=>ready,busy:()=>false,getState:()=>({serial:1,revision:0,submittedRevision:0}),prepare(){},run(){ready=true;},actions:{compare},dispose(){}};
+ const adapter={query:s=>doc.querySelector(s),ready:()=>ready,busy:()=>false,getState:()=>({serial:1,revision:0,submittedRevision:0}),prepare(){},run(){ready=true;},actions:{compare},dispose(){},...externalAdapter};adapter.query=s=>doc.querySelector(s);
  const context={module:{exports:{}},TheoryGuidedAdapters:{installTheoryAdapter:()=>adapter},Date,Math,console};vm.runInNewContext(fs.readFileSync(path.join(dir,'engine.js'),'utf8'),context);
  const mounted=context.module.exports.mount(doc,lesson),find=text=>root.querySelectorAll('*').find(n=>n.tagName==='BUTTON'&&n.textContent===text);
- return {mounted,doc,root,find,lesson,record:()=>storage,ready:v=>ready=v};
+ return {mounted,doc,root,find,lesson,record:()=>storage,ready:v=>ready=v,mutate:()=>mutate()};
 }
 test('stage review and record import call the mounted renderer; back and refresh retain history only',async()=>{
  const f=engineFixture(),learning=f.root.querySelector('.gl-learning');learning.open=true;await learning.fire('toggle');
@@ -112,4 +112,29 @@ test('native endpoint submission remains current when native target handlers reg
   const r=ui.controller.getState().result;assert.equal(r.feasibility.status,'boundary_within_numerical_resolution');assert.equal(r.feasibility.feasibleRate,null);assert.equal(f.node('#cc-budget').value,D);assert.equal(f.node('#cc-budget-slider').value,'0.155');assert(a.ready(),'completed original endpoint must permit guided progression');
  }
  f.node('#cc-budget').value='0.2';assert(!a.ready(),'editing exact authoritative input without submitting remains stale');f.node('#cc-budget').dispatchEvent({type:'input'});await settle();assert(a.ready());assert.equal(ui.controller.getState().result.requestedD,.2);a.dispose();ui.dispose();
+});
+
+test('trusted-click microtask checkpoint cannot leave Next stale after native endpoint completion',async()=>{
+ const source=path.resolve(__dirname,'../labs/causal-state-capacity'),base=fs.existsSync(path.join(source,'causal-capacity-ui.mjs'))?source:path.resolve(__dirname,'..');
+ const {mountCausalCapacityLesson}=await import(path.join(base,'causal-capacity-ui.mjs'));
+ const native=fixture('tradeoffs-causal-state-communication-2013');
+ for(const s of ['#cc-budget','#cc-budget-slider'])Object.defineProperty(native.node(s),'valueAsNumber',{get(){return this.value===''?NaN:Number(this.value)}});
+ let slider='0.2';Object.defineProperty(native.node('#cc-budget-slider'),'value',{get(){return slider},set(v){slider=String(Math.round(Number(v)*1000)/1000)}});
+ const ui=mountCausalCapacityLesson(native.doc,{autoStart:false}),a=native.install(),guide=engineFixture({externalAdapter:a}),settle=()=>new Promise(resolve=>setImmediate(resolve));
+ guide.lesson.steps[4].role='failure';
+ const learning=guide.root.querySelector('.gl-learning');learning.open=true;await learning.fire('toggle');await guide.find('Compare').click();
+ await guide.find('运行这次失效 / 迁移练习').click();await settle();guide.mutate();assert.equal(ui.controller.getState().result.requestedD,.15);assert.equal(guide.mounted.next.disabled,false);
+ for(const D of ['0.1551404838969245','0.1551404838969247']){
+  const preset=native.node('#cc-preset');preset.dataset.budget=D;
+  // Unlike synchronous dispatchEvent(), a real user click can perform a microtask
+  // checkpoint after native target callbacks and before ancestor bubble callbacks.
+  preset.emit('click',preset,false);await settle();guide.mutate();
+  assert.equal(ui.controller.getState().phase,'ready');assert.equal(ui.controller.getState().result.feasibility.feasibleRate,null);assert.equal(a.ready(),false);assert.equal(guide.mounted.next.disabled,true);
+  native.node(native.lesson.ui.rootSelector).emit('click',preset,false);assert(a.ready(),'adapter now owns the exact endpoint snapshot');
+  await guide.root.fire('click');assert.equal(guide.mounted.next.disabled,false,'click completion must refresh Next after the final adapter transition');
+  assert(guide.root.querySelector('.gl-status').textContent.includes('实际执行已返回'));
+ }
+ native.node('#cc-budget').value='0.2';await guide.root.fire('click');assert.equal(guide.mounted.next.disabled,true,'unsubmitted edit must remain blocked');
+ native.node('#cc-budget').dispatchEvent({type:'input'});await settle();guide.mutate();assert.equal(guide.mounted.next.disabled,false);assert.equal(ui.controller.getState().result.requestedD,.2);
+ guide.mounted.dispose();assert.equal(guide.root.events.click.length,0,'dispose removes the final-click refresh listener');ui.dispose();
 });
