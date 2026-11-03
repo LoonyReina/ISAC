@@ -147,3 +147,24 @@ for(const lesson of [...data.lessons,...(data.variants||[])]){
  e.feedbackMetricSelectors=['#output','#status'];
  e.steps[2].body+=' 纸笔恢复：Q=diag(2,1)、h=[1,0]、探测协方差P=I₂，故R=diag(3,2)。构造w=[√2,0]ᵀ，并把剩余diag(0,1)加到P，R仍为diag(3,2)，tr(R⁻¹)=5/6。主特征对只保留wwᴴ和原P，R变为diag(3,1)，tr(R⁻¹)=4/3，实际总功率也从5降到4。这个小例不是实际运行数值；请在下方两张真实卡片核对同样的量，不将不同能量解释成无条件优劣。';
 })(globalThis.Guided19Data);
+/* Beginner bridge revision: actual native outputs and read-only controls, not new solvers. */
+(function(data){
+ const lesson=id=>data.lessons.find(l=>l.id===id);
+ const each=(l,fn)=>{l.steps.forEach(fn);(l.algorithmRoute?.steps||[]).forEach(fn);};
+ const otfs=lesson('otfs-joint-estimation-2020');
+ const o=otfs.steps.find(s=>s.role==='read');o.title='先把二维投影扩成64个复坐标';o.body='在当前结果的模板选择框换一个(q,a)，先比较模板能量、复内积、投影增益与投影后残差，再展开64格逐值核对。每个候选是一整条u(q,a)，不是一格功率；这项单模板投影用于理解搜索评分，不冒充多路径联合结果。随后读蓝线与同观测顺序基线。';
+ const mt=lesson('nearfield-multitarget-correlation');mt.steps.find(s=>s.role==='read').body+=' 当前表下先解释c/μ和ρ的不同分母。运行退化例后，可展开“回看本会话最近一次两模式均接受的示例”；历史只用于对照，不填补当前失败。';
+ const bi=lesson('bistatic-ofdm-clock-measurement-2023');bi.predictionQuestion.prompt='只关闭残余主径延迟/相位校正，已经估计的采样时钟偏差会自动变成零吗？';bi.predictionQuestion.options=['会，两个步骤是同一个校正','不会，它们修正不同阶段的误差'];bi.predictionQuestion.feedback=['SFO估计/重采样先发生，开关控制后续跨符号主径对齐，不会把估计的ppm清零。','对。比较相同IQ指纹、SFO估计与峰形；残余对齐不能消除符号内ICI。'];
+ const br=bi.steps.find(s=>s.role==='read');br.title='先读训练符号的相位斜率';br.body='先看有符号子载波k上的五条主值相位差，再用第一对的拟合斜率÷C×10⁶核对ppm。截距对应公共相位差，斜率对应采样时钟误差；随后再看载荷主径延迟随慢时间的轨迹。两张图横轴不同，不混作一条曲线。';br.viewSelectors=['#bi-phase','#bi-track'];br.viewMetrics=['#bi-summary'];bi.steps.find(s=>s.role==='failure').body='当前状态若显示捕获或估计失败，就没有可解释的新峰；先记录失败，再返回首轮起点重跑作对照。即使0 dB返回有效结果，也只说明这个种子未失败，不改变失效边界。';
+ const ici=lesson('ofdm-ici-aware-receiver-2021');const ci=ici.steps.findIndex(s=>s.role==='compare');
+ const extra=ici.algorithmRoute.steps.filter(s=>/地图上的峰|快慢两种/.test(s.title)).map(s=>({...s,role:'read',openReadDetails:true}));
+ extra[0].title='第二道门：从通道地图到检测';extra[0].body='前一关检验加入CFO是否足够改善拟合；这里逐格比较实际功率P与邻域噪声门限α×训练均值，并要求严格局部极大。接受成分不等于检出目标。用CUT行列控件移动一个格，核对功率、训练数、门限与是否输出。';
+ extra[1].title='在一根数轴上合并快慢频偏';extra[1].body='蓝圆是慢时间模糊估计，橙方是符号内CFO估计。按下面实际数值算k=floor((εCFO+0.4)/0.8)，再算ε最终=ε慢+0.8k。数轴边界是半开区间，边界附近误差会换区；没有检测时保持空结果，不造一个点。';ici.steps.splice(ci,0,...extra);
+ const ar=lesson('ofdm-passive-atomic-errors-2017');const arFirst=ar.steps.find(s=>s.role==='read');arFirst.title='一条原子怎样变成结构化观测';arFirst.body='先读当前首个候选的φ、ψ如何在所选(m,n)格生成复指数，再看16格组成的z如何进入17×17提升矩阵。把回看滑块拨到最左的零初始化，再到记录2（真实迭代1），核对下面同一复样本的e¹、z¹与复数等式。这是已计算状态，不是插值动画。';arFirst.viewSelectors=['#ar-matrices','#ar-history','#ar-history-out','#ar-inspection-status'];arFirst.viewMetrics=['#ar-complex'];
+ const cd=lesson('tradeoffs-feedback-capacity-distortion-2018');cd.firstRun.controls.find(c=>c.selector==='#cd-mu').value=.5;cd.predictionQuestion.prompt='从μ=0.5到μ=2，更重视感知时应该多发哪个符号？';cd.predictionQuestion.feedback=cd.predictionQuestion.feedback.map(t=>t.replace('μ=0','μ=0.5'));cd.singleControlChange.from=.5;cd.singleControlChange.instruction='只把μ从0.5改为2，再运行；先比较p(1)，再找本次(D,I)点。';
+ const cc=cd.steps.find(s=>s.role==='compare');cc.from=.5;cc.instruction=cc.why=cd.singleControlChange.instruction;cd.steps.find(s=>s.role==='predict').authoredBody=cd.predictionQuestion.prompt;bi.steps.find(s=>s.role==='predict').authoredBody=bi.predictionQuestion.prompt;
+ cd.steps.splice(cd.steps.findIndex(s=>s.role==='compare'),0,{role:'algorithm',title:'亲手回看一次非退化BA更新',why:'μ=0的均匀输入可能已经最优，无法看见更新；本课用μ=0.5起跑。',body:'把“查看第k次迭代”滑块先拨到0，再拨到1。核对上一分布→通信后验Q→指数归一化的新分布，以及p(1)、D和I的实际变化。后验表里不可达列不做除法。只回看已有轨迹，不再次求解；后面的gap才回答是否达到最优证书。',focusSelector:'#cd-step',viewSelectors:['#cd-pmf'],viewMetrics:['#cd-step-cards','#cd-step-out']});
+ cd.steps.find(s=>s.role==='failure').body='q=0时状态恒为0，通信和感知指标都为0；均匀初始化就可能通过gap证书。因此没有第1步更新不是计算失败，分布不唯一也不是程序出错。';
+ const cm=lesson('channels-sensing-communication-mapping-2026');each(cm,s=>{if(/通信.*时延|物体.*时延/.test(s.title))s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#group-detail'])];});
+ const gc=lesson('nearfield-mechanism-aware-mapping-2026');each(gc,s=>{if((s.viewMetrics||[]).includes('#gcs-update')||s.focusSelector==='#gcs-update'){s.focusSelector='#gcs-update';s.viewMetrics=[...new Set([...(s.viewMetrics||[]),'#gcs-inspector'])];s.body+=' 展开原“回看已计算更新”，选择实际轮次和路径；逐值读几何长度→τ→复相位，再核对扣除其他路径后的输入、新路径贡献与更新后残差。';}});
+})(globalThis.Guided19Data);

@@ -190,6 +190,8 @@
     const k=stepIndex(),r=current.selected.trace[k],previous=current.selected.trace[Math.max(0,k-1)],Q=C.posterior(current.model,previous.p),host=$('cd-step-cards');
     $('cd-step-out').textContent=k+' / '+(current.selected.trace.length-1);host.replaceChildren();
     const texts=[['1 · 后验 Q',k?'由 p̄'+(k-1)+'='+vector(previous.p)+'，更新 Q(x|y,s)。':'初始化 p̄₀='+vector(r.p)+'，尚未进行输入更新。'],['2 · 输入 PMF 更新',k?'p̄'+k+'='+vector(r.p)+'；按 exp(E[ln Q]−μc−λb) 归一化。':'从均匀可行支持出发；完整概率见柱图。'],['3 · λ 与成本','输入更新 λ='+fmt(r.updateLambda)+'；成本='+fmt(r.cost)+'，B='+fmt(current.model.budget)+'；内策略 '+(r.innerStrategy||'尚无更新')+(r.innerFallback?'（已二分回退）':'')+'。'],['4 · 指标与证书','I='+fmt(r.rateBits)+' bit，D='+fmt(r.distortion)+'，Fμ='+fmt(r.objectiveNats)+' nat；gap='+fmt(r.gapNats)+' nat；'+(r.feasible?'可行':'初始成本不可行')+'。']];
+    if(k){texts.push(['本次实际变化',`p(1)：${fmt(previous.p[1])} → ${fmt(r.p[1])}；D：${fmt(previous.distortion)} → ${fmt(r.distortion)}；I：${fmt(previous.rateBits)} → ${fmt(r.rateBits)} bit。这里只回看已计算的第${k}步，没有生成新样本。`]);}
+    if(current.inputs.mode==='paper'&&current.inputs.q===0)texts.push(['退化不是失败','q=0 时状态恒为0，I=D=0。所有输入分布的目标相同，均匀初始化已可满足证书；没有后续更新不是算法卡住，也不能据此说输入分布唯一。']);
     for(const [title,text]of texts){const card=element(host,'article');element(card,'h4',title);element(card,'p',text);}
     const body=$('cd-posterior-body');body.replaceChildren();
     for(let s=0;s<Q.q.length;s++)for(let y=0;y<Q.outputProbability[s].length;y++){const row=element(body,'tr');for(const value of [s,y,Q.reachable[s][y]?'可达':'不可达',Q.reachable[s][y]?vector(Q.q[s].map(x=>x[y])):'零概率列；占位为 0，不作除法'])element(row,'td',value);}
