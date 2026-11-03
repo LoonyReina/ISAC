@@ -25,7 +25,12 @@ function installTheoryAdapter(doc,lesson){
  const rootHost=query(lesson.ui.rootSelector);// Auto-calculating controls synchronize paired inputs in their target handlers.
  // Snapshot on bubble, after that synchronization, never by accepting an arbitrary later DOM.
  listen(rootHost,'input',edited,!autoEdit);listen(rootHost,'change',edited,!autoEdit);
- if(id==='tradeoffs-causal-state-communication-2013')for(const el of doc.querySelectorAll('[data-budget]'))listen(el,'click',start,false);
+ if(id==='tradeoffs-causal-state-communication-2013'){
+  // Target listeners run in registration order: a preset can still synchronize D/range
+  // after a target-level guide listener. Host bubbling always follows native target work.
+  const presets=new Set(doc.querySelectorAll('[data-budget]'));
+  listen(rootHost,'click',event=>{for(let node=event.target;node&&node!==rootHost;node=node.parentElement)if(presets.has(node)){start();break;}},false);
+ }
  if(id==='supplement-case-multipath-channel'){
   for(const selector of ['#mpi-coincident','#mpi-reset','#mpi-retry','[data-mpi-preset]','#mpi-prompt'])
    for(const el of doc.querySelectorAll(selector))listen(el,selector==='#mpi-prompt'?'change':'click',start,false);
