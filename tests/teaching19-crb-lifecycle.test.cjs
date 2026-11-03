@@ -59,3 +59,23 @@ test('extended target Chinese status lifecycle retains cancellation and imported
  const appPath=fs.existsSync(path.join(base,'labs/crb-beamforming/extended-lab/prototype/app.js'))?path.join(base,'labs/crb-beamforming/extended-lab/prototype/app.js'):null;
  if(appPath){const app=fs.readFileSync(appPath,'utf8');assert.match(app,/完整响应复MSE下界（不是角度CRB）/);assert.match(app,/构造恢复/);assert.match(app,/主特征对基线/);}
 });
+
+test('main CRB workbench distinguishes implemented extended response from historical offline evidence',()=>{
+ const source=path.join(base,'content/pages/crb-beamforming.html');
+ const html=fs.readFileSync(fs.existsSync(source)?source:path.join(base,'crb-beamforming.html'),'utf8');
+ const evidence=JSON.parse(fs.readFileSync(path.join(base,'labs/crb-beamforming/extended-lab/current-browser-evidence/SUMMARY.json'),'utf8'));
+ assert.equal(evidence.dateUtc,'2026-10-21');
+ assert.equal(evidence.status,'CURRENT_DESKTOP_BROWSER_REPLAY_PASSED_WITH_DECLARED_LIMITS');
+ for(const stale of ['扩展目标优化与原文比较基线仍未加入','扩展目标浏览器实现仍待完成','扩展目标仍为离线参考','浏览器和性能验证仍待完成'])assert(!html.includes(stale),stale);
+ const note=html.match(/<aside class="cm-evidence-note"[\s\S]*?<\/aside>/)[0];
+ assert.match(note,/式 \(46\)–\(49\).*已.*接入浏览器/);
+ assert.match(note,/完整响应复 MSE 下界，不是角度误差/);
+ for(const limit of ['导入','移动端','首屏与内存','奇异/不可行基线','完整比较基线'])assert(note.includes(limit),limit);
+ const extension=html.match(/<section class="chapter" id="extended-target">[\s\S]*?<\/section>/)[0];
+ assert.match(extension,/href="labs\/crb-beamforming\/extended-lab\/prototype\/index.html"/);
+ assert.match(extension,/同一个松弛解的构造恢复与主特征对基线/);
+ assert.match(extension,/奇异 R 没有有限逆迹界，预算耗尽不代表不可行/);
+ assert.match(extension,/optimal_inaccurate/);assert.match(extension,/不是性能基准/);
+ assert.equal(evidence.knownLimits.some(x=>x.includes('Mobile')&&x.includes('memory')),true);
+ assert.equal(evidence.knownLimits.some(x=>x.includes('import')),true);
+});

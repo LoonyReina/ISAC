@@ -78,6 +78,8 @@ test('causal native UI and real controller complete compare, infeasible run, inv
  const {mountCausalCapacityLesson}=await import(path.join(base,'causal-capacity-ui.mjs'));
  const f=fixture('tradeoffs-causal-state-communication-2013');
  for(const s of ['#cc-budget','#cc-budget-slider'])Object.defineProperty(f.node(s),'valueAsNumber',{get(){return this.value===''?NaN:Number(this.value)}});
+ // Model the real range input's 0.001 step sanitization, independently of the exact number box.
+ let sliderValue='0.2';Object.defineProperty(f.node('#cc-budget-slider'),'value',{get(){return sliderValue},set(value){sliderValue=String(Math.round(Number(value)*1000)/1000)}});
  f.node('#cc-preset').dataset.budget='0.1551404838969245';
  const ui=mountCausalCapacityLesson(f.doc,{autoStart:false}),a=f.install(),settle=()=>new Promise(resolve=>setImmediate(resolve));
  await a.run('first');await settle();assert(a.ready());assert.equal(ui.controller.getState().result.requestedD,.2);
@@ -96,4 +98,18 @@ test('reordered study steps reject old positional records rather than silently r
   record.version='feedback-20261025-v1';
   assert.throws(()=>readRecord(JSON.stringify(record),lesson),/课程版本已更新/,'old numeric step must not map onto a newly ordered stage');
  }
+});
+test('native endpoint submission remains current when native target handlers register after the guide',async()=>{
+ const source=path.resolve(__dirname,'../labs/causal-state-capacity'),base=fs.existsSync(path.join(source,'causal-capacity-ui.mjs'))?source:path.resolve(__dirname,'..');
+ const {mountCausalCapacityLesson}=await import(path.join(base,'causal-capacity-ui.mjs'));
+ const f=fixture('tradeoffs-causal-state-communication-2013');
+ for(const s of ['#cc-budget','#cc-budget-slider'])Object.defineProperty(f.node(s),'valueAsNumber',{get(){return this.value===''?NaN:Number(this.value)}});
+ let slider='0.2';Object.defineProperty(f.node('#cc-budget-slider'),'value',{get(){return slider},set(v){slider=String(Math.round(Number(v)*1000)/1000)}});
+ const a=f.install(),ui=mountCausalCapacityLesson(f.doc,{autoStart:false}),settle=()=>new Promise(resolve=>setImmediate(resolve));
+ await a.run('first');await settle();assert(a.ready());await a.run('compare');await settle();assert(a.ready());await a.run('failure');await settle();assert(a.ready());
+ for(const D of ['0.1551404838969245','0.1551404838969247']){
+  f.node('#cc-preset').dataset.budget=D;f.node('#cc-preset').click();assert(!a.ready(),'pending is not a readable terminal');await settle();
+  const r=ui.controller.getState().result;assert.equal(r.feasibility.status,'boundary_within_numerical_resolution');assert.equal(r.feasibility.feasibleRate,null);assert.equal(f.node('#cc-budget').value,D);assert.equal(f.node('#cc-budget-slider').value,'0.155');assert(a.ready(),'completed original endpoint must permit guided progression');
+ }
+ f.node('#cc-budget').value='0.2';assert(!a.ready(),'editing exact authoritative input without submitting remains stale');f.node('#cc-budget').dispatchEvent({type:'input'});await settle();assert(a.ready());assert.equal(ui.controller.getState().result.requestedD,.2);a.dispose();ui.dispose();
 });
