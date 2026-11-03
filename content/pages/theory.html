@@ -39,6 +39,27 @@
 <details class="checkpoint"><summary>先预测：无噪声，选错延迟一格，为什么得分降低？</summary><div><p>正确延迟时 13 个符号同号相乘，sᵀy=13，图上得分为 13²/13²=1。延迟错一格，Barker 序列的相邻非周期相关为 0，得分降为 0。不是接收机知道真值，而是该模板不能解释观测。离散格距 10 ns 对应单站 1.5 m；本实验没有推导连续延迟估计精度或物理分辨率。</p></div></details>
 <div class="callout"><b>能从这个实验得出什么？</b><p>可以验证已知条件怎样决定搜索空间、匹配怎样来自似然、未知增益怎样改变评分。不能由一次噪声样本估计 BER、检测概率或 CRB；不能将最大峰值自动视作目标存在。下一步回到 <a href="foundations.html#matched">匹配滤波</a>、<a href="foundations.html#ofdm">OFDM 七步</a> 与 <a href="foundations.html#cfar">检测阈值</a>。</p></div>
 <p class="sources">模型参考：<a href="https://arxiv.org/html/2102.12780v1">Zhang 等，2021，§II–III</a>；<a href="https://arxiv.org/html/2310.09749v2">Xiong 等教程，v2，§IV</a>。Barker 离散例子、归一化和图形由本站独立推导实现，不是论文实验复现。</p></section>
+<section class="chapter" id="paper-prerequisites" aria-labelledby="paper-prerequisites-title">
+<header class="chapter-head"><div class="eyebrow">按需补课 / 论文术语</div><h2 id="paper-prerequisites-title">遇到这些词，先用一个小例子看懂它在做什么</h2><p class="goal">以下是读算法前的最小直觉，不是估计理论或凸优化的完整课程。符号只用于本段归一化小例；论文自己的单位、噪声和约束仍须逐项核对。</p></header>
+<p>从论文的新标签页来到这里？读完关闭此页，回到原标签页继续，原实验不需要重跑。也可回到<a href="index.html#knowledge-map">知识地图</a>。</p>
+<article id="primer-ml"><h3>最大似然（ML / MLE）：哪种参数更能解释这份观测？</h3>
+<p>先固定实际收到的 y，再问候选参数 θ 下观察到 y 的概率密度 p(y|θ) 有多大；最大似然选使它最大的 θ。它不是把未知真值交给接收机，也不是直接算参数的后验概率。</p>
+<p>小例：实数观测 y=2，候选预测值为 1 或 2，噪声是方差相同的零均值高斯噪声。两个平方残差分别为 (2−1)²=1 和 (2−2)²=0，所以第二个候选似然更高。多个独立、同方差高斯样本的负对数似然等于残差平方和乘正常数再加常数，这时 ML 与最小二乘（LS）选同一个解；有色噪声要考虑协方差加权，换分布也可能换目标。</p>
+<p>检查自己：拟合最好是否保证参数正确？不保证，相似模板与噪声仍可能误导。接着看<a href="#shared-model">同一观测里的已知与未知</a>，或<a href="offgrid-range.html#experiment">有限候选测距</a>。这里未讲完整似然推导、置信区间或多参数渐近理论。</p></article>
+<article id="primer-covariance"><h3>协方差与 PSD：把每个方向上的功率写进矩阵</h3>
+<p>令 X 的每一列是一时刻的归一化复发送向量，L 是列数；R=XXᴴ/L，ᴴ 表示共轭转置。方向向量 v 看到的二阶量是 vᴴRv=‖Xᴴv‖²/L，不能为负，所以 R 是半正定（PSD）。这里的 R 是未中心化样本二阶矩；先减均值才得到中心化样本协方差，零均值模型下二者才对应同一总体量。</p>
+<p>小例：R=diag(1,0)，第一方向二阶量为 1，第二方向为 0。它是 PSD，却不可逆；tr(R)=1 是两方向二阶量之和，不表示每个方向都照亮。通信波束很强不等于每个待估参数都有信息。</p>
+<p>接着看<a href="foundations.html#array">阵列相位与方向</a>、<a href="foundations.html#codesign">共同设计的资源预算</a>。这里未讲随机矩阵估计或完整 MIMO 协方差设计。</p></article>
+<article id="primer-rank"><h3>秩与子空间：有几列，不等于有几个独立方向</h3>
+<p>二维列向量 (1,0) 和 (2,0) 都沿同一直线。它们的任意线性组合仍在这条线上：这条线就是列空间，矩阵秩为 1。再加入 (0,1)，才能张成整个二维平面，秩变为 2。复数矩阵同样用线性独立来数秩。</p>
+<p>上例 R=diag(1,0) 的第二方向处在零空间，不能通过求逆凭空补出信息。子空间算法利用样本之间的结构，但“低秩”不自动等于目标可分，也不保证噪声下能正确恢复路径数。</p>
+<p>接着看<a href="foundations.html#array">阵列如何产生不同方向的响应</a>、<a href="foundations.html#limits">分辨与估计边界</a>。这里尚无 MUSIC / ESPRIT 的完整入门推导。</p></article>
+<article id="primer-optimization"><h3>SDR、SDP 与 KKT：先分清求的是哪个问题</h3>
+<p>对波束向量 w，提升矩阵 W=wwᴴ 一定半正定；w 非零时 W 的秩为 1。SDR（半定松弛）会去掉某些问题里的秩一约束，让允许的集合变大；若结果不是秩一，就不能直接声称已经找到原来的单波束。SDP（半正定规划）指线性目标、线性等式/不等式和半正定矩阵约束构成的凸优化问题，不是所有出现矩阵的优化。</p>
+<p>小例：W=diag(1,1) 是可行的 PSD 矩阵，秩为 2，不能写成一个二维向量的 wwᴴ。是否需要恢复波束、恢复后是否仍满足通信与功率约束，必须再检查；松弛目标不是恢复后必然达到的成绩。</p>
+<p>KKT 是一组候选最优性条件，包括原约束可行、对偶可行、驻点和互补松弛。它们在适当约束资格下是局部最优的必要条件；对凸问题，满足相应条件的可行解可认证全局最优。仅在非凸问题中发现驻点或小残差，不足以证明全局最优。</p>
+<p>接着看<a href="joint-beamforming.html#solution">共同波束课的实际求解与证书</a>，以及<a href="crb-beamforming.html#multiuser-method">CRB 课的多用户方法</a>。本站此处未提供通用 SDP 求解器教程、KKT 全套推导或一般 SDR 紧性证明；以各课明确实现的边界为准。</p></article>
+</section>
 <section class="chapter" id="evolution"><header class="chapter-head"><div class="eyebrow">03 / 技术为什么演进</div><h2>每一步，都是在回答上一种方案的局限</h2><p class="goal">这是设计逻辑图，不是互相取代的年代排名。专用、共存和联合设计至今仍有各自适用条件。</p></header>
 <div class="timeline"><article><span>分立 → 共存</span><h3>既然共用频谱，先让彼此不受伤害</h3><p>分时、分频、空间隔离和干扰管理保留各自波形。好处是职责清楚；代价是隔离资源、协调开销和剩余干扰。它还没有要求“一次发射做两件事”。</p></article><article><span>两条并行路线</span><h3>雷达波形嵌入信息 ↔ 通信波形提供测量</h3><p>雷达中心设计以测量为主，在波形参数中携带数据；通信中心设计利用 OFDM 等已知符号估计传播。问清优先目标、有效吞吐量和感知可用性，再比较方案。</p></article><article><span>联合收发设计</span><h3>既然都要做，能否共同选择波形与波束？</h3><p>在总能量、频谱、天线、功放和时延约束下寻找性能区域。更好的某个工作点不是“两项任务都免费变好”；应与公平基线、单任务端点及时间共享比较。</p></article><article><span>互助与网络化</span><h3>从共享设备走向共享知识</h3><p>感知结果辅助波束选择，通信网络辅助同步、节点协作与信息融合。资源共享的集成收益，与任务互助的协同收益，要分别计量；定位、隐私、开销和不确定性开始进入闭环。</p></article></div>
 <p class="sources">原文脉络：<a href="https://arxiv.org/html/2108.07165v1">Liu 等，2021 预印本 / 2022 期刊综述，§I、IV、V、VII</a>。继续读 <a href="foundations.html#codesign">共同设计</a> 与 <a href="foundations.html#geometry">多站几何</a>。</p></section>
