@@ -49,7 +49,7 @@ const targetInventoryPaths=Object.freeze(['labs/near-field/research/entry.mjs','
 const resetInventoryPaths=Object.freeze(['labs/80211ad/lesson/lesson.js','labs/pilot-pattern/lesson.mjs']);
 const teachingInventoryPaths=Object.freeze(["labs/causal-state-capacity/causal-capacity-ui.mjs", "labs/channel-geometry/multipath-information-ui.mjs", "labs/near-field/research/tests/page.test.mjs"]);
 const teachingInventoryCompatibility=Object.freeze({"labs/causal-state-capacity/causal-capacity-ui.mjs": "causal-capacity-ui.mjs", "labs/channel-geometry/multipath-information-ui.mjs": "multipath-information-ui.mjs", "labs/near-field/research/tests/page.test.mjs": "labs/near-field/research/tests/page.test.mjs"});
-const feedbackInventoryCompatibility=Object.freeze({'labs/gaussian-tradeoff/lesson/lesson.mjs':'labs/gaussian-tradeoff/lesson/lesson.mjs','labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs':'labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs','labs/near-field/research/view.mjs':'labs/near-field/research/view.mjs','labs/networked-sync/lesson/lesson.js':'labs/networked-sync/lesson/lesson.js','labs/resolution/resolution.js':'resolution.js'});
+const feedbackInventoryCompatibility=Object.freeze({'labs/capacity-distortion/capacity-distortion.js':'capacity-distortion.js','labs/gaussian-tradeoff/lesson/lesson.mjs':'labs/gaussian-tradeoff/lesson/lesson.mjs','labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs':'labs/gaussian-tradeoff/lesson/tests/mounted-ui.test.mjs','labs/near-field/research/view.mjs':'labs/near-field/research/view.mjs','labs/networked-sync/lesson/lesson.js':'labs/networked-sync/lesson/lesson.js','labs/resolution/resolution.js':'resolution.js'});
 const feedbackInventoryPaths=Object.freeze(Object.keys(feedbackInventoryCompatibility));
 function assertNumericalInventoryEntry(entry,base=root){
  const sha=b=>require('node:crypto').createHash('sha256').update(b).digest('hex');
@@ -68,7 +68,7 @@ test('Frozen numerical inputs retain published identities and two recovery leave
  assert.deepEqual(inventory.files.filter(e=>e.reviewedRecoveryLeaf).map(e=>e.source),['labs/pilot-pattern/lesson.mjs','labs/pilot-pattern/runtime/records.mjs']);
  assert.equal(new Set(inventory.files.map(e=>e.source)).size,790);const projected=[],raw=[];
  for(const entry of inventory.files){const result=assertNumericalInventoryEntry(entry);(result.projected?projected:raw).push(entry.source);if(result.projected)assert.notEqual(result.rawSha256,result.historicalSha256);else assert.equal(result.rawSha256,result.historicalSha256);}
- assert.deepEqual(projected,[...resetInventoryPaths,...targetInventoryPaths,...teachingInventoryPaths,...feedbackInventoryPaths].sort());assert.equal(raw.length,776);
+ assert.deepEqual(projected,[...resetInventoryPaths,...targetInventoryPaths,...teachingInventoryPaths,...feedbackInventoryPaths].sort());assert.equal(raw.length,775);
 });
 function numericalIdentityFixture(t){
  const U=require('./helpers/reset-ui-preservation.cjs'),out=temp(t),source=fs.existsSync(path.join(root,'content/data/registry.json'));

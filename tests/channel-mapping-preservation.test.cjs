@@ -69,9 +69,9 @@ test('current mapping layout rejects missing forged changed and symlinked physic
   for(const row of rows){const file=c.sourceLayout?row.path:row.compatibility,p=path.join(dir,file);fs.mkdirSync(path.dirname(p),{recursive:true});fs.copyFileSync(path.join(root,file),p);}
   copyResetClosure(dir,c.sourceLayout);
   for(const row of P.currentMappingResources){const p=path.join(dir,row.compatibility);fs.mkdirSync(path.dirname(p),{recursive:true});fs.copyFileSync(path.join(root,row.compatibility),p);}
-  const row=P.currentMappingResources[0],p=path.join(dir,row.compatibility),raw=fs.readFileSync(p);a.equal(P.resolveCurrentStagingResource(row.public,{root:dir}),row.compatibility);
-  for(const bad of [Buffer.from('forged'),Buffer.concat([raw,Buffer.from('extra')]),Buffer.from(raw.map((v,i)=>i===0?v^1:v))]){fs.writeFileSync(p,bad);a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}),/Exact current mapping resource identity/);fs.writeFileSync(p,raw);}
+  for(const row of P.currentMappingResources.slice(0,2)){const p=path.join(dir,row.compatibility),raw=fs.readFileSync(p);a.equal(P.resolveCurrentStagingResource(row.public,{root:dir}),row.compatibility);
+  for(const bad of [Buffer.from('forged'),Buffer.concat([raw,Buffer.from('extra')]),Buffer.from(raw.map((v,i)=>i===0?v^1:v))]){fs.writeFileSync(p,bad);a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}),/Exact current mapping resource identity|Exact current feedback endpoint/);fs.writeFileSync(p,raw);}
   fs.renameSync(p,p+'.retained');a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}));fs.symlinkSync(p+'.retained',p);a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}),/symlink/);fs.unlinkSync(p);fs.renameSync(p+'.retained',p);
-  const parent=path.dirname(p);fs.renameSync(parent,parent+'.retained');fs.symlinkSync(parent+'.retained',parent);a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}),/symlink/);fs.unlinkSync(parent);fs.renameSync(parent+'.retained',parent);
+  const parent=path.dirname(p);fs.renameSync(parent,parent+'.retained');fs.symlinkSync(parent+'.retained',parent);a.throws(()=>P.resolveCurrentStagingResource(row.public,{root:dir}),/symlink/);fs.unlinkSync(parent);fs.renameSync(parent+'.retained',parent);}
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
